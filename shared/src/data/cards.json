@@ -1146,7 +1146,7 @@
       "name": "Tim David",
       "nation": "Australia",
       "tier": "Silver",
-      "description": "Singapore-born T20 mercenary. Massive hitter at death. Leg-side dominant.",
+      "description": "Singapore-born T20 mercenary. MI/RCB. Massive death-overs hitter, leg-side dominant — the slog and the hook are his go-tos. Reads slower balls and cutters from his death-overs experience.",
       "strengths": [
         {
           "zone": {
@@ -1161,13 +1161,13 @@
         },
         {
           "zone": {
-            "line": "Middle stump",
-            "length": "Full"
+            "line": "Leg stump",
+            "length": "Short"
           },
           "outcome": {
             "type": "runs",
             "value": 4,
-            "shot": "loft"
+            "shot": "hook"
           }
         }
       ],
@@ -1179,19 +1179,8 @@
           },
           "outcome": {
             "type": "runs",
-            "value": 2,
-            "shot": "work"
-          }
-        },
-        {
-          "zone": {
-            "line": "Middle stump",
-            "length": "Short"
-          },
-          "outcome": {
-            "type": "runs",
             "value": 1,
-            "shot": "pull"
+            "shot": "work"
           }
         }
       ],
@@ -1203,7 +1192,7 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "beaten"
+            "mode": "edge to slip"
           }
         },
         {
@@ -1213,11 +1202,24 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "mis-hit to cover"
+            "mode": "mishit caught at mid-off"
+          }
+        },
+        {
+          "zone": {
+            "line": "Middle stump",
+            "length": "Good length"
+          },
+          "outcome": {
+            "type": "wicket",
+            "mode": "bowled going across"
           }
         }
       ],
-      "resistances": []
+      "resistances": [
+        "Slower",
+        "Cutter"
+      ]
     },
     {
       "id": "josh-inglis-bat",
@@ -1225,7 +1227,7 @@
       "name": "Josh Inglis",
       "nation": "Australia",
       "tier": "Silver",
-      "description": "Wicketkeeper-bat. Clean striker, good against spin. Can struggle against raw pace.",
+      "description": "Wicketkeeper-bat. Clean striker through the off side. T20I appearances steady but not first-choice. Plays spin from the BBL with comfort; struggles against raw pace and short balls into the body.",
       "strengths": [
         {
           "zone": {
@@ -1258,19 +1260,8 @@
           },
           "outcome": {
             "type": "runs",
-            "value": 2,
-            "shot": "push"
-          }
-        },
-        {
-          "zone": {
-            "line": "Leg stump",
-            "length": "Full"
-          },
-          "outcome": {
-            "type": "runs",
             "value": 1,
-            "shot": "flick"
+            "shot": "push"
           }
         }
       ],
@@ -1282,29 +1273,43 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "gloves to keeper"
+            "mode": "fends to short leg"
+          }
+        },
+        {
+          "zone": {
+            "line": "Outside off",
+            "length": "Short"
+          },
+          "outcome": {
+            "type": "wicket",
+            "mode": "caught at point"
           }
         },
         {
           "zone": {
             "line": "Leg stump",
-            "length": "Short"
+            "length": "Good length"
           },
           "outcome": {
             "type": "wicket",
-            "mode": "fends to short leg"
+            "mode": "LBW playing across"
           }
         }
       ],
-      "resistances": []
+      "resistances": [
+        "Topspin",
+        "Carrom",
+        "Drift"
+      ]
     },
     {
-      "id": "steve-smith-bat",
+      "id": "cameron-green-bat",
       "kind": "batsman",
-      "name": "Steve Smith",
+      "name": "Cameron Green",
       "nation": "Australia",
       "tier": "Silver",
-      "description": "Unorthodox genius. Shuffles across, plays late. Not a natural T20 player but technically elite.",
+      "description": "Tall all-rounder. IPL with RCB/MI, has played T20Is for Australia. Strong technique handles the new ball well; vulnerable to short-pitched bowling and the fishing line.",
       "strengths": [
         {
           "zone": {
@@ -1313,34 +1318,23 @@
           },
           "outcome": {
             "type": "runs",
-            "value": 4,
+            "value": 6,
             "shot": "drive"
           }
         },
         {
           "zone": {
-            "line": "Leg stump",
-            "length": "Good length"
+            "line": "Middle stump",
+            "length": "Short"
           },
           "outcome": {
             "type": "runs",
             "value": 4,
-            "shot": "flick"
+            "shot": "pull"
           }
         }
       ],
       "neutrals": [
-        {
-          "zone": {
-            "line": "Off stump",
-            "length": "Good length"
-          },
-          "outcome": {
-            "type": "runs",
-            "value": 2,
-            "shot": "push"
-          }
-        },
         {
           "zone": {
             "line": "Middle stump",
@@ -1349,11 +1343,31 @@
           "outcome": {
             "type": "runs",
             "value": 1,
-            "shot": "defend"
+            "shot": "push"
           }
         }
       ],
       "weaknesses": [
+        {
+          "zone": {
+            "line": "Outside off",
+            "length": "Short"
+          },
+          "outcome": {
+            "type": "wicket",
+            "mode": "caught at point"
+          }
+        },
+        {
+          "zone": {
+            "line": "Off stump",
+            "length": "Good length"
+          },
+          "outcome": {
+            "type": "wicket",
+            "mode": "edge to slip"
+          }
+        },
         {
           "zone": {
             "line": "Leg stump",
@@ -1361,21 +1375,14 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "LBW shuffling across"
-          }
-        },
-        {
-          "zone": {
-            "line": "Off stump",
-            "length": "Short"
-          },
-          "outcome": {
-            "type": "wicket",
-            "mode": "top edge caught"
+            "mode": "LBW playing across"
           }
         }
       ],
-      "resistances": []
+      "resistances": [
+        "Swing",
+        "Seam"
+      ]
     },
     {
       "id": "mitchell-owen-bat",
@@ -1534,35 +1541,34 @@
       "resistances": []
     },
     {
-      "id": "cameron-green-bat",
+      "id": "jake-fraser-mcgurk-bat",
       "kind": "batsman",
-      "name": "Cameron Green",
+      "name": "Jake Fraser-McGurk",
       "nation": "Australia",
       "tier": "Bronze",
-      "description": "Tall all-rounder. Hits through the line but can be exposed by short-pitched bowling.",
-      "strengths": [
-        {
-          "zone": {
-            "line": "Middle stump",
-            "length": "Full"
-          },
-          "outcome": {
-            "type": "runs",
-            "value": 4,
-            "shot": "drive"
-          }
-        }
-      ],
+      "description": "Rajasthan Royals' explosive opener. IPL 2024 breakout — second-fastest IPL fifty ever. Has played T20Is for Australia but isn't established. Aggressive but raw — hits big when timing it, vulnerable when forced to defend.",
+      "strengths": [],
       "neutrals": [
         {
           "zone": {
             "line": "Off stump",
-            "length": "Good length"
+            "length": "Full"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 1,
+            "shot": "drive"
+          }
+        },
+        {
+          "zone": {
+            "line": "Middle stump",
+            "length": "Short"
           },
           "outcome": {
             "type": "runs",
             "value": 2,
-            "shot": "push"
+            "shot": "pull"
           }
         },
         {
@@ -1581,31 +1587,31 @@
         {
           "zone": {
             "line": "Middle stump",
-            "length": "Short"
+            "length": "Good length"
           },
           "outcome": {
             "type": "wicket",
-            "mode": "fends to short leg"
+            "mode": "bowled"
           }
         },
         {
           "zone": {
             "line": "Off stump",
-            "length": "Short"
-          },
-          "outcome": {
-            "type": "wicket",
-            "mode": "caught behind"
-          }
-        },
-        {
-          "zone": {
-            "line": "Middle stump",
             "length": "Good length"
           },
           "outcome": {
             "type": "wicket",
-            "mode": "LBW"
+            "mode": "edge to slip"
+          }
+        },
+        {
+          "zone": {
+            "line": "Outside off",
+            "length": "Short"
+          },
+          "outcome": {
+            "type": "wicket",
+            "mode": "top edge caught"
           }
         }
       ],
@@ -10716,7 +10722,7 @@
       "name": "Nathan Ellis",
       "nation": "Australia",
       "tier": "Silver",
-      "description": "Death overs specialist. Slower balls and cutters. Smart rather than fast.",
+      "description": "Death-overs specialist. Slower balls and cutters in real cricket — Silver bowlers carry no skill in v1.1, so he's just a wily yorker-length pacer here.",
       "delivery": {
         "line": "Off stump",
         "length": "Full"
@@ -10732,7 +10738,7 @@
       "name": "Marcus Stoinis",
       "nation": "Australia",
       "tier": "Silver",
-      "description": "Medium pace all-rounder. Good length off stump with wobble seam.",
+      "description": "Medium-pace all-rounder. Hit-the-deck good-length seamer in real cricket — Silver bowlers carry no specific skill in v1.1.",
       "delivery": {
         "line": "Off stump",
         "length": "Good length"
@@ -10748,7 +10754,7 @@
       "name": "Xavier Bartlett",
       "nation": "Australia",
       "tier": "Silver",
-      "description": "Emerging quick. Good length outside off with bounce.",
+      "description": "Emerging Brisbane Heat quick. Tall, hits good length with bounce. Limited Australian career so far. No specific skill at the Silver tier.",
       "delivery": {
         "line": "Off stump",
         "length": "Good length"
@@ -10823,15 +10829,15 @@
       ]
     },
     {
-      "id": "mitchell-owen-bowl",
+      "id": "mitch-marsh-bowl",
       "kind": "bowler",
-      "name": "Mitchell Owen",
+      "name": "Mitch Marsh",
       "nation": "Australia",
       "tier": "Bronze",
-      "description": "Part-time medium pace. Emergency option only.",
+      "description": "Medium-fast all-rounder. Useful 6th bowler at international level when fit. Hard back-of-length pacer with no specific skill at the Bronze tier.",
       "delivery": {
         "line": "Middle stump",
-        "length": "Good length"
+        "length": "Short"
       },
       "adjectives": [],
       "fielding": [

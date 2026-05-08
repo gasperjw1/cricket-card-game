@@ -339,22 +339,25 @@ Everything not listed = dot ball. Weaknesses are zone-only (no adjective referen
 - **Resistances:** Swing, Seam, Cutter, Slower
 
 ### SILVER — Tim David
-*Singapore-born T20 mercenary. Massive hitter at death. Leg-side dominant.*
-- **Strengths:** Full leg stump → slog for 6 | Full middle stump → loft for 4
-- **Neutrals:** Good length leg stump → work for 2 | Short middle stump → pull for 1
-- **Weaknesses:** Good length off stump → beaten | Full off stump → mis-hit to cover
+*Singapore-born T20 mercenary. MI/RCB. Massive death-overs hitter, leg-side dominant — the slog and the hook are his go-tos. Reads slower balls and cutters from his death-overs experience.*
+- **Strengths:** Full leg stump → slog for 6 | Short leg stump → hook for 4
+- **Neutrals:** Good length leg stump → work for 1
+- **Weaknesses:** Good length off stump → edge to slip | Full off stump → mishit caught at mid-off | Good length middle stump → bowled going across
+- **Resistances:** Slower, Cutter
 
 ### SILVER — Josh Inglis
-*Wicketkeeper-bat. Clean striker, good against spin. Can struggle against raw pace.*
+*Wicketkeeper-bat. Clean striker through the off side. T20I appearances steady but not first-choice. Plays spin from the BBL with comfort; struggles against raw pace and short balls into the body.*
 - **Strengths:** Good length off stump → cut for 4 | Full off stump → drive for 4
-- **Neutrals:** Good length middle stump → push for 2 | Full leg stump → flick for 1
-- **Weaknesses:** Short middle stump → gloves to keeper | Short leg stump → fends to short leg
+- **Neutrals:** Good length middle stump → push for 1
+- **Weaknesses:** Short middle stump → fends to short leg | Short Outside off → caught at point | Good length leg stump → LBW playing across
+- **Resistances:** Topspin, Carrom, Drift
 
-### SILVER — Steve Smith
-*Unorthodox genius. Shuffles across, plays late. Not a natural T20 player but technically elite.*
-- **Strengths:** Full off stump → drive for 4 | Good length leg stump → flick for 4
-- **Neutrals:** Good length off stump → push for 2 | Good length middle stump → defend for 1
-- **Weaknesses:** Full leg stump → LBW shuffling across | Short off stump → top edge caught
+### SILVER — Cameron Green
+*Tall all-rounder. IPL with RCB/MI, has played T20Is for Australia. Strong technique handles the new ball well; vulnerable to short-pitched bowling and the fishing line.*
+- **Strengths:** Full off stump → drive for 6 | Short middle stump → pull for 4
+- **Neutrals:** Good length middle stump → push for 1
+- **Weaknesses:** Short Outside off → caught at point | Good length off stump → edge to slip | Full leg stump → LBW playing across
+- **Resistances:** Swing, Seam
 
 ### BRONZE — Mitchell Owen
 *Young explosive opener. Hits hard but raw technique. Recent breakout.*
@@ -368,11 +371,10 @@ Everything not listed = dot ball. Weaknesses are zone-only (no adjective referen
 - **Neutrals:** Good length middle stump → push for 2 | Good length leg stump → work for 1
 - **Weaknesses:** Short off stump → caught at gully | Full middle stump → mis-hit to mid-on | Good length off stump → edge to keeper
 
-### BRONZE — Cameron Green
-*Tall all-rounder. Hits through the line but can be exposed by short-pitched bowling.*
-- **Strengths:** Full middle stump → drive for 4
-- **Neutrals:** Good length off stump → push for 2 | Full leg stump → flick for 1
-- **Weaknesses:** Short middle stump → fends to short leg | Short off stump → caught behind | Good length middle stump → LBW
+### BRONZE — Jake Fraser-McGurk
+*Rajasthan Royals' explosive opener. IPL 2024 breakout — second-fastest IPL fifty ever. Has played T20Is for Australia but isn't established. Aggressive but raw — hits big when timing it, vulnerable when forced to defend.*
+- **Neutrals:** Full off stump → drive for 1 | Short middle stump → pull for 2 | Full leg stump → flick for 1
+- **Weaknesses:** Good length middle stump → bowled | Good length off stump → edge to slip | Short Outside off → top edge caught
 
 ### BRONZE — Matthew Renshaw
 *Left-handed grinder. Domestic performer, limited T20I exposure. Defensive mindset.*
@@ -401,16 +403,16 @@ Everything not listed = dot ball. Weaknesses are zone-only (no adjective referen
 - **Delivery:** Good length Outside off | **Adjective:** Seam | **Fielding:** Slip cordon
 
 ### SILVER — Nathan Ellis
-*Death overs specialist. Slower balls and cutters. Smart rather than fast.*
-- **Delivery:** Full off stump | **Adjective:** Cutter | **Fielding:** Cover
+*Death-overs specialist. Slower balls and cutters in real cricket — Silver bowlers carry no skill in v1.1, so he's just a wily yorker-length pacer here.*
+- **Delivery:** Full off stump | **Fielding:** Cover
 
 ### SILVER — Marcus Stoinis
-*Medium pace all-rounder. Good length off stump with wobble seam.*
-- **Delivery:** Good length off stump | **Adjective:** Seam | **Fielding:** Gully/Point
+*Medium-pace all-rounder. Hit-the-deck good-length seamer in real cricket — Silver bowlers carry no specific skill in v1.1.*
+- **Delivery:** Good length off stump | **Fielding:** Gully/Point
 
 ### SILVER — Xavier Bartlett
-*Emerging quick. Good length outside off with bounce.*
-- **Delivery:** Good length off stump | **Adjective:** Pace | **Fielding:** Gully/Point
+*Emerging Brisbane Heat quick. Tall, hits good length with bounce. Limited Australian career so far. No specific skill at the Silver tier.*
+- **Delivery:** Good length off stump | **Fielding:** Gully/Point
 
 ### BRONZE — Ben Dwarshuis
 *Left-arm medium. Death overs variation bowler.*
@@ -428,9 +430,9 @@ Everything not listed = dot ball. Weaknesses are zone-only (no adjective referen
 *Medium-fast all-rounder. Hit the deck, occasional wicket.*
 - **Delivery:** Good length off stump | **Fielding:** Gully/Point
 
-### BRONZE — Mitchell Owen
-*Part-time medium pace. Emergency option only.*
-- **Delivery:** Good length middle stump | **Fielding:** Mid-wicket
+### BRONZE — Mitch Marsh
+*Medium-fast all-rounder. Useful 6th bowler at international level when fit. Hard back-of-length pacer with no specific skill at the Bronze tier.*
+- **Delivery:** Short middle stump | **Fielding:** Mid-wicket
 
 ---
 
