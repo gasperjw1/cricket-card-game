@@ -444,18 +444,18 @@ Everything not listed = dot ball. Weaknesses are zone-only (no adjective referen
 - **Resistances:** Cutter, Slower, Googly, Carrom, Topspin, Drift
 
 ### GOLD — Harry Brook
-*Young run machine. Drives beautifully. Aggressive but technically sound.*
-- **Strengths:** Full off stump → drive for 6 | Full middle stump → loft for 4 | Short leg stump → pull for 4
-- **Neutrals:** Good length off stump → push for 2 | Good length middle stump → defend for 1
-- **Weaknesses:** Good length middle stump → bowled through the gate
-- **Resistances:** Swing
+*England's #3, T20 WC star. Drives beautifully over extra cover, pulls anything short, all-round attacking. Technically sound for an aggressive batter — eats spin alive but vulnerable in the corridor outside off.*
+- **Strengths:** Full off stump → drive for 6 | Short middle stump → pull for 4
+- **Neutrals:** Good length leg stump → flick for 2 | Good length off stump → push for 1
+- **Weaknesses:** Good length middle stump → bowled going across | Full Outside off → caught at cover
+- **Resistances:** Topspin, Drift, Googly, Carrom, Cutter
 
 ### GOLD — Phil Salt
-*Explosive opener. Hits over the top. Clears the front leg and smashes.*
-- **Strengths:** Full middle stump → loft for 6 | Full leg stump → sweep for 4 | Short middle stump → pull for 4
-- **Neutrals:** Good length leg stump → flick for 2 | Wide outside off full → slash for 1
-- **Weaknesses:** Full off stump → mis-hit to cover
-- **Resistances:** Spin
+*Explosive powerplay opener. Multiple T20I centuries in 2024. Pulls anything short for huge runs, drives over the off side, scoops occasionally. Pace specialist; struggles when the ball turns.*
+- **Strengths:** Short middle stump → pull for 6 | Full off stump → drive for 4
+- **Neutrals:** Good length off stump → push for 2 | Full leg stump → flick for 1
+- **Weaknesses:** Good length middle stump → bowled | Good length Outside off → edge to slip
+- **Resistances:** Swing, Seam, Cutter, Slower
 
 ### SILVER — Liam Livingstone
 *Power hitter. Switch hits. Smashes spin. Can hole out to anything.*
@@ -512,12 +512,12 @@ Everything not listed = dot ball. Weaknesses are zone-only (no adjective referen
 - **Delivery:** Full middle stump | **Adjective:** Seam, Slower | **Fielding:** Mid-wicket + Cover
 
 ### GOLD — Adil Rashid
-*Wrist-spinner. Googly is his weapon. Middle overs magician.*
-- **Delivery:** Good length middle stump | **Adjective:** Spin (legspin/googly) | **Fielding:** Short leg
+*England's #1 leg-spinner. T20 WC 2022 winner, middle-overs wicket-taker. Stock leg-break drifting onto the pads with a disguised googly that breaks back into the stumps.*
+- **Delivery:** Good length leg stump | **Adjective:** Googly | **Fielding:** Short leg/Silly point
 
 ### GOLD — Mark Wood
-*Raw express pace. Short ball specialist. 95mph+ regularly.*
-- **Delivery:** Short off stump | **Adjective:** Pace | **Fielding:** Gully/Point
+*Express pacer (150+ kph when fit). Hits the deck hard with bounce, late seam off the surface. Death-overs short ball specialist.*
+- **Delivery:** Short middle stump | **Adjective:** Seam | **Fielding:** Gully/Point
 
 ### SILVER — Sam Curran
 *Left-arm medium. Clever variations. Death overs specialist.*

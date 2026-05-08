@@ -1862,7 +1862,7 @@
       "name": "Harry Brook",
       "nation": "England",
       "tier": "Gold",
-      "description": "Young run machine. Drives beautifully. Aggressive but technically sound.",
+      "description": "England's #3, T20 WC star. Drives beautifully over extra cover, pulls anything short, all-round attacking. Technically sound for an aggressive batter — eats spin alive but vulnerable in the corridor outside off.",
       "strengths": [
         {
           "zone": {
@@ -1873,99 +1873,6 @@
             "type": "runs",
             "value": 6,
             "shot": "drive"
-          }
-        },
-        {
-          "zone": {
-            "line": "Middle stump",
-            "length": "Full"
-          },
-          "outcome": {
-            "type": "runs",
-            "value": 4,
-            "shot": "loft"
-          }
-        },
-        {
-          "zone": {
-            "line": "Leg stump",
-            "length": "Short"
-          },
-          "outcome": {
-            "type": "runs",
-            "value": 4,
-            "shot": "pull"
-          }
-        }
-      ],
-      "neutrals": [
-        {
-          "zone": {
-            "line": "Off stump",
-            "length": "Good length"
-          },
-          "outcome": {
-            "type": "runs",
-            "value": 2,
-            "shot": "push"
-          }
-        },
-        {
-          "zone": {
-            "line": "Middle stump",
-            "length": "Good length"
-          },
-          "outcome": {
-            "type": "runs",
-            "value": 1,
-            "shot": "defend"
-          }
-        }
-      ],
-      "weaknesses": [
-        {
-          "zone": {
-            "line": "Middle stump",
-            "length": "Good length"
-          },
-          "outcome": {
-            "type": "wicket",
-            "mode": "bowled through the gate"
-          }
-        }
-      ],
-      "resistances": [
-        "Swing"
-      ]
-    },
-    {
-      "id": "phil-salt-bat",
-      "kind": "batsman",
-      "name": "Phil Salt",
-      "nation": "England",
-      "tier": "Gold",
-      "description": "Explosive opener. Hits over the top. Clears the front leg and smashes.",
-      "strengths": [
-        {
-          "zone": {
-            "line": "Middle stump",
-            "length": "Full"
-          },
-          "outcome": {
-            "type": "runs",
-            "value": 6,
-            "shot": "loft"
-          }
-        },
-        {
-          "zone": {
-            "line": "Leg stump",
-            "length": "Full"
-          },
-          "outcome": {
-            "type": "runs",
-            "value": 4,
-            "shot": "sweep"
           }
         },
         {
@@ -1994,29 +1901,129 @@
         },
         {
           "zone": {
-            "line": "Outside off",
-            "length": "Full"
+            "line": "Off stump",
+            "length": "Good length"
           },
           "outcome": {
             "type": "runs",
             "value": 1,
-            "shot": "slash"
+            "shot": "push"
           }
         }
       ],
       "weaknesses": [
         {
           "zone": {
-            "line": "Off stump",
+            "line": "Middle stump",
+            "length": "Good length"
+          },
+          "outcome": {
+            "type": "wicket",
+            "mode": "bowled going across"
+          }
+        },
+        {
+          "zone": {
+            "line": "Outside off",
             "length": "Full"
           },
           "outcome": {
             "type": "wicket",
-            "mode": "mis-hit to cover"
+            "mode": "caught at cover"
           }
         }
       ],
-      "resistances": []
+      "resistances": [
+        "Topspin",
+        "Drift",
+        "Googly",
+        "Carrom",
+        "Cutter"
+      ]
+    },
+    {
+      "id": "phil-salt-bat",
+      "kind": "batsman",
+      "name": "Phil Salt",
+      "nation": "England",
+      "tier": "Gold",
+      "description": "Explosive powerplay opener. Multiple T20I centuries in 2024. Pulls anything short for huge runs, drives over the off side, scoops occasionally. Pace specialist; struggles when the ball turns.",
+      "strengths": [
+        {
+          "zone": {
+            "line": "Middle stump",
+            "length": "Short"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 6,
+            "shot": "pull"
+          }
+        },
+        {
+          "zone": {
+            "line": "Off stump",
+            "length": "Full"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 4,
+            "shot": "drive"
+          }
+        }
+      ],
+      "neutrals": [
+        {
+          "zone": {
+            "line": "Off stump",
+            "length": "Good length"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 2,
+            "shot": "push"
+          }
+        },
+        {
+          "zone": {
+            "line": "Leg stump",
+            "length": "Full"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 1,
+            "shot": "flick"
+          }
+        }
+      ],
+      "weaknesses": [
+        {
+          "zone": {
+            "line": "Middle stump",
+            "length": "Good length"
+          },
+          "outcome": {
+            "type": "wicket",
+            "mode": "bowled"
+          }
+        },
+        {
+          "zone": {
+            "line": "Outside off",
+            "length": "Good length"
+          },
+          "outcome": {
+            "type": "wicket",
+            "mode": "edge to slip"
+          }
+        }
+      ],
+      "resistances": [
+        "Swing",
+        "Seam",
+        "Cutter",
+        "Slower"
+      ]
     },
     {
       "id": "liam-livingstone-bat",
@@ -10871,12 +10878,14 @@
       "name": "Adil Rashid",
       "nation": "England",
       "tier": "Gold",
-      "description": "Wrist-spinner. Googly is his weapon. Middle overs magician.",
+      "description": "England's #1 leg-spinner. T20 WC 2022 winner, middle-overs wicket-taker. Stock leg-break drifting onto the pads with a disguised googly that breaks back into the stumps.",
       "delivery": {
-        "line": "Middle stump",
+        "line": "Leg stump",
         "length": "Good length"
       },
-      "adjectives": [],
+      "adjectives": [
+        "Googly"
+      ],
       "fielding": [
         "Short leg/Silly point"
       ]
@@ -10887,12 +10896,14 @@
       "name": "Mark Wood",
       "nation": "England",
       "tier": "Gold",
-      "description": "Raw express pace. Short ball specialist. 95mph+ regularly.",
+      "description": "Express pacer (150+ kph when fit). Hits the deck hard with bounce, late seam off the surface. Death-overs short ball specialist.",
       "delivery": {
-        "line": "Off stump",
+        "line": "Middle stump",
         "length": "Short"
       },
-      "adjectives": [],
+      "adjectives": [
+        "Seam"
+      ],
       "fielding": [
         "Gully/Point"
       ]
