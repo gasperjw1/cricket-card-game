@@ -318,11 +318,11 @@ Everything not listed = dot ball. Weaknesses are zone-only (no adjective referen
 ## BATSMEN
 
 ### ELITE — Travis Head
-*Aggressive left-handed opener. Smashes through the off side. Pulls with venom. T20 WC 2024 star.*
-- **Strengths:** Full off stump → drive for 6 | Short middle stump → pull for 4 | Full leg stump → sweep for 4
-- **Neutrals:** Good length off stump → cut for 2 | Wide outside off full → slash for 1
-- **Weaknesses:** Good length middle stump → bowled playing across
-- **Resistances:** Pace, Swing
+*Aggressive left-handed opener. Smashes through the off side off the front foot, pulls anything short, brutal vs spin in the middle overs. T20 WC 2024 best XI; held up under extreme pressure (137 in the 2023 ODI WC final). Vulnerable mainly to early-innings new-ball pace.*
+- **Strengths:** Full off stump → drive for 6 | Short middle stump → pull for 4 | Good length off stump → cut for 4
+- **Neutrals:** Good length middle stump → push for 2 | Full leg stump → flick for 2
+- **Weaknesses:** Short Outside off → top edge caught
+- **Resistances:** Cutter, Slower, Googly, Carrom, Topspin, Drift
 
 ### GOLD — Glenn Maxwell
 *360-degree hitter. Reverse sweeps, switch hits, scoops. Genius or out for a duck.*
@@ -389,8 +389,8 @@ Everything not listed = dot ball. Weaknesses are zone-only (no adjective referen
 ## BOWLERS
 
 ### ELITE — Mitchell Starc
-*Left-arm express. Devastating yorkers. Swings it late at 150kph.*
-- **Delivery:** Full off stump | **Adjective:** Swing (inswing, left-arm) | **Fielding:** Slip cordon + Mid-wicket
+*Left-arm express. Late in-swing into right-handers from the natural left-arm angle, devastating death-overs yorkers, world-class slower-ball variations (slower bouncers and slower yorkers). Two-skill Elite per the v1.1 rule — only one fires per ball, no stacking.*
+- **Delivery:** Full off stump | **Adjective:** Swing, Slower | **Fielding:** Slip cordon + Mid-wicket
 
 ### GOLD — Adam Zampa
 *Leg-spinner. Middle overs wicket-taker. Gets drift and turn on any surface.*
