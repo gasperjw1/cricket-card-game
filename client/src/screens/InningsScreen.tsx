@@ -15,6 +15,7 @@ import { CardViewer } from "../components/CardViewer.tsx";
 import { Tip } from "../components/Tip.tsx";
 import type { MatchClient } from "../state.ts";
 import { useCountdown } from "../useCountdown.ts";
+import { useStagedReveal } from "../useStagedReveal.ts";
 import { SwapPicker } from "./SwapPicker.tsx";
 
 interface Props {
@@ -519,7 +520,21 @@ function RevealOverlay(props: {
   const seconds = useCountdown(props.postBallDeadline);
   const reveal = buildRevealContext(result);
 
-  const continueLabel = props.isFinalBall ? "See result" : "Continue";
+  const stage = useStagedReveal(result.resolutionSteps.length);
+
+  const continueLabel = stage.isComplete
+    ? props.isFinalBall
+      ? "See result"
+      : "Continue"
+    : "Skip";
+
+  const handleContinue = (): void => {
+    if (!stage.isComplete) {
+      stage.skipToEnd();
+      return;
+    }
+    props.onContinue();
+  };
 
   return (
     <div className="reveal-overlay">
@@ -551,8 +566,18 @@ function RevealOverlay(props: {
           </div>
         </div>
 
-        <ResolutionTrail steps={result.resolutionSteps} />
-        <FinalOutcome outcome={result.finalOutcome} extras={result.extraRuns} extrasNote={result.extrasNote} rebowled={result.rebowled} />
+        <ResolutionTrail
+          steps={result.resolutionSteps}
+          visibleCount={stage.visibleCount}
+        />
+        {stage.isComplete && (
+          <FinalOutcome
+            outcome={result.finalOutcome}
+            extras={result.extraRuns}
+            extrasNote={result.extrasNote}
+            rebowled={result.rebowled}
+          />
+        )}
 
         <div className="reveal-footer">
           {props.postBallDeadline !== null && (
@@ -564,7 +589,7 @@ function RevealOverlay(props: {
               </span>
             </Tip>
           )}
-          <button className="btn primary big" onClick={props.onContinue}>
+          <button className="btn primary big" onClick={handleContinue}>
             {continueLabel}
           </button>
         </div>
@@ -573,26 +598,63 @@ function RevealOverlay(props: {
   );
 }
 
-function ResolutionTrail({ steps }: { steps: ResolutionStep[] }) {
+function ResolutionTrail({
+  steps,
+  visibleCount,
+}: {
+  steps: ResolutionStep[];
+  visibleCount: number;
+}) {
   if (steps.length === 0) return null;
   return (
     <ol className="resolution-trail">
-      {steps.map((step, i) => (
-        <li key={i} className={step.applied ? "applied" : "skipped"}>
-          <Tip text={step.detail}>
-            <strong>{step.label}</strong>
-          </Tip>
-          {step.before && step.after ? (
-            <span className="step-change">
-              {" "}
-              {fmtOutcome(step.before)} → {fmtOutcome(step.after)}
-            </span>
-          ) : null}
-          {!step.applied && (
-            <span className="dim-text"> (no effect)</span>
-          )}
-        </li>
-      ))}
+      {steps.map((step, i) => {
+        const visible = i < visibleCount;
+        const just = i === visibleCount - 1;
+        const valueChanged =
+          step.before &&
+          step.after &&
+          fmtOutcome(step.before) !== fmtOutcome(step.after);
+        return (
+          <li
+            key={i}
+            className={[
+              step.applied ? "applied" : "skipped",
+              visible ? "revealed" : "pending",
+              just ? "just-revealed" : "",
+            ]
+              .filter(Boolean)
+              .join(" ")}
+            aria-hidden={!visible}
+          >
+            <Tip text={step.detail}>
+              <strong>{step.label}</strong>
+            </Tip>
+            {step.before && step.after ? (
+              <span className="step-change">
+                {valueChanged ? (
+                  <>
+                    {" "}
+                    <span className={`val-before${just ? " slashing" : " slashed"}`}>
+                      {fmtOutcome(step.before)}
+                    </span>{" "}
+                    <span className={`val-arrow${just ? " arriving" : ""}`}>→</span>{" "}
+                    <span className={`val-after${just ? " arriving" : ""}`}>
+                      {fmtOutcome(step.after)}
+                    </span>
+                  </>
+                ) : (
+                  <>
+                    {" "}
+                    <span className="val-static">{fmtOutcome(step.after)}</span>
+                  </>
+                )}
+              </span>
+            ) : null}
+            {!step.applied && <span className="dim-text"> (no effect)</span>}
+          </li>
+        );
+      })}
     </ol>
   );
 }

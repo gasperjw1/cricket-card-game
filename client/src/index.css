@@ -1018,12 +1018,92 @@ h1 {
   padding: 0.4rem 0.7rem;
   border-radius: 6px;
   border-left: 3px solid #3a475a;
+  transition: opacity 220ms ease, transform 220ms ease;
 }
 .resolution-trail li.applied { border-left-color: #2563eb; }
 .resolution-trail li.skipped { opacity: 0.6; }
+.resolution-trail li.pending {
+  opacity: 0;
+  transform: translateY(6px);
+  pointer-events: none;
+}
+.resolution-trail li.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+.resolution-trail li.skipped.revealed { opacity: 0.6; }
+.resolution-trail li.just-revealed.applied {
+  animation: trail-pop 0.32s ease-out;
+}
+@keyframes trail-pop {
+  0% { transform: scale(0.97); }
+  60% { transform: scale(1.015); }
+  100% { transform: scale(1); }
+}
 .step-change {
   font-family: ui-monospace, "SF Mono", Menlo, monospace;
   color: #a8b1ba;
+}
+
+/* "Slash" animation for value changes (e.g. 6 → 4 from a downgrade). */
+.val-before {
+  position: relative;
+  display: inline-block;
+  color: #a8b1ba;
+}
+.val-before.slashed {
+  text-decoration: line-through;
+  text-decoration-color: #ff8181;
+  text-decoration-thickness: 2px;
+  opacity: 0.6;
+}
+.val-before.slashing {
+  animation: slash-strike 0.42s ease-out forwards;
+}
+@keyframes slash-strike {
+  0% {
+    text-decoration: line-through transparent;
+    text-decoration-thickness: 0;
+    opacity: 1;
+    color: #e8e8e8;
+  }
+  35% {
+    text-decoration: line-through #ff8181;
+    text-decoration-thickness: 2px;
+    color: #ff8181;
+  }
+  100% {
+    text-decoration: line-through #ff8181;
+    text-decoration-thickness: 2px;
+    color: #a8b1ba;
+    opacity: 0.6;
+  }
+}
+.val-arrow,
+.val-after {
+  display: inline-block;
+}
+.val-arrow.arriving,
+.val-after.arriving {
+  animation: val-arrive 0.32s ease-out 0.18s both;
+}
+.val-after {
+  color: #6ee07a;
+  font-weight: 600;
+}
+@keyframes val-arrive {
+  0% { opacity: 0; transform: translateX(-6px); }
+  100% { opacity: 1; transform: translateX(0); }
+}
+
+/* Final outcome pop-in once the trail is done. */
+.final-outcome {
+  animation: outcome-pop 0.42s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+@keyframes outcome-pop {
+  0% { opacity: 0; transform: scale(0.85); }
+  60% { transform: scale(1.04); }
+  100% { opacity: 1; transform: scale(1); }
 }
 
 .final-outcome {
