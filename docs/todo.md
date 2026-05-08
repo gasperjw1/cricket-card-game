@@ -37,24 +37,34 @@ Some elite batters (like Kohli) could have a dual role (Opener/Middle Order) mak
 
 ## Completed
 - [x] Core card system (tiers, zones, strengths/neutrals/weaknesses)
-- [x] Adjective modifier system (bowler upgrades that downgrade batter outcomes)
-- [x] Resistance system (elite batters can nullify certain adjectives)
-- [x] Fielding coverage system (bowler fielding downgrades shots to covered regions)
-- [x] Weakness distribution across all zones (not clustered on 5th stump)
-- [x] Full roster — all 12 nations, 264 cards (132 batsmen + 132 bowlers)
-- [x] Situation cards design (11 cards: 5 batting, 5 bowling, 1 shared)
+- [x] Adjective modifier system (bowler downgrades, batter resistances)
+- [x] Fielding coverage system (heuristic shot→region mapping)
+- [x] Weakness distribution across all zones
+- [x] Full roster — all 12 nations, 264 player cards + 14 situation cards
+- [x] Situation cards (13 effects: DRS, Power Surge, Retired Out, Switch Hit, Trot Down, **No Ball**, **Shuffle Across**, Mankad, Review Appeal, Cramps, Invariable Bounce, Day 5 Pitch, Old School ×2)
+- [x] **Wide outside off automatic mechanic** (tier-based wide call on dot)
+- [x] Monorepo scaffold (shared / server / client) + parsed card data + socket contracts
+- [x] Resolution engine (29 unit tests; full 11-step chain + extras)
+- [x] Lobby (create / join / invite codes / reconnect-by-token / leave / disconnect-closes-match)
+- [x] Coin toss flow (10s countdown → call → flip → bat/bowl choose; server-authoritative timers)
+- [x] Server innings flow (random decks, ball loop, two innings, simultaneous reveal, end-of-match)
+- [x] Mid-ball swap interaction (Mankad / Retired Out / Cramps prompt the affected player to pick)
+- [x] Pokemon-style card UI + tooltips on every icon + click-to-view + swap picker shows table snapshot
+- [x] Live 30s ball timer + 15s post-resolution pause
+- [x] Final-ball reveal before match-over screen
 
 ## In Progress
-- [x] **Scaffold:** monorepo (shared/server/client), parsed card data, socket contracts, build/typecheck pipeline
-- [ ] Coin toss flow (next)
+- [ ] Reveal redesign — filter cards to show only the attributes that fired
+- [ ] Resolution breakdown animation (CSS keyframes, sequential step reveal, slash effect, number ticks)
 
 ## Backlog
-- [ ] Deck draft flow (20 rounds per deck, 15s timer, situation card injection per spec in MEMORY.md)
-- [ ] Ball loop (server-authoritative selection, 30s timer, simultaneous reveal)
-- [ ] Resolution engine (full 11-step chain from situation-cards.md)
-- [ ] Outcome reveal screen + photo library lookup
-- [ ] Lobby (invite-code matchmaking, reconnect handling)
-- [ ] End-of-innings + end-of-match screens
+- [ ] Player-driven deck draft (20 rounds per deck, 15s timer, situation card injection)
+- [ ] Real-photo asset library (per-player shot/dismissal + bowler run-up + celebration)
 - [ ] Messenger Instant Games SDK integration
-- [ ] Photo library asset sourcing (per-player batsman shots/dismissals + bowler run-ups)
-- [ ] Card art/visual design
+- [ ] Custom card art (replace emoji placeholders)
+- [ ] Bronze/Silver inherent Pace-or-Spin resistance — based on real cricket stats per player
+- [ ] Roster gaps:
+  - [ ] Add batsmen with strengths at 5th stump (counterplay to off-side bowling)
+  - [ ] Add bowlers who deliver Wide outside off (so the wide mechanic actually fires)
+  - [ ] Add batsmen with strengths at Wide outside off (for those who can manhandle the line)
+- [ ] Batter Role Bonus / phase upgrade (see "Future Features" above)

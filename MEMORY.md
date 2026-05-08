@@ -39,22 +39,24 @@ Both players select cards **simultaneously and face-down**, then reveal at the s
 
 **Turn timer:** Each player has **30 seconds** to lock in their selection. If the timer expires, a mandatory card is auto-selected at random from hand and no situation card is played.
 
-**Resolution order (canonical — mirrors `docs/situation-cards.md`):**
+**Resolution order (canonical — mirrors `docs/situation-cards.md` and the engine in `shared/src/engine/resolve-ball.ts`):**
 1. **Old School Cricket Only check** — if either player played it, the opponent's situation card is cancelled. If both played it, both cancel and the ball resolves with no situation effects.
-2. **Card swaps** — Mankad / Retired Out / Cramps force the affected player to discard their played mandatory card and play a different one from hand (Mankad applies a downgrade penalty if the batting side has no other batsman).
-3. **Zone modifiers** — Trot Down (length shift), Day 5 Pitch (line shift), Switch Hit (mirror batter zones) modify the lookup before resolution.
-4. **Base lookup** — bowler's (possibly modified) delivery zone is looked up on the batter's (possibly mirrored) card → raw result.
+2. **Card swaps** — Mankad / Retired Out / Cramps prompt the affected player to swap their played mandatory card with another from their hand (15s timer; auto-pick on timeout). Mankad applies a one-tier downgrade penalty if the batting side has no other batsman.
+3. **Zone modifiers** — Day 5 Pitch (line shift toward off, clamps at wide outside off), Trot Down (length compression toward Full), Switch Hit (mirror batter zones), Shuffle Across (line shift toward leg on batter card, clamps at leg).
+4. **Base lookup** — bowler's modified delivery zone is looked up on the batter's modified card → raw result.
 5. **Invariable Bounce** — if played, downgrade outcome one tier.
 6. **Bowler adjective** — if batter isn't resistant, downgrade one tier (stacks with Invariable Bounce).
 7. **Fielding coverage** — if shot goes to a covered region, downgrade one tier.
-8. **Power Surge** — if played, upgrade final outcome one tier (does not protect against weakness/wicket).
+8. **Power Surge** — if played, upgrade final outcome one tier (does NOT protect against weakness/wicket).
 9. **DRS Review** — if result is a wicket and DRS Review was played, overturn to dot ball.
 10. **Review Appeal** — if final result is a dot ball and Review Appeal was played, 40% chance becomes a wicket.
-11. **Apply runs / wicket → update scoreboard → discard played cards → draw back to hand size.**
+11. **No Ball** — if batting side played it, cancel any wicket on this delivery, +1 extra run, mark ball as re-bowled.
+12. **Wide outside off check** — automatic, no card needed. If the bowler delivered Wide outside off and the resolved outcome is a dot ball, the umpire may call wide based on bowler tier (Bronze 40% / Silver 25% / Gold 15% / Elite 5%). On call: +1 extra run, mark ball as re-bowled.
+13. **Apply scoring:** add `outcomeRuns + extraRuns` to innings runs, increment wickets if outcome is wicket, increment `ballsBowled` only if the ball was NOT re-bowled. Discard played cards (incl. swap replacements). Refill hand. **15-second post-resolution pause** before the next ball's timer starts (or before innings/match transition).
 
 **Important rule:** During a turn, you can only get out once (max 1 wicket per ball).
 
-**Outcome reveal:** Instead of animated playback, after resolution the UI shows a paired real-life photo set: bowler delivering + batter playing the resulting shot (or dismissal). See "First Iteration Scope" below.
+**Outcome reveal:** After resolution the UI shows both played cards side-by-side, the resolution-step trail with hover tooltips, and the final outcome (with extras pills if any). A 15s "Next ball in: Xs" countdown ticks during the pause. Players can click Continue to dismiss the reveal locally, but the next ball doesn't begin until the server-side pause elapses.
 
 ---
 
@@ -176,33 +178,44 @@ Full roster is in `docs/card-roster.md`.
 
 ---
 
-## Situation Cards (To Be Designed)
+## Situation Cards (Designed & Built)
 
-Situation cards are one-time use tactical plays, similar to spell/trap cards in Yu-Gi-Oh. Key design principles discussed:
+Situation cards are one-time-use tactical plays, similar to spell/trap cards in Yu-Gi-Oh. Both players may optionally play one situation card per ball, alongside their mandatory batsman/bowler. Cards are revealed simultaneously and resolved per the canonical chain above. Full design lives in [`docs/situation-cards.md`](docs/situation-cards.md).
 
-- Both players can play a single situation card per turn
-- They both activate at the same time during reveal
-- Neither player knows if the other is playing a situation card until reveal
-- Some cards are offensive (batting or bowling side), some are defensive/counters
-- Some cards exist purely to cancel the opponent's situation card
+### Batting pool (7 + 1 shared)
 
-### Example Concepts Discussed (Not Finalized)
-**Batting side:**
-- "DRS Review" — if batsman got out, challenge it (50% chance overturned)
-- "Power Surge" — all outcomes upgrade one tier this ball
-- "Pinch Hitter" — play two batsman cards, use better result
+| Card | Effect summary |
+|------|----------------|
+| **DRS Review** | Wicket → dot ball. No effect on non-wickets. |
+| **Power Surge** | All outcomes upgrade one tier (does NOT save wickets). |
+| **Retired Out** | Voluntarily swap your played batsman for another from your hand. |
+| **Switch Hit** | Mirror line on the batter's card lookup (off↔leg, 5th/wide → leg, mid stays). |
+| **Trot Down** | Length compresses one step toward Full. |
+| **No Ball** | Cancels any wicket on this delivery, +1 run, ball is re-bowled. |
+| **Shuffle Across** | Bowler's line is met one stump further toward leg on the batter's card (inverse of Day 5 Pitch). Clamps at Leg stump. |
+| **Old School Cricket Only** *(shared)* | Cancels opponent's situation card. |
 
-**Bowling side:**
-- "Medic Break" — opponent discards their played batsman, must play a new one
-- "Aggressive Field" — fielding coverage doubles this ball
-- "Bouncer Barrage" — force delivery zone to short length
+### Bowling pool (5 + 1 shared)
 
-**Counter/Defensive:**
-- "No Ball" — cancels opponent's situation card, +1 run free hit
-- "Rain Delay" — cancels opponent's situation card, ball is replayed
-- "Captain's Challenge" — cancels opponent's card, see their next situation card
+| Card | Effect summary |
+|------|----------------|
+| **Mankad** | Force the batting side to swap their played batsman for another from hand. If no swap target, outcome takes a one-tier downgrade. |
+| **Review Appeal** | Dot ball → 40% chance of becoming an LBW wicket. |
+| **Cramps** | Voluntarily swap your played bowler for another from your hand. |
+| **Invariable Bounce** | Outcome downgraded one tier (stacks with adjective + fielding). |
+| **Day 5 Pitch** | Bowler's line shifts one step toward off side. Clamps at Wide outside off. |
+| **Old School Cricket Only** *(shared)* | Cancels opponent's situation card. |
 
-**Note:** These need refinement and balancing. Marked as future work.
+### Other automatic mechanics
+
+**Wide outside off (no card needed):** when a bowler delivers Wide outside off and the resolved outcome is a dot ball, the umpire calls a wide based on the bowler's tier — Bronze 40%, Silver 25%, Gold 15%, Elite 5%. A wide awards +1 run and re-bowls. Doesn't fire if the batter scored.
+
+### Old School & all-rounder data-model split
+- **Old School Cricket Only** is two distinct cards in the data model: `old-school-batting` (in the batting pool) and `old-school-bowling` (in the bowling pool). Identical effect — split exists to keep draft pool sampling clean.
+- **All-rounders** are always two distinct cards (e.g. `hardik-pandya-bat` and `hardik-pandya-bowl`).
+
+### Mid-ball swap interaction
+Mankad / Retired Out / Cramps all force a card swap *during* resolution. The server pauses the ball, presents the affected player with a swap-picker UI showing both played cards on the table plus the candidate replacements from their hand, with a 15s timer (auto-picks first candidate on timeout). Once the pick is in, resolution continues with the new card.
 
 ---
 
@@ -223,15 +236,16 @@ Each batter card would have a "Role" field. Some elite batters could have dual r
 - Should there be a DOWNGRADE for playing out of position?
 - Resolution order: adjective downgrades THEN role upgrades, or vice versa?
 
-### Wide Outside Off Zone
-Discussed as a multi-purpose design space:
-- Elite batters can smash wide full balls for 6 (David Miller, Rohit Sharma style)
-- Crafty batters can late cut for 4 (Shreyas Iyer style)
-- Bronze batters chase and edge to slip
-- Death bowlers deliberately bowl wide with fielding at cover/long-off
-- Bad bowlers bowl wide because they can't control line
+### Bronze / Silver inherent Pace-or-Spin resistance (deferred)
+Decision recorded: every Bronze and Silver batsman should have an inherent resistance to **either Pace or Spin** for game balance. The choice per-player should be **based on real cricket stats** — i.e. an aggressive top-edge slogger like Mitchell Owen would reasonably have Pace resistance, a wristy spinner-killer might have Spin resistance. This is a manual roster pass (~120 cards across 12 nations × ~10 Bronze+Silver per nation), deferred until the mechanics shake out. NOT a parser-side deterministic transform — fidelity to real players is the goal.
 
----
+### Roster gaps (deferred)
+Documented gaps to fix in a v1.1 roster pass:
+- **No batsmen with 5th stump strengths.** 5th stump shows up as weaknesses and neutrals, never as a strength. Add a few elite/gold batters who score off this zone (late cut, dab to third) so 5th stump bowling has counterplay.
+- **No bowlers deliver Wide outside off.** The wide outside off mechanic is implemented but won't trigger until at least one bowler card uses this delivery zone. Add 1–2 death overs specialists (yorker bowlers who deliberately go wide) per nation.
+- **No batsmen with strengths at Wide outside off.** Some neutrals exist (Rohit, Travis Head with 1-run drives) but no 4s or 6s. Add elite players who can manhandle this zone (David Miller / Rohit Sharma scooping over fine leg, Shreyas Iyer late cuts for 4).
+
+These gaps are orthogonal to mechanics — addressing them is high-effort and low-leverage until we know the game balance feels right.
 
 ## Project History & Key Decisions
 
@@ -256,23 +270,51 @@ Started as a Stick Cricket-style batting game with animated characters. After ex
 
 ## First Iteration (v1) Scope
 
-The first playable build is intentionally narrow. It exists to validate the core ball-by-ball loop end-to-end before investing in deck building, Messenger sync, or art.
+The v1 build validates the core ball-by-ball loop end-to-end before investing in deck building UI, Messenger sync, or art. Per the path-2 sequencing decision, decks are temporarily auto-filled with random cards (15 player cards in tier-mix + 5 situation cards from the deck's pool) so the ball loop and resolution engine can be exercised first; the player-driven draft slots in afterward.
 
 **In scope for v1:**
-- Coin toss flow (Player B calls heads/tails → winner chooses bat or bowl)
-- Hand size of **4** cards per active deck (per design above)
-- **30-second turn timer** per player; on expiry, auto-pick a mandatory card at random and skip the situation card
-- Simultaneous reveal of both players' selections after both lock in (or both timers expire)
-- Full resolution order as specified above
-- Discard played cards, update scoreboard (runs, wickets, balls, target if 2nd innings), draw back to 4
-- **Outcome reveal screen**: instead of animation, after resolution show two paired real-life photographs — (1) the bowler delivering, (2) the batter playing the resulting shot or dismissal — alongside the runs / wicket text
-- End-of-innings + end-of-match summary
+- Lobby with invite codes + reconnect-by-token + close-on-disconnect (lobby phase only)
+- Coin toss flow (Player B calls heads/tails → winner chooses bat or bowl) with 10s pre-flip countdown, 30s call/choose timers, server-authoritative flip
+- Hand size of **4** cards per active deck
+- **30-second turn timer** per player (live countdown, server-authoritative); on expiry, auto-pick a mandatory card at random and skip the situation card
+- **15-second post-resolution pause** between balls so players can read the breakdown before timer pressure resumes
+- Simultaneous reveal of both players' selections
+- Full resolution chain (Old School cancel → Mankad/Retired Out/Cramps swaps with prompted picker → engine: zone modifiers / base lookup / Invariable Bounce / adjective / fielding / Power Surge / DRS / Review Appeal / No Ball / Wide-outside-off check)
+- Pokemon-style card UI with click-to-view, tooltips on every icon, and a swap-picker that shows the table snapshot while the player chooses a replacement
+- Per-player deck/hand/discard tracking with anti-clog rule
+- End-of-innings transition (roles swap) + end-of-match summary with margin
 
 **Out of scope for v1 (deferred):**
-- Pre-made decks UI — v1 uses the **draft flow below**, no pre-made decks
+- Pre-made decks UI — v1 uses random auto-fill, draft flow comes later
 - Messenger Instant Games SDK integration — v1 runs as a plain web build
-- Custom card art — v1 uses simple typographic cards (with player photos in outcome reveal)
+- Custom card art — v1 uses simple typographic cards with emoji-placeholder icons
+- Real-life photo library for outcome reveals — v1 shows the cards themselves at reveal
 - Role bonus / phase upgrade (still backlog)
+- Bronze/Silver inherent Pace-or-Spin resistance based on real player stats (still backlog)
+- Roster gaps for 5th stump strengths and Wide outside off bowlers/batters (still backlog)
+
+## Build Status (as of current commit)
+
+What's actually shipped on `main`:
+
+| Layer | Status |
+|-------|--------|
+| Monorepo scaffold (npm workspaces; shared / server / client) | ✅ |
+| Card data parsed from markdown to JSON (132 batsmen + 132 bowlers + 14 situation cards) | ✅ |
+| Resolution engine (pure function, 29 unit tests) | ✅ |
+| Lobby (create / join / reconnect / leave) | ✅ |
+| Coin toss state machine | ✅ |
+| Innings flow (random decks, ball loop, two innings, end-of-match) | ✅ |
+| Mid-ball swap interaction (Mankad / Retired Out / Cramps with player picker) | ✅ |
+| 15s post-reveal pause + final-ball reveal before match-over | ✅ |
+| No Ball, Wide outside off mechanic, Shuffle Across | ✅ |
+| Pokemon-style card UI + tooltips + click-to-view | ✅ |
+| Live ball timer (30s) + swap timer (15s) + post-ball timer (15s) | ✅ |
+| Reveal: filter cards to only show in-play attributes | ⏳ next |
+| Resolution breakdown animation (CSS keyframes) | ⏳ |
+| Deck draft (player-chosen) | ⏳ |
+| Messenger Instant Games integration | ⏳ |
+| Real-photo asset library | ⏳ |
 
 ### Deck Draft (v1)
 

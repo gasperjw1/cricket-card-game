@@ -204,15 +204,30 @@ If the opponent didn't play a situation card, this is wasted.
 | Retired Out | Batting | Tactical — batsman swap |
 | Switch Hit | Batting | Zone modifier — mirror zones |
 | Trot Down | Batting | Zone modifier — shift lengths |
+| No Ball | Batting | Defensive — wicket protection + extras + re-bowl |
+| Shuffle Across | Batting | Zone modifier — shift lines toward leg (inverse of Day 5 Pitch) |
 | Mankad | Bowling | Disruptive — force batsman swap |
 | Review Appeal | Bowling | Gamble — dots become potential wickets |
 | Cramps | Bowling | Tactical — bowler swap |
 | Invariable Bounce | Bowling | Offensive — outcome downgrade |
-| Day 5 Pitch | Bowling | Zone modifier — shift lines |
+| Day 5 Pitch | Bowling | Zone modifier — shift lines toward off |
 | Old School Cricket Only (Batting) | Batting | Counter — cancels opponent's situation card |
 | Old School Cricket Only (Bowling) | Bowling | Counter — cancels opponent's situation card |
 
-**Total unique situation cards in data model: 12** (5 batting + 5 bowling + Old School split into 2 variants with identical effect). Conceptually still 11 distinct effects.
+**Total unique situation cards in data model: 14** (7 batting + 5 bowling + Old School split into 2 variants with identical effect). Conceptually 13 distinct effects (Old School is one effect with two data-model entries).
+
+### Automatic mechanics (no card)
+
+**Wide outside off umpire call.** Whenever a bowler delivers Wide outside off and the resolved outcome is a dot ball, the umpire may call wide based on the bowler's tier:
+
+| Bowler tier | Chance of wide call |
+|-------------|---------------------|
+| Bronze | 40% |
+| Silver | 25% |
+| Gold | 15% |
+| Elite | 5% |
+
+A wide awards +1 extra run and the ball is re-bowled (doesn't count against the over). Doesn't fire if the batter scored — only on dots.
 
 ---
 
