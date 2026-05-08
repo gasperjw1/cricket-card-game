@@ -131,7 +131,7 @@ export function resolveBall(input: ResolveBallInput): ResolutionResult {
   steps.push({
     kind: "base-lookup",
     label: "Base lookup",
-    detail: describeBaseLookup(input.bowler, lookupZone, input.batsman, outcome),
+    detail: describeBaseLookup(input.bowler, input.bowler.delivery, lookupOnBatter, input.batsman, outcome),
     after: outcome,
     applied: true,
   });
@@ -522,18 +522,26 @@ function inferFieldingRegion(shotText: string): FieldingRegion | null {
 
 function describeBaseLookup(
   bowler: BowlerCard,
-  zone: Zone,
+  delivery: Zone,
+  effective: Zone,
   batsman: BatsmanCard,
   outcome: BallOutcome,
 ): string {
-  const where = `${zone.length} ${zone.line.toLowerCase()}`;
+  const fmt = (z: Zone) => `${z.length} ${z.line.toLowerCase()}`;
+  const same = delivery.line === effective.line && delivery.length === effective.length;
+  // When zone modifiers shifted the lookup, spell out the chain so the
+  // player understands why a delivery on Off stump may have been looked
+  // up at Middle stump on the batter's card.
+  const prefix = same
+    ? `${bowler.name} bowls ${fmt(delivery)}`
+    : `${bowler.name} bowls ${fmt(delivery)}, looked up as ${fmt(effective)} on ${batsman.name}'s card after modifiers`;
   if (outcome.type === "runs") {
-    return `${bowler.name} bowls ${where} → ${batsman.name} ${outcome.shot} for ${outcome.value}.`;
+    return `${prefix} → ${batsman.name} ${outcome.shot} for ${outcome.value}.`;
   }
   if (outcome.type === "wicket") {
-    return `${bowler.name} bowls ${where} → ${batsman.name} ${outcome.mode}.`;
+    return `${prefix} → ${batsman.name} ${outcome.mode}.`;
   }
-  return `${bowler.name} bowls ${where} → no scoring shot for ${batsman.name} (dot).`;
+  return `${prefix} → no scoring shot on ${batsman.name}'s card here, dot ball.`;
 }
 
 // Re-export the resistance check for the engine's siblings (e.g. tests).

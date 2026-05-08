@@ -10,6 +10,7 @@ import type {
   Tier,
   Zone,
 } from "@swipe-sixer/shared";
+import { CardEffectText } from "./CardEffectText.tsx";
 import { Tip } from "./Tip.tsx";
 import {
   ADJECTIVE_ICONS,
@@ -183,14 +184,17 @@ function RevealBatterSection({
     return (
       <section className="card-section reveal dot">
         <div className="card-section-title">
-          <Tip text={`The bowler's modified delivery (${lookupZone.length} ${lookupZone.line}) wasn't on this batter's card — dot ball.`}>
-            Dot ball zone
+          <Tip text="The bowler's effective delivery zone (after any zone modifiers) didn't match a row on this batter's card.">
+            No matching zone
           </Tip>
         </div>
         <div className="reveal-zone-row">
           <ZoneBadge zone={lookupZone} />
           <span className="zone-arrow">→</span>
-          <span className="shot dim-text">no scoring shot here</span>
+          <span className="shot dim-text">not on this card</span>
+        </div>
+        <div className="dim-text reveal-zone-hint">
+          Bowler's effective delivery (after any zone modifiers).
         </div>
       </section>
     );
@@ -463,7 +467,9 @@ function SituationCardView(props: { card: SituationCard; size?: "hand" | "view";
         <div className="card-name">{card.name}</div>
       </header>
       {card.flavor && <div className="card-flavor">"{card.flavor}"</div>}
-      <div className={`card-effect ${size}`}>{card.description}</div>
+      <div className={`card-effect ${size}`}>
+        <CardEffectText text={card.description} />
+      </div>
     </CardFrame>
   );
 }
