@@ -257,13 +257,24 @@
       ]
     },
     {
-      "id": "sanju-samson-bat",
+      "id": "tilak-varma-bat",
       "kind": "batsman",
-      "name": "Sanju Samson",
+      "name": "Tilak Varma",
       "nation": "India",
       "tier": "Silver",
-      "description": "Aggressive shot-maker. Pulls with authority. 3 T20I centuries in 2024.",
+      "description": "Mumbai Indians' aggressive left-hander. Strong on the leg side, plays the pull and slog. Solid against drift and top-spin; vulnerable to early-innings new-ball pace and the short-ball outside off.",
       "strengths": [
+        {
+          "zone": {
+            "line": "Leg stump",
+            "length": "Full"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 6,
+            "shot": "slog"
+          }
+        },
         {
           "zone": {
             "line": "Middle stump",
@@ -271,19 +282,8 @@
           },
           "outcome": {
             "type": "runs",
-            "value": 6,
-            "shot": "pull"
-          }
-        },
-        {
-          "zone": {
-            "line": "Middle stump",
-            "length": "Full"
-          },
-          "outcome": {
-            "type": "runs",
             "value": 4,
-            "shot": "loft"
+            "shot": "pull"
           }
         }
       ],
@@ -295,14 +295,84 @@
           },
           "outcome": {
             "type": "runs",
-            "value": 2,
+            "value": 1,
             "shot": "work"
+          }
+        }
+      ],
+      "weaknesses": [
+        {
+          "zone": {
+            "line": "Off stump",
+            "length": "Good length"
+          },
+          "outcome": {
+            "type": "wicket",
+            "mode": "edge to slip"
           }
         },
         {
           "zone": {
+            "line": "Outside off",
+            "length": "Short"
+          },
+          "outcome": {
+            "type": "wicket",
+            "mode": "caught at point"
+          }
+        },
+        {
+          "zone": {
+            "line": "Middle stump",
+            "length": "Good length"
+          },
+          "outcome": {
+            "type": "wicket",
+            "mode": "bowled trying to flick across"
+          }
+        }
+      ],
+      "resistances": [
+        "Topspin",
+        "Drift"
+      ]
+    },
+    {
+      "id": "rinku-singh-bat",
+      "kind": "batsman",
+      "name": "Rinku Singh",
+      "nation": "India",
+      "tier": "Silver",
+      "description": "KKR death-overs finisher. Famous for clearing the rope on the leg side — the \"5 sixes in an over\" guy. Limited new-ball game; vulnerable in early-innings phases. Reads slower balls and cutters from death-overs experience.",
+      "strengths": [
+        {
+          "zone": {
             "line": "Leg stump",
             "length": "Full"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 6,
+            "shot": "slog"
+          }
+        },
+        {
+          "zone": {
+            "line": "Middle stump",
+            "length": "Short"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 4,
+            "shot": "pull"
+          }
+        }
+      ],
+      "neutrals": [
+        {
+          "zone": {
+            "line": "Leg stump",
+            "length": "Good length"
           },
           "outcome": {
             "type": "runs",
@@ -314,12 +384,22 @@
       "weaknesses": [
         {
           "zone": {
-            "line": "Leg stump",
-            "length": "Short"
+            "line": "Off stump",
+            "length": "Good length"
           },
           "outcome": {
             "type": "wicket",
-            "mode": "fends to short leg"
+            "mode": "edge to slip"
+          }
+        },
+        {
+          "zone": {
+            "line": "Middle stump",
+            "length": "Good length"
+          },
+          "outcome": {
+            "type": "wicket",
+            "mode": "bowled"
           }
         },
         {
@@ -329,53 +409,32 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "edge to keeper"
+            "mode": "caught at cover"
           }
         }
       ],
-      "resistances": []
+      "resistances": [
+        "Slower",
+        "Cutter"
+      ]
     },
     {
-      "id": "hardik-pandya-bat",
+      "id": "abhishek-sharma-bat",
       "kind": "batsman",
-      "name": "Hardik Pandya",
+      "name": "Abhishek Sharma",
       "nation": "India",
       "tier": "Silver",
-      "description": "Power hitter in death overs. Pulls and flat-batted hits. Swings across the line.",
+      "description": "Sunrisers Hyderabad explosive opener. Hits big in powerplay — drives over extra cover, pulls anything short. Plays the new ball well; vulnerable when forced to defend on the back foot, especially against good-length balls in the corridor.",
       "strengths": [
         {
           "zone": {
-            "line": "Leg stump",
-            "length": "Short"
-          },
-          "outcome": {
-            "type": "runs",
-            "value": 6,
-            "shot": "hook"
-          }
-        },
-        {
-          "zone": {
-            "line": "Leg stump",
+            "line": "Off stump",
             "length": "Full"
           },
           "outcome": {
             "type": "runs",
-            "value": 4,
-            "shot": "slog"
-          }
-        }
-      ],
-      "neutrals": [
-        {
-          "zone": {
-            "line": "Middle stump",
-            "length": "Good length"
-          },
-          "outcome": {
-            "type": "runs",
-            "value": 2,
-            "shot": "push"
+            "value": 6,
+            "shot": "loft"
           }
         },
         {
@@ -385,150 +444,16 @@
           },
           "outcome": {
             "type": "runs",
-            "value": 1,
+            "value": 4,
             "shot": "pull"
           }
         }
       ],
-      "weaknesses": [
-        {
-          "zone": {
-            "line": "Middle stump",
-            "length": "Full"
-          },
-          "outcome": {
-            "type": "wicket",
-            "mode": "bowled slogging across the line"
-          }
-        },
-        {
-          "zone": {
-            "line": "Off stump",
-            "length": "Good length"
-          },
-          "outcome": {
-            "type": "wicket",
-            "mode": "beaten outside edge"
-          }
-        }
-      ],
-      "resistances": []
-    },
-    {
-      "id": "shubman-gill-bat",
-      "kind": "batsman",
-      "name": "Shubman Gill",
-      "nation": "India",
-      "tier": "Silver",
-      "description": "Elegant timer. Beautiful drives. Technically correct but struggles against short ball.",
-      "strengths": [
-        {
-          "zone": {
-            "line": "Off stump",
-            "length": "Full"
-          },
-          "outcome": {
-            "type": "runs",
-            "value": 4,
-            "shot": "cover drive"
-          }
-        },
-        {
-          "zone": {
-            "line": "Middle stump",
-            "length": "Full"
-          },
-          "outcome": {
-            "type": "runs",
-            "value": 4,
-            "shot": "straight drive"
-          }
-        }
-      ],
       "neutrals": [
         {
           "zone": {
             "line": "Off stump",
             "length": "Good length"
-          },
-          "outcome": {
-            "type": "runs",
-            "value": 2,
-            "shot": "push"
-          }
-        },
-        {
-          "zone": {
-            "line": "Middle stump",
-            "length": "Good length"
-          },
-          "outcome": {
-            "type": "runs",
-            "value": 1,
-            "shot": "defend"
-          }
-        }
-      ],
-      "weaknesses": [
-        {
-          "zone": {
-            "line": "Off stump",
-            "length": "Short"
-          },
-          "outcome": {
-            "type": "wicket",
-            "mode": "top edge caught at fine leg"
-          }
-        },
-        {
-          "zone": {
-            "line": "Middle stump",
-            "length": "Short"
-          },
-          "outcome": {
-            "type": "wicket",
-            "mode": "gloves it to keeper"
-          }
-        }
-      ],
-      "resistances": []
-    },
-    {
-      "id": "rinku-singh-bat",
-      "kind": "batsman",
-      "name": "Rinku Singh",
-      "nation": "India",
-      "tier": "Bronze",
-      "description": "IPL finisher. Famous 5 sixes in last over. Leg-side dominant.",
-      "strengths": [
-        {
-          "zone": {
-            "line": "Leg stump",
-            "length": "Full"
-          },
-          "outcome": {
-            "type": "runs",
-            "value": 6,
-            "shot": "flick"
-          }
-        }
-      ],
-      "neutrals": [
-        {
-          "zone": {
-            "line": "Leg stump",
-            "length": "Good length"
-          },
-          "outcome": {
-            "type": "runs",
-            "value": 2,
-            "shot": "work"
-          }
-        },
-        {
-          "zone": {
-            "line": "Middle stump",
-            "length": "Full"
           },
           "outcome": {
             "type": "runs",
@@ -540,32 +465,112 @@
       "weaknesses": [
         {
           "zone": {
-            "line": "Off stump",
+            "line": "Middle stump",
             "length": "Good length"
           },
           "outcome": {
             "type": "wicket",
-            "mode": "beaten"
+            "mode": "bowled"
           }
         },
         {
           "zone": {
-            "line": "Off stump",
+            "line": "Leg stump",
+            "length": "Good length"
+          },
+          "outcome": {
+            "type": "wicket",
+            "mode": "LBW playing across"
+          }
+        },
+        {
+          "zone": {
+            "line": "Outside off",
             "length": "Short"
           },
           "outcome": {
             "type": "wicket",
             "mode": "top edge caught"
           }
+        }
+      ],
+      "resistances": [
+        "Swing",
+        "Seam"
+      ]
+    },
+    {
+      "id": "riyan-parag-bat",
+      "kind": "batsman",
+      "name": "Riyan Parag",
+      "nation": "India",
+      "tier": "Bronze",
+      "description": "Rajasthan Royals 2024 IPL breakout (528 runs). Aggressive middle-order, can clear the rope occasionally but lacks consistent boundary-hitting reliability. No real T20I career.",
+      "strengths": [],
+      "neutrals": [
+        {
+          "zone": {
+            "line": "Middle stump",
+            "length": "Full"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 1,
+            "shot": "push"
+          }
         },
         {
           "zone": {
+            "line": "Middle stump",
+            "length": "Short"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 2,
+            "shot": "pull"
+          }
+        },
+        {
+          "zone": {
+            "line": "Leg stump",
+            "length": "Good length"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 1,
+            "shot": "work"
+          }
+        }
+      ],
+      "weaknesses": [
+        {
+          "zone": {
             "line": "Off stump",
+            "length": "Good length"
+          },
+          "outcome": {
+            "type": "wicket",
+            "mode": "edge to slip"
+          }
+        },
+        {
+          "zone": {
+            "line": "Outside off",
             "length": "Full"
           },
           "outcome": {
             "type": "wicket",
-            "mode": "mis-hit to cover"
+            "mode": "drive caught at cover"
+          }
+        },
+        {
+          "zone": {
+            "line": "Outside off",
+            "length": "Short"
+          },
+          "outcome": {
+            "type": "wicket",
+            "mode": "caught at point"
           }
         }
       ],
@@ -10512,47 +10517,47 @@
       ]
     },
     {
-      "id": "yuzvendra-chahal-bowl",
+      "id": "avesh-khan-bowl",
       "kind": "bowler",
-      "name": "Yuzvendra Chahal",
+      "name": "Avesh Khan",
       "nation": "India",
       "tier": "Silver",
-      "description": "Good length middle stump legspin. Gets drift and dip. Wicket-taker but can be expensive.",
+      "description": "Reliable IPL good-length seamer. Couple of T20Is but mostly an LSG/RR/PBKS workhorse. Hits hard lengths consistently — no signature variation, just discipline.",
+      "delivery": {
+        "line": "Off stump",
+        "length": "Good length"
+      },
+      "adjectives": [],
+      "fielding": [
+        "Cover"
+      ]
+    },
+    {
+      "id": "hardik-pandya-bowl",
+      "kind": "bowler",
+      "name": "Hardik Pandya",
+      "nation": "India",
+      "tier": "Silver",
+      "description": "Medium-fast all-rounder. Heavy back-of-length hit-the-deck pacer. India's regular sixth-bowler when fit. No signature variation in T20s any more — just hard length and aggression.",
       "delivery": {
         "line": "Middle stump",
         "length": "Good length"
       },
       "adjectives": [],
       "fielding": [
-        "Short leg/Silly point"
+        "Mid-wicket"
       ]
     },
     {
-      "id": "bhuvneshwar-kumar-bowl",
+      "id": "mayank-yadav-bowl",
       "kind": "bowler",
-      "name": "Bhuvneshwar Kumar",
+      "name": "Mayank Yadav",
       "nation": "India",
       "tier": "Silver",
-      "description": "Good length off stump swinging away. Powerplay specialist.",
+      "description": "Lucknow Super Giants. IPL 2024 breakout — consistent 150+ kph express pace. Bouncer specialist. Injury-hampered, so no real international career to speak of.",
       "delivery": {
-        "line": "Off stump",
-        "length": "Good length"
-      },
-      "adjectives": [],
-      "fielding": [
-        "Slip cordon"
-      ]
-    },
-    {
-      "id": "mohammed-shami-bowl",
-      "kind": "bowler",
-      "name": "Mohammed Shami",
-      "nation": "India",
-      "tier": "Silver",
-      "description": "Full off stump hitting the deck. Gets seam movement and bounce.",
-      "delivery": {
-        "line": "Off stump",
-        "length": "Full"
+        "line": "Middle stump",
+        "length": "Short"
       },
       "adjectives": [],
       "fielding": [
@@ -10624,19 +10629,19 @@
       ]
     },
     {
-      "id": "avesh-khan-bowl",
+      "id": "mukesh-kumar-bowl",
       "kind": "bowler",
-      "name": "Avesh Khan",
+      "name": "Mukesh Kumar",
       "nation": "India",
       "tier": "Bronze",
-      "description": "Domestic fast-medium. Good length but predictable, lacks variation at international level.",
+      "description": "Delhi Capitals seamer. Limited T20I exposure. Reliable IPL line-and-length bowler — no special variation, just plays the percentages.",
       "delivery": {
-        "line": "Middle stump",
-        "length": "Good length"
+        "line": "Off stump",
+        "length": "Full"
       },
       "adjectives": [],
       "fielding": [
-        "Mid-wicket"
+        "Slip cordon"
       ]
     },
     {

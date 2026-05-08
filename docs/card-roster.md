@@ -65,59 +65,64 @@ Everything not listed = dot ball.
 
 ---
 
-### SILVER — Sanju Samson
-*Aggressive shot-maker. Pulls with authority. 3 T20I centuries in 2024.*
+### SILVER — Tilak Varma
+*Mumbai Indians' aggressive left-hander. Strong on the leg side, plays the pull and slog. Solid against drift and top-spin; vulnerable to early-innings new-ball pace and the short-ball outside off.*
 - **Strengths:**
-  - Short middle stump → pull for 6
-  - Full middle stump → loft for 4
+  - Full leg stump → slog for 6
+  - Short middle stump → pull for 4
 - **Neutrals:**
-  - Good length leg stump → work for 2
-  - Full leg stump → flick for 1
+  - Good length leg stump → work for 1
 - **Weaknesses:**
-  - Short leg stump → fends to short leg
-  - Full 5th stump → edge to keeper
+  - Good length off stump → edge to slip
+  - Short Outside off → caught at point
+  - Good length middle stump → bowled trying to flick across
+
+- **Resistances:** Topspin, Drift
 
 ---
 
-### SILVER — Hardik Pandya
-*Power hitter in death overs. Pulls and flat-batted hits. Swings across the line.*
+### SILVER — Rinku Singh
+*KKR death-overs finisher. Famous for clearing the rope on the leg side — the "5 sixes in an over" guy. Limited new-ball game; vulnerable in early-innings phases. Reads slower balls and cutters from death-overs experience.*
 - **Strengths:**
-  - Short leg stump → hook for 6
-  - Full leg stump → slog for 4
+  - Full leg stump → slog for 6
+  - Short middle stump → pull for 4
 - **Neutrals:**
-  - Good length middle stump → push for 2
-  - Short middle stump → pull for 1
+  - Good length leg stump → flick for 1
 - **Weaknesses:**
-  - Full middle stump → bowled slogging across the line
-  - Good length off stump → beaten outside edge
+  - Good length off stump → edge to slip
+  - Good length middle stump → bowled
+  - Full Outside off → caught at cover
+
+- **Resistances:** Slower, Cutter
 
 ---
 
-### SILVER — Shubman Gill
-*Elegant timer. Beautiful drives. Technically correct but struggles against short ball.*
+### SILVER — Abhishek Sharma
+*Sunrisers Hyderabad explosive opener. Hits big in powerplay — drives over extra cover, pulls anything short. Plays the new ball well; vulnerable when forced to defend on the back foot, especially against good-length balls in the corridor.*
 - **Strengths:**
-  - Full off stump → cover drive for 4
-  - Full middle stump → straight drive for 4
+  - Full off stump → loft for 6
+  - Short middle stump → pull for 4
 - **Neutrals:**
-  - Good length off stump → push for 2
-  - Good length middle stump → defend for 1
+  - Good length off stump → push for 1
 - **Weaknesses:**
-  - Short off stump → top edge caught at fine leg
-  - Short middle stump → gloves it to keeper
+  - Good length middle stump → bowled
+  - Good length leg stump → LBW playing across
+  - Short Outside off → top edge caught
+
+- **Resistances:** Swing, Seam
 
 ---
 
-### BRONZE — Rinku Singh
-*IPL finisher. Famous 5 sixes in last over. Leg-side dominant.*
-- **Strengths:**
-  - Full leg stump → flick for 6
+### BRONZE — Riyan Parag
+*Rajasthan Royals 2024 IPL breakout (528 runs). Aggressive middle-order, can clear the rope occasionally but lacks consistent boundary-hitting reliability. No real T20I career.*
 - **Neutrals:**
-  - Good length leg stump → work for 2
   - Full middle stump → push for 1
+  - Short middle stump → pull for 2
+  - Good length leg stump → work for 1
 - **Weaknesses:**
-  - Good length off stump → beaten
-  - Short off stump → top edge caught
-  - Full off stump → mis-hit to cover
+  - Good length off stump → edge to slip
+  - Full Outside off → drive caught at cover
+  - Short Outside off → caught at point
 
 ---
 
@@ -218,26 +223,23 @@ Everything not listed = dot ball.
 
 ---
 
-### SILVER — Yuzvendra Chahal
-*Good length middle stump legspin. Gets drift and dip. Wicket-taker but can be expensive.*
-- **Delivery:** Good length middle stump
-- **Adjective:** Spin (legspin)
-- **Fielding:** Short leg
-
----
-
-### SILVER — Bhuvneshwar Kumar
-*Good length off stump swinging away. Powerplay specialist.*
+### SILVER — Avesh Khan
+*Reliable IPL good-length seamer. Couple of T20Is but mostly an LSG/RR/PBKS workhorse. Hits hard lengths consistently — no signature variation, just discipline.*
 - **Delivery:** Good length off stump
-- **Adjective:** Swing (outswing)
-- **Fielding:** Slip cordon
+- **Fielding:** Cover
 
 ---
 
-### SILVER — Mohammed Shami
-*Full off stump hitting the deck. Gets seam movement and bounce.*
-- **Delivery:** Full off stump
-- **Adjective:** Seam
+### SILVER — Hardik Pandya
+*Medium-fast all-rounder. Heavy back-of-length hit-the-deck pacer. India's regular sixth-bowler when fit. No signature variation in T20s any more — just hard length and aggression.*
+- **Delivery:** Good length middle stump
+- **Fielding:** Mid-wicket
+
+---
+
+### SILVER — Mayank Yadav
+*Lucknow Super Giants. IPL 2024 breakout — consistent 150+ kph express pace. Bouncer specialist. Injury-hampered, so no real international career to speak of.*
+- **Delivery:** Short middle stump
 - **Fielding:** Gully/Point
 
 ---
@@ -273,10 +275,10 @@ Everything not listed = dot ball.
 
 ---
 
-### BRONZE — Avesh Khan
-*Domestic fast-medium. Good length but predictable, lacks variation at international level.*
-- **Delivery:** Good length middle stump
-- **Fielding:** Mid-wicket
+### BRONZE — Mukesh Kumar
+*Delhi Capitals seamer. Limited T20I exposure. Reliable IPL line-and-length bowler — no special variation, just plays the percentages.*
+- **Delivery:** Full off stump
+- **Fielding:** Slip cordon
 
 ---
 
