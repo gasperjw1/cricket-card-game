@@ -1,5 +1,6 @@
 import { randomBytes, randomUUID } from "node:crypto";
 import type {
+  CoinTossState,
   PlayerSlot,
   PublicMatchState,
   PublicPlayerInfo,
@@ -24,6 +25,13 @@ export interface ServerMatch {
   phase: PublicMatchState["phase"];
   players: { A: ServerPlayer; B: ServerPlayer | null };
   createdAt: number;
+  coinToss: CoinTossState | null;
+  /**
+   * Per-match scheduled timeouts keyed by name (e.g. "coin-countdown",
+   * "coin-call", "coin-choose"). Always cleared on closeMatch so leaks can't
+   * outlive a match.
+   */
+  timers: Map<string, NodeJS.Timeout>;
 }
 
 /**
@@ -74,6 +82,8 @@ export class MatchRegistry {
         B: null,
       },
       createdAt: Date.now(),
+      coinToss: null,
+      timers: new Map(),
     };
     this.matchesById.set(matchId, match);
     this.matchIdByInvite.set(inviteCode, matchId);
@@ -147,7 +157,15 @@ export class MatchRegistry {
     if (player && player.socketId === socketId) {
       player.socketId = null;
     }
-    if (match.phase === "lobby") {
+    // Pre-gameplay phases (lobby, coin toss, draft) have no state worth
+    // preserving — disconnect kills the match for both players. Once
+    // gameplay starts (innings) we should switch to mark-offline semantics
+    // so reconnect-with-token works.
+    if (
+      match.phase === "lobby" ||
+      match.phase === "coin-toss" ||
+      match.phase === "draft"
+    ) {
       this.closeMatch(match.matchId);
       return { match, closed: true };
     }
@@ -174,6 +192,10 @@ export class MatchRegistry {
   private closeMatch(matchId: string): void {
     const match = this.matchesById.get(matchId);
     if (!match) return;
+    for (const timer of match.timers.values()) {
+      clearTimeout(timer);
+    }
+    match.timers.clear();
     this.matchesById.delete(matchId);
     this.matchIdByInvite.delete(match.inviteCode);
     for (const slot of ["A", "B"] as const) {
@@ -216,6 +238,7 @@ export class MatchRegistry {
       currentInnings: null,
       innings1: null,
       innings2: null,
+      coinToss: match.coinToss,
       result: null,
     };
   }

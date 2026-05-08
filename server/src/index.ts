@@ -7,6 +7,11 @@ import type {
   ServerToClientEvents,
 } from "@swipe-sixer/shared";
 import { CARDS } from "@swipe-sixer/shared/data";
+import {
+  handleCall as handleCoinTossCall,
+  handleChoose as handleCoinTossChoose,
+  startCoinToss,
+} from "./coin-toss.js";
 import { MatchRegistry, type ServerMatch } from "./match-registry.js";
 
 const PORT = Number(process.env.PORT ?? 3001);
@@ -45,6 +50,17 @@ function broadcastMatchState(match: ServerMatch): void {
   );
 }
 
+const coinTossCallbacks = {
+  broadcastState: broadcastMatchState,
+  emitResult: (match: ServerMatch, payload: {
+    flip: "heads" | "tails";
+    callerSlot: "A" | "B";
+    winnerSlot: "A" | "B";
+  }) => {
+    io.to(matchRoom(match.matchId)).emit("cointoss:result", payload);
+  },
+};
+
 io.on("connection", (socket) => {
   console.log(`[socket] connected: ${socket.id}`);
 
@@ -78,10 +94,11 @@ io.on("connection", (socket) => {
       playerToken,
       slot: "B",
     });
-    broadcastMatchState(match);
     console.log(
       `[lobby] "${displayName}" joined ${match.matchId} (${match.inviteCode})`,
     );
+    // Auto-advance into coin toss with a 10s countdown.
+    startCoinToss(match, coinTossCallbacks);
   });
 
   socket.on("match:reconnect", ({ matchId, playerToken }, ack) => {
@@ -94,6 +111,26 @@ io.on("connection", (socket) => {
     ack({ ok: true, slot: result.slot });
     broadcastMatchState(result.match);
     console.log(`[lobby] reconnect: ${result.slot} in ${matchId}`);
+  });
+
+  socket.on("cointoss:call", ({ call }) => {
+    const match = registry.getMatchBySocket(socket.id);
+    if (!match) return;
+    const slot = match.players.A.socketId === socket.id ? "A" : "B";
+    const res = handleCoinTossCall(match, slot, call, coinTossCallbacks);
+    if (!res.ok && res.reason) {
+      socket.emit("match:error", { code: "COINTOSS_CALL", message: res.reason });
+    }
+  });
+
+  socket.on("cointoss:choose", ({ choose }) => {
+    const match = registry.getMatchBySocket(socket.id);
+    if (!match) return;
+    const slot = match.players.A.socketId === socket.id ? "A" : "B";
+    const res = handleCoinTossChoose(match, slot, choose, coinTossCallbacks);
+    if (!res.ok && res.reason) {
+      socket.emit("match:error", { code: "COINTOSS_CHOOSE", message: res.reason });
+    }
   });
 
   socket.on("lobby:leave", () => {

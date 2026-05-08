@@ -65,6 +65,24 @@ export interface PlayerHand {
   deckRemaining: number;
 }
 
+export type CoinTossStage =
+  | "countdown"
+  | "calling"
+  | "choosing"
+  | "complete";
+
+export interface CoinTossState {
+  stage: CoinTossStage;
+  callerSlot: PlayerSlot; // always B in v1 (the joining player)
+  deadlineEpochMs: number | null;
+  call: "heads" | "tails" | null;
+  flip: "heads" | "tails" | null;
+  winnerSlot: PlayerSlot | null;
+  battingSlot: PlayerSlot | null;
+  autoCalled: boolean;
+  autoChose: boolean;
+}
+
 export interface PublicMatchState {
   matchId: string;
   inviteCode: string;
@@ -73,6 +91,7 @@ export interface PublicMatchState {
   currentInnings: 1 | 2 | null;
   innings1: InningsState | null;
   innings2: InningsState | null;
+  coinToss: CoinTossState | null;
   result: MatchResult | null;
 }
 

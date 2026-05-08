@@ -27,14 +27,26 @@ function clearPersistedSession(): void {
   sessionStorage.removeItem(STORAGE_PLAYER_TOKEN);
 }
 
+export interface CoinTossResultEvent {
+  flip: "heads" | "tails";
+  callerSlot: PlayerSlot;
+  winnerSlot: PlayerSlot;
+  /** Wall-clock time of receipt; clients use this to drive the flip animation. */
+  receivedAt: number;
+}
+
 export interface MatchClient {
   connected: boolean;
   matchState: PublicMatchState | null;
   mySlot: PlayerSlot | null;
   errorMessage: string | null;
+  /** Latest cointoss:result event; null until the call is resolved. */
+  coinTossResult: CoinTossResultEvent | null;
   createMatch: (displayName: string) => Promise<void>;
   joinMatch: (inviteCode: string, displayName: string) => Promise<void>;
   leaveMatch: () => void;
+  callCoinToss: (call: "heads" | "tails") => void;
+  chooseBatOrBowl: (choose: "bat" | "bowl") => void;
   clearError: () => void;
 }
 
@@ -43,6 +55,8 @@ export function useMatchClient(): MatchClient {
   const [matchState, setMatchState] = useState<PublicMatchState | null>(null);
   const [mySlot, setMySlot] = useState<PlayerSlot | null>(null);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const [coinTossResult, setCoinTossResult] =
+    useState<CoinTossResultEvent | null>(null);
 
   // Track persisted session in a ref so handlers can read latest without re-binding.
   const sessionRef = useRef<PersistedSession | null>(readPersistedSession());
@@ -80,13 +94,22 @@ export function useMatchClient(): MatchClient {
       sessionRef.current = null;
       setMatchState(null);
       setMySlot(null);
+      setCoinTossResult(null);
       setErrorMessage(reason);
+    };
+    const onCoinTossResult = (payload: {
+      flip: "heads" | "tails";
+      callerSlot: PlayerSlot;
+      winnerSlot: PlayerSlot;
+    }) => {
+      setCoinTossResult({ ...payload, receivedAt: Date.now() });
     };
 
     socket.on("connect", onConnect);
     socket.on("disconnect", onDisconnect);
     socket.on("match:state", onMatchState);
     socket.on("match:closed", onMatchClosed);
+    socket.on("cointoss:result", onCoinTossResult);
 
     if (socket.connected) onConnect();
 
@@ -95,6 +118,7 @@ export function useMatchClient(): MatchClient {
       socket.off("disconnect", onDisconnect);
       socket.off("match:state", onMatchState);
       socket.off("match:closed", onMatchClosed);
+      socket.off("cointoss:result", onCoinTossResult);
     };
   }, []);
 
@@ -143,7 +167,16 @@ export function useMatchClient(): MatchClient {
     sessionRef.current = null;
     setMatchState(null);
     setMySlot(null);
+    setCoinTossResult(null);
     setErrorMessage(null);
+  };
+
+  const callCoinToss = (call: "heads" | "tails"): void => {
+    socket.emit("cointoss:call", { call });
+  };
+
+  const chooseBatOrBowl = (choose: "bat" | "bowl"): void => {
+    socket.emit("cointoss:choose", { choose });
   };
 
   const clearError = (): void => setErrorMessage(null);
@@ -153,9 +186,12 @@ export function useMatchClient(): MatchClient {
     matchState,
     mySlot,
     errorMessage,
+    coinTossResult,
     createMatch,
     joinMatch,
     leaveMatch,
+    callCoinToss,
+    chooseBatOrBowl,
     clearError,
   };
 }

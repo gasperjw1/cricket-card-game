@@ -10,6 +10,12 @@ export const MAX_WICKETS_PER_INNINGS = 2 as const;
 export const TURN_TIMER_SECONDS = 30 as const;
 export const DRAFT_ROUND_TIMER_SECONDS = 15 as const;
 
+// Coin toss
+export const COIN_TOSS_COUNTDOWN_SECONDS = 10 as const;
+export const COIN_TOSS_CALL_TIMER_SECONDS = 30 as const;
+export const COIN_TOSS_CHOOSE_TIMER_SECONDS = 30 as const;
+export const COIN_TOSS_FLIP_VISUAL_MS = 1500 as const;
+
 // Draft round structure: 2 Elite + 3 Gold + 5 Silver + 10 Bronze = 20 picks
 export const DRAFT_ROUNDS_BY_TIER = {
   Elite: 2,
