@@ -7,24 +7,45 @@ interface Props {
 
 type Mode = "menu" | "create" | "join";
 
+/** Derive a default 4-char abbreviation from a display name. */
+function defaultAbbrFromName(name: string): string {
+  return name.toUpperCase().replace(/[^A-Z0-9]/g, "").slice(0, 4);
+}
+
 export function HomeScreen({ client }: Props) {
   const [mode, setMode] = useState<Mode>("menu");
   const [displayName, setDisplayName] = useState("");
+  const [abbreviation, setAbbreviation] = useState("");
+  /** Has the user manually edited the abbreviation? If false, it auto-fills from displayName. */
+  const [abbrTouched, setAbbrTouched] = useState(false);
   const [inviteCode, setInviteCode] = useState("");
   const [submitting, setSubmitting] = useState(false);
 
-  const canCreate = displayName.trim().length > 0 && client.connected && !submitting;
+  const effectiveAbbr = abbrTouched ? abbreviation : defaultAbbrFromName(displayName);
+  const abbrValid = effectiveAbbr.length >= 2 && effectiveAbbr.length <= 4;
+
+  const canCreate =
+    displayName.trim().length > 0 && abbrValid && client.connected && !submitting;
   const canJoin =
     displayName.trim().length > 0 &&
+    abbrValid &&
     inviteCode.trim().length === 6 &&
     client.connected &&
     !submitting;
+
+  const handleNameChange = (value: string): void => {
+    setDisplayName(value);
+    if (!abbrTouched) {
+      // Auto-suggestion follows the name until the user explicitly edits.
+      setAbbreviation(defaultAbbrFromName(value));
+    }
+  };
 
   const handleCreate = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!canCreate) return;
     setSubmitting(true);
-    await client.createMatch(displayName);
+    await client.createMatch(displayName, effectiveAbbr);
     setSubmitting(false);
   };
 
@@ -32,7 +53,7 @@ export function HomeScreen({ client }: Props) {
     e.preventDefault();
     if (!canJoin) return;
     setSubmitting(true);
-    await client.joinMatch(inviteCode, displayName);
+    await client.joinMatch(inviteCode, displayName, effectiveAbbr);
     setSubmitting(false);
   };
 
@@ -86,9 +107,28 @@ export function HomeScreen({ client }: Props) {
               autoFocus
               value={displayName}
               maxLength={20}
-              onChange={(e) => setDisplayName(e.target.value)}
+              onChange={(e) => handleNameChange(e.target.value)}
               placeholder="e.g. Yash"
             />
+          </label>
+          <label>
+            Team abbreviation
+            <input
+              type="text"
+              value={effectiveAbbr}
+              maxLength={4}
+              onChange={(e) => {
+                setAbbrTouched(true);
+                setAbbreviation(
+                  e.target.value.toUpperCase().replace(/[^A-Z0-9]/g, ""),
+                );
+              }}
+              placeholder="2–4 chars"
+              style={{ textTransform: "uppercase", letterSpacing: "0.2em" }}
+            />
+            <small className="dim-text">
+              Shown in the scorebug (e.g. ENG, SL-A, KOLI). Auto-fills from your name.
+            </small>
           </label>
           <div className="form-actions">
             <button type="button" className="btn ghost" onClick={() => setMode("menu")}>
@@ -110,8 +150,24 @@ export function HomeScreen({ client }: Props) {
               autoFocus
               value={displayName}
               maxLength={20}
-              onChange={(e) => setDisplayName(e.target.value)}
+              onChange={(e) => handleNameChange(e.target.value)}
               placeholder="e.g. Friend"
+            />
+          </label>
+          <label>
+            Team abbreviation
+            <input
+              type="text"
+              value={effectiveAbbr}
+              maxLength={4}
+              onChange={(e) => {
+                setAbbrTouched(true);
+                setAbbreviation(
+                  e.target.value.toUpperCase().replace(/[^A-Z0-9]/g, ""),
+                );
+              }}
+              placeholder="2–4 chars"
+              style={{ textTransform: "uppercase", letterSpacing: "0.2em" }}
             />
           </label>
           <label>

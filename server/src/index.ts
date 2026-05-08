@@ -100,8 +100,12 @@ const coinTossCallbacks = {
 io.on("connection", (socket) => {
   console.log(`[socket] connected: ${socket.id}`);
 
-  socket.on("lobby:create", ({ displayName }, ack) => {
-    const { match, playerToken } = registry.createMatch(displayName, socket.id);
+  socket.on("lobby:create", ({ displayName, abbreviation }, ack) => {
+    const { match, playerToken } = registry.createMatch(
+      displayName,
+      abbreviation,
+      socket.id,
+    );
     socket.join(matchRoom(match.matchId));
     ack({
       matchId: match.matchId,
@@ -111,12 +115,17 @@ io.on("connection", (socket) => {
     });
     broadcastMatchState(match);
     console.log(
-      `[lobby] created ${match.matchId} (${match.inviteCode}) by "${displayName}"`,
+      `[lobby] created ${match.matchId} (${match.inviteCode}) by "${displayName}" (${match.players.A.abbreviation})`,
     );
   });
 
-  socket.on("lobby:join", ({ inviteCode, displayName }, ack) => {
-    const result = registry.joinMatch(inviteCode, displayName, socket.id);
+  socket.on("lobby:join", ({ inviteCode, displayName, abbreviation }, ack) => {
+    const result = registry.joinMatch(
+      inviteCode,
+      displayName,
+      abbreviation,
+      socket.id,
+    );
     if (!result.ok) {
       ack({ ok: false, reason: result.reason });
       return;
@@ -131,7 +140,7 @@ io.on("connection", (socket) => {
       slot: "B",
     });
     console.log(
-      `[lobby] "${displayName}" joined ${match.matchId} (${match.inviteCode})`,
+      `[lobby] "${displayName}" (${match.players.B?.abbreviation}) joined ${match.matchId} (${match.inviteCode})`,
     );
     // Auto-advance into coin toss with a 10s countdown.
     startCoinToss(match, coinTossCallbacks);

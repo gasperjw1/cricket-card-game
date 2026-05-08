@@ -181,6 +181,8 @@ export interface PublicMatchState {
 export interface PublicPlayerInfo {
   slot: PlayerSlot;
   displayName: string;
+  /** 2–4 character team abbreviation shown in the scorebug (e.g. "KOLI", "WARN"). */
+  abbreviation: string;
   connected: boolean;
   handSize: number; // opponent sees count, not contents
   deckRemaining: number;

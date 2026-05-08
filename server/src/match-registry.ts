@@ -24,8 +24,19 @@ import type {
 interface ServerPlayer {
   slot: PlayerSlot;
   displayName: string;
+  /** 2–4 char team abbreviation shown in the scorebug. */
+  abbreviation: string;
   playerToken: string; // returned to client; used to reclaim slot on reconnect
   socketId: string | null;
+}
+
+/** Normalize a user-provided abbreviation; fall back to deriving from the display name. */
+function deriveAbbreviation(raw: string, displayName: string, slot: PlayerSlot): string {
+  const cleanedRaw = raw.toUpperCase().replace(/[^A-Z0-9]/g, "").slice(0, 4);
+  if (cleanedRaw.length >= 2) return cleanedRaw;
+  const cleanedName = displayName.toUpperCase().replace(/[^A-Z0-9]/g, "").slice(0, 4);
+  if (cleanedName.length >= 2) return cleanedName;
+  return slot === "A" ? "P1" : "P2";
 }
 
 /** Per-player deck pair + current hand. Decks are populated when innings 1 starts. */
@@ -120,7 +131,11 @@ export class MatchRegistry {
     { matchId: string; slot: PlayerSlot }
   >();
 
-  createMatch(displayName: string, socketId: string): {
+  createMatch(
+    displayName: string,
+    abbreviation: string,
+    socketId: string,
+  ): {
     match: ServerMatch;
     playerToken: string;
   } {
@@ -130,6 +145,7 @@ export class MatchRegistry {
     }
     const matchId = randomUUID();
     const playerToken = randomUUID();
+    const finalName = displayName.trim() || "Player A";
     const match: ServerMatch = {
       matchId,
       inviteCode,
@@ -137,7 +153,8 @@ export class MatchRegistry {
       players: {
         A: {
           slot: "A",
-          displayName: displayName.trim() || "Player A",
+          displayName: finalName,
+          abbreviation: deriveAbbreviation(abbreviation, finalName, "A"),
           playerToken,
           socketId,
         },
@@ -166,6 +183,7 @@ export class MatchRegistry {
   joinMatch(
     inviteCode: string,
     displayName: string,
+    abbreviation: string,
     socketId: string,
   ):
     | { ok: true; match: ServerMatch; playerToken: string }
@@ -178,9 +196,11 @@ export class MatchRegistry {
       return { ok: false, reason: "Match is already full" };
     }
     const playerToken = randomUUID();
+    const finalName = displayName.trim() || "Player B";
     match.players.B = {
       slot: "B",
-      displayName: displayName.trim() || "Player B",
+      displayName: finalName,
+      abbreviation: deriveAbbreviation(abbreviation, finalName, "B"),
       playerToken,
       socketId,
     };
@@ -306,6 +326,7 @@ export class MatchRegistry {
       return {
         slot: player.slot,
         displayName: player.displayName,
+        abbreviation: player.abbreviation,
         connected: player.socketId !== null,
         handSize,
         deckRemaining,

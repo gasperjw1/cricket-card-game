@@ -26,12 +26,12 @@ export type LobbyJoinResult =
 // ───── Client → Server ─────
 export interface ClientToServerEvents {
   "lobby:create": (
-    payload: { displayName: string },
+    payload: { displayName: string; abbreviation: string },
     ack: (res: { inviteCode: string } & LobbyCredentials) => void,
   ) => void;
 
   "lobby:join": (
-    payload: { inviteCode: string; displayName: string },
+    payload: { inviteCode: string; displayName: string; abbreviation: string },
     ack: (res: LobbyJoinResult) => void,
   ) => void;
 

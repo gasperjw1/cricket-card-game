@@ -1,17 +1,15 @@
 import { useState } from "react";
 import {
   HAND_SIZE,
-  MAX_BALLS_PER_INNINGS,
-  MAX_WICKETS_PER_INNINGS,
   type AnyCard,
   type BallOutcome,
   type BallResult,
-  type InningsState,
   type PlayerSlot,
   type ResolutionStep,
 } from "@swipe-sixer/shared";
 import { Card, type RevealContext } from "../components/Card.tsx";
 import { CardViewer } from "../components/CardViewer.tsx";
+import { Scorebug } from "../components/Scorebug.tsx";
 import { Tip } from "../components/Tip.tsx";
 import type { MatchClient } from "../state.ts";
 import { useCountdown } from "../useCountdown.ts";
@@ -77,20 +75,7 @@ export function InningsScreen({ client }: Props) {
 
   return (
     <main className="innings">
-      <Scoreboard
-        innings={innings}
-        currentInnings={matchState.currentInnings ?? 1}
-        players={{
-          batting:
-            innings.battingPlayer === "A"
-              ? matchState.players.A.displayName
-              : matchState.players.B?.displayName ?? "—",
-          bowling:
-            innings.bowlingPlayer === "A"
-              ? matchState.players.A.displayName
-              : matchState.players.B?.displayName ?? "—",
-        }}
-      />
+      <Scorebug matchState={matchState} />
 
       <OpponentRow
         name={opponent.displayName}
@@ -230,54 +215,7 @@ export function InningsScreen({ client }: Props) {
   );
 }
 
-// ─────────────────────────── Scoreboard / Banners ───────────────────────────
-
-function Scoreboard({
-  innings,
-  currentInnings,
-  players,
-}: {
-  innings: InningsState;
-  currentInnings: number;
-  players: { batting: string; bowling: string };
-}) {
-  const ballsLeft = MAX_BALLS_PER_INNINGS - innings.ballsBowled;
-  return (
-    <section className="scoreboard">
-      <div className="scoreboard-row">
-        <Tip text="Current innings — each player bats once.">
-          <span className="sb-pill">Innings {currentInnings}</span>
-        </Tip>
-        <span className="sb-pill batting-pill">
-          🏏 <strong>{players.batting}</strong> batting
-        </span>
-        <span className="sb-pill">
-          🎯 <strong>{players.bowling}</strong> bowling
-        </span>
-      </div>
-      <div className="scoreboard-score">
-        <Tip text="Runs scored / wickets fallen this innings.">
-          <span className="sb-score">
-            {innings.runs}<span className="sb-slash">/</span>{innings.wickets}
-          </span>
-        </Tip>
-        {innings.target !== null && (
-          <Tip text={`Target — chase ${innings.target} runs to win.`}>
-            <span className="sb-target">target {innings.target}</span>
-          </Tip>
-        )}
-      </div>
-      <div className="scoreboard-row dim-text">
-        <Tip text={`${ballsLeft} ball${ballsLeft === 1 ? "" : "s"} remaining (max ${MAX_BALLS_PER_INNINGS} per innings).`}>
-          <span>Ball {innings.ballsBowled}/{MAX_BALLS_PER_INNINGS}</span>
-        </Tip>
-        <Tip text={`${MAX_WICKETS_PER_INNINGS} wickets ends the innings.`}>
-          <span>Wickets {innings.wickets}/{MAX_WICKETS_PER_INNINGS}</span>
-        </Tip>
-      </div>
-    </section>
-  );
-}
+// ─────────────────────────── Banners ───────────────────────────
 
 function OpponentRow(props: {
   name: string;

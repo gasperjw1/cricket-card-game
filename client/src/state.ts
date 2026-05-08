@@ -58,8 +58,12 @@ export interface MatchClient {
   opponentLocked: boolean;
   /** Latest ball:reveal payload; null until revealed (cleared when next ball begins). */
   lastReveal: BallResult | null;
-  createMatch: (displayName: string) => Promise<void>;
-  joinMatch: (inviteCode: string, displayName: string) => Promise<void>;
+  createMatch: (displayName: string, abbreviation: string) => Promise<void>;
+  joinMatch: (
+    inviteCode: string,
+    displayName: string,
+    abbreviation: string,
+  ) => Promise<void>;
   leaveMatch: () => void;
   callCoinToss: (call: "heads" | "tails") => void;
   chooseBatOrBowl: (choose: "bat" | "bowl") => void;
@@ -196,10 +200,13 @@ export function useMatchClient(): MatchClient {
     setLastReveal(null);
   };
 
-  const createMatch = async (displayName: string): Promise<void> => {
+  const createMatch = async (
+    displayName: string,
+    abbreviation: string,
+  ): Promise<void> => {
     setErrorMessage(null);
     return new Promise<void>((resolve) => {
-      socket.emit("lobby:create", { displayName }, (res) => {
+      socket.emit("lobby:create", { displayName, abbreviation }, (res) => {
         persistSession(res.matchId, res.playerToken);
         sessionRef.current = { matchId: res.matchId, playerToken: res.playerToken };
         resetMatchTransients();
@@ -212,12 +219,13 @@ export function useMatchClient(): MatchClient {
   const joinMatch = async (
     inviteCode: string,
     displayName: string,
+    abbreviation: string,
   ): Promise<void> => {
     setErrorMessage(null);
     return new Promise<void>((resolve) => {
       socket.emit(
         "lobby:join",
-        { inviteCode: inviteCode.trim().toUpperCase(), displayName },
+        { inviteCode: inviteCode.trim().toUpperCase(), displayName, abbreviation },
         (res) => {
           if (!res.ok) {
             setErrorMessage(res.reason);
