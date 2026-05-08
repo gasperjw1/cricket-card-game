@@ -5,7 +5,7 @@
 - Both situation cards are revealed **simultaneously** with the batsman/bowler cards
 - Situation cards are **one-time use** — discarded after playing
 - Situation cards go in their respective decks (batting situations in batting deck, bowling situations in bowling deck)
-- "Old School Cricket Only" is available in **both** deck pools
+- "Old School Cricket Only" exists as **two distinct cards** in the data model — `old-school-batting` (in the batting situation pool) and `old-school-bowling` (in the bowling situation pool). The effect is identical; the split keeps draft pool sampling clean (each pool has exactly 6 unique situation cards).
 
 ---
 
@@ -179,9 +179,10 @@ If the opponent didn't play a situation card, this is wasted.
 | Cramps | Bowling | Tactical — bowler swap |
 | Invariable Bounce | Bowling | Offensive — outcome downgrade |
 | Day 5 Pitch | Bowling | Zone modifier — shift lines |
-| Old School Cricket Only | Both | Counter — cancels opponent's situation card |
+| Old School Cricket Only (Batting) | Batting | Counter — cancels opponent's situation card |
+| Old School Cricket Only (Bowling) | Bowling | Counter — cancels opponent's situation card |
 
-**Total unique situation cards: 11** (5 batting + 5 bowling + 1 shared)
+**Total unique situation cards in data model: 12** (5 batting + 5 bowling + Old School split into 2 variants with identical effect). Conceptually still 11 distinct effects.
 
 ---
 

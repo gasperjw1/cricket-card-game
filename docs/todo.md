@@ -41,16 +41,20 @@ Some elite batters (like Kohli) could have a dual role (Opener/Middle Order) mak
 - [x] Resistance system (elite batters can nullify certain adjectives)
 - [x] Fielding coverage system (bowler fielding downgrades shots to covered regions)
 - [x] Weakness distribution across all zones (not clustered on 5th stump)
-- [x] India roster — 11 batsmen + 11 bowlers (v3, approved)
+- [x] Full roster — all 12 nations, 264 cards (132 batsmen + 132 bowlers)
+- [x] Situation cards design (11 cards: 5 batting, 5 bowling, 1 shared)
 
 ## In Progress
-- [ ] Remaining 11 nations roster
+- [x] **Scaffold:** monorepo (shared/server/client), parsed card data, socket contracts, build/typecheck pipeline
+- [ ] Coin toss flow (next)
 
 ## Backlog
-- [x] Situation cards design (11 cards: 5 batting, 5 bowling, 1 shared)
-- [ ] Deck building rules and constraints
-- [ ] Coin toss flow
-- [ ] UI/UX design for card game
-- [ ] Game state management
-- [ ] Messenger integration
+- [ ] Deck draft flow (20 rounds per deck, 15s timer, situation card injection per spec in MEMORY.md)
+- [ ] Ball loop (server-authoritative selection, 30s timer, simultaneous reveal)
+- [ ] Resolution engine (full 11-step chain from situation-cards.md)
+- [ ] Outcome reveal screen + photo library lookup
+- [ ] Lobby (invite-code matchmaking, reconnect handling)
+- [ ] End-of-innings + end-of-match screens
+- [ ] Messenger Instant Games SDK integration
+- [ ] Photo library asset sourcing (per-player batsman shots/dismissals + bowler run-ups)
 - [ ] Card art/visual design

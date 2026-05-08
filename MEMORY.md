@@ -37,16 +37,24 @@ Both players select cards **simultaneously and face-down**, then reveal at the s
 - 1 Bowler card (mandatory)
 - 1 Situation card (optional)
 
-**Resolution order:**
-1. Situation cards activate simultaneously
-2. If situation cards change the board state (force batsman swap, cancel other situation card, etc.), apply those effects
-3. Bowler's delivery zone is looked up on the batter's card → raw result
-4. Bowler's adjective modifier applies (downgrades outcomes if batter isn't resistant)
-5. Bowler's fielding coverage applies (downgrades shots to covered fielding regions)
-6. Final result: runs scored or wicket taken
-7. Update score, draw back to 6 cards
+**Turn timer:** Each player has **30 seconds** to lock in their selection. If the timer expires, a mandatory card is auto-selected at random from hand and no situation card is played.
+
+**Resolution order (canonical — mirrors `docs/situation-cards.md`):**
+1. **Old School Cricket Only check** — if either player played it, the opponent's situation card is cancelled. If both played it, both cancel and the ball resolves with no situation effects.
+2. **Card swaps** — Mankad / Retired Out / Cramps force the affected player to discard their played mandatory card and play a different one from hand (Mankad applies a downgrade penalty if the batting side has no other batsman).
+3. **Zone modifiers** — Trot Down (length shift), Day 5 Pitch (line shift), Switch Hit (mirror batter zones) modify the lookup before resolution.
+4. **Base lookup** — bowler's (possibly modified) delivery zone is looked up on the batter's (possibly mirrored) card → raw result.
+5. **Invariable Bounce** — if played, downgrade outcome one tier.
+6. **Bowler adjective** — if batter isn't resistant, downgrade one tier (stacks with Invariable Bounce).
+7. **Fielding coverage** — if shot goes to a covered region, downgrade one tier.
+8. **Power Surge** — if played, upgrade final outcome one tier (does not protect against weakness/wicket).
+9. **DRS Review** — if result is a wicket and DRS Review was played, overturn to dot ball.
+10. **Review Appeal** — if final result is a dot ball and Review Appeal was played, 40% chance becomes a wicket.
+11. **Apply runs / wicket → update scoreboard → discard played cards → draw back to hand size.**
 
 **Important rule:** During a turn, you can only get out once (max 1 wicket per ball).
+
+**Outcome reveal:** Instead of animated playback, after resolution the UI shows a paired real-life photo set: bowler delivering + batter playing the resulting shot (or dismissal). See "First Iteration Scope" below.
 
 ---
 
@@ -59,8 +67,8 @@ Both players select cards **simultaneously and face-down**, then reveal at the s
 When batting, you draw from your batting deck. When bowling, you draw from your bowling deck. They never mix.
 
 ### Hand Management
-- Hand size: always **6 cards**.
-- After each ball, draw back up to 6 from the active deck.
+- Hand size: always **4 cards**.
+- After each ball, draw back up to 4 from the active deck.
 - **Anti-clog rule:** If your hand is ALL situation cards (no batsman/bowler available for your mandatory play), discard one situation card and redraw.
 - This creates a deck-building tension: too many situation cards = clogged hands, too few = no tactical options.
 
@@ -246,26 +254,106 @@ Started as a Stick Cricket-style batting game with animated characters. After ex
 
 ---
 
+## First Iteration (v1) Scope
+
+The first playable build is intentionally narrow. It exists to validate the core ball-by-ball loop end-to-end before investing in deck building, Messenger sync, or art.
+
+**In scope for v1:**
+- Coin toss flow (Player B calls heads/tails → winner chooses bat or bowl)
+- Hand size of **4** cards per active deck (per design above)
+- **30-second turn timer** per player; on expiry, auto-pick a mandatory card at random and skip the situation card
+- Simultaneous reveal of both players' selections after both lock in (or both timers expire)
+- Full resolution order as specified above
+- Discard played cards, update scoreboard (runs, wickets, balls, target if 2nd innings), draw back to 4
+- **Outcome reveal screen**: instead of animation, after resolution show two paired real-life photographs — (1) the bowler delivering, (2) the batter playing the resulting shot or dismissal — alongside the runs / wicket text
+- End-of-innings + end-of-match summary
+
+**Out of scope for v1 (deferred):**
+- Pre-made decks UI — v1 uses the **draft flow below**, no pre-made decks
+- Messenger Instant Games SDK integration — v1 runs as a plain web build
+- Custom card art — v1 uses simple typographic cards (with player photos in outcome reveal)
+- Role bonus / phase upgrade (still backlog)
+
+### Deck Draft (v1)
+
+Before the match starts, each player drafts **two decks** (batting + bowling) independently. Both players draft in parallel — neither sees the other's picks.
+
+**Per deck: 20 rounds, 15 seconds per round.** Each round shows 4 options; player picks one. Round structure:
+
+| Rounds | Tier shown | Picks |
+|--------|-----------|-------|
+| 1–2    | Elite     | 2 |
+| 3–5    | Gold      | 3 |
+| 6–10   | Silver    | 5 |
+| 11–20  | Bronze    | 10 |
+| **Total** | | **20** |
+
+**Situation card injection.** Before the draft starts, sample 5 of the 20 round indices uniformly at random. In those 5 rounds, replace one of the 4 player options with a situation card. The 5 situation cards shown across those rounds are sampled without replacement from that deck's situation card pool (6 available, see below) — so a draft never offers the same situation card twice.
+
+**Duplicate rules within a draft:**
+- **Within a single round of 4 options:** all 4 are unique (no duplicates among the cards shown together).
+- **Across rounds:** an unpicked card *can* reappear in a later round of the same tier. Once a card is *picked*, it's removed from the pool for the remainder of that draft.
+- Bowling and batting decks are drafted from disjoint pools, so a player who's an all-rounder can be picked in both decks (their batsman card and bowler card are distinct cards in the data — see "Old School + all-rounder card model" below).
+
+**Situation card pools:**
+- Batting deck draft pool (6): DRS Review, Power Surge, Retired Out, Switch Hit, Trot Down, Old School Cricket Only (Batting variant). Pick 5.
+- Bowling deck draft pool (6): Mankad, Review Appeal, Cramps, Invariable Bounce, Day 5 Pitch, Old School Cricket Only (Bowling variant). Pick 5.
+
+**Auto-pick on timer expiry:** if the 15s timer expires, the system picks one of the 4 options at random.
+
+**Total pre-match draft time:** ~5 min per deck × 2 decks = 10 min per player; both players draft in parallel ≈ **10 min total**.
+
+### Old School + all-rounder card model
+
+Two data-model decisions that simplify the engine:
+
+1. **Old School Cricket Only is two distinct cards** with identical effect text — `old-school-batting` (lives in the batting situation pool) and `old-school-bowling` (lives in the bowling situation pool). At resolution they behave identically. This keeps draft pool sampling clean — each deck draft has exactly 6 situation cards in its pool.
+2. **All-rounders are always two distinct cards** — one in the batsmen list, one in the bowlers list, with different IDs (e.g. `hardik-pandya-bat`, `hardik-pandya-bowl`). The roster already separates them; card data and draft logic both treat them as fully independent cards.
+
+### Photo asset model (v1)
+
+Per-player photo library. Files live under `assets/photos/<playerId>/<outcomeKey>.jpg`.
+
+**Per batsman:** every shot listed on their card (e.g. Kohli has `cover-drive-4`, `flick-6`, `pull-4`, `push-2`, `late-cut-1`, `edge-to-keeper`) plus standardized `leave`, `block`, `bowled`, `lbw`, `caught-off-side`, `caught-leg-side`, `caught-straight`.
+
+**Per bowler:** `run-up.jpg` (delivering) and `wicket-celebration.jpg`.
+
+**Fallbacks:** when a specific photo is missing, the engine falls back to a generic stock image for that outcome key (e.g. a stock "cover drive" photo). All stock fallbacks carry a small watermark so they're visually distinguishable from real player photos. The engine resolves photo paths at render time and substitutes fallbacks transparently — no code changes needed when real photos are dropped into the asset folders.
+
+---
+
 ## Technical Notes
 
 ### Target Platform
-- Facebook Messenger Instant Games
-- Must be a single HTML/JS application
-- Two-player synchronous gameplay (both players online)
-- Server needed for game state management and simultaneous reveal
+- **Long-term:** Facebook Messenger Instant Games (single HTML/JS app loaded into a Messenger webview)
+- **v1 target:** plain web build, networked across two devices via the v1 stack below. Messenger SDK integration is deferred.
 
-### File Structure
+### v1 Tech Stack
+- **Frontend:** React + TypeScript + Vite (SPA)
+- **Backend:** Node.js + Express + Socket.IO (authoritative game server)
+- **State:** in-memory match map on the server, no database for v1 (matches are ephemeral; players use 6-character invite codes for lobbies, no accounts)
+- **Hosting target:** Fly.io free tier first, pivot to a paid plan only if needed
+- **Why server-authoritative:** simultaneous reveal requires a neutral third party to hold both selections until both submit. The 30s and 15s timers are also server-authoritative so neither client can cheat the clock.
+
+### Repo Layout (monorepo)
 ```
 cricket-card-game/
 ├── README.md
-├── .gitignore
+├── package.json            ← npm workspaces root
 ├── docs/
-│   ├── card-roster.md    ← full 264-card roster
-│   ├── todo.md           ← development roadmap
-│   └── MEMORY.md         ← this file
-├── src/                  ← game code (to be built)
-└── assets/               ← card art, images (to be built)
+│   ├── MEMORY.md           ← this file (canonical design)
+│   ├── card-roster.md      ← full 264-card roster
+│   ├── situation-cards.md  ← 11 situation cards (incl. Old School split)
+│   └── todo.md             ← development roadmap
+├── shared/                 ← TS types, card data (JSON), enums, socket event contracts
+├── server/                 ← Node + Express + Socket.IO; resolution engine lives here
+├── client/                 ← React + Vite SPA
+└── assets/
+    └── photos/             ← per-player photo library + watermarked stock fallbacks
+        ├── <playerId>/
+        └── _stock/
 ```
+The `shared/` workspace is the single source of truth for card data and type contracts that both client and server import. **Resolution logic lives only on the server** — clients never compute outcomes themselves.
 
 ### GitHub Repository
 `https://github.com/gasperjw1/cricket-card-game`

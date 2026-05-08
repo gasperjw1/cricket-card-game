@@ -44,7 +44,7 @@ Both players select cards face-down, then reveal simultaneously:
 
 ### Deck Building
 - Each deck holds 20 cards (batsman/bowler cards + situation cards)
-- Hand size: 6 cards, draw back to 6 after each ball
+- Hand size: 4 cards, draw back to 4 after each ball
 - All cards are one-time use — played cards are discarded
 - If your hand is all situation cards, discard one and redraw
 
@@ -59,7 +59,7 @@ See [docs/card-roster.md](docs/card-roster.md) for the full roster with every ca
 
 ## Project Status
 
-See [docs/todo.md](docs/todo.md) for the current roadmap.
+See [docs/todo.md](docs/todo.md) for the current roadmap and [docs/MEMORY.md](docs/MEMORY.md) for the canonical design.
 
 ### Completed
 - ✅ Core card system design (tiers, zones, strengths/weaknesses)
@@ -67,17 +67,50 @@ See [docs/todo.md](docs/todo.md) for the current roadmap.
 - ✅ Resistance system
 - ✅ Fielding coverage system
 - ✅ Full 264-card roster across 12 nations
+- ✅ 11 situation cards designed (data model splits Old School Cricket Only into batting/bowling variants → 12 in JSON)
+- ✅ Monorepo scaffold + parsed card data + server health check + client shell
 
 ### Up Next
-- ⬜ Situation cards design
-- ⬜ Batter role bonus (opener/middle/finisher phase upgrades)
-- ⬜ Deck building rules and constraints
-- ⬜ Game UI prototype
-- ⬜ Messenger integration
+- ⬜ Coin toss flow
+- ⬜ Deck draft (20 rounds per deck, 15s timer, situation card injection)
+- ⬜ Ball loop (selection, 30s timer, simultaneous reveal, full resolution chain)
+- ⬜ Outcome reveal screen with photo library
+- ⬜ Messenger Instant Games integration
 
-## Tech Stack (Planned)
-- Frontend: HTML/CSS/JS (Messenger Instant Game compatible)
-- Backend: TBD (game state management for two-player sync)
+## Tech Stack
+- **Frontend:** React + TypeScript + Vite (`client/`)
+- **Backend:** Node.js + Express + Socket.IO (`server/`)
+- **Shared types & card data:** TypeScript workspace (`shared/`)
+- **Hosting target:** Fly.io free tier
+- Node version pinned via `.node-version` (Node 20)
+
+## Repo Layout
+```
+.
+├── shared/    npm workspace — types, constants, card data (parsed JSON)
+├── server/    npm workspace — Express + Socket.IO authoritative game server
+├── client/    npm workspace — React + Vite SPA
+├── assets/    photo library (per-player + watermarked stock fallbacks)
+└── docs/      design docs (MEMORY.md, card-roster.md, situation-cards.md, todo.md)
+```
+
+## Local Development
+
+Prerequisites: [`fnm`](https://github.com/Schniz/fnm) (or any Node version manager) — the repo pins Node 20 via `.node-version`.
+
+```bash
+fnm use            # picks up .node-version
+npm install        # install all workspace deps
+npm run parse-cards    # regenerate shared/src/data/cards.json from docs/*.md (optional; checked in)
+npm run typecheck      # typecheck shared, server, client
+npm run build          # build all three workspaces
+```
+
+To run the dev environment (two terminals):
+```bash
+npm run dev --workspace server   # http://localhost:3001
+npm run dev --workspace client   # http://localhost:5173
+```
 
 ## License
 TBD

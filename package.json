@@ -1,0 +1,21 @@
+{
+  "name": "swipe-sixer",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Swipe Sixer — turn-based cricket card game (FB Messenger Instant Game).",
+  "workspaces": [
+    "shared",
+    "server",
+    "client"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "build": "npm run build --workspaces --if-present",
+    "typecheck": "npm run typecheck --workspaces --if-present",
+    "dev": "npm run dev --workspaces --if-present",
+    "parse-cards": "npm run parse-cards --workspace shared",
+    "clean": "rm -rf shared/dist server/dist client/dist"
+  }
+}
