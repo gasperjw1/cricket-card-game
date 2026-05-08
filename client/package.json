@@ -6,6 +6,7 @@
   "scripts": {
     "build": "tsc -b && vite build",
     "typecheck": "tsc -b --noEmit",
+    "test": "echo 'no client tests yet' && exit 0",
     "dev": "vite",
     "preview": "vite preview"
   },

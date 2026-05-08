@@ -1,6 +1,10 @@
 import { randomBytes, randomUUID } from "node:crypto";
 import type {
+  AnyCard,
+  BallSelection,
   CoinTossState,
+  InningsState,
+  MatchResult,
   PlayerSlot,
   PublicMatchState,
   PublicPlayerInfo,
@@ -19,6 +23,16 @@ interface ServerPlayer {
   socketId: string | null;
 }
 
+/** Per-player deck pair + current hand. Decks are populated when innings 1 starts. */
+export interface ServerDecks {
+  battingDeck: AnyCard[];
+  bowlingDeck: AnyCard[];
+  /** Currently active hand (drawn from whichever deck matches this player's role this innings). */
+  hand: AnyCard[];
+  /** Cards already played and discarded this match. Kept for UI/debug. */
+  discard: AnyCard[];
+}
+
 export interface ServerMatch {
   matchId: string;
   inviteCode: string;
@@ -26,10 +40,18 @@ export interface ServerMatch {
   players: { A: ServerPlayer; B: ServerPlayer | null };
   createdAt: number;
   coinToss: CoinTossState | null;
+  /** Innings flow state. Populated when the first innings starts. */
+  decks: { A: ServerDecks; B: ServerDecks } | null;
+  innings1: InningsState | null;
+  innings2: InningsState | null;
+  currentInnings: 1 | 2 | null;
+  /** Selections held while we wait for both players to lock in. */
+  pendingSelections: { A: BallSelection | null; B: BallSelection | null };
+  result: MatchResult | null;
   /**
    * Per-match scheduled timeouts keyed by name (e.g. "coin-countdown",
-   * "coin-call", "coin-choose"). Always cleared on closeMatch so leaks can't
-   * outlive a match.
+   * "coin-call", "coin-choose", "ball-timer"). Always cleared on closeMatch
+   * so leaks can't outlive a match.
    */
   timers: Map<string, NodeJS.Timeout>;
 }
@@ -83,6 +105,12 @@ export class MatchRegistry {
       },
       createdAt: Date.now(),
       coinToss: null,
+      decks: null,
+      innings1: null,
+      innings2: null,
+      currentInnings: null,
+      pendingSelections: { A: null, B: null },
+      result: null,
       timers: new Map(),
     };
     this.matchesById.set(matchId, match);
@@ -220,26 +248,58 @@ export class MatchRegistry {
    * Build a sanitized public view that's safe to send to either player.
    */
   toPublicState(match: ServerMatch): PublicMatchState {
-    const playerView = (player: ServerPlayer): PublicPlayerInfo => ({
-      slot: player.slot,
-      displayName: player.displayName,
-      connected: player.socketId !== null,
-      handSize: 0,
-      deckRemaining: 0,
-    });
+    const playerView = (slot: PlayerSlot, player: ServerPlayer): PublicPlayerInfo => {
+      const decks = match.decks ? match.decks[slot] : null;
+      const handSize = decks?.hand.length ?? 0;
+      // "Active deck remaining" — pick the deck this player draws from this innings.
+      const role = activeRoleForSlot(match, slot);
+      const deckRemaining =
+        decks && role === "batting"
+          ? decks.battingDeck.length
+          : decks && role === "bowling"
+            ? decks.bowlingDeck.length
+            : 0;
+      return {
+        slot: player.slot,
+        displayName: player.displayName,
+        connected: player.socketId !== null,
+        handSize,
+        deckRemaining,
+      };
+    };
     return {
       matchId: match.matchId,
       inviteCode: match.inviteCode,
       phase: match.phase,
       players: {
-        A: playerView(match.players.A),
-        B: match.players.B ? playerView(match.players.B) : null,
+        A: playerView("A", match.players.A),
+        B: match.players.B ? playerView("B", match.players.B) : null,
       },
-      currentInnings: null,
-      innings1: null,
-      innings2: null,
+      currentInnings: match.currentInnings,
+      innings1: match.innings1,
+      innings2: match.innings2,
       coinToss: match.coinToss,
-      result: null,
+      result: match.result,
     };
   }
+}
+
+/**
+ * Helper exported for use by the innings flow: which role does this slot have
+ * in the current innings? Returns null when there's no active innings.
+ */
+export function activeRoleForSlot(
+  match: ServerMatch,
+  slot: PlayerSlot,
+): "batting" | "bowling" | null {
+  const innings =
+    match.currentInnings === 1
+      ? match.innings1
+      : match.currentInnings === 2
+        ? match.innings2
+        : null;
+  if (!innings) return null;
+  if (innings.battingPlayer === slot) return "batting";
+  if (innings.bowlingPlayer === slot) return "bowling";
+  return null;
 }

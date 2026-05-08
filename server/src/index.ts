@@ -3,7 +3,10 @@ import cors from "cors";
 import express from "express";
 import { Server } from "socket.io";
 import type {
+  BallResult,
   ClientToServerEvents,
+  PlayerSlot,
+  PrivatePlayerView,
   ServerToClientEvents,
 } from "@swipe-sixer/shared";
 import { CARDS } from "@swipe-sixer/shared/data";
@@ -12,6 +15,7 @@ import {
   handleChoose as handleCoinTossChoose,
   startCoinToss,
 } from "./coin-toss.js";
+import { startInnings1, submitBallSelection } from "./innings.js";
 import { MatchRegistry, type ServerMatch } from "./match-registry.js";
 
 const PORT = Number(process.env.PORT ?? 3001);
@@ -50,6 +54,27 @@ function broadcastMatchState(match: ServerMatch): void {
   );
 }
 
+const inningsCallbacks = {
+  broadcastState: broadcastMatchState,
+  broadcastPrivate: (
+    match: ServerMatch,
+    slot: PlayerSlot,
+    view: PrivatePlayerView,
+  ) => {
+    const player = slot === "A" ? match.players.A : match.players.B;
+    if (!player?.socketId) return;
+    io.to(player.socketId).emit("match:private", view);
+  },
+  notifyOpponentLocked: (match: ServerMatch, lockingSlot: PlayerSlot) => {
+    const opponent = lockingSlot === "A" ? match.players.B : match.players.A;
+    if (!opponent?.socketId) return;
+    io.to(opponent.socketId).emit("ball:opponent-locked");
+  },
+  emitReveal: (match: ServerMatch, result: BallResult) => {
+    io.to(matchRoom(match.matchId)).emit("ball:reveal", result);
+  },
+};
+
 const coinTossCallbacks = {
   broadcastState: broadcastMatchState,
   emitResult: (match: ServerMatch, payload: {
@@ -58,6 +83,13 @@ const coinTossCallbacks = {
     winnerSlot: "A" | "B";
   }) => {
     io.to(matchRoom(match.matchId)).emit("cointoss:result", payload);
+  },
+  onComplete: (match: ServerMatch) => {
+    // Briefly let clients show the "X bats first" card, then start innings 1.
+    const t = setTimeout(() => {
+      startInnings1(match, inningsCallbacks);
+    }, 3000);
+    match.timers.set("post-toss-pause", t);
   },
 };
 
@@ -130,6 +162,20 @@ io.on("connection", (socket) => {
     const res = handleCoinTossChoose(match, slot, choose, coinTossCallbacks);
     if (!res.ok && res.reason) {
       socket.emit("match:error", { code: "COINTOSS_CHOOSE", message: res.reason });
+    }
+  });
+
+  socket.on("ball:submit", ({ selection }) => {
+    const match = registry.getMatchBySocket(socket.id);
+    if (!match) return;
+    const slot: PlayerSlot =
+      match.players.A.socketId === socket.id ? "A" : "B";
+    const res = submitBallSelection(match, slot, selection, inningsCallbacks);
+    if (!res.ok && res.reason) {
+      socket.emit("match:error", {
+        code: "BALL_SUBMIT",
+        message: res.reason,
+      });
     }
   });
 

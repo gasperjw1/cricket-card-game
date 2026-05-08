@@ -18,6 +18,8 @@ export interface CoinTossCallbacks {
     match: ServerMatch,
     payload: { flip: "heads" | "tails"; callerSlot: PlayerSlot; winnerSlot: PlayerSlot },
   ) => void;
+  /** Called once the toss is complete; the host should kick off innings 1. */
+  onComplete: (match: ServerMatch) => void;
 }
 
 /**
@@ -137,6 +139,7 @@ export function handleChoose(
     autoChose: auto,
   };
   cb.broadcastState(match);
+  cb.onComplete(match);
   return { ok: true };
 }
 
