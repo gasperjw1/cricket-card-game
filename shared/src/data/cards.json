@@ -1775,7 +1775,7 @@
       "name": "Jos Buttler",
       "nation": "England",
       "tier": "Elite",
-      "description": "Destructive keeper-bat. Ramps, scoops, and bludgeons. England's T20 talisman.",
+      "description": "England's T20 captain and talisman. Destructive keeper-bat — ramps, scoops, lofted hits over extra cover. T20 WC 2022 winner. Plays spin from the BBL/IPL with comfort. Vulnerable mainly to skiddy seam back into him at the stumps.",
       "strengths": [
         {
           "zone": {
@@ -1806,7 +1806,7 @@
           },
           "outcome": {
             "type": "runs",
-            "value": 4,
+            "value": 6,
             "shot": "scoop"
           }
         }
@@ -1848,7 +1848,12 @@
         }
       ],
       "resistances": [
-        "Cutter"
+        "Cutter",
+        "Slower",
+        "Googly",
+        "Carrom",
+        "Topspin",
+        "Drift"
       ]
     },
     {
@@ -10846,12 +10851,15 @@
       "name": "Jofra Archer",
       "nation": "England",
       "tier": "Elite",
-      "description": "Express pace. Yorkers at 150kph. Bouncer is lethal. When fit, unplayable.",
+      "description": "Express pace at 145+ kph. Yorker maestro with late seam off the deck and world-class slower-ball variations (slower bouncer, knuckle ball). When fit, unplayable. Two-skill Elite per the v1.1 rule.",
       "delivery": {
         "line": "Middle stump",
         "length": "Full"
       },
-      "adjectives": [],
+      "adjectives": [
+        "Seam",
+        "Slower"
+      ],
       "fielding": [
         "Mid-wicket",
         "Cover"

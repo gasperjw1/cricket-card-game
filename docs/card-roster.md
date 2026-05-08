@@ -437,11 +437,11 @@ Everything not listed = dot ball. Weaknesses are zone-only (no adjective referen
 ## BATSMEN
 
 ### ELITE — Jos Buttler
-*Destructive keeper-bat. Ramps, scoops, and bludgeons. England's T20 talisman.*
-- **Strengths:** Full off stump → loft for 6 | Short middle stump → ramp for 4 | Full leg stump → scoop for 4
+*England's T20 captain and talisman. Destructive keeper-bat — ramps, scoops, lofted hits over extra cover. T20 WC 2022 winner. Plays spin from the BBL/IPL with comfort. Vulnerable mainly to skiddy seam back into him at the stumps.*
+- **Strengths:** Full off stump → loft for 6 | Short middle stump → ramp for 4 | Full leg stump → scoop for 6
 - **Neutrals:** Good length off stump → push for 2 | Good length middle stump → work for 1
 - **Weaknesses:** Good length leg stump → LBW playing across
-- **Resistances:** Pace, Cutter
+- **Resistances:** Cutter, Slower, Googly, Carrom, Topspin, Drift
 
 ### GOLD — Harry Brook
 *Young run machine. Drives beautifully. Aggressive but technically sound.*
@@ -508,8 +508,8 @@ Everything not listed = dot ball. Weaknesses are zone-only (no adjective referen
 ## BOWLERS
 
 ### ELITE — Jofra Archer
-*Express pace. Yorkers at 150kph. Bouncer is lethal. When fit, unplayable.*
-- **Delivery:** Full middle stump | **Adjective:** Pace | **Fielding:** Mid-wicket + Cover
+*Express pace at 145+ kph. Yorker maestro with late seam off the deck and world-class slower-ball variations (slower bouncer, knuckle ball). When fit, unplayable. Two-skill Elite per the v1.1 rule.*
+- **Delivery:** Full middle stump | **Adjective:** Seam, Slower | **Fielding:** Mid-wicket + Cover
 
 ### GOLD — Adil Rashid
 *Wrist-spinner. Googly is his weapon. Middle overs magician.*
