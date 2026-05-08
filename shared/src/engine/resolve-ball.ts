@@ -59,21 +59,27 @@ export function resolveBall(input: ResolveBallInput): ResolutionResult {
   if (bowlingSit === "day-5-pitch") {
     const before = lookupZone;
     lookupZone = { line: shiftLineAway(lookupZone.line), length: lookupZone.length };
+    const changed = lookupZone.line !== before.line;
     steps.push({
       kind: "day-5-pitch",
       label: "Day 5 Pitch",
-      detail: `Line shifted from ${before.line} to ${lookupZone.line}.`,
-      applied: lookupZone.line !== before.line,
+      detail: changed
+        ? `Pitch deteriorating — bowler's line shifted from ${before.line} to ${lookupZone.line}.`
+        : `Day 5 Pitch had no effect — line was already ${before.line} (clamped to off side).`,
+      applied: changed,
     });
   }
   if (battingSit === "trot-down") {
     const before = lookupZone;
     lookupZone = { line: lookupZone.line, length: shiftLengthDown(lookupZone.length) };
+    const changed = lookupZone.length !== before.length;
     steps.push({
       kind: "trot-down",
       label: "Trot Down",
-      detail: `Batter charges down — length shifts from ${before.length} to ${lookupZone.length}.`,
-      applied: lookupZone.length !== before.length,
+      detail: changed
+        ? `Batter charged down — ${before.length} length is met as ${lookupZone.length}.`
+        : `Trot Down had no effect — delivery was already Full.`,
+      applied: changed,
     });
   }
 
@@ -81,11 +87,14 @@ export function resolveBall(input: ResolveBallInput): ResolutionResult {
   let lookupOnBatter: Zone = lookupZone;
   if (battingSit === "switch-hit") {
     lookupOnBatter = { line: mirrorLine(lookupZone.line), length: lookupZone.length };
+    const changed = lookupOnBatter.line !== lookupZone.line;
     steps.push({
       kind: "switch-hit",
       label: "Switch Hit",
-      detail: `Batter mirrors stance: looking up ${lookupOnBatter.line} on the card instead of ${lookupZone.line}.`,
-      applied: lookupOnBatter.line !== lookupZone.line,
+      detail: changed
+        ? `Batter switched stance — ${lookupZone.line} is treated as ${lookupOnBatter.line} on the card.`
+        : `Switch Hit had no effect — line was Middle stump (mirrors to itself).`,
+      applied: changed,
     });
   }
 
@@ -103,13 +112,16 @@ export function resolveBall(input: ResolveBallInput): ResolutionResult {
   if (bowlingSit === "invariable-bounce") {
     const before = outcome;
     outcome = downgrade(outcome);
+    const changed = !sameOutcome(before, outcome);
     steps.push({
       kind: "invariable-bounce",
       label: "Invariable Bounce",
-      detail: "Pitch is misbehaving — outcome downgraded one tier.",
+      detail: changed
+        ? `Ball isn't coming on — ${describeChange(before, outcome)}.`
+        : `Invariable Bounce had no effect — ${describeOutcome(before)} can't be downgraded.`,
       before,
       after: outcome,
-      applied: !sameOutcome(before, outcome),
+      applied: changed,
     });
   }
 
@@ -121,7 +133,7 @@ export function resolveBall(input: ResolveBallInput): ResolutionResult {
       steps.push({
         kind: "adjective",
         label: `${adjectiveLabel(adj)} adjective`,
-        detail: `${input.batsman.name} is resistant to ${adj} — no downgrade.`,
+        detail: `${input.batsman.name} is resistant to ${adj} — ${input.bowler.name}'s adjective has no effect.`,
         before: outcome,
         after: outcome,
         applied: false,
@@ -129,13 +141,16 @@ export function resolveBall(input: ResolveBallInput): ResolutionResult {
     } else {
       const before = outcome;
       outcome = downgrade(outcome);
+      const changed = !sameOutcome(before, outcome);
       steps.push({
         kind: "adjective",
         label: `${adjectiveLabel(adj)} adjective`,
-        detail: `${input.bowler.name}'s ${adj} downgrades the outcome one tier.`,
+        detail: changed
+          ? `${input.bowler.name}'s ${adj} beats the bat — ${describeChange(before, outcome)}.`
+          : `${input.bowler.name}'s ${adj} can't downgrade ${describeOutcome(before)}.`,
         before,
         after: outcome,
-        applied: !sameOutcome(before, outcome),
+        applied: changed,
       });
     }
   }
@@ -146,13 +161,16 @@ export function resolveBall(input: ResolveBallInput): ResolutionResult {
     if (region && input.bowler.fielding.includes(region)) {
       const before = outcome;
       outcome = downgrade(outcome);
+      const changed = !sameOutcome(before, outcome);
       steps.push({
         kind: "fielding",
         label: `Fielding: ${region}`,
-        detail: `Shot is covered by ${region} — downgraded one tier.`,
+        detail: changed
+          ? `${region} cuts off the ${before.type === "runs" ? before.shot : "shot"} — ${describeChange(before, outcome)}.`
+          : `${region} is in position but couldn't bring the value down further.`,
         before,
         after: outcome,
-        applied: !sameOutcome(before, outcome),
+        applied: changed,
       });
     }
   }
@@ -171,13 +189,16 @@ export function resolveBall(input: ResolveBallInput): ResolutionResult {
       });
     } else {
       outcome = upgrade(outcome);
+      const changed = !sameOutcome(before, outcome);
       steps.push({
         kind: "power-surge",
         label: "Power Surge",
-        detail: "Field is up — outcome upgraded one tier.",
+        detail: changed
+          ? `Field is up — ${describeChange(before, outcome)}.`
+          : `Power Surge played but the outcome was already at the cap.`,
         before,
         after: outcome,
-        applied: !sameOutcome(before, outcome),
+        applied: changed,
       });
     }
   }
@@ -190,7 +211,7 @@ export function resolveBall(input: ResolveBallInput): ResolutionResult {
       steps.push({
         kind: "drs-review",
         label: "DRS Review",
-        detail: `Not out on review — ${before.mode} overturned to dot ball.`,
+        detail: `Not out on review — '${before.mode}' overturned to a dot ball.`,
         before,
         after: outcome,
         applied: true,
@@ -199,7 +220,7 @@ export function resolveBall(input: ResolveBallInput): ResolutionResult {
       steps.push({
         kind: "drs-review",
         label: "DRS Review",
-        detail: "DRS only triggers on a wicket — no effect here.",
+        detail: `DRS Review only triggers on a wicket — outcome was ${describeOutcome(outcome)}, no effect.`,
         before: outcome,
         after: outcome,
         applied: false,
@@ -217,7 +238,7 @@ export function resolveBall(input: ResolveBallInput): ResolutionResult {
         steps.push({
           kind: "review-appeal",
           label: "Review Appeal",
-          detail: `Howzat! Dot ball upgraded to wicket on appeal (${Math.round(REVIEW_APPEAL_WICKET_CHANCE * 100)}% chance).`,
+          detail: `Howzat! Dot ball upgraded to LBW on the appeal (${Math.round(REVIEW_APPEAL_WICKET_CHANCE * 100)}% chance roll succeeded).`,
           before,
           after: outcome,
           applied: true,
@@ -236,7 +257,7 @@ export function resolveBall(input: ResolveBallInput): ResolutionResult {
       steps.push({
         kind: "review-appeal",
         label: "Review Appeal",
-        detail: "Review Appeal only triggers on a dot ball — no effect here.",
+        detail: `Review Appeal only triggers on dots — outcome was ${describeOutcome(outcome)}, no effect.`,
         before: outcome,
         after: outcome,
         applied: false,
@@ -317,6 +338,18 @@ function sameOutcome(a: BallOutcome, b: BallOutcome): boolean {
 
 function adjectiveLabel(a: Adjective): string {
   return a;
+}
+
+/** Human-readable form of an outcome for use in step.detail strings. */
+function describeOutcome(o: BallOutcome): string {
+  if (o.type === "runs") return `${o.shot} (${o.value})`;
+  if (o.type === "wicket") return `wicket — ${o.mode}`;
+  return "a dot ball";
+}
+
+/** "X (4) → X (2)" style narrative, with the shot text preserved. */
+function describeChange(before: BallOutcome, after: BallOutcome): string {
+  return `${describeOutcome(before)} becomes ${describeOutcome(after)}`;
 }
 
 const LINE_ORDER: Line[] = [

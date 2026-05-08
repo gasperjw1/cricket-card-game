@@ -29,7 +29,11 @@ export function InningsScreen({ client }: Props) {
   const innings =
     matchState.currentInnings === 1 ? matchState.innings1 : matchState.innings2;
 
-  if (matchState.phase === "match-over") {
+  // Match-over view, but only AFTER the user has dismissed the final ball's
+  // reveal. The server pauses 15s post-ball before transitioning to match-
+  // over so this branch usually only fires once the player has clicked
+  // Continue (or stayed past the auto-dismiss window).
+  if (matchState.phase === "match-over" && !lastReveal) {
     return <MatchOverView client={client} />;
   }
 
@@ -182,6 +186,8 @@ export function InningsScreen({ client }: Props) {
           mySlot={mySlot}
           aName={matchState.players.A.displayName}
           bName={matchState.players.B?.displayName ?? "B"}
+          postBallDeadline={matchState.postBallDeadlineEpochMs}
+          isFinalBall={matchState.phase === "match-over"}
           onContinue={client.dismissReveal}
         />
       )}
@@ -390,6 +396,8 @@ function RevealOverlay(props: {
   mySlot: PlayerSlot;
   aName: string;
   bName: string;
+  postBallDeadline: number | null;
+  isFinalBall: boolean;
   onContinue: () => void;
 }) {
   const { result, mySlot } = props;
@@ -397,6 +405,10 @@ function RevealOverlay(props: {
     result.battingSelection.player === mySlot ? result.battingSelection : result.bowlingSelection;
   const oppReveal =
     result.battingSelection.player === mySlot ? result.bowlingSelection : result.battingSelection;
+  const seconds = useCountdown(props.postBallDeadline);
+
+  const continueLabel = props.isFinalBall ? "See result" : "Continue";
+
   return (
     <div className="reveal-overlay">
       <div className="reveal-inner">
@@ -430,9 +442,20 @@ function RevealOverlay(props: {
         <ResolutionTrail steps={result.resolutionSteps} />
         <FinalOutcome outcome={result.finalOutcome} />
 
-        <button className="btn primary big" onClick={props.onContinue}>
-          Continue
-        </button>
+        <div className="reveal-footer">
+          {props.postBallDeadline !== null && (
+            <Tip text="Resolution pause — gives both players time to read the trail. The next ball starts when the timer hits 0.">
+              <span className="post-ball-countdown">
+                {props.isFinalBall
+                  ? `Result in ${seconds}s`
+                  : `Next ball in ${seconds}s`}
+              </span>
+            </Tip>
+          )}
+          <button className="btn primary big" onClick={props.onContinue}>
+            {continueLabel}
+          </button>
+        </div>
       </div>
     </div>
   );

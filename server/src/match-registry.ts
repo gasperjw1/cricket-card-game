@@ -81,6 +81,8 @@ export interface ServerMatch {
   pendingSelections: { A: BallSelection | null; B: BallSelection | null };
   /** Epoch-ms deadline for the active ball's submit timer; null when not awaiting selections. */
   currentBallDeadlineEpochMs: number | null;
+  /** Epoch-ms deadline for the post-reveal pause; null outside that window. */
+  postBallDeadlineEpochMs: number | null;
   /** In-flight ball resolution context, populated after both players submit and torn down on reveal. */
   ballContext: BallResolutionContext | null;
   /** Public view of the current swap pick request; null when resolution isn't paused on a swap. */
@@ -149,6 +151,7 @@ export class MatchRegistry {
       currentInnings: null,
       pendingSelections: { A: null, B: null },
       currentBallDeadlineEpochMs: null,
+      postBallDeadlineEpochMs: null,
       ballContext: null,
       pendingSwap: null,
       result: null,
@@ -321,6 +324,7 @@ export class MatchRegistry {
       innings2: match.innings2,
       coinToss: match.coinToss,
       currentBallDeadlineEpochMs: match.currentBallDeadlineEpochMs,
+      postBallDeadlineEpochMs: match.postBallDeadlineEpochMs,
       pendingSwap: match.pendingSwap,
       result: match.result,
     };

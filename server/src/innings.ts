@@ -12,6 +12,7 @@ import {
   HAND_SIZE,
   MAX_BALLS_PER_INNINGS,
   MAX_WICKETS_PER_INNINGS,
+  POST_BALL_PAUSE_SECONDS,
   SWAP_PICK_TIMER_SECONDS,
   TURN_TIMER_SECONDS,
   resolveBall,
@@ -31,6 +32,7 @@ import {
   type SituationCard,
   type SituationDeck,
   type SwapReason,
+  type TableSnapshot,
 } from "@swipe-sixer/shared";
 import { CARDS } from "@swipe-sixer/shared/data";
 import {
@@ -42,6 +44,7 @@ import {
 
 const BALL_TIMER_KEY = "ball-timer";
 const SWAP_TIMER_KEY = "swap-timer";
+const POST_BALL_TIMER_KEY = "post-ball-pause";
 
 export interface InningsCallbacks {
   /** Push the latest match:state to both players. */
@@ -300,13 +303,23 @@ function promptSwap(
   excludeId: string,
   kind: "batsman" | "bowler",
 ): boolean {
-  if (!match.decks) return false;
+  if (!match.decks || !match.ballContext) return false;
   const hand = match.decks[fromSlot].hand;
   const candidates = hand.filter((c) => c.kind === kind && c.id !== excludeId);
   if (candidates.length === 0) return false;
 
   const original = hand.find((c) => c.id === excludeId);
   const originalName = original ? (original as BatsmanCard | BowlerCard).name : "your card";
+
+  const ctx = match.ballContext;
+  const table: TableSnapshot = {
+    battingSlot: ctx.battingSlot,
+    bowlingSlot: ctx.bowlingSlot,
+    battingMandatory: ctx.battingMandatory,
+    bowlingMandatory: ctx.bowlingMandatory,
+    battingSituation: ctx.battingSituation,
+    bowlingSituation: ctx.bowlingSituation,
+  };
 
   const deadline = Date.now() + SWAP_PICK_TIMER_SECONDS * 1000;
   const swap: PendingSwap = {
@@ -316,6 +329,7 @@ function promptSwap(
     originalCardName: originalName,
     candidateIds: candidates.map((c) => c.id),
     deadlineEpochMs: deadline,
+    table,
   };
   match.pendingSwap = swap;
 
@@ -555,14 +569,9 @@ function advanceAfterBall(
 
   cb.emitReveal(match, result);
 
-  // Reset pending selections, refill hands.
+  // Reset pending selections.
   match.pendingSelections = { A: null, B: null };
-  for (const slot of ["A", "B"] as const) {
-    refillHand(match.decks[slot], activeDeckKey(match, slot));
-    applyAntiClog(match.decks[slot], activeDeckKey(match, slot));
-  }
 
-  // Check innings end conditions
   const inningsDone =
     innings.ballsBowled >= MAX_BALLS_PER_INNINGS ||
     innings.wickets >= MAX_WICKETS_PER_INNINGS ||
@@ -570,21 +579,56 @@ function advanceAfterBall(
       match.innings1 &&
       innings.runs > match.innings1.runs);
 
-  if (inningsDone) {
+  // If another ball is coming, refill hands now so the post-ball pause
+  // shows the player their next-ball hand.
+  if (!inningsDone) {
+    for (const slot of ["A", "B"] as const) {
+      refillHand(match.decks[slot], activeDeckKey(match, slot));
+      applyAntiClog(match.decks[slot], activeDeckKey(match, slot));
+    }
+  }
+
+  // Always go through the post-ball pause — gives players a beat to read
+  // the resolution trail before the next ball, the innings break, or the
+  // match-over screen appears.
+  match.postBallDeadlineEpochMs = Date.now() + POST_BALL_PAUSE_SECONDS * 1000;
+  cb.broadcastState(match);
+  pushPrivateViews(match, cb);
+
+  scheduleTimer(match, POST_BALL_TIMER_KEY, match.postBallDeadlineEpochMs, () => {
+    match.postBallDeadlineEpochMs = null;
+    if (!inningsDone) {
+      startBallTimer(match, cb);
+      cb.broadcastState(match);
+      return;
+    }
     innings.isComplete = true;
     if (match.currentInnings === 1) {
       transitionToInnings2(match, cb);
     } else {
       endMatch(match, cb);
     }
-    return;
-  }
+  });
+}
 
-  // Continue: set the new ball's deadline, then broadcast state so clients
-  // receive it in a single update (otherwise the countdown flashes to 0).
-  startBallTimer(match, cb);
-  cb.broadcastState(match);
-  pushPrivateViews(match, cb);
+function scheduleTimer(
+  match: ServerMatch,
+  key: string,
+  whenEpochMs: number,
+  fn: () => void,
+): void {
+  clearScheduledTimer(match, key);
+  const delay = Math.max(0, whenEpochMs - Date.now());
+  const timer = setTimeout(fn, delay);
+  match.timers.set(key, timer);
+}
+
+function clearScheduledTimer(match: ServerMatch, key: string): void {
+  const t = match.timers.get(key);
+  if (t) {
+    clearTimeout(t);
+    match.timers.delete(key);
+  }
 }
 
 function transitionToInnings2(match: ServerMatch, cb: InningsCallbacks): void {

@@ -116,6 +116,21 @@ export interface CoinTossState {
 export type SwapReason = "mankad" | "retired-out" | "cramps";
 
 /**
+ * Snapshot of what's currently on the table — both players' played cards,
+ * post-Old-School-cancellation. Sent inside PendingSwap so the swap picker
+ * can show the affected player exactly what they're up against while
+ * choosing a replacement.
+ */
+export interface TableSnapshot {
+  battingSlot: PlayerSlot;
+  bowlingSlot: PlayerSlot;
+  battingMandatory: import("./cards.js").BatsmanCard;
+  bowlingMandatory: import("./cards.js").BowlerCard;
+  battingSituation: import("./cards.js").SituationCard | null;
+  bowlingSituation: import("./cards.js").SituationCard | null;
+}
+
+/**
  * After both players submit, a Mankad / Retired Out / Cramps card may force
  * one player to swap their played mandatory card. Resolution pauses while
  * that player picks from a list of candidate ids in their hand.
@@ -130,6 +145,8 @@ export interface PendingSwap {
   candidateIds: string[];
   /** Auto-pick deadline. */
   deadlineEpochMs: number;
+  /** What's on the table right now — visible to both players. */
+  table: TableSnapshot;
 }
 
 export interface PublicMatchState {
@@ -143,6 +160,8 @@ export interface PublicMatchState {
   coinToss: CoinTossState | null;
   /** Epoch-ms deadline for the active ball's submit timer; null when not awaiting selections. */
   currentBallDeadlineEpochMs: number | null;
+  /** Epoch-ms deadline for the post-reveal pause; null outside that window. */
+  postBallDeadlineEpochMs: number | null;
   /** Set when ball resolution is paused waiting on a swap pick. */
   pendingSwap: PendingSwap | null;
   result: MatchResult | null;

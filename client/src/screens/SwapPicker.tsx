@@ -62,6 +62,26 @@ export function SwapPicker({ swap, privateView, onPick }: Props) {
     onPick(id);
   };
 
+  // The table snapshot is what's already on the table. We show the
+  // opponent's mandatory card prominently so the player knows what they're
+  // up against while picking a replacement.
+  const myMandatory =
+    swap.fromSlot === swap.table.battingSlot
+      ? swap.table.battingMandatory
+      : swap.table.bowlingMandatory;
+  const opponentMandatory =
+    swap.fromSlot === swap.table.battingSlot
+      ? swap.table.bowlingMandatory
+      : swap.table.battingMandatory;
+  const mySituation =
+    swap.fromSlot === swap.table.battingSlot
+      ? swap.table.battingSituation
+      : swap.table.bowlingSituation;
+  const opponentSituation =
+    swap.fromSlot === swap.table.battingSlot
+      ? swap.table.bowlingSituation
+      : swap.table.battingSituation;
+
   return (
     <div className="reveal-overlay">
       <div className="reveal-inner swap-picker">
@@ -69,6 +89,36 @@ export function SwapPicker({ swap, privateView, onPick }: Props) {
           <h2 className="swap-title">{copy.title}</h2>
         </Tip>
         <p className="swap-subtitle">{copy.subtitle}</p>
+
+        <section className="swap-table">
+          <div className="reveal-side-label">On the table</div>
+          <div className="reveal-cards">
+            <div>
+              <div className="reveal-side-label">You played</div>
+              <Card card={myMandatory} size="hand" />
+              {mySituation && (
+                <div style={{ marginTop: "0.5rem" }}>
+                  <Card card={mySituation} size="hand" />
+                </div>
+              )}
+            </div>
+            <div className="reveal-vs">
+              <Tip text="Both players revealed simultaneously, before the swap.">
+                <span>vs</span>
+              </Tip>
+            </div>
+            <div>
+              <div className="reveal-side-label">Opponent played</div>
+              <Card card={opponentMandatory} size="hand" />
+              {opponentSituation && (
+                <div style={{ marginTop: "0.5rem" }}>
+                  <Card card={opponentSituation} size="hand" />
+                </div>
+              )}
+            </div>
+          </div>
+        </section>
+
         <div className="swap-meta">
           <Tip text="The card being swapped out — it'll be discarded after this ball.">
             <span>
@@ -83,17 +133,20 @@ export function SwapPicker({ swap, privateView, onPick }: Props) {
         {candidates.length === 0 ? (
           <div className="hint">No candidates in your hand — auto-resolving…</div>
         ) : (
-          <div className="hand-grid swap-grid">
-            {candidates.map((card) => (
-              <Card
-                key={card.id}
-                card={card}
-                size="hand"
-                selected={submittingId === card.id}
-                onClick={() => setViewingCardId(card.id)}
-              />
-            ))}
-          </div>
+          <>
+            <div className="reveal-side-label">Choose a replacement</div>
+            <div className="hand-grid swap-grid">
+              {candidates.map((card) => (
+                <Card
+                  key={card.id}
+                  card={card}
+                  size="hand"
+                  selected={submittingId === card.id}
+                  onClick={() => setViewingCardId(card.id)}
+                />
+              ))}
+            </div>
+          </>
         )}
 
         <p className="hint">

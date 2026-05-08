@@ -984,7 +984,7 @@ h1 {
 }
 /* Swap picker */
 .swap-picker {
-  max-width: 560px;
+  max-width: 720px;
 }
 .swap-title {
   margin: 0;
@@ -994,6 +994,16 @@ h1 {
   margin: 0;
   color: #d6dde6;
   text-align: center;
+}
+.swap-table {
+  width: 100%;
+  background: rgba(0, 0, 0, 0.3);
+  padding: 1rem;
+  border-radius: 10px;
+  border: 1px solid #2a3441;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
 }
 .swap-meta {
   display: flex;
@@ -1007,6 +1017,25 @@ h1 {
 }
 .swap-grid {
   width: 100%;
+}
+
+/* Reveal footer (Continue + post-ball countdown) */
+.reveal-footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  width: 100%;
+  flex-wrap: wrap;
+}
+.post-ball-countdown {
+  font-family: ui-monospace, "SF Mono", Menlo, monospace;
+  font-size: 0.9rem;
+  padding: 0.4rem 0.7rem;
+  background: #1c2530;
+  border: 1px solid #2a3441;
+  border-radius: 6px;
+  color: #a8b1ba;
 }
 
 .scorecard-line {
