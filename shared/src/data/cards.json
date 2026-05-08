@@ -977,7 +977,7 @@
       "name": "Glenn Maxwell",
       "nation": "Australia",
       "tier": "Gold",
-      "description": "360-degree hitter. Reverse sweeps, switch hits, scoops. Genius or out for a duck.",
+      "description": "360-degree hitter. Reverse sweeps, switch hits, scoops over the keeper. 2023 ODI WC double-century. Genius-or-out: brilliant when set, vulnerable when starting. Eats most spin alive but the carrom ball has caught him before.",
       "strengths": [
         {
           "zone": {
@@ -992,24 +992,13 @@
         },
         {
           "zone": {
-            "line": "Leg stump",
+            "line": "Middle stump",
             "length": "Full"
           },
           "outcome": {
             "type": "runs",
             "value": 4,
-            "shot": "sweep"
-          }
-        },
-        {
-          "zone": {
-            "line": "Middle stump",
-            "length": "Short"
-          },
-          "outcome": {
-            "type": "runs",
-            "value": 4,
-            "shot": "pull"
+            "shot": "lofted drive"
           }
         }
       ],
@@ -1017,12 +1006,12 @@
         {
           "zone": {
             "line": "Middle stump",
-            "length": "Full"
+            "length": "Short"
           },
           "outcome": {
             "type": "runs",
             "value": 2,
-            "shot": "drive"
+            "shot": "pull"
           }
         },
         {
@@ -1033,7 +1022,7 @@
           "outcome": {
             "type": "runs",
             "value": 1,
-            "shot": "work"
+            "shot": "flick"
           }
         }
       ],
@@ -1041,15 +1030,31 @@
         {
           "zone": {
             "line": "Middle stump",
-            "length": "Full"
+            "length": "Good length"
           },
           "outcome": {
             "type": "wicket",
             "mode": "bowled trying to sweep"
           }
+        },
+        {
+          "zone": {
+            "line": "Outside off",
+            "length": "Full"
+          },
+          "outcome": {
+            "type": "wicket",
+            "mode": "caught at cover"
+          }
         }
       ],
-      "resistances": []
+      "resistances": [
+        "Topspin",
+        "Drift",
+        "Googly",
+        "Slower",
+        "Cutter"
+      ]
     },
     {
       "id": "marcus-stoinis-bat",
@@ -1057,7 +1062,7 @@
       "name": "Marcus Stoinis",
       "nation": "Australia",
       "tier": "Gold",
-      "description": "Power hitter in the death. Big drives and pulls. Struggles against high-class spin.",
+      "description": "Power hitter in the death. Lofts straight, drives through the off, pulls anything short. T20 WC 2024 best XI. Handles all pace variations with strength but can be tricked by quality spin.",
       "strengths": [
         {
           "zone": {
@@ -1067,18 +1072,7 @@
           "outcome": {
             "type": "runs",
             "value": 6,
-            "shot": "loft"
-          }
-        },
-        {
-          "zone": {
-            "line": "Leg stump",
-            "length": "Short"
-          },
-          "outcome": {
-            "type": "runs",
-            "value": 4,
-            "shot": "hook"
+            "shot": "lofted straight drive"
           }
         },
         {
@@ -1127,9 +1121,24 @@
             "type": "wicket",
             "mode": "edge to slip"
           }
+        },
+        {
+          "zone": {
+            "line": "Outside off",
+            "length": "Good length"
+          },
+          "outcome": {
+            "type": "wicket",
+            "mode": "caught at point"
+          }
         }
       ],
-      "resistances": []
+      "resistances": [
+        "Swing",
+        "Seam",
+        "Cutter",
+        "Slower"
+      ]
     },
     {
       "id": "tim-david-bat",
@@ -10671,12 +10680,14 @@
       "name": "Adam Zampa",
       "nation": "Australia",
       "tier": "Gold",
-      "description": "Leg-spinner. Middle overs wicket-taker. Gets drift and turn on any surface.",
+      "description": "Australia's first-choice leg-spinner. T20 WC 2024 best XI. Stock leg-break with a disguised googly that's caught out plenty of right-handers. Gets drift and turn on any surface.",
       "delivery": {
         "line": "Middle stump",
         "length": "Good length"
       },
-      "adjectives": [],
+      "adjectives": [
+        "Googly"
+      ],
       "fielding": [
         "Short leg/Silly point"
       ]
@@ -10687,7 +10698,7 @@
       "name": "Josh Hazlewood",
       "nation": "Australia",
       "tier": "Gold",
-      "description": "Metronomic seamer. Good length 5th stump relentlessly. Miserly economy.",
+      "description": "Metronomic seamer. Good length Outside off relentlessly — the corridor of uncertainty. Tier-based wide-call risk on Outside off (Gold = 15%) is the trade-off for the fishing line. Miserly economy.",
       "delivery": {
         "line": "Outside off",
         "length": "Good length"

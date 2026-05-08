@@ -325,18 +325,18 @@ Everything not listed = dot ball. Weaknesses are zone-only (no adjective referen
 - **Resistances:** Cutter, Slower, Googly, Carrom, Topspin, Drift
 
 ### GOLD — Glenn Maxwell
-*360-degree hitter. Reverse sweeps, switch hits, scoops. Genius or out for a duck.*
-- **Strengths:** Good length off stump → reverse sweep for 6 | Full leg stump → sweep for 4 | Short middle stump → pull for 4
-- **Neutrals:** Full middle stump → drive for 2 | Good length leg stump → work for 1
-- **Weaknesses:** Full middle stump → bowled trying to sweep
-- **Resistances:** Spin
+*360-degree hitter. Reverse sweeps, switch hits, scoops over the keeper. 2023 ODI WC double-century. Genius-or-out: brilliant when set, vulnerable when starting. Eats most spin alive but the carrom ball has caught him before.*
+- **Strengths:** Good length off stump → reverse sweep for 6 | Full middle stump → lofted drive for 4
+- **Neutrals:** Short middle stump → pull for 2 | Good length leg stump → flick for 1
+- **Weaknesses:** Good length middle stump → bowled trying to sweep | Full Outside off → caught at cover
+- **Resistances:** Topspin, Drift, Googly, Slower, Cutter
 
 ### GOLD — Marcus Stoinis
-*Power hitter in the death. Big drives and pulls. Struggles against high-class spin.*
-- **Strengths:** Full middle stump → loft for 6 | Short leg stump → hook for 4 | Full off stump → drive for 4
+*Power hitter in the death. Lofts straight, drives through the off, pulls anything short. T20 WC 2024 best XI. Handles all pace variations with strength but can be tricked by quality spin.*
+- **Strengths:** Full middle stump → lofted straight drive for 6 | Full off stump → drive for 4
 - **Neutrals:** Good length leg stump → flick for 2 | Good length middle stump → push for 1
-- **Weaknesses:** Good length off stump → edge to slip
-- **Resistances:** Pace
+- **Weaknesses:** Good length off stump → edge to slip | Good length Outside off → caught at point
+- **Resistances:** Swing, Seam, Cutter, Slower
 
 ### SILVER — Tim David
 *Singapore-born T20 mercenary. Massive hitter at death. Leg-side dominant.*
@@ -393,12 +393,12 @@ Everything not listed = dot ball. Weaknesses are zone-only (no adjective referen
 - **Delivery:** Full off stump | **Adjective:** Swing, Slower | **Fielding:** Slip cordon + Mid-wicket
 
 ### GOLD — Adam Zampa
-*Leg-spinner. Middle overs wicket-taker. Gets drift and turn on any surface.*
-- **Delivery:** Good length middle stump | **Adjective:** Spin (legspin) | **Fielding:** Short leg
+*Australia's first-choice leg-spinner. T20 WC 2024 best XI. Stock leg-break with a disguised googly that's caught out plenty of right-handers. Gets drift and turn on any surface.*
+- **Delivery:** Good length middle stump | **Adjective:** Googly | **Fielding:** Short leg/Silly point
 
 ### GOLD — Josh Hazlewood
-*Metronomic seamer. Good length 5th stump relentlessly. Miserly economy.*
-- **Delivery:** Good length 5th stump | **Adjective:** Seam | **Fielding:** Slip cordon
+*Metronomic seamer. Good length Outside off relentlessly — the corridor of uncertainty. Tier-based wide-call risk on Outside off (Gold = 15%) is the trade-off for the fishing line. Miserly economy.*
+- **Delivery:** Good length Outside off | **Adjective:** Seam | **Fielding:** Slip cordon
 
 ### SILVER — Nathan Ellis
 *Death overs specialist. Slower balls and cutters. Smart rather than fast.*
