@@ -46,10 +46,11 @@ const TIERS: Record<string, Tier> = {
 };
 
 // Order matters: longer/more specific phrases first so substring matching
-// doesn't claim the wrong line.
+// doesn't claim the wrong line. "Outside off" comes before "Off stump"
+// because the latter is a substring of "off" but we match on the full
+// phrase ordering anyway.
 const LINES: Line[] = [
-  "Wide outside off",
-  "5th stump",
+  "Outside off",
   "Off stump",
   "Middle stump",
   "Leg stump",
@@ -61,10 +62,25 @@ const ADJECTIVES: Adjective[] = [
   "Swing",
   "Seam",
   "Cutter",
-  "Spin",
-  "Pace",
-  "Reverse",
+  "Slower",
+  "Googly",
+  "Carrom",
+  "Topspin",
+  "Drift",
 ];
+
+/**
+ * Legacy adjective names (pre-rebalance) that may still appear in the
+ * markdown source. Mapped to either a current adjective (Reverse → Swing)
+ * or null (Pace, Spin — generic kinds were removed; bowlers using these
+ * end up adjective-less, with Phase 2 to manually reassign Gold/Elite
+ * bowlers a specific variation).
+ */
+const LEGACY_ADJECTIVE_MAP: Record<string, Adjective | null> = {
+  Reverse: "Swing",
+  Pace: null,
+  Spin: null,
+};
 
 const NATION_BY_HEADER: Record<string, Nation> = {
   INDIA: "India",
@@ -88,17 +104,38 @@ function slug(s: string): string {
     .replace(/(^-|-$)/g, "");
 }
 
+/**
+ * Legacy line names from the pre-rebalance grid. Both 5th stump and Wide
+ * outside off collapse to the unified "Outside off" line.
+ */
+const LEGACY_LINE_MAP: Record<string, Line> = {
+  "5th stump": "Outside off",
+  "wide outside off": "Outside off",
+};
+
 function parseZone(raw: string): Zone {
   const lower = raw.toLowerCase().trim();
   let line: Line | null = null;
   let zoneRest = lower;
 
-  for (const l of LINES) {
-    const idx = lower.indexOf(l.toLowerCase());
+  // Check legacy names first — longer phrases match before "off stump" etc.
+  for (const legacy of Object.keys(LEGACY_LINE_MAP)) {
+    const idx = lower.indexOf(legacy);
     if (idx >= 0) {
-      line = l;
-      zoneRest = (lower.slice(0, idx) + lower.slice(idx + l.length)).trim();
+      line = LEGACY_LINE_MAP[legacy]!;
+      zoneRest = (lower.slice(0, idx) + lower.slice(idx + legacy.length)).trim();
       break;
+    }
+  }
+
+  if (!line) {
+    for (const l of LINES) {
+      const idx = lower.indexOf(l.toLowerCase());
+      if (idx >= 0) {
+        line = l;
+        zoneRest = (lower.slice(0, idx) + lower.slice(idx + l.length)).trim();
+        break;
+      }
     }
   }
 
@@ -152,13 +189,44 @@ function parseOutcomeList(rawList: string, isWicket: boolean): BatsmanOutcome[] 
   return parts.map((p) => parseOutcomeBullet(p, isWicket));
 }
 
-function parseAdjective(raw: string): Adjective {
+/**
+ * Parse a single adjective name, with legacy migration.
+ * - Returns null for legacy `Pace` and `Spin` (generic kinds removed in
+ *   v1.1; dropped from data — Phase 2 reassigns Gold/Elite bowlers
+ *   specific variations).
+ * - Returns `Swing` for legacy `Reverse` (folded into Swing).
+ * - Throws on truly unknown adjective names.
+ */
+function parseAdjective(raw: string): Adjective | null {
   const stripped = raw.replace(/\(.*?\)/g, "").trim();
   const match = ADJECTIVES.find(
     (a) => a.toLowerCase() === stripped.toLowerCase(),
   );
-  if (!match) throw new Error(`Unknown adjective: "${raw}"`);
-  return match;
+  if (match) return match;
+  // Legacy migration: case-insensitive match against legacy keys.
+  const legacyKey = Object.keys(LEGACY_ADJECTIVE_MAP).find(
+    (k) => k.toLowerCase() === stripped.toLowerCase(),
+  );
+  if (legacyKey) return LEGACY_ADJECTIVE_MAP[legacyKey] ?? null;
+  throw new Error(`Unknown adjective: "${raw}"`);
+}
+
+/**
+ * Parse a comma-separated list of adjectives. Legacy entries are mapped or
+ * dropped. Resulting array is deduplicated. Empty array means no adjective.
+ *
+ * Parenthetical clarifications (e.g. "Swing (inswing, left-arm)") are
+ * stripped BEFORE splitting on commas so we don't fragment them.
+ */
+function parseAdjectiveList(raw: string): Adjective[] {
+  const cleaned = raw.replace(/\([^)]*\)/g, "").trim();
+  const parts = cleaned.split(/\s*,\s*/).map((p) => p.trim()).filter(Boolean);
+  const out: Adjective[] = [];
+  for (const part of parts) {
+    const adj = parseAdjective(part);
+    if (adj && !out.includes(adj)) out.push(adj);
+  }
+  return out;
 }
 
 function parseFielding(raw: string): FieldingRegion[] {
@@ -338,7 +406,8 @@ function parseBatsman(
             .split(/[,]/)
             .map((s) => s.trim())
             .filter((s) => s && s.toLowerCase() !== "none")
-            .map(parseAdjective);
+            .map(parseAdjective)
+            .filter((a): a is Adjective => a !== null);
         }
         continue;
       }
@@ -392,24 +461,26 @@ function parseBowler(
   const description = extractDescription(body);
 
   let delivery: Zone | null = null;
-  let adjective: Adjective | null = null;
+  let adjectives: Adjective[] = [];
   let fielding: FieldingRegion[] = [];
 
   for (const raw of body) {
     const line = raw.trim();
     if (!line.startsWith("- ")) continue;
 
-    // Compact: `- **Delivery:** X | **Adjective:** Y | **Fielding:** Z`
+    // Compact: `- **Delivery:** X | **Adjective:** Y, Z | **Fielding:** ...`
     // Multi-line: each `- **Field:** X` on its own line
+    // `Adjective:` accepts comma-separated values (Elite bowlers can have 2).
     const fields = line.replace(/^-\s+/, "").split(/\s*\|\s*/);
     for (const field of fields) {
-      const m = field.match(/^\*\*(Delivery|Adjective|Fielding):\*\*\s*(.+)$/);
+      const m = field.match(/^\*\*(Delivery|Adjective|Adjectives|Fielding):\*\*\s*(.+)$/);
       if (!m) continue;
       const key = m[1]!.toLowerCase();
       const value = m[2]!.trim();
       if (key === "delivery") delivery = parseZone(value);
-      else if (key === "adjective") adjective = parseAdjective(value);
-      else if (key === "fielding") fielding = parseFielding(value);
+      else if (key === "adjective" || key === "adjectives") {
+        adjectives = parseAdjectiveList(value);
+      } else if (key === "fielding") fielding = parseFielding(value);
     }
   }
 
@@ -420,6 +491,13 @@ function parseBowler(
     throw new Error(`Bowler missing Fielding: "${header}"`);
   }
 
+  // v1.1 rebalance: Bronze and Silver bowlers carry no adjective. Strip
+  // any adjective we parsed from legacy data for these tiers so the
+  // generated JSON matches the new tier rules.
+  if (tier === "Bronze" || tier === "Silver") {
+    adjectives = [];
+  }
+
   return {
     id: `${slug(name)}-bowl`,
     kind: "bowler",
@@ -428,7 +506,7 @@ function parseBowler(
     tier,
     description,
     delivery,
-    adjective,
+    adjectives,
     fielding,
   };
 }
@@ -470,11 +548,13 @@ const SITUATION_NAME_TO_ID: Record<string, SituationEffectId> = {
   "Trot Down": "trot-down",
   "No Ball": "no-ball",
   "Shuffle Across": "shuffle-across",
+  "Deep in the Crease": "deep-in-crease",
   Mankad: "mankad",
   "Review Appeal": "review-appeal",
   Cramps: "cramps",
   "Invariable Bounce": "invariable-bounce",
   "Day 5 Pitch": "day-5-pitch",
+  "Third Umpire Distracted by Biryani": "biryani",
 };
 
 function parseSituationCards(md: string): SituationCard[] {
@@ -578,8 +658,10 @@ function main(): void {
   if (bowlers.length !== 132) {
     throw new Error(`Expected 132 bowlers, got ${bowlers.length}`);
   }
-  if (situations.length !== 14) {
-    throw new Error(`Expected 14 situation cards (7 batting + 5 bowling + 2 Old School variants), got ${situations.length}`);
+  // 8 batting + 6 bowling + 2 Old School variants = 16 entries in v1.1
+  // (added Deep in the Crease batting + Third Umpire Distracted by Biryani bowling)
+  if (situations.length !== 16) {
+    throw new Error(`Expected 16 situation cards (8 batting + 6 bowling + 2 Old School variants), got ${situations.length}`);
   }
 
   const roster: CardRoster = { batsmen, bowlers, situations };

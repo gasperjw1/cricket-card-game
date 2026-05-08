@@ -420,14 +420,18 @@ function buildRevealContext(result: BallResult): RevealContext {
   // Derive what fired this ball from the resolution steps + the engine's
   // lookupZone (post-zone-modifiers). Used by Card components in reveal
   // mode to filter their displayed sections.
-  const adjectiveStep = result.resolutionSteps.find((s) => s.kind === "adjective");
+  // The FIRING adjective is the first applied "adjective" step's label
+  // (label is "<Adjective name> adjective" — strip the suffix).
+  const firedAdjStep = result.resolutionSteps.find(
+    (s) => s.kind === "adjective" && s.applied,
+  );
+  let firedAdjective: RevealContext["firedAdjective"] = null;
+  if (firedAdjStep) {
+    const m = firedAdjStep.label.match(/^(.+?)\s+adjective$/);
+    if (m) firedAdjective = m[1] as RevealContext["firedAdjective"];
+  }
+
   const fieldingStep = result.resolutionSteps.find((s) => s.kind === "fielding");
-  const adjectiveApplied = adjectiveStep?.applied ?? false;
-  // bowlingSelection.mandatoryCard is always a BowlerCard by construction.
-  const bowlerCard = result.bowlingSelection.mandatoryCard;
-  const bowlerAdjective =
-    bowlerCard.kind === "bowler" ? bowlerCard.adjective ?? null : null;
-  // Fielding step's label is "Fielding: <region>". Strip the prefix.
   let firedFielding: RevealContext["firedFielding"] = null;
   if (fieldingStep && fieldingStep.applied) {
     const m = fieldingStep.label.match(/^Fielding:\s+(.+)$/);
@@ -435,8 +439,7 @@ function buildRevealContext(result: BallResult): RevealContext {
   }
   return {
     lookupZone: result.lookupZone,
-    bowlerAdjective,
-    adjectiveApplied,
+    firedAdjective,
     firedFielding,
   };
 }

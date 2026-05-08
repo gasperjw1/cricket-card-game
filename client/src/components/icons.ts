@@ -23,7 +23,7 @@ export interface IconInfo {
 export const ADJECTIVE_ICONS: Record<Adjective, IconInfo> = {
   Swing: {
     glyph: "🌬️",
-    description: "Swing — the ball curves through the air. Rare batters are resistant.",
+    description: "Swing — the ball curves through the air (out-swing, in-swing, or reverse swing on an old ball).",
   },
   Seam: {
     glyph: "〰️",
@@ -33,17 +33,25 @@ export const ADJECTIVE_ICONS: Record<Adjective, IconInfo> = {
     glyph: "✂️",
     description: "Cutter — slower delivery with sharp deviation off the pitch.",
   },
-  Spin: {
-    glyph: "🌀",
-    description: "Spin — slow bowling with turn off the pitch (offspin, legspin, wrist spin).",
+  Slower: {
+    glyph: "🐢",
+    description: "Slower ball — drop in pace that fools the batter into mistiming the shot.",
   },
-  Pace: {
-    glyph: "⚡",
-    description: "Pace — extreme speed. Hurries the batter onto the back foot.",
+  Googly: {
+    glyph: "🪄",
+    description: "Googly — disguised wrong'un from a leg-spinner, turns the opposite direction.",
   },
-  Reverse: {
-    glyph: "↩️",
-    description: "Reverse — old-ball reverse swing, swings the opposite direction.",
+  Carrom: {
+    glyph: "🥏",
+    description: "Carrom ball — flicked from the fingers, a finger-spinner's wrong'un.",
+  },
+  Topspin: {
+    glyph: "🌪️",
+    description: "Top-spin — the ball dips, kicks up, and skids on with extra bounce.",
+  },
+  Drift: {
+    glyph: "🍃",
+    description: "Drift — late swerve in the air for a spinner before pitching.",
   },
 };
 
@@ -97,8 +105,7 @@ export const LINE_ABBREV: Record<Line, string> = {
   "Leg stump": "Leg",
   "Middle stump": "Mid",
   "Off stump": "Off",
-  "5th stump": "5th",
-  "Wide outside off": "Wide",
+  "Outside off": "OutOff",
 };
 
 export const LENGTH_ABBREV: Record<Length, string> = {

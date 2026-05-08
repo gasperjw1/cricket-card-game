@@ -69,6 +69,7 @@ export type ResolutionStepKind =
   | "day-5-pitch"
   | "switch-hit"
   | "shuffle-across"
+  | "deep-in-crease"
   | "base-lookup"
   | "invariable-bounce"
   | "adjective"
@@ -80,7 +81,8 @@ export type ResolutionStepKind =
   | "retired-out"
   | "cramps"
   | "no-ball"
-  | "wide";
+  | "wide"
+  | "biryani";
 
 export interface ResolutionStep {
   kind: ResolutionStepKind;

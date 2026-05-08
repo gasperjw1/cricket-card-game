@@ -9,7 +9,7 @@
 
 ---
 
-## BATTING SITUATION CARDS (7 + 1 shared)
+## BATTING SITUATION CARDS (8 + 1 shared)
 
 ### 1. DRS Review
 *"Not out! The batsman survives on review."*
@@ -93,19 +93,34 @@ The runs from the actual outcome (e.g. a 4 or 6 if the batter still hit it) ALSO
 *"The batsman shuffles across his stumps."*
 
 Your batsman steps across to the off side, treating the bowler's line as one stump further toward leg on their card:
-- **Wide outside off → 5th stump**
-- **5th stump → Off stump**
+- **Outside off → Off stump**
 - **Off stump → Middle stump**
 - **Middle stump → Leg stump**
 - **Leg stump → Leg stump** (clamped — can't shuffle further)
 
 Length is unchanged. Inverse of Day 5 Pitch.
 
-**When to play:** When your batsman has strengths on leg-side / middle stump zones and you expect the bowler to attack off stump. Turns a 5th stump fishing line into a middle stump pull, etc.
+**Wide-call risk.** If the bowler delivered on **Leg stump** when Shuffle Across is played, the batter has shuffled past the line — the umpire calls a wide. +1 extra run, ball is re-bowled.
+
+**When to play:** When your batsman has strengths on leg-side / middle stump zones and you expect the bowler to attack off stump. Turns an Outside off fishing line into an Off stump zone, an Off stump good length into a middle stump pull, etc.
 
 ---
 
-### 8. Old School Cricket Only *(Shared — available in both batting and bowling decks)*
+### 8. Deep in the Crease
+*"The batsman steps back, deep in his crease."*
+
+Your batsman creates extra time by stepping back. The effective length shifts outward (toward the bowler):
+- **Good length → Short** (good length is met higher and earlier)
+- **Full → Good length** (full balls become drivable good-length deliveries)
+- **Short → wide call** (short balls bounce too high — auto-wide)
+
+The bowler's line stays unchanged. Inverse of Trot Down.
+
+**When to play:** When your batsman has strengths on Short or Good length deliveries and you expect the bowler to bowl Full. Especially valuable against pacers who routinely target full lengths. Risky against bowlers who go short — the auto-wide *helps* the batting team there, but only as a +1 free run, not a scoring opportunity.
+
+---
+
+### 9. Old School Cricket Only *(Shared — available in both batting and bowling decks)*
 *"Play the game properly! No tricks today."*
 
 **Cancels the opponent's situation card entirely.** Both situation cards are discarded and the ball resolves with just the batsman vs bowler cards — no situation effects.
@@ -116,7 +131,7 @@ If the opponent didn't play a situation card, this is wasted.
 
 ---
 
-## BOWLING SITUATION CARDS (5 + 1 shared)
+## BOWLING SITUATION CARDS (6 + 1 shared)
 
 ### 1. Mankad
 *"The bowler spots the batsman backing up too far..."*
@@ -184,7 +199,20 @@ The length stays unchanged. The bowler's adjective and fielding still apply norm
 
 ---
 
-### 6. Old School Cricket Only *(Shared — available in both batting and bowling decks)*
+### 6. Third Umpire Distracted by Biryani
+*"The third umpire's lunch arrived. Decisions get… liberal."*
+
+A counter to extras. When played by the bowling side:
+- Any **No Ball** the batting side played has its effects **fully cancelled** — no extra run, no re-bowl, no wicket overturn.
+- Any **wide call** that would have happened (tier-based wide on Outside off, leg-side wide from Shuffle Across, Outside-off wide from Day 5 Pitch, Short auto-wide from Deep in the Crease) is converted to a **regular dot ball** — no extra run, ball counts.
+
+If neither a No Ball was played nor a wide would have been called, this card is wasted.
+
+**When to play:** Insurance when you bowl Outside off (defangs the tier-based wide check) or anticipate the batter playing No Ball. Especially valuable for Bronze/Silver bowlers who otherwise risk frequent wides.
+
+---
+
+### 7. Old School Cricket Only *(Shared — available in both batting and bowling decks)*
 *"Play the game properly! No tricks today."*
 
 **Cancels the opponent's situation card entirely.** Both situation cards are discarded and the ball resolves with just the batsman vs bowler cards — no situation effects.
@@ -203,22 +231,24 @@ If the opponent didn't play a situation card, this is wasted.
 | Power Surge | Batting | Offensive — outcome upgrade |
 | Retired Out | Batting | Tactical — batsman swap |
 | Switch Hit | Batting | Zone modifier — mirror zones |
-| Trot Down | Batting | Zone modifier — shift lengths |
+| Trot Down | Batting | Zone modifier — shift lengths inward (toward Full) |
 | No Ball | Batting | Defensive — wicket protection + extras + re-bowl |
-| Shuffle Across | Batting | Zone modifier — shift lines toward leg (inverse of Day 5 Pitch) |
+| Shuffle Across | Batting | Zone modifier — shift lines toward leg (with leg-stump auto-wide risk) |
+| Deep in the Crease | Batting | Zone modifier — shift lengths outward (with Short auto-wide risk) |
 | Mankad | Bowling | Disruptive — force batsman swap |
 | Review Appeal | Bowling | Gamble — dots become potential wickets |
 | Cramps | Bowling | Tactical — bowler swap |
 | Invariable Bounce | Bowling | Offensive — outcome downgrade |
-| Day 5 Pitch | Bowling | Zone modifier — shift lines toward off |
+| Day 5 Pitch | Bowling | Zone modifier — shift lines toward off (with Outside-off auto-wide risk) |
+| Third Umpire Distracted by Biryani | Bowling | Counter — cancels No Ball effects and wide calls |
 | Old School Cricket Only (Batting) | Batting | Counter — cancels opponent's situation card |
 | Old School Cricket Only (Bowling) | Bowling | Counter — cancels opponent's situation card |
 
-**Total unique situation cards in data model: 14** (7 batting + 5 bowling + Old School split into 2 variants with identical effect). Conceptually 13 distinct effects (Old School is one effect with two data-model entries).
+**Total unique situation cards in data model: 16** (8 batting + 6 bowling + Old School split into 2 variants with identical effect). Conceptually 15 distinct effects (Old School is one effect with two data-model entries).
 
 ### Automatic mechanics (no card)
 
-**Wide outside off umpire call.** Whenever a bowler delivers Wide outside off and the resolved outcome is a dot ball, the umpire may call wide based on the bowler's tier:
+**Outside off umpire call.** Whenever a bowler delivers Outside off and the resolved outcome is a dot ball, the umpire may call wide based on the bowler's tier:
 
 | Bowler tier | Chance of wide call |
 |-------------|---------------------|
@@ -228,6 +258,16 @@ If the opponent didn't play a situation card, this is wasted.
 | Elite | 5% |
 
 A wide awards +1 extra run and the ball is re-bowled (doesn't count against the over). Doesn't fire if the batter scored — only on dots.
+
+**Situation-card auto-wides.** Several zone-modifier cards push the bowler's line off the strike zone, triggering an automatic wide call (+1 extra, re-bowled, no actual delivery resolution):
+
+- **Shuffle Across** (batting) on a delivery already on **Leg stump** — the batter has shuffled past the line.
+- **Day 5 Pitch** (bowling) on a delivery already on **Outside off** — the line shift would push the ball outside the strike zone.
+- **Deep in the Crease** (batting) on a delivery on **Short** length — the bouncer goes too high over the batter who's stepped back.
+
+All wide calls (tier-based and situation-card auto-wides) are cancelable by the bowling side's **Third Umpire Distracted by Biryani**.
+
+**Bowler adjective stacking rule.** Elite bowlers may carry **2 adjectives**, but only one fires per ball. The engine picks an un-resisted adjective; if the batter resists both, no downgrade fires; if the batter resists neither, only one of the two downgrades is applied (no double-stack).
 
 ---
 

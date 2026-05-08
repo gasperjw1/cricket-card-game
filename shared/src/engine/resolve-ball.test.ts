@@ -30,7 +30,7 @@ function makeBatter(overrides: Partial<BatsmanCard> = {}): BatsmanCard {
     ],
     weaknesses: [
       {
-        zone: { line: "5th stump", length: "Full" },
+        zone: { line: "Outside off", length: "Full" },
         outcome: { type: "wicket", mode: "edge to keeper" },
       },
     ],
@@ -48,7 +48,7 @@ function makeBowler(overrides: Partial<BowlerCard> = {}): BowlerCard {
     tier: "Gold",
     description: "",
     delivery: { line: "Off stump", length: "Full" },
-    adjective: null,
+    adjectives: [],
     fielding: ["Cover"],
     ...overrides,
   };
@@ -98,7 +98,7 @@ describe("base lookup", () => {
     const r = resolveBall({
       batsman: makeBatter(),
       bowler: makeBowler({
-        delivery: { line: "5th stump", length: "Full" },
+        delivery: { line: "Outside off", length: "Full" },
         fielding: [],
       }),
       battingSituation: null,
@@ -114,7 +114,7 @@ describe("adjective downgrade", () => {
   it("downgrades runs by one tier when batter isn't resistant", () => {
     const r = resolveBall({
       batsman: makeBatter({ resistances: [] }),
-      bowler: makeBowler({ adjective: "Seam", fielding: [] }),
+      bowler: makeBowler({ adjectives: ["Seam"], fielding: [] }),
       battingSituation: null,
       bowlingSituation: null,
     });
@@ -130,7 +130,7 @@ describe("adjective downgrade", () => {
   it("does not downgrade when batter is resistant", () => {
     const r = resolveBall({
       batsman: makeBatter({ resistances: ["Seam"] }),
-      bowler: makeBowler({ adjective: "Seam", fielding: [] }),
+      bowler: makeBowler({ adjectives: ["Seam"], fielding: [] }),
       battingSituation: null,
       bowlingSituation: null,
     });
@@ -147,8 +147,8 @@ describe("adjective downgrade", () => {
     const r = resolveBall({
       batsman: makeBatter({ resistances: [] }),
       bowler: makeBowler({
-        delivery: { line: "5th stump", length: "Full" },
-        adjective: "Swing",
+        delivery: { line: "Outside off", length: "Full" },
+        adjectives: ["Swing"],
         fielding: [],
       }),
       battingSituation: null,
@@ -190,7 +190,7 @@ describe("stacking", () => {
   it("adjective AND fielding both fire — 6 → 4 → 2", () => {
     const r = resolveBall({
       batsman: makeBatter({ resistances: [] }),
-      bowler: makeBowler({ adjective: "Pace", fielding: ["Cover"] }),
+      bowler: makeBowler({ adjectives: ["Slower"], fielding: ["Cover"] }),
       battingSituation: null,
       bowlingSituation: null,
     });
@@ -201,7 +201,7 @@ describe("stacking", () => {
   it("Invariable Bounce + adjective + fielding stacks all the way down", () => {
     const r = resolveBall({
       batsman: makeBatter({ resistances: [] }),
-      bowler: makeBowler({ adjective: "Pace", fielding: ["Cover"] }),
+      bowler: makeBowler({ adjectives: ["Slower"], fielding: ["Cover"] }),
       battingSituation: null,
       bowlingSituation: sit("invariable-bounce", "bowling"),
     });
@@ -231,7 +231,7 @@ describe("Power Surge", () => {
     const r = resolveBall({
       batsman: makeBatter(),
       bowler: makeBowler({
-        delivery: { line: "5th stump", length: "Full" },
+        delivery: { line: "Outside off", length: "Full" },
         fielding: [],
       }),
       battingSituation: sit("power-surge", "batting"),
@@ -265,7 +265,7 @@ describe("DRS Review", () => {
     const r = resolveBall({
       batsman: makeBatter(),
       bowler: makeBowler({
-        delivery: { line: "5th stump", length: "Full" },
+        delivery: { line: "Outside off", length: "Full" },
         fielding: [],
       }),
       battingSituation: sit("drs-review", "batting"),
@@ -400,7 +400,7 @@ describe("DRS then Review Appeal", () => {
     const r = resolveBall({
       batsman: makeBatter(),
       bowler: makeBowler({
-        delivery: { line: "5th stump", length: "Full" },
+        delivery: { line: "Outside off", length: "Full" },
         fielding: [],
       }),
       battingSituation: sit("drs-review", "batting"),
@@ -418,7 +418,7 @@ describe("No Ball", () => {
     const r = resolveBall({
       batsman: makeBatter(),
       bowler: makeBowler({
-        delivery: { line: "5th stump", length: "Full" },
+        delivery: { line: "Outside off", length: "Full" },
         fielding: [],
       }),
       battingSituation: sit("no-ball", "batting"),
@@ -446,13 +446,19 @@ describe("No Ball", () => {
 
 // ─── Wide outside off mechanic ───
 
-describe("Wide outside off", () => {
+describe("Outside off", () => {
+  // The default makeBatter() weakness sits on Outside off Full now, so for
+  // wide-call tests we use a batter with no Outside off zones — the lookup
+  // resolves to dot and the wide-call check fires.
+  const blankBatter = (overrides: Partial<BatsmanCard> = {}): BatsmanCard =>
+    makeBatter({ strengths: [], neutrals: [], weaknesses: [], ...overrides });
+
   it("calls a wide on a Bronze bowler with low roll, on a dot ball", () => {
     const r = resolveBall({
-      batsman: makeBatter(),
+      batsman: blankBatter(),
       bowler: makeBowler({
         tier: "Bronze",
-        delivery: { line: "Wide outside off", length: "Full" },
+        delivery: { line: "Outside off", length: "Full" },
         fielding: [],
       }),
       battingSituation: null,
@@ -467,10 +473,10 @@ describe("Wide outside off", () => {
 
   it("does NOT call a wide on an Elite bowler with mid roll", () => {
     const r = resolveBall({
-      batsman: makeBatter(),
+      batsman: blankBatter(),
       bowler: makeBowler({
         tier: "Elite",
-        delivery: { line: "Wide outside off", length: "Full" },
+        delivery: { line: "Outside off", length: "Full" },
         fielding: [],
       }),
       battingSituation: null,
@@ -486,7 +492,7 @@ describe("Wide outside off", () => {
       batsman: makeBatter({
         strengths: [
           {
-            zone: { line: "Wide outside off", length: "Full" },
+            zone: { line: "Outside off", length: "Full" },
             outcome: { type: "runs", value: 4, shot: "slash" },
           },
         ],
@@ -495,7 +501,7 @@ describe("Wide outside off", () => {
       }),
       bowler: makeBowler({
         tier: "Bronze",
-        delivery: { line: "Wide outside off", length: "Full" },
+        delivery: { line: "Outside off", length: "Full" },
         fielding: [],
       }),
       battingSituation: null,
@@ -535,7 +541,7 @@ describe("Shuffle Across", () => {
     if (r.finalOutcome.type === "runs") assert.equal(r.finalOutcome.value, 6);
   });
 
-  it("clamps at Leg stump", () => {
+  it("auto-wides on Leg stump (batter shuffles past the line)", () => {
     const batter = makeBatter({
       strengths: [
         {
@@ -555,11 +561,189 @@ describe("Shuffle Across", () => {
       battingSituation: sit("shuffle-across", "batting"),
       bowlingSituation: null,
     });
-    // Leg → Leg (clamped), so the strength still hits.
+    // Auto-wide takes precedence — outcome is dot, +1 extra, rebowled.
+    assert.equal(r.finalOutcome.type, "dot");
+    assert.equal(r.extraRuns, 1);
+    assert.equal(r.rebowled, true);
+    assert.equal(r.extrasNote, "wide");
+    const wideStep = r.steps.find((s) => s.kind === "wide");
+    assert.ok(wideStep);
+  });
+});
+
+// ─── Day 5 Pitch auto-wide on Outside off ───
+
+describe("Day 5 Pitch auto-wide", () => {
+  it("triggers a wide call when delivery is already on Outside off", () => {
+    const r = resolveBall({
+      batsman: makeBatter(),
+      bowler: makeBowler({
+        delivery: { line: "Outside off", length: "Full" },
+        fielding: [],
+      }),
+      battingSituation: null,
+      bowlingSituation: sit("day-5-pitch", "bowling"),
+    });
+    assert.equal(r.finalOutcome.type, "dot");
+    assert.equal(r.extraRuns, 1);
+    assert.equal(r.rebowled, true);
+    assert.equal(r.extrasNote, "wide");
+  });
+});
+
+// ─── Deep in the Crease ───
+
+describe("Deep in the Crease", () => {
+  it("auto-wides on a Short delivery", () => {
+    const r = resolveBall({
+      batsman: makeBatter(),
+      bowler: makeBowler({
+        delivery: { line: "Off stump", length: "Short" },
+        fielding: [],
+      }),
+      battingSituation: sit("deep-in-crease", "batting"),
+      bowlingSituation: null,
+    });
+    assert.equal(r.finalOutcome.type, "dot");
+    assert.equal(r.extraRuns, 1);
+    assert.equal(r.rebowled, true);
+    assert.equal(r.extrasNote, "wide");
+  });
+
+  it("shifts Full → Good length on the lookup", () => {
+    const batter = makeBatter({
+      strengths: [
+        {
+          zone: { line: "Off stump", length: "Good length" },
+          outcome: { type: "runs", value: 6, shot: "drive" },
+        },
+      ],
+      neutrals: [],
+      weaknesses: [],
+    });
+    const r = resolveBall({
+      batsman: batter,
+      bowler: makeBowler({
+        delivery: { line: "Off stump", length: "Full" },
+        fielding: [],
+      }),
+      battingSituation: sit("deep-in-crease", "batting"),
+      bowlingSituation: null,
+    });
     assert.equal(r.finalOutcome.type, "runs");
     if (r.finalOutcome.type === "runs") assert.equal(r.finalOutcome.value, 6);
-    const step = r.steps.find((s) => s.kind === "shuffle-across");
-    assert.ok(step);
-    assert.equal(step!.applied, false);
+  });
+});
+
+// ─── Biryani cancel ───
+
+describe("Third Umpire Distracted by Biryani", () => {
+  it("cancels a No Ball — wicket is NOT overturned, no extras, ball counts", () => {
+    const r = resolveBall({
+      batsman: makeBatter(), // weakness on Outside off Full
+      bowler: makeBowler({
+        delivery: { line: "Outside off", length: "Full" },
+        fielding: [],
+      }),
+      battingSituation: sit("no-ball", "batting"),
+      bowlingSituation: sit("biryani", "bowling"),
+    });
+    assert.equal(r.finalOutcome.type, "wicket");
+    assert.equal(r.extraRuns, 0);
+    assert.equal(r.rebowled, false);
+  });
+
+  it("cancels an Outside-off auto-wide from Day 5 Pitch — outcome is plain dot", () => {
+    const r = resolveBall({
+      batsman: makeBatter({ strengths: [], neutrals: [], weaknesses: [] }),
+      bowler: makeBowler({
+        delivery: { line: "Outside off", length: "Full" },
+        fielding: [],
+      }),
+      battingSituation: null,
+      bowlingSituation: sit("biryani", "bowling"),
+      // Note: Day 5 Pitch + Biryani is impossible (both bowling-side cards).
+      // So this exercises the tier-based wide cancel instead.
+      random: () => 0,
+    });
+    assert.equal(r.finalOutcome.type, "dot");
+    assert.equal(r.extraRuns, 0);
+    assert.equal(r.rebowled, false);
+  });
+
+  it("cancels a Shuffle Across auto-wide", () => {
+    const r = resolveBall({
+      batsman: makeBatter({
+        strengths: [
+          {
+            zone: { line: "Leg stump", length: "Full" },
+            outcome: { type: "runs", value: 6, shot: "flick" },
+          },
+        ],
+        neutrals: [],
+        weaknesses: [],
+      }),
+      bowler: makeBowler({
+        delivery: { line: "Leg stump", length: "Full" },
+        fielding: [],
+      }),
+      battingSituation: sit("shuffle-across", "batting"),
+      bowlingSituation: sit("biryani", "bowling"),
+    });
+    // Wide cancelled → plain dot, no extras, no rebowl.
+    assert.equal(r.finalOutcome.type, "dot");
+    assert.equal(r.extraRuns, 0);
+    assert.equal(r.rebowled, false);
+  });
+});
+
+// ─── Two-adjective no-stack rule ───
+
+describe("Two-adjective no-stack rule", () => {
+  it("only one adjective downgrades when both are un-resisted", () => {
+    const r = resolveBall({
+      batsman: makeBatter({ resistances: [] }), // no resistances
+      bowler: makeBowler({
+        adjectives: ["Seam", "Slower"],
+        fielding: [],
+      }),
+      battingSituation: null,
+      bowlingSituation: null,
+    });
+    // 6 → 4 (one downgrade), not 6 → 4 → 2.
+    assert.equal(r.finalOutcome.type, "runs");
+    if (r.finalOutcome.type === "runs") assert.equal(r.finalOutcome.value, 4);
+    const fired = r.steps.filter(
+      (s) => s.kind === "adjective" && s.applied,
+    );
+    assert.equal(fired.length, 1);
+  });
+
+  it("if batter resists one, the other fires", () => {
+    const r = resolveBall({
+      batsman: makeBatter({ resistances: ["Seam"] }),
+      bowler: makeBowler({
+        adjectives: ["Seam", "Slower"],
+        fielding: [],
+      }),
+      battingSituation: null,
+      bowlingSituation: null,
+    });
+    assert.equal(r.finalOutcome.type, "runs");
+    if (r.finalOutcome.type === "runs") assert.equal(r.finalOutcome.value, 4);
+  });
+
+  it("if batter resists both, no downgrade", () => {
+    const r = resolveBall({
+      batsman: makeBatter({ resistances: ["Seam", "Slower"] }),
+      bowler: makeBowler({
+        adjectives: ["Seam", "Slower"],
+        fielding: [],
+      }),
+      battingSituation: null,
+      bowlingSituation: null,
+    });
+    assert.equal(r.finalOutcome.type, "runs");
+    if (r.finalOutcome.type === "runs") assert.equal(r.finalOutcome.value, 6);
   });
 });

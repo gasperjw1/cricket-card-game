@@ -4,8 +4,7 @@ export type Line =
   | "Leg stump"
   | "Middle stump"
   | "Off stump"
-  | "5th stump"
-  | "Wide outside off";
+  | "Outside off";
 
 export type Length = "Short" | "Good length" | "Full";
 
@@ -14,13 +13,22 @@ export interface Zone {
   length: Length;
 }
 
+/**
+ * Bowler skills. Pace/Reverse/Spin generic kinds were removed in the v1.1
+ * rebalance — only specific variations remain. Pacers get one or more of
+ * Swing/Seam/Cutter/Slower; spinners get Googly/Carrom/Topspin/Drift.
+ * Bronze and Silver bowlers carry no adjective (they're the "plain" tier
+ * that gets scored off freely).
+ */
 export type Adjective =
   | "Swing"
   | "Seam"
   | "Cutter"
-  | "Spin"
-  | "Pace"
-  | "Reverse";
+  | "Slower"
+  | "Googly"
+  | "Carrom"
+  | "Topspin"
+  | "Drift";
 
 export type FieldingRegion =
   | "Slip cordon"
@@ -78,7 +86,13 @@ export interface BowlerCard {
   tier: Tier;
   description: string;
   delivery: Zone;
-  adjective: Adjective | null;
+  /**
+   * Bowler's signature skill(s). 0 entries = no skill (Bronze/Silver bowlers).
+   * 1 entry = single skill (Gold bowlers, most Elite). 2 entries = Elite only,
+   * with the no-stack engine rule (only one downgrade fires per ball even
+   * when both adjectives are un-resisted).
+   */
+  adjectives: Adjective[];
   fielding: FieldingRegion[];
 }
 
@@ -92,11 +106,13 @@ export type SituationEffectId =
   | "trot-down"
   | "no-ball"
   | "shuffle-across"
+  | "deep-in-crease"
   | "mankad"
   | "review-appeal"
   | "cramps"
   | "invariable-bounce"
   | "day-5-pitch"
+  | "biryani"
   | "old-school-batting"
   | "old-school-bowling";
 

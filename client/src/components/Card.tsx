@@ -29,14 +29,12 @@ import {
 export interface RevealContext {
   /** Zone matched on the batsman's card (post-modifiers). */
   lookupZone: Zone;
-  /** Bowler's adjective on this delivery, if any. */
-  bowlerAdjective: Adjective | null;
   /**
-   * True if the adjective actually downgraded the outcome (i.e. batter was
-   * NOT resistant). False when blocked by resistance — useful for showing
-   * which resistance fired.
+   * The single adjective that actually fired on this ball (the one that
+   * downgraded the outcome). Null if the bowler has no adjective, or if
+   * all adjectives were resisted, or if no downgrade applied.
    */
-  adjectiveApplied: boolean;
+  firedAdjective: Adjective | null;
   /** Fielding region that intercepted the shot, if any. */
   firedFielding: FieldingRegion | null;
 }
@@ -160,8 +158,7 @@ function BatsmanCardView(props: { card: BatsmanCard; size?: "hand" | "view"; sel
       {reveal ? (
         <RevealResistances
           list={card.resistances}
-          bowlerAdjective={reveal.bowlerAdjective}
-          adjectiveApplied={reveal.adjectiveApplied}
+          firedAdjective={reveal.firedAdjective}
         />
       ) : (
         <Resistances list={card.resistances} size={size} />
@@ -253,36 +250,37 @@ function findFiredOutcome(
 
 function RevealResistances({
   list,
-  bowlerAdjective,
-  adjectiveApplied,
+  firedAdjective,
 }: {
   list: BatsmanCard["resistances"];
-  bowlerAdjective: Adjective | null;
-  adjectiveApplied: boolean;
+  firedAdjective: Adjective | null;
 }) {
-  // Resistances are only relevant if there was an adjective.
-  if (!bowlerAdjective) return null;
-  const matched = list.includes(bowlerAdjective);
-  if (matched) {
-    return (
-      <div className="card-resistances reveal fired">
-        <Tip text={`Resistance to ${bowlerAdjective} blocked the bowler's downgrade.`}>
-          <span className="resist-label">Resisted</span>
-        </Tip>
-        <span className="resist-icons">
-          <Tip text={ADJECTIVE_ICONS[bowlerAdjective].description}>
-            <span className="adj-icon">{ADJECTIVE_ICONS[bowlerAdjective].glyph}</span>
-          </Tip>
-        </span>
-      </div>
-    );
-  }
-  void adjectiveApplied;
+  // No resistances at all — nothing to show in reveal mode.
+  if (list.length === 0) return null;
   return (
-    <div className="card-resistances reveal not-fired">
-      <Tip text={`No resistance to ${bowlerAdjective} — the adjective downgraded the outcome.`}>
-        <span className="resist-label dim-text">no matching resistance</span>
+    <div className="card-resistances reveal">
+      <Tip text="Batter resistances. The one matching the bowler's firing adjective (if any) is highlighted; others didn't apply this ball.">
+        <span className="resist-label">Resists</span>
       </Tip>
+      <span className="resist-icons">
+        {list.map((adj) => {
+          const isFiredMatch = firedAdjective === adj;
+          return (
+            <Tip
+              key={adj}
+              text={
+                isFiredMatch
+                  ? `Resistance to ${adj} blocked the bowler's adjective.`
+                  : ADJECTIVE_ICONS[adj].description
+              }
+            >
+              <span className={`adj-icon${isFiredMatch ? "" : " dim"}`}>
+                {ADJECTIVE_ICONS[adj].glyph}
+              </span>
+            </Tip>
+          );
+        })}
+      </span>
     </div>
   );
 }
@@ -380,41 +378,42 @@ function BowlerCardView(props: { card: BowlerCard; size?: "hand" | "view"; selec
       </section>
       <section className="card-section">
         <div className="card-section-title">
-          <Tip text="The bowler's signature trait. If played against a non-resistant batter, every outcome is downgraded one tier.">
-            Adjective
+          <Tip text="The bowler's signature skill(s). 0–2 entries. If un-resisted by the batter, ONE adjective fires per ball (no stacking, even if both un-resisted).">
+            {card.adjectives.length === 2 ? "Skills" : "Skill"}
           </Tip>
         </div>
         <div className="adjective-row">
-          {card.adjective ? (
-            <Tip
-              text={
-                reveal && reveal.bowlerAdjective === card.adjective
-                  ? reveal.adjectiveApplied
-                    ? `${card.adjective} fired — outcome was downgraded one tier.`
-                    : `${card.adjective} blocked by the batter's resistance — no downgrade.`
-                  : ADJECTIVE_ICONS[card.adjective].description
-              }
-            >
-              <span
-                className={`adj-chip${
-                  reveal
-                    ? reveal.adjectiveApplied
-                      ? " fired"
-                      : " blocked"
-                    : ""
-                }`}
-              >
-                <span className="adj-icon">{ADJECTIVE_ICONS[card.adjective].glyph}</span>
-                <span>{card.adjective}</span>
-                {reveal && !reveal.adjectiveApplied && (
-                  <span className="dim-text"> (resisted)</span>
-                )}
-              </span>
-            </Tip>
-          ) : (
-            <Tip text="No adjective — this bowler doesn't apply a quality downgrade.">
+          {card.adjectives.length === 0 ? (
+            <Tip text="No skill — this bowler doesn't apply a quality downgrade.">
               <span className="dim-text">none</span>
             </Tip>
+          ) : (
+            card.adjectives.map((adj) => {
+              const fired = reveal?.firedAdjective === adj;
+              const inReveal = !!reveal;
+              const blocked = inReveal && !fired;
+              return (
+                <Tip
+                  key={adj}
+                  text={
+                    fired
+                      ? `${adj} fired — outcome was downgraded one tier.`
+                      : blocked
+                        ? `${adj} did not fire (resisted by the batter, or not the firing adjective per the no-stack rule).`
+                        : ADJECTIVE_ICONS[adj].description
+                  }
+                >
+                  <span
+                    className={`adj-chip${fired ? " fired" : ""}${
+                      blocked ? " blocked" : ""
+                    }`}
+                  >
+                    <span className="adj-icon">{ADJECTIVE_ICONS[adj].glyph}</span>
+                    <span>{adj}</span>
+                  </span>
+                </Tip>
+              );
+            })
           )}
         </div>
       </section>

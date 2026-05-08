@@ -56,7 +56,7 @@
         },
         {
           "zone": {
-            "line": "5th stump",
+            "line": "Outside off",
             "length": "Good length"
           },
           "outcome": {
@@ -69,7 +69,7 @@
       "weaknesses": [
         {
           "zone": {
-            "line": "5th stump",
+            "line": "Outside off",
             "length": "Full"
           },
           "outcome": {
@@ -79,7 +79,6 @@
         }
       ],
       "resistances": [
-        "Pace",
         "Swing"
       ]
     },
@@ -139,7 +138,7 @@
         },
         {
           "zone": {
-            "line": "Wide outside off",
+            "line": "Outside off",
             "length": "Full"
           },
           "outcome": {
@@ -161,9 +160,7 @@
           }
         }
       ],
-      "resistances": [
-        "Spin"
-      ]
+      "resistances": []
     },
     {
       "id": "suryakumar-yadav-bat",
@@ -315,7 +312,7 @@
         },
         {
           "zone": {
-            "line": "5th stump",
+            "line": "Outside off",
             "length": "Full"
           },
           "outcome": {
@@ -930,7 +927,7 @@
         },
         {
           "zone": {
-            "line": "Wide outside off",
+            "line": "Outside off",
             "length": "Full"
           },
           "outcome": {
@@ -953,7 +950,6 @@
         }
       ],
       "resistances": [
-        "Pace",
         "Swing"
       ]
     },
@@ -1035,9 +1031,7 @@
           }
         }
       ],
-      "resistances": [
-        "Spin"
-      ]
+      "resistances": []
     },
     {
       "id": "marcus-stoinis-bat",
@@ -1117,9 +1111,7 @@
           }
         }
       ],
-      "resistances": [
-        "Pace"
-      ]
+      "resistances": []
     },
     {
       "id": "tim-david-bat",
@@ -1827,7 +1819,6 @@
         }
       ],
       "resistances": [
-        "Pace",
         "Cutter"
       ]
     },
@@ -1969,7 +1960,7 @@
         },
         {
           "zone": {
-            "line": "Wide outside off",
+            "line": "Outside off",
             "length": "Full"
           },
           "outcome": {
@@ -1991,9 +1982,7 @@
           }
         }
       ],
-      "resistances": [
-        "Spin"
-      ]
+      "resistances": []
     },
     {
       "id": "liam-livingstone-bat",
@@ -2701,7 +2690,6 @@
         }
       ],
       "resistances": [
-        "Pace",
         "Swing"
       ]
     },
@@ -2783,9 +2771,7 @@
           }
         }
       ],
-      "resistances": [
-        "Spin"
-      ]
+      "resistances": []
     },
     {
       "id": "david-miller-bat",
@@ -2808,7 +2794,7 @@
         },
         {
           "zone": {
-            "line": "Wide outside off",
+            "line": "Outside off",
             "length": "Full"
           },
           "outcome": {
@@ -3657,9 +3643,7 @@
           }
         }
       ],
-      "resistances": [
-        "Spin"
-      ]
+      "resistances": []
     },
     {
       "id": "finn-allen-bat",
@@ -3717,7 +3701,7 @@
         },
         {
           "zone": {
-            "line": "Wide outside off",
+            "line": "Outside off",
             "length": "Full"
           },
           "outcome": {
@@ -3739,9 +3723,7 @@
           }
         }
       ],
-      "resistances": [
-        "Pace"
-      ]
+      "resistances": []
     },
     {
       "id": "daryl-mitchell-bat",
@@ -4426,7 +4408,7 @@
         },
         {
           "zone": {
-            "line": "5th stump",
+            "line": "Outside off",
             "length": "Good length"
           },
           "outcome": {
@@ -4449,8 +4431,7 @@
         }
       ],
       "resistances": [
-        "Swing",
-        "Spin"
+        "Swing"
       ]
     },
     {
@@ -4531,9 +4512,7 @@
           }
         }
       ],
-      "resistances": [
-        "Pace"
-      ]
+      "resistances": []
     },
     {
       "id": "saim-ayub-bat",
@@ -4613,9 +4592,7 @@
           }
         }
       ],
-      "resistances": [
-        "Pace"
-      ]
+      "resistances": []
     },
     {
       "id": "fakhar-zaman-bat",
@@ -5323,7 +5300,6 @@
         }
       ],
       "resistances": [
-        "Spin",
         "Swing"
       ]
     },
@@ -5405,9 +5381,7 @@
           }
         }
       ],
-      "resistances": [
-        "Spin"
-      ]
+      "resistances": []
     },
     {
       "id": "kusal-mendis-bat",
@@ -5487,9 +5461,7 @@
           }
         }
       ],
-      "resistances": [
-        "Pace"
-      ]
+      "resistances": []
     },
     {
       "id": "kamindu-mendis-bat",
@@ -6196,10 +6168,7 @@
           }
         }
       ],
-      "resistances": [
-        "Pace",
-        "Spin"
-      ]
+      "resistances": []
     },
     {
       "id": "shimron-hetmyer-bat",
@@ -7071,7 +7040,6 @@
         }
       ],
       "resistances": [
-        "Spin",
         "Cutter"
       ]
     },
@@ -7153,9 +7121,7 @@
           }
         }
       ],
-      "resistances": [
-        "Spin"
-      ]
+      "resistances": []
     },
     {
       "id": "towhid-hridoy-bat",
@@ -7235,9 +7201,7 @@
           }
         }
       ],
-      "resistances": [
-        "Pace"
-      ]
+      "resistances": []
     },
     {
       "id": "najmul-hossain-shanto-bat",
@@ -7945,7 +7909,6 @@
         }
       ],
       "resistances": [
-        "Spin",
         "Cutter"
       ]
     },
@@ -8109,9 +8072,7 @@
           }
         }
       ],
-      "resistances": [
-        "Spin"
-      ]
+      "resistances": []
     },
     {
       "id": "regis-chakabva-bat",
@@ -8818,10 +8779,7 @@
           }
         }
       ],
-      "resistances": [
-        "Pace",
-        "Spin"
-      ]
+      "resistances": []
     },
     {
       "id": "ibrahim-zadran-bat",
@@ -8983,9 +8941,7 @@
           }
         }
       ],
-      "resistances": [
-        "Pace"
-      ]
+      "resistances": []
     },
     {
       "id": "mohammad-nabi-bat",
@@ -9692,10 +9648,7 @@
           }
         }
       ],
-      "resistances": [
-        "Spin",
-        "Pace"
-      ]
+      "resistances": []
     },
     {
       "id": "andrew-balbirnie-bat",
@@ -10501,7 +10454,9 @@
         "line": "Middle stump",
         "length": "Full"
       },
-      "adjective": "Seam",
+      "adjectives": [
+        "Seam"
+      ],
       "fielding": [
         "Mid-wicket",
         "Cover"
@@ -10518,7 +10473,7 @@
         "line": "Off stump",
         "length": "Good length"
       },
-      "adjective": "Spin",
+      "adjectives": [],
       "fielding": [
         "Slip cordon"
       ]
@@ -10531,10 +10486,12 @@
       "tier": "Gold",
       "description": "Full 5th stump swinging in from left-arm angle. Death overs specialist.",
       "delivery": {
-        "line": "5th stump",
+        "line": "Outside off",
         "length": "Full"
       },
-      "adjective": "Swing",
+      "adjectives": [
+        "Swing"
+      ],
       "fielding": [
         "Slip cordon"
       ]
@@ -10550,7 +10507,7 @@
         "line": "Middle stump",
         "length": "Good length"
       },
-      "adjective": "Spin",
+      "adjectives": [],
       "fielding": [
         "Short leg/Silly point"
       ]
@@ -10566,7 +10523,7 @@
         "line": "Off stump",
         "length": "Good length"
       },
-      "adjective": "Swing",
+      "adjectives": [],
       "fielding": [
         "Slip cordon"
       ]
@@ -10582,7 +10539,7 @@
         "line": "Off stump",
         "length": "Full"
       },
-      "adjective": "Seam",
+      "adjectives": [],
       "fielding": [
         "Gully/Point"
       ]
@@ -10598,7 +10555,7 @@
         "line": "Off stump",
         "length": "Good length"
       },
-      "adjective": "Cutter",
+      "adjectives": [],
       "fielding": [
         "Cover"
       ]
@@ -10614,7 +10571,7 @@
         "line": "Middle stump",
         "length": "Good length"
       },
-      "adjective": null,
+      "adjectives": [],
       "fielding": [
         "Mid-wicket"
       ]
@@ -10630,7 +10587,7 @@
         "line": "Middle stump",
         "length": "Short"
       },
-      "adjective": "Pace",
+      "adjectives": [],
       "fielding": [
         "Gully/Point"
       ]
@@ -10646,7 +10603,7 @@
         "line": "Leg stump",
         "length": "Good length"
       },
-      "adjective": "Spin",
+      "adjectives": [],
       "fielding": [
         "Short leg/Silly point"
       ]
@@ -10662,7 +10619,7 @@
         "line": "Middle stump",
         "length": "Good length"
       },
-      "adjective": null,
+      "adjectives": [],
       "fielding": [
         "Mid-wicket"
       ]
@@ -10678,7 +10635,9 @@
         "line": "Off stump",
         "length": "Full"
       },
-      "adjective": "Swing",
+      "adjectives": [
+        "Swing"
+      ],
       "fielding": [
         "Slip cordon",
         "Mid-wicket"
@@ -10695,7 +10654,7 @@
         "line": "Middle stump",
         "length": "Good length"
       },
-      "adjective": "Spin",
+      "adjectives": [],
       "fielding": [
         "Short leg/Silly point"
       ]
@@ -10708,10 +10667,12 @@
       "tier": "Gold",
       "description": "Metronomic seamer. Good length 5th stump relentlessly. Miserly economy.",
       "delivery": {
-        "line": "5th stump",
+        "line": "Outside off",
         "length": "Good length"
       },
-      "adjective": "Seam",
+      "adjectives": [
+        "Seam"
+      ],
       "fielding": [
         "Slip cordon"
       ]
@@ -10727,7 +10688,7 @@
         "line": "Off stump",
         "length": "Full"
       },
-      "adjective": "Cutter",
+      "adjectives": [],
       "fielding": [
         "Cover"
       ]
@@ -10743,7 +10704,7 @@
         "line": "Off stump",
         "length": "Good length"
       },
-      "adjective": "Seam",
+      "adjectives": [],
       "fielding": [
         "Gully/Point"
       ]
@@ -10759,7 +10720,7 @@
         "line": "Off stump",
         "length": "Good length"
       },
-      "adjective": "Pace",
+      "adjectives": [],
       "fielding": [
         "Gully/Point"
       ]
@@ -10775,7 +10736,7 @@
         "line": "Leg stump",
         "length": "Full"
       },
-      "adjective": "Cutter",
+      "adjectives": [],
       "fielding": [
         "Fine leg/Leg slip"
       ]
@@ -10791,7 +10752,7 @@
         "line": "Middle stump",
         "length": "Good length"
       },
-      "adjective": null,
+      "adjectives": [],
       "fielding": [
         "Mid-wicket"
       ]
@@ -10807,7 +10768,7 @@
         "line": "Leg stump",
         "length": "Good length"
       },
-      "adjective": null,
+      "adjectives": [],
       "fielding": [
         "Mid-wicket"
       ]
@@ -10823,7 +10784,7 @@
         "line": "Off stump",
         "length": "Good length"
       },
-      "adjective": null,
+      "adjectives": [],
       "fielding": [
         "Gully/Point"
       ]
@@ -10839,7 +10800,7 @@
         "line": "Middle stump",
         "length": "Good length"
       },
-      "adjective": null,
+      "adjectives": [],
       "fielding": [
         "Mid-wicket"
       ]
@@ -10855,7 +10816,7 @@
         "line": "Middle stump",
         "length": "Full"
       },
-      "adjective": "Pace",
+      "adjectives": [],
       "fielding": [
         "Mid-wicket",
         "Cover"
@@ -10872,7 +10833,7 @@
         "line": "Middle stump",
         "length": "Good length"
       },
-      "adjective": "Spin",
+      "adjectives": [],
       "fielding": [
         "Short leg/Silly point"
       ]
@@ -10888,7 +10849,7 @@
         "line": "Off stump",
         "length": "Short"
       },
-      "adjective": "Pace",
+      "adjectives": [],
       "fielding": [
         "Gully/Point"
       ]
@@ -10904,7 +10865,7 @@
         "line": "Leg stump",
         "length": "Full"
       },
-      "adjective": "Cutter",
+      "adjectives": [],
       "fielding": [
         "Fine leg/Leg slip"
       ]
@@ -10917,10 +10878,10 @@
       "tier": "Silver",
       "description": "Tall left-arm seamer. Full outside off with swing.",
       "delivery": {
-        "line": "5th stump",
+        "line": "Outside off",
         "length": "Full"
       },
-      "adjective": "Swing",
+      "adjectives": [],
       "fielding": [
         "Slip cordon"
       ]
@@ -10936,7 +10897,7 @@
         "line": "Off stump",
         "length": "Full"
       },
-      "adjective": "Cutter",
+      "adjectives": [],
       "fielding": [
         "Cover"
       ]
@@ -10952,7 +10913,7 @@
         "line": "Leg stump",
         "length": "Good length"
       },
-      "adjective": "Spin",
+      "adjectives": [],
       "fielding": [
         "Mid-wicket"
       ]
@@ -10968,7 +10929,7 @@
         "line": "Off stump",
         "length": "Good length"
       },
-      "adjective": null,
+      "adjectives": [],
       "fielding": [
         "Cover"
       ]
@@ -10984,7 +10945,7 @@
         "line": "Middle stump",
         "length": "Good length"
       },
-      "adjective": "Spin",
+      "adjectives": [],
       "fielding": [
         "Short leg/Silly point"
       ]
@@ -11000,7 +10961,7 @@
         "line": "Off stump",
         "length": "Good length"
       },
-      "adjective": null,
+      "adjectives": [],
       "fielding": [
         "Slip cordon"
       ]
@@ -11016,7 +10977,7 @@
         "line": "Middle stump",
         "length": "Good length"
       },
-      "adjective": null,
+      "adjectives": [],
       "fielding": [
         "Mid-wicket"
       ]
@@ -11032,7 +10993,7 @@
         "line": "Off stump",
         "length": "Full"
       },
-      "adjective": "Pace",
+      "adjectives": [],
       "fielding": [
         "Cover",
         "Gully/Point"
@@ -11049,7 +11010,7 @@
         "line": "Off stump",
         "length": "Short"
       },
-      "adjective": "Pace",
+      "adjectives": [],
       "fielding": [
         "Gully/Point"
       ]
@@ -11065,7 +11026,7 @@
         "line": "Middle stump",
         "length": "Good length"
       },
-      "adjective": "Spin",
+      "adjectives": [],
       "fielding": [
         "Short leg/Silly point"
       ]
@@ -11078,10 +11039,10 @@
       "tier": "Silver",
       "description": "Tall seamer. Good length outside off with bounce.",
       "delivery": {
-        "line": "5th stump",
+        "line": "Outside off",
         "length": "Good length"
       },
-      "adjective": "Seam",
+      "adjectives": [],
       "fielding": [
         "Slip cordon"
       ]
@@ -11094,10 +11055,10 @@
       "tier": "Silver",
       "description": "Tall left-arm quick. Full outside off with swing and bounce.",
       "delivery": {
-        "line": "5th stump",
+        "line": "Outside off",
         "length": "Full"
       },
-      "adjective": "Swing",
+      "adjectives": [],
       "fielding": [
         "Slip cordon"
       ]
@@ -11113,7 +11074,7 @@
         "line": "Off stump",
         "length": "Good length"
       },
-      "adjective": "Spin",
+      "adjectives": [],
       "fielding": [
         "Cover"
       ]
@@ -11129,7 +11090,7 @@
         "line": "Off stump",
         "length": "Good length"
       },
-      "adjective": null,
+      "adjectives": [],
       "fielding": [
         "Gully/Point"
       ]
@@ -11145,7 +11106,7 @@
         "line": "Off stump",
         "length": "Good length"
       },
-      "adjective": null,
+      "adjectives": [],
       "fielding": [
         "Cover"
       ]
@@ -11161,7 +11122,7 @@
         "line": "Middle stump",
         "length": "Short"
       },
-      "adjective": "Pace",
+      "adjectives": [],
       "fielding": [
         "Gully/Point"
       ]
@@ -11177,7 +11138,7 @@
         "line": "Leg stump",
         "length": "Good length"
       },
-      "adjective": "Spin",
+      "adjectives": [],
       "fielding": [
         "Mid-wicket"
       ]
@@ -11193,7 +11154,7 @@
         "line": "Middle stump",
         "length": "Good length"
       },
-      "adjective": null,
+      "adjectives": [],
       "fielding": [
         "Mid-wicket"
       ]
@@ -11206,10 +11167,12 @@
       "tier": "Elite",
       "description": "Left-arm swing. Devastating with the new ball. Full 5th stump swinging in.",
       "delivery": {
-        "line": "5th stump",
+        "line": "Outside off",
         "length": "Full"
       },
-      "adjective": "Swing",
+      "adjectives": [
+        "Swing"
+      ],
       "fielding": [
         "Slip cordon",
         "Cover"
@@ -11226,7 +11189,9 @@
         "line": "Off stump",
         "length": "Good length"
       },
-      "adjective": "Swing",
+      "adjectives": [
+        "Swing"
+      ],
       "fielding": [
         "Slip cordon"
       ]
@@ -11242,7 +11207,7 @@
         "line": "Middle stump",
         "length": "Good length"
       },
-      "adjective": "Spin",
+      "adjectives": [],
       "fielding": [
         "Short leg/Silly point"
       ]
@@ -11258,7 +11223,7 @@
         "line": "Off stump",
         "length": "Short"
       },
-      "adjective": "Pace",
+      "adjectives": [],
       "fielding": [
         "Gully/Point"
       ]
@@ -11274,7 +11239,7 @@
         "line": "Off stump",
         "length": "Good length"
       },
-      "adjective": "Spin",
+      "adjectives": [],
       "fielding": [
         "Cover"
       ]
@@ -11290,7 +11255,7 @@
         "line": "Off stump",
         "length": "Full"
       },
-      "adjective": "Swing",
+      "adjectives": [],
       "fielding": [
         "Slip cordon"
       ]
@@ -11306,7 +11271,7 @@
         "line": "Off stump",
         "length": "Good length"
       },
-      "adjective": null,
+      "adjectives": [],
       "fielding": [
         "Cover"
       ]
@@ -11322,7 +11287,7 @@
         "line": "Middle stump",
         "length": "Good length"
       },
-      "adjective": null,
+      "adjectives": [],
       "fielding": [
         "Mid-wicket"
       ]
@@ -11338,7 +11303,7 @@
         "line": "Off stump",
         "length": "Good length"
       },
-      "adjective": "Pace",
+      "adjectives": [],
       "fielding": [
         "Gully/Point"
       ]
@@ -11354,7 +11319,7 @@
         "line": "Leg stump",
         "length": "Good length"
       },
-      "adjective": null,
+      "adjectives": [],
       "fielding": [
         "Mid-wicket"
       ]
@@ -11370,7 +11335,7 @@
         "line": "Middle stump",
         "length": "Good length"
       },
-      "adjective": null,
+      "adjectives": [],
       "fielding": [
         "Mid-wicket"
       ]
@@ -11383,10 +11348,12 @@
       "tier": "Elite",
       "description": "Left-arm express. Full outside off swinging in. Devastating with new ball.",
       "delivery": {
-        "line": "5th stump",
+        "line": "Outside off",
         "length": "Full"
       },
-      "adjective": "Swing",
+      "adjectives": [
+        "Swing"
+      ],
       "fielding": [
         "Slip cordon",
         "Mid-wicket"
@@ -11403,7 +11370,7 @@
         "line": "Middle stump",
         "length": "Good length"
       },
-      "adjective": "Spin",
+      "adjectives": [],
       "fielding": [
         "Short leg/Silly point"
       ]
@@ -11419,7 +11386,7 @@
         "line": "Off stump",
         "length": "Short"
       },
-      "adjective": "Pace",
+      "adjectives": [],
       "fielding": [
         "Gully/Point"
       ]
@@ -11435,7 +11402,7 @@
         "line": "Off stump",
         "length": "Full"
       },
-      "adjective": "Pace",
+      "adjectives": [],
       "fielding": [
         "Cover"
       ]
@@ -11451,7 +11418,7 @@
         "line": "Off stump",
         "length": "Good length"
       },
-      "adjective": "Spin",
+      "adjectives": [],
       "fielding": [
         "Cover"
       ]
@@ -11467,7 +11434,7 @@
         "line": "Off stump",
         "length": "Good length"
       },
-      "adjective": "Spin",
+      "adjectives": [],
       "fielding": [
         "Slip cordon"
       ]
@@ -11483,7 +11450,7 @@
         "line": "Off stump",
         "length": "Full"
       },
-      "adjective": "Swing",
+      "adjectives": [],
       "fielding": [
         "Slip cordon"
       ]
@@ -11499,7 +11466,7 @@
         "line": "Middle stump",
         "length": "Good length"
       },
-      "adjective": null,
+      "adjectives": [],
       "fielding": [
         "Mid-wicket"
       ]
@@ -11515,7 +11482,7 @@
         "line": "Off stump",
         "length": "Good length"
       },
-      "adjective": null,
+      "adjectives": [],
       "fielding": [
         "Cover"
       ]
@@ -11531,7 +11498,7 @@
         "line": "Middle stump",
         "length": "Short"
       },
-      "adjective": "Pace",
+      "adjectives": [],
       "fielding": [
         "Gully/Point"
       ]
@@ -11547,7 +11514,7 @@
         "line": "Leg stump",
         "length": "Good length"
       },
-      "adjective": null,
+      "adjectives": [],
       "fielding": [
         "Mid-wicket"
       ]
@@ -11563,7 +11530,7 @@
         "line": "Middle stump",
         "length": "Good length"
       },
-      "adjective": "Spin",
+      "adjectives": [],
       "fielding": [
         "Short leg/Silly point",
         "Slip cordon"
@@ -11580,7 +11547,7 @@
         "line": "Off stump",
         "length": "Full"
       },
-      "adjective": "Pace",
+      "adjectives": [],
       "fielding": [
         "Cover"
       ]
@@ -11596,7 +11563,7 @@
         "line": "Off stump",
         "length": "Good length"
       },
-      "adjective": "Spin",
+      "adjectives": [],
       "fielding": [
         "Slip cordon"
       ]
@@ -11612,7 +11579,7 @@
         "line": "Middle stump",
         "length": "Full"
       },
-      "adjective": "Pace",
+      "adjectives": [],
       "fielding": [
         "Mid-wicket"
       ]
@@ -11625,10 +11592,10 @@
       "tier": "Silver",
       "description": "Left-arm seamer. Swing with the new ball.",
       "delivery": {
-        "line": "5th stump",
+        "line": "Outside off",
         "length": "Full"
       },
-      "adjective": "Swing",
+      "adjectives": [],
       "fielding": [
         "Slip cordon"
       ]
@@ -11644,7 +11611,7 @@
         "line": "Off stump",
         "length": "Good length"
       },
-      "adjective": "Spin",
+      "adjectives": [],
       "fielding": [
         "Cover"
       ]
@@ -11660,7 +11627,7 @@
         "line": "Off stump",
         "length": "Good length"
       },
-      "adjective": null,
+      "adjectives": [],
       "fielding": [
         "Gully/Point"
       ]
@@ -11676,7 +11643,7 @@
         "line": "Middle stump",
         "length": "Good length"
       },
-      "adjective": "Spin",
+      "adjectives": [],
       "fielding": [
         "Short leg/Silly point"
       ]
@@ -11692,7 +11659,7 @@
         "line": "Middle stump",
         "length": "Good length"
       },
-      "adjective": null,
+      "adjectives": [],
       "fielding": [
         "Mid-wicket"
       ]
@@ -11708,7 +11675,7 @@
         "line": "Leg stump",
         "length": "Good length"
       },
-      "adjective": "Spin",
+      "adjectives": [],
       "fielding": [
         "Short leg/Silly point"
       ]
@@ -11724,7 +11691,7 @@
         "line": "Off stump",
         "length": "Good length"
       },
-      "adjective": null,
+      "adjectives": [],
       "fielding": [
         "Cover"
       ]
@@ -11740,7 +11707,7 @@
         "line": "Middle stump",
         "length": "Full"
       },
-      "adjective": "Pace",
+      "adjectives": [],
       "fielding": [
         "Mid-wicket",
         "Cover"
@@ -11757,7 +11724,7 @@
         "line": "Off stump",
         "length": "Good length"
       },
-      "adjective": "Spin",
+      "adjectives": [],
       "fielding": [
         "Cover"
       ]
@@ -11773,7 +11740,7 @@
         "line": "Middle stump",
         "length": "Good length"
       },
-      "adjective": "Spin",
+      "adjectives": [],
       "fielding": [
         "Short leg/Silly point"
       ]
@@ -11789,7 +11756,7 @@
         "line": "Off stump",
         "length": "Short"
       },
-      "adjective": "Pace",
+      "adjectives": [],
       "fielding": [
         "Gully/Point"
       ]
@@ -11805,7 +11772,7 @@
         "line": "Off stump",
         "length": "Full"
       },
-      "adjective": "Cutter",
+      "adjectives": [],
       "fielding": [
         "Cover"
       ]
@@ -11818,10 +11785,10 @@
       "tier": "Silver",
       "description": "Tall all-rounder. Good length outside off with bounce.",
       "delivery": {
-        "line": "5th stump",
+        "line": "Outside off",
         "length": "Good length"
       },
-      "adjective": "Seam",
+      "adjectives": [],
       "fielding": [
         "Slip cordon"
       ]
@@ -11837,7 +11804,7 @@
         "line": "Off stump",
         "length": "Good length"
       },
-      "adjective": "Pace",
+      "adjectives": [],
       "fielding": [
         "Gully/Point"
       ]
@@ -11853,7 +11820,7 @@
         "line": "Off stump",
         "length": "Good length"
       },
-      "adjective": null,
+      "adjectives": [],
       "fielding": [
         "Cover"
       ]
@@ -11869,7 +11836,7 @@
         "line": "Middle stump",
         "length": "Good length"
       },
-      "adjective": null,
+      "adjectives": [],
       "fielding": [
         "Mid-wicket"
       ]
@@ -11885,7 +11852,7 @@
         "line": "Leg stump",
         "length": "Good length"
       },
-      "adjective": null,
+      "adjectives": [],
       "fielding": [
         "Mid-wicket"
       ]
@@ -11901,7 +11868,7 @@
         "line": "Middle stump",
         "length": "Short"
       },
-      "adjective": "Pace",
+      "adjectives": [],
       "fielding": [
         "Gully/Point"
       ]
@@ -11917,7 +11884,9 @@
         "line": "Off stump",
         "length": "Good length"
       },
-      "adjective": "Cutter",
+      "adjectives": [
+        "Cutter"
+      ],
       "fielding": [
         "Cover",
         "Gully/Point"
@@ -11934,7 +11903,7 @@
         "line": "Off stump",
         "length": "Good length"
       },
-      "adjective": "Pace",
+      "adjectives": [],
       "fielding": [
         "Gully/Point"
       ]
@@ -11950,7 +11919,7 @@
         "line": "Middle stump",
         "length": "Good length"
       },
-      "adjective": "Spin",
+      "adjectives": [],
       "fielding": [
         "Short leg/Silly point"
       ]
@@ -11966,7 +11935,7 @@
         "line": "Off stump",
         "length": "Good length"
       },
-      "adjective": "Spin",
+      "adjectives": [],
       "fielding": [
         "Cover"
       ]
@@ -11982,7 +11951,7 @@
         "line": "Off stump",
         "length": "Short"
       },
-      "adjective": "Pace",
+      "adjectives": [],
       "fielding": [
         "Gully/Point"
       ]
@@ -11998,7 +11967,7 @@
         "line": "Middle stump",
         "length": "Good length"
       },
-      "adjective": "Spin",
+      "adjectives": [],
       "fielding": [
         "Short leg/Silly point"
       ]
@@ -12014,7 +11983,7 @@
         "line": "Leg stump",
         "length": "Good length"
       },
-      "adjective": "Spin",
+      "adjectives": [],
       "fielding": [
         "Mid-wicket"
       ]
@@ -12030,7 +11999,7 @@
         "line": "Off stump",
         "length": "Full"
       },
-      "adjective": "Swing",
+      "adjectives": [],
       "fielding": [
         "Slip cordon"
       ]
@@ -12046,7 +12015,7 @@
         "line": "Off stump",
         "length": "Good length"
       },
-      "adjective": null,
+      "adjectives": [],
       "fielding": [
         "Slip cordon"
       ]
@@ -12062,7 +12031,7 @@
         "line": "Middle stump",
         "length": "Good length"
       },
-      "adjective": null,
+      "adjectives": [],
       "fielding": [
         "Mid-wicket"
       ]
@@ -12078,7 +12047,7 @@
         "line": "Middle stump",
         "length": "Good length"
       },
-      "adjective": null,
+      "adjectives": [],
       "fielding": [
         "Mid-wicket"
       ]
@@ -12094,7 +12063,7 @@
         "line": "Off stump",
         "length": "Good length"
       },
-      "adjective": "Pace",
+      "adjectives": [],
       "fielding": [
         "Gully/Point",
         "Slip cordon"
@@ -12111,7 +12080,7 @@
         "line": "Middle stump",
         "length": "Good length"
       },
-      "adjective": "Spin",
+      "adjectives": [],
       "fielding": [
         "Short leg/Silly point"
       ]
@@ -12127,7 +12096,9 @@
         "line": "Off stump",
         "length": "Full"
       },
-      "adjective": "Swing",
+      "adjectives": [
+        "Swing"
+      ],
       "fielding": [
         "Slip cordon"
       ]
@@ -12143,7 +12114,7 @@
         "line": "Middle stump",
         "length": "Good length"
       },
-      "adjective": "Spin",
+      "adjectives": [],
       "fielding": [
         "Short leg/Silly point"
       ]
@@ -12159,7 +12130,7 @@
         "line": "Off stump",
         "length": "Full"
       },
-      "adjective": "Cutter",
+      "adjectives": [],
       "fielding": [
         "Cover"
       ]
@@ -12175,7 +12146,7 @@
         "line": "Off stump",
         "length": "Good length"
       },
-      "adjective": "Spin",
+      "adjectives": [],
       "fielding": [
         "Cover"
       ]
@@ -12191,7 +12162,7 @@
         "line": "Off stump",
         "length": "Good length"
       },
-      "adjective": null,
+      "adjectives": [],
       "fielding": [
         "Slip cordon"
       ]
@@ -12207,7 +12178,7 @@
         "line": "Middle stump",
         "length": "Good length"
       },
-      "adjective": null,
+      "adjectives": [],
       "fielding": [
         "Mid-wicket"
       ]
@@ -12223,7 +12194,7 @@
         "line": "Middle stump",
         "length": "Short"
       },
-      "adjective": "Pace",
+      "adjectives": [],
       "fielding": [
         "Gully/Point"
       ]
@@ -12239,7 +12210,7 @@
         "line": "Leg stump",
         "length": "Good length"
       },
-      "adjective": null,
+      "adjectives": [],
       "fielding": [
         "Mid-wicket"
       ]
@@ -12255,7 +12226,7 @@
         "line": "Off stump",
         "length": "Good length"
       },
-      "adjective": null,
+      "adjectives": [],
       "fielding": [
         "Gully/Point"
       ]
@@ -12271,7 +12242,7 @@
         "line": "Middle stump",
         "length": "Good length"
       },
-      "adjective": "Spin",
+      "adjectives": [],
       "fielding": [
         "Short leg/Silly point",
         "Slip cordon"
@@ -12285,10 +12256,12 @@
       "tier": "Gold",
       "description": "Left-arm quick. Swings it, takes powerplay wickets. T20 WC 2024 leading wicket-taker.",
       "delivery": {
-        "line": "5th stump",
+        "line": "Outside off",
         "length": "Full"
       },
-      "adjective": "Swing",
+      "adjectives": [
+        "Swing"
+      ],
       "fielding": [
         "Slip cordon"
       ]
@@ -12304,7 +12277,9 @@
         "line": "Off stump",
         "length": "Good length"
       },
-      "adjective": "Seam",
+      "adjectives": [
+        "Seam"
+      ],
       "fielding": [
         "Gully/Point"
       ]
@@ -12320,7 +12295,7 @@
         "line": "Off stump",
         "length": "Good length"
       },
-      "adjective": "Spin",
+      "adjectives": [],
       "fielding": [
         "Slip cordon"
       ]
@@ -12336,7 +12311,7 @@
         "line": "Middle stump",
         "length": "Good length"
       },
-      "adjective": "Spin",
+      "adjectives": [],
       "fielding": [
         "Short leg/Silly point"
       ]
@@ -12352,7 +12327,7 @@
         "line": "Off stump",
         "length": "Good length"
       },
-      "adjective": "Seam",
+      "adjectives": [],
       "fielding": [
         "Gully/Point"
       ]
@@ -12368,7 +12343,7 @@
         "line": "Off stump",
         "length": "Good length"
       },
-      "adjective": null,
+      "adjectives": [],
       "fielding": [
         "Cover"
       ]
@@ -12384,7 +12359,7 @@
         "line": "Middle stump",
         "length": "Good length"
       },
-      "adjective": null,
+      "adjectives": [],
       "fielding": [
         "Mid-wicket"
       ]
@@ -12400,7 +12375,7 @@
         "line": "Off stump",
         "length": "Good length"
       },
-      "adjective": "Spin",
+      "adjectives": [],
       "fielding": [
         "Short leg/Silly point"
       ]
@@ -12416,7 +12391,7 @@
         "line": "Middle stump",
         "length": "Good length"
       },
-      "adjective": null,
+      "adjectives": [],
       "fielding": [
         "Mid-wicket"
       ]
@@ -12432,7 +12407,7 @@
         "line": "Off stump",
         "length": "Good length"
       },
-      "adjective": null,
+      "adjectives": [],
       "fielding": [
         "Slip cordon"
       ]
@@ -12445,10 +12420,12 @@
       "tier": "Elite",
       "description": "Left-arm quick. Swings it at pace. Ireland's best ever fast bowler.",
       "delivery": {
-        "line": "5th stump",
+        "line": "Outside off",
         "length": "Full"
       },
-      "adjective": "Swing",
+      "adjectives": [
+        "Swing"
+      ],
       "fielding": [
         "Slip cordon",
         "Cover"
@@ -12465,7 +12442,9 @@
         "line": "Off stump",
         "length": "Good length"
       },
-      "adjective": "Seam",
+      "adjectives": [
+        "Seam"
+      ],
       "fielding": [
         "Gully/Point"
       ]
@@ -12481,7 +12460,9 @@
         "line": "Off stump",
         "length": "Good length"
       },
-      "adjective": "Swing",
+      "adjectives": [
+        "Swing"
+      ],
       "fielding": [
         "Slip cordon"
       ]
@@ -12497,7 +12478,7 @@
         "line": "Middle stump",
         "length": "Good length"
       },
-      "adjective": "Spin",
+      "adjectives": [],
       "fielding": [
         "Short leg/Silly point"
       ]
@@ -12513,7 +12494,7 @@
         "line": "Off stump",
         "length": "Good length"
       },
-      "adjective": "Spin",
+      "adjectives": [],
       "fielding": [
         "Cover"
       ]
@@ -12529,7 +12510,7 @@
         "line": "Off stump",
         "length": "Good length"
       },
-      "adjective": "Pace",
+      "adjectives": [],
       "fielding": [
         "Gully/Point"
       ]
@@ -12545,7 +12526,7 @@
         "line": "Middle stump",
         "length": "Good length"
       },
-      "adjective": null,
+      "adjectives": [],
       "fielding": [
         "Mid-wicket"
       ]
@@ -12561,7 +12542,7 @@
         "line": "Off stump",
         "length": "Good length"
       },
-      "adjective": null,
+      "adjectives": [],
       "fielding": [
         "Slip cordon"
       ]
@@ -12577,7 +12558,7 @@
         "line": "Leg stump",
         "length": "Good length"
       },
-      "adjective": "Spin",
+      "adjectives": [],
       "fielding": [
         "Short leg/Silly point"
       ]
@@ -12593,7 +12574,7 @@
         "line": "Middle stump",
         "length": "Short"
       },
-      "adjective": "Pace",
+      "adjectives": [],
       "fielding": [
         "Gully/Point"
       ]
@@ -12609,7 +12590,7 @@
         "line": "Off stump",
         "length": "Good length"
       },
-      "adjective": null,
+      "adjectives": [],
       "fielding": [
         "Cover"
       ]
@@ -12669,7 +12650,15 @@
       "kind": "situation",
       "name": "Shuffle Across",
       "flavor": "The batsman shuffles across his stumps.",
-      "description": "Your batsman steps across to the off side, treating the bowler's line as one stump further toward leg on their card:\n- **Wide outside off → 5th stump**\n- **5th stump → Off stump**\n- **Off stump → Middle stump**\n- **Middle stump → Leg stump**\n- **Leg stump → Leg stump** (clamped — can't shuffle further)\n\nLength is unchanged. Inverse of Day 5 Pitch.",
+      "description": "Your batsman steps across to the off side, treating the bowler's line as one stump further toward leg on their card:\n- **Outside off → Off stump**\n- **Off stump → Middle stump**\n- **Middle stump → Leg stump**\n- **Leg stump → Leg stump** (clamped — can't shuffle further)\n\nLength is unchanged. Inverse of Day 5 Pitch.\n\n**Wide-call risk.** If the bowler delivered on **Leg stump** when Shuffle Across is played, the batter has shuffled past the line — the umpire calls a wide. +1 extra run, ball is re-bowled.",
+      "deck": "batting"
+    },
+    {
+      "id": "deep-in-crease",
+      "kind": "situation",
+      "name": "Deep in the Crease",
+      "flavor": "The batsman steps back, deep in his crease.",
+      "description": "Your batsman creates extra time by stepping back. The effective length shifts outward (toward the bowler):\n- **Good length → Short** (good length is met higher and earlier)\n- **Full → Good length** (full balls become drivable good-length deliveries)\n- **Short → wide call** (short balls bounce too high — auto-wide)\n\nThe bowler's line stays unchanged. Inverse of Trot Down.",
       "deck": "batting"
     },
     {
@@ -12718,6 +12707,14 @@
       "name": "Day 5 Pitch",
       "flavor": "The pitch is crumbling. The ball is doing things.",
       "description": "Your bowler's delivery line shifts **one line away from the batsman's body**:\n- Leg stump → Middle stump\n- Middle stump → Off stump\n- Off stump → 5th stump\n- 5th stump → Wide outside off\n- Wide outside off → Wide outside off (stays)\n\nThe length stays unchanged. The bowler's adjective and fielding still apply normally.",
+      "deck": "bowling"
+    },
+    {
+      "id": "biryani",
+      "kind": "situation",
+      "name": "Third Umpire Distracted by Biryani",
+      "flavor": "The third umpire's lunch arrived. Decisions get… liberal.",
+      "description": "A counter to extras. When played by the bowling side:\n- Any **No Ball** the batting side played has its effects **fully cancelled** — no extra run, no re-bowl, no wicket overturn.\n- Any **wide call** that would have happened (tier-based wide on Outside off, leg-side wide from Shuffle Across, Outside-off wide from Day 5 Pitch, Short auto-wide from Deep in the Crease) is converted to a **regular dot ball** — no extra run, ball counts.\n\nIf neither a No Ball was played nor a wide would have been called, this card is wasted.",
       "deck": "bowling"
     },
     {
