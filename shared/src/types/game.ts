@@ -50,9 +50,39 @@ export interface BallResult {
   finalOutcome: BallOutcome;
 }
 
+/**
+ * Each ResolutionStep represents one transformation applied during ball
+ * resolution (or a played card whose effect didn't fire — applied:false).
+ * The UI uses this list to drive the breakdown animation and tooltips.
+ */
+export type ResolutionStepKind =
+  | "old-school-cancel"
+  | "trot-down"
+  | "day-5-pitch"
+  | "switch-hit"
+  | "base-lookup"
+  | "invariable-bounce"
+  | "adjective"
+  | "fielding"
+  | "power-surge"
+  | "drs-review"
+  | "review-appeal"
+  | "mankad"
+  | "retired-out"
+  | "cramps";
+
 export interface ResolutionStep {
-  step: string; // human-readable label
+  kind: ResolutionStepKind;
+  /** Short label for inline display, e.g. "Seam adjective". */
+  label: string;
+  /** Plain-English explanation, suitable for a tooltip. */
   detail: string;
+  /** Outcome before this step ran (omitted for swap/cancel records). */
+  before?: BallOutcome;
+  /** Outcome after this step ran. */
+  after?: BallOutcome;
+  /** False when a played card was nullified (e.g. resistance blocked an adjective, Power Surge couldn't help a wicket). */
+  applied: boolean;
 }
 
 export type BallOutcome =

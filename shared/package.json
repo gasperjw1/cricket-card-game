@@ -12,6 +12,7 @@
   "scripts": {
     "build": "tsc",
     "typecheck": "tsc --noEmit",
+    "test": "node --import tsx --test --test-reporter=spec src/engine/resolve-ball.test.ts",
     "parse-cards": "tsx src/scripts/parse-cards.ts",
     "dev": "tsc --watch"
   },
