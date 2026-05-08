@@ -47,7 +47,7 @@ Some elite batters (like Kohli) could have a dual role (Opener/Middle Order) mak
 - [ ] Remaining 11 nations roster
 
 ## Backlog
-- [ ] Situation cards design
+- [x] Situation cards design (11 cards: 5 batting, 5 bowling, 1 shared)
 - [ ] Deck building rules and constraints
 - [ ] Coin toss flow
 - [ ] UI/UX design for card game
