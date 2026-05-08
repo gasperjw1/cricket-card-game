@@ -577,68 +577,23 @@
       "resistances": []
     },
     {
-      "id": "ishan-kishan-bat",
+      "id": "sai-sudharsan-bat",
       "kind": "batsman",
-      "name": "Ishan Kishan",
+      "name": "Sai Sudharsan",
       "nation": "India",
       "tier": "Bronze",
-      "description": "Aggressive left-handed opener. Goes hard from ball one. Gets bowled playing across the line.",
-      "strengths": [
-        {
-          "zone": {
-            "line": "Middle stump",
-            "length": "Short"
-          },
-          "outcome": {
-            "type": "runs",
-            "value": 4,
-            "shot": "pull"
-          }
-        }
-      ],
+      "description": "Tamil Nadu left-handed opener. 527 IPL runs in 2024 for GT. Technically correct, picks length well — but lacks the gear-shift to clear ropes consistently. T20I debut in 2024.",
+      "strengths": [],
       "neutrals": [
         {
           "zone": {
-            "line": "Leg stump",
-            "length": "Full"
+            "line": "Off stump",
+            "length": "Good length"
           },
           "outcome": {
             "type": "runs",
             "value": 2,
-            "shot": "sweep"
-          }
-        },
-        {
-          "zone": {
-            "line": "Leg stump",
-            "length": "Good length"
-          },
-          "outcome": {
-            "type": "runs",
-            "value": 1,
-            "shot": "nudge"
-          }
-        }
-      ],
-      "weaknesses": [
-        {
-          "zone": {
-            "line": "Middle stump",
-            "length": "Full"
-          },
-          "outcome": {
-            "type": "wicket",
-            "mode": "bowled across the line"
-          }
-        },
-        {
-          "zone": {
-            "line": "Middle stump",
-            "length": "Good length"
-          },
-          "outcome": {
-            "type": "wicket",
-            "mode": "LBW playing across"
+            "shot": "push"
           }
         },
         {
@@ -647,34 +602,11 @@
             "length": "Full"
           },
           "outcome": {
-            "type": "wicket",
-            "mode": "mis-hit to mid-off"
-          }
-        }
-      ],
-      "resistances": []
-    },
-    {
-      "id": "rahul-tewatia-bat",
-      "kind": "batsman",
-      "name": "Rahul Tewatia",
-      "nation": "India",
-      "tier": "Bronze",
-      "description": "IPL leg-side slogger. Famous 5 sixes vs Cottrell. Completely leg-side dominant.",
-      "strengths": [
-        {
-          "zone": {
-            "line": "Leg stump",
-            "length": "Full"
-          },
-          "outcome": {
             "type": "runs",
-            "value": 6,
-            "shot": "slog"
+            "value": 1,
+            "shot": "drive"
           }
-        }
-      ],
-      "neutrals": [
+        },
         {
           "zone": {
             "line": "Leg stump",
@@ -682,23 +614,22 @@
           },
           "outcome": {
             "type": "runs",
-            "value": 2,
-            "shot": "work"
-          }
-        },
-        {
-          "zone": {
-            "line": "Leg stump",
-            "length": "Short"
-          },
-          "outcome": {
-            "type": "runs",
             "value": 1,
-            "shot": "pull"
+            "shot": "flick"
           }
         }
       ],
       "weaknesses": [
+        {
+          "zone": {
+            "line": "Middle stump",
+            "length": "Short"
+          },
+          "outcome": {
+            "type": "wicket",
+            "mode": "fends to short leg"
+          }
+        },
         {
           "zone": {
             "line": "Middle stump",
@@ -711,12 +642,35 @@
         },
         {
           "zone": {
-            "line": "Off stump",
-            "length": "Good length"
+            "line": "Outside off",
+            "length": "Short"
           },
           "outcome": {
             "type": "wicket",
-            "mode": "beaten"
+            "mode": "caught at point"
+          }
+        }
+      ],
+      "resistances": []
+    },
+    {
+      "id": "rahul-tewatia-bat",
+      "kind": "batsman",
+      "name": "Rahul Tewatia",
+      "nation": "India",
+      "tier": "Bronze",
+      "description": "RR/GT lower-order finisher. Famous 5 sixes vs Cottrell in IPL 2020. Slogs to leg, but inconsistent — hits or misses with little in between. No real T20I career.",
+      "strengths": [],
+      "neutrals": [
+        {
+          "zone": {
+            "line": "Leg stump",
+            "length": "Full"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 2,
+            "shot": "slog"
           }
         },
         {
@@ -725,8 +679,52 @@
             "length": "Short"
           },
           "outcome": {
+            "type": "runs",
+            "value": 1,
+            "shot": "pull"
+          }
+        },
+        {
+          "zone": {
+            "line": "Leg stump",
+            "length": "Good length"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 1,
+            "shot": "work"
+          }
+        }
+      ],
+      "weaknesses": [
+        {
+          "zone": {
+            "line": "Off stump",
+            "length": "Good length"
+          },
+          "outcome": {
             "type": "wicket",
-            "mode": "top edge caught"
+            "mode": "edge to slip"
+          }
+        },
+        {
+          "zone": {
+            "line": "Middle stump",
+            "length": "Good length"
+          },
+          "outcome": {
+            "type": "wicket",
+            "mode": "bowled"
+          }
+        },
+        {
+          "zone": {
+            "line": "Outside off",
+            "length": "Full"
+          },
+          "outcome": {
+            "type": "wicket",
+            "mode": "mistimed drive caught at cover"
           }
         }
       ],
@@ -738,8 +736,9 @@
       "name": "Deepak Hooda",
       "nation": "India",
       "tier": "Bronze",
-      "description": "Domestic power hitter, handy off-spin. Hits through the line but technically limited.",
-      "strengths": [
+      "description": "Off-spin all-rounder. T20Is sporadically — doesn't quite make the senior squad consistently. Hits through the line but technically limited; struggles outside off.",
+      "strengths": [],
+      "neutrals": [
         {
           "zone": {
             "line": "Middle stump",
@@ -747,12 +746,87 @@
           },
           "outcome": {
             "type": "runs",
-            "value": 4,
-            "shot": "loft"
+            "value": 2,
+            "shot": "drive"
+          }
+        },
+        {
+          "zone": {
+            "line": "Middle stump",
+            "length": "Good length"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 1,
+            "shot": "push"
+          }
+        },
+        {
+          "zone": {
+            "line": "Leg stump",
+            "length": "Short"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 1,
+            "shot": "pull"
           }
         }
       ],
+      "weaknesses": [
+        {
+          "zone": {
+            "line": "Off stump",
+            "length": "Good length"
+          },
+          "outcome": {
+            "type": "wicket",
+            "mode": "edge to slip"
+          }
+        },
+        {
+          "zone": {
+            "line": "Leg stump",
+            "length": "Good length"
+          },
+          "outcome": {
+            "type": "wicket",
+            "mode": "LBW playing across"
+          }
+        },
+        {
+          "zone": {
+            "line": "Outside off",
+            "length": "Full"
+          },
+          "outcome": {
+            "type": "wicket",
+            "mode": "caught at cover"
+          }
+        }
+      ],
+      "resistances": []
+    },
+    {
+      "id": "venkatesh-iyer-bat",
+      "kind": "batsman",
+      "name": "Venkatesh Iyer",
+      "nation": "India",
+      "tier": "Bronze",
+      "description": "KKR opener, tall left-hander. Big-hitting on his day but inconsistent. Played a few T20Is in 2021-22, has fallen out of the picture since.",
+      "strengths": [],
       "neutrals": [
+        {
+          "zone": {
+            "line": "Middle stump",
+            "length": "Full"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 1,
+            "shot": "push"
+          }
+        },
         {
           "zone": {
             "line": "Leg stump",
@@ -760,19 +834,19 @@
           },
           "outcome": {
             "type": "runs",
-            "value": 2,
-            "shot": "nudge"
+            "value": 1,
+            "shot": "work"
           }
         },
         {
           "zone": {
-            "line": "Leg stump",
-            "length": "Full"
+            "line": "Middle stump",
+            "length": "Short"
           },
           "outcome": {
             "type": "runs",
-            "value": 1,
-            "shot": "flick"
+            "value": 2,
+            "shot": "pull"
           }
         }
       ],
@@ -790,99 +864,21 @@
         {
           "zone": {
             "line": "Off stump",
-            "length": "Short"
-          },
-          "outcome": {
-            "type": "wicket",
-            "mode": "fends to gully"
-          }
-        },
-        {
-          "zone": {
-            "line": "Off stump",
             "length": "Full"
           },
           "outcome": {
             "type": "wicket",
-            "mode": "drives in the air to cover"
-          }
-        }
-      ],
-      "resistances": []
-    },
-    {
-      "id": "venkatesh-iyer-bat",
-      "kind": "batsman",
-      "name": "Venkatesh Iyer",
-      "nation": "India",
-      "tier": "Bronze",
-      "description": "Tall left-hander. Lofts to the leg side. Technically limited against back of a length and outside off.",
-      "strengths": [
-        {
-          "zone": {
-            "line": "Leg stump",
-            "length": "Full"
-          },
-          "outcome": {
-            "type": "runs",
-            "value": 4,
-            "shot": "loft over mid-wicket"
-          }
-        }
-      ],
-      "neutrals": [
-        {
-          "zone": {
-            "line": "Middle stump",
-            "length": "Good length"
-          },
-          "outcome": {
-            "type": "runs",
-            "value": 2,
-            "shot": "push"
+            "mode": "mishit caught at mid-off"
           }
         },
         {
           "zone": {
-            "line": "Middle stump",
-            "length": "Full"
-          },
-          "outcome": {
-            "type": "runs",
-            "value": 1,
-            "shot": "drive"
-          }
-        }
-      ],
-      "weaknesses": [
-        {
-          "zone": {
-            "line": "Middle stump",
+            "line": "Outside off",
             "length": "Short"
           },
           "outcome": {
             "type": "wicket",
-            "mode": "caught fending at short leg"
-          }
-        },
-        {
-          "zone": {
-            "line": "Off stump",
-            "length": "Good length"
-          },
-          "outcome": {
-            "type": "wicket",
-            "mode": "plays and misses"
-          }
-        },
-        {
-          "zone": {
-            "line": "Off stump",
-            "length": "Short"
-          },
-          "outcome": {
-            "type": "wicket",
-            "mode": "top edge to keeper"
+            "mode": "top edge caught"
           }
         }
       ],
@@ -10570,9 +10566,9 @@
       "name": "Harshal Patel",
       "nation": "India",
       "tier": "Bronze",
-      "description": "IPL death bowler. Slower ball cutters. Effective domestically, limited T20I record.",
+      "description": "IPL death-overs specialist. Famous for cutters, but Bronze bowlers carry no specific variation — he's just a back-of-length pacer here, hoping the batter mistimes.",
       "delivery": {
-        "line": "Off stump",
+        "line": "Outside off",
         "length": "Good length"
       },
       "adjectives": [],
@@ -10581,19 +10577,19 @@
       ]
     },
     {
-      "id": "axar-patel-bowl",
+      "id": "mayank-markande-bowl",
       "kind": "bowler",
-      "name": "Axar Patel",
+      "name": "Mayank Markande",
       "nation": "India",
       "tier": "Bronze",
-      "description": "Economical left-arm orthodox. Bowls middle stump, hard to score off, rarely takes wickets in T20s.",
+      "description": "Leg-spinner, 1 T20I cap (2018). IPL with SRH/MI/RR. Stock leg-break attacking the leg-stump line.",
       "delivery": {
-        "line": "Middle stump",
+        "line": "Leg stump",
         "length": "Good length"
       },
       "adjectives": [],
       "fielding": [
-        "Mid-wicket"
+        "Short leg/Silly point"
       ]
     },
     {
@@ -10602,9 +10598,9 @@
       "name": "Umran Malik",
       "nation": "India",
       "tier": "Bronze",
-      "description": "Raw pace, 150+ kph. Bowls short and fast. Thrilling but erratic.",
+      "description": "Raw pace, 150+ kph. Short of length specialist. Thrilling but erratic — limited T20Is, IPL-only most of his career.",
       "delivery": {
-        "line": "Middle stump",
+        "line": "Off stump",
         "length": "Short"
       },
       "adjectives": [],
@@ -10618,9 +10614,9 @@
       "name": "Ravi Bishnoi",
       "nation": "India",
       "tier": "Bronze",
-      "description": "Young legbreak bowler. Bowls leg stump, gets some turn. Developing.",
+      "description": "Leg-break bowler with quicker pace through the air. Has played T20Is but currently fringe. Attacking line at the stumps.",
       "delivery": {
-        "line": "Leg stump",
+        "line": "Middle stump",
         "length": "Good length"
       },
       "adjectives": [],

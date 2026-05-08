@@ -244,17 +244,19 @@ function parseFielding(raw: string): FieldingRegion[] {
 
 function normalizeFieldingRegion(raw: string): FieldingRegion | null {
   const lower = raw.toLowerCase();
+  // Order matters: more-specific phrases first so "Silly point" doesn't
+  // match the generic "point" check (which would map to Gully/Point).
   if (lower.includes("slip cordon") || lower === "slip" || lower === "slips")
     return "Slip cordon";
+  if (lower.includes("short leg") || lower.includes("silly point"))
+    return "Short leg/Silly point";
+  if (lower.includes("fine leg") || lower.includes("leg slip"))
+    return "Fine leg/Leg slip";
   if (lower.includes("gully") || lower.includes("point"))
     return "Gully/Point";
   if (lower.includes("cover")) return "Cover";
   if (lower.includes("mid-wicket") || lower.includes("midwicket"))
     return "Mid-wicket";
-  if (lower.includes("fine leg") || lower.includes("leg slip"))
-    return "Fine leg/Leg slip";
-  if (lower.includes("short leg") || lower.includes("silly point"))
-    return "Short leg/Silly point";
   return null;
 }
 

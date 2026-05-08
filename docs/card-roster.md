@@ -126,59 +126,55 @@ Everything not listed = dot ball.
 
 ---
 
-### BRONZE — Ishan Kishan
-*Aggressive left-handed opener. Goes hard from ball one. Gets bowled playing across the line.*
-- **Strengths:**
-  - Short middle stump → pull for 4
+### BRONZE — Sai Sudharsan
+*Tamil Nadu left-handed opener. 527 IPL runs in 2024 for GT. Technically correct, picks length well — but lacks the gear-shift to clear ropes consistently. T20I debut in 2024.*
 - **Neutrals:**
-  - Full leg stump → sweep for 2
-  - Good length leg stump → nudge for 1
+  - Good length off stump → push for 2
+  - Full off stump → drive for 1
+  - Good length leg stump → flick for 1
 - **Weaknesses:**
-  - Full middle stump → bowled across the line
-  - Good length middle stump → LBW playing across
-  - Full off stump → mis-hit to mid-off
+  - Short middle stump → fends to short leg
+  - Good length middle stump → bowled through the gate
+  - Short Outside off → caught at point
 
 ---
 
 ### BRONZE — Rahul Tewatia
-*IPL leg-side slogger. Famous 5 sixes vs Cottrell. Completely leg-side dominant.*
-- **Strengths:**
-  - Full leg stump → slog for 6
+*RR/GT lower-order finisher. Famous 5 sixes vs Cottrell in IPL 2020. Slogs to leg, but inconsistent — hits or misses with little in between. No real T20I career.*
 - **Neutrals:**
-  - Good length leg stump → work for 2
-  - Short leg stump → pull for 1
+  - Full leg stump → slog for 2
+  - Short middle stump → pull for 1
+  - Good length leg stump → work for 1
 - **Weaknesses:**
-  - Good length middle stump → bowled through the gate
-  - Good length off stump → beaten
-  - Short middle stump → top edge caught
+  - Good length off stump → edge to slip
+  - Good length middle stump → bowled
+  - Full Outside off → mistimed drive caught at cover
 
 ---
 
 ### BRONZE — Deepak Hooda
-*Domestic power hitter, handy off-spin. Hits through the line but technically limited.*
-- **Strengths:**
-  - Full middle stump → loft for 4
+*Off-spin all-rounder. T20Is sporadically — doesn't quite make the senior squad consistently. Hits through the line but technically limited; struggles outside off.*
 - **Neutrals:**
-  - Good length leg stump → nudge for 2
-  - Full leg stump → flick for 1
+  - Full middle stump → drive for 2
+  - Good length middle stump → push for 1
+  - Short leg stump → pull for 1
 - **Weaknesses:**
   - Good length off stump → edge to slip
-  - Short off stump → fends to gully
-  - Full off stump → drives in the air to cover
+  - Good length leg stump → LBW playing across
+  - Full Outside off → caught at cover
 
 ---
 
 ### BRONZE — Venkatesh Iyer
-*Tall left-hander. Lofts to the leg side. Technically limited against back of a length and outside off.*
-- **Strengths:**
-  - Full leg stump → loft over mid-wicket for 4
+*KKR opener, tall left-hander. Big-hitting on his day but inconsistent. Played a few T20Is in 2021-22, has fallen out of the picture since.*
 - **Neutrals:**
-  - Good length middle stump → push for 2
-  - Full middle stump → drive for 1
+  - Full middle stump → push for 1
+  - Good length leg stump → work for 1
+  - Short middle stump → pull for 2
 - **Weaknesses:**
-  - Short middle stump → caught fending at short leg
-  - Good length off stump → plays and misses
-  - Short off stump → top edge to keeper
+  - Good length off stump → edge to slip
+  - Full off stump → mishit caught at mid-off
+  - Short Outside off → top edge caught
 
 ---
 
@@ -245,33 +241,30 @@ Everything not listed = dot ball.
 ---
 
 ### BRONZE — Harshal Patel
-*IPL death bowler. Slower ball cutters. Effective domestically, limited T20I record.*
-- **Delivery:** Good length off stump
-- **Adjective:** Cutter
+*IPL death-overs specialist. Famous for cutters, but Bronze bowlers carry no specific variation — he's just a back-of-length pacer here, hoping the batter mistimes.*
+- **Delivery:** Good length Outside off
 - **Fielding:** Cover
 
 ---
 
-### BRONZE — Axar Patel
-*Economical left-arm orthodox. Bowls middle stump, hard to score off, rarely takes wickets in T20s.*
-- **Delivery:** Good length middle stump
-- **Fielding:** Mid-wicket
+### BRONZE — Mayank Markande
+*Leg-spinner, 1 T20I cap (2018). IPL with SRH/MI/RR. Stock leg-break attacking the leg-stump line.*
+- **Delivery:** Good length leg stump
+- **Fielding:** Short leg/Silly point
 
 ---
 
 ### BRONZE — Umran Malik
-*Raw pace, 150+ kph. Bowls short and fast. Thrilling but erratic.*
-- **Delivery:** Short middle stump
-- **Adjective:** Pace
+*Raw pace, 150+ kph. Short of length specialist. Thrilling but erratic — limited T20Is, IPL-only most of his career.*
+- **Delivery:** Short off stump
 - **Fielding:** Gully/Point
 
 ---
 
 ### BRONZE — Ravi Bishnoi
-*Young legbreak bowler. Bowls leg stump, gets some turn. Developing.*
-- **Delivery:** Good length leg stump
-- **Adjective:** Spin (legspin)
-- **Fielding:** Short leg
+*Leg-break bowler with quicker pace through the air. Has played T20Is but currently fringe. Attacking line at the stumps.*
+- **Delivery:** Good length middle stump
+- **Fielding:** Short leg/Silly point
 
 ---
 
