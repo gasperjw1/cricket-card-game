@@ -80,9 +80,9 @@ export function startInnings1(match: ServerMatch, cb: InningsCallbacks): void {
   match.currentInnings = 1;
   match.phase = "innings";
   dealOpeningHands(match);
+  startBallTimer(match, cb);
   cb.broadcastState(match);
   pushPrivateViews(match, cb);
-  startBallTimer(match, cb);
 }
 
 /**
@@ -122,6 +122,7 @@ export function submitBallSelection(
 
 function startBallTimer(match: ServerMatch, cb: InningsCallbacks): void {
   clearBallTimer(match);
+  match.currentBallDeadlineEpochMs = Date.now() + TURN_TIMER_SECONDS * 1000;
   const t = setTimeout(() => {
     resolveBallTurn(match, cb, /* timedOut */ true);
   }, TURN_TIMER_SECONDS * 1000);
@@ -134,6 +135,7 @@ function clearBallTimer(match: ServerMatch): void {
     clearTimeout(t);
     match.timers.delete(BALL_TIMER_KEY);
   }
+  match.currentBallDeadlineEpochMs = null;
 }
 
 function resolveBallTurn(
@@ -407,10 +409,11 @@ function advanceAfterBall(
     return;
   }
 
-  // Continue: broadcast updated state and start next ball timer.
+  // Continue: set the new ball's deadline, then broadcast state so clients
+  // receive it in a single update (otherwise the countdown flashes to 0).
+  startBallTimer(match, cb);
   cb.broadcastState(match);
   pushPrivateViews(match, cb);
-  startBallTimer(match, cb);
 }
 
 function transitionToInnings2(match: ServerMatch, cb: InningsCallbacks): void {
@@ -438,9 +441,9 @@ function transitionToInnings2(match: ServerMatch, cb: InningsCallbacks): void {
     refillHand(decks, activeDeckKey(match, slot));
     applyAntiClog(decks, activeDeckKey(match, slot));
   }
+  startBallTimer(match, cb);
   cb.broadcastState(match);
   pushPrivateViews(match, cb);
-  startBallTimer(match, cb);
 }
 
 function endMatch(match: ServerMatch, cb: InningsCallbacks): void {

@@ -18,13 +18,18 @@ export function CoinTossScreen({ client }: Props) {
 
   const [showFlipAnim, setShowFlipAnim] = useState(false);
 
-  // Trigger ~1.5s flip animation when a fresh result event arrives.
+  // Trigger ~1.5s flip animation when a fresh result event arrives. Only
+  // play when the result actually matches the match's current flip — guards
+  // against a stale coinTossResult from a previous match leaking through.
   useEffect(() => {
     if (!coinTossResult) return;
+    if (!matchState?.coinToss) return;
+    if (matchState.coinToss.flip !== coinTossResult.flip) return;
+    if (matchState.coinToss.stage !== "choosing" && matchState.coinToss.stage !== "complete") return;
     setShowFlipAnim(true);
     const id = setTimeout(() => setShowFlipAnim(false), COIN_TOSS_FLIP_VISUAL_MS);
     return () => clearTimeout(id);
-  }, [coinTossResult?.receivedAt]);
+  }, [coinTossResult?.receivedAt, matchState?.coinToss?.flip, matchState?.coinToss?.stage]);
 
   const ct = matchState.coinToss;
   const opponentSlot: PlayerSlot = mySlot === "A" ? "B" : "A";

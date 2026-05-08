@@ -122,6 +122,8 @@ export interface PublicMatchState {
   innings1: InningsState | null;
   innings2: InningsState | null;
   coinToss: CoinTossState | null;
+  /** Epoch-ms deadline for the active ball's submit timer; null when not awaiting selections. */
+  currentBallDeadlineEpochMs: number | null;
   result: MatchResult | null;
 }
 

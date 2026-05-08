@@ -47,6 +47,8 @@ export interface ServerMatch {
   currentInnings: 1 | 2 | null;
   /** Selections held while we wait for both players to lock in. */
   pendingSelections: { A: BallSelection | null; B: BallSelection | null };
+  /** Epoch-ms deadline for the active ball's submit timer; null when not awaiting selections. */
+  currentBallDeadlineEpochMs: number | null;
   result: MatchResult | null;
   /**
    * Per-match scheduled timeouts keyed by name (e.g. "coin-countdown",
@@ -110,6 +112,7 @@ export class MatchRegistry {
       innings2: null,
       currentInnings: null,
       pendingSelections: { A: null, B: null },
+      currentBallDeadlineEpochMs: null,
       result: null,
       timers: new Map(),
     };
@@ -279,6 +282,7 @@ export class MatchRegistry {
       innings1: match.innings1,
       innings2: match.innings2,
       coinToss: match.coinToss,
+      currentBallDeadlineEpochMs: match.currentBallDeadlineEpochMs,
       result: match.result,
     };
   }
