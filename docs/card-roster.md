@@ -36,32 +36,32 @@ Everything not listed = dot ball.
 ---
 
 ### GOLD — Rohit Sharma
-*Lofted straight drives. Pulls off the front foot from good length. Devastating flicks.*
+*Lofted straight drives. Pulls off the front foot from good length. Stronger on the leg side; vulnerable to the off-stump fishing line. Reads pace easily; struggles against sharp drift and the carrom ball.*
 - **Strengths:**
   - Full middle stump → lofted straight drive for 6
   - Good length middle stump → pull for 4
-  - Full leg stump → flick for 4
 - **Neutrals:**
-  - Good length off stump → push for 2
-  - Wide outside off full → drive for 1
+  - Full leg stump → flick for 2
+  - Good length leg stump → work for 1
 - **Weaknesses:**
   - Good length off stump → edge to slip
-- **Resistances:** Spin
+  - Full Outside off → edge to keeper
+- **Resistances:** Swing, Seam, Slower, Topspin
 
 ---
 
 ### GOLD — Suryakumar Yadav
-*360-degree T20 hitter. Scoops, ramps, reverse sweeps. Unorthodox and unpredictable.*
+*World #1 T20I batter. 360-degree hitter — scoops, ramps, reverse sweeps. Eats spin alive in the middle overs. Sometimes leaves a gap going across; vulnerable to a sharp seamer angling back in.*
 - **Strengths:**
   - Full leg stump → scoop for 6
   - Short middle stump → ramp for 4
-  - Good length off stump → inside-out drive for 4
 - **Neutrals:**
   - Full off stump → drive for 2
   - Good length leg stump → flick for 1
 - **Weaknesses:**
   - Good length middle stump → bowled through the gate
-- **Resistances:** Cutter
+  - Good length off stump → edge to slip
+- **Resistances:** Cutter, Slower, Topspin, Drift, Googly
 
 ---
 
@@ -203,17 +203,17 @@ Everything not listed = dot ball.
 ---
 
 ### GOLD — Kuldeep Yadav
-*Good length off stump wrist-spin. Sharp turn, gets edges and LBWs. Middle overs wicket-taker.*
+*Left-arm wrist-spinner. Stock ball is the leg-spinner; the chinaman googly is hard to read and is his signature wicket-taking variation. Middle-overs wicket-taker.*
 - **Delivery:** Good length off stump
-- **Adjective:** Spin (left-arm wrist spin)
+- **Adjective:** Googly
 - **Fielding:** Slip cordon
 
 ---
 
 ### GOLD — Arshdeep Singh
-*Full 5th stump swinging in from left-arm angle. Death overs specialist.*
-- **Delivery:** Full 5th stump
-- **Adjective:** Swing (inswing, left-arm)
+*Left-arm pacer. Full Outside off line, in-swing back into the right-hander from the natural left-arm angle. Powerplay swing specialist who also bowls death overs.*
+- **Delivery:** Full Outside off
+- **Adjective:** Swing
 - **Fielding:** Slip cordon
 
 ---

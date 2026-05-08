@@ -93,7 +93,7 @@
       "name": "Rohit Sharma",
       "nation": "India",
       "tier": "Gold",
-      "description": "Lofted straight drives. Pulls off the front foot from good length. Devastating flicks.",
+      "description": "Lofted straight drives. Pulls off the front foot from good length. Stronger on the leg side; vulnerable to the off-stump fishing line. Reads pace easily; struggles against sharp drift and the carrom ball.",
       "strengths": [
         {
           "zone": {
@@ -116,7 +116,9 @@
             "value": 4,
             "shot": "pull"
           }
-        },
+        }
+      ],
+      "neutrals": [
         {
           "zone": {
             "line": "Leg stump",
@@ -124,32 +126,19 @@
           },
           "outcome": {
             "type": "runs",
-            "value": 4,
-            "shot": "flick"
-          }
-        }
-      ],
-      "neutrals": [
-        {
-          "zone": {
-            "line": "Off stump",
-            "length": "Good length"
-          },
-          "outcome": {
-            "type": "runs",
             "value": 2,
-            "shot": "push"
+            "shot": "flick"
           }
         },
         {
           "zone": {
-            "line": "Outside off",
-            "length": "Full"
+            "line": "Leg stump",
+            "length": "Good length"
           },
           "outcome": {
             "type": "runs",
             "value": 1,
-            "shot": "drive"
+            "shot": "work"
           }
         }
       ],
@@ -163,9 +152,24 @@
             "type": "wicket",
             "mode": "edge to slip"
           }
+        },
+        {
+          "zone": {
+            "line": "Outside off",
+            "length": "Full"
+          },
+          "outcome": {
+            "type": "wicket",
+            "mode": "edge to keeper"
+          }
         }
       ],
-      "resistances": []
+      "resistances": [
+        "Swing",
+        "Seam",
+        "Slower",
+        "Topspin"
+      ]
     },
     {
       "id": "suryakumar-yadav-bat",
@@ -173,7 +177,7 @@
       "name": "Suryakumar Yadav",
       "nation": "India",
       "tier": "Gold",
-      "description": "360-degree T20 hitter. Scoops, ramps, reverse sweeps. Unorthodox and unpredictable.",
+      "description": "World #1 T20I batter. 360-degree hitter — scoops, ramps, reverse sweeps. Eats spin alive in the middle overs. Sometimes leaves a gap going across; vulnerable to a sharp seamer angling back in.",
       "strengths": [
         {
           "zone": {
@@ -195,17 +199,6 @@
             "type": "runs",
             "value": 4,
             "shot": "ramp"
-          }
-        },
-        {
-          "zone": {
-            "line": "Off stump",
-            "length": "Good length"
-          },
-          "outcome": {
-            "type": "runs",
-            "value": 4,
-            "shot": "inside-out drive"
           }
         }
       ],
@@ -243,10 +236,24 @@
             "type": "wicket",
             "mode": "bowled through the gate"
           }
+        },
+        {
+          "zone": {
+            "line": "Off stump",
+            "length": "Good length"
+          },
+          "outcome": {
+            "type": "wicket",
+            "mode": "edge to slip"
+          }
         }
       ],
       "resistances": [
-        "Cutter"
+        "Cutter",
+        "Slower",
+        "Topspin",
+        "Drift",
+        "Googly"
       ]
     },
     {
@@ -10474,12 +10481,14 @@
       "name": "Kuldeep Yadav",
       "nation": "India",
       "tier": "Gold",
-      "description": "Good length off stump wrist-spin. Sharp turn, gets edges and LBWs. Middle overs wicket-taker.",
+      "description": "Left-arm wrist-spinner. Stock ball is the leg-spinner; the chinaman googly is hard to read and is his signature wicket-taking variation. Middle-overs wicket-taker.",
       "delivery": {
         "line": "Off stump",
         "length": "Good length"
       },
-      "adjectives": [],
+      "adjectives": [
+        "Googly"
+      ],
       "fielding": [
         "Slip cordon"
       ]
@@ -10490,7 +10499,7 @@
       "name": "Arshdeep Singh",
       "nation": "India",
       "tier": "Gold",
-      "description": "Full 5th stump swinging in from left-arm angle. Death overs specialist.",
+      "description": "Left-arm pacer. Full Outside off line, in-swing back into the right-hander from the natural left-arm angle. Powerplay swing specialist who also bowls death overs.",
       "delivery": {
         "line": "Outside off",
         "length": "Full"
