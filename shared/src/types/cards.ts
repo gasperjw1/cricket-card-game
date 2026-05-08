@@ -90,6 +90,8 @@ export type SituationEffectId =
   | "retired-out"
   | "switch-hit"
   | "trot-down"
+  | "no-ball"
+  | "shuffle-across"
   | "mankad"
   | "review-appeal"
   | "cramps"

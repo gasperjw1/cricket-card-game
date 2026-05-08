@@ -48,6 +48,12 @@ export interface BallResult {
   bowlingSelection: RevealedSelection;
   resolutionSteps: ResolutionStep[];
   finalOutcome: BallOutcome;
+  /** Free runs (No Ball / Wide) added on top of finalOutcome. Default 0. */
+  extraRuns: number;
+  /** Why extras were awarded, if any. */
+  extrasNote: string | null;
+  /** True for no-ball or wide — this delivery doesn't count against the innings ball total. */
+  rebowled: boolean;
 }
 
 /**
@@ -60,6 +66,7 @@ export type ResolutionStepKind =
   | "trot-down"
   | "day-5-pitch"
   | "switch-hit"
+  | "shuffle-across"
   | "base-lookup"
   | "invariable-bounce"
   | "adjective"
@@ -69,7 +76,9 @@ export type ResolutionStepKind =
   | "review-appeal"
   | "mankad"
   | "retired-out"
-  | "cramps";
+  | "cramps"
+  | "no-ball"
+  | "wide";
 
 export interface ResolutionStep {
   kind: ResolutionStepKind;

@@ -468,6 +468,8 @@ const SITUATION_NAME_TO_ID: Record<string, SituationEffectId> = {
   "Retired Out": "retired-out",
   "Switch Hit": "switch-hit",
   "Trot Down": "trot-down",
+  "No Ball": "no-ball",
+  "Shuffle Across": "shuffle-across",
   Mankad: "mankad",
   "Review Appeal": "review-appeal",
   Cramps: "cramps",
@@ -576,8 +578,8 @@ function main(): void {
   if (bowlers.length !== 132) {
     throw new Error(`Expected 132 bowlers, got ${bowlers.length}`);
   }
-  if (situations.length !== 12) {
-    throw new Error(`Expected 12 situation cards (incl. Old School split), got ${situations.length}`);
+  if (situations.length !== 14) {
+    throw new Error(`Expected 14 situation cards (7 batting + 5 bowling + 2 Old School variants), got ${situations.length}`);
   }
 
   const roster: CardRoster = { batsmen, bowlers, situations };

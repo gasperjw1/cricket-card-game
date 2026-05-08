@@ -12657,6 +12657,22 @@
       "deck": "batting"
     },
     {
+      "id": "no-ball",
+      "kind": "situation",
+      "name": "No Ball",
+      "flavor": "Foot fault! The umpire's called it!",
+      "description": "The bowler oversteps the crease. This delivery:\n- **Cancels any wicket** — if the result was a wicket, it becomes a dot ball.\n- **+1 run** to the batting team (the no-ball extra).\n- **Re-bowled** — this delivery doesn't count against the innings ball total.\n\nThe runs from the actual outcome (e.g. a 4 or 6 if the batter still hit it) ALSO stand and are added on top of the +1 extra.",
+      "deck": "batting"
+    },
+    {
+      "id": "shuffle-across",
+      "kind": "situation",
+      "name": "Shuffle Across",
+      "flavor": "The batsman shuffles across his stumps.",
+      "description": "Your batsman steps across to the off side, treating the bowler's line as one stump further toward leg on their card:\n- **Wide outside off → 5th stump**\n- **5th stump → Off stump**\n- **Off stump → Middle stump**\n- **Middle stump → Leg stump**\n- **Leg stump → Leg stump** (clamped — can't shuffle further)\n\nLength is unchanged. Inverse of Day 5 Pitch.",
+      "deck": "batting"
+    },
+    {
       "id": "old-school-batting",
       "kind": "situation",
       "name": "Old School Cricket Only",

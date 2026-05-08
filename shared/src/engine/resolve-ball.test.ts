@@ -410,3 +410,156 @@ describe("DRS then Review Appeal", () => {
     assert.equal(r.finalOutcome.type, "wicket");
   });
 });
+
+// ─── No Ball ───
+
+describe("No Ball", () => {
+  it("overturns a wicket to a dot, +1 extra, ball re-bowled", () => {
+    const r = resolveBall({
+      batsman: makeBatter(),
+      bowler: makeBowler({
+        delivery: { line: "5th stump", length: "Full" },
+        fielding: [],
+      }),
+      battingSituation: sit("no-ball", "batting"),
+      bowlingSituation: null,
+    });
+    assert.equal(r.finalOutcome.type, "dot");
+    assert.equal(r.extraRuns, 1);
+    assert.equal(r.rebowled, true);
+    assert.equal(r.extrasNote, "no-ball");
+  });
+
+  it("preserves a 6 outcome and adds +1 extra, ball re-bowled", () => {
+    const r = resolveBall({
+      batsman: makeBatter(),
+      bowler: makeBowler({ fielding: [] }),
+      battingSituation: sit("no-ball", "batting"),
+      bowlingSituation: null,
+    });
+    assert.equal(r.finalOutcome.type, "runs");
+    if (r.finalOutcome.type === "runs") assert.equal(r.finalOutcome.value, 6);
+    assert.equal(r.extraRuns, 1);
+    assert.equal(r.rebowled, true);
+  });
+});
+
+// ─── Wide outside off mechanic ───
+
+describe("Wide outside off", () => {
+  it("calls a wide on a Bronze bowler with low roll, on a dot ball", () => {
+    const r = resolveBall({
+      batsman: makeBatter(),
+      bowler: makeBowler({
+        tier: "Bronze",
+        delivery: { line: "Wide outside off", length: "Full" },
+        fielding: [],
+      }),
+      battingSituation: null,
+      bowlingSituation: null,
+      random: () => 0, // 0% < 40% Bronze chance
+    });
+    assert.equal(r.finalOutcome.type, "dot");
+    assert.equal(r.extraRuns, 1);
+    assert.equal(r.rebowled, true);
+    assert.equal(r.extrasNote, "wide");
+  });
+
+  it("does NOT call a wide on an Elite bowler with mid roll", () => {
+    const r = resolveBall({
+      batsman: makeBatter(),
+      bowler: makeBowler({
+        tier: "Elite",
+        delivery: { line: "Wide outside off", length: "Full" },
+        fielding: [],
+      }),
+      battingSituation: null,
+      bowlingSituation: null,
+      random: () => 0.5, // > 5% Elite chance
+    });
+    assert.equal(r.extraRuns, 0);
+    assert.equal(r.rebowled, false);
+  });
+
+  it("doesn't trigger when batter scored runs (only on dots)", () => {
+    const r = resolveBall({
+      batsman: makeBatter({
+        strengths: [
+          {
+            zone: { line: "Wide outside off", length: "Full" },
+            outcome: { type: "runs", value: 4, shot: "slash" },
+          },
+        ],
+        neutrals: [],
+        weaknesses: [],
+      }),
+      bowler: makeBowler({
+        tier: "Bronze",
+        delivery: { line: "Wide outside off", length: "Full" },
+        fielding: [],
+      }),
+      battingSituation: null,
+      bowlingSituation: null,
+      random: () => 0,
+    });
+    assert.equal(r.finalOutcome.type, "runs");
+    assert.equal(r.extraRuns, 0);
+    assert.equal(r.rebowled, false);
+  });
+});
+
+// ─── Shuffle Across ───
+
+describe("Shuffle Across", () => {
+  it("shifts Off stump → Middle stump on the batter's card lookup", () => {
+    const batter = makeBatter({
+      strengths: [
+        {
+          zone: { line: "Middle stump", length: "Full" },
+          outcome: { type: "runs", value: 6, shot: "slog" },
+        },
+      ],
+      neutrals: [],
+      weaknesses: [],
+    });
+    const r = resolveBall({
+      batsman: batter,
+      bowler: makeBowler({
+        delivery: { line: "Off stump", length: "Full" },
+        fielding: [],
+      }),
+      battingSituation: sit("shuffle-across", "batting"),
+      bowlingSituation: null,
+    });
+    assert.equal(r.finalOutcome.type, "runs");
+    if (r.finalOutcome.type === "runs") assert.equal(r.finalOutcome.value, 6);
+  });
+
+  it("clamps at Leg stump", () => {
+    const batter = makeBatter({
+      strengths: [
+        {
+          zone: { line: "Leg stump", length: "Full" },
+          outcome: { type: "runs", value: 6, shot: "flick" },
+        },
+      ],
+      neutrals: [],
+      weaknesses: [],
+    });
+    const r = resolveBall({
+      batsman: batter,
+      bowler: makeBowler({
+        delivery: { line: "Leg stump", length: "Full" },
+        fielding: [],
+      }),
+      battingSituation: sit("shuffle-across", "batting"),
+      bowlingSituation: null,
+    });
+    // Leg → Leg (clamped), so the strength still hits.
+    assert.equal(r.finalOutcome.type, "runs");
+    if (r.finalOutcome.type === "runs") assert.equal(r.finalOutcome.value, 6);
+    const step = r.steps.find((s) => s.kind === "shuffle-across");
+    assert.ok(step);
+    assert.equal(step!.applied, false);
+  });
+});

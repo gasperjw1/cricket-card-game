@@ -9,7 +9,7 @@
 
 ---
 
-## BATTING SITUATION CARDS (5 + 1 shared)
+## BATTING SITUATION CARDS (7 + 1 shared)
 
 ### 1. DRS Review
 *"Not out! The batsman survives on review."*
@@ -75,7 +75,37 @@ The bowler's line stays unchanged. Only the length shifts.
 
 ---
 
-### 6. Old School Cricket Only *(Shared — available in both batting and bowling decks)*
+### 6. No Ball
+*"Foot fault! The umpire's called it!"*
+
+The bowler oversteps the crease. This delivery:
+- **Cancels any wicket** — if the result was a wicket, it becomes a dot ball.
+- **+1 run** to the batting team (the no-ball extra).
+- **Re-bowled** — this delivery doesn't count against the innings ball total.
+
+The runs from the actual outcome (e.g. a 4 or 6 if the batter still hit it) ALSO stand and are added on top of the +1 extra.
+
+**When to play:** Wicket insurance with a bonus. Particularly strong as a tempo card late in an innings — guarantees you face one extra ball without losing a wicket.
+
+---
+
+### 7. Shuffle Across
+*"The batsman shuffles across his stumps."*
+
+Your batsman steps across to the off side, treating the bowler's line as one stump further toward leg on their card:
+- **Wide outside off → 5th stump**
+- **5th stump → Off stump**
+- **Off stump → Middle stump**
+- **Middle stump → Leg stump**
+- **Leg stump → Leg stump** (clamped — can't shuffle further)
+
+Length is unchanged. Inverse of Day 5 Pitch.
+
+**When to play:** When your batsman has strengths on leg-side / middle stump zones and you expect the bowler to attack off stump. Turns a 5th stump fishing line into a middle stump pull, etc.
+
+---
+
+### 8. Old School Cricket Only *(Shared — available in both batting and bowling decks)*
 *"Play the game properly! No tricks today."*
 
 **Cancels the opponent's situation card entirely.** Both situation cards are discarded and the ball resolves with just the batsman vs bowler cards — no situation effects.

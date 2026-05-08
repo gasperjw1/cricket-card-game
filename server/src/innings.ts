@@ -484,6 +484,9 @@ function runEngineAndAdvance(match: ServerMatch, cb: InningsCallbacks): void {
       applied: !sameOutcome(before, finalOutcome),
     });
   }
+  const extraRuns = engineResult.extraRuns;
+  const extrasNote = engineResult.extrasNote;
+  const rebowled = engineResult.rebowled;
 
   // Build the BallResult for broadcast.
   const battingHand = match.decks[ctx.battingSlot].hand;
@@ -510,6 +513,9 @@ function runEngineAndAdvance(match: ServerMatch, cb: InningsCallbacks): void {
     bowlingSelection: bowlingReveal,
     resolutionSteps: allSteps,
     finalOutcome,
+    extraRuns,
+    extrasNote,
+    rebowled,
   };
 
   // Discard played cards (incl. swap replacements added to ctx.*PlayedIds).
@@ -558,13 +564,18 @@ function advanceAfterBall(
   const innings = currentInnings(match);
   if (!innings || !match.decks) return;
 
-  // Score / wickets / log
-  innings.ballsBowled += 1;
+  // Score / wickets / log. A rebowled delivery (No Ball / Wide) doesn't
+  // count toward the over but does add the run-outcome runs (often 0 since
+  // No Ball overturns wickets) plus the extra run.
+  if (!result.rebowled) {
+    innings.ballsBowled += 1;
+  }
   if (result.finalOutcome.type === "runs") {
     innings.runs += result.finalOutcome.value;
   } else if (result.finalOutcome.type === "wicket") {
     innings.wickets += 1;
   }
+  innings.runs += result.extraRuns;
   innings.log.push(result);
 
   cb.emitReveal(match, result);
@@ -889,6 +900,9 @@ function makeNoOpResult(match: ServerMatch): BallResult {
     bowlingSelection: { ...filler, player: bowlingSlot, role: "bowling", mandatoryCard: {} as BowlerCard },
     resolutionSteps: [],
     finalOutcome: { type: "dot" },
+    extraRuns: 0,
+    extrasNote: null,
+    rebowled: false,
   };
 }
 

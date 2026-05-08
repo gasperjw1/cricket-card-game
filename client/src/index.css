@@ -1038,6 +1038,30 @@ h1 {
   color: #a8b1ba;
 }
 
+.extras-row {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+  margin-top: 0.4rem;
+}
+.extras-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.3rem 0.7rem;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  background: #1d3a23;
+  color: #6ee07a;
+  border: 1px solid #2a4d35;
+  font-weight: 600;
+}
+.extras-pill.rebowl {
+  background: #2a3441;
+  color: #d4a72c;
+  border-color: #3a475a;
+}
+
 .scorecard-line {
   background: #131a23;
   border: 1px solid #2a3441;

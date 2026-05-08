@@ -11,7 +11,11 @@
  * cards are either in effect or null, and both mandatory cards are final.
  */
 
-import { REVIEW_APPEAL_WICKET_CHANCE } from "../constants.js";
+import {
+  EXTRAS_RUNS,
+  REVIEW_APPEAL_WICKET_CHANCE,
+  WIDE_CHANCE_BY_TIER,
+} from "../constants.js";
 import type {
   Adjective,
   BatsmanCard,
@@ -43,6 +47,12 @@ export interface ResolveBallInput {
 export interface ResolutionResult {
   steps: ResolutionStep[];
   finalOutcome: BallOutcome;
+  /** Free runs awarded on top of finalOutcome (No Ball / Wide). */
+  extraRuns: number;
+  /** Why extras were awarded, if any. */
+  extrasNote: string | null;
+  /** True if the delivery doesn't count against the over (No Ball / Wide). */
+  rebowled: boolean;
 }
 
 export function resolveBall(input: ResolveBallInput): ResolutionResult {
@@ -94,6 +104,22 @@ export function resolveBall(input: ResolveBallInput): ResolutionResult {
       detail: changed
         ? `Batter switched stance — ${lookupZone.line} is treated as ${lookupOnBatter.line} on the card.`
         : `Switch Hit had no effect — line was Middle stump (mirrors to itself).`,
+      applied: changed,
+    });
+  }
+  // Shuffle Across moves the batter toward the off side, so the bowler's
+  // line is met one stump further leg-side on the batter's card. Inverse of
+  // Day 5 Pitch. Clamps at Leg stump.
+  if (battingSit === "shuffle-across") {
+    const before = lookupOnBatter;
+    lookupOnBatter = { line: shiftLineToward(lookupOnBatter.line, "leg"), length: lookupOnBatter.length };
+    const changed = lookupOnBatter.line !== before.line;
+    steps.push({
+      kind: "shuffle-across",
+      label: "Shuffle Across",
+      detail: changed
+        ? `Batter shuffled across — ${before.line} is met as ${lookupOnBatter.line} on the card.`
+        : `Shuffle Across had no effect — line was already Leg stump (clamped).`,
       applied: changed,
     });
   }
@@ -265,7 +291,66 @@ export function resolveBall(input: ResolveBallInput): ResolutionResult {
     }
   }
 
-  return { steps, finalOutcome: outcome };
+  // ───── Step 11: No Ball ─────
+  // No-ball cancels any wicket on this delivery, awards 1 free run, and the
+  // ball is re-bowled (doesn't count against the over).
+  let extraRuns = 0;
+  let extrasNote: string | null = null;
+  let rebowled = false;
+  if (battingSit === "no-ball") {
+    if (outcome.type === "wicket") {
+      const before = outcome;
+      outcome = { type: "dot" };
+      steps.push({
+        kind: "no-ball",
+        label: "No Ball",
+        detail: `Foot fault! '${before.mode}' overturned to a dot ball, +1 run, ball is re-bowled.`,
+        before,
+        after: outcome,
+        applied: true,
+      });
+    } else {
+      steps.push({
+        kind: "no-ball",
+        label: "No Ball",
+        detail: `Foot fault! +1 run, ball is re-bowled — ${describeOutcome(outcome)} stands.`,
+        before: outcome,
+        after: outcome,
+        applied: true,
+      });
+    }
+    extraRuns += EXTRAS_RUNS;
+    extrasNote = "no-ball";
+    rebowled = true;
+  }
+
+  // ───── Step 12: Wide outside off mechanic ─────
+  // Tier-based chance the umpire calls a wide when the bowler bowls
+  // Wide-outside-off and the outcome is a dot ball. Better bowlers are more
+  // accurate. Wide adds 1 extra run and re-bowls.
+  if (
+    !rebowled &&
+    input.bowler.delivery.line === "Wide outside off" &&
+    outcome.type === "dot"
+  ) {
+    const chance = WIDE_CHANCE_BY_TIER[input.bowler.tier];
+    const roll = random();
+    if (roll < chance) {
+      steps.push({
+        kind: "wide",
+        label: "Wide called",
+        detail: `Wide outside off — umpire signals wide (${Math.round(chance * 100)}% chance for ${input.bowler.tier} tier). +1 run, ball re-bowled.`,
+        before: outcome,
+        after: outcome,
+        applied: true,
+      });
+      extraRuns += EXTRAS_RUNS;
+      extrasNote = "wide";
+      rebowled = true;
+    }
+  }
+
+  return { steps, finalOutcome: outcome, extraRuns, extrasNote, rebowled };
 }
 
 // ─────────────────────────── Helpers ───────────────────────────
@@ -383,6 +468,19 @@ function mirrorLine(line: Line): Line {
     case "Wide outside off": return "Leg stump";
     case "Middle stump": return "Middle stump";
   }
+}
+
+/**
+ * Shifts a line one step toward leg side (or off side). Clamps at the end:
+ * shifting Leg stump toward leg stays at Leg stump; shifting Wide outside
+ * off toward off stays at Wide outside off. Used by Shuffle Across (toward
+ * leg) and parallels Day 5 Pitch's shiftLineAway (toward off).
+ */
+function shiftLineToward(line: Line, direction: "leg" | "off"): Line {
+  const idx = LINE_ORDER.indexOf(line);
+  if (idx < 0) return line;
+  const next = direction === "leg" ? Math.max(idx - 1, 0) : Math.min(idx + 1, LINE_ORDER.length - 1);
+  return LINE_ORDER[next]!;
 }
 
 /**

@@ -440,7 +440,7 @@ function RevealOverlay(props: {
         </div>
 
         <ResolutionTrail steps={result.resolutionSteps} />
-        <FinalOutcome outcome={result.finalOutcome} />
+        <FinalOutcome outcome={result.finalOutcome} extras={result.extraRuns} extrasNote={result.extrasNote} rebowled={result.rebowled} />
 
         <div className="reveal-footer">
           {props.postBallDeadline !== null && (
@@ -485,18 +485,37 @@ function ResolutionTrail({ steps }: { steps: ResolutionStep[] }) {
   );
 }
 
-function FinalOutcome({ outcome }: { outcome: BallOutcome }) {
+function FinalOutcome({
+  outcome,
+  extras,
+  extrasNote,
+  rebowled,
+}: {
+  outcome: BallOutcome;
+  extras: number;
+  extrasNote: string | null;
+  rebowled: boolean;
+}) {
+  const extrasLabel =
+    extrasNote === "no-ball" ? "No Ball" : extrasNote === "wide" ? "Wide" : "extras";
+  const extrasTip =
+    extrasNote === "no-ball"
+      ? "No Ball: +1 extra run and the ball is re-bowled (doesn't count against the over)."
+      : extrasNote === "wide"
+        ? "Wide: +1 extra run and the ball is re-bowled (doesn't count against the over)."
+        : "Extras awarded on top of the outcome runs.";
+
+  let main: JSX.Element;
   if (outcome.type === "wicket") {
-    return (
+    main = (
       <div className="final-outcome wicket">
         <Tip text="The batter is out. They lose a wicket; max 2 per innings.">
           <span>WICKET — {outcome.mode}</span>
         </Tip>
       </div>
     );
-  }
-  if (outcome.type === "runs") {
-    return (
+  } else if (outcome.type === "runs") {
+    main = (
       <div className={`final-outcome runs r-${outcome.value}`}>
         <Tip text={`The batter scores ${outcome.value} run${outcome.value === 1 ? "" : "s"}.`}>
           <span>
@@ -505,13 +524,36 @@ function FinalOutcome({ outcome }: { outcome: BallOutcome }) {
         </Tip>
       </div>
     );
+  } else {
+    main = (
+      <div className="final-outcome dot">
+        <Tip text="No runs scored on this ball.">
+          <span>Dot ball</span>
+        </Tip>
+      </div>
+    );
   }
+
   return (
-    <div className="final-outcome dot">
-      <Tip text="No runs scored on this ball.">
-        <span>Dot ball</span>
-      </Tip>
-    </div>
+    <>
+      {main}
+      {(extras > 0 || rebowled) && (
+        <div className="extras-row">
+          {extras > 0 && (
+            <Tip text={extrasTip}>
+              <span className="extras-pill">
+                +{extras} {extrasLabel}
+              </span>
+            </Tip>
+          )}
+          {rebowled && (
+            <Tip text="This delivery doesn't count against the over — the bowler will re-bowl.">
+              <span className="extras-pill rebowl">↻ re-bowled</span>
+            </Tip>
+          )}
+        </div>
+      )}
+    </>
   );
 }
 

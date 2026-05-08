@@ -35,3 +35,19 @@ export const DRAFT_OPTIONS_PER_ROUND = 4 as const;
 export const DRAFT_SITUATION_INJECTION_COUNT = 5 as const;
 
 export const REVIEW_APPEAL_WICKET_CHANCE = 0.4 as const;
+
+/**
+ * Wide-outside-off mechanic: if the bowler delivers Wide outside off and the
+ * outcome is a dot ball, there's a tier-based chance the umpire calls it
+ * wide — better bowlers are more accurate and less likely to be called.
+ * Triggers an extra run + a re-bowled delivery (ball doesn't count).
+ */
+export const WIDE_CHANCE_BY_TIER = {
+  Elite: 0.05,
+  Gold: 0.15,
+  Silver: 0.25,
+  Bronze: 0.4,
+} as const;
+
+/** Free runs awarded for a No Ball or Wide call. */
+export const EXTRAS_RUNS = 1 as const;
