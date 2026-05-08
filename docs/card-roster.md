@@ -21,17 +21,17 @@ Everything not listed = dot ball.
 ## 🇮🇳 INDIA — BATSMEN
 
 ### ELITE — Virat Kohli
-*Cover drive king. Flick through mid-wicket. Pulls anything short. Tracks the ball late.*
+*Cover drive king. Flick through mid-wicket. Pulls anything short. Tracks the ball late, plays orthodox spin with ease — but the late wobble of drift and a sharp googly still get him every now and then.*
 - **Strengths:**
   - Full off stump → cover drive for 4
   - Full leg stump → flick for 6
   - Short middle stump → pull for 4
 - **Neutrals:**
   - Good length off stump → push for 2
-  - Good length 5th stump → late cut for 1
+  - Good length Outside off → late cut for 1
 - **Weaknesses:**
-  - Full 5th stump → edge to keeper
-- **Resistances:** Pace, Swing
+  - Full Outside off → edge to keeper
+- **Resistances:** Swing, Seam, Cutter, Slower, Topspin, Carrom
 
 ---
 
@@ -195,9 +195,9 @@ Everything not listed = dot ball.
 ## 🇮🇳 INDIA — BOWLERS
 
 ### ELITE — Jasprit Bumrah
-*Signature: full middle stump yorker. Unorthodox action, late seam movement. Best T20 death bowler alive.*
+*Signature: full middle stump yorker. Unorthodox action, late seam movement off the deck, world-class slower-ball deception (knuckle ball, slower bouncer). Best T20 death bowler alive.*
 - **Delivery:** Full middle stump
-- **Adjective:** Seam
+- **Adjective:** Seam, Slower
 - **Fielding:** Mid-wicket + Cover
 
 ---

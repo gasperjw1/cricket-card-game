@@ -6,7 +6,7 @@
       "name": "Virat Kohli",
       "nation": "India",
       "tier": "Elite",
-      "description": "Cover drive king. Flick through mid-wicket. Pulls anything short. Tracks the ball late.",
+      "description": "Cover drive king. Flick through mid-wicket. Pulls anything short. Tracks the ball late, plays orthodox spin with ease — but the late wobble of drift and a sharp googly still get him every now and then.",
       "strengths": [
         {
           "zone": {
@@ -79,7 +79,12 @@
         }
       ],
       "resistances": [
-        "Swing"
+        "Swing",
+        "Seam",
+        "Cutter",
+        "Slower",
+        "Topspin",
+        "Carrom"
       ]
     },
     {
@@ -10449,13 +10454,14 @@
       "name": "Jasprit Bumrah",
       "nation": "India",
       "tier": "Elite",
-      "description": "Signature: full middle stump yorker. Unorthodox action, late seam movement. Best T20 death bowler alive.",
+      "description": "Signature: full middle stump yorker. Unorthodox action, late seam movement off the deck, world-class slower-ball deception (knuckle ball, slower bouncer). Best T20 death bowler alive.",
       "delivery": {
         "line": "Middle stump",
         "length": "Full"
       },
       "adjectives": [
-        "Seam"
+        "Seam",
+        "Slower"
       ],
       "fielding": [
         "Mid-wicket",
