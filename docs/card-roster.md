@@ -360,16 +360,14 @@ Everything not listed = dot ball. Weaknesses are zone-only (no adjective referen
 - **Resistances:** Swing, Seam
 
 ### BRONZE — Mitchell Owen
-*Young explosive opener. Hits hard but raw technique. Recent breakout.*
-- **Strengths:** Full leg stump → loft for 6
-- **Neutrals:** Short middle stump → pull for 2 | Good length leg stump → flick for 1
-- **Weaknesses:** Good length off stump → beaten | Full middle stump → bowled | Good length middle stump → LBW
+*Hobart Hurricanes opener. BBL hitter, very limited international career. Goes hard from ball one but raw technique.*
+- **Neutrals:** Full leg stump → loft for 2 | Short middle stump → pull for 1 | Good length leg stump → flick for 1
+- **Weaknesses:** Good length off stump → edge to slip | Full middle stump → bowled | Good length middle stump → LBW
 
 ### BRONZE — Cooper Connolly
-*Young left-hander. Tidy but limited power at international level so far.*
-- **Strengths:** Full off stump → drive for 4
-- **Neutrals:** Good length middle stump → push for 2 | Good length leg stump → work for 1
-- **Weaknesses:** Short off stump → caught at gully | Full middle stump → mis-hit to mid-on | Good length off stump → edge to keeper
+*Young left-hander, fringe of Australian selection. All-rounder, tidy with the bat but limited power at international level so far.*
+- **Neutrals:** Full off stump → drive for 1 | Good length middle stump → push for 2 | Good length leg stump → work for 1
+- **Weaknesses:** Short off stump → caught at gully | Full middle stump → mishit to mid-on | Good length off stump → edge to keeper
 
 ### BRONZE — Jake Fraser-McGurk
 *Rajasthan Royals' explosive opener. IPL 2024 breakout — second-fastest IPL fifty ever. Has played T20Is for Australia but isn't established. Aggressive but raw — hits big when timing it, vulnerable when forced to defend.*
@@ -377,16 +375,14 @@ Everything not listed = dot ball. Weaknesses are zone-only (no adjective referen
 - **Weaknesses:** Good length middle stump → bowled | Good length off stump → edge to slip | Short Outside off → top edge caught
 
 ### BRONZE — Matthew Renshaw
-*Left-handed grinder. Domestic performer, limited T20I exposure. Defensive mindset.*
-- **Strengths:** Full off stump → cover drive for 4
-- **Neutrals:** Good length middle stump → defend for 2 | Good length leg stump → nudge for 1
+*Left-handed grinder. Domestic Sheffield Shield performer with limited T20I exposure. Defensive mindset — plays the percentages, vulnerable when asked to score quickly.*
+- **Neutrals:** Full off stump → cover drive for 2 | Good length middle stump → defend for 1 | Good length leg stump → nudge for 1
 - **Weaknesses:** Full leg stump → LBW playing across | Short middle stump → top edge caught | Good length off stump → edge to slip
 
-### BRONZE — Matt Kuhnemann
-*Left-arm spinner who can bat a bit. Genuine tailender in T20.*
-- **Strengths:** Full leg stump → slog for 4
-- **Neutrals:** Good length leg stump → nudge for 2 | Full middle stump → push for 1
-- **Weaknesses:** Good length off stump → bowled | Good length middle stump → LBW | Short off stump → caught at point
+### BRONZE — Ben McDermott
+*Hobart Hurricanes BBL middle-order hitter. 8 T20I caps for Australia (last 2022). Specialist batter — back-foot pull and leg-side power. Vulnerable in the corridor outside off.*
+- **Neutrals:** Short middle stump → pull for 2 | Full leg stump → flick for 1 | Good length leg stump → work for 1
+- **Weaknesses:** Good length off stump → edge to slip | Full Outside off → mishit caught at cover | Good length middle stump → bowled
 
 ## BOWLERS
 
@@ -415,19 +411,19 @@ Everything not listed = dot ball. Weaknesses are zone-only (no adjective referen
 - **Delivery:** Good length off stump | **Fielding:** Gully/Point
 
 ### BRONZE — Ben Dwarshuis
-*Left-arm medium. Death overs variation bowler.*
-- **Delivery:** Full leg stump | **Adjective:** Cutter | **Fielding:** Fine leg
+*Left-arm medium-pacer. BBL veteran with very limited international exposure. Bowls into the body from the left-arm angle — no specific skill at the Bronze tier.*
+- **Delivery:** Full leg stump | **Fielding:** Fine leg/Leg slip
 
 ### BRONZE — Matt Kuhnemann
-*Left-arm orthodox spinner. Economical, rarely threatening.*
+*Left-arm orthodox spinner. Test-class but a tail-ender in T20s. Economical line-and-length, rarely a wicket-taking threat at this format.*
 - **Delivery:** Good length middle stump | **Fielding:** Mid-wicket
 
 ### BRONZE — Cooper Connolly
-*Part-time left-arm spin. Fills overs when needed.*
+*Part-time left-arm spin. Filler overs when the front-line bowlers are spent. Steady but unthreatening.*
 - **Delivery:** Good length leg stump | **Fielding:** Mid-wicket
 
 ### BRONZE — Cameron Green
-*Medium-fast all-rounder. Hit the deck, occasional wicket.*
+*Medium-fast all-rounder (bowler card, paired with his Silver batter card via the all-rounder split). Hit-the-deck good-length seamer at this format — useful 5th-bowler with no specific skill at the Bronze tier.*
 - **Delivery:** Good length off stump | **Fielding:** Gully/Point
 
 ### BRONZE — Mitch Marsh
