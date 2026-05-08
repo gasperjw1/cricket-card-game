@@ -2,9 +2,13 @@
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui,
     sans-serif;
   line-height: 1.5;
-  color-scheme: light dark;
+  color-scheme: dark;
   color: #e8e8e8;
   background-color: #0f1419;
+}
+
+* {
+  box-sizing: border-box;
 }
 
 body {
@@ -16,10 +20,10 @@ body {
 }
 
 #root {
-  max-width: 720px;
+  max-width: 480px;
   width: 100%;
   margin: 0 auto;
-  padding: 2rem;
+  padding: 2rem 1.25rem;
   text-align: center;
 }
 
@@ -30,14 +34,14 @@ h1 {
 
 .tagline {
   color: #8a939c;
-  margin-bottom: 2rem;
+  margin: 0 0 1.5rem;
 }
 
 .status {
   display: inline-block;
-  padding: 0.5rem 1rem;
+  padding: 0.4rem 0.9rem;
   border-radius: 999px;
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   background: #1c2530;
 }
 .status.connected {
@@ -49,8 +53,196 @@ h1 {
   color: #ff8181;
 }
 
-.card-counts {
-  margin-top: 1.5rem;
+.menu {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-top: 2rem;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 1.25rem;
+  border: 1px solid #2a3441;
+  background: #1c2530;
+  color: #e8e8e8;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 120ms ease, border-color 120ms ease, transform 60ms ease;
+}
+.btn:hover:not(:disabled) {
+  background: #243040;
+  border-color: #3a475a;
+}
+.btn:active:not(:disabled) {
+  transform: translateY(1px);
+}
+.btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+.btn.primary {
+  background: #2563eb;
+  border-color: #2563eb;
+  color: #fff;
+}
+.btn.primary:hover:not(:disabled) {
+  background: #1d4ed8;
+  border-color: #1d4ed8;
+}
+.btn.ghost {
+  background: transparent;
+  border-color: #2a3441;
+}
+.btn.small {
+  padding: 0.4rem 0.8rem;
+  font-size: 0.85rem;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 2rem;
+  text-align: left;
+}
+.form label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  font-size: 0.85rem;
+  color: #a8b1ba;
+}
+.form input {
+  padding: 0.7rem 0.9rem;
+  border: 1px solid #2a3441;
+  background: #131a23;
+  color: #e8e8e8;
+  border-radius: 6px;
+  font-size: 1rem;
+  outline: none;
+}
+.form input:focus {
+  border-color: #2563eb;
+}
+
+.form-actions {
+  display: flex;
+  gap: 0.75rem;
+  justify-content: flex-end;
+  margin-top: 0.5rem;
+}
+
+.error {
+  color: #ff8181;
+  background: #3a1d1d;
+  padding: 0.6rem 0.8rem;
+  border-radius: 6px;
   font-size: 0.9rem;
+  text-align: center;
+}
+
+.notice {
+  background: #2a3441;
+  color: #d6dde6;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  border: 1px solid #3a475a;
+}
+
+.invite-card {
+  margin: 2rem 0 1.5rem;
+  padding: 1.25rem;
+  background: #131a23;
+  border: 1px solid #2a3441;
+  border-radius: 12px;
+  text-align: center;
+}
+.invite-label {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
   color: #8a939c;
+  margin-bottom: 0.5rem;
+}
+.invite-code {
+  font-size: 2.4rem;
+  font-weight: 600;
+  letter-spacing: 0.3em;
+  font-family: ui-monospace, "SF Mono", Menlo, monospace;
+  color: #6ee07a;
+  margin-bottom: 0.75rem;
+}
+
+.players {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin: 1rem 0;
+}
+.player-row {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  background: #131a23;
+  border: 1px solid #2a3441;
+  text-align: left;
+}
+.player-row.pending {
+  border-style: dashed;
+  color: #8a939c;
+  font-style: italic;
+}
+.player-row.offline {
+  opacity: 0.6;
+}
+.player-slot {
+  width: 32px;
+  height: 32px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: #2a3441;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+.player-name {
+  flex: 1;
+}
+.me-badge {
+  margin-left: 0.5rem;
+  padding: 0.1rem 0.5rem;
+  font-size: 0.7rem;
+  background: #2563eb;
+  color: #fff;
+  border-radius: 999px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.player-status {
+  font-size: 0.85rem;
+  color: #8a939c;
+}
+.player-row.connected .player-status {
+  color: #6ee07a;
+}
+
+.hint {
+  font-size: 0.85rem;
+  color: #8a939c;
+  margin: 1.25rem 0 0.5rem;
+  font-style: italic;
+}
+
+.lobby-actions {
+  margin-top: 1.5rem;
+  display: flex;
+  justify-content: center;
 }

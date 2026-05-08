@@ -67,8 +67,9 @@ export interface PlayerHand {
 
 export interface PublicMatchState {
   matchId: string;
+  inviteCode: string;
   phase: MatchPhase;
-  players: { A: PublicPlayerInfo; B: PublicPlayerInfo };
+  players: { A: PublicPlayerInfo; B: PublicPlayerInfo | null };
   currentInnings: 1 | 2 | null;
   innings1: InningsState | null;
   innings2: InningsState | null;

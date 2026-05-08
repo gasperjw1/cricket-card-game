@@ -13,22 +13,34 @@ import type {
  * Naming: <namespace>:<verb> — namespaces are lobby, match, draft, ball.
  */
 
+export interface LobbyCredentials {
+  matchId: string;
+  playerToken: string;
+  slot: "A" | "B";
+}
+
+export type LobbyJoinResult =
+  | ({ ok: true; inviteCode: string } & LobbyCredentials)
+  | { ok: false; reason: string };
+
 // ───── Client → Server ─────
 export interface ClientToServerEvents {
   "lobby:create": (
     payload: { displayName: string },
-    ack: (res: { matchId: string; inviteCode: string }) => void,
+    ack: (res: { inviteCode: string } & LobbyCredentials) => void,
   ) => void;
 
   "lobby:join": (
     payload: { inviteCode: string; displayName: string },
-    ack: (res: { ok: true; matchId: string } | { ok: false; reason: string }) => void,
+    ack: (res: LobbyJoinResult) => void,
   ) => void;
 
   "match:reconnect": (
-    payload: { matchId: string },
-    ack: (res: { ok: boolean; reason?: string }) => void,
+    payload: { matchId: string; playerToken: string },
+    ack: (res: { ok: true; slot: "A" | "B" } | { ok: false; reason: string }) => void,
   ) => void;
+
+  "lobby:leave": () => void;
 
   "draft:pick": (payload: { roundIndex: number; cardId: string }) => void;
 
@@ -56,6 +68,8 @@ export interface ServerToClientEvents {
   "ball:opponent-locked": () => void;
 
   "ball:reveal": (result: BallResult) => void;
+
+  "match:closed": (payload: { reason: string }) => void;
 
   "match:error": (payload: { code: string; message: string }) => void;
 }
