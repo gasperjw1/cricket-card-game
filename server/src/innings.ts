@@ -107,6 +107,15 @@ export function submitBallSelection(
   if (match.phase !== "innings") {
     return { ok: false, reason: "Not in an innings" };
   }
+  // Reject submissions during the post-ball pause / between innings — the
+  // ball isn't live, so any submit would either get stranded or carry over
+  // into the next innings's first ball.
+  if (match.currentBallDeadlineEpochMs === null) {
+    return { ok: false, reason: "Ball isn't live — wait for the next one" };
+  }
+  if (match.pendingSwap) {
+    return { ok: false, reason: "Ball is paused on a swap pick" };
+  }
   const validation = validateSelection(match, slot, selection);
   if (!validation.ok) return validation;
 
@@ -597,6 +606,11 @@ function advanceAfterBall(
       refillHand(match.decks[slot], activeDeckKey(match, slot));
       applyAntiClog(match.decks[slot], activeDeckKey(match, slot));
     }
+  } else {
+    // Mark the innings complete BEFORE the post-ball pause so clients
+    // immediately know not to render the hand / selection UI even if
+    // the player dismisses the reveal overlay early.
+    innings.isComplete = true;
   }
 
   // Always go through the post-ball pause — gives players a beat to read
@@ -613,7 +627,6 @@ function advanceAfterBall(
       cb.broadcastState(match);
       return;
     }
-    innings.isComplete = true;
     if (match.currentInnings === 1) {
       transitionToInnings2(match, cb);
     } else {

@@ -793,6 +793,11 @@ h1 {
   color: #ff8aa8;
   border: 1px solid #4d2a3b;
 }
+.role-banner.ending {
+  background: #2a3441;
+  color: #d4a72c;
+  border-color: #3a475a;
+}
 .role-banner-row {
   display: flex;
   align-items: center;
@@ -835,6 +840,11 @@ h1 {
 }
 @media (min-width: 540px) {
   .hand-grid { grid-template-columns: repeat(4, 1fr); }
+}
+.hand-grid.dimmed {
+  opacity: 0.45;
+  pointer-events: none;
+  filter: saturate(0.7);
 }
 
 .selection-footer {

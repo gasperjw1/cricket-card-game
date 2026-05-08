@@ -61,7 +61,18 @@ export function InningsScreen({ client }: Props) {
 
   const mandatoryId = pendingSelection?.mandatoryCardId || null;
   const situationId = pendingSelection?.situationCardId ?? null;
-  const canSubmit = !!mandatoryId && !awaitingReveal && !lastReveal;
+
+  // The ball is "live" only when the server has set a submit deadline.
+  // During post-ball pauses (between balls or before innings/match-over),
+  // pending swaps, or after the innings is complete, the hand UI must be
+  // disabled so the player can't try to play a card that won't reach
+  // resolution.
+  const ballLive =
+    matchState.currentBallDeadlineEpochMs !== null &&
+    !matchState.pendingSwap &&
+    !innings.isComplete;
+  const canSubmit = !!mandatoryId && !awaitingReveal && !lastReveal && ballLive;
+  const inPostBallPause = matchState.postBallDeadlineEpochMs !== null;
 
   return (
     <main className="innings">
@@ -91,6 +102,16 @@ export function InningsScreen({ client }: Props) {
         role={role}
         myName={me.displayName}
         deadline={awaitingReveal ? null : matchState.currentBallDeadlineEpochMs}
+        innings1Complete={
+          matchState.currentInnings === 1 && innings.isComplete
+        }
+        matchEndingSoon={
+          matchState.currentInnings === 2 &&
+          innings.isComplete &&
+          matchState.phase === "innings"
+        }
+        inPostBallPause={inPostBallPause}
+        postBallDeadline={matchState.postBallDeadlineEpochMs}
       />
 
       <div className="hand-area">
@@ -104,7 +125,7 @@ export function InningsScreen({ client }: Props) {
             <span className="dim-text">deck: {privateView?.hand.deckRemaining ?? 0}</span>
           </Tip>
         </div>
-        <div className="hand-grid">
+        <div className={`hand-grid ${ballLive ? "" : "dimmed"}`}>
           {handCards.length === 0 && (
             <div className="hint">Waiting for hand…</div>
           )}
@@ -114,7 +135,7 @@ export function InningsScreen({ client }: Props) {
               card={card}
               size="hand"
               selected={card.id === mandatoryId || card.id === situationId}
-              onClick={() => setViewingCardId(card.id)}
+              onClick={ballLive ? () => setViewingCardId(card.id) : undefined}
             />
           ))}
         </div>
@@ -130,6 +151,8 @@ export function InningsScreen({ client }: Props) {
         canSubmit={canSubmit}
         awaitingReveal={awaitingReveal}
         opponentLocked={opponentLocked}
+        ballLive={ballLive}
+        inningsComplete={innings.isComplete}
         onSubmit={client.submitBall}
         onClearMandatory={() => client.selectMandatory(null)}
         onClearSituation={() => client.selectSituation(null)}
@@ -141,15 +164,20 @@ export function InningsScreen({ client }: Props) {
           isCurrentlySelected={
             viewingCard.id === mandatoryId || viewingCard.id === situationId
           }
-          canSelect={canSelectCard(viewingCard, requiredKind, !!awaitingReveal || !!lastReveal)}
+          canSelect={
+            ballLive &&
+            canSelectCard(viewingCard, requiredKind, !!awaitingReveal || !!lastReveal)
+          }
           disabledReason={
-            awaitingReveal
-              ? "You've already locked in for this ball."
-              : lastReveal
-                ? "Reveal in progress — dismiss it first."
-                : viewingCard.kind !== requiredKind && viewingCard.kind !== "situation"
-                  ? `You're ${role} this innings — only ${requiredKind} cards can be your mandatory pick.`
-                  : undefined
+            !ballLive
+              ? "No live ball — wait for the next one."
+              : awaitingReveal
+                ? "You've already locked in for this ball."
+                : lastReveal
+                  ? "Reveal in progress — dismiss it first."
+                  : viewingCard.kind !== requiredKind && viewingCard.kind !== "situation"
+                    ? `You're ${role} this innings — only ${requiredKind} cards can be your mandatory pick.`
+                    : undefined
           }
           onSubmit={() => {
             handleViewerSubmit(client, viewingCard, mandatoryId, situationId);
@@ -283,9 +311,47 @@ function RoleBanner(props: {
   myName: string;
   /** Epoch-ms deadline; null means timer not running (e.g. while waiting for reveal). */
   deadline: number | null;
+  innings1Complete: boolean;
+  matchEndingSoon: boolean;
+  inPostBallPause: boolean;
+  postBallDeadline: number | null;
 }) {
   const seconds = useCountdown(props.deadline);
+  const postBallSeconds = useCountdown(props.postBallDeadline);
   const tickingClass = props.deadline !== null && seconds <= 5 ? "urgent" : "";
+
+  // Innings 1 finished — innings 2 starting after the pause.
+  if (props.innings1Complete) {
+    return (
+      <section className={`role-banner ${props.role} ending`}>
+        <div className="role-banner-row">
+          <span>
+            <strong>Innings 1 complete.</strong> Roles swap — innings 2 starts soon.
+          </span>
+          {props.postBallDeadline !== null && (
+            <span className="turn-timer">{postBallSeconds}s</span>
+          )}
+        </div>
+      </section>
+    );
+  }
+
+  // Innings 2 finished — match ending after the pause.
+  if (props.matchEndingSoon) {
+    return (
+      <section className={`role-banner ${props.role} ending`}>
+        <div className="role-banner-row">
+          <span>
+            <strong>Innings 2 complete.</strong> Match result coming up.
+          </span>
+          {props.postBallDeadline !== null && (
+            <span className="turn-timer">{postBallSeconds}s</span>
+          )}
+        </div>
+      </section>
+    );
+  }
+
   return (
     <section className={`role-banner ${props.role}`}>
       <div className="role-banner-row">
@@ -295,6 +361,10 @@ function RoleBanner(props: {
         {props.deadline !== null ? (
           <Tip text="Time remaining to lock in your selection. If you don't, the server picks a random mandatory card for you.">
             <span className={`turn-timer ${tickingClass}`}>{seconds}s</span>
+          </Tip>
+        ) : props.inPostBallPause ? (
+          <Tip text="Resolution pause — next ball starts when the timer hits 0.">
+            <span className="dim-text">next ball in {postBallSeconds}s</span>
           </Tip>
         ) : (
           <Tip text="Timer paused — locked in or revealing.">
@@ -314,6 +384,8 @@ function SelectionFooter(props: {
   canSubmit: boolean;
   awaitingReveal: boolean;
   opponentLocked: boolean;
+  ballLive: boolean;
+  inningsComplete: boolean;
   onSubmit: () => void;
   onClearMandatory: () => void;
   onClearSituation: () => void;
@@ -329,6 +401,20 @@ function SelectionFooter(props: {
         ) : (
           <span className="dim-text">Waiting for opponent…</span>
         )}
+      </section>
+    );
+  }
+  if (props.inningsComplete) {
+    return (
+      <section className="selection-footer locked">
+        <span>🏁 Innings complete — sit tight.</span>
+      </section>
+    );
+  }
+  if (!props.ballLive) {
+    return (
+      <section className="selection-footer locked">
+        <span className="dim-text">No live ball — waiting for the next one…</span>
       </section>
     );
   }
