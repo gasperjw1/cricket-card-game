@@ -54,6 +54,8 @@ export interface BallResult {
   extrasNote: string | null;
   /** True for no-ball or wide — this delivery doesn't count against the innings ball total. */
   rebowled: boolean;
+  /** Zone actually matched on the batsman's card (post-modifiers). Drives the reveal UI's filtered row highlight. */
+  lookupZone: import("./cards.js").Zone;
 }
 
 /**

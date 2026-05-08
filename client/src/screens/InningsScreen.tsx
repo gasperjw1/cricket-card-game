@@ -10,7 +10,7 @@ import {
   type PlayerSlot,
   type ResolutionStep,
 } from "@swipe-sixer/shared";
-import { Card } from "../components/Card.tsx";
+import { Card, type RevealContext } from "../components/Card.tsx";
 import { CardViewer } from "../components/CardViewer.tsx";
 import { Tip } from "../components/Tip.tsx";
 import type { MatchClient } from "../state.ts";
@@ -477,6 +477,31 @@ function cardName(card: AnyCard): string {
 
 // ─────────────────────────── Reveal overlay ───────────────────────────
 
+function buildRevealContext(result: BallResult): RevealContext {
+  // Derive what fired this ball from the resolution steps + the engine's
+  // lookupZone (post-zone-modifiers). Used by Card components in reveal
+  // mode to filter their displayed sections.
+  const adjectiveStep = result.resolutionSteps.find((s) => s.kind === "adjective");
+  const fieldingStep = result.resolutionSteps.find((s) => s.kind === "fielding");
+  const adjectiveApplied = adjectiveStep?.applied ?? false;
+  // bowlingSelection.mandatoryCard is always a BowlerCard by construction.
+  const bowlerCard = result.bowlingSelection.mandatoryCard;
+  const bowlerAdjective =
+    bowlerCard.kind === "bowler" ? bowlerCard.adjective ?? null : null;
+  // Fielding step's label is "Fielding: <region>". Strip the prefix.
+  let firedFielding: RevealContext["firedFielding"] = null;
+  if (fieldingStep && fieldingStep.applied) {
+    const m = fieldingStep.label.match(/^Fielding:\s+(.+)$/);
+    if (m) firedFielding = m[1] as RevealContext["firedFielding"];
+  }
+  return {
+    lookupZone: result.lookupZone,
+    bowlerAdjective,
+    adjectiveApplied,
+    firedFielding,
+  };
+}
+
 function RevealOverlay(props: {
   result: BallResult;
   mySlot: PlayerSlot;
@@ -492,6 +517,7 @@ function RevealOverlay(props: {
   const oppReveal =
     result.battingSelection.player === mySlot ? result.bowlingSelection : result.battingSelection;
   const seconds = useCountdown(props.postBallDeadline);
+  const reveal = buildRevealContext(result);
 
   const continueLabel = props.isFinalBall ? "See result" : "Continue";
 
@@ -502,7 +528,7 @@ function RevealOverlay(props: {
         <div className="reveal-cards">
           <div>
             <div className="reveal-side-label">You played</div>
-            <Card card={myReveal.mandatoryCard} size="hand" />
+            <Card card={myReveal.mandatoryCard} size="hand" reveal={reveal} />
             {myReveal.situationCard && (
               <div style={{ marginTop: "0.5rem" }}>
                 <Card card={myReveal.situationCard} size="hand" />
@@ -516,7 +542,7 @@ function RevealOverlay(props: {
           </div>
           <div>
             <div className="reveal-side-label">Opponent played</div>
-            <Card card={oppReveal.mandatoryCard} size="hand" />
+            <Card card={oppReveal.mandatoryCard} size="hand" reveal={reveal} />
             {oppReveal.situationCard && (
               <div style={{ marginTop: "0.5rem" }}>
                 <Card card={oppReveal.situationCard} size="hand" />

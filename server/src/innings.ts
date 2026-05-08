@@ -496,6 +496,7 @@ function runEngineAndAdvance(match: ServerMatch, cb: InningsCallbacks): void {
   const extraRuns = engineResult.extraRuns;
   const extrasNote = engineResult.extrasNote;
   const rebowled = engineResult.rebowled;
+  const lookupZone = engineResult.lookupZone;
 
   // Build the BallResult for broadcast.
   const battingHand = match.decks[ctx.battingSlot].hand;
@@ -525,6 +526,7 @@ function runEngineAndAdvance(match: ServerMatch, cb: InningsCallbacks): void {
     extraRuns,
     extrasNote,
     rebowled,
+    lookupZone,
   };
 
   // Discard played cards (incl. swap replacements added to ctx.*PlayedIds).
@@ -916,6 +918,7 @@ function makeNoOpResult(match: ServerMatch): BallResult {
     extraRuns: 0,
     extrasNote: null,
     rebowled: false,
+    lookupZone: { line: "Middle stump", length: "Good length" },
   };
 }
 

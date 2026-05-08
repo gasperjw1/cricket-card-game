@@ -53,6 +53,8 @@ export interface ResolutionResult {
   extrasNote: string | null;
   /** True if the delivery doesn't count against the over (No Ball / Wide). */
   rebowled: boolean;
+  /** The zone actually looked up on the batsman's card (after Day 5 Pitch / Trot Down / Switch Hit / Shuffle Across). Used by the reveal UI to highlight only the row that fired. */
+  lookupZone: import("../types/cards.js").Zone;
 }
 
 export function resolveBall(input: ResolveBallInput): ResolutionResult {
@@ -350,7 +352,14 @@ export function resolveBall(input: ResolveBallInput): ResolutionResult {
     }
   }
 
-  return { steps, finalOutcome: outcome, extraRuns, extrasNote, rebowled };
+  return {
+    steps,
+    finalOutcome: outcome,
+    extraRuns,
+    extrasNote,
+    rebowled,
+    lookupZone: lookupOnBatter,
+  };
 }
 
 // ─────────────────────────── Helpers ───────────────────────────

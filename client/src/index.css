@@ -660,6 +660,62 @@ h1 {
 
 .dim-text { color: #8a939c; }
 
+/* ───── Reveal-mode card filtering ───── */
+.card.reveal {
+  position: relative;
+}
+/* Fired sections get a subtle glow + accent border. */
+.card-section.reveal.fired {
+  background: rgba(255, 255, 255, 0.04);
+  border-radius: 6px;
+  padding: 0.4rem 0.5rem;
+  margin: 0.4rem -0.2rem;
+}
+.card-section.reveal.fired.strong { box-shadow: inset 0 0 0 1px rgba(110, 224, 122, 0.4); }
+.card-section.reveal.fired.neutral { box-shadow: inset 0 0 0 1px rgba(212, 167, 44, 0.4); }
+.card-section.reveal.fired.weak { box-shadow: inset 0 0 0 1px rgba(255, 129, 129, 0.4); }
+.card-section.reveal.dot {
+  background: rgba(0, 0, 0, 0.25);
+  border-radius: 6px;
+  padding: 0.4rem 0.5rem;
+  margin: 0.4rem -0.2rem;
+}
+.card-section .reveal-zone-row {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+.fired-row { animation: fired-pulse 0.6s ease-out; }
+@keyframes fired-pulse {
+  from { transform: scale(1.04); }
+  to { transform: scale(1); }
+}
+
+/* Resistances in reveal mode */
+.card-resistances.reveal.fired {
+  box-shadow: inset 0 0 0 1px rgba(110, 224, 122, 0.4);
+  border-radius: 6px;
+  padding: 0.4rem 0.5rem;
+}
+.card-resistances.reveal.not-fired { opacity: 0.7; }
+
+/* Bowler chips in reveal mode */
+.adj-chip.fired,
+.field-chip.fired {
+  box-shadow: 0 0 0 2px #6ee07a, 0 0 12px rgba(110, 224, 122, 0.4);
+  background: rgba(110, 224, 122, 0.1);
+}
+.adj-chip.blocked {
+  background: rgba(74, 85, 102, 0.4);
+  text-decoration: line-through;
+  text-decoration-color: rgba(255, 129, 129, 0.6);
+  text-decoration-thickness: 1.5px;
+}
+.field-chip.dim {
+  opacity: 0.4;
+  filter: saturate(0.4);
+}
+
 /* ───── Modal viewer ───── */
 .modal-backdrop {
   position: fixed;
