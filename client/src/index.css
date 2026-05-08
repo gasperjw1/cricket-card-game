@@ -982,6 +982,33 @@ h1 {
   flex-direction: column;
   gap: 0.5rem;
 }
+/* Swap picker */
+.swap-picker {
+  max-width: 560px;
+}
+.swap-title {
+  margin: 0;
+  color: #ff8aa8;
+}
+.swap-subtitle {
+  margin: 0;
+  color: #d6dde6;
+  text-align: center;
+}
+.swap-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 0.5rem 0.75rem;
+  background: #131a23;
+  border: 1px solid #2a3441;
+  border-radius: 8px;
+}
+.swap-grid {
+  width: 100%;
+}
+
 .scorecard-line {
   background: #131a23;
   border: 1px solid #2a3441;

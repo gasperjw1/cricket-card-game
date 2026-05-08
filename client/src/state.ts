@@ -66,6 +66,7 @@ export interface MatchClient {
   selectMandatory: (cardId: string | null) => void;
   selectSituation: (cardId: string | null) => void;
   submitBall: () => void;
+  pickSwap: (cardId: string) => void;
   dismissReveal: () => void;
   clearError: () => void;
 }
@@ -279,6 +280,10 @@ export function useMatchClient(): MatchClient {
     setAwaitingReveal(true);
   };
 
+  const pickSwap = (cardId: string): void => {
+    socket.emit("ball:swap-pick", { cardId });
+  };
+
   const dismissReveal = (): void => {
     setLastReveal(null);
   };
@@ -304,6 +309,7 @@ export function useMatchClient(): MatchClient {
     selectMandatory,
     selectSituation,
     submitBall,
+    pickSwap,
     dismissReveal,
     clearError,
   };

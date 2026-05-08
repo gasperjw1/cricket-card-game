@@ -15,6 +15,7 @@ import { CardViewer } from "../components/CardViewer.tsx";
 import { Tip } from "../components/Tip.tsx";
 import type { MatchClient } from "../state.ts";
 import { useCountdown } from "../useCountdown.ts";
+import { SwapPicker } from "./SwapPicker.tsx";
 
 interface Props {
   client: MatchClient;
@@ -130,7 +131,7 @@ export function InningsScreen({ client }: Props) {
         onClearSituation={() => client.selectSituation(null)}
       />
 
-      {viewingCard && (
+      {viewingCard && !matchState.pendingSwap && (
         <CardViewer
           card={viewingCard}
           isCurrentlySelected={
@@ -154,7 +155,28 @@ export function InningsScreen({ client }: Props) {
         />
       )}
 
-      {lastReveal && (
+      {/* Swap picker takes precedence — shown only to the affected player. */}
+      {matchState.pendingSwap && matchState.pendingSwap.fromSlot === mySlot && (
+        <SwapPicker
+          swap={matchState.pendingSwap}
+          privateView={privateView}
+          onPick={client.pickSwap}
+        />
+      )}
+
+      {/* Other player sees a "waiting for swap pick" notice instead. */}
+      {matchState.pendingSwap && matchState.pendingSwap.fromSlot !== mySlot && (
+        <div className="reveal-overlay">
+          <div className="reveal-inner">
+            <h2>Mid-ball swap</h2>
+            <p className="tagline">
+              Waiting for {opponent.displayName} to pick a replacement…
+            </p>
+          </div>
+        </div>
+      )}
+
+      {lastReveal && !matchState.pendingSwap && (
         <RevealOverlay
           result={lastReveal}
           mySlot={mySlot}

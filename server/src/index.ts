@@ -15,7 +15,11 @@ import {
   handleChoose as handleCoinTossChoose,
   startCoinToss,
 } from "./coin-toss.js";
-import { startInnings1, submitBallSelection } from "./innings.js";
+import {
+  handleBallSwapPick,
+  startInnings1,
+  submitBallSelection,
+} from "./innings.js";
 import { MatchRegistry, type ServerMatch } from "./match-registry.js";
 
 const PORT = Number(process.env.PORT ?? 3001);
@@ -174,6 +178,20 @@ io.on("connection", (socket) => {
     if (!res.ok && res.reason) {
       socket.emit("match:error", {
         code: "BALL_SUBMIT",
+        message: res.reason,
+      });
+    }
+  });
+
+  socket.on("ball:swap-pick", ({ cardId }) => {
+    const match = registry.getMatchBySocket(socket.id);
+    if (!match) return;
+    const slot: PlayerSlot =
+      match.players.A.socketId === socket.id ? "A" : "B";
+    const res = handleBallSwapPick(match, slot, cardId, inningsCallbacks);
+    if (!res.ok && res.reason) {
+      socket.emit("match:error", {
+        code: "BALL_SWAP_PICK",
         message: res.reason,
       });
     }

@@ -42,6 +42,8 @@ export interface ClientToServerEvents {
 
   "lobby:leave": () => void;
 
+  "ball:swap-pick": (payload: { cardId: string }) => void;
+
   "draft:pick": (payload: { roundIndex: number; cardId: string }) => void;
 
   "cointoss:call": (payload: { call: "heads" | "tails" }) => void;

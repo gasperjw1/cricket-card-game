@@ -2,12 +2,17 @@ import { randomBytes, randomUUID } from "node:crypto";
 import type {
   AnyCard,
   BallSelection,
+  BatsmanCard,
+  BowlerCard,
   CoinTossState,
   InningsState,
   MatchResult,
+  PendingSwap,
   PlayerSlot,
   PublicMatchState,
   PublicPlayerInfo,
+  ResolutionStep,
+  SituationCard,
 } from "@swipe-sixer/shared";
 
 /**
@@ -33,6 +38,33 @@ export interface ServerDecks {
   discard: AnyCard[];
 }
 
+/**
+ * Carries per-ball resolution state between the moment both players submit
+ * and the final ball:reveal broadcast. Needed because resolution can pause
+ * on swap-pick prompts (Mankad / Retired Out / Cramps) — the engine sees
+ * the post-swap cards.
+ */
+export interface BallResolutionContext {
+  battingSlot: PlayerSlot;
+  bowlingSlot: PlayerSlot;
+  battingMandatory: BatsmanCard;
+  bowlingMandatory: BowlerCard;
+  battingSituation: SituationCard | null;
+  bowlingSituation: SituationCard | null;
+  /** Steps recorded before the engine runs (Old School cancels, swap notes). */
+  upstreamSteps: ResolutionStep[];
+  /** Mankad fired but no swap target available — engine output gets a one-tier downgrade. */
+  forcedDowngradeFromMankad: boolean;
+  /** Cards (by original played id) to discard from each player's hand at end of ball. */
+  battingPlayedIds: string[];
+  bowlingPlayedIds: string[];
+  /** Was the original mandatory submission auto-picked by the server? */
+  battingAutoPicked: boolean;
+  bowlingAutoPicked: boolean;
+  /** Was the timer's expiry the trigger? Used for telemetry / future UX. */
+  timedOut: boolean;
+}
+
 export interface ServerMatch {
   matchId: string;
   inviteCode: string;
@@ -49,6 +81,10 @@ export interface ServerMatch {
   pendingSelections: { A: BallSelection | null; B: BallSelection | null };
   /** Epoch-ms deadline for the active ball's submit timer; null when not awaiting selections. */
   currentBallDeadlineEpochMs: number | null;
+  /** In-flight ball resolution context, populated after both players submit and torn down on reveal. */
+  ballContext: BallResolutionContext | null;
+  /** Public view of the current swap pick request; null when resolution isn't paused on a swap. */
+  pendingSwap: PendingSwap | null;
   result: MatchResult | null;
   /**
    * Per-match scheduled timeouts keyed by name (e.g. "coin-countdown",
@@ -113,6 +149,8 @@ export class MatchRegistry {
       currentInnings: null,
       pendingSelections: { A: null, B: null },
       currentBallDeadlineEpochMs: null,
+      ballContext: null,
+      pendingSwap: null,
       result: null,
       timers: new Map(),
     };
@@ -283,6 +321,7 @@ export class MatchRegistry {
       innings2: match.innings2,
       coinToss: match.coinToss,
       currentBallDeadlineEpochMs: match.currentBallDeadlineEpochMs,
+      pendingSwap: match.pendingSwap,
       result: match.result,
     };
   }

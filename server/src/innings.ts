@@ -12,6 +12,7 @@ import {
   HAND_SIZE,
   MAX_BALLS_PER_INNINGS,
   MAX_WICKETS_PER_INNINGS,
+  SWAP_PICK_TIMER_SECONDS,
   TURN_TIMER_SECONDS,
   resolveBall,
   type AnyCard,
@@ -22,21 +23,25 @@ import {
   type BowlerCard,
   type InningsState,
   type MatchResult,
+  type PendingSwap,
   type PlayerSlot,
   type PrivatePlayerView,
   type ResolutionStep,
   type RevealedSelection,
   type SituationCard,
   type SituationDeck,
+  type SwapReason,
 } from "@swipe-sixer/shared";
 import { CARDS } from "@swipe-sixer/shared/data";
 import {
   activeRoleForSlot,
+  type BallResolutionContext,
   type ServerDecks,
   type ServerMatch,
 } from "./match-registry.js";
 
 const BALL_TIMER_KEY = "ball-timer";
+const SWAP_TIMER_KEY = "swap-timer";
 
 export interface InningsCallbacks {
   /** Push the latest match:state to both players. */
@@ -162,20 +167,19 @@ function resolveBallTurn(
   const battingSelection = match.pendingSelections[battingSlot];
   const bowlingSelection = match.pendingSelections[bowlingSlot];
   if (!battingSelection || !bowlingSelection) {
-    // Neither player has any mandatory card — extremely rare; skip ball with dot.
-    advanceAfterBall(match, cb, makeNoOpResult(match, timedOut));
+    advanceAfterBall(match, cb, makeNoOpResult(match));
     return;
   }
 
   // Resolve the played cards into the actual card objects.
   const battingHand = match.decks[battingSlot].hand;
   const bowlingHand = match.decks[bowlingSlot].hand;
-  let battingMandatory = findCardById(battingHand, battingSelection.mandatoryCardId);
-  let bowlingMandatory = findCardById(bowlingHand, bowlingSelection.mandatoryCardId);
-  let battingSituation = battingSelection.situationCardId
+  const battingMandatory = findCardById(battingHand, battingSelection.mandatoryCardId);
+  const bowlingMandatory = findCardById(bowlingHand, bowlingSelection.mandatoryCardId);
+  const battingSituation = battingSelection.situationCardId
     ? (findCardById(battingHand, battingSelection.situationCardId) as SituationCard | null)
     : null;
-  let bowlingSituation = bowlingSelection.situationCardId
+  const bowlingSituation = bowlingSelection.situationCardId
     ? (findCardById(bowlingHand, bowlingSelection.situationCardId) as SituationCard | null)
     : null;
 
@@ -185,126 +189,276 @@ function resolveBallTurn(
     !bowlingMandatory ||
     bowlingMandatory.kind !== "bowler"
   ) {
-    // Defensive — submission validation should have caught this.
-    advanceAfterBall(match, cb, makeNoOpResult(match, timedOut));
+    advanceAfterBall(match, cb, makeNoOpResult(match));
     return;
   }
 
+  // Build the resolution context. The pipeline below mutates it and may
+  // pause on a swap; on resume (handleBallSwapPick) we continue from the
+  // same context.
+  const ctx: BallResolutionContext = {
+    battingSlot,
+    bowlingSlot,
+    battingMandatory,
+    bowlingMandatory,
+    battingSituation,
+    bowlingSituation,
+    upstreamSteps: [],
+    forcedDowngradeFromMankad: false,
+    battingPlayedIds: [
+      battingSelection.mandatoryCardId,
+      battingSelection.situationCardId,
+    ].filter((s): s is string => Boolean(s)),
+    bowlingPlayedIds: [
+      bowlingSelection.mandatoryCardId,
+      bowlingSelection.situationCardId,
+    ].filter((s): s is string => Boolean(s)),
+    battingAutoPicked: battingSelection.autoPicked,
+    bowlingAutoPicked: bowlingSelection.autoPicked,
+    timedOut,
+  };
+  match.ballContext = ctx;
+
   // ─── Step 1: Old School cancellation ───
-  const upstreamSteps: ResolutionStep[] = [];
-  if (battingSituation?.id === "old-school-batting" && bowlingSituation) {
-    upstreamSteps.push({
+  applyOldSchoolCancel(ctx);
+
+  // ─── Step 2: Mankad / Retired Out / Cramps swaps ───
+  // continueResolution looks for the next swap-trigger. If found and the
+  // affected player has candidate cards, it sets match.pendingSwap and
+  // returns; the actual replacement is fed in later via handleBallSwapPick.
+  // If no candidates, it applies the spec's penalty inline and continues.
+  continueResolution(match, cb);
+}
+
+/**
+ * Applies pending swap-card effects in order, prompting the affected player
+ * via match.pendingSwap when a pick is required. Falls through to
+ * runEngineAndAdvance when no more swaps are pending.
+ */
+function continueResolution(match: ServerMatch, cb: InningsCallbacks): void {
+  const ctx = match.ballContext;
+  if (!ctx || !match.decks) return;
+
+  // Order: Mankad first (forced on opponent), then Retired Out (batter's
+  // own choice), then Cramps (bowler's own choice). Spec doesn't mandate
+  // order but each is independent at this point.
+
+  if (ctx.bowlingSituation?.id === "mankad") {
+    if (promptSwap(match, cb, "mankad", ctx.battingSlot, ctx.battingMandatory.id, "batsman")) {
+      return; // paused on user input
+    }
+    // No swap target — apply spec penalty inline and consume the card.
+    ctx.forcedDowngradeFromMankad = true;
+    ctx.upstreamSteps.push({
+      kind: "mankad",
+      label: "Mankad",
+      detail: `No other batsman available — ${ctx.battingMandatory.name} stays but takes a one-tier downgrade.`,
+      applied: true,
+    });
+    ctx.bowlingSituation = null;
+  }
+
+  if (ctx.battingSituation?.id === "retired-out") {
+    if (promptSwap(match, cb, "retired-out", ctx.battingSlot, ctx.battingMandatory.id, "batsman")) {
+      return;
+    }
+    ctx.upstreamSteps.push({
+      kind: "retired-out",
+      label: "Retired Out",
+      detail: `No other batsman in hand — Retired Out fizzles.`,
+      applied: false,
+    });
+    ctx.battingSituation = null;
+  }
+
+  if (ctx.bowlingSituation?.id === "cramps") {
+    if (promptSwap(match, cb, "cramps", ctx.bowlingSlot, ctx.bowlingMandatory.id, "bowler")) {
+      return;
+    }
+    ctx.upstreamSteps.push({
+      kind: "cramps",
+      label: "Cramps",
+      detail: `No other bowler in hand — Cramps fizzles.`,
+      applied: false,
+    });
+    ctx.bowlingSituation = null;
+  }
+
+  runEngineAndAdvance(match, cb);
+}
+
+/**
+ * If the affected player has any candidate cards of the right kind, sets
+ * match.pendingSwap and broadcasts state. Returns true when paused for
+ * user input; false when no candidates were available (caller falls back).
+ */
+function promptSwap(
+  match: ServerMatch,
+  cb: InningsCallbacks,
+  reason: SwapReason,
+  fromSlot: PlayerSlot,
+  excludeId: string,
+  kind: "batsman" | "bowler",
+): boolean {
+  if (!match.decks) return false;
+  const hand = match.decks[fromSlot].hand;
+  const candidates = hand.filter((c) => c.kind === kind && c.id !== excludeId);
+  if (candidates.length === 0) return false;
+
+  const original = hand.find((c) => c.id === excludeId);
+  const originalName = original ? (original as BatsmanCard | BowlerCard).name : "your card";
+
+  const deadline = Date.now() + SWAP_PICK_TIMER_SECONDS * 1000;
+  const swap: PendingSwap = {
+    fromSlot,
+    reason,
+    originalCardId: excludeId,
+    originalCardName: originalName,
+    candidateIds: candidates.map((c) => c.id),
+    deadlineEpochMs: deadline,
+  };
+  match.pendingSwap = swap;
+
+  // Auto-pick on timeout.
+  scheduleSwapTimer(match, cb, deadline, () => {
+    const fallback = candidates[0];
+    if (fallback) applySwapPick(match, cb, fromSlot, fallback.id, /* auto */ true);
+  });
+
+  cb.broadcastState(match);
+  return true;
+}
+
+/**
+ * Public entry for client ball:swap-pick. Validates and applies, then
+ * resumes the resolution pipeline.
+ */
+export function handleBallSwapPick(
+  match: ServerMatch,
+  fromSlot: PlayerSlot,
+  cardId: string,
+  cb: InningsCallbacks,
+): { ok: boolean; reason?: string } {
+  if (!match.pendingSwap) return { ok: false, reason: "No swap pending" };
+  if (match.pendingSwap.fromSlot !== fromSlot) {
+    return { ok: false, reason: "Not your swap pick" };
+  }
+  if (!match.pendingSwap.candidateIds.includes(cardId)) {
+    return { ok: false, reason: "Not a valid replacement" };
+  }
+  applySwapPick(match, cb, fromSlot, cardId, /* auto */ false);
+  return { ok: true };
+}
+
+function applySwapPick(
+  match: ServerMatch,
+  cb: InningsCallbacks,
+  fromSlot: PlayerSlot,
+  cardId: string,
+  auto: boolean,
+): void {
+  if (!match.pendingSwap || !match.ballContext || !match.decks) return;
+  const reason = match.pendingSwap.reason;
+  const ctx = match.ballContext;
+  const replacement = match.decks[fromSlot].hand.find((c) => c.id === cardId);
+  if (!replacement) return;
+
+  if (reason === "mankad" || reason === "retired-out") {
+    if (replacement.kind !== "batsman") return;
+    ctx.upstreamSteps.push({
+      kind: reason,
+      label: reason === "mankad" ? "Mankad" : "Retired Out",
+      detail:
+        reason === "mankad"
+          ? `Mankad! ${ctx.battingMandatory.name} forced off — ${replacement.name} comes in${auto ? " (auto-picked, timer expired)" : ""}.`
+          : `${ctx.battingMandatory.name} retired out — ${replacement.name} replaces them${auto ? " (auto-picked)" : ""}.`,
+      applied: true,
+    });
+    // The new batsman is now the one whose card the engine looks up. The
+    // ORIGINAL played mandatory is also discarded at end of ball, AND the
+    // replacement is consumed — so add it to the discard list.
+    if (!ctx.battingPlayedIds.includes(replacement.id)) {
+      ctx.battingPlayedIds.push(replacement.id);
+    }
+    ctx.battingMandatory = replacement;
+    if (reason === "mankad") ctx.bowlingSituation = null;
+    if (reason === "retired-out") ctx.battingSituation = null;
+  } else if (reason === "cramps") {
+    if (replacement.kind !== "bowler") return;
+    ctx.upstreamSteps.push({
+      kind: "cramps",
+      label: "Cramps",
+      detail: `${ctx.bowlingMandatory.name} pulls up — ${replacement.name} bowls instead${auto ? " (auto-picked)" : ""}.`,
+      applied: true,
+    });
+    if (!ctx.bowlingPlayedIds.includes(replacement.id)) {
+      ctx.bowlingPlayedIds.push(replacement.id);
+    }
+    ctx.bowlingMandatory = replacement;
+    ctx.bowlingSituation = null;
+  }
+
+  match.pendingSwap = null;
+  clearSwapTimer(match);
+  cb.broadcastState(match);
+  continueResolution(match, cb);
+}
+
+function applyOldSchoolCancel(ctx: BallResolutionContext): void {
+  if (
+    ctx.battingSituation?.id === "old-school-batting" &&
+    ctx.bowlingSituation
+  ) {
+    ctx.upstreamSteps.push({
       kind: "old-school-cancel",
       label: "Old School (batting)",
-      detail: `Cancels ${bowlingSituation.name}.`,
+      detail: `Cancels ${ctx.bowlingSituation.name}.`,
       applied: true,
     });
-    bowlingSituation = null;
-    battingSituation = null; // Old School itself is consumed
+    ctx.bowlingSituation = null;
+    ctx.battingSituation = null;
   } else if (
-    bowlingSituation?.id === "old-school-bowling" &&
-    battingSituation
+    ctx.bowlingSituation?.id === "old-school-bowling" &&
+    ctx.battingSituation
   ) {
-    upstreamSteps.push({
+    ctx.upstreamSteps.push({
       kind: "old-school-cancel",
       label: "Old School (bowling)",
-      detail: `Cancels ${battingSituation.name}.`,
+      detail: `Cancels ${ctx.battingSituation.name}.`,
       applied: true,
     });
-    battingSituation = null;
-    bowlingSituation = null;
+    ctx.battingSituation = null;
+    ctx.bowlingSituation = null;
   } else if (
-    battingSituation?.id === "old-school-batting" ||
-    bowlingSituation?.id === "old-school-bowling"
+    ctx.battingSituation?.id === "old-school-batting" ||
+    ctx.bowlingSituation?.id === "old-school-bowling"
   ) {
-    // Played but no opponent situation to cancel.
-    upstreamSteps.push({
+    ctx.upstreamSteps.push({
       kind: "old-school-cancel",
       label: "Old School",
       detail: "Played but opponent had no situation card to cancel.",
       applied: false,
     });
-    if (battingSituation?.id === "old-school-batting") battingSituation = null;
-    if (bowlingSituation?.id === "old-school-bowling") bowlingSituation = null;
+    if (ctx.battingSituation?.id === "old-school-batting") ctx.battingSituation = null;
+    if (ctx.bowlingSituation?.id === "old-school-bowling") ctx.bowlingSituation = null;
   }
+}
 
-  // ─── Step 2: Mankad / Retired Out / Cramps swaps ───
-  let forcedDowngradeFromMankad = false;
-  if (bowlingSituation?.id === "mankad") {
-    // Force batting side to swap mandatory batsman.
-    const replacement = pickAnotherFromHand(battingHand, "batsman", battingMandatory.id);
-    if (replacement) {
-      upstreamSteps.push({
-        kind: "mankad",
-        label: "Mankad",
-        detail: `${battingMandatory.name} swapped for ${replacement.name}.`,
-        applied: true,
-      });
-      battingMandatory = replacement;
-    } else {
-      forcedDowngradeFromMankad = true;
-      upstreamSteps.push({
-        kind: "mankad",
-        label: "Mankad",
-        detail: `No other batsman available — ${battingMandatory.name} stays but takes a one-tier downgrade.`,
-        applied: true,
-      });
-    }
-    bowlingSituation = null; // Mankad consumed regardless
-  }
-  if (battingSituation?.id === "retired-out") {
-    const replacement = pickAnotherFromHand(battingHand, "batsman", battingMandatory.id);
-    if (replacement) {
-      upstreamSteps.push({
-        kind: "retired-out",
-        label: "Retired Out",
-        detail: `${battingMandatory.name} retired — ${replacement.name} comes in.`,
-        applied: true,
-      });
-      battingMandatory = replacement;
-    } else {
-      upstreamSteps.push({
-        kind: "retired-out",
-        label: "Retired Out",
-        detail: `No other batsman in hand — Retired Out fizzles.`,
-        applied: false,
-      });
-    }
-    battingSituation = null;
-  }
-  if (bowlingSituation?.id === "cramps") {
-    const replacement = pickAnotherFromHand(bowlingHand, "bowler", bowlingMandatory.id);
-    if (replacement) {
-      upstreamSteps.push({
-        kind: "cramps",
-        label: "Cramps",
-        detail: `${bowlingMandatory.name} pulls up — ${replacement.name} bowls instead.`,
-        applied: true,
-      });
-      bowlingMandatory = replacement;
-    } else {
-      upstreamSteps.push({
-        kind: "cramps",
-        label: "Cramps",
-        detail: `No other bowler in hand — Cramps fizzles.`,
-        applied: false,
-      });
-    }
-    bowlingSituation = null;
-  }
+function runEngineAndAdvance(match: ServerMatch, cb: InningsCallbacks): void {
+  const ctx = match.ballContext;
+  const innings = currentInnings(match);
+  if (!ctx || !innings || !match.decks) return;
 
-  // ─── Engine: steps 3–10 ───
   const engineResult = resolveBall({
-    batsman: battingMandatory as BatsmanCard,
-    bowler: bowlingMandatory as BowlerCard,
-    battingSituation,
-    bowlingSituation,
+    batsman: ctx.battingMandatory,
+    bowler: ctx.bowlingMandatory,
+    battingSituation: ctx.battingSituation,
+    bowlingSituation: ctx.bowlingSituation,
   });
 
-  // Synthesize Mankad's "no-swap downgrade" by inserting an extra downgrade step.
   let finalOutcome: BallOutcome = engineResult.finalOutcome;
-  let allSteps: ResolutionStep[] = [...upstreamSteps, ...engineResult.steps];
-  if (forcedDowngradeFromMankad) {
+  const allSteps: ResolutionStep[] = [...ctx.upstreamSteps, ...engineResult.steps];
+  if (ctx.forcedDowngradeFromMankad) {
     const before = finalOutcome;
     finalOutcome = downgradeOnce(finalOutcome);
     allSteps.push({
@@ -318,35 +472,21 @@ function resolveBallTurn(
   }
 
   // Build the BallResult for broadcast.
-  const battingPlayedCards: AnyCard[] = [battingSelection.mandatoryCardId, battingSelection.situationCardId]
-    .filter((id): id is string => Boolean(id))
-    .map((id) => findCardById(battingHand, id))
-    .filter((c): c is AnyCard => c !== null);
-  const bowlingPlayedCards: AnyCard[] = [bowlingSelection.mandatoryCardId, bowlingSelection.situationCardId]
-    .filter((id): id is string => Boolean(id))
-    .map((id) => findCardById(bowlingHand, id))
-    .filter((c): c is AnyCard => c !== null);
-
-  // The engine and pre-handling may have replaced the mandatory card via swap.
-  // We reflect what was REVEALED, including the original played card and the
-  // post-swap one. For v1 simplicity we surface only the post-swap mandatory.
+  const battingHand = match.decks[ctx.battingSlot].hand;
+  const bowlingHand = match.decks[ctx.bowlingSlot].hand;
   const battingReveal: RevealedSelection = {
-    player: battingSlot,
+    player: ctx.battingSlot,
     role: "batting",
-    mandatoryCard: battingMandatory as BatsmanCard,
-    situationCard:
-      (findCardById(battingHand, battingSelection.situationCardId ?? "") as SituationCard | null) ??
-      null,
-    autoPicked: battingSelection.autoPicked,
+    mandatoryCard: ctx.battingMandatory,
+    situationCard: ctx.battingSituation,
+    autoPicked: ctx.battingAutoPicked,
   };
   const bowlingReveal: RevealedSelection = {
-    player: bowlingSlot,
+    player: ctx.bowlingSlot,
     role: "bowling",
-    mandatoryCard: bowlingMandatory as BowlerCard,
-    situationCard:
-      (findCardById(bowlingHand, bowlingSelection.situationCardId ?? "") as SituationCard | null) ??
-      null,
-    autoPicked: bowlingSelection.autoPicked,
+    mandatoryCard: ctx.bowlingMandatory,
+    situationCard: ctx.bowlingSituation,
+    autoPicked: ctx.bowlingAutoPicked,
   };
 
   const ballNumber = innings.ballsBowled + 1;
@@ -358,11 +498,42 @@ function resolveBallTurn(
     finalOutcome,
   };
 
-  // Discard played cards from each player's hand.
-  consumePlayed(match.decks[battingSlot], battingPlayedCards);
-  consumePlayed(match.decks[bowlingSlot], bowlingPlayedCards);
+  // Discard played cards (incl. swap replacements added to ctx.*PlayedIds).
+  consumePlayedByIds(match.decks[ctx.battingSlot], ctx.battingPlayedIds);
+  consumePlayedByIds(match.decks[ctx.bowlingSlot], ctx.bowlingPlayedIds);
+
+  // Tear down ball context now that we're done with it.
+  match.ballContext = null;
+  // Ensure any stale swap state is cleared.
+  match.pendingSwap = null;
+  clearSwapTimer(match);
+
+  // Suppress unused lint on hand variables
+  void battingHand;
+  void bowlingHand;
 
   advanceAfterBall(match, cb, result);
+}
+
+function scheduleSwapTimer(
+  match: ServerMatch,
+  cb: InningsCallbacks,
+  deadlineEpochMs: number,
+  fn: () => void,
+): void {
+  clearSwapTimer(match);
+  const delay = Math.max(0, deadlineEpochMs - Date.now());
+  const t = setTimeout(fn, delay);
+  match.timers.set(SWAP_TIMER_KEY, t);
+  void cb;
+}
+
+function clearSwapTimer(match: ServerMatch): void {
+  const t = match.timers.get(SWAP_TIMER_KEY);
+  if (t) {
+    clearTimeout(t);
+    match.timers.delete(SWAP_TIMER_KEY);
+  }
 }
 
 function advanceAfterBall(
@@ -579,26 +750,13 @@ function findCardById(hand: AnyCard[], id: string): AnyCard | null {
   return hand.find((c) => c.id === id) ?? null;
 }
 
-function consumePlayed(decks: ServerDecks, played: AnyCard[]): void {
-  for (const card of played) {
-    const idx = decks.hand.findIndex((c) => c.id === card.id);
+function consumePlayedByIds(decks: ServerDecks, ids: string[]): void {
+  for (const id of ids) {
+    const idx = decks.hand.findIndex((c) => c.id === id);
     if (idx >= 0) {
       decks.discard.push(decks.hand.splice(idx, 1)[0]!);
     }
   }
-}
-
-function pickAnotherFromHand(
-  hand: AnyCard[],
-  kind: "batsman" | "bowler",
-  excludeId: string,
-): BatsmanCard | BowlerCard | null {
-  const candidates = hand.filter(
-    (c) => c.kind === kind && c.id !== excludeId,
-  );
-  if (candidates.length === 0) return null;
-  const pick = candidates[Math.floor(Math.random() * candidates.length)]!;
-  return pick as BatsmanCard | BowlerCard;
 }
 
 function autoPickSelection(
@@ -665,7 +823,7 @@ function pushPrivateViews(match: ServerMatch, cb: InningsCallbacks): void {
   }
 }
 
-function makeNoOpResult(match: ServerMatch, _timedOut: boolean): BallResult {
+function makeNoOpResult(match: ServerMatch): BallResult {
   // Fallback used when validation can't produce a real ball (extremely rare).
   // Emit a dot ball for the current state.
   const innings = currentInnings(match)!;

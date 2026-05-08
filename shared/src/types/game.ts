@@ -113,6 +113,25 @@ export interface CoinTossState {
   autoChose: boolean;
 }
 
+export type SwapReason = "mankad" | "retired-out" | "cramps";
+
+/**
+ * After both players submit, a Mankad / Retired Out / Cramps card may force
+ * one player to swap their played mandatory card. Resolution pauses while
+ * that player picks from a list of candidate ids in their hand.
+ */
+export interface PendingSwap {
+  fromSlot: PlayerSlot;
+  reason: SwapReason;
+  /** The card being swapped out (its current name shown to the player). */
+  originalCardId: string;
+  originalCardName: string;
+  /** Card ids in the affected player's hand that are valid replacements. */
+  candidateIds: string[];
+  /** Auto-pick deadline. */
+  deadlineEpochMs: number;
+}
+
 export interface PublicMatchState {
   matchId: string;
   inviteCode: string;
@@ -124,6 +143,8 @@ export interface PublicMatchState {
   coinToss: CoinTossState | null;
   /** Epoch-ms deadline for the active ball's submit timer; null when not awaiting selections. */
   currentBallDeadlineEpochMs: number | null;
+  /** Set when ball resolution is paused waiting on a swap pick. */
+  pendingSwap: PendingSwap | null;
   result: MatchResult | null;
 }
 
