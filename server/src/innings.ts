@@ -730,8 +730,8 @@ function makePlayerDecks(): ServerDecks {
 const TIER_DISTRIBUTION: Record<"Elite" | "Gold" | "Silver" | "Bronze", number> = {
   Elite: 2,
   Gold: 3,
-  Silver: 5,
-  Bronze: 5, // 15 player cards + 5 situation cards = 20
+  Silver: 7,
+  Bronze: 3, // 15 player cards + 5 situation cards = 20
 };
 
 function buildDeck(role: SituationDeck): AnyCard[] {

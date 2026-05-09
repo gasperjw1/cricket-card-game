@@ -61,7 +61,13 @@ export type Nation =
   | "Bangladesh"
   | "Zimbabwe"
   | "Afghanistan"
-  | "Ireland";
+  | "Ireland"
+  | "Nepal"
+  | "Hong Kong"
+  | "Scotland"
+  | "USA"
+  | "Netherlands"
+  | "Namibia";
 
 export type CardKind = "batsman" | "bowler" | "situation";
 

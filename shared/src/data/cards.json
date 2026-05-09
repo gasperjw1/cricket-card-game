@@ -10704,6 +10704,414 @@
         }
       ],
       "resistances": []
+    },
+    {
+      "id": "babar-hayat-bat",
+      "kind": "batsman",
+      "name": "Babar Hayat",
+      "nation": "Hong Kong",
+      "tier": "Silver",
+      "description": "Right-handed top-order, longtime HK stalwart. 60+ T20Is, scored 122* in a T20 WC qualifier vs PNG. Drives and pulls; vulnerable to short pace.",
+      "strengths": [
+        {
+          "zone": {
+            "line": "Off stump",
+            "length": "Full"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 4,
+            "shot": "drive"
+          }
+        },
+        {
+          "zone": {
+            "line": "Leg stump",
+            "length": "Full"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 4,
+            "shot": "flick"
+          }
+        }
+      ],
+      "neutrals": [
+        {
+          "zone": {
+            "line": "Leg stump",
+            "length": "Good length"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 1,
+            "shot": "work"
+          }
+        }
+      ],
+      "weaknesses": [
+        {
+          "zone": {
+            "line": "Middle stump",
+            "length": "Short"
+          },
+          "outcome": {
+            "type": "wicket",
+            "mode": "caught fending"
+          }
+        },
+        {
+          "zone": {
+            "line": "Outside off",
+            "length": "Good length"
+          },
+          "outcome": {
+            "type": "wicket",
+            "mode": "edge to slip"
+          }
+        },
+        {
+          "zone": {
+            "line": "Middle stump",
+            "length": "Good length"
+          },
+          "outcome": {
+            "type": "wicket",
+            "mode": "bowled"
+          }
+        }
+      ],
+      "resistances": [
+        "Topspin",
+        "Drift",
+        "Carrom"
+      ]
+    },
+    {
+      "id": "richie-berrington-bat",
+      "kind": "batsman",
+      "name": "Richie Berrington",
+      "nation": "Scotland",
+      "tier": "Silver",
+      "description": "Right-handed Scotland T20I captain. 110+ T20Is, T20 WC stalwart (60 vs WI 2021). Anchor with the full shot range.",
+      "strengths": [
+        {
+          "zone": {
+            "line": "Off stump",
+            "length": "Full"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 4,
+            "shot": "drive"
+          }
+        },
+        {
+          "zone": {
+            "line": "Leg stump",
+            "length": "Full"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 4,
+            "shot": "flick"
+          }
+        }
+      ],
+      "neutrals": [
+        {
+          "zone": {
+            "line": "Off stump",
+            "length": "Good length"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 1,
+            "shot": "push"
+          }
+        }
+      ],
+      "weaknesses": [
+        {
+          "zone": {
+            "line": "Middle stump",
+            "length": "Short"
+          },
+          "outcome": {
+            "type": "wicket",
+            "mode": "top edge"
+          }
+        },
+        {
+          "zone": {
+            "line": "Outside off",
+            "length": "Good length"
+          },
+          "outcome": {
+            "type": "wicket",
+            "mode": "edge to keeper"
+          }
+        },
+        {
+          "zone": {
+            "line": "Middle stump",
+            "length": "Good length"
+          },
+          "outcome": {
+            "type": "wicket",
+            "mode": "LBW"
+          }
+        }
+      ],
+      "resistances": [
+        "Topspin",
+        "Drift",
+        "Carrom"
+      ]
+    },
+    {
+      "id": "aaron-jones-bat",
+      "kind": "batsman",
+      "name": "Aaron Jones",
+      "nation": "USA",
+      "tier": "Silver",
+      "description": "Left-handed middle-order. T20 WC 2024 hero — 94* vs Canada in the opener; USA reached the Super Eights. Big sixes over the leg side.",
+      "strengths": [
+        {
+          "zone": {
+            "line": "Leg stump",
+            "length": "Full"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 6,
+            "shot": "slog"
+          }
+        },
+        {
+          "zone": {
+            "line": "Middle stump",
+            "length": "Short"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 4,
+            "shot": "pull"
+          }
+        }
+      ],
+      "neutrals": [
+        {
+          "zone": {
+            "line": "Leg stump",
+            "length": "Good length"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 1,
+            "shot": "flick"
+          }
+        }
+      ],
+      "weaknesses": [
+        {
+          "zone": {
+            "line": "Outside off",
+            "length": "Good length"
+          },
+          "outcome": {
+            "type": "wicket",
+            "mode": "edge to slip"
+          }
+        },
+        {
+          "zone": {
+            "line": "Outside off",
+            "length": "Full"
+          },
+          "outcome": {
+            "type": "wicket",
+            "mode": "caught at cover"
+          }
+        },
+        {
+          "zone": {
+            "line": "Middle stump",
+            "length": "Good length"
+          },
+          "outcome": {
+            "type": "wicket",
+            "mode": "bowled"
+          }
+        }
+      ],
+      "resistances": [
+        "Topspin",
+        "Drift"
+      ]
+    },
+    {
+      "id": "bas-de-leede-bat",
+      "kind": "batsman",
+      "name": "Bas de Leede",
+      "nation": "Netherlands",
+      "tier": "Silver",
+      "description": "Right-handed all-rounder. T20 WC 2024 squad. Knocked SA out of T20 WC 2022 (his father Tim played for NED too).",
+      "strengths": [
+        {
+          "zone": {
+            "line": "Off stump",
+            "length": "Full"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 4,
+            "shot": "drive"
+          }
+        },
+        {
+          "zone": {
+            "line": "Leg stump",
+            "length": "Full"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 4,
+            "shot": "flick"
+          }
+        }
+      ],
+      "neutrals": [
+        {
+          "zone": {
+            "line": "Middle stump",
+            "length": "Good length"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 1,
+            "shot": "push"
+          }
+        }
+      ],
+      "weaknesses": [
+        {
+          "zone": {
+            "line": "Middle stump",
+            "length": "Short"
+          },
+          "outcome": {
+            "type": "wicket",
+            "mode": "caught fending"
+          }
+        },
+        {
+          "zone": {
+            "line": "Outside off",
+            "length": "Good length"
+          },
+          "outcome": {
+            "type": "wicket",
+            "mode": "edge to slip"
+          }
+        },
+        {
+          "zone": {
+            "line": "Middle stump",
+            "length": "Good length"
+          },
+          "outcome": {
+            "type": "wicket",
+            "mode": "LBW"
+          }
+        }
+      ],
+      "resistances": [
+        "Slower",
+        "Topspin"
+      ]
+    },
+    {
+      "id": "gerhard-erasmus-bat",
+      "kind": "batsman",
+      "name": "Gerhard Erasmus",
+      "nation": "Namibia",
+      "tier": "Silver",
+      "description": "Right-handed Namibia captain. NAM's #1 T20 batter, captained the team that beat Sri Lanka at T20 WC 2021.",
+      "strengths": [
+        {
+          "zone": {
+            "line": "Off stump",
+            "length": "Full"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 4,
+            "shot": "drive"
+          }
+        },
+        {
+          "zone": {
+            "line": "Leg stump",
+            "length": "Good length"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 4,
+            "shot": "work"
+          }
+        }
+      ],
+      "neutrals": [
+        {
+          "zone": {
+            "line": "Leg stump",
+            "length": "Full"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 1,
+            "shot": "flick"
+          }
+        }
+      ],
+      "weaknesses": [
+        {
+          "zone": {
+            "line": "Outside off",
+            "length": "Short"
+          },
+          "outcome": {
+            "type": "wicket",
+            "mode": "caught at point"
+          }
+        },
+        {
+          "zone": {
+            "line": "Off stump",
+            "length": "Good length"
+          },
+          "outcome": {
+            "type": "wicket",
+            "mode": "edge to slip"
+          }
+        },
+        {
+          "zone": {
+            "line": "Middle stump",
+            "length": "Good length"
+          },
+          "outcome": {
+            "type": "wicket",
+            "mode": "LBW"
+          }
+        }
+      ],
+      "resistances": [
+        "Topspin",
+        "Drift",
+        "Carrom"
+      ]
     }
   ],
   "bowlers": [
@@ -12909,6 +13317,86 @@
       "delivery": {
         "line": "Off stump",
         "length": "Good length"
+      },
+      "adjectives": [],
+      "fielding": [
+        "Cover"
+      ]
+    },
+    {
+      "id": "sandeep-lamichhane-bowl",
+      "kind": "bowler",
+      "name": "Sandeep Lamichhane",
+      "nation": "Nepal",
+      "tier": "Silver",
+      "description": "Right-arm leg-spinner. 95+ T20Is, IPL star (DC), Nepal's most exported cricketer. Disguised wrong'un — but loses the skill chip at Silver per v1.1.",
+      "delivery": {
+        "line": "Middle stump",
+        "length": "Good length"
+      },
+      "adjectives": [],
+      "fielding": [
+        "Short leg/Silly point"
+      ]
+    },
+    {
+      "id": "mark-watt-bowl",
+      "kind": "bowler",
+      "name": "Mark Watt",
+      "nation": "Scotland",
+      "tier": "Silver",
+      "description": "Left-arm orthodox spinner. Instantly recognizable on the field (sunglasses, slow walk-up). T20 WC squad regular.",
+      "delivery": {
+        "line": "Off stump",
+        "length": "Good length"
+      },
+      "adjectives": [],
+      "fielding": [
+        "Cover"
+      ]
+    },
+    {
+      "id": "saurabh-netravalkar-bowl",
+      "kind": "bowler",
+      "name": "Saurabh Netravalkar",
+      "nation": "USA",
+      "tier": "Silver",
+      "description": "Left-arm quick. T20 WC 2024 Super Over hero vs Pakistan — bowled the over that won USA the match.",
+      "delivery": {
+        "line": "Off stump",
+        "length": "Full"
+      },
+      "adjectives": [],
+      "fielding": [
+        "Slip cordon"
+      ]
+    },
+    {
+      "id": "paul-van-meekeren-bowl",
+      "kind": "bowler",
+      "name": "Paul van Meekeren",
+      "nation": "Netherlands",
+      "tier": "Silver",
+      "description": "Right-arm fast-medium. T20 WC 2022 famous 4/11 spell vs South Africa.",
+      "delivery": {
+        "line": "Off stump",
+        "length": "Good length"
+      },
+      "adjectives": [],
+      "fielding": [
+        "Slip cordon"
+      ]
+    },
+    {
+      "id": "david-wiese-bowl",
+      "kind": "bowler",
+      "name": "David Wiese",
+      "nation": "Namibia",
+      "tier": "Silver",
+      "description": "Right-arm medium-fast all-rounder, ex-South Africa. NAM's go-to death-overs operator at T20 WC 2021/2024. Bowler-only card.",
+      "delivery": {
+        "line": "Off stump",
+        "length": "Full"
       },
       "adjectives": [],
       "fielding": [

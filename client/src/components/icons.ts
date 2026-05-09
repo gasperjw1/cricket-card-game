@@ -127,4 +127,10 @@ export const NATION_FLAG: Record<Nation, string> = {
   Zimbabwe: "🇿🇼",
   Afghanistan: "🇦🇫",
   Ireland: "🇮🇪",
+  Nepal: "🇳🇵",
+  "Hong Kong": "🇭🇰",
+  Scotland: "🏴󠁧󠁢󠁳󠁣󠁴󠁿",
+  USA: "🇺🇸",
+  Netherlands: "🇳🇱",
+  Namibia: "🇳🇦",
 };

@@ -95,6 +95,12 @@ const NATION_BY_HEADER: Record<string, Nation> = {
   ZIMBABWE: "Zimbabwe",
   AFGHANISTAN: "Afghanistan",
   IRELAND: "Ireland",
+  NEPAL: "Nepal",
+  "HONG KONG": "Hong Kong",
+  SCOTLAND: "Scotland",
+  USA: "USA",
+  NETHERLANDS: "Netherlands",
+  NAMIBIA: "Namibia",
 };
 
 function slug(s: string): string {
@@ -654,11 +660,12 @@ function main(): void {
 
   console.log(`Parsed ${batsmen.length} batsmen, ${bowlers.length} bowlers, ${situations.length} situation cards.`);
 
-  if (batsmen.length !== 132) {
-    throw new Error(`Expected 132 batsmen, got ${batsmen.length}`);
+  // 132 from the 12 Test nations (11×12) + 5 Silver associates per role = 137
+  if (batsmen.length !== 137) {
+    throw new Error(`Expected 137 batsmen, got ${batsmen.length}`);
   }
-  if (bowlers.length !== 132) {
-    throw new Error(`Expected 132 bowlers, got ${bowlers.length}`);
+  if (bowlers.length !== 137) {
+    throw new Error(`Expected 137 bowlers, got ${bowlers.length}`);
   }
   // 8 batting + 6 bowling + 2 Old School variants = 16 entries in v1.1
   // (added Deep in the Crease batting + Third Umpire Distracted by Biryani bowling)

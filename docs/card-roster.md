@@ -1672,6 +1672,105 @@ Everything not listed = dot ball. Weaknesses are zone-only (no adjective referen
 
 ---
 
+# 🇳🇵 NEPAL
+
+## BOWLERS
+
+### SILVER — Sandeep Lamichhane
+*Right-arm leg-spinner. 95+ T20Is, IPL star (DC), Nepal's most exported cricketer. Disguised wrong'un — but loses the skill chip at Silver per v1.1.*
+- **Delivery:** Good length middle stump | **Fielding:** Short leg/Silly point
+
+---
+
+# 🇭🇰 HONG KONG
+
+## BATSMEN
+
+### SILVER — Babar Hayat
+*Right-handed top-order, longtime HK stalwart. 60+ T20Is, scored 122* in a T20 WC qualifier vs PNG. Drives and pulls; vulnerable to short pace.*
+- **Strengths:** Full off stump → drive for 4 | Full leg stump → flick for 4
+- **Neutrals:** Good length leg stump → work for 1
+- **Weaknesses:** Short middle stump → caught fending | Good length Outside off → edge to slip | Good length middle stump → bowled
+- **Resistances:** Topspin, Drift, Carrom
+
+---
+
+# 🏴󠁧󠁢󠁳󠁣󠁴󠁿 SCOTLAND
+
+## BATSMEN
+
+### SILVER — Richie Berrington
+*Right-handed Scotland T20I captain. 110+ T20Is, T20 WC stalwart (60 vs WI 2021). Anchor with the full shot range.*
+- **Strengths:** Full off stump → drive for 4 | Full leg stump → flick for 4
+- **Neutrals:** Good length off stump → push for 1
+- **Weaknesses:** Short middle stump → top edge | Good length Outside off → edge to keeper | Good length middle stump → LBW
+- **Resistances:** Topspin, Drift, Carrom
+
+## BOWLERS
+
+### SILVER — Mark Watt
+*Left-arm orthodox spinner. Instantly recognizable on the field (sunglasses, slow walk-up). T20 WC squad regular.*
+- **Delivery:** Good length off stump | **Fielding:** Cover
+
+---
+
+# 🇺🇸 USA
+
+## BATSMEN
+
+### SILVER — Aaron Jones
+*Left-handed middle-order. T20 WC 2024 hero — 94* vs Canada in the opener; USA reached the Super Eights. Big sixes over the leg side.*
+- **Strengths:** Full leg stump → slog for 6 | Short middle stump → pull for 4
+- **Neutrals:** Good length leg stump → flick for 1
+- **Weaknesses:** Good length Outside off → edge to slip | Full Outside off → caught at cover | Good length middle stump → bowled
+- **Resistances:** Topspin, Drift
+
+## BOWLERS
+
+### SILVER — Saurabh Netravalkar
+*Left-arm quick. T20 WC 2024 Super Over hero vs Pakistan — bowled the over that won USA the match.*
+- **Delivery:** Full off stump | **Fielding:** Slip cordon
+
+---
+
+# 🇳🇱 NETHERLANDS
+
+## BATSMEN
+
+### SILVER — Bas de Leede
+*Right-handed all-rounder. T20 WC 2024 squad. Knocked SA out of T20 WC 2022 (his father Tim played for NED too).*
+- **Strengths:** Full off stump → drive for 4 | Full leg stump → flick for 4
+- **Neutrals:** Good length middle stump → push for 1
+- **Weaknesses:** Short middle stump → caught fending | Good length Outside off → edge to slip | Good length middle stump → LBW
+- **Resistances:** Slower, Topspin
+
+## BOWLERS
+
+### SILVER — Paul van Meekeren
+*Right-arm fast-medium. T20 WC 2022 famous 4/11 spell vs South Africa.*
+- **Delivery:** Good length off stump | **Fielding:** Slip cordon
+
+---
+
+# 🇳🇦 NAMIBIA
+
+## BATSMEN
+
+### SILVER — Gerhard Erasmus
+*Right-handed Namibia captain. NAM's #1 T20 batter, captained the team that beat Sri Lanka at T20 WC 2021.*
+- **Strengths:** Full off stump → drive for 4 | Good length leg stump → work for 4
+- **Neutrals:** Full leg stump → flick for 1
+- **Weaknesses:** Short Outside off → caught at point | Good length off stump → edge to slip | Good length middle stump → LBW
+- **Resistances:** Topspin, Drift, Carrom
+
+## BOWLERS
+
+### SILVER — David Wiese
+*Right-arm medium-fast all-rounder, ex-South Africa. NAM's go-to death-overs operator at T20 WC 2021/2024. Bowler-only card.*
+- **Delivery:** Full off stump | **Fielding:** Cover
+
+---
+
 # TOTAL CARD COUNT
 
 | Nation | Batsmen | Bowlers | Total |
@@ -1688,4 +1787,10 @@ Everything not listed = dot ball. Weaknesses are zone-only (no adjective referen
 | Zimbabwe | 11 | 11 | 22 |
 | Afghanistan | 11 | 11 | 22 |
 | Ireland | 11 | 11 | 22 |
-| **TOTAL** | **132** | **132** | **264** |
+| Nepal | 0 | 1 | 1 |
+| Hong Kong | 1 | 0 | 1 |
+| Scotland | 1 | 1 | 2 |
+| USA | 1 | 1 | 2 |
+| Netherlands | 1 | 1 | 2 |
+| Namibia | 1 | 1 | 2 |
+| **TOTAL** | **137** | **137** | **274** |
