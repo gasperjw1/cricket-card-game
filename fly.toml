@@ -5,7 +5,7 @@
 #   - Where to host (region)
 #   - What port the app listens on
 #   - How Fly should health-check it
-#   - VM size (free tier limits: 3× shared-cpu-1x with 256MB)
+#   - VM size (current: 1× shared-cpu-1x 256MB, ~$2/month always-on)
 #
 # Change `app` below to the name you pick during `fly launch`. Region can
 # stay `iad` (US East — Virginia) or change to one closer to your players.
@@ -27,8 +27,10 @@ primary_region = "iad"          # iad = US East. See link above for others.
   # Container listens on 8080 (Dockerfile sets PORT=8080).
   internal_port = 8080
   force_https = true
-  # Free tier: keep at least one VM warm so the first connection isn't slow.
+  # Keep at least one VM warm so the first connection isn't slow.
   # auto_stop = false means VMs don't suspend after idle.
+  # (Trade-off: ~$2/month always-on vs. cents/month with cold starts —
+  # see docs/deployment.md section 9.)
   auto_stop_machines = false
   auto_start_machines = true
   min_machines_running = 1
@@ -43,7 +45,7 @@ primary_region = "iad"          # iad = US East. See link above for others.
     path = "/health"
 
 [[vm]]
-  # Free-tier eligible size. Bump to shared-cpu-2x or 1gb if traffic grows.
+  # Cheapest size (~$2/month). Bump to shared-cpu-2x or 1gb if traffic grows.
   size = "shared-cpu-1x"
   memory = "256mb"
   cpu_kind = "shared"

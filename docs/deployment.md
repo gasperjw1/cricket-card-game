@@ -17,13 +17,17 @@ We picked Fly.io because the game needs:
    which needs a long-lived TCP connection. Static-only hosts (GitHub
    Pages, Netlify free tier) can't do this.
 2. **Always-on hosting** — "click my link" sharing breaks if the server
-   has 30-second cold starts. Fly's free tier keeps at least one VM warm.
+   has 30-second cold starts. Fly lets you keep a VM warm 24/7 cheaply
+   (~$2/month for our 256MB config — see section 9).
 3. **Single-host simplicity** — one Fly app serves both the static React
    client AND the WebSocket server, on the same origin. No CORS headaches,
    no separate static host to manage.
 
 Alternatives considered: Vercel + separate WS host (more moving parts),
 Render free tier (cold starts), Railway (no real free tier post-2023).
+Fly itself removed its free tier for new accounts in late 2024 — pricing
+is pay-as-you-go now, but small apps like this run for a couple dollars
+a month (see section 9).
 
 **Important context:** Fly is a *temporary* home. The long-term target
 is Facebook Messenger Instant Games, which uses Meta's own multiplayer
@@ -48,7 +52,7 @@ infrastructure. See section 8 below for the teardown plan.
                   │   └─────────────────────────────┘   │
                   │                                     │
                   │   1× shared-cpu-1x VM, 256MB RAM    │
-                  │   (Fly free tier — primary: iad)    │
+                  │   (~$2/month, primary: iad)         │
                   └─────────────────────────────────────┘
 ```
 
@@ -88,8 +92,9 @@ curl -L https://fly.io/install.sh | sh
 ### 4b. Sign up + log in
 
 ```bash
-fly auth signup           # opens browser; credit card required for verification
-                          # but the free tier never charges unless you scale up
+fly auth signup           # opens browser; credit card required (Fly is
+                          # pay-as-you-go since late 2024, no free tier).
+                          # Our config runs ~$2/month — see section 9.
 # (returning users:)
 fly auth login
 ```
@@ -190,7 +195,7 @@ fly secrets set SOME_KEY=value
 fly secrets unset SOME_KEY
 fly secrets list
 
-# Scale up (paid — leaves free tier)
+# Scale up (costs more — see section 9)
 fly scale vm shared-cpu-2x --memory 512    # bigger VM
 fly scale count 2                          # more VMs
 
@@ -236,7 +241,7 @@ These can all be deleted in one commit when you migrate:
 ### 8c. The Fly side of teardown
 
 ```bash
-# Spin down VMs immediately (stops billing if you ever scaled past free)
+# Spin down VMs immediately (stops all VM-hour charges)
 fly scale count 0
 
 # Or — destroy the app entirely
@@ -246,7 +251,8 @@ fly apps destroy swipe-sixer
 Once destroyed, the `https://swipe-sixer.fly.dev` URL releases. If
 you want to preserve old links pointing at it (e.g. shared with friends),
 do `fly scale count 0` instead — keeps the app registered but stops
-running it. Costs nothing on free tier.
+running any VMs. No VM-hour charges accrue while count is 0 (you might
+still owe a few cents for stored images / IP allocations).
 
 ### 8d. Architectural changes for Messenger (rough sketch)
 
@@ -269,18 +275,34 @@ distribution channel.
 
 ## 9. Cost notes
 
-Fly's free tier as of 2026:
-- 3× `shared-cpu-1x` VMs (256MB RAM each)
-- 3GB outbound transfer / month
-- Free shared IPv4 + IPv6
-- No charge for the app sitting idle (if `auto_stop_machines = true`)
+**Fly removed its free tier for new accounts in late 2024.** Pricing is
+pay-as-you-go now — credit card on file, no minimum spend, you only pay
+for what's actually running. Verified numbers (Fly pricing page, current):
 
-Our setup uses 1 VM kept warm 24/7 (`min_machines_running = 1`).
-That's well inside free tier for any realistic playtester audience
-(say, <50 concurrent matches).
+| Config | Monthly cost (24/7) |
+|--------|--------------------|
+| `shared-cpu-1x` + 256MB RAM (**our config**) | **~$2.02** |
+| `shared-cpu-1x` + 1GB RAM | ~$5.92 |
+| `shared-cpu-2x` + 512MB RAM | ~$3.88 |
+| Bandwidth (outbound) | First 100GB/mo free, then ~$0.02/GB |
+| Stored Docker images | Negligible until many GB |
 
-If the game goes viral — a problem we'd love to have — bump VM size
-or count via `fly scale`. Each `shared-cpu-2x` is ~$5/month.
+Our `fly.toml` runs **1× shared-cpu-1x with 256MB always-on**, so
+expect ~$2/month while the app exists. Node 20 idles around 30-50MB,
+match state is tiny JSON — bumping memory would buy nothing useful.
+
+**To minimise cost during quiet periods:**
+- `fly scale count 0` — stops all VMs, ends VM-hour charges. App stays
+  registered, URL stays valid, just nothing answers requests until you
+  scale back up.
+- Switch to scale-to-zero in `fly.toml` (`auto_stop_machines = true`,
+  `min_machines_running = 0`) — VMs sleep when idle, cold-start when
+  someone connects. Drops cost to cents/month at the price of a 10-30s
+  delay on the first request.
+
+**If the game goes viral** — a good problem — `fly scale vm shared-cpu-2x`
+or `fly scale count 2` for more horsepower. Each step roughly doubles
+cost. We're nowhere near needing this.
 
 ---
 
