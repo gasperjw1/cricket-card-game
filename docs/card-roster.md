@@ -1305,118 +1305,121 @@ Everything not listed = dot ball. Weaknesses are zone-only (no adjective referen
 ## BATSMEN
 
 ### ELITE — Sikandar Raza
-*All-rounder superstar. Destroys spin. Zimbabwe's best T20 player ever.*
+*Right-handed ZIM GOAT, current T20I captain. IPL/PSL star, T20 WC 2024 standout. Plays spin and pace beautifully — only the moving ball outside off troubles him (also Gold off-spin bowler split below).*
 - **Strengths:** Full leg stump → sweep for 6 | Good length off stump → cut for 4 | Full off stump → drive for 4
 - **Neutrals:** Good length middle stump → push for 2 | Good length leg stump → work for 1
-- **Weaknesses:** Short off stump → caught at gully
-- **Resistances:** Spin, Cutter
+- **Weaknesses:** Short Outside off → caught at gully
+- **Resistances:** Topspin, Drift, Googly, Carrom, Slower, Cutter, Seam
 
 ### GOLD — Craig Ervine
-*Left-handed veteran. Solid technique, experienced campaigner.*
-- **Strengths:** Full off stump → drive for 4 | Full leg stump → sweep for 4 | Short middle stump → pull for 4
+*Left-handed veteran top-order. Solid technique, experienced campaigner. Drives + sweeps.*
+- **Strengths:** Full off stump → drive for 4 | Full leg stump → sweep for 4
 - **Neutrals:** Good length off stump → push for 2 | Good length middle stump → defend for 1
-- **Weaknesses:** Good length off stump → edge to slip
-- **Resistances:** Swing
+- **Weaknesses:** Short middle stump → caught fending | Good length Outside off → edge
+- **Resistances:** Topspin, Drift, Carrom, Googly
 
 ### GOLD — Sean Williams
-*Left-handed all-rounder. Sweeps and drives. Experienced.*
-- **Strengths:** Full leg stump → sweep for 6 | Full off stump → drive for 4 | Good length leg stump → flick for 4
-- **Neutrals:** Good length middle stump → push for 2 | Good length off stump → defend for 1
-- **Weaknesses:** Short middle stump → caught fending
-- **Resistances:** Spin
+*Left-handed veteran all-rounder (batter card; Silver LA orthodox bowler split below). Sweeps and drives, anchors the middle order.*
+- **Strengths:** Full leg stump → sweep for 6 | Full off stump → drive for 4
+- **Neutrals:** Good length leg stump → flick for 2 | Good length middle stump → push for 1
+- **Weaknesses:** Short middle stump → caught fending | Good length Outside off → edge to slip
+- **Resistances:** Topspin, Drift, Carrom, Googly, Slower
 
 ### SILVER — Regis Chakabva
-*Keeper-bat. Aggressive opener. Quick scorer.*
+*Right-handed keeper-bat. Aggressive opener, quick scorer.*
 - **Strengths:** Full middle stump → loft for 4 | Short middle stump → pull for 4
-- **Neutrals:** Good length leg stump → flick for 2 | Good length middle stump → push for 1
-- **Weaknesses:** Good length off stump → edge | Full off stump → caught at cover
+- **Neutrals:** Good length leg stump → flick for 1
+- **Weaknesses:** Good length Outside off → edge | Full Outside off → caught at cover | Good length middle stump → bowled
+- **Resistances:** Topspin, Drift, Carrom
 
 ### SILVER — Wessly Madhevere
-*Young talent. Stylish bat. Bowls medium pace too.*
+*Right-handed young top-order (batter card; Bronze bowler split below). Stylish, growing T20 game.*
 - **Strengths:** Full off stump → drive for 4 | Full leg stump → flick for 4
-- **Neutrals:** Good length off stump → push for 2 | Good length middle stump → defend for 1
-- **Weaknesses:** Short off stump → caught behind | Good length middle stump → bowled
+- **Neutrals:** Good length off stump → push for 1
+- **Weaknesses:** Short Outside off → caught behind | Good length middle stump → bowled | Good length Outside off → edge to slip
+- **Resistances:** Topspin, Drift
 
 ### SILVER — Ryan Burl
-*Leg-spinning all-rounder. Power hitter at death.*
+*Left-handed leg-spinning all-rounder (batter card; Silver bowler split below). Power hitter at death.*
 - **Strengths:** Full leg stump → slog for 6 | Short middle stump → pull for 4
-- **Neutrals:** Good length leg stump → work for 2 | Good length middle stump → push for 1
-- **Weaknesses:** Good length off stump → beaten | Full off stump → caught
+- **Neutrals:** Good length leg stump → work for 1
+- **Weaknesses:** Good length Outside off → beaten | Full off stump → caught at cover | Good length middle stump → bowled
+- **Resistances:** Slower, Cutter, Topspin
 
 ### BRONZE — Tadiwanashe Marumani
-*Young opener. Emerging talent.*
+*Right-handed young opener, emerging at international level.*
 - **Strengths:** Full off stump → drive for 4
 - **Neutrals:** Good length middle stump → push for 2 | Good length leg stump → nudge for 1
-- **Weaknesses:** Short middle stump → top edge | Good length off stump → edge | Full middle stump → bowled
+- **Weaknesses:** Short middle stump → top edge | Good length Outside off → edge | Full middle stump → bowled
+
+### BRONZE — Brendan Taylor
+*Mid-2010s legend. ZIM's all-time leading run-scorer across formats, 50+ T20Is. Right-handed keeper-bat, retired internationally 2021. Late-career drives and flicks; vulnerable to short pace.*
+- **Strengths:** Full off stump → cover drive for 4
+- **Neutrals:** Good length leg stump → flick for 2 | Good length middle stump → push for 1
+- **Weaknesses:** Short middle stump → caught fending | Good length Outside off → edge to slip | Full middle stump → bowled
 
 ### BRONZE — Joylord Gumbie
-*Domestic middle order. Limited exposure.*
+*Right-handed middle-order, current ZIM squad fringe.*
 - **Strengths:** Full leg stump → flick for 4
 - **Neutrals:** Good length leg stump → work for 2 | Full middle stump → push for 1
-- **Weaknesses:** Good length off stump → bowled | Short off stump → caught | Good length middle stump → LBW
-
-### BRONZE — Tony Munyonga
-*Young batting talent. Raw.*
-- **Strengths:** Short middle stump → pull for 4
-- **Neutrals:** Full leg stump → sweep for 2 | Good length leg stump → nudge for 1
-- **Weaknesses:** Good length off stump → beaten | Full off stump → edge to slip | Good length middle stump → bowled
+- **Weaknesses:** Good length off stump → bowled | Short Outside off → caught | Good length middle stump → LBW
 
 ### BRONZE — Milton Shumba
-*All-rounder. Fills spots. Limited.*
+*Right-handed all-rounder (batter card; Bronze medium-pace bowler split below). Lower-order utility.*
 - **Strengths:** Full leg stump → slog for 4
 - **Neutrals:** Good length middle stump → push for 2 | Good length leg stump → work for 1
 - **Weaknesses:** Good length off stump → edge | Short middle stump → caught | Full middle stump → bowled
 
 ### BRONZE — Clive Madande
-*Keeper-bat. Domestic level. Tailender quality.*
+*Right-handed young keeper-bat. Domestic-level.*
 - **Strengths:** Full middle stump → drive for 4
 - **Neutrals:** Good length leg stump → nudge for 2 | Full leg stump → flick for 1
-- **Weaknesses:** Good length off stump → bowled | Short off stump → caught at gully | Good length middle stump → LBW
+- **Weaknesses:** Good length off stump → bowled | Short Outside off → caught at gully | Good length middle stump → LBW
 
 ## BOWLERS
 
 ### ELITE — Blessing Muzarabani
-*Tall fast bowler. Pace and bounce. Best Zimbabwean quick in years.*
-- **Delivery:** Good length off stump | **Adjective:** Pace | **Fielding:** Gully/Point + Slip cordon
+*Best ZIM quick in years. Tall right-arm express pace with steep bounce; signature slow-ball bouncer at the death. Two-skill Elite per the v1.1 rule.*
+- **Delivery:** Good length off stump | **Adjective:** Seam, Slower | **Fielding:** Gully/Point + Slip cordon
 
 ### GOLD — Sikandar Raza
-*Off-spin all-rounder. Wicket-taker in middle overs.*
-- **Delivery:** Good length middle stump | **Adjective:** Spin (offspin) | **Fielding:** Short leg
+*Right-arm off-spin (all-rounder split — Elite batter above). Skiddy quicker arm-ball is his middle-overs wicket-taker.*
+- **Delivery:** Good length middle stump | **Adjective:** Topspin | **Fielding:** Short leg/Silly point
 
 ### GOLD — Richard Ngarava
-*Left-arm quick. Swings it early. Death overs utility.*
-- **Delivery:** Full off stump | **Adjective:** Swing (left-arm) | **Fielding:** Slip cordon
+*Left-arm quick. New-ball inswing specialist. Faces Gold tier wide-call risk on Outside off (15%).*
+- **Delivery:** Full Outside off | **Adjective:** Swing | **Fielding:** Slip cordon
 
 ### SILVER — Ryan Burl
-*Leg-spinner. Gets turn and bounce.*
-- **Delivery:** Good length middle stump | **Adjective:** Spin (legspin) | **Fielding:** Short leg
+*Right-arm leg-spinner (all-rounder split — Silver batter above). Gets turn and bounce — but no skill chip at Silver.*
+- **Delivery:** Good length middle stump | **Fielding:** Slip cordon
 
 ### SILVER — Luke Jongwe
-*Medium-fast all-rounder. Death overs.*
-- **Delivery:** Full off stump | **Adjective:** Cutter | **Fielding:** Cover
+*Right-arm medium-fast all-rounder. Death-overs cutter style. Bowler-only card (his bat is tail-ender quality).*
+- **Delivery:** Full off stump | **Fielding:** Cover
 
 ### SILVER — Sean Williams
-*Left-arm orthodox spin. Economical.*
-- **Delivery:** Good length off stump | **Adjective:** Spin (left-arm orthodox) | **Fielding:** Cover
+*Left-arm orthodox (all-rounder split — Gold batter above). Economical middle-overs operator.*
+- **Delivery:** Good length off stump | **Fielding:** Cover
 
 ### BRONZE — Tendai Chatara
-*Experienced seamer. Good length with wobble.*
+*Experienced right-arm seamer. Good length with wobble.*
 - **Delivery:** Good length off stump | **Fielding:** Slip cordon
 
 ### BRONZE — Wessly Madhevere
-*Medium pace all-rounder. Part-time filler.*
+*Right-arm medium pace (all-rounder split — Silver batter above). Part-time filler.*
 - **Delivery:** Good length middle stump | **Fielding:** Mid-wicket
 
 ### BRONZE — Wellington Masakadza
-*Young quick. Pace and bounce.*
-- **Delivery:** Short middle stump | **Adjective:** Pace | **Fielding:** Gully/Point
+*Right-arm quick. Pace and bounce.*
+- **Delivery:** Short middle stump | **Fielding:** Gully/Point
 
 ### BRONZE — Milton Shumba
-*Part-time medium. Emergency filler.*
+*Part-time right-arm medium (all-rounder split — Bronze batter above). Emergency filler.*
 - **Delivery:** Good length leg stump | **Fielding:** Mid-wicket
 
 ### BRONZE — Brian Bennett
-*Young seamer. Developing.*
+*Young right-arm seamer, developing.*
 - **Delivery:** Good length off stump | **Fielding:** Gully/Point
 
 ---

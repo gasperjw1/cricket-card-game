@@ -8035,7 +8035,7 @@
       "name": "Sikandar Raza",
       "nation": "Zimbabwe",
       "tier": "Elite",
-      "description": "All-rounder superstar. Destroys spin. Zimbabwe's best T20 player ever.",
+      "description": "Right-handed ZIM GOAT, current T20I captain. IPL/PSL star, T20 WC 2024 standout. Plays spin and pace beautifully — only the moving ball outside off troubles him (also Gold off-spin bowler split below).",
       "strengths": [
         {
           "zone": {
@@ -8098,7 +8098,7 @@
       "weaknesses": [
         {
           "zone": {
-            "line": "Off stump",
+            "line": "Outside off",
             "length": "Short"
           },
           "outcome": {
@@ -8108,7 +8108,13 @@
         }
       ],
       "resistances": [
-        "Cutter"
+        "Topspin",
+        "Drift",
+        "Googly",
+        "Carrom",
+        "Slower",
+        "Cutter",
+        "Seam"
       ]
     },
     {
@@ -8117,7 +8123,7 @@
       "name": "Craig Ervine",
       "nation": "Zimbabwe",
       "tier": "Gold",
-      "description": "Left-handed veteran. Solid technique, experienced campaigner.",
+      "description": "Left-handed veteran top-order. Solid technique, experienced campaigner. Drives + sweeps.",
       "strengths": [
         {
           "zone": {
@@ -8139,17 +8145,6 @@
             "type": "runs",
             "value": 4,
             "shot": "sweep"
-          }
-        },
-        {
-          "zone": {
-            "line": "Middle stump",
-            "length": "Short"
-          },
-          "outcome": {
-            "type": "runs",
-            "value": 4,
-            "shot": "pull"
           }
         }
       ],
@@ -8180,17 +8175,30 @@
       "weaknesses": [
         {
           "zone": {
-            "line": "Off stump",
+            "line": "Middle stump",
+            "length": "Short"
+          },
+          "outcome": {
+            "type": "wicket",
+            "mode": "caught fending"
+          }
+        },
+        {
+          "zone": {
+            "line": "Outside off",
             "length": "Good length"
           },
           "outcome": {
             "type": "wicket",
-            "mode": "edge to slip"
+            "mode": "edge"
           }
         }
       ],
       "resistances": [
-        "Swing"
+        "Topspin",
+        "Drift",
+        "Carrom",
+        "Googly"
       ]
     },
     {
@@ -8199,7 +8207,7 @@
       "name": "Sean Williams",
       "nation": "Zimbabwe",
       "tier": "Gold",
-      "description": "Left-handed all-rounder. Sweeps and drives. Experienced.",
+      "description": "Left-handed veteran all-rounder (batter card; Silver LA orthodox bowler split below). Sweeps and drives, anchors the middle order.",
       "strengths": [
         {
           "zone": {
@@ -8222,7 +8230,9 @@
             "value": 4,
             "shot": "drive"
           }
-        },
+        }
+      ],
+      "neutrals": [
         {
           "zone": {
             "line": "Leg stump",
@@ -8230,12 +8240,10 @@
           },
           "outcome": {
             "type": "runs",
-            "value": 4,
+            "value": 2,
             "shot": "flick"
           }
-        }
-      ],
-      "neutrals": [
+        },
         {
           "zone": {
             "line": "Middle stump",
@@ -8243,19 +8251,8 @@
           },
           "outcome": {
             "type": "runs",
-            "value": 2,
-            "shot": "push"
-          }
-        },
-        {
-          "zone": {
-            "line": "Off stump",
-            "length": "Good length"
-          },
-          "outcome": {
-            "type": "runs",
             "value": 1,
-            "shot": "defend"
+            "shot": "push"
           }
         }
       ],
@@ -8269,9 +8266,25 @@
             "type": "wicket",
             "mode": "caught fending"
           }
+        },
+        {
+          "zone": {
+            "line": "Outside off",
+            "length": "Good length"
+          },
+          "outcome": {
+            "type": "wicket",
+            "mode": "edge to slip"
+          }
         }
       ],
-      "resistances": []
+      "resistances": [
+        "Topspin",
+        "Drift",
+        "Carrom",
+        "Googly",
+        "Slower"
+      ]
     },
     {
       "id": "regis-chakabva-bat",
@@ -8279,7 +8292,7 @@
       "name": "Regis Chakabva",
       "nation": "Zimbabwe",
       "tier": "Silver",
-      "description": "Keeper-bat. Aggressive opener. Quick scorer.",
+      "description": "Right-handed keeper-bat. Aggressive opener, quick scorer.",
       "strengths": [
         {
           "zone": {
@@ -8312,26 +8325,15 @@
           },
           "outcome": {
             "type": "runs",
-            "value": 2,
-            "shot": "flick"
-          }
-        },
-        {
-          "zone": {
-            "line": "Middle stump",
-            "length": "Good length"
-          },
-          "outcome": {
-            "type": "runs",
             "value": 1,
-            "shot": "push"
+            "shot": "flick"
           }
         }
       ],
       "weaknesses": [
         {
           "zone": {
-            "line": "Off stump",
+            "line": "Outside off",
             "length": "Good length"
           },
           "outcome": {
@@ -8341,16 +8343,30 @@
         },
         {
           "zone": {
-            "line": "Off stump",
+            "line": "Outside off",
             "length": "Full"
           },
           "outcome": {
             "type": "wicket",
             "mode": "caught at cover"
           }
+        },
+        {
+          "zone": {
+            "line": "Middle stump",
+            "length": "Good length"
+          },
+          "outcome": {
+            "type": "wicket",
+            "mode": "bowled"
+          }
         }
       ],
-      "resistances": []
+      "resistances": [
+        "Topspin",
+        "Drift",
+        "Carrom"
+      ]
     },
     {
       "id": "wessly-madhevere-bat",
@@ -8358,7 +8374,7 @@
       "name": "Wessly Madhevere",
       "nation": "Zimbabwe",
       "tier": "Silver",
-      "description": "Young talent. Stylish bat. Bowls medium pace too.",
+      "description": "Right-handed young top-order (batter card; Bronze bowler split below). Stylish, growing T20 game.",
       "strengths": [
         {
           "zone": {
@@ -8391,26 +8407,15 @@
           },
           "outcome": {
             "type": "runs",
-            "value": 2,
-            "shot": "push"
-          }
-        },
-        {
-          "zone": {
-            "line": "Middle stump",
-            "length": "Good length"
-          },
-          "outcome": {
-            "type": "runs",
             "value": 1,
-            "shot": "defend"
+            "shot": "push"
           }
         }
       ],
       "weaknesses": [
         {
           "zone": {
-            "line": "Off stump",
+            "line": "Outside off",
             "length": "Short"
           },
           "outcome": {
@@ -8427,9 +8432,22 @@
             "type": "wicket",
             "mode": "bowled"
           }
+        },
+        {
+          "zone": {
+            "line": "Outside off",
+            "length": "Good length"
+          },
+          "outcome": {
+            "type": "wicket",
+            "mode": "edge to slip"
+          }
         }
       ],
-      "resistances": []
+      "resistances": [
+        "Topspin",
+        "Drift"
+      ]
     },
     {
       "id": "ryan-burl-bat",
@@ -8437,7 +8455,7 @@
       "name": "Ryan Burl",
       "nation": "Zimbabwe",
       "tier": "Silver",
-      "description": "Leg-spinning all-rounder. Power hitter at death.",
+      "description": "Left-handed leg-spinning all-rounder (batter card; Silver bowler split below). Power hitter at death.",
       "strengths": [
         {
           "zone": {
@@ -8470,26 +8488,15 @@
           },
           "outcome": {
             "type": "runs",
-            "value": 2,
-            "shot": "work"
-          }
-        },
-        {
-          "zone": {
-            "line": "Middle stump",
-            "length": "Good length"
-          },
-          "outcome": {
-            "type": "runs",
             "value": 1,
-            "shot": "push"
+            "shot": "work"
           }
         }
       ],
       "weaknesses": [
         {
           "zone": {
-            "line": "Off stump",
+            "line": "Outside off",
             "length": "Good length"
           },
           "outcome": {
@@ -8504,11 +8511,25 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "caught"
+            "mode": "caught at cover"
+          }
+        },
+        {
+          "zone": {
+            "line": "Middle stump",
+            "length": "Good length"
+          },
+          "outcome": {
+            "type": "wicket",
+            "mode": "bowled"
           }
         }
       ],
-      "resistances": []
+      "resistances": [
+        "Slower",
+        "Cutter",
+        "Topspin"
+      ]
     },
     {
       "id": "tadiwanashe-marumani-bat",
@@ -8516,7 +8537,7 @@
       "name": "Tadiwanashe Marumani",
       "nation": "Zimbabwe",
       "tier": "Bronze",
-      "description": "Young opener. Emerging talent.",
+      "description": "Right-handed young opener, emerging at international level.",
       "strengths": [
         {
           "zone": {
@@ -8567,7 +8588,7 @@
         },
         {
           "zone": {
-            "line": "Off stump",
+            "line": "Outside off",
             "length": "Good length"
           },
           "outcome": {
@@ -8589,12 +8610,90 @@
       "resistances": []
     },
     {
+      "id": "brendan-taylor-bat",
+      "kind": "batsman",
+      "name": "Brendan Taylor",
+      "nation": "Zimbabwe",
+      "tier": "Bronze",
+      "description": "Mid-2010s legend. ZIM's all-time leading run-scorer across formats, 50+ T20Is. Right-handed keeper-bat, retired internationally 2021. Late-career drives and flicks; vulnerable to short pace.",
+      "strengths": [
+        {
+          "zone": {
+            "line": "Off stump",
+            "length": "Full"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 4,
+            "shot": "cover drive"
+          }
+        }
+      ],
+      "neutrals": [
+        {
+          "zone": {
+            "line": "Leg stump",
+            "length": "Good length"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 2,
+            "shot": "flick"
+          }
+        },
+        {
+          "zone": {
+            "line": "Middle stump",
+            "length": "Good length"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 1,
+            "shot": "push"
+          }
+        }
+      ],
+      "weaknesses": [
+        {
+          "zone": {
+            "line": "Middle stump",
+            "length": "Short"
+          },
+          "outcome": {
+            "type": "wicket",
+            "mode": "caught fending"
+          }
+        },
+        {
+          "zone": {
+            "line": "Outside off",
+            "length": "Good length"
+          },
+          "outcome": {
+            "type": "wicket",
+            "mode": "edge to slip"
+          }
+        },
+        {
+          "zone": {
+            "line": "Middle stump",
+            "length": "Full"
+          },
+          "outcome": {
+            "type": "wicket",
+            "mode": "bowled"
+          }
+        }
+      ],
+      "resistances": []
+    },
+    {
       "id": "joylord-gumbie-bat",
       "kind": "batsman",
       "name": "Joylord Gumbie",
       "nation": "Zimbabwe",
       "tier": "Bronze",
-      "description": "Domestic middle order. Limited exposure.",
+      "description": "Right-handed middle-order, current ZIM squad fringe.",
       "strengths": [
         {
           "zone": {
@@ -8645,7 +8744,7 @@
         },
         {
           "zone": {
-            "line": "Off stump",
+            "line": "Outside off",
             "length": "Short"
           },
           "outcome": {
@@ -8667,90 +8766,12 @@
       "resistances": []
     },
     {
-      "id": "tony-munyonga-bat",
-      "kind": "batsman",
-      "name": "Tony Munyonga",
-      "nation": "Zimbabwe",
-      "tier": "Bronze",
-      "description": "Young batting talent. Raw.",
-      "strengths": [
-        {
-          "zone": {
-            "line": "Middle stump",
-            "length": "Short"
-          },
-          "outcome": {
-            "type": "runs",
-            "value": 4,
-            "shot": "pull"
-          }
-        }
-      ],
-      "neutrals": [
-        {
-          "zone": {
-            "line": "Leg stump",
-            "length": "Full"
-          },
-          "outcome": {
-            "type": "runs",
-            "value": 2,
-            "shot": "sweep"
-          }
-        },
-        {
-          "zone": {
-            "line": "Leg stump",
-            "length": "Good length"
-          },
-          "outcome": {
-            "type": "runs",
-            "value": 1,
-            "shot": "nudge"
-          }
-        }
-      ],
-      "weaknesses": [
-        {
-          "zone": {
-            "line": "Off stump",
-            "length": "Good length"
-          },
-          "outcome": {
-            "type": "wicket",
-            "mode": "beaten"
-          }
-        },
-        {
-          "zone": {
-            "line": "Off stump",
-            "length": "Full"
-          },
-          "outcome": {
-            "type": "wicket",
-            "mode": "edge to slip"
-          }
-        },
-        {
-          "zone": {
-            "line": "Middle stump",
-            "length": "Good length"
-          },
-          "outcome": {
-            "type": "wicket",
-            "mode": "bowled"
-          }
-        }
-      ],
-      "resistances": []
-    },
-    {
       "id": "milton-shumba-bat",
       "kind": "batsman",
       "name": "Milton Shumba",
       "nation": "Zimbabwe",
       "tier": "Bronze",
-      "description": "All-rounder. Fills spots. Limited.",
+      "description": "Right-handed all-rounder (batter card; Bronze medium-pace bowler split below). Lower-order utility.",
       "strengths": [
         {
           "zone": {
@@ -8828,7 +8849,7 @@
       "name": "Clive Madande",
       "nation": "Zimbabwe",
       "tier": "Bronze",
-      "description": "Keeper-bat. Domestic level. Tailender quality.",
+      "description": "Right-handed young keeper-bat. Domestic-level.",
       "strengths": [
         {
           "zone": {
@@ -8879,7 +8900,7 @@
         },
         {
           "zone": {
-            "line": "Off stump",
+            "line": "Outside off",
             "length": "Short"
           },
           "outcome": {
@@ -12348,12 +12369,15 @@
       "name": "Blessing Muzarabani",
       "nation": "Zimbabwe",
       "tier": "Elite",
-      "description": "Tall fast bowler. Pace and bounce. Best Zimbabwean quick in years.",
+      "description": "Best ZIM quick in years. Tall right-arm express pace with steep bounce; signature slow-ball bouncer at the death. Two-skill Elite per the v1.1 rule.",
       "delivery": {
         "line": "Off stump",
         "length": "Good length"
       },
-      "adjectives": [],
+      "adjectives": [
+        "Seam",
+        "Slower"
+      ],
       "fielding": [
         "Gully/Point",
         "Slip cordon"
@@ -12365,12 +12389,14 @@
       "name": "Sikandar Raza",
       "nation": "Zimbabwe",
       "tier": "Gold",
-      "description": "Off-spin all-rounder. Wicket-taker in middle overs.",
+      "description": "Right-arm off-spin (all-rounder split — Elite batter above). Skiddy quicker arm-ball is his middle-overs wicket-taker.",
       "delivery": {
         "line": "Middle stump",
         "length": "Good length"
       },
-      "adjectives": [],
+      "adjectives": [
+        "Topspin"
+      ],
       "fielding": [
         "Short leg/Silly point"
       ]
@@ -12381,9 +12407,9 @@
       "name": "Richard Ngarava",
       "nation": "Zimbabwe",
       "tier": "Gold",
-      "description": "Left-arm quick. Swings it early. Death overs utility.",
+      "description": "Left-arm quick. New-ball inswing specialist. Faces Gold tier wide-call risk on Outside off (15%).",
       "delivery": {
-        "line": "Off stump",
+        "line": "Outside off",
         "length": "Full"
       },
       "adjectives": [
@@ -12399,14 +12425,14 @@
       "name": "Ryan Burl",
       "nation": "Zimbabwe",
       "tier": "Silver",
-      "description": "Leg-spinner. Gets turn and bounce.",
+      "description": "Right-arm leg-spinner (all-rounder split — Silver batter above). Gets turn and bounce — but no skill chip at Silver.",
       "delivery": {
         "line": "Middle stump",
         "length": "Good length"
       },
       "adjectives": [],
       "fielding": [
-        "Short leg/Silly point"
+        "Slip cordon"
       ]
     },
     {
@@ -12415,7 +12441,7 @@
       "name": "Luke Jongwe",
       "nation": "Zimbabwe",
       "tier": "Silver",
-      "description": "Medium-fast all-rounder. Death overs.",
+      "description": "Right-arm medium-fast all-rounder. Death-overs cutter style. Bowler-only card (his bat is tail-ender quality).",
       "delivery": {
         "line": "Off stump",
         "length": "Full"
@@ -12431,7 +12457,7 @@
       "name": "Sean Williams",
       "nation": "Zimbabwe",
       "tier": "Silver",
-      "description": "Left-arm orthodox spin. Economical.",
+      "description": "Left-arm orthodox (all-rounder split — Gold batter above). Economical middle-overs operator.",
       "delivery": {
         "line": "Off stump",
         "length": "Good length"
@@ -12447,7 +12473,7 @@
       "name": "Tendai Chatara",
       "nation": "Zimbabwe",
       "tier": "Bronze",
-      "description": "Experienced seamer. Good length with wobble.",
+      "description": "Experienced right-arm seamer. Good length with wobble.",
       "delivery": {
         "line": "Off stump",
         "length": "Good length"
@@ -12463,7 +12489,7 @@
       "name": "Wessly Madhevere",
       "nation": "Zimbabwe",
       "tier": "Bronze",
-      "description": "Medium pace all-rounder. Part-time filler.",
+      "description": "Right-arm medium pace (all-rounder split — Silver batter above). Part-time filler.",
       "delivery": {
         "line": "Middle stump",
         "length": "Good length"
@@ -12479,7 +12505,7 @@
       "name": "Wellington Masakadza",
       "nation": "Zimbabwe",
       "tier": "Bronze",
-      "description": "Young quick. Pace and bounce.",
+      "description": "Right-arm quick. Pace and bounce.",
       "delivery": {
         "line": "Middle stump",
         "length": "Short"
@@ -12495,7 +12521,7 @@
       "name": "Milton Shumba",
       "nation": "Zimbabwe",
       "tier": "Bronze",
-      "description": "Part-time medium. Emergency filler.",
+      "description": "Part-time right-arm medium (all-rounder split — Bronze batter above). Emergency filler.",
       "delivery": {
         "line": "Leg stump",
         "length": "Good length"
@@ -12511,7 +12537,7 @@
       "name": "Brian Bennett",
       "nation": "Zimbabwe",
       "tier": "Bronze",
-      "description": "Young seamer. Developing.",
+      "description": "Young right-arm seamer, developing.",
       "delivery": {
         "line": "Off stump",
         "length": "Good length"
