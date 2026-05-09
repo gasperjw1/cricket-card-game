@@ -261,3 +261,24 @@ httpServer.listen(PORT, () => {
     `[server] loaded ${CARDS.batsmen.length} batsmen, ${CARDS.bowlers.length} bowlers, ${CARDS.situations.length} situation cards`,
   );
 });
+
+// Graceful shutdown: Fly sends SIGTERM during rolling deploys, scale-to-zero,
+// and `fly apps destroy`. Closing Socket.IO + the HTTP server lets in-flight
+// requests finish and emits clean disconnect frames to connected clients
+// instead of letting them see an abrupt drop. The hard-exit timer is a
+// safety net — Fly's default kill grace is 5s, so we have to be done by then.
+function shutdown(signal: string): void {
+  console.log(`[server] ${signal} received, shutting down gracefully…`);
+  io.close(() => {
+    httpServer.close(() => {
+      console.log("[server] closed cleanly");
+      process.exit(0);
+    });
+  });
+  setTimeout(() => {
+    console.warn("[server] forced exit after 4s (in-flight requests dropped)");
+    process.exit(1);
+  }, 4000).unref();
+}
+process.on("SIGTERM", () => shutdown("SIGTERM"));
+process.on("SIGINT", () => shutdown("SIGINT"));
