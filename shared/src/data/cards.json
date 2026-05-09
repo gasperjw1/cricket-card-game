@@ -9798,7 +9798,7 @@
       "name": "Paul Stirling",
       "nation": "Ireland",
       "tier": "Elite",
-      "description": "Explosive opener. Smashes through the off side and over mid-wicket. Ireland's greatest T20 batter.",
+      "description": "Right-handed Ireland T20 GOAT. 100+ T20Is, 10+ T20I 50s. Explosive opener — smashes through off side, lofts over midwicket, sweeps spin. Reads pace and spin equally; only the moving ball outside off troubles him.",
       "strengths": [
         {
           "zone": {
@@ -9861,16 +9861,24 @@
       "weaknesses": [
         {
           "zone": {
-            "line": "Middle stump",
+            "line": "Outside off",
             "length": "Good length"
           },
           "outcome": {
             "type": "wicket",
-            "mode": "bowled through gate"
+            "mode": "edge to slip"
           }
         }
       ],
-      "resistances": []
+      "resistances": [
+        "Topspin",
+        "Drift",
+        "Googly",
+        "Carrom",
+        "Slower",
+        "Cutter",
+        "Seam"
+      ]
     },
     {
       "id": "andrew-balbirnie-bat",
@@ -9878,7 +9886,7 @@
       "name": "Andrew Balbirnie",
       "nation": "Ireland",
       "tier": "Gold",
-      "description": "Elegant right-hander. Drives well. Ireland's class act.",
+      "description": "Right-handed elegant anchor, former Ireland captain. Beautiful drives off both feet. Vulnerable to short pace at the body.",
       "strengths": [
         {
           "zone": {
@@ -9901,17 +9909,6 @@
             "value": 4,
             "shot": "drive"
           }
-        },
-        {
-          "zone": {
-            "line": "Leg stump",
-            "length": "Good length"
-          },
-          "outcome": {
-            "type": "runs",
-            "value": 4,
-            "shot": "flick"
-          }
         }
       ],
       "neutrals": [
@@ -9941,17 +9938,31 @@
       "weaknesses": [
         {
           "zone": {
-            "line": "Off stump",
+            "line": "Outside off",
             "length": "Short"
           },
           "outcome": {
             "type": "wicket",
             "mode": "caught behind"
           }
+        },
+        {
+          "zone": {
+            "line": "Middle stump",
+            "length": "Short"
+          },
+          "outcome": {
+            "type": "wicket",
+            "mode": "top edge"
+          }
         }
       ],
       "resistances": [
-        "Swing"
+        "Topspin",
+        "Drift",
+        "Carrom",
+        "Googly",
+        "Slower"
       ]
     },
     {
@@ -9960,7 +9971,7 @@
       "name": "Harry Tector",
       "nation": "Ireland",
       "tier": "Gold",
-      "description": "Young middle order talent. Technically sound, growing power game.",
+      "description": "Right-handed young middle-order (batter card; Bronze part-time off-spin bowler split below). Technically sound, growing power game.",
       "strengths": [
         {
           "zone": {
@@ -9983,17 +9994,6 @@
             "value": 4,
             "shot": "flick"
           }
-        },
-        {
-          "zone": {
-            "line": "Middle stump",
-            "length": "Short"
-          },
-          "outcome": {
-            "type": "runs",
-            "value": 4,
-            "shot": "pull"
-          }
         }
       ],
       "neutrals": [
@@ -10010,30 +10010,43 @@
         },
         {
           "zone": {
-            "line": "Off stump",
+            "line": "Leg stump",
             "length": "Good length"
           },
           "outcome": {
             "type": "runs",
             "value": 1,
-            "shot": "defend"
+            "shot": "work"
           }
         }
       ],
       "weaknesses": [
         {
           "zone": {
-            "line": "Off stump",
+            "line": "Outside off",
             "length": "Good length"
           },
           "outcome": {
             "type": "wicket",
             "mode": "edge to slip"
           }
+        },
+        {
+          "zone": {
+            "line": "Middle stump",
+            "length": "Short"
+          },
+          "outcome": {
+            "type": "wicket",
+            "mode": "top edge"
+          }
         }
       ],
       "resistances": [
-        "Seam"
+        "Slower",
+        "Cutter",
+        "Topspin",
+        "Drift"
       ]
     },
     {
@@ -10042,7 +10055,7 @@
       "name": "Lorcan Tucker",
       "nation": "Ireland",
       "tier": "Silver",
-      "description": "Keeper-bat. Quick scorer. Aggressive.",
+      "description": "Right-handed keeper-bat. Aggressive, quick scorer. Pulls and lofts; struggles with the moving ball outside off.",
       "strengths": [
         {
           "zone": {
@@ -10075,26 +10088,15 @@
           },
           "outcome": {
             "type": "runs",
-            "value": 2,
-            "shot": "flick"
-          }
-        },
-        {
-          "zone": {
-            "line": "Middle stump",
-            "length": "Good length"
-          },
-          "outcome": {
-            "type": "runs",
             "value": 1,
-            "shot": "push"
+            "shot": "flick"
           }
         }
       ],
       "weaknesses": [
         {
           "zone": {
-            "line": "Off stump",
+            "line": "Outside off",
             "length": "Good length"
           },
           "outcome": {
@@ -10104,16 +10106,30 @@
         },
         {
           "zone": {
-            "line": "Off stump",
+            "line": "Outside off",
             "length": "Full"
           },
           "outcome": {
             "type": "wicket",
             "mode": "caught at cover"
           }
+        },
+        {
+          "zone": {
+            "line": "Middle stump",
+            "length": "Good length"
+          },
+          "outcome": {
+            "type": "wicket",
+            "mode": "bowled"
+          }
         }
       ],
-      "resistances": []
+      "resistances": [
+        "Topspin",
+        "Drift",
+        "Carrom"
+      ]
     },
     {
       "id": "curtis-campher-bat",
@@ -10121,7 +10137,7 @@
       "name": "Curtis Campher",
       "nation": "Ireland",
       "tier": "Silver",
-      "description": "South African-born all-rounder. Useful bat and bowler.",
+      "description": "South African-born right-handed all-rounder (batter card; Gold bowler split below). Useful middle-order, solid technique.",
       "strengths": [
         {
           "zone": {
@@ -10154,19 +10170,8 @@
           },
           "outcome": {
             "type": "runs",
-            "value": 2,
-            "shot": "push"
-          }
-        },
-        {
-          "zone": {
-            "line": "Off stump",
-            "length": "Good length"
-          },
-          "outcome": {
-            "type": "runs",
             "value": 1,
-            "shot": "defend"
+            "shot": "push"
           }
         }
       ],
@@ -10190,9 +10195,23 @@
             "type": "wicket",
             "mode": "LBW"
           }
+        },
+        {
+          "zone": {
+            "line": "Outside off",
+            "length": "Good length"
+          },
+          "outcome": {
+            "type": "wicket",
+            "mode": "edge to slip"
+          }
         }
       ],
-      "resistances": []
+      "resistances": [
+        "Slower",
+        "Topspin",
+        "Drift"
+      ]
     },
     {
       "id": "george-dockrell-bat",
@@ -10200,7 +10219,7 @@
       "name": "George Dockrell",
       "nation": "Ireland",
       "tier": "Silver",
-      "description": "Left-arm spinner who can bat. Lower middle order.",
+      "description": "Left-handed all-rounder (batter card; Silver LA orthodox bowler split below). Lower middle-order sweeper.",
       "strengths": [
         {
           "zone": {
@@ -10229,17 +10248,6 @@
         {
           "zone": {
             "line": "Middle stump",
-            "length": "Good length"
-          },
-          "outcome": {
-            "type": "runs",
-            "value": 2,
-            "shot": "push"
-          }
-        },
-        {
-          "zone": {
-            "line": "Middle stump",
             "length": "Full"
           },
           "outcome": {
@@ -10262,16 +10270,29 @@
         },
         {
           "zone": {
-            "line": "Off stump",
+            "line": "Outside off",
             "length": "Short"
           },
           "outcome": {
             "type": "wicket",
-            "mode": "caught"
+            "mode": "caught at point"
+          }
+        },
+        {
+          "zone": {
+            "line": "Middle stump",
+            "length": "Good length"
+          },
+          "outcome": {
+            "type": "wicket",
+            "mode": "LBW"
           }
         }
       ],
-      "resistances": []
+      "resistances": [
+        "Topspin",
+        "Carrom"
+      ]
     },
     {
       "id": "kevin-o-brien-bat",
@@ -10279,7 +10300,7 @@
       "name": "Kevin O'Brien",
       "nation": "Ireland",
       "tier": "Bronze",
-      "description": "Legendary hitter. Aging but still dangerous on his day.",
+      "description": "Mid-2010s legend. Iconic 2011 ODI WC century vs England (then-fastest WC century, off 50 balls). Right-handed, 100+ T20Is, retired 2021. Slog-or-out late-career profile.",
       "strengths": [
         {
           "zone": {
@@ -10320,12 +10341,12 @@
       "weaknesses": [
         {
           "zone": {
-            "line": "Off stump",
+            "line": "Outside off",
             "length": "Good length"
           },
           "outcome": {
             "type": "wicket",
-            "mode": "bowled"
+            "mode": "edge to slip"
           }
         },
         {
@@ -10335,7 +10356,7 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "mis-hit"
+            "mode": "mistimed loft"
           }
         },
         {
@@ -10357,7 +10378,7 @@
       "name": "Gareth Delany",
       "nation": "Ireland",
       "tier": "Bronze",
-      "description": "Off-spinning all-rounder. Handy bat.",
+      "description": "Right-handed off-spin all-rounder (batter card; Silver bowler split below). Handy lower-order bat.",
       "strengths": [
         {
           "zone": {
@@ -10423,7 +10444,7 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "mis-hit"
+            "mode": "mistimed drive"
           }
         }
       ],
@@ -10435,7 +10456,7 @@
       "name": "Ross Adair",
       "nation": "Ireland",
       "tier": "Bronze",
-      "description": "Young domestic talent. Limited T20I.",
+      "description": "Right-handed young top-order. Limited T20I exposure, domestic talent.",
       "strengths": [
         {
           "zone": {
@@ -10476,7 +10497,7 @@
       "weaknesses": [
         {
           "zone": {
-            "line": "Off stump",
+            "line": "Outside off",
             "length": "Short"
           },
           "outcome": {
@@ -10486,7 +10507,7 @@
         },
         {
           "zone": {
-            "line": "Off stump",
+            "line": "Outside off",
             "length": "Good length"
           },
           "outcome": {
@@ -10513,7 +10534,7 @@
       "name": "Neil Rock",
       "nation": "Ireland",
       "tier": "Bronze",
-      "description": "Young keeper-bat. Domestic level.",
+      "description": "Left-handed young keeper-bat. Domestic-level.",
       "strengths": [
         {
           "zone": {
@@ -10591,7 +10612,7 @@
       "name": "Graham Hume",
       "nation": "Ireland",
       "tier": "Bronze",
-      "description": "All-rounder. Lower order bat. Tailender quality.",
+      "description": "Right-handed all-rounder (batter card; Bronze medium-fast bowler split below). Tail-ender quality with the bat.",
       "strengths": [
         {
           "zone": {
@@ -12690,13 +12711,14 @@
       "name": "Josh Little",
       "nation": "Ireland",
       "tier": "Elite",
-      "description": "Left-arm quick. Swings it at pace. Ireland's best ever fast bowler.",
+      "description": "Ireland's best-ever fast bowler. Left-arm express with new-ball inswing + signature slow-ball cutter. IPL/T20 league regular (GT, MI). Two-skill Elite per the v1.1 rule.",
       "delivery": {
         "line": "Outside off",
         "length": "Full"
       },
       "adjectives": [
-        "Swing"
+        "Swing",
+        "Slower"
       ],
       "fielding": [
         "Slip cordon",
@@ -12709,7 +12731,7 @@
       "name": "Mark Adair",
       "nation": "Ireland",
       "tier": "Gold",
-      "description": "Fast-medium all-rounder. Death overs specialist. Seam movement.",
+      "description": "Right-arm fast-medium. Death-overs specialist with seam off the deck.",
       "delivery": {
         "line": "Off stump",
         "length": "Good length"
@@ -12718,7 +12740,7 @@
         "Seam"
       ],
       "fielding": [
-        "Gully/Point"
+        "Slip cordon"
       ]
     },
     {
@@ -12727,9 +12749,9 @@
       "name": "Curtis Campher",
       "nation": "Ireland",
       "tier": "Gold",
-      "description": "Medium-fast all-rounder. Good length with movement.",
+      "description": "Right-arm medium-fast (all-rounder split — Silver batter above). T20 WC 2021 4-in-4 hero with new-ball outswing. Faces Gold tier wide-call risk on Outside off (15%).",
       "delivery": {
-        "line": "Off stump",
+        "line": "Outside off",
         "length": "Good length"
       },
       "adjectives": [
@@ -12745,14 +12767,14 @@
       "name": "George Dockrell",
       "nation": "Ireland",
       "tier": "Silver",
-      "description": "Left-arm orthodox. Experienced and economical.",
+      "description": "Left-arm orthodox (all-rounder split — Silver batter above). Experienced, economical middle-overs operator.",
       "delivery": {
         "line": "Middle stump",
         "length": "Good length"
       },
       "adjectives": [],
       "fielding": [
-        "Short leg/Silly point"
+        "Cover"
       ]
     },
     {
@@ -12761,7 +12783,7 @@
       "name": "Gareth Delany",
       "nation": "Ireland",
       "tier": "Silver",
-      "description": "Off-spinning all-rounder. Handy middle overs.",
+      "description": "Right-arm off-spin (all-rounder split — Bronze batter above). Middle-overs filler.",
       "delivery": {
         "line": "Off stump",
         "length": "Good length"
@@ -12777,14 +12799,14 @@
       "name": "Barry McCarthy",
       "nation": "Ireland",
       "tier": "Silver",
-      "description": "Fast-medium. Good length with pace.",
+      "description": "Right-arm fast-medium. Hits the pads with pace.",
       "delivery": {
-        "line": "Off stump",
+        "line": "Leg stump",
         "length": "Good length"
       },
       "adjectives": [],
       "fielding": [
-        "Gully/Point"
+        "Mid-wicket"
       ]
     },
     {
@@ -12793,7 +12815,7 @@
       "name": "Graham Hume",
       "nation": "Ireland",
       "tier": "Bronze",
-      "description": "Medium-fast all-rounder. Domestic level.",
+      "description": "Right-arm medium-fast (all-rounder split — Bronze batter above).",
       "delivery": {
         "line": "Middle stump",
         "length": "Good length"
@@ -12809,7 +12831,7 @@
       "name": "Craig Young",
       "nation": "Ireland",
       "tier": "Bronze",
-      "description": "Medium-fast. Steady but unspectacular.",
+      "description": "Right-arm medium-fast. Steady but unspectacular.",
       "delivery": {
         "line": "Off stump",
         "length": "Good length"
@@ -12825,7 +12847,7 @@
       "name": "Ben White",
       "nation": "Ireland",
       "tier": "Bronze",
-      "description": "Young spinner. Developing talent.",
+      "description": "Young right-arm leg-spinner. Developing.",
       "delivery": {
         "line": "Leg stump",
         "length": "Good length"
@@ -12841,7 +12863,7 @@
       "name": "Fionn Hand",
       "nation": "Ireland",
       "tier": "Bronze",
-      "description": "Young quick. Raw pace.",
+      "description": "Young right-arm quick. Raw pace.",
       "delivery": {
         "line": "Middle stump",
         "length": "Short"
@@ -12857,7 +12879,7 @@
       "name": "Harry Tector",
       "nation": "Ireland",
       "tier": "Bronze",
-      "description": "Part-time off-spin. Emergency filler.",
+      "description": "Part-time right-arm off-spin (all-rounder split — Gold batter above). Emergency filler.",
       "delivery": {
         "line": "Off stump",
         "length": "Good length"

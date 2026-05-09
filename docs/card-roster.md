@@ -1550,70 +1550,73 @@ Everything not listed = dot ball. Weaknesses are zone-only (no adjective referen
 ## BATSMEN
 
 ### ELITE — Paul Stirling
-*Explosive opener. Smashes through the off side and over mid-wicket. Ireland's greatest T20 batter.*
+*Right-handed Ireland T20 GOAT. 100+ T20Is, 10+ T20I 50s. Explosive opener — smashes through off side, lofts over midwicket, sweeps spin. Reads pace and spin equally; only the moving ball outside off troubles him.*
 - **Strengths:** Full off stump → loft for 6 | Short middle stump → pull for 4 | Full leg stump → sweep for 4
 - **Neutrals:** Good length off stump → cut for 2 | Good length middle stump → push for 1
-- **Weaknesses:** Good length middle stump → bowled through gate
-- **Resistances:** Spin, Pace
+- **Weaknesses:** Good length Outside off → edge to slip
+- **Resistances:** Topspin, Drift, Googly, Carrom, Slower, Cutter, Seam
 
 ### GOLD — Andrew Balbirnie
-*Elegant right-hander. Drives well. Ireland's class act.*
-- **Strengths:** Full off stump → cover drive for 4 | Full middle stump → drive for 4 | Good length leg stump → flick for 4
+*Right-handed elegant anchor, former Ireland captain. Beautiful drives off both feet. Vulnerable to short pace at the body.*
+- **Strengths:** Full off stump → cover drive for 4 | Full middle stump → drive for 4
 - **Neutrals:** Good length off stump → push for 2 | Good length middle stump → defend for 1
-- **Weaknesses:** Short off stump → caught behind
-- **Resistances:** Swing
+- **Weaknesses:** Short Outside off → caught behind | Short middle stump → top edge
+- **Resistances:** Topspin, Drift, Carrom, Googly, Slower
 
 ### GOLD — Harry Tector
-*Young middle order talent. Technically sound, growing power game.*
-- **Strengths:** Full off stump → drive for 4 | Full leg stump → flick for 4 | Short middle stump → pull for 4
-- **Neutrals:** Good length middle stump → push for 2 | Good length off stump → defend for 1
-- **Weaknesses:** Good length off stump → edge to slip
-- **Resistances:** Seam
+*Right-handed young middle-order (batter card; Bronze part-time off-spin bowler split below). Technically sound, growing power game.*
+- **Strengths:** Full off stump → drive for 4 | Full leg stump → flick for 4
+- **Neutrals:** Good length middle stump → push for 2 | Good length leg stump → work for 1
+- **Weaknesses:** Good length Outside off → edge to slip | Short middle stump → top edge
+- **Resistances:** Slower, Cutter, Topspin, Drift
 
 ### SILVER — Lorcan Tucker
-*Keeper-bat. Quick scorer. Aggressive.*
+*Right-handed keeper-bat. Aggressive, quick scorer. Pulls and lofts; struggles with the moving ball outside off.*
 - **Strengths:** Full middle stump → loft for 4 | Short middle stump → pull for 4
-- **Neutrals:** Good length leg stump → flick for 2 | Good length middle stump → push for 1
-- **Weaknesses:** Good length off stump → edge | Full off stump → caught at cover
+- **Neutrals:** Good length leg stump → flick for 1
+- **Weaknesses:** Good length Outside off → edge | Full Outside off → caught at cover | Good length middle stump → bowled
+- **Resistances:** Topspin, Drift, Carrom
 
 ### SILVER — Curtis Campher
-*South African-born all-rounder. Useful bat and bowler.*
+*South African-born right-handed all-rounder (batter card; Gold bowler split below). Useful middle-order, solid technique.*
 - **Strengths:** Full leg stump → flick for 4 | Full off stump → drive for 4
-- **Neutrals:** Good length middle stump → push for 2 | Good length off stump → defend for 1
-- **Weaknesses:** Short middle stump → caught fending | Good length middle stump → LBW
+- **Neutrals:** Good length middle stump → push for 1
+- **Weaknesses:** Short middle stump → caught fending | Good length middle stump → LBW | Good length Outside off → edge to slip
+- **Resistances:** Slower, Topspin, Drift
 
 ### SILVER — George Dockrell
-*Left-arm spinner who can bat. Lower middle order.*
+*Left-handed all-rounder (batter card; Silver LA orthodox bowler split below). Lower middle-order sweeper.*
 - **Strengths:** Full leg stump → sweep for 4 | Good length leg stump → nudge for 4
-- **Neutrals:** Good length middle stump → push for 2 | Full middle stump → drive for 1
-- **Weaknesses:** Good length off stump → bowled | Short off stump → caught
+- **Neutrals:** Full middle stump → drive for 1
+- **Weaknesses:** Good length off stump → bowled | Short Outside off → caught at point | Good length middle stump → LBW
+- **Resistances:** Topspin, Carrom
 
 ### BRONZE — Kevin O'Brien
-*Legendary hitter. Aging but still dangerous on his day.*
+*Mid-2010s legend. Iconic 2011 ODI WC century vs England (then-fastest WC century, off 50 balls). Right-handed, 100+ T20Is, retired 2021. Slog-or-out late-career profile.*
 - **Strengths:** Full leg stump → slog for 6
 - **Neutrals:** Short middle stump → pull for 2 | Good length leg stump → work for 1
-- **Weaknesses:** Good length off stump → bowled | Full middle stump → mis-hit | Good length middle stump → LBW
+- **Weaknesses:** Good length Outside off → edge to slip | Full middle stump → mistimed loft | Good length middle stump → LBW
 
 ### BRONZE — Gareth Delany
-*Off-spinning all-rounder. Handy bat.*
+*Right-handed off-spin all-rounder (batter card; Silver bowler split below). Handy lower-order bat.*
 - **Strengths:** Full leg stump → sweep for 4
 - **Neutrals:** Good length leg stump → nudge for 2 | Good length middle stump → push for 1
-- **Weaknesses:** Good length off stump → edge | Short middle stump → caught | Full off stump → mis-hit
+- **Weaknesses:** Good length off stump → edge | Short middle stump → caught | Full off stump → mistimed drive
 
 ### BRONZE — Ross Adair
-*Young domestic talent. Limited T20I.*
+*Right-handed young top-order. Limited T20I exposure, domestic talent.*
 - **Strengths:** Full off stump → drive for 4
 - **Neutrals:** Good length middle stump → push for 2 | Good length leg stump → work for 1
-- **Weaknesses:** Short off stump → caught at gully | Good length off stump → edge | Good length middle stump → bowled
+- **Weaknesses:** Short Outside off → caught at gully | Good length Outside off → edge | Good length middle stump → bowled
 
 ### BRONZE — Neil Rock
-*Young keeper-bat. Domestic level.*
+*Left-handed young keeper-bat. Domestic-level.*
 - **Strengths:** Short middle stump → pull for 4
 - **Neutrals:** Full leg stump → flick for 2 | Good length leg stump → nudge for 1
 - **Weaknesses:** Good length off stump → bowled | Full middle stump → LBW | Full off stump → caught
 
 ### BRONZE — Graham Hume
-*All-rounder. Lower order bat. Tailender quality.*
+*Right-handed all-rounder (batter card; Bronze medium-fast bowler split below). Tail-ender quality with the bat.*
 - **Strengths:** Full leg stump → slog for 4
 - **Neutrals:** Good length leg stump → work for 2 | Full middle stump → push for 1
 - **Weaknesses:** Good length off stump → bowled | Short middle stump → caught | Good length middle stump → LBW
@@ -1621,47 +1624,47 @@ Everything not listed = dot ball. Weaknesses are zone-only (no adjective referen
 ## BOWLERS
 
 ### ELITE — Josh Little
-*Left-arm quick. Swings it at pace. Ireland's best ever fast bowler.*
-- **Delivery:** Full 5th stump | **Adjective:** Swing (inswing, left-arm) | **Fielding:** Slip cordon + Cover
+*Ireland's best-ever fast bowler. Left-arm express with new-ball inswing + signature slow-ball cutter. IPL/T20 league regular (GT, MI). Two-skill Elite per the v1.1 rule.*
+- **Delivery:** Full Outside off | **Adjective:** Swing, Slower | **Fielding:** Slip cordon + Cover
 
 ### GOLD — Mark Adair
-*Fast-medium all-rounder. Death overs specialist. Seam movement.*
-- **Delivery:** Good length off stump | **Adjective:** Seam | **Fielding:** Gully/Point
+*Right-arm fast-medium. Death-overs specialist with seam off the deck.*
+- **Delivery:** Good length off stump | **Adjective:** Seam | **Fielding:** Slip cordon
 
 ### GOLD — Curtis Campher
-*Medium-fast all-rounder. Good length with movement.*
-- **Delivery:** Good length off stump | **Adjective:** Swing (outswing) | **Fielding:** Slip cordon
+*Right-arm medium-fast (all-rounder split — Silver batter above). T20 WC 2021 4-in-4 hero with new-ball outswing. Faces Gold tier wide-call risk on Outside off (15%).*
+- **Delivery:** Good length Outside off | **Adjective:** Swing | **Fielding:** Slip cordon
 
 ### SILVER — George Dockrell
-*Left-arm orthodox. Experienced and economical.*
-- **Delivery:** Good length middle stump | **Adjective:** Spin (left-arm orthodox) | **Fielding:** Short leg
+*Left-arm orthodox (all-rounder split — Silver batter above). Experienced, economical middle-overs operator.*
+- **Delivery:** Good length middle stump | **Fielding:** Cover
 
 ### SILVER — Gareth Delany
-*Off-spinning all-rounder. Handy middle overs.*
-- **Delivery:** Good length off stump | **Adjective:** Spin (offspin) | **Fielding:** Cover
+*Right-arm off-spin (all-rounder split — Bronze batter above). Middle-overs filler.*
+- **Delivery:** Good length off stump | **Fielding:** Cover
 
 ### SILVER — Barry McCarthy
-*Fast-medium. Good length with pace.*
-- **Delivery:** Good length off stump | **Adjective:** Pace | **Fielding:** Gully/Point
+*Right-arm fast-medium. Hits the pads with pace.*
+- **Delivery:** Good length leg stump | **Fielding:** Mid-wicket
 
 ### BRONZE — Graham Hume
-*Medium-fast all-rounder. Domestic level.*
+*Right-arm medium-fast (all-rounder split — Bronze batter above).*
 - **Delivery:** Good length middle stump | **Fielding:** Mid-wicket
 
 ### BRONZE — Craig Young
-*Medium-fast. Steady but unspectacular.*
+*Right-arm medium-fast. Steady but unspectacular.*
 - **Delivery:** Good length off stump | **Fielding:** Slip cordon
 
 ### BRONZE — Ben White
-*Young spinner. Developing talent.*
-- **Delivery:** Good length leg stump | **Adjective:** Spin (legspin) | **Fielding:** Short leg
+*Young right-arm leg-spinner. Developing.*
+- **Delivery:** Good length leg stump | **Fielding:** Short leg/Silly point
 
 ### BRONZE — Fionn Hand
-*Young quick. Raw pace.*
-- **Delivery:** Short middle stump | **Adjective:** Pace | **Fielding:** Gully/Point
+*Young right-arm quick. Raw pace.*
+- **Delivery:** Short middle stump | **Fielding:** Gully/Point
 
 ### BRONZE — Harry Tector
-*Part-time off-spin. Emergency filler.*
+*Part-time right-arm off-spin (all-rounder split — Gold batter above). Emergency filler.*
 - **Delivery:** Good length off stump | **Fielding:** Cover
 
 ---
