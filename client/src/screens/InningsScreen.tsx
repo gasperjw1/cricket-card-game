@@ -77,13 +77,6 @@ export function InningsScreen({ client }: Props) {
     <main className="innings">
       <Scorebug matchState={matchState} />
 
-      <OpponentRow
-        name={opponent.displayName}
-        handSize={opponent.handSize}
-        connected={opponent.connected}
-        opponentLocked={opponentLocked}
-      />
-
       <RoleBanner
         role={role}
         myName={me.displayName}
@@ -216,34 +209,6 @@ export function InningsScreen({ client }: Props) {
 }
 
 // ─────────────────────────── Banners ───────────────────────────
-
-function OpponentRow(props: {
-  name: string;
-  handSize: number;
-  connected: boolean;
-  opponentLocked: boolean;
-}) {
-  return (
-    <section className="opponent-row">
-      <div className="opponent-info">
-        <span className="opponent-name">{props.name}</span>
-        <span className={`status ${props.connected ? "connected" : "disconnected"}`}>
-          {props.connected ? "● online" : "○ offline"}
-        </span>
-        {props.opponentLocked && (
-          <Tip text="Your opponent has locked in their selection — waiting for you.">
-            <span className="status connected">🔒 locked in</span>
-          </Tip>
-        )}
-      </div>
-      <div className="opponent-hand">
-        {Array.from({ length: props.handSize }).map((_, i) => (
-          <Card key={i} card={{} as AnyCard} faceDown size="hand" />
-        ))}
-      </div>
-    </section>
-  );
-}
 
 function RoleBanner(props: {
   role: "batting" | "bowling";
