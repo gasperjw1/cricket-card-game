@@ -933,119 +933,122 @@ Everything not listed = dot ball. Weaknesses are zone-only (no adjective referen
 ## BATSMEN
 
 ### ELITE — Pathum Nissanka
-*Classy opener. Drives beautifully. Consistent T20I performer.*
+*Right-handed opener. SL's most complete current T20 bat — only SL T20I centurion (vs Bangladesh 2024). Cover drives, cuts, flicks; reads spin and pace equally.*
 - **Strengths:** Full off stump → cover drive for 6 | Good length off stump → cut for 4 | Full leg stump → flick for 4
 - **Neutrals:** Good length middle stump → push for 2 | Good length leg stump → work for 1
-- **Weaknesses:** Short off stump → top edge caught
-- **Resistances:** Spin, Swing
+- **Weaknesses:** Short Outside off → top edge caught
+- **Resistances:** Swing, Seam, Slower, Topspin, Drift, Googly, Carrom
 
 ### GOLD — Charith Asalanka
-*Left-handed stroke-maker. Elegant drives and sweeps.*
+*Current SL T20I captain. Left-handed stroke-maker, elegant drives and sweeps.*
 - **Strengths:** Full off stump → drive for 4 | Full leg stump → sweep for 6 | Short middle stump → pull for 4
 - **Neutrals:** Good length off stump → push for 2 | Good length middle stump → defend for 1
-- **Weaknesses:** Good length off stump → edge to slip
-- **Resistances:** Spin
+- **Weaknesses:** Good length Outside off → edge to slip
+- **Resistances:** Topspin, Drift, Carrom, Googly, Slower
 
 ### GOLD — Kusal Mendis
-*Aggressive keeper-bat. Pulls and cuts with power.*
+*Aggressive right-handed keeper-bat. Pulls and cuts with power. Recent IPL form.*
 - **Strengths:** Short middle stump → pull for 6 | Full off stump → drive for 4 | Full leg stump → flick for 4
 - **Neutrals:** Good length leg stump → work for 2 | Good length middle stump → push for 1
 - **Weaknesses:** Full middle stump → bowled across the line
-- **Resistances:** Pace
+- **Resistances:** Slower, Cutter, Topspin, Drift
 
 ### SILVER — Kamindu Mendis
-*Left-handed rising star. Unique ambidextrous bowler too.*
+*Left-handed rising star. Sweeps and reverse-sweeps; unique ambidextrous part-time spinner (split below).*
 - **Strengths:** Full off stump → drive for 4 | Full leg stump → sweep for 4
-- **Neutrals:** Good length middle stump → push for 2 | Good length leg stump → work for 1
-- **Weaknesses:** Short middle stump → caught fending | Good length off stump → beaten
-
-### SILVER — Dasun Shanaka
-*All-rounder captain. Power at death. Explosive finisher.*
-- **Strengths:** Full leg stump → slog for 6 | Short middle stump → pull for 4
-- **Neutrals:** Good length leg stump → flick for 2 | Good length middle stump → push for 1
-- **Weaknesses:** Good length off stump → edge to slip | Full off stump → mis-hit
+- **Neutrals:** Good length leg stump → work for 1
+- **Weaknesses:** Short middle stump → caught fending | Good length Outside off → beaten | Good length middle stump → LBW
+- **Resistances:** Topspin, Carrom, Drift
 
 ### SILVER — Kusal Perera
-*Explosive left-handed opener. Goes hard from ball one.*
+*Explosive left-handed opener. Goes hard from ball one. 60+ T20Is, still in T20I mix.*
 - **Strengths:** Full middle stump → loft for 6 | Short leg stump → hook for 4
-- **Neutrals:** Good length leg stump → flick for 2 | Full leg stump → sweep for 1
-- **Weaknesses:** Good length middle stump → bowled across | Full off stump → caught at cover
+- **Neutrals:** Good length leg stump → flick for 1
+- **Weaknesses:** Good length middle stump → bowled across | Full Outside off → caught at cover | Good length off stump → edge to slip
+- **Resistances:** Slower, Topspin, Drift
 
-### BRONZE — Janith Liyanage
-*Young middle order. Developing talent.*
-- **Strengths:** Full leg stump → flick for 4
-- **Neutrals:** Good length leg stump → nudge for 2 | Good length middle stump → push for 1
-- **Weaknesses:** Good length off stump → beaten | Short off stump → caught | Full middle stump → bowled
+### SILVER — Tillakaratne Dilshan
+*Mid-2010s legend. 79 T20Is, 2014 T20 WC winner, "Dilscoop" inventor. Right-handed opener with the full shot range — late-career SR ~120 puts him at Silver, not Gold.*
+- **Strengths:** Full off stump → drive for 4 | Short Outside off → Dilscoop for 6
+- **Neutrals:** Good length off stump → punch for 1
+- **Weaknesses:** Good length middle stump → LBW playing across | Full middle stump → bowled | Short middle stump → top edge
+- **Resistances:** Topspin, Drift, Carrom
 
-### BRONZE — Kamil Mishara
-*Young opener. Domestic talent, raw at international level.*
+### BRONZE — Bhanuka Rajapaksa
+*Left-handed power hitter. T20 WC 2022 final hero (71*), recognizable middle-order finisher.*
+- **Strengths:** Full leg stump → slog for 6
+- **Neutrals:** Short middle stump → pull for 2 | Full off stump → drive for 1
+- **Weaknesses:** Good length Outside off → edge to keeper | Good length middle stump → bowled across | Full middle stump → LBW
+
+### BRONZE — Avishka Fernando
+*Right-handed opener. Recognizable from his 2019 ODI WC century. Solid technique, limited T20 acceleration.*
 - **Strengths:** Full off stump → drive for 4
 - **Neutrals:** Good length middle stump → push for 2 | Good length leg stump → work for 1
-- **Weaknesses:** Short middle stump → top edge | Good length off stump → edge | Full middle stump → bowled
+- **Weaknesses:** Short middle stump → top edge caught | Good length Outside off → edge to slip | Full middle stump → bowled
 
-### BRONZE — Pavan Rathnayake
-*Domestic all-rounder. Lower order bat.*
-- **Strengths:** Full leg stump → slog for 4
-- **Neutrals:** Good length leg stump → work for 2 | Short middle stump → pull for 1
-- **Weaknesses:** Good length off stump → bowled | Good length middle stump → LBW | Full off stump → caught at mid-off
-
-### BRONZE — Dushan Hemantha
-*Young spinner who bats a bit. Tailender.*
-- **Strengths:** Short middle stump → pull for 4
+### BRONZE — Niroshan Dickwella
+*Left-handed keeper-bat. 65+ T20Is, mid-2010s prime + recent. Cheeky scoops and sweeps; plays across the line and falls LBW.*
+- **Strengths:** Short middle stump → ramp for 4
 - **Neutrals:** Full leg stump → sweep for 2 | Good length leg stump → nudge for 1
-- **Weaknesses:** Good length off stump → bowled | Full middle stump → LBW | Full off stump → edge to slip
+- **Weaknesses:** Good length off stump → edge to slip | Full middle stump → LBW slogging | Good length middle stump → bowled
 
 ### BRONZE — Dunith Wellalage
-*Left-arm spinning all-rounder. Useful bat, young.*
+*Young left-arm spin all-rounder (batter card; Silver LA orthodox bowler split below). Useful lower-order bat.*
 - **Strengths:** Full leg stump → sweep for 4
 - **Neutrals:** Good length middle stump → push for 2 | Full middle stump → drive for 1
-- **Weaknesses:** Short off stump → caught at gully | Good length off stump → edge | Good length middle stump → bowled
+- **Weaknesses:** Short Outside off → caught at gully | Good length Outside off → edge | Good length middle stump → bowled
+
+### BRONZE — Dasun Shanaka
+*Right-handed former T20I captain (all-rounder split — Bronze bowler below). Death-overs slogger; explosive when timed, holes out when not.*
+- **Strengths:** Full leg stump → slog for 6
+- **Neutrals:** Short middle stump → pull for 2 | Good length leg stump → flick for 1
+- **Weaknesses:** Good length Outside off → edge to slip | Full off stump → mistimed drive caught | Good length middle stump → LBW
 
 ## BOWLERS
 
 ### ELITE — Wanindu Hasaranga
-*Leg-spinner extraordinaire. Googly is lethal. T20 WC top wicket-taker.*
-- **Delivery:** Good length middle stump | **Adjective:** Spin (legspin/googly) | **Fielding:** Short leg + Slip cordon
+*SL T20 leg-spinner extraordinaire. Multi-time T20 WC top wicket-taker. Disguised wrong'un + skiddy topspinner. Two-skill Elite per the v1.1 rule.*
+- **Delivery:** Good length middle stump | **Adjective:** Googly, Topspin | **Fielding:** Short leg/Silly point + Slip cordon
 
 ### GOLD — Matheesha Pathirana
-*Slingy fast bowler. Malinga-like action. Yorkers at death.*
-- **Delivery:** Full off stump | **Adjective:** Pace | **Fielding:** Cover
+*Slingy right-arm fast bowler. Malinga-style action with death-overs slow-ball cutter signature.*
+- **Delivery:** Full off stump | **Adjective:** Slower | **Fielding:** Cover
 
 ### GOLD — Maheesh Theekshana
-*Mystery off-spinner. Carrom ball specialist.*
-- **Delivery:** Good length off stump | **Adjective:** Spin (carrom ball) | **Fielding:** Slip cordon
+*Mystery right-arm off-spinner. Carrom ball specialist, disguised release.*
+- **Delivery:** Good length off stump | **Adjective:** Carrom | **Fielding:** Slip cordon
 
 ### SILVER — Dushmantha Chameera
-*Quick fast bowler. Full and fast.*
-- **Delivery:** Full middle stump | **Adjective:** Pace | **Fielding:** Mid-wicket
+*Right-arm quick. Full and fast through the stumps.*
+- **Delivery:** Full middle stump | **Fielding:** Mid-wicket
 
 ### SILVER — Dilshan Madushanka
-*Left-arm seamer. Swing with the new ball.*
-- **Delivery:** Full 5th stump | **Adjective:** Swing (left-arm) | **Fielding:** Slip cordon
+*Left-arm seamer. Swing with the new ball. Faces Silver tier wide-call risk on Outside off (25%).*
+- **Delivery:** Full Outside off | **Fielding:** Slip cordon
 
 ### SILVER — Dunith Wellalage
-*Left-arm orthodox. Economical middle overs.*
-- **Delivery:** Good length off stump | **Adjective:** Spin (left-arm orthodox) | **Fielding:** Cover
+*Left-arm orthodox all-rounder (bowler split — Bronze batter above). Economical middle-overs operator.*
+- **Delivery:** Good length off stump | **Fielding:** Cover
 
 ### BRONZE — Eshan Malinga
-*Son of Lasith. Fast bowler, developing.*
+*Son of Lasith. Slingy emerging right-arm quick.*
 - **Delivery:** Good length off stump | **Fielding:** Gully/Point
 
 ### BRONZE — Kamindu Mendis
-*Ambidextrous spinner. Unique talent.*
-- **Delivery:** Good length middle stump | **Adjective:** Spin (offspin/legspin) | **Fielding:** Short leg
-
-### BRONZE — Pavan Rathnayake
-*Medium pace all-rounder. Fills overs.*
-- **Delivery:** Good length middle stump | **Fielding:** Mid-wicket
-
-### BRONZE — Dushan Hemantha
-*Off-spinner. Domestic level.*
-- **Delivery:** Good length leg stump | **Adjective:** Spin (offspin) | **Fielding:** Short leg
+*Ambidextrous part-time spinner (all-rounder split — Silver batter above). Switches off-spin/leg-spin between deliveries — but no skill chip at the Bronze tier.*
+- **Delivery:** Good length middle stump | **Fielding:** Short leg/Silly point
 
 ### BRONZE — Dasun Shanaka
-*Medium pace. Fills overs at death.*
+*Right-arm medium pace (all-rounder split — Bronze batter above). Fills overs at the death.*
 - **Delivery:** Good length off stump | **Fielding:** Cover
+
+### BRONZE — Nuwan Thushara
+*Right-arm slingy quick. T20 WC 2024 hat-trick taker vs Bangladesh. Yorker-length attacking the stumps.*
+- **Delivery:** Full middle stump | **Fielding:** Mid-wicket
+
+### BRONZE — Angelo Mathews
+*Right-arm medium-pace (bowler-only card). SL all-format icon, 200+ international caps. Bowled key T20I overs in his prime — gentle pace into the corridor.*
+- **Delivery:** Good length middle stump | **Fielding:** Slip cordon
 
 ---
 

@@ -5355,7 +5355,7 @@
       "name": "Pathum Nissanka",
       "nation": "Sri Lanka",
       "tier": "Elite",
-      "description": "Classy opener. Drives beautifully. Consistent T20I performer.",
+      "description": "Right-handed opener. SL's most complete current T20 bat — only SL T20I centurion (vs Bangladesh 2024). Cover drives, cuts, flicks; reads spin and pace equally.",
       "strengths": [
         {
           "zone": {
@@ -5418,7 +5418,7 @@
       "weaknesses": [
         {
           "zone": {
-            "line": "Off stump",
+            "line": "Outside off",
             "length": "Short"
           },
           "outcome": {
@@ -5428,7 +5428,13 @@
         }
       ],
       "resistances": [
-        "Swing"
+        "Swing",
+        "Seam",
+        "Slower",
+        "Topspin",
+        "Drift",
+        "Googly",
+        "Carrom"
       ]
     },
     {
@@ -5437,7 +5443,7 @@
       "name": "Charith Asalanka",
       "nation": "Sri Lanka",
       "tier": "Gold",
-      "description": "Left-handed stroke-maker. Elegant drives and sweeps.",
+      "description": "Current SL T20I captain. Left-handed stroke-maker, elegant drives and sweeps.",
       "strengths": [
         {
           "zone": {
@@ -5500,7 +5506,7 @@
       "weaknesses": [
         {
           "zone": {
-            "line": "Off stump",
+            "line": "Outside off",
             "length": "Good length"
           },
           "outcome": {
@@ -5509,7 +5515,13 @@
           }
         }
       ],
-      "resistances": []
+      "resistances": [
+        "Topspin",
+        "Drift",
+        "Carrom",
+        "Googly",
+        "Slower"
+      ]
     },
     {
       "id": "kusal-mendis-bat",
@@ -5517,7 +5529,7 @@
       "name": "Kusal Mendis",
       "nation": "Sri Lanka",
       "tier": "Gold",
-      "description": "Aggressive keeper-bat. Pulls and cuts with power.",
+      "description": "Aggressive right-handed keeper-bat. Pulls and cuts with power. Recent IPL form.",
       "strengths": [
         {
           "zone": {
@@ -5589,7 +5601,12 @@
           }
         }
       ],
-      "resistances": []
+      "resistances": [
+        "Slower",
+        "Cutter",
+        "Topspin",
+        "Drift"
+      ]
     },
     {
       "id": "kamindu-mendis-bat",
@@ -5597,7 +5614,7 @@
       "name": "Kamindu Mendis",
       "nation": "Sri Lanka",
       "tier": "Silver",
-      "description": "Left-handed rising star. Unique ambidextrous bowler too.",
+      "description": "Left-handed rising star. Sweeps and reverse-sweeps; unique ambidextrous part-time spinner (split below).",
       "strengths": [
         {
           "zone": {
@@ -5625,17 +5642,6 @@
       "neutrals": [
         {
           "zone": {
-            "line": "Middle stump",
-            "length": "Good length"
-          },
-          "outcome": {
-            "type": "runs",
-            "value": 2,
-            "shot": "push"
-          }
-        },
-        {
-          "zone": {
             "line": "Leg stump",
             "length": "Good length"
           },
@@ -5659,59 +5665,13 @@
         },
         {
           "zone": {
-            "line": "Off stump",
+            "line": "Outside off",
             "length": "Good length"
           },
           "outcome": {
             "type": "wicket",
             "mode": "beaten"
           }
-        }
-      ],
-      "resistances": []
-    },
-    {
-      "id": "dasun-shanaka-bat",
-      "kind": "batsman",
-      "name": "Dasun Shanaka",
-      "nation": "Sri Lanka",
-      "tier": "Silver",
-      "description": "All-rounder captain. Power at death. Explosive finisher.",
-      "strengths": [
-        {
-          "zone": {
-            "line": "Leg stump",
-            "length": "Full"
-          },
-          "outcome": {
-            "type": "runs",
-            "value": 6,
-            "shot": "slog"
-          }
-        },
-        {
-          "zone": {
-            "line": "Middle stump",
-            "length": "Short"
-          },
-          "outcome": {
-            "type": "runs",
-            "value": 4,
-            "shot": "pull"
-          }
-        }
-      ],
-      "neutrals": [
-        {
-          "zone": {
-            "line": "Leg stump",
-            "length": "Good length"
-          },
-          "outcome": {
-            "type": "runs",
-            "value": 2,
-            "shot": "flick"
-          }
         },
         {
           "zone": {
@@ -5719,35 +5679,16 @@
             "length": "Good length"
           },
           "outcome": {
-            "type": "runs",
-            "value": 1,
-            "shot": "push"
+            "type": "wicket",
+            "mode": "LBW"
           }
         }
       ],
-      "weaknesses": [
-        {
-          "zone": {
-            "line": "Off stump",
-            "length": "Good length"
-          },
-          "outcome": {
-            "type": "wicket",
-            "mode": "edge to slip"
-          }
-        },
-        {
-          "zone": {
-            "line": "Off stump",
-            "length": "Full"
-          },
-          "outcome": {
-            "type": "wicket",
-            "mode": "mis-hit"
-          }
-        }
-      ],
-      "resistances": []
+      "resistances": [
+        "Topspin",
+        "Carrom",
+        "Drift"
+      ]
     },
     {
       "id": "kusal-perera-bat",
@@ -5755,7 +5696,7 @@
       "name": "Kusal Perera",
       "nation": "Sri Lanka",
       "tier": "Silver",
-      "description": "Explosive left-handed opener. Goes hard from ball one.",
+      "description": "Explosive left-handed opener. Goes hard from ball one. 60+ T20Is, still in T20I mix.",
       "strengths": [
         {
           "zone": {
@@ -5788,19 +5729,8 @@
           },
           "outcome": {
             "type": "runs",
-            "value": 2,
-            "shot": "flick"
-          }
-        },
-        {
-          "zone": {
-            "line": "Leg stump",
-            "length": "Full"
-          },
-          "outcome": {
-            "type": "runs",
             "value": 1,
-            "shot": "sweep"
+            "shot": "flick"
           }
         }
       ],
@@ -5817,80 +5747,84 @@
         },
         {
           "zone": {
-            "line": "Off stump",
+            "line": "Outside off",
             "length": "Full"
           },
           "outcome": {
             "type": "wicket",
             "mode": "caught at cover"
           }
+        },
+        {
+          "zone": {
+            "line": "Off stump",
+            "length": "Good length"
+          },
+          "outcome": {
+            "type": "wicket",
+            "mode": "edge to slip"
+          }
         }
       ],
-      "resistances": []
+      "resistances": [
+        "Slower",
+        "Topspin",
+        "Drift"
+      ]
     },
     {
-      "id": "janith-liyanage-bat",
+      "id": "tillakaratne-dilshan-bat",
       "kind": "batsman",
-      "name": "Janith Liyanage",
+      "name": "Tillakaratne Dilshan",
       "nation": "Sri Lanka",
-      "tier": "Bronze",
-      "description": "Young middle order. Developing talent.",
+      "tier": "Silver",
+      "description": "Mid-2010s legend. 79 T20Is, 2014 T20 WC winner, \"Dilscoop\" inventor. Right-handed opener with the full shot range — late-career SR ~120 puts him at Silver, not Gold.",
       "strengths": [
         {
           "zone": {
-            "line": "Leg stump",
+            "line": "Off stump",
             "length": "Full"
           },
           "outcome": {
             "type": "runs",
             "value": 4,
-            "shot": "flick"
+            "shot": "drive"
+          }
+        },
+        {
+          "zone": {
+            "line": "Outside off",
+            "length": "Short"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 6,
+            "shot": "Dilscoop"
           }
         }
       ],
       "neutrals": [
         {
           "zone": {
-            "line": "Leg stump",
-            "length": "Good length"
-          },
-          "outcome": {
-            "type": "runs",
-            "value": 2,
-            "shot": "nudge"
-          }
-        },
-        {
-          "zone": {
-            "line": "Middle stump",
+            "line": "Off stump",
             "length": "Good length"
           },
           "outcome": {
             "type": "runs",
             "value": 1,
-            "shot": "push"
+            "shot": "punch"
           }
         }
       ],
       "weaknesses": [
         {
           "zone": {
-            "line": "Off stump",
+            "line": "Middle stump",
             "length": "Good length"
           },
           "outcome": {
             "type": "wicket",
-            "mode": "beaten"
-          }
-        },
-        {
-          "zone": {
-            "line": "Off stump",
-            "length": "Short"
-          },
-          "outcome": {
-            "type": "wicket",
-            "mode": "caught"
+            "mode": "LBW playing across"
           }
         },
         {
@@ -5902,17 +5836,109 @@
             "type": "wicket",
             "mode": "bowled"
           }
+        },
+        {
+          "zone": {
+            "line": "Middle stump",
+            "length": "Short"
+          },
+          "outcome": {
+            "type": "wicket",
+            "mode": "top edge"
+          }
+        }
+      ],
+      "resistances": [
+        "Topspin",
+        "Drift",
+        "Carrom"
+      ]
+    },
+    {
+      "id": "bhanuka-rajapaksa-bat",
+      "kind": "batsman",
+      "name": "Bhanuka Rajapaksa",
+      "nation": "Sri Lanka",
+      "tier": "Bronze",
+      "description": "Left-handed power hitter. T20 WC 2022 final hero (71*), recognizable middle-order finisher.",
+      "strengths": [
+        {
+          "zone": {
+            "line": "Leg stump",
+            "length": "Full"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 6,
+            "shot": "slog"
+          }
+        }
+      ],
+      "neutrals": [
+        {
+          "zone": {
+            "line": "Middle stump",
+            "length": "Short"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 2,
+            "shot": "pull"
+          }
+        },
+        {
+          "zone": {
+            "line": "Off stump",
+            "length": "Full"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 1,
+            "shot": "drive"
+          }
+        }
+      ],
+      "weaknesses": [
+        {
+          "zone": {
+            "line": "Outside off",
+            "length": "Good length"
+          },
+          "outcome": {
+            "type": "wicket",
+            "mode": "edge to keeper"
+          }
+        },
+        {
+          "zone": {
+            "line": "Middle stump",
+            "length": "Good length"
+          },
+          "outcome": {
+            "type": "wicket",
+            "mode": "bowled across"
+          }
+        },
+        {
+          "zone": {
+            "line": "Middle stump",
+            "length": "Full"
+          },
+          "outcome": {
+            "type": "wicket",
+            "mode": "LBW"
+          }
         }
       ],
       "resistances": []
     },
     {
-      "id": "kamil-mishara-bat",
+      "id": "avishka-fernando-bat",
       "kind": "batsman",
-      "name": "Kamil Mishara",
+      "name": "Avishka Fernando",
       "nation": "Sri Lanka",
       "tier": "Bronze",
-      "description": "Young opener. Domestic talent, raw at international level.",
+      "description": "Right-handed opener. Recognizable from his 2019 ODI WC century. Solid technique, limited T20 acceleration.",
       "strengths": [
         {
           "zone": {
@@ -5958,17 +5984,17 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "top edge"
+            "mode": "top edge caught"
           }
         },
         {
           "zone": {
-            "line": "Off stump",
+            "line": "Outside off",
             "length": "Good length"
           },
           "outcome": {
             "type": "wicket",
-            "mode": "edge"
+            "mode": "edge to slip"
           }
         },
         {
@@ -5985,90 +6011,12 @@
       "resistances": []
     },
     {
-      "id": "pavan-rathnayake-bat",
+      "id": "niroshan-dickwella-bat",
       "kind": "batsman",
-      "name": "Pavan Rathnayake",
+      "name": "Niroshan Dickwella",
       "nation": "Sri Lanka",
       "tier": "Bronze",
-      "description": "Domestic all-rounder. Lower order bat.",
-      "strengths": [
-        {
-          "zone": {
-            "line": "Leg stump",
-            "length": "Full"
-          },
-          "outcome": {
-            "type": "runs",
-            "value": 4,
-            "shot": "slog"
-          }
-        }
-      ],
-      "neutrals": [
-        {
-          "zone": {
-            "line": "Leg stump",
-            "length": "Good length"
-          },
-          "outcome": {
-            "type": "runs",
-            "value": 2,
-            "shot": "work"
-          }
-        },
-        {
-          "zone": {
-            "line": "Middle stump",
-            "length": "Short"
-          },
-          "outcome": {
-            "type": "runs",
-            "value": 1,
-            "shot": "pull"
-          }
-        }
-      ],
-      "weaknesses": [
-        {
-          "zone": {
-            "line": "Off stump",
-            "length": "Good length"
-          },
-          "outcome": {
-            "type": "wicket",
-            "mode": "bowled"
-          }
-        },
-        {
-          "zone": {
-            "line": "Middle stump",
-            "length": "Good length"
-          },
-          "outcome": {
-            "type": "wicket",
-            "mode": "LBW"
-          }
-        },
-        {
-          "zone": {
-            "line": "Off stump",
-            "length": "Full"
-          },
-          "outcome": {
-            "type": "wicket",
-            "mode": "caught at mid-off"
-          }
-        }
-      ],
-      "resistances": []
-    },
-    {
-      "id": "dushan-hemantha-bat",
-      "kind": "batsman",
-      "name": "Dushan Hemantha",
-      "nation": "Sri Lanka",
-      "tier": "Bronze",
-      "description": "Young spinner who bats a bit. Tailender.",
+      "description": "Left-handed keeper-bat. 65+ T20Is, mid-2010s prime + recent. Cheeky scoops and sweeps; plays across the line and falls LBW.",
       "strengths": [
         {
           "zone": {
@@ -6078,7 +6026,7 @@
           "outcome": {
             "type": "runs",
             "value": 4,
-            "shot": "pull"
+            "shot": "ramp"
           }
         }
       ],
@@ -6114,7 +6062,7 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "bowled"
+            "mode": "edge to slip"
           }
         },
         {
@@ -6124,17 +6072,17 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "LBW"
+            "mode": "LBW slogging"
           }
         },
         {
           "zone": {
-            "line": "Off stump",
-            "length": "Full"
+            "line": "Middle stump",
+            "length": "Good length"
           },
           "outcome": {
             "type": "wicket",
-            "mode": "edge to slip"
+            "mode": "bowled"
           }
         }
       ],
@@ -6146,7 +6094,7 @@
       "name": "Dunith Wellalage",
       "nation": "Sri Lanka",
       "tier": "Bronze",
-      "description": "Left-arm spinning all-rounder. Useful bat, young.",
+      "description": "Young left-arm spin all-rounder (batter card; Silver LA orthodox bowler split below). Useful lower-order bat.",
       "strengths": [
         {
           "zone": {
@@ -6187,7 +6135,7 @@
       "weaknesses": [
         {
           "zone": {
-            "line": "Off stump",
+            "line": "Outside off",
             "length": "Short"
           },
           "outcome": {
@@ -6197,7 +6145,7 @@
         },
         {
           "zone": {
-            "line": "Off stump",
+            "line": "Outside off",
             "length": "Good length"
           },
           "outcome": {
@@ -6213,6 +6161,84 @@
           "outcome": {
             "type": "wicket",
             "mode": "bowled"
+          }
+        }
+      ],
+      "resistances": []
+    },
+    {
+      "id": "dasun-shanaka-bat",
+      "kind": "batsman",
+      "name": "Dasun Shanaka",
+      "nation": "Sri Lanka",
+      "tier": "Bronze",
+      "description": "Right-handed former T20I captain (all-rounder split — Bronze bowler below). Death-overs slogger; explosive when timed, holes out when not.",
+      "strengths": [
+        {
+          "zone": {
+            "line": "Leg stump",
+            "length": "Full"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 6,
+            "shot": "slog"
+          }
+        }
+      ],
+      "neutrals": [
+        {
+          "zone": {
+            "line": "Middle stump",
+            "length": "Short"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 2,
+            "shot": "pull"
+          }
+        },
+        {
+          "zone": {
+            "line": "Leg stump",
+            "length": "Good length"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 1,
+            "shot": "flick"
+          }
+        }
+      ],
+      "weaknesses": [
+        {
+          "zone": {
+            "line": "Outside off",
+            "length": "Good length"
+          },
+          "outcome": {
+            "type": "wicket",
+            "mode": "edge to slip"
+          }
+        },
+        {
+          "zone": {
+            "line": "Off stump",
+            "length": "Full"
+          },
+          "outcome": {
+            "type": "wicket",
+            "mode": "mistimed drive caught"
+          }
+        },
+        {
+          "zone": {
+            "line": "Middle stump",
+            "length": "Good length"
+          },
+          "outcome": {
+            "type": "wicket",
+            "mode": "LBW"
           }
         }
       ],
@@ -11681,12 +11707,15 @@
       "name": "Wanindu Hasaranga",
       "nation": "Sri Lanka",
       "tier": "Elite",
-      "description": "Leg-spinner extraordinaire. Googly is lethal. T20 WC top wicket-taker.",
+      "description": "SL T20 leg-spinner extraordinaire. Multi-time T20 WC top wicket-taker. Disguised wrong'un + skiddy topspinner. Two-skill Elite per the v1.1 rule.",
       "delivery": {
         "line": "Middle stump",
         "length": "Good length"
       },
-      "adjectives": [],
+      "adjectives": [
+        "Googly",
+        "Topspin"
+      ],
       "fielding": [
         "Short leg/Silly point",
         "Slip cordon"
@@ -11698,12 +11727,14 @@
       "name": "Matheesha Pathirana",
       "nation": "Sri Lanka",
       "tier": "Gold",
-      "description": "Slingy fast bowler. Malinga-like action. Yorkers at death.",
+      "description": "Slingy right-arm fast bowler. Malinga-style action with death-overs slow-ball cutter signature.",
       "delivery": {
         "line": "Off stump",
         "length": "Full"
       },
-      "adjectives": [],
+      "adjectives": [
+        "Slower"
+      ],
       "fielding": [
         "Cover"
       ]
@@ -11714,12 +11745,14 @@
       "name": "Maheesh Theekshana",
       "nation": "Sri Lanka",
       "tier": "Gold",
-      "description": "Mystery off-spinner. Carrom ball specialist.",
+      "description": "Mystery right-arm off-spinner. Carrom ball specialist, disguised release.",
       "delivery": {
         "line": "Off stump",
         "length": "Good length"
       },
-      "adjectives": [],
+      "adjectives": [
+        "Carrom"
+      ],
       "fielding": [
         "Slip cordon"
       ]
@@ -11730,7 +11763,7 @@
       "name": "Dushmantha Chameera",
       "nation": "Sri Lanka",
       "tier": "Silver",
-      "description": "Quick fast bowler. Full and fast.",
+      "description": "Right-arm quick. Full and fast through the stumps.",
       "delivery": {
         "line": "Middle stump",
         "length": "Full"
@@ -11746,7 +11779,7 @@
       "name": "Dilshan Madushanka",
       "nation": "Sri Lanka",
       "tier": "Silver",
-      "description": "Left-arm seamer. Swing with the new ball.",
+      "description": "Left-arm seamer. Swing with the new ball. Faces Silver tier wide-call risk on Outside off (25%).",
       "delivery": {
         "line": "Outside off",
         "length": "Full"
@@ -11762,7 +11795,7 @@
       "name": "Dunith Wellalage",
       "nation": "Sri Lanka",
       "tier": "Silver",
-      "description": "Left-arm orthodox. Economical middle overs.",
+      "description": "Left-arm orthodox all-rounder (bowler split — Bronze batter above). Economical middle-overs operator.",
       "delivery": {
         "line": "Off stump",
         "length": "Good length"
@@ -11778,7 +11811,7 @@
       "name": "Eshan Malinga",
       "nation": "Sri Lanka",
       "tier": "Bronze",
-      "description": "Son of Lasith. Fast bowler, developing.",
+      "description": "Son of Lasith. Slingy emerging right-arm quick.",
       "delivery": {
         "line": "Off stump",
         "length": "Good length"
@@ -11794,41 +11827,9 @@
       "name": "Kamindu Mendis",
       "nation": "Sri Lanka",
       "tier": "Bronze",
-      "description": "Ambidextrous spinner. Unique talent.",
+      "description": "Ambidextrous part-time spinner (all-rounder split — Silver batter above). Switches off-spin/leg-spin between deliveries — but no skill chip at the Bronze tier.",
       "delivery": {
         "line": "Middle stump",
-        "length": "Good length"
-      },
-      "adjectives": [],
-      "fielding": [
-        "Short leg/Silly point"
-      ]
-    },
-    {
-      "id": "pavan-rathnayake-bowl",
-      "kind": "bowler",
-      "name": "Pavan Rathnayake",
-      "nation": "Sri Lanka",
-      "tier": "Bronze",
-      "description": "Medium pace all-rounder. Fills overs.",
-      "delivery": {
-        "line": "Middle stump",
-        "length": "Good length"
-      },
-      "adjectives": [],
-      "fielding": [
-        "Mid-wicket"
-      ]
-    },
-    {
-      "id": "dushan-hemantha-bowl",
-      "kind": "bowler",
-      "name": "Dushan Hemantha",
-      "nation": "Sri Lanka",
-      "tier": "Bronze",
-      "description": "Off-spinner. Domestic level.",
-      "delivery": {
-        "line": "Leg stump",
         "length": "Good length"
       },
       "adjectives": [],
@@ -11842,7 +11843,7 @@
       "name": "Dasun Shanaka",
       "nation": "Sri Lanka",
       "tier": "Bronze",
-      "description": "Medium pace. Fills overs at death.",
+      "description": "Right-arm medium pace (all-rounder split — Bronze batter above). Fills overs at the death.",
       "delivery": {
         "line": "Off stump",
         "length": "Good length"
@@ -11850,6 +11851,38 @@
       "adjectives": [],
       "fielding": [
         "Cover"
+      ]
+    },
+    {
+      "id": "nuwan-thushara-bowl",
+      "kind": "bowler",
+      "name": "Nuwan Thushara",
+      "nation": "Sri Lanka",
+      "tier": "Bronze",
+      "description": "Right-arm slingy quick. T20 WC 2024 hat-trick taker vs Bangladesh. Yorker-length attacking the stumps.",
+      "delivery": {
+        "line": "Middle stump",
+        "length": "Full"
+      },
+      "adjectives": [],
+      "fielding": [
+        "Mid-wicket"
+      ]
+    },
+    {
+      "id": "angelo-mathews-bowl",
+      "kind": "bowler",
+      "name": "Angelo Mathews",
+      "nation": "Sri Lanka",
+      "tier": "Bronze",
+      "description": "Right-arm medium-pace (bowler-only card). SL all-format icon, 200+ international caps. Bowled key T20I overs in his prime — gentle pace into the corridor.",
+      "delivery": {
+        "line": "Middle stump",
+        "length": "Good length"
+      },
+      "adjectives": [],
+      "fielding": [
+        "Slip cordon"
       ]
     },
     {
