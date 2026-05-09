@@ -85,6 +85,8 @@ The bowler oversteps the crease. This delivery:
 
 The runs from the actual outcome (e.g. a 4 or 6 if the batter still hit it) ALSO stand and are added on top of the +1 extra.
 
+> **Important — no free hit.** Unlike real T20 cricket, the No Ball card does **not** grant the next delivery free-hit status. The wicket protection applies only to *this* ball; the re-bowled ball resolves under normal rules.
+
 **When to play:** Wicket insurance with a bonus. Particularly strong as a tempo card late in an innings — guarantees you face one extra ball without losing a wicket.
 
 ---

@@ -13450,7 +13450,7 @@
       "kind": "situation",
       "name": "No Ball",
       "flavor": "Foot fault! The umpire's called it!",
-      "description": "The bowler oversteps the crease. This delivery:\n- **Cancels any wicket** — if the result was a wicket, it becomes a dot ball.\n- **+1 run** to the batting team (the no-ball extra).\n- **Re-bowled** — this delivery doesn't count against the innings ball total.\n\nThe runs from the actual outcome (e.g. a 4 or 6 if the batter still hit it) ALSO stand and are added on top of the +1 extra.",
+      "description": "The bowler oversteps the crease. This delivery:\n- **Cancels any wicket** — if the result was a wicket, it becomes a dot ball.\n- **+1 run** to the batting team (the no-ball extra).\n- **Re-bowled** — this delivery doesn't count against the innings ball total.\n\nThe runs from the actual outcome (e.g. a 4 or 6 if the batter still hit it) ALSO stand and are added on top of the +1 extra.\n\n> **Important — no free hit.** Unlike real T20 cricket, the No Ball card does **not** grant the next delivery free-hit status. The wicket protection applies only to *this* ball; the re-bowled ball resolves under normal rules.",
       "deck": "batting"
     },
     {

@@ -1,11 +1,12 @@
 import { useState } from "react";
 import type { MatchClient } from "../state.ts";
+import { HowToPlayScreen } from "./HowToPlayScreen.tsx";
 
 interface Props {
   client: MatchClient;
 }
 
-type Mode = "menu" | "create" | "join";
+type Mode = "menu" | "create" | "join" | "how-to-play";
 
 /** Derive a default 4-char abbreviation from a display name. */
 function defaultAbbrFromName(name: string): string {
@@ -57,6 +58,10 @@ export function HomeScreen({ client }: Props) {
     setSubmitting(false);
   };
 
+  if (mode === "how-to-play") {
+    return <HowToPlayScreen onBack={() => setMode("menu")} />;
+  }
+
   return (
     <main>
       <h1>Swipe Sixer</h1>
@@ -94,6 +99,12 @@ export function HomeScreen({ client }: Props) {
             onClick={() => setMode("join")}
           >
             Join match
+          </button>
+          <button
+            className="btn ghost"
+            onClick={() => setMode("how-to-play")}
+          >
+            How to play
           </button>
         </div>
       )}
