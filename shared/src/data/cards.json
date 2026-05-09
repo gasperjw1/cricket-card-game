@@ -4462,7 +4462,7 @@
       "name": "Babar Azam",
       "nation": "Pakistan",
       "tier": "Elite",
-      "description": "Cover drive is art. Elegant stroke-maker. Anchors with class. T20I run machine.",
+      "description": "Right-handed PAK icon. Multi-time world #1 ranked T20I batter. Cover drive maestro, anchor archetype, scores all around the wicket. Plays pace and spin with equal class.",
       "strengths": [
         {
           "zone": {
@@ -4494,7 +4494,7 @@
           "outcome": {
             "type": "runs",
             "value": 4,
-            "shot": "punch"
+            "shot": "punch through cover"
           }
         }
       ],
@@ -4512,13 +4512,13 @@
         },
         {
           "zone": {
-            "line": "Outside off",
+            "line": "Leg stump",
             "length": "Good length"
           },
           "outcome": {
             "type": "runs",
             "value": 1,
-            "shot": "late cut"
+            "shot": "work"
           }
         }
       ],
@@ -4530,101 +4530,27 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "top edge pulling"
+            "mode": "top edge pulling caught"
           }
         }
       ],
       "resistances": [
-        "Swing"
+        "Swing",
+        "Seam",
+        "Slower",
+        "Cutter",
+        "Topspin",
+        "Drift",
+        "Carrom"
       ]
     },
     {
-      "id": "shaheen-afridi-bat",
+      "id": "mohammad-rizwan-bat",
       "kind": "batsman",
-      "name": "Shaheen Afridi",
+      "name": "Mohammad Rizwan",
       "nation": "Pakistan",
       "tier": "Gold",
-      "description": "Left-arm quick who can bat. All-rounder value.",
-      "strengths": [
-        {
-          "zone": {
-            "line": "Middle stump",
-            "length": "Full"
-          },
-          "outcome": {
-            "type": "runs",
-            "value": 4,
-            "shot": "loft"
-          }
-        },
-        {
-          "zone": {
-            "line": "Leg stump",
-            "length": "Short"
-          },
-          "outcome": {
-            "type": "runs",
-            "value": 4,
-            "shot": "pull"
-          }
-        },
-        {
-          "zone": {
-            "line": "Leg stump",
-            "length": "Full"
-          },
-          "outcome": {
-            "type": "runs",
-            "value": 4,
-            "shot": "slog"
-          }
-        }
-      ],
-      "neutrals": [
-        {
-          "zone": {
-            "line": "Leg stump",
-            "length": "Good length"
-          },
-          "outcome": {
-            "type": "runs",
-            "value": 2,
-            "shot": "work"
-          }
-        },
-        {
-          "zone": {
-            "line": "Middle stump",
-            "length": "Good length"
-          },
-          "outcome": {
-            "type": "runs",
-            "value": 1,
-            "shot": "push"
-          }
-        }
-      ],
-      "weaknesses": [
-        {
-          "zone": {
-            "line": "Off stump",
-            "length": "Good length"
-          },
-          "outcome": {
-            "type": "wicket",
-            "mode": "edge to slip"
-          }
-        }
-      ],
-      "resistances": []
-    },
-    {
-      "id": "saim-ayub-bat",
-      "kind": "batsman",
-      "name": "Saim Ayub",
-      "nation": "Pakistan",
-      "tier": "Gold",
-      "description": "Exciting young left-hander. Clean ball striker. Rising star.",
+      "description": "Right-handed keeper-bat. World #1 T20I ranked at multiple points. Accumulator with class — drives, flicks, anchors. Vulnerable to short pace at the body.",
       "strengths": [
         {
           "zone": {
@@ -4633,43 +4559,8 @@
           },
           "outcome": {
             "type": "runs",
-            "value": 6,
-            "shot": "loft"
-          }
-        },
-        {
-          "zone": {
-            "line": "Leg stump",
-            "length": "Full"
-          },
-          "outcome": {
-            "type": "runs",
             "value": 4,
-            "shot": "sweep"
-          }
-        },
-        {
-          "zone": {
-            "line": "Middle stump",
-            "length": "Short"
-          },
-          "outcome": {
-            "type": "runs",
-            "value": 4,
-            "shot": "pull"
-          }
-        }
-      ],
-      "neutrals": [
-        {
-          "zone": {
-            "line": "Off stump",
-            "length": "Good length"
-          },
-          "outcome": {
-            "type": "runs",
-            "value": 2,
-            "shot": "push"
+            "shot": "drive"
           }
         },
         {
@@ -4679,32 +4570,72 @@
           },
           "outcome": {
             "type": "runs",
-            "value": 1,
+            "value": 4,
             "shot": "flick"
           }
         }
       ],
-      "weaknesses": [
+      "neutrals": [
+        {
+          "zone": {
+            "line": "Off stump",
+            "length": "Good length"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 2,
+            "shot": "push"
+          }
+        },
         {
           "zone": {
             "line": "Middle stump",
             "length": "Good length"
           },
           "outcome": {
-            "type": "wicket",
-            "mode": "bowled through gate"
+            "type": "runs",
+            "value": 1,
+            "shot": "defend"
           }
         }
       ],
-      "resistances": []
+      "weaknesses": [
+        {
+          "zone": {
+            "line": "Outside off",
+            "length": "Short"
+          },
+          "outcome": {
+            "type": "wicket",
+            "mode": "caught behind"
+          }
+        },
+        {
+          "zone": {
+            "line": "Middle stump",
+            "length": "Full"
+          },
+          "outcome": {
+            "type": "wicket",
+            "mode": "bowled"
+          }
+        }
+      ],
+      "resistances": [
+        "Topspin",
+        "Drift",
+        "Carrom",
+        "Googly",
+        "Slower"
+      ]
     },
     {
       "id": "fakhar-zaman-bat",
       "kind": "batsman",
       "name": "Fakhar Zaman",
       "nation": "Pakistan",
-      "tier": "Silver",
-      "description": "Aggressive left-handed opener. Goes hard early. Can be reckless.",
+      "tier": "Gold",
+      "description": "Aggressive left-handed opener. CT 2017 final centurion. Goes hard early, drives + sweeps. Vulnerable to the moving ball into the stumps.",
       "strengths": [
         {
           "zone": {
@@ -4775,15 +4706,20 @@
           }
         }
       ],
-      "resistances": []
+      "resistances": [
+        "Slower",
+        "Cutter",
+        "Topspin",
+        "Drift"
+      ]
     },
     {
-      "id": "mohammad-rizwan-bat",
+      "id": "salman-agha-bat",
       "kind": "batsman",
-      "name": "Mohammad Rizwan",
+      "name": "Salman Agha",
       "nation": "Pakistan",
       "tier": "Silver",
-      "description": "Keeper-bat. Accumulator. Anchors the innings. Not a power hitter.",
+      "description": "Current PAK T20I captain. Right-handed middle-order, off-spinning all-rounder. Smart cricketer rather than pure power.",
       "strengths": [
         {
           "zone": {
@@ -4804,7 +4740,7 @@
           "outcome": {
             "type": "runs",
             "value": 4,
-            "shot": "flick"
+            "shot": "work"
           }
         }
       ],
@@ -4816,31 +4752,20 @@
           },
           "outcome": {
             "type": "runs",
-            "value": 2,
-            "shot": "push"
-          }
-        },
-        {
-          "zone": {
-            "line": "Middle stump",
-            "length": "Good length"
-          },
-          "outcome": {
-            "type": "runs",
             "value": 1,
-            "shot": "defend"
+            "shot": "push"
           }
         }
       ],
       "weaknesses": [
         {
           "zone": {
-            "line": "Off stump",
+            "line": "Middle stump",
             "length": "Short"
           },
           "outcome": {
             "type": "wicket",
-            "mode": "caught behind"
+            "mode": "top edge"
           }
         },
         {
@@ -4852,17 +4777,113 @@
             "type": "wicket",
             "mode": "bowled"
           }
+        },
+        {
+          "zone": {
+            "line": "Middle stump",
+            "length": "Good length"
+          },
+          "outcome": {
+            "type": "wicket",
+            "mode": "LBW"
+          }
         }
       ],
-      "resistances": []
+      "resistances": [
+        "Topspin",
+        "Drift",
+        "Carrom"
+      ]
     },
     {
-      "id": "shadab-khan-bat",
+      "id": "saim-ayub-bat",
       "kind": "batsman",
-      "name": "Shadab Khan",
+      "name": "Saim Ayub",
       "nation": "Pakistan",
       "tier": "Silver",
-      "description": "Leg-spinning all-rounder. Clean hitter in the lower order.",
+      "description": "Exciting young left-handed opener. Clean ball striker, big sixes off the front foot. Vulnerable to the ball nipping back into the stumps.",
+      "strengths": [
+        {
+          "zone": {
+            "line": "Off stump",
+            "length": "Full"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 6,
+            "shot": "loft"
+          }
+        },
+        {
+          "zone": {
+            "line": "Leg stump",
+            "length": "Full"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 4,
+            "shot": "sweep"
+          }
+        }
+      ],
+      "neutrals": [
+        {
+          "zone": {
+            "line": "Leg stump",
+            "length": "Good length"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 1,
+            "shot": "flick"
+          }
+        }
+      ],
+      "weaknesses": [
+        {
+          "zone": {
+            "line": "Middle stump",
+            "length": "Good length"
+          },
+          "outcome": {
+            "type": "wicket",
+            "mode": "bowled through gate"
+          }
+        },
+        {
+          "zone": {
+            "line": "Outside off",
+            "length": "Short"
+          },
+          "outcome": {
+            "type": "wicket",
+            "mode": "edge to keeper"
+          }
+        },
+        {
+          "zone": {
+            "line": "Off stump",
+            "length": "Good length"
+          },
+          "outcome": {
+            "type": "wicket",
+            "mode": "caught at slip"
+          }
+        }
+      ],
+      "resistances": [
+        "Topspin",
+        "Carrom",
+        "Drift"
+      ]
+    },
+    {
+      "id": "shahid-afridi-bat",
+      "kind": "batsman",
+      "name": "Shahid Afridi",
+      "nation": "Pakistan",
+      "tier": "Silver",
+      "description": "Mid-2010s legend. 99 T20Is for PAK (last 2018), captain across formats, T20 WC 2007/2009 hero. Hit-or-miss slogger by his late career — averaged ~17 in T20Is at SR 150. Pure boundary-or-out.",
       "strengths": [
         {
           "zone": {
@@ -4878,12 +4899,12 @@
         {
           "zone": {
             "line": "Middle stump",
-            "length": "Short"
+            "length": "Full"
           },
           "outcome": {
             "type": "runs",
-            "value": 4,
-            "shot": "pull"
+            "value": 6,
+            "shot": "loft"
           }
         }
       ],
@@ -4891,35 +4912,34 @@
         {
           "zone": {
             "line": "Middle stump",
-            "length": "Good length"
-          },
-          "outcome": {
-            "type": "runs",
-            "value": 2,
-            "shot": "push"
-          }
-        },
-        {
-          "zone": {
-            "line": "Middle stump",
-            "length": "Full"
+            "length": "Short"
           },
           "outcome": {
             "type": "runs",
             "value": 1,
-            "shot": "drive"
+            "shot": "ramp"
           }
         }
       ],
       "weaknesses": [
         {
           "zone": {
-            "line": "Off stump",
+            "line": "Outside off",
             "length": "Good length"
           },
           "outcome": {
             "type": "wicket",
-            "mode": "edge to slip"
+            "mode": "edge to keeper"
+          }
+        },
+        {
+          "zone": {
+            "line": "Middle stump",
+            "length": "Good length"
+          },
+          "outcome": {
+            "type": "wicket",
+            "mode": "bowled across"
           }
         },
         {
@@ -4929,11 +4949,15 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "caught at cover"
+            "mode": "mistimed drive caught"
           }
         }
       ],
-      "resistances": []
+      "resistances": [
+        "Slower",
+        "Cutter",
+        "Topspin"
+      ]
     },
     {
       "id": "iftikhar-ahmed-bat",
@@ -4941,7 +4965,7 @@
       "name": "Iftikhar Ahmed",
       "nation": "Pakistan",
       "tier": "Bronze",
-      "description": "Middle order hitter. Power over finesse. Gets out to spin.",
+      "description": "Right-handed veteran middle-order finisher. Power over finesse; falls to spin (also Bronze part-time off-spin bowler split below).",
       "strengths": [
         {
           "zone": {
@@ -4992,7 +5016,7 @@
         },
         {
           "zone": {
-            "line": "Off stump",
+            "line": "Outside off",
             "length": "Good length"
           },
           "outcome": {
@@ -5019,7 +5043,7 @@
       "name": "Usman Khan",
       "nation": "Pakistan",
       "tier": "Bronze",
-      "description": "Young aggressive batter. Raw talent, minimal international exposure.",
+      "description": "Young aggressive right-handed batter. Raw talent, growing international exposure.",
       "strengths": [
         {
           "zone": {
@@ -5060,7 +5084,7 @@
       "weaknesses": [
         {
           "zone": {
-            "line": "Off stump",
+            "line": "Outside off",
             "length": "Good length"
           },
           "outcome": {
@@ -5070,7 +5094,7 @@
         },
         {
           "zone": {
-            "line": "Off stump",
+            "line": "Outside off",
             "length": "Short"
           },
           "outcome": {
@@ -5092,124 +5116,46 @@
       "resistances": []
     },
     {
-      "id": "sahibzada-farhan-bat",
+      "id": "asif-ali-bat",
       "kind": "batsman",
-      "name": "Sahibzada Farhan",
+      "name": "Asif Ali",
       "nation": "Pakistan",
       "tier": "Bronze",
-      "description": "Domestic opener. Quick scorer but technically limited.",
+      "description": "Right-handed death-overs power hitter. 50+ T20Is for PAK, T20 WC 2021 cameos. Hits boundaries at the back end of the innings — or holes out trying.",
       "strengths": [
         {
           "zone": {
-            "line": "Off stump",
+            "line": "Leg stump",
             "length": "Full"
           },
           "outcome": {
             "type": "runs",
-            "value": 4,
-            "shot": "drive"
+            "value": 6,
+            "shot": "slog"
           }
         }
       ],
       "neutrals": [
-        {
-          "zone": {
-            "line": "Leg stump",
-            "length": "Good length"
-          },
-          "outcome": {
-            "type": "runs",
-            "value": 2,
-            "shot": "nudge"
-          }
-        },
-        {
-          "zone": {
-            "line": "Leg stump",
-            "length": "Full"
-          },
-          "outcome": {
-            "type": "runs",
-            "value": 1,
-            "shot": "flick"
-          }
-        }
-      ],
-      "weaknesses": [
         {
           "zone": {
             "line": "Middle stump",
             "length": "Short"
           },
           "outcome": {
-            "type": "wicket",
-            "mode": "top edge caught"
+            "type": "runs",
+            "value": 2,
+            "shot": "pull"
           }
         },
         {
           "zone": {
             "line": "Middle stump",
-            "length": "Good length"
-          },
-          "outcome": {
-            "type": "wicket",
-            "mode": "LBW"
-          }
-        },
-        {
-          "zone": {
-            "line": "Off stump",
-            "length": "Good length"
-          },
-          "outcome": {
-            "type": "wicket",
-            "mode": "edge to slip"
-          }
-        }
-      ],
-      "resistances": []
-    },
-    {
-      "id": "khawaja-nafay-bat",
-      "kind": "batsman",
-      "name": "Khawaja Nafay",
-      "nation": "Pakistan",
-      "tier": "Bronze",
-      "description": "Young domestic talent. Limited exposure.",
-      "strengths": [
-        {
-          "zone": {
-            "line": "Leg stump",
             "length": "Full"
           },
           "outcome": {
             "type": "runs",
-            "value": 4,
-            "shot": "sweep"
-          }
-        }
-      ],
-      "neutrals": [
-        {
-          "zone": {
-            "line": "Middle stump",
-            "length": "Good length"
-          },
-          "outcome": {
-            "type": "runs",
-            "value": 2,
-            "shot": "push"
-          }
-        },
-        {
-          "zone": {
-            "line": "Leg stump",
-            "length": "Good length"
-          },
-          "outcome": {
-            "type": "runs",
             "value": 1,
-            "shot": "work"
+            "shot": "loft"
           }
         }
       ],
@@ -5217,6 +5163,16 @@
         {
           "zone": {
             "line": "Off stump",
+            "length": "Good length"
+          },
+          "outcome": {
+            "type": "wicket",
+            "mode": "caught at cover"
+          }
+        },
+        {
+          "zone": {
+            "line": "Middle stump",
             "length": "Good length"
           },
           "outcome": {
@@ -5226,22 +5182,12 @@
         },
         {
           "zone": {
-            "line": "Off stump",
-            "length": "Short"
+            "line": "Leg stump",
+            "length": "Good length"
           },
           "outcome": {
             "type": "wicket",
-            "mode": "caught"
-          }
-        },
-        {
-          "zone": {
-            "line": "Middle stump",
-            "length": "Full"
-          },
-          "outcome": {
-            "type": "wicket",
-            "mode": "mis-hit"
+            "mode": "LBW"
           }
         }
       ],
@@ -5253,7 +5199,7 @@
       "name": "Faheem Ashraf",
       "nation": "Pakistan",
       "tier": "Bronze",
-      "description": "All-rounder. Handy bat, nothing special in T20s.",
+      "description": "Right-handed all-rounder (batter card; medium-fast bowler split below). Lower-order pinch hitter, useful overs.",
       "strengths": [
         {
           "zone": {
@@ -5294,7 +5240,7 @@
       "weaknesses": [
         {
           "zone": {
-            "line": "Off stump",
+            "line": "Outside off",
             "length": "Good length"
           },
           "outcome": {
@@ -5310,6 +5256,84 @@
           "outcome": {
             "type": "wicket",
             "mode": "edge to gully"
+          }
+        },
+        {
+          "zone": {
+            "line": "Middle stump",
+            "length": "Good length"
+          },
+          "outcome": {
+            "type": "wicket",
+            "mode": "LBW"
+          }
+        }
+      ],
+      "resistances": []
+    },
+    {
+      "id": "shadab-khan-bat",
+      "kind": "batsman",
+      "name": "Shadab Khan",
+      "nation": "Pakistan",
+      "tier": "Bronze",
+      "description": "Right-handed leg-spin all-rounder (batter card; Bronze bowler split below). Clean lower-order hitter — was Silver-tier at his peak; current form has dropped him.",
+      "strengths": [
+        {
+          "zone": {
+            "line": "Leg stump",
+            "length": "Full"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 6,
+            "shot": "slog"
+          }
+        }
+      ],
+      "neutrals": [
+        {
+          "zone": {
+            "line": "Middle stump",
+            "length": "Short"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 2,
+            "shot": "pull"
+          }
+        },
+        {
+          "zone": {
+            "line": "Middle stump",
+            "length": "Full"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 1,
+            "shot": "drive"
+          }
+        }
+      ],
+      "weaknesses": [
+        {
+          "zone": {
+            "line": "Outside off",
+            "length": "Good length"
+          },
+          "outcome": {
+            "type": "wicket",
+            "mode": "edge to slip"
+          }
+        },
+        {
+          "zone": {
+            "line": "Off stump",
+            "length": "Full"
+          },
+          "outcome": {
+            "type": "wicket",
+            "mode": "caught at cover"
           }
         },
         {
@@ -11468,18 +11492,19 @@
       ]
     },
     {
-      "id": "shaheen-afridi-bowl",
+      "id": "shaheen-shah-afridi-bowl",
       "kind": "bowler",
-      "name": "Shaheen Afridi",
+      "name": "Shaheen Shah Afridi",
       "nation": "Pakistan",
       "tier": "Elite",
-      "description": "Left-arm express. Full outside off swinging in. Devastating with new ball.",
+      "description": "Best PAK T20 quick of his era. Left-arm late inswing with the new ball, signature slower-bouncer at the death. Two-skill Elite per the v1.1 rule.",
       "delivery": {
         "line": "Outside off",
         "length": "Full"
       },
       "adjectives": [
-        "Swing"
+        "Swing",
+        "Slower"
       ],
       "fielding": [
         "Slip cordon",
@@ -11487,19 +11512,21 @@
       ]
     },
     {
-      "id": "shadab-khan-bowl",
+      "id": "haris-rauf-bowl",
       "kind": "bowler",
-      "name": "Shadab Khan",
+      "name": "Haris Rauf",
       "nation": "Pakistan",
       "tier": "Gold",
-      "description": "Leg-spinner. Googly and wrong'un. Middle overs match-winner.",
+      "description": "Express right-arm pace, death-overs specialist (150kph+). Slow-ball cutter is his signature variation.",
       "delivery": {
-        "line": "Middle stump",
-        "length": "Good length"
+        "line": "Off stump",
+        "length": "Full"
       },
-      "adjectives": [],
+      "adjectives": [
+        "Slower"
+      ],
       "fielding": [
-        "Short leg/Silly point"
+        "Cover"
       ]
     },
     {
@@ -11508,30 +11535,16 @@
       "name": "Naseem Shah",
       "nation": "Pakistan",
       "tier": "Gold",
-      "description": "Young express quick. Raw pace with bounce.",
+      "description": "Young express right-arm quick. Hits the deck hard with bounce, new-ball seam off the surface.",
       "delivery": {
         "line": "Off stump",
-        "length": "Short"
+        "length": "Good length"
       },
-      "adjectives": [],
+      "adjectives": [
+        "Seam"
+      ],
       "fielding": [
-        "Gully/Point"
-      ]
-    },
-    {
-      "id": "haris-rauf-bowl",
-      "kind": "bowler",
-      "name": "Haris Rauf",
-      "nation": "Pakistan",
-      "tier": "Silver",
-      "description": "Express pace. Death overs specialist. 150kph yorkers.",
-      "delivery": {
-        "line": "Off stump",
-        "length": "Full"
-      },
-      "adjectives": [],
-      "fielding": [
-        "Cover"
+        "Slip cordon"
       ]
     },
     {
@@ -11540,7 +11553,7 @@
       "name": "Mohammad Nawaz",
       "nation": "Pakistan",
       "tier": "Silver",
-      "description": "Left-arm orthodox all-rounder. Economical middle overs.",
+      "description": "Left-arm orthodox all-rounder. Economical middle-overs operator.",
       "delivery": {
         "line": "Off stump",
         "length": "Good length"
@@ -11556,9 +11569,9 @@
       "name": "Abrar Ahmed",
       "nation": "Pakistan",
       "tier": "Silver",
-      "description": "Mystery spinner. Carrom ball and googly. Unpredictable.",
+      "description": "Mystery right-arm spinner. Carrom ball and disguised wrong'un — but no specific skill chip at the Silver tier per v1.1.",
       "delivery": {
-        "line": "Off stump",
+        "line": "Middle stump",
         "length": "Good length"
       },
       "adjectives": [],
@@ -11567,12 +11580,28 @@
       ]
     },
     {
+      "id": "usman-tariq-bowl",
+      "kind": "bowler",
+      "name": "Usman Tariq",
+      "nation": "Pakistan",
+      "tier": "Silver",
+      "description": "Right-arm off-spinner. Promising emerging talent attacking the pads to RH bats.",
+      "delivery": {
+        "line": "Leg stump",
+        "length": "Good length"
+      },
+      "adjectives": [],
+      "fielding": [
+        "Mid-wicket"
+      ]
+    },
+    {
       "id": "salman-mirza-bowl",
       "kind": "bowler",
       "name": "Salman Mirza",
       "nation": "Pakistan",
       "tier": "Bronze",
-      "description": "Left-arm quick. Emerging talent.",
+      "description": "Left-arm quick, emerging PSL/IPL prospect (LSG 2025).",
       "delivery": {
         "line": "Off stump",
         "length": "Full"
@@ -11588,7 +11617,7 @@
       "name": "Faheem Ashraf",
       "nation": "Pakistan",
       "tier": "Bronze",
-      "description": "Medium-fast all-rounder. Fills overs.",
+      "description": "Right-arm medium-fast all-rounder (bowler split — Bronze batter above).",
       "delivery": {
         "line": "Middle stump",
         "length": "Good length"
@@ -11599,28 +11628,12 @@
       ]
     },
     {
-      "id": "usman-tariq-bowl",
-      "kind": "bowler",
-      "name": "Usman Tariq",
-      "nation": "Pakistan",
-      "tier": "Bronze",
-      "description": "Young off-spinner. Domestic talent.",
-      "delivery": {
-        "line": "Off stump",
-        "length": "Good length"
-      },
-      "adjectives": [],
-      "fielding": [
-        "Cover"
-      ]
-    },
-    {
       "id": "mohammad-hasnain-bowl",
       "kind": "bowler",
       "name": "Mohammad Hasnain",
       "nation": "Pakistan",
       "tier": "Bronze",
-      "description": "Quick but erratic. Pace without control.",
+      "description": "Right-arm quick. Pace without control; high-variance Bronze profile.",
       "delivery": {
         "line": "Middle stump",
         "length": "Short"
@@ -11636,7 +11649,7 @@
       "name": "Iftikhar Ahmed",
       "nation": "Pakistan",
       "tier": "Bronze",
-      "description": "Part-time off-spin. Emergency filler.",
+      "description": "Part-time right-arm off-spin (all-rounder split — Bronze batter above). Emergency filler.",
       "delivery": {
         "line": "Leg stump",
         "length": "Good length"
@@ -11644,6 +11657,22 @@
       "adjectives": [],
       "fielding": [
         "Mid-wicket"
+      ]
+    },
+    {
+      "id": "shadab-khan-bowl",
+      "kind": "bowler",
+      "name": "Shadab Khan",
+      "nation": "Pakistan",
+      "tier": "Bronze",
+      "description": "Right-arm leg-spinner (all-rounder split — Bronze batter above). Was PAK's Gold-tier leggie at his peak; current form has dropped him to Bronze (loses the googly skill chip).",
+      "delivery": {
+        "line": "Middle stump",
+        "length": "Good length"
+      },
+      "adjectives": [],
+      "fielding": [
+        "Short leg/Silly point"
       ]
     },
     {

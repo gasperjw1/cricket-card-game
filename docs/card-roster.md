@@ -809,119 +809,122 @@ Everything not listed = dot ball. Weaknesses are zone-only (no adjective referen
 ## BATSMEN
 
 ### ELITE — Babar Azam
-*Cover drive is art. Elegant stroke-maker. Anchors with class. T20I run machine.*
-- **Strengths:** Full off stump → cover drive for 6 | Full leg stump → flick for 4 | Good length off stump → punch for 4
-- **Neutrals:** Good length middle stump → push for 2 | Good length 5th stump → late cut for 1
-- **Weaknesses:** Short middle stump → top edge pulling
-- **Resistances:** Swing, Spin
+*Right-handed PAK icon. Multi-time world #1 ranked T20I batter. Cover drive maestro, anchor archetype, scores all around the wicket. Plays pace and spin with equal class.*
+- **Strengths:** Full off stump → cover drive for 6 | Full leg stump → flick for 4 | Good length off stump → punch through cover for 4
+- **Neutrals:** Good length middle stump → push for 2 | Good length leg stump → work for 1
+- **Weaknesses:** Short middle stump → top edge pulling caught
+- **Resistances:** Swing, Seam, Slower, Cutter, Topspin, Drift, Carrom
 
-### GOLD — Shaheen Afridi
-*Left-arm quick who can bat. All-rounder value.*
-- **Strengths:** Full middle stump → loft for 4 | Short leg stump → pull for 4 | Full leg stump → slog for 4
-- **Neutrals:** Good length leg stump → work for 2 | Good length middle stump → push for 1
-- **Weaknesses:** Good length off stump → edge to slip
-- **Resistances:** Pace
+### GOLD — Mohammad Rizwan
+*Right-handed keeper-bat. World #1 T20I ranked at multiple points. Accumulator with class — drives, flicks, anchors. Vulnerable to short pace at the body.*
+- **Strengths:** Full off stump → drive for 4 | Good length leg stump → flick for 4
+- **Neutrals:** Good length off stump → push for 2 | Good length middle stump → defend for 1
+- **Weaknesses:** Short Outside off → caught behind | Full middle stump → bowled
+- **Resistances:** Topspin, Drift, Carrom, Googly, Slower
 
-### GOLD — Saim Ayub
-*Exciting young left-hander. Clean ball striker. Rising star.*
-- **Strengths:** Full off stump → loft for 6 | Full leg stump → sweep for 4 | Short middle stump → pull for 4
-- **Neutrals:** Good length off stump → push for 2 | Good length leg stump → flick for 1
-- **Weaknesses:** Good length middle stump → bowled through gate
-- **Resistances:** Pace
-
-### SILVER — Fakhar Zaman
-*Aggressive left-handed opener. Goes hard early. Can be reckless.*
+### GOLD — Fakhar Zaman
+*Aggressive left-handed opener. CT 2017 final centurion. Goes hard early, drives + sweeps. Vulnerable to the moving ball into the stumps.*
 - **Strengths:** Full off stump → drive for 6 | Short middle stump → pull for 4
 - **Neutrals:** Good length leg stump → flick for 2 | Full leg stump → sweep for 1
 - **Weaknesses:** Good length middle stump → bowled across | Full middle stump → LBW slogging
+- **Resistances:** Slower, Cutter, Topspin, Drift
 
-### SILVER — Mohammad Rizwan
-*Keeper-bat. Accumulator. Anchors the innings. Not a power hitter.*
-- **Strengths:** Full off stump → drive for 4 | Good length leg stump → flick for 4
-- **Neutrals:** Good length off stump → push for 2 | Good length middle stump → defend for 1
-- **Weaknesses:** Short off stump → caught behind | Full middle stump → bowled
+### SILVER — Salman Agha
+*Current PAK T20I captain. Right-handed middle-order, off-spinning all-rounder. Smart cricketer rather than pure power.*
+- **Strengths:** Full off stump → drive for 4 | Good length leg stump → work for 4
+- **Neutrals:** Good length off stump → push for 1
+- **Weaknesses:** Short middle stump → top edge | Full middle stump → bowled | Good length middle stump → LBW
+- **Resistances:** Topspin, Drift, Carrom
 
-### SILVER — Shadab Khan
-*Leg-spinning all-rounder. Clean hitter in the lower order.*
-- **Strengths:** Full leg stump → slog for 6 | Short middle stump → pull for 4
-- **Neutrals:** Good length middle stump → push for 2 | Full middle stump → drive for 1
-- **Weaknesses:** Good length off stump → edge to slip | Full off stump → caught at cover
+### SILVER — Saim Ayub
+*Exciting young left-handed opener. Clean ball striker, big sixes off the front foot. Vulnerable to the ball nipping back into the stumps.*
+- **Strengths:** Full off stump → loft for 6 | Full leg stump → sweep for 4
+- **Neutrals:** Good length leg stump → flick for 1
+- **Weaknesses:** Good length middle stump → bowled through gate | Short Outside off → edge to keeper | Good length off stump → caught at slip
+- **Resistances:** Topspin, Carrom, Drift
+
+### SILVER — Shahid Afridi
+*Mid-2010s legend. 99 T20Is for PAK (last 2018), captain across formats, T20 WC 2007/2009 hero. Hit-or-miss slogger by his late career — averaged ~17 in T20Is at SR 150. Pure boundary-or-out.*
+- **Strengths:** Full leg stump → slog for 6 | Full middle stump → loft for 6
+- **Neutrals:** Short middle stump → ramp for 1
+- **Weaknesses:** Good length Outside off → edge to keeper | Good length middle stump → bowled across | Full off stump → mistimed drive caught
+- **Resistances:** Slower, Cutter, Topspin
 
 ### BRONZE — Iftikhar Ahmed
-*Middle order hitter. Power over finesse. Gets out to spin.*
+*Right-handed veteran middle-order finisher. Power over finesse; falls to spin (also Bronze part-time off-spin bowler split below).*
 - **Strengths:** Full leg stump → slog for 6
 - **Neutrals:** Good length leg stump → work for 2 | Short middle stump → pull for 1
-- **Weaknesses:** Good length middle stump → bowled | Good length off stump → beaten | Full middle stump → LBW across
+- **Weaknesses:** Good length middle stump → bowled | Good length Outside off → beaten | Full middle stump → LBW across
 
 ### BRONZE — Usman Khan
-*Young aggressive batter. Raw talent, minimal international exposure.*
+*Young aggressive right-handed batter. Raw talent, growing international exposure.*
 - **Strengths:** Full middle stump → loft for 4
 - **Neutrals:** Good length leg stump → flick for 2 | Full leg stump → sweep for 1
-- **Weaknesses:** Good length off stump → edge to keeper | Short off stump → caught at gully | Good length middle stump → bowled
+- **Weaknesses:** Good length Outside off → edge to keeper | Short Outside off → caught at gully | Good length middle stump → bowled
 
-### BRONZE — Sahibzada Farhan
-*Domestic opener. Quick scorer but technically limited.*
-- **Strengths:** Full off stump → drive for 4
-- **Neutrals:** Good length leg stump → nudge for 2 | Full leg stump → flick for 1
-- **Weaknesses:** Short middle stump → top edge caught | Good length middle stump → LBW | Good length off stump → edge to slip
-
-### BRONZE — Khawaja Nafay
-*Young domestic talent. Limited exposure.*
-- **Strengths:** Full leg stump → sweep for 4
-- **Neutrals:** Good length middle stump → push for 2 | Good length leg stump → work for 1
-- **Weaknesses:** Good length off stump → bowled | Short off stump → caught | Full middle stump → mis-hit
+### BRONZE — Asif Ali
+*Right-handed death-overs power hitter. 50+ T20Is for PAK, T20 WC 2021 cameos. Hits boundaries at the back end of the innings — or holes out trying.*
+- **Strengths:** Full leg stump → slog for 6
+- **Neutrals:** Short middle stump → pull for 2 | Full middle stump → loft for 1
+- **Weaknesses:** Good length off stump → caught at cover | Good length middle stump → bowled | Good length leg stump → LBW
 
 ### BRONZE — Faheem Ashraf
-*All-rounder. Handy bat, nothing special in T20s.*
+*Right-handed all-rounder (batter card; medium-fast bowler split below). Lower-order pinch hitter, useful overs.*
 - **Strengths:** Short leg stump → pull for 4
 - **Neutrals:** Full leg stump → flick for 2 | Good length leg stump → nudge for 1
-- **Weaknesses:** Good length off stump → beaten | Full off stump → edge to gully | Good length middle stump → LBW
+- **Weaknesses:** Good length Outside off → beaten | Full off stump → edge to gully | Good length middle stump → LBW
+
+### BRONZE — Shadab Khan
+*Right-handed leg-spin all-rounder (batter card; Bronze bowler split below). Clean lower-order hitter — was Silver-tier at his peak; current form has dropped him.*
+- **Strengths:** Full leg stump → slog for 6
+- **Neutrals:** Short middle stump → pull for 2 | Full middle stump → drive for 1
+- **Weaknesses:** Good length Outside off → edge to slip | Full off stump → caught at cover | Good length middle stump → LBW
 
 ## BOWLERS
 
-### ELITE — Shaheen Afridi
-*Left-arm express. Full outside off swinging in. Devastating with new ball.*
-- **Delivery:** Full 5th stump | **Adjective:** Swing (inswing, left-arm) | **Fielding:** Slip cordon + Mid-wicket
+### ELITE — Shaheen Shah Afridi
+*Best PAK T20 quick of his era. Left-arm late inswing with the new ball, signature slower-bouncer at the death. Two-skill Elite per the v1.1 rule.*
+- **Delivery:** Full Outside off | **Adjective:** Swing, Slower | **Fielding:** Slip cordon + Mid-wicket
 
-### GOLD — Shadab Khan
-*Leg-spinner. Googly and wrong'un. Middle overs match-winner.*
-- **Delivery:** Good length middle stump | **Adjective:** Spin (legspin/googly) | **Fielding:** Short leg
+### GOLD — Haris Rauf
+*Express right-arm pace, death-overs specialist (150kph+). Slow-ball cutter is his signature variation.*
+- **Delivery:** Full off stump | **Adjective:** Slower | **Fielding:** Cover
 
 ### GOLD — Naseem Shah
-*Young express quick. Raw pace with bounce.*
-- **Delivery:** Short off stump | **Adjective:** Pace | **Fielding:** Gully/Point
-
-### SILVER — Haris Rauf
-*Express pace. Death overs specialist. 150kph yorkers.*
-- **Delivery:** Full off stump | **Adjective:** Pace | **Fielding:** Cover
+*Young express right-arm quick. Hits the deck hard with bounce, new-ball seam off the surface.*
+- **Delivery:** Good length off stump | **Adjective:** Seam | **Fielding:** Slip cordon
 
 ### SILVER — Mohammad Nawaz
-*Left-arm orthodox all-rounder. Economical middle overs.*
-- **Delivery:** Good length off stump | **Adjective:** Spin (left-arm orthodox) | **Fielding:** Cover
-
-### SILVER — Abrar Ahmed
-*Mystery spinner. Carrom ball and googly. Unpredictable.*
-- **Delivery:** Good length off stump | **Adjective:** Spin (mystery) | **Fielding:** Slip cordon
-
-### BRONZE — Salman Mirza
-*Left-arm quick. Emerging talent.*
-- **Delivery:** Full off stump | **Adjective:** Swing (left-arm) | **Fielding:** Slip cordon
-
-### BRONZE — Faheem Ashraf
-*Medium-fast all-rounder. Fills overs.*
-- **Delivery:** Good length middle stump | **Fielding:** Mid-wicket
-
-### BRONZE — Usman Tariq
-*Young off-spinner. Domestic talent.*
+*Left-arm orthodox all-rounder. Economical middle-overs operator.*
 - **Delivery:** Good length off stump | **Fielding:** Cover
 
+### SILVER — Abrar Ahmed
+*Mystery right-arm spinner. Carrom ball and disguised wrong'un — but no specific skill chip at the Silver tier per v1.1.*
+- **Delivery:** Good length middle stump | **Fielding:** Slip cordon
+
+### SILVER — Usman Tariq
+*Right-arm off-spinner. Promising emerging talent attacking the pads to RH bats.*
+- **Delivery:** Good length leg stump | **Fielding:** Mid-wicket
+
+### BRONZE — Salman Mirza
+*Left-arm quick, emerging PSL/IPL prospect (LSG 2025).*
+- **Delivery:** Full off stump | **Fielding:** Slip cordon
+
+### BRONZE — Faheem Ashraf
+*Right-arm medium-fast all-rounder (bowler split — Bronze batter above).*
+- **Delivery:** Good length middle stump | **Fielding:** Mid-wicket
+
 ### BRONZE — Mohammad Hasnain
-*Quick but erratic. Pace without control.*
-- **Delivery:** Short middle stump | **Adjective:** Pace | **Fielding:** Gully/Point
+*Right-arm quick. Pace without control; high-variance Bronze profile.*
+- **Delivery:** Short middle stump | **Fielding:** Gully/Point
 
 ### BRONZE — Iftikhar Ahmed
-*Part-time off-spin. Emergency filler.*
+*Part-time right-arm off-spin (all-rounder split — Bronze batter above). Emergency filler.*
 - **Delivery:** Good length leg stump | **Fielding:** Mid-wicket
+
+### BRONZE — Shadab Khan
+*Right-arm leg-spinner (all-rounder split — Bronze batter above). Was PAK's Gold-tier leggie at his peak; current form has dropped him to Bronze (loses the googly skill chip).*
+- **Delivery:** Good length middle stump | **Fielding:** Short leg/Silly point
 
 ---
 
