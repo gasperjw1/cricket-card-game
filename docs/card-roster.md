@@ -684,120 +684,123 @@ Everything not listed = dot ball. Weaknesses are zone-only (no adjective referen
 
 ## BATSMEN
 
-### ELITE — Devon Conway
-*Left-handed anchor. Technically superb. Sweeps and drives beautifully.*
-- **Strengths:** Full off stump → drive for 4 | Full leg stump → sweep for 6 | Good length off stump → cut for 4
-- **Neutrals:** Good length middle stump → push for 2 | Good length leg stump → work for 1
-- **Weaknesses:** Short middle stump → caught fending
-- **Resistances:** Swing, Seam
+### ELITE — Kane Williamson
+*NZ T20I icon. Test-class technique applied to T20 — the anchor who guides chases. T20 WC 2024 leading NZ scorer (139 runs). Reads spin and pace equally; sweep, drive, dab — every shot in the textbook.*
+- **Strengths:** Full off stump → cover drive for 4 | Good length off stump → punch through cover for 4 | Full leg stump → flick for 4
+- **Neutrals:** Good length leg stump → work for 2 | Good length middle stump → defend for 1
+- **Weaknesses:** Short Outside off → mistimed cut caught at point
+- **Resistances:** Swing, Seam, Slower, Topspin, Drift, Googly, Carrom
 
 ### GOLD — Glenn Phillips
-*Power hitter. Big sixes over mid-wicket. Handy off-spin too.*
-- **Strengths:** Full leg stump → loft for 6 | Short middle stump → pull for 4 | Full middle stump → drive for 4
+*NZ's most explosive current T20 hitter. Big sixes over midwicket, switch hits, ramps. Has a Bronze part-time off-spin bowler card. Slower balls and cutters get him.*
+- **Strengths:** Full leg stump → loft over midwicket for 6 | Short middle stump → pull for 6 | Full middle stump → drive for 4
 - **Neutrals:** Good length middle stump → push for 2 | Good length leg stump → work for 1
-- **Weaknesses:** Good length off stump → edge to slip
-- **Resistances:** Spin
+- **Weaknesses:** Good length Outside off → edge to slip | Short Outside off → caught at point
+- **Resistances:** Swing, Seam, Topspin, Drift, Googly
 
-### GOLD — Finn Allen
-*Explosive opener. Hits hard from ball one. Fearless.*
-- **Strengths:** Full middle stump → loft for 6 | Short leg stump → hook for 4 | Full off stump → drive for 4
-- **Neutrals:** Good length leg stump → flick for 2 | Wide outside off full → slash for 1
-- **Weaknesses:** Good length middle stump → bowled slogging
-- **Resistances:** Pace
-
-### SILVER — Daryl Mitchell
-*Gutsy middle order. Works the ball well. Smart rather than powerful.*
-- **Strengths:** Full off stump → drive for 4 | Good length leg stump → flick for 4
+### GOLD — Devon Conway
+*Left-handed opener. Technically superb. Drives off both feet, sweeps spin. Vulnerable to short pace at the body.*
+- **Strengths:** Full off stump → drive for 4 | Full leg stump → sweep for 6
 - **Neutrals:** Good length off stump → push for 2 | Good length middle stump → defend for 1
-- **Weaknesses:** Short off stump → caught behind | Full middle stump → bowled
+- **Weaknesses:** Short middle stump → caught fending | Good length leg stump → LBW going across
+- **Resistances:** Topspin, Drift, Carrom, Googly
 
 ### SILVER — Mark Chapman
-*Left-handed stroke-maker. Domestic star, growing international presence.*
+*Left-handed stroke-maker. Growing international presence after a strong 2024. Cover drives and sweeps; struggles with the moving ball outside off.*
 - **Strengths:** Full off stump → cover drive for 4 | Full leg stump → sweep for 4
-- **Neutrals:** Good length middle stump → push for 2 | Good length leg stump → work for 1
-- **Weaknesses:** Good length off stump → edge to keeper | Short middle stump → top edge
+- **Neutrals:** Good length leg stump → work for 1
+- **Weaknesses:** Good length Outside off → edge to keeper | Short middle stump → top edge | Good length off stump → bowled
+- **Resistances:** Topspin, Drift, Carrom
+
+### SILVER — Daryl Mitchell
+*Gutsy right-handed middle-order. Works the ball smartly rather than hitting through it. T20 WC 2024 staple.*
+- **Strengths:** Full off stump → drive for 4 | Good length leg stump → flick for 4
+- **Neutrals:** Good length off stump → push for 1
+- **Weaknesses:** Short Outside off → caught behind | Full middle stump → bowled | Good length middle stump → LBW
+- **Resistances:** Slower, Cutter
 
 ### SILVER — Rachin Ravindra
-*Left-handed all-rounder. Elegant bat, useful spin bowling.*
+*Left-handed all-rounder (batter card; LA orthodox bowler split below). Elegant top-order bat, picks length early.*
 - **Strengths:** Full middle stump → drive for 4 | Full off stump → cover drive for 4
-- **Neutrals:** Good length off stump → push for 2 | Good length leg stump → nudge for 1
-- **Weaknesses:** Short middle stump → caught fending | Good length middle stump → LBW
+- **Neutrals:** Good length off stump → push for 1
+- **Weaknesses:** Short middle stump → caught fending | Good length middle stump → LBW | Good length Outside off → edge to slip
+- **Resistances:** Topspin, Carrom, Drift
+
+### BRONZE — Colin Munro
+*Left-handed explosive opener. 65 T20Is for NZ in his 2014–2020 prime, three T20I centuries. Aggressive Bronze profile — slogs over midwicket, ramps; gets out trying to clear the rope.*
+- **Strengths:** Full leg stump → slog for 6
+- **Neutrals:** Short middle stump → ramp for 2 | Full off stump → drive for 1
+- **Weaknesses:** Good length Outside off → edge to slip | Good length middle stump → bowled | Good length off stump → caught at cover
 
 ### BRONZE — Jimmy Neesham
-*All-rounder finisher. Big hitter at death. Can be loose technically.*
+*Left-handed all-rounder finisher. Big hitter at death; loose technically.*
 - **Strengths:** Full leg stump → slog for 6
 - **Neutrals:** Good length leg stump → work for 2 | Short middle stump → pull for 1
-- **Weaknesses:** Good length off stump → beaten | Full off stump → mis-hit to cover | Good length middle stump → bowled
-
-### BRONZE — Michael Bracewell
-*Off-spinning all-rounder. Handy bat, nothing spectacular.*
-- **Strengths:** Full leg stump → sweep for 4
-- **Neutrals:** Good length middle stump → push for 2 | Good length leg stump → nudge for 1
-- **Weaknesses:** Short off stump → caught at gully | Good length off stump → edge to slip | Full middle stump → bowled
+- **Weaknesses:** Good length Outside off → beaten | Full off stump → mistimed drive caught | Good length middle stump → bowled
 
 ### BRONZE — Will Young
-*Test specialist batting in T20s. Technically good, lacks power.*
+*Right-handed Test specialist batting in T20s. Technically clean, lacks T20 power.*
 - **Strengths:** Full off stump → drive for 4
 - **Neutrals:** Good length off stump → defend for 2 | Good length middle stump → push for 1
-- **Weaknesses:** Full leg stump → LBW across | Short middle stump → caught fending | Good length leg stump → flicks to mid-wicket
+- **Weaknesses:** Full leg stump → LBW across | Short middle stump → caught fending | Good length leg stump → flicks to midwicket
 
 ### BRONZE — Tom Blundell
-*Keeper-bat. Gritty but not a T20 natural.*
+*Right-handed keeper-bat. Gritty but not a T20 natural.*
 - **Strengths:** Short middle stump → pull for 4
 - **Neutrals:** Good length middle stump → defend for 2 | Full middle stump → push for 1
-- **Weaknesses:** Good length off stump → edge to keeper | Full off stump → caught at cover | Short off stump → gloves it
+- **Weaknesses:** Good length Outside off → edge to keeper | Full off stump → caught at cover | Short Outside off → gloves it
 
-### BRONZE — Cole McConchie
-*Domestic all-rounder. Fills a spot, nothing more.*
+### BRONZE — Michael Bracewell
+*Off-spinning all-rounder (batter card; Bronze bowler split below). Right-handed, sweeps and reverse-sweeps.*
 - **Strengths:** Full leg stump → sweep for 4
-- **Neutrals:** Good length leg stump → work for 2 | Full middle stump → push for 1
-- **Weaknesses:** Good length off stump → bowled | Short middle stump → caught | Good length middle stump → LBW
+- **Neutrals:** Good length middle stump → push for 2 | Good length leg stump → nudge for 1
+- **Weaknesses:** Short Outside off → caught at gully | Good length Outside off → edge to slip | Full middle stump → bowled
 
 ## BOWLERS
 
 ### ELITE — Trent Boult
-*Left-arm swing. Devastating with the new ball. Full 5th stump swinging in.*
-- **Delivery:** Full 5th stump | **Adjective:** Swing (inswing, left-arm) | **Fielding:** Slip cordon + Cover
+*Best NZ T20 quick of his era. Late left-arm swing with the new ball, signature slower-bouncer at the death. Two-skill Elite per the v1.1 rule.*
+- **Delivery:** Full Outside off | **Adjective:** Swing, Slower | **Fielding:** Slip cordon + Cover
 
 ### GOLD — Tim Southee
-*Experienced seamer. Good length outside off with movement.*
-- **Delivery:** Good length off stump | **Adjective:** Swing (outswing) | **Fielding:** Slip cordon
+*NZ swing legend, second-most T20I wickets in history. Outswing on the corridor with the new ball. Faces Gold tier wide-call risk on Outside off (15%).*
+- **Delivery:** Good length Outside off | **Adjective:** Swing | **Fielding:** Slip cordon
 
 ### GOLD — Ish Sodhi
-*Leg-spinner. Googly specialist. Middle overs threat.*
-- **Delivery:** Good length middle stump | **Adjective:** Spin (legspin/googly) | **Fielding:** Short leg
+*Right-arm leg-spinner. Disguised wrong'un breaking back into RH bats; consistent middle-overs threat.*
+- **Delivery:** Good length middle stump | **Adjective:** Googly | **Fielding:** Short leg/Silly point
 
 ### SILVER — Lockie Ferguson
-*Express pace. 150kph+. Bouncer is his weapon.*
-- **Delivery:** Short off stump | **Adjective:** Pace | **Fielding:** Gully/Point
+*Express right-arm pace (150kph+). Short ball is his weapon. No specific skill at the Silver tier.*
+- **Delivery:** Short middle stump | **Fielding:** Gully/Point
 
 ### SILVER — Mitchell Santner
-*Left-arm orthodox. Economical, rarely goes for runs.*
-- **Delivery:** Good length off stump | **Adjective:** Spin (left-arm orthodox) | **Fielding:** Cover
+*NZ T20I captain. Left-arm orthodox, IPL 2024 CSK star. Economical middle-overs operator.*
+- **Delivery:** Good length off stump | **Fielding:** Cover
 
 ### SILVER — Matt Henry
-*Swing bowler. Full and moving. Powerplay specialist.*
-- **Delivery:** Full off stump | **Adjective:** Swing (outswing) | **Fielding:** Slip cordon
+*Right-arm swing bowler, powerplay specialist. Faces Silver tier wide-call risk on Outside off (25%).*
+- **Delivery:** Good length Outside off | **Fielding:** Slip cordon
 
 ### BRONZE — Glenn Phillips
-*Part-time off-spin. Handy filler overs.*
+*Part-time right-arm off-spin (all-rounder split — Gold batter card above). Handy filler overs.*
 - **Delivery:** Good length off stump | **Fielding:** Cover
 
 ### BRONZE — Michael Bracewell
-*Off-spin all-rounder. Domestic level.*
+*Right-arm off-spin all-rounder (bowler split — Bronze batter above). Domestic-tier overs filler.*
 - **Delivery:** Good length middle stump | **Fielding:** Mid-wicket
 
 ### BRONZE — Ben Sears
-*Young quick. Good length with pace.*
-- **Delivery:** Good length off stump | **Adjective:** Pace | **Fielding:** Gully/Point
+*Young right-arm fast bowler. Good length with pace, raw at international level.*
+- **Delivery:** Good length off stump | **Fielding:** Gully/Point
 
 ### BRONZE — Rachin Ravindra
-*Left-arm orthodox spin. Part-time.*
+*Left-arm orthodox spin part-time (all-rounder split — Silver batter card above).*
 - **Delivery:** Good length leg stump | **Fielding:** Mid-wicket
 
 ### BRONZE — Cole McConchie
-*Off-spin all-rounder. Fills overs.*
-- **Delivery:** Good length middle stump | **Fielding:** Mid-wicket
+*Right-arm off-spin domestic specialist.*
+- **Delivery:** Good length middle stump | **Fielding:** Cover
 
 ---
 

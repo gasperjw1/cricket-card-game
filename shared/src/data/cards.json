@@ -3554,12 +3554,12 @@
       "resistances": []
     },
     {
-      "id": "devon-conway-bat",
+      "id": "kane-williamson-bat",
       "kind": "batsman",
-      "name": "Devon Conway",
+      "name": "Kane Williamson",
       "nation": "New Zealand",
       "tier": "Elite",
-      "description": "Left-handed anchor. Technically superb. Sweeps and drives beautifully.",
+      "description": "NZ T20I icon. Test-class technique applied to T20 — the anchor who guides chases. T20 WC 2024 leading NZ scorer (139 runs). Reads spin and pace equally; sweep, drive, dab — every shot in the textbook.",
       "strengths": [
         {
           "zone": {
@@ -3569,18 +3569,7 @@
           "outcome": {
             "type": "runs",
             "value": 4,
-            "shot": "drive"
-          }
-        },
-        {
-          "zone": {
-            "line": "Leg stump",
-            "length": "Full"
-          },
-          "outcome": {
-            "type": "runs",
-            "value": 6,
-            "shot": "sweep"
+            "shot": "cover drive"
           }
         },
         {
@@ -3591,22 +3580,22 @@
           "outcome": {
             "type": "runs",
             "value": 4,
-            "shot": "cut"
+            "shot": "punch through cover"
+          }
+        },
+        {
+          "zone": {
+            "line": "Leg stump",
+            "length": "Full"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 4,
+            "shot": "flick"
           }
         }
       ],
       "neutrals": [
-        {
-          "zone": {
-            "line": "Middle stump",
-            "length": "Good length"
-          },
-          "outcome": {
-            "type": "runs",
-            "value": 2,
-            "shot": "push"
-          }
-        },
         {
           "zone": {
             "line": "Leg stump",
@@ -3614,26 +3603,42 @@
           },
           "outcome": {
             "type": "runs",
-            "value": 1,
+            "value": 2,
             "shot": "work"
+          }
+        },
+        {
+          "zone": {
+            "line": "Middle stump",
+            "length": "Good length"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 1,
+            "shot": "defend"
           }
         }
       ],
       "weaknesses": [
         {
           "zone": {
-            "line": "Middle stump",
+            "line": "Outside off",
             "length": "Short"
           },
           "outcome": {
             "type": "wicket",
-            "mode": "caught fending"
+            "mode": "mistimed cut caught at point"
           }
         }
       ],
       "resistances": [
         "Swing",
-        "Seam"
+        "Seam",
+        "Slower",
+        "Topspin",
+        "Drift",
+        "Googly",
+        "Carrom"
       ]
     },
     {
@@ -3642,7 +3647,7 @@
       "name": "Glenn Phillips",
       "nation": "New Zealand",
       "tier": "Gold",
-      "description": "Power hitter. Big sixes over mid-wicket. Handy off-spin too.",
+      "description": "NZ's most explosive current T20 hitter. Big sixes over midwicket, switch hits, ramps. Has a Bronze part-time off-spin bowler card. Slower balls and cutters get him.",
       "strengths": [
         {
           "zone": {
@@ -3652,7 +3657,7 @@
           "outcome": {
             "type": "runs",
             "value": 6,
-            "shot": "loft"
+            "shot": "loft over midwicket"
           }
         },
         {
@@ -3662,7 +3667,7 @@
           },
           "outcome": {
             "type": "runs",
-            "value": 4,
+            "value": 6,
             "shot": "pull"
           }
         },
@@ -3705,125 +3710,61 @@
       "weaknesses": [
         {
           "zone": {
-            "line": "Off stump",
+            "line": "Outside off",
             "length": "Good length"
           },
           "outcome": {
             "type": "wicket",
             "mode": "edge to slip"
           }
+        },
+        {
+          "zone": {
+            "line": "Outside off",
+            "length": "Short"
+          },
+          "outcome": {
+            "type": "wicket",
+            "mode": "caught at point"
+          }
         }
       ],
-      "resistances": []
+      "resistances": [
+        "Swing",
+        "Seam",
+        "Topspin",
+        "Drift",
+        "Googly"
+      ]
     },
     {
-      "id": "finn-allen-bat",
+      "id": "devon-conway-bat",
       "kind": "batsman",
-      "name": "Finn Allen",
+      "name": "Devon Conway",
       "nation": "New Zealand",
       "tier": "Gold",
-      "description": "Explosive opener. Hits hard from ball one. Fearless.",
+      "description": "Left-handed opener. Technically superb. Drives off both feet, sweeps spin. Vulnerable to short pace at the body.",
       "strengths": [
         {
           "zone": {
-            "line": "Middle stump",
+            "line": "Off stump",
+            "length": "Full"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 4,
+            "shot": "drive"
+          }
+        },
+        {
+          "zone": {
+            "line": "Leg stump",
             "length": "Full"
           },
           "outcome": {
             "type": "runs",
             "value": 6,
-            "shot": "loft"
-          }
-        },
-        {
-          "zone": {
-            "line": "Leg stump",
-            "length": "Short"
-          },
-          "outcome": {
-            "type": "runs",
-            "value": 4,
-            "shot": "hook"
-          }
-        },
-        {
-          "zone": {
-            "line": "Off stump",
-            "length": "Full"
-          },
-          "outcome": {
-            "type": "runs",
-            "value": 4,
-            "shot": "drive"
-          }
-        }
-      ],
-      "neutrals": [
-        {
-          "zone": {
-            "line": "Leg stump",
-            "length": "Good length"
-          },
-          "outcome": {
-            "type": "runs",
-            "value": 2,
-            "shot": "flick"
-          }
-        },
-        {
-          "zone": {
-            "line": "Outside off",
-            "length": "Full"
-          },
-          "outcome": {
-            "type": "runs",
-            "value": 1,
-            "shot": "slash"
-          }
-        }
-      ],
-      "weaknesses": [
-        {
-          "zone": {
-            "line": "Middle stump",
-            "length": "Good length"
-          },
-          "outcome": {
-            "type": "wicket",
-            "mode": "bowled slogging"
-          }
-        }
-      ],
-      "resistances": []
-    },
-    {
-      "id": "daryl-mitchell-bat",
-      "kind": "batsman",
-      "name": "Daryl Mitchell",
-      "nation": "New Zealand",
-      "tier": "Silver",
-      "description": "Gutsy middle order. Works the ball well. Smart rather than powerful.",
-      "strengths": [
-        {
-          "zone": {
-            "line": "Off stump",
-            "length": "Full"
-          },
-          "outcome": {
-            "type": "runs",
-            "value": 4,
-            "shot": "drive"
-          }
-        },
-        {
-          "zone": {
-            "line": "Leg stump",
-            "length": "Good length"
-          },
-          "outcome": {
-            "type": "runs",
-            "value": 4,
-            "shot": "flick"
+            "shot": "sweep"
           }
         }
       ],
@@ -3854,26 +3795,31 @@
       "weaknesses": [
         {
           "zone": {
-            "line": "Off stump",
+            "line": "Middle stump",
             "length": "Short"
           },
           "outcome": {
             "type": "wicket",
-            "mode": "caught behind"
+            "mode": "caught fending"
           }
         },
         {
           "zone": {
-            "line": "Middle stump",
-            "length": "Full"
+            "line": "Leg stump",
+            "length": "Good length"
           },
           "outcome": {
             "type": "wicket",
-            "mode": "bowled"
+            "mode": "LBW going across"
           }
         }
       ],
-      "resistances": []
+      "resistances": [
+        "Topspin",
+        "Drift",
+        "Carrom",
+        "Googly"
+      ]
     },
     {
       "id": "mark-chapman-bat",
@@ -3881,7 +3827,7 @@
       "name": "Mark Chapman",
       "nation": "New Zealand",
       "tier": "Silver",
-      "description": "Left-handed stroke-maker. Domestic star, growing international presence.",
+      "description": "Left-handed stroke-maker. Growing international presence after a strong 2024. Cover drives and sweeps; struggles with the moving ball outside off.",
       "strengths": [
         {
           "zone": {
@@ -3909,17 +3855,6 @@
       "neutrals": [
         {
           "zone": {
-            "line": "Middle stump",
-            "length": "Good length"
-          },
-          "outcome": {
-            "type": "runs",
-            "value": 2,
-            "shot": "push"
-          }
-        },
-        {
-          "zone": {
             "line": "Leg stump",
             "length": "Good length"
           },
@@ -3933,7 +3868,7 @@
       "weaknesses": [
         {
           "zone": {
-            "line": "Off stump",
+            "line": "Outside off",
             "length": "Good length"
           },
           "outcome": {
@@ -3950,9 +3885,104 @@
             "type": "wicket",
             "mode": "top edge"
           }
+        },
+        {
+          "zone": {
+            "line": "Off stump",
+            "length": "Good length"
+          },
+          "outcome": {
+            "type": "wicket",
+            "mode": "bowled"
+          }
         }
       ],
-      "resistances": []
+      "resistances": [
+        "Topspin",
+        "Drift",
+        "Carrom"
+      ]
+    },
+    {
+      "id": "daryl-mitchell-bat",
+      "kind": "batsman",
+      "name": "Daryl Mitchell",
+      "nation": "New Zealand",
+      "tier": "Silver",
+      "description": "Gutsy right-handed middle-order. Works the ball smartly rather than hitting through it. T20 WC 2024 staple.",
+      "strengths": [
+        {
+          "zone": {
+            "line": "Off stump",
+            "length": "Full"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 4,
+            "shot": "drive"
+          }
+        },
+        {
+          "zone": {
+            "line": "Leg stump",
+            "length": "Good length"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 4,
+            "shot": "flick"
+          }
+        }
+      ],
+      "neutrals": [
+        {
+          "zone": {
+            "line": "Off stump",
+            "length": "Good length"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 1,
+            "shot": "push"
+          }
+        }
+      ],
+      "weaknesses": [
+        {
+          "zone": {
+            "line": "Outside off",
+            "length": "Short"
+          },
+          "outcome": {
+            "type": "wicket",
+            "mode": "caught behind"
+          }
+        },
+        {
+          "zone": {
+            "line": "Middle stump",
+            "length": "Full"
+          },
+          "outcome": {
+            "type": "wicket",
+            "mode": "bowled"
+          }
+        },
+        {
+          "zone": {
+            "line": "Middle stump",
+            "length": "Good length"
+          },
+          "outcome": {
+            "type": "wicket",
+            "mode": "LBW"
+          }
+        }
+      ],
+      "resistances": [
+        "Slower",
+        "Cutter"
+      ]
     },
     {
       "id": "rachin-ravindra-bat",
@@ -3960,7 +3990,7 @@
       "name": "Rachin Ravindra",
       "nation": "New Zealand",
       "tier": "Silver",
-      "description": "Left-handed all-rounder. Elegant bat, useful spin bowling.",
+      "description": "Left-handed all-rounder (batter card; LA orthodox bowler split below). Elegant top-order bat, picks length early.",
       "strengths": [
         {
           "zone": {
@@ -3993,19 +4023,8 @@
           },
           "outcome": {
             "type": "runs",
-            "value": 2,
-            "shot": "push"
-          }
-        },
-        {
-          "zone": {
-            "line": "Leg stump",
-            "length": "Good length"
-          },
-          "outcome": {
-            "type": "runs",
             "value": 1,
-            "shot": "nudge"
+            "shot": "push"
           }
         }
       ],
@@ -4029,6 +4048,98 @@
             "type": "wicket",
             "mode": "LBW"
           }
+        },
+        {
+          "zone": {
+            "line": "Outside off",
+            "length": "Good length"
+          },
+          "outcome": {
+            "type": "wicket",
+            "mode": "edge to slip"
+          }
+        }
+      ],
+      "resistances": [
+        "Topspin",
+        "Carrom",
+        "Drift"
+      ]
+    },
+    {
+      "id": "colin-munro-bat",
+      "kind": "batsman",
+      "name": "Colin Munro",
+      "nation": "New Zealand",
+      "tier": "Bronze",
+      "description": "Left-handed explosive opener. 65 T20Is for NZ in his 2014–2020 prime, three T20I centuries. Aggressive Bronze profile — slogs over midwicket, ramps; gets out trying to clear the rope.",
+      "strengths": [
+        {
+          "zone": {
+            "line": "Leg stump",
+            "length": "Full"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 6,
+            "shot": "slog"
+          }
+        }
+      ],
+      "neutrals": [
+        {
+          "zone": {
+            "line": "Middle stump",
+            "length": "Short"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 2,
+            "shot": "ramp"
+          }
+        },
+        {
+          "zone": {
+            "line": "Off stump",
+            "length": "Full"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 1,
+            "shot": "drive"
+          }
+        }
+      ],
+      "weaknesses": [
+        {
+          "zone": {
+            "line": "Outside off",
+            "length": "Good length"
+          },
+          "outcome": {
+            "type": "wicket",
+            "mode": "edge to slip"
+          }
+        },
+        {
+          "zone": {
+            "line": "Middle stump",
+            "length": "Good length"
+          },
+          "outcome": {
+            "type": "wicket",
+            "mode": "bowled"
+          }
+        },
+        {
+          "zone": {
+            "line": "Off stump",
+            "length": "Good length"
+          },
+          "outcome": {
+            "type": "wicket",
+            "mode": "caught at cover"
+          }
         }
       ],
       "resistances": []
@@ -4039,7 +4150,7 @@
       "name": "Jimmy Neesham",
       "nation": "New Zealand",
       "tier": "Bronze",
-      "description": "All-rounder finisher. Big hitter at death. Can be loose technically.",
+      "description": "Left-handed all-rounder finisher. Big hitter at death; loose technically.",
       "strengths": [
         {
           "zone": {
@@ -4080,7 +4191,7 @@
       "weaknesses": [
         {
           "zone": {
-            "line": "Off stump",
+            "line": "Outside off",
             "length": "Good length"
           },
           "outcome": {
@@ -4095,91 +4206,13 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "mis-hit to cover"
+            "mode": "mistimed drive caught"
           }
         },
         {
           "zone": {
             "line": "Middle stump",
             "length": "Good length"
-          },
-          "outcome": {
-            "type": "wicket",
-            "mode": "bowled"
-          }
-        }
-      ],
-      "resistances": []
-    },
-    {
-      "id": "michael-bracewell-bat",
-      "kind": "batsman",
-      "name": "Michael Bracewell",
-      "nation": "New Zealand",
-      "tier": "Bronze",
-      "description": "Off-spinning all-rounder. Handy bat, nothing spectacular.",
-      "strengths": [
-        {
-          "zone": {
-            "line": "Leg stump",
-            "length": "Full"
-          },
-          "outcome": {
-            "type": "runs",
-            "value": 4,
-            "shot": "sweep"
-          }
-        }
-      ],
-      "neutrals": [
-        {
-          "zone": {
-            "line": "Middle stump",
-            "length": "Good length"
-          },
-          "outcome": {
-            "type": "runs",
-            "value": 2,
-            "shot": "push"
-          }
-        },
-        {
-          "zone": {
-            "line": "Leg stump",
-            "length": "Good length"
-          },
-          "outcome": {
-            "type": "runs",
-            "value": 1,
-            "shot": "nudge"
-          }
-        }
-      ],
-      "weaknesses": [
-        {
-          "zone": {
-            "line": "Off stump",
-            "length": "Short"
-          },
-          "outcome": {
-            "type": "wicket",
-            "mode": "caught at gully"
-          }
-        },
-        {
-          "zone": {
-            "line": "Off stump",
-            "length": "Good length"
-          },
-          "outcome": {
-            "type": "wicket",
-            "mode": "edge to slip"
-          }
-        },
-        {
-          "zone": {
-            "line": "Middle stump",
-            "length": "Full"
           },
           "outcome": {
             "type": "wicket",
@@ -4195,7 +4228,7 @@
       "name": "Will Young",
       "nation": "New Zealand",
       "tier": "Bronze",
-      "description": "Test specialist batting in T20s. Technically good, lacks power.",
+      "description": "Right-handed Test specialist batting in T20s. Technically clean, lacks T20 power.",
       "strengths": [
         {
           "zone": {
@@ -4261,7 +4294,7 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "flicks to mid-wicket"
+            "mode": "flicks to midwicket"
           }
         }
       ],
@@ -4273,7 +4306,7 @@
       "name": "Tom Blundell",
       "nation": "New Zealand",
       "tier": "Bronze",
-      "description": "Keeper-bat. Gritty but not a T20 natural.",
+      "description": "Right-handed keeper-bat. Gritty but not a T20 natural.",
       "strengths": [
         {
           "zone": {
@@ -4314,7 +4347,7 @@
       "weaknesses": [
         {
           "zone": {
-            "line": "Off stump",
+            "line": "Outside off",
             "length": "Good length"
           },
           "outcome": {
@@ -4334,7 +4367,7 @@
         },
         {
           "zone": {
-            "line": "Off stump",
+            "line": "Outside off",
             "length": "Short"
           },
           "outcome": {
@@ -4346,12 +4379,12 @@
       "resistances": []
     },
     {
-      "id": "cole-mcconchie-bat",
+      "id": "michael-bracewell-bat",
       "kind": "batsman",
-      "name": "Cole McConchie",
+      "name": "Michael Bracewell",
       "nation": "New Zealand",
       "tier": "Bronze",
-      "description": "Domestic all-rounder. Fills a spot, nothing more.",
+      "description": "Off-spinning all-rounder (batter card; Bronze bowler split below). Right-handed, sweeps and reverse-sweeps.",
       "strengths": [
         {
           "zone": {
@@ -4368,13 +4401,46 @@
       "neutrals": [
         {
           "zone": {
-            "line": "Leg stump",
+            "line": "Middle stump",
             "length": "Good length"
           },
           "outcome": {
             "type": "runs",
             "value": 2,
-            "shot": "work"
+            "shot": "push"
+          }
+        },
+        {
+          "zone": {
+            "line": "Leg stump",
+            "length": "Good length"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 1,
+            "shot": "nudge"
+          }
+        }
+      ],
+      "weaknesses": [
+        {
+          "zone": {
+            "line": "Outside off",
+            "length": "Short"
+          },
+          "outcome": {
+            "type": "wicket",
+            "mode": "caught at gully"
+          }
+        },
+        {
+          "zone": {
+            "line": "Outside off",
+            "length": "Good length"
+          },
+          "outcome": {
+            "type": "wicket",
+            "mode": "edge to slip"
           }
         },
         {
@@ -4383,41 +4449,8 @@
             "length": "Full"
           },
           "outcome": {
-            "type": "runs",
-            "value": 1,
-            "shot": "push"
-          }
-        }
-      ],
-      "weaknesses": [
-        {
-          "zone": {
-            "line": "Off stump",
-            "length": "Good length"
-          },
-          "outcome": {
             "type": "wicket",
             "mode": "bowled"
-          }
-        },
-        {
-          "zone": {
-            "line": "Middle stump",
-            "length": "Short"
-          },
-          "outcome": {
-            "type": "wicket",
-            "mode": "caught"
-          }
-        },
-        {
-          "zone": {
-            "line": "Middle stump",
-            "length": "Good length"
-          },
-          "outcome": {
-            "type": "wicket",
-            "mode": "LBW"
           }
         }
       ],
@@ -11256,13 +11289,14 @@
       "name": "Trent Boult",
       "nation": "New Zealand",
       "tier": "Elite",
-      "description": "Left-arm swing. Devastating with the new ball. Full 5th stump swinging in.",
+      "description": "Best NZ T20 quick of his era. Late left-arm swing with the new ball, signature slower-bouncer at the death. Two-skill Elite per the v1.1 rule.",
       "delivery": {
         "line": "Outside off",
         "length": "Full"
       },
       "adjectives": [
-        "Swing"
+        "Swing",
+        "Slower"
       ],
       "fielding": [
         "Slip cordon",
@@ -11275,9 +11309,9 @@
       "name": "Tim Southee",
       "nation": "New Zealand",
       "tier": "Gold",
-      "description": "Experienced seamer. Good length outside off with movement.",
+      "description": "NZ swing legend, second-most T20I wickets in history. Outswing on the corridor with the new ball. Faces Gold tier wide-call risk on Outside off (15%).",
       "delivery": {
-        "line": "Off stump",
+        "line": "Outside off",
         "length": "Good length"
       },
       "adjectives": [
@@ -11293,12 +11327,14 @@
       "name": "Ish Sodhi",
       "nation": "New Zealand",
       "tier": "Gold",
-      "description": "Leg-spinner. Googly specialist. Middle overs threat.",
+      "description": "Right-arm leg-spinner. Disguised wrong'un breaking back into RH bats; consistent middle-overs threat.",
       "delivery": {
         "line": "Middle stump",
         "length": "Good length"
       },
-      "adjectives": [],
+      "adjectives": [
+        "Googly"
+      ],
       "fielding": [
         "Short leg/Silly point"
       ]
@@ -11309,9 +11345,9 @@
       "name": "Lockie Ferguson",
       "nation": "New Zealand",
       "tier": "Silver",
-      "description": "Express pace. 150kph+. Bouncer is his weapon.",
+      "description": "Express right-arm pace (150kph+). Short ball is his weapon. No specific skill at the Silver tier.",
       "delivery": {
-        "line": "Off stump",
+        "line": "Middle stump",
         "length": "Short"
       },
       "adjectives": [],
@@ -11325,7 +11361,7 @@
       "name": "Mitchell Santner",
       "nation": "New Zealand",
       "tier": "Silver",
-      "description": "Left-arm orthodox. Economical, rarely goes for runs.",
+      "description": "NZ T20I captain. Left-arm orthodox, IPL 2024 CSK star. Economical middle-overs operator.",
       "delivery": {
         "line": "Off stump",
         "length": "Good length"
@@ -11341,10 +11377,10 @@
       "name": "Matt Henry",
       "nation": "New Zealand",
       "tier": "Silver",
-      "description": "Swing bowler. Full and moving. Powerplay specialist.",
+      "description": "Right-arm swing bowler, powerplay specialist. Faces Silver tier wide-call risk on Outside off (25%).",
       "delivery": {
-        "line": "Off stump",
-        "length": "Full"
+        "line": "Outside off",
+        "length": "Good length"
       },
       "adjectives": [],
       "fielding": [
@@ -11357,7 +11393,7 @@
       "name": "Glenn Phillips",
       "nation": "New Zealand",
       "tier": "Bronze",
-      "description": "Part-time off-spin. Handy filler overs.",
+      "description": "Part-time right-arm off-spin (all-rounder split — Gold batter card above). Handy filler overs.",
       "delivery": {
         "line": "Off stump",
         "length": "Good length"
@@ -11373,7 +11409,7 @@
       "name": "Michael Bracewell",
       "nation": "New Zealand",
       "tier": "Bronze",
-      "description": "Off-spin all-rounder. Domestic level.",
+      "description": "Right-arm off-spin all-rounder (bowler split — Bronze batter above). Domestic-tier overs filler.",
       "delivery": {
         "line": "Middle stump",
         "length": "Good length"
@@ -11389,7 +11425,7 @@
       "name": "Ben Sears",
       "nation": "New Zealand",
       "tier": "Bronze",
-      "description": "Young quick. Good length with pace.",
+      "description": "Young right-arm fast bowler. Good length with pace, raw at international level.",
       "delivery": {
         "line": "Off stump",
         "length": "Good length"
@@ -11405,7 +11441,7 @@
       "name": "Rachin Ravindra",
       "nation": "New Zealand",
       "tier": "Bronze",
-      "description": "Left-arm orthodox spin. Part-time.",
+      "description": "Left-arm orthodox spin part-time (all-rounder split — Silver batter card above).",
       "delivery": {
         "line": "Leg stump",
         "length": "Good length"
@@ -11421,14 +11457,14 @@
       "name": "Cole McConchie",
       "nation": "New Zealand",
       "tier": "Bronze",
-      "description": "Off-spin all-rounder. Fills overs.",
+      "description": "Right-arm off-spin domestic specialist.",
       "delivery": {
         "line": "Middle stump",
         "length": "Good length"
       },
       "adjectives": [],
       "fielding": [
-        "Mid-wicket"
+        "Cover"
       ]
     },
     {
