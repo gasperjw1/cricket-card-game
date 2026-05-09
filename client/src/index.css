@@ -1395,12 +1395,14 @@ h1 {
 .guide p {
   margin: 0 0 0.7rem;
 }
-.guide ul {
+.guide ul,
+.guide ol {
   margin: 0.4rem 0 0.7rem;
   padding-left: 1.25rem;
 }
-.guide ul li {
-  margin-bottom: 0.4rem;
+.guide ul li,
+.guide ol li {
+  margin-bottom: 0.55rem;
 }
 .guide code {
   background: #1c2530;

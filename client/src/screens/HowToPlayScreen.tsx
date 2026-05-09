@@ -12,18 +12,59 @@ export function HowToPlayScreen({ onBack }: Props) {
         <section>
           <h2>The basics</h2>
           <p>
-            Each match is one over per side (or longer formats coming soon). You
-            and your opponent both pick a card every ball: the <strong>batter</strong>
-            {" "}plays a batsman card, the <strong>bowler</strong> plays a bowler card.
-            The cards meet on a 4×3 grid (line × length) and the bowler's
-            delivery zone is looked up against the batter's card to resolve the
-            ball — runs, dot, or wicket.
+            Each match is one over per side (6 balls). The innings ends after
+            6 balls bowled <em>or</em> 2 wickets — whichever comes first.
+            You and your opponent both pick a card every ball: the
+            <strong> batter</strong> plays a batsman card, the
+            <strong> bowler</strong> plays a bowler card. The cards meet on a
+            4×3 grid (line × length) and the bowler's delivery zone is looked
+            up against the batter's card to resolve the ball — runs, dot, or
+            wicket.
           </p>
           <p>
-            Each player draws a deck of 20 cards: 15 player cards (split across
-            tiers) and 5 situation cards. Situation cards modify the next ball
-            in your favour.
+            Each player draws a deck of 20 cards: 15 player cards (split
+            across tiers) and 5 situation cards. You hold 4 cards in hand at
+            a time; pick one per ball, draw a replacement after.
           </p>
+        </section>
+
+        <section>
+          <h2>How a turn plays out</h2>
+          <ol>
+            <li>
+              <strong>Coin toss</strong> at the start. 30 seconds to call
+              heads/tails, 30 seconds for the winner to choose to bat or bowl.
+            </li>
+            <li>
+              <strong>Each ball: 30-second pick window.</strong> Both players
+              have 30 seconds to pick a card from their hand of 4. If you don't
+              pick, the server auto-plays your highest-tier card.
+            </li>
+            <li>
+              <strong>Reveal & resolution.</strong> Both cards flip
+              simultaneously. The engine walks through every modifier in order
+              — situation cards, line/length shifts, base zone lookup, bowler
+              skill chips, wide checks — and shows you a resolution trail
+              explaining the result.
+            </li>
+            <li>
+              <strong>15-second post-ball pause.</strong> Time to read the
+              trail and see what fired before the next ball's 30-second timer
+              starts.
+            </li>
+            <li>
+              <strong>Mid-ball swap picks (15 seconds)</strong> happen when
+              certain situation cards trigger — Mankad lets the bowling side
+              pick a non-striker to dismiss; Retired Out and Cramps swap
+              players. You get 15 seconds to pick from a list.
+            </li>
+            <li>
+              <strong>Innings break</strong> after 6 balls or 2 wickets, then
+              the second innings starts with roles swapped. The chasing side
+              wins by reaching the target; the bowling side wins by keeping
+              the chase short.
+            </li>
+          </ol>
         </section>
 
         <section>
@@ -84,17 +125,28 @@ export function HowToPlayScreen({ onBack }: Props) {
           <p>
             Gold and Elite bowlers carry one or two <strong>skill chips</strong>:
             Swing, Seam, Cutter, Slower, Googly, Carrom, Topspin, Drift. When
-            an un-resisted skill fires on a ball, it <em>downgrades</em> the
-            outcome — a 6 becomes a 4, a 4 becomes a dot, runs become wickets.
+            a skill fires on a ball — meaning the batter's card does
+            <em> not</em> list that specific skill in its resistances — the
+            outcome is downgraded by one band along this ladder:
+          </p>
+          <p className="callout dim-text" style={{ textAlign: "center" }}>
+            6&nbsp;→&nbsp;4&nbsp;&nbsp;→&nbsp;&nbsp;2&nbsp;→&nbsp;1&nbsp;&nbsp;→&nbsp;&nbsp;dot
           </p>
           <p>
-            Batters' <strong>resistances</strong> list the skills they neutralise.
-            If the batter's card lists "Slower" and the bowler fires Slower,
-            the chip does nothing. Elite batters resist 6–7 of the 8 skills.
+            Wickets are not affected by skill chips, and dot balls can't be
+            downgraded further. So a Slower-ball that would otherwise have
+            been a 6 becomes a 4; a 4 becomes a 2; a 1 becomes a dot.
+          </p>
+          <p>
+            Batters' <strong>resistances</strong> list the skills they
+            neutralise. If the batter's card resists the exact skill being
+            fired, the chip does nothing on that ball. Elite batters resist
+            6–7 of the 8 skills; Bronze batters resist none.
           </p>
           <p className="dim-text">
             <strong>No-stack rule:</strong> Elite bowlers with two skills only
-            fire one per ball — the first un-resisted one wins.
+            fire one per ball — the first un-resisted one wins, the other does
+            nothing.
           </p>
         </section>
 
@@ -106,9 +158,10 @@ export function HowToPlayScreen({ onBack }: Props) {
             Wides cost +1 run and are re-bowled.
           </p>
           <p>
-            Some situation cards force <strong>auto-wides</strong>: the batter's
-            Day 5 Pitch + Outside off, Shuffle Across + Leg stump, or Deep in
-            the Crease + Short length will all be called wide automatically.
+            Some situation cards force <strong>auto-wides</strong>: the
+            batter's Day 5 Pitch + Outside off, Shuffle Across + Leg stump, or
+            Deep in the Crease + Short length will all be called wide
+            automatically.
           </p>
           <p className="callout">
             <strong>Important:</strong> the No Ball card cancels any wicket on
@@ -124,20 +177,25 @@ export function HowToPlayScreen({ onBack }: Props) {
           </p>
           <ul>
             <li>
-              <strong>DRS Review</strong> (batting) — overturn this ball's wicket
-              if the umpire was wrong.
+              <strong>DRS Review</strong> (batting) — if this ball would be a
+              wicket, the umpire's decision is overturned and the wicket is
+              cancelled. (Future versions will extend DRS to no-ball and wide
+              calls too.)
             </li>
             <li>
               <strong>Power Surge</strong> (batting) — upgrade this ball's
               outcome by one run band.
             </li>
             <li>
-              <strong>Day 5 Pitch</strong> (bowling) — turn one Outside off
-              delivery into an auto-wide-and-bounce nightmare; cracked pitch.
+              <strong>Day 5 Pitch</strong> (bowling) — the deck has cracked.
+              The bowler's delivery line shifts <em>one step further off</em>:
+              Leg → Middle, Middle → Off, Off → Outside off. If the bowler
+              was already on Outside off there's no further line to shift to
+              — umpire calls it wide automatically.
             </li>
             <li>
               <strong>Third Umpire Distracted by Biryani</strong> (bowling) —
-              cancels any No Ball or wide call this ball.
+              cancels any No Ball or wide call on this ball.
             </li>
           </ul>
           <p className="dim-text">
@@ -153,15 +211,17 @@ export function HowToPlayScreen({ onBack }: Props) {
               Read your opponent's batter weaknesses — that's where to bowl.
             </li>
             <li>
-              Save Elite cards for high-pressure balls (death overs, last over).
+              Save Elite cards for high-pressure balls (final ball, last
+              wicket in hand).
             </li>
             <li>
-              Skill chips only matter against unresisted batters — checking
-              resistances tells you which Gold/Elite bowlers will actually fire.
+              Skill chips only fire when the batter <em>does not</em> resist
+              that specific skill. Check the resistance list before assuming
+              your Gold/Elite bowler's chip will help.
             </li>
             <li>
-              Situation cards often win matches. Don't hoard them past the last
-              over.
+              Situation cards often win matches. Don't hoard them past your
+              last over.
             </li>
           </ul>
         </section>
