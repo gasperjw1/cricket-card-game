@@ -1,6 +1,9 @@
-import { useState } from "react";
+import { lazy, Suspense, useState } from "react";
 import type { MatchClient } from "../state.ts";
-import { HowToPlayScreen } from "./HowToPlayScreen.tsx";
+
+// Lazy-loaded so the ~24KB of card-roster data the guide imports isn't
+// in the main bundle — only fetched when the user opens "How to play".
+const HowToPlayScreen = lazy(() => import("./HowToPlayScreen.tsx"));
 
 interface Props {
   client: MatchClient;
@@ -59,7 +62,11 @@ export function HomeScreen({ client }: Props) {
   };
 
   if (mode === "how-to-play") {
-    return <HowToPlayScreen onBack={() => setMode("menu")} />;
+    return (
+      <Suspense fallback={<main><h1>How to Play</h1><p className="dim-text">Loading…</p></main>}>
+        <HowToPlayScreen onBack={() => setMode("menu")} />
+      </Suspense>
+    );
   }
 
   return (

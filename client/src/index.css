@@ -1442,3 +1442,87 @@ h1 {
 .tier.gold { background: #78350f; color: #fde68a; }
 .tier.silver { background: #1f2937; color: #cbd5e1; border: 1px solid #475569; }
 .tier.bronze { background: #3f2410; color: #d6a37a; }
+
+/* Example cards inside the How to Play guide */
+.guide .example-heading {
+  margin: 1.5rem 0 0.75rem;
+  font-size: 0.95rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #8a939c;
+}
+.guide .example-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  margin-bottom: 0.5rem;
+}
+.guide .example-card {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0.5rem;
+}
+.guide .example-card .card {
+  /* Override .card-hand width — examples should fill the guide column */
+  width: 100%;
+  max-width: 380px;
+  align-self: center;
+}
+.guide .example-card figcaption {
+  color: #8a939c;
+  font-size: 0.85rem;
+  font-style: italic;
+  text-align: center;
+  max-width: 380px;
+  align-self: center;
+}
+
+/* ───── Portrait orientation lock ─────
+   Shown only on phone-sized landscape viewports (max-height 500px catches
+   typical phone landscape ~320–400px tall, but doesn't trigger on desktop
+   short browser windows). Desktop / tablet landscape continues to render
+   the app normally. */
+.portrait-lock {
+  display: none;
+}
+@media (orientation: landscape) and (max-height: 500px) {
+  .portrait-lock {
+    display: grid;
+    place-items: center;
+    position: fixed;
+    inset: 0;
+    z-index: 10000;
+    background: #0f1419;
+    color: #e8e8e8;
+    text-align: center;
+    padding: 2rem;
+  }
+  .portrait-lock-inner {
+    max-width: 360px;
+  }
+  .portrait-lock-icon {
+    font-size: 3rem;
+    margin-bottom: 0.75rem;
+    animation: portrait-rotate-hint 2s ease-in-out infinite;
+  }
+  .portrait-lock h2 {
+    margin: 0 0 0.5rem;
+    font-size: 1.25rem;
+  }
+  .portrait-lock p {
+    margin: 0;
+    color: #8a939c;
+    font-size: 0.95rem;
+  }
+  /* Hide everything else underneath so screen readers and tab order
+     don't bleed through. */
+  body > #root > *:not(.portrait-lock) {
+    display: none !important;
+  }
+}
+@keyframes portrait-rotate-hint {
+  0%, 100% { transform: rotate(-15deg); }
+  50% { transform: rotate(15deg); }
+}

@@ -1,8 +1,27 @@
+import type { AnyCard } from "@swipe-sixer/shared";
+import { CARDS } from "@swipe-sixer/shared/data";
+import { Card } from "../components/Card.tsx";
+
 interface Props {
   onBack: () => void;
 }
 
-export function HowToPlayScreen({ onBack }: Props) {
+/** Pull a specific card from the roster by id. Throws at startup if a
+ *  referenced card is renamed/dropped — caught by the build, not at runtime. */
+function findCard(id: string): AnyCard {
+  const all: AnyCard[] = [...CARDS.batsmen, ...CARDS.bowlers, ...CARDS.situations];
+  const found = all.find((c) => c.id === id);
+  if (!found) throw new Error(`HowToPlayScreen: missing card id "${id}"`);
+  return found;
+}
+
+const EXAMPLE_ELITE_BAT = findCard("virat-kohli-bat");
+const EXAMPLE_GOLD_BOWL = findCard("adil-rashid-bowl");
+const EXAMPLE_SILVER_BOWL = findCard("hardik-pandya-bowl");
+const EXAMPLE_BRONZE_BOWL = findCard("will-jacks-bowl");
+const EXAMPLE_SITUATION = findCard("drs-review");
+
+export default function HowToPlayScreen({ onBack }: Props) {
   return (
     <main>
       <h1>How to Play</h1>
@@ -97,6 +116,26 @@ export function HowToPlayScreen({ onBack }: Props) {
             Each deck contains 2 Elite, 3 Gold, 7 Silver and 3 Bronze player
             cards.
           </p>
+
+          <h3 className="example-heading">Example cards</h3>
+          <div className="example-cards">
+            <ExampleCard
+              caption="Elite batter — 3 strengths, 1 weakness, 7 resistances."
+              card={EXAMPLE_ELITE_BAT}
+            />
+            <ExampleCard
+              caption="Gold bowler — one skill chip (Googly) downgrades any un-resisted outcome."
+              card={EXAMPLE_GOLD_BOWL}
+            />
+            <ExampleCard
+              caption="Silver bowler — no skill chip; tier identity is in the lines and fielding."
+              card={EXAMPLE_SILVER_BOWL}
+            />
+            <ExampleCard
+              caption="Bronze bowler — minimal data, no skill, no resistances."
+              card={EXAMPLE_BRONZE_BOWL}
+            />
+          </div>
         </section>
 
         <section>
@@ -202,6 +241,14 @@ export function HowToPlayScreen({ onBack }: Props) {
             Full reference: every situation card and its corner-case ruling is
             documented in <code>docs/situation-cards.md</code>.
           </p>
+
+          <h3 className="example-heading">Example situation card</h3>
+          <div className="example-cards">
+            <ExampleCard
+              caption="Play this on a ball you fear is a wicket — it overturns the umpire's decision."
+              card={EXAMPLE_SITUATION}
+            />
+          </div>
         </section>
 
         <section>
@@ -233,5 +280,14 @@ export function HowToPlayScreen({ onBack }: Props) {
         </button>
       </div>
     </main>
+  );
+}
+
+function ExampleCard({ caption, card }: { caption: string; card: AnyCard }) {
+  return (
+    <figure className="example-card">
+      <Card card={card} size="hand" />
+      <figcaption>{caption}</figcaption>
+    </figure>
   );
 }
