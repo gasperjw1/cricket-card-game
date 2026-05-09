@@ -1057,119 +1057,122 @@ Everything not listed = dot ball. Weaknesses are zone-only (no adjective referen
 ## BATSMEN
 
 ### ELITE — Nicholas Pooran
-*Left-handed destroyer. Hits sixes for fun. T20 franchise superstar.*
-- **Strengths:** Full middle stump → loft for 6 | Short middle stump → pull for 4 | Full leg stump → flick for 4
+*Left-handed destroyer. IPL/T20 league superstar, current WI T20I vice-captain. Hits sixes across all lines; reads spin and pace equally — only the moving ball outside off troubles him.*
+- **Strengths:** Full middle stump → loft for 6 | Short middle stump → pull for 6 | Full leg stump → flick for 4
 - **Neutrals:** Good length middle stump → push for 2 | Good length leg stump → work for 1
-- **Weaknesses:** Good length off stump → edge to slip
-- **Resistances:** Pace, Spin
+- **Weaknesses:** Good length Outside off → edge to slip
+- **Resistances:** Topspin, Drift, Googly, Carrom, Slower, Cutter, Seam
 
-### GOLD — Shimron Hetmyer
-*Left-handed finisher. Explosive at death. Leg-side power.*
-- **Strengths:** Full leg stump → slog for 6 | Short middle stump → pull for 4 | Full middle stump → loft for 4
-- **Neutrals:** Good length leg stump → flick for 2 | Good length middle stump → push for 1
-- **Weaknesses:** Full off stump → mis-hit to cover
-- **Resistances:** Cutter
+### GOLD — Andre Russell
+*Right-handed global T20 icon (batter card; Silver bowler split below). Power hitter at all angles; even in his late career still clears the rope. Slower balls are his only real trouble.*
+- **Strengths:** Full leg stump → slog for 6 | Short middle stump → pull for 6
+- **Neutrals:** Good length leg stump → flick for 2 | Full middle stump → loft for 1
+- **Weaknesses:** Good length Outside off → edge to slip | Good length middle stump → mistimed loft caught
+- **Resistances:** Swing, Seam, Topspin, Drift, Googly
 
 ### GOLD — Brandon King
-*Top order power hitter. Drives through the line.*
-- **Strengths:** Full off stump → drive for 6 | Full middle stump → loft for 4 | Short leg stump → pull for 4
-- **Neutrals:** Good length off stump → push for 2 | Good length middle stump → work for 1
-- **Weaknesses:** Good length middle stump → bowled through gate
-- **Resistances:** Swing
+*Current WI T20I opener. Right-handed top-order power — drives through the line, pulls anything short. Vulnerable to the ball nipping back into the stumps.*
+- **Strengths:** Full off stump → drive for 6 | Short leg stump → pull for 4
+- **Neutrals:** Good length off stump → push for 2 | Good length leg stump → work for 1
+- **Weaknesses:** Good length middle stump → bowled through gate | Full middle stump → LBW
+- **Resistances:** Slower, Cutter, Topspin, Drift
+
+### SILVER — Shimron Hetmyer
+*Left-handed death-overs finisher. Leg-side power; goes hard from ball one when set.*
+- **Strengths:** Full leg stump → slog for 6 | Short middle stump → pull for 4
+- **Neutrals:** Good length leg stump → flick for 1
+- **Weaknesses:** Good length Outside off → edge to slip | Full Outside off → mistimed drive caught | Good length middle stump → bowled
+- **Resistances:** Topspin, Drift, Carrom
 
 ### SILVER — Rovman Powell
-*Power hitter. Huge sixes. Inconsistent but devastating when on song.*
+*Former WI T20I captain. Right-handed big-hitter, T20 WC 2024 staple. Inconsistent but devastating on song.*
 - **Strengths:** Full leg stump → slog for 6 | Short middle stump → hook for 6
-- **Neutrals:** Good length leg stump → work for 2 | Full middle stump → drive for 1
-- **Weaknesses:** Good length off stump → beaten | Full off stump → caught at cover
-
-### SILVER — Shai Hope
-*Elegant right-hander. More ODI than T20 specialist but technically sound.*
-- **Strengths:** Full off stump → cover drive for 4 | Good length leg stump → flick for 4
-- **Neutrals:** Good length off stump → push for 2 | Good length middle stump → defend for 1
-- **Weaknesses:** Short middle stump → caught fending | Full middle stump → bowled across
+- **Neutrals:** Good length leg stump → work for 1
+- **Weaknesses:** Good length Outside off → beaten | Full off stump → caught at cover | Good length middle stump → bowled
+- **Resistances:** Slower, Cutter, Topspin
 
 ### SILVER — Sherfane Rutherford
-*Power hitting finisher. Massive leg-side hitter.*
+*Left-handed finisher. IPL 2024 form, massive leg-side hitter.*
 - **Strengths:** Full leg stump → slog for 6 | Full middle stump → loft for 4
-- **Neutrals:** Good length leg stump → work for 2 | Short middle stump → pull for 1
-- **Weaknesses:** Good length off stump → beaten | Good length middle stump → bowled
+- **Neutrals:** Good length leg stump → work for 1
+- **Weaknesses:** Good length Outside off → beaten | Short Outside off → caught at point | Good length middle stump → bowled
+- **Resistances:** Topspin, Carrom, Drift
 
 ### BRONZE — Johnson Charles
-*Explosive opener. Smashes early, gets out early.*
+*Right-handed explosive opener. Smashes early, gets out early.*
 - **Strengths:** Full off stump → loft for 6
 - **Neutrals:** Short middle stump → pull for 2 | Good length leg stump → flick for 1
 - **Weaknesses:** Good length middle stump → bowled | Full middle stump → LBW across | Good length off stump → edge to slip
 
 ### BRONZE — Roston Chase
-*All-rounder. Steady bat, nothing spectacular in T20s.*
+*Right-handed all-rounder (batter card; Bronze off-spin bowler split below). Steady accumulator, lacks T20 acceleration.*
 - **Strengths:** Full off stump → drive for 4
 - **Neutrals:** Good length middle stump → push for 2 | Good length leg stump → nudge for 1
-- **Weaknesses:** Short off stump → caught at gully | Full middle stump → bowled | Good length off stump → edge
+- **Weaknesses:** Short Outside off → caught at gully | Full middle stump → bowled | Good length Outside off → edge
+
+### BRONZE — Shai Hope
+*Right-handed WI ODI captain. Technically clean — more ODI than T20 specialist, hence Bronze. Cover drives and flicks; struggles with short balls at the body.*
+- **Strengths:** Full off stump → cover drive for 4
+- **Neutrals:** Good length leg stump → flick for 2 | Good length off stump → push for 1
+- **Weaknesses:** Short middle stump → caught fending | Full middle stump → bowled across | Short Outside off → top edge
+
+### BRONZE — Marlon Samuels
+*Mid-2010s legend. T20 WC 2012 (78) AND 2016 (85*) final hero — only player to score 50+ in two T20 WC finals. Right-handed middle-order, retired 2020. Languid technique that frustrated bowlers and slogged on cue.*
+- **Strengths:** Full off stump → drive for 4
+- **Neutrals:** Full leg stump → flick for 2 | Short middle stump → pull for 1
+- **Weaknesses:** Good length Outside off → edge to slip | Good length middle stump → LBW | Full middle stump → bowled
 
 ### BRONZE — Romario Shepherd
-*All-rounder. Power at death. Raw technique.*
+*Right-handed all-rounder (batter card; Bronze medium-fast bowler split below). Power at death, raw technique.*
 - **Strengths:** Full leg stump → slog for 4
 - **Neutrals:** Good length leg stump → work for 2 | Short leg stump → pull for 1
-- **Weaknesses:** Good length off stump → beaten | Full off stump → caught at cover | Good length middle stump → bowled
-
-### BRONZE — Quentin Sampson
-*Young talent. Limited international exposure.*
-- **Strengths:** Short middle stump → pull for 4
-- **Neutrals:** Full leg stump → flick for 2 | Good length leg stump → nudge for 1
-- **Weaknesses:** Good length off stump → bowled | Full middle stump → LBW | Full off stump → edge to slip
-
-### BRONZE — Matthew Forde
-*Young all-rounder. Emerging domestic talent.*
-- **Strengths:** Full middle stump → drive for 4
-- **Neutrals:** Good length middle stump → push for 2 | Good length leg stump → work for 1
-- **Weaknesses:** Good length off stump → edge | Short off stump → caught | Short middle stump → top edge
+- **Weaknesses:** Good length Outside off → beaten | Full off stump → caught at cover | Good length middle stump → bowled
 
 ## BOWLERS
 
-### ELITE — Andre Russell
-*All-rounder legend. Express pace at death. Yorkers and bouncers.*
-- **Delivery:** Full middle stump | **Adjective:** Pace | **Fielding:** Mid-wicket + Cover
+### ELITE — Sunil Narine
+*Retired from WI internationals (last 2019) but the most feared T20 league mystery spinner globally. Right-arm off-spin with the carrom ball; skiddy quicker one as the disguised follow-up. Two-skill Elite per the v1.1 rule.*
+- **Delivery:** Good length middle stump | **Adjective:** Carrom, Topspin | **Fielding:** Short leg/Silly point + Slip cordon
 
 ### GOLD — Akeal Hosein
-*Left-arm orthodox. Economical and wicket-taking. Powerplay specialist.*
-- **Delivery:** Good length off stump | **Adjective:** Spin (left-arm orthodox) | **Fielding:** Cover
+*Left-arm orthodox. Powerplay specialist with subtle drift away from RH bats.*
+- **Delivery:** Good length off stump | **Adjective:** Drift | **Fielding:** Cover
 
-### GOLD — Gudakesh Motie
-*Left-arm orthodox. Another quality spinner in WI's stable.*
-- **Delivery:** Good length middle stump | **Adjective:** Spin (left-arm orthodox) | **Fielding:** Short leg
+### GOLD — Alzarri Joseph
+*Right-arm express pace. Current WI T20I regular, hits the deck hard with bounce and seam off the surface.*
+- **Delivery:** Good length off stump | **Adjective:** Seam | **Fielding:** Slip cordon
+
+### SILVER — Andre Russell
+*Right-arm express (bowler card; Gold batter split above). Death-overs cutters and yorkers were Elite-tier at his peak; current load-managed role drops him to Silver and strips the skill chip.*
+- **Delivery:** Full middle stump | **Fielding:** Mid-wicket
 
 ### SILVER — Shamar Joseph
-*Raw quick. Express pace and bounce.*
-- **Delivery:** Short off stump | **Adjective:** Pace | **Fielding:** Gully/Point
-
-### SILVER — Romario Shepherd
-*Death overs medium-fast. Yorkers and slower balls.*
-- **Delivery:** Full off stump | **Adjective:** Cutter | **Fielding:** Cover
+*Right-arm raw express pace (150kph+). Recent Test breakout star, growing T20I role.*
+- **Delivery:** Short middle stump | **Fielding:** Gully/Point
 
 ### SILVER — Jason Holder
-*Tall all-rounder. Good length outside off with bounce.*
-- **Delivery:** Good length 5th stump | **Adjective:** Seam | **Fielding:** Slip cordon
+*Tall right-arm seamer, all-format WI icon and former captain. Hits a heavy length with bounce; T20 form has waned, hence Silver not Gold. Faces Silver tier wide-call risk on Outside off (25%).*
+- **Delivery:** Good length Outside off | **Fielding:** Slip cordon
 
 ### BRONZE — Jayden Seales
-*Young quick. Good length with pace.*
-- **Delivery:** Good length off stump | **Adjective:** Pace | **Fielding:** Gully/Point
+*Young right-arm quick. Good length with pace.*
+- **Delivery:** Good length off stump | **Fielding:** Gully/Point
 
 ### BRONZE — Roston Chase
-*Off-spin all-rounder. Fills overs.*
+*Right-arm off-spin (all-rounder split — Bronze batter above). Fills middle overs.*
 - **Delivery:** Good length off stump | **Fielding:** Cover
 
 ### BRONZE — Matthew Forde
-*Young seamer. Developing.*
+*Young right-arm seamer. Developing.*
 - **Delivery:** Good length middle stump | **Fielding:** Mid-wicket
 
-### BRONZE — Quentin Sampson
-*Part-time medium. Emergency filler.*
+### BRONZE — Gudakesh Motie
+*Left-arm orthodox. Current WI T20I middle-overs operator — no skill chip at Bronze per v1.1.*
 - **Delivery:** Good length leg stump | **Fielding:** Mid-wicket
 
-### BRONZE — Odean Smith
-*Raw pace, erratic. High risk bowler.*
-- **Delivery:** Short middle stump | **Adjective:** Pace | **Fielding:** Gully/Point
+### BRONZE — Romario Shepherd
+*Right-arm medium-fast all-rounder (bowler split — Bronze batter above). Fills overs at the death.*
+- **Delivery:** Full off stump | **Fielding:** Cover
 
 ---
 

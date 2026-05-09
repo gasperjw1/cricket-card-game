@@ -6250,7 +6250,7 @@
       "name": "Nicholas Pooran",
       "nation": "West Indies",
       "tier": "Elite",
-      "description": "Left-handed destroyer. Hits sixes for fun. T20 franchise superstar.",
+      "description": "Left-handed destroyer. IPL/T20 league superstar, current WI T20I vice-captain. Hits sixes across all lines; reads spin and pace equally — only the moving ball outside off troubles him.",
       "strengths": [
         {
           "zone": {
@@ -6270,7 +6270,7 @@
           },
           "outcome": {
             "type": "runs",
-            "value": 4,
+            "value": 6,
             "shot": "pull"
           }
         },
@@ -6313,7 +6313,7 @@
       "weaknesses": [
         {
           "zone": {
-            "line": "Off stump",
+            "line": "Outside off",
             "length": "Good length"
           },
           "outcome": {
@@ -6322,15 +6322,192 @@
           }
         }
       ],
-      "resistances": []
+      "resistances": [
+        "Topspin",
+        "Drift",
+        "Googly",
+        "Carrom",
+        "Slower",
+        "Cutter",
+        "Seam"
+      ]
+    },
+    {
+      "id": "andre-russell-bat",
+      "kind": "batsman",
+      "name": "Andre Russell",
+      "nation": "West Indies",
+      "tier": "Gold",
+      "description": "Right-handed global T20 icon (batter card; Silver bowler split below). Power hitter at all angles; even in his late career still clears the rope. Slower balls are his only real trouble.",
+      "strengths": [
+        {
+          "zone": {
+            "line": "Leg stump",
+            "length": "Full"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 6,
+            "shot": "slog"
+          }
+        },
+        {
+          "zone": {
+            "line": "Middle stump",
+            "length": "Short"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 6,
+            "shot": "pull"
+          }
+        }
+      ],
+      "neutrals": [
+        {
+          "zone": {
+            "line": "Leg stump",
+            "length": "Good length"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 2,
+            "shot": "flick"
+          }
+        },
+        {
+          "zone": {
+            "line": "Middle stump",
+            "length": "Full"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 1,
+            "shot": "loft"
+          }
+        }
+      ],
+      "weaknesses": [
+        {
+          "zone": {
+            "line": "Outside off",
+            "length": "Good length"
+          },
+          "outcome": {
+            "type": "wicket",
+            "mode": "edge to slip"
+          }
+        },
+        {
+          "zone": {
+            "line": "Middle stump",
+            "length": "Good length"
+          },
+          "outcome": {
+            "type": "wicket",
+            "mode": "mistimed loft caught"
+          }
+        }
+      ],
+      "resistances": [
+        "Swing",
+        "Seam",
+        "Topspin",
+        "Drift",
+        "Googly"
+      ]
+    },
+    {
+      "id": "brandon-king-bat",
+      "kind": "batsman",
+      "name": "Brandon King",
+      "nation": "West Indies",
+      "tier": "Gold",
+      "description": "Current WI T20I opener. Right-handed top-order power — drives through the line, pulls anything short. Vulnerable to the ball nipping back into the stumps.",
+      "strengths": [
+        {
+          "zone": {
+            "line": "Off stump",
+            "length": "Full"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 6,
+            "shot": "drive"
+          }
+        },
+        {
+          "zone": {
+            "line": "Leg stump",
+            "length": "Short"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 4,
+            "shot": "pull"
+          }
+        }
+      ],
+      "neutrals": [
+        {
+          "zone": {
+            "line": "Off stump",
+            "length": "Good length"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 2,
+            "shot": "push"
+          }
+        },
+        {
+          "zone": {
+            "line": "Leg stump",
+            "length": "Good length"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 1,
+            "shot": "work"
+          }
+        }
+      ],
+      "weaknesses": [
+        {
+          "zone": {
+            "line": "Middle stump",
+            "length": "Good length"
+          },
+          "outcome": {
+            "type": "wicket",
+            "mode": "bowled through gate"
+          }
+        },
+        {
+          "zone": {
+            "line": "Middle stump",
+            "length": "Full"
+          },
+          "outcome": {
+            "type": "wicket",
+            "mode": "LBW"
+          }
+        }
+      ],
+      "resistances": [
+        "Slower",
+        "Cutter",
+        "Topspin",
+        "Drift"
+      ]
     },
     {
       "id": "shimron-hetmyer-bat",
       "kind": "batsman",
       "name": "Shimron Hetmyer",
       "nation": "West Indies",
-      "tier": "Gold",
-      "description": "Left-handed finisher. Explosive at death. Leg-side power.",
+      "tier": "Silver",
+      "description": "Left-handed death-overs finisher. Leg-side power; goes hard from ball one when set.",
       "strengths": [
         {
           "zone": {
@@ -6353,17 +6530,6 @@
             "value": 4,
             "shot": "pull"
           }
-        },
-        {
-          "zone": {
-            "line": "Middle stump",
-            "length": "Full"
-          },
-          "outcome": {
-            "type": "runs",
-            "value": 4,
-            "shot": "loft"
-          }
         }
       ],
       "neutrals": [
@@ -6374,105 +6540,32 @@
           },
           "outcome": {
             "type": "runs",
-            "value": 2,
+            "value": 1,
             "shot": "flick"
           }
-        },
-        {
-          "zone": {
-            "line": "Middle stump",
-            "length": "Good length"
-          },
-          "outcome": {
-            "type": "runs",
-            "value": 1,
-            "shot": "push"
-          }
         }
       ],
       "weaknesses": [
         {
           "zone": {
-            "line": "Off stump",
+            "line": "Outside off",
+            "length": "Good length"
+          },
+          "outcome": {
+            "type": "wicket",
+            "mode": "edge to slip"
+          }
+        },
+        {
+          "zone": {
+            "line": "Outside off",
             "length": "Full"
           },
           "outcome": {
             "type": "wicket",
-            "mode": "mis-hit to cover"
-          }
-        }
-      ],
-      "resistances": [
-        "Cutter"
-      ]
-    },
-    {
-      "id": "brandon-king-bat",
-      "kind": "batsman",
-      "name": "Brandon King",
-      "nation": "West Indies",
-      "tier": "Gold",
-      "description": "Top order power hitter. Drives through the line.",
-      "strengths": [
-        {
-          "zone": {
-            "line": "Off stump",
-            "length": "Full"
-          },
-          "outcome": {
-            "type": "runs",
-            "value": 6,
-            "shot": "drive"
+            "mode": "mistimed drive caught"
           }
         },
-        {
-          "zone": {
-            "line": "Middle stump",
-            "length": "Full"
-          },
-          "outcome": {
-            "type": "runs",
-            "value": 4,
-            "shot": "loft"
-          }
-        },
-        {
-          "zone": {
-            "line": "Leg stump",
-            "length": "Short"
-          },
-          "outcome": {
-            "type": "runs",
-            "value": 4,
-            "shot": "pull"
-          }
-        }
-      ],
-      "neutrals": [
-        {
-          "zone": {
-            "line": "Off stump",
-            "length": "Good length"
-          },
-          "outcome": {
-            "type": "runs",
-            "value": 2,
-            "shot": "push"
-          }
-        },
-        {
-          "zone": {
-            "line": "Middle stump",
-            "length": "Good length"
-          },
-          "outcome": {
-            "type": "runs",
-            "value": 1,
-            "shot": "work"
-          }
-        }
-      ],
-      "weaknesses": [
         {
           "zone": {
             "line": "Middle stump",
@@ -6480,12 +6573,14 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "bowled through gate"
+            "mode": "bowled"
           }
         }
       ],
       "resistances": [
-        "Swing"
+        "Topspin",
+        "Drift",
+        "Carrom"
       ]
     },
     {
@@ -6494,7 +6589,7 @@
       "name": "Rovman Powell",
       "nation": "West Indies",
       "tier": "Silver",
-      "description": "Power hitter. Huge sixes. Inconsistent but devastating when on song.",
+      "description": "Former WI T20I captain. Right-handed big-hitter, T20 WC 2024 staple. Inconsistent but devastating on song.",
       "strengths": [
         {
           "zone": {
@@ -6527,26 +6622,15 @@
           },
           "outcome": {
             "type": "runs",
-            "value": 2,
-            "shot": "work"
-          }
-        },
-        {
-          "zone": {
-            "line": "Middle stump",
-            "length": "Full"
-          },
-          "outcome": {
-            "type": "runs",
             "value": 1,
-            "shot": "drive"
+            "shot": "work"
           }
         }
       ],
       "weaknesses": [
         {
           "zone": {
-            "line": "Off stump",
+            "line": "Outside off",
             "length": "Good length"
           },
           "outcome": {
@@ -6563,88 +6647,23 @@
             "type": "wicket",
             "mode": "caught at cover"
           }
-        }
-      ],
-      "resistances": []
-    },
-    {
-      "id": "shai-hope-bat",
-      "kind": "batsman",
-      "name": "Shai Hope",
-      "nation": "West Indies",
-      "tier": "Silver",
-      "description": "Elegant right-hander. More ODI than T20 specialist but technically sound.",
-      "strengths": [
-        {
-          "zone": {
-            "line": "Off stump",
-            "length": "Full"
-          },
-          "outcome": {
-            "type": "runs",
-            "value": 4,
-            "shot": "cover drive"
-          }
-        },
-        {
-          "zone": {
-            "line": "Leg stump",
-            "length": "Good length"
-          },
-          "outcome": {
-            "type": "runs",
-            "value": 4,
-            "shot": "flick"
-          }
-        }
-      ],
-      "neutrals": [
-        {
-          "zone": {
-            "line": "Off stump",
-            "length": "Good length"
-          },
-          "outcome": {
-            "type": "runs",
-            "value": 2,
-            "shot": "push"
-          }
         },
         {
           "zone": {
             "line": "Middle stump",
             "length": "Good length"
-          },
-          "outcome": {
-            "type": "runs",
-            "value": 1,
-            "shot": "defend"
-          }
-        }
-      ],
-      "weaknesses": [
-        {
-          "zone": {
-            "line": "Middle stump",
-            "length": "Short"
           },
           "outcome": {
             "type": "wicket",
-            "mode": "caught fending"
-          }
-        },
-        {
-          "zone": {
-            "line": "Middle stump",
-            "length": "Full"
-          },
-          "outcome": {
-            "type": "wicket",
-            "mode": "bowled across"
+            "mode": "bowled"
           }
         }
       ],
-      "resistances": []
+      "resistances": [
+        "Slower",
+        "Cutter",
+        "Topspin"
+      ]
     },
     {
       "id": "sherfane-rutherford-bat",
@@ -6652,7 +6671,7 @@
       "name": "Sherfane Rutherford",
       "nation": "West Indies",
       "tier": "Silver",
-      "description": "Power hitting finisher. Massive leg-side hitter.",
+      "description": "Left-handed finisher. IPL 2024 form, massive leg-side hitter.",
       "strengths": [
         {
           "zone": {
@@ -6685,31 +6704,30 @@
           },
           "outcome": {
             "type": "runs",
-            "value": 2,
-            "shot": "work"
-          }
-        },
-        {
-          "zone": {
-            "line": "Middle stump",
-            "length": "Short"
-          },
-          "outcome": {
-            "type": "runs",
             "value": 1,
-            "shot": "pull"
+            "shot": "work"
           }
         }
       ],
       "weaknesses": [
         {
           "zone": {
-            "line": "Off stump",
+            "line": "Outside off",
             "length": "Good length"
           },
           "outcome": {
             "type": "wicket",
             "mode": "beaten"
+          }
+        },
+        {
+          "zone": {
+            "line": "Outside off",
+            "length": "Short"
+          },
+          "outcome": {
+            "type": "wicket",
+            "mode": "caught at point"
           }
         },
         {
@@ -6723,7 +6741,11 @@
           }
         }
       ],
-      "resistances": []
+      "resistances": [
+        "Topspin",
+        "Carrom",
+        "Drift"
+      ]
     },
     {
       "id": "johnson-charles-bat",
@@ -6731,7 +6753,7 @@
       "name": "Johnson Charles",
       "nation": "West Indies",
       "tier": "Bronze",
-      "description": "Explosive opener. Smashes early, gets out early.",
+      "description": "Right-handed explosive opener. Smashes early, gets out early.",
       "strengths": [
         {
           "zone": {
@@ -6809,7 +6831,7 @@
       "name": "Roston Chase",
       "nation": "West Indies",
       "tier": "Bronze",
-      "description": "All-rounder. Steady bat, nothing spectacular in T20s.",
+      "description": "Right-handed all-rounder (batter card; Bronze off-spin bowler split below). Steady accumulator, lacks T20 acceleration.",
       "strengths": [
         {
           "zone": {
@@ -6850,7 +6872,7 @@
       "weaknesses": [
         {
           "zone": {
-            "line": "Off stump",
+            "line": "Outside off",
             "length": "Short"
           },
           "outcome": {
@@ -6870,7 +6892,7 @@
         },
         {
           "zone": {
-            "line": "Off stump",
+            "line": "Outside off",
             "length": "Good length"
           },
           "outcome": {
@@ -6882,12 +6904,168 @@
       "resistances": []
     },
     {
+      "id": "shai-hope-bat",
+      "kind": "batsman",
+      "name": "Shai Hope",
+      "nation": "West Indies",
+      "tier": "Bronze",
+      "description": "Right-handed WI ODI captain. Technically clean — more ODI than T20 specialist, hence Bronze. Cover drives and flicks; struggles with short balls at the body.",
+      "strengths": [
+        {
+          "zone": {
+            "line": "Off stump",
+            "length": "Full"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 4,
+            "shot": "cover drive"
+          }
+        }
+      ],
+      "neutrals": [
+        {
+          "zone": {
+            "line": "Leg stump",
+            "length": "Good length"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 2,
+            "shot": "flick"
+          }
+        },
+        {
+          "zone": {
+            "line": "Off stump",
+            "length": "Good length"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 1,
+            "shot": "push"
+          }
+        }
+      ],
+      "weaknesses": [
+        {
+          "zone": {
+            "line": "Middle stump",
+            "length": "Short"
+          },
+          "outcome": {
+            "type": "wicket",
+            "mode": "caught fending"
+          }
+        },
+        {
+          "zone": {
+            "line": "Middle stump",
+            "length": "Full"
+          },
+          "outcome": {
+            "type": "wicket",
+            "mode": "bowled across"
+          }
+        },
+        {
+          "zone": {
+            "line": "Outside off",
+            "length": "Short"
+          },
+          "outcome": {
+            "type": "wicket",
+            "mode": "top edge"
+          }
+        }
+      ],
+      "resistances": []
+    },
+    {
+      "id": "marlon-samuels-bat",
+      "kind": "batsman",
+      "name": "Marlon Samuels",
+      "nation": "West Indies",
+      "tier": "Bronze",
+      "description": "Mid-2010s legend. T20 WC 2012 (78) AND 2016 (85*) final hero — only player to score 50+ in two T20 WC finals. Right-handed middle-order, retired 2020. Languid technique that frustrated bowlers and slogged on cue.",
+      "strengths": [
+        {
+          "zone": {
+            "line": "Off stump",
+            "length": "Full"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 4,
+            "shot": "drive"
+          }
+        }
+      ],
+      "neutrals": [
+        {
+          "zone": {
+            "line": "Leg stump",
+            "length": "Full"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 2,
+            "shot": "flick"
+          }
+        },
+        {
+          "zone": {
+            "line": "Middle stump",
+            "length": "Short"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 1,
+            "shot": "pull"
+          }
+        }
+      ],
+      "weaknesses": [
+        {
+          "zone": {
+            "line": "Outside off",
+            "length": "Good length"
+          },
+          "outcome": {
+            "type": "wicket",
+            "mode": "edge to slip"
+          }
+        },
+        {
+          "zone": {
+            "line": "Middle stump",
+            "length": "Good length"
+          },
+          "outcome": {
+            "type": "wicket",
+            "mode": "LBW"
+          }
+        },
+        {
+          "zone": {
+            "line": "Middle stump",
+            "length": "Full"
+          },
+          "outcome": {
+            "type": "wicket",
+            "mode": "bowled"
+          }
+        }
+      ],
+      "resistances": []
+    },
+    {
       "id": "romario-shepherd-bat",
       "kind": "batsman",
       "name": "Romario Shepherd",
       "nation": "West Indies",
       "tier": "Bronze",
-      "description": "All-rounder. Power at death. Raw technique.",
+      "description": "Right-handed all-rounder (batter card; Bronze medium-fast bowler split below). Power at death, raw technique.",
       "strengths": [
         {
           "zone": {
@@ -6928,7 +7106,7 @@
       "weaknesses": [
         {
           "zone": {
-            "line": "Off stump",
+            "line": "Outside off",
             "length": "Good length"
           },
           "outcome": {
@@ -6954,162 +7132,6 @@
           "outcome": {
             "type": "wicket",
             "mode": "bowled"
-          }
-        }
-      ],
-      "resistances": []
-    },
-    {
-      "id": "quentin-sampson-bat",
-      "kind": "batsman",
-      "name": "Quentin Sampson",
-      "nation": "West Indies",
-      "tier": "Bronze",
-      "description": "Young talent. Limited international exposure.",
-      "strengths": [
-        {
-          "zone": {
-            "line": "Middle stump",
-            "length": "Short"
-          },
-          "outcome": {
-            "type": "runs",
-            "value": 4,
-            "shot": "pull"
-          }
-        }
-      ],
-      "neutrals": [
-        {
-          "zone": {
-            "line": "Leg stump",
-            "length": "Full"
-          },
-          "outcome": {
-            "type": "runs",
-            "value": 2,
-            "shot": "flick"
-          }
-        },
-        {
-          "zone": {
-            "line": "Leg stump",
-            "length": "Good length"
-          },
-          "outcome": {
-            "type": "runs",
-            "value": 1,
-            "shot": "nudge"
-          }
-        }
-      ],
-      "weaknesses": [
-        {
-          "zone": {
-            "line": "Off stump",
-            "length": "Good length"
-          },
-          "outcome": {
-            "type": "wicket",
-            "mode": "bowled"
-          }
-        },
-        {
-          "zone": {
-            "line": "Middle stump",
-            "length": "Full"
-          },
-          "outcome": {
-            "type": "wicket",
-            "mode": "LBW"
-          }
-        },
-        {
-          "zone": {
-            "line": "Off stump",
-            "length": "Full"
-          },
-          "outcome": {
-            "type": "wicket",
-            "mode": "edge to slip"
-          }
-        }
-      ],
-      "resistances": []
-    },
-    {
-      "id": "matthew-forde-bat",
-      "kind": "batsman",
-      "name": "Matthew Forde",
-      "nation": "West Indies",
-      "tier": "Bronze",
-      "description": "Young all-rounder. Emerging domestic talent.",
-      "strengths": [
-        {
-          "zone": {
-            "line": "Middle stump",
-            "length": "Full"
-          },
-          "outcome": {
-            "type": "runs",
-            "value": 4,
-            "shot": "drive"
-          }
-        }
-      ],
-      "neutrals": [
-        {
-          "zone": {
-            "line": "Middle stump",
-            "length": "Good length"
-          },
-          "outcome": {
-            "type": "runs",
-            "value": 2,
-            "shot": "push"
-          }
-        },
-        {
-          "zone": {
-            "line": "Leg stump",
-            "length": "Good length"
-          },
-          "outcome": {
-            "type": "runs",
-            "value": 1,
-            "shot": "work"
-          }
-        }
-      ],
-      "weaknesses": [
-        {
-          "zone": {
-            "line": "Off stump",
-            "length": "Good length"
-          },
-          "outcome": {
-            "type": "wicket",
-            "mode": "edge"
-          }
-        },
-        {
-          "zone": {
-            "line": "Off stump",
-            "length": "Short"
-          },
-          "outcome": {
-            "type": "wicket",
-            "mode": "caught"
-          }
-        },
-        {
-          "zone": {
-            "line": "Middle stump",
-            "length": "Short"
-          },
-          "outcome": {
-            "type": "wicket",
-            "mode": "top edge"
           }
         }
       ],
@@ -11886,20 +11908,23 @@
       ]
     },
     {
-      "id": "andre-russell-bowl",
+      "id": "sunil-narine-bowl",
       "kind": "bowler",
-      "name": "Andre Russell",
+      "name": "Sunil Narine",
       "nation": "West Indies",
       "tier": "Elite",
-      "description": "All-rounder legend. Express pace at death. Yorkers and bouncers.",
+      "description": "Retired from WI internationals (last 2019) but the most feared T20 league mystery spinner globally. Right-arm off-spin with the carrom ball; skiddy quicker one as the disguised follow-up. Two-skill Elite per the v1.1 rule.",
       "delivery": {
         "line": "Middle stump",
-        "length": "Full"
+        "length": "Good length"
       },
-      "adjectives": [],
+      "adjectives": [
+        "Carrom",
+        "Topspin"
+      ],
       "fielding": [
-        "Mid-wicket",
-        "Cover"
+        "Short leg/Silly point",
+        "Slip cordon"
       ]
     },
     {
@@ -11908,30 +11933,50 @@
       "name": "Akeal Hosein",
       "nation": "West Indies",
       "tier": "Gold",
-      "description": "Left-arm orthodox. Economical and wicket-taking. Powerplay specialist.",
+      "description": "Left-arm orthodox. Powerplay specialist with subtle drift away from RH bats.",
       "delivery": {
         "line": "Off stump",
         "length": "Good length"
       },
-      "adjectives": [],
+      "adjectives": [
+        "Drift"
+      ],
       "fielding": [
         "Cover"
       ]
     },
     {
-      "id": "gudakesh-motie-bowl",
+      "id": "alzarri-joseph-bowl",
       "kind": "bowler",
-      "name": "Gudakesh Motie",
+      "name": "Alzarri Joseph",
       "nation": "West Indies",
       "tier": "Gold",
-      "description": "Left-arm orthodox. Another quality spinner in WI's stable.",
+      "description": "Right-arm express pace. Current WI T20I regular, hits the deck hard with bounce and seam off the surface.",
+      "delivery": {
+        "line": "Off stump",
+        "length": "Good length"
+      },
+      "adjectives": [
+        "Seam"
+      ],
+      "fielding": [
+        "Slip cordon"
+      ]
+    },
+    {
+      "id": "andre-russell-bowl",
+      "kind": "bowler",
+      "name": "Andre Russell",
+      "nation": "West Indies",
+      "tier": "Silver",
+      "description": "Right-arm express (bowler card; Gold batter split above). Death-overs cutters and yorkers were Elite-tier at his peak; current load-managed role drops him to Silver and strips the skill chip.",
       "delivery": {
         "line": "Middle stump",
-        "length": "Good length"
+        "length": "Full"
       },
       "adjectives": [],
       "fielding": [
-        "Short leg/Silly point"
+        "Mid-wicket"
       ]
     },
     {
@@ -11940,9 +11985,9 @@
       "name": "Shamar Joseph",
       "nation": "West Indies",
       "tier": "Silver",
-      "description": "Raw quick. Express pace and bounce.",
+      "description": "Right-arm raw express pace (150kph+). Recent Test breakout star, growing T20I role.",
       "delivery": {
-        "line": "Off stump",
+        "line": "Middle stump",
         "length": "Short"
       },
       "adjectives": [],
@@ -11951,28 +11996,12 @@
       ]
     },
     {
-      "id": "romario-shepherd-bowl",
-      "kind": "bowler",
-      "name": "Romario Shepherd",
-      "nation": "West Indies",
-      "tier": "Silver",
-      "description": "Death overs medium-fast. Yorkers and slower balls.",
-      "delivery": {
-        "line": "Off stump",
-        "length": "Full"
-      },
-      "adjectives": [],
-      "fielding": [
-        "Cover"
-      ]
-    },
-    {
       "id": "jason-holder-bowl",
       "kind": "bowler",
       "name": "Jason Holder",
       "nation": "West Indies",
       "tier": "Silver",
-      "description": "Tall all-rounder. Good length outside off with bounce.",
+      "description": "Tall right-arm seamer, all-format WI icon and former captain. Hits a heavy length with bounce; T20 form has waned, hence Silver not Gold. Faces Silver tier wide-call risk on Outside off (25%).",
       "delivery": {
         "line": "Outside off",
         "length": "Good length"
@@ -11988,7 +12017,7 @@
       "name": "Jayden Seales",
       "nation": "West Indies",
       "tier": "Bronze",
-      "description": "Young quick. Good length with pace.",
+      "description": "Young right-arm quick. Good length with pace.",
       "delivery": {
         "line": "Off stump",
         "length": "Good length"
@@ -12004,7 +12033,7 @@
       "name": "Roston Chase",
       "nation": "West Indies",
       "tier": "Bronze",
-      "description": "Off-spin all-rounder. Fills overs.",
+      "description": "Right-arm off-spin (all-rounder split — Bronze batter above). Fills middle overs.",
       "delivery": {
         "line": "Off stump",
         "length": "Good length"
@@ -12020,7 +12049,7 @@
       "name": "Matthew Forde",
       "nation": "West Indies",
       "tier": "Bronze",
-      "description": "Young seamer. Developing.",
+      "description": "Young right-arm seamer. Developing.",
       "delivery": {
         "line": "Middle stump",
         "length": "Good length"
@@ -12031,12 +12060,12 @@
       ]
     },
     {
-      "id": "quentin-sampson-bowl",
+      "id": "gudakesh-motie-bowl",
       "kind": "bowler",
-      "name": "Quentin Sampson",
+      "name": "Gudakesh Motie",
       "nation": "West Indies",
       "tier": "Bronze",
-      "description": "Part-time medium. Emergency filler.",
+      "description": "Left-arm orthodox. Current WI T20I middle-overs operator — no skill chip at Bronze per v1.1.",
       "delivery": {
         "line": "Leg stump",
         "length": "Good length"
@@ -12047,19 +12076,19 @@
       ]
     },
     {
-      "id": "odean-smith-bowl",
+      "id": "romario-shepherd-bowl",
       "kind": "bowler",
-      "name": "Odean Smith",
+      "name": "Romario Shepherd",
       "nation": "West Indies",
       "tier": "Bronze",
-      "description": "Raw pace, erratic. High risk bowler.",
+      "description": "Right-arm medium-fast all-rounder (bowler split — Bronze batter above). Fills overs at the death.",
       "delivery": {
-        "line": "Middle stump",
-        "length": "Short"
+        "line": "Off stump",
+        "length": "Full"
       },
       "adjectives": [],
       "fielding": [
-        "Gully/Point"
+        "Cover"
       ]
     },
     {
