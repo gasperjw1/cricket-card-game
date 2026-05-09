@@ -1426,118 +1426,121 @@ Everything not listed = dot ball. Weaknesses are zone-only (no adjective referen
 ## BATSMEN
 
 ### ELITE — Rahmanullah Gurbaz
-*Explosive opener. Massive power. IPL star. Hits sixes everywhere.*
-- **Strengths:** Full middle stump → loft for 6 | Short middle stump → pull for 4 | Full leg stump → flick for 4
+*Right-handed explosive opener. IPL star, T20 WC 2024 top AFG scorer (281 runs). Hits sixes everywhere; reads spin and pace equally — only the moving ball outside off troubles him.*
+- **Strengths:** Full middle stump → loft for 6 | Short middle stump → pull for 6 | Full leg stump → flick for 4
 - **Neutrals:** Good length middle stump → push for 2 | Good length leg stump → work for 1
-- **Weaknesses:** Good length off stump → edge to slip
-- **Resistances:** Pace, Spin
+- **Weaknesses:** Good length Outside off → edge to slip
+- **Resistances:** Topspin, Drift, Googly, Carrom, Slower, Cutter, Seam
 
 ### GOLD — Ibrahim Zadran
-*Classy right-hander. Anchors with style. Growing T20 game.*
-- **Strengths:** Full off stump → drive for 4 | Full leg stump → flick for 4 | Good length leg stump → work for 4
+*Current AFG ODI captain. Right-handed classy anchor — drives, flicks, works the ball. Growing T20 game.*
+- **Strengths:** Full off stump → drive for 4 | Full leg stump → flick for 4
 - **Neutrals:** Good length off stump → push for 2 | Good length middle stump → defend for 1
-- **Weaknesses:** Short off stump → caught behind
-- **Resistances:** Swing
+- **Weaknesses:** Short Outside off → caught behind | Short middle stump → top edge
+- **Resistances:** Topspin, Drift, Carrom, Googly, Slower
 
-### GOLD — Azmatullah Omarzai
-*All-rounder. Power hitter. Clean ball striker.*
-- **Strengths:** Full leg stump → slog for 6 | Full middle stump → loft for 4 | Short middle stump → pull for 4
-- **Neutrals:** Good length leg stump → work for 2 | Good length middle stump → push for 1
-- **Weaknesses:** Good length off stump → beaten
-- **Resistances:** Pace
+### GOLD — Hazratullah Zazai
+*Left-handed explosive opener. Owns one of the highest individual T20I scores (162* vs Ireland 2019). Goes hard from ball one with raw power.*
+- **Strengths:** Full leg stump → slog for 6 | Full middle stump → loft for 6
+- **Neutrals:** Good length leg stump → flick for 2 | Short middle stump → pull for 1
+- **Weaknesses:** Good length Outside off → edge to slip | Good length middle stump → bowled across
+- **Resistances:** Slower, Cutter, Topspin, Drift
 
 ### SILVER — Mohammad Nabi
-*Veteran all-rounder. Experienced middle order. Smart cricket.*
+*Right-handed veteran all-rounder (batter card; Bronze off-spin bowler split below). Smart middle-order, sweeps and works.*
 - **Strengths:** Full leg stump → sweep for 4 | Short middle stump → pull for 4
-- **Neutrals:** Good length middle stump → push for 2 | Good length leg stump → work for 1
-- **Weaknesses:** Good length off stump → edge to slip | Full middle stump → bowled
+- **Neutrals:** Good length leg stump → work for 1
+- **Weaknesses:** Good length Outside off → edge to slip | Full middle stump → bowled | Good length middle stump → LBW
+- **Resistances:** Topspin, Drift, Carrom
 
 ### SILVER — Najibullah Zadran
-*Left-handed power hitter. Leg-side dominant.*
+*Left-handed leg-side power hitter. T20I regular.*
 - **Strengths:** Full leg stump → slog for 6 | Full middle stump → loft for 4
-- **Neutrals:** Good length leg stump → flick for 2 | Good length middle stump → push for 1
-- **Weaknesses:** Good length off stump → beaten | Short off stump → caught
+- **Neutrals:** Good length leg stump → flick for 1
+- **Weaknesses:** Good length Outside off → beaten | Short Outside off → caught at point | Good length off stump → edge to slip
+- **Resistances:** Topspin, Carrom, Drift
 
-### SILVER — Darwish Rasooli
-*Young middle order. Developing talent with potential.*
-- **Strengths:** Full off stump → drive for 4 | Full leg stump → flick for 4
-- **Neutrals:** Good length middle stump → push for 2 | Good length leg stump → work for 1
-- **Weaknesses:** Short middle stump → caught fending | Good length off stump → edge
+### SILVER — Azmatullah Omarzai
+*Right-handed all-rounder (batter card; Silver bowler split below). T20 WC 2024 staple (158 runs SR 132). Clean ball striker.*
+- **Strengths:** Full leg stump → slog for 6 | Full middle stump → loft for 4
+- **Neutrals:** Good length middle stump → push for 1
+- **Weaknesses:** Good length Outside off → beaten | Full off stump → caught at cover | Short Outside off → top edge
+- **Resistances:** Slower, Topspin
 
 ### BRONZE — Sediqullah Atal
-*Young opener. Aggressive but raw.*
+*Young right-handed opener, recent T20I caps. Aggressive but raw.*
 - **Strengths:** Full middle stump → loft for 4
 - **Neutrals:** Good length leg stump → flick for 2 | Short middle stump → pull for 1
 - **Weaknesses:** Good length off stump → bowled | Full off stump → edge | Good length middle stump → LBW
 
-### BRONZE — Shahidullah Kamal
-*Domestic middle order. Limited.*
-- **Strengths:** Full leg stump → sweep for 4
-- **Neutrals:** Good length leg stump → nudge for 2 | Good length middle stump → push for 1
-- **Weaknesses:** Good length off stump → beaten | Short off stump → caught | Full middle stump → bowled
-
-### BRONZE — Mohammad Ishaq
-*Domestic bat. Lower order quality.*
-- **Strengths:** Short leg stump → pull for 4
-- **Neutrals:** Full leg stump → flick for 2 | Good length leg stump → work for 1
-- **Weaknesses:** Good length off stump → bowled | Good length middle stump → LBW | Full off stump → caught
+### BRONZE — Mohammad Shahzad
+*Mid-2010s legend. Flamboyant right-handed keeper-bat, 80+ T20Is for AFG, retired ~2020. Slog-or-out Bronze archetype — clears the rope or holes out.*
+- **Strengths:** Full leg stump → slog for 6
+- **Neutrals:** Short middle stump → pull for 2 | Full off stump → drive for 1
+- **Weaknesses:** Good length Outside off → edge to keeper | Good length middle stump → bowled | Good length off stump → caught at cover
 
 ### BRONZE — Gulbadin Naib
-*All-rounder veteran. Past his prime.*
+*Right-handed veteran all-rounder (batter card; Bronze medium-pace bowler split below). Past his prime but still in T20I plans.*
 - **Strengths:** Full leg stump → slog for 4
 - **Neutrals:** Good length leg stump → work for 2 | Good length middle stump → push for 1
-- **Weaknesses:** Good length off stump → edge | Short middle stump → caught | Full middle stump → bowled
+- **Weaknesses:** Good length Outside off → edge | Short middle stump → caught | Full middle stump → bowled
 
-### BRONZE — Abdullah Ahmadzai
-*Young talent. Domestic level.*
+### BRONZE — Karim Janat
+*Right-handed all-rounder (batter card; Bronze medium-fast bowler split below). Current T20I middle-order.*
+- **Strengths:** Short leg stump → pull for 4
+- **Neutrals:** Full leg stump → flick for 2 | Good length leg stump → work for 1
+- **Weaknesses:** Good length off stump → bowled | Good length middle stump → LBW | Full off stump → caught at cover
+
+### BRONZE — Darwish Rasooli
+*Young right-handed middle-order, developing talent.*
 - **Strengths:** Full off stump → drive for 4
-- **Neutrals:** Good length middle stump → push for 2 | Good length leg stump → nudge for 1
-- **Weaknesses:** Good length off stump → edge | Short off stump → caught at point | Good length middle stump → LBW
+- **Neutrals:** Good length middle stump → push for 2 | Good length leg stump → work for 1
+- **Weaknesses:** Short middle stump → caught fending | Good length Outside off → edge | Full middle stump → bowled
 
 ## BOWLERS
 
 ### ELITE — Rashid Khan
-*Greatest T20 bowler alive. Legspin with lethal googly. Unreadable.*
-- **Delivery:** Good length middle stump | **Adjective:** Spin (legspin/googly) | **Fielding:** Short leg + Slip cordon
+*Greatest T20 bowler alive. Right-arm leg-spin with a lethal disguised googly and skiddy quicker one. Two-skill Elite per the v1.1 rule.*
+- **Delivery:** Good length middle stump | **Adjective:** Googly, Topspin | **Fielding:** Short leg/Silly point + Slip cordon
 
 ### GOLD — Fazalhaq Farooqi
-*Left-arm quick. Swings it, takes powerplay wickets. T20 WC 2024 leading wicket-taker.*
-- **Delivery:** Full 5th stump | **Adjective:** Swing (inswing, left-arm) | **Fielding:** Slip cordon
+*Left-arm quick. T20 WC 2024 leading wicket-taker (17). Powerplay inswing specialist. Faces Gold tier wide-call risk on Outside off (15%).*
+- **Delivery:** Full Outside off | **Adjective:** Swing | **Fielding:** Slip cordon
 
-### GOLD — Naveen-ul-Haq
-*Smart seamer. Good length with seam. Death overs specialist.*
-- **Delivery:** Good length off stump | **Adjective:** Seam | **Fielding:** Gully/Point
+### GOLD — Mujeeb Ur Rahman
+*Right-handed mystery off-spinner with the carrom ball. IPL star, was world's youngest international debutant.*
+- **Delivery:** Good length off stump | **Adjective:** Carrom | **Fielding:** Slip cordon
 
-### SILVER — Mujeeb Ur Rahman
-*Mystery spinner. Carrom ball and googly.*
-- **Delivery:** Good length off stump | **Adjective:** Spin (mystery/carrom) | **Fielding:** Slip cordon
+### SILVER — Naveen-ul-Haq
+*Right-arm slingy seamer. KKR IPL pick, death-overs operator.*
+- **Delivery:** Good length off stump | **Fielding:** Cover
 
 ### SILVER — Noor Ahmad
-*Young left-arm wrist spinner. Exceptional talent.*
-- **Delivery:** Good length middle stump | **Adjective:** Spin (left-arm wrist spin) | **Fielding:** Short leg
+*Young left-arm wrist spinner. KKR IPL star — loses the skill chip at Silver per v1.1.*
+- **Delivery:** Good length middle stump | **Fielding:** Short leg/Silly point
 
 ### SILVER — Azmatullah Omarzai
-*Medium-fast all-rounder. Hits the deck.*
-- **Delivery:** Good length off stump | **Adjective:** Seam | **Fielding:** Gully/Point
+*Right-arm medium-fast all-rounder (bowler split — Silver batter above). Hits the deck with seam, but no skill chip at Silver.*
+- **Delivery:** Good length leg stump | **Fielding:** Mid-wicket
 
 ### BRONZE — Mohammad Nabi
-*Off-spin veteran. Economical, wise.*
+*Right-arm off-spin veteran (all-rounder split — Silver batter above). Economical, wise.*
 - **Delivery:** Good length off stump | **Fielding:** Cover
 
 ### BRONZE — Gulbadin Naib
-*Medium pace all-rounder. Fills overs.*
+*Right-arm medium pace (all-rounder split — Bronze batter above). Fills overs.*
 - **Delivery:** Good length middle stump | **Fielding:** Mid-wicket
 
 ### BRONZE — AM Ghazanfar
-*Young off-spinner. Mystery variations.*
-- **Delivery:** Good length off stump | **Adjective:** Spin (offspin) | **Fielding:** Short leg
+*Young right-arm off-spinner.*
+- **Delivery:** Good length off stump | **Fielding:** Short leg/Silly point
 
-### BRONZE — Fazal Haq
-*Young seamer. Domestic level.*
-- **Delivery:** Good length middle stump | **Fielding:** Mid-wicket
+### BRONZE — Karim Janat
+*Right-arm medium-fast (all-rounder split — Bronze batter above). Death-overs cutter style.*
+- **Delivery:** Full off stump | **Fielding:** Cover
 
 ### BRONZE — Yamin Ahmadzai
-*Medium-fast. Good length, nothing special.*
+*Right-arm medium-fast.*
 - **Delivery:** Good length off stump | **Fielding:** Slip cordon
 
 ---

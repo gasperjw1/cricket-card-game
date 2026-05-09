@@ -8906,7 +8906,7 @@
       "name": "Rahmanullah Gurbaz",
       "nation": "Afghanistan",
       "tier": "Elite",
-      "description": "Explosive opener. Massive power. IPL star. Hits sixes everywhere.",
+      "description": "Right-handed explosive opener. IPL star, T20 WC 2024 top AFG scorer (281 runs). Hits sixes everywhere; reads spin and pace equally — only the moving ball outside off troubles him.",
       "strengths": [
         {
           "zone": {
@@ -8926,7 +8926,7 @@
           },
           "outcome": {
             "type": "runs",
-            "value": 4,
+            "value": 6,
             "shot": "pull"
           }
         },
@@ -8969,7 +8969,7 @@
       "weaknesses": [
         {
           "zone": {
-            "line": "Off stump",
+            "line": "Outside off",
             "length": "Good length"
           },
           "outcome": {
@@ -8978,7 +8978,15 @@
           }
         }
       ],
-      "resistances": []
+      "resistances": [
+        "Topspin",
+        "Drift",
+        "Googly",
+        "Carrom",
+        "Slower",
+        "Cutter",
+        "Seam"
+      ]
     },
     {
       "id": "ibrahim-zadran-bat",
@@ -8986,7 +8994,7 @@
       "name": "Ibrahim Zadran",
       "nation": "Afghanistan",
       "tier": "Gold",
-      "description": "Classy right-hander. Anchors with style. Growing T20 game.",
+      "description": "Current AFG ODI captain. Right-handed classy anchor — drives, flicks, works the ball. Growing T20 game.",
       "strengths": [
         {
           "zone": {
@@ -9008,17 +9016,6 @@
             "type": "runs",
             "value": 4,
             "shot": "flick"
-          }
-        },
-        {
-          "zone": {
-            "line": "Leg stump",
-            "length": "Good length"
-          },
-          "outcome": {
-            "type": "runs",
-            "value": 4,
-            "shot": "work"
           }
         }
       ],
@@ -9049,26 +9046,40 @@
       "weaknesses": [
         {
           "zone": {
-            "line": "Off stump",
+            "line": "Outside off",
             "length": "Short"
           },
           "outcome": {
             "type": "wicket",
             "mode": "caught behind"
           }
+        },
+        {
+          "zone": {
+            "line": "Middle stump",
+            "length": "Short"
+          },
+          "outcome": {
+            "type": "wicket",
+            "mode": "top edge"
+          }
         }
       ],
       "resistances": [
-        "Swing"
+        "Topspin",
+        "Drift",
+        "Carrom",
+        "Googly",
+        "Slower"
       ]
     },
     {
-      "id": "azmatullah-omarzai-bat",
+      "id": "hazratullah-zazai-bat",
       "kind": "batsman",
-      "name": "Azmatullah Omarzai",
+      "name": "Hazratullah Zazai",
       "nation": "Afghanistan",
       "tier": "Gold",
-      "description": "All-rounder. Power hitter. Clean ball striker.",
+      "description": "Left-handed explosive opener. Owns one of the highest individual T20I scores (162* vs Ireland 2019). Goes hard from ball one with raw power.",
       "strengths": [
         {
           "zone": {
@@ -9088,19 +9099,8 @@
           },
           "outcome": {
             "type": "runs",
-            "value": 4,
+            "value": 6,
             "shot": "loft"
-          }
-        },
-        {
-          "zone": {
-            "line": "Middle stump",
-            "length": "Short"
-          },
-          "outcome": {
-            "type": "runs",
-            "value": 4,
-            "shot": "pull"
           }
         }
       ],
@@ -9113,7 +9113,30 @@
           "outcome": {
             "type": "runs",
             "value": 2,
-            "shot": "work"
+            "shot": "flick"
+          }
+        },
+        {
+          "zone": {
+            "line": "Middle stump",
+            "length": "Short"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 1,
+            "shot": "pull"
+          }
+        }
+      ],
+      "weaknesses": [
+        {
+          "zone": {
+            "line": "Outside off",
+            "length": "Good length"
+          },
+          "outcome": {
+            "type": "wicket",
+            "mode": "edge to slip"
           }
         },
         {
@@ -9122,25 +9145,17 @@
             "length": "Good length"
           },
           "outcome": {
-            "type": "runs",
-            "value": 1,
-            "shot": "push"
-          }
-        }
-      ],
-      "weaknesses": [
-        {
-          "zone": {
-            "line": "Off stump",
-            "length": "Good length"
-          },
-          "outcome": {
             "type": "wicket",
-            "mode": "beaten"
+            "mode": "bowled across"
           }
         }
       ],
-      "resistances": []
+      "resistances": [
+        "Slower",
+        "Cutter",
+        "Topspin",
+        "Drift"
+      ]
     },
     {
       "id": "mohammad-nabi-bat",
@@ -9148,7 +9163,7 @@
       "name": "Mohammad Nabi",
       "nation": "Afghanistan",
       "tier": "Silver",
-      "description": "Veteran all-rounder. Experienced middle order. Smart cricket.",
+      "description": "Right-handed veteran all-rounder (batter card; Bronze off-spin bowler split below). Smart middle-order, sweeps and works.",
       "strengths": [
         {
           "zone": {
@@ -9176,17 +9191,6 @@
       "neutrals": [
         {
           "zone": {
-            "line": "Middle stump",
-            "length": "Good length"
-          },
-          "outcome": {
-            "type": "runs",
-            "value": 2,
-            "shot": "push"
-          }
-        },
-        {
-          "zone": {
             "line": "Leg stump",
             "length": "Good length"
           },
@@ -9200,7 +9204,7 @@
       "weaknesses": [
         {
           "zone": {
-            "line": "Off stump",
+            "line": "Outside off",
             "length": "Good length"
           },
           "outcome": {
@@ -9217,9 +9221,23 @@
             "type": "wicket",
             "mode": "bowled"
           }
+        },
+        {
+          "zone": {
+            "line": "Middle stump",
+            "length": "Good length"
+          },
+          "outcome": {
+            "type": "wicket",
+            "mode": "LBW"
+          }
         }
       ],
-      "resistances": []
+      "resistances": [
+        "Topspin",
+        "Drift",
+        "Carrom"
+      ]
     },
     {
       "id": "najibullah-zadran-bat",
@@ -9227,7 +9245,7 @@
       "name": "Najibullah Zadran",
       "nation": "Afghanistan",
       "tier": "Silver",
-      "description": "Left-handed power hitter. Leg-side dominant.",
+      "description": "Left-handed leg-side power hitter. T20I regular.",
       "strengths": [
         {
           "zone": {
@@ -9260,8 +9278,316 @@
           },
           "outcome": {
             "type": "runs",
+            "value": 1,
+            "shot": "flick"
+          }
+        }
+      ],
+      "weaknesses": [
+        {
+          "zone": {
+            "line": "Outside off",
+            "length": "Good length"
+          },
+          "outcome": {
+            "type": "wicket",
+            "mode": "beaten"
+          }
+        },
+        {
+          "zone": {
+            "line": "Outside off",
+            "length": "Short"
+          },
+          "outcome": {
+            "type": "wicket",
+            "mode": "caught at point"
+          }
+        },
+        {
+          "zone": {
+            "line": "Off stump",
+            "length": "Good length"
+          },
+          "outcome": {
+            "type": "wicket",
+            "mode": "edge to slip"
+          }
+        }
+      ],
+      "resistances": [
+        "Topspin",
+        "Carrom",
+        "Drift"
+      ]
+    },
+    {
+      "id": "azmatullah-omarzai-bat",
+      "kind": "batsman",
+      "name": "Azmatullah Omarzai",
+      "nation": "Afghanistan",
+      "tier": "Silver",
+      "description": "Right-handed all-rounder (batter card; Silver bowler split below). T20 WC 2024 staple (158 runs SR 132). Clean ball striker.",
+      "strengths": [
+        {
+          "zone": {
+            "line": "Leg stump",
+            "length": "Full"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 6,
+            "shot": "slog"
+          }
+        },
+        {
+          "zone": {
+            "line": "Middle stump",
+            "length": "Full"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 4,
+            "shot": "loft"
+          }
+        }
+      ],
+      "neutrals": [
+        {
+          "zone": {
+            "line": "Middle stump",
+            "length": "Good length"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 1,
+            "shot": "push"
+          }
+        }
+      ],
+      "weaknesses": [
+        {
+          "zone": {
+            "line": "Outside off",
+            "length": "Good length"
+          },
+          "outcome": {
+            "type": "wicket",
+            "mode": "beaten"
+          }
+        },
+        {
+          "zone": {
+            "line": "Off stump",
+            "length": "Full"
+          },
+          "outcome": {
+            "type": "wicket",
+            "mode": "caught at cover"
+          }
+        },
+        {
+          "zone": {
+            "line": "Outside off",
+            "length": "Short"
+          },
+          "outcome": {
+            "type": "wicket",
+            "mode": "top edge"
+          }
+        }
+      ],
+      "resistances": [
+        "Slower",
+        "Topspin"
+      ]
+    },
+    {
+      "id": "sediqullah-atal-bat",
+      "kind": "batsman",
+      "name": "Sediqullah Atal",
+      "nation": "Afghanistan",
+      "tier": "Bronze",
+      "description": "Young right-handed opener, recent T20I caps. Aggressive but raw.",
+      "strengths": [
+        {
+          "zone": {
+            "line": "Middle stump",
+            "length": "Full"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 4,
+            "shot": "loft"
+          }
+        }
+      ],
+      "neutrals": [
+        {
+          "zone": {
+            "line": "Leg stump",
+            "length": "Good length"
+          },
+          "outcome": {
+            "type": "runs",
             "value": 2,
             "shot": "flick"
+          }
+        },
+        {
+          "zone": {
+            "line": "Middle stump",
+            "length": "Short"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 1,
+            "shot": "pull"
+          }
+        }
+      ],
+      "weaknesses": [
+        {
+          "zone": {
+            "line": "Off stump",
+            "length": "Good length"
+          },
+          "outcome": {
+            "type": "wicket",
+            "mode": "bowled"
+          }
+        },
+        {
+          "zone": {
+            "line": "Off stump",
+            "length": "Full"
+          },
+          "outcome": {
+            "type": "wicket",
+            "mode": "edge"
+          }
+        },
+        {
+          "zone": {
+            "line": "Middle stump",
+            "length": "Good length"
+          },
+          "outcome": {
+            "type": "wicket",
+            "mode": "LBW"
+          }
+        }
+      ],
+      "resistances": []
+    },
+    {
+      "id": "mohammad-shahzad-bat",
+      "kind": "batsman",
+      "name": "Mohammad Shahzad",
+      "nation": "Afghanistan",
+      "tier": "Bronze",
+      "description": "Mid-2010s legend. Flamboyant right-handed keeper-bat, 80+ T20Is for AFG, retired ~2020. Slog-or-out Bronze archetype — clears the rope or holes out.",
+      "strengths": [
+        {
+          "zone": {
+            "line": "Leg stump",
+            "length": "Full"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 6,
+            "shot": "slog"
+          }
+        }
+      ],
+      "neutrals": [
+        {
+          "zone": {
+            "line": "Middle stump",
+            "length": "Short"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 2,
+            "shot": "pull"
+          }
+        },
+        {
+          "zone": {
+            "line": "Off stump",
+            "length": "Full"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 1,
+            "shot": "drive"
+          }
+        }
+      ],
+      "weaknesses": [
+        {
+          "zone": {
+            "line": "Outside off",
+            "length": "Good length"
+          },
+          "outcome": {
+            "type": "wicket",
+            "mode": "edge to keeper"
+          }
+        },
+        {
+          "zone": {
+            "line": "Middle stump",
+            "length": "Good length"
+          },
+          "outcome": {
+            "type": "wicket",
+            "mode": "bowled"
+          }
+        },
+        {
+          "zone": {
+            "line": "Off stump",
+            "length": "Good length"
+          },
+          "outcome": {
+            "type": "wicket",
+            "mode": "caught at cover"
+          }
+        }
+      ],
+      "resistances": []
+    },
+    {
+      "id": "gulbadin-naib-bat",
+      "kind": "batsman",
+      "name": "Gulbadin Naib",
+      "nation": "Afghanistan",
+      "tier": "Bronze",
+      "description": "Right-handed veteran all-rounder (batter card; Bronze medium-pace bowler split below). Past his prime but still in T20I plans.",
+      "strengths": [
+        {
+          "zone": {
+            "line": "Leg stump",
+            "length": "Full"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 4,
+            "shot": "slog"
+          }
+        }
+      ],
+      "neutrals": [
+        {
+          "zone": {
+            "line": "Leg stump",
+            "length": "Good length"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 2,
+            "shot": "work"
           }
         },
         {
@@ -9279,22 +9605,110 @@
       "weaknesses": [
         {
           "zone": {
-            "line": "Off stump",
+            "line": "Outside off",
             "length": "Good length"
           },
           "outcome": {
             "type": "wicket",
-            "mode": "beaten"
+            "mode": "edge"
           }
         },
         {
           "zone": {
-            "line": "Off stump",
+            "line": "Middle stump",
             "length": "Short"
           },
           "outcome": {
             "type": "wicket",
             "mode": "caught"
+          }
+        },
+        {
+          "zone": {
+            "line": "Middle stump",
+            "length": "Full"
+          },
+          "outcome": {
+            "type": "wicket",
+            "mode": "bowled"
+          }
+        }
+      ],
+      "resistances": []
+    },
+    {
+      "id": "karim-janat-bat",
+      "kind": "batsman",
+      "name": "Karim Janat",
+      "nation": "Afghanistan",
+      "tier": "Bronze",
+      "description": "Right-handed all-rounder (batter card; Bronze medium-fast bowler split below). Current T20I middle-order.",
+      "strengths": [
+        {
+          "zone": {
+            "line": "Leg stump",
+            "length": "Short"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 4,
+            "shot": "pull"
+          }
+        }
+      ],
+      "neutrals": [
+        {
+          "zone": {
+            "line": "Leg stump",
+            "length": "Full"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 2,
+            "shot": "flick"
+          }
+        },
+        {
+          "zone": {
+            "line": "Leg stump",
+            "length": "Good length"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 1,
+            "shot": "work"
+          }
+        }
+      ],
+      "weaknesses": [
+        {
+          "zone": {
+            "line": "Off stump",
+            "length": "Good length"
+          },
+          "outcome": {
+            "type": "wicket",
+            "mode": "bowled"
+          }
+        },
+        {
+          "zone": {
+            "line": "Middle stump",
+            "length": "Good length"
+          },
+          "outcome": {
+            "type": "wicket",
+            "mode": "LBW"
+          }
+        },
+        {
+          "zone": {
+            "line": "Off stump",
+            "length": "Full"
+          },
+          "outcome": {
+            "type": "wicket",
+            "mode": "caught at cover"
           }
         }
       ],
@@ -9305,8 +9719,8 @@
       "kind": "batsman",
       "name": "Darwish Rasooli",
       "nation": "Afghanistan",
-      "tier": "Silver",
-      "description": "Young middle order. Developing talent with potential.",
+      "tier": "Bronze",
+      "description": "Young right-handed middle-order, developing talent.",
       "strengths": [
         {
           "zone": {
@@ -9317,17 +9731,6 @@
             "type": "runs",
             "value": 4,
             "shot": "drive"
-          }
-        },
-        {
-          "zone": {
-            "line": "Leg stump",
-            "length": "Full"
-          },
-          "outcome": {
-            "type": "runs",
-            "value": 4,
-            "shot": "flick"
           }
         }
       ],
@@ -9368,299 +9771,7 @@
         },
         {
           "zone": {
-            "line": "Off stump",
-            "length": "Good length"
-          },
-          "outcome": {
-            "type": "wicket",
-            "mode": "edge"
-          }
-        }
-      ],
-      "resistances": []
-    },
-    {
-      "id": "sediqullah-atal-bat",
-      "kind": "batsman",
-      "name": "Sediqullah Atal",
-      "nation": "Afghanistan",
-      "tier": "Bronze",
-      "description": "Young opener. Aggressive but raw.",
-      "strengths": [
-        {
-          "zone": {
-            "line": "Middle stump",
-            "length": "Full"
-          },
-          "outcome": {
-            "type": "runs",
-            "value": 4,
-            "shot": "loft"
-          }
-        }
-      ],
-      "neutrals": [
-        {
-          "zone": {
-            "line": "Leg stump",
-            "length": "Good length"
-          },
-          "outcome": {
-            "type": "runs",
-            "value": 2,
-            "shot": "flick"
-          }
-        },
-        {
-          "zone": {
-            "line": "Middle stump",
-            "length": "Short"
-          },
-          "outcome": {
-            "type": "runs",
-            "value": 1,
-            "shot": "pull"
-          }
-        }
-      ],
-      "weaknesses": [
-        {
-          "zone": {
-            "line": "Off stump",
-            "length": "Good length"
-          },
-          "outcome": {
-            "type": "wicket",
-            "mode": "bowled"
-          }
-        },
-        {
-          "zone": {
-            "line": "Off stump",
-            "length": "Full"
-          },
-          "outcome": {
-            "type": "wicket",
-            "mode": "edge"
-          }
-        },
-        {
-          "zone": {
-            "line": "Middle stump",
-            "length": "Good length"
-          },
-          "outcome": {
-            "type": "wicket",
-            "mode": "LBW"
-          }
-        }
-      ],
-      "resistances": []
-    },
-    {
-      "id": "shahidullah-kamal-bat",
-      "kind": "batsman",
-      "name": "Shahidullah Kamal",
-      "nation": "Afghanistan",
-      "tier": "Bronze",
-      "description": "Domestic middle order. Limited.",
-      "strengths": [
-        {
-          "zone": {
-            "line": "Leg stump",
-            "length": "Full"
-          },
-          "outcome": {
-            "type": "runs",
-            "value": 4,
-            "shot": "sweep"
-          }
-        }
-      ],
-      "neutrals": [
-        {
-          "zone": {
-            "line": "Leg stump",
-            "length": "Good length"
-          },
-          "outcome": {
-            "type": "runs",
-            "value": 2,
-            "shot": "nudge"
-          }
-        },
-        {
-          "zone": {
-            "line": "Middle stump",
-            "length": "Good length"
-          },
-          "outcome": {
-            "type": "runs",
-            "value": 1,
-            "shot": "push"
-          }
-        }
-      ],
-      "weaknesses": [
-        {
-          "zone": {
-            "line": "Off stump",
-            "length": "Good length"
-          },
-          "outcome": {
-            "type": "wicket",
-            "mode": "beaten"
-          }
-        },
-        {
-          "zone": {
-            "line": "Off stump",
-            "length": "Short"
-          },
-          "outcome": {
-            "type": "wicket",
-            "mode": "caught"
-          }
-        },
-        {
-          "zone": {
-            "line": "Middle stump",
-            "length": "Full"
-          },
-          "outcome": {
-            "type": "wicket",
-            "mode": "bowled"
-          }
-        }
-      ],
-      "resistances": []
-    },
-    {
-      "id": "mohammad-ishaq-bat",
-      "kind": "batsman",
-      "name": "Mohammad Ishaq",
-      "nation": "Afghanistan",
-      "tier": "Bronze",
-      "description": "Domestic bat. Lower order quality.",
-      "strengths": [
-        {
-          "zone": {
-            "line": "Leg stump",
-            "length": "Short"
-          },
-          "outcome": {
-            "type": "runs",
-            "value": 4,
-            "shot": "pull"
-          }
-        }
-      ],
-      "neutrals": [
-        {
-          "zone": {
-            "line": "Leg stump",
-            "length": "Full"
-          },
-          "outcome": {
-            "type": "runs",
-            "value": 2,
-            "shot": "flick"
-          }
-        },
-        {
-          "zone": {
-            "line": "Leg stump",
-            "length": "Good length"
-          },
-          "outcome": {
-            "type": "runs",
-            "value": 1,
-            "shot": "work"
-          }
-        }
-      ],
-      "weaknesses": [
-        {
-          "zone": {
-            "line": "Off stump",
-            "length": "Good length"
-          },
-          "outcome": {
-            "type": "wicket",
-            "mode": "bowled"
-          }
-        },
-        {
-          "zone": {
-            "line": "Middle stump",
-            "length": "Good length"
-          },
-          "outcome": {
-            "type": "wicket",
-            "mode": "LBW"
-          }
-        },
-        {
-          "zone": {
-            "line": "Off stump",
-            "length": "Full"
-          },
-          "outcome": {
-            "type": "wicket",
-            "mode": "caught"
-          }
-        }
-      ],
-      "resistances": []
-    },
-    {
-      "id": "gulbadin-naib-bat",
-      "kind": "batsman",
-      "name": "Gulbadin Naib",
-      "nation": "Afghanistan",
-      "tier": "Bronze",
-      "description": "All-rounder veteran. Past his prime.",
-      "strengths": [
-        {
-          "zone": {
-            "line": "Leg stump",
-            "length": "Full"
-          },
-          "outcome": {
-            "type": "runs",
-            "value": 4,
-            "shot": "slog"
-          }
-        }
-      ],
-      "neutrals": [
-        {
-          "zone": {
-            "line": "Leg stump",
-            "length": "Good length"
-          },
-          "outcome": {
-            "type": "runs",
-            "value": 2,
-            "shot": "work"
-          }
-        },
-        {
-          "zone": {
-            "line": "Middle stump",
-            "length": "Good length"
-          },
-          "outcome": {
-            "type": "runs",
-            "value": 1,
-            "shot": "push"
-          }
-        }
-      ],
-      "weaknesses": [
-        {
-          "zone": {
-            "line": "Off stump",
+            "line": "Outside off",
             "length": "Good length"
           },
           "outcome": {
@@ -9671,99 +9782,11 @@
         {
           "zone": {
             "line": "Middle stump",
-            "length": "Short"
-          },
-          "outcome": {
-            "type": "wicket",
-            "mode": "caught"
-          }
-        },
-        {
-          "zone": {
-            "line": "Middle stump",
             "length": "Full"
           },
           "outcome": {
             "type": "wicket",
             "mode": "bowled"
-          }
-        }
-      ],
-      "resistances": []
-    },
-    {
-      "id": "abdullah-ahmadzai-bat",
-      "kind": "batsman",
-      "name": "Abdullah Ahmadzai",
-      "nation": "Afghanistan",
-      "tier": "Bronze",
-      "description": "Young talent. Domestic level.",
-      "strengths": [
-        {
-          "zone": {
-            "line": "Off stump",
-            "length": "Full"
-          },
-          "outcome": {
-            "type": "runs",
-            "value": 4,
-            "shot": "drive"
-          }
-        }
-      ],
-      "neutrals": [
-        {
-          "zone": {
-            "line": "Middle stump",
-            "length": "Good length"
-          },
-          "outcome": {
-            "type": "runs",
-            "value": 2,
-            "shot": "push"
-          }
-        },
-        {
-          "zone": {
-            "line": "Leg stump",
-            "length": "Good length"
-          },
-          "outcome": {
-            "type": "runs",
-            "value": 1,
-            "shot": "nudge"
-          }
-        }
-      ],
-      "weaknesses": [
-        {
-          "zone": {
-            "line": "Off stump",
-            "length": "Good length"
-          },
-          "outcome": {
-            "type": "wicket",
-            "mode": "edge"
-          }
-        },
-        {
-          "zone": {
-            "line": "Off stump",
-            "length": "Short"
-          },
-          "outcome": {
-            "type": "wicket",
-            "mode": "caught at point"
-          }
-        },
-        {
-          "zone": {
-            "line": "Middle stump",
-            "length": "Good length"
-          },
-          "outcome": {
-            "type": "wicket",
-            "mode": "LBW"
           }
         }
       ],
@@ -12483,12 +12506,15 @@
       "name": "Rashid Khan",
       "nation": "Afghanistan",
       "tier": "Elite",
-      "description": "Greatest T20 bowler alive. Legspin with lethal googly. Unreadable.",
+      "description": "Greatest T20 bowler alive. Right-arm leg-spin with a lethal disguised googly and skiddy quicker one. Two-skill Elite per the v1.1 rule.",
       "delivery": {
         "line": "Middle stump",
         "length": "Good length"
       },
-      "adjectives": [],
+      "adjectives": [
+        "Googly",
+        "Topspin"
+      ],
       "fielding": [
         "Short leg/Silly point",
         "Slip cordon"
@@ -12500,7 +12526,7 @@
       "name": "Fazalhaq Farooqi",
       "nation": "Afghanistan",
       "tier": "Gold",
-      "description": "Left-arm quick. Swings it, takes powerplay wickets. T20 WC 2024 leading wicket-taker.",
+      "description": "Left-arm quick. T20 WC 2024 leading wicket-taker (17). Powerplay inswing specialist. Faces Gold tier wide-call risk on Outside off (15%).",
       "delivery": {
         "line": "Outside off",
         "length": "Full"
@@ -12513,37 +12539,37 @@
       ]
     },
     {
-      "id": "naveen-ul-haq-bowl",
+      "id": "mujeeb-ur-rahman-bowl",
       "kind": "bowler",
-      "name": "Naveen-ul-Haq",
+      "name": "Mujeeb Ur Rahman",
       "nation": "Afghanistan",
       "tier": "Gold",
-      "description": "Smart seamer. Good length with seam. Death overs specialist.",
+      "description": "Right-handed mystery off-spinner with the carrom ball. IPL star, was world's youngest international debutant.",
       "delivery": {
         "line": "Off stump",
         "length": "Good length"
       },
       "adjectives": [
-        "Seam"
+        "Carrom"
       ],
       "fielding": [
-        "Gully/Point"
+        "Slip cordon"
       ]
     },
     {
-      "id": "mujeeb-ur-rahman-bowl",
+      "id": "naveen-ul-haq-bowl",
       "kind": "bowler",
-      "name": "Mujeeb Ur Rahman",
+      "name": "Naveen-ul-Haq",
       "nation": "Afghanistan",
       "tier": "Silver",
-      "description": "Mystery spinner. Carrom ball and googly.",
+      "description": "Right-arm slingy seamer. KKR IPL pick, death-overs operator.",
       "delivery": {
         "line": "Off stump",
         "length": "Good length"
       },
       "adjectives": [],
       "fielding": [
-        "Slip cordon"
+        "Cover"
       ]
     },
     {
@@ -12552,7 +12578,7 @@
       "name": "Noor Ahmad",
       "nation": "Afghanistan",
       "tier": "Silver",
-      "description": "Young left-arm wrist spinner. Exceptional talent.",
+      "description": "Young left-arm wrist spinner. KKR IPL star — loses the skill chip at Silver per v1.1.",
       "delivery": {
         "line": "Middle stump",
         "length": "Good length"
@@ -12568,14 +12594,14 @@
       "name": "Azmatullah Omarzai",
       "nation": "Afghanistan",
       "tier": "Silver",
-      "description": "Medium-fast all-rounder. Hits the deck.",
+      "description": "Right-arm medium-fast all-rounder (bowler split — Silver batter above). Hits the deck with seam, but no skill chip at Silver.",
       "delivery": {
-        "line": "Off stump",
+        "line": "Leg stump",
         "length": "Good length"
       },
       "adjectives": [],
       "fielding": [
-        "Gully/Point"
+        "Mid-wicket"
       ]
     },
     {
@@ -12584,7 +12610,7 @@
       "name": "Mohammad Nabi",
       "nation": "Afghanistan",
       "tier": "Bronze",
-      "description": "Off-spin veteran. Economical, wise.",
+      "description": "Right-arm off-spin veteran (all-rounder split — Silver batter above). Economical, wise.",
       "delivery": {
         "line": "Off stump",
         "length": "Good length"
@@ -12600,7 +12626,7 @@
       "name": "Gulbadin Naib",
       "nation": "Afghanistan",
       "tier": "Bronze",
-      "description": "Medium pace all-rounder. Fills overs.",
+      "description": "Right-arm medium pace (all-rounder split — Bronze batter above). Fills overs.",
       "delivery": {
         "line": "Middle stump",
         "length": "Good length"
@@ -12616,7 +12642,7 @@
       "name": "AM Ghazanfar",
       "nation": "Afghanistan",
       "tier": "Bronze",
-      "description": "Young off-spinner. Mystery variations.",
+      "description": "Young right-arm off-spinner.",
       "delivery": {
         "line": "Off stump",
         "length": "Good length"
@@ -12627,19 +12653,19 @@
       ]
     },
     {
-      "id": "fazal-haq-bowl",
+      "id": "karim-janat-bowl",
       "kind": "bowler",
-      "name": "Fazal Haq",
+      "name": "Karim Janat",
       "nation": "Afghanistan",
       "tier": "Bronze",
-      "description": "Young seamer. Domestic level.",
+      "description": "Right-arm medium-fast (all-rounder split — Bronze batter above). Death-overs cutter style.",
       "delivery": {
-        "line": "Middle stump",
-        "length": "Good length"
+        "line": "Off stump",
+        "length": "Full"
       },
       "adjectives": [],
       "fielding": [
-        "Mid-wicket"
+        "Cover"
       ]
     },
     {
@@ -12648,7 +12674,7 @@
       "name": "Yamin Ahmadzai",
       "nation": "Afghanistan",
       "tier": "Bronze",
-      "description": "Medium-fast. Good length, nothing special.",
+      "description": "Right-arm medium-fast.",
       "delivery": {
         "line": "Off stump",
         "length": "Good length"
