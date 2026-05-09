@@ -1,0 +1,50 @@
+# ───────────────────────────────────────────────────────────────────────────
+# Swipe Sixer — Fly.io app config
+#
+# This file tells `fly deploy` how to run the Docker image:
+#   - Where to host (region)
+#   - What port the app listens on
+#   - How Fly should health-check it
+#   - VM size (free tier limits: 3× shared-cpu-1x with 256MB)
+#
+# Change `app` below to the name you pick during `fly launch`. Region can
+# stay `iad` (US East — Virginia) or change to one closer to your players.
+# Full region list: https://fly.io/docs/reference/regions/
+# ───────────────────────────────────────────────────────────────────────────
+
+app = "swipe-sixer"             # Globally unique. Edit this if taken.
+primary_region = "iad"          # iad = US East. See link above for others.
+
+[build]
+  # Default: Fly looks for ./Dockerfile. No override needed.
+
+[env]
+  # NODE_ENV=production is also set in the Dockerfile but stating it here
+  # makes the intent visible from the Fly side too.
+  NODE_ENV = "production"
+
+[http_service]
+  # Container listens on 8080 (Dockerfile sets PORT=8080).
+  internal_port = 8080
+  force_https = true
+  # Free tier: keep at least one VM warm so the first connection isn't slow.
+  # auto_stop = false means VMs don't suspend after idle.
+  auto_stop_machines = false
+  auto_start_machines = true
+  min_machines_running = 1
+  processes = ["app"]
+
+  [[http_service.checks]]
+    # Healthcheck hits /health (already implemented in server/src/index.ts).
+    grace_period = "10s"
+    interval = "30s"
+    method = "GET"
+    timeout = "5s"
+    path = "/health"
+
+[[vm]]
+  # Free-tier eligible size. Bump to shared-cpu-2x or 1gb if traffic grows.
+  size = "shared-cpu-1x"
+  memory = "256mb"
+  cpu_kind = "shared"
+  cpus = 1

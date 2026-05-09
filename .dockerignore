@@ -1,0 +1,37 @@
+# Files NOT to ship to the Docker build context. Smaller context = faster
+# `fly deploy` (less to upload to Fly's remote builder).
+
+# Dependencies — re-installed inside the image
+node_modules
+*/node_modules
+
+# Build artifacts — regenerated inside the image
+dist
+*/dist
+*.tsbuildinfo
+*/*.tsbuildinfo
+
+# Local dev / version control
+.git
+.gitignore
+.github
+.vscode
+.idea
+.DS_Store
+
+# Claude Code worktrees and session state (this directory itself
+# may be a worktree under .claude/worktrees/, so exclude defensively)
+.claude
+
+# Environment / secrets — should never be in an image
+.env
+.env.*
+
+# Editor / OS noise
+*.log
+*.swp
+Thumbs.db
+
+# Fly's own metadata (created by `fly launch`)
+.fly
+fly.toml.bak

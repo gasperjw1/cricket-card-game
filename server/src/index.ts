@@ -1,4 +1,6 @@
 import { createServer } from "node:http";
+import { dirname, join, resolve } from "node:path";
+import { fileURLToPath } from "node:url";
 import cors from "cors";
 import express from "express";
 import { Server } from "socket.io";
@@ -23,7 +25,12 @@ import {
 import { MatchRegistry, type ServerMatch } from "./match-registry.js";
 
 const PORT = Number(process.env.PORT ?? 3001);
-const CLIENT_ORIGIN = process.env.CLIENT_ORIGIN ?? "http://localhost:5173";
+const isProduction = process.env.NODE_ENV === "production";
+// In production we serve the client from the same origin, so CORS is moot.
+// In dev, Vite runs on a different port so CORS must allow it.
+const CLIENT_ORIGIN = isProduction
+  ? true // reflect request origin (same-origin in prod anyway)
+  : (process.env.CLIENT_ORIGIN ?? "http://localhost:5173");
 
 const app = express();
 app.use(cors({ origin: CLIENT_ORIGIN }));
@@ -39,6 +46,23 @@ app.get("/health", (_req, res) => {
     },
   });
 });
+
+// In production, serve the built Vite client from the same origin.
+// Resolves to /app/client/dist inside the Docker image (server runs from
+// /app/server/dist/index.js → ../../client/dist).
+if (isProduction) {
+  const __dirname = dirname(fileURLToPath(import.meta.url));
+  const STATIC_DIR = process.env.STATIC_DIR
+    ? resolve(process.env.STATIC_DIR)
+    : resolve(__dirname, "../../client/dist");
+  app.use(express.static(STATIC_DIR));
+  // SPA fallback — any unrecognised GET returns index.html so the React app
+  // boots and renders. Keep this AFTER /health and any future REST routes.
+  app.get("*", (_req, res) => {
+    res.sendFile(join(STATIC_DIR, "index.html"));
+  });
+  console.log(`[server] serving static client from ${STATIC_DIR}`);
+}
 
 const httpServer = createServer(app);
 const io = new Server<ClientToServerEvents, ServerToClientEvents>(httpServer, {
