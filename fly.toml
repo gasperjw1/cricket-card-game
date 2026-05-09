@@ -12,7 +12,7 @@
 # Full region list: https://fly.io/docs/reference/regions/
 # ───────────────────────────────────────────────────────────────────────────
 
-app = "swipe-sixer"             # Globally unique. Edit this if taken.
+app = "cricket-card-game"       # Globally unique. Edit if you change it on Fly.
 primary_region = "iad"          # iad = US East. See link above for others.
 
 [build]
