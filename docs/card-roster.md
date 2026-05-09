@@ -1180,120 +1180,123 @@ Everything not listed = dot ball. Weaknesses are zone-only (no adjective referen
 
 ## BATSMEN
 
-### ELITE — Shakib Al Hasan
-*All-time great all-rounder. Sweeps and drives. Plays spin as well as anyone.*
-- **Strengths:** Full leg stump → sweep for 6 | Good length off stump → cut for 4 | Full off stump → drive for 4
-- **Neutrals:** Good length middle stump → push for 2 | Good length leg stump → work for 1
-- **Weaknesses:** Short off stump → caught at gully
-- **Resistances:** Spin, Cutter
-
-### GOLD — Litton Das
-*Aggressive keeper-bat. Pulls and drives. Inconsistent but explosive.*
+### ELITE — Litton Das
+*Right-handed keeper-bat. Brief world #1 T20I ranking moment in 2022; remains BAN's most explosive top-order option. Pulls, drives, sweeps; reads spin and pace equally — only the moving ball outside off troubles him.*
 - **Strengths:** Short middle stump → pull for 6 | Full off stump → drive for 4 | Full leg stump → flick for 4
 - **Neutrals:** Good length leg stump → work for 2 | Good length middle stump → push for 1
-- **Weaknesses:** Good length off stump → edge to slip
-- **Resistances:** Spin
+- **Weaknesses:** Good length Outside off → edge to slip
+- **Resistances:** Topspin, Drift, Googly, Carrom, Slower, Cutter, Seam
+
+### GOLD — Shakib Al Hasan
+*Left-handed all-time great all-rounder (batter card; Gold bowler split below). Sweeps and drives, plays spin as well as anyone in the modern game. Retired from internationals 2024; still active in T20 leagues.*
+- **Strengths:** Full leg stump → sweep for 6 | Good length off stump → cut for 4
+- **Neutrals:** Full off stump → drive for 2 | Good length middle stump → push for 1
+- **Weaknesses:** Short Outside off → caught at gully | Good length leg stump → LBW going across
+- **Resistances:** Topspin, Drift, Carrom, Googly
 
 ### GOLD — Towhid Hridoy
-*Young middle order talent. Clean striker, improving fast.*
-- **Strengths:** Full leg stump → flick for 4 | Full middle stump → loft for 4 | Short middle stump → pull for 4
+*Right-handed rising middle-order. SR 130+ across recent T20Is. Clean striker, improving fast — pulls and lofts; vulnerable around off stump.*
+- **Strengths:** Full leg stump → flick for 4 | Short middle stump → pull for 6
 - **Neutrals:** Good length middle stump → push for 2 | Good length leg stump → work for 1
-- **Weaknesses:** Full off stump → caught at cover
-- **Resistances:** Pace
+- **Weaknesses:** Full Outside off → caught at cover | Good length Outside off → edge to slip
+- **Resistances:** Slower, Cutter, Topspin, Drift, Carrom
 
 ### SILVER — Najmul Hossain Shanto
-*Left-handed top order. Elegant but inconsistent at T20I level.*
+*Current BAN T20I captain. Left-handed top-order, elegant but inconsistent at the international level. Drives and sweeps; struggles around off stump.*
 - **Strengths:** Full off stump → drive for 4 | Full leg stump → sweep for 4
-- **Neutrals:** Good length middle stump → push for 2 | Good length leg stump → work for 1
-- **Weaknesses:** Short middle stump → top edge | Good length off stump → edge
+- **Neutrals:** Good length leg stump → work for 1
+- **Weaknesses:** Short middle stump → top edge | Good length Outside off → edge to keeper | Good length middle stump → bowled
+- **Resistances:** Topspin, Drift, Carrom
+
+### SILVER — Tamim Iqbal
+*Left-handed legend. BAN's all-time T20I top scorer, retired internationally 2023. Anchor opener with classic technique — drives and flicks; vulnerable to short pace and the ball into the pads.*
+- **Strengths:** Full off stump → drive for 4 | Good length leg stump → flick for 4
+- **Neutrals:** Good length off stump → push for 1
+- **Weaknesses:** Short middle stump → caught fending | Good length middle stump → LBW playing across | Full middle stump → bowled
+- **Resistances:** Topspin, Carrom, Slower
 
 ### SILVER — Soumya Sarkar
-*Left-handed opener. Goes hard with the new ball.*
+*Left-handed opener (batter card; Bronze bowler split below). Goes hard with the new ball — explosive when set, falls early when not.*
 - **Strengths:** Full off stump → loft for 4 | Short middle stump → pull for 4
-- **Neutrals:** Good length leg stump → flick for 2 | Full leg stump → sweep for 1
-- **Weaknesses:** Good length middle stump → bowled across | Full middle stump → LBW
-
-### SILVER — Afif Hossain
-*Left-handed all-rounder. Finisher role. Sweeps well.*
-- **Strengths:** Full leg stump → sweep for 6 | Good length leg stump → flick for 4
-- **Neutrals:** Good length middle stump → push for 2 | Full middle stump → drive for 1
-- **Weaknesses:** Good length off stump → beaten | Short off stump → caught behind
+- **Neutrals:** Good length leg stump → flick for 1
+- **Weaknesses:** Good length middle stump → bowled across | Full middle stump → LBW | Good length Outside off → edge to slip
+- **Resistances:** Topspin, Drift
 
 ### BRONZE — Mushfiqur Rahim
-*Veteran keeper-bat. Anchor, lacking T20 power now.*
+*Right-handed veteran keeper-bat. Anchor type, lacking T20 power now.*
 - **Strengths:** Full off stump → drive for 4
 - **Neutrals:** Good length middle stump → defend for 2 | Good length off stump → push for 1
-- **Weaknesses:** Short middle stump → gloves to keeper | Full leg stump → LBW | Good length leg stump → flicks in air
+- **Weaknesses:** Short middle stump → gloves to keeper | Full leg stump → LBW | Good length leg stump → flicks in air to midwicket
 
-### BRONZE — Sabbir Rahman
-*Domestic power hitter. Flashy but unreliable.*
+### BRONZE — Mahmudullah Riyad
+*Right-handed veteran finisher. T20 WC 2024 squad. Cool head at the death — slogs over midwicket, lofts straight; struggles vs the moving ball outside off.*
 - **Strengths:** Full leg stump → slog for 6
-- **Neutrals:** Good length leg stump → work for 2 | Short middle stump → pull for 1
-- **Weaknesses:** Good length off stump → bowled | Full off stump → edge to slip | Good length middle stump → LBW
+- **Neutrals:** Short middle stump → pull for 2 | Full middle stump → loft for 1
+- **Weaknesses:** Good length Outside off → edge to slip | Good length middle stump → LBW | Full off stump → caught at cover
 
 ### BRONZE — Mehidy Hasan Miraz
-*Off-spinning all-rounder. Lower order bat.*
+*Right-handed off-spinning all-rounder (batter card; Silver bowler split below). Lower-order bat — sweeps and works.*
 - **Strengths:** Full leg stump → sweep for 4
 - **Neutrals:** Good length leg stump → nudge for 2 | Good length middle stump → push for 1
-- **Weaknesses:** Good length off stump → bowled | Short off stump → caught at point | Full middle stump → mis-hit
+- **Weaknesses:** Good length off stump → bowled | Short Outside off → caught at point | Full middle stump → mistimed loft
 
-### BRONZE — Nasum Ahmed
-*Left-arm spinner. Tailender with bat.*
-- **Strengths:** Short middle stump → pull for 4
-- **Neutrals:** Full leg stump → sweep for 2 | Good length leg stump → nudge for 1
-- **Weaknesses:** Good length off stump → bowled | Full off stump → caught | Good length middle stump → LBW
+### BRONZE — Afif Hossain
+*Left-handed all-rounder. Current form has dropped him from Silver — sweeps and finishes when set; falls early when not.*
+- **Strengths:** Full leg stump → sweep for 6
+- **Neutrals:** Good length leg stump → flick for 2 | Full middle stump → drive for 1
+- **Weaknesses:** Good length Outside off → beaten | Short Outside off → caught behind | Good length middle stump → bowled
 
 ### BRONZE — Rishad Hossain
-*Young legspinner. Can bat a bit, nothing special.*
+*Right-handed leg-spinning all-rounder (batter card; Silver bowler split below). Tail-ender bat — slogs when he can.*
 - **Strengths:** Full leg stump → slog for 4
 - **Neutrals:** Good length leg stump → work for 2 | Full middle stump → push for 1
-- **Weaknesses:** Good length off stump → beaten | Short middle stump → caught | Good length middle stump → bowled
+- **Weaknesses:** Good length Outside off → beaten | Short middle stump → caught | Good length middle stump → bowled
 
 ## BOWLERS
 
 ### ELITE — Mustafizur Rahman
-*Left-arm off-cutter specialist. Good length off stump with devastating cutter.*
-- **Delivery:** Good length off stump | **Adjective:** Cutter (off-cutter) | **Fielding:** Cover + Gully/Point
+*Left-arm off-cutter specialist. IPL star with multiple Purple Cap-tier seasons. Death-overs cutter + signature slower bouncer. Two-skill Elite per the v1.1 rule.*
+- **Delivery:** Good length off stump | **Adjective:** Cutter, Slower | **Fielding:** Cover + Gully/Point
 
 ### GOLD — Taskin Ahmed
-*Quick fast bowler. Bounce and pace. Best Bangladeshi quick.*
-- **Delivery:** Good length off stump | **Adjective:** Pace | **Fielding:** Gully/Point
+*Best current BAN quick. Right-arm pace with bounce, hits the deck hard with seam off the stumps.*
+- **Delivery:** Good length middle stump | **Adjective:** Seam | **Fielding:** Slip cordon
 
 ### GOLD — Shakib Al Hasan
-*Left-arm orthodox legend. Economical and wicket-taking.*
-- **Delivery:** Good length middle stump | **Adjective:** Spin (left-arm orthodox) | **Fielding:** Short leg
+*Left-arm orthodox legend (bowler card; Gold batter split above). Subtle drift away from RH bats with metronomic accuracy.*
+- **Delivery:** Good length leg stump | **Adjective:** Drift | **Fielding:** Cover
 
 ### SILVER — Mehidy Hasan Miraz
-*Off-spinner. Middle overs control.*
-- **Delivery:** Good length off stump | **Adjective:** Spin (offspin) | **Fielding:** Cover
+*Right-arm off-spinner (all-rounder split — Bronze batter above). Middle-overs control bowler.*
+- **Delivery:** Good length off stump | **Fielding:** Cover
 
 ### SILVER — Nahid Rana
-*Raw express pace. 150kph+. Exciting young quick.*
-- **Delivery:** Short off stump | **Adjective:** Pace | **Fielding:** Gully/Point
+*Right-arm raw express pace (150kph+). Exciting young quick attacking the stumps.*
+- **Delivery:** Short middle stump | **Fielding:** Gully/Point
 
 ### SILVER — Rishad Hossain
-*Young legspinner. Gets turn and bounce.*
-- **Delivery:** Good length middle stump | **Adjective:** Spin (legspin) | **Fielding:** Short leg
+*Right-arm leg-spinner (all-rounder split — Bronze batter above). Gets turn and bounce — but no skill chip at the Silver tier.*
+- **Delivery:** Good length middle stump | **Fielding:** Short leg/Silly point
 
 ### BRONZE — Nasum Ahmed
-*Left-arm orthodox. Economical filler.*
-- **Delivery:** Good length leg stump | **Adjective:** Spin (left-arm orthodox) | **Fielding:** Mid-wicket
+*Left-arm orthodox. Economical middle-overs filler.*
+- **Delivery:** Good length leg stump | **Fielding:** Mid-wicket
 
 ### BRONZE — Shoriful Islam
-*Left-arm quick. Developing.*
-- **Delivery:** Full off stump | **Adjective:** Swing (left-arm) | **Fielding:** Slip cordon
+*Left-arm quick. Developing new-ball threat.*
+- **Delivery:** Full off stump | **Fielding:** Slip cordon
 
 ### BRONZE — Hasan Mahmud
-*Young seamer. Good length with seam.*
+*Young right-arm seamer.*
 - **Delivery:** Good length off stump | **Fielding:** Slip cordon
 
 ### BRONZE — Tanzim Hasan Sakib
-*Medium-fast all-rounder.*
+*Right-arm medium-fast. Rising new-ball option.*
 - **Delivery:** Good length middle stump | **Fielding:** Mid-wicket
 
 ### BRONZE — Soumya Sarkar
-*Part-time medium. Emergency option.*
-- **Delivery:** Good length middle stump | **Fielding:** Mid-wicket
+*Part-time right-arm medium (all-rounder split — Silver batter above). Emergency overs.*
+- **Delivery:** Good length middle stump | **Fielding:** Cover
 
 ---
 

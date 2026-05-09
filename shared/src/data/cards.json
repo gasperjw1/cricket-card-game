@@ -7138,12 +7138,100 @@
       "resistances": []
     },
     {
+      "id": "litton-das-bat",
+      "kind": "batsman",
+      "name": "Litton Das",
+      "nation": "Bangladesh",
+      "tier": "Elite",
+      "description": "Right-handed keeper-bat. Brief world #1 T20I ranking moment in 2022; remains BAN's most explosive top-order option. Pulls, drives, sweeps; reads spin and pace equally — only the moving ball outside off troubles him.",
+      "strengths": [
+        {
+          "zone": {
+            "line": "Middle stump",
+            "length": "Short"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 6,
+            "shot": "pull"
+          }
+        },
+        {
+          "zone": {
+            "line": "Off stump",
+            "length": "Full"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 4,
+            "shot": "drive"
+          }
+        },
+        {
+          "zone": {
+            "line": "Leg stump",
+            "length": "Full"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 4,
+            "shot": "flick"
+          }
+        }
+      ],
+      "neutrals": [
+        {
+          "zone": {
+            "line": "Leg stump",
+            "length": "Good length"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 2,
+            "shot": "work"
+          }
+        },
+        {
+          "zone": {
+            "line": "Middle stump",
+            "length": "Good length"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 1,
+            "shot": "push"
+          }
+        }
+      ],
+      "weaknesses": [
+        {
+          "zone": {
+            "line": "Outside off",
+            "length": "Good length"
+          },
+          "outcome": {
+            "type": "wicket",
+            "mode": "edge to slip"
+          }
+        }
+      ],
+      "resistances": [
+        "Topspin",
+        "Drift",
+        "Googly",
+        "Carrom",
+        "Slower",
+        "Cutter",
+        "Seam"
+      ]
+    },
+    {
       "id": "shakib-al-hasan-bat",
       "kind": "batsman",
       "name": "Shakib Al Hasan",
       "nation": "Bangladesh",
-      "tier": "Elite",
-      "description": "All-time great all-rounder. Sweeps and drives. Plays spin as well as anyone.",
+      "tier": "Gold",
+      "description": "Left-handed all-time great all-rounder (batter card; Gold bowler split below). Sweeps and drives, plays spin as well as anyone in the modern game. Retired from internationals 2024; still active in T20 leagues.",
       "strengths": [
         {
           "zone": {
@@ -7166,7 +7254,9 @@
             "value": 4,
             "shot": "cut"
           }
-        },
+        }
+      ],
+      "neutrals": [
         {
           "zone": {
             "line": "Off stump",
@@ -7174,12 +7264,10 @@
           },
           "outcome": {
             "type": "runs",
-            "value": 4,
+            "value": 2,
             "shot": "drive"
           }
-        }
-      ],
-      "neutrals": [
+        },
         {
           "zone": {
             "line": "Middle stump",
@@ -7187,8 +7275,20 @@
           },
           "outcome": {
             "type": "runs",
-            "value": 2,
+            "value": 1,
             "shot": "push"
+          }
+        }
+      ],
+      "weaknesses": [
+        {
+          "zone": {
+            "line": "Outside off",
+            "length": "Short"
+          },
+          "outcome": {
+            "type": "wicket",
+            "mode": "caught at gully"
           }
         },
         {
@@ -7197,36 +7297,37 @@
             "length": "Good length"
           },
           "outcome": {
-            "type": "runs",
-            "value": 1,
-            "shot": "work"
-          }
-        }
-      ],
-      "weaknesses": [
-        {
-          "zone": {
-            "line": "Off stump",
-            "length": "Short"
-          },
-          "outcome": {
             "type": "wicket",
-            "mode": "caught at gully"
+            "mode": "LBW going across"
           }
         }
       ],
       "resistances": [
-        "Cutter"
+        "Topspin",
+        "Drift",
+        "Carrom",
+        "Googly"
       ]
     },
     {
-      "id": "litton-das-bat",
+      "id": "towhid-hridoy-bat",
       "kind": "batsman",
-      "name": "Litton Das",
+      "name": "Towhid Hridoy",
       "nation": "Bangladesh",
       "tier": "Gold",
-      "description": "Aggressive keeper-bat. Pulls and drives. Inconsistent but explosive.",
+      "description": "Right-handed rising middle-order. SR 130+ across recent T20Is. Clean striker, improving fast — pulls and lofts; vulnerable around off stump.",
       "strengths": [
+        {
+          "zone": {
+            "line": "Leg stump",
+            "length": "Full"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 4,
+            "shot": "flick"
+          }
+        },
         {
           "zone": {
             "line": "Middle stump",
@@ -7237,42 +7338,9 @@
             "value": 6,
             "shot": "pull"
           }
-        },
-        {
-          "zone": {
-            "line": "Off stump",
-            "length": "Full"
-          },
-          "outcome": {
-            "type": "runs",
-            "value": 4,
-            "shot": "drive"
-          }
-        },
-        {
-          "zone": {
-            "line": "Leg stump",
-            "length": "Full"
-          },
-          "outcome": {
-            "type": "runs",
-            "value": 4,
-            "shot": "flick"
-          }
         }
       ],
       "neutrals": [
-        {
-          "zone": {
-            "line": "Leg stump",
-            "length": "Good length"
-          },
-          "outcome": {
-            "type": "runs",
-            "value": 2,
-            "shot": "work"
-          }
-        },
         {
           "zone": {
             "line": "Middle stump",
@@ -7280,15 +7348,36 @@
           },
           "outcome": {
             "type": "runs",
-            "value": 1,
+            "value": 2,
             "shot": "push"
+          }
+        },
+        {
+          "zone": {
+            "line": "Leg stump",
+            "length": "Good length"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 1,
+            "shot": "work"
           }
         }
       ],
       "weaknesses": [
         {
           "zone": {
-            "line": "Off stump",
+            "line": "Outside off",
+            "length": "Full"
+          },
+          "outcome": {
+            "type": "wicket",
+            "mode": "caught at cover"
+          }
+        },
+        {
+          "zone": {
+            "line": "Outside off",
             "length": "Good length"
           },
           "outcome": {
@@ -7297,87 +7386,13 @@
           }
         }
       ],
-      "resistances": []
-    },
-    {
-      "id": "towhid-hridoy-bat",
-      "kind": "batsman",
-      "name": "Towhid Hridoy",
-      "nation": "Bangladesh",
-      "tier": "Gold",
-      "description": "Young middle order talent. Clean striker, improving fast.",
-      "strengths": [
-        {
-          "zone": {
-            "line": "Leg stump",
-            "length": "Full"
-          },
-          "outcome": {
-            "type": "runs",
-            "value": 4,
-            "shot": "flick"
-          }
-        },
-        {
-          "zone": {
-            "line": "Middle stump",
-            "length": "Full"
-          },
-          "outcome": {
-            "type": "runs",
-            "value": 4,
-            "shot": "loft"
-          }
-        },
-        {
-          "zone": {
-            "line": "Middle stump",
-            "length": "Short"
-          },
-          "outcome": {
-            "type": "runs",
-            "value": 4,
-            "shot": "pull"
-          }
-        }
-      ],
-      "neutrals": [
-        {
-          "zone": {
-            "line": "Middle stump",
-            "length": "Good length"
-          },
-          "outcome": {
-            "type": "runs",
-            "value": 2,
-            "shot": "push"
-          }
-        },
-        {
-          "zone": {
-            "line": "Leg stump",
-            "length": "Good length"
-          },
-          "outcome": {
-            "type": "runs",
-            "value": 1,
-            "shot": "work"
-          }
-        }
-      ],
-      "weaknesses": [
-        {
-          "zone": {
-            "line": "Off stump",
-            "length": "Full"
-          },
-          "outcome": {
-            "type": "wicket",
-            "mode": "caught at cover"
-          }
-        }
-      ],
-      "resistances": []
+      "resistances": [
+        "Slower",
+        "Cutter",
+        "Topspin",
+        "Drift",
+        "Carrom"
+      ]
     },
     {
       "id": "najmul-hossain-shanto-bat",
@@ -7385,7 +7400,7 @@
       "name": "Najmul Hossain Shanto",
       "nation": "Bangladesh",
       "tier": "Silver",
-      "description": "Left-handed top order. Elegant but inconsistent at T20I level.",
+      "description": "Current BAN T20I captain. Left-handed top-order, elegant but inconsistent at the international level. Drives and sweeps; struggles around off stump.",
       "strengths": [
         {
           "zone": {
@@ -7411,17 +7426,6 @@
         }
       ],
       "neutrals": [
-        {
-          "zone": {
-            "line": "Middle stump",
-            "length": "Good length"
-          },
-          "outcome": {
-            "type": "runs",
-            "value": 2,
-            "shot": "push"
-          }
-        },
         {
           "zone": {
             "line": "Leg stump",
@@ -7447,16 +7451,112 @@
         },
         {
           "zone": {
-            "line": "Off stump",
+            "line": "Outside off",
             "length": "Good length"
           },
           "outcome": {
             "type": "wicket",
-            "mode": "edge"
+            "mode": "edge to keeper"
+          }
+        },
+        {
+          "zone": {
+            "line": "Middle stump",
+            "length": "Good length"
+          },
+          "outcome": {
+            "type": "wicket",
+            "mode": "bowled"
           }
         }
       ],
-      "resistances": []
+      "resistances": [
+        "Topspin",
+        "Drift",
+        "Carrom"
+      ]
+    },
+    {
+      "id": "tamim-iqbal-bat",
+      "kind": "batsman",
+      "name": "Tamim Iqbal",
+      "nation": "Bangladesh",
+      "tier": "Silver",
+      "description": "Left-handed legend. BAN's all-time T20I top scorer, retired internationally 2023. Anchor opener with classic technique — drives and flicks; vulnerable to short pace and the ball into the pads.",
+      "strengths": [
+        {
+          "zone": {
+            "line": "Off stump",
+            "length": "Full"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 4,
+            "shot": "drive"
+          }
+        },
+        {
+          "zone": {
+            "line": "Leg stump",
+            "length": "Good length"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 4,
+            "shot": "flick"
+          }
+        }
+      ],
+      "neutrals": [
+        {
+          "zone": {
+            "line": "Off stump",
+            "length": "Good length"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 1,
+            "shot": "push"
+          }
+        }
+      ],
+      "weaknesses": [
+        {
+          "zone": {
+            "line": "Middle stump",
+            "length": "Short"
+          },
+          "outcome": {
+            "type": "wicket",
+            "mode": "caught fending"
+          }
+        },
+        {
+          "zone": {
+            "line": "Middle stump",
+            "length": "Good length"
+          },
+          "outcome": {
+            "type": "wicket",
+            "mode": "LBW playing across"
+          }
+        },
+        {
+          "zone": {
+            "line": "Middle stump",
+            "length": "Full"
+          },
+          "outcome": {
+            "type": "wicket",
+            "mode": "bowled"
+          }
+        }
+      ],
+      "resistances": [
+        "Topspin",
+        "Carrom",
+        "Slower"
+      ]
     },
     {
       "id": "soumya-sarkar-bat",
@@ -7464,7 +7564,7 @@
       "name": "Soumya Sarkar",
       "nation": "Bangladesh",
       "tier": "Silver",
-      "description": "Left-handed opener. Goes hard with the new ball.",
+      "description": "Left-handed opener (batter card; Bronze bowler split below). Goes hard with the new ball — explosive when set, falls early when not.",
       "strengths": [
         {
           "zone": {
@@ -7497,19 +7597,8 @@
           },
           "outcome": {
             "type": "runs",
-            "value": 2,
-            "shot": "flick"
-          }
-        },
-        {
-          "zone": {
-            "line": "Leg stump",
-            "length": "Full"
-          },
-          "outcome": {
-            "type": "runs",
             "value": 1,
-            "shot": "sweep"
+            "shot": "flick"
           }
         }
       ],
@@ -7533,88 +7622,22 @@
             "type": "wicket",
             "mode": "LBW"
           }
-        }
-      ],
-      "resistances": []
-    },
-    {
-      "id": "afif-hossain-bat",
-      "kind": "batsman",
-      "name": "Afif Hossain",
-      "nation": "Bangladesh",
-      "tier": "Silver",
-      "description": "Left-handed all-rounder. Finisher role. Sweeps well.",
-      "strengths": [
-        {
-          "zone": {
-            "line": "Leg stump",
-            "length": "Full"
-          },
-          "outcome": {
-            "type": "runs",
-            "value": 6,
-            "shot": "sweep"
-          }
         },
         {
           "zone": {
-            "line": "Leg stump",
-            "length": "Good length"
-          },
-          "outcome": {
-            "type": "runs",
-            "value": 4,
-            "shot": "flick"
-          }
-        }
-      ],
-      "neutrals": [
-        {
-          "zone": {
-            "line": "Middle stump",
-            "length": "Good length"
-          },
-          "outcome": {
-            "type": "runs",
-            "value": 2,
-            "shot": "push"
-          }
-        },
-        {
-          "zone": {
-            "line": "Middle stump",
-            "length": "Full"
-          },
-          "outcome": {
-            "type": "runs",
-            "value": 1,
-            "shot": "drive"
-          }
-        }
-      ],
-      "weaknesses": [
-        {
-          "zone": {
-            "line": "Off stump",
+            "line": "Outside off",
             "length": "Good length"
           },
           "outcome": {
             "type": "wicket",
-            "mode": "beaten"
-          }
-        },
-        {
-          "zone": {
-            "line": "Off stump",
-            "length": "Short"
-          },
-          "outcome": {
-            "type": "wicket",
-            "mode": "caught behind"
+            "mode": "edge to slip"
           }
         }
       ],
-      "resistances": []
+      "resistances": [
+        "Topspin",
+        "Drift"
+      ]
     },
     {
       "id": "mushfiqur-rahim-bat",
@@ -7622,7 +7645,7 @@
       "name": "Mushfiqur Rahim",
       "nation": "Bangladesh",
       "tier": "Bronze",
-      "description": "Veteran keeper-bat. Anchor, lacking T20 power now.",
+      "description": "Right-handed veteran keeper-bat. Anchor type, lacking T20 power now.",
       "strengths": [
         {
           "zone": {
@@ -7688,19 +7711,19 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "flicks in air"
+            "mode": "flicks in air to midwicket"
           }
         }
       ],
       "resistances": []
     },
     {
-      "id": "sabbir-rahman-bat",
+      "id": "mahmudullah-riyad-bat",
       "kind": "batsman",
-      "name": "Sabbir Rahman",
+      "name": "Mahmudullah Riyad",
       "nation": "Bangladesh",
       "tier": "Bronze",
-      "description": "Domestic power hitter. Flashy but unreliable.",
+      "description": "Right-handed veteran finisher. T20 WC 2024 squad. Cool head at the death — slogs over midwicket, lofts straight; struggles vs the moving ball outside off.",
       "strengths": [
         {
           "zone": {
@@ -7717,42 +7740,32 @@
       "neutrals": [
         {
           "zone": {
-            "line": "Leg stump",
-            "length": "Good length"
-          },
-          "outcome": {
-            "type": "runs",
-            "value": 2,
-            "shot": "work"
-          }
-        },
-        {
-          "zone": {
             "line": "Middle stump",
             "length": "Short"
           },
           "outcome": {
             "type": "runs",
-            "value": 1,
+            "value": 2,
             "shot": "pull"
+          }
+        },
+        {
+          "zone": {
+            "line": "Middle stump",
+            "length": "Full"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 1,
+            "shot": "loft"
           }
         }
       ],
       "weaknesses": [
         {
           "zone": {
-            "line": "Off stump",
+            "line": "Outside off",
             "length": "Good length"
-          },
-          "outcome": {
-            "type": "wicket",
-            "mode": "bowled"
-          }
-        },
-        {
-          "zone": {
-            "line": "Off stump",
-            "length": "Full"
           },
           "outcome": {
             "type": "wicket",
@@ -7768,6 +7781,16 @@
             "type": "wicket",
             "mode": "LBW"
           }
+        },
+        {
+          "zone": {
+            "line": "Off stump",
+            "length": "Full"
+          },
+          "outcome": {
+            "type": "wicket",
+            "mode": "caught at cover"
+          }
         }
       ],
       "resistances": []
@@ -7778,7 +7801,7 @@
       "name": "Mehidy Hasan Miraz",
       "nation": "Bangladesh",
       "tier": "Bronze",
-      "description": "Off-spinning all-rounder. Lower order bat.",
+      "description": "Right-handed off-spinning all-rounder (batter card; Silver bowler split below). Lower-order bat — sweeps and works.",
       "strengths": [
         {
           "zone": {
@@ -7829,7 +7852,7 @@
         },
         {
           "zone": {
-            "line": "Off stump",
+            "line": "Outside off",
             "length": "Short"
           },
           "outcome": {
@@ -7844,29 +7867,29 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "mis-hit"
+            "mode": "mistimed loft"
           }
         }
       ],
       "resistances": []
     },
     {
-      "id": "nasum-ahmed-bat",
+      "id": "afif-hossain-bat",
       "kind": "batsman",
-      "name": "Nasum Ahmed",
+      "name": "Afif Hossain",
       "nation": "Bangladesh",
       "tier": "Bronze",
-      "description": "Left-arm spinner. Tailender with bat.",
+      "description": "Left-handed all-rounder. Current form has dropped him from Silver — sweeps and finishes when set; falls early when not.",
       "strengths": [
         {
           "zone": {
-            "line": "Middle stump",
-            "length": "Short"
+            "line": "Leg stump",
+            "length": "Full"
           },
           "outcome": {
             "type": "runs",
-            "value": 4,
-            "shot": "pull"
+            "value": 6,
+            "shot": "sweep"
           }
         }
       ],
@@ -7874,45 +7897,45 @@
         {
           "zone": {
             "line": "Leg stump",
-            "length": "Full"
-          },
-          "outcome": {
-            "type": "runs",
-            "value": 2,
-            "shot": "sweep"
-          }
-        },
-        {
-          "zone": {
-            "line": "Leg stump",
             "length": "Good length"
           },
           "outcome": {
             "type": "runs",
+            "value": 2,
+            "shot": "flick"
+          }
+        },
+        {
+          "zone": {
+            "line": "Middle stump",
+            "length": "Full"
+          },
+          "outcome": {
+            "type": "runs",
             "value": 1,
-            "shot": "nudge"
+            "shot": "drive"
           }
         }
       ],
       "weaknesses": [
         {
           "zone": {
-            "line": "Off stump",
+            "line": "Outside off",
             "length": "Good length"
           },
           "outcome": {
             "type": "wicket",
-            "mode": "bowled"
+            "mode": "beaten"
           }
         },
         {
           "zone": {
-            "line": "Off stump",
-            "length": "Full"
+            "line": "Outside off",
+            "length": "Short"
           },
           "outcome": {
             "type": "wicket",
-            "mode": "caught"
+            "mode": "caught behind"
           }
         },
         {
@@ -7922,7 +7945,7 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "LBW"
+            "mode": "bowled"
           }
         }
       ],
@@ -7934,7 +7957,7 @@
       "name": "Rishad Hossain",
       "nation": "Bangladesh",
       "tier": "Bronze",
-      "description": "Young legspinner. Can bat a bit, nothing special.",
+      "description": "Right-handed leg-spinning all-rounder (batter card; Silver bowler split below). Tail-ender bat — slogs when he can.",
       "strengths": [
         {
           "zone": {
@@ -7975,7 +7998,7 @@
       "weaknesses": [
         {
           "zone": {
-            "line": "Off stump",
+            "line": "Outside off",
             "length": "Good length"
           },
           "outcome": {
@@ -12097,13 +12120,14 @@
       "name": "Mustafizur Rahman",
       "nation": "Bangladesh",
       "tier": "Elite",
-      "description": "Left-arm off-cutter specialist. Good length off stump with devastating cutter.",
+      "description": "Left-arm off-cutter specialist. IPL star with multiple Purple Cap-tier seasons. Death-overs cutter + signature slower bouncer. Two-skill Elite per the v1.1 rule.",
       "delivery": {
         "line": "Off stump",
         "length": "Good length"
       },
       "adjectives": [
-        "Cutter"
+        "Cutter",
+        "Slower"
       ],
       "fielding": [
         "Cover",
@@ -12116,14 +12140,16 @@
       "name": "Taskin Ahmed",
       "nation": "Bangladesh",
       "tier": "Gold",
-      "description": "Quick fast bowler. Bounce and pace. Best Bangladeshi quick.",
+      "description": "Best current BAN quick. Right-arm pace with bounce, hits the deck hard with seam off the stumps.",
       "delivery": {
-        "line": "Off stump",
+        "line": "Middle stump",
         "length": "Good length"
       },
-      "adjectives": [],
+      "adjectives": [
+        "Seam"
+      ],
       "fielding": [
-        "Gully/Point"
+        "Slip cordon"
       ]
     },
     {
@@ -12132,14 +12158,16 @@
       "name": "Shakib Al Hasan",
       "nation": "Bangladesh",
       "tier": "Gold",
-      "description": "Left-arm orthodox legend. Economical and wicket-taking.",
+      "description": "Left-arm orthodox legend (bowler card; Gold batter split above). Subtle drift away from RH bats with metronomic accuracy.",
       "delivery": {
-        "line": "Middle stump",
+        "line": "Leg stump",
         "length": "Good length"
       },
-      "adjectives": [],
+      "adjectives": [
+        "Drift"
+      ],
       "fielding": [
-        "Short leg/Silly point"
+        "Cover"
       ]
     },
     {
@@ -12148,7 +12176,7 @@
       "name": "Mehidy Hasan Miraz",
       "nation": "Bangladesh",
       "tier": "Silver",
-      "description": "Off-spinner. Middle overs control.",
+      "description": "Right-arm off-spinner (all-rounder split — Bronze batter above). Middle-overs control bowler.",
       "delivery": {
         "line": "Off stump",
         "length": "Good length"
@@ -12164,9 +12192,9 @@
       "name": "Nahid Rana",
       "nation": "Bangladesh",
       "tier": "Silver",
-      "description": "Raw express pace. 150kph+. Exciting young quick.",
+      "description": "Right-arm raw express pace (150kph+). Exciting young quick attacking the stumps.",
       "delivery": {
-        "line": "Off stump",
+        "line": "Middle stump",
         "length": "Short"
       },
       "adjectives": [],
@@ -12180,7 +12208,7 @@
       "name": "Rishad Hossain",
       "nation": "Bangladesh",
       "tier": "Silver",
-      "description": "Young legspinner. Gets turn and bounce.",
+      "description": "Right-arm leg-spinner (all-rounder split — Bronze batter above). Gets turn and bounce — but no skill chip at the Silver tier.",
       "delivery": {
         "line": "Middle stump",
         "length": "Good length"
@@ -12196,7 +12224,7 @@
       "name": "Nasum Ahmed",
       "nation": "Bangladesh",
       "tier": "Bronze",
-      "description": "Left-arm orthodox. Economical filler.",
+      "description": "Left-arm orthodox. Economical middle-overs filler.",
       "delivery": {
         "line": "Leg stump",
         "length": "Good length"
@@ -12212,7 +12240,7 @@
       "name": "Shoriful Islam",
       "nation": "Bangladesh",
       "tier": "Bronze",
-      "description": "Left-arm quick. Developing.",
+      "description": "Left-arm quick. Developing new-ball threat.",
       "delivery": {
         "line": "Off stump",
         "length": "Full"
@@ -12228,7 +12256,7 @@
       "name": "Hasan Mahmud",
       "nation": "Bangladesh",
       "tier": "Bronze",
-      "description": "Young seamer. Good length with seam.",
+      "description": "Young right-arm seamer.",
       "delivery": {
         "line": "Off stump",
         "length": "Good length"
@@ -12244,7 +12272,7 @@
       "name": "Tanzim Hasan Sakib",
       "nation": "Bangladesh",
       "tier": "Bronze",
-      "description": "Medium-fast all-rounder.",
+      "description": "Right-arm medium-fast. Rising new-ball option.",
       "delivery": {
         "line": "Middle stump",
         "length": "Good length"
@@ -12260,14 +12288,14 @@
       "name": "Soumya Sarkar",
       "nation": "Bangladesh",
       "tier": "Bronze",
-      "description": "Part-time medium. Emergency option.",
+      "description": "Part-time right-arm medium (all-rounder split — Silver batter above). Emergency overs.",
       "delivery": {
         "line": "Middle stump",
         "length": "Good length"
       },
       "adjectives": [],
       "fielding": [
-        "Mid-wicket"
+        "Cover"
       ]
     },
     {
