@@ -458,22 +458,25 @@ Everything not listed = dot ball. Weaknesses are zone-only (no adjective referen
 - **Resistances:** Swing, Seam, Cutter, Slower
 
 ### SILVER — Liam Livingstone
-*Power hitter. Switch hits. Smashes spin. Can hole out to anything.*
-- **Strengths:** Good length off stump → switch hit for 6 | Full leg stump → slog for 4
-- **Neutrals:** Good length middle stump → push for 2 | Full middle stump → drive for 1
-- **Weaknesses:** Good length off stump → bowled | Short off stump → top edge caught
+*Power-hitter who switch-hits and reverse-sweeps. T20 WC 2024 squad. Smashes most spin and reads slower balls. Vulnerable to good lengths and the moving ball outside off.*
+- **Strengths:** Full leg stump → slog for 6 | Good length off stump → switch hit for 4
+- **Neutrals:** Good length leg stump → flick for 1
+- **Weaknesses:** Good length middle stump → bowled | Short Outside off → caught at point | Full Outside off → mistimed drive caught at cover
+- **Resistances:** Slower, Cutter, Topspin
 
-### SILVER — Will Jacks
-*Big-hitting all-rounder. Lofts over the off side. Bowls handy off-spin.*
-- **Strengths:** Full off stump → loft for 6 | Full middle stump → drive for 4
-- **Neutrals:** Good length off stump → push for 2 | Good length leg stump → work for 1
-- **Weaknesses:** Short middle stump → top edge caught | Good length middle stump → LBW
+### SILVER — Ben Duckett
+*Left-handed opener. Sweeps and reverse-sweeps everything — a spin specialist. T20 WC 2024 squad. Vulnerable to pace and short balls.*
+- **Strengths:** Full leg stump → sweep for 6 | Short middle stump → pull for 4
+- **Neutrals:** Good length off stump → push for 1
+- **Weaknesses:** Good length middle stump → bowled | Short Outside off → caught at point | Full Outside off → caught at cover
+- **Resistances:** Topspin, Drift, Carrom
 
 ### SILVER — Sam Curran
-*Left-arm all-rounder. Useful bat at death. IPL MVP 2022.*
-- **Strengths:** Full leg stump → flick for 4 | Short middle stump → pull for 4
-- **Neutrals:** Good length middle stump → push for 2 | Full middle stump → drive for 1
-- **Weaknesses:** Good length off stump → edge to slip | Full off stump → mis-hit caught
+*Left-arm all-rounder (batter card; bowler card carries his death-overs role). T20 WC 2022 Player of the Tournament for his bowling — useful aggressive lower-order hitter when needed.*
+- **Strengths:** Full leg stump → flick for 4 | Full off stump → drive for 4
+- **Neutrals:** Good length leg stump → work for 1
+- **Weaknesses:** Good length off stump → edge to slip | Good length middle stump → LBW playing across | Short Outside off → caught at point
+- **Resistances:** Slower, Swing
 
 ### BRONZE — Jason Roy
 *Former explosive opener. Declining form, inconsistent at international level now.*
@@ -481,11 +484,11 @@ Everything not listed = dot ball. Weaknesses are zone-only (no adjective referen
 - **Neutrals:** Good length leg stump → flick for 2 | Short middle stump → pull for 1
 - **Weaknesses:** Good length off stump → edge to slip | Full middle stump → bowled | Good length middle stump → LBW
 
-### BRONZE — Ben Duckett
-*Left-handed dasher. Good against spin but vulnerable to pace.*
-- **Strengths:** Full leg stump → sweep for 4
-- **Neutrals:** Good length leg stump → work for 2 | Good length middle stump → push for 1
-- **Weaknesses:** Short off stump → caught behind | Full off stump → edge to gully | Short middle stump → fends to short leg
+### BRONZE — Sam Billings
+*Right-handed keeper-bat. KKR IPL veteran, ~8 T20I caps for England (last 2022). Counter-attacking middle-order role: ramps and scoops vs pace, sweeps vs spin. Limited international footprint keeps him at Bronze.*
+- **Strengths:** Short middle stump → ramp for 4
+- **Neutrals:** Full leg stump → sweep for 2 | Good length leg stump → work for 1
+- **Weaknesses:** Good length off stump → edge to slip | Full middle stump → bowled | Good length middle stump → LBW
 
 ### BRONZE — Tom Banton
 *Flashy keeper-bat. Reverse scoops. High risk, high reward.*
@@ -520,20 +523,20 @@ Everything not listed = dot ball. Weaknesses are zone-only (no adjective referen
 - **Delivery:** Short middle stump | **Adjective:** Seam | **Fielding:** Gully/Point
 
 ### SILVER — Sam Curran
-*Left-arm medium. Clever variations. Death overs specialist.*
-- **Delivery:** Full leg stump | **Adjective:** Cutter | **Fielding:** Fine leg
+*Left-arm medium-pacer (bowler card, paired with his Silver batter card via the all-rounder split). T20 WC 2022 Player of the Tournament. Death-overs specialist with no specific skill at the Silver tier — just clever yorker-length lines.*
+- **Delivery:** Full off stump | **Fielding:** Mid-wicket
 
 ### SILVER — Reece Topley
-*Tall left-arm seamer. Full outside off with swing.*
-- **Delivery:** Full 5th stump | **Adjective:** Swing (left-arm) | **Fielding:** Slip cordon
+*Tall left-arm seamer. Powerplay specialist on the corridor with the new ball. Faces the Silver tier-based wide-call risk on Outside off (25%). Injury-prone.*
+- **Delivery:** Good length Outside off | **Fielding:** Slip cordon
 
-### SILVER — Chris Jordan
-*Death bowling veteran. Yorkers and slower balls.*
-- **Delivery:** Full off stump | **Adjective:** Cutter | **Fielding:** Cover
+### SILVER — Jamie Overton
+*Right-arm pacer. Hit-the-deck back-of-length attack with bounce. BBL-style power-bowler with limited T20I exposure so far.*
+- **Delivery:** Good length middle stump | **Fielding:** Gully/Point
 
 ### BRONZE — Liam Livingstone
-*Part-time leg-spin. Useful overs filler.*
-- **Delivery:** Good length leg stump | **Adjective:** Spin (legspin) | **Fielding:** Mid-wicket
+*Part-time leg-spin. Useful overs filler with no specific skill at the Bronze tier.*
+- **Delivery:** Good length leg stump | **Fielding:** Mid-wicket
 
 ### BRONZE — Will Jacks
 *Part-time off-spin. Handy if conditions suit.*
@@ -541,7 +544,7 @@ Everything not listed = dot ball. Weaknesses are zone-only (no adjective referen
 
 ### BRONZE — Mason Crane
 *Leg-spinner. County specialist, rarely selected internationally.*
-- **Delivery:** Good length middle stump | **Adjective:** Spin (legspin) | **Fielding:** Short leg
+- **Delivery:** Good length middle stump | **Fielding:** Short leg
 
 ### BRONZE — Saqib Mahmood
 *Fast-medium. Good length off stump with some seam.*

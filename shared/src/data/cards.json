@@ -2031,19 +2031,8 @@
       "name": "Liam Livingstone",
       "nation": "England",
       "tier": "Silver",
-      "description": "Power hitter. Switch hits. Smashes spin. Can hole out to anything.",
+      "description": "Power-hitter who switch-hits and reverse-sweeps. T20 WC 2024 squad. Smashes most spin and reads slower balls. Vulnerable to good lengths and the moving ball outside off.",
       "strengths": [
-        {
-          "zone": {
-            "line": "Off stump",
-            "length": "Good length"
-          },
-          "outcome": {
-            "type": "runs",
-            "value": 6,
-            "shot": "switch hit"
-          }
-        },
         {
           "zone": {
             "line": "Leg stump",
@@ -2051,39 +2040,39 @@
           },
           "outcome": {
             "type": "runs",
-            "value": 4,
+            "value": 6,
             "shot": "slog"
+          }
+        },
+        {
+          "zone": {
+            "line": "Off stump",
+            "length": "Good length"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 4,
+            "shot": "switch hit"
           }
         }
       ],
       "neutrals": [
         {
           "zone": {
-            "line": "Middle stump",
+            "line": "Leg stump",
             "length": "Good length"
           },
           "outcome": {
             "type": "runs",
-            "value": 2,
-            "shot": "push"
-          }
-        },
-        {
-          "zone": {
-            "line": "Middle stump",
-            "length": "Full"
-          },
-          "outcome": {
-            "type": "runs",
             "value": 1,
-            "shot": "drive"
+            "shot": "flick"
           }
         }
       ],
       "weaknesses": [
         {
           "zone": {
-            "line": "Off stump",
+            "line": "Middle stump",
             "length": "Good length"
           },
           "outcome": {
@@ -2093,113 +2082,48 @@
         },
         {
           "zone": {
-            "line": "Off stump",
+            "line": "Outside off",
             "length": "Short"
           },
           "outcome": {
             "type": "wicket",
-            "mode": "top edge caught"
+            "mode": "caught at point"
+          }
+        },
+        {
+          "zone": {
+            "line": "Outside off",
+            "length": "Full"
+          },
+          "outcome": {
+            "type": "wicket",
+            "mode": "mistimed drive caught at cover"
           }
         }
       ],
-      "resistances": []
+      "resistances": [
+        "Slower",
+        "Cutter",
+        "Topspin"
+      ]
     },
     {
-      "id": "will-jacks-bat",
+      "id": "ben-duckett-bat",
       "kind": "batsman",
-      "name": "Will Jacks",
+      "name": "Ben Duckett",
       "nation": "England",
       "tier": "Silver",
-      "description": "Big-hitting all-rounder. Lofts over the off side. Bowls handy off-spin.",
+      "description": "Left-handed opener. Sweeps and reverse-sweeps everything — a spin specialist. T20 WC 2024 squad. Vulnerable to pace and short balls.",
       "strengths": [
         {
           "zone": {
-            "line": "Off stump",
+            "line": "Leg stump",
             "length": "Full"
           },
           "outcome": {
             "type": "runs",
             "value": 6,
-            "shot": "loft"
-          }
-        },
-        {
-          "zone": {
-            "line": "Middle stump",
-            "length": "Full"
-          },
-          "outcome": {
-            "type": "runs",
-            "value": 4,
-            "shot": "drive"
-          }
-        }
-      ],
-      "neutrals": [
-        {
-          "zone": {
-            "line": "Off stump",
-            "length": "Good length"
-          },
-          "outcome": {
-            "type": "runs",
-            "value": 2,
-            "shot": "push"
-          }
-        },
-        {
-          "zone": {
-            "line": "Leg stump",
-            "length": "Good length"
-          },
-          "outcome": {
-            "type": "runs",
-            "value": 1,
-            "shot": "work"
-          }
-        }
-      ],
-      "weaknesses": [
-        {
-          "zone": {
-            "line": "Middle stump",
-            "length": "Short"
-          },
-          "outcome": {
-            "type": "wicket",
-            "mode": "top edge caught"
-          }
-        },
-        {
-          "zone": {
-            "line": "Middle stump",
-            "length": "Good length"
-          },
-          "outcome": {
-            "type": "wicket",
-            "mode": "LBW"
-          }
-        }
-      ],
-      "resistances": []
-    },
-    {
-      "id": "sam-curran-bat",
-      "kind": "batsman",
-      "name": "Sam Curran",
-      "nation": "England",
-      "tier": "Silver",
-      "description": "Left-arm all-rounder. Useful bat at death. IPL MVP 2022.",
-      "strengths": [
-        {
-          "zone": {
-            "line": "Leg stump",
-            "length": "Full"
-          },
-          "outcome": {
-            "type": "runs",
-            "value": 4,
-            "shot": "flick"
+            "shot": "sweep"
           }
         },
         {
@@ -2217,24 +2141,95 @@
       "neutrals": [
         {
           "zone": {
-            "line": "Middle stump",
+            "line": "Off stump",
             "length": "Good length"
           },
           "outcome": {
             "type": "runs",
-            "value": 2,
+            "value": 1,
             "shot": "push"
+          }
+        }
+      ],
+      "weaknesses": [
+        {
+          "zone": {
+            "line": "Middle stump",
+            "length": "Good length"
+          },
+          "outcome": {
+            "type": "wicket",
+            "mode": "bowled"
           }
         },
         {
           "zone": {
-            "line": "Middle stump",
+            "line": "Outside off",
+            "length": "Short"
+          },
+          "outcome": {
+            "type": "wicket",
+            "mode": "caught at point"
+          }
+        },
+        {
+          "zone": {
+            "line": "Outside off",
+            "length": "Full"
+          },
+          "outcome": {
+            "type": "wicket",
+            "mode": "caught at cover"
+          }
+        }
+      ],
+      "resistances": [
+        "Topspin",
+        "Drift",
+        "Carrom"
+      ]
+    },
+    {
+      "id": "sam-curran-bat",
+      "kind": "batsman",
+      "name": "Sam Curran",
+      "nation": "England",
+      "tier": "Silver",
+      "description": "Left-arm all-rounder (batter card; bowler card carries his death-overs role). T20 WC 2022 Player of the Tournament for his bowling — useful aggressive lower-order hitter when needed.",
+      "strengths": [
+        {
+          "zone": {
+            "line": "Leg stump",
             "length": "Full"
           },
           "outcome": {
             "type": "runs",
-            "value": 1,
+            "value": 4,
+            "shot": "flick"
+          }
+        },
+        {
+          "zone": {
+            "line": "Off stump",
+            "length": "Full"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 4,
             "shot": "drive"
+          }
+        }
+      ],
+      "neutrals": [
+        {
+          "zone": {
+            "line": "Leg stump",
+            "length": "Good length"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 1,
+            "shot": "work"
           }
         }
       ],
@@ -2251,16 +2246,29 @@
         },
         {
           "zone": {
-            "line": "Off stump",
-            "length": "Full"
+            "line": "Middle stump",
+            "length": "Good length"
           },
           "outcome": {
             "type": "wicket",
-            "mode": "mis-hit caught"
+            "mode": "LBW playing across"
+          }
+        },
+        {
+          "zone": {
+            "line": "Outside off",
+            "length": "Short"
+          },
+          "outcome": {
+            "type": "wicket",
+            "mode": "caught at point"
           }
         }
       ],
-      "resistances": []
+      "resistances": [
+        "Slower",
+        "Swing"
+      ]
     },
     {
       "id": "jason-roy-bat",
@@ -2341,22 +2349,22 @@
       "resistances": []
     },
     {
-      "id": "ben-duckett-bat",
+      "id": "sam-billings-bat",
       "kind": "batsman",
-      "name": "Ben Duckett",
+      "name": "Sam Billings",
       "nation": "England",
       "tier": "Bronze",
-      "description": "Left-handed dasher. Good against spin but vulnerable to pace.",
+      "description": "Right-handed keeper-bat. KKR IPL veteran, ~8 T20I caps for England (last 2022). Counter-attacking middle-order role: ramps and scoops vs pace, sweeps vs spin. Limited international footprint keeps him at Bronze.",
       "strengths": [
         {
           "zone": {
-            "line": "Leg stump",
-            "length": "Full"
+            "line": "Middle stump",
+            "length": "Short"
           },
           "outcome": {
             "type": "runs",
             "value": 4,
-            "shot": "sweep"
+            "shot": "ramp"
           }
         }
       ],
@@ -2364,23 +2372,23 @@
         {
           "zone": {
             "line": "Leg stump",
-            "length": "Good length"
+            "length": "Full"
           },
           "outcome": {
             "type": "runs",
             "value": 2,
-            "shot": "work"
+            "shot": "sweep"
           }
         },
         {
           "zone": {
-            "line": "Middle stump",
+            "line": "Leg stump",
             "length": "Good length"
           },
           "outcome": {
             "type": "runs",
             "value": 1,
-            "shot": "push"
+            "shot": "work"
           }
         }
       ],
@@ -2388,31 +2396,31 @@
         {
           "zone": {
             "line": "Off stump",
-            "length": "Short"
+            "length": "Good length"
           },
           "outcome": {
             "type": "wicket",
-            "mode": "caught behind"
-          }
-        },
-        {
-          "zone": {
-            "line": "Off stump",
-            "length": "Full"
-          },
-          "outcome": {
-            "type": "wicket",
-            "mode": "edge to gully"
+            "mode": "edge to slip"
           }
         },
         {
           "zone": {
             "line": "Middle stump",
-            "length": "Short"
+            "length": "Full"
           },
           "outcome": {
             "type": "wicket",
-            "mode": "fends to short leg"
+            "mode": "bowled"
+          }
+        },
+        {
+          "zone": {
+            "line": "Middle stump",
+            "length": "Good length"
+          },
+          "outcome": {
+            "type": "wicket",
+            "mode": "LBW"
           }
         }
       ],
@@ -10914,14 +10922,14 @@
       "name": "Sam Curran",
       "nation": "England",
       "tier": "Silver",
-      "description": "Left-arm medium. Clever variations. Death overs specialist.",
+      "description": "Left-arm medium-pacer (bowler card, paired with his Silver batter card via the all-rounder split). T20 WC 2022 Player of the Tournament. Death-overs specialist with no specific skill at the Silver tier — just clever yorker-length lines.",
       "delivery": {
-        "line": "Leg stump",
+        "line": "Off stump",
         "length": "Full"
       },
       "adjectives": [],
       "fielding": [
-        "Fine leg/Leg slip"
+        "Mid-wicket"
       ]
     },
     {
@@ -10930,10 +10938,10 @@
       "name": "Reece Topley",
       "nation": "England",
       "tier": "Silver",
-      "description": "Tall left-arm seamer. Full outside off with swing.",
+      "description": "Tall left-arm seamer. Powerplay specialist on the corridor with the new ball. Faces the Silver tier-based wide-call risk on Outside off (25%). Injury-prone.",
       "delivery": {
         "line": "Outside off",
-        "length": "Full"
+        "length": "Good length"
       },
       "adjectives": [],
       "fielding": [
@@ -10941,19 +10949,19 @@
       ]
     },
     {
-      "id": "chris-jordan-bowl",
+      "id": "jamie-overton-bowl",
       "kind": "bowler",
-      "name": "Chris Jordan",
+      "name": "Jamie Overton",
       "nation": "England",
       "tier": "Silver",
-      "description": "Death bowling veteran. Yorkers and slower balls.",
+      "description": "Right-arm pacer. Hit-the-deck back-of-length attack with bounce. BBL-style power-bowler with limited T20I exposure so far.",
       "delivery": {
-        "line": "Off stump",
-        "length": "Full"
+        "line": "Middle stump",
+        "length": "Good length"
       },
       "adjectives": [],
       "fielding": [
-        "Cover"
+        "Gully/Point"
       ]
     },
     {
@@ -10962,7 +10970,7 @@
       "name": "Liam Livingstone",
       "nation": "England",
       "tier": "Bronze",
-      "description": "Part-time leg-spin. Useful overs filler.",
+      "description": "Part-time leg-spin. Useful overs filler with no specific skill at the Bronze tier.",
       "delivery": {
         "line": "Leg stump",
         "length": "Good length"
