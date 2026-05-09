@@ -560,120 +560,123 @@ Everything not listed = dot ball. Weaknesses are zone-only (no adjective referen
 
 ## BATSMEN
 
-### ELITE — Quinton de Kock
-*Left-handed keeper-bat. Explosive against pace. Pull shot and cut shot devastating.*
-- **Strengths:** Short middle stump → pull for 6 | Full off stump → drive for 4 | Full leg stump → sweep for 4
-- **Neutrals:** Good length off stump → push for 2 | Good length middle stump → work for 1
-- **Weaknesses:** Full middle stump → bowled playing across
-- **Resistances:** Pace, Swing
+### ELITE — Heinrich Klaasen
+*Right-handed keeper-bat. SA's most feared T20 hitter. IPL MVP-tier; T20 WC 2024 best SA bat (190 runs, SR 137). Destroys spin and pace alike — only new-ball swing troubles him.*
+- **Strengths:** Full leg stump → smash for 6 | Short middle stump → pull for 6 | Good length leg stump → mow through midwicket for 4
+- **Neutrals:** Full off stump → drive for 2 | Good length off stump → punch for 1
+- **Weaknesses:** Good length middle stump → bowled through gate
+- **Resistances:** Topspin, Drift, Googly, Carrom, Slower, Cutter, Seam
 
-### GOLD — Aiden Markram
-*Elegant right-hander. Beautiful drives. Handy off-spin too.*
-- **Strengths:** Full off stump → cover drive for 4 | Full middle stump → straight drive for 4 | Short middle stump → pull for 4
-- **Neutrals:** Good length off stump → push for 2 | Good length middle stump → defend for 1
-- **Weaknesses:** Good length leg stump → LBW playing across
-- **Resistances:** Spin
+### GOLD — Quinton de Kock
+*Left-handed keeper-bat. Retired internationally in 2024 but still IPL/SA20 star. T20 WC 2024 leading SA scorer (232 runs, SR 140). Pull, drive, sweep — pure pace specialist.*
+- **Strengths:** Short middle stump → pull for 6 | Full off stump → drive for 4
+- **Neutrals:** Good length off stump → push for 2 | Full leg stump → flick for 1
+- **Weaknesses:** Good length middle stump → bowled across | Full Outside off → caught at cover
+- **Resistances:** Swing, Seam, Cutter, Slower
 
 ### GOLD — David Miller
-*Mr. Finisher. Left-handed death overs specialist. Hits straight and long.*
-- **Strengths:** Full middle stump → loft for 6 | Wide outside off full → drive for 4 | Full leg stump → flick for 4
-- **Neutrals:** Good length middle stump → push for 2 | Good length leg stump → work for 1
-- **Weaknesses:** Short off stump → top edge caught
-- **Resistances:** Cutter
+*Left-handed death-overs finisher. IPL legend, T20 WC 2024 finalist. Lofts straight, flicks square. Cutters and slower balls trouble him.*
+- **Strengths:** Full middle stump → loft for 6 | Full leg stump → flick for 4
+- **Neutrals:** Good length leg stump → work for 2 | Good length middle stump → push for 1
+- **Weaknesses:** Short Outside off → caught at point | Good length Outside off → mistimed cut
+- **Resistances:** Swing, Seam, Topspin, Drift, Googly
 
-### SILVER — Heinrich Klaasen
-*Power hitter. Destroys spin. Smashes through mid-wicket. Can struggle vs pace.*
-- **Strengths:** Full leg stump → smash for 6 | Good length middle stump → pull for 4
-- **Neutrals:** Good length leg stump → work for 2 | Full middle stump → drive for 1
-- **Weaknesses:** Short middle stump → gloves to keeper | Full off stump → mis-hit to cover
-
-### SILVER — Dewald Brevis
-*Baby AB. 360-degree talent. Young, raw, explosive.*
-- **Strengths:** Short middle stump → ramp for 6 | Full off stump → loft for 4
-- **Neutrals:** Good length off stump → cut for 2 | Full leg stump → flick for 1
-- **Weaknesses:** Good length middle stump → bowled through gate | Full middle stump → mis-hit
+### SILVER — Aiden Markram
+*SA T20I captain. Right-handed top-order, technically correct. Beautiful drives; reads spin well via own off-spin. Vulnerable on the pads.*
+- **Strengths:** Full off stump → cover drive for 4 | Full middle stump → straight drive for 4
+- **Neutrals:** Good length off stump → push for 1
+- **Weaknesses:** Good length leg stump → LBW playing across | Short middle stump → top edge | Full leg stump → mistimed flick caught
+- **Resistances:** Topspin, Drift, Carrom
 
 ### SILVER — Tristan Stubbs
-*Hard-hitting middle order. Power over finesse.*
+*Hard-hitting middle-order RHB. Top-5 in T20I rankings recently. Power over finesse; vulnerable around off stump.*
 - **Strengths:** Full leg stump → slog for 6 | Full middle stump → loft for 4
-- **Neutrals:** Good length leg stump → work for 2 | Short middle stump → pull for 1
-- **Weaknesses:** Good length off stump → beaten | Short off stump → edge to keeper
+- **Neutrals:** Good length leg stump → work for 1
+- **Weaknesses:** Good length Outside off → beaten | Short Outside off → edge to keeper | Good length off stump → bowled
+- **Resistances:** Slower, Cutter, Topspin
+
+### SILVER — Ryan Rickelton
+*Young left-handed keeper-bat. SA20 standout, breaking into the international XI. Sweeps and reverse-sweeps spin; vulnerable to short balls and the moving ball outside off.*
+- **Strengths:** Full leg stump → sweep for 6 | Full off stump → drive for 4
+- **Neutrals:** Good length leg stump → nudge for 1
+- **Weaknesses:** Short middle stump → top edge caught | Good length Outside off → edge to keeper | Good length middle stump → bowled
+- **Resistances:** Topspin, Carrom, Drift
 
 ### BRONZE — Reeza Hendricks
-*Solid opener. Accumulator rather than aggressor.*
+*Right-handed accumulator opener. Solid against the new ball; lacks T20 acceleration.*
 - **Strengths:** Full off stump → drive for 4
 - **Neutrals:** Good length off stump → push for 2 | Good length middle stump → defend for 1
-- **Weaknesses:** Short middle stump → caught fending | Full leg stump → LBW | Good length leg stump → flicks in air
+- **Weaknesses:** Short middle stump → caught fending | Full leg stump → LBW | Good length leg stump → flicks in air to midwicket
 
 ### BRONZE — Rassie van der Dussen
-*Technically correct middle order. Anchors but lacks T20 power.*
+*Technically correct middle-order RHB. Anchors but lacks T20 ceiling.*
 - **Strengths:** Full off stump → drive for 4
 - **Neutrals:** Good length middle stump → push for 2 | Good length off stump → defend for 1
-- **Weaknesses:** Good length leg stump → LBW across | Short off stump → caught at gully | Full middle stump → mis-hit
-
-### BRONZE — Ryan Rickelton
-*Young left-hander. Domestic performer, limited T20I exposure.*
-- **Strengths:** Full leg stump → sweep for 4
-- **Neutrals:** Good length leg stump → nudge for 2 | Full middle stump → push for 1
-- **Weaknesses:** Good length off stump → edge to keeper | Short middle stump → top edge | Good length middle stump → bowled
+- **Weaknesses:** Good length leg stump → LBW across | Short Outside off → caught at point | Full middle stump → mistimed loft
 
 ### BRONZE — Donovan Ferreira
-*Young all-rounder. IPL talent, raw at international level.*
+*Young IPL/SA20 power hitter. Raw at international level — clears the rope when he times it, gets out trying when he doesn't.*
 - **Strengths:** Short leg stump → pull for 4
 - **Neutrals:** Full leg stump → flick for 2 | Good length leg stump → work for 1
-- **Weaknesses:** Good length off stump → beaten | Full off stump → mis-hit to mid-off | Good length middle stump → LBW
+- **Weaknesses:** Good length Outside off → beaten | Full off stump → mistimed drive caught | Good length middle stump → LBW
 
 ### BRONZE — Wiaan Mulder
-*All-rounder. Medium pace and handy bat. Not a T20 specialist.*
+*Right-handed all-rounder (batter card; medium-pace bowler split below). Not a T20 specialist with the bat — useful lower-order overs.*
 - **Strengths:** Full middle stump → loft for 4
 - **Neutrals:** Good length middle stump → push for 2 | Good length leg stump → nudge for 1
-- **Weaknesses:** Short off stump → caught at gully | Good length off stump → edge to slip | Full off stump → caught at cover
+- **Weaknesses:** Short Outside off → caught at gully | Good length Outside off → edge to slip | Full off stump → caught at cover
+
+### BRONZE — Rilee Rossouw
+*Left-handed power hitter. 36 T20Is for SA in his 2014–2016 prime + 2022 WC century cameo. Aggressive Bronze profile — clears the rope or holes out.*
+- **Strengths:** Full leg stump → slog for 6
+- **Neutrals:** Short middle stump → pull for 2 | Full off stump → drive for 1
+- **Weaknesses:** Good length off stump → edge to slip | Good length middle stump → bowled across | Good length leg stump → LBW
 
 ## BOWLERS
 
 ### ELITE — Kagiso Rabada
-*Express pace. Yorkers and bouncers. Best fast bowler in SA T20 history.*
-- **Delivery:** Full off stump | **Adjective:** Pace | **Fielding:** Cover + Gully/Point
+*Best SA T20 quick of his era. Yorker maestro, late seam off the deck, signature slow-ball cutter. Two-skill Elite per the v1.1 rule.*
+- **Delivery:** Full off stump | **Adjective:** Seam, Slower | **Fielding:** Slip cordon + Mid-wicket
 
 ### GOLD — Anrich Nortje
-*150kph+ raw pace. Short ball specialist. Intimidation factor.*
-- **Delivery:** Short off stump | **Adjective:** Pace | **Fielding:** Gully/Point
+*150kph+ raw pace. Hits the deck hard with bounce; back-of-length intimidator.*
+- **Delivery:** Short middle stump | **Adjective:** Seam | **Fielding:** Gully/Point
 
 ### GOLD — Tabraiz Shamsi
-*Left-arm wrist spinner. Mystery variations. Economical in middle overs.*
-- **Delivery:** Good length middle stump | **Adjective:** Spin (left-arm wrist spin) | **Fielding:** Short leg
-
-### SILVER — Lungi Ngidi
-*Tall seamer. Good length outside off with bounce.*
-- **Delivery:** Good length 5th stump | **Adjective:** Seam | **Fielding:** Slip cordon
+*Left-arm wrist spinner. Mystery deliveries with a disguised wrong'un breaking back into RH bats.*
+- **Delivery:** Good length middle stump | **Adjective:** Googly | **Fielding:** Short leg/Silly point
 
 ### SILVER — Marco Jansen
-*Tall left-arm quick. Full outside off with swing and bounce.*
-- **Delivery:** Full 5th stump | **Adjective:** Swing (left-arm) | **Fielding:** Slip cordon
+*Tall left-arm quick. Full Outside off with new-ball movement and steep bounce. Faces the Silver tier wide-call risk on Outside off (25%).*
+- **Delivery:** Full Outside off | **Fielding:** Slip cordon
 
 ### SILVER — Keshav Maharaj
-*Left-arm orthodox. Economical and experienced.*
-- **Delivery:** Good length off stump | **Adjective:** Spin (left-arm orthodox) | **Fielding:** Cover
+*Left-arm orthodox. Economical middle-overs operator with subtle drift away from RH bats.*
+- **Delivery:** Good length off stump | **Fielding:** Cover
+
+### SILVER — Lungi Ngidi
+*Tall right-arm seamer. Good-length new-ball threat with bounce. No specific skill at the Silver tier.*
+- **Delivery:** Good length off stump | **Fielding:** Slip cordon
 
 ### BRONZE — Ottneil Baartman
-*Emerging fast bowler. Good length off stump.*
+*Emerging right-arm fast bowler. Domestic standout.*
 - **Delivery:** Good length off stump | **Fielding:** Gully/Point
 
 ### BRONZE — Aiden Markram
-*Part-time off-spin. Handy filler overs.*
+*Part-time off-spin (all-rounder split — Silver batter card above). Handy filler overs.*
 - **Delivery:** Good length off stump | **Fielding:** Cover
 
 ### BRONZE — Gerald Coetzee
-*Young quick. Raw pace but erratic.*
-- **Delivery:** Short middle stump | **Adjective:** Pace | **Fielding:** Gully/Point
-
-### BRONZE — Bjorn Fortuin
-*Left-arm spinner. Domestic specialist.*
-- **Delivery:** Good length leg stump | **Adjective:** Spin (left-arm orthodox) | **Fielding:** Mid-wicket
+*Young right-arm fast bowler. Raw pace, erratic radar.*
+- **Delivery:** Short middle stump | **Fielding:** Gully/Point
 
 ### BRONZE — Wiaan Mulder
-*Medium-fast all-rounder. Fills overs.*
+*Medium-fast all-rounder (bowler split — Bronze batter above). Fills overs.*
 - **Delivery:** Good length middle stump | **Fielding:** Mid-wicket
+
+### BRONZE — Andile Phehlukwayo
+*Right-arm medium-fast. SA's go-to white-ball all-rounder 2017–2022 (50+ T20I caps). Skiddy slingshot action; lower-order LH hitter in real life but bowler-only card here.*
+- **Delivery:** Good length leg stump | **Fielding:** Mid-wicket
 
 ---
 

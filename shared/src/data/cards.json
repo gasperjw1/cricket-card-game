@@ -2661,12 +2661,100 @@
       "resistances": []
     },
     {
+      "id": "heinrich-klaasen-bat",
+      "kind": "batsman",
+      "name": "Heinrich Klaasen",
+      "nation": "South Africa",
+      "tier": "Elite",
+      "description": "Right-handed keeper-bat. SA's most feared T20 hitter. IPL MVP-tier; T20 WC 2024 best SA bat (190 runs, SR 137). Destroys spin and pace alike — only new-ball swing troubles him.",
+      "strengths": [
+        {
+          "zone": {
+            "line": "Leg stump",
+            "length": "Full"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 6,
+            "shot": "smash"
+          }
+        },
+        {
+          "zone": {
+            "line": "Middle stump",
+            "length": "Short"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 6,
+            "shot": "pull"
+          }
+        },
+        {
+          "zone": {
+            "line": "Leg stump",
+            "length": "Good length"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 4,
+            "shot": "mow through midwicket"
+          }
+        }
+      ],
+      "neutrals": [
+        {
+          "zone": {
+            "line": "Off stump",
+            "length": "Full"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 2,
+            "shot": "drive"
+          }
+        },
+        {
+          "zone": {
+            "line": "Off stump",
+            "length": "Good length"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 1,
+            "shot": "punch"
+          }
+        }
+      ],
+      "weaknesses": [
+        {
+          "zone": {
+            "line": "Middle stump",
+            "length": "Good length"
+          },
+          "outcome": {
+            "type": "wicket",
+            "mode": "bowled through gate"
+          }
+        }
+      ],
+      "resistances": [
+        "Topspin",
+        "Drift",
+        "Googly",
+        "Carrom",
+        "Slower",
+        "Cutter",
+        "Seam"
+      ]
+    },
+    {
       "id": "quinton-de-kock-bat",
       "kind": "batsman",
       "name": "Quinton de Kock",
       "nation": "South Africa",
-      "tier": "Elite",
-      "description": "Left-handed keeper-bat. Explosive against pace. Pull shot and cut shot devastating.",
+      "tier": "Gold",
+      "description": "Left-handed keeper-bat. Retired internationally in 2024 but still IPL/SA20 star. T20 WC 2024 leading SA scorer (232 runs, SR 140). Pull, drive, sweep — pure pace specialist.",
       "strengths": [
         {
           "zone": {
@@ -2689,17 +2777,6 @@
             "value": 4,
             "shot": "drive"
           }
-        },
-        {
-          "zone": {
-            "line": "Leg stump",
-            "length": "Full"
-          },
-          "outcome": {
-            "type": "runs",
-            "value": 4,
-            "shot": "sweep"
-          }
         }
       ],
       "neutrals": [
@@ -2716,13 +2793,13 @@
         },
         {
           "zone": {
-            "line": "Middle stump",
-            "length": "Good length"
+            "line": "Leg stump",
+            "length": "Full"
           },
           "outcome": {
             "type": "runs",
             "value": 1,
-            "shot": "work"
+            "shot": "flick"
           }
         }
       ],
@@ -2730,16 +2807,114 @@
         {
           "zone": {
             "line": "Middle stump",
+            "length": "Good length"
+          },
+          "outcome": {
+            "type": "wicket",
+            "mode": "bowled across"
+          }
+        },
+        {
+          "zone": {
+            "line": "Outside off",
             "length": "Full"
           },
           "outcome": {
             "type": "wicket",
-            "mode": "bowled playing across"
+            "mode": "caught at cover"
           }
         }
       ],
       "resistances": [
-        "Swing"
+        "Swing",
+        "Seam",
+        "Cutter",
+        "Slower"
+      ]
+    },
+    {
+      "id": "david-miller-bat",
+      "kind": "batsman",
+      "name": "David Miller",
+      "nation": "South Africa",
+      "tier": "Gold",
+      "description": "Left-handed death-overs finisher. IPL legend, T20 WC 2024 finalist. Lofts straight, flicks square. Cutters and slower balls trouble him.",
+      "strengths": [
+        {
+          "zone": {
+            "line": "Middle stump",
+            "length": "Full"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 6,
+            "shot": "loft"
+          }
+        },
+        {
+          "zone": {
+            "line": "Leg stump",
+            "length": "Full"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 4,
+            "shot": "flick"
+          }
+        }
+      ],
+      "neutrals": [
+        {
+          "zone": {
+            "line": "Leg stump",
+            "length": "Good length"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 2,
+            "shot": "work"
+          }
+        },
+        {
+          "zone": {
+            "line": "Middle stump",
+            "length": "Good length"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 1,
+            "shot": "push"
+          }
+        }
+      ],
+      "weaknesses": [
+        {
+          "zone": {
+            "line": "Outside off",
+            "length": "Short"
+          },
+          "outcome": {
+            "type": "wicket",
+            "mode": "caught at point"
+          }
+        },
+        {
+          "zone": {
+            "line": "Outside off",
+            "length": "Good length"
+          },
+          "outcome": {
+            "type": "wicket",
+            "mode": "mistimed cut"
+          }
+        }
+      ],
+      "resistances": [
+        "Swing",
+        "Seam",
+        "Topspin",
+        "Drift",
+        "Googly"
       ]
     },
     {
@@ -2747,8 +2922,8 @@
       "kind": "batsman",
       "name": "Aiden Markram",
       "nation": "South Africa",
-      "tier": "Gold",
-      "description": "Elegant right-hander. Beautiful drives. Handy off-spin too.",
+      "tier": "Silver",
+      "description": "SA T20I captain. Right-handed top-order, technically correct. Beautiful drives; reads spin well via own off-spin. Vulnerable on the pads.",
       "strengths": [
         {
           "zone": {
@@ -2771,17 +2946,6 @@
             "value": 4,
             "shot": "straight drive"
           }
-        },
-        {
-          "zone": {
-            "line": "Middle stump",
-            "length": "Short"
-          },
-          "outcome": {
-            "type": "runs",
-            "value": 4,
-            "shot": "pull"
-          }
         }
       ],
       "neutrals": [
@@ -2792,19 +2956,8 @@
           },
           "outcome": {
             "type": "runs",
-            "value": 2,
-            "shot": "push"
-          }
-        },
-        {
-          "zone": {
-            "line": "Middle stump",
-            "length": "Good length"
-          },
-          "outcome": {
-            "type": "runs",
             "value": 1,
-            "shot": "defend"
+            "shot": "push"
           }
         }
       ],
@@ -2818,249 +2971,33 @@
             "type": "wicket",
             "mode": "LBW playing across"
           }
-        }
-      ],
-      "resistances": []
-    },
-    {
-      "id": "david-miller-bat",
-      "kind": "batsman",
-      "name": "David Miller",
-      "nation": "South Africa",
-      "tier": "Gold",
-      "description": "Mr. Finisher. Left-handed death overs specialist. Hits straight and long.",
-      "strengths": [
+        },
         {
           "zone": {
             "line": "Middle stump",
-            "length": "Full"
-          },
-          "outcome": {
-            "type": "runs",
-            "value": 6,
-            "shot": "loft"
-          }
-        },
-        {
-          "zone": {
-            "line": "Outside off",
-            "length": "Full"
-          },
-          "outcome": {
-            "type": "runs",
-            "value": 4,
-            "shot": "drive"
-          }
-        },
-        {
-          "zone": {
-            "line": "Leg stump",
-            "length": "Full"
-          },
-          "outcome": {
-            "type": "runs",
-            "value": 4,
-            "shot": "flick"
-          }
-        }
-      ],
-      "neutrals": [
-        {
-          "zone": {
-            "line": "Middle stump",
-            "length": "Good length"
-          },
-          "outcome": {
-            "type": "runs",
-            "value": 2,
-            "shot": "push"
-          }
-        },
-        {
-          "zone": {
-            "line": "Leg stump",
-            "length": "Good length"
-          },
-          "outcome": {
-            "type": "runs",
-            "value": 1,
-            "shot": "work"
-          }
-        }
-      ],
-      "weaknesses": [
-        {
-          "zone": {
-            "line": "Off stump",
             "length": "Short"
           },
           "outcome": {
             "type": "wicket",
-            "mode": "top edge caught"
+            "mode": "top edge"
+          }
+        },
+        {
+          "zone": {
+            "line": "Leg stump",
+            "length": "Full"
+          },
+          "outcome": {
+            "type": "wicket",
+            "mode": "mistimed flick caught"
           }
         }
       ],
       "resistances": [
-        "Cutter"
+        "Topspin",
+        "Drift",
+        "Carrom"
       ]
-    },
-    {
-      "id": "heinrich-klaasen-bat",
-      "kind": "batsman",
-      "name": "Heinrich Klaasen",
-      "nation": "South Africa",
-      "tier": "Silver",
-      "description": "Power hitter. Destroys spin. Smashes through mid-wicket. Can struggle vs pace.",
-      "strengths": [
-        {
-          "zone": {
-            "line": "Leg stump",
-            "length": "Full"
-          },
-          "outcome": {
-            "type": "runs",
-            "value": 6,
-            "shot": "smash"
-          }
-        },
-        {
-          "zone": {
-            "line": "Middle stump",
-            "length": "Good length"
-          },
-          "outcome": {
-            "type": "runs",
-            "value": 4,
-            "shot": "pull"
-          }
-        }
-      ],
-      "neutrals": [
-        {
-          "zone": {
-            "line": "Leg stump",
-            "length": "Good length"
-          },
-          "outcome": {
-            "type": "runs",
-            "value": 2,
-            "shot": "work"
-          }
-        },
-        {
-          "zone": {
-            "line": "Middle stump",
-            "length": "Full"
-          },
-          "outcome": {
-            "type": "runs",
-            "value": 1,
-            "shot": "drive"
-          }
-        }
-      ],
-      "weaknesses": [
-        {
-          "zone": {
-            "line": "Middle stump",
-            "length": "Short"
-          },
-          "outcome": {
-            "type": "wicket",
-            "mode": "gloves to keeper"
-          }
-        },
-        {
-          "zone": {
-            "line": "Off stump",
-            "length": "Full"
-          },
-          "outcome": {
-            "type": "wicket",
-            "mode": "mis-hit to cover"
-          }
-        }
-      ],
-      "resistances": []
-    },
-    {
-      "id": "dewald-brevis-bat",
-      "kind": "batsman",
-      "name": "Dewald Brevis",
-      "nation": "South Africa",
-      "tier": "Silver",
-      "description": "Baby AB. 360-degree talent. Young, raw, explosive.",
-      "strengths": [
-        {
-          "zone": {
-            "line": "Middle stump",
-            "length": "Short"
-          },
-          "outcome": {
-            "type": "runs",
-            "value": 6,
-            "shot": "ramp"
-          }
-        },
-        {
-          "zone": {
-            "line": "Off stump",
-            "length": "Full"
-          },
-          "outcome": {
-            "type": "runs",
-            "value": 4,
-            "shot": "loft"
-          }
-        }
-      ],
-      "neutrals": [
-        {
-          "zone": {
-            "line": "Off stump",
-            "length": "Good length"
-          },
-          "outcome": {
-            "type": "runs",
-            "value": 2,
-            "shot": "cut"
-          }
-        },
-        {
-          "zone": {
-            "line": "Leg stump",
-            "length": "Full"
-          },
-          "outcome": {
-            "type": "runs",
-            "value": 1,
-            "shot": "flick"
-          }
-        }
-      ],
-      "weaknesses": [
-        {
-          "zone": {
-            "line": "Middle stump",
-            "length": "Good length"
-          },
-          "outcome": {
-            "type": "wicket",
-            "mode": "bowled through gate"
-          }
-        },
-        {
-          "zone": {
-            "line": "Middle stump",
-            "length": "Full"
-          },
-          "outcome": {
-            "type": "wicket",
-            "mode": "mis-hit"
-          }
-        }
-      ],
-      "resistances": []
     },
     {
       "id": "tristan-stubbs-bat",
@@ -3068,7 +3005,7 @@
       "name": "Tristan Stubbs",
       "nation": "South Africa",
       "tier": "Silver",
-      "description": "Hard-hitting middle order. Power over finesse.",
+      "description": "Hard-hitting middle-order RHB. Top-5 in T20I rankings recently. Power over finesse; vulnerable around off stump.",
       "strengths": [
         {
           "zone": {
@@ -3101,26 +3038,15 @@
           },
           "outcome": {
             "type": "runs",
-            "value": 2,
-            "shot": "work"
-          }
-        },
-        {
-          "zone": {
-            "line": "Middle stump",
-            "length": "Short"
-          },
-          "outcome": {
-            "type": "runs",
             "value": 1,
-            "shot": "pull"
+            "shot": "work"
           }
         }
       ],
       "weaknesses": [
         {
           "zone": {
-            "line": "Off stump",
+            "line": "Outside off",
             "length": "Good length"
           },
           "outcome": {
@@ -3130,16 +3056,112 @@
         },
         {
           "zone": {
-            "line": "Off stump",
+            "line": "Outside off",
             "length": "Short"
           },
           "outcome": {
             "type": "wicket",
             "mode": "edge to keeper"
           }
+        },
+        {
+          "zone": {
+            "line": "Off stump",
+            "length": "Good length"
+          },
+          "outcome": {
+            "type": "wicket",
+            "mode": "bowled"
+          }
         }
       ],
-      "resistances": []
+      "resistances": [
+        "Slower",
+        "Cutter",
+        "Topspin"
+      ]
+    },
+    {
+      "id": "ryan-rickelton-bat",
+      "kind": "batsman",
+      "name": "Ryan Rickelton",
+      "nation": "South Africa",
+      "tier": "Silver",
+      "description": "Young left-handed keeper-bat. SA20 standout, breaking into the international XI. Sweeps and reverse-sweeps spin; vulnerable to short balls and the moving ball outside off.",
+      "strengths": [
+        {
+          "zone": {
+            "line": "Leg stump",
+            "length": "Full"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 6,
+            "shot": "sweep"
+          }
+        },
+        {
+          "zone": {
+            "line": "Off stump",
+            "length": "Full"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 4,
+            "shot": "drive"
+          }
+        }
+      ],
+      "neutrals": [
+        {
+          "zone": {
+            "line": "Leg stump",
+            "length": "Good length"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 1,
+            "shot": "nudge"
+          }
+        }
+      ],
+      "weaknesses": [
+        {
+          "zone": {
+            "line": "Middle stump",
+            "length": "Short"
+          },
+          "outcome": {
+            "type": "wicket",
+            "mode": "top edge caught"
+          }
+        },
+        {
+          "zone": {
+            "line": "Outside off",
+            "length": "Good length"
+          },
+          "outcome": {
+            "type": "wicket",
+            "mode": "edge to keeper"
+          }
+        },
+        {
+          "zone": {
+            "line": "Middle stump",
+            "length": "Good length"
+          },
+          "outcome": {
+            "type": "wicket",
+            "mode": "bowled"
+          }
+        }
+      ],
+      "resistances": [
+        "Topspin",
+        "Carrom",
+        "Drift"
+      ]
     },
     {
       "id": "reeza-hendricks-bat",
@@ -3147,7 +3169,7 @@
       "name": "Reeza Hendricks",
       "nation": "South Africa",
       "tier": "Bronze",
-      "description": "Solid opener. Accumulator rather than aggressor.",
+      "description": "Right-handed accumulator opener. Solid against the new ball; lacks T20 acceleration.",
       "strengths": [
         {
           "zone": {
@@ -3213,7 +3235,7 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "flicks in air"
+            "mode": "flicks in air to midwicket"
           }
         }
       ],
@@ -3225,7 +3247,7 @@
       "name": "Rassie van der Dussen",
       "nation": "South Africa",
       "tier": "Bronze",
-      "description": "Technically correct middle order. Anchors but lacks T20 power.",
+      "description": "Technically correct middle-order RHB. Anchors but lacks T20 ceiling.",
       "strengths": [
         {
           "zone": {
@@ -3276,12 +3298,12 @@
         },
         {
           "zone": {
-            "line": "Off stump",
+            "line": "Outside off",
             "length": "Short"
           },
           "outcome": {
             "type": "wicket",
-            "mode": "caught at gully"
+            "mode": "caught at point"
           }
         },
         {
@@ -3291,85 +3313,7 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "mis-hit"
-          }
-        }
-      ],
-      "resistances": []
-    },
-    {
-      "id": "ryan-rickelton-bat",
-      "kind": "batsman",
-      "name": "Ryan Rickelton",
-      "nation": "South Africa",
-      "tier": "Bronze",
-      "description": "Young left-hander. Domestic performer, limited T20I exposure.",
-      "strengths": [
-        {
-          "zone": {
-            "line": "Leg stump",
-            "length": "Full"
-          },
-          "outcome": {
-            "type": "runs",
-            "value": 4,
-            "shot": "sweep"
-          }
-        }
-      ],
-      "neutrals": [
-        {
-          "zone": {
-            "line": "Leg stump",
-            "length": "Good length"
-          },
-          "outcome": {
-            "type": "runs",
-            "value": 2,
-            "shot": "nudge"
-          }
-        },
-        {
-          "zone": {
-            "line": "Middle stump",
-            "length": "Full"
-          },
-          "outcome": {
-            "type": "runs",
-            "value": 1,
-            "shot": "push"
-          }
-        }
-      ],
-      "weaknesses": [
-        {
-          "zone": {
-            "line": "Off stump",
-            "length": "Good length"
-          },
-          "outcome": {
-            "type": "wicket",
-            "mode": "edge to keeper"
-          }
-        },
-        {
-          "zone": {
-            "line": "Middle stump",
-            "length": "Short"
-          },
-          "outcome": {
-            "type": "wicket",
-            "mode": "top edge"
-          }
-        },
-        {
-          "zone": {
-            "line": "Middle stump",
-            "length": "Good length"
-          },
-          "outcome": {
-            "type": "wicket",
-            "mode": "bowled"
+            "mode": "mistimed loft"
           }
         }
       ],
@@ -3381,7 +3325,7 @@
       "name": "Donovan Ferreira",
       "nation": "South Africa",
       "tier": "Bronze",
-      "description": "Young all-rounder. IPL talent, raw at international level.",
+      "description": "Young IPL/SA20 power hitter. Raw at international level — clears the rope when he times it, gets out trying when he doesn't.",
       "strengths": [
         {
           "zone": {
@@ -3422,7 +3366,7 @@
       "weaknesses": [
         {
           "zone": {
-            "line": "Off stump",
+            "line": "Outside off",
             "length": "Good length"
           },
           "outcome": {
@@ -3437,7 +3381,7 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "mis-hit to mid-off"
+            "mode": "mistimed drive caught"
           }
         },
         {
@@ -3459,7 +3403,7 @@
       "name": "Wiaan Mulder",
       "nation": "South Africa",
       "tier": "Bronze",
-      "description": "All-rounder. Medium pace and handy bat. Not a T20 specialist.",
+      "description": "Right-handed all-rounder (batter card; medium-pace bowler split below). Not a T20 specialist with the bat — useful lower-order overs.",
       "strengths": [
         {
           "zone": {
@@ -3500,7 +3444,7 @@
       "weaknesses": [
         {
           "zone": {
-            "line": "Off stump",
+            "line": "Outside off",
             "length": "Short"
           },
           "outcome": {
@@ -3510,7 +3454,7 @@
         },
         {
           "zone": {
-            "line": "Off stump",
+            "line": "Outside off",
             "length": "Good length"
           },
           "outcome": {
@@ -3526,6 +3470,84 @@
           "outcome": {
             "type": "wicket",
             "mode": "caught at cover"
+          }
+        }
+      ],
+      "resistances": []
+    },
+    {
+      "id": "rilee-rossouw-bat",
+      "kind": "batsman",
+      "name": "Rilee Rossouw",
+      "nation": "South Africa",
+      "tier": "Bronze",
+      "description": "Left-handed power hitter. 36 T20Is for SA in his 2014–2016 prime + 2022 WC century cameo. Aggressive Bronze profile — clears the rope or holes out.",
+      "strengths": [
+        {
+          "zone": {
+            "line": "Leg stump",
+            "length": "Full"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 6,
+            "shot": "slog"
+          }
+        }
+      ],
+      "neutrals": [
+        {
+          "zone": {
+            "line": "Middle stump",
+            "length": "Short"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 2,
+            "shot": "pull"
+          }
+        },
+        {
+          "zone": {
+            "line": "Off stump",
+            "length": "Full"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 1,
+            "shot": "drive"
+          }
+        }
+      ],
+      "weaknesses": [
+        {
+          "zone": {
+            "line": "Off stump",
+            "length": "Good length"
+          },
+          "outcome": {
+            "type": "wicket",
+            "mode": "edge to slip"
+          }
+        },
+        {
+          "zone": {
+            "line": "Middle stump",
+            "length": "Good length"
+          },
+          "outcome": {
+            "type": "wicket",
+            "mode": "bowled across"
+          }
+        },
+        {
+          "zone": {
+            "line": "Leg stump",
+            "length": "Good length"
+          },
+          "outcome": {
+            "type": "wicket",
+            "mode": "LBW"
           }
         }
       ],
@@ -11050,15 +11072,18 @@
       "name": "Kagiso Rabada",
       "nation": "South Africa",
       "tier": "Elite",
-      "description": "Express pace. Yorkers and bouncers. Best fast bowler in SA T20 history.",
+      "description": "Best SA T20 quick of his era. Yorker maestro, late seam off the deck, signature slow-ball cutter. Two-skill Elite per the v1.1 rule.",
       "delivery": {
         "line": "Off stump",
         "length": "Full"
       },
-      "adjectives": [],
+      "adjectives": [
+        "Seam",
+        "Slower"
+      ],
       "fielding": [
-        "Cover",
-        "Gully/Point"
+        "Slip cordon",
+        "Mid-wicket"
       ]
     },
     {
@@ -11067,12 +11092,14 @@
       "name": "Anrich Nortje",
       "nation": "South Africa",
       "tier": "Gold",
-      "description": "150kph+ raw pace. Short ball specialist. Intimidation factor.",
+      "description": "150kph+ raw pace. Hits the deck hard with bounce; back-of-length intimidator.",
       "delivery": {
-        "line": "Off stump",
+        "line": "Middle stump",
         "length": "Short"
       },
-      "adjectives": [],
+      "adjectives": [
+        "Seam"
+      ],
       "fielding": [
         "Gully/Point"
       ]
@@ -11083,30 +11110,16 @@
       "name": "Tabraiz Shamsi",
       "nation": "South Africa",
       "tier": "Gold",
-      "description": "Left-arm wrist spinner. Mystery variations. Economical in middle overs.",
+      "description": "Left-arm wrist spinner. Mystery deliveries with a disguised wrong'un breaking back into RH bats.",
       "delivery": {
         "line": "Middle stump",
         "length": "Good length"
       },
-      "adjectives": [],
+      "adjectives": [
+        "Googly"
+      ],
       "fielding": [
         "Short leg/Silly point"
-      ]
-    },
-    {
-      "id": "lungi-ngidi-bowl",
-      "kind": "bowler",
-      "name": "Lungi Ngidi",
-      "nation": "South Africa",
-      "tier": "Silver",
-      "description": "Tall seamer. Good length outside off with bounce.",
-      "delivery": {
-        "line": "Outside off",
-        "length": "Good length"
-      },
-      "adjectives": [],
-      "fielding": [
-        "Slip cordon"
       ]
     },
     {
@@ -11115,7 +11128,7 @@
       "name": "Marco Jansen",
       "nation": "South Africa",
       "tier": "Silver",
-      "description": "Tall left-arm quick. Full outside off with swing and bounce.",
+      "description": "Tall left-arm quick. Full Outside off with new-ball movement and steep bounce. Faces the Silver tier wide-call risk on Outside off (25%).",
       "delivery": {
         "line": "Outside off",
         "length": "Full"
@@ -11131,7 +11144,7 @@
       "name": "Keshav Maharaj",
       "nation": "South Africa",
       "tier": "Silver",
-      "description": "Left-arm orthodox. Economical and experienced.",
+      "description": "Left-arm orthodox. Economical middle-overs operator with subtle drift away from RH bats.",
       "delivery": {
         "line": "Off stump",
         "length": "Good length"
@@ -11142,12 +11155,28 @@
       ]
     },
     {
+      "id": "lungi-ngidi-bowl",
+      "kind": "bowler",
+      "name": "Lungi Ngidi",
+      "nation": "South Africa",
+      "tier": "Silver",
+      "description": "Tall right-arm seamer. Good-length new-ball threat with bounce. No specific skill at the Silver tier.",
+      "delivery": {
+        "line": "Off stump",
+        "length": "Good length"
+      },
+      "adjectives": [],
+      "fielding": [
+        "Slip cordon"
+      ]
+    },
+    {
       "id": "ottneil-baartman-bowl",
       "kind": "bowler",
       "name": "Ottneil Baartman",
       "nation": "South Africa",
       "tier": "Bronze",
-      "description": "Emerging fast bowler. Good length off stump.",
+      "description": "Emerging right-arm fast bowler. Domestic standout.",
       "delivery": {
         "line": "Off stump",
         "length": "Good length"
@@ -11163,7 +11192,7 @@
       "name": "Aiden Markram",
       "nation": "South Africa",
       "tier": "Bronze",
-      "description": "Part-time off-spin. Handy filler overs.",
+      "description": "Part-time off-spin (all-rounder split — Silver batter card above). Handy filler overs.",
       "delivery": {
         "line": "Off stump",
         "length": "Good length"
@@ -11179,7 +11208,7 @@
       "name": "Gerald Coetzee",
       "nation": "South Africa",
       "tier": "Bronze",
-      "description": "Young quick. Raw pace but erratic.",
+      "description": "Young right-arm fast bowler. Raw pace, erratic radar.",
       "delivery": {
         "line": "Middle stump",
         "length": "Short"
@@ -11190,14 +11219,14 @@
       ]
     },
     {
-      "id": "bjorn-fortuin-bowl",
+      "id": "wiaan-mulder-bowl",
       "kind": "bowler",
-      "name": "Bjorn Fortuin",
+      "name": "Wiaan Mulder",
       "nation": "South Africa",
       "tier": "Bronze",
-      "description": "Left-arm spinner. Domestic specialist.",
+      "description": "Medium-fast all-rounder (bowler split — Bronze batter above). Fills overs.",
       "delivery": {
-        "line": "Leg stump",
+        "line": "Middle stump",
         "length": "Good length"
       },
       "adjectives": [],
@@ -11206,14 +11235,14 @@
       ]
     },
     {
-      "id": "wiaan-mulder-bowl",
+      "id": "andile-phehlukwayo-bowl",
       "kind": "bowler",
-      "name": "Wiaan Mulder",
+      "name": "Andile Phehlukwayo",
       "nation": "South Africa",
       "tier": "Bronze",
-      "description": "Medium-fast all-rounder. Fills overs.",
+      "description": "Right-arm medium-fast. SA's go-to white-ball all-rounder 2017–2022 (50+ T20I caps). Skiddy slingshot action; lower-order LH hitter in real life but bowler-only card here.",
       "delivery": {
-        "line": "Middle stump",
+        "line": "Leg stump",
         "length": "Good length"
       },
       "adjectives": [],
