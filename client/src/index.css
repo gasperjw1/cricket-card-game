@@ -13,7 +13,12 @@
 
 body {
   margin: 0;
-  min-height: 100vh;
+  /* Use 100dvh so the viewport doesn't lose height when iOS Safari shows
+     its dynamic toolbar (URL bar). 100vh on iOS includes the toolbar
+     even when it's collapsed, causing scroll jank with sticky elements
+     like our scorebug + selection-footer. dvh is the dynamic equivalent. */
+  min-height: 100vh;          /* fallback for browsers without dvh */
+  min-height: 100dvh;
   display: flex;
   place-items: center;
   justify-content: center;
@@ -25,6 +30,12 @@ body {
   margin: 0 auto;
   padding: 1.5rem 1rem 4rem;
   text-align: center;
+  /* Respect iOS notch/Dynamic Island and home indicator. The bottom
+     padding handles content above the home indicator; the top is
+     handled per-screen (scorebug accounts for safe area itself). */
+  padding-left: max(1rem, env(safe-area-inset-left));
+  padding-right: max(1rem, env(safe-area-inset-right));
+  padding-top: max(1.5rem, env(safe-area-inset-top));
 }
 
 h1 {
