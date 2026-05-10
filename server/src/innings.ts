@@ -930,13 +930,15 @@ function currentInnings(match: ServerMatch): InningsState | null {
 
 function downgradeOnce(o: BallOutcome): BallOutcome {
   if (o.type !== "runs") return o;
+  // Same shot, just timed worse — preserve the category so the result
+  // screen still shows the right action image.
   switch (o.value) {
     case 6:
-      return { type: "runs", value: 4, shot: o.shot };
+      return { type: "runs", value: 4, shot: o.shot, shotCategory: o.shotCategory };
     case 4:
-      return { type: "runs", value: 2, shot: o.shot };
+      return { type: "runs", value: 2, shot: o.shot, shotCategory: o.shotCategory };
     case 2:
-      return { type: "runs", value: 1, shot: o.shot };
+      return { type: "runs", value: 1, shot: o.shot, shotCategory: o.shotCategory };
     case 1:
       return { type: "dot" };
     default:
