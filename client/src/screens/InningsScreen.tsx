@@ -526,10 +526,20 @@ function RevealOverlay(props: {
   onContinue: () => void;
 }) {
   const { result, mySlot } = props;
-  const myReveal =
-    result.battingSelection.player === mySlot ? result.battingSelection : result.bowlingSelection;
-  const oppReveal =
-    result.battingSelection.player === mySlot ? result.bowlingSelection : result.battingSelection;
+  const bowlingSel = result.bowlingSelection;
+  const battingSel = result.battingSelection;
+  const bowlerName =
+    bowlingSel.player === mySlot
+      ? "you"
+      : bowlingSel.player === "A"
+        ? props.aName
+        : props.bName;
+  const batterName =
+    battingSel.player === mySlot
+      ? "you"
+      : battingSel.player === "A"
+        ? props.aName
+        : props.bName;
   const seconds = useCountdown(props.postBallDeadline);
   const reveal = buildRevealContext(result);
 
@@ -554,26 +564,21 @@ function RevealOverlay(props: {
       <div className="reveal-inner">
         <h2>Ball {result.ballNumber}</h2>
         <div className="reveal-cards">
-          <div>
-            <div className="reveal-side-label">You played</div>
-            <Card card={myReveal.mandatoryCard} size="hand" reveal={reveal} />
-            {myReveal.situationCard && (
+          <div className="reveal-side reveal-side-bowler">
+            <div className="reveal-side-label">Bowler — {bowlerName}</div>
+            <Card card={bowlingSel.mandatoryCard} size="hand" reveal={reveal} />
+            {bowlingSel.situationCard && (
               <div style={{ marginTop: "0.5rem" }}>
-                <Card card={myReveal.situationCard} size="hand" />
+                <Card card={bowlingSel.situationCard} size="hand" />
               </div>
             )}
           </div>
-          <div className="reveal-vs">
-            <Tip text="Both players revealed simultaneously.">
-              <span>vs</span>
-            </Tip>
-          </div>
-          <div>
-            <div className="reveal-side-label">Opponent played</div>
-            <Card card={oppReveal.mandatoryCard} size="hand" reveal={reveal} />
-            {oppReveal.situationCard && (
+          <div className="reveal-side reveal-side-batter">
+            <div className="reveal-side-label">Batter — {batterName}</div>
+            <Card card={battingSel.mandatoryCard} size="hand" reveal={reveal} />
+            {battingSel.situationCard && (
               <div style={{ marginTop: "0.5rem" }}>
-                <Card card={oppReveal.situationCard} size="hand" />
+                <Card card={battingSel.situationCard} size="hand" />
               </div>
             )}
           </div>
