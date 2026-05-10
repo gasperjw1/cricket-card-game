@@ -19,19 +19,19 @@ function makeBatter(overrides: Partial<BatsmanCard> = {}): BatsmanCard {
     strengths: [
       {
         zone: { line: "Off stump", length: "Full" },
-        outcome: { type: "runs", value: 6, shot: "cover drive" },
+        outcome: { type: "runs", value: 6, shot: "cover drive", shotCategory: "drive-cover" },
       },
     ],
     neutrals: [
       {
         zone: { line: "Middle stump", length: "Good length" },
-        outcome: { type: "runs", value: 2, shot: "push" },
+        outcome: { type: "runs", value: 2, shot: "push", shotCategory: "defend" },
       },
     ],
     weaknesses: [
       {
         zone: { line: "Outside off", length: "Full" },
-        outcome: { type: "wicket", mode: "edge to keeper" },
+        outcome: { type: "wicket", mode: "edge to keeper", dismissalCategory: "caught-keeper" },
       },
     ],
     resistances: [],
@@ -373,7 +373,7 @@ describe("Switch Hit", () => {
       strengths: [
         {
           zone: { line: "Leg stump", length: "Full" },
-          outcome: { type: "runs", value: 6, shot: "flick" },
+          outcome: { type: "runs", value: 6, shot: "flick", shotCategory: "flick" },
         },
       ],
       neutrals: [],
@@ -493,7 +493,7 @@ describe("Outside off", () => {
         strengths: [
           {
             zone: { line: "Outside off", length: "Full" },
-            outcome: { type: "runs", value: 4, shot: "slash" },
+            outcome: { type: "runs", value: 4, shot: "slash", shotCategory: "cut" },
           },
         ],
         neutrals: [],
@@ -522,7 +522,7 @@ describe("Shuffle Across", () => {
       strengths: [
         {
           zone: { line: "Middle stump", length: "Full" },
-          outcome: { type: "runs", value: 6, shot: "slog" },
+          outcome: { type: "runs", value: 6, shot: "slog", shotCategory: "slog" },
         },
       ],
       neutrals: [],
@@ -546,7 +546,7 @@ describe("Shuffle Across", () => {
       strengths: [
         {
           zone: { line: "Leg stump", length: "Full" },
-          outcome: { type: "runs", value: 6, shot: "flick" },
+          outcome: { type: "runs", value: 6, shot: "flick", shotCategory: "flick" },
         },
       ],
       neutrals: [],
@@ -615,7 +615,7 @@ describe("Deep in the Crease", () => {
       strengths: [
         {
           zone: { line: "Off stump", length: "Good length" },
-          outcome: { type: "runs", value: 6, shot: "drive" },
+          outcome: { type: "runs", value: 6, shot: "drive", shotCategory: "drive-cover" },
         },
       ],
       neutrals: [],
@@ -677,7 +677,7 @@ describe("Third Umpire Distracted by Biryani", () => {
         strengths: [
           {
             zone: { line: "Leg stump", length: "Full" },
-            outcome: { type: "runs", value: 6, shot: "flick" },
+            outcome: { type: "runs", value: 6, shot: "flick", shotCategory: "flick" },
           },
         ],
         neutrals: [],

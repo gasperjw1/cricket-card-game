@@ -16,7 +16,8 @@
           "outcome": {
             "type": "runs",
             "value": 4,
-            "shot": "cover drive"
+            "shot": "cover drive",
+            "shotCategory": "drive-cover"
           }
         },
         {
@@ -27,7 +28,8 @@
           "outcome": {
             "type": "runs",
             "value": 6,
-            "shot": "flick"
+            "shot": "flick",
+            "shotCategory": "flick"
           }
         },
         {
@@ -38,7 +40,8 @@
           "outcome": {
             "type": "runs",
             "value": 4,
-            "shot": "pull"
+            "shot": "pull",
+            "shotCategory": "pull"
           }
         }
       ],
@@ -51,7 +54,8 @@
           "outcome": {
             "type": "runs",
             "value": 2,
-            "shot": "push"
+            "shot": "push",
+            "shotCategory": "defend"
           }
         },
         {
@@ -62,7 +66,8 @@
           "outcome": {
             "type": "runs",
             "value": 1,
-            "shot": "late cut"
+            "shot": "late cut",
+            "shotCategory": "late-cut"
           }
         }
       ],
@@ -74,7 +79,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "edge to keeper"
+            "mode": "edge to keeper",
+            "dismissalCategory": "caught-keeper"
           }
         }
       ],
@@ -103,7 +109,8 @@
           "outcome": {
             "type": "runs",
             "value": 6,
-            "shot": "lofted straight drive"
+            "shot": "lofted straight drive",
+            "shotCategory": "loft-straight"
           }
         },
         {
@@ -114,7 +121,8 @@
           "outcome": {
             "type": "runs",
             "value": 4,
-            "shot": "pull"
+            "shot": "pull",
+            "shotCategory": "pull"
           }
         }
       ],
@@ -127,7 +135,8 @@
           "outcome": {
             "type": "runs",
             "value": 2,
-            "shot": "flick"
+            "shot": "flick",
+            "shotCategory": "flick"
           }
         },
         {
@@ -138,7 +147,8 @@
           "outcome": {
             "type": "runs",
             "value": 1,
-            "shot": "work"
+            "shot": "work",
+            "shotCategory": "defend"
           }
         }
       ],
@@ -150,7 +160,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "edge to slip"
+            "mode": "edge to slip",
+            "dismissalCategory": "caught-slip"
           }
         },
         {
@@ -160,7 +171,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "edge to keeper"
+            "mode": "edge to keeper",
+            "dismissalCategory": "caught-keeper"
           }
         }
       ],
@@ -187,7 +199,8 @@
           "outcome": {
             "type": "runs",
             "value": 6,
-            "shot": "scoop"
+            "shot": "scoop",
+            "shotCategory": "scoop"
           }
         },
         {
@@ -198,7 +211,8 @@
           "outcome": {
             "type": "runs",
             "value": 4,
-            "shot": "ramp"
+            "shot": "ramp",
+            "shotCategory": "ramp"
           }
         }
       ],
@@ -211,7 +225,8 @@
           "outcome": {
             "type": "runs",
             "value": 2,
-            "shot": "drive"
+            "shot": "drive",
+            "shotCategory": "drive-cover"
           }
         },
         {
@@ -222,7 +237,8 @@
           "outcome": {
             "type": "runs",
             "value": 1,
-            "shot": "flick"
+            "shot": "flick",
+            "shotCategory": "flick"
           }
         }
       ],
@@ -234,7 +250,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "bowled through the gate"
+            "mode": "bowled through the gate",
+            "dismissalCategory": "bowled"
           }
         },
         {
@@ -244,7 +261,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "edge to slip"
+            "mode": "edge to slip",
+            "dismissalCategory": "caught-slip"
           }
         }
       ],
@@ -272,7 +290,8 @@
           "outcome": {
             "type": "runs",
             "value": 6,
-            "shot": "slog"
+            "shot": "slog",
+            "shotCategory": "slog"
           }
         },
         {
@@ -283,7 +302,8 @@
           "outcome": {
             "type": "runs",
             "value": 4,
-            "shot": "pull"
+            "shot": "pull",
+            "shotCategory": "pull"
           }
         }
       ],
@@ -296,7 +316,8 @@
           "outcome": {
             "type": "runs",
             "value": 1,
-            "shot": "work"
+            "shot": "work",
+            "shotCategory": "defend"
           }
         }
       ],
@@ -308,7 +329,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "edge to slip"
+            "mode": "edge to slip",
+            "dismissalCategory": "caught-slip"
           }
         },
         {
@@ -318,7 +340,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "caught at point"
+            "mode": "caught at point",
+            "dismissalCategory": "caught-point"
           }
         },
         {
@@ -328,7 +351,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "bowled trying to flick across"
+            "mode": "bowled trying to flick across",
+            "dismissalCategory": "bowled"
           }
         }
       ],
@@ -353,7 +377,8 @@
           "outcome": {
             "type": "runs",
             "value": 6,
-            "shot": "slog"
+            "shot": "slog",
+            "shotCategory": "slog"
           }
         },
         {
@@ -364,7 +389,8 @@
           "outcome": {
             "type": "runs",
             "value": 4,
-            "shot": "pull"
+            "shot": "pull",
+            "shotCategory": "pull"
           }
         }
       ],
@@ -377,7 +403,8 @@
           "outcome": {
             "type": "runs",
             "value": 1,
-            "shot": "flick"
+            "shot": "flick",
+            "shotCategory": "flick"
           }
         }
       ],
@@ -389,7 +416,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "edge to slip"
+            "mode": "edge to slip",
+            "dismissalCategory": "caught-slip"
           }
         },
         {
@@ -399,7 +427,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "bowled"
+            "mode": "bowled",
+            "dismissalCategory": "bowled"
           }
         },
         {
@@ -409,7 +438,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "caught at cover"
+            "mode": "caught at cover",
+            "dismissalCategory": "caught-cover"
           }
         }
       ],
@@ -434,7 +464,8 @@
           "outcome": {
             "type": "runs",
             "value": 6,
-            "shot": "loft"
+            "shot": "loft",
+            "shotCategory": "loft-off"
           }
         },
         {
@@ -445,7 +476,8 @@
           "outcome": {
             "type": "runs",
             "value": 4,
-            "shot": "pull"
+            "shot": "pull",
+            "shotCategory": "pull"
           }
         }
       ],
@@ -458,7 +490,8 @@
           "outcome": {
             "type": "runs",
             "value": 1,
-            "shot": "push"
+            "shot": "push",
+            "shotCategory": "defend"
           }
         }
       ],
@@ -470,7 +503,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "bowled"
+            "mode": "bowled",
+            "dismissalCategory": "bowled"
           }
         },
         {
@@ -480,7 +514,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "LBW playing across"
+            "mode": "LBW playing across",
+            "dismissalCategory": "lbw"
           }
         },
         {
@@ -490,7 +525,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "top edge caught"
+            "mode": "top edge caught",
+            "dismissalCategory": "caught-deep"
           }
         }
       ],
@@ -516,7 +552,8 @@
           "outcome": {
             "type": "runs",
             "value": 1,
-            "shot": "push"
+            "shot": "push",
+            "shotCategory": "defend"
           }
         },
         {
@@ -527,7 +564,8 @@
           "outcome": {
             "type": "runs",
             "value": 2,
-            "shot": "pull"
+            "shot": "pull",
+            "shotCategory": "pull"
           }
         },
         {
@@ -538,7 +576,8 @@
           "outcome": {
             "type": "runs",
             "value": 1,
-            "shot": "work"
+            "shot": "work",
+            "shotCategory": "defend"
           }
         }
       ],
@@ -550,7 +589,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "edge to slip"
+            "mode": "edge to slip",
+            "dismissalCategory": "caught-slip"
           }
         },
         {
@@ -560,7 +600,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "drive caught at cover"
+            "mode": "drive caught at cover",
+            "dismissalCategory": "caught-cover"
           }
         },
         {
@@ -570,7 +611,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "caught at point"
+            "mode": "caught at point",
+            "dismissalCategory": "caught-point"
           }
         }
       ],
@@ -593,7 +635,8 @@
           "outcome": {
             "type": "runs",
             "value": 2,
-            "shot": "push"
+            "shot": "push",
+            "shotCategory": "defend"
           }
         },
         {
@@ -604,7 +647,8 @@
           "outcome": {
             "type": "runs",
             "value": 1,
-            "shot": "drive"
+            "shot": "drive",
+            "shotCategory": "drive-cover"
           }
         },
         {
@@ -615,7 +659,8 @@
           "outcome": {
             "type": "runs",
             "value": 1,
-            "shot": "flick"
+            "shot": "flick",
+            "shotCategory": "flick"
           }
         }
       ],
@@ -627,7 +672,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "fends to short leg"
+            "mode": "fends to short leg",
+            "dismissalCategory": "caught-midwicket"
           }
         },
         {
@@ -637,7 +683,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "bowled through the gate"
+            "mode": "bowled through the gate",
+            "dismissalCategory": "bowled"
           }
         },
         {
@@ -647,7 +694,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "caught at point"
+            "mode": "caught at point",
+            "dismissalCategory": "caught-point"
           }
         }
       ],
@@ -670,7 +718,8 @@
           "outcome": {
             "type": "runs",
             "value": 2,
-            "shot": "slog"
+            "shot": "slog",
+            "shotCategory": "slog"
           }
         },
         {
@@ -681,7 +730,8 @@
           "outcome": {
             "type": "runs",
             "value": 1,
-            "shot": "pull"
+            "shot": "pull",
+            "shotCategory": "pull"
           }
         },
         {
@@ -692,7 +742,8 @@
           "outcome": {
             "type": "runs",
             "value": 1,
-            "shot": "work"
+            "shot": "work",
+            "shotCategory": "defend"
           }
         }
       ],
@@ -704,7 +755,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "edge to slip"
+            "mode": "edge to slip",
+            "dismissalCategory": "caught-slip"
           }
         },
         {
@@ -714,7 +766,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "bowled"
+            "mode": "bowled",
+            "dismissalCategory": "bowled"
           }
         },
         {
@@ -724,7 +777,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "mistimed drive caught at cover"
+            "mode": "mistimed drive caught at cover",
+            "dismissalCategory": "caught-cover"
           }
         }
       ],
@@ -747,7 +801,8 @@
           "outcome": {
             "type": "runs",
             "value": 2,
-            "shot": "drive"
+            "shot": "drive",
+            "shotCategory": "drive-straight"
           }
         },
         {
@@ -758,7 +813,8 @@
           "outcome": {
             "type": "runs",
             "value": 1,
-            "shot": "push"
+            "shot": "push",
+            "shotCategory": "defend"
           }
         },
         {
@@ -769,7 +825,8 @@
           "outcome": {
             "type": "runs",
             "value": 1,
-            "shot": "pull"
+            "shot": "pull",
+            "shotCategory": "pull"
           }
         }
       ],
@@ -781,7 +838,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "edge to slip"
+            "mode": "edge to slip",
+            "dismissalCategory": "caught-slip"
           }
         },
         {
@@ -791,7 +849,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "LBW playing across"
+            "mode": "LBW playing across",
+            "dismissalCategory": "lbw"
           }
         },
         {
@@ -801,7 +860,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "caught at cover"
+            "mode": "caught at cover",
+            "dismissalCategory": "caught-cover"
           }
         }
       ],
@@ -824,7 +884,8 @@
           "outcome": {
             "type": "runs",
             "value": 1,
-            "shot": "push"
+            "shot": "push",
+            "shotCategory": "defend"
           }
         },
         {
@@ -835,7 +896,8 @@
           "outcome": {
             "type": "runs",
             "value": 1,
-            "shot": "work"
+            "shot": "work",
+            "shotCategory": "defend"
           }
         },
         {
@@ -846,7 +908,8 @@
           "outcome": {
             "type": "runs",
             "value": 2,
-            "shot": "pull"
+            "shot": "pull",
+            "shotCategory": "pull"
           }
         }
       ],
@@ -858,7 +921,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "edge to slip"
+            "mode": "edge to slip",
+            "dismissalCategory": "caught-slip"
           }
         },
         {
@@ -868,7 +932,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "mishit caught at mid-off"
+            "mode": "mishit caught at mid-off",
+            "dismissalCategory": "caught-cover"
           }
         },
         {
@@ -878,7 +943,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "top edge caught"
+            "mode": "top edge caught",
+            "dismissalCategory": "caught-deep"
           }
         }
       ],
@@ -900,7 +966,8 @@
           "outcome": {
             "type": "runs",
             "value": 6,
-            "shot": "drive"
+            "shot": "drive",
+            "shotCategory": "drive-cover"
           }
         },
         {
@@ -911,7 +978,8 @@
           "outcome": {
             "type": "runs",
             "value": 4,
-            "shot": "pull"
+            "shot": "pull",
+            "shotCategory": "pull"
           }
         },
         {
@@ -922,7 +990,8 @@
           "outcome": {
             "type": "runs",
             "value": 4,
-            "shot": "cut"
+            "shot": "cut",
+            "shotCategory": "cut"
           }
         }
       ],
@@ -935,7 +1004,8 @@
           "outcome": {
             "type": "runs",
             "value": 2,
-            "shot": "push"
+            "shot": "push",
+            "shotCategory": "defend"
           }
         },
         {
@@ -946,7 +1016,8 @@
           "outcome": {
             "type": "runs",
             "value": 2,
-            "shot": "flick"
+            "shot": "flick",
+            "shotCategory": "flick"
           }
         }
       ],
@@ -958,7 +1029,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "top edge caught"
+            "mode": "top edge caught",
+            "dismissalCategory": "caught-deep"
           }
         }
       ],
@@ -987,7 +1059,8 @@
           "outcome": {
             "type": "runs",
             "value": 6,
-            "shot": "reverse sweep"
+            "shot": "reverse sweep",
+            "shotCategory": "reverse-sweep"
           }
         },
         {
@@ -998,7 +1071,8 @@
           "outcome": {
             "type": "runs",
             "value": 4,
-            "shot": "lofted drive"
+            "shot": "lofted drive",
+            "shotCategory": "loft-off"
           }
         }
       ],
@@ -1011,7 +1085,8 @@
           "outcome": {
             "type": "runs",
             "value": 2,
-            "shot": "pull"
+            "shot": "pull",
+            "shotCategory": "pull"
           }
         },
         {
@@ -1022,7 +1097,8 @@
           "outcome": {
             "type": "runs",
             "value": 1,
-            "shot": "flick"
+            "shot": "flick",
+            "shotCategory": "flick"
           }
         }
       ],
@@ -1034,7 +1110,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "bowled trying to sweep"
+            "mode": "bowled trying to sweep",
+            "dismissalCategory": "bowled"
           }
         },
         {
@@ -1044,7 +1121,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "caught at cover"
+            "mode": "caught at cover",
+            "dismissalCategory": "caught-cover"
           }
         }
       ],
@@ -1072,7 +1150,8 @@
           "outcome": {
             "type": "runs",
             "value": 6,
-            "shot": "lofted straight drive"
+            "shot": "lofted straight drive",
+            "shotCategory": "loft-straight"
           }
         },
         {
@@ -1083,7 +1162,8 @@
           "outcome": {
             "type": "runs",
             "value": 4,
-            "shot": "drive"
+            "shot": "drive",
+            "shotCategory": "drive-cover"
           }
         }
       ],
@@ -1096,7 +1176,8 @@
           "outcome": {
             "type": "runs",
             "value": 2,
-            "shot": "flick"
+            "shot": "flick",
+            "shotCategory": "flick"
           }
         },
         {
@@ -1107,7 +1188,8 @@
           "outcome": {
             "type": "runs",
             "value": 1,
-            "shot": "push"
+            "shot": "push",
+            "shotCategory": "defend"
           }
         }
       ],
@@ -1119,7 +1201,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "edge to slip"
+            "mode": "edge to slip",
+            "dismissalCategory": "caught-slip"
           }
         },
         {
@@ -1129,7 +1212,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "caught at point"
+            "mode": "caught at point",
+            "dismissalCategory": "caught-point"
           }
         }
       ],
@@ -1156,7 +1240,8 @@
           "outcome": {
             "type": "runs",
             "value": 6,
-            "shot": "slog"
+            "shot": "slog",
+            "shotCategory": "slog"
           }
         },
         {
@@ -1167,7 +1252,8 @@
           "outcome": {
             "type": "runs",
             "value": 4,
-            "shot": "hook"
+            "shot": "hook",
+            "shotCategory": "pull"
           }
         }
       ],
@@ -1180,7 +1266,8 @@
           "outcome": {
             "type": "runs",
             "value": 1,
-            "shot": "work"
+            "shot": "work",
+            "shotCategory": "defend"
           }
         }
       ],
@@ -1192,7 +1279,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "edge to slip"
+            "mode": "edge to slip",
+            "dismissalCategory": "caught-slip"
           }
         },
         {
@@ -1202,7 +1290,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "mishit caught at mid-off"
+            "mode": "mishit caught at mid-off",
+            "dismissalCategory": "caught-cover"
           }
         },
         {
@@ -1212,7 +1301,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "bowled going across"
+            "mode": "bowled going across",
+            "dismissalCategory": "bowled"
           }
         }
       ],
@@ -1237,7 +1327,8 @@
           "outcome": {
             "type": "runs",
             "value": 4,
-            "shot": "cut"
+            "shot": "cut",
+            "shotCategory": "cut"
           }
         },
         {
@@ -1248,7 +1339,8 @@
           "outcome": {
             "type": "runs",
             "value": 4,
-            "shot": "drive"
+            "shot": "drive",
+            "shotCategory": "drive-cover"
           }
         }
       ],
@@ -1261,7 +1353,8 @@
           "outcome": {
             "type": "runs",
             "value": 1,
-            "shot": "push"
+            "shot": "push",
+            "shotCategory": "defend"
           }
         }
       ],
@@ -1273,7 +1366,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "fends to short leg"
+            "mode": "fends to short leg",
+            "dismissalCategory": "caught-midwicket"
           }
         },
         {
@@ -1283,7 +1377,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "caught at point"
+            "mode": "caught at point",
+            "dismissalCategory": "caught-point"
           }
         },
         {
@@ -1293,7 +1388,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "LBW playing across"
+            "mode": "LBW playing across",
+            "dismissalCategory": "lbw"
           }
         }
       ],
@@ -1319,7 +1415,8 @@
           "outcome": {
             "type": "runs",
             "value": 6,
-            "shot": "drive"
+            "shot": "drive",
+            "shotCategory": "drive-cover"
           }
         },
         {
@@ -1330,7 +1427,8 @@
           "outcome": {
             "type": "runs",
             "value": 4,
-            "shot": "pull"
+            "shot": "pull",
+            "shotCategory": "pull"
           }
         }
       ],
@@ -1343,7 +1441,8 @@
           "outcome": {
             "type": "runs",
             "value": 1,
-            "shot": "push"
+            "shot": "push",
+            "shotCategory": "defend"
           }
         }
       ],
@@ -1355,7 +1454,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "caught at point"
+            "mode": "caught at point",
+            "dismissalCategory": "caught-point"
           }
         },
         {
@@ -1365,7 +1465,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "edge to slip"
+            "mode": "edge to slip",
+            "dismissalCategory": "caught-slip"
           }
         },
         {
@@ -1375,7 +1476,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "LBW playing across"
+            "mode": "LBW playing across",
+            "dismissalCategory": "lbw"
           }
         }
       ],
@@ -1401,7 +1503,8 @@
           "outcome": {
             "type": "runs",
             "value": 2,
-            "shot": "loft"
+            "shot": "loft",
+            "shotCategory": "loft-leg"
           }
         },
         {
@@ -1412,7 +1515,8 @@
           "outcome": {
             "type": "runs",
             "value": 1,
-            "shot": "pull"
+            "shot": "pull",
+            "shotCategory": "pull"
           }
         },
         {
@@ -1423,7 +1527,8 @@
           "outcome": {
             "type": "runs",
             "value": 1,
-            "shot": "flick"
+            "shot": "flick",
+            "shotCategory": "flick"
           }
         }
       ],
@@ -1435,7 +1540,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "edge to slip"
+            "mode": "edge to slip",
+            "dismissalCategory": "caught-slip"
           }
         },
         {
@@ -1445,7 +1551,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "bowled"
+            "mode": "bowled",
+            "dismissalCategory": "bowled"
           }
         },
         {
@@ -1455,7 +1562,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "LBW"
+            "mode": "LBW",
+            "dismissalCategory": "lbw"
           }
         }
       ],
@@ -1478,7 +1586,8 @@
           "outcome": {
             "type": "runs",
             "value": 1,
-            "shot": "drive"
+            "shot": "drive",
+            "shotCategory": "drive-cover"
           }
         },
         {
@@ -1489,7 +1598,8 @@
           "outcome": {
             "type": "runs",
             "value": 2,
-            "shot": "push"
+            "shot": "push",
+            "shotCategory": "defend"
           }
         },
         {
@@ -1500,7 +1610,8 @@
           "outcome": {
             "type": "runs",
             "value": 1,
-            "shot": "work"
+            "shot": "work",
+            "shotCategory": "defend"
           }
         }
       ],
@@ -1512,7 +1623,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "caught at gully"
+            "mode": "caught at gully",
+            "dismissalCategory": "caught-point"
           }
         },
         {
@@ -1522,7 +1634,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "mishit to mid-on"
+            "mode": "mishit to mid-on",
+            "dismissalCategory": "caught-midwicket"
           }
         },
         {
@@ -1532,7 +1645,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "edge to keeper"
+            "mode": "edge to keeper",
+            "dismissalCategory": "caught-keeper"
           }
         }
       ],
@@ -1555,7 +1669,8 @@
           "outcome": {
             "type": "runs",
             "value": 1,
-            "shot": "drive"
+            "shot": "drive",
+            "shotCategory": "drive-cover"
           }
         },
         {
@@ -1566,7 +1681,8 @@
           "outcome": {
             "type": "runs",
             "value": 2,
-            "shot": "pull"
+            "shot": "pull",
+            "shotCategory": "pull"
           }
         },
         {
@@ -1577,7 +1693,8 @@
           "outcome": {
             "type": "runs",
             "value": 1,
-            "shot": "flick"
+            "shot": "flick",
+            "shotCategory": "flick"
           }
         }
       ],
@@ -1589,7 +1706,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "bowled"
+            "mode": "bowled",
+            "dismissalCategory": "bowled"
           }
         },
         {
@@ -1599,7 +1717,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "edge to slip"
+            "mode": "edge to slip",
+            "dismissalCategory": "caught-slip"
           }
         },
         {
@@ -1609,7 +1728,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "top edge caught"
+            "mode": "top edge caught",
+            "dismissalCategory": "caught-deep"
           }
         }
       ],
@@ -1632,7 +1752,8 @@
           "outcome": {
             "type": "runs",
             "value": 2,
-            "shot": "cover drive"
+            "shot": "cover drive",
+            "shotCategory": "drive-cover"
           }
         },
         {
@@ -1643,7 +1764,8 @@
           "outcome": {
             "type": "runs",
             "value": 1,
-            "shot": "defend"
+            "shot": "defend",
+            "shotCategory": "defend"
           }
         },
         {
@@ -1654,7 +1776,8 @@
           "outcome": {
             "type": "runs",
             "value": 1,
-            "shot": "nudge"
+            "shot": "nudge",
+            "shotCategory": "defend"
           }
         }
       ],
@@ -1666,7 +1789,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "LBW playing across"
+            "mode": "LBW playing across",
+            "dismissalCategory": "lbw"
           }
         },
         {
@@ -1676,7 +1800,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "top edge caught"
+            "mode": "top edge caught",
+            "dismissalCategory": "caught-deep"
           }
         },
         {
@@ -1686,7 +1811,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "edge to slip"
+            "mode": "edge to slip",
+            "dismissalCategory": "caught-slip"
           }
         }
       ],
@@ -1709,7 +1835,8 @@
           "outcome": {
             "type": "runs",
             "value": 2,
-            "shot": "pull"
+            "shot": "pull",
+            "shotCategory": "pull"
           }
         },
         {
@@ -1720,7 +1847,8 @@
           "outcome": {
             "type": "runs",
             "value": 1,
-            "shot": "flick"
+            "shot": "flick",
+            "shotCategory": "flick"
           }
         },
         {
@@ -1731,7 +1859,8 @@
           "outcome": {
             "type": "runs",
             "value": 1,
-            "shot": "work"
+            "shot": "work",
+            "shotCategory": "defend"
           }
         }
       ],
@@ -1743,7 +1872,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "edge to slip"
+            "mode": "edge to slip",
+            "dismissalCategory": "caught-slip"
           }
         },
         {
@@ -1753,7 +1883,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "mishit caught at cover"
+            "mode": "mishit caught at cover",
+            "dismissalCategory": "caught-cover"
           }
         },
         {
@@ -1763,7 +1894,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "bowled"
+            "mode": "bowled",
+            "dismissalCategory": "bowled"
           }
         }
       ],
@@ -1785,7 +1917,8 @@
           "outcome": {
             "type": "runs",
             "value": 6,
-            "shot": "loft"
+            "shot": "loft",
+            "shotCategory": "loft-off"
           }
         },
         {
@@ -1796,7 +1929,8 @@
           "outcome": {
             "type": "runs",
             "value": 4,
-            "shot": "ramp"
+            "shot": "ramp",
+            "shotCategory": "ramp"
           }
         },
         {
@@ -1807,7 +1941,8 @@
           "outcome": {
             "type": "runs",
             "value": 6,
-            "shot": "scoop"
+            "shot": "scoop",
+            "shotCategory": "scoop"
           }
         }
       ],
@@ -1820,7 +1955,8 @@
           "outcome": {
             "type": "runs",
             "value": 2,
-            "shot": "push"
+            "shot": "push",
+            "shotCategory": "defend"
           }
         },
         {
@@ -1831,7 +1967,8 @@
           "outcome": {
             "type": "runs",
             "value": 1,
-            "shot": "work"
+            "shot": "work",
+            "shotCategory": "defend"
           }
         }
       ],
@@ -1843,7 +1980,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "LBW playing across"
+            "mode": "LBW playing across",
+            "dismissalCategory": "lbw"
           }
         }
       ],
@@ -1872,7 +2010,8 @@
           "outcome": {
             "type": "runs",
             "value": 6,
-            "shot": "drive"
+            "shot": "drive",
+            "shotCategory": "drive-cover"
           }
         },
         {
@@ -1883,7 +2022,8 @@
           "outcome": {
             "type": "runs",
             "value": 4,
-            "shot": "pull"
+            "shot": "pull",
+            "shotCategory": "pull"
           }
         }
       ],
@@ -1896,7 +2036,8 @@
           "outcome": {
             "type": "runs",
             "value": 2,
-            "shot": "flick"
+            "shot": "flick",
+            "shotCategory": "flick"
           }
         },
         {
@@ -1907,7 +2048,8 @@
           "outcome": {
             "type": "runs",
             "value": 1,
-            "shot": "push"
+            "shot": "push",
+            "shotCategory": "defend"
           }
         }
       ],
@@ -1919,7 +2061,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "bowled going across"
+            "mode": "bowled going across",
+            "dismissalCategory": "bowled"
           }
         },
         {
@@ -1929,7 +2072,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "caught at cover"
+            "mode": "caught at cover",
+            "dismissalCategory": "caught-cover"
           }
         }
       ],
@@ -1957,7 +2101,8 @@
           "outcome": {
             "type": "runs",
             "value": 6,
-            "shot": "pull"
+            "shot": "pull",
+            "shotCategory": "pull"
           }
         },
         {
@@ -1968,7 +2113,8 @@
           "outcome": {
             "type": "runs",
             "value": 4,
-            "shot": "drive"
+            "shot": "drive",
+            "shotCategory": "drive-cover"
           }
         }
       ],
@@ -1981,7 +2127,8 @@
           "outcome": {
             "type": "runs",
             "value": 2,
-            "shot": "push"
+            "shot": "push",
+            "shotCategory": "defend"
           }
         },
         {
@@ -1992,7 +2139,8 @@
           "outcome": {
             "type": "runs",
             "value": 1,
-            "shot": "flick"
+            "shot": "flick",
+            "shotCategory": "flick"
           }
         }
       ],
@@ -2004,7 +2152,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "bowled"
+            "mode": "bowled",
+            "dismissalCategory": "bowled"
           }
         },
         {
@@ -2014,7 +2163,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "edge to slip"
+            "mode": "edge to slip",
+            "dismissalCategory": "caught-slip"
           }
         }
       ],
@@ -2041,7 +2191,8 @@
           "outcome": {
             "type": "runs",
             "value": 6,
-            "shot": "slog"
+            "shot": "slog",
+            "shotCategory": "slog"
           }
         },
         {
@@ -2052,7 +2203,8 @@
           "outcome": {
             "type": "runs",
             "value": 4,
-            "shot": "switch hit"
+            "shot": "switch hit",
+            "shotCategory": "reverse-sweep"
           }
         }
       ],
@@ -2065,7 +2217,8 @@
           "outcome": {
             "type": "runs",
             "value": 1,
-            "shot": "flick"
+            "shot": "flick",
+            "shotCategory": "flick"
           }
         }
       ],
@@ -2077,7 +2230,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "bowled"
+            "mode": "bowled",
+            "dismissalCategory": "bowled"
           }
         },
         {
@@ -2087,7 +2241,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "caught at point"
+            "mode": "caught at point",
+            "dismissalCategory": "caught-point"
           }
         },
         {
@@ -2097,7 +2252,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "mistimed drive caught at cover"
+            "mode": "mistimed drive caught at cover",
+            "dismissalCategory": "caught-cover"
           }
         }
       ],
@@ -2123,7 +2279,8 @@
           "outcome": {
             "type": "runs",
             "value": 6,
-            "shot": "sweep"
+            "shot": "sweep",
+            "shotCategory": "sweep"
           }
         },
         {
@@ -2134,7 +2291,8 @@
           "outcome": {
             "type": "runs",
             "value": 4,
-            "shot": "pull"
+            "shot": "pull",
+            "shotCategory": "pull"
           }
         }
       ],
@@ -2147,7 +2305,8 @@
           "outcome": {
             "type": "runs",
             "value": 1,
-            "shot": "push"
+            "shot": "push",
+            "shotCategory": "defend"
           }
         }
       ],
@@ -2159,7 +2318,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "bowled"
+            "mode": "bowled",
+            "dismissalCategory": "bowled"
           }
         },
         {
@@ -2169,7 +2329,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "caught at point"
+            "mode": "caught at point",
+            "dismissalCategory": "caught-point"
           }
         },
         {
@@ -2179,7 +2340,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "caught at cover"
+            "mode": "caught at cover",
+            "dismissalCategory": "caught-cover"
           }
         }
       ],
@@ -2205,7 +2367,8 @@
           "outcome": {
             "type": "runs",
             "value": 4,
-            "shot": "flick"
+            "shot": "flick",
+            "shotCategory": "flick"
           }
         },
         {
@@ -2216,7 +2379,8 @@
           "outcome": {
             "type": "runs",
             "value": 4,
-            "shot": "drive"
+            "shot": "drive",
+            "shotCategory": "drive-cover"
           }
         }
       ],
@@ -2229,7 +2393,8 @@
           "outcome": {
             "type": "runs",
             "value": 1,
-            "shot": "work"
+            "shot": "work",
+            "shotCategory": "defend"
           }
         }
       ],
@@ -2241,7 +2406,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "edge to slip"
+            "mode": "edge to slip",
+            "dismissalCategory": "caught-slip"
           }
         },
         {
@@ -2251,7 +2417,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "LBW playing across"
+            "mode": "LBW playing across",
+            "dismissalCategory": "lbw"
           }
         },
         {
@@ -2261,7 +2428,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "caught at point"
+            "mode": "caught at point",
+            "dismissalCategory": "caught-point"
           }
         }
       ],
@@ -2286,7 +2454,8 @@
           "outcome": {
             "type": "runs",
             "value": 4,
-            "shot": "drive"
+            "shot": "drive",
+            "shotCategory": "drive-cover"
           }
         }
       ],
@@ -2299,7 +2468,8 @@
           "outcome": {
             "type": "runs",
             "value": 2,
-            "shot": "flick"
+            "shot": "flick",
+            "shotCategory": "flick"
           }
         },
         {
@@ -2310,7 +2480,8 @@
           "outcome": {
             "type": "runs",
             "value": 1,
-            "shot": "pull"
+            "shot": "pull",
+            "shotCategory": "pull"
           }
         }
       ],
@@ -2322,7 +2493,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "edge to slip"
+            "mode": "edge to slip",
+            "dismissalCategory": "caught-slip"
           }
         },
         {
@@ -2332,7 +2504,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "bowled"
+            "mode": "bowled",
+            "dismissalCategory": "bowled"
           }
         },
         {
@@ -2342,7 +2515,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "LBW"
+            "mode": "LBW",
+            "dismissalCategory": "lbw"
           }
         }
       ],
@@ -2364,7 +2538,8 @@
           "outcome": {
             "type": "runs",
             "value": 4,
-            "shot": "ramp"
+            "shot": "ramp",
+            "shotCategory": "ramp"
           }
         }
       ],
@@ -2377,7 +2552,8 @@
           "outcome": {
             "type": "runs",
             "value": 2,
-            "shot": "sweep"
+            "shot": "sweep",
+            "shotCategory": "sweep"
           }
         },
         {
@@ -2388,7 +2564,8 @@
           "outcome": {
             "type": "runs",
             "value": 1,
-            "shot": "work"
+            "shot": "work",
+            "shotCategory": "defend"
           }
         }
       ],
@@ -2400,7 +2577,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "edge to slip"
+            "mode": "edge to slip",
+            "dismissalCategory": "caught-slip"
           }
         },
         {
@@ -2410,7 +2588,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "bowled"
+            "mode": "bowled",
+            "dismissalCategory": "bowled"
           }
         },
         {
@@ -2420,7 +2599,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "LBW"
+            "mode": "LBW",
+            "dismissalCategory": "lbw"
           }
         }
       ],
@@ -2442,7 +2622,8 @@
           "outcome": {
             "type": "runs",
             "value": 6,
-            "shot": "ramp"
+            "shot": "ramp",
+            "shotCategory": "ramp"
           }
         }
       ],
@@ -2455,7 +2636,8 @@
           "outcome": {
             "type": "runs",
             "value": 2,
-            "shot": "sweep"
+            "shot": "sweep",
+            "shotCategory": "sweep"
           }
         },
         {
@@ -2466,7 +2648,8 @@
           "outcome": {
             "type": "runs",
             "value": 1,
-            "shot": "nudge"
+            "shot": "nudge",
+            "shotCategory": "defend"
           }
         }
       ],
@@ -2478,7 +2661,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "bowled"
+            "mode": "bowled",
+            "dismissalCategory": "bowled"
           }
         },
         {
@@ -2488,7 +2672,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "mis-hit"
+            "mode": "mis-hit",
+            "dismissalCategory": "caught-deep"
           }
         },
         {
@@ -2498,7 +2683,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "LBW"
+            "mode": "LBW",
+            "dismissalCategory": "lbw"
           }
         }
       ],
@@ -2520,7 +2706,8 @@
           "outcome": {
             "type": "runs",
             "value": 4,
-            "shot": "drive"
+            "shot": "drive",
+            "shotCategory": "drive-cover"
           }
         }
       ],
@@ -2533,7 +2720,8 @@
           "outcome": {
             "type": "runs",
             "value": 2,
-            "shot": "push"
+            "shot": "push",
+            "shotCategory": "defend"
           }
         },
         {
@@ -2544,7 +2732,8 @@
           "outcome": {
             "type": "runs",
             "value": 1,
-            "shot": "defend"
+            "shot": "defend",
+            "shotCategory": "defend"
           }
         }
       ],
@@ -2556,7 +2745,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "caught fending"
+            "mode": "caught fending",
+            "dismissalCategory": "caught-keeper"
           }
         },
         {
@@ -2566,7 +2756,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "LBW"
+            "mode": "LBW",
+            "dismissalCategory": "lbw"
           }
         },
         {
@@ -2576,7 +2767,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "flicks in the air to mid-wicket"
+            "mode": "flicks in the air to mid-wicket",
+            "dismissalCategory": "caught-midwicket"
           }
         }
       ],
@@ -2598,7 +2790,8 @@
           "outcome": {
             "type": "runs",
             "value": 4,
-            "shot": "slog"
+            "shot": "slog",
+            "shotCategory": "slog"
           }
         }
       ],
@@ -2611,7 +2804,8 @@
           "outcome": {
             "type": "runs",
             "value": 2,
-            "shot": "nudge"
+            "shot": "nudge",
+            "shotCategory": "defend"
           }
         },
         {
@@ -2622,7 +2816,8 @@
           "outcome": {
             "type": "runs",
             "value": 1,
-            "shot": "push"
+            "shot": "push",
+            "shotCategory": "defend"
           }
         }
       ],
@@ -2634,7 +2829,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "bowled"
+            "mode": "bowled",
+            "dismissalCategory": "bowled"
           }
         },
         {
@@ -2644,7 +2840,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "caught at point"
+            "mode": "caught at point",
+            "dismissalCategory": "caught-point"
           }
         },
         {
@@ -2654,7 +2851,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "LBW"
+            "mode": "LBW",
+            "dismissalCategory": "lbw"
           }
         }
       ],
@@ -2676,7 +2874,8 @@
           "outcome": {
             "type": "runs",
             "value": 6,
-            "shot": "smash"
+            "shot": "smash",
+            "shotCategory": "slog"
           }
         },
         {
@@ -2687,7 +2886,8 @@
           "outcome": {
             "type": "runs",
             "value": 6,
-            "shot": "pull"
+            "shot": "pull",
+            "shotCategory": "pull"
           }
         },
         {
@@ -2698,7 +2898,8 @@
           "outcome": {
             "type": "runs",
             "value": 4,
-            "shot": "mow through midwicket"
+            "shot": "mow through midwicket",
+            "shotCategory": "loft-leg"
           }
         }
       ],
@@ -2711,7 +2912,8 @@
           "outcome": {
             "type": "runs",
             "value": 2,
-            "shot": "drive"
+            "shot": "drive",
+            "shotCategory": "drive-cover"
           }
         },
         {
@@ -2722,7 +2924,8 @@
           "outcome": {
             "type": "runs",
             "value": 1,
-            "shot": "punch"
+            "shot": "punch",
+            "shotCategory": "drive-straight"
           }
         }
       ],
@@ -2734,7 +2937,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "bowled through gate"
+            "mode": "bowled through gate",
+            "dismissalCategory": "bowled"
           }
         }
       ],
@@ -2764,7 +2968,8 @@
           "outcome": {
             "type": "runs",
             "value": 6,
-            "shot": "pull"
+            "shot": "pull",
+            "shotCategory": "pull"
           }
         },
         {
@@ -2775,7 +2980,8 @@
           "outcome": {
             "type": "runs",
             "value": 4,
-            "shot": "drive"
+            "shot": "drive",
+            "shotCategory": "drive-cover"
           }
         }
       ],
@@ -2788,7 +2994,8 @@
           "outcome": {
             "type": "runs",
             "value": 2,
-            "shot": "push"
+            "shot": "push",
+            "shotCategory": "defend"
           }
         },
         {
@@ -2799,7 +3006,8 @@
           "outcome": {
             "type": "runs",
             "value": 1,
-            "shot": "flick"
+            "shot": "flick",
+            "shotCategory": "flick"
           }
         }
       ],
@@ -2811,7 +3019,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "bowled across"
+            "mode": "bowled across",
+            "dismissalCategory": "bowled"
           }
         },
         {
@@ -2821,7 +3030,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "caught at cover"
+            "mode": "caught at cover",
+            "dismissalCategory": "caught-cover"
           }
         }
       ],
@@ -2848,7 +3058,8 @@
           "outcome": {
             "type": "runs",
             "value": 6,
-            "shot": "loft"
+            "shot": "loft",
+            "shotCategory": "loft-straight"
           }
         },
         {
@@ -2859,7 +3070,8 @@
           "outcome": {
             "type": "runs",
             "value": 4,
-            "shot": "flick"
+            "shot": "flick",
+            "shotCategory": "flick"
           }
         }
       ],
@@ -2872,7 +3084,8 @@
           "outcome": {
             "type": "runs",
             "value": 2,
-            "shot": "work"
+            "shot": "work",
+            "shotCategory": "defend"
           }
         },
         {
@@ -2883,7 +3096,8 @@
           "outcome": {
             "type": "runs",
             "value": 1,
-            "shot": "push"
+            "shot": "push",
+            "shotCategory": "defend"
           }
         }
       ],
@@ -2895,7 +3109,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "caught at point"
+            "mode": "caught at point",
+            "dismissalCategory": "caught-point"
           }
         },
         {
@@ -2905,7 +3120,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "mistimed cut"
+            "mode": "mistimed cut",
+            "dismissalCategory": "caught-point"
           }
         }
       ],
@@ -2933,7 +3149,8 @@
           "outcome": {
             "type": "runs",
             "value": 4,
-            "shot": "cover drive"
+            "shot": "cover drive",
+            "shotCategory": "drive-cover"
           }
         },
         {
@@ -2944,7 +3161,8 @@
           "outcome": {
             "type": "runs",
             "value": 4,
-            "shot": "straight drive"
+            "shot": "straight drive",
+            "shotCategory": "drive-straight"
           }
         }
       ],
@@ -2957,7 +3175,8 @@
           "outcome": {
             "type": "runs",
             "value": 1,
-            "shot": "push"
+            "shot": "push",
+            "shotCategory": "defend"
           }
         }
       ],
@@ -2969,7 +3188,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "LBW playing across"
+            "mode": "LBW playing across",
+            "dismissalCategory": "lbw"
           }
         },
         {
@@ -2979,7 +3199,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "top edge"
+            "mode": "top edge",
+            "dismissalCategory": "caught-deep"
           }
         },
         {
@@ -2989,7 +3210,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "mistimed flick caught"
+            "mode": "mistimed flick caught",
+            "dismissalCategory": "caught-midwicket"
           }
         }
       ],
@@ -3015,7 +3237,8 @@
           "outcome": {
             "type": "runs",
             "value": 6,
-            "shot": "slog"
+            "shot": "slog",
+            "shotCategory": "slog"
           }
         },
         {
@@ -3026,7 +3249,8 @@
           "outcome": {
             "type": "runs",
             "value": 4,
-            "shot": "loft"
+            "shot": "loft",
+            "shotCategory": "loft-straight"
           }
         }
       ],
@@ -3039,7 +3263,8 @@
           "outcome": {
             "type": "runs",
             "value": 1,
-            "shot": "work"
+            "shot": "work",
+            "shotCategory": "defend"
           }
         }
       ],
@@ -3051,7 +3276,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "beaten"
+            "mode": "beaten",
+            "dismissalCategory": "bowled"
           }
         },
         {
@@ -3061,7 +3287,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "edge to keeper"
+            "mode": "edge to keeper",
+            "dismissalCategory": "caught-keeper"
           }
         },
         {
@@ -3071,7 +3298,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "bowled"
+            "mode": "bowled",
+            "dismissalCategory": "bowled"
           }
         }
       ],
@@ -3097,7 +3325,8 @@
           "outcome": {
             "type": "runs",
             "value": 6,
-            "shot": "sweep"
+            "shot": "sweep",
+            "shotCategory": "sweep"
           }
         },
         {
@@ -3108,7 +3337,8 @@
           "outcome": {
             "type": "runs",
             "value": 4,
-            "shot": "drive"
+            "shot": "drive",
+            "shotCategory": "drive-cover"
           }
         }
       ],
@@ -3121,7 +3351,8 @@
           "outcome": {
             "type": "runs",
             "value": 1,
-            "shot": "nudge"
+            "shot": "nudge",
+            "shotCategory": "defend"
           }
         }
       ],
@@ -3133,7 +3364,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "top edge caught"
+            "mode": "top edge caught",
+            "dismissalCategory": "caught-deep"
           }
         },
         {
@@ -3143,7 +3375,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "edge to keeper"
+            "mode": "edge to keeper",
+            "dismissalCategory": "caught-keeper"
           }
         },
         {
@@ -3153,7 +3386,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "bowled"
+            "mode": "bowled",
+            "dismissalCategory": "bowled"
           }
         }
       ],
@@ -3179,7 +3413,8 @@
           "outcome": {
             "type": "runs",
             "value": 4,
-            "shot": "drive"
+            "shot": "drive",
+            "shotCategory": "drive-cover"
           }
         }
       ],
@@ -3192,7 +3427,8 @@
           "outcome": {
             "type": "runs",
             "value": 2,
-            "shot": "push"
+            "shot": "push",
+            "shotCategory": "defend"
           }
         },
         {
@@ -3203,7 +3439,8 @@
           "outcome": {
             "type": "runs",
             "value": 1,
-            "shot": "defend"
+            "shot": "defend",
+            "shotCategory": "defend"
           }
         }
       ],
@@ -3215,7 +3452,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "caught fending"
+            "mode": "caught fending",
+            "dismissalCategory": "caught-keeper"
           }
         },
         {
@@ -3225,7 +3463,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "LBW"
+            "mode": "LBW",
+            "dismissalCategory": "lbw"
           }
         },
         {
@@ -3235,7 +3474,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "flicks in air to midwicket"
+            "mode": "flicks in air to midwicket",
+            "dismissalCategory": "caught-midwicket"
           }
         }
       ],
@@ -3257,7 +3497,8 @@
           "outcome": {
             "type": "runs",
             "value": 4,
-            "shot": "drive"
+            "shot": "drive",
+            "shotCategory": "drive-cover"
           }
         }
       ],
@@ -3270,7 +3511,8 @@
           "outcome": {
             "type": "runs",
             "value": 2,
-            "shot": "push"
+            "shot": "push",
+            "shotCategory": "defend"
           }
         },
         {
@@ -3281,7 +3523,8 @@
           "outcome": {
             "type": "runs",
             "value": 1,
-            "shot": "defend"
+            "shot": "defend",
+            "shotCategory": "defend"
           }
         }
       ],
@@ -3293,7 +3536,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "LBW across"
+            "mode": "LBW across",
+            "dismissalCategory": "lbw"
           }
         },
         {
@@ -3303,7 +3547,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "caught at point"
+            "mode": "caught at point",
+            "dismissalCategory": "caught-point"
           }
         },
         {
@@ -3313,7 +3558,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "mistimed loft"
+            "mode": "mistimed loft",
+            "dismissalCategory": "caught-deep"
           }
         }
       ],
@@ -3335,7 +3581,8 @@
           "outcome": {
             "type": "runs",
             "value": 4,
-            "shot": "pull"
+            "shot": "pull",
+            "shotCategory": "pull"
           }
         }
       ],
@@ -3348,7 +3595,8 @@
           "outcome": {
             "type": "runs",
             "value": 2,
-            "shot": "flick"
+            "shot": "flick",
+            "shotCategory": "flick"
           }
         },
         {
@@ -3359,7 +3607,8 @@
           "outcome": {
             "type": "runs",
             "value": 1,
-            "shot": "work"
+            "shot": "work",
+            "shotCategory": "defend"
           }
         }
       ],
@@ -3371,7 +3620,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "beaten"
+            "mode": "beaten",
+            "dismissalCategory": "bowled"
           }
         },
         {
@@ -3381,7 +3631,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "mistimed drive caught"
+            "mode": "mistimed drive caught",
+            "dismissalCategory": "caught-cover"
           }
         },
         {
@@ -3391,7 +3642,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "LBW"
+            "mode": "LBW",
+            "dismissalCategory": "lbw"
           }
         }
       ],
@@ -3413,7 +3665,8 @@
           "outcome": {
             "type": "runs",
             "value": 4,
-            "shot": "loft"
+            "shot": "loft",
+            "shotCategory": "loft-straight"
           }
         }
       ],
@@ -3426,7 +3679,8 @@
           "outcome": {
             "type": "runs",
             "value": 2,
-            "shot": "push"
+            "shot": "push",
+            "shotCategory": "defend"
           }
         },
         {
@@ -3437,7 +3691,8 @@
           "outcome": {
             "type": "runs",
             "value": 1,
-            "shot": "nudge"
+            "shot": "nudge",
+            "shotCategory": "defend"
           }
         }
       ],
@@ -3449,7 +3704,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "caught at gully"
+            "mode": "caught at gully",
+            "dismissalCategory": "caught-point"
           }
         },
         {
@@ -3459,7 +3715,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "edge to slip"
+            "mode": "edge to slip",
+            "dismissalCategory": "caught-slip"
           }
         },
         {
@@ -3469,7 +3726,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "caught at cover"
+            "mode": "caught at cover",
+            "dismissalCategory": "caught-cover"
           }
         }
       ],
@@ -3491,7 +3749,8 @@
           "outcome": {
             "type": "runs",
             "value": 6,
-            "shot": "slog"
+            "shot": "slog",
+            "shotCategory": "slog"
           }
         }
       ],
@@ -3504,7 +3763,8 @@
           "outcome": {
             "type": "runs",
             "value": 2,
-            "shot": "pull"
+            "shot": "pull",
+            "shotCategory": "pull"
           }
         },
         {
@@ -3515,7 +3775,8 @@
           "outcome": {
             "type": "runs",
             "value": 1,
-            "shot": "drive"
+            "shot": "drive",
+            "shotCategory": "drive-cover"
           }
         }
       ],
@@ -3527,7 +3788,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "edge to slip"
+            "mode": "edge to slip",
+            "dismissalCategory": "caught-slip"
           }
         },
         {
@@ -3537,7 +3799,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "bowled across"
+            "mode": "bowled across",
+            "dismissalCategory": "bowled"
           }
         },
         {
@@ -3547,7 +3810,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "LBW"
+            "mode": "LBW",
+            "dismissalCategory": "lbw"
           }
         }
       ],
@@ -3569,7 +3833,8 @@
           "outcome": {
             "type": "runs",
             "value": 4,
-            "shot": "cover drive"
+            "shot": "cover drive",
+            "shotCategory": "drive-cover"
           }
         },
         {
@@ -3580,7 +3845,8 @@
           "outcome": {
             "type": "runs",
             "value": 4,
-            "shot": "punch through cover"
+            "shot": "punch through cover",
+            "shotCategory": "drive-cover"
           }
         },
         {
@@ -3591,7 +3857,8 @@
           "outcome": {
             "type": "runs",
             "value": 4,
-            "shot": "flick"
+            "shot": "flick",
+            "shotCategory": "flick"
           }
         }
       ],
@@ -3604,7 +3871,8 @@
           "outcome": {
             "type": "runs",
             "value": 2,
-            "shot": "work"
+            "shot": "work",
+            "shotCategory": "defend"
           }
         },
         {
@@ -3615,7 +3883,8 @@
           "outcome": {
             "type": "runs",
             "value": 1,
-            "shot": "defend"
+            "shot": "defend",
+            "shotCategory": "defend"
           }
         }
       ],
@@ -3627,7 +3896,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "mistimed cut caught at point"
+            "mode": "mistimed cut caught at point",
+            "dismissalCategory": "caught-point"
           }
         }
       ],
@@ -3657,7 +3927,8 @@
           "outcome": {
             "type": "runs",
             "value": 6,
-            "shot": "loft over midwicket"
+            "shot": "loft over midwicket",
+            "shotCategory": "loft-leg"
           }
         },
         {
@@ -3668,7 +3939,8 @@
           "outcome": {
             "type": "runs",
             "value": 6,
-            "shot": "pull"
+            "shot": "pull",
+            "shotCategory": "pull"
           }
         },
         {
@@ -3679,7 +3951,8 @@
           "outcome": {
             "type": "runs",
             "value": 4,
-            "shot": "drive"
+            "shot": "drive",
+            "shotCategory": "drive-straight"
           }
         }
       ],
@@ -3692,7 +3965,8 @@
           "outcome": {
             "type": "runs",
             "value": 2,
-            "shot": "push"
+            "shot": "push",
+            "shotCategory": "defend"
           }
         },
         {
@@ -3703,7 +3977,8 @@
           "outcome": {
             "type": "runs",
             "value": 1,
-            "shot": "work"
+            "shot": "work",
+            "shotCategory": "defend"
           }
         }
       ],
@@ -3715,7 +3990,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "edge to slip"
+            "mode": "edge to slip",
+            "dismissalCategory": "caught-slip"
           }
         },
         {
@@ -3725,7 +4001,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "caught at point"
+            "mode": "caught at point",
+            "dismissalCategory": "caught-point"
           }
         }
       ],
@@ -3753,7 +4030,8 @@
           "outcome": {
             "type": "runs",
             "value": 4,
-            "shot": "drive"
+            "shot": "drive",
+            "shotCategory": "drive-cover"
           }
         },
         {
@@ -3764,7 +4042,8 @@
           "outcome": {
             "type": "runs",
             "value": 6,
-            "shot": "sweep"
+            "shot": "sweep",
+            "shotCategory": "sweep"
           }
         }
       ],
@@ -3777,7 +4056,8 @@
           "outcome": {
             "type": "runs",
             "value": 2,
-            "shot": "push"
+            "shot": "push",
+            "shotCategory": "defend"
           }
         },
         {
@@ -3788,7 +4068,8 @@
           "outcome": {
             "type": "runs",
             "value": 1,
-            "shot": "defend"
+            "shot": "defend",
+            "shotCategory": "defend"
           }
         }
       ],
@@ -3800,7 +4081,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "caught fending"
+            "mode": "caught fending",
+            "dismissalCategory": "caught-keeper"
           }
         },
         {
@@ -3810,7 +4092,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "LBW going across"
+            "mode": "LBW going across",
+            "dismissalCategory": "lbw"
           }
         }
       ],
@@ -3837,7 +4120,8 @@
           "outcome": {
             "type": "runs",
             "value": 4,
-            "shot": "cover drive"
+            "shot": "cover drive",
+            "shotCategory": "drive-cover"
           }
         },
         {
@@ -3848,7 +4132,8 @@
           "outcome": {
             "type": "runs",
             "value": 4,
-            "shot": "sweep"
+            "shot": "sweep",
+            "shotCategory": "sweep"
           }
         }
       ],
@@ -3861,7 +4146,8 @@
           "outcome": {
             "type": "runs",
             "value": 1,
-            "shot": "work"
+            "shot": "work",
+            "shotCategory": "defend"
           }
         }
       ],
@@ -3873,7 +4159,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "edge to keeper"
+            "mode": "edge to keeper",
+            "dismissalCategory": "caught-keeper"
           }
         },
         {
@@ -3883,7 +4170,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "top edge"
+            "mode": "top edge",
+            "dismissalCategory": "caught-deep"
           }
         },
         {
@@ -3893,7 +4181,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "bowled"
+            "mode": "bowled",
+            "dismissalCategory": "bowled"
           }
         }
       ],
@@ -3919,7 +4208,8 @@
           "outcome": {
             "type": "runs",
             "value": 4,
-            "shot": "drive"
+            "shot": "drive",
+            "shotCategory": "drive-cover"
           }
         },
         {
@@ -3930,7 +4220,8 @@
           "outcome": {
             "type": "runs",
             "value": 4,
-            "shot": "flick"
+            "shot": "flick",
+            "shotCategory": "flick"
           }
         }
       ],
@@ -3943,7 +4234,8 @@
           "outcome": {
             "type": "runs",
             "value": 1,
-            "shot": "push"
+            "shot": "push",
+            "shotCategory": "defend"
           }
         }
       ],
@@ -3955,7 +4247,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "caught behind"
+            "mode": "caught behind",
+            "dismissalCategory": "caught-keeper"
           }
         },
         {
@@ -3965,7 +4258,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "bowled"
+            "mode": "bowled",
+            "dismissalCategory": "bowled"
           }
         },
         {
@@ -3975,7 +4269,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "LBW"
+            "mode": "LBW",
+            "dismissalCategory": "lbw"
           }
         }
       ],
@@ -4000,7 +4295,8 @@
           "outcome": {
             "type": "runs",
             "value": 4,
-            "shot": "drive"
+            "shot": "drive",
+            "shotCategory": "drive-straight"
           }
         },
         {
@@ -4011,7 +4307,8 @@
           "outcome": {
             "type": "runs",
             "value": 4,
-            "shot": "cover drive"
+            "shot": "cover drive",
+            "shotCategory": "drive-cover"
           }
         }
       ],
@@ -4024,7 +4321,8 @@
           "outcome": {
             "type": "runs",
             "value": 1,
-            "shot": "push"
+            "shot": "push",
+            "shotCategory": "defend"
           }
         }
       ],
@@ -4036,7 +4334,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "caught fending"
+            "mode": "caught fending",
+            "dismissalCategory": "caught-keeper"
           }
         },
         {
@@ -4046,7 +4345,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "LBW"
+            "mode": "LBW",
+            "dismissalCategory": "lbw"
           }
         },
         {
@@ -4056,7 +4356,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "edge to slip"
+            "mode": "edge to slip",
+            "dismissalCategory": "caught-slip"
           }
         }
       ],
@@ -4082,7 +4383,8 @@
           "outcome": {
             "type": "runs",
             "value": 6,
-            "shot": "slog"
+            "shot": "slog",
+            "shotCategory": "slog"
           }
         }
       ],
@@ -4095,7 +4397,8 @@
           "outcome": {
             "type": "runs",
             "value": 2,
-            "shot": "ramp"
+            "shot": "ramp",
+            "shotCategory": "ramp"
           }
         },
         {
@@ -4106,7 +4409,8 @@
           "outcome": {
             "type": "runs",
             "value": 1,
-            "shot": "drive"
+            "shot": "drive",
+            "shotCategory": "drive-cover"
           }
         }
       ],
@@ -4118,7 +4422,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "edge to slip"
+            "mode": "edge to slip",
+            "dismissalCategory": "caught-slip"
           }
         },
         {
@@ -4128,7 +4433,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "bowled"
+            "mode": "bowled",
+            "dismissalCategory": "bowled"
           }
         },
         {
@@ -4138,7 +4444,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "caught at cover"
+            "mode": "caught at cover",
+            "dismissalCategory": "caught-cover"
           }
         }
       ],
@@ -4160,7 +4467,8 @@
           "outcome": {
             "type": "runs",
             "value": 6,
-            "shot": "slog"
+            "shot": "slog",
+            "shotCategory": "slog"
           }
         }
       ],
@@ -4173,7 +4481,8 @@
           "outcome": {
             "type": "runs",
             "value": 2,
-            "shot": "work"
+            "shot": "work",
+            "shotCategory": "defend"
           }
         },
         {
@@ -4184,7 +4493,8 @@
           "outcome": {
             "type": "runs",
             "value": 1,
-            "shot": "pull"
+            "shot": "pull",
+            "shotCategory": "pull"
           }
         }
       ],
@@ -4196,7 +4506,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "beaten"
+            "mode": "beaten",
+            "dismissalCategory": "bowled"
           }
         },
         {
@@ -4206,7 +4517,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "mistimed drive caught"
+            "mode": "mistimed drive caught",
+            "dismissalCategory": "caught-cover"
           }
         },
         {
@@ -4216,7 +4528,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "bowled"
+            "mode": "bowled",
+            "dismissalCategory": "bowled"
           }
         }
       ],
@@ -4238,7 +4551,8 @@
           "outcome": {
             "type": "runs",
             "value": 4,
-            "shot": "drive"
+            "shot": "drive",
+            "shotCategory": "drive-cover"
           }
         }
       ],
@@ -4251,7 +4565,8 @@
           "outcome": {
             "type": "runs",
             "value": 2,
-            "shot": "defend"
+            "shot": "defend",
+            "shotCategory": "defend"
           }
         },
         {
@@ -4262,7 +4577,8 @@
           "outcome": {
             "type": "runs",
             "value": 1,
-            "shot": "push"
+            "shot": "push",
+            "shotCategory": "defend"
           }
         }
       ],
@@ -4274,7 +4590,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "LBW across"
+            "mode": "LBW across",
+            "dismissalCategory": "lbw"
           }
         },
         {
@@ -4284,7 +4601,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "caught fending"
+            "mode": "caught fending",
+            "dismissalCategory": "caught-keeper"
           }
         },
         {
@@ -4294,7 +4612,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "flicks to midwicket"
+            "mode": "flicks to midwicket",
+            "dismissalCategory": "caught-midwicket"
           }
         }
       ],
@@ -4316,7 +4635,8 @@
           "outcome": {
             "type": "runs",
             "value": 4,
-            "shot": "pull"
+            "shot": "pull",
+            "shotCategory": "pull"
           }
         }
       ],
@@ -4329,7 +4649,8 @@
           "outcome": {
             "type": "runs",
             "value": 2,
-            "shot": "defend"
+            "shot": "defend",
+            "shotCategory": "defend"
           }
         },
         {
@@ -4340,7 +4661,8 @@
           "outcome": {
             "type": "runs",
             "value": 1,
-            "shot": "push"
+            "shot": "push",
+            "shotCategory": "defend"
           }
         }
       ],
@@ -4352,7 +4674,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "edge to keeper"
+            "mode": "edge to keeper",
+            "dismissalCategory": "caught-keeper"
           }
         },
         {
@@ -4362,7 +4685,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "caught at cover"
+            "mode": "caught at cover",
+            "dismissalCategory": "caught-cover"
           }
         },
         {
@@ -4372,7 +4696,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "gloves it"
+            "mode": "gloves it",
+            "dismissalCategory": "caught-keeper"
           }
         }
       ],
@@ -4394,7 +4719,8 @@
           "outcome": {
             "type": "runs",
             "value": 4,
-            "shot": "sweep"
+            "shot": "sweep",
+            "shotCategory": "sweep"
           }
         }
       ],
@@ -4407,7 +4733,8 @@
           "outcome": {
             "type": "runs",
             "value": 2,
-            "shot": "push"
+            "shot": "push",
+            "shotCategory": "defend"
           }
         },
         {
@@ -4418,7 +4745,8 @@
           "outcome": {
             "type": "runs",
             "value": 1,
-            "shot": "nudge"
+            "shot": "nudge",
+            "shotCategory": "defend"
           }
         }
       ],
@@ -4430,7 +4758,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "caught at gully"
+            "mode": "caught at gully",
+            "dismissalCategory": "caught-point"
           }
         },
         {
@@ -4440,7 +4769,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "edge to slip"
+            "mode": "edge to slip",
+            "dismissalCategory": "caught-slip"
           }
         },
         {
@@ -4450,7 +4780,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "bowled"
+            "mode": "bowled",
+            "dismissalCategory": "bowled"
           }
         }
       ],
@@ -4472,7 +4803,8 @@
           "outcome": {
             "type": "runs",
             "value": 6,
-            "shot": "cover drive"
+            "shot": "cover drive",
+            "shotCategory": "drive-cover"
           }
         },
         {
@@ -4483,7 +4815,8 @@
           "outcome": {
             "type": "runs",
             "value": 4,
-            "shot": "flick"
+            "shot": "flick",
+            "shotCategory": "flick"
           }
         },
         {
@@ -4494,7 +4827,8 @@
           "outcome": {
             "type": "runs",
             "value": 4,
-            "shot": "punch through cover"
+            "shot": "punch through cover",
+            "shotCategory": "drive-cover"
           }
         }
       ],
@@ -4507,7 +4841,8 @@
           "outcome": {
             "type": "runs",
             "value": 2,
-            "shot": "push"
+            "shot": "push",
+            "shotCategory": "defend"
           }
         },
         {
@@ -4518,7 +4853,8 @@
           "outcome": {
             "type": "runs",
             "value": 1,
-            "shot": "work"
+            "shot": "work",
+            "shotCategory": "defend"
           }
         }
       ],
@@ -4530,7 +4866,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "top edge pulling caught"
+            "mode": "top edge pulling caught",
+            "dismissalCategory": "caught-deep"
           }
         }
       ],
@@ -4560,7 +4897,8 @@
           "outcome": {
             "type": "runs",
             "value": 4,
-            "shot": "drive"
+            "shot": "drive",
+            "shotCategory": "drive-cover"
           }
         },
         {
@@ -4571,7 +4909,8 @@
           "outcome": {
             "type": "runs",
             "value": 4,
-            "shot": "flick"
+            "shot": "flick",
+            "shotCategory": "flick"
           }
         }
       ],
@@ -4584,7 +4923,8 @@
           "outcome": {
             "type": "runs",
             "value": 2,
-            "shot": "push"
+            "shot": "push",
+            "shotCategory": "defend"
           }
         },
         {
@@ -4595,7 +4935,8 @@
           "outcome": {
             "type": "runs",
             "value": 1,
-            "shot": "defend"
+            "shot": "defend",
+            "shotCategory": "defend"
           }
         }
       ],
@@ -4607,7 +4948,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "caught behind"
+            "mode": "caught behind",
+            "dismissalCategory": "caught-keeper"
           }
         },
         {
@@ -4617,7 +4959,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "bowled"
+            "mode": "bowled",
+            "dismissalCategory": "bowled"
           }
         }
       ],
@@ -4645,7 +4988,8 @@
           "outcome": {
             "type": "runs",
             "value": 6,
-            "shot": "drive"
+            "shot": "drive",
+            "shotCategory": "drive-cover"
           }
         },
         {
@@ -4656,7 +5000,8 @@
           "outcome": {
             "type": "runs",
             "value": 4,
-            "shot": "pull"
+            "shot": "pull",
+            "shotCategory": "pull"
           }
         }
       ],
@@ -4669,7 +5014,8 @@
           "outcome": {
             "type": "runs",
             "value": 2,
-            "shot": "flick"
+            "shot": "flick",
+            "shotCategory": "flick"
           }
         },
         {
@@ -4680,7 +5026,8 @@
           "outcome": {
             "type": "runs",
             "value": 1,
-            "shot": "sweep"
+            "shot": "sweep",
+            "shotCategory": "sweep"
           }
         }
       ],
@@ -4692,7 +5039,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "bowled across"
+            "mode": "bowled across",
+            "dismissalCategory": "bowled"
           }
         },
         {
@@ -4702,7 +5050,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "LBW slogging"
+            "mode": "LBW slogging",
+            "dismissalCategory": "lbw"
           }
         }
       ],
@@ -4729,7 +5078,8 @@
           "outcome": {
             "type": "runs",
             "value": 4,
-            "shot": "drive"
+            "shot": "drive",
+            "shotCategory": "drive-cover"
           }
         },
         {
@@ -4740,7 +5090,8 @@
           "outcome": {
             "type": "runs",
             "value": 4,
-            "shot": "work"
+            "shot": "work",
+            "shotCategory": "defend"
           }
         }
       ],
@@ -4753,7 +5104,8 @@
           "outcome": {
             "type": "runs",
             "value": 1,
-            "shot": "push"
+            "shot": "push",
+            "shotCategory": "defend"
           }
         }
       ],
@@ -4765,7 +5117,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "top edge"
+            "mode": "top edge",
+            "dismissalCategory": "caught-deep"
           }
         },
         {
@@ -4775,7 +5128,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "bowled"
+            "mode": "bowled",
+            "dismissalCategory": "bowled"
           }
         },
         {
@@ -4785,7 +5139,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "LBW"
+            "mode": "LBW",
+            "dismissalCategory": "lbw"
           }
         }
       ],
@@ -4811,7 +5166,8 @@
           "outcome": {
             "type": "runs",
             "value": 6,
-            "shot": "loft"
+            "shot": "loft",
+            "shotCategory": "loft-off"
           }
         },
         {
@@ -4822,7 +5178,8 @@
           "outcome": {
             "type": "runs",
             "value": 4,
-            "shot": "sweep"
+            "shot": "sweep",
+            "shotCategory": "sweep"
           }
         }
       ],
@@ -4835,7 +5192,8 @@
           "outcome": {
             "type": "runs",
             "value": 1,
-            "shot": "flick"
+            "shot": "flick",
+            "shotCategory": "flick"
           }
         }
       ],
@@ -4847,7 +5205,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "bowled through gate"
+            "mode": "bowled through gate",
+            "dismissalCategory": "bowled"
           }
         },
         {
@@ -4857,7 +5216,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "edge to keeper"
+            "mode": "edge to keeper",
+            "dismissalCategory": "caught-keeper"
           }
         },
         {
@@ -4867,7 +5227,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "caught at slip"
+            "mode": "caught at slip",
+            "dismissalCategory": "caught-slip"
           }
         }
       ],
@@ -4893,7 +5254,8 @@
           "outcome": {
             "type": "runs",
             "value": 6,
-            "shot": "slog"
+            "shot": "slog",
+            "shotCategory": "slog"
           }
         },
         {
@@ -4904,7 +5266,8 @@
           "outcome": {
             "type": "runs",
             "value": 6,
-            "shot": "loft"
+            "shot": "loft",
+            "shotCategory": "loft-straight"
           }
         }
       ],
@@ -4917,7 +5280,8 @@
           "outcome": {
             "type": "runs",
             "value": 1,
-            "shot": "ramp"
+            "shot": "ramp",
+            "shotCategory": "ramp"
           }
         }
       ],
@@ -4929,7 +5293,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "edge to keeper"
+            "mode": "edge to keeper",
+            "dismissalCategory": "caught-keeper"
           }
         },
         {
@@ -4939,7 +5304,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "bowled across"
+            "mode": "bowled across",
+            "dismissalCategory": "bowled"
           }
         },
         {
@@ -4949,7 +5315,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "mistimed drive caught"
+            "mode": "mistimed drive caught",
+            "dismissalCategory": "caught-cover"
           }
         }
       ],
@@ -4975,7 +5342,8 @@
           "outcome": {
             "type": "runs",
             "value": 6,
-            "shot": "slog"
+            "shot": "slog",
+            "shotCategory": "slog"
           }
         }
       ],
@@ -4988,7 +5356,8 @@
           "outcome": {
             "type": "runs",
             "value": 2,
-            "shot": "work"
+            "shot": "work",
+            "shotCategory": "defend"
           }
         },
         {
@@ -4999,7 +5368,8 @@
           "outcome": {
             "type": "runs",
             "value": 1,
-            "shot": "pull"
+            "shot": "pull",
+            "shotCategory": "pull"
           }
         }
       ],
@@ -5011,7 +5381,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "bowled"
+            "mode": "bowled",
+            "dismissalCategory": "bowled"
           }
         },
         {
@@ -5021,7 +5392,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "beaten"
+            "mode": "beaten",
+            "dismissalCategory": "bowled"
           }
         },
         {
@@ -5031,7 +5403,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "LBW across"
+            "mode": "LBW across",
+            "dismissalCategory": "lbw"
           }
         }
       ],
@@ -5053,7 +5426,8 @@
           "outcome": {
             "type": "runs",
             "value": 4,
-            "shot": "loft"
+            "shot": "loft",
+            "shotCategory": "loft-straight"
           }
         }
       ],
@@ -5066,7 +5440,8 @@
           "outcome": {
             "type": "runs",
             "value": 2,
-            "shot": "flick"
+            "shot": "flick",
+            "shotCategory": "flick"
           }
         },
         {
@@ -5077,7 +5452,8 @@
           "outcome": {
             "type": "runs",
             "value": 1,
-            "shot": "sweep"
+            "shot": "sweep",
+            "shotCategory": "sweep"
           }
         }
       ],
@@ -5089,7 +5465,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "edge to keeper"
+            "mode": "edge to keeper",
+            "dismissalCategory": "caught-keeper"
           }
         },
         {
@@ -5099,7 +5476,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "caught at gully"
+            "mode": "caught at gully",
+            "dismissalCategory": "caught-point"
           }
         },
         {
@@ -5109,7 +5487,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "bowled"
+            "mode": "bowled",
+            "dismissalCategory": "bowled"
           }
         }
       ],
@@ -5131,7 +5510,8 @@
           "outcome": {
             "type": "runs",
             "value": 6,
-            "shot": "slog"
+            "shot": "slog",
+            "shotCategory": "slog"
           }
         }
       ],
@@ -5144,7 +5524,8 @@
           "outcome": {
             "type": "runs",
             "value": 2,
-            "shot": "pull"
+            "shot": "pull",
+            "shotCategory": "pull"
           }
         },
         {
@@ -5155,7 +5536,8 @@
           "outcome": {
             "type": "runs",
             "value": 1,
-            "shot": "loft"
+            "shot": "loft",
+            "shotCategory": "loft-straight"
           }
         }
       ],
@@ -5167,7 +5549,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "caught at cover"
+            "mode": "caught at cover",
+            "dismissalCategory": "caught-cover"
           }
         },
         {
@@ -5177,7 +5560,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "bowled"
+            "mode": "bowled",
+            "dismissalCategory": "bowled"
           }
         },
         {
@@ -5187,7 +5571,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "LBW"
+            "mode": "LBW",
+            "dismissalCategory": "lbw"
           }
         }
       ],
@@ -5209,7 +5594,8 @@
           "outcome": {
             "type": "runs",
             "value": 4,
-            "shot": "pull"
+            "shot": "pull",
+            "shotCategory": "pull"
           }
         }
       ],
@@ -5222,7 +5608,8 @@
           "outcome": {
             "type": "runs",
             "value": 2,
-            "shot": "flick"
+            "shot": "flick",
+            "shotCategory": "flick"
           }
         },
         {
@@ -5233,7 +5620,8 @@
           "outcome": {
             "type": "runs",
             "value": 1,
-            "shot": "nudge"
+            "shot": "nudge",
+            "shotCategory": "defend"
           }
         }
       ],
@@ -5245,7 +5633,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "beaten"
+            "mode": "beaten",
+            "dismissalCategory": "bowled"
           }
         },
         {
@@ -5255,7 +5644,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "edge to gully"
+            "mode": "edge to gully",
+            "dismissalCategory": "caught-point"
           }
         },
         {
@@ -5265,7 +5655,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "LBW"
+            "mode": "LBW",
+            "dismissalCategory": "lbw"
           }
         }
       ],
@@ -5287,7 +5678,8 @@
           "outcome": {
             "type": "runs",
             "value": 6,
-            "shot": "slog"
+            "shot": "slog",
+            "shotCategory": "slog"
           }
         }
       ],
@@ -5300,7 +5692,8 @@
           "outcome": {
             "type": "runs",
             "value": 2,
-            "shot": "pull"
+            "shot": "pull",
+            "shotCategory": "pull"
           }
         },
         {
@@ -5311,7 +5704,8 @@
           "outcome": {
             "type": "runs",
             "value": 1,
-            "shot": "drive"
+            "shot": "drive",
+            "shotCategory": "drive-straight"
           }
         }
       ],
@@ -5323,7 +5717,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "edge to slip"
+            "mode": "edge to slip",
+            "dismissalCategory": "caught-slip"
           }
         },
         {
@@ -5333,7 +5728,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "caught at cover"
+            "mode": "caught at cover",
+            "dismissalCategory": "caught-cover"
           }
         },
         {
@@ -5343,7 +5739,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "LBW"
+            "mode": "LBW",
+            "dismissalCategory": "lbw"
           }
         }
       ],
@@ -5365,7 +5762,8 @@
           "outcome": {
             "type": "runs",
             "value": 6,
-            "shot": "cover drive"
+            "shot": "cover drive",
+            "shotCategory": "drive-cover"
           }
         },
         {
@@ -5376,7 +5774,8 @@
           "outcome": {
             "type": "runs",
             "value": 4,
-            "shot": "cut"
+            "shot": "cut",
+            "shotCategory": "cut"
           }
         },
         {
@@ -5387,7 +5786,8 @@
           "outcome": {
             "type": "runs",
             "value": 4,
-            "shot": "flick"
+            "shot": "flick",
+            "shotCategory": "flick"
           }
         }
       ],
@@ -5400,7 +5800,8 @@
           "outcome": {
             "type": "runs",
             "value": 2,
-            "shot": "push"
+            "shot": "push",
+            "shotCategory": "defend"
           }
         },
         {
@@ -5411,7 +5812,8 @@
           "outcome": {
             "type": "runs",
             "value": 1,
-            "shot": "work"
+            "shot": "work",
+            "shotCategory": "defend"
           }
         }
       ],
@@ -5423,7 +5825,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "top edge caught"
+            "mode": "top edge caught",
+            "dismissalCategory": "caught-deep"
           }
         }
       ],
@@ -5453,7 +5856,8 @@
           "outcome": {
             "type": "runs",
             "value": 4,
-            "shot": "drive"
+            "shot": "drive",
+            "shotCategory": "drive-cover"
           }
         },
         {
@@ -5464,7 +5868,8 @@
           "outcome": {
             "type": "runs",
             "value": 6,
-            "shot": "sweep"
+            "shot": "sweep",
+            "shotCategory": "sweep"
           }
         },
         {
@@ -5475,7 +5880,8 @@
           "outcome": {
             "type": "runs",
             "value": 4,
-            "shot": "pull"
+            "shot": "pull",
+            "shotCategory": "pull"
           }
         }
       ],
@@ -5488,7 +5894,8 @@
           "outcome": {
             "type": "runs",
             "value": 2,
-            "shot": "push"
+            "shot": "push",
+            "shotCategory": "defend"
           }
         },
         {
@@ -5499,7 +5906,8 @@
           "outcome": {
             "type": "runs",
             "value": 1,
-            "shot": "defend"
+            "shot": "defend",
+            "shotCategory": "defend"
           }
         }
       ],
@@ -5511,7 +5919,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "edge to slip"
+            "mode": "edge to slip",
+            "dismissalCategory": "caught-slip"
           }
         }
       ],
@@ -5539,7 +5948,8 @@
           "outcome": {
             "type": "runs",
             "value": 6,
-            "shot": "pull"
+            "shot": "pull",
+            "shotCategory": "pull"
           }
         },
         {
@@ -5550,7 +5960,8 @@
           "outcome": {
             "type": "runs",
             "value": 4,
-            "shot": "drive"
+            "shot": "drive",
+            "shotCategory": "drive-cover"
           }
         },
         {
@@ -5561,7 +5972,8 @@
           "outcome": {
             "type": "runs",
             "value": 4,
-            "shot": "flick"
+            "shot": "flick",
+            "shotCategory": "flick"
           }
         }
       ],
@@ -5574,7 +5986,8 @@
           "outcome": {
             "type": "runs",
             "value": 2,
-            "shot": "work"
+            "shot": "work",
+            "shotCategory": "defend"
           }
         },
         {
@@ -5585,7 +5998,8 @@
           "outcome": {
             "type": "runs",
             "value": 1,
-            "shot": "push"
+            "shot": "push",
+            "shotCategory": "defend"
           }
         }
       ],
@@ -5597,7 +6011,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "bowled across the line"
+            "mode": "bowled across the line",
+            "dismissalCategory": "bowled"
           }
         }
       ],
@@ -5624,7 +6039,8 @@
           "outcome": {
             "type": "runs",
             "value": 4,
-            "shot": "drive"
+            "shot": "drive",
+            "shotCategory": "drive-cover"
           }
         },
         {
@@ -5635,7 +6051,8 @@
           "outcome": {
             "type": "runs",
             "value": 4,
-            "shot": "sweep"
+            "shot": "sweep",
+            "shotCategory": "sweep"
           }
         }
       ],
@@ -5648,7 +6065,8 @@
           "outcome": {
             "type": "runs",
             "value": 1,
-            "shot": "work"
+            "shot": "work",
+            "shotCategory": "defend"
           }
         }
       ],
@@ -5660,7 +6078,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "caught fending"
+            "mode": "caught fending",
+            "dismissalCategory": "caught-keeper"
           }
         },
         {
@@ -5670,7 +6089,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "beaten"
+            "mode": "beaten",
+            "dismissalCategory": "bowled"
           }
         },
         {
@@ -5680,7 +6100,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "LBW"
+            "mode": "LBW",
+            "dismissalCategory": "lbw"
           }
         }
       ],
@@ -5706,7 +6127,8 @@
           "outcome": {
             "type": "runs",
             "value": 6,
-            "shot": "loft"
+            "shot": "loft",
+            "shotCategory": "loft-straight"
           }
         },
         {
@@ -5717,7 +6139,8 @@
           "outcome": {
             "type": "runs",
             "value": 4,
-            "shot": "hook"
+            "shot": "hook",
+            "shotCategory": "pull"
           }
         }
       ],
@@ -5730,7 +6153,8 @@
           "outcome": {
             "type": "runs",
             "value": 1,
-            "shot": "flick"
+            "shot": "flick",
+            "shotCategory": "flick"
           }
         }
       ],
@@ -5742,7 +6166,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "bowled across"
+            "mode": "bowled across",
+            "dismissalCategory": "bowled"
           }
         },
         {
@@ -5752,7 +6177,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "caught at cover"
+            "mode": "caught at cover",
+            "dismissalCategory": "caught-cover"
           }
         },
         {
@@ -5762,7 +6188,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "edge to slip"
+            "mode": "edge to slip",
+            "dismissalCategory": "caught-slip"
           }
         }
       ],
@@ -5788,7 +6215,8 @@
           "outcome": {
             "type": "runs",
             "value": 4,
-            "shot": "drive"
+            "shot": "drive",
+            "shotCategory": "drive-cover"
           }
         },
         {
@@ -5799,7 +6227,8 @@
           "outcome": {
             "type": "runs",
             "value": 6,
-            "shot": "Dilscoop"
+            "shot": "Dilscoop",
+            "shotCategory": "ramp"
           }
         }
       ],
@@ -5812,7 +6241,8 @@
           "outcome": {
             "type": "runs",
             "value": 1,
-            "shot": "punch"
+            "shot": "punch",
+            "shotCategory": "drive-straight"
           }
         }
       ],
@@ -5824,7 +6254,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "LBW playing across"
+            "mode": "LBW playing across",
+            "dismissalCategory": "lbw"
           }
         },
         {
@@ -5834,7 +6265,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "bowled"
+            "mode": "bowled",
+            "dismissalCategory": "bowled"
           }
         },
         {
@@ -5844,7 +6276,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "top edge"
+            "mode": "top edge",
+            "dismissalCategory": "caught-deep"
           }
         }
       ],
@@ -5870,7 +6303,8 @@
           "outcome": {
             "type": "runs",
             "value": 6,
-            "shot": "slog"
+            "shot": "slog",
+            "shotCategory": "slog"
           }
         }
       ],
@@ -5883,7 +6317,8 @@
           "outcome": {
             "type": "runs",
             "value": 2,
-            "shot": "pull"
+            "shot": "pull",
+            "shotCategory": "pull"
           }
         },
         {
@@ -5894,7 +6329,8 @@
           "outcome": {
             "type": "runs",
             "value": 1,
-            "shot": "drive"
+            "shot": "drive",
+            "shotCategory": "drive-cover"
           }
         }
       ],
@@ -5906,7 +6342,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "edge to keeper"
+            "mode": "edge to keeper",
+            "dismissalCategory": "caught-keeper"
           }
         },
         {
@@ -5916,7 +6353,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "bowled across"
+            "mode": "bowled across",
+            "dismissalCategory": "bowled"
           }
         },
         {
@@ -5926,7 +6364,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "LBW"
+            "mode": "LBW",
+            "dismissalCategory": "lbw"
           }
         }
       ],
@@ -5948,7 +6387,8 @@
           "outcome": {
             "type": "runs",
             "value": 4,
-            "shot": "drive"
+            "shot": "drive",
+            "shotCategory": "drive-cover"
           }
         }
       ],
@@ -5961,7 +6401,8 @@
           "outcome": {
             "type": "runs",
             "value": 2,
-            "shot": "push"
+            "shot": "push",
+            "shotCategory": "defend"
           }
         },
         {
@@ -5972,7 +6413,8 @@
           "outcome": {
             "type": "runs",
             "value": 1,
-            "shot": "work"
+            "shot": "work",
+            "shotCategory": "defend"
           }
         }
       ],
@@ -5984,7 +6426,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "top edge caught"
+            "mode": "top edge caught",
+            "dismissalCategory": "caught-deep"
           }
         },
         {
@@ -5994,7 +6437,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "edge to slip"
+            "mode": "edge to slip",
+            "dismissalCategory": "caught-slip"
           }
         },
         {
@@ -6004,7 +6448,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "bowled"
+            "mode": "bowled",
+            "dismissalCategory": "bowled"
           }
         }
       ],
@@ -6026,7 +6471,8 @@
           "outcome": {
             "type": "runs",
             "value": 4,
-            "shot": "ramp"
+            "shot": "ramp",
+            "shotCategory": "ramp"
           }
         }
       ],
@@ -6039,7 +6485,8 @@
           "outcome": {
             "type": "runs",
             "value": 2,
-            "shot": "sweep"
+            "shot": "sweep",
+            "shotCategory": "sweep"
           }
         },
         {
@@ -6050,7 +6497,8 @@
           "outcome": {
             "type": "runs",
             "value": 1,
-            "shot": "nudge"
+            "shot": "nudge",
+            "shotCategory": "defend"
           }
         }
       ],
@@ -6062,7 +6510,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "edge to slip"
+            "mode": "edge to slip",
+            "dismissalCategory": "caught-slip"
           }
         },
         {
@@ -6072,7 +6521,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "LBW slogging"
+            "mode": "LBW slogging",
+            "dismissalCategory": "lbw"
           }
         },
         {
@@ -6082,7 +6532,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "bowled"
+            "mode": "bowled",
+            "dismissalCategory": "bowled"
           }
         }
       ],
@@ -6104,7 +6555,8 @@
           "outcome": {
             "type": "runs",
             "value": 4,
-            "shot": "sweep"
+            "shot": "sweep",
+            "shotCategory": "sweep"
           }
         }
       ],
@@ -6117,7 +6569,8 @@
           "outcome": {
             "type": "runs",
             "value": 2,
-            "shot": "push"
+            "shot": "push",
+            "shotCategory": "defend"
           }
         },
         {
@@ -6128,7 +6581,8 @@
           "outcome": {
             "type": "runs",
             "value": 1,
-            "shot": "drive"
+            "shot": "drive",
+            "shotCategory": "drive-straight"
           }
         }
       ],
@@ -6140,7 +6594,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "caught at gully"
+            "mode": "caught at gully",
+            "dismissalCategory": "caught-point"
           }
         },
         {
@@ -6150,7 +6605,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "edge"
+            "mode": "edge",
+            "dismissalCategory": "caught-slip"
           }
         },
         {
@@ -6160,7 +6616,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "bowled"
+            "mode": "bowled",
+            "dismissalCategory": "bowled"
           }
         }
       ],
@@ -6182,7 +6639,8 @@
           "outcome": {
             "type": "runs",
             "value": 6,
-            "shot": "slog"
+            "shot": "slog",
+            "shotCategory": "slog"
           }
         }
       ],
@@ -6195,7 +6653,8 @@
           "outcome": {
             "type": "runs",
             "value": 2,
-            "shot": "pull"
+            "shot": "pull",
+            "shotCategory": "pull"
           }
         },
         {
@@ -6206,7 +6665,8 @@
           "outcome": {
             "type": "runs",
             "value": 1,
-            "shot": "flick"
+            "shot": "flick",
+            "shotCategory": "flick"
           }
         }
       ],
@@ -6218,7 +6678,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "edge to slip"
+            "mode": "edge to slip",
+            "dismissalCategory": "caught-slip"
           }
         },
         {
@@ -6228,7 +6689,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "mistimed drive caught"
+            "mode": "mistimed drive caught",
+            "dismissalCategory": "caught-cover"
           }
         },
         {
@@ -6238,7 +6700,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "LBW"
+            "mode": "LBW",
+            "dismissalCategory": "lbw"
           }
         }
       ],
@@ -6260,7 +6723,8 @@
           "outcome": {
             "type": "runs",
             "value": 6,
-            "shot": "loft"
+            "shot": "loft",
+            "shotCategory": "loft-straight"
           }
         },
         {
@@ -6271,7 +6735,8 @@
           "outcome": {
             "type": "runs",
             "value": 6,
-            "shot": "pull"
+            "shot": "pull",
+            "shotCategory": "pull"
           }
         },
         {
@@ -6282,7 +6747,8 @@
           "outcome": {
             "type": "runs",
             "value": 4,
-            "shot": "flick"
+            "shot": "flick",
+            "shotCategory": "flick"
           }
         }
       ],
@@ -6295,7 +6761,8 @@
           "outcome": {
             "type": "runs",
             "value": 2,
-            "shot": "push"
+            "shot": "push",
+            "shotCategory": "defend"
           }
         },
         {
@@ -6306,7 +6773,8 @@
           "outcome": {
             "type": "runs",
             "value": 1,
-            "shot": "work"
+            "shot": "work",
+            "shotCategory": "defend"
           }
         }
       ],
@@ -6318,7 +6786,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "edge to slip"
+            "mode": "edge to slip",
+            "dismissalCategory": "caught-slip"
           }
         }
       ],
@@ -6348,7 +6817,8 @@
           "outcome": {
             "type": "runs",
             "value": 6,
-            "shot": "slog"
+            "shot": "slog",
+            "shotCategory": "slog"
           }
         },
         {
@@ -6359,7 +6829,8 @@
           "outcome": {
             "type": "runs",
             "value": 6,
-            "shot": "pull"
+            "shot": "pull",
+            "shotCategory": "pull"
           }
         }
       ],
@@ -6372,7 +6843,8 @@
           "outcome": {
             "type": "runs",
             "value": 2,
-            "shot": "flick"
+            "shot": "flick",
+            "shotCategory": "flick"
           }
         },
         {
@@ -6383,7 +6855,8 @@
           "outcome": {
             "type": "runs",
             "value": 1,
-            "shot": "loft"
+            "shot": "loft",
+            "shotCategory": "loft-straight"
           }
         }
       ],
@@ -6395,7 +6868,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "edge to slip"
+            "mode": "edge to slip",
+            "dismissalCategory": "caught-slip"
           }
         },
         {
@@ -6405,7 +6879,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "mistimed loft caught"
+            "mode": "mistimed loft caught",
+            "dismissalCategory": "caught-deep"
           }
         }
       ],
@@ -6433,7 +6908,8 @@
           "outcome": {
             "type": "runs",
             "value": 6,
-            "shot": "drive"
+            "shot": "drive",
+            "shotCategory": "drive-cover"
           }
         },
         {
@@ -6444,7 +6920,8 @@
           "outcome": {
             "type": "runs",
             "value": 4,
-            "shot": "pull"
+            "shot": "pull",
+            "shotCategory": "pull"
           }
         }
       ],
@@ -6457,7 +6934,8 @@
           "outcome": {
             "type": "runs",
             "value": 2,
-            "shot": "push"
+            "shot": "push",
+            "shotCategory": "defend"
           }
         },
         {
@@ -6468,7 +6946,8 @@
           "outcome": {
             "type": "runs",
             "value": 1,
-            "shot": "work"
+            "shot": "work",
+            "shotCategory": "defend"
           }
         }
       ],
@@ -6480,7 +6959,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "bowled through gate"
+            "mode": "bowled through gate",
+            "dismissalCategory": "bowled"
           }
         },
         {
@@ -6490,7 +6970,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "LBW"
+            "mode": "LBW",
+            "dismissalCategory": "lbw"
           }
         }
       ],
@@ -6517,7 +6998,8 @@
           "outcome": {
             "type": "runs",
             "value": 6,
-            "shot": "slog"
+            "shot": "slog",
+            "shotCategory": "slog"
           }
         },
         {
@@ -6528,7 +7010,8 @@
           "outcome": {
             "type": "runs",
             "value": 4,
-            "shot": "pull"
+            "shot": "pull",
+            "shotCategory": "pull"
           }
         }
       ],
@@ -6541,7 +7024,8 @@
           "outcome": {
             "type": "runs",
             "value": 1,
-            "shot": "flick"
+            "shot": "flick",
+            "shotCategory": "flick"
           }
         }
       ],
@@ -6553,7 +7037,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "edge to slip"
+            "mode": "edge to slip",
+            "dismissalCategory": "caught-slip"
           }
         },
         {
@@ -6563,7 +7048,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "mistimed drive caught"
+            "mode": "mistimed drive caught",
+            "dismissalCategory": "caught-cover"
           }
         },
         {
@@ -6573,7 +7059,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "bowled"
+            "mode": "bowled",
+            "dismissalCategory": "bowled"
           }
         }
       ],
@@ -6599,7 +7086,8 @@
           "outcome": {
             "type": "runs",
             "value": 6,
-            "shot": "slog"
+            "shot": "slog",
+            "shotCategory": "slog"
           }
         },
         {
@@ -6610,7 +7098,8 @@
           "outcome": {
             "type": "runs",
             "value": 6,
-            "shot": "hook"
+            "shot": "hook",
+            "shotCategory": "pull"
           }
         }
       ],
@@ -6623,7 +7112,8 @@
           "outcome": {
             "type": "runs",
             "value": 1,
-            "shot": "work"
+            "shot": "work",
+            "shotCategory": "defend"
           }
         }
       ],
@@ -6635,7 +7125,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "beaten"
+            "mode": "beaten",
+            "dismissalCategory": "bowled"
           }
         },
         {
@@ -6645,7 +7136,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "caught at cover"
+            "mode": "caught at cover",
+            "dismissalCategory": "caught-cover"
           }
         },
         {
@@ -6655,7 +7147,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "bowled"
+            "mode": "bowled",
+            "dismissalCategory": "bowled"
           }
         }
       ],
@@ -6681,7 +7174,8 @@
           "outcome": {
             "type": "runs",
             "value": 6,
-            "shot": "slog"
+            "shot": "slog",
+            "shotCategory": "slog"
           }
         },
         {
@@ -6692,7 +7186,8 @@
           "outcome": {
             "type": "runs",
             "value": 4,
-            "shot": "loft"
+            "shot": "loft",
+            "shotCategory": "loft-straight"
           }
         }
       ],
@@ -6705,7 +7200,8 @@
           "outcome": {
             "type": "runs",
             "value": 1,
-            "shot": "work"
+            "shot": "work",
+            "shotCategory": "defend"
           }
         }
       ],
@@ -6717,7 +7213,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "beaten"
+            "mode": "beaten",
+            "dismissalCategory": "bowled"
           }
         },
         {
@@ -6727,7 +7224,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "caught at point"
+            "mode": "caught at point",
+            "dismissalCategory": "caught-point"
           }
         },
         {
@@ -6737,7 +7235,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "bowled"
+            "mode": "bowled",
+            "dismissalCategory": "bowled"
           }
         }
       ],
@@ -6763,7 +7262,8 @@
           "outcome": {
             "type": "runs",
             "value": 6,
-            "shot": "loft"
+            "shot": "loft",
+            "shotCategory": "loft-off"
           }
         }
       ],
@@ -6776,7 +7276,8 @@
           "outcome": {
             "type": "runs",
             "value": 2,
-            "shot": "pull"
+            "shot": "pull",
+            "shotCategory": "pull"
           }
         },
         {
@@ -6787,7 +7288,8 @@
           "outcome": {
             "type": "runs",
             "value": 1,
-            "shot": "flick"
+            "shot": "flick",
+            "shotCategory": "flick"
           }
         }
       ],
@@ -6799,7 +7301,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "bowled"
+            "mode": "bowled",
+            "dismissalCategory": "bowled"
           }
         },
         {
@@ -6809,7 +7312,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "LBW across"
+            "mode": "LBW across",
+            "dismissalCategory": "lbw"
           }
         },
         {
@@ -6819,7 +7323,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "edge to slip"
+            "mode": "edge to slip",
+            "dismissalCategory": "caught-slip"
           }
         }
       ],
@@ -6841,7 +7346,8 @@
           "outcome": {
             "type": "runs",
             "value": 4,
-            "shot": "drive"
+            "shot": "drive",
+            "shotCategory": "drive-cover"
           }
         }
       ],
@@ -6854,7 +7360,8 @@
           "outcome": {
             "type": "runs",
             "value": 2,
-            "shot": "push"
+            "shot": "push",
+            "shotCategory": "defend"
           }
         },
         {
@@ -6865,7 +7372,8 @@
           "outcome": {
             "type": "runs",
             "value": 1,
-            "shot": "nudge"
+            "shot": "nudge",
+            "shotCategory": "defend"
           }
         }
       ],
@@ -6877,7 +7385,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "caught at gully"
+            "mode": "caught at gully",
+            "dismissalCategory": "caught-point"
           }
         },
         {
@@ -6887,7 +7396,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "bowled"
+            "mode": "bowled",
+            "dismissalCategory": "bowled"
           }
         },
         {
@@ -6897,7 +7407,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "edge"
+            "mode": "edge",
+            "dismissalCategory": "caught-slip"
           }
         }
       ],
@@ -6919,7 +7430,8 @@
           "outcome": {
             "type": "runs",
             "value": 4,
-            "shot": "cover drive"
+            "shot": "cover drive",
+            "shotCategory": "drive-cover"
           }
         }
       ],
@@ -6932,7 +7444,8 @@
           "outcome": {
             "type": "runs",
             "value": 2,
-            "shot": "flick"
+            "shot": "flick",
+            "shotCategory": "flick"
           }
         },
         {
@@ -6943,7 +7456,8 @@
           "outcome": {
             "type": "runs",
             "value": 1,
-            "shot": "push"
+            "shot": "push",
+            "shotCategory": "defend"
           }
         }
       ],
@@ -6955,7 +7469,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "caught fending"
+            "mode": "caught fending",
+            "dismissalCategory": "caught-keeper"
           }
         },
         {
@@ -6965,7 +7480,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "bowled across"
+            "mode": "bowled across",
+            "dismissalCategory": "bowled"
           }
         },
         {
@@ -6975,7 +7491,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "top edge"
+            "mode": "top edge",
+            "dismissalCategory": "caught-deep"
           }
         }
       ],
@@ -6997,7 +7514,8 @@
           "outcome": {
             "type": "runs",
             "value": 4,
-            "shot": "drive"
+            "shot": "drive",
+            "shotCategory": "drive-cover"
           }
         }
       ],
@@ -7010,7 +7528,8 @@
           "outcome": {
             "type": "runs",
             "value": 2,
-            "shot": "flick"
+            "shot": "flick",
+            "shotCategory": "flick"
           }
         },
         {
@@ -7021,7 +7540,8 @@
           "outcome": {
             "type": "runs",
             "value": 1,
-            "shot": "pull"
+            "shot": "pull",
+            "shotCategory": "pull"
           }
         }
       ],
@@ -7033,7 +7553,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "edge to slip"
+            "mode": "edge to slip",
+            "dismissalCategory": "caught-slip"
           }
         },
         {
@@ -7043,7 +7564,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "LBW"
+            "mode": "LBW",
+            "dismissalCategory": "lbw"
           }
         },
         {
@@ -7053,7 +7575,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "bowled"
+            "mode": "bowled",
+            "dismissalCategory": "bowled"
           }
         }
       ],
@@ -7075,7 +7598,8 @@
           "outcome": {
             "type": "runs",
             "value": 4,
-            "shot": "slog"
+            "shot": "slog",
+            "shotCategory": "slog"
           }
         }
       ],
@@ -7088,7 +7612,8 @@
           "outcome": {
             "type": "runs",
             "value": 2,
-            "shot": "work"
+            "shot": "work",
+            "shotCategory": "defend"
           }
         },
         {
@@ -7099,7 +7624,8 @@
           "outcome": {
             "type": "runs",
             "value": 1,
-            "shot": "pull"
+            "shot": "pull",
+            "shotCategory": "pull"
           }
         }
       ],
@@ -7111,7 +7637,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "beaten"
+            "mode": "beaten",
+            "dismissalCategory": "bowled"
           }
         },
         {
@@ -7121,7 +7648,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "caught at cover"
+            "mode": "caught at cover",
+            "dismissalCategory": "caught-cover"
           }
         },
         {
@@ -7131,7 +7659,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "bowled"
+            "mode": "bowled",
+            "dismissalCategory": "bowled"
           }
         }
       ],
@@ -7153,7 +7682,8 @@
           "outcome": {
             "type": "runs",
             "value": 6,
-            "shot": "pull"
+            "shot": "pull",
+            "shotCategory": "pull"
           }
         },
         {
@@ -7164,7 +7694,8 @@
           "outcome": {
             "type": "runs",
             "value": 4,
-            "shot": "drive"
+            "shot": "drive",
+            "shotCategory": "drive-cover"
           }
         },
         {
@@ -7175,7 +7706,8 @@
           "outcome": {
             "type": "runs",
             "value": 4,
-            "shot": "flick"
+            "shot": "flick",
+            "shotCategory": "flick"
           }
         }
       ],
@@ -7188,7 +7720,8 @@
           "outcome": {
             "type": "runs",
             "value": 2,
-            "shot": "work"
+            "shot": "work",
+            "shotCategory": "defend"
           }
         },
         {
@@ -7199,7 +7732,8 @@
           "outcome": {
             "type": "runs",
             "value": 1,
-            "shot": "push"
+            "shot": "push",
+            "shotCategory": "defend"
           }
         }
       ],
@@ -7211,7 +7745,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "edge to slip"
+            "mode": "edge to slip",
+            "dismissalCategory": "caught-slip"
           }
         }
       ],
@@ -7241,7 +7776,8 @@
           "outcome": {
             "type": "runs",
             "value": 6,
-            "shot": "sweep"
+            "shot": "sweep",
+            "shotCategory": "sweep"
           }
         },
         {
@@ -7252,7 +7788,8 @@
           "outcome": {
             "type": "runs",
             "value": 4,
-            "shot": "cut"
+            "shot": "cut",
+            "shotCategory": "cut"
           }
         }
       ],
@@ -7265,7 +7802,8 @@
           "outcome": {
             "type": "runs",
             "value": 2,
-            "shot": "drive"
+            "shot": "drive",
+            "shotCategory": "drive-cover"
           }
         },
         {
@@ -7276,7 +7814,8 @@
           "outcome": {
             "type": "runs",
             "value": 1,
-            "shot": "push"
+            "shot": "push",
+            "shotCategory": "defend"
           }
         }
       ],
@@ -7288,7 +7827,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "caught at gully"
+            "mode": "caught at gully",
+            "dismissalCategory": "caught-point"
           }
         },
         {
@@ -7298,7 +7838,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "LBW going across"
+            "mode": "LBW going across",
+            "dismissalCategory": "lbw"
           }
         }
       ],
@@ -7325,7 +7866,8 @@
           "outcome": {
             "type": "runs",
             "value": 4,
-            "shot": "flick"
+            "shot": "flick",
+            "shotCategory": "flick"
           }
         },
         {
@@ -7336,7 +7878,8 @@
           "outcome": {
             "type": "runs",
             "value": 6,
-            "shot": "pull"
+            "shot": "pull",
+            "shotCategory": "pull"
           }
         }
       ],
@@ -7349,7 +7892,8 @@
           "outcome": {
             "type": "runs",
             "value": 2,
-            "shot": "push"
+            "shot": "push",
+            "shotCategory": "defend"
           }
         },
         {
@@ -7360,7 +7904,8 @@
           "outcome": {
             "type": "runs",
             "value": 1,
-            "shot": "work"
+            "shot": "work",
+            "shotCategory": "defend"
           }
         }
       ],
@@ -7372,7 +7917,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "caught at cover"
+            "mode": "caught at cover",
+            "dismissalCategory": "caught-cover"
           }
         },
         {
@@ -7382,7 +7928,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "edge to slip"
+            "mode": "edge to slip",
+            "dismissalCategory": "caught-slip"
           }
         }
       ],
@@ -7410,7 +7957,8 @@
           "outcome": {
             "type": "runs",
             "value": 4,
-            "shot": "drive"
+            "shot": "drive",
+            "shotCategory": "drive-cover"
           }
         },
         {
@@ -7421,7 +7969,8 @@
           "outcome": {
             "type": "runs",
             "value": 4,
-            "shot": "sweep"
+            "shot": "sweep",
+            "shotCategory": "sweep"
           }
         }
       ],
@@ -7434,7 +7983,8 @@
           "outcome": {
             "type": "runs",
             "value": 1,
-            "shot": "work"
+            "shot": "work",
+            "shotCategory": "defend"
           }
         }
       ],
@@ -7446,7 +7996,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "top edge"
+            "mode": "top edge",
+            "dismissalCategory": "caught-deep"
           }
         },
         {
@@ -7456,7 +8007,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "edge to keeper"
+            "mode": "edge to keeper",
+            "dismissalCategory": "caught-keeper"
           }
         },
         {
@@ -7466,7 +8018,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "bowled"
+            "mode": "bowled",
+            "dismissalCategory": "bowled"
           }
         }
       ],
@@ -7492,7 +8045,8 @@
           "outcome": {
             "type": "runs",
             "value": 4,
-            "shot": "drive"
+            "shot": "drive",
+            "shotCategory": "drive-cover"
           }
         },
         {
@@ -7503,7 +8057,8 @@
           "outcome": {
             "type": "runs",
             "value": 4,
-            "shot": "flick"
+            "shot": "flick",
+            "shotCategory": "flick"
           }
         }
       ],
@@ -7516,7 +8071,8 @@
           "outcome": {
             "type": "runs",
             "value": 1,
-            "shot": "push"
+            "shot": "push",
+            "shotCategory": "defend"
           }
         }
       ],
@@ -7528,7 +8084,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "caught fending"
+            "mode": "caught fending",
+            "dismissalCategory": "caught-keeper"
           }
         },
         {
@@ -7538,7 +8095,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "LBW playing across"
+            "mode": "LBW playing across",
+            "dismissalCategory": "lbw"
           }
         },
         {
@@ -7548,7 +8106,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "bowled"
+            "mode": "bowled",
+            "dismissalCategory": "bowled"
           }
         }
       ],
@@ -7574,7 +8133,8 @@
           "outcome": {
             "type": "runs",
             "value": 4,
-            "shot": "loft"
+            "shot": "loft",
+            "shotCategory": "loft-off"
           }
         },
         {
@@ -7585,7 +8145,8 @@
           "outcome": {
             "type": "runs",
             "value": 4,
-            "shot": "pull"
+            "shot": "pull",
+            "shotCategory": "pull"
           }
         }
       ],
@@ -7598,7 +8159,8 @@
           "outcome": {
             "type": "runs",
             "value": 1,
-            "shot": "flick"
+            "shot": "flick",
+            "shotCategory": "flick"
           }
         }
       ],
@@ -7610,7 +8172,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "bowled across"
+            "mode": "bowled across",
+            "dismissalCategory": "bowled"
           }
         },
         {
@@ -7620,7 +8183,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "LBW"
+            "mode": "LBW",
+            "dismissalCategory": "lbw"
           }
         },
         {
@@ -7630,7 +8194,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "edge to slip"
+            "mode": "edge to slip",
+            "dismissalCategory": "caught-slip"
           }
         }
       ],
@@ -7655,7 +8220,8 @@
           "outcome": {
             "type": "runs",
             "value": 4,
-            "shot": "drive"
+            "shot": "drive",
+            "shotCategory": "drive-cover"
           }
         }
       ],
@@ -7668,7 +8234,8 @@
           "outcome": {
             "type": "runs",
             "value": 2,
-            "shot": "defend"
+            "shot": "defend",
+            "shotCategory": "defend"
           }
         },
         {
@@ -7679,7 +8246,8 @@
           "outcome": {
             "type": "runs",
             "value": 1,
-            "shot": "push"
+            "shot": "push",
+            "shotCategory": "defend"
           }
         }
       ],
@@ -7691,7 +8259,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "gloves to keeper"
+            "mode": "gloves to keeper",
+            "dismissalCategory": "caught-keeper"
           }
         },
         {
@@ -7701,7 +8270,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "LBW"
+            "mode": "LBW",
+            "dismissalCategory": "lbw"
           }
         },
         {
@@ -7711,7 +8281,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "flicks in air to midwicket"
+            "mode": "flicks in air to midwicket",
+            "dismissalCategory": "caught-midwicket"
           }
         }
       ],
@@ -7733,7 +8304,8 @@
           "outcome": {
             "type": "runs",
             "value": 6,
-            "shot": "slog"
+            "shot": "slog",
+            "shotCategory": "slog"
           }
         }
       ],
@@ -7746,7 +8318,8 @@
           "outcome": {
             "type": "runs",
             "value": 2,
-            "shot": "pull"
+            "shot": "pull",
+            "shotCategory": "pull"
           }
         },
         {
@@ -7757,7 +8330,8 @@
           "outcome": {
             "type": "runs",
             "value": 1,
-            "shot": "loft"
+            "shot": "loft",
+            "shotCategory": "loft-straight"
           }
         }
       ],
@@ -7769,7 +8343,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "edge to slip"
+            "mode": "edge to slip",
+            "dismissalCategory": "caught-slip"
           }
         },
         {
@@ -7779,7 +8354,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "LBW"
+            "mode": "LBW",
+            "dismissalCategory": "lbw"
           }
         },
         {
@@ -7789,7 +8365,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "caught at cover"
+            "mode": "caught at cover",
+            "dismissalCategory": "caught-cover"
           }
         }
       ],
@@ -7811,7 +8388,8 @@
           "outcome": {
             "type": "runs",
             "value": 4,
-            "shot": "sweep"
+            "shot": "sweep",
+            "shotCategory": "sweep"
           }
         }
       ],
@@ -7824,7 +8402,8 @@
           "outcome": {
             "type": "runs",
             "value": 2,
-            "shot": "nudge"
+            "shot": "nudge",
+            "shotCategory": "defend"
           }
         },
         {
@@ -7835,7 +8414,8 @@
           "outcome": {
             "type": "runs",
             "value": 1,
-            "shot": "push"
+            "shot": "push",
+            "shotCategory": "defend"
           }
         }
       ],
@@ -7847,7 +8427,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "bowled"
+            "mode": "bowled",
+            "dismissalCategory": "bowled"
           }
         },
         {
@@ -7857,7 +8438,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "caught at point"
+            "mode": "caught at point",
+            "dismissalCategory": "caught-point"
           }
         },
         {
@@ -7867,7 +8449,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "mistimed loft"
+            "mode": "mistimed loft",
+            "dismissalCategory": "caught-deep"
           }
         }
       ],
@@ -7889,7 +8472,8 @@
           "outcome": {
             "type": "runs",
             "value": 6,
-            "shot": "sweep"
+            "shot": "sweep",
+            "shotCategory": "sweep"
           }
         }
       ],
@@ -7902,7 +8486,8 @@
           "outcome": {
             "type": "runs",
             "value": 2,
-            "shot": "flick"
+            "shot": "flick",
+            "shotCategory": "flick"
           }
         },
         {
@@ -7913,7 +8498,8 @@
           "outcome": {
             "type": "runs",
             "value": 1,
-            "shot": "drive"
+            "shot": "drive",
+            "shotCategory": "drive-straight"
           }
         }
       ],
@@ -7925,7 +8511,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "beaten"
+            "mode": "beaten",
+            "dismissalCategory": "bowled"
           }
         },
         {
@@ -7935,7 +8522,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "caught behind"
+            "mode": "caught behind",
+            "dismissalCategory": "caught-keeper"
           }
         },
         {
@@ -7945,7 +8533,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "bowled"
+            "mode": "bowled",
+            "dismissalCategory": "bowled"
           }
         }
       ],
@@ -7967,7 +8556,8 @@
           "outcome": {
             "type": "runs",
             "value": 4,
-            "shot": "slog"
+            "shot": "slog",
+            "shotCategory": "slog"
           }
         }
       ],
@@ -7980,7 +8570,8 @@
           "outcome": {
             "type": "runs",
             "value": 2,
-            "shot": "work"
+            "shot": "work",
+            "shotCategory": "defend"
           }
         },
         {
@@ -7991,7 +8582,8 @@
           "outcome": {
             "type": "runs",
             "value": 1,
-            "shot": "push"
+            "shot": "push",
+            "shotCategory": "defend"
           }
         }
       ],
@@ -8003,7 +8595,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "beaten"
+            "mode": "beaten",
+            "dismissalCategory": "bowled"
           }
         },
         {
@@ -8013,7 +8606,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "caught"
+            "mode": "caught",
+            "dismissalCategory": "caught-deep"
           }
         },
         {
@@ -8023,7 +8617,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "bowled"
+            "mode": "bowled",
+            "dismissalCategory": "bowled"
           }
         }
       ],
@@ -8045,7 +8640,8 @@
           "outcome": {
             "type": "runs",
             "value": 6,
-            "shot": "sweep"
+            "shot": "sweep",
+            "shotCategory": "sweep"
           }
         },
         {
@@ -8056,7 +8652,8 @@
           "outcome": {
             "type": "runs",
             "value": 4,
-            "shot": "cut"
+            "shot": "cut",
+            "shotCategory": "cut"
           }
         },
         {
@@ -8067,7 +8664,8 @@
           "outcome": {
             "type": "runs",
             "value": 4,
-            "shot": "drive"
+            "shot": "drive",
+            "shotCategory": "drive-cover"
           }
         }
       ],
@@ -8080,7 +8678,8 @@
           "outcome": {
             "type": "runs",
             "value": 2,
-            "shot": "push"
+            "shot": "push",
+            "shotCategory": "defend"
           }
         },
         {
@@ -8091,7 +8690,8 @@
           "outcome": {
             "type": "runs",
             "value": 1,
-            "shot": "work"
+            "shot": "work",
+            "shotCategory": "defend"
           }
         }
       ],
@@ -8103,7 +8703,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "caught at gully"
+            "mode": "caught at gully",
+            "dismissalCategory": "caught-point"
           }
         }
       ],
@@ -8133,7 +8734,8 @@
           "outcome": {
             "type": "runs",
             "value": 4,
-            "shot": "drive"
+            "shot": "drive",
+            "shotCategory": "drive-cover"
           }
         },
         {
@@ -8144,7 +8746,8 @@
           "outcome": {
             "type": "runs",
             "value": 4,
-            "shot": "sweep"
+            "shot": "sweep",
+            "shotCategory": "sweep"
           }
         }
       ],
@@ -8157,7 +8760,8 @@
           "outcome": {
             "type": "runs",
             "value": 2,
-            "shot": "push"
+            "shot": "push",
+            "shotCategory": "defend"
           }
         },
         {
@@ -8168,7 +8772,8 @@
           "outcome": {
             "type": "runs",
             "value": 1,
-            "shot": "defend"
+            "shot": "defend",
+            "shotCategory": "defend"
           }
         }
       ],
@@ -8180,7 +8785,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "caught fending"
+            "mode": "caught fending",
+            "dismissalCategory": "caught-keeper"
           }
         },
         {
@@ -8190,7 +8796,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "edge"
+            "mode": "edge",
+            "dismissalCategory": "caught-slip"
           }
         }
       ],
@@ -8217,7 +8824,8 @@
           "outcome": {
             "type": "runs",
             "value": 6,
-            "shot": "sweep"
+            "shot": "sweep",
+            "shotCategory": "sweep"
           }
         },
         {
@@ -8228,7 +8836,8 @@
           "outcome": {
             "type": "runs",
             "value": 4,
-            "shot": "drive"
+            "shot": "drive",
+            "shotCategory": "drive-cover"
           }
         }
       ],
@@ -8241,7 +8850,8 @@
           "outcome": {
             "type": "runs",
             "value": 2,
-            "shot": "flick"
+            "shot": "flick",
+            "shotCategory": "flick"
           }
         },
         {
@@ -8252,7 +8862,8 @@
           "outcome": {
             "type": "runs",
             "value": 1,
-            "shot": "push"
+            "shot": "push",
+            "shotCategory": "defend"
           }
         }
       ],
@@ -8264,7 +8875,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "caught fending"
+            "mode": "caught fending",
+            "dismissalCategory": "caught-keeper"
           }
         },
         {
@@ -8274,7 +8886,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "edge to slip"
+            "mode": "edge to slip",
+            "dismissalCategory": "caught-slip"
           }
         }
       ],
@@ -8302,7 +8915,8 @@
           "outcome": {
             "type": "runs",
             "value": 4,
-            "shot": "loft"
+            "shot": "loft",
+            "shotCategory": "loft-straight"
           }
         },
         {
@@ -8313,7 +8927,8 @@
           "outcome": {
             "type": "runs",
             "value": 4,
-            "shot": "pull"
+            "shot": "pull",
+            "shotCategory": "pull"
           }
         }
       ],
@@ -8326,7 +8941,8 @@
           "outcome": {
             "type": "runs",
             "value": 1,
-            "shot": "flick"
+            "shot": "flick",
+            "shotCategory": "flick"
           }
         }
       ],
@@ -8338,7 +8954,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "edge"
+            "mode": "edge",
+            "dismissalCategory": "caught-slip"
           }
         },
         {
@@ -8348,7 +8965,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "caught at cover"
+            "mode": "caught at cover",
+            "dismissalCategory": "caught-cover"
           }
         },
         {
@@ -8358,7 +8976,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "bowled"
+            "mode": "bowled",
+            "dismissalCategory": "bowled"
           }
         }
       ],
@@ -8384,7 +9003,8 @@
           "outcome": {
             "type": "runs",
             "value": 4,
-            "shot": "drive"
+            "shot": "drive",
+            "shotCategory": "drive-cover"
           }
         },
         {
@@ -8395,7 +9015,8 @@
           "outcome": {
             "type": "runs",
             "value": 4,
-            "shot": "flick"
+            "shot": "flick",
+            "shotCategory": "flick"
           }
         }
       ],
@@ -8408,7 +9029,8 @@
           "outcome": {
             "type": "runs",
             "value": 1,
-            "shot": "push"
+            "shot": "push",
+            "shotCategory": "defend"
           }
         }
       ],
@@ -8420,7 +9042,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "caught behind"
+            "mode": "caught behind",
+            "dismissalCategory": "caught-keeper"
           }
         },
         {
@@ -8430,7 +9053,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "bowled"
+            "mode": "bowled",
+            "dismissalCategory": "bowled"
           }
         },
         {
@@ -8440,7 +9064,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "edge to slip"
+            "mode": "edge to slip",
+            "dismissalCategory": "caught-slip"
           }
         }
       ],
@@ -8465,7 +9090,8 @@
           "outcome": {
             "type": "runs",
             "value": 6,
-            "shot": "slog"
+            "shot": "slog",
+            "shotCategory": "slog"
           }
         },
         {
@@ -8476,7 +9102,8 @@
           "outcome": {
             "type": "runs",
             "value": 4,
-            "shot": "pull"
+            "shot": "pull",
+            "shotCategory": "pull"
           }
         }
       ],
@@ -8489,7 +9116,8 @@
           "outcome": {
             "type": "runs",
             "value": 1,
-            "shot": "work"
+            "shot": "work",
+            "shotCategory": "defend"
           }
         }
       ],
@@ -8501,7 +9129,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "beaten"
+            "mode": "beaten",
+            "dismissalCategory": "bowled"
           }
         },
         {
@@ -8511,7 +9140,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "caught at cover"
+            "mode": "caught at cover",
+            "dismissalCategory": "caught-cover"
           }
         },
         {
@@ -8521,7 +9151,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "bowled"
+            "mode": "bowled",
+            "dismissalCategory": "bowled"
           }
         }
       ],
@@ -8547,7 +9178,8 @@
           "outcome": {
             "type": "runs",
             "value": 4,
-            "shot": "drive"
+            "shot": "drive",
+            "shotCategory": "drive-cover"
           }
         }
       ],
@@ -8560,7 +9192,8 @@
           "outcome": {
             "type": "runs",
             "value": 2,
-            "shot": "push"
+            "shot": "push",
+            "shotCategory": "defend"
           }
         },
         {
@@ -8571,7 +9204,8 @@
           "outcome": {
             "type": "runs",
             "value": 1,
-            "shot": "nudge"
+            "shot": "nudge",
+            "shotCategory": "defend"
           }
         }
       ],
@@ -8583,7 +9217,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "top edge"
+            "mode": "top edge",
+            "dismissalCategory": "caught-deep"
           }
         },
         {
@@ -8593,7 +9228,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "edge"
+            "mode": "edge",
+            "dismissalCategory": "caught-slip"
           }
         },
         {
@@ -8603,7 +9239,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "bowled"
+            "mode": "bowled",
+            "dismissalCategory": "bowled"
           }
         }
       ],
@@ -8625,7 +9262,8 @@
           "outcome": {
             "type": "runs",
             "value": 4,
-            "shot": "cover drive"
+            "shot": "cover drive",
+            "shotCategory": "drive-cover"
           }
         }
       ],
@@ -8638,7 +9276,8 @@
           "outcome": {
             "type": "runs",
             "value": 2,
-            "shot": "flick"
+            "shot": "flick",
+            "shotCategory": "flick"
           }
         },
         {
@@ -8649,7 +9288,8 @@
           "outcome": {
             "type": "runs",
             "value": 1,
-            "shot": "push"
+            "shot": "push",
+            "shotCategory": "defend"
           }
         }
       ],
@@ -8661,7 +9301,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "caught fending"
+            "mode": "caught fending",
+            "dismissalCategory": "caught-keeper"
           }
         },
         {
@@ -8671,7 +9312,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "edge to slip"
+            "mode": "edge to slip",
+            "dismissalCategory": "caught-slip"
           }
         },
         {
@@ -8681,7 +9323,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "bowled"
+            "mode": "bowled",
+            "dismissalCategory": "bowled"
           }
         }
       ],
@@ -8703,7 +9346,8 @@
           "outcome": {
             "type": "runs",
             "value": 4,
-            "shot": "flick"
+            "shot": "flick",
+            "shotCategory": "flick"
           }
         }
       ],
@@ -8716,7 +9360,8 @@
           "outcome": {
             "type": "runs",
             "value": 2,
-            "shot": "work"
+            "shot": "work",
+            "shotCategory": "defend"
           }
         },
         {
@@ -8727,7 +9372,8 @@
           "outcome": {
             "type": "runs",
             "value": 1,
-            "shot": "push"
+            "shot": "push",
+            "shotCategory": "defend"
           }
         }
       ],
@@ -8739,7 +9385,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "bowled"
+            "mode": "bowled",
+            "dismissalCategory": "bowled"
           }
         },
         {
@@ -8749,7 +9396,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "caught"
+            "mode": "caught",
+            "dismissalCategory": "caught-deep"
           }
         },
         {
@@ -8759,7 +9407,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "LBW"
+            "mode": "LBW",
+            "dismissalCategory": "lbw"
           }
         }
       ],
@@ -8781,7 +9430,8 @@
           "outcome": {
             "type": "runs",
             "value": 4,
-            "shot": "slog"
+            "shot": "slog",
+            "shotCategory": "slog"
           }
         }
       ],
@@ -8794,7 +9444,8 @@
           "outcome": {
             "type": "runs",
             "value": 2,
-            "shot": "push"
+            "shot": "push",
+            "shotCategory": "defend"
           }
         },
         {
@@ -8805,7 +9456,8 @@
           "outcome": {
             "type": "runs",
             "value": 1,
-            "shot": "work"
+            "shot": "work",
+            "shotCategory": "defend"
           }
         }
       ],
@@ -8817,7 +9469,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "edge"
+            "mode": "edge",
+            "dismissalCategory": "caught-slip"
           }
         },
         {
@@ -8827,7 +9480,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "caught"
+            "mode": "caught",
+            "dismissalCategory": "caught-deep"
           }
         },
         {
@@ -8837,7 +9491,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "bowled"
+            "mode": "bowled",
+            "dismissalCategory": "bowled"
           }
         }
       ],
@@ -8859,7 +9514,8 @@
           "outcome": {
             "type": "runs",
             "value": 4,
-            "shot": "drive"
+            "shot": "drive",
+            "shotCategory": "drive-straight"
           }
         }
       ],
@@ -8872,7 +9528,8 @@
           "outcome": {
             "type": "runs",
             "value": 2,
-            "shot": "nudge"
+            "shot": "nudge",
+            "shotCategory": "defend"
           }
         },
         {
@@ -8883,7 +9540,8 @@
           "outcome": {
             "type": "runs",
             "value": 1,
-            "shot": "flick"
+            "shot": "flick",
+            "shotCategory": "flick"
           }
         }
       ],
@@ -8895,7 +9553,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "bowled"
+            "mode": "bowled",
+            "dismissalCategory": "bowled"
           }
         },
         {
@@ -8905,7 +9564,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "caught at gully"
+            "mode": "caught at gully",
+            "dismissalCategory": "caught-point"
           }
         },
         {
@@ -8915,7 +9575,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "LBW"
+            "mode": "LBW",
+            "dismissalCategory": "lbw"
           }
         }
       ],
@@ -8937,7 +9598,8 @@
           "outcome": {
             "type": "runs",
             "value": 6,
-            "shot": "loft"
+            "shot": "loft",
+            "shotCategory": "loft-straight"
           }
         },
         {
@@ -8948,7 +9610,8 @@
           "outcome": {
             "type": "runs",
             "value": 6,
-            "shot": "pull"
+            "shot": "pull",
+            "shotCategory": "pull"
           }
         },
         {
@@ -8959,7 +9622,8 @@
           "outcome": {
             "type": "runs",
             "value": 4,
-            "shot": "flick"
+            "shot": "flick",
+            "shotCategory": "flick"
           }
         }
       ],
@@ -8972,7 +9636,8 @@
           "outcome": {
             "type": "runs",
             "value": 2,
-            "shot": "push"
+            "shot": "push",
+            "shotCategory": "defend"
           }
         },
         {
@@ -8983,7 +9648,8 @@
           "outcome": {
             "type": "runs",
             "value": 1,
-            "shot": "work"
+            "shot": "work",
+            "shotCategory": "defend"
           }
         }
       ],
@@ -8995,7 +9661,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "edge to slip"
+            "mode": "edge to slip",
+            "dismissalCategory": "caught-slip"
           }
         }
       ],
@@ -9025,7 +9692,8 @@
           "outcome": {
             "type": "runs",
             "value": 4,
-            "shot": "drive"
+            "shot": "drive",
+            "shotCategory": "drive-cover"
           }
         },
         {
@@ -9036,7 +9704,8 @@
           "outcome": {
             "type": "runs",
             "value": 4,
-            "shot": "flick"
+            "shot": "flick",
+            "shotCategory": "flick"
           }
         }
       ],
@@ -9049,7 +9718,8 @@
           "outcome": {
             "type": "runs",
             "value": 2,
-            "shot": "push"
+            "shot": "push",
+            "shotCategory": "defend"
           }
         },
         {
@@ -9060,7 +9730,8 @@
           "outcome": {
             "type": "runs",
             "value": 1,
-            "shot": "defend"
+            "shot": "defend",
+            "shotCategory": "defend"
           }
         }
       ],
@@ -9072,7 +9743,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "caught behind"
+            "mode": "caught behind",
+            "dismissalCategory": "caught-keeper"
           }
         },
         {
@@ -9082,7 +9754,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "top edge"
+            "mode": "top edge",
+            "dismissalCategory": "caught-deep"
           }
         }
       ],
@@ -9110,7 +9783,8 @@
           "outcome": {
             "type": "runs",
             "value": 6,
-            "shot": "slog"
+            "shot": "slog",
+            "shotCategory": "slog"
           }
         },
         {
@@ -9121,7 +9795,8 @@
           "outcome": {
             "type": "runs",
             "value": 6,
-            "shot": "loft"
+            "shot": "loft",
+            "shotCategory": "loft-straight"
           }
         }
       ],
@@ -9134,7 +9809,8 @@
           "outcome": {
             "type": "runs",
             "value": 2,
-            "shot": "flick"
+            "shot": "flick",
+            "shotCategory": "flick"
           }
         },
         {
@@ -9145,7 +9821,8 @@
           "outcome": {
             "type": "runs",
             "value": 1,
-            "shot": "pull"
+            "shot": "pull",
+            "shotCategory": "pull"
           }
         }
       ],
@@ -9157,7 +9834,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "edge to slip"
+            "mode": "edge to slip",
+            "dismissalCategory": "caught-slip"
           }
         },
         {
@@ -9167,7 +9845,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "bowled across"
+            "mode": "bowled across",
+            "dismissalCategory": "bowled"
           }
         }
       ],
@@ -9194,7 +9873,8 @@
           "outcome": {
             "type": "runs",
             "value": 4,
-            "shot": "sweep"
+            "shot": "sweep",
+            "shotCategory": "sweep"
           }
         },
         {
@@ -9205,7 +9885,8 @@
           "outcome": {
             "type": "runs",
             "value": 4,
-            "shot": "pull"
+            "shot": "pull",
+            "shotCategory": "pull"
           }
         }
       ],
@@ -9218,7 +9899,8 @@
           "outcome": {
             "type": "runs",
             "value": 1,
-            "shot": "work"
+            "shot": "work",
+            "shotCategory": "defend"
           }
         }
       ],
@@ -9230,7 +9912,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "edge to slip"
+            "mode": "edge to slip",
+            "dismissalCategory": "caught-slip"
           }
         },
         {
@@ -9240,7 +9923,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "bowled"
+            "mode": "bowled",
+            "dismissalCategory": "bowled"
           }
         },
         {
@@ -9250,7 +9934,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "LBW"
+            "mode": "LBW",
+            "dismissalCategory": "lbw"
           }
         }
       ],
@@ -9276,7 +9961,8 @@
           "outcome": {
             "type": "runs",
             "value": 6,
-            "shot": "slog"
+            "shot": "slog",
+            "shotCategory": "slog"
           }
         },
         {
@@ -9287,7 +9973,8 @@
           "outcome": {
             "type": "runs",
             "value": 4,
-            "shot": "loft"
+            "shot": "loft",
+            "shotCategory": "loft-straight"
           }
         }
       ],
@@ -9300,7 +9987,8 @@
           "outcome": {
             "type": "runs",
             "value": 1,
-            "shot": "flick"
+            "shot": "flick",
+            "shotCategory": "flick"
           }
         }
       ],
@@ -9312,7 +10000,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "beaten"
+            "mode": "beaten",
+            "dismissalCategory": "bowled"
           }
         },
         {
@@ -9322,7 +10011,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "caught at point"
+            "mode": "caught at point",
+            "dismissalCategory": "caught-point"
           }
         },
         {
@@ -9332,7 +10022,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "edge to slip"
+            "mode": "edge to slip",
+            "dismissalCategory": "caught-slip"
           }
         }
       ],
@@ -9358,7 +10049,8 @@
           "outcome": {
             "type": "runs",
             "value": 6,
-            "shot": "slog"
+            "shot": "slog",
+            "shotCategory": "slog"
           }
         },
         {
@@ -9369,7 +10061,8 @@
           "outcome": {
             "type": "runs",
             "value": 4,
-            "shot": "loft"
+            "shot": "loft",
+            "shotCategory": "loft-straight"
           }
         }
       ],
@@ -9382,7 +10075,8 @@
           "outcome": {
             "type": "runs",
             "value": 1,
-            "shot": "push"
+            "shot": "push",
+            "shotCategory": "defend"
           }
         }
       ],
@@ -9394,7 +10088,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "beaten"
+            "mode": "beaten",
+            "dismissalCategory": "bowled"
           }
         },
         {
@@ -9404,7 +10099,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "caught at cover"
+            "mode": "caught at cover",
+            "dismissalCategory": "caught-cover"
           }
         },
         {
@@ -9414,7 +10110,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "top edge"
+            "mode": "top edge",
+            "dismissalCategory": "caught-deep"
           }
         }
       ],
@@ -9439,7 +10136,8 @@
           "outcome": {
             "type": "runs",
             "value": 4,
-            "shot": "loft"
+            "shot": "loft",
+            "shotCategory": "loft-straight"
           }
         }
       ],
@@ -9452,7 +10150,8 @@
           "outcome": {
             "type": "runs",
             "value": 2,
-            "shot": "flick"
+            "shot": "flick",
+            "shotCategory": "flick"
           }
         },
         {
@@ -9463,7 +10162,8 @@
           "outcome": {
             "type": "runs",
             "value": 1,
-            "shot": "pull"
+            "shot": "pull",
+            "shotCategory": "pull"
           }
         }
       ],
@@ -9475,7 +10175,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "bowled"
+            "mode": "bowled",
+            "dismissalCategory": "bowled"
           }
         },
         {
@@ -9485,7 +10186,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "edge"
+            "mode": "edge",
+            "dismissalCategory": "caught-slip"
           }
         },
         {
@@ -9495,7 +10197,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "LBW"
+            "mode": "LBW",
+            "dismissalCategory": "lbw"
           }
         }
       ],
@@ -9517,7 +10220,8 @@
           "outcome": {
             "type": "runs",
             "value": 6,
-            "shot": "slog"
+            "shot": "slog",
+            "shotCategory": "slog"
           }
         }
       ],
@@ -9530,7 +10234,8 @@
           "outcome": {
             "type": "runs",
             "value": 2,
-            "shot": "pull"
+            "shot": "pull",
+            "shotCategory": "pull"
           }
         },
         {
@@ -9541,7 +10246,8 @@
           "outcome": {
             "type": "runs",
             "value": 1,
-            "shot": "drive"
+            "shot": "drive",
+            "shotCategory": "drive-cover"
           }
         }
       ],
@@ -9553,7 +10259,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "edge to keeper"
+            "mode": "edge to keeper",
+            "dismissalCategory": "caught-keeper"
           }
         },
         {
@@ -9563,7 +10270,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "bowled"
+            "mode": "bowled",
+            "dismissalCategory": "bowled"
           }
         },
         {
@@ -9573,7 +10281,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "caught at cover"
+            "mode": "caught at cover",
+            "dismissalCategory": "caught-cover"
           }
         }
       ],
@@ -9595,7 +10304,8 @@
           "outcome": {
             "type": "runs",
             "value": 4,
-            "shot": "slog"
+            "shot": "slog",
+            "shotCategory": "slog"
           }
         }
       ],
@@ -9608,7 +10318,8 @@
           "outcome": {
             "type": "runs",
             "value": 2,
-            "shot": "work"
+            "shot": "work",
+            "shotCategory": "defend"
           }
         },
         {
@@ -9619,7 +10330,8 @@
           "outcome": {
             "type": "runs",
             "value": 1,
-            "shot": "push"
+            "shot": "push",
+            "shotCategory": "defend"
           }
         }
       ],
@@ -9631,7 +10343,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "edge"
+            "mode": "edge",
+            "dismissalCategory": "caught-slip"
           }
         },
         {
@@ -9641,7 +10354,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "caught"
+            "mode": "caught",
+            "dismissalCategory": "caught-deep"
           }
         },
         {
@@ -9651,7 +10365,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "bowled"
+            "mode": "bowled",
+            "dismissalCategory": "bowled"
           }
         }
       ],
@@ -9673,7 +10388,8 @@
           "outcome": {
             "type": "runs",
             "value": 4,
-            "shot": "pull"
+            "shot": "pull",
+            "shotCategory": "pull"
           }
         }
       ],
@@ -9686,7 +10402,8 @@
           "outcome": {
             "type": "runs",
             "value": 2,
-            "shot": "flick"
+            "shot": "flick",
+            "shotCategory": "flick"
           }
         },
         {
@@ -9697,7 +10414,8 @@
           "outcome": {
             "type": "runs",
             "value": 1,
-            "shot": "work"
+            "shot": "work",
+            "shotCategory": "defend"
           }
         }
       ],
@@ -9709,7 +10427,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "bowled"
+            "mode": "bowled",
+            "dismissalCategory": "bowled"
           }
         },
         {
@@ -9719,7 +10438,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "LBW"
+            "mode": "LBW",
+            "dismissalCategory": "lbw"
           }
         },
         {
@@ -9729,7 +10449,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "caught at cover"
+            "mode": "caught at cover",
+            "dismissalCategory": "caught-cover"
           }
         }
       ],
@@ -9751,7 +10472,8 @@
           "outcome": {
             "type": "runs",
             "value": 4,
-            "shot": "drive"
+            "shot": "drive",
+            "shotCategory": "drive-cover"
           }
         }
       ],
@@ -9764,7 +10486,8 @@
           "outcome": {
             "type": "runs",
             "value": 2,
-            "shot": "push"
+            "shot": "push",
+            "shotCategory": "defend"
           }
         },
         {
@@ -9775,7 +10498,8 @@
           "outcome": {
             "type": "runs",
             "value": 1,
-            "shot": "work"
+            "shot": "work",
+            "shotCategory": "defend"
           }
         }
       ],
@@ -9787,7 +10511,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "caught fending"
+            "mode": "caught fending",
+            "dismissalCategory": "caught-keeper"
           }
         },
         {
@@ -9797,7 +10522,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "edge"
+            "mode": "edge",
+            "dismissalCategory": "caught-slip"
           }
         },
         {
@@ -9807,7 +10533,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "bowled"
+            "mode": "bowled",
+            "dismissalCategory": "bowled"
           }
         }
       ],
@@ -9829,7 +10556,8 @@
           "outcome": {
             "type": "runs",
             "value": 6,
-            "shot": "loft"
+            "shot": "loft",
+            "shotCategory": "loft-off"
           }
         },
         {
@@ -9840,7 +10568,8 @@
           "outcome": {
             "type": "runs",
             "value": 4,
-            "shot": "pull"
+            "shot": "pull",
+            "shotCategory": "pull"
           }
         },
         {
@@ -9851,7 +10580,8 @@
           "outcome": {
             "type": "runs",
             "value": 4,
-            "shot": "sweep"
+            "shot": "sweep",
+            "shotCategory": "sweep"
           }
         }
       ],
@@ -9864,7 +10594,8 @@
           "outcome": {
             "type": "runs",
             "value": 2,
-            "shot": "cut"
+            "shot": "cut",
+            "shotCategory": "cut"
           }
         },
         {
@@ -9875,7 +10606,8 @@
           "outcome": {
             "type": "runs",
             "value": 1,
-            "shot": "push"
+            "shot": "push",
+            "shotCategory": "defend"
           }
         }
       ],
@@ -9887,7 +10619,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "edge to slip"
+            "mode": "edge to slip",
+            "dismissalCategory": "caught-slip"
           }
         }
       ],
@@ -9917,7 +10650,8 @@
           "outcome": {
             "type": "runs",
             "value": 4,
-            "shot": "cover drive"
+            "shot": "cover drive",
+            "shotCategory": "drive-cover"
           }
         },
         {
@@ -9928,7 +10662,8 @@
           "outcome": {
             "type": "runs",
             "value": 4,
-            "shot": "drive"
+            "shot": "drive",
+            "shotCategory": "drive-straight"
           }
         }
       ],
@@ -9941,7 +10676,8 @@
           "outcome": {
             "type": "runs",
             "value": 2,
-            "shot": "push"
+            "shot": "push",
+            "shotCategory": "defend"
           }
         },
         {
@@ -9952,7 +10688,8 @@
           "outcome": {
             "type": "runs",
             "value": 1,
-            "shot": "defend"
+            "shot": "defend",
+            "shotCategory": "defend"
           }
         }
       ],
@@ -9964,7 +10701,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "caught behind"
+            "mode": "caught behind",
+            "dismissalCategory": "caught-keeper"
           }
         },
         {
@@ -9974,7 +10712,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "top edge"
+            "mode": "top edge",
+            "dismissalCategory": "caught-deep"
           }
         }
       ],
@@ -10002,7 +10741,8 @@
           "outcome": {
             "type": "runs",
             "value": 4,
-            "shot": "drive"
+            "shot": "drive",
+            "shotCategory": "drive-cover"
           }
         },
         {
@@ -10013,7 +10753,8 @@
           "outcome": {
             "type": "runs",
             "value": 4,
-            "shot": "flick"
+            "shot": "flick",
+            "shotCategory": "flick"
           }
         }
       ],
@@ -10026,7 +10767,8 @@
           "outcome": {
             "type": "runs",
             "value": 2,
-            "shot": "push"
+            "shot": "push",
+            "shotCategory": "defend"
           }
         },
         {
@@ -10037,7 +10779,8 @@
           "outcome": {
             "type": "runs",
             "value": 1,
-            "shot": "work"
+            "shot": "work",
+            "shotCategory": "defend"
           }
         }
       ],
@@ -10049,7 +10792,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "edge to slip"
+            "mode": "edge to slip",
+            "dismissalCategory": "caught-slip"
           }
         },
         {
@@ -10059,7 +10803,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "top edge"
+            "mode": "top edge",
+            "dismissalCategory": "caught-deep"
           }
         }
       ],
@@ -10086,7 +10831,8 @@
           "outcome": {
             "type": "runs",
             "value": 4,
-            "shot": "loft"
+            "shot": "loft",
+            "shotCategory": "loft-straight"
           }
         },
         {
@@ -10097,7 +10843,8 @@
           "outcome": {
             "type": "runs",
             "value": 4,
-            "shot": "pull"
+            "shot": "pull",
+            "shotCategory": "pull"
           }
         }
       ],
@@ -10110,7 +10857,8 @@
           "outcome": {
             "type": "runs",
             "value": 1,
-            "shot": "flick"
+            "shot": "flick",
+            "shotCategory": "flick"
           }
         }
       ],
@@ -10122,7 +10870,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "edge"
+            "mode": "edge",
+            "dismissalCategory": "caught-slip"
           }
         },
         {
@@ -10132,7 +10881,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "caught at cover"
+            "mode": "caught at cover",
+            "dismissalCategory": "caught-cover"
           }
         },
         {
@@ -10142,7 +10892,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "bowled"
+            "mode": "bowled",
+            "dismissalCategory": "bowled"
           }
         }
       ],
@@ -10168,7 +10919,8 @@
           "outcome": {
             "type": "runs",
             "value": 4,
-            "shot": "flick"
+            "shot": "flick",
+            "shotCategory": "flick"
           }
         },
         {
@@ -10179,7 +10931,8 @@
           "outcome": {
             "type": "runs",
             "value": 4,
-            "shot": "drive"
+            "shot": "drive",
+            "shotCategory": "drive-cover"
           }
         }
       ],
@@ -10192,7 +10945,8 @@
           "outcome": {
             "type": "runs",
             "value": 1,
-            "shot": "push"
+            "shot": "push",
+            "shotCategory": "defend"
           }
         }
       ],
@@ -10204,7 +10958,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "caught fending"
+            "mode": "caught fending",
+            "dismissalCategory": "caught-keeper"
           }
         },
         {
@@ -10214,7 +10969,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "LBW"
+            "mode": "LBW",
+            "dismissalCategory": "lbw"
           }
         },
         {
@@ -10224,7 +10980,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "edge to slip"
+            "mode": "edge to slip",
+            "dismissalCategory": "caught-slip"
           }
         }
       ],
@@ -10250,7 +11007,8 @@
           "outcome": {
             "type": "runs",
             "value": 4,
-            "shot": "sweep"
+            "shot": "sweep",
+            "shotCategory": "sweep"
           }
         },
         {
@@ -10261,7 +11019,8 @@
           "outcome": {
             "type": "runs",
             "value": 4,
-            "shot": "nudge"
+            "shot": "nudge",
+            "shotCategory": "defend"
           }
         }
       ],
@@ -10274,7 +11033,8 @@
           "outcome": {
             "type": "runs",
             "value": 1,
-            "shot": "drive"
+            "shot": "drive",
+            "shotCategory": "drive-straight"
           }
         }
       ],
@@ -10286,7 +11046,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "bowled"
+            "mode": "bowled",
+            "dismissalCategory": "bowled"
           }
         },
         {
@@ -10296,7 +11057,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "caught at point"
+            "mode": "caught at point",
+            "dismissalCategory": "caught-point"
           }
         },
         {
@@ -10306,7 +11068,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "LBW"
+            "mode": "LBW",
+            "dismissalCategory": "lbw"
           }
         }
       ],
@@ -10331,7 +11094,8 @@
           "outcome": {
             "type": "runs",
             "value": 6,
-            "shot": "slog"
+            "shot": "slog",
+            "shotCategory": "slog"
           }
         }
       ],
@@ -10344,7 +11108,8 @@
           "outcome": {
             "type": "runs",
             "value": 2,
-            "shot": "pull"
+            "shot": "pull",
+            "shotCategory": "pull"
           }
         },
         {
@@ -10355,7 +11120,8 @@
           "outcome": {
             "type": "runs",
             "value": 1,
-            "shot": "work"
+            "shot": "work",
+            "shotCategory": "defend"
           }
         }
       ],
@@ -10367,7 +11133,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "edge to slip"
+            "mode": "edge to slip",
+            "dismissalCategory": "caught-slip"
           }
         },
         {
@@ -10377,7 +11144,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "mistimed loft"
+            "mode": "mistimed loft",
+            "dismissalCategory": "caught-deep"
           }
         },
         {
@@ -10387,7 +11155,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "LBW"
+            "mode": "LBW",
+            "dismissalCategory": "lbw"
           }
         }
       ],
@@ -10409,7 +11178,8 @@
           "outcome": {
             "type": "runs",
             "value": 4,
-            "shot": "sweep"
+            "shot": "sweep",
+            "shotCategory": "sweep"
           }
         }
       ],
@@ -10422,7 +11192,8 @@
           "outcome": {
             "type": "runs",
             "value": 2,
-            "shot": "nudge"
+            "shot": "nudge",
+            "shotCategory": "defend"
           }
         },
         {
@@ -10433,7 +11204,8 @@
           "outcome": {
             "type": "runs",
             "value": 1,
-            "shot": "push"
+            "shot": "push",
+            "shotCategory": "defend"
           }
         }
       ],
@@ -10445,7 +11217,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "edge"
+            "mode": "edge",
+            "dismissalCategory": "caught-slip"
           }
         },
         {
@@ -10455,7 +11228,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "caught"
+            "mode": "caught",
+            "dismissalCategory": "caught-deep"
           }
         },
         {
@@ -10465,7 +11239,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "mistimed drive"
+            "mode": "mistimed drive",
+            "dismissalCategory": "caught-cover"
           }
         }
       ],
@@ -10487,7 +11262,8 @@
           "outcome": {
             "type": "runs",
             "value": 4,
-            "shot": "drive"
+            "shot": "drive",
+            "shotCategory": "drive-cover"
           }
         }
       ],
@@ -10500,7 +11276,8 @@
           "outcome": {
             "type": "runs",
             "value": 2,
-            "shot": "push"
+            "shot": "push",
+            "shotCategory": "defend"
           }
         },
         {
@@ -10511,7 +11288,8 @@
           "outcome": {
             "type": "runs",
             "value": 1,
-            "shot": "work"
+            "shot": "work",
+            "shotCategory": "defend"
           }
         }
       ],
@@ -10523,7 +11301,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "caught at gully"
+            "mode": "caught at gully",
+            "dismissalCategory": "caught-point"
           }
         },
         {
@@ -10533,7 +11312,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "edge"
+            "mode": "edge",
+            "dismissalCategory": "caught-slip"
           }
         },
         {
@@ -10543,7 +11323,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "bowled"
+            "mode": "bowled",
+            "dismissalCategory": "bowled"
           }
         }
       ],
@@ -10565,7 +11346,8 @@
           "outcome": {
             "type": "runs",
             "value": 4,
-            "shot": "pull"
+            "shot": "pull",
+            "shotCategory": "pull"
           }
         }
       ],
@@ -10578,7 +11360,8 @@
           "outcome": {
             "type": "runs",
             "value": 2,
-            "shot": "flick"
+            "shot": "flick",
+            "shotCategory": "flick"
           }
         },
         {
@@ -10589,7 +11372,8 @@
           "outcome": {
             "type": "runs",
             "value": 1,
-            "shot": "nudge"
+            "shot": "nudge",
+            "shotCategory": "defend"
           }
         }
       ],
@@ -10601,7 +11385,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "bowled"
+            "mode": "bowled",
+            "dismissalCategory": "bowled"
           }
         },
         {
@@ -10611,7 +11396,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "LBW"
+            "mode": "LBW",
+            "dismissalCategory": "lbw"
           }
         },
         {
@@ -10621,7 +11407,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "caught"
+            "mode": "caught",
+            "dismissalCategory": "caught-deep"
           }
         }
       ],
@@ -10643,7 +11430,8 @@
           "outcome": {
             "type": "runs",
             "value": 4,
-            "shot": "slog"
+            "shot": "slog",
+            "shotCategory": "slog"
           }
         }
       ],
@@ -10656,7 +11444,8 @@
           "outcome": {
             "type": "runs",
             "value": 2,
-            "shot": "work"
+            "shot": "work",
+            "shotCategory": "defend"
           }
         },
         {
@@ -10667,7 +11456,8 @@
           "outcome": {
             "type": "runs",
             "value": 1,
-            "shot": "push"
+            "shot": "push",
+            "shotCategory": "defend"
           }
         }
       ],
@@ -10679,7 +11469,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "bowled"
+            "mode": "bowled",
+            "dismissalCategory": "bowled"
           }
         },
         {
@@ -10689,7 +11480,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "caught"
+            "mode": "caught",
+            "dismissalCategory": "caught-deep"
           }
         },
         {
@@ -10699,7 +11491,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "LBW"
+            "mode": "LBW",
+            "dismissalCategory": "lbw"
           }
         }
       ],
@@ -10721,7 +11514,8 @@
           "outcome": {
             "type": "runs",
             "value": 4,
-            "shot": "drive"
+            "shot": "drive",
+            "shotCategory": "drive-cover"
           }
         },
         {
@@ -10732,7 +11526,8 @@
           "outcome": {
             "type": "runs",
             "value": 4,
-            "shot": "flick"
+            "shot": "flick",
+            "shotCategory": "flick"
           }
         }
       ],
@@ -10745,7 +11540,8 @@
           "outcome": {
             "type": "runs",
             "value": 1,
-            "shot": "work"
+            "shot": "work",
+            "shotCategory": "defend"
           }
         }
       ],
@@ -10757,7 +11553,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "caught fending"
+            "mode": "caught fending",
+            "dismissalCategory": "caught-keeper"
           }
         },
         {
@@ -10767,7 +11564,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "edge to slip"
+            "mode": "edge to slip",
+            "dismissalCategory": "caught-slip"
           }
         },
         {
@@ -10777,7 +11575,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "bowled"
+            "mode": "bowled",
+            "dismissalCategory": "bowled"
           }
         }
       ],
@@ -10803,7 +11602,8 @@
           "outcome": {
             "type": "runs",
             "value": 4,
-            "shot": "drive"
+            "shot": "drive",
+            "shotCategory": "drive-cover"
           }
         },
         {
@@ -10814,7 +11614,8 @@
           "outcome": {
             "type": "runs",
             "value": 4,
-            "shot": "flick"
+            "shot": "flick",
+            "shotCategory": "flick"
           }
         }
       ],
@@ -10827,7 +11628,8 @@
           "outcome": {
             "type": "runs",
             "value": 1,
-            "shot": "push"
+            "shot": "push",
+            "shotCategory": "defend"
           }
         }
       ],
@@ -10839,7 +11641,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "top edge"
+            "mode": "top edge",
+            "dismissalCategory": "caught-deep"
           }
         },
         {
@@ -10849,7 +11652,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "edge to keeper"
+            "mode": "edge to keeper",
+            "dismissalCategory": "caught-keeper"
           }
         },
         {
@@ -10859,7 +11663,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "LBW"
+            "mode": "LBW",
+            "dismissalCategory": "lbw"
           }
         }
       ],
@@ -10885,7 +11690,8 @@
           "outcome": {
             "type": "runs",
             "value": 6,
-            "shot": "slog"
+            "shot": "slog",
+            "shotCategory": "slog"
           }
         },
         {
@@ -10896,7 +11702,8 @@
           "outcome": {
             "type": "runs",
             "value": 4,
-            "shot": "pull"
+            "shot": "pull",
+            "shotCategory": "pull"
           }
         }
       ],
@@ -10909,7 +11716,8 @@
           "outcome": {
             "type": "runs",
             "value": 1,
-            "shot": "flick"
+            "shot": "flick",
+            "shotCategory": "flick"
           }
         }
       ],
@@ -10921,7 +11729,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "edge to slip"
+            "mode": "edge to slip",
+            "dismissalCategory": "caught-slip"
           }
         },
         {
@@ -10931,7 +11740,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "caught at cover"
+            "mode": "caught at cover",
+            "dismissalCategory": "caught-cover"
           }
         },
         {
@@ -10941,7 +11751,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "bowled"
+            "mode": "bowled",
+            "dismissalCategory": "bowled"
           }
         }
       ],
@@ -10966,7 +11777,8 @@
           "outcome": {
             "type": "runs",
             "value": 4,
-            "shot": "drive"
+            "shot": "drive",
+            "shotCategory": "drive-cover"
           }
         },
         {
@@ -10977,7 +11789,8 @@
           "outcome": {
             "type": "runs",
             "value": 4,
-            "shot": "flick"
+            "shot": "flick",
+            "shotCategory": "flick"
           }
         }
       ],
@@ -10990,7 +11803,8 @@
           "outcome": {
             "type": "runs",
             "value": 1,
-            "shot": "push"
+            "shot": "push",
+            "shotCategory": "defend"
           }
         }
       ],
@@ -11002,7 +11816,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "caught fending"
+            "mode": "caught fending",
+            "dismissalCategory": "caught-keeper"
           }
         },
         {
@@ -11012,7 +11827,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "edge to slip"
+            "mode": "edge to slip",
+            "dismissalCategory": "caught-slip"
           }
         },
         {
@@ -11022,7 +11838,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "LBW"
+            "mode": "LBW",
+            "dismissalCategory": "lbw"
           }
         }
       ],
@@ -11047,7 +11864,8 @@
           "outcome": {
             "type": "runs",
             "value": 4,
-            "shot": "drive"
+            "shot": "drive",
+            "shotCategory": "drive-cover"
           }
         },
         {
@@ -11058,7 +11876,8 @@
           "outcome": {
             "type": "runs",
             "value": 4,
-            "shot": "work"
+            "shot": "work",
+            "shotCategory": "defend"
           }
         }
       ],
@@ -11071,7 +11890,8 @@
           "outcome": {
             "type": "runs",
             "value": 1,
-            "shot": "flick"
+            "shot": "flick",
+            "shotCategory": "flick"
           }
         }
       ],
@@ -11083,7 +11903,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "caught at point"
+            "mode": "caught at point",
+            "dismissalCategory": "caught-point"
           }
         },
         {
@@ -11093,7 +11914,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "edge to slip"
+            "mode": "edge to slip",
+            "dismissalCategory": "caught-slip"
           }
         },
         {
@@ -11103,7 +11925,8 @@
           },
           "outcome": {
             "type": "wicket",
-            "mode": "LBW"
+            "mode": "LBW",
+            "dismissalCategory": "lbw"
           }
         }
       ],

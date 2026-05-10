@@ -40,9 +40,54 @@ export type FieldingRegion =
 
 export type RunValue = 0 | 1 | 2 | 4 | 6;
 
+/** Categorical tag for batsman shots — used by the result-screen UI to
+ *  pick a matching action image. The `shot` free-text field stays as
+ *  the human-readable display string; this tag is the canonical key. */
+export type ShotCategory =
+  // Drives — direction matters visually
+  | "drive-straight"
+  | "drive-cover"
+  | "drive-off"
+  // Cross-batted / horizontal
+  | "cut"
+  | "late-cut"
+  | "pull"
+  // Wristy on-side
+  | "flick"
+  | "glance"
+  // Sweeps
+  | "sweep"
+  | "reverse-sweep"
+  // Lofts (controlled aerial) — direction matters
+  | "loft-straight"
+  | "loft-off"
+  | "loft-leg"
+  // Aerial cricket-specific
+  | "slog"
+  | "ramp"
+  | "scoop"
+  // Catch-alls
+  | "defend"
+  | "mistime";
+
+/** Categorical tag for dismissals. Same role as ShotCategory — the
+ *  `mode` free-text stays for display, this tag is the image key. */
+export type DismissalCategory =
+  | "bowled"
+  | "lbw"
+  | "caught-keeper"
+  | "caught-slip"
+  | "caught-cover"
+  | "caught-midwicket"
+  | "caught-point"
+  | "caught-deep"
+  | "caught-and-bowled"
+  | "stumped"
+  | "runout";
+
 export type OutcomeKind =
-  | { type: "runs"; value: RunValue; shot: string }
-  | { type: "wicket"; mode: string };
+  | { type: "runs"; value: RunValue; shot: string; shotCategory: ShotCategory }
+  | { type: "wicket"; mode: string; dismissalCategory: DismissalCategory };
 
 export interface BatsmanOutcome {
   zone: Zone;

@@ -406,7 +406,7 @@ export function resolveBall(input: ResolveBallInput): ResolutionResult {
       const roll = random();
       if (roll < REVIEW_APPEAL_WICKET_CHANCE) {
         const before = outcome;
-        outcome = { type: "wicket", mode: "LBW on review" };
+        outcome = { type: "wicket", mode: "LBW on review", dismissalCategory: "lbw" };
         steps.push({
           kind: "review-appeal",
           label: "Review Appeal",
@@ -539,14 +539,23 @@ function lookupOutcome(batsman: BatsmanCard, zone: Zone): BallOutcome {
         if (isWicket) {
           if (o.outcome.type !== "wicket") {
             // Defensive — shouldn't happen given how the parser builds cards.
-            return { type: "wicket", mode: "out" };
+            return { type: "wicket", mode: "out", dismissalCategory: "caught-deep" };
           }
-          return { type: "wicket", mode: o.outcome.mode };
+          return {
+            type: "wicket",
+            mode: o.outcome.mode,
+            dismissalCategory: o.outcome.dismissalCategory,
+          };
         }
         if (o.outcome.type !== "runs") {
           return { type: "dot" };
         }
-        return { type: "runs", value: o.outcome.value, shot: o.outcome.shot };
+        return {
+          type: "runs",
+          value: o.outcome.value,
+          shot: o.outcome.shot,
+          shotCategory: o.outcome.shotCategory,
+        };
       }
     }
   }
@@ -574,16 +583,22 @@ function downgrade(o: BallOutcome): BallOutcome {
   if (o.type === "dot") return o;
   const next = TIER_DOWN[o.value as RunValue];
   if (next === 0) return { type: "dot" };
-  return { type: "runs", value: next, shot: o.shot };
+  // Same shot, just timed worse — preserve the category.
+  return { type: "runs", value: next, shot: o.shot, shotCategory: o.shotCategory };
 }
 
 function upgrade(o: BallOutcome): BallOutcome {
   if (o.type === "wicket") return o;
   if (o.type === "dot") {
-    return { type: "runs", value: 1, shot: "scrambled single" };
+    return {
+      type: "runs",
+      value: 1,
+      shot: "scrambled single",
+      shotCategory: "defend",  // a scrambled single is a defensive nudge
+    };
   }
   const next = TIER_UP[o.value as RunValue];
-  return { type: "runs", value: next, shot: o.shot };
+  return { type: "runs", value: next, shot: o.shot, shotCategory: o.shotCategory };
 }
 
 function sameOutcome(a: BallOutcome, b: BallOutcome): boolean {

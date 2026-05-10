@@ -14,6 +14,7 @@
     "typecheck": "tsc --noEmit",
     "test": "node --import tsx --test --test-reporter=spec src/engine/resolve-ball.test.ts",
     "parse-cards": "tsx src/scripts/parse-cards.ts",
+    "audit-categories": "tsx src/scripts/audit-categories.ts",
     "dev": "tsc --watch"
   },
   "devDependencies": {

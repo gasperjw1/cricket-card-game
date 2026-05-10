@@ -18,12 +18,14 @@ import type {
   BatsmanOutcome,
   BowlerCard,
   CardRoster,
+  DismissalCategory,
   FieldingRegion,
   Length,
   Line,
   Nation,
   OutcomeKind,
   RunValue,
+  ShotCategory,
   SituationCard,
   SituationDeck,
   SituationEffectId,
@@ -159,10 +161,117 @@ function parseZone(raw: string): Zone {
   return { line, length };
 }
 
-function parseOutcomeText(text: string, isWicket: boolean): OutcomeKind {
+/**
+ * Infer a categorical shot tag from the free-text shot description plus
+ * (when the text is generic) the bowler's delivery line.
+ *
+ * Order matters — multi-word phrases are checked before single words so
+ * "cover drive" doesn't get caught by "drive".
+ */
+function inferShotCategory(text: string, line: Line): ShotCategory {
+  const t = text.toLowerCase();
+
+  // Explicit multi-word phrases (most specific first)
+  if (/reverse\s*sweep|switch\s*hit/.test(t)) return "reverse-sweep";
+  if (/late\s*cut/.test(t)) return "late-cut";
+  if (/lofted\s*straight\s*drive|loft.*straight|over.*long.*on|down.*ground/.test(t)) return "loft-straight";
+  if (/lofted\s*drive|loft.*cover|over.*cover/.test(t)) return "loft-off";
+  if (/loft.*midwicket|over.*midwicket|over.*mid.?wicket|mow.*midwicket/.test(t)) return "loft-leg";
+  if (/cover\s*drive|punch\s*through\s*cover/.test(t)) return "drive-cover";
+  if (/straight\s*drive/.test(t)) return "drive-straight";
+  if (/off\s*drive/.test(t)) return "drive-off";
+  if (/on\s*drive/.test(t)) return "flick";  // on-drive ≈ flick visually
+
+  // Specific single-word shots
+  if (/dilscoop/.test(t)) return "ramp";  // Dilshan's signature is over the keeper
+  if (/scoop/.test(t)) return "scoop";
+  if (/ramp/.test(t)) return "ramp";
+  if (/slog|smash|mow|hoick/.test(t)) return "slog";
+  if (/sweep/.test(t)) return "sweep";
+  if (/pull|hook/.test(t)) return "pull";
+  if (/glance|dab/.test(t)) return "glance";
+  if (/flick/.test(t)) return "flick";
+  if (/punch/.test(t)) {
+    return line === "Outside off" ? "drive-cover" : "drive-straight";
+  }
+  if (/cut/.test(t)) return "cut";
+  if (/defend|block|push|nudge|work/.test(t)) return "defend";
+
+  // Generic "drive" — disambiguate by line
+  if (/drive/.test(t)) {
+    if (line === "Leg stump") return "flick";  // can't truly drive a leg-stump ball
+    if (line === "Middle stump") return "drive-straight";
+    return "drive-cover";  // Off stump or Outside off → cover drive is most iconic
+  }
+
+  // Generic "loft" — disambiguate by line
+  if (/loft|lift/.test(t)) {
+    if (line === "Outside off" || line === "Off stump") return "loft-off";
+    if (line === "Leg stump") return "loft-leg";
+    return "loft-straight";  // Middle stump
+  }
+
+  // Catch-all
+  return "mistime";
+}
+
+/**
+ * Infer a categorical dismissal tag from the free-text mode description.
+ * The fielding position (when mentioned) drives the choice — most modes
+ * include a position name like "caught at cover" or "edge to slip".
+ */
+function inferDismissalCategory(text: string): DismissalCategory {
+  const t = text.toLowerCase();
+
+  // Specific dismissal modes (most specific first)
+  if (/run\s*out/.test(t)) return "runout";
+  if (/\bstumped\b/.test(t)) return "stumped";
+  if (/caught\s*and\s*bowled|c\s*&\s*b|return\s*catch/.test(t)) return "caught-and-bowled";
+  if (/lbw/.test(t)) return "lbw";
+  if (/bowled|gate/.test(t)) return "bowled";
+  if (/\bbeaten\b/.test(t)) return "bowled";  // beaten by the ball, usually bowled
+
+  // Catch dismissals — by explicit fielding position (most specific first)
+  if (/keeper|gloves|caught\s*behind|caught\s*fending/.test(t)) return "caught-keeper";
+  if (/slip/.test(t)) return "caught-slip";
+  if (/short\s*leg|fends\s*to\s*short/.test(t)) return "caught-midwicket";
+  if (/mid.?wicket|midwicket|mid.?on|long.?on/.test(t)) return "caught-midwicket";
+  if (/cover|extra\s*cover|mid.?off/.test(t)) return "caught-cover";
+  if (/point|gully/.test(t)) return "caught-point";
+  if (/deep|long.?off|fine\s*leg|third\s*man|top\s*edge/.test(t)) return "caught-deep";
+
+  // Mistimed-shot patterns without an explicit position — use the shot
+  // type to infer where the ball would have gone:
+  //   cut    → point/gully region
+  //   drive  → cover region
+  //   flick  → midwicket region
+  //   loft   → deep (ball went up)
+  if (/mistim.*cut|cut.*caught/.test(t)) return "caught-point";
+  if (/mistim.*drive|drive.*caught/.test(t)) return "caught-cover";
+  if (/mistim.*flick|flick.*caught/.test(t)) return "caught-midwicket";
+  if (/mistim.*loft|loft.*caught/.test(t)) return "caught-deep";
+
+  // Generic edge without "to X" — most edges go to slip
+  if (/^edge$|^edge\s/.test(t)) return "caught-slip";
+
+  // Generic catch — truly ambiguous, fall through to deep
+  if (/caught/.test(t)) return "caught-deep";
+
+  // Generic mishit / mistime — could be anywhere; default to deep (high catch)
+  if (/mistim|mis-?hit/.test(t)) return "caught-deep";
+
+  // Final safe fallback
+  return "caught-deep";
+}
+
+function parseOutcomeText(text: string, isWicket: boolean, zone: Zone): OutcomeKind {
   const trimmed = text.trim();
   if (isWicket) {
-    return { type: "wicket", mode: trimmed };
+    return {
+      type: "wicket",
+      mode: trimmed,
+      dismissalCategory: inferDismissalCategory(trimmed),
+    };
   }
   const runsMatch = trimmed.match(/^(.*?)\s+for\s+(\d+)\s*$/i);
   if (!runsMatch) {
@@ -172,10 +281,12 @@ function parseOutcomeText(text: string, isWicket: boolean): OutcomeKind {
   if (![0, 1, 2, 4, 6].includes(runs)) {
     throw new Error(`Invalid run value ${runs} in "${text}"`);
   }
+  const shotText = runsMatch[1]!.trim();
   return {
     type: "runs",
     value: runs as RunValue,
-    shot: runsMatch[1]!.trim(),
+    shot: shotText,
+    shotCategory: inferShotCategory(shotText, zone.line),
   };
 }
 
@@ -184,9 +295,10 @@ function parseOutcomeBullet(line: string, isWicket: boolean): BatsmanOutcome {
   if (arrowIdx < 0) throw new Error(`Missing arrow in "${line}"`);
   const zoneStr = line.slice(0, arrowIdx).trim();
   const outcomeStr = line.slice(arrowIdx + 1).trim();
+  const zone = parseZone(zoneStr);
   return {
-    zone: parseZone(zoneStr),
-    outcome: parseOutcomeText(outcomeStr, isWicket),
+    zone,
+    outcome: parseOutcomeText(outcomeStr, isWicket, zone),
   };
 }
 

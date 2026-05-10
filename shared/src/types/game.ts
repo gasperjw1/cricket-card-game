@@ -2,6 +2,8 @@ import type {
   AnyCard,
   BatsmanCard,
   BowlerCard,
+  DismissalCategory,
+  ShotCategory,
   SituationCard,
 } from "./cards.js";
 
@@ -99,8 +101,8 @@ export interface ResolutionStep {
 }
 
 export type BallOutcome =
-  | { type: "runs"; value: number; shot: string }
-  | { type: "wicket"; mode: string }
+  | { type: "runs"; value: number; shot: string; shotCategory: ShotCategory }
+  | { type: "wicket"; mode: string; dismissalCategory: DismissalCategory }
   | { type: "dot" };
 
 export interface PlayerHand {
