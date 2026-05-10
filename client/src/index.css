@@ -357,22 +357,27 @@ h1 {
   }
 }
 
-/* ───── Tooltip primitive ───── */
+/* ───── Tooltip primitive ─────
+   Triggers: tap (mobile, sticky), hover (desktop, transient), focus
+   (keyboard, transient). The .tip-bubble element is rendered inside
+   every Tip and shown via CSS when any of those conditions hold. */
 .tip {
   position: relative;
   display: inline-flex;
   align-items: center;
   cursor: help;
   border-bottom: 1px dotted transparent;
+  /* Make the trigger itself a comfortable tap target on touch devices. */
+  min-height: 24px;
 }
-.tip[data-tip]:hover,
-.tip[data-tip]:focus {
+.tip:hover,
+.tip:focus,
+.tip.open {
   outline: none;
   border-bottom-color: #4a5566;
 }
-.tip[data-tip]:hover::after,
-.tip[data-tip]:focus-visible::after {
-  content: attr(data-tip);
+.tip-bubble {
+  display: none;
   position: absolute;
   bottom: calc(100% + 6px);
   left: 50%;
@@ -391,8 +396,13 @@ h1 {
   max-width: 240px;
   z-index: 100;
   text-align: left;
-  pointer-events: none;
+  pointer-events: none;  /* taps pass through to the trigger to toggle off */
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.6);
+}
+.tip:hover .tip-bubble,
+.tip:focus-visible .tip-bubble,
+.tip.open .tip-bubble {
+  display: block;
 }
 
 /* ───── Pokemon-style card ───── */
