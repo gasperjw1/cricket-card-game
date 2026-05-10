@@ -432,7 +432,13 @@ h1 {
 }
 .card-hand {
   width: 100%;
-  font-size: 0.78rem;
+  /* Mobile: cards get full width via the carousel — bump font for legibility.
+     Desktop (>=540px) cards are tighter in the 4-col grid, so use the
+     smaller compact font there. */
+  font-size: 0.92rem;
+}
+@media (min-width: 540px) {
+  .card-hand { font-size: 0.78rem; }
 }
 .card-view {
   width: 100%;
@@ -1029,18 +1035,94 @@ h1 {
   margin-bottom: 0.4rem;
   color: #a8b1ba;
 }
+/* Default (mobile <540px): horizontal scroll-snap carousel showing one
+   card at a time. Native touch swipe + arrow buttons for navigation. */
 .hand-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  display: flex;
   gap: 0.6rem;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  scrollbar-width: none;       /* Firefox */
+  -ms-overflow-style: none;    /* IE/Edge legacy */
+  /* Bleed to viewport edges so a partial peek of the next card hints
+     swipeability. */
+  margin: 0 -1rem;
+  padding: 0 1rem;
 }
+.hand-grid::-webkit-scrollbar { display: none; }   /* WebKit/Blink */
+.hand-slot {
+  flex: 0 0 100%;
+  scroll-snap-align: center;
+  scroll-snap-stop: always;
+}
+
+/* Desktop (>=540px): revert to the 4-column grid showing all cards. */
 @media (min-width: 540px) {
-  .hand-grid { grid-template-columns: repeat(4, 1fr); }
+  .hand-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    overflow: visible;
+    margin: 0;
+    padding: 0;
+    scroll-snap-type: none;
+  }
+  .hand-slot {
+    flex: initial;
+    scroll-snap-align: none;
+  }
 }
+
 .hand-grid.dimmed {
   opacity: 0.45;
   pointer-events: none;
   filter: saturate(0.7);
+}
+
+/* Carousel arrows + dot indicator — only visible on mobile. */
+.hand-carousel-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-top: 0.5rem;
+}
+.hand-arrow {
+  background: #1c2530;
+  color: #e8e8e8;
+  border: 1px solid #2a3441;
+  border-radius: 999px;
+  width: 40px;
+  height: 40px;
+  font-size: 1.4rem;
+  line-height: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 100ms ease, transform 60ms ease;
+}
+.hand-arrow:hover:not(:disabled) { background: #243040; }
+.hand-arrow:active:not(:disabled) { transform: scale(0.95); }
+.hand-arrow:disabled { opacity: 0.35; cursor: not-allowed; }
+.hand-dots {
+  display: inline-flex;
+  gap: 0.4rem;
+  align-items: center;
+}
+.hand-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: #2a3441;
+  transition: background 120ms ease, transform 120ms ease;
+}
+.hand-dot.active {
+  background: #2563eb;
+  transform: scale(1.25);
+}
+@media (min-width: 540px) {
+  .hand-carousel-controls { display: none; }
 }
 
 .selection-footer {

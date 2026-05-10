@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   HAND_SIZE,
   type AnyCard,
@@ -93,32 +93,14 @@ export function InningsScreen({ client }: Props) {
         postBallDeadline={matchState.postBallDeadlineEpochMs}
       />
 
-      <div className="hand-area">
-        <div className="hand-meta">
-          <Tip text="Your hand. Each ball you must play one mandatory card (batsman if batting, bowler if bowling). You can optionally also play one situation card.">
-            <span>
-              Hand ({handCards.length}/{HAND_SIZE})
-            </span>
-          </Tip>
-          <Tip text="Cards remaining in your active deck. You draw back to a full hand after every ball.">
-            <span className="dim-text">deck: {privateView?.hand.deckRemaining ?? 0}</span>
-          </Tip>
-        </div>
-        <div className={`hand-grid ${ballLive ? "" : "dimmed"}`}>
-          {handCards.length === 0 && (
-            <div className="hint">Waiting for hand…</div>
-          )}
-          {handCards.map((card) => (
-            <Card
-              key={card.id}
-              card={card}
-              size="hand"
-              selected={card.id === mandatoryId || card.id === situationId}
-              onClick={ballLive ? () => setViewingCardId(card.id) : undefined}
-            />
-          ))}
-        </div>
-      </div>
+      <HandArea
+        handCards={handCards}
+        deckRemaining={privateView?.hand.deckRemaining ?? 0}
+        mandatoryId={mandatoryId}
+        situationId={situationId}
+        ballLive={ballLive}
+        onCardOpen={(id) => setViewingCardId(id)}
+      />
 
       <SelectionFooter
         pendingMandatory={
@@ -205,6 +187,131 @@ export function InningsScreen({ client }: Props) {
         </button>
       </div>
     </main>
+  );
+}
+
+// ─────────────────────────── Hand area ───────────────────────────
+
+/** Renders the hand. Two layouts depending on viewport (CSS-driven):
+ *  - Desktop (>=540px): 4-column grid showing all cards at once.
+ *  - Mobile (<540px): horizontal scroll-snap carousel showing one card
+ *    at a time, with prev/next arrows and a dot indicator.
+ *  Both share the same JSX; CSS toggles the layout.
+ */
+function HandArea(props: {
+  handCards: AnyCard[];
+  deckRemaining: number;
+  mandatoryId: string | null;
+  situationId: string | null;
+  ballLive: boolean;
+  onCardOpen: (id: string) => void;
+}) {
+  const scrollerRef = useRef<HTMLDivElement>(null);
+  const [carouselIndex, setCarouselIndex] = useState(0);
+
+  // Keep React state in sync with native swipe scrolling. Throttled-ish via
+  // rAF so we don't thrash on every scroll pixel.
+  useEffect(() => {
+    const el = scrollerRef.current;
+    if (!el) return;
+    let raf = 0;
+    const onScroll = () => {
+      cancelAnimationFrame(raf);
+      raf = requestAnimationFrame(() => {
+        const w = el.clientWidth;
+        if (w === 0) return;
+        const idx = Math.round(el.scrollLeft / w);
+        setCarouselIndex(idx);
+      });
+    };
+    el.addEventListener("scroll", onScroll);
+    return () => {
+      el.removeEventListener("scroll", onScroll);
+      cancelAnimationFrame(raf);
+    };
+  }, []);
+
+  // Reset to first card whenever the hand changes (new ball drew new cards).
+  useEffect(() => {
+    setCarouselIndex(0);
+    scrollerRef.current?.scrollTo({ left: 0, behavior: "auto" });
+  }, [props.handCards.map((c) => c.id).join(",")]);
+
+  const scrollToIndex = (idx: number) => {
+    const el = scrollerRef.current;
+    if (!el) return;
+    const clamped = Math.max(0, Math.min(props.handCards.length - 1, idx));
+    el.scrollTo({ left: clamped * el.clientWidth, behavior: "smooth" });
+  };
+
+  const isFirst = carouselIndex === 0;
+  const isLast = carouselIndex >= props.handCards.length - 1;
+
+  return (
+    <div className="hand-area">
+      <div className="hand-meta">
+        <Tip text="Your hand. Each ball you must play one mandatory card (batsman if batting, bowler if bowling). You can optionally also play one situation card.">
+          <span>
+            Hand ({props.handCards.length}/{HAND_SIZE})
+          </span>
+        </Tip>
+        <Tip text="Cards remaining in your active deck. You draw back to a full hand after every ball.">
+          <span className="dim-text">deck: {props.deckRemaining}</span>
+        </Tip>
+      </div>
+      <div
+        ref={scrollerRef}
+        className={`hand-grid ${props.ballLive ? "" : "dimmed"}`}
+      >
+        {props.handCards.length === 0 && (
+          <div className="hint">Waiting for hand…</div>
+        )}
+        {props.handCards.map((card) => (
+          <div className="hand-slot" key={card.id}>
+            <Card
+              card={card}
+              size="hand"
+              selected={
+                card.id === props.mandatoryId || card.id === props.situationId
+              }
+              onClick={
+                props.ballLive ? () => props.onCardOpen(card.id) : undefined
+              }
+            />
+          </div>
+        ))}
+      </div>
+      {props.handCards.length > 1 && (
+        <div className="hand-carousel-controls" aria-hidden="true">
+          <button
+            type="button"
+            className="hand-arrow"
+            onClick={() => scrollToIndex(carouselIndex - 1)}
+            disabled={isFirst}
+            aria-label="Previous card"
+          >
+            ‹
+          </button>
+          <div className="hand-dots">
+            {props.handCards.map((c, i) => (
+              <span
+                key={c.id}
+                className={`hand-dot ${i === carouselIndex ? "active" : ""}`}
+              />
+            ))}
+          </div>
+          <button
+            type="button"
+            className="hand-arrow"
+            onClick={() => scrollToIndex(carouselIndex + 1)}
+            disabled={isLast}
+            aria-label="Next card"
+          >
+            ›
+          </button>
+        </div>
+      )}
+    </div>
   );
 }
 
