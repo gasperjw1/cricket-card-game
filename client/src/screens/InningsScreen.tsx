@@ -10,6 +10,8 @@ import {
 import { Card, type RevealContext } from "../components/Card.tsx";
 import { CardViewer } from "../components/CardViewer.tsx";
 import { Scorebug } from "../components/Scorebug.tsx";
+import { StorySequence } from "../components/story/StorySequence.tsx";
+import { useStorySequence } from "../components/story/useStorySequence.ts";
 import { Tip } from "../components/Tip.tsx";
 import type { MatchClient } from "../state.ts";
 import { useCountdown } from "../useCountdown.ts";
@@ -543,15 +545,25 @@ function RevealOverlay(props: {
   const seconds = useCountdown(props.postBallDeadline);
   const reveal = buildRevealContext(result);
 
+  // Two-phase reveal:
+  //   Phase 1: storytelling pre-roll (pitch → bowler → batter → result → ...)
+  //   Phase 2: existing card-reveal + resolution trail (the "see why" follow-up)
+  const story = useStorySequence(result);
   const stage = useStagedReveal(result.resolutionSteps.length);
 
-  const continueLabel = stage.isComplete
-    ? props.isFinalBall
-      ? "See result"
-      : "Continue"
-    : "Skip";
+  const continueLabel = !story.isComplete
+    ? "Skip story"
+    : stage.isComplete
+      ? props.isFinalBall
+        ? "See result"
+        : "Continue"
+      : "Skip";
 
   const handleContinue = (): void => {
+    if (!story.isComplete) {
+      story.skipToEnd();
+      return;
+    }
     if (!stage.isComplete) {
       stage.skipToEnd();
       return;
@@ -563,38 +575,45 @@ function RevealOverlay(props: {
     <div className="reveal-overlay">
       <div className="reveal-inner">
         <h2>Ball {result.ballNumber}</h2>
-        <div className="reveal-cards">
-          <div className="reveal-side reveal-side-bowler">
-            <div className="reveal-side-label">Bowler — {bowlerName}</div>
-            <Card card={bowlingSel.mandatoryCard} size="hand" reveal={reveal} />
-            {bowlingSel.situationCard && (
-              <div style={{ marginTop: "0.5rem" }}>
-                <Card card={bowlingSel.situationCard} size="hand" />
-              </div>
-            )}
-          </div>
-          <div className="reveal-side reveal-side-batter">
-            <div className="reveal-side-label">Batter — {batterName}</div>
-            <Card card={battingSel.mandatoryCard} size="hand" reveal={reveal} />
-            {battingSel.situationCard && (
-              <div style={{ marginTop: "0.5rem" }}>
-                <Card card={battingSel.situationCard} size="hand" />
-              </div>
-            )}
-          </div>
-        </div>
 
-        <ResolutionTrail
-          steps={result.resolutionSteps}
-          visibleCount={stage.visibleCount}
-        />
-        {stage.isComplete && (
-          <FinalOutcome
-            outcome={result.finalOutcome}
-            extras={result.extraRuns}
-            extrasNote={result.extrasNote}
-            rebowled={result.rebowled}
-          />
+        {!story.isComplete ? (
+          <StorySequence result={result} story={story} />
+        ) : (
+          <>
+            <div className="reveal-cards">
+              <div className="reveal-side reveal-side-bowler">
+                <div className="reveal-side-label">Bowler — {bowlerName}</div>
+                <Card card={bowlingSel.mandatoryCard} size="hand" reveal={reveal} />
+                {bowlingSel.situationCard && (
+                  <div style={{ marginTop: "0.5rem" }}>
+                    <Card card={bowlingSel.situationCard} size="hand" />
+                  </div>
+                )}
+              </div>
+              <div className="reveal-side reveal-side-batter">
+                <div className="reveal-side-label">Batter — {batterName}</div>
+                <Card card={battingSel.mandatoryCard} size="hand" reveal={reveal} />
+                {battingSel.situationCard && (
+                  <div style={{ marginTop: "0.5rem" }}>
+                    <Card card={battingSel.situationCard} size="hand" />
+                  </div>
+                )}
+              </div>
+            </div>
+
+            <ResolutionTrail
+              steps={result.resolutionSteps}
+              visibleCount={stage.visibleCount}
+            />
+            {stage.isComplete && (
+              <FinalOutcome
+                outcome={result.finalOutcome}
+                extras={result.extraRuns}
+                extrasNote={result.extrasNote}
+                rebowled={result.rebowled}
+              />
+            )}
+          </>
         )}
 
         <div className="reveal-footer">
