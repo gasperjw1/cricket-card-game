@@ -21,7 +21,7 @@ export const SWAP_PICK_TIMER_SECONDS = 15 as const;
 
 // Pause between ball:reveal and the start of the next ball — gives players
 // time to read the resolution trail before timer pressure resumes.
-export const POST_BALL_PAUSE_SECONDS = 15 as const;
+export const POST_BALL_PAUSE_SECONDS = 10 as const;
 
 // Draft round structure: 2 Elite + 3 Gold + 5 Silver + 10 Bronze = 20 picks
 export const DRAFT_ROUNDS_BY_TIER = {

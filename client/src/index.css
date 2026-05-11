@@ -996,6 +996,29 @@ h1 {
   border-radius: 8px;
   font-size: 0.9rem;
 }
+/* Mobile (<540px): squeeze the role banner so the hand card has more
+   vertical room before the user has to scroll. The role/timer info
+   stays readable but takes ~half the chrome it did before. */
+@media (max-width: 539px) {
+  .role-banner {
+    margin-bottom: 0.4rem;
+    padding: 0.35rem 0.7rem;
+    font-size: 0.82rem;
+  }
+  .turn-timer {
+    font-size: 1.1rem !important;
+    padding: 0.1rem 0.45rem !important;
+  }
+  /* Hand meta strip: hide on mobile — the carousel dot indicator already
+     shows position, and "deck: N" is rarely critical mid-pick. */
+  .hand-meta {
+    display: none;
+  }
+  /* Tighter scorebug too — ~10px saved */
+  .scorebug {
+    margin-bottom: 0.4rem !important;
+  }
+}
 .role-banner.batting {
   background: #1d3a23;
   color: #6ee07a;
@@ -1461,6 +1484,79 @@ h1 {
   align-items: center;
   font-size: 0.85rem;
   text-align: left;
+}
+
+/* ───── Ball-by-ball log on the match-over screen ─────
+   One row per delivery with bowler → batter → outcome. Color-coded:
+   wickets red-tinted, boundaries green-tinted, dots dim. */
+.ball-log {
+  margin-top: 1.5rem;
+  text-align: left;
+}
+.ball-log-heading {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #8a939c;
+  margin: 0 0 0.5rem;
+  font-weight: 600;
+}
+.ball-log-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+.ball-log-item {
+  display: grid;
+  grid-template-columns: 2.4rem 1fr 1fr 1fr;
+  gap: 0.5rem;
+  padding: 0.45rem 0.6rem;
+  background: #131a23;
+  border: 1px solid #2a3441;
+  border-left: 3px solid #2a3441;
+  border-radius: 6px;
+  font-size: 0.78rem;
+  line-height: 1.35;
+  align-items: center;
+}
+.ball-log-item.is-wicket {
+  border-left-color: #ff8181;
+  background: #2a1818;
+}
+.ball-log-item.is-boundary {
+  border-left-color: #6ee07a;
+  background: #18271c;
+}
+.ball-log-item.is-dot {
+  opacity: 0.65;
+}
+.ball-log-num {
+  font-family: ui-monospace, "SF Mono", Menlo, monospace;
+  font-weight: 700;
+  color: #8a939c;
+}
+.ball-log-bowler { color: #f0866a; }
+.ball-log-batter { color: #6ee07a; }
+.ball-log-outcome {
+  font-weight: 600;
+  text-align: right;
+}
+@media (max-width: 539px) {
+  /* On phones, stack vertically — the 4-col grid gets too narrow. */
+  .ball-log-item {
+    grid-template-columns: 2.4rem 1fr;
+    grid-template-areas:
+      "num bowler"
+      "num batter"
+      "num outcome";
+  }
+  .ball-log-num { grid-area: num; align-self: start; }
+  .ball-log-bowler { grid-area: bowler; }
+  .ball-log-batter { grid-area: batter; }
+  .ball-log-outcome { grid-area: outcome; text-align: left; }
 }
 
 /* How to Play guide */

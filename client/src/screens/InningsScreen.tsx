@@ -836,8 +836,66 @@ function ScorecardSummary({ client }: { client: MatchClient }) {
           <span className="dim-text">in {i2.ballsBowled} balls</span>
         </div>
       )}
+
+      {i1 && i1.log.length > 0 && (
+        <BallByBallLog innings={i1} inningsNumber={1} aName={aName} bName={bName} />
+      )}
+      {i2 && i2.log.length > 0 && (
+        <BallByBallLog innings={i2} inningsNumber={2} aName={aName} bName={bName} />
+      )}
     </section>
   );
+}
+
+/** Per-ball recap shown on the match-over screen. Walks through each
+ *  ball's bowler → batter → outcome so the player can see how the
+ *  innings unfolded after the final result. */
+function BallByBallLog(props: {
+  innings: import("@swipe-sixer/shared").InningsState;
+  inningsNumber: 1 | 2;
+  aName: string;
+  bName: string;
+}) {
+  const { innings, inningsNumber, aName, bName } = props;
+  return (
+    <div className="ball-log">
+      <h3 className="ball-log-heading">Innings {inningsNumber} — ball by ball</h3>
+      <ol className="ball-log-list">
+        {innings.log.map((b, idx) => (
+          <li key={idx} className={`ball-log-item ${ballLogClass(b)}`}>
+            <span className="ball-log-num">
+              {inningsNumber}.{b.ballNumber}
+            </span>
+            <span className="ball-log-bowler">
+              {(b.bowlingSelection.player === "A" ? aName : bName).split(" ")[0]}
+              {" → "}
+              <strong>{cardName(b.bowlingSelection.mandatoryCard)}</strong>
+            </span>
+            <span className="ball-log-batter">
+              vs <strong>{cardName(b.battingSelection.mandatoryCard)}</strong>
+            </span>
+            <span className="ball-log-outcome">{ballLogOutcome(b)}</span>
+          </li>
+        ))}
+      </ol>
+    </div>
+  );
+}
+
+function ballLogClass(b: BallResult): string {
+  if (b.finalOutcome.type === "wicket") return "is-wicket";
+  if (b.finalOutcome.type === "runs" && b.finalOutcome.value >= 4) return "is-boundary";
+  if (b.finalOutcome.type === "dot" && b.extraRuns === 0) return "is-dot";
+  return "";
+}
+
+function ballLogOutcome(b: BallResult): string {
+  const o = b.finalOutcome;
+  const extras = b.extraRuns > 0 ? ` (+${b.extraRuns} ${b.extrasNote ?? "extras"})` : "";
+  const rebowled = b.rebowled ? " 🔁" : "";
+  if (o.type === "wicket") return `WICKET — ${o.dismissalCategory.replace("-", " ")}${extras}${rebowled}`;
+  if (o.type === "runs") return `${o.value} (${o.shot})${extras}${rebowled}`;
+  return `dot${extras}${rebowled}`;
 }
 
 // ─────────────────────────── Helpers ───────────────────────────
