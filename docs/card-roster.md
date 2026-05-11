@@ -1951,6 +1951,22 @@ Everything not listed = dot ball. Weaknesses are zone-only (no adjective referen
 
 # 🇳🇵 NEPAL
 
+## BATSMEN
+
+### GOLD — Paras Khadka
+*Former NEP captain, RH all-rounder. Nepal cricket's pioneer figure who led the team to T20I status. Retired ~2021. Drives and pulls with veteran composure.*
+- **Strengths:** Full off stump → cover drive for 4 | Short middle stump → pull for 4
+- **Neutrals:** Good length leg stump → flick for 2 | Good length middle stump → push for 1
+- **Weaknesses:** Good length Outside off → edge to slip | Full middle stump → bowled
+- **Resistances:** Topspin, Drift, Carrom, Slower
+
+### SILVER — Aasif Sheikh
+*Current RH keeper-bat. Solid technique, current Nepal mainstay at the top of the order.*
+- **Strengths:** Full off stump → drive for 4 | Full leg stump → flick for 4
+- **Neutrals:** Good length off stump → push for 1
+- **Weaknesses:** Short middle stump → caught fending | Good length middle stump → bowled | Good length Outside off → edge
+- **Resistances:** Topspin, Carrom, Drift
+
 ## BOWLERS
 
 ### SILVER — Sandeep Lamichhane
@@ -1970,11 +1986,31 @@ Everything not listed = dot ball. Weaknesses are zone-only (no adjective referen
 - **Weaknesses:** Short middle stump → caught fending | Good length Outside off → edge to slip | Good length middle stump → bowled
 - **Resistances:** Topspin, Drift, Carrom
 
+## BOWLERS
+
+### SILVER — Ehsan Khan
+*Current RH off-spinner. Hong Kong's middle-overs operator. Tight lines, good drift.*
+- **Delivery:** Good length off stump | **Fielding:** Cover
+
 ---
 
 # 🏴󠁧󠁢󠁳󠁣󠁴󠁿 SCOTLAND
 
 ## BATSMEN
+
+### ELITE — Rahul Dravid
+*Multi-nation cricket trivia gold — played a single Pro40 game for Scotland in 2003 as a marquee signing. Mostly known as India's 'The Wall' — the ultimate Test/ODI anchor. Classical technique, drives, late cuts, defends.*
+- **Strengths:** Full off stump → cover drive for 6 | Good length off stump → late cut for 4 | Full leg stump → flick for 4
+- **Neutrals:** Good length middle stump → defend for 2 | Good length leg stump → work for 1
+- **Weaknesses:** Short Outside off → caught at gully
+- **Resistances:** Swing, Seam, Slower, Cutter, Topspin, Drift, Googly
+
+### GOLD — Kyle Coetzer
+*Long-time Scotland captain, retired ~2022, 70+ T20Is across formats. RH classy opener, anchor archetype, took SCO through multiple T20 WCs.*
+- **Strengths:** Full off stump → cover drive for 4 | Good length off stump → punch for 4
+- **Neutrals:** Good length middle stump → push for 2 | Full leg stump → flick for 1
+- **Weaknesses:** Short middle stump → caught fending | Good length Outside off → edge to slip
+- **Resistances:** Topspin, Drift, Carrom, Slower
 
 ### SILVER — Richie Berrington
 *Right-handed Scotland T20I captain. 110+ T20Is, T20 WC stalwart (60 vs WI 2021). Anchor with the full shot range.*
@@ -1982,6 +2018,13 @@ Everything not listed = dot ball. Weaknesses are zone-only (no adjective referen
 - **Neutrals:** Good length off stump → push for 1
 - **Weaknesses:** Short middle stump → top edge | Good length Outside off → edge to keeper | Good length middle stump → LBW
 - **Resistances:** Topspin, Drift, Carrom
+
+### SILVER — George Munsey
+*Current LH explosive opener, 50+ T20Is, T20 WC squads. Big sixes from ball one. Vulnerable to good-length pace.*
+- **Strengths:** Full leg stump → slog for 6 | Short middle stump → pull for 4
+- **Neutrals:** Good length leg stump → flick for 1
+- **Weaknesses:** Good length Outside off → edge to slip | Good length middle stump → bowled across | Full Outside off → caught at cover
+- **Resistances:** Topspin, Carrom
 
 ## BOWLERS
 
@@ -1995,12 +2038,26 @@ Everything not listed = dot ball. Weaknesses are zone-only (no adjective referen
 
 ## BATSMEN
 
+### GOLD — Corey Anderson
+*Multi-nation career — NZ→USA. Played for NZ until 2018 (LH all-rounder, **once-fastest ODI century at 36 balls** vs WI 2014). Switched to USA 2023, T20 WC 2024 squad. Power-hitter top-order.*
+- **Strengths:** Full middle stump → loft for 6 | Full leg stump → slog for 4
+- **Neutrals:** Good length leg stump → flick for 2 | Short middle stump → pull for 1
+- **Weaknesses:** Good length Outside off → edge to slip | Full Outside off → caught at cover
+- **Resistances:** Slower, Cutter, Topspin, Drift
+
 ### SILVER — Aaron Jones
 *Left-handed middle-order. T20 WC 2024 hero — 94* vs Canada in the opener; USA reached the Super Eights. Big sixes over the leg side.*
 - **Strengths:** Full leg stump → slog for 6 | Short middle stump → pull for 4
 - **Neutrals:** Good length leg stump → flick for 1
 - **Weaknesses:** Good length Outside off → edge to slip | Full Outside off → caught at cover | Good length middle stump → bowled
 - **Resistances:** Topspin, Drift
+
+### SILVER — Monank Patel
+*Current USA T20I captain, RH keeper-bat. T20 WC 2024 led USA to Super Eights. Smart accumulator + power finisher.*
+- **Strengths:** Full off stump → drive for 4 | Short middle stump → pull for 4
+- **Neutrals:** Good length leg stump → work for 1
+- **Weaknesses:** Good length Outside off → edge to slip | Good length middle stump → bowled | Short Outside off → top edge
+- **Resistances:** Topspin, Drift, Carrom
 
 ## BOWLERS
 
@@ -2014,6 +2071,13 @@ Everything not listed = dot ball. Weaknesses are zone-only (no adjective referen
 
 ## BATSMEN
 
+### ELITE — Ryan ten Doeschate
+*NED's most-iconic all-rounder — 33 T20Is for NED + IPL (KKR) / CPL legend. Career T20 SR ~135 across all leagues. The associate-cricket Elite. RH power-hitting middle-order with full shot range.*
+- **Strengths:** Full leg stump → loft for 6 | Full middle stump → drive for 4 | Short middle stump → pull for 4
+- **Neutrals:** Good length leg stump → flick for 2 | Good length middle stump → push for 1
+- **Weaknesses:** Good length Outside off → edge to slip
+- **Resistances:** Topspin, Drift, Carrom, Googly, Slower, Cutter
+
 ### SILVER — Bas de Leede
 *Right-handed all-rounder. T20 WC 2024 squad. Knocked SA out of T20 WC 2022 (his father Tim played for NED too).*
 - **Strengths:** Full off stump → drive for 4 | Full leg stump → flick for 4
@@ -2023,9 +2087,17 @@ Everything not listed = dot ball. Weaknesses are zone-only (no adjective referen
 
 ## BOWLERS
 
+### GOLD — Roelof van der Merwe
+*Multi-nation: SA → NED. LA wrist-spin all-rounder, IPL/county veteran. Disguised wrong'un, smart middle-overs operator. Skill: **Googly**.*
+- **Delivery:** Good length middle stump | **Adjective:** Googly | **Fielding:** Short leg/Silly point
+
 ### SILVER — Paul van Meekeren
 *Right-arm fast-medium. T20 WC 2022 famous 4/11 spell vs South Africa.*
 - **Delivery:** Good length off stump | **Fielding:** Slip cordon
+
+### SILVER — Logan van Beek
+*Current RA pace all-rounder, 30+ T20Is, T20 WC 2024 squad.*
+- **Delivery:** Good length middle stump | **Fielding:** Mid-wicket
 
 ---
 
@@ -2046,6 +2118,10 @@ Everything not listed = dot ball. Weaknesses are zone-only (no adjective referen
 *Right-arm medium-fast all-rounder, ex-South Africa. NAM's go-to death-overs operator at T20 WC 2021/2024. Bowler-only card.*
 - **Delivery:** Full off stump | **Fielding:** Cover
 
+### SILVER — JJ Smit
+*Current LH pace all-rounder. T20 WC 2021/2024 squads. Hit-the-deck back-of-length style.*
+- **Delivery:** Good length middle stump | **Fielding:** Mid-wicket
+
 ---
 
 # TOTAL CARD COUNT
@@ -2064,10 +2140,10 @@ Everything not listed = dot ball. Weaknesses are zone-only (no adjective referen
 | Zimbabwe | 13 | 13 | 26 |
 | Afghanistan | 12 | 12 | 24 |
 | Ireland | 13 | 13 | 26 |
-| Nepal | 0 | 1 | 1 |
-| Hong Kong | 1 | 0 | 1 |
-| Scotland | 1 | 1 | 2 |
-| USA | 1 | 1 | 2 |
-| Netherlands | 1 | 1 | 2 |
-| Namibia | 1 | 1 | 2 |
-| **TOTAL** | **160** | **160** | **320** |
+| Nepal | 2 | 1 | 3 |
+| Hong Kong | 1 | 1 | 2 |
+| Scotland | 4 | 1 | 5 |
+| USA | 3 | 1 | 4 |
+| Netherlands | 2 | 3 | 5 |
+| Namibia | 1 | 2 | 3 |
+| **TOTAL** | **168** | **164** | **332** |

@@ -776,14 +776,16 @@ function main(): void {
   //   completed nations: 13 cards per role (2/3/3/5)
   //   pending nations:   11 cards per role (1/2/3/5)
   // + 5 associate Silvers per role.
-  // Currently: all 11 fully-expanded Test nations + AFG (only +2) + 5 associate Silvers.
-  //   = 13×11 + 12×1 + 5 = 160 per role.
-  // After associate adds: bump again per nation.
-  if (batsmen.length !== 160) {
-    throw new Error(`Expected 160 batsmen, got ${batsmen.length}`);
+  // Final state after the bot-prep expansion:
+  //   - 11 fully-expanded Test nations: 13 per role × 11 = 143 per role
+  //   - AFG (depth-limited +2 Elite only): 12 per role
+  //   - 6 associates: 13 batters + 9 bowlers (asymmetric — see card-roster.md totals table)
+  // Per-role counts: BAT 168, BOWL 164. Total cards: 332 + 16 situations = 348.
+  if (batsmen.length !== 168) {
+    throw new Error(`Expected 168 batsmen, got ${batsmen.length}`);
   }
-  if (bowlers.length !== 160) {
-    throw new Error(`Expected 160 bowlers, got ${bowlers.length}`);
+  if (bowlers.length !== 164) {
+    throw new Error(`Expected 164 bowlers, got ${bowlers.length}`);
   }
   // 8 batting + 6 bowling + 2 Old School variants = 16 entries in v1.1
   // (added Deep in the Crease batting + Third Umpire Distracted by Biryani bowling)

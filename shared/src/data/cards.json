@@ -13616,6 +13616,184 @@
       "resistances": []
     },
     {
+      "id": "paras-khadka-bat",
+      "kind": "batsman",
+      "name": "Paras Khadka",
+      "nation": "Nepal",
+      "tier": "Gold",
+      "description": "Former NEP captain, RH all-rounder. Nepal cricket's pioneer figure who led the team to T20I status. Retired ~2021. Drives and pulls with veteran composure.",
+      "strengths": [
+        {
+          "zone": {
+            "line": "Off stump",
+            "length": "Full"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 4,
+            "shot": "cover drive",
+            "shotCategory": "drive-cover"
+          }
+        },
+        {
+          "zone": {
+            "line": "Middle stump",
+            "length": "Short"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 4,
+            "shot": "pull",
+            "shotCategory": "pull"
+          }
+        }
+      ],
+      "neutrals": [
+        {
+          "zone": {
+            "line": "Leg stump",
+            "length": "Good length"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 2,
+            "shot": "flick",
+            "shotCategory": "flick"
+          }
+        },
+        {
+          "zone": {
+            "line": "Middle stump",
+            "length": "Good length"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 1,
+            "shot": "push",
+            "shotCategory": "defend"
+          }
+        }
+      ],
+      "weaknesses": [
+        {
+          "zone": {
+            "line": "Outside off",
+            "length": "Good length"
+          },
+          "outcome": {
+            "type": "wicket",
+            "mode": "edge to slip",
+            "dismissalCategory": "caught-slip"
+          }
+        },
+        {
+          "zone": {
+            "line": "Middle stump",
+            "length": "Full"
+          },
+          "outcome": {
+            "type": "wicket",
+            "mode": "bowled",
+            "dismissalCategory": "bowled"
+          }
+        }
+      ],
+      "resistances": [
+        "Topspin",
+        "Drift",
+        "Carrom",
+        "Slower"
+      ]
+    },
+    {
+      "id": "aasif-sheikh-bat",
+      "kind": "batsman",
+      "name": "Aasif Sheikh",
+      "nation": "Nepal",
+      "tier": "Silver",
+      "description": "Current RH keeper-bat. Solid technique, current Nepal mainstay at the top of the order.",
+      "strengths": [
+        {
+          "zone": {
+            "line": "Off stump",
+            "length": "Full"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 4,
+            "shot": "drive",
+            "shotCategory": "drive-cover"
+          }
+        },
+        {
+          "zone": {
+            "line": "Leg stump",
+            "length": "Full"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 4,
+            "shot": "flick",
+            "shotCategory": "flick"
+          }
+        }
+      ],
+      "neutrals": [
+        {
+          "zone": {
+            "line": "Off stump",
+            "length": "Good length"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 1,
+            "shot": "push",
+            "shotCategory": "defend"
+          }
+        }
+      ],
+      "weaknesses": [
+        {
+          "zone": {
+            "line": "Middle stump",
+            "length": "Short"
+          },
+          "outcome": {
+            "type": "wicket",
+            "mode": "caught fending",
+            "dismissalCategory": "caught-keeper"
+          }
+        },
+        {
+          "zone": {
+            "line": "Middle stump",
+            "length": "Good length"
+          },
+          "outcome": {
+            "type": "wicket",
+            "mode": "bowled",
+            "dismissalCategory": "bowled"
+          }
+        },
+        {
+          "zone": {
+            "line": "Outside off",
+            "length": "Good length"
+          },
+          "outcome": {
+            "type": "wicket",
+            "mode": "edge",
+            "dismissalCategory": "caught-slip"
+          }
+        }
+      ],
+      "resistances": [
+        "Topspin",
+        "Carrom",
+        "Drift"
+      ]
+    },
+    {
       "id": "babar-hayat-bat",
       "kind": "batsman",
       "name": "Babar Hayat",
@@ -13701,6 +13879,190 @@
         "Topspin",
         "Drift",
         "Carrom"
+      ]
+    },
+    {
+      "id": "rahul-dravid-bat",
+      "kind": "batsman",
+      "name": "Rahul Dravid",
+      "nation": "Scotland",
+      "tier": "Elite",
+      "description": "Multi-nation cricket trivia gold — played a single Pro40 game for Scotland in 2003 as a marquee signing. Mostly known as India's 'The Wall' — the ultimate Test/ODI anchor. Classical technique, drives, late cuts, defends.",
+      "strengths": [
+        {
+          "zone": {
+            "line": "Off stump",
+            "length": "Full"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 6,
+            "shot": "cover drive",
+            "shotCategory": "drive-cover"
+          }
+        },
+        {
+          "zone": {
+            "line": "Off stump",
+            "length": "Good length"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 4,
+            "shot": "late cut",
+            "shotCategory": "late-cut"
+          }
+        },
+        {
+          "zone": {
+            "line": "Leg stump",
+            "length": "Full"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 4,
+            "shot": "flick",
+            "shotCategory": "flick"
+          }
+        }
+      ],
+      "neutrals": [
+        {
+          "zone": {
+            "line": "Middle stump",
+            "length": "Good length"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 2,
+            "shot": "defend",
+            "shotCategory": "defend"
+          }
+        },
+        {
+          "zone": {
+            "line": "Leg stump",
+            "length": "Good length"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 1,
+            "shot": "work",
+            "shotCategory": "defend"
+          }
+        }
+      ],
+      "weaknesses": [
+        {
+          "zone": {
+            "line": "Outside off",
+            "length": "Short"
+          },
+          "outcome": {
+            "type": "wicket",
+            "mode": "caught at gully",
+            "dismissalCategory": "caught-point"
+          }
+        }
+      ],
+      "resistances": [
+        "Swing",
+        "Seam",
+        "Slower",
+        "Cutter",
+        "Topspin",
+        "Drift",
+        "Googly"
+      ]
+    },
+    {
+      "id": "kyle-coetzer-bat",
+      "kind": "batsman",
+      "name": "Kyle Coetzer",
+      "nation": "Scotland",
+      "tier": "Gold",
+      "description": "Long-time Scotland captain, retired ~2022, 70+ T20Is across formats. RH classy opener, anchor archetype, took SCO through multiple T20 WCs.",
+      "strengths": [
+        {
+          "zone": {
+            "line": "Off stump",
+            "length": "Full"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 4,
+            "shot": "cover drive",
+            "shotCategory": "drive-cover"
+          }
+        },
+        {
+          "zone": {
+            "line": "Off stump",
+            "length": "Good length"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 4,
+            "shot": "punch",
+            "shotCategory": "drive-straight"
+          }
+        }
+      ],
+      "neutrals": [
+        {
+          "zone": {
+            "line": "Middle stump",
+            "length": "Good length"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 2,
+            "shot": "push",
+            "shotCategory": "defend"
+          }
+        },
+        {
+          "zone": {
+            "line": "Leg stump",
+            "length": "Full"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 1,
+            "shot": "flick",
+            "shotCategory": "flick"
+          }
+        }
+      ],
+      "weaknesses": [
+        {
+          "zone": {
+            "line": "Middle stump",
+            "length": "Short"
+          },
+          "outcome": {
+            "type": "wicket",
+            "mode": "caught fending",
+            "dismissalCategory": "caught-keeper"
+          }
+        },
+        {
+          "zone": {
+            "line": "Outside off",
+            "length": "Good length"
+          },
+          "outcome": {
+            "type": "wicket",
+            "mode": "edge to slip",
+            "dismissalCategory": "caught-slip"
+          }
+        }
+      ],
+      "resistances": [
+        "Topspin",
+        "Drift",
+        "Carrom",
+        "Slower"
       ]
     },
     {
@@ -13792,6 +14154,183 @@
       ]
     },
     {
+      "id": "george-munsey-bat",
+      "kind": "batsman",
+      "name": "George Munsey",
+      "nation": "Scotland",
+      "tier": "Silver",
+      "description": "Current LH explosive opener, 50+ T20Is, T20 WC squads. Big sixes from ball one. Vulnerable to good-length pace.",
+      "strengths": [
+        {
+          "zone": {
+            "line": "Leg stump",
+            "length": "Full"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 6,
+            "shot": "slog",
+            "shotCategory": "slog"
+          }
+        },
+        {
+          "zone": {
+            "line": "Middle stump",
+            "length": "Short"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 4,
+            "shot": "pull",
+            "shotCategory": "pull"
+          }
+        }
+      ],
+      "neutrals": [
+        {
+          "zone": {
+            "line": "Leg stump",
+            "length": "Good length"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 1,
+            "shot": "flick",
+            "shotCategory": "flick"
+          }
+        }
+      ],
+      "weaknesses": [
+        {
+          "zone": {
+            "line": "Outside off",
+            "length": "Good length"
+          },
+          "outcome": {
+            "type": "wicket",
+            "mode": "edge to slip",
+            "dismissalCategory": "caught-slip"
+          }
+        },
+        {
+          "zone": {
+            "line": "Middle stump",
+            "length": "Good length"
+          },
+          "outcome": {
+            "type": "wicket",
+            "mode": "bowled across",
+            "dismissalCategory": "bowled"
+          }
+        },
+        {
+          "zone": {
+            "line": "Outside off",
+            "length": "Full"
+          },
+          "outcome": {
+            "type": "wicket",
+            "mode": "caught at cover",
+            "dismissalCategory": "caught-cover"
+          }
+        }
+      ],
+      "resistances": [
+        "Topspin",
+        "Carrom"
+      ]
+    },
+    {
+      "id": "corey-anderson-bat",
+      "kind": "batsman",
+      "name": "Corey Anderson",
+      "nation": "USA",
+      "tier": "Gold",
+      "description": "Multi-nation career — NZ→USA. Played for NZ until 2018 (LH all-rounder, **once-fastest ODI century at 36 balls** vs WI 2014). Switched to USA 2023, T20 WC 2024 squad. Power-hitter top-order.",
+      "strengths": [
+        {
+          "zone": {
+            "line": "Middle stump",
+            "length": "Full"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 6,
+            "shot": "loft",
+            "shotCategory": "loft-straight"
+          }
+        },
+        {
+          "zone": {
+            "line": "Leg stump",
+            "length": "Full"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 4,
+            "shot": "slog",
+            "shotCategory": "slog"
+          }
+        }
+      ],
+      "neutrals": [
+        {
+          "zone": {
+            "line": "Leg stump",
+            "length": "Good length"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 2,
+            "shot": "flick",
+            "shotCategory": "flick"
+          }
+        },
+        {
+          "zone": {
+            "line": "Middle stump",
+            "length": "Short"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 1,
+            "shot": "pull",
+            "shotCategory": "pull"
+          }
+        }
+      ],
+      "weaknesses": [
+        {
+          "zone": {
+            "line": "Outside off",
+            "length": "Good length"
+          },
+          "outcome": {
+            "type": "wicket",
+            "mode": "edge to slip",
+            "dismissalCategory": "caught-slip"
+          }
+        },
+        {
+          "zone": {
+            "line": "Outside off",
+            "length": "Full"
+          },
+          "outcome": {
+            "type": "wicket",
+            "mode": "caught at cover",
+            "dismissalCategory": "caught-cover"
+          }
+        }
+      ],
+      "resistances": [
+        "Slower",
+        "Cutter",
+        "Topspin",
+        "Drift"
+      ]
+    },
+    {
       "id": "aaron-jones-bat",
       "kind": "batsman",
       "name": "Aaron Jones",
@@ -13876,6 +14415,187 @@
       "resistances": [
         "Topspin",
         "Drift"
+      ]
+    },
+    {
+      "id": "monank-patel-bat",
+      "kind": "batsman",
+      "name": "Monank Patel",
+      "nation": "USA",
+      "tier": "Silver",
+      "description": "Current USA T20I captain, RH keeper-bat. T20 WC 2024 led USA to Super Eights. Smart accumulator + power finisher.",
+      "strengths": [
+        {
+          "zone": {
+            "line": "Off stump",
+            "length": "Full"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 4,
+            "shot": "drive",
+            "shotCategory": "drive-cover"
+          }
+        },
+        {
+          "zone": {
+            "line": "Middle stump",
+            "length": "Short"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 4,
+            "shot": "pull",
+            "shotCategory": "pull"
+          }
+        }
+      ],
+      "neutrals": [
+        {
+          "zone": {
+            "line": "Leg stump",
+            "length": "Good length"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 1,
+            "shot": "work",
+            "shotCategory": "defend"
+          }
+        }
+      ],
+      "weaknesses": [
+        {
+          "zone": {
+            "line": "Outside off",
+            "length": "Good length"
+          },
+          "outcome": {
+            "type": "wicket",
+            "mode": "edge to slip",
+            "dismissalCategory": "caught-slip"
+          }
+        },
+        {
+          "zone": {
+            "line": "Middle stump",
+            "length": "Good length"
+          },
+          "outcome": {
+            "type": "wicket",
+            "mode": "bowled",
+            "dismissalCategory": "bowled"
+          }
+        },
+        {
+          "zone": {
+            "line": "Outside off",
+            "length": "Short"
+          },
+          "outcome": {
+            "type": "wicket",
+            "mode": "top edge",
+            "dismissalCategory": "caught-deep"
+          }
+        }
+      ],
+      "resistances": [
+        "Topspin",
+        "Drift",
+        "Carrom"
+      ]
+    },
+    {
+      "id": "ryan-ten-doeschate-bat",
+      "kind": "batsman",
+      "name": "Ryan ten Doeschate",
+      "nation": "Netherlands",
+      "tier": "Elite",
+      "description": "NED's most-iconic all-rounder — 33 T20Is for NED + IPL (KKR) / CPL legend. Career T20 SR ~135 across all leagues. The associate-cricket Elite. RH power-hitting middle-order with full shot range.",
+      "strengths": [
+        {
+          "zone": {
+            "line": "Leg stump",
+            "length": "Full"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 6,
+            "shot": "loft",
+            "shotCategory": "loft-leg"
+          }
+        },
+        {
+          "zone": {
+            "line": "Middle stump",
+            "length": "Full"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 4,
+            "shot": "drive",
+            "shotCategory": "drive-straight"
+          }
+        },
+        {
+          "zone": {
+            "line": "Middle stump",
+            "length": "Short"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 4,
+            "shot": "pull",
+            "shotCategory": "pull"
+          }
+        }
+      ],
+      "neutrals": [
+        {
+          "zone": {
+            "line": "Leg stump",
+            "length": "Good length"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 2,
+            "shot": "flick",
+            "shotCategory": "flick"
+          }
+        },
+        {
+          "zone": {
+            "line": "Middle stump",
+            "length": "Good length"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 1,
+            "shot": "push",
+            "shotCategory": "defend"
+          }
+        }
+      ],
+      "weaknesses": [
+        {
+          "zone": {
+            "line": "Outside off",
+            "length": "Good length"
+          },
+          "outcome": {
+            "type": "wicket",
+            "mode": "edge to slip",
+            "dismissalCategory": "caught-slip"
+          }
+        }
+      ],
+      "resistances": [
+        "Topspin",
+        "Drift",
+        "Carrom",
+        "Googly",
+        "Slower",
+        "Cutter"
       ]
     },
     {
@@ -16718,6 +17438,22 @@
       ]
     },
     {
+      "id": "ehsan-khan-bowl",
+      "kind": "bowler",
+      "name": "Ehsan Khan",
+      "nation": "Hong Kong",
+      "tier": "Silver",
+      "description": "Current RH off-spinner. Hong Kong's middle-overs operator. Tight lines, good drift.",
+      "delivery": {
+        "line": "Off stump",
+        "length": "Good length"
+      },
+      "adjectives": [],
+      "fielding": [
+        "Cover"
+      ]
+    },
+    {
       "id": "mark-watt-bowl",
       "kind": "bowler",
       "name": "Mark Watt",
@@ -16750,6 +17486,24 @@
       ]
     },
     {
+      "id": "roelof-van-der-merwe-bowl",
+      "kind": "bowler",
+      "name": "Roelof van der Merwe",
+      "nation": "Netherlands",
+      "tier": "Gold",
+      "description": "Multi-nation: SA → NED. LA wrist-spin all-rounder, IPL/county veteran. Disguised wrong'un, smart middle-overs operator. Skill: **Googly**.",
+      "delivery": {
+        "line": "Middle stump",
+        "length": "Good length"
+      },
+      "adjectives": [
+        "Googly"
+      ],
+      "fielding": [
+        "Short leg/Silly point"
+      ]
+    },
+    {
       "id": "paul-van-meekeren-bowl",
       "kind": "bowler",
       "name": "Paul van Meekeren",
@@ -16766,6 +17520,22 @@
       ]
     },
     {
+      "id": "logan-van-beek-bowl",
+      "kind": "bowler",
+      "name": "Logan van Beek",
+      "nation": "Netherlands",
+      "tier": "Silver",
+      "description": "Current RA pace all-rounder, 30+ T20Is, T20 WC 2024 squad.",
+      "delivery": {
+        "line": "Middle stump",
+        "length": "Good length"
+      },
+      "adjectives": [],
+      "fielding": [
+        "Mid-wicket"
+      ]
+    },
+    {
       "id": "david-wiese-bowl",
       "kind": "bowler",
       "name": "David Wiese",
@@ -16779,6 +17549,22 @@
       "adjectives": [],
       "fielding": [
         "Cover"
+      ]
+    },
+    {
+      "id": "jj-smit-bowl",
+      "kind": "bowler",
+      "name": "JJ Smit",
+      "nation": "Namibia",
+      "tier": "Silver",
+      "description": "Current LH pace all-rounder. T20 WC 2021/2024 squads. Hit-the-deck back-of-length style.",
+      "delivery": {
+        "line": "Middle stump",
+        "length": "Good length"
+      },
+      "adjectives": [],
+      "fielding": [
+        "Mid-wicket"
       ]
     }
   ],
