@@ -3504,6 +3504,100 @@
       ]
     },
     {
+      "id": "ab-de-villiers-bat",
+      "kind": "batsman",
+      "name": "AB de Villiers",
+      "nation": "South Africa",
+      "tier": "Elite",
+      "description": "Mr 360 — retired internationals 2018, 78 T20Is, IPL legend (RCB). Plays every shot in the book and several that aren't. Reverse sweeps over slip, scoops over fine leg, ramps the quick. The most complete T20 batter of his generation.",
+      "strengths": [
+        {
+          "zone": {
+            "line": "Off stump",
+            "length": "Full"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 6,
+            "shot": "cover drive",
+            "shotCategory": "drive-cover"
+          }
+        },
+        {
+          "zone": {
+            "line": "Leg stump",
+            "length": "Full"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 6,
+            "shot": "flick",
+            "shotCategory": "flick"
+          }
+        },
+        {
+          "zone": {
+            "line": "Middle stump",
+            "length": "Short"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 4,
+            "shot": "ramp",
+            "shotCategory": "ramp"
+          }
+        }
+      ],
+      "neutrals": [
+        {
+          "zone": {
+            "line": "Off stump",
+            "length": "Good length"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 2,
+            "shot": "reverse sweep",
+            "shotCategory": "reverse-sweep"
+          }
+        },
+        {
+          "zone": {
+            "line": "Middle stump",
+            "length": "Good length"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 1,
+            "shot": "push",
+            "shotCategory": "defend"
+          }
+        }
+      ],
+      "weaknesses": [
+        {
+          "zone": {
+            "line": "Outside off",
+            "length": "Full"
+          },
+          "outcome": {
+            "type": "wicket",
+            "mode": "edge to keeper",
+            "dismissalCategory": "caught-keeper"
+          }
+        }
+      ],
+      "resistances": [
+        "Swing",
+        "Seam",
+        "Slower",
+        "Cutter",
+        "Topspin",
+        "Drift",
+        "Googly"
+      ]
+    },
+    {
       "id": "quinton-de-kock-bat",
       "kind": "batsman",
       "name": "Quinton de Kock",
@@ -3682,6 +3776,97 @@
         "Topspin",
         "Drift",
         "Googly"
+      ]
+    },
+    {
+      "id": "faf-du-plessis-bat",
+      "kind": "batsman",
+      "name": "Faf du Plessis",
+      "nation": "South Africa",
+      "tier": "Gold",
+      "description": "Retired internationals 2021, 50 T20Is, IPL captain (CSK / RCB). Anchor with strong technique and clever pace control. Drives and pulls with classical timing.",
+      "strengths": [
+        {
+          "zone": {
+            "line": "Off stump",
+            "length": "Full"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 4,
+            "shot": "drive",
+            "shotCategory": "drive-cover"
+          }
+        },
+        {
+          "zone": {
+            "line": "Middle stump",
+            "length": "Short"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 4,
+            "shot": "pull",
+            "shotCategory": "pull"
+          }
+        }
+      ],
+      "neutrals": [
+        {
+          "zone": {
+            "line": "Off stump",
+            "length": "Good length"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 2,
+            "shot": "push",
+            "shotCategory": "defend"
+          }
+        },
+        {
+          "zone": {
+            "line": "Leg stump",
+            "length": "Good length"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 1,
+            "shot": "flick",
+            "shotCategory": "flick"
+          }
+        }
+      ],
+      "weaknesses": [
+        {
+          "zone": {
+            "line": "Middle stump",
+            "length": "Good length"
+          },
+          "outcome": {
+            "type": "wicket",
+            "mode": "bowled across",
+            "dismissalCategory": "bowled"
+          }
+        },
+        {
+          "zone": {
+            "line": "Outside off",
+            "length": "Full"
+          },
+          "outcome": {
+            "type": "wicket",
+            "mode": "caught at cover",
+            "dismissalCategory": "caught-cover"
+          }
+        }
+      ],
+      "resistances": [
+        "Slower",
+        "Cutter",
+        "Topspin",
+        "Drift",
+        "Carrom"
       ]
     },
     {
@@ -13176,6 +13361,26 @@
       ]
     },
     {
+      "id": "imran-tahir-bowl",
+      "kind": "bowler",
+      "name": "Imran Tahir",
+      "nation": "South Africa",
+      "tier": "Elite",
+      "description": "Legend leg-spinner — retired internationals 2019, 38 T20Is, IPL/CPL/PSL star, world's #1 ranked T20I bowler at his peak. Disguised wrong'un + drift away from RH bats. Wild celebrations after every wicket. Two-skill Elite per the v1.1 rule.",
+      "delivery": {
+        "line": "Middle stump",
+        "length": "Good length"
+      },
+      "adjectives": [
+        "Googly",
+        "Drift"
+      ],
+      "fielding": [
+        "Short leg/Silly point",
+        "Slip cordon"
+      ]
+    },
+    {
       "id": "anrich-nortje-bowl",
       "kind": "bowler",
       "name": "Anrich Nortje",
@@ -13209,6 +13414,24 @@
       ],
       "fielding": [
         "Short leg/Silly point"
+      ]
+    },
+    {
+      "id": "dale-steyn-bowl",
+      "kind": "bowler",
+      "name": "Dale Steyn",
+      "nation": "South Africa",
+      "tier": "Gold",
+      "description": "Legend — retired 2021, all-time-great fast bowler, 47 T20Is. Late outswing, hits the deck hard with bounce, fierce competitor. Skill: **Seam**.",
+      "delivery": {
+        "line": "Off stump",
+        "length": "Good length"
+      },
+      "adjectives": [
+        "Seam"
+      ],
+      "fielding": [
+        "Slip cordon"
       ]
     },
     {

@@ -657,6 +657,13 @@ Everything not listed = dot ball. Weaknesses are zone-only (no adjective referen
 - **Weaknesses:** Good length middle stump → bowled through gate
 - **Resistances:** Topspin, Drift, Googly, Carrom, Slower, Cutter, Seam
 
+### ELITE — AB de Villiers
+*Mr 360 — retired internationals 2018, 78 T20Is, IPL legend (RCB). Plays every shot in the book and several that aren't. Reverse sweeps over slip, scoops over fine leg, ramps the quick. The most complete T20 batter of his generation.*
+- **Strengths:** Full off stump → cover drive for 6 | Full leg stump → flick for 6 | Short middle stump → ramp for 4
+- **Neutrals:** Good length off stump → reverse sweep for 2 | Good length middle stump → push for 1
+- **Weaknesses:** Full Outside off → edge to keeper
+- **Resistances:** Swing, Seam, Slower, Cutter, Topspin, Drift, Googly
+
 ### GOLD — Quinton de Kock
 *Left-handed keeper-bat. Retired internationally in 2024 but still IPL/SA20 star. T20 WC 2024 leading SA scorer (232 runs, SR 140). Pull, drive, sweep — pure pace specialist.*
 - **Strengths:** Short middle stump → pull for 6 | Full off stump → drive for 4
@@ -670,6 +677,13 @@ Everything not listed = dot ball. Weaknesses are zone-only (no adjective referen
 - **Neutrals:** Good length leg stump → work for 2 | Good length middle stump → push for 1
 - **Weaknesses:** Short Outside off → caught at point | Good length Outside off → mistimed cut
 - **Resistances:** Swing, Seam, Topspin, Drift, Googly
+
+### GOLD — Faf du Plessis
+*Retired internationals 2021, 50 T20Is, IPL captain (CSK / RCB). Anchor with strong technique and clever pace control. Drives and pulls with classical timing.*
+- **Strengths:** Full off stump → drive for 4 | Short middle stump → pull for 4
+- **Neutrals:** Good length off stump → push for 2 | Good length leg stump → flick for 1
+- **Weaknesses:** Good length middle stump → bowled across | Full Outside off → caught at cover
+- **Resistances:** Slower, Cutter, Topspin, Drift, Carrom
 
 ### SILVER — Aiden Markram
 *SA T20I captain. Right-handed top-order, technically correct. Beautiful drives; reads spin well via own off-spin. Vulnerable on the pads.*
@@ -728,6 +742,10 @@ Everything not listed = dot ball. Weaknesses are zone-only (no adjective referen
 *Best SA T20 quick of his era. Yorker maestro, late seam off the deck, signature slow-ball cutter. Two-skill Elite per the v1.1 rule.*
 - **Delivery:** Full off stump | **Adjective:** Seam, Slower | **Fielding:** Slip cordon + Mid-wicket
 
+### ELITE — Imran Tahir
+*Legend leg-spinner — retired internationals 2019, 38 T20Is, IPL/CPL/PSL star, world's #1 ranked T20I bowler at his peak. Disguised wrong'un + drift away from RH bats. Wild celebrations after every wicket. Two-skill Elite per the v1.1 rule.*
+- **Delivery:** Good length middle stump | **Adjective:** Googly, Drift | **Fielding:** Short leg/Silly point + Slip cordon
+
 ### GOLD — Anrich Nortje
 *150kph+ raw pace. Hits the deck hard with bounce; back-of-length intimidator.*
 - **Delivery:** Short middle stump | **Adjective:** Seam | **Fielding:** Gully/Point
@@ -735,6 +753,10 @@ Everything not listed = dot ball. Weaknesses are zone-only (no adjective referen
 ### GOLD — Tabraiz Shamsi
 *Left-arm wrist spinner. Mystery deliveries with a disguised wrong'un breaking back into RH bats.*
 - **Delivery:** Good length middle stump | **Adjective:** Googly | **Fielding:** Short leg/Silly point
+
+### GOLD — Dale Steyn
+*Legend — retired 2021, all-time-great fast bowler, 47 T20Is. Late outswing, hits the deck hard with bounce, fierce competitor. Skill: **Seam**.*
+- **Delivery:** Good length off stump | **Adjective:** Seam | **Fielding:** Slip cordon
 
 ### SILVER — Marco Jansen
 *Tall left-arm quick. Full Outside off with new-ball movement and steep bounce. Faces the Silver tier wide-call risk on Outside off (25%).*
@@ -1868,7 +1890,7 @@ Everything not listed = dot ball. Weaknesses are zone-only (no adjective referen
 | India | 13 | 13 | 26 |
 | Australia | 13 | 13 | 26 |
 | England | 13 | 13 | 26 |
-| South Africa | 11 | 11 | 22 |
+| South Africa | 13 | 13 | 26 |
 | New Zealand | 11 | 11 | 22 |
 | Pakistan | 11 | 11 | 22 |
 | Sri Lanka | 11 | 11 | 22 |
@@ -1883,4 +1905,4 @@ Everything not listed = dot ball. Weaknesses are zone-only (no adjective referen
 | USA | 1 | 1 | 2 |
 | Netherlands | 1 | 1 | 2 |
 | Namibia | 1 | 1 | 2 |
-| **TOTAL** | **143** | **143** | **286** |
+| **TOTAL** | **145** | **145** | **290** |
