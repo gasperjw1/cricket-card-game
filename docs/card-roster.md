@@ -1533,6 +1533,13 @@ Everything not listed = dot ball. Weaknesses are zone-only (no adjective referen
 - **Weaknesses:** Short Outside off → caught at gully
 - **Resistances:** Topspin, Drift, Googly, Carrom, Slower, Cutter, Seam
 
+### ELITE — Andy Flower
+*Honorary Elite — ZIM's all-time greatest batter (LH keeper-bat), retired 2003 just before T20Is existed. Wisden Cricketer of the Year 2002. World #1 ranked Test batter for stretches. Career-tier elite even without T20I caps. Sweep + flick + classical cuts.*
+- **Strengths:** Full off stump → cover drive for 4 | Full leg stump → sweep for 6 | Good length off stump → late cut for 4
+- **Neutrals:** Good length middle stump → push for 2 | Good length leg stump → flick for 1
+- **Weaknesses:** Short Outside off → caught at gully
+- **Resistances:** Swing, Seam, Slower, Cutter, Topspin, Drift, Googly
+
 ### GOLD — Craig Ervine
 *Left-handed veteran top-order. Solid technique, experienced campaigner. Drives + sweeps.*
 - **Strengths:** Full off stump → drive for 4 | Full leg stump → sweep for 4
@@ -1546,6 +1553,13 @@ Everything not listed = dot ball. Weaknesses are zone-only (no adjective referen
 - **Neutrals:** Good length leg stump → flick for 2 | Good length middle stump → push for 1
 - **Weaknesses:** Short middle stump → caught fending | Good length Outside off → edge to slip
 - **Resistances:** Topspin, Drift, Carrom, Googly, Slower
+
+### GOLD — Hamilton Masakadza
+*Legend — retired 2019, 66 T20Is, captain. ZIM's most-capped T20I bat at the time of retirement. Anchor opener, classy drives, plays both pace and spin patiently.*
+- **Strengths:** Full off stump → cover drive for 4 | Good length off stump → punch for 4
+- **Neutrals:** Good length middle stump → push for 2 | Full leg stump → flick for 1
+- **Weaknesses:** Short middle stump → caught fending | Good length Outside off → edge to slip
+- **Resistances:** Slower, Cutter, Topspin, Drift
 
 ### SILVER — Regis Chakabva
 *Right-handed keeper-bat. Aggressive opener, quick scorer.*
@@ -1604,6 +1618,10 @@ Everything not listed = dot ball. Weaknesses are zone-only (no adjective referen
 *Best ZIM quick in years. Tall right-arm express pace with steep bounce; signature slow-ball bouncer at the death. Two-skill Elite per the v1.1 rule.*
 - **Delivery:** Good length off stump | **Adjective:** Seam, Slower | **Fielding:** Gully/Point + Slip cordon
 
+### ELITE — Heath Streak
+*Honorary Elite — ZIM's all-time greatest bowler, retired 2005 at the dawn of T20Is. Right-arm fast-medium with late seam, slower-ball variations. Captain figure, ZIM's all-format spearhead through their golden generation. Two-skill Elite per the v1.1 rule.*
+- **Delivery:** Good length middle stump | **Adjective:** Seam, Slower | **Fielding:** Slip cordon + Mid-wicket
+
 ### GOLD — Sikandar Raza
 *Right-arm off-spin (all-rounder split — Elite batter above). Skiddy quicker arm-ball is his middle-overs wicket-taker.*
 - **Delivery:** Good length middle stump | **Adjective:** Topspin | **Fielding:** Short leg/Silly point
@@ -1611,6 +1629,10 @@ Everything not listed = dot ball. Weaknesses are zone-only (no adjective referen
 ### GOLD — Richard Ngarava
 *Left-arm quick. New-ball inswing specialist. Faces Gold tier wide-call risk on Outside off (15%).*
 - **Delivery:** Full Outside off | **Adjective:** Swing | **Fielding:** Slip cordon
+
+### GOLD — Ray Price
+*LA orthodox legend — retired 2014, 21 T20Is. Subtle drift away from RH bats with miserly economy. ZIM's longtime spin spearhead through the 2000s/early 2010s. Skill: **Drift**.*
+- **Delivery:** Good length leg stump | **Adjective:** Drift | **Fielding:** Cover
 
 ### SILVER — Ryan Burl
 *Right-arm leg-spinner (all-rounder split — Silver batter above). Gets turn and bounce — but no skill chip at Silver.*
@@ -2039,7 +2061,7 @@ Everything not listed = dot ball. Weaknesses are zone-only (no adjective referen
 | Sri Lanka | 13 | 13 | 26 |
 | West Indies | 13 | 13 | 26 |
 | Bangladesh | 13 | 13 | 26 |
-| Zimbabwe | 11 | 11 | 22 |
+| Zimbabwe | 13 | 13 | 26 |
 | Afghanistan | 12 | 12 | 24 |
 | Ireland | 13 | 13 | 26 |
 | Nepal | 0 | 1 | 1 |
@@ -2048,4 +2070,4 @@ Everything not listed = dot ball. Weaknesses are zone-only (no adjective referen
 | USA | 1 | 1 | 2 |
 | Netherlands | 1 | 1 | 2 |
 | Namibia | 1 | 1 | 2 |
-| **TOTAL** | **158** | **158** | **316** |
+| **TOTAL** | **160** | **160** | **320** |

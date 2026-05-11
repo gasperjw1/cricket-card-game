@@ -10376,6 +10376,100 @@
       ]
     },
     {
+      "id": "andy-flower-bat",
+      "kind": "batsman",
+      "name": "Andy Flower",
+      "nation": "Zimbabwe",
+      "tier": "Elite",
+      "description": "Honorary Elite — ZIM's all-time greatest batter (LH keeper-bat), retired 2003 just before T20Is existed. Wisden Cricketer of the Year 2002. World #1 ranked Test batter for stretches. Career-tier elite even without T20I caps. Sweep + flick + classical cuts.",
+      "strengths": [
+        {
+          "zone": {
+            "line": "Off stump",
+            "length": "Full"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 4,
+            "shot": "cover drive",
+            "shotCategory": "drive-cover"
+          }
+        },
+        {
+          "zone": {
+            "line": "Leg stump",
+            "length": "Full"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 6,
+            "shot": "sweep",
+            "shotCategory": "sweep"
+          }
+        },
+        {
+          "zone": {
+            "line": "Off stump",
+            "length": "Good length"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 4,
+            "shot": "late cut",
+            "shotCategory": "late-cut"
+          }
+        }
+      ],
+      "neutrals": [
+        {
+          "zone": {
+            "line": "Middle stump",
+            "length": "Good length"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 2,
+            "shot": "push",
+            "shotCategory": "defend"
+          }
+        },
+        {
+          "zone": {
+            "line": "Leg stump",
+            "length": "Good length"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 1,
+            "shot": "flick",
+            "shotCategory": "flick"
+          }
+        }
+      ],
+      "weaknesses": [
+        {
+          "zone": {
+            "line": "Outside off",
+            "length": "Short"
+          },
+          "outcome": {
+            "type": "wicket",
+            "mode": "caught at gully",
+            "dismissalCategory": "caught-point"
+          }
+        }
+      ],
+      "resistances": [
+        "Swing",
+        "Seam",
+        "Slower",
+        "Cutter",
+        "Topspin",
+        "Drift",
+        "Googly"
+      ]
+    },
+    {
       "id": "craig-ervine-bat",
       "kind": "batsman",
       "name": "Craig Ervine",
@@ -10554,6 +10648,96 @@
         "Carrom",
         "Googly",
         "Slower"
+      ]
+    },
+    {
+      "id": "hamilton-masakadza-bat",
+      "kind": "batsman",
+      "name": "Hamilton Masakadza",
+      "nation": "Zimbabwe",
+      "tier": "Gold",
+      "description": "Legend — retired 2019, 66 T20Is, captain. ZIM's most-capped T20I bat at the time of retirement. Anchor opener, classy drives, plays both pace and spin patiently.",
+      "strengths": [
+        {
+          "zone": {
+            "line": "Off stump",
+            "length": "Full"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 4,
+            "shot": "cover drive",
+            "shotCategory": "drive-cover"
+          }
+        },
+        {
+          "zone": {
+            "line": "Off stump",
+            "length": "Good length"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 4,
+            "shot": "punch",
+            "shotCategory": "drive-straight"
+          }
+        }
+      ],
+      "neutrals": [
+        {
+          "zone": {
+            "line": "Middle stump",
+            "length": "Good length"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 2,
+            "shot": "push",
+            "shotCategory": "defend"
+          }
+        },
+        {
+          "zone": {
+            "line": "Leg stump",
+            "length": "Full"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 1,
+            "shot": "flick",
+            "shotCategory": "flick"
+          }
+        }
+      ],
+      "weaknesses": [
+        {
+          "zone": {
+            "line": "Middle stump",
+            "length": "Short"
+          },
+          "outcome": {
+            "type": "wicket",
+            "mode": "caught fending",
+            "dismissalCategory": "caught-keeper"
+          }
+        },
+        {
+          "zone": {
+            "line": "Outside off",
+            "length": "Good length"
+          },
+          "outcome": {
+            "type": "wicket",
+            "mode": "edge to slip",
+            "dismissalCategory": "caught-slip"
+          }
+        }
+      ],
+      "resistances": [
+        "Slower",
+        "Cutter",
+        "Topspin",
+        "Drift"
       ]
     },
     {
@@ -15890,6 +16074,26 @@
       ]
     },
     {
+      "id": "heath-streak-bowl",
+      "kind": "bowler",
+      "name": "Heath Streak",
+      "nation": "Zimbabwe",
+      "tier": "Elite",
+      "description": "Honorary Elite — ZIM's all-time greatest bowler, retired 2005 at the dawn of T20Is. Right-arm fast-medium with late seam, slower-ball variations. Captain figure, ZIM's all-format spearhead through their golden generation. Two-skill Elite per the v1.1 rule.",
+      "delivery": {
+        "line": "Middle stump",
+        "length": "Good length"
+      },
+      "adjectives": [
+        "Seam",
+        "Slower"
+      ],
+      "fielding": [
+        "Slip cordon",
+        "Mid-wicket"
+      ]
+    },
+    {
       "id": "sikandar-raza-bowl",
       "kind": "bowler",
       "name": "Sikandar Raza",
@@ -15923,6 +16127,24 @@
       ],
       "fielding": [
         "Slip cordon"
+      ]
+    },
+    {
+      "id": "ray-price-bowl",
+      "kind": "bowler",
+      "name": "Ray Price",
+      "nation": "Zimbabwe",
+      "tier": "Gold",
+      "description": "LA orthodox legend — retired 2014, 21 T20Is. Subtle drift away from RH bats with miserly economy. ZIM's longtime spin spearhead through the 2000s/early 2010s. Skill: **Drift**.",
+      "delivery": {
+        "line": "Leg stump",
+        "length": "Good length"
+      },
+      "adjectives": [
+        "Drift"
+      ],
+      "fielding": [
+        "Cover"
       ]
     },
     {
