@@ -11334,6 +11334,99 @@
       ]
     },
     {
+      "id": "asghar-afghan-bat",
+      "kind": "batsman",
+      "name": "Asghar Afghan",
+      "nation": "Afghanistan",
+      "tier": "Elite",
+      "description": "Former AFG captain, retired 2021, 66 T20Is — most-experienced AFG bat of the rise-of-Afghanistan era. Solid middle-order anchor who carried the team through their early international growth.",
+      "strengths": [
+        {
+          "zone": {
+            "line": "Off stump",
+            "length": "Full"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 4,
+            "shot": "drive",
+            "shotCategory": "drive-cover"
+          }
+        },
+        {
+          "zone": {
+            "line": "Middle stump",
+            "length": "Short"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 4,
+            "shot": "pull",
+            "shotCategory": "pull"
+          }
+        },
+        {
+          "zone": {
+            "line": "Leg stump",
+            "length": "Good length"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 4,
+            "shot": "work",
+            "shotCategory": "defend"
+          }
+        }
+      ],
+      "neutrals": [
+        {
+          "zone": {
+            "line": "Middle stump",
+            "length": "Good length"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 2,
+            "shot": "push",
+            "shotCategory": "defend"
+          }
+        },
+        {
+          "zone": {
+            "line": "Leg stump",
+            "length": "Full"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 1,
+            "shot": "flick",
+            "shotCategory": "flick"
+          }
+        }
+      ],
+      "weaknesses": [
+        {
+          "zone": {
+            "line": "Outside off",
+            "length": "Short"
+          },
+          "outcome": {
+            "type": "wicket",
+            "mode": "caught at point",
+            "dismissalCategory": "caught-point"
+          }
+        }
+      ],
+      "resistances": [
+        "Topspin",
+        "Drift",
+        "Carrom",
+        "Googly",
+        "Slower",
+        "Cutter"
+      ]
+    },
+    {
       "id": "ibrahim-zadran-bat",
       "kind": "batsman",
       "name": "Ibrahim Zadran",
@@ -15795,6 +15888,26 @@
       "fielding": [
         "Short leg/Silly point",
         "Slip cordon"
+      ]
+    },
+    {
+      "id": "dawlat-zadran-bowl",
+      "kind": "bowler",
+      "name": "Dawlat Zadran",
+      "nation": "Afghanistan",
+      "tier": "Elite",
+      "description": "Retired 2021, RH express pace, 46 T20Is. Hit-the-deck new-ball specialist, slower-ball variations at the death. AFG's first-generation pace spearhead. Two-skill Elite per the v1.1 rule.",
+      "delivery": {
+        "line": "Off stump",
+        "length": "Good length"
+      },
+      "adjectives": [
+        "Seam",
+        "Slower"
+      ],
+      "fielding": [
+        "Slip cordon",
+        "Mid-wicket"
       ]
     },
     {

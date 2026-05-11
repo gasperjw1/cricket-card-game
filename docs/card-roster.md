@@ -1657,6 +1657,13 @@ Everything not listed = dot ball. Weaknesses are zone-only (no adjective referen
 - **Weaknesses:** Good length Outside off → edge to slip
 - **Resistances:** Topspin, Drift, Googly, Carrom, Slower, Cutter, Seam
 
+### ELITE — Asghar Afghan
+*Former AFG captain, retired 2021, 66 T20Is — most-experienced AFG bat of the rise-of-Afghanistan era. Solid middle-order anchor who carried the team through their early international growth.*
+- **Strengths:** Full off stump → drive for 4 | Short middle stump → pull for 4 | Good length leg stump → work for 4
+- **Neutrals:** Good length middle stump → push for 2 | Full leg stump → flick for 1
+- **Weaknesses:** Short Outside off → caught at point
+- **Resistances:** Topspin, Drift, Carrom, Googly, Slower, Cutter
+
 ### GOLD — Ibrahim Zadran
 *Current AFG ODI captain. Right-handed classy anchor — drives, flicks, works the ball. Growing T20 game.*
 - **Strengths:** Full off stump → drive for 4 | Full leg stump → flick for 4
@@ -1727,6 +1734,10 @@ Everything not listed = dot ball. Weaknesses are zone-only (no adjective referen
 ### ELITE — Rashid Khan
 *Greatest T20 bowler alive. Right-arm leg-spin with a lethal disguised googly and skiddy quicker one. Two-skill Elite per the v1.1 rule.*
 - **Delivery:** Good length middle stump | **Adjective:** Googly, Topspin | **Fielding:** Short leg/Silly point + Slip cordon
+
+### ELITE — Dawlat Zadran
+*Retired 2021, RH express pace, 46 T20Is. Hit-the-deck new-ball specialist, slower-ball variations at the death. AFG's first-generation pace spearhead. Two-skill Elite per the v1.1 rule.*
+- **Delivery:** Good length off stump | **Adjective:** Seam, Slower | **Fielding:** Slip cordon + Mid-wicket
 
 ### GOLD — Fazalhaq Farooqi
 *Left-arm quick. T20 WC 2024 leading wicket-taker (17). Powerplay inswing specialist. Faces Gold tier wide-call risk on Outside off (15%).*
@@ -2007,7 +2018,7 @@ Everything not listed = dot ball. Weaknesses are zone-only (no adjective referen
 | West Indies | 13 | 13 | 26 |
 | Bangladesh | 13 | 13 | 26 |
 | Zimbabwe | 11 | 11 | 22 |
-| Afghanistan | 11 | 11 | 22 |
+| Afghanistan | 12 | 12 | 24 |
 | Ireland | 11 | 11 | 22 |
 | Nepal | 0 | 1 | 1 |
 | Hong Kong | 1 | 0 | 1 |
@@ -2015,4 +2026,4 @@ Everything not listed = dot ball. Weaknesses are zone-only (no adjective referen
 | USA | 1 | 1 | 2 |
 | Netherlands | 1 | 1 | 2 |
 | Namibia | 1 | 1 | 2 |
-| **TOTAL** | **155** | **155** | **310** |
+| **TOTAL** | **156** | **156** | **312** |
