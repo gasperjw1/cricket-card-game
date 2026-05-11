@@ -776,13 +776,13 @@ function main(): void {
   //   completed nations: 13 cards per role (2/3/3/5)
   //   pending nations:   11 cards per role (1/2/3/5)
   // + 5 associate Silvers per role.
-  // Currently: 5 nations expanded → 13×5 + 11×7 + 5 = 147 per role.
+  // Currently: 6 nations expanded → 13×6 + 11×6 + 5 = 149 per role.
   // Bump this number as each nation lands.
-  if (batsmen.length !== 147) {
-    throw new Error(`Expected 147 batsmen, got ${batsmen.length}`);
+  if (batsmen.length !== 149) {
+    throw new Error(`Expected 149 batsmen, got ${batsmen.length}`);
   }
-  if (bowlers.length !== 147) {
-    throw new Error(`Expected 147 bowlers, got ${bowlers.length}`);
+  if (bowlers.length !== 149) {
+    throw new Error(`Expected 149 bowlers, got ${bowlers.length}`);
   }
   // 8 batting + 6 bowling + 2 Old School variants = 16 entries in v1.1
   // (added Deep in the Crease batting + Third Umpire Distracted by Biryani bowling)

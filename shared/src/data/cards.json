@@ -5802,6 +5802,100 @@
       ]
     },
     {
+      "id": "shoaib-malik-bat",
+      "kind": "batsman",
+      "name": "Shoaib Malik",
+      "nation": "Pakistan",
+      "tier": "Elite",
+      "description": "Retired 2024 — **124 T20Is, the most appearances ever for any player**. T20 WC 2009 winner, all-format PAK stalwart across two decades. Sweeps and reverse-laps anything from spinners; lofts straight off pace.",
+      "strengths": [
+        {
+          "zone": {
+            "line": "Leg stump",
+            "length": "Full"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 6,
+            "shot": "sweep",
+            "shotCategory": "sweep"
+          }
+        },
+        {
+          "zone": {
+            "line": "Off stump",
+            "length": "Good length"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 4,
+            "shot": "reverse sweep",
+            "shotCategory": "reverse-sweep"
+          }
+        },
+        {
+          "zone": {
+            "line": "Middle stump",
+            "length": "Full"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 4,
+            "shot": "loft",
+            "shotCategory": "loft-straight"
+          }
+        }
+      ],
+      "neutrals": [
+        {
+          "zone": {
+            "line": "Leg stump",
+            "length": "Good length"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 2,
+            "shot": "work",
+            "shotCategory": "defend"
+          }
+        },
+        {
+          "zone": {
+            "line": "Middle stump",
+            "length": "Short"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 1,
+            "shot": "pull",
+            "shotCategory": "pull"
+          }
+        }
+      ],
+      "weaknesses": [
+        {
+          "zone": {
+            "line": "Outside off",
+            "length": "Good length"
+          },
+          "outcome": {
+            "type": "wicket",
+            "mode": "edge to slip",
+            "dismissalCategory": "caught-slip"
+          }
+        }
+      ],
+      "resistances": [
+        "Topspin",
+        "Drift",
+        "Carrom",
+        "Googly",
+        "Slower",
+        "Cutter",
+        "Seam"
+      ]
+    },
+    {
       "id": "mohammad-rizwan-bat",
       "kind": "batsman",
       "name": "Mohammad Rizwan",
@@ -5980,6 +6074,96 @@
         "Cutter",
         "Topspin",
         "Drift"
+      ]
+    },
+    {
+      "id": "mohammad-hafeez-bat",
+      "kind": "batsman",
+      "name": "Mohammad Hafeez",
+      "nation": "Pakistan",
+      "tier": "Gold",
+      "description": "Retired 2024, 119 T20Is, RH all-rounder, \"The Professor\". Cleanly times the cover drive and pull, sweeps spin from the BBL/PSL/IPL experience. PAK middle-order anchor across the 2010s.",
+      "strengths": [
+        {
+          "zone": {
+            "line": "Off stump",
+            "length": "Full"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 4,
+            "shot": "cover drive",
+            "shotCategory": "drive-cover"
+          }
+        },
+        {
+          "zone": {
+            "line": "Middle stump",
+            "length": "Short"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 4,
+            "shot": "pull",
+            "shotCategory": "pull"
+          }
+        }
+      ],
+      "neutrals": [
+        {
+          "zone": {
+            "line": "Leg stump",
+            "length": "Good length"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 2,
+            "shot": "flick",
+            "shotCategory": "flick"
+          }
+        },
+        {
+          "zone": {
+            "line": "Off stump",
+            "length": "Good length"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 1,
+            "shot": "push",
+            "shotCategory": "defend"
+          }
+        }
+      ],
+      "weaknesses": [
+        {
+          "zone": {
+            "line": "Middle stump",
+            "length": "Good length"
+          },
+          "outcome": {
+            "type": "wicket",
+            "mode": "bowled",
+            "dismissalCategory": "bowled"
+          }
+        },
+        {
+          "zone": {
+            "line": "Outside off",
+            "length": "Full"
+          },
+          "outcome": {
+            "type": "wicket",
+            "mode": "edge to keeper",
+            "dismissalCategory": "caught-keeper"
+          }
+        }
+      ],
+      "resistances": [
+        "Topspin",
+        "Drift",
+        "Carrom",
+        "Googly"
       ]
     },
     {
@@ -13989,6 +14173,26 @@
       ]
     },
     {
+      "id": "saeed-ajmal-bowl",
+      "kind": "bowler",
+      "name": "Saeed Ajmal",
+      "nation": "Pakistan",
+      "tier": "Elite",
+      "description": "Legend off-spinner — retired 2017, 64 T20Is, world's best spinner at his peak. The doosra (carrom) and disguised drift made him almost unplayable for a stretch. Two-skill Elite per the v1.1 rule.",
+      "delivery": {
+        "line": "Middle stump",
+        "length": "Good length"
+      },
+      "adjectives": [
+        "Carrom",
+        "Drift"
+      ],
+      "fielding": [
+        "Short leg/Silly point",
+        "Slip cordon"
+      ]
+    },
+    {
       "id": "haris-rauf-bowl",
       "kind": "bowler",
       "name": "Haris Rauf",
@@ -14019,6 +14223,24 @@
       },
       "adjectives": [
         "Seam"
+      ],
+      "fielding": [
+        "Slip cordon"
+      ]
+    },
+    {
+      "id": "mohammad-amir-bowl",
+      "kind": "bowler",
+      "name": "Mohammad Amir",
+      "nation": "Pakistan",
+      "tier": "Gold",
+      "description": "Retired 2020, LH swing legend, 50 T20Is. T20 WC 2009 / Champions Trophy 2017 hero with the new ball. Late inswing back into the right-hander from a natural left-arm angle. Skill: **Swing**.",
+      "delivery": {
+        "line": "Off stump",
+        "length": "Full"
+      },
+      "adjectives": [
+        "Swing"
       ],
       "fielding": [
         "Slip cordon"

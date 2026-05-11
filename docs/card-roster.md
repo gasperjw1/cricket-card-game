@@ -949,6 +949,13 @@ Everything not listed = dot ball. Weaknesses are zone-only (no adjective referen
 - **Weaknesses:** Short middle stump → top edge pulling caught
 - **Resistances:** Swing, Seam, Slower, Cutter, Topspin, Drift, Carrom
 
+### ELITE — Shoaib Malik
+*Retired 2024 — **124 T20Is, the most appearances ever for any player**. T20 WC 2009 winner, all-format PAK stalwart across two decades. Sweeps and reverse-laps anything from spinners; lofts straight off pace.*
+- **Strengths:** Full leg stump → sweep for 6 | Good length off stump → reverse sweep for 4 | Full middle stump → loft for 4
+- **Neutrals:** Good length leg stump → work for 2 | Short middle stump → pull for 1
+- **Weaknesses:** Good length Outside off → edge to slip
+- **Resistances:** Topspin, Drift, Carrom, Googly, Slower, Cutter, Seam
+
 ### GOLD — Mohammad Rizwan
 *Right-handed keeper-bat. World #1 T20I ranked at multiple points. Accumulator with class — drives, flicks, anchors. Vulnerable to short pace at the body.*
 - **Strengths:** Full off stump → drive for 4 | Good length leg stump → flick for 4
@@ -962,6 +969,13 @@ Everything not listed = dot ball. Weaknesses are zone-only (no adjective referen
 - **Neutrals:** Good length leg stump → flick for 2 | Full leg stump → sweep for 1
 - **Weaknesses:** Good length middle stump → bowled across | Full middle stump → LBW slogging
 - **Resistances:** Slower, Cutter, Topspin, Drift
+
+### GOLD — Mohammad Hafeez
+*Retired 2024, 119 T20Is, RH all-rounder, "The Professor". Cleanly times the cover drive and pull, sweeps spin from the BBL/PSL/IPL experience. PAK middle-order anchor across the 2010s.*
+- **Strengths:** Full off stump → cover drive for 4 | Short middle stump → pull for 4
+- **Neutrals:** Good length leg stump → flick for 2 | Good length off stump → push for 1
+- **Weaknesses:** Good length middle stump → bowled | Full Outside off → edge to keeper
+- **Resistances:** Topspin, Drift, Carrom, Googly
 
 ### SILVER — Salman Agha
 *Current PAK T20I captain. Right-handed middle-order, off-spinning all-rounder. Smart cricketer rather than pure power.*
@@ -1020,6 +1034,10 @@ Everything not listed = dot ball. Weaknesses are zone-only (no adjective referen
 *Best PAK T20 quick of his era. Left-arm late inswing with the new ball, signature slower-bouncer at the death. Two-skill Elite per the v1.1 rule.*
 - **Delivery:** Full Outside off | **Adjective:** Swing, Slower | **Fielding:** Slip cordon + Mid-wicket
 
+### ELITE — Saeed Ajmal
+*Legend off-spinner — retired 2017, 64 T20Is, world's best spinner at his peak. The doosra (carrom) and disguised drift made him almost unplayable for a stretch. Two-skill Elite per the v1.1 rule.*
+- **Delivery:** Good length middle stump | **Adjective:** Carrom, Drift | **Fielding:** Short leg/Silly point + Slip cordon
+
 ### GOLD — Haris Rauf
 *Express right-arm pace, death-overs specialist (150kph+). Slow-ball cutter is his signature variation.*
 - **Delivery:** Full off stump | **Adjective:** Slower | **Fielding:** Cover
@@ -1027,6 +1045,10 @@ Everything not listed = dot ball. Weaknesses are zone-only (no adjective referen
 ### GOLD — Naseem Shah
 *Young express right-arm quick. Hits the deck hard with bounce, new-ball seam off the surface.*
 - **Delivery:** Good length off stump | **Adjective:** Seam | **Fielding:** Slip cordon
+
+### GOLD — Mohammad Amir
+*Retired 2020, LH swing legend, 50 T20Is. T20 WC 2009 / Champions Trophy 2017 hero with the new ball. Late inswing back into the right-hander from a natural left-arm angle. Skill: **Swing**.*
+- **Delivery:** Full off stump | **Adjective:** Swing | **Fielding:** Slip cordon
 
 ### SILVER — Mohammad Nawaz
 *Left-arm orthodox all-rounder. Economical middle-overs operator.*
@@ -1914,7 +1936,7 @@ Everything not listed = dot ball. Weaknesses are zone-only (no adjective referen
 | England | 13 | 13 | 26 |
 | South Africa | 13 | 13 | 26 |
 | New Zealand | 13 | 13 | 26 |
-| Pakistan | 11 | 11 | 22 |
+| Pakistan | 13 | 13 | 26 |
 | Sri Lanka | 11 | 11 | 22 |
 | West Indies | 11 | 11 | 22 |
 | Bangladesh | 11 | 11 | 22 |
@@ -1927,4 +1949,4 @@ Everything not listed = dot ball. Weaknesses are zone-only (no adjective referen
 | USA | 1 | 1 | 2 |
 | Netherlands | 1 | 1 | 2 |
 | Namibia | 1 | 1 | 2 |
-| **TOTAL** | **147** | **147** | **294** |
+| **TOTAL** | **149** | **149** | **298** |
