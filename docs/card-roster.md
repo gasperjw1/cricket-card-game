@@ -803,6 +803,13 @@ Everything not listed = dot ball. Weaknesses are zone-only (no adjective referen
 - **Weaknesses:** Short Outside off → mistimed cut caught at point
 - **Resistances:** Swing, Seam, Slower, Topspin, Drift, Googly, Carrom
 
+### ELITE — Brendon McCullum
+*Legend — retired 2016, RH explosive opener, 71 T20Is at SR ~136. Inaugural KKR captain (105 in IPL's first-ever match). Slogs everything in sight, pulls anything short, ramps the quick. Mid-2010s game-changing T20 mindset.*
+- **Strengths:** Full middle stump → loft for 6 | Short middle stump → pull for 6 | Full off stump → drive for 4
+- **Neutrals:** Good length leg stump → flick for 2 | Good length middle stump → push for 1
+- **Weaknesses:** Good length Outside off → edge to slip
+- **Resistances:** Swing, Seam, Cutter, Slower, Topspin, Drift, Googly
+
 ### GOLD — Glenn Phillips
 *NZ's most explosive current T20 hitter. Big sixes over midwicket, switch hits, ramps. Has a Bronze part-time off-spin bowler card. Slower balls and cutters get him.*
 - **Strengths:** Full leg stump → loft over midwicket for 6 | Short middle stump → pull for 6 | Full middle stump → drive for 4
@@ -816,6 +823,13 @@ Everything not listed = dot ball. Weaknesses are zone-only (no adjective referen
 - **Neutrals:** Good length off stump → push for 2 | Good length middle stump → defend for 1
 - **Weaknesses:** Short middle stump → caught fending | Good length leg stump → LBW going across
 - **Resistances:** Topspin, Drift, Carrom, Googly
+
+### GOLD — Ross Taylor
+*Retired 2022, classy RH middle-order, 102 T20Is. Solid technique with good power. NZ stalwart across two decades, a long-time anchor in the middle order.*
+- **Strengths:** Full off stump → cover drive for 4 | Short middle stump → pull for 4
+- **Neutrals:** Good length off stump → push for 2 | Good length leg stump → flick for 1
+- **Weaknesses:** Good length middle stump → bowled | Full Outside off → caught at cover
+- **Resistances:** Slower, Cutter, Topspin, Drift
 
 ### SILVER — Mark Chapman
 *Left-handed stroke-maker. Growing international presence after a strong 2024. Cover drives and sweeps; struggles with the moving ball outside off.*
@@ -874,6 +888,10 @@ Everything not listed = dot ball. Weaknesses are zone-only (no adjective referen
 *Best NZ T20 quick of his era. Late left-arm swing with the new ball, signature slower-bouncer at the death. Two-skill Elite per the v1.1 rule.*
 - **Delivery:** Full Outside off | **Adjective:** Swing, Slower | **Fielding:** Slip cordon + Cover
 
+### ELITE — Daniel Vettori
+*Legend — retired 2015, LA orthodox great, 102 T20Is, IPL stalwart. Subtle drift, disguised topspinner that skids on, miserly economy in middle overs. Two-skill Elite per the v1.1 rule.*
+- **Delivery:** Good length off stump | **Adjective:** Drift, Topspin | **Fielding:** Cover + Mid-wicket
+
 ### GOLD — Tim Southee
 *NZ swing legend, second-most T20I wickets in history. Outswing on the corridor with the new ball. Faces Gold tier wide-call risk on Outside off (15%).*
 - **Delivery:** Good length Outside off | **Adjective:** Swing | **Fielding:** Slip cordon
@@ -881,6 +899,10 @@ Everything not listed = dot ball. Weaknesses are zone-only (no adjective referen
 ### GOLD — Ish Sodhi
 *Right-arm leg-spinner. Disguised wrong'un breaking back into RH bats; consistent middle-overs threat.*
 - **Delivery:** Good length middle stump | **Adjective:** Googly | **Fielding:** Short leg/Silly point
+
+### GOLD — Mitchell McClenaghan
+*Retired 2020, LH death-overs specialist, MI IPL star. Slingy left-arm angle with cutters and slower-ball variations at the death. Skill: **Slower**.*
+- **Delivery:** Full off stump | **Adjective:** Slower | **Fielding:** Mid-wicket
 
 ### SILVER — Lockie Ferguson
 *Express right-arm pace (150kph+). Short ball is his weapon. No specific skill at the Silver tier.*
@@ -1891,7 +1913,7 @@ Everything not listed = dot ball. Weaknesses are zone-only (no adjective referen
 | Australia | 13 | 13 | 26 |
 | England | 13 | 13 | 26 |
 | South Africa | 13 | 13 | 26 |
-| New Zealand | 11 | 11 | 22 |
+| New Zealand | 13 | 13 | 26 |
 | Pakistan | 11 | 11 | 22 |
 | Sri Lanka | 11 | 11 | 22 |
 | West Indies | 11 | 11 | 22 |
@@ -1905,4 +1927,4 @@ Everything not listed = dot ball. Weaknesses are zone-only (no adjective referen
 | USA | 1 | 1 | 2 |
 | Netherlands | 1 | 1 | 2 |
 | Namibia | 1 | 1 | 2 |
-| **TOTAL** | **145** | **145** | **290** |
+| **TOTAL** | **147** | **147** | **294** |

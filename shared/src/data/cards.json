@@ -4648,6 +4648,100 @@
       ]
     },
     {
+      "id": "brendon-mccullum-bat",
+      "kind": "batsman",
+      "name": "Brendon McCullum",
+      "nation": "New Zealand",
+      "tier": "Elite",
+      "description": "Legend — retired 2016, RH explosive opener, 71 T20Is at SR ~136. Inaugural KKR captain (105 in IPL's first-ever match). Slogs everything in sight, pulls anything short, ramps the quick. Mid-2010s game-changing T20 mindset.",
+      "strengths": [
+        {
+          "zone": {
+            "line": "Middle stump",
+            "length": "Full"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 6,
+            "shot": "loft",
+            "shotCategory": "loft-straight"
+          }
+        },
+        {
+          "zone": {
+            "line": "Middle stump",
+            "length": "Short"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 6,
+            "shot": "pull",
+            "shotCategory": "pull"
+          }
+        },
+        {
+          "zone": {
+            "line": "Off stump",
+            "length": "Full"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 4,
+            "shot": "drive",
+            "shotCategory": "drive-cover"
+          }
+        }
+      ],
+      "neutrals": [
+        {
+          "zone": {
+            "line": "Leg stump",
+            "length": "Good length"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 2,
+            "shot": "flick",
+            "shotCategory": "flick"
+          }
+        },
+        {
+          "zone": {
+            "line": "Middle stump",
+            "length": "Good length"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 1,
+            "shot": "push",
+            "shotCategory": "defend"
+          }
+        }
+      ],
+      "weaknesses": [
+        {
+          "zone": {
+            "line": "Outside off",
+            "length": "Good length"
+          },
+          "outcome": {
+            "type": "wicket",
+            "mode": "edge to slip",
+            "dismissalCategory": "caught-slip"
+          }
+        }
+      ],
+      "resistances": [
+        "Swing",
+        "Seam",
+        "Cutter",
+        "Slower",
+        "Topspin",
+        "Drift",
+        "Googly"
+      ]
+    },
+    {
       "id": "glenn-phillips-bat",
       "kind": "batsman",
       "name": "Glenn Phillips",
@@ -4838,6 +4932,96 @@
         "Drift",
         "Carrom",
         "Googly"
+      ]
+    },
+    {
+      "id": "ross-taylor-bat",
+      "kind": "batsman",
+      "name": "Ross Taylor",
+      "nation": "New Zealand",
+      "tier": "Gold",
+      "description": "Retired 2022, classy RH middle-order, 102 T20Is. Solid technique with good power. NZ stalwart across two decades, a long-time anchor in the middle order.",
+      "strengths": [
+        {
+          "zone": {
+            "line": "Off stump",
+            "length": "Full"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 4,
+            "shot": "cover drive",
+            "shotCategory": "drive-cover"
+          }
+        },
+        {
+          "zone": {
+            "line": "Middle stump",
+            "length": "Short"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 4,
+            "shot": "pull",
+            "shotCategory": "pull"
+          }
+        }
+      ],
+      "neutrals": [
+        {
+          "zone": {
+            "line": "Off stump",
+            "length": "Good length"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 2,
+            "shot": "push",
+            "shotCategory": "defend"
+          }
+        },
+        {
+          "zone": {
+            "line": "Leg stump",
+            "length": "Good length"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 1,
+            "shot": "flick",
+            "shotCategory": "flick"
+          }
+        }
+      ],
+      "weaknesses": [
+        {
+          "zone": {
+            "line": "Middle stump",
+            "length": "Good length"
+          },
+          "outcome": {
+            "type": "wicket",
+            "mode": "bowled",
+            "dismissalCategory": "bowled"
+          }
+        },
+        {
+          "zone": {
+            "line": "Outside off",
+            "length": "Full"
+          },
+          "outcome": {
+            "type": "wicket",
+            "mode": "caught at cover",
+            "dismissalCategory": "caught-cover"
+          }
+        }
+      ],
+      "resistances": [
+        "Slower",
+        "Cutter",
+        "Topspin",
+        "Drift"
       ]
     },
     {
@@ -13583,6 +13767,26 @@
       ]
     },
     {
+      "id": "daniel-vettori-bowl",
+      "kind": "bowler",
+      "name": "Daniel Vettori",
+      "nation": "New Zealand",
+      "tier": "Elite",
+      "description": "Legend — retired 2015, LA orthodox great, 102 T20Is, IPL stalwart. Subtle drift, disguised topspinner that skids on, miserly economy in middle overs. Two-skill Elite per the v1.1 rule.",
+      "delivery": {
+        "line": "Off stump",
+        "length": "Good length"
+      },
+      "adjectives": [
+        "Drift",
+        "Topspin"
+      ],
+      "fielding": [
+        "Cover",
+        "Mid-wicket"
+      ]
+    },
+    {
       "id": "tim-southee-bowl",
       "kind": "bowler",
       "name": "Tim Southee",
@@ -13616,6 +13820,24 @@
       ],
       "fielding": [
         "Short leg/Silly point"
+      ]
+    },
+    {
+      "id": "mitchell-mcclenaghan-bowl",
+      "kind": "bowler",
+      "name": "Mitchell McClenaghan",
+      "nation": "New Zealand",
+      "tier": "Gold",
+      "description": "Retired 2020, LH death-overs specialist, MI IPL star. Slingy left-arm angle with cutters and slower-ball variations at the death. Skill: **Slower**.",
+      "delivery": {
+        "line": "Off stump",
+        "length": "Full"
+      },
+      "adjectives": [
+        "Slower"
+      ],
+      "fielding": [
+        "Mid-wicket"
       ]
     },
     {
