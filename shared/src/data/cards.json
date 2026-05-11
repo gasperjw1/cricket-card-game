@@ -12385,6 +12385,99 @@
       ]
     },
     {
+      "id": "eoin-morgan-bat",
+      "kind": "batsman",
+      "name": "Eoin Morgan",
+      "nation": "Ireland",
+      "tier": "Elite",
+      "description": "Multi-nation legend — played 23 ODIs for Ireland 2006-2009 before switching to England, where he became the country's most successful T20I captain (T20 WC 2022 winner). LH explosive middle-order, sweeps, lofts, switch-hits. Anchored England's white-ball revolution.",
+      "strengths": [
+        {
+          "zone": {
+            "line": "Leg stump",
+            "length": "Full"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 6,
+            "shot": "loft over long-on",
+            "shotCategory": "loft-straight"
+          }
+        },
+        {
+          "zone": {
+            "line": "Middle stump",
+            "length": "Short"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 4,
+            "shot": "pull",
+            "shotCategory": "pull"
+          }
+        },
+        {
+          "zone": {
+            "line": "Off stump",
+            "length": "Good length"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 4,
+            "shot": "reverse sweep",
+            "shotCategory": "reverse-sweep"
+          }
+        }
+      ],
+      "neutrals": [
+        {
+          "zone": {
+            "line": "Leg stump",
+            "length": "Good length"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 2,
+            "shot": "flick",
+            "shotCategory": "flick"
+          }
+        },
+        {
+          "zone": {
+            "line": "Off stump",
+            "length": "Full"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 1,
+            "shot": "drive",
+            "shotCategory": "drive-cover"
+          }
+        }
+      ],
+      "weaknesses": [
+        {
+          "zone": {
+            "line": "Outside off",
+            "length": "Good length"
+          },
+          "outcome": {
+            "type": "wicket",
+            "mode": "edge to slip",
+            "dismissalCategory": "caught-slip"
+          }
+        }
+      ],
+      "resistances": [
+        "Slower",
+        "Cutter",
+        "Topspin",
+        "Drift",
+        "Carrom",
+        "Googly"
+      ]
+    },
+    {
       "id": "andrew-balbirnie-bat",
       "kind": "batsman",
       "name": "Andrew Balbirnie",
@@ -12563,6 +12656,96 @@
         "Cutter",
         "Topspin",
         "Drift"
+      ]
+    },
+    {
+      "id": "ed-joyce-bat",
+      "kind": "batsman",
+      "name": "Ed Joyce",
+      "nation": "Ireland",
+      "tier": "Gold",
+      "description": "Multi-nation career — IRE → ENG → IRE. LH classy middle-order, retired 2018. Played in two ODI WCs across both countries. Drives off both feet, sweeps spin from his county-cricket pedigree.",
+      "strengths": [
+        {
+          "zone": {
+            "line": "Off stump",
+            "length": "Full"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 4,
+            "shot": "cover drive",
+            "shotCategory": "drive-cover"
+          }
+        },
+        {
+          "zone": {
+            "line": "Leg stump",
+            "length": "Full"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 4,
+            "shot": "sweep",
+            "shotCategory": "sweep"
+          }
+        }
+      ],
+      "neutrals": [
+        {
+          "zone": {
+            "line": "Off stump",
+            "length": "Good length"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 2,
+            "shot": "push",
+            "shotCategory": "defend"
+          }
+        },
+        {
+          "zone": {
+            "line": "Leg stump",
+            "length": "Good length"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 1,
+            "shot": "flick",
+            "shotCategory": "flick"
+          }
+        }
+      ],
+      "weaknesses": [
+        {
+          "zone": {
+            "line": "Middle stump",
+            "length": "Short"
+          },
+          "outcome": {
+            "type": "wicket",
+            "mode": "caught fending",
+            "dismissalCategory": "caught-keeper"
+          }
+        },
+        {
+          "zone": {
+            "line": "Middle stump",
+            "length": "Good length"
+          },
+          "outcome": {
+            "type": "wicket",
+            "mode": "bowled",
+            "dismissalCategory": "bowled"
+          }
+        }
+      ],
+      "resistances": [
+        "Topspin",
+        "Drift",
+        "Carrom",
+        "Googly"
       ]
     },
     {
@@ -16095,6 +16278,26 @@
       ]
     },
     {
+      "id": "boyd-rankin-bowl",
+      "kind": "bowler",
+      "name": "Boyd Rankin",
+      "nation": "Ireland",
+      "tier": "Elite",
+      "description": "Multi-nation career — IRE → ENG → IRE. RH tall pace, retired 2022, 56 T20Is across both countries. Bounce off the deck, late seam, slower-ball variations at the death. Two-skill Elite per the v1.1 rule.",
+      "delivery": {
+        "line": "Middle stump",
+        "length": "Good length"
+      },
+      "adjectives": [
+        "Seam",
+        "Slower"
+      ],
+      "fielding": [
+        "Gully/Point",
+        "Slip cordon"
+      ]
+    },
+    {
       "id": "mark-adair-bowl",
       "kind": "bowler",
       "name": "Mark Adair",
@@ -16121,6 +16324,24 @@
       "description": "Right-arm medium-fast (all-rounder split — Silver batter above). T20 WC 2021 4-in-4 hero with new-ball outswing. Faces Gold tier wide-call risk on Outside off (15%).",
       "delivery": {
         "line": "Outside off",
+        "length": "Good length"
+      },
+      "adjectives": [
+        "Swing"
+      ],
+      "fielding": [
+        "Slip cordon"
+      ]
+    },
+    {
+      "id": "tim-murtagh-bowl",
+      "kind": "bowler",
+      "name": "Tim Murtagh",
+      "nation": "Ireland",
+      "tier": "Gold",
+      "description": "Retired 2024 — RH swing legend. The disciplined county-cricket craftsman. Late outswing on a perfect line, miserly economy. Iconic Test moments (5/13 vs ENG at Lord's 2019). Skill: **Swing**.",
+      "delivery": {
+        "line": "Off stump",
         "length": "Good length"
       },
       "adjectives": [

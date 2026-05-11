@@ -1792,6 +1792,13 @@ Everything not listed = dot ball. Weaknesses are zone-only (no adjective referen
 - **Weaknesses:** Good length Outside off → edge to slip
 - **Resistances:** Topspin, Drift, Googly, Carrom, Slower, Cutter, Seam
 
+### ELITE — Eoin Morgan
+*Multi-nation legend — played 23 ODIs for Ireland 2006-2009 before switching to England, where he became the country's most successful T20I captain (T20 WC 2022 winner). LH explosive middle-order, sweeps, lofts, switch-hits. Anchored England's white-ball revolution.*
+- **Strengths:** Full leg stump → loft over long-on for 6 | Short middle stump → pull for 4 | Good length off stump → reverse sweep for 4
+- **Neutrals:** Good length leg stump → flick for 2 | Full off stump → drive for 1
+- **Weaknesses:** Good length Outside off → edge to slip
+- **Resistances:** Slower, Cutter, Topspin, Drift, Carrom, Googly
+
 ### GOLD — Andrew Balbirnie
 *Right-handed elegant anchor, former Ireland captain. Beautiful drives off both feet. Vulnerable to short pace at the body.*
 - **Strengths:** Full off stump → cover drive for 4 | Full middle stump → drive for 4
@@ -1805,6 +1812,13 @@ Everything not listed = dot ball. Weaknesses are zone-only (no adjective referen
 - **Neutrals:** Good length middle stump → push for 2 | Good length leg stump → work for 1
 - **Weaknesses:** Good length Outside off → edge to slip | Short middle stump → top edge
 - **Resistances:** Slower, Cutter, Topspin, Drift
+
+### GOLD — Ed Joyce
+*Multi-nation career — IRE → ENG → IRE. LH classy middle-order, retired 2018. Played in two ODI WCs across both countries. Drives off both feet, sweeps spin from his county-cricket pedigree.*
+- **Strengths:** Full off stump → cover drive for 4 | Full leg stump → sweep for 4
+- **Neutrals:** Good length off stump → push for 2 | Good length leg stump → flick for 1
+- **Weaknesses:** Short middle stump → caught fending | Good length middle stump → bowled
+- **Resistances:** Topspin, Drift, Carrom, Googly
 
 ### SILVER — Lorcan Tucker
 *Right-handed keeper-bat. Aggressive, quick scorer. Pulls and lofts; struggles with the moving ball outside off.*
@@ -1863,6 +1877,10 @@ Everything not listed = dot ball. Weaknesses are zone-only (no adjective referen
 *Ireland's best-ever fast bowler. Left-arm express with new-ball inswing + signature slow-ball cutter. IPL/T20 league regular (GT, MI). Two-skill Elite per the v1.1 rule.*
 - **Delivery:** Full Outside off | **Adjective:** Swing, Slower | **Fielding:** Slip cordon + Cover
 
+### ELITE — Boyd Rankin
+*Multi-nation career — IRE → ENG → IRE. RH tall pace, retired 2022, 56 T20Is across both countries. Bounce off the deck, late seam, slower-ball variations at the death. Two-skill Elite per the v1.1 rule.*
+- **Delivery:** Good length middle stump | **Adjective:** Seam, Slower | **Fielding:** Gully/Point + Slip cordon
+
 ### GOLD — Mark Adair
 *Right-arm fast-medium. Death-overs specialist with seam off the deck.*
 - **Delivery:** Good length off stump | **Adjective:** Seam | **Fielding:** Slip cordon
@@ -1870,6 +1888,10 @@ Everything not listed = dot ball. Weaknesses are zone-only (no adjective referen
 ### GOLD — Curtis Campher
 *Right-arm medium-fast (all-rounder split — Silver batter above). T20 WC 2021 4-in-4 hero with new-ball outswing. Faces Gold tier wide-call risk on Outside off (15%).*
 - **Delivery:** Good length Outside off | **Adjective:** Swing | **Fielding:** Slip cordon
+
+### GOLD — Tim Murtagh
+*Retired 2024 — RH swing legend. The disciplined county-cricket craftsman. Late outswing on a perfect line, miserly economy. Iconic Test moments (5/13 vs ENG at Lord's 2019). Skill: **Swing**.*
+- **Delivery:** Good length off stump | **Adjective:** Swing | **Fielding:** Slip cordon
 
 ### SILVER — George Dockrell
 *Left-arm orthodox (all-rounder split — Silver batter above). Experienced, economical middle-overs operator.*
@@ -2019,11 +2041,11 @@ Everything not listed = dot ball. Weaknesses are zone-only (no adjective referen
 | Bangladesh | 13 | 13 | 26 |
 | Zimbabwe | 11 | 11 | 22 |
 | Afghanistan | 12 | 12 | 24 |
-| Ireland | 11 | 11 | 22 |
+| Ireland | 13 | 13 | 26 |
 | Nepal | 0 | 1 | 1 |
 | Hong Kong | 1 | 0 | 1 |
 | Scotland | 1 | 1 | 2 |
 | USA | 1 | 1 | 2 |
 | Netherlands | 1 | 1 | 2 |
 | Namibia | 1 | 1 | 2 |
-| **TOTAL** | **156** | **156** | **312** |
+| **TOTAL** | **158** | **158** | **316** |
