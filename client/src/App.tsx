@@ -1,8 +1,17 @@
+import { lazy, Suspense } from "react";
 import { CoinTossScreen } from "./screens/CoinTossScreen.tsx";
 import { HomeScreen } from "./screens/HomeScreen.tsx";
 import { InningsScreen } from "./screens/InningsScreen.tsx";
 import { LobbyScreen } from "./screens/LobbyScreen.tsx";
 import { useMatchClient } from "./state.ts";
+
+// Lazy-loaded — only fetched when ?preview=story is in the URL. Keeps
+// the main bundle clean of preview-only code.
+const StoryPreviewScreen = lazy(() =>
+  import("./screens/StoryPreviewScreen.tsx").then((m) => ({
+    default: m.StoryPreviewScreen,
+  })),
+);
 
 export function App() {
   const client = useMatchClient();
@@ -15,6 +24,18 @@ export function App() {
 }
 
 function AppRouter({ client }: { client: ReturnType<typeof useMatchClient> }) {
+  // QA preview route — hits any time, doesn't require a match.
+  if (
+    typeof window !== "undefined" &&
+    new URLSearchParams(window.location.search).get("preview") === "story"
+  ) {
+    return (
+      <Suspense fallback={<main><h1>Loading preview…</h1></main>}>
+        <StoryPreviewScreen />
+      </Suspense>
+    );
+  }
+
   const inMatch = client.matchState !== null && client.mySlot !== null;
   if (!inMatch) return <HomeScreen client={client} />;
   const phase = client.matchState!.phase;

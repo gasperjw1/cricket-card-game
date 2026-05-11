@@ -1,4 +1,13 @@
 import type { BallResult } from "@swipe-sixer/shared";
+import {
+  BOWLER_IMAGES,
+  DISMISSAL_IMAGES,
+  PITCH_IMAGES,
+  SHOT_IMAGES,
+  SIGNAL_IMAGES,
+  bowlerArchetype,
+} from "./imageMap.ts";
+import { StoryImage } from "./StoryImage.tsx";
 import type { StoryStage, StoryState } from "./useStorySequence.ts";
 
 interface Props {
@@ -6,10 +15,11 @@ interface Props {
   story: StoryState;
 }
 
-/** Renders the storytelling pre-roll: an animated sequence of pitch →
- *  bowler → batter → result → (DRS, Biryani if applicable). Phase 1
- *  uses emoji placeholders so we can validate timing/feel before
- *  sourcing real art (see docs/storytelling.md when it exists). */
+/** Renders the storytelling pre-roll. Each stage shows a StoryImage
+ *  (real WebP if present in client/public/story/, emoji fallback if
+ *  not) plus a caption. Phase 1 ships with all-emoji fallbacks; Phase
+ *  2 adds the real images and they appear with no further code change.
+ */
 export function StorySequence({ result, story }: Props) {
   const stage = story.plan[story.currentIndex];
   if (!stage) return null;
@@ -34,17 +44,43 @@ function StagePanel({
     case "pitch":
       return (
         <div className="story-pitch">
-          <div className="story-emoji">{story.isDay5 ? "🏜️" : "🟫"}</div>
+          <StoryImage
+            src={story.isDay5 ? PITCH_IMAGES["day-5"] : PITCH_IMAGES.regular}
+            fallbackEmoji={story.isDay5 ? "🏜️" : "🟫"}
+            alt={story.isDay5 ? "Day 5 cracked pitch" : "Regular pitch"}
+          />
           <div className="story-caption">
             {story.isDay5 ? "Day 5 pitch — cracked surface" : "Pitch is clean"}
           </div>
         </div>
       );
 
-    case "bowler":
+    case "bowler": {
+      // Bowling side's mandatoryCard is always a BowlerCard at runtime, but
+      // the union type is BatsmanCard | BowlerCard. Narrow defensively.
+      const bowlerCard = result.bowlingSelection.mandatoryCard;
+      const archetype =
+        bowlerCard.kind === "bowler" ? bowlerArchetype(bowlerCard) : "pace-rh";
+      // If a wide or no-ball was called, overlay the umpire signal
+      // image alongside the bowler emoji.
+      const signalSrc = story.hasNoBall
+        ? SIGNAL_IMAGES["no-ball"]
+        : story.hasWide
+          ? SIGNAL_IMAGES.wide
+          : null;
       return (
         <div className="story-bowler">
-          <div className="story-emoji">🤾</div>
+          <StoryImage
+            src={signalSrc ?? BOWLER_IMAGES[archetype]}
+            fallbackEmoji={story.hasNoBall ? "🚫" : story.hasWide ? "↔️" : "🤾"}
+            alt={
+              story.hasNoBall
+                ? "Umpire signals no-ball"
+                : story.hasWide
+                  ? "Umpire signals wide"
+                  : `Bowler delivery (${archetype})`
+            }
+          />
           <div className="story-caption">
             {story.hasNoBall && story.hasWide
               ? "🚫 No ball + wide!"
@@ -56,21 +92,28 @@ function StagePanel({
           </div>
         </div>
       );
+    }
 
     case "batter":
       return (
         <div className="story-batter">
-          <div className="story-emoji">{story.isWicket ? "💥" : "🏏"}</div>
-          <div className="story-caption">
-            {batterCaption(result, story)}
-          </div>
+          <StoryImage
+            src={batterImageSrc(result, story)}
+            fallbackEmoji={story.isWicket ? "💥" : "🏏"}
+            alt={batterCaption(result, story)}
+          />
+          <div className="story-caption">{batterCaption(result, story)}</div>
         </div>
       );
 
     case "result":
       return (
         <div className="story-result">
-          <div className="story-emoji">{resultEmoji(result, story)}</div>
+          <StoryImage
+            src={resultImageSrc(result, story)}
+            fallbackEmoji={resultEmoji(result, story)}
+            alt={resultCaption(result, story)}
+          />
           <div className="story-caption">{resultCaption(result, story)}</div>
         </div>
       );
@@ -78,7 +121,9 @@ function StagePanel({
     case "drs":
       return (
         <div className="story-drs">
-          <div className="story-emoji">🤔</div>
+          <span className="story-emoji" role="img" aria-label="DRS review">
+            🤔
+          </span>
           <div className="story-caption">
             DRS Review — batter signals a T → 3rd umpire → <strong>Not out!</strong>
           </div>
@@ -88,7 +133,9 @@ function StagePanel({
     case "biryani":
       return (
         <div className="story-biryani">
-          <div className="story-emoji">🍛</div>
+          <span className="story-emoji" role="img" aria-label="Biryani umpire">
+            🍛
+          </span>
           <div className="story-caption">
             Third umpire distracted by biryani — call cancelled, dot ball
           </div>
@@ -97,13 +144,37 @@ function StagePanel({
   }
 }
 
+/** Pick the right image for the batter stage. For wickets we show the
+ *  dismissal image; for runs we show the shot image. */
+function batterImageSrc(result: BallResult, story: StoryState): string {
+  const o = result.finalOutcome;
+  if (story.isWicket && o.type === "wicket") {
+    return DISMISSAL_IMAGES[o.dismissalCategory];
+  }
+  if (o.type === "runs") {
+    return SHOT_IMAGES[o.shotCategory];
+  }
+  return SHOT_IMAGES.defend;  // dot ball → defensive
+}
+
+/** Result-stage image: for boundaries show the umpire signal (six/four
+ *  via wide-arm signals); for wickets show "out" finger. Smaller
+ *  outcomes (1, 2) and dots fall back to emoji. */
+function resultImageSrc(result: BallResult, story: StoryState): string {
+  const o = result.finalOutcome;
+  if (story.isWicket && o.type === "wicket") return SIGNAL_IMAGES.out;
+  if (o.type === "runs" && o.value === 6) return SIGNAL_IMAGES.six;
+  // For 1, 2, 4, dot — no signal image yet. Fall through to emoji.
+  return SHOT_IMAGES.defend;  // unused when emoji fallback fires; placeholder src
+}
+
 function batterCaption(result: BallResult, story: StoryState): string {
   const o = result.finalOutcome;
   if (story.isWicket && o.type === "wicket") {
-    return `Out — ${o.mode} (${o.dismissalCategory})`;
+    return `Out — ${o.mode}`;
   }
   if (o.type === "runs") {
-    return `${o.shot} (${o.shotCategory})`;
+    return o.shot;
   }
   return "Beaten — dot ball";
 }
