@@ -73,27 +73,9 @@ export function InningsScreen({ client }: Props) {
     !matchState.pendingSwap &&
     !innings.isComplete;
   const canSubmit = !!mandatoryId && !awaitingReveal && !lastReveal && ballLive;
-  const inPostBallPause = matchState.postBallDeadlineEpochMs !== null;
-
   return (
     <main className="innings">
       <Scorebug matchState={matchState} />
-
-      <RoleBanner
-        role={role}
-        myName={me.displayName}
-        deadline={awaitingReveal ? null : matchState.currentBallDeadlineEpochMs}
-        innings1Complete={
-          matchState.currentInnings === 1 && innings.isComplete
-        }
-        matchEndingSoon={
-          matchState.currentInnings === 2 &&
-          innings.isComplete &&
-          matchState.phase === "innings"
-        }
-        inPostBallPause={inPostBallPause}
-        postBallDeadline={matchState.postBallDeadlineEpochMs}
-      />
 
       <HandArea
         handCards={handCards}
@@ -314,78 +296,6 @@ function HandArea(props: {
         </div>
       )}
     </div>
-  );
-}
-
-// ─────────────────────────── Banners ───────────────────────────
-
-function RoleBanner(props: {
-  role: "batting" | "bowling";
-  myName: string;
-  /** Epoch-ms deadline; null means timer not running (e.g. while waiting for reveal). */
-  deadline: number | null;
-  innings1Complete: boolean;
-  matchEndingSoon: boolean;
-  inPostBallPause: boolean;
-  postBallDeadline: number | null;
-}) {
-  const seconds = useCountdown(props.deadline);
-  const postBallSeconds = useCountdown(props.postBallDeadline);
-  const tickingClass = props.deadline !== null && seconds <= 5 ? "urgent" : "";
-
-  // Innings 1 finished — innings 2 starting after the pause.
-  if (props.innings1Complete) {
-    return (
-      <section className={`role-banner ${props.role} ending`}>
-        <div className="role-banner-row">
-          <span>
-            <strong>Innings 1 complete.</strong> Roles swap — innings 2 starts soon.
-          </span>
-          {props.postBallDeadline !== null && (
-            <span className="turn-timer">{postBallSeconds}s</span>
-          )}
-        </div>
-      </section>
-    );
-  }
-
-  // Innings 2 finished — match ending after the pause.
-  if (props.matchEndingSoon) {
-    return (
-      <section className={`role-banner ${props.role} ending`}>
-        <div className="role-banner-row">
-          <span>
-            <strong>Innings 2 complete.</strong> Match result coming up.
-          </span>
-          {props.postBallDeadline !== null && (
-            <span className="turn-timer">{postBallSeconds}s</span>
-          )}
-        </div>
-      </section>
-    );
-  }
-
-  return (
-    <section className={`role-banner ${props.role}`}>
-      <div className="role-banner-row">
-        <span>
-          <strong>{props.myName}</strong> — you're {props.role} this ball.
-        </span>
-        {props.deadline !== null ? (
-          <Tip text="Time remaining to lock in your selection. If you don't, the server picks a random mandatory card for you.">
-            <span className={`turn-timer ${tickingClass}`}>{seconds}s</span>
-          </Tip>
-        ) : props.inPostBallPause ? (
-          <Tip text="Resolution pause — next ball starts when the timer hits 0.">
-            <span className="dim-text">next ball in {postBallSeconds}s</span>
-          </Tip>
-        ) : (
-          <Tip text="Timer paused — locked in or revealing.">
-            <span className="dim-text">paused</span>
-          </Tip>
-        )}
-      </div>
-    </section>
   );
 }
 

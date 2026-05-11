@@ -899,7 +899,15 @@ h1 {
   letter-spacing: 0.1em;
   font-weight: 600;
   padding: 0.3rem 0.9rem;
-  text-align: center;
+  /* Status text on the left, pitch-clock timer on the right. */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+.scorebug-status > span:first-child {
+  flex: 1;
+  text-align: left;
 }
 .scorebug-balls-row {
   display: flex;
@@ -990,31 +998,39 @@ h1 {
   border-color: #c9a227;
 }
 
-.role-banner {
-  margin-bottom: 0.75rem;
-  padding: 0.6rem 0.9rem;
-  border-radius: 8px;
-  font-size: 0.9rem;
+/* Pitch-clock-style timer baked into the scorebug status strip.
+   See ScorebugTimer in components/Scorebug.tsx. Pulses red when
+   the pick deadline drops to 5s or less. */
+.scorebug-timer {
+  font-family: ui-monospace, "SF Mono", Menlo, monospace;
+  font-size: 0.85rem;
+  font-weight: 700;
+  padding: 0.15rem 0.5rem;
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.35);
+  white-space: nowrap;
 }
-/* Mobile (<540px): squeeze the role banner so the hand card has more
-   vertical room before the user has to scroll. The role/timer info
-   stays readable but takes ~half the chrome it did before. */
+.scorebug-timer.pick { color: #fff; background: #1d3a23; }
+.scorebug-timer.pick.urgent {
+  color: #fff;
+  background: #b91c1c;
+  animation: timer-pulse 0.8s ease-in-out infinite alternate;
+}
+.scorebug-timer.pause { color: #8a939c; background: #1c2530; }
+@keyframes timer-pulse {
+  from { transform: scale(1); }
+  to   { transform: scale(1.08); }
+}
+
+/* Mobile-only chrome trim (kept after the role-banner removal in case
+   the user shrinks fonts or zooms in). */
 @media (max-width: 539px) {
-  .role-banner {
-    margin-bottom: 0.4rem;
-    padding: 0.35rem 0.7rem;
-    font-size: 0.82rem;
-  }
-  .turn-timer {
-    font-size: 1.1rem !important;
-    padding: 0.1rem 0.45rem !important;
-  }
   /* Hand meta strip: hide on mobile — the carousel dot indicator already
      shows position, and "deck: N" is rarely critical mid-pick. */
   .hand-meta {
     display: none;
   }
-  /* Tighter scorebug too — ~10px saved */
+  /* Tighter scorebug bottom margin */
   .scorebug {
     margin-bottom: 0.4rem !important;
   }

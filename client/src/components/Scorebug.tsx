@@ -6,6 +6,7 @@ import {
   type PublicMatchState,
   type PublicPlayerInfo,
 } from "@swipe-sixer/shared";
+import { useCountdown } from "../useCountdown.ts";
 import { Tip } from "./Tip.tsx";
 
 interface Props {
@@ -80,6 +81,7 @@ export function Scorebug({ matchState }: Props) {
           battingAbbr={battingPlayer?.abbreviation ?? "—"}
           bowlingAbbr={bowlingPlayer?.abbreviation ?? "—"}
         />
+        <ScorebugTimer matchState={matchState} />
       </div>
 
       <div className="scorebug-balls-row">
@@ -228,6 +230,36 @@ function BallCircle({ result }: { result: BallResult }) {
       </span>
     </Tip>
   );
+}
+
+/** Pitch-clock-style timer baked into the scorebug. Shows whichever
+ *  clock is active: ball-pick deadline (red below 5s) or post-ball
+ *  pause countdown (dim/blue). Lives inside the scorebug status strip
+ *  so the player never has to look elsewhere for "how long do I have". */
+function ScorebugTimer({ matchState }: { matchState: PublicMatchState }) {
+  const ballSeconds = useCountdown(matchState.currentBallDeadlineEpochMs);
+  const pauseSeconds = useCountdown(matchState.postBallDeadlineEpochMs);
+
+  if (matchState.currentBallDeadlineEpochMs !== null) {
+    const urgent = ballSeconds <= 5;
+    return (
+      <Tip text="Time to lock in your card. If 0s passes without a pick, the server auto-plays your highest-tier valid card.">
+        <span className={`scorebug-timer pick ${urgent ? "urgent" : ""}`}>
+          ⏱ {ballSeconds}s
+        </span>
+      </Tip>
+    );
+  }
+  if (matchState.postBallDeadlineEpochMs !== null) {
+    return (
+      <Tip text="Resolution pause — next ball begins when this hits 0.">
+        <span className="scorebug-timer pause">
+          ⏸ {pauseSeconds}s
+        </span>
+      </Tip>
+    );
+  }
+  return null;
 }
 
 // Re-export PublicPlayerInfo so type checkers see the import.
