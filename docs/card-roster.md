@@ -511,6 +511,13 @@ Everything not listed = dot ball. Weaknesses are zone-only (no adjective referen
 - **Weaknesses:** Good length leg stump → LBW playing across
 - **Resistances:** Cutter, Slower, Googly, Carrom, Topspin, Drift
 
+### ELITE — Joe Root
+*England Test/ODI run machine, T20I returnee. Sweep specialist vs spin in the middle overs, late dabs anywhere on the off side, classical strengths in the corridor. Vulnerable mainly to high pace banged in short.*
+- **Strengths:** Good length off stump → late cut for 4 | Full off stump → cover drive for 4 | Full leg stump → sweep for 6
+- **Neutrals:** Good length middle stump → push for 2 | Good length leg stump → reverse-sweep for 1
+- **Weaknesses:** Short middle stump → top edge caught
+- **Resistances:** Topspin, Drift, Carrom, Googly, Slower, Cutter, Seam
+
 ### GOLD — Harry Brook
 *England's #3, T20 WC star. Drives beautifully over extra cover, pulls anything short, all-round attacking. Technically sound for an aggressive batter — eats spin alive but vulnerable in the corridor outside off.*
 - **Strengths:** Full off stump → drive for 6 | Short middle stump → pull for 4
@@ -524,6 +531,13 @@ Everything not listed = dot ball. Weaknesses are zone-only (no adjective referen
 - **Neutrals:** Good length off stump → push for 2 | Full leg stump → flick for 1
 - **Weaknesses:** Good length middle stump → bowled | Good length Outside off → edge to slip
 - **Resistances:** Swing, Seam, Cutter, Slower
+
+### GOLD — Alex Hales
+*RH explosive opener, T20 WC 2022 squad member. IPL star (RCB), recent T20I returnee. Drives, pulls, lofts — power-hitter from ball one. Vulnerable to the swinging new ball.*
+- **Strengths:** Full off stump → loft for 6 | Short middle stump → pull for 4
+- **Neutrals:** Good length leg stump → flick for 2 | Full leg stump → slog for 1
+- **Weaknesses:** Good length Outside off → edge to slip | Full Outside off → edge to keeper
+- **Resistances:** Topspin, Drift, Carrom, Cutter
 
 ### SILVER — Liam Livingstone
 *Power-hitter who switch-hits and reverse-sweeps. T20 WC 2024 squad. Smashes most spin and reads slower balls. Vulnerable to good lengths and the moving ball outside off.*
@@ -582,6 +596,10 @@ Everything not listed = dot ball. Weaknesses are zone-only (no adjective referen
 *Express pace at 145+ kph. Yorker maestro with late seam off the deck and world-class slower-ball variations (slower bouncer, knuckle ball). When fit, unplayable. Two-skill Elite per the v1.1 rule.*
 - **Delivery:** Full middle stump | **Adjective:** Seam, Slower | **Fielding:** Mid-wicket + Cover
 
+### ELITE — Stuart Broad
+*Legend — retired 2023, all-time-great new-ball seamer with 56 T20I wickets. Late outswing from the natural angle, hits the deck hard with bounce. Two-skill Elite per the v1.1 rule.*
+- **Delivery:** Good length Outside off | **Adjective:** Swing, Seam | **Fielding:** Slip cordon + Gully/Point
+
 ### GOLD — Adil Rashid
 *England's #1 leg-spinner. T20 WC 2022 winner, middle-overs wicket-taker. Stock leg-break drifting onto the pads with a disguised googly that breaks back into the stumps.*
 - **Delivery:** Good length leg stump | **Adjective:** Googly | **Fielding:** Short leg/Silly point
@@ -589,6 +607,10 @@ Everything not listed = dot ball. Weaknesses are zone-only (no adjective referen
 ### GOLD — Mark Wood
 *Express pacer (150+ kph when fit). Hits the deck hard with bounce, late seam off the surface. Death-overs short ball specialist.*
 - **Delivery:** Short middle stump | **Adjective:** Seam | **Fielding:** Gully/Point
+
+### GOLD — Tymal Mills
+*LH death-overs specialist. Knuckle ball + slower-ball cutter variations are his trade. RCB IPL star, current T20I returnee when fit. Skill: **Slower**.*
+- **Delivery:** Full off stump | **Adjective:** Slower | **Fielding:** Mid-wicket
 
 ### SILVER — Sam Curran
 *Left-arm medium-pacer (bowler card, paired with his Silver batter card via the all-rounder split). T20 WC 2022 Player of the Tournament. Death-overs specialist with no specific skill at the Silver tier — just clever yorker-length lines.*
@@ -1845,7 +1867,7 @@ Everything not listed = dot ball. Weaknesses are zone-only (no adjective referen
 |--------|---------|--------|-------|
 | India | 13 | 13 | 26 |
 | Australia | 13 | 13 | 26 |
-| England | 11 | 11 | 22 |
+| England | 13 | 13 | 26 |
 | South Africa | 11 | 11 | 22 |
 | New Zealand | 11 | 11 | 22 |
 | Pakistan | 11 | 11 | 22 |
@@ -1861,4 +1883,4 @@ Everything not listed = dot ball. Weaknesses are zone-only (no adjective referen
 | USA | 1 | 1 | 2 |
 | Netherlands | 1 | 1 | 2 |
 | Namibia | 1 | 1 | 2 |
-| **TOTAL** | **141** | **141** | **282** |
+| **TOTAL** | **143** | **143** | **286** |

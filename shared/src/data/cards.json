@@ -2362,6 +2362,100 @@
       ]
     },
     {
+      "id": "joe-root-bat",
+      "kind": "batsman",
+      "name": "Joe Root",
+      "nation": "England",
+      "tier": "Elite",
+      "description": "England Test/ODI run machine, T20I returnee. Sweep specialist vs spin in the middle overs, late dabs anywhere on the off side, classical strengths in the corridor. Vulnerable mainly to high pace banged in short.",
+      "strengths": [
+        {
+          "zone": {
+            "line": "Off stump",
+            "length": "Good length"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 4,
+            "shot": "late cut",
+            "shotCategory": "late-cut"
+          }
+        },
+        {
+          "zone": {
+            "line": "Off stump",
+            "length": "Full"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 4,
+            "shot": "cover drive",
+            "shotCategory": "drive-cover"
+          }
+        },
+        {
+          "zone": {
+            "line": "Leg stump",
+            "length": "Full"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 6,
+            "shot": "sweep",
+            "shotCategory": "sweep"
+          }
+        }
+      ],
+      "neutrals": [
+        {
+          "zone": {
+            "line": "Middle stump",
+            "length": "Good length"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 2,
+            "shot": "push",
+            "shotCategory": "defend"
+          }
+        },
+        {
+          "zone": {
+            "line": "Leg stump",
+            "length": "Good length"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 1,
+            "shot": "reverse-sweep",
+            "shotCategory": "sweep"
+          }
+        }
+      ],
+      "weaknesses": [
+        {
+          "zone": {
+            "line": "Middle stump",
+            "length": "Short"
+          },
+          "outcome": {
+            "type": "wicket",
+            "mode": "top edge caught",
+            "dismissalCategory": "caught-deep"
+          }
+        }
+      ],
+      "resistances": [
+        "Topspin",
+        "Drift",
+        "Carrom",
+        "Googly",
+        "Slower",
+        "Cutter",
+        "Seam"
+      ]
+    },
+    {
       "id": "harry-brook-bat",
       "kind": "batsman",
       "name": "Harry Brook",
@@ -2540,6 +2634,96 @@
         "Seam",
         "Cutter",
         "Slower"
+      ]
+    },
+    {
+      "id": "alex-hales-bat",
+      "kind": "batsman",
+      "name": "Alex Hales",
+      "nation": "England",
+      "tier": "Gold",
+      "description": "RH explosive opener, T20 WC 2022 squad member. IPL star (RCB), recent T20I returnee. Drives, pulls, lofts — power-hitter from ball one. Vulnerable to the swinging new ball.",
+      "strengths": [
+        {
+          "zone": {
+            "line": "Off stump",
+            "length": "Full"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 6,
+            "shot": "loft",
+            "shotCategory": "loft-off"
+          }
+        },
+        {
+          "zone": {
+            "line": "Middle stump",
+            "length": "Short"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 4,
+            "shot": "pull",
+            "shotCategory": "pull"
+          }
+        }
+      ],
+      "neutrals": [
+        {
+          "zone": {
+            "line": "Leg stump",
+            "length": "Good length"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 2,
+            "shot": "flick",
+            "shotCategory": "flick"
+          }
+        },
+        {
+          "zone": {
+            "line": "Leg stump",
+            "length": "Full"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 1,
+            "shot": "slog",
+            "shotCategory": "slog"
+          }
+        }
+      ],
+      "weaknesses": [
+        {
+          "zone": {
+            "line": "Outside off",
+            "length": "Good length"
+          },
+          "outcome": {
+            "type": "wicket",
+            "mode": "edge to slip",
+            "dismissalCategory": "caught-slip"
+          }
+        },
+        {
+          "zone": {
+            "line": "Outside off",
+            "length": "Full"
+          },
+          "outcome": {
+            "type": "wicket",
+            "mode": "edge to keeper",
+            "dismissalCategory": "caught-keeper"
+          }
+        }
+      ],
+      "resistances": [
+        "Topspin",
+        "Drift",
+        "Carrom",
+        "Cutter"
       ]
     },
     {
@@ -12770,6 +12954,26 @@
       ]
     },
     {
+      "id": "stuart-broad-bowl",
+      "kind": "bowler",
+      "name": "Stuart Broad",
+      "nation": "England",
+      "tier": "Elite",
+      "description": "Legend — retired 2023, all-time-great new-ball seamer with 56 T20I wickets. Late outswing from the natural angle, hits the deck hard with bounce. Two-skill Elite per the v1.1 rule.",
+      "delivery": {
+        "line": "Outside off",
+        "length": "Good length"
+      },
+      "adjectives": [
+        "Swing",
+        "Seam"
+      ],
+      "fielding": [
+        "Slip cordon",
+        "Gully/Point"
+      ]
+    },
+    {
       "id": "adil-rashid-bowl",
       "kind": "bowler",
       "name": "Adil Rashid",
@@ -12803,6 +13007,24 @@
       ],
       "fielding": [
         "Gully/Point"
+      ]
+    },
+    {
+      "id": "tymal-mills-bowl",
+      "kind": "bowler",
+      "name": "Tymal Mills",
+      "nation": "England",
+      "tier": "Gold",
+      "description": "LH death-overs specialist. Knuckle ball + slower-ball cutter variations are his trade. RCB IPL star, current T20I returnee when fit. Skill: **Slower**.",
+      "delivery": {
+        "line": "Off stump",
+        "length": "Full"
+      },
+      "adjectives": [
+        "Slower"
+      ],
+      "fielding": [
+        "Mid-wicket"
       ]
     },
     {
