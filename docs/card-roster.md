@@ -1241,6 +1241,13 @@ Everything not listed = dot ball. Weaknesses are zone-only (no adjective referen
 - **Weaknesses:** Good length Outside off → edge to slip
 - **Resistances:** Topspin, Drift, Googly, Carrom, Slower, Cutter, Seam
 
+### ELITE — Chris Gayle
+*All-time T20 batting legend — retired 2021, 79 T20Is + ~450 T20s globally. Universe Boss. Stands still, walks across, hits over long-on for fun. The original T20 superhero. Stroke-range universal, only the moving new ball troubles him.*
+- **Strengths:** Full off stump → loft for 6 | Full middle stump → straight drive for 6 | Short middle stump → pull for 6
+- **Neutrals:** Good length leg stump → flick for 2 | Good length middle stump → push for 1
+- **Weaknesses:** Full Outside off → edge to keeper
+- **Resistances:** Seam, Slower, Cutter, Topspin, Drift, Googly, Carrom
+
 ### GOLD — Andre Russell
 *Right-handed global T20 icon (batter card; Silver bowler split below). Power hitter at all angles; even in his late career still clears the rope. Slower balls are his only real trouble.*
 - **Strengths:** Full leg stump → slog for 6 | Short middle stump → pull for 6
@@ -1254,6 +1261,13 @@ Everything not listed = dot ball. Weaknesses are zone-only (no adjective referen
 - **Neutrals:** Good length off stump → push for 2 | Good length leg stump → work for 1
 - **Weaknesses:** Good length middle stump → bowled through gate | Full middle stump → LBW
 - **Resistances:** Slower, Cutter, Topspin, Drift
+
+### GOLD — Kieron Pollard
+*Retired internationals 2022, 101 T20Is, MI IPL captain legend. Massive death-overs power-hitter — slogs over midwicket for sport, lofts straight, fearless against any pace.*
+- **Strengths:** Full leg stump → slog for 6 | Short middle stump → pull for 6
+- **Neutrals:** Good length leg stump → flick for 2 | Full middle stump → loft for 1
+- **Weaknesses:** Good length Outside off → edge to slip | Good length middle stump → bowled
+- **Resistances:** Slower, Cutter, Topspin, Drift, Googly
 
 ### SILVER — Shimron Hetmyer
 *Left-handed death-overs finisher. Leg-side power; goes hard from ball one when set.*
@@ -1312,6 +1326,10 @@ Everything not listed = dot ball. Weaknesses are zone-only (no adjective referen
 *Retired from WI internationals (last 2019) but the most feared T20 league mystery spinner globally. Right-arm off-spin with the carrom ball; skiddy quicker one as the disguised follow-up. Two-skill Elite per the v1.1 rule.*
 - **Delivery:** Good length middle stump | **Adjective:** Carrom, Topspin | **Fielding:** Short leg/Silly point + Slip cordon
 
+### ELITE — Dwayne Bravo
+*Retired 2021, 91 T20Is, **all-time-best T20 death-overs cutter king**, CSK IPL legend. The slow-ball cutter and the disguised slower bouncer redefined T20 death bowling. Two-skill Elite per the v1.1 rule.*
+- **Delivery:** Good length off stump | **Adjective:** Cutter, Slower | **Fielding:** Cover + Mid-wicket
+
 ### GOLD — Akeal Hosein
 *Left-arm orthodox. Powerplay specialist with subtle drift away from RH bats.*
 - **Delivery:** Good length off stump | **Adjective:** Drift | **Fielding:** Cover
@@ -1319,6 +1337,10 @@ Everything not listed = dot ball. Weaknesses are zone-only (no adjective referen
 ### GOLD — Alzarri Joseph
 *Right-arm express pace. Current WI T20I regular, hits the deck hard with bounce and seam off the surface.*
 - **Delivery:** Good length off stump | **Adjective:** Seam | **Fielding:** Slip cordon
+
+### GOLD — Carlos Brathwaite
+*T20 WC 2016 final hero — **4 sixes in 4 balls** off Stokes to win the trophy. 41 T20Is, RH all-rounder. Death-overs cutter and slower-ball variations. Skill: **Slower**.*
+- **Delivery:** Full off stump | **Adjective:** Slower | **Fielding:** Cover
 
 ### SILVER — Andre Russell
 *Right-arm express (bowler card; Gold batter split above). Death-overs cutters and yorkers were Elite-tier at his peak; current load-managed role drops him to Silver and strips the skill chip.*
@@ -1960,7 +1982,7 @@ Everything not listed = dot ball. Weaknesses are zone-only (no adjective referen
 | New Zealand | 13 | 13 | 26 |
 | Pakistan | 13 | 13 | 26 |
 | Sri Lanka | 13 | 13 | 26 |
-| West Indies | 11 | 11 | 22 |
+| West Indies | 13 | 13 | 26 |
 | Bangladesh | 11 | 11 | 22 |
 | Zimbabwe | 11 | 11 | 22 |
 | Afghanistan | 11 | 11 | 22 |
@@ -1971,4 +1993,4 @@ Everything not listed = dot ball. Weaknesses are zone-only (no adjective referen
 | USA | 1 | 1 | 2 |
 | Netherlands | 1 | 1 | 2 |
 | Namibia | 1 | 1 | 2 |
-| **TOTAL** | **151** | **151** | **302** |
+| **TOTAL** | **153** | **153** | **306** |

@@ -8091,6 +8091,100 @@
       ]
     },
     {
+      "id": "chris-gayle-bat",
+      "kind": "batsman",
+      "name": "Chris Gayle",
+      "nation": "West Indies",
+      "tier": "Elite",
+      "description": "All-time T20 batting legend — retired 2021, 79 T20Is + ~450 T20s globally. Universe Boss. Stands still, walks across, hits over long-on for fun. The original T20 superhero. Stroke-range universal, only the moving new ball troubles him.",
+      "strengths": [
+        {
+          "zone": {
+            "line": "Off stump",
+            "length": "Full"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 6,
+            "shot": "loft",
+            "shotCategory": "loft-off"
+          }
+        },
+        {
+          "zone": {
+            "line": "Middle stump",
+            "length": "Full"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 6,
+            "shot": "straight drive",
+            "shotCategory": "drive-straight"
+          }
+        },
+        {
+          "zone": {
+            "line": "Middle stump",
+            "length": "Short"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 6,
+            "shot": "pull",
+            "shotCategory": "pull"
+          }
+        }
+      ],
+      "neutrals": [
+        {
+          "zone": {
+            "line": "Leg stump",
+            "length": "Good length"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 2,
+            "shot": "flick",
+            "shotCategory": "flick"
+          }
+        },
+        {
+          "zone": {
+            "line": "Middle stump",
+            "length": "Good length"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 1,
+            "shot": "push",
+            "shotCategory": "defend"
+          }
+        }
+      ],
+      "weaknesses": [
+        {
+          "zone": {
+            "line": "Outside off",
+            "length": "Full"
+          },
+          "outcome": {
+            "type": "wicket",
+            "mode": "edge to keeper",
+            "dismissalCategory": "caught-keeper"
+          }
+        }
+      ],
+      "resistances": [
+        "Seam",
+        "Slower",
+        "Cutter",
+        "Topspin",
+        "Drift",
+        "Googly",
+        "Carrom"
+      ]
+    },
+    {
       "id": "andre-russell-bat",
       "kind": "batsman",
       "name": "Andre Russell",
@@ -8269,6 +8363,97 @@
         "Cutter",
         "Topspin",
         "Drift"
+      ]
+    },
+    {
+      "id": "kieron-pollard-bat",
+      "kind": "batsman",
+      "name": "Kieron Pollard",
+      "nation": "West Indies",
+      "tier": "Gold",
+      "description": "Retired internationals 2022, 101 T20Is, MI IPL captain legend. Massive death-overs power-hitter — slogs over midwicket for sport, lofts straight, fearless against any pace.",
+      "strengths": [
+        {
+          "zone": {
+            "line": "Leg stump",
+            "length": "Full"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 6,
+            "shot": "slog",
+            "shotCategory": "slog"
+          }
+        },
+        {
+          "zone": {
+            "line": "Middle stump",
+            "length": "Short"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 6,
+            "shot": "pull",
+            "shotCategory": "pull"
+          }
+        }
+      ],
+      "neutrals": [
+        {
+          "zone": {
+            "line": "Leg stump",
+            "length": "Good length"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 2,
+            "shot": "flick",
+            "shotCategory": "flick"
+          }
+        },
+        {
+          "zone": {
+            "line": "Middle stump",
+            "length": "Full"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 1,
+            "shot": "loft",
+            "shotCategory": "loft-straight"
+          }
+        }
+      ],
+      "weaknesses": [
+        {
+          "zone": {
+            "line": "Outside off",
+            "length": "Good length"
+          },
+          "outcome": {
+            "type": "wicket",
+            "mode": "edge to slip",
+            "dismissalCategory": "caught-slip"
+          }
+        },
+        {
+          "zone": {
+            "line": "Middle stump",
+            "length": "Good length"
+          },
+          "outcome": {
+            "type": "wicket",
+            "mode": "bowled",
+            "dismissalCategory": "bowled"
+          }
+        }
+      ],
+      "resistances": [
+        "Slower",
+        "Cutter",
+        "Topspin",
+        "Drift",
+        "Googly"
       ]
     },
     {
@@ -14802,6 +14987,26 @@
       ]
     },
     {
+      "id": "dwayne-bravo-bowl",
+      "kind": "bowler",
+      "name": "Dwayne Bravo",
+      "nation": "West Indies",
+      "tier": "Elite",
+      "description": "Retired 2021, 91 T20Is, **all-time-best T20 death-overs cutter king**, CSK IPL legend. The slow-ball cutter and the disguised slower bouncer redefined T20 death bowling. Two-skill Elite per the v1.1 rule.",
+      "delivery": {
+        "line": "Off stump",
+        "length": "Good length"
+      },
+      "adjectives": [
+        "Cutter",
+        "Slower"
+      ],
+      "fielding": [
+        "Cover",
+        "Mid-wicket"
+      ]
+    },
+    {
       "id": "akeal-hosein-bowl",
       "kind": "bowler",
       "name": "Akeal Hosein",
@@ -14835,6 +15040,24 @@
       ],
       "fielding": [
         "Slip cordon"
+      ]
+    },
+    {
+      "id": "carlos-brathwaite-bowl",
+      "kind": "bowler",
+      "name": "Carlos Brathwaite",
+      "nation": "West Indies",
+      "tier": "Gold",
+      "description": "T20 WC 2016 final hero — **4 sixes in 4 balls** off Stokes to win the trophy. 41 T20Is, RH all-rounder. Death-overs cutter and slower-ball variations. Skill: **Slower**.",
+      "delivery": {
+        "line": "Off stump",
+        "length": "Full"
+      },
+      "adjectives": [
+        "Slower"
+      ],
+      "fielding": [
+        "Cover"
       ]
     },
     {
