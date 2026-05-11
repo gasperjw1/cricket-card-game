@@ -1228,6 +1228,99 @@
       ]
     },
     {
+      "id": "mitchell-marsh-bat",
+      "kind": "batsman",
+      "name": "Mitchell Marsh",
+      "nation": "Australia",
+      "tier": "Elite",
+      "description": "Current AUS T20I captain. **Player of the Match in the 2021 T20 WC Final** (77\\* off 50 — the trophy-winning innings). Lofted drives, pulls anything short, all-rounder pedigree. (All-rounder split — keeps his existing Bronze bowler card.)",
+      "strengths": [
+        {
+          "zone": {
+            "line": "Middle stump",
+            "length": "Full"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 6,
+            "shot": "lofted straight drive",
+            "shotCategory": "loft-straight"
+          }
+        },
+        {
+          "zone": {
+            "line": "Middle stump",
+            "length": "Short"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 4,
+            "shot": "pull",
+            "shotCategory": "pull"
+          }
+        },
+        {
+          "zone": {
+            "line": "Off stump",
+            "length": "Full"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 4,
+            "shot": "drive",
+            "shotCategory": "drive-cover"
+          }
+        }
+      ],
+      "neutrals": [
+        {
+          "zone": {
+            "line": "Middle stump",
+            "length": "Good length"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 2,
+            "shot": "push",
+            "shotCategory": "defend"
+          }
+        },
+        {
+          "zone": {
+            "line": "Leg stump",
+            "length": "Good length"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 1,
+            "shot": "flick",
+            "shotCategory": "flick"
+          }
+        }
+      ],
+      "weaknesses": [
+        {
+          "zone": {
+            "line": "Outside off",
+            "length": "Good length"
+          },
+          "outcome": {
+            "type": "wicket",
+            "mode": "edge to slip",
+            "dismissalCategory": "caught-slip"
+          }
+        }
+      ],
+      "resistances": [
+        "Topspin",
+        "Drift",
+        "Carrom",
+        "Googly",
+        "Cutter",
+        "Slower"
+      ]
+    },
+    {
       "id": "glenn-maxwell-bat",
       "kind": "batsman",
       "name": "Glenn Maxwell",
@@ -1406,6 +1499,96 @@
         "Seam",
         "Cutter",
         "Slower"
+      ]
+    },
+    {
+      "id": "steve-smith-bat",
+      "kind": "batsman",
+      "name": "Steve Smith",
+      "nation": "Australia",
+      "tier": "Gold",
+      "description": "Test/ODI legend, current AUS T20I returnee. Quirky technique — leaves leg stump exposed, then flicks across with wristy precision. Anchor with sudden gear shifts; world-class against pace and spin alike.",
+      "strengths": [
+        {
+          "zone": {
+            "line": "Off stump",
+            "length": "Full"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 4,
+            "shot": "cover drive",
+            "shotCategory": "drive-cover"
+          }
+        },
+        {
+          "zone": {
+            "line": "Leg stump",
+            "length": "Good length"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 4,
+            "shot": "flick",
+            "shotCategory": "flick"
+          }
+        }
+      ],
+      "neutrals": [
+        {
+          "zone": {
+            "line": "Off stump",
+            "length": "Good length"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 2,
+            "shot": "punch",
+            "shotCategory": "drive-straight"
+          }
+        },
+        {
+          "zone": {
+            "line": "Middle stump",
+            "length": "Good length"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 1,
+            "shot": "defend",
+            "shotCategory": "defend"
+          }
+        }
+      ],
+      "weaknesses": [
+        {
+          "zone": {
+            "line": "Outside off",
+            "length": "Short"
+          },
+          "outcome": {
+            "type": "wicket",
+            "mode": "caught behind",
+            "dismissalCategory": "caught-keeper"
+          }
+        },
+        {
+          "zone": {
+            "line": "Middle stump",
+            "length": "Full"
+          },
+          "outcome": {
+            "type": "wicket",
+            "mode": "bowled across",
+            "dismissalCategory": "bowled"
+          }
+        }
+      ],
+      "resistances": [
+        "Topspin",
+        "Drift",
+        "Carrom",
+        "Googly"
       ]
     },
     {
@@ -12365,6 +12548,26 @@
       ]
     },
     {
+      "id": "pat-cummins-bowl",
+      "kind": "bowler",
+      "name": "Pat Cummins",
+      "nation": "Australia",
+      "tier": "Elite",
+      "description": "AUS Test captain + world-class fast bowler across all formats. Hits the deck hard with bounce, late seam off the surface, signature slower ball at the death. T20I selections sporadic but career-tier elite. Two-skill Elite per the v1.1 rule.",
+      "delivery": {
+        "line": "Middle stump",
+        "length": "Good length"
+      },
+      "adjectives": [
+        "Seam",
+        "Slower"
+      ],
+      "fielding": [
+        "Slip cordon",
+        "Gully/Point"
+      ]
+    },
+    {
       "id": "adam-zampa-bowl",
       "kind": "bowler",
       "name": "Adam Zampa",
@@ -12398,6 +12601,24 @@
       ],
       "fielding": [
         "Slip cordon"
+      ]
+    },
+    {
+      "id": "sean-abbott-bowl",
+      "kind": "bowler",
+      "name": "Sean Abbott",
+      "nation": "Australia",
+      "tier": "Gold",
+      "description": "Current AUS T20I death-overs specialist. BBL veteran with cutter + slower-ball variations as his trade. Reliable in pressure overs.",
+      "delivery": {
+        "line": "Off stump",
+        "length": "Full"
+      },
+      "adjectives": [
+        "Cutter"
+      ],
+      "fielding": [
+        "Cover"
       ]
     },
     {
@@ -12513,12 +12734,12 @@
       ]
     },
     {
-      "id": "mitch-marsh-bowl",
+      "id": "mitchell-marsh-bowl",
       "kind": "bowler",
-      "name": "Mitch Marsh",
+      "name": "Mitchell Marsh",
       "nation": "Australia",
       "tier": "Bronze",
-      "description": "Medium-fast all-rounder. Useful 6th bowler at international level when fit. Hard back-of-length pacer with no specific skill at the Bronze tier.",
+      "description": "Medium-fast all-rounder (bowler card, paired with the new Elite batter card). Useful 6th bowler at international level when fit. Hard back-of-length pacer with no specific skill at the Bronze tier.",
       "delivery": {
         "line": "Middle stump",
         "length": "Short"

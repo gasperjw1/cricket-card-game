@@ -370,6 +370,13 @@ Everything not listed = dot ball. Weaknesses are zone-only (no adjective referen
 - **Weaknesses:** Short Outside off → top edge caught
 - **Resistances:** Cutter, Slower, Googly, Carrom, Topspin, Drift
 
+### ELITE — Mitchell Marsh
+*Current AUS T20I captain. **Player of the Match in the 2021 T20 WC Final** (77\* off 50 — the trophy-winning innings). Lofted drives, pulls anything short, all-rounder pedigree. (All-rounder split — keeps his existing Bronze bowler card.)*
+- **Strengths:** Full middle stump → lofted straight drive for 6 | Short middle stump → pull for 4 | Full off stump → drive for 4
+- **Neutrals:** Good length middle stump → push for 2 | Good length leg stump → flick for 1
+- **Weaknesses:** Good length Outside off → edge to slip
+- **Resistances:** Topspin, Drift, Carrom, Googly, Cutter, Slower
+
 ### GOLD — Glenn Maxwell
 *360-degree hitter. Reverse sweeps, switch hits, scoops over the keeper. 2023 ODI WC double-century. Genius-or-out: brilliant when set, vulnerable when starting. Eats most spin alive but the carrom ball has caught him before.*
 - **Strengths:** Good length off stump → reverse sweep for 6 | Full middle stump → lofted drive for 4
@@ -383,6 +390,13 @@ Everything not listed = dot ball. Weaknesses are zone-only (no adjective referen
 - **Neutrals:** Good length leg stump → flick for 2 | Good length middle stump → push for 1
 - **Weaknesses:** Good length off stump → edge to slip | Good length Outside off → caught at point
 - **Resistances:** Swing, Seam, Cutter, Slower
+
+### GOLD — Steve Smith
+*Test/ODI legend, current AUS T20I returnee. Quirky technique — leaves leg stump exposed, then flicks across with wristy precision. Anchor with sudden gear shifts; world-class against pace and spin alike.*
+- **Strengths:** Full off stump → cover drive for 4 | Good length leg stump → flick for 4
+- **Neutrals:** Good length off stump → punch for 2 | Good length middle stump → defend for 1
+- **Weaknesses:** Short Outside off → caught behind | Full middle stump → bowled across
+- **Resistances:** Topspin, Drift, Carrom, Googly
 
 ### SILVER — Tim David
 *Singapore-born T20 mercenary. MI/RCB. Massive death-overs hitter, leg-side dominant — the slog and the hook are his go-tos. Reads slower balls and cutters from his death-overs experience.*
@@ -436,6 +450,10 @@ Everything not listed = dot ball. Weaknesses are zone-only (no adjective referen
 *Left-arm express. Late in-swing into right-handers from the natural left-arm angle, devastating death-overs yorkers, world-class slower-ball variations (slower bouncers and slower yorkers). Two-skill Elite per the v1.1 rule — only one fires per ball, no stacking.*
 - **Delivery:** Full off stump | **Adjective:** Swing, Slower | **Fielding:** Slip cordon + Mid-wicket
 
+### ELITE — Pat Cummins
+*AUS Test captain + world-class fast bowler across all formats. Hits the deck hard with bounce, late seam off the surface, signature slower ball at the death. T20I selections sporadic but career-tier elite. Two-skill Elite per the v1.1 rule.*
+- **Delivery:** Good length middle stump | **Adjective:** Seam, Slower | **Fielding:** Slip cordon + Gully/Point
+
 ### GOLD — Adam Zampa
 *Australia's first-choice leg-spinner. T20 WC 2024 best XI. Stock leg-break with a disguised googly that's caught out plenty of right-handers. Gets drift and turn on any surface.*
 - **Delivery:** Good length middle stump | **Adjective:** Googly | **Fielding:** Short leg/Silly point
@@ -443,6 +461,10 @@ Everything not listed = dot ball. Weaknesses are zone-only (no adjective referen
 ### GOLD — Josh Hazlewood
 *Metronomic seamer. Good length Outside off relentlessly — the corridor of uncertainty. Tier-based wide-call risk on Outside off (Gold = 15%) is the trade-off for the fishing line. Miserly economy.*
 - **Delivery:** Good length Outside off | **Adjective:** Seam | **Fielding:** Slip cordon
+
+### GOLD — Sean Abbott
+*Current AUS T20I death-overs specialist. BBL veteran with cutter + slower-ball variations as his trade. Reliable in pressure overs.*
+- **Delivery:** Full off stump | **Adjective:** Cutter | **Fielding:** Cover
 
 ### SILVER — Nathan Ellis
 *Death-overs specialist. Slower balls and cutters in real cricket — Silver bowlers carry no skill in v1.1, so he's just a wily yorker-length pacer here.*
@@ -472,8 +494,8 @@ Everything not listed = dot ball. Weaknesses are zone-only (no adjective referen
 *Medium-fast all-rounder (bowler card, paired with his Silver batter card via the all-rounder split). Hit-the-deck good-length seamer at this format — useful 5th-bowler with no specific skill at the Bronze tier.*
 - **Delivery:** Good length off stump | **Fielding:** Gully/Point
 
-### BRONZE — Mitch Marsh
-*Medium-fast all-rounder. Useful 6th bowler at international level when fit. Hard back-of-length pacer with no specific skill at the Bronze tier.*
+### BRONZE — Mitchell Marsh
+*Medium-fast all-rounder (bowler card, paired with the new Elite batter card). Useful 6th bowler at international level when fit. Hard back-of-length pacer with no specific skill at the Bronze tier.*
 - **Delivery:** Short middle stump | **Fielding:** Mid-wicket
 
 ---
@@ -1822,7 +1844,7 @@ Everything not listed = dot ball. Weaknesses are zone-only (no adjective referen
 | Nation | Batsmen | Bowlers | Total |
 |--------|---------|--------|-------|
 | India | 13 | 13 | 26 |
-| Australia | 11 | 11 | 22 |
+| Australia | 13 | 13 | 26 |
 | England | 11 | 11 | 22 |
 | South Africa | 11 | 11 | 22 |
 | New Zealand | 11 | 11 | 22 |
@@ -1839,4 +1861,4 @@ Everything not listed = dot ball. Weaknesses are zone-only (no adjective referen
 | USA | 1 | 1 | 2 |
 | Netherlands | 1 | 1 | 2 |
 | Namibia | 1 | 1 | 2 |
-| **TOTAL** | **139** | **139** | **278** |
+| **TOTAL** | **141** | **141** | **282** |
