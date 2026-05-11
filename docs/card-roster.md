@@ -1387,6 +1387,13 @@ Everything not listed = dot ball. Weaknesses are zone-only (no adjective referen
 - **Weaknesses:** Good length Outside off → edge to slip
 - **Resistances:** Topspin, Drift, Googly, Carrom, Slower, Cutter, Seam
 
+### ELITE — Junaid Siddique
+*Early-2010s LH opener — 11 T20Is + 50+ ODIs, BAN's first-generation T20 batsman. Ground stroke-maker with a strong off-side game. Played at the dawn of T20Is when Bangladesh were finding their feet at the format.*
+- **Strengths:** Full off stump → cover drive for 4 | Good length off stump → cut for 4 | Full leg stump → flick for 4
+- **Neutrals:** Good length middle stump → push for 2 | Good length leg stump → work for 1
+- **Weaknesses:** Short Outside off → caught at gully
+- **Resistances:** Slower, Cutter, Topspin, Drift, Carrom, Googly
+
 ### GOLD — Shakib Al Hasan
 *Left-handed all-time great all-rounder (batter card; Gold bowler split below). Sweeps and drives, plays spin as well as anyone in the modern game. Retired from internationals 2024; still active in T20 leagues.*
 - **Strengths:** Full leg stump → sweep for 6 | Good length off stump → cut for 4
@@ -1400,6 +1407,13 @@ Everything not listed = dot ball. Weaknesses are zone-only (no adjective referen
 - **Neutrals:** Good length middle stump → push for 2 | Good length leg stump → work for 1
 - **Weaknesses:** Full Outside off → caught at cover | Good length Outside off → edge to slip
 - **Resistances:** Slower, Cutter, Topspin, Drift, Carrom
+
+### GOLD — Imrul Kayes
+*Mid-2010s LH opener, 19 T20Is + 78 ODIs. Solid technique, anchors the top order, drives + flicks. Part of BAN's transitional generation between the early days and the current era.*
+- **Strengths:** Full off stump → drive for 4 | Good length leg stump → flick for 4
+- **Neutrals:** Good length off stump → push for 2 | Full leg stump → sweep for 1
+- **Weaknesses:** Short middle stump → top edge | Good length middle stump → bowled going across
+- **Resistances:** Topspin, Drift, Carrom, Slower
 
 ### SILVER — Najmul Hossain Shanto
 *Current BAN T20I captain. Left-handed top-order, elegant but inconsistent at the international level. Drives and sweeps; struggles around off stump.*
@@ -1458,6 +1472,10 @@ Everything not listed = dot ball. Weaknesses are zone-only (no adjective referen
 *Left-arm off-cutter specialist. IPL star with multiple Purple Cap-tier seasons. Death-overs cutter + signature slower bouncer. Two-skill Elite per the v1.1 rule.*
 - **Delivery:** Good length off stump | **Adjective:** Cutter, Slower | **Fielding:** Cover + Gully/Point
 
+### ELITE — Mashrafe Mortaza
+*Legend — retired 2020, 54 T20Is, beloved BAN captain figure across two decades. Right-arm new-ball specialist with smart slower-ball variations at the death. The heart and soul of Bangladesh cricket. Two-skill Elite per the v1.1 rule.*
+- **Delivery:** Good length middle stump | **Adjective:** Seam, Slower | **Fielding:** Slip cordon + Mid-wicket
+
 ### GOLD — Taskin Ahmed
 *Best current BAN quick. Right-arm pace with bounce, hits the deck hard with seam off the stumps.*
 - **Delivery:** Good length middle stump | **Adjective:** Seam | **Fielding:** Slip cordon
@@ -1465,6 +1483,10 @@ Everything not listed = dot ball. Weaknesses are zone-only (no adjective referen
 ### GOLD — Shakib Al Hasan
 *Left-arm orthodox legend (bowler card; Gold batter split above). Subtle drift away from RH bats with metronomic accuracy.*
 - **Delivery:** Good length leg stump | **Adjective:** Drift | **Fielding:** Cover
+
+### GOLD — Abdur Razzak
+*Legend left-arm orthodox — retired 2018, 34 T20Is. Stock arm-ball drifting away from RH bats with smart loop. BAN's most-prolific spinner across formats for a decade. Skill: **Drift**.*
+- **Delivery:** Good length off stump | **Adjective:** Drift | **Fielding:** Mid-wicket
 
 ### SILVER — Mehidy Hasan Miraz
 *Right-arm off-spinner (all-rounder split — Bronze batter above). Middle-overs control bowler.*
@@ -1983,7 +2005,7 @@ Everything not listed = dot ball. Weaknesses are zone-only (no adjective referen
 | Pakistan | 13 | 13 | 26 |
 | Sri Lanka | 13 | 13 | 26 |
 | West Indies | 13 | 13 | 26 |
-| Bangladesh | 11 | 11 | 22 |
+| Bangladesh | 13 | 13 | 26 |
 | Zimbabwe | 11 | 11 | 22 |
 | Afghanistan | 11 | 11 | 22 |
 | Ireland | 11 | 11 | 22 |
@@ -1993,4 +2015,4 @@ Everything not listed = dot ball. Weaknesses are zone-only (no adjective referen
 | USA | 1 | 1 | 2 |
 | Netherlands | 1 | 1 | 2 |
 | Namibia | 1 | 1 | 2 |
-| **TOTAL** | **153** | **153** | **306** |
+| **TOTAL** | **155** | **155** | **310** |

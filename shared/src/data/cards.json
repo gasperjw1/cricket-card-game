@@ -9235,6 +9235,99 @@
       ]
     },
     {
+      "id": "junaid-siddique-bat",
+      "kind": "batsman",
+      "name": "Junaid Siddique",
+      "nation": "Bangladesh",
+      "tier": "Elite",
+      "description": "Early-2010s LH opener — 11 T20Is + 50+ ODIs, BAN's first-generation T20 batsman. Ground stroke-maker with a strong off-side game. Played at the dawn of T20Is when Bangladesh were finding their feet at the format.",
+      "strengths": [
+        {
+          "zone": {
+            "line": "Off stump",
+            "length": "Full"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 4,
+            "shot": "cover drive",
+            "shotCategory": "drive-cover"
+          }
+        },
+        {
+          "zone": {
+            "line": "Off stump",
+            "length": "Good length"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 4,
+            "shot": "cut",
+            "shotCategory": "cut"
+          }
+        },
+        {
+          "zone": {
+            "line": "Leg stump",
+            "length": "Full"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 4,
+            "shot": "flick",
+            "shotCategory": "flick"
+          }
+        }
+      ],
+      "neutrals": [
+        {
+          "zone": {
+            "line": "Middle stump",
+            "length": "Good length"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 2,
+            "shot": "push",
+            "shotCategory": "defend"
+          }
+        },
+        {
+          "zone": {
+            "line": "Leg stump",
+            "length": "Good length"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 1,
+            "shot": "work",
+            "shotCategory": "defend"
+          }
+        }
+      ],
+      "weaknesses": [
+        {
+          "zone": {
+            "line": "Outside off",
+            "length": "Short"
+          },
+          "outcome": {
+            "type": "wicket",
+            "mode": "caught at gully",
+            "dismissalCategory": "caught-point"
+          }
+        }
+      ],
+      "resistances": [
+        "Slower",
+        "Cutter",
+        "Topspin",
+        "Drift",
+        "Carrom",
+        "Googly"
+      ]
+    },
+    {
       "id": "shakib-al-hasan-bat",
       "kind": "batsman",
       "name": "Shakib Al Hasan",
@@ -9413,6 +9506,96 @@
         "Topspin",
         "Drift",
         "Carrom"
+      ]
+    },
+    {
+      "id": "imrul-kayes-bat",
+      "kind": "batsman",
+      "name": "Imrul Kayes",
+      "nation": "Bangladesh",
+      "tier": "Gold",
+      "description": "Mid-2010s LH opener, 19 T20Is + 78 ODIs. Solid technique, anchors the top order, drives + flicks. Part of BAN's transitional generation between the early days and the current era.",
+      "strengths": [
+        {
+          "zone": {
+            "line": "Off stump",
+            "length": "Full"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 4,
+            "shot": "drive",
+            "shotCategory": "drive-cover"
+          }
+        },
+        {
+          "zone": {
+            "line": "Leg stump",
+            "length": "Good length"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 4,
+            "shot": "flick",
+            "shotCategory": "flick"
+          }
+        }
+      ],
+      "neutrals": [
+        {
+          "zone": {
+            "line": "Off stump",
+            "length": "Good length"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 2,
+            "shot": "push",
+            "shotCategory": "defend"
+          }
+        },
+        {
+          "zone": {
+            "line": "Leg stump",
+            "length": "Full"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 1,
+            "shot": "sweep",
+            "shotCategory": "sweep"
+          }
+        }
+      ],
+      "weaknesses": [
+        {
+          "zone": {
+            "line": "Middle stump",
+            "length": "Short"
+          },
+          "outcome": {
+            "type": "wicket",
+            "mode": "top edge",
+            "dismissalCategory": "caught-deep"
+          }
+        },
+        {
+          "zone": {
+            "line": "Middle stump",
+            "length": "Good length"
+          },
+          "outcome": {
+            "type": "wicket",
+            "mode": "bowled going across",
+            "dismissalCategory": "bowled"
+          }
+        }
+      ],
+      "resistances": [
+        "Topspin",
+        "Drift",
+        "Carrom",
+        "Slower"
       ]
     },
     {
@@ -15209,6 +15392,26 @@
       ]
     },
     {
+      "id": "mashrafe-mortaza-bowl",
+      "kind": "bowler",
+      "name": "Mashrafe Mortaza",
+      "nation": "Bangladesh",
+      "tier": "Elite",
+      "description": "Legend — retired 2020, 54 T20Is, beloved BAN captain figure across two decades. Right-arm new-ball specialist with smart slower-ball variations at the death. The heart and soul of Bangladesh cricket. Two-skill Elite per the v1.1 rule.",
+      "delivery": {
+        "line": "Middle stump",
+        "length": "Good length"
+      },
+      "adjectives": [
+        "Seam",
+        "Slower"
+      ],
+      "fielding": [
+        "Slip cordon",
+        "Mid-wicket"
+      ]
+    },
+    {
       "id": "taskin-ahmed-bowl",
       "kind": "bowler",
       "name": "Taskin Ahmed",
@@ -15242,6 +15445,24 @@
       ],
       "fielding": [
         "Cover"
+      ]
+    },
+    {
+      "id": "abdur-razzak-bowl",
+      "kind": "bowler",
+      "name": "Abdur Razzak",
+      "nation": "Bangladesh",
+      "tier": "Gold",
+      "description": "Legend left-arm orthodox — retired 2018, 34 T20Is. Stock arm-ball drifting away from RH bats with smart loop. BAN's most-prolific spinner across formats for a decade. Skill: **Drift**.",
+      "delivery": {
+        "line": "Off stump",
+        "length": "Good length"
+      },
+      "adjectives": [
+        "Drift"
+      ],
+      "fielding": [
+        "Mid-wicket"
       ]
     },
     {
