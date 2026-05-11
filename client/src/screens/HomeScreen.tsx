@@ -1,5 +1,7 @@
 import { lazy, Suspense, useState } from "react";
 import type { BotDifficulty } from "@swipe-sixer/shared";
+import { SettingsPanel } from "../components/SettingsPanel.tsx";
+import { initSfx } from "../lib/sfx.ts";
 import type { MatchClient } from "../state.ts";
 
 // Lazy-loaded so the ~24KB of card-roster data the guide imports isn't
@@ -11,6 +13,7 @@ interface Props {
 }
 
 type Mode = "menu" | "vs-cpu" | "create" | "join" | "how-to-play";
+type SettingsMode = "open" | "closed";
 
 /** Derive a default 4-char abbreviation from a display name. */
 function defaultAbbrFromName(name: string): string {
@@ -26,6 +29,11 @@ export function HomeScreen({ client }: Props) {
   const [inviteCode, setInviteCode] = useState("");
   const [submitting, setSubmitting] = useState(false);
   const [botDifficulty, setBotDifficulty] = useState<BotDifficulty>("Domestic");
+  const [settings, setSettingsMode] = useState<SettingsMode>("closed");
+
+  // Initialize the audio pool on the user's first interactive tap so iOS
+  // Safari's autoplay restriction is satisfied. Safe to call repeatedly.
+  const onAnyPrimary = (): void => initSfx();
 
   const effectiveAbbr = abbrTouched ? abbreviation : defaultAbbrFromName(displayName);
   const abbrValid = effectiveAbbr.length >= 2 && effectiveAbbr.length <= 4;
@@ -106,7 +114,7 @@ export function HomeScreen({ client }: Props) {
           <button
             className="btn primary big"
             disabled={!client.connected}
-            onClick={() => setMode("vs-cpu")}
+            onClick={() => { onAnyPrimary(); setMode("vs-cpu"); }}
           >
             🤖 Play vs CPU
           </button>
@@ -116,26 +124,39 @@ export function HomeScreen({ client }: Props) {
               <button
                 className="btn small"
                 disabled={!client.connected}
-                onClick={() => setMode("create")}
+                onClick={() => { onAnyPrimary(); setMode("create"); }}
               >
                 Create
               </button>
               <button
                 className="btn small"
                 disabled={!client.connected}
-                onClick={() => setMode("join")}
+                onClick={() => { onAnyPrimary(); setMode("join"); }}
               >
                 Join
               </button>
             </div>
           </div>
-          <button
-            className="btn ghost"
-            onClick={() => setMode("how-to-play")}
-          >
-            How to play
-          </button>
+          <div className="menu-secondary">
+            <button
+              className="btn ghost small"
+              onClick={() => setMode("how-to-play")}
+            >
+              How to play
+            </button>
+            <button
+              className="btn ghost small"
+              onClick={() => { onAnyPrimary(); setSettingsMode("open"); }}
+              aria-label="Settings"
+            >
+              ⚙ Settings
+            </button>
+          </div>
         </div>
+      )}
+
+      {settings === "open" && (
+        <SettingsPanel onClose={() => setSettingsMode("closed")} />
       )}
 
       {mode === "vs-cpu" && (

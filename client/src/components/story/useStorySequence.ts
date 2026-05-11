@@ -1,5 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import type { BallResult } from "@swipe-sixer/shared";
+import { playSfx, playSfxRandom, type SfxName } from "../../lib/sfx.ts";
+import { getSettings } from "../../lib/settings.ts";
 
 /** Each conditional stage maps to a step in the resolution trail. The
  *  story shows every applicable stage in this order; stages whose
@@ -30,15 +32,27 @@ export interface StoryState {
   isWicket: boolean;
 }
 
-/** Per-stage duration in milliseconds. Tuned to feel fast but readable. */
+/** Per-stage duration in milliseconds at "normal" speed.
+ *  Sized to give the matching SFX (stadium hum, run-up, bat thwack,
+ *  crowd reaction) room to land — playing them at faster cadence
+ *  feels rushed and the audio gets clipped.
+ *  The Story-speed user setting scales these via SPEED_MULTIPLIER. */
 const STAGE_DURATION_MS: Record<StoryStage, number> = {
-  pitch: 400,
-  bowler: 700,
-  batter: 600,
-  result: 700,
-  drs: 900,
-  biryani: 600,
+  pitch: 800,
+  bowler: 1500,
+  batter: 1200,
+  result: 1500,
+  drs: 2000,
+  biryani: 1200,
 };
+
+/** Multiplier applied to STAGE_DURATION_MS based on the user's
+ *  storySpeed setting. */
+const SPEED_MULTIPLIER = {
+  fast: 0.55,    // ~55% of normal — snappy
+  normal: 1.0,
+  slow: 1.4,    // 40% longer — savor each beat
+} as const;
 
 export function useStorySequence(result: BallResult): StoryState {
   // Detect which conditional stages apply to this ball by scanning the
@@ -72,12 +86,24 @@ export function useStorySequence(result: BallResult): StoryState {
   // the parent re-renders (which would happen as state advances).
   const planRef = useRef(plan);
 
+  // Lock the result + flags in refs so the SFX side-effect doesn't
+  // re-fire on parent re-renders (the closure would re-evaluate).
+  const resultRef = useRef(result);
+  const flagsRef = useRef({ isDay5, hasNoBall, hasWide, isWicket });
+
   useEffect(() => {
     if (currentIndex >= planRef.current.length) return;
     const stage = planRef.current[currentIndex]!;
+
+    // Fire the matching SFX as the stage opens. Each call is a no-op
+    // when sounds are off / files missing — see lib/sfx.ts.
+    const sfx = sfxForStage(stage, resultRef.current, flagsRef.current);
+    if (sfx) playSfxRandom(...sfx);
+
+    const speedMult = SPEED_MULTIPLIER[getSettings().storySpeed];
     const t = setTimeout(() => {
       setCurrentIndex((i) => i + 1);
-    }, STAGE_DURATION_MS[stage]);
+    }, STAGE_DURATION_MS[stage] * speedMult);
     return () => clearTimeout(t);
   }, [currentIndex]);
 
@@ -94,3 +120,49 @@ export function useStorySequence(result: BallResult): StoryState {
     isWicket,
   };
 }
+
+/** Pick the right SFX (or set of variants) for a given story stage. */
+function sfxForStage(
+  stage: StoryStage,
+  result: BallResult,
+  flags: { isDay5: boolean; hasNoBall: boolean; hasWide: boolean; isWicket: boolean },
+): SfxName[] | null {
+  switch (stage) {
+    case "pitch":
+      return null;  // optional ambient hum — leave silent for now
+    case "bowler":
+      if (flags.hasNoBall || flags.hasWide) return ["umpire-whistle"];
+      return null;  // the bat-thwack on stage "batter" is the audio star
+    case "batter":
+      if (flags.isWicket) {
+        if (result.finalOutcome.type === "wicket") {
+          switch (result.finalOutcome.dismissalCategory) {
+            case "bowled": return ["stumps-shatter"];
+            case "stumped": return ["stumps-shatter"];
+            case "caught-keeper": return ["glove-catch"];
+            default: return ["bat-thwack-light"];  // edge before the catch
+          }
+        }
+      }
+      // Runs: pick light/heavy by value
+      if (result.finalOutcome.type === "runs") {
+        return result.finalOutcome.value >= 4
+          ? ["bat-thwack-heavy"]
+          : ["bat-thwack-light"];
+      }
+      return ["bat-thwack-light"];  // dot ball thunk
+    case "result":
+      if (flags.isWicket) return ["crowd-gasp"];
+      if (result.finalOutcome.type === "runs" && result.finalOutcome.value >= 4) {
+        return ["crowd-cheer"];
+      }
+      return null;
+    case "drs":
+      return ["umpire-whistle"];
+    case "biryani":
+      return null;
+  }
+  // Suppress unused-import warning on playSfx (alias kept for future use).
+  void playSfx;
+}
+

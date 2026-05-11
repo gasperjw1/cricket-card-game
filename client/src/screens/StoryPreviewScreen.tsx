@@ -106,7 +106,19 @@ function PreviewPlayer({ result }: { result: BallResult }) {
   const story = useStorySequence(result);
   return (
     <div className="reveal-inner" style={{ background: "#0f1419", padding: 0 }}>
-      <StorySequence result={result} story={story} />
+      <StorySequence
+        result={result}
+        story={story}
+        commentaryCtx={{
+          inningsNumber: 1,
+          ballNumber: result.ballNumber,
+          runs: 0,
+          wickets: 0,
+          target: null,
+          battingPlayerName: "Preview Batter",
+          bowlingPlayerName: "Preview Bowler",
+        }}
+      />
       {story.isComplete && (
         <p className="dim-text" style={{ textAlign: "center", marginTop: "1rem" }}>
           Sequence complete — click Next ›

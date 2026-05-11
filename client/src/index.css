@@ -998,6 +998,125 @@ h1 {
   border-color: #c9a227;
 }
 
+/* ───── Settings modal ─────
+   Full-screen overlay (lighter than reveal so it feels modal, not
+   blocking). Panel uses the same dark card aesthetic as everything else. */
+.settings-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: grid;
+  place-items: center;
+  padding: 1rem;
+  z-index: 80;
+  animation: fade-in 180ms ease;
+}
+.settings-panel {
+  background: #0f1419;
+  border: 1px solid #2a3441;
+  border-radius: 14px;
+  padding: 1.25rem 1.25rem 1rem;
+  max-width: 440px;
+  width: 100%;
+  max-height: 90vh;
+  max-height: 90dvh;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  text-align: left;
+}
+.settings-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-bottom: 0.25rem;
+}
+.settings-header h2 {
+  margin: 0;
+  font-size: 1.2rem;
+}
+.settings-section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.settings-section h3 {
+  margin: 0;
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #8a939c;
+  font-weight: 600;
+}
+.settings-toggle {
+  display: grid;
+  grid-template-columns: 1.5rem auto 1fr;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.55rem 0.6rem;
+  border: 1px solid #2a3441;
+  border-radius: 8px;
+  cursor: pointer;
+}
+.settings-toggle small {
+  font-size: 0.75rem;
+}
+.settings-radio-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+.settings-radio {
+  display: grid;
+  grid-template-columns: 1.4rem 1fr;
+  align-items: start;
+  column-gap: 0.5rem;
+  padding: 0.5rem 0.6rem;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 100ms ease, border-color 100ms ease;
+}
+.settings-radio:hover { background: #1c2530; }
+.settings-radio.selected {
+  background: #1d3a23;
+  border-color: #2563eb;
+}
+.settings-radio input[type="radio"] {
+  grid-row: 1 / span 2;
+  margin: 0.2rem 0 0;
+}
+.settings-radio strong { font-size: 0.92rem; }
+.settings-radio small { font-size: 0.76rem; }
+.settings-footer {
+  margin-top: 0.5rem;
+  display: flex;
+  justify-content: flex-end;
+}
+
+/* Home-screen secondary menu row (How to play + Settings side-by-side) */
+.menu-secondary {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.25rem;
+}
+.menu-secondary .btn {
+  flex: 1;
+}
+
+/* Commentary line in the StorySequence result stage */
+.story-commentary {
+  margin-top: 0.5rem;
+  font-style: italic;
+  color: #fde68a;  /* warm broadcaster color */
+  font-size: 0.9rem;
+  line-height: 1.4;
+  max-width: 320px;
+  text-align: center;
+}
+
 /* Pitch-clock-style timer baked into the scorebug status strip.
    See ScorebugTimer in components/Scorebug.tsx. Pulses red when
    the pick deadline drops to 5s or less. */

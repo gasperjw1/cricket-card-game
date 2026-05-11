@@ -1,4 +1,6 @@
 import type { BallResult } from "@swipe-sixer/shared";
+import { commentaryFor, type CommentaryContext } from "../../lib/commentary.ts";
+import { getSettings } from "../../lib/settings.ts";
 import {
   BOWLER_IMAGES,
   DISMISSAL_IMAGES,
@@ -13,6 +15,8 @@ import type { StoryStage, StoryState } from "./useStorySequence.ts";
 interface Props {
   result: BallResult;
   story: StoryState;
+  /** Match context for the commentary engine (innings, score, target). */
+  commentaryCtx: CommentaryContext;
 }
 
 /** Renders the storytelling pre-roll. Each stage shows a StoryImage
@@ -20,13 +24,18 @@ interface Props {
  *  not) plus a caption. Phase 1 ships with all-emoji fallbacks; Phase
  *  2 adds the real images and they appear with no further code change.
  */
-export function StorySequence({ result, story }: Props) {
+export function StorySequence({ result, story, commentaryCtx }: Props) {
   const stage = story.plan[story.currentIndex];
   if (!stage) return null;
 
   return (
     <div className="story-stage" key={story.currentIndex}>
-      <StagePanel stage={stage} result={result} story={story} />
+      <StagePanel
+        stage={stage}
+        result={result}
+        story={story}
+        commentaryCtx={commentaryCtx}
+      />
     </div>
   );
 }
@@ -35,10 +44,12 @@ function StagePanel({
   stage,
   result,
   story,
+  commentaryCtx,
 }: {
   stage: StoryStage;
   result: BallResult;
   story: StoryState;
+  commentaryCtx: CommentaryContext;
 }) {
   switch (stage) {
     case "pitch":
@@ -106,7 +117,12 @@ function StagePanel({
         </div>
       );
 
-    case "result":
+    case "result": {
+      const commentary = commentaryFor(
+        result,
+        commentaryCtx,
+        getSettings().commentaryStyle,
+      );
       return (
         <div className="story-result">
           <StoryImage
@@ -115,8 +131,12 @@ function StagePanel({
             alt={resultCaption(result, story)}
           />
           <div className="story-caption">{resultCaption(result, story)}</div>
+          {commentary && (
+            <div className="story-commentary">"{commentary}"</div>
+          )}
         </div>
       );
+    }
 
     case "drs":
       return (

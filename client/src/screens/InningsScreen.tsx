@@ -10,6 +10,7 @@ import {
 import { Card, type RevealContext } from "../components/Card.tsx";
 import { CardViewer } from "../components/CardViewer.tsx";
 import { Scorebug } from "../components/Scorebug.tsx";
+import { SettingsPanel } from "../components/SettingsPanel.tsx";
 import { StorySequence } from "../components/story/StorySequence.tsx";
 import { useStorySequence } from "../components/story/useStorySequence.ts";
 import { Tip } from "../components/Tip.tsx";
@@ -25,6 +26,7 @@ interface Props {
 export function InningsScreen({ client }: Props) {
   const { matchState, mySlot, privateView, pendingSelection, awaitingReveal, opponentLocked, lastReveal } = client;
   const [viewingCardId, setViewingCardId] = useState<string | null>(null);
+  const [showSettings, setShowSettings] = useState(false);
 
   if (!matchState || !mySlot) return null;
   const innings =
@@ -161,6 +163,10 @@ export function InningsScreen({ client }: Props) {
           bName={matchState.players.B?.displayName ?? "B"}
           postBallDeadline={matchState.postBallDeadlineEpochMs}
           isFinalBall={matchState.phase === "match-over"}
+          inningsNumber={(matchState.currentInnings ?? 1) as 1 | 2}
+          inningsRuns={innings.runs}
+          inningsWickets={innings.wickets}
+          inningsTarget={innings.target}
           onContinue={client.dismissReveal}
         />
       )}
@@ -169,7 +175,18 @@ export function InningsScreen({ client }: Props) {
         <button className="btn ghost" onClick={client.leaveMatch}>
           Leave match
         </button>
+        <button
+          className="btn ghost"
+          onClick={() => setShowSettings(true)}
+          aria-label="Settings"
+        >
+          ⚙ Settings
+        </button>
       </div>
+
+      {showSettings && (
+        <SettingsPanel onClose={() => setShowSettings(false)} />
+      )}
     </main>
   );
 }
@@ -435,6 +452,11 @@ function RevealOverlay(props: {
   bName: string;
   postBallDeadline: number | null;
   isFinalBall: boolean;
+  /** Used to feed the commentary template engine. */
+  inningsNumber: 1 | 2;
+  inningsRuns: number;
+  inningsWickets: number;
+  inningsTarget: number | null;
   onContinue: () => void;
 }) {
   const { result, mySlot } = props;
@@ -487,7 +509,21 @@ function RevealOverlay(props: {
         <h2>Ball {result.ballNumber}</h2>
 
         {!story.isComplete ? (
-          <StorySequence result={result} story={story} />
+          <StorySequence
+            result={result}
+            story={story}
+            commentaryCtx={{
+              inningsNumber: props.inningsNumber,
+              ballNumber: result.ballNumber,
+              runs: props.inningsRuns,
+              wickets: props.inningsWickets,
+              target: props.inningsTarget,
+              battingPlayerName:
+                result.battingSelection.player === "A" ? props.aName : props.bName,
+              bowlingPlayerName:
+                result.bowlingSelection.player === "A" ? props.aName : props.bName,
+            }}
+          />
         ) : (
           <>
             <div className="reveal-cards">
