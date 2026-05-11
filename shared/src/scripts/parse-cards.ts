@@ -772,12 +772,17 @@ function main(): void {
 
   console.log(`Parsed ${batsmen.length} batsmen, ${bowlers.length} bowlers, ${situations.length} situation cards.`);
 
-  // 132 from the 12 Test nations (11×12) + 5 Silver associates per role = 137
-  if (batsmen.length !== 137) {
-    throw new Error(`Expected 137 batsmen, got ${batsmen.length}`);
+  // Per Test nation (during the +1 Elite +1 Gold expansion in progress):
+  //   completed nations: 13 cards per role (2/3/3/5)
+  //   pending nations:   11 cards per role (1/2/3/5)
+  // + 5 associate Silvers per role.
+  // Currently: 1 nation expanded (India) → 13 + 11×11 + 5 = 139 per role.
+  // Bump this number as each nation lands.
+  if (batsmen.length !== 139) {
+    throw new Error(`Expected 139 batsmen, got ${batsmen.length}`);
   }
-  if (bowlers.length !== 137) {
-    throw new Error(`Expected 137 bowlers, got ${bowlers.length}`);
+  if (bowlers.length !== 139) {
+    throw new Error(`Expected 139 bowlers, got ${bowlers.length}`);
   }
   // 8 batting + 6 bowling + 2 Old School variants = 16 entries in v1.1
   // (added Deep in the Crease batting + Third Umpire Distracted by Biryani bowling)

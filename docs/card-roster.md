@@ -35,6 +35,21 @@ Everything not listed = dot ball.
 
 ---
 
+### ELITE — Shubman Gill
+*Current India ODI captain, technically the most-correct young bat in world cricket. Straight drives down the ground are his signature. Late cuts the moving ball, plays patient defensive — but the moving ball outside off has caught him out at the highest level.*
+- **Strengths:**
+  - Full middle stump → straight drive for 6
+  - Good length off stump → punch through cover for 4
+  - Short Outside off → late cut for 4
+- **Neutrals:**
+  - Full off stump → drive for 2
+  - Good length leg stump → flick for 1
+- **Weaknesses:**
+  - Full Outside off → edge to slip
+- **Resistances:** Seam, Cutter, Slower, Googly, Carrom, Topspin, Drift
+
+---
+
 ### GOLD — Rohit Sharma
 *Lofted straight drives. Pulls off the front foot from good length. Stronger on the leg side; vulnerable to the off-stump fishing line. Reads pace easily; struggles against sharp drift and the carrom ball.*
 - **Strengths:**
@@ -62,6 +77,21 @@ Everything not listed = dot ball.
   - Good length middle stump → bowled through the gate
   - Good length off stump → edge to slip
 - **Resistances:** Cutter, Slower, Topspin, Drift, Googly
+
+---
+
+### GOLD — Yashasvi Jaiswal
+*LH explosive opener. Multiple T20I 100s, IPL Orange Cap contender. Big sixes over long-on, drives over extra cover. Vulnerable to good-length pace squaring him up.*
+- **Strengths:**
+  - Full off stump → drive for 6
+  - Full leg stump → loft over long-on for 6
+- **Neutrals:**
+  - Good length leg stump → flick for 2
+  - Short middle stump → pull for 1
+- **Weaknesses:**
+  - Good length off stump → edge to slip
+  - Good length middle stump → bowled going across
+- **Resistances:** Cutter, Slower, Topspin, Drift
 
 ---
 
@@ -203,6 +233,14 @@ Everything not listed = dot ball.
 
 ---
 
+### ELITE — Yuzvendra Chahal
+*Most T20I wickets in India's history (96 in 80 matches). Right-arm leg-spinner — lethal disguised googly + skiddy quicker arm-ball. RR/RCB IPL stalwart and India's middle-overs match-winner across the late 2010s and 2020s. Two-skill Elite per the v1.1 rule.*
+- **Delivery:** Good length middle stump
+- **Adjective:** Googly, Topspin
+- **Fielding:** Short leg/Silly point + Slip cordon
+
+---
+
 ### GOLD — Kuldeep Yadav
 *Left-arm wrist-spinner. Stock ball is the leg-spinner; the chinaman googly is hard to read and is his signature wicket-taking variation. Middle-overs wicket-taker.*
 - **Delivery:** Good length off stump
@@ -215,6 +253,14 @@ Everything not listed = dot ball.
 *Left-arm pacer. Full Outside off line, in-swing back into the right-hander from the natural left-arm angle. Powerplay swing specialist who also bowls death overs.*
 - **Delivery:** Full Outside off
 - **Adjective:** Swing
+- **Fielding:** Slip cordon
+
+---
+
+### GOLD — Mohammed Siraj
+*Right-arm first-choice quick. Hits the deck hard with seam off the surface. The 6-wicket Asia Cup 2023 final spell vs Sri Lanka cemented his role as India's powerplay enforcer.*
+- **Delivery:** Good length off stump
+- **Adjective:** Seam
 - **Fielding:** Slip cordon
 
 ---
@@ -1775,7 +1821,7 @@ Everything not listed = dot ball. Weaknesses are zone-only (no adjective referen
 
 | Nation | Batsmen | Bowlers | Total |
 |--------|---------|--------|-------|
-| India | 11 | 11 | 22 |
+| India | 13 | 13 | 26 |
 | Australia | 11 | 11 | 22 |
 | England | 11 | 11 | 22 |
 | South Africa | 11 | 11 | 22 |
@@ -1793,4 +1839,4 @@ Everything not listed = dot ball. Weaknesses are zone-only (no adjective referen
 | USA | 1 | 1 | 2 |
 | Netherlands | 1 | 1 | 2 |
 | Namibia | 1 | 1 | 2 |
-| **TOTAL** | **137** | **137** | **274** |
+| **TOTAL** | **139** | **139** | **278** |

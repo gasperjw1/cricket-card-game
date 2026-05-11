@@ -94,6 +94,100 @@
       ]
     },
     {
+      "id": "shubman-gill-bat",
+      "kind": "batsman",
+      "name": "Shubman Gill",
+      "nation": "India",
+      "tier": "Elite",
+      "description": "Current India ODI captain, technically the most-correct young bat in world cricket. Straight drives down the ground are his signature. Late cuts the moving ball, plays patient defensive — but the moving ball outside off has caught him out at the highest level.",
+      "strengths": [
+        {
+          "zone": {
+            "line": "Middle stump",
+            "length": "Full"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 6,
+            "shot": "straight drive",
+            "shotCategory": "drive-straight"
+          }
+        },
+        {
+          "zone": {
+            "line": "Off stump",
+            "length": "Good length"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 4,
+            "shot": "punch through cover",
+            "shotCategory": "drive-cover"
+          }
+        },
+        {
+          "zone": {
+            "line": "Outside off",
+            "length": "Short"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 4,
+            "shot": "late cut",
+            "shotCategory": "late-cut"
+          }
+        }
+      ],
+      "neutrals": [
+        {
+          "zone": {
+            "line": "Off stump",
+            "length": "Full"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 2,
+            "shot": "drive",
+            "shotCategory": "drive-cover"
+          }
+        },
+        {
+          "zone": {
+            "line": "Leg stump",
+            "length": "Good length"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 1,
+            "shot": "flick",
+            "shotCategory": "flick"
+          }
+        }
+      ],
+      "weaknesses": [
+        {
+          "zone": {
+            "line": "Outside off",
+            "length": "Full"
+          },
+          "outcome": {
+            "type": "wicket",
+            "mode": "edge to slip",
+            "dismissalCategory": "caught-slip"
+          }
+        }
+      ],
+      "resistances": [
+        "Seam",
+        "Cutter",
+        "Slower",
+        "Googly",
+        "Carrom",
+        "Topspin",
+        "Drift"
+      ]
+    },
+    {
       "id": "rohit-sharma-bat",
       "kind": "batsman",
       "name": "Rohit Sharma",
@@ -272,6 +366,96 @@
         "Topspin",
         "Drift",
         "Googly"
+      ]
+    },
+    {
+      "id": "yashasvi-jaiswal-bat",
+      "kind": "batsman",
+      "name": "Yashasvi Jaiswal",
+      "nation": "India",
+      "tier": "Gold",
+      "description": "LH explosive opener. Multiple T20I 100s, IPL Orange Cap contender. Big sixes over long-on, drives over extra cover. Vulnerable to good-length pace squaring him up.",
+      "strengths": [
+        {
+          "zone": {
+            "line": "Off stump",
+            "length": "Full"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 6,
+            "shot": "drive",
+            "shotCategory": "drive-cover"
+          }
+        },
+        {
+          "zone": {
+            "line": "Leg stump",
+            "length": "Full"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 6,
+            "shot": "loft over long-on",
+            "shotCategory": "loft-straight"
+          }
+        }
+      ],
+      "neutrals": [
+        {
+          "zone": {
+            "line": "Leg stump",
+            "length": "Good length"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 2,
+            "shot": "flick",
+            "shotCategory": "flick"
+          }
+        },
+        {
+          "zone": {
+            "line": "Middle stump",
+            "length": "Short"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 1,
+            "shot": "pull",
+            "shotCategory": "pull"
+          }
+        }
+      ],
+      "weaknesses": [
+        {
+          "zone": {
+            "line": "Off stump",
+            "length": "Good length"
+          },
+          "outcome": {
+            "type": "wicket",
+            "mode": "edge to slip",
+            "dismissalCategory": "caught-slip"
+          }
+        },
+        {
+          "zone": {
+            "line": "Middle stump",
+            "length": "Good length"
+          },
+          "outcome": {
+            "type": "wicket",
+            "mode": "bowled going across",
+            "dismissalCategory": "bowled"
+          }
+        }
+      ],
+      "resistances": [
+        "Cutter",
+        "Slower",
+        "Topspin",
+        "Drift"
       ]
     },
     {
@@ -11959,6 +12143,26 @@
       ]
     },
     {
+      "id": "yuzvendra-chahal-bowl",
+      "kind": "bowler",
+      "name": "Yuzvendra Chahal",
+      "nation": "India",
+      "tier": "Elite",
+      "description": "Most T20I wickets in India's history (96 in 80 matches). Right-arm leg-spinner — lethal disguised googly + skiddy quicker arm-ball. RR/RCB IPL stalwart and India's middle-overs match-winner across the late 2010s and 2020s. Two-skill Elite per the v1.1 rule.",
+      "delivery": {
+        "line": "Middle stump",
+        "length": "Good length"
+      },
+      "adjectives": [
+        "Googly",
+        "Topspin"
+      ],
+      "fielding": [
+        "Short leg/Silly point",
+        "Slip cordon"
+      ]
+    },
+    {
       "id": "kuldeep-yadav-bowl",
       "kind": "bowler",
       "name": "Kuldeep Yadav",
@@ -11989,6 +12193,24 @@
       },
       "adjectives": [
         "Swing"
+      ],
+      "fielding": [
+        "Slip cordon"
+      ]
+    },
+    {
+      "id": "mohammed-siraj-bowl",
+      "kind": "bowler",
+      "name": "Mohammed Siraj",
+      "nation": "India",
+      "tier": "Gold",
+      "description": "Right-arm first-choice quick. Hits the deck hard with seam off the surface. The 6-wicket Asia Cup 2023 final spell vs Sri Lanka cemented his role as India's powerplay enforcer.",
+      "delivery": {
+        "line": "Off stump",
+        "length": "Good length"
+      },
+      "adjectives": [
+        "Seam"
       ],
       "fielding": [
         "Slip cordon"
