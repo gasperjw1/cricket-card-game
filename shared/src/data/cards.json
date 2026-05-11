@@ -6945,6 +6945,100 @@
       ]
     },
     {
+      "id": "kumar-sangakkara-bat",
+      "kind": "batsman",
+      "name": "Kumar Sangakkara",
+      "nation": "Sri Lanka",
+      "tier": "Elite",
+      "description": "Legend — retired internationals 2015, 56 T20Is, T20 WC 2014 winner, all-time-great LH keeper-bat. Glides, sweeps, drives off both feet, reverse-laps spin. The most technically-correct attacking bat of his era.",
+      "strengths": [
+        {
+          "zone": {
+            "line": "Off stump",
+            "length": "Full"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 6,
+            "shot": "cover drive",
+            "shotCategory": "drive-cover"
+          }
+        },
+        {
+          "zone": {
+            "line": "Off stump",
+            "length": "Good length"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 4,
+            "shot": "late cut",
+            "shotCategory": "late-cut"
+          }
+        },
+        {
+          "zone": {
+            "line": "Leg stump",
+            "length": "Full"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 4,
+            "shot": "sweep",
+            "shotCategory": "sweep"
+          }
+        }
+      ],
+      "neutrals": [
+        {
+          "zone": {
+            "line": "Middle stump",
+            "length": "Good length"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 2,
+            "shot": "push",
+            "shotCategory": "defend"
+          }
+        },
+        {
+          "zone": {
+            "line": "Leg stump",
+            "length": "Good length"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 1,
+            "shot": "flick",
+            "shotCategory": "flick"
+          }
+        }
+      ],
+      "weaknesses": [
+        {
+          "zone": {
+            "line": "Outside off",
+            "length": "Short"
+          },
+          "outcome": {
+            "type": "wicket",
+            "mode": "caught behind",
+            "dismissalCategory": "caught-keeper"
+          }
+        }
+      ],
+      "resistances": [
+        "Swing",
+        "Seam",
+        "Slower",
+        "Cutter",
+        "Topspin",
+        "Drift",
+        "Googly"
+      ]
+    },
+    {
       "id": "charith-asalanka-bat",
       "kind": "batsman",
       "name": "Charith Asalanka",
@@ -7125,6 +7219,97 @@
         "Cutter",
         "Topspin",
         "Drift"
+      ]
+    },
+    {
+      "id": "mahela-jayawardene-bat",
+      "kind": "batsman",
+      "name": "Mahela Jayawardene",
+      "nation": "Sri Lanka",
+      "tier": "Gold",
+      "description": "Legend — retired 2014, 55 T20Is, T20 WC 2014 Player of the Tournament. RH right-hand stylist with the wristy whip through midwicket and the late cut signature. Captain across formats.",
+      "strengths": [
+        {
+          "zone": {
+            "line": "Leg stump",
+            "length": "Full"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 4,
+            "shot": "flick",
+            "shotCategory": "flick"
+          }
+        },
+        {
+          "zone": {
+            "line": "Off stump",
+            "length": "Good length"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 4,
+            "shot": "late cut",
+            "shotCategory": "late-cut"
+          }
+        }
+      ],
+      "neutrals": [
+        {
+          "zone": {
+            "line": "Off stump",
+            "length": "Full"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 2,
+            "shot": "cover drive",
+            "shotCategory": "drive-cover"
+          }
+        },
+        {
+          "zone": {
+            "line": "Middle stump",
+            "length": "Good length"
+          },
+          "outcome": {
+            "type": "runs",
+            "value": 1,
+            "shot": "push",
+            "shotCategory": "defend"
+          }
+        }
+      ],
+      "weaknesses": [
+        {
+          "zone": {
+            "line": "Middle stump",
+            "length": "Short"
+          },
+          "outcome": {
+            "type": "wicket",
+            "mode": "caught fending",
+            "dismissalCategory": "caught-keeper"
+          }
+        },
+        {
+          "zone": {
+            "line": "Outside off",
+            "length": "Full"
+          },
+          "outcome": {
+            "type": "wicket",
+            "mode": "edge to keeper",
+            "dismissalCategory": "caught-keeper"
+          }
+        }
+      ],
+      "resistances": [
+        "Topspin",
+        "Drift",
+        "Carrom",
+        "Googly",
+        "Slower"
       ]
     },
     {
@@ -14395,6 +14580,26 @@
       ]
     },
     {
+      "id": "lasith-malinga-bowl",
+      "kind": "bowler",
+      "name": "Lasith Malinga",
+      "nation": "Sri Lanka",
+      "tier": "Elite",
+      "description": "Legend — retired 2021, 84 T20Is, all-time-great T20 death bowler, MI IPL talisman. Slingy round-arm action delivers the toe-crushing yorker; the slow-ball cutter is just as iconic. Two-skill Elite per the v1.1 rule.",
+      "delivery": {
+        "line": "Off stump",
+        "length": "Full"
+      },
+      "adjectives": [
+        "Slower",
+        "Swing"
+      ],
+      "fielding": [
+        "Cover",
+        "Mid-wicket"
+      ]
+    },
+    {
       "id": "matheesha-pathirana-bowl",
       "kind": "bowler",
       "name": "Matheesha Pathirana",
@@ -14428,6 +14633,24 @@
       ],
       "fielding": [
         "Slip cordon"
+      ]
+    },
+    {
+      "id": "ajantha-mendis-bowl",
+      "kind": "bowler",
+      "name": "Ajantha Mendis",
+      "nation": "Sri Lanka",
+      "tier": "Gold",
+      "description": "Mystery spin pioneer — retired 2015, 39 T20Is. The original carrom-ball specialist who shocked the cricketing world before everyone learned to read him. Skill: **Carrom**.",
+      "delivery": {
+        "line": "Middle stump",
+        "length": "Good length"
+      },
+      "adjectives": [
+        "Carrom"
+      ],
+      "fielding": [
+        "Short leg/Silly point"
       ]
     },
     {

@@ -1095,6 +1095,13 @@ Everything not listed = dot ball. Weaknesses are zone-only (no adjective referen
 - **Weaknesses:** Short Outside off → top edge caught
 - **Resistances:** Swing, Seam, Slower, Topspin, Drift, Googly, Carrom
 
+### ELITE — Kumar Sangakkara
+*Legend — retired internationals 2015, 56 T20Is, T20 WC 2014 winner, all-time-great LH keeper-bat. Glides, sweeps, drives off both feet, reverse-laps spin. The most technically-correct attacking bat of his era.*
+- **Strengths:** Full off stump → cover drive for 6 | Good length off stump → late cut for 4 | Full leg stump → sweep for 4
+- **Neutrals:** Good length middle stump → push for 2 | Good length leg stump → flick for 1
+- **Weaknesses:** Short Outside off → caught behind
+- **Resistances:** Swing, Seam, Slower, Cutter, Topspin, Drift, Googly
+
 ### GOLD — Charith Asalanka
 *Current SL T20I captain. Left-handed stroke-maker, elegant drives and sweeps.*
 - **Strengths:** Full off stump → drive for 4 | Full leg stump → sweep for 6 | Short middle stump → pull for 4
@@ -1108,6 +1115,13 @@ Everything not listed = dot ball. Weaknesses are zone-only (no adjective referen
 - **Neutrals:** Good length leg stump → work for 2 | Good length middle stump → push for 1
 - **Weaknesses:** Full middle stump → bowled across the line
 - **Resistances:** Slower, Cutter, Topspin, Drift
+
+### GOLD — Mahela Jayawardene
+*Legend — retired 2014, 55 T20Is, T20 WC 2014 Player of the Tournament. RH right-hand stylist with the wristy whip through midwicket and the late cut signature. Captain across formats.*
+- **Strengths:** Full leg stump → flick for 4 | Good length off stump → late cut for 4
+- **Neutrals:** Full off stump → cover drive for 2 | Good length middle stump → push for 1
+- **Weaknesses:** Short middle stump → caught fending | Full Outside off → edge to keeper
+- **Resistances:** Topspin, Drift, Carrom, Googly, Slower
 
 ### SILVER — Kamindu Mendis
 *Left-handed rising star. Sweeps and reverse-sweeps; unique ambidextrous part-time spinner (split below).*
@@ -1166,6 +1180,10 @@ Everything not listed = dot ball. Weaknesses are zone-only (no adjective referen
 *SL T20 leg-spinner extraordinaire. Multi-time T20 WC top wicket-taker. Disguised wrong'un + skiddy topspinner. Two-skill Elite per the v1.1 rule.*
 - **Delivery:** Good length middle stump | **Adjective:** Googly, Topspin | **Fielding:** Short leg/Silly point + Slip cordon
 
+### ELITE — Lasith Malinga
+*Legend — retired 2021, 84 T20Is, all-time-great T20 death bowler, MI IPL talisman. Slingy round-arm action delivers the toe-crushing yorker; the slow-ball cutter is just as iconic. Two-skill Elite per the v1.1 rule.*
+- **Delivery:** Full off stump | **Adjective:** Slower, Swing | **Fielding:** Cover + Mid-wicket
+
 ### GOLD — Matheesha Pathirana
 *Slingy right-arm fast bowler. Malinga-style action with death-overs slow-ball cutter signature.*
 - **Delivery:** Full off stump | **Adjective:** Slower | **Fielding:** Cover
@@ -1173,6 +1191,10 @@ Everything not listed = dot ball. Weaknesses are zone-only (no adjective referen
 ### GOLD — Maheesh Theekshana
 *Mystery right-arm off-spinner. Carrom ball specialist, disguised release.*
 - **Delivery:** Good length off stump | **Adjective:** Carrom | **Fielding:** Slip cordon
+
+### GOLD — Ajantha Mendis
+*Mystery spin pioneer — retired 2015, 39 T20Is. The original carrom-ball specialist who shocked the cricketing world before everyone learned to read him. Skill: **Carrom**.*
+- **Delivery:** Good length middle stump | **Adjective:** Carrom | **Fielding:** Short leg/Silly point
 
 ### SILVER — Dushmantha Chameera
 *Right-arm quick. Full and fast through the stumps.*
@@ -1937,7 +1959,7 @@ Everything not listed = dot ball. Weaknesses are zone-only (no adjective referen
 | South Africa | 13 | 13 | 26 |
 | New Zealand | 13 | 13 | 26 |
 | Pakistan | 13 | 13 | 26 |
-| Sri Lanka | 11 | 11 | 22 |
+| Sri Lanka | 13 | 13 | 26 |
 | West Indies | 11 | 11 | 22 |
 | Bangladesh | 11 | 11 | 22 |
 | Zimbabwe | 11 | 11 | 22 |
@@ -1949,4 +1971,4 @@ Everything not listed = dot ball. Weaknesses are zone-only (no adjective referen
 | USA | 1 | 1 | 2 |
 | Netherlands | 1 | 1 | 2 |
 | Namibia | 1 | 1 | 2 |
-| **TOTAL** | **149** | **149** | **298** |
+| **TOTAL** | **151** | **151** | **302** |
