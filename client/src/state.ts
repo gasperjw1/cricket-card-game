@@ -59,6 +59,13 @@ export interface MatchClient {
   /** Latest ball:reveal payload; null until revealed (cleared when next ball begins). */
   lastReveal: BallResult | null;
   createMatch: (displayName: string, abbreviation: string) => Promise<void>;
+  /** Create a single-player match against a CPU bot. Server picks bot
+   *  name + nation; client just chooses difficulty. */
+  createBotMatch: (
+    displayName: string,
+    abbreviation: string,
+    difficulty: import("@swipe-sixer/shared").BotDifficulty,
+  ) => Promise<void>;
   joinMatch: (
     inviteCode: string,
     displayName: string,
@@ -216,6 +223,27 @@ export function useMatchClient(): MatchClient {
     });
   };
 
+  const createBotMatch = async (
+    displayName: string,
+    abbreviation: string,
+    difficulty: import("@swipe-sixer/shared").BotDifficulty,
+  ): Promise<void> => {
+    setErrorMessage(null);
+    return new Promise<void>((resolve) => {
+      socket.emit(
+        "match:create-bot",
+        { displayName, abbreviation, difficulty },
+        (res) => {
+          persistSession(res.matchId, res.playerToken);
+          sessionRef.current = { matchId: res.matchId, playerToken: res.playerToken };
+          resetMatchTransients();
+          setMySlot(res.slot);
+          resolve();
+        },
+      );
+    });
+  };
+
   const joinMatch = async (
     inviteCode: string,
     displayName: string,
@@ -310,6 +338,7 @@ export function useMatchClient(): MatchClient {
     opponentLocked,
     lastReveal,
     createMatch,
+    createBotMatch,
     joinMatch,
     leaveMatch,
     callCoinToss,

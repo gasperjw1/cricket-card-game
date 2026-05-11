@@ -36,6 +36,11 @@ import {
 } from "@swipe-sixer/shared";
 import { CARDS } from "@swipe-sixer/shared/data";
 import {
+  botPickBallSelection,
+  botPickSwap,
+  lastOpponentMandatory,
+} from "./bot/controller.js";
+import {
   activeRoleForSlot,
   type BallResolutionContext,
   type ServerDecks,
@@ -69,9 +74,13 @@ export interface InningsCallbacks {
  */
 export function startInnings1(match: ServerMatch, cb: InningsCallbacks): void {
   if (!match.coinToss?.battingSlot) return;
+  // Each player's deck is built independently. Bots get a themed
+  // single-nation deck (own 13 + associate Silvers) when their nation
+  // is a Test nation; Associate-nation bots and humans get a random
+  // multi-nation deck.
   match.decks = {
-    A: makePlayerDecks(),
-    B: makePlayerDecks(),
+    A: makePlayerDecks({ botNation: match.players.A.isBot ? match.players.A.botNation : null }),
+    B: makePlayerDecks({ botNation: match.players.B?.isBot ? match.players.B.botNation : null }),
   };
   const battingSlot = match.coinToss.battingSlot;
   const bowlingSlot: PlayerSlot = battingSlot === "A" ? "B" : "A";
@@ -144,6 +153,62 @@ function startBallTimer(match: ServerMatch, cb: InningsCallbacks): void {
     resolveBallTurn(match, cb, /* timedOut */ true);
   }, TURN_TIMER_SECONDS * 1000);
   match.timers.set(BALL_TIMER_KEY, t);
+
+  // Bot intercept: each bot player auto-submits after a short "thinking"
+  // delay so the human sees realistic pacing.
+  for (const slot of ["A", "B"] as const) {
+    if (match.players[slot]?.isBot) {
+      scheduleBotBallSubmit(match, slot, cb);
+    }
+  }
+}
+
+/** Schedule a bot's ball submission with a short randomized delay (~1.5-3s)
+ *  so the human sees realistic pacing rather than instant picks. */
+function scheduleBotBallSubmit(
+  match: ServerMatch,
+  botSlot: PlayerSlot,
+  cb: InningsCallbacks,
+): void {
+  const delay = 1500 + Math.random() * 1500;  // 1.5-3 seconds
+  const timerKey = `bot-submit-${botSlot}`;
+  const existing = match.timers.get(timerKey);
+  if (existing) clearTimeout(existing);
+  const t = setTimeout(() => {
+    match.timers.delete(timerKey);
+    botSubmitBall(match, botSlot, cb);
+  }, delay);
+  match.timers.set(timerKey, t);
+}
+
+/** Bot picks a card and submits via the same code path a human would. */
+function botSubmitBall(
+  match: ServerMatch,
+  botSlot: PlayerSlot,
+  cb: InningsCallbacks,
+): void {
+  const player = match.players[botSlot];
+  if (!player?.isBot || !player.botDifficulty) return;
+  if (match.pendingSelections[botSlot]) return;  // already submitted
+  if (match.currentBallDeadlineEpochMs === null) return;  // ball isn't live
+  if (match.pendingSwap) return;  // paused on swap
+
+  const decks = match.decks?.[botSlot];
+  if (!decks) return;
+  const innings = match.currentInnings === 1 ? match.innings1 : match.innings2;
+  if (!innings) return;
+  const role: "batting" | "bowling" =
+    innings.battingPlayer === botSlot ? "batting" : "bowling";
+
+  const selection = botPickBallSelection({
+    hand: decks.hand,
+    role,
+    difficulty: player.botDifficulty,
+    ballsBowled: innings.ballsBowled,
+    wicketsFallen: innings.wickets,
+    lastOpponentCard: lastOpponentMandatory(match, botSlot),
+  });
+  submitBallSelection(match, botSlot, selection, cb);
 }
 
 function clearBallTimer(match: ServerMatch): void {
@@ -349,6 +414,19 @@ function promptSwap(
   });
 
   cb.broadcastState(match);
+
+  // Bot intercept: if the swap is for a bot, auto-resolve after a short
+  // "thinking" delay so the human sees the action happen with realistic
+  // pacing, not instantly.
+  if (match.players[fromSlot]?.isBot) {
+    const t = setTimeout(() => {
+      if (!match.pendingSwap || match.pendingSwap.fromSlot !== fromSlot) return;
+      const pick = botPickSwap(match.pendingSwap.candidateIds);
+      applySwapPick(match, cb, fromSlot, pick, /* auto */ true);
+    }, 1200);
+    match.timers.set(`bot-swap-${fromSlot}`, t);
+  }
+
   return true;
 }
 
@@ -718,10 +796,10 @@ function computeResult(match: ServerMatch): MatchResult {
 
 // ─────────────────────────── Helpers ───────────────────────────
 
-function makePlayerDecks(): ServerDecks {
+function makePlayerDecks(opts?: { botNation?: import("@swipe-sixer/shared").Nation | null }): ServerDecks {
   return {
-    battingDeck: buildDeck("batting"),
-    bowlingDeck: buildDeck("bowling"),
+    battingDeck: buildDeck("batting", opts?.botNation ?? null),
+    bowlingDeck: buildDeck("bowling", opts?.botNation ?? null),
     hand: [],
     discard: [],
   };
@@ -734,14 +812,50 @@ const TIER_DISTRIBUTION: Record<"Elite" | "Gold" | "Silver" | "Bronze", number> 
   Bronze: 3, // 15 player cards + 5 situation cards = 20
 };
 
-function buildDeck(role: SituationDeck): AnyCard[] {
+/** Test nations are the 12 with full rosters. Associate nations have
+ *  partial rosters (single-nation deck impossible) — bot picking an
+ *  associate falls back to a multi-nation random deck. */
+const TEST_NATIONS = new Set<import("@swipe-sixer/shared").Nation>([
+  "India", "Australia", "England", "South Africa", "New Zealand", "Pakistan",
+  "Sri Lanka", "West Indies", "Bangladesh", "Zimbabwe", "Afghanistan", "Ireland",
+]);
+
+function buildDeck(
+  role: SituationDeck,
+  botNation: import("@swipe-sixer/shared").Nation | null,
+): AnyCard[] {
   const playerPool = role === "batting" ? CARDS.batsmen : CARDS.bowlers;
   const sitPool = CARDS.situations.filter((s) => s.deck === role);
+
+  // For Test-nation bots: build a single-nation themed deck.
+  // - Elite + Gold + Bronze come from the bot's own nation.
+  // - Silver pulls from the bot's nation PLUS the associate-nation pool
+  //   (so there are enough Silvers to fill the 7-per-deck slot).
+  // For human players + Associate-nation bots: random multi-nation pool.
+  const useThemedDeck = botNation !== null && TEST_NATIONS.has(botNation);
 
   const deck: AnyCard[] = [];
   for (const tier of ["Elite", "Gold", "Silver", "Bronze"] as const) {
     const count = TIER_DISTRIBUTION[tier];
-    const tierPool = playerPool.filter((c) => c.tier === tier);
+    let tierPool = playerPool.filter((c) => c.tier === tier);
+    if (useThemedDeck) {
+      if (tier === "Silver") {
+        // Own nation Silvers + associate Silvers
+        tierPool = tierPool.filter(
+          (c) => c.nation === botNation || !TEST_NATIONS.has(c.nation),
+        );
+      } else {
+        tierPool = tierPool.filter((c) => c.nation === botNation);
+      }
+      // Fallback: if the themed pool is too small (e.g. AFG with only 2
+      // Gold instead of 3), top up from the global pool to avoid crashing.
+      if (tierPool.length < count) {
+        const extras = playerPool.filter(
+          (c) => c.tier === tier && !tierPool.includes(c),
+        );
+        tierPool = [...tierPool, ...sample(extras, count - tierPool.length)];
+      }
+    }
     deck.push(...sample(tierPool, count));
   }
   // 5 of 6 situation cards per pool

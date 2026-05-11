@@ -182,6 +182,12 @@ export interface PublicMatchState {
   result: MatchResult | null;
 }
 
+/** CPU difficulty levels for bot opponents. Names lean cricket-themed:
+ *  - Gully: pure random valid picks (street cricket)
+ *  - Domestic: shallow heuristic (state/franchise level)
+ *  - International: heuristic + tier prioritization (top of the world) */
+export type BotDifficulty = "Gully" | "Domestic" | "International";
+
 export interface PublicPlayerInfo {
   slot: PlayerSlot;
   displayName: string;
@@ -190,6 +196,10 @@ export interface PublicPlayerInfo {
   connected: boolean;
   handSize: number; // opponent sees count, not contents
   deckRemaining: number;
+  /** True when this player is a server-controlled CPU. Surfaced to the
+   *  client so the UI can show a "🤖 CPU" badge. */
+  isBot?: boolean;
+  botDifficulty?: BotDifficulty;
 }
 
 export interface PrivatePlayerView {

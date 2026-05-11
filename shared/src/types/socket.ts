@@ -1,6 +1,7 @@
 import type {
   BallResult,
   BallSelection,
+  BotDifficulty,
   DraftState,
   PrivatePlayerView,
   PublicMatchState,
@@ -33,6 +34,13 @@ export interface ClientToServerEvents {
   "lobby:join": (
     payload: { inviteCode: string; displayName: string; abbreviation: string },
     ack: (res: LobbyJoinResult) => void,
+  ) => void;
+
+  /** Spawn a single-player match against a CPU bot. The server picks the
+   *  bot's name + nation + abbreviation; client just chooses difficulty. */
+  "match:create-bot": (
+    payload: { displayName: string; abbreviation: string; difficulty: BotDifficulty },
+    ack: (res: { inviteCode: string } & LobbyCredentials) => void,
   ) => void;
 
   "match:reconnect": (

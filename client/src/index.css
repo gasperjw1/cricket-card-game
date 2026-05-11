@@ -1570,6 +1570,85 @@ h1 {
   align-self: center;
 }
 
+/* ───── Home screen — Online 1v1 sub-menu ─────
+   The "Online 1v1" row sits below the primary "Play vs CPU" button
+   with smaller side-by-side Create + Join buttons. */
+.online-row {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin: 0.25rem 0;
+  padding: 0.6rem 0.75rem;
+  border: 1px solid #2a3441;
+  border-radius: 8px;
+  background: #131a23;
+}
+.online-row-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+.online-row-buttons {
+  display: flex;
+  gap: 0.6rem;
+}
+.online-row-buttons .btn {
+  flex: 1;
+}
+
+/* ───── CPU difficulty picker ─────
+   Three radio cards in a column, each showing the difficulty label
+   and a one-line blurb of what it does. */
+.difficulty-picker {
+  border: 1px solid #2a3441;
+  border-radius: 8px;
+  padding: 0.5rem 0.5rem 0.6rem;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+.difficulty-picker legend {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #8a939c;
+  padding: 0 0.4rem;
+}
+.difficulty-picker label {
+  display: grid;
+  grid-template-columns: 1.4rem 1fr;
+  align-items: start;
+  column-gap: 0.5rem;
+  padding: 0.55rem 0.6rem;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 100ms ease, border-color 100ms ease;
+}
+.difficulty-picker label:hover {
+  background: #1c2530;
+}
+.difficulty-picker label.selected {
+  background: #1d3a23;
+  border-color: #2563eb;
+}
+.difficulty-picker input[type="radio"] {
+  grid-row: 1 / span 2;
+  margin: 0.2rem 0 0;
+  width: 1rem;
+  height: 1rem;
+}
+.difficulty-picker strong {
+  display: block;
+  font-size: 0.95rem;
+}
+.difficulty-picker small {
+  display: block;
+  font-size: 0.78rem;
+  margin-top: 0.1rem;
+}
+
 /* ───── Storytelling sequence ─────
    Pre-roll inside RevealOverlay. Each stage replaces the prior one
    with a fade-in/slide-up animation. Phase 1 uses emoji placeholders;

@@ -1,4 +1,5 @@
 import { lazy, Suspense, useState } from "react";
+import type { BotDifficulty } from "@swipe-sixer/shared";
 import type { MatchClient } from "../state.ts";
 
 // Lazy-loaded so the ~24KB of card-roster data the guide imports isn't
@@ -9,7 +10,7 @@ interface Props {
   client: MatchClient;
 }
 
-type Mode = "menu" | "create" | "join" | "how-to-play";
+type Mode = "menu" | "vs-cpu" | "create" | "join" | "how-to-play";
 
 /** Derive a default 4-char abbreviation from a display name. */
 function defaultAbbrFromName(name: string): string {
@@ -24,6 +25,7 @@ export function HomeScreen({ client }: Props) {
   const [abbrTouched, setAbbrTouched] = useState(false);
   const [inviteCode, setInviteCode] = useState("");
   const [submitting, setSubmitting] = useState(false);
+  const [botDifficulty, setBotDifficulty] = useState<BotDifficulty>("Domestic");
 
   const effectiveAbbr = abbrTouched ? abbreviation : defaultAbbrFromName(displayName);
   const abbrValid = effectiveAbbr.length >= 2 && effectiveAbbr.length <= 4;
@@ -61,6 +63,14 @@ export function HomeScreen({ client }: Props) {
     setSubmitting(false);
   };
 
+  const handleVsCpu = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!canCreate) return;
+    setSubmitting(true);
+    await client.createBotMatch(displayName, effectiveAbbr, botDifficulty);
+    setSubmitting(false);
+  };
+
   if (mode === "how-to-play") {
     return (
       <Suspense fallback={<main><h1>How to Play</h1><p className="dim-text">Loading…</p></main>}>
@@ -94,19 +104,31 @@ export function HomeScreen({ client }: Props) {
       {mode === "menu" && (
         <div className="menu">
           <button
-            className="btn primary"
+            className="btn primary big"
             disabled={!client.connected}
-            onClick={() => setMode("create")}
+            onClick={() => setMode("vs-cpu")}
           >
-            Create match
+            🤖 Play vs CPU
           </button>
-          <button
-            className="btn"
-            disabled={!client.connected}
-            onClick={() => setMode("join")}
-          >
-            Join match
-          </button>
+          <div className="online-row">
+            <span className="dim-text online-row-label">Online 1v1</span>
+            <div className="online-row-buttons">
+              <button
+                className="btn small"
+                disabled={!client.connected}
+                onClick={() => setMode("create")}
+              >
+                Create
+              </button>
+              <button
+                className="btn small"
+                disabled={!client.connected}
+                onClick={() => setMode("join")}
+              >
+                Join
+              </button>
+            </div>
+          </div>
           <button
             className="btn ghost"
             onClick={() => setMode("how-to-play")}
@@ -114,6 +136,62 @@ export function HomeScreen({ client }: Props) {
             How to play
           </button>
         </div>
+      )}
+
+      {mode === "vs-cpu" && (
+        <form className="form" onSubmit={handleVsCpu}>
+          <label>
+            Your name
+            <input
+              type="text"
+              autoFocus
+              value={displayName}
+              maxLength={20}
+              onChange={(e) => handleNameChange(e.target.value)}
+              placeholder="e.g. Yash"
+            />
+          </label>
+          <label>
+            Team abbreviation
+            <input
+              type="text"
+              value={effectiveAbbr}
+              maxLength={4}
+              onChange={(e) => {
+                setAbbrTouched(true);
+                setAbbreviation(
+                  e.target.value.toUpperCase().replace(/[^A-Z0-9]/g, ""),
+                );
+              }}
+              placeholder="2–4 chars"
+              style={{ textTransform: "uppercase", letterSpacing: "0.2em" }}
+            />
+          </label>
+          <fieldset className="difficulty-picker">
+            <legend>CPU difficulty</legend>
+            {(["Gully", "Domestic", "International"] as const).map((d) => (
+              <label key={d} className={botDifficulty === d ? "selected" : ""}>
+                <input
+                  type="radio"
+                  name="difficulty"
+                  value={d}
+                  checked={botDifficulty === d}
+                  onChange={() => setBotDifficulty(d)}
+                />
+                <strong>{d}</strong>
+                <small className="dim-text">{difficultyBlurb(d)}</small>
+              </label>
+            ))}
+          </fieldset>
+          <div className="form-actions">
+            <button type="button" className="btn ghost" onClick={() => setMode("menu")}>
+              Back
+            </button>
+            <button type="submit" className="btn primary" disabled={!canCreate}>
+              {submitting ? "Starting…" : `Play vs ${botDifficulty}`}
+            </button>
+          </div>
+        </form>
       )}
 
       {mode === "create" && (
@@ -223,4 +301,12 @@ export function HomeScreen({ client }: Props) {
       )}
     </main>
   );
+}
+
+function difficultyBlurb(d: BotDifficulty): string {
+  switch (d) {
+    case "Gully": return "Random picks. Cricket on the street.";
+    case "Domestic": return "Bowls to your weaknesses, defends carefully.";
+    case "International": return "Plus saves Elite cards for pressure balls.";
+  }
 }

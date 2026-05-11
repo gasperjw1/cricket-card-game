@@ -4,6 +4,7 @@ import {
   COIN_TOSS_COUNTDOWN_SECONDS,
   type PlayerSlot,
 } from "@swipe-sixer/shared";
+import { botCallCoinToss, botChooseRole } from "./bot/controller.js";
 import type { ServerMatch } from "./match-registry.js";
 
 const COUNTDOWN_TIMER_KEY = "coin-countdown";
@@ -50,16 +51,26 @@ export function startCoinToss(match: ServerMatch, cb: CoinTossCallbacks): void {
 
 function enterCallingStage(match: ServerMatch, cb: CoinTossCallbacks): void {
   if (!match.coinToss) return;
+  const callerSlot = match.coinToss.callerSlot;  // always "B" in v1
+  const callerIsBot = match.players[callerSlot]?.isBot ?? false;
   const deadline = Date.now() + COIN_TOSS_CALL_TIMER_SECONDS * 1000;
   match.coinToss = {
     ...match.coinToss,
     stage: "calling",
     deadlineEpochMs: deadline,
   };
-  scheduleTimer(match, CALL_TIMER_KEY, deadline, () => {
-    // Auto-call heads on timeout.
-    handleCall(match, "B", "heads", cb, /* auto */ true);
-  });
+  // Bot intercept: auto-call after a short "thinking" delay (~1s) so the
+  // human sees the call happen with realistic pacing, not instantly.
+  if (callerIsBot) {
+    scheduleTimer(match, CALL_TIMER_KEY, Date.now() + 1000, () => {
+      const call = botCallCoinToss();
+      handleCall(match, callerSlot, call, cb, /* auto */ true);
+    });
+  } else {
+    scheduleTimer(match, CALL_TIMER_KEY, deadline, () => {
+      handleCall(match, callerSlot, "heads", cb, /* auto */ true);
+    });
+  }
   cb.broadcastState(match);
 }
 
@@ -100,16 +111,24 @@ export function handleCall(
 function enterChoosingStage(match: ServerMatch, cb: CoinTossCallbacks): void {
   if (!match.coinToss || match.coinToss.winnerSlot === null) return;
   const winner: PlayerSlot = match.coinToss.winnerSlot;
+  const winnerIsBot = match.players[winner]?.isBot ?? false;
   const deadline = Date.now() + COIN_TOSS_CHOOSE_TIMER_SECONDS * 1000;
   match.coinToss = {
     ...match.coinToss,
     stage: "choosing",
     deadlineEpochMs: deadline,
   };
-  scheduleTimer(match, CHOOSE_TIMER_KEY, deadline, () => {
-    // Auto-choose: bat
-    handleChoose(match, winner, "bat", cb, /* auto */ true);
-  });
+  if (winnerIsBot) {
+    // Bot intercept: short "thinking" delay then choose.
+    scheduleTimer(match, CHOOSE_TIMER_KEY, Date.now() + 1500, () => {
+      const choose = botChooseRole();
+      handleChoose(match, winner, choose, cb, /* auto */ true);
+    });
+  } else {
+    scheduleTimer(match, CHOOSE_TIMER_KEY, deadline, () => {
+      handleChoose(match, winner, "bat", cb, /* auto */ true);
+    });
+  }
   cb.broadcastState(match);
 }
 

@@ -143,6 +143,27 @@ io.on("connection", (socket) => {
     );
   });
 
+  socket.on("match:create-bot", ({ displayName, abbreviation, difficulty }, ack) => {
+    const { match, playerToken } = registry.createBotMatch(
+      displayName,
+      abbreviation,
+      difficulty,
+      socket.id,
+    );
+    socket.join(matchRoom(match.matchId));
+    ack({
+      matchId: match.matchId,
+      inviteCode: match.inviteCode,
+      playerToken,
+      slot: "A",
+    });
+    console.log(
+      `[lobby] bot match ${match.matchId} created by "${displayName}" vs ${match.players.B!.displayName} (${match.players.B!.botNation}, ${difficulty})`,
+    );
+    // Skip the lobby waiting room and jump straight to the coin toss.
+    startCoinToss(match, coinTossCallbacks);
+  });
+
   socket.on("lobby:join", ({ inviteCode, displayName, abbreviation }, ack) => {
     const result = registry.joinMatch(
       inviteCode,

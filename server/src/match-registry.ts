@@ -3,6 +3,7 @@ import type {
   AnyCard,
   BallSelection,
   BatsmanCard,
+  BotDifficulty,
   BowlerCard,
   CoinTossState,
   InningsState,
@@ -14,6 +15,7 @@ import type {
   ResolutionStep,
   SituationCard,
 } from "@swipe-sixer/shared";
+import { pickBotIdentity } from "./bot/names.js";
 
 /**
  * Authoritative server-side match state. Lives in memory only — matches are
@@ -28,6 +30,13 @@ interface ServerPlayer {
   abbreviation: string;
   playerToken: string; // returned to client; used to reclaim slot on reconnect
   socketId: string | null;
+  /** True when this slot is a CPU controlled by the server. Bots have no
+   *  socket; coin-toss / innings code intercepts and auto-fills their inputs. */
+  isBot: boolean;
+  botDifficulty: import("@swipe-sixer/shared").BotDifficulty | null;
+  /** Nation the bot represents (for cosmetic flag/abbreviation + for
+   *  building a single-nation deck when the nation is a Test nation). */
+  botNation: import("@swipe-sixer/shared").Nation | null;
 }
 
 /** Normalize a user-provided abbreviation; fall back to deriving from the display name. */
@@ -157,6 +166,9 @@ export class MatchRegistry {
           abbreviation: deriveAbbreviation(abbreviation, finalName, "A"),
           playerToken,
           socketId,
+          isBot: false,
+          botDifficulty: null,
+          botNation: null,
         },
         B: null,
       },
@@ -177,6 +189,32 @@ export class MatchRegistry {
     this.matchesById.set(matchId, match);
     this.matchIdByInvite.set(inviteCode, matchId);
     this.socketToSession.set(socketId, { matchId, slot: "A" });
+    return { match, playerToken };
+  }
+
+  /**
+   * Spawn a single-player match where slot B is a CPU bot. The bot has
+   * no socket; coin-toss / innings / swap-pick code intercepts and
+   * auto-fills its inputs. See server/src/bot/.
+   */
+  createBotMatch(
+    displayName: string,
+    abbreviation: string,
+    difficulty: BotDifficulty,
+    socketId: string,
+  ): { match: ServerMatch; playerToken: string } {
+    const { match, playerToken } = this.createMatch(displayName, abbreviation, socketId);
+    const bot = pickBotIdentity();
+    match.players.B = {
+      slot: "B",
+      displayName: bot.name,
+      abbreviation: bot.abbreviation,
+      playerToken: randomUUID(),  // never sent to a socket; placeholder
+      socketId: null,
+      isBot: true,
+      botDifficulty: difficulty,
+      botNation: bot.nation,
+    };
     return { match, playerToken };
   }
 
@@ -203,6 +241,9 @@ export class MatchRegistry {
       abbreviation: deriveAbbreviation(abbreviation, finalName, "B"),
       playerToken,
       socketId,
+      isBot: false,
+      botDifficulty: null,
+      botNation: null,
     };
     this.socketToSession.set(socketId, { matchId, slot: "B" });
     return { ok: true, match, playerToken };
@@ -326,10 +367,14 @@ export class MatchRegistry {
       return {
         slot: player.slot,
         displayName: player.displayName,
+        // Bots are always "connected" (server-controlled). Surfacing
+        // socketId !== null would show them as offline.
+        connected: player.isBot ? true : player.socketId !== null,
         abbreviation: player.abbreviation,
-        connected: player.socketId !== null,
         handSize,
         deckRemaining,
+        isBot: player.isBot || undefined,
+        botDifficulty: player.botDifficulty ?? undefined,
       };
     };
     return {

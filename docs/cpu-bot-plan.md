@@ -195,23 +195,33 @@ if (otherPlayer.isBot) {
 
 ---
 
-## Long-term: career mode (parked)
+## Long-term: World Cup mode (parked)
 
-The bot infrastructure built in Phase 1 supports an eventual career
-mode where players:
-1. Start with a small starter deck (maybe 1 nation).
-2. Play through a series of bot opponents at progressively higher
-   difficulty.
-3. After each win, draft new cards into their deck.
-4. Eventually unlock all nations / all tier slots.
+The bot infrastructure built in Phase 1 supports an eventual
+**single-player World Cup mode** where players progress through a
+tournament structure and earn better cards as they go:
+
+1. Start with a small starter deck (maybe 1 nation, mostly Silver/Bronze).
+2. Play through a tournament-style series of bot opponents at
+   progressively higher difficulty (Gully → Domestic → International),
+   structured like a real cricket World Cup (group stage → knockouts).
+3. After each match win, **draft new cards into your deck** — better
+   wins (e.g. knockout stages) unlock higher-tier picks.
+4. Lose your tournament progress on a knockout-stage loss; group-stage
+   losses just cost you a match.
+5. Eventually unlock all nations / all tier slots and replay with
+   different starter decks for variety.
 
 This is **not in scope for Phase 1-3.** The plan here is just to make
 sure the bot infrastructure doesn't preclude it later. Notes on what
-would be needed:
+would be needed when we build it:
 - Persistent player state (currently match state is ephemeral) —
   probably needs a small SQLite or per-user JSON store.
 - Deck-building UI (the existing draft flow may be reusable).
-- Progression / unlock tracking.
+- Tournament bracket / progression tracking.
+- Card-unlock economy (which cards unlock when, replay incentives).
+- World Cup theming for the UI (bracket visualization, "you've reached
+  the semis" celebration, etc.).
 
 ---
 
