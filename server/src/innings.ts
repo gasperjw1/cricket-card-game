@@ -8,10 +8,8 @@
  */
 
 import {
-  DECK_SIZE,
   HAND_SIZE,
-  MAX_BALLS_PER_INNINGS,
-  MAX_WICKETS_PER_INNINGS,
+  MATCH_FORMATS,
   POST_BALL_PAUSE_SECONDS,
   SWAP_PICK_TIMER_SECONDS,
   TURN_TIMER_SECONDS,
@@ -23,6 +21,7 @@ import {
   type BatsmanCard,
   type BowlerCard,
   type InningsState,
+  type MatchFormat,
   type MatchResult,
   type PendingSwap,
   type PlayerSlot,
@@ -79,8 +78,12 @@ export function startInnings1(match: ServerMatch, cb: InningsCallbacks): void {
   // is a Test nation; Associate-nation bots and humans get a random
   // multi-nation deck.
   match.decks = {
-    A: makePlayerDecks({ botNation: match.players.A.isBot ? match.players.A.botNation : null }),
-    B: makePlayerDecks({ botNation: match.players.B?.isBot ? match.players.B.botNation : null }),
+    A: makePlayerDecks(match.format, {
+      botNation: match.players.A.isBot ? match.players.A.botNation : null,
+    }),
+    B: makePlayerDecks(match.format, {
+      botNation: match.players.B?.isBot ? match.players.B.botNation : null,
+    }),
   };
   const battingSlot = match.coinToss.battingSlot;
   const bowlingSlot: PlayerSlot = battingSlot === "A" ? "B" : "A";
@@ -200,12 +203,15 @@ function botSubmitBall(
   const role: "batting" | "bowling" =
     innings.battingPlayer === botSlot ? "batting" : "bowling";
 
+  const fmt = MATCH_FORMATS[match.format];
   const selection = botPickBallSelection({
     hand: decks.hand,
     role,
     difficulty: player.botDifficulty,
     ballsBowled: innings.ballsBowled,
     wicketsFallen: innings.wickets,
+    ballsPerInnings: fmt.ballsPerInnings,
+    wicketsPerInnings: fmt.wicketsPerInnings,
     lastOpponentCard: lastOpponentMandatory(match, botSlot),
   });
   submitBallSelection(match, botSlot, selection, cb);
@@ -672,9 +678,10 @@ function advanceAfterBall(
   // Reset pending selections.
   match.pendingSelections = { A: null, B: null };
 
+  const fmt = MATCH_FORMATS[match.format];
   const inningsDone =
-    innings.ballsBowled >= MAX_BALLS_PER_INNINGS ||
-    innings.wickets >= MAX_WICKETS_PER_INNINGS ||
+    innings.ballsBowled >= fmt.ballsPerInnings ||
+    innings.wickets >= fmt.wicketsPerInnings ||
     (match.currentInnings === 2 &&
       match.innings1 &&
       innings.runs > match.innings1.runs);
@@ -779,7 +786,8 @@ function computeResult(match: ServerMatch): MatchResult {
   const r1 = match.innings1.runs;
   const r2 = match.innings2.runs;
   if (r2 > r1) {
-    const wicketsRemaining = MAX_WICKETS_PER_INNINGS - match.innings2.wickets;
+    const fmt = MATCH_FORMATS[match.format];
+    const wicketsRemaining = fmt.wicketsPerInnings - match.innings2.wickets;
     return {
       winner: match.innings2.battingPlayer,
       margin: `won by ${wicketsRemaining} wicket${wicketsRemaining === 1 ? "" : "s"}`,
@@ -796,21 +804,17 @@ function computeResult(match: ServerMatch): MatchResult {
 
 // ─────────────────────────── Helpers ───────────────────────────
 
-function makePlayerDecks(opts?: { botNation?: import("@swipe-sixer/shared").Nation | null }): ServerDecks {
+function makePlayerDecks(
+  format: MatchFormat,
+  opts?: { botNation?: import("@swipe-sixer/shared").Nation | null },
+): ServerDecks {
   return {
-    battingDeck: buildDeck("batting", opts?.botNation ?? null),
-    bowlingDeck: buildDeck("bowling", opts?.botNation ?? null),
+    battingDeck: buildDeck(format, "batting", opts?.botNation ?? null),
+    bowlingDeck: buildDeck(format, "bowling", opts?.botNation ?? null),
     hand: [],
     discard: [],
   };
 }
-
-const TIER_DISTRIBUTION: Record<"Elite" | "Gold" | "Silver" | "Bronze", number> = {
-  Elite: 2,
-  Gold: 3,
-  Silver: 7,
-  Bronze: 3, // 15 player cards + 5 situation cards = 20
-};
 
 /** Test nations are the 12 with full rosters. Associate nations have
  *  partial rosters (single-nation deck impossible) — bot picking an
@@ -821,34 +825,42 @@ const TEST_NATIONS = new Set<import("@swipe-sixer/shared").Nation>([
 ]);
 
 function buildDeck(
+  format: MatchFormat,
   role: SituationDeck,
   botNation: import("@swipe-sixer/shared").Nation | null,
 ): AnyCard[] {
+  const fmt = MATCH_FORMATS[format];
+  const tierDist = fmt.tierDistribution;
   const playerPool = role === "batting" ? CARDS.batsmen : CARDS.bowlers;
   const sitPool = CARDS.situations.filter((s) => s.deck === role);
 
   // For Test-nation bots: build a single-nation themed deck.
   // - Elite + Gold + Bronze come from the bot's own nation.
   // - Silver pulls from the bot's nation PLUS the associate-nation pool
-  //   (so there are enough Silvers to fill the 7-per-deck slot).
+  //   (the bot's nation only has 3 Silvers per role, so the associate
+  //   pool fills the gap up to whatever the format needs).
+  // For longer formats (T3+), Bronze and Gold may also need fallback
+  // from other Test nations' rosters because a single nation only has
+  // 3 Gold / 5 Bronze per role. The fallback block below handles that.
   // For human players + Associate-nation bots: random multi-nation pool.
   const useThemedDeck = botNation !== null && TEST_NATIONS.has(botNation);
 
   const deck: AnyCard[] = [];
   for (const tier of ["Elite", "Gold", "Silver", "Bronze"] as const) {
-    const count = TIER_DISTRIBUTION[tier];
+    const count = tierDist[tier];
     let tierPool = playerPool.filter((c) => c.tier === tier);
     if (useThemedDeck) {
       if (tier === "Silver") {
-        // Own nation Silvers + associate Silvers
+        // Own nation Silvers + associate Silvers (always available).
         tierPool = tierPool.filter(
           (c) => c.nation === botNation || !TEST_NATIONS.has(c.nation),
         );
       } else {
         tierPool = tierPool.filter((c) => c.nation === botNation);
       }
-      // Fallback: if the themed pool is too small (e.g. AFG with only 2
-      // Gold instead of 3), top up from the global pool to avoid crashing.
+      // Fallback: if the themed pool is too small, top up from the
+      // global pool. Handles AFG's missing Gold in T1, and Gold/Bronze
+      // shortfalls in T3+.
       if (tierPool.length < count) {
         const extras = playerPool.filter(
           (c) => c.tier === tier && !tierPool.includes(c),
@@ -858,11 +870,11 @@ function buildDeck(
     }
     deck.push(...sample(tierPool, count));
   }
-  // 5 of 6 situation cards per pool
-  deck.push(...sample(sitPool, 5));
-  if (deck.length !== DECK_SIZE) {
+  // Situations: format-controlled count (always pulled from full sit pool).
+  deck.push(...sample(sitPool, fmt.situationCount));
+  if (deck.length !== fmt.deckSize) {
     throw new Error(
-      `buildDeck(${role}) produced ${deck.length} cards; expected ${DECK_SIZE}`,
+      `buildDeck(${format},${role}) produced ${deck.length} cards; expected ${fmt.deckSize}`,
     );
   }
   return shuffle(deck);

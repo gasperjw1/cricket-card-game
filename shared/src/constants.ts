@@ -3,9 +3,64 @@
  */
 
 export const HAND_SIZE = 4 as const;
-export const DECK_SIZE = 20 as const;
-export const MAX_BALLS_PER_INNINGS = 6 as const;
-export const MAX_WICKETS_PER_INNINGS = 2 as const;
+
+/**
+ * Match formats. Each format is N overs per innings (T1 = 1 over, T3 = 3, etc).
+ * Engine code that needs balls/wickets/deck-size should read these from
+ * MATCH_FORMATS[match.format] rather than a top-level constant.
+ */
+export type MatchFormat = "T1" | "T3";
+
+export interface FormatConfig {
+  /** Display label ("1 over", "3 overs"). */
+  label: string;
+  /** Short blurb shown in the format picker. */
+  blurb: string;
+  oversPerInnings: number;
+  /** Convenience: oversPerInnings * 6. */
+  ballsPerInnings: number;
+  wicketsPerInnings: number;
+  /** Total cards in each per-role deck (player cards + situations). */
+  deckSize: number;
+  /** Cards per tier in each per-role deck (sums to deckSize - situationCount). */
+  tierDistribution: Record<"Elite" | "Gold" | "Silver" | "Bronze", number>;
+  situationCount: number;
+}
+
+export const MATCH_FORMATS: Record<MatchFormat, FormatConfig> = {
+  T1: {
+    label: "T1 — 1 over",
+    blurb: "Lightning. 6 balls, 2 wickets, blink-and-it's-done.",
+    oversPerInnings: 1,
+    ballsPerInnings: 6,
+    wicketsPerInnings: 2,
+    deckSize: 20,
+    // 2+3+7+3 = 15 player cards + 5 situations = 20.
+    // Single-nation Silver pool is only 3, so the buildDeck fallback pulls
+    // 4 more Silvers from the associate pool. See server/src/innings.ts.
+    tierDistribution: { Elite: 2, Gold: 3, Silver: 7, Bronze: 3 },
+    situationCount: 5,
+  },
+  T3: {
+    label: "T3 — 3 overs",
+    blurb: "Room for a real innings: partnerships, comeback wickets, finisher.",
+    oversPerInnings: 3,
+    ballsPerInnings: 18,
+    wicketsPerInnings: 5,
+    deckSize: 26,
+    // 2+3+8+7 = 20 player cards + 6 situations = 26.
+    // Each Test nation has E2/G3/S3/B5 per role. Silver pulls from own (3)
+    // + associate pool (8) = 11 candidates for 8 slots. Bronze pulls from
+    // own (5) + needs 2 from other Test nations' Bronze. See buildDeck
+    // fallback in server/src/innings.ts — it already handles arbitrary
+    // tier shortfalls.
+    tierDistribution: { Elite: 2, Gold: 3, Silver: 8, Bronze: 7 },
+    situationCount: 6,
+  },
+};
+
+/** Default format when not specified (back-compat for older clients). */
+export const DEFAULT_MATCH_FORMAT: MatchFormat = "T1";
 
 export const TURN_TIMER_SECONDS = 30 as const;
 export const DRAFT_ROUND_TIMER_SECONDS = 15 as const;

@@ -58,13 +58,18 @@ export interface MatchClient {
   opponentLocked: boolean;
   /** Latest ball:reveal payload; null until revealed (cleared when next ball begins). */
   lastReveal: BallResult | null;
-  createMatch: (displayName: string, abbreviation: string) => Promise<void>;
+  createMatch: (
+    displayName: string,
+    abbreviation: string,
+    format?: import("@swipe-sixer/shared").MatchFormat,
+  ) => Promise<void>;
   /** Create a single-player match against a CPU bot. Server picks bot
-   *  name + nation; client just chooses difficulty. */
+   *  name + nation; client chooses difficulty and (optionally) format. */
   createBotMatch: (
     displayName: string,
     abbreviation: string,
     difficulty: import("@swipe-sixer/shared").BotDifficulty,
+    format?: import("@swipe-sixer/shared").MatchFormat,
   ) => Promise<void>;
   joinMatch: (
     inviteCode: string,
@@ -210,10 +215,11 @@ export function useMatchClient(): MatchClient {
   const createMatch = async (
     displayName: string,
     abbreviation: string,
+    format?: import("@swipe-sixer/shared").MatchFormat,
   ): Promise<void> => {
     setErrorMessage(null);
     return new Promise<void>((resolve) => {
-      socket.emit("lobby:create", { displayName, abbreviation }, (res) => {
+      socket.emit("lobby:create", { displayName, abbreviation, format }, (res) => {
         persistSession(res.matchId, res.playerToken);
         sessionRef.current = { matchId: res.matchId, playerToken: res.playerToken };
         resetMatchTransients();
@@ -227,12 +233,13 @@ export function useMatchClient(): MatchClient {
     displayName: string,
     abbreviation: string,
     difficulty: import("@swipe-sixer/shared").BotDifficulty,
+    format?: import("@swipe-sixer/shared").MatchFormat,
   ): Promise<void> => {
     setErrorMessage(null);
     return new Promise<void>((resolve) => {
       socket.emit(
         "match:create-bot",
-        { displayName, abbreviation, difficulty },
+        { displayName, abbreviation, difficulty, format },
         (res) => {
           persistSession(res.matchId, res.playerToken);
           sessionRef.current = { matchId: res.matchId, playerToken: res.playerToken };

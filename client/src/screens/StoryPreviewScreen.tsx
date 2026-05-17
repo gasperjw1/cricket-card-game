@@ -112,6 +112,7 @@ function PreviewPlayer({ result }: { result: BallResult }) {
         commentaryCtx={{
           inningsNumber: 1,
           ballNumber: result.ballNumber,
+          ballsPerInnings: 6,
           runs: 0,
           wickets: 0,
           target: null,

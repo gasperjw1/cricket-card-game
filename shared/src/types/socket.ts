@@ -1,3 +1,4 @@
+import type { MatchFormat } from "../constants.js";
 import type {
   BallResult,
   BallSelection,
@@ -27,7 +28,7 @@ export type LobbyJoinResult =
 // ───── Client → Server ─────
 export interface ClientToServerEvents {
   "lobby:create": (
-    payload: { displayName: string; abbreviation: string },
+    payload: { displayName: string; abbreviation: string; format?: MatchFormat },
     ack: (res: { inviteCode: string } & LobbyCredentials) => void,
   ) => void;
 
@@ -37,9 +38,15 @@ export interface ClientToServerEvents {
   ) => void;
 
   /** Spawn a single-player match against a CPU bot. The server picks the
-   *  bot's name + nation + abbreviation; client just chooses difficulty. */
+   *  bot's name + nation + abbreviation; client just chooses difficulty and
+   *  format. */
   "match:create-bot": (
-    payload: { displayName: string; abbreviation: string; difficulty: BotDifficulty },
+    payload: {
+      displayName: string;
+      abbreviation: string;
+      difficulty: BotDifficulty;
+      format?: MatchFormat;
+    },
     ack: (res: { inviteCode: string } & LobbyCredentials) => void,
   ) => void;
 

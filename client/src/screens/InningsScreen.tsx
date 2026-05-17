@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import {
   HAND_SIZE,
+  MATCH_FORMATS,
   type AnyCard,
   type BallOutcome,
   type BallResult,
@@ -167,6 +168,7 @@ export function InningsScreen({ client }: Props) {
           inningsRuns={innings.runs}
           inningsWickets={innings.wickets}
           inningsTarget={innings.target}
+          ballsPerInnings={MATCH_FORMATS[matchState.format].ballsPerInnings}
           onContinue={client.dismissReveal}
         />
       )}
@@ -457,6 +459,9 @@ function RevealOverlay(props: {
   inningsRuns: number;
   inningsWickets: number;
   inningsTarget: number | null;
+  /** Format-derived total balls per innings — feeds last-ball / death-over
+   *  commentary templates. */
+  ballsPerInnings: number;
   onContinue: () => void;
 }) {
   const { result, mySlot } = props;
@@ -515,6 +520,7 @@ function RevealOverlay(props: {
             commentaryCtx={{
               inningsNumber: props.inningsNumber,
               ballNumber: result.ballNumber,
+              ballsPerInnings: props.ballsPerInnings,
               runs: props.inningsRuns,
               wickets: props.inningsWickets,
               target: props.inningsTarget,

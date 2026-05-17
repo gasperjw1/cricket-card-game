@@ -124,11 +124,12 @@ const coinTossCallbacks = {
 io.on("connection", (socket) => {
   console.log(`[socket] connected: ${socket.id}`);
 
-  socket.on("lobby:create", ({ displayName, abbreviation }, ack) => {
+  socket.on("lobby:create", ({ displayName, abbreviation, format }, ack) => {
     const { match, playerToken } = registry.createMatch(
       displayName,
       abbreviation,
       socket.id,
+      format,
     );
     socket.join(matchRoom(match.matchId));
     ack({
@@ -143,12 +144,13 @@ io.on("connection", (socket) => {
     );
   });
 
-  socket.on("match:create-bot", ({ displayName, abbreviation, difficulty }, ack) => {
+  socket.on("match:create-bot", ({ displayName, abbreviation, difficulty, format }, ack) => {
     const { match, playerToken } = registry.createBotMatch(
       displayName,
       abbreviation,
       difficulty,
       socket.id,
+      format,
     );
     socket.join(matchRoom(match.matchId));
     ack({
@@ -158,7 +160,7 @@ io.on("connection", (socket) => {
       slot: "A",
     });
     console.log(
-      `[lobby] bot match ${match.matchId} created by "${displayName}" vs ${match.players.B!.displayName} (${match.players.B!.botNation}, ${difficulty})`,
+      `[lobby] bot match ${match.matchId} (${match.format}) created by "${displayName}" vs ${match.players.B!.displayName} (${match.players.B!.botNation}, ${difficulty})`,
     );
     // Skip the lobby waiting room and jump straight to the coin toss.
     startCoinToss(match, coinTossCallbacks);

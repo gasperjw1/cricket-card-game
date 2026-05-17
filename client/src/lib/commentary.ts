@@ -22,8 +22,11 @@ export interface CommentaryContext {
   perspective?: PlayerSlot;
   /** Innings number. */
   inningsNumber: 1 | 2;
-  /** Ball number within innings (1-6). */
+  /** Ball number within innings (1-ballsPerInnings). */
   ballNumber: number;
+  /** Total balls in this innings (format-dependent). Used to scale
+   *  "last ball" / "death overs" templates. */
+  ballsPerInnings: number;
   /** Current innings runs/wickets after this ball. */
   runs: number;
   wickets: number;
@@ -56,17 +59,22 @@ function isDot(b: BallResult): boolean {
   return b.finalOutcome.type === "dot" && b.extraRuns === 0;
 }
 function isLastBall(_: BallResult, ctx: CommentaryContext): boolean {
-  return ctx.ballNumber === 6;
+  return ctx.ballNumber >= ctx.ballsPerInnings;
 }
 function isFirstBall(_: BallResult, ctx: CommentaryContext): boolean {
   return ctx.ballNumber === 1;
+}
+/** Final ~17% of the innings: "death overs" for T1 = ball 6, T3 = balls 16-18,
+ *  T5 = balls 26-30. */
+function isDeathOver(_: BallResult, ctx: CommentaryContext): boolean {
+  return ctx.ballNumber >= Math.ceil(ctx.ballsPerInnings * (5 / 6));
 }
 function chaseNeedsBig(_: BallResult, ctx: CommentaryContext): boolean {
   return (
     ctx.target !== null &&
     ctx.inningsNumber === 2 &&
     ctx.target - ctx.runs >= 6 &&
-    ctx.ballNumber >= 5
+    isDeathOver(_, ctx)
   );
 }
 

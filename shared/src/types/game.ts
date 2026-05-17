@@ -1,3 +1,4 @@
+import type { MatchFormat } from "../constants.js";
 import type {
   AnyCard,
   BatsmanCard,
@@ -24,7 +25,7 @@ export interface InningsState {
   bowlingPlayer: PlayerSlot;
   runs: number;
   wickets: number;
-  ballsBowled: number; // 0..6
+  ballsBowled: number; // 0..ballsPerInnings (format-dependent)
   target: number | null; // set on second innings
   isComplete: boolean;
   log: BallResult[];
@@ -45,7 +46,7 @@ export interface RevealedSelection {
 }
 
 export interface BallResult {
-  ballNumber: number; // 1..6
+  ballNumber: number; // 1..ballsPerInnings (format-dependent)
   battingSelection: RevealedSelection;
   bowlingSelection: RevealedSelection;
   resolutionSteps: ResolutionStep[];
@@ -168,6 +169,9 @@ export interface PublicMatchState {
   matchId: string;
   inviteCode: string;
   phase: MatchPhase;
+  /** Match format (T1, T3, ...). Drives balls/wickets/deck-size for the
+   *  entire match. Set when the match is created; never changes. */
+  format: MatchFormat;
   players: { A: PublicPlayerInfo; B: PublicPlayerInfo | null };
   currentInnings: 1 | 2 | null;
   innings1: InningsState | null;

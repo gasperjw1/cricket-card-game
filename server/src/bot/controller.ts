@@ -41,10 +41,14 @@ interface BallSelectionContext {
   role: "batting" | "bowling";
   /** Difficulty tunes the heuristic depth. */
   difficulty: BotDifficulty;
-  /** Innings progress: ball number (1..6) and wickets fallen. Used by
-   *  International difficulty to decide whether to spend an Elite card. */
+  /** Innings progress. Used by International difficulty to decide whether
+   *  to spend an Elite card now or hoard it. */
   ballsBowled: number;
   wicketsFallen: number;
+  /** Format-derived totals — used to scale "late innings" / pressure
+   *  thresholds across T1/T3/T5 etc. */
+  ballsPerInnings: number;
+  wicketsPerInnings: number;
   /** Most recently revealed opponent card on the corresponding side
    *  (e.g. for bowling bot, the last batter card the human played).
    *  null on the first ball. Drives the Domestic heuristic. */
@@ -138,16 +142,20 @@ function pickHeuristicMandatory(
   return scored[0]!.card;
 }
 
-/** International difficulty add-on: hold Elite/Gold cards for the last
- *  2 balls of the innings or the last wicket scenario, when pressure
- *  is highest. If the heuristic picked an Elite/Gold but it's only
- *  ball 1-3 with wickets in hand, swap to a lower-tier valid card. */
+/** International difficulty add-on: hold Elite/Gold cards for the final
+ *  third of the innings or once at least 1 wicket has fallen, when pressure
+ *  is highest. If the heuristic picked an Elite/Gold but it's still
+ *  early with wickets in hand, swap to a lower-tier valid card. */
 function applyTierPrioritization(
   pick: BatsmanCard | BowlerCard,
   candidates: (BatsmanCard | BowlerCard)[],
   ctx: BallSelectionContext,
 ): BatsmanCard | BowlerCard {
-  const isLateOrPressure = ctx.ballsBowled >= 4 || ctx.wicketsFallen >= 1;
+  // "Late" = past the first 2/3 of the innings. For T1 (6 balls) that's
+  // ball 5+; for T3 (18 balls) ball 13+; scales naturally with format.
+  const lateThreshold = Math.ceil((ctx.ballsPerInnings * 2) / 3);
+  const isLateOrPressure =
+    ctx.ballsBowled >= lateThreshold || ctx.wicketsFallen >= 1;
   const isHighTier = pick.tier === "Elite" || pick.tier === "Gold";
   if (!isLateOrPressure && isHighTier) {
     // Look for a lower-tier alternative that's still reasonable.

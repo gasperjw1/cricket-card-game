@@ -1,6 +1,5 @@
 import {
-  MAX_BALLS_PER_INNINGS,
-  MAX_WICKETS_PER_INNINGS,
+  MATCH_FORMATS,
   type BallResult,
   type InningsState,
   type PublicMatchState,
@@ -39,14 +38,20 @@ export function Scorebug({ matchState }: Props) {
   const battingPlayer = display.battingPlayer === "A" ? A : B;
   const bowlingPlayer = display.bowlingPlayer === "A" ? A : B;
 
+  const fmt = MATCH_FORMATS[matchState.format];
   const ballsCounted = display.ballsBowled;
-  const overs = `0.${ballsCounted}`;
+  // T1 stays "0.4" (single-over format); T3+ shows "1.4 / 3" so players
+  // know how deep into the innings they are.
+  const overs =
+    fmt.oversPerInnings > 1
+      ? `${Math.floor(ballsCounted / 6)}.${ballsCounted % 6}/${fmt.oversPerInnings}`
+      : `0.${ballsCounted}`;
 
   return (
     <section className="scorebug">
       <div className="scorebug-row">
         <div className="scorebug-teams">
-          <Tip text={`${A.displayName} (${A.abbreviation}) vs ${B?.displayName ?? "—"} (${B?.abbreviation ?? "—"})`}>
+          <Tip text={`${A.displayName} (${A.abbreviation}) vs ${B?.displayName ?? "—"} (${B?.abbreviation ?? "—"}) — ${fmt.label}`}>
             <span>
               <strong className={display.battingPlayer === "A" ? "batting" : ""}>
                 {A.abbreviation}
@@ -59,7 +64,7 @@ export function Scorebug({ matchState }: Props) {
           </Tip>
         </div>
         <div className="scorebug-score">
-          <Tip text={`${display.runs} run${display.runs === 1 ? "" : "s"} for ${display.wickets} wicket${display.wickets === 1 ? "" : "s"} (max ${MAX_WICKETS_PER_INNINGS}).`}>
+          <Tip text={`${display.runs} run${display.runs === 1 ? "" : "s"} for ${display.wickets} wicket${display.wickets === 1 ? "" : "s"} (max ${fmt.wicketsPerInnings}).`}>
             <span>
               {display.runs}
               <span className="sep">-</span>
@@ -68,7 +73,7 @@ export function Scorebug({ matchState }: Props) {
           </Tip>
         </div>
         <div className="scorebug-overs">
-          <Tip text={`${ballsCounted} ball${ballsCounted === 1 ? "" : "s"} bowled out of ${MAX_BALLS_PER_INNINGS} this innings (rebowled deliveries don't count).`}>
+          <Tip text={`${ballsCounted} ball${ballsCounted === 1 ? "" : "s"} bowled out of ${fmt.ballsPerInnings} this innings (${fmt.oversPerInnings} over${fmt.oversPerInnings === 1 ? "" : "s"}; rebowled deliveries don't count).`}>
             <span>{overs}</span>
           </Tip>
         </div>
@@ -92,7 +97,10 @@ export function Scorebug({ matchState }: Props) {
             </span>
           </Tip>
         </div>
-        <BallsRow log={innings?.log ?? display.log} />
+        <BallsRow
+          log={innings?.log ?? display.log}
+          ballsPerInnings={fmt.ballsPerInnings}
+        />
       </div>
     </section>
   );
@@ -168,23 +176,108 @@ function StatusStrip({
   return <span>·</span>;
 }
 
-/** Per-ball circle row. */
-function BallsRow({ log }: { log: BallResult[] }) {
-  // log entries (oldest first) + pending circles for remaining "real" balls
+/** Per-ball circle row. For longer formats the row would get unwieldy,
+ *  so we collapse the past into "delivered" pills per over and only show
+ *  the current-over's six circles in detail. */
+function BallsRow({
+  log,
+  ballsPerInnings,
+}: {
+  log: BallResult[];
+  ballsPerInnings: number;
+}) {
   const ballsCounted = log.filter((r) => !r.rebowled).length;
-  const remaining = Math.max(0, MAX_BALLS_PER_INNINGS - ballsCounted);
+  const remaining = Math.max(0, ballsPerInnings - ballsCounted);
+
+  // T1: show every ball inline (max 6 + maybe a couple rebowls = fine).
+  if (ballsPerInnings <= 6) {
+    return (
+      <div className="scorebug-balls">
+        {log.map((b, i) => (
+          <BallCircle key={i} result={b} />
+        ))}
+        {Array.from({ length: remaining }).map((_, i) => (
+          <span key={`pending-${i}`} className="ball-circle pending" aria-label="pending">
+            {/* empty */}
+          </span>
+        ))}
+      </div>
+    );
+  }
+
+  // T3+: split log into completed overs + current over.
+  // We walk the log accumulating "real" deliveries; once 6 land, the
+  // over is complete and gets a compact summary chip.
+  const completedOvers: BallResult[][] = [];
+  let currentOver: BallResult[] = [];
+  let realInOver = 0;
+  for (const b of log) {
+    currentOver.push(b);
+    if (!b.rebowled) {
+      realInOver += 1;
+      if (realInOver === 6) {
+        completedOvers.push(currentOver);
+        currentOver = [];
+        realInOver = 0;
+      }
+    }
+  }
+
+  const ballsLeftInCurrentOver = Math.max(0, 6 - realInOver);
+  const oversLeftAfterCurrent = Math.max(
+    0,
+    Math.ceil(remaining / 6) - (currentOver.length > 0 ? 1 : 0),
+  );
 
   return (
-    <div className="scorebug-balls">
-      {log.map((b, i) => (
-        <BallCircle key={i} result={b} />
+    <div className="scorebug-balls scorebug-balls-multi-over">
+      {completedOvers.map((overBalls, oi) => (
+        <CompletedOverChip key={`over-${oi}`} balls={overBalls} index={oi} />
       ))}
-      {Array.from({ length: remaining }).map((_, i) => (
-        <span key={`pending-${i}`} className="ball-circle pending" aria-label="pending">
-          {/* empty */}
+      {/* Detailed current over (always 6 slots; fills as balls land). */}
+      <div className="scorebug-balls-current-over">
+        {currentOver.map((b, i) => (
+          <BallCircle key={`cur-${i}`} result={b} />
+        ))}
+        {Array.from({ length: ballsLeftInCurrentOver }).map((_, i) => (
+          <span
+            key={`cur-pending-${i}`}
+            className="ball-circle pending"
+            aria-label="pending"
+          />
+        ))}
+      </div>
+      {/* Pill placeholders for upcoming overs (just dim dots). */}
+      {Array.from({ length: oversLeftAfterCurrent }).map((_, i) => (
+        <span
+          key={`upc-${i}`}
+          className="over-chip pending"
+          aria-label="upcoming over"
+        >
+          ·
         </span>
       ))}
     </div>
+  );
+}
+
+/** Compact summary of a completed over: total runs + wicket count. */
+function CompletedOverChip({ balls, index }: { balls: BallResult[]; index: number }) {
+  let runs = 0;
+  let wickets = 0;
+  for (const b of balls) {
+    if (b.finalOutcome.type === "runs") runs += b.finalOutcome.value;
+    else if (b.finalOutcome.type === "wicket") wickets += 1;
+    runs += b.extraRuns;
+  }
+  const tip = `Over ${index + 1}: ${runs} run${runs === 1 ? "" : "s"}${wickets > 0 ? `, ${wickets} wicket${wickets === 1 ? "" : "s"}` : ""}.`;
+  return (
+    <Tip text={tip}>
+      <span className={`over-chip ${wickets > 0 ? "had-wicket" : ""}`}>
+        {runs}
+        {wickets > 0 && <span className="w-mark">W{wickets > 1 ? wickets : ""}</span>}
+      </span>
+    </Tip>
   );
 }
 

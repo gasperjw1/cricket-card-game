@@ -7,6 +7,7 @@ import type {
   BowlerCard,
   CoinTossState,
   InningsState,
+  MatchFormat,
   MatchResult,
   PendingSwap,
   PlayerSlot,
@@ -15,6 +16,7 @@ import type {
   ResolutionStep,
   SituationCard,
 } from "@swipe-sixer/shared";
+import { DEFAULT_MATCH_FORMAT } from "@swipe-sixer/shared";
 import { pickBotIdentity } from "./bot/names.js";
 
 /**
@@ -88,6 +90,8 @@ export interface BallResolutionContext {
 export interface ServerMatch {
   matchId: string;
   inviteCode: string;
+  /** Set at creation time; immutable for the lifetime of the match. */
+  format: MatchFormat;
   phase: PublicMatchState["phase"];
   players: { A: ServerPlayer; B: ServerPlayer | null };
   createdAt: number;
@@ -144,6 +148,7 @@ export class MatchRegistry {
     displayName: string,
     abbreviation: string,
     socketId: string,
+    format: MatchFormat = DEFAULT_MATCH_FORMAT,
   ): {
     match: ServerMatch;
     playerToken: string;
@@ -158,6 +163,7 @@ export class MatchRegistry {
     const match: ServerMatch = {
       matchId,
       inviteCode,
+      format,
       phase: "lobby",
       players: {
         A: {
@@ -202,8 +208,14 @@ export class MatchRegistry {
     abbreviation: string,
     difficulty: BotDifficulty,
     socketId: string,
+    format: MatchFormat = DEFAULT_MATCH_FORMAT,
   ): { match: ServerMatch; playerToken: string } {
-    const { match, playerToken } = this.createMatch(displayName, abbreviation, socketId);
+    const { match, playerToken } = this.createMatch(
+      displayName,
+      abbreviation,
+      socketId,
+      format,
+    );
     const bot = pickBotIdentity();
     match.players.B = {
       slot: "B",
@@ -380,6 +392,7 @@ export class MatchRegistry {
     return {
       matchId: match.matchId,
       inviteCode: match.inviteCode,
+      format: match.format,
       phase: match.phase,
       players: {
         A: playerView("A", match.players.A),

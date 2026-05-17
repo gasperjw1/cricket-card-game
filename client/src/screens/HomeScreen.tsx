@@ -1,5 +1,6 @@
 import { lazy, Suspense, useState } from "react";
-import type { BotDifficulty } from "@swipe-sixer/shared";
+import type { BotDifficulty, MatchFormat } from "@swipe-sixer/shared";
+import { MATCH_FORMATS } from "@swipe-sixer/shared";
 import { SettingsPanel } from "../components/SettingsPanel.tsx";
 import { initSfx } from "../lib/sfx.ts";
 import type { MatchClient } from "../state.ts";
@@ -29,6 +30,7 @@ export function HomeScreen({ client }: Props) {
   const [inviteCode, setInviteCode] = useState("");
   const [submitting, setSubmitting] = useState(false);
   const [botDifficulty, setBotDifficulty] = useState<BotDifficulty>("Domestic");
+  const [matchFormat, setMatchFormat] = useState<MatchFormat>("T1");
   const [settings, setSettingsMode] = useState<SettingsMode>("closed");
 
   // Initialize the audio pool on the user's first interactive tap so iOS
@@ -59,7 +61,7 @@ export function HomeScreen({ client }: Props) {
     e.preventDefault();
     if (!canCreate) return;
     setSubmitting(true);
-    await client.createMatch(displayName, effectiveAbbr);
+    await client.createMatch(displayName, effectiveAbbr, matchFormat);
     setSubmitting(false);
   };
 
@@ -75,7 +77,7 @@ export function HomeScreen({ client }: Props) {
     e.preventDefault();
     if (!canCreate) return;
     setSubmitting(true);
-    await client.createBotMatch(displayName, effectiveAbbr, botDifficulty);
+    await client.createBotMatch(displayName, effectiveAbbr, botDifficulty, matchFormat);
     setSubmitting(false);
   };
 
@@ -204,12 +206,31 @@ export function HomeScreen({ client }: Props) {
               </label>
             ))}
           </fieldset>
+          <fieldset className="difficulty-picker">
+            <legend>Format</legend>
+            {(Object.keys(MATCH_FORMATS) as MatchFormat[]).map((f) => {
+              const fmt = MATCH_FORMATS[f];
+              return (
+                <label key={f} className={matchFormat === f ? "selected" : ""}>
+                  <input
+                    type="radio"
+                    name="format"
+                    value={f}
+                    checked={matchFormat === f}
+                    onChange={() => setMatchFormat(f)}
+                  />
+                  <strong>{fmt.label}</strong>
+                  <small className="dim-text">{fmt.blurb}</small>
+                </label>
+              );
+            })}
+          </fieldset>
           <div className="form-actions">
             <button type="button" className="btn ghost" onClick={() => setMode("menu")}>
               Back
             </button>
             <button type="submit" className="btn primary" disabled={!canCreate}>
-              {submitting ? "Starting…" : `Play vs ${botDifficulty}`}
+              {submitting ? "Starting…" : `Play ${matchFormat} vs ${botDifficulty}`}
             </button>
           </div>
         </form>
@@ -247,12 +268,31 @@ export function HomeScreen({ client }: Props) {
               Shown in the scorebug (e.g. ENG, SL-A, KOLI). Auto-fills from your name.
             </small>
           </label>
+          <fieldset className="difficulty-picker">
+            <legend>Format</legend>
+            {(Object.keys(MATCH_FORMATS) as MatchFormat[]).map((f) => {
+              const fmt = MATCH_FORMATS[f];
+              return (
+                <label key={f} className={matchFormat === f ? "selected" : ""}>
+                  <input
+                    type="radio"
+                    name="format-online"
+                    value={f}
+                    checked={matchFormat === f}
+                    onChange={() => setMatchFormat(f)}
+                  />
+                  <strong>{fmt.label}</strong>
+                  <small className="dim-text">{fmt.blurb}</small>
+                </label>
+              );
+            })}
+          </fieldset>
           <div className="form-actions">
             <button type="button" className="btn ghost" onClick={() => setMode("menu")}>
               Back
             </button>
             <button type="submit" className="btn primary" disabled={!canCreate}>
-              {submitting ? "Creating…" : "Create"}
+              {submitting ? "Creating…" : `Create ${matchFormat}`}
             </button>
           </div>
         </form>
