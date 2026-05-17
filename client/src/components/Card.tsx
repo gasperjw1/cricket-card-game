@@ -1,3 +1,4 @@
+import { useState } from "react";
 import type {
   Adjective,
   AnyCard,
@@ -10,8 +11,10 @@ import type {
   Tier,
   Zone,
 } from "@swipe-sixer/shared";
+import { BatterSilhouette } from "./BatterSilhouette.tsx";
 import { CardEffectText } from "./CardEffectText.tsx";
 import { Tip } from "./Tip.tsx";
+import { ZoneGrid } from "./ZoneGrid.tsx";
 import {
   ADJECTIVE_ICONS,
   FIELDING_ICONS,
@@ -112,6 +115,10 @@ function BatsmanCardView(props: { card: BatsmanCard; size?: "hand" | "view"; sel
   const reveal = props.reveal;
   // In reveal mode, find which bucket (if any) the lookup zone matched.
   const firedRow = reveal ? findFiredOutcome(card, reveal.lookupZone) : null;
+
+  // Hand-size cards default to the Summary tab (description + silhouette).
+  // The grid takes a second tap. View-size shows everything stacked.
+  // Reveal mode forces the grid + fired-row to be visible inline.
   return (
     <CardFrame tier={card.tier} size={size} selected={props.selected} onClick={props.onClick} kindLabel="Batsman" revealMode={!!reveal}>
       <Header
@@ -120,18 +127,27 @@ function BatsmanCardView(props: { card: BatsmanCard; size?: "hand" | "view"; sel
         name={card.name}
         nation={card.nation}
         tier={card.tier}
+        rightExtra={<BatterSilhouette handedness={card.handedness} size={size === "view" ? 32 : 26} />}
       />
-      {size === "view" && card.description && (
-        <div className="card-flavor">{card.description}</div>
-      )}
       {reveal ? (
-        <RevealBatterSection
-          card={card}
-          lookupZone={reveal.lookupZone}
-          firedRow={firedRow}
-        />
+        <>
+          <ZoneGrid mode="batter" card={card} highlightZone={reveal.lookupZone} />
+          <RevealBatterSection
+            card={card}
+            lookupZone={reveal.lookupZone}
+            firedRow={firedRow}
+          />
+          <RevealResistances
+            list={card.resistances}
+            firedAdjective={reveal.firedAdjective}
+          />
+        </>
+      ) : size === "hand" ? (
+        <BatsmanHandBody card={card} />
       ) : (
         <>
+          {card.description && <div className="card-flavor">{card.description}</div>}
+          <ZoneGrid mode="batter" card={card} />
           <Section
             title="Strengths"
             titleTip="Zones where this batter scores boundaries. The first number is runs."
@@ -153,17 +169,44 @@ function BatsmanCardView(props: { card: BatsmanCard; size?: "hand" | "view"; sel
             size={size}
             emphasis="weak"
           />
+          <Resistances list={card.resistances} size={size} />
         </>
       )}
-      {reveal ? (
-        <RevealResistances
-          list={card.resistances}
-          firedAdjective={reveal.firedAdjective}
-        />
-      ) : (
-        <Resistances list={card.resistances} size={size} />
-      )}
     </CardFrame>
+  );
+}
+
+/** Compact body shown when a batsman is in the hand. Two tabs:
+ *   Summary — short description (truncated) + resistance icons + "tap for details"
+ *   Shots   — the 3x4 zone grid
+ *  Defaults to Summary so the first thing the player sees is who the
+ *  card is, not what they score where. */
+function BatsmanHandBody({ card }: { card: BatsmanCard }) {
+  const [tab, setTab] = useState<"summary" | "shots">("summary");
+  return (
+    <div className="card-hand-body" onClick={(e) => e.stopPropagation()}>
+      <CardTabs
+        active={tab}
+        onChange={setTab}
+        tabs={[
+          { id: "summary", label: "Summary" },
+          { id: "shots", label: "Shots" },
+        ]}
+      />
+      {tab === "summary" ? (
+        <div className="card-tab-pane card-tab-summary">
+          {card.description && (
+            <p className="card-flavor compact">{firstSentence(card.description)}</p>
+          )}
+          <Resistances list={card.resistances} size="hand" />
+          <span className="card-hand-hint">Tap card for full details</span>
+        </div>
+      ) : (
+        <div className="card-tab-pane card-tab-shots">
+          <ZoneGrid mode="batter" card={card} />
+        </div>
+      )}
+    </div>
   );
 }
 
@@ -365,87 +408,120 @@ function BowlerCardView(props: { card: BowlerCard; size?: "hand" | "view"; selec
         nation={card.nation}
         tier={card.tier}
       />
-      {size === "view" && card.description && (
-        <div className="card-flavor">{card.description}</div>
+      {reveal ? (
+        <>
+          <ZoneGrid mode="bowler" card={card} />
+          <BowlerSkillsRow card={card} reveal={reveal} />
+          <BowlerFieldingRow card={card} reveal={reveal} />
+        </>
+      ) : size === "hand" ? (
+        <BowlerHandBody card={card} />
+      ) : (
+        <>
+          {card.description && <div className="card-flavor">{card.description}</div>}
+          <ZoneGrid mode="bowler" card={card} />
+          <BowlerSkillsRow card={card} />
+          <BowlerFieldingRow card={card} />
+        </>
       )}
-      <section className="card-section">
-        <div className="card-section-title">
-          <Tip text="The line and length this bowler attacks every ball.">Delivery</Tip>
-        </div>
-        <div className="delivery-zone">
-          <ZoneBadge zone={card.delivery} large />
-        </div>
-      </section>
-      <section className="card-section">
-        <div className="card-section-title">
-          <Tip text="The bowler's signature skill(s). 0–2 entries. If un-resisted by the batter, ONE adjective fires per ball (no stacking, even if both un-resisted).">
-            {card.adjectives.length === 2 ? "Skills" : "Skill"}
-          </Tip>
-        </div>
-        <div className="adjective-row">
-          {card.adjectives.length === 0 ? (
-            <Tip text="No skill — this bowler doesn't apply a quality downgrade.">
-              <span className="dim-text">none</span>
-            </Tip>
-          ) : (
-            card.adjectives.map((adj) => {
-              const fired = reveal?.firedAdjective === adj;
-              const inReveal = !!reveal;
-              const blocked = inReveal && !fired;
-              return (
-                <Tip
-                  key={adj}
-                  text={
-                    fired
-                      ? `${adj} fired — outcome was downgraded one tier.`
-                      : blocked
-                        ? `${adj} did not fire (resisted by the batter, or not the firing adjective per the no-stack rule).`
-                        : ADJECTIVE_ICONS[adj].description
-                  }
-                >
-                  <span
-                    className={`adj-chip${fired ? " fired" : ""}${
-                      blocked ? " blocked" : ""
-                    }`}
-                  >
-                    <span className="adj-icon">{ADJECTIVE_ICONS[adj].glyph}</span>
-                    <span>{adj}</span>
-                  </span>
-                </Tip>
-              );
-            })
-          )}
-        </div>
-      </section>
-      <section className="card-section">
-        <div className="card-section-title">
-          <Tip text="Fielding regions covered. If a shot lands here, the outcome is downgraded one tier.">
-            Fielding
-          </Tip>
-        </div>
-        <div className="fielding-row">
-          {card.fielding.map((region) => {
-            const fired = reveal?.firedFielding === region;
-            const dim = reveal && !fired;
-            return (
-              <Tip
-                key={region}
-                text={
-                  fired
-                    ? `${region} intercepted the shot — outcome downgraded one tier.`
-                    : FIELDING_ICONS[region].description
-                }
-              >
-                <span className={`field-chip${fired ? " fired" : ""}${dim ? " dim" : ""}`}>
-                  <span className="adj-icon">{FIELDING_ICONS[region].glyph}</span>
-                  <span>{region}</span>
-                </span>
-              </Tip>
-            );
-          })}
-        </div>
-      </section>
     </CardFrame>
+  );
+}
+
+/** Compact hand body for bowler cards. Same tab pattern as batters. */
+function BowlerHandBody({ card }: { card: BowlerCard }) {
+  const [tab, setTab] = useState<"summary" | "delivery">("summary");
+  return (
+    <div className="card-hand-body" onClick={(e) => e.stopPropagation()}>
+      <CardTabs
+        active={tab}
+        onChange={setTab}
+        tabs={[
+          { id: "summary", label: "Summary" },
+          { id: "delivery", label: "Delivery" },
+        ]}
+      />
+      {tab === "summary" ? (
+        <div className="card-tab-pane card-tab-summary">
+          {card.description && (
+            <p className="card-flavor compact">{firstSentence(card.description)}</p>
+          )}
+          <BowlerSkillsRow card={card} />
+          <span className="card-hand-hint">Tap card for full details</span>
+        </div>
+      ) : (
+        <div className="card-tab-pane card-tab-shots">
+          <ZoneGrid mode="bowler" card={card} />
+          <BowlerFieldingRow card={card} />
+        </div>
+      )}
+    </div>
+  );
+}
+
+function BowlerSkillsRow({ card, reveal }: { card: BowlerCard; reveal?: RevealContext }) {
+  if (card.adjectives.length === 0) {
+    return (
+      <div className="adjective-row">
+        <Tip text="No skill — this bowler doesn't apply a quality downgrade.">
+          <span className="dim-text">no skill</span>
+        </Tip>
+      </div>
+    );
+  }
+  return (
+    <div className="adjective-row">
+      {card.adjectives.map((adj) => {
+        const fired = reveal?.firedAdjective === adj;
+        const inReveal = !!reveal;
+        const blocked = inReveal && !fired;
+        return (
+          <Tip
+            key={adj}
+            text={
+              fired
+                ? `${adj} fired — outcome was downgraded one tier.`
+                : blocked
+                  ? `${adj} did not fire (resisted by the batter, or not the firing adjective per the no-stack rule).`
+                  : ADJECTIVE_ICONS[adj].description
+            }
+          >
+            <span
+              className={`adj-chip${fired ? " fired" : ""}${blocked ? " blocked" : ""}`}
+            >
+              <span className="adj-icon">{ADJECTIVE_ICONS[adj].glyph}</span>
+              <span>{adj}</span>
+            </span>
+          </Tip>
+        );
+      })}
+    </div>
+  );
+}
+
+function BowlerFieldingRow({ card, reveal }: { card: BowlerCard; reveal?: RevealContext }) {
+  return (
+    <div className="fielding-row">
+      {card.fielding.map((region) => {
+        const fired = reveal?.firedFielding === region;
+        const dim = reveal && !fired;
+        return (
+          <Tip
+            key={region}
+            text={
+              fired
+                ? `${region} intercepted the shot — outcome downgraded one tier.`
+                : FIELDING_ICONS[region].description
+            }
+          >
+            <span className={`field-chip${fired ? " fired" : ""}${dim ? " dim" : ""}`}>
+              <span className="adj-icon">{FIELDING_ICONS[region].glyph}</span>
+              <span>{region}</span>
+            </span>
+          </Tip>
+        );
+      })}
+    </div>
   );
 }
 
@@ -466,10 +542,66 @@ function SituationCardView(props: { card: SituationCard; size?: "hand" | "view";
         <div className="card-name">{card.name}</div>
       </header>
       {card.flavor && <div className="card-flavor">"{card.flavor}"</div>}
-      <div className={`card-effect ${size}`}>
-        <CardEffectText text={card.description} />
-      </div>
+      {size === "hand" ? (
+        // Hand: one-line summary. The full rule text only appears in
+        // the modal viewer — saves a lot of vertical space when 3-4
+        // situation cards are in hand at once.
+        <>
+          <div className="card-effect compact">
+            {firstSentence(card.description)}
+          </div>
+          <span className="card-hand-hint">Tap card for full effect text</span>
+        </>
+      ) : (
+        <div className={`card-effect ${size}`}>
+          <CardEffectText text={card.description} />
+        </div>
+      )}
     </CardFrame>
+  );
+}
+
+/** Pull the first sentence out of a (possibly markdown-flavored)
+ *  description, lightly cleaned. Used for the compact hand-size view
+ *  on both player cards and situation cards. */
+function firstSentence(text: string): string {
+  // Trim markdown bullets/emphasis off the front, then take everything
+  // up to the first sentence-ending `.` or hard line break.
+  const cleaned = text.replace(/\*\*/g, "").replace(/^\s+/, "");
+  const firstLineBreak = cleaned.indexOf("\n");
+  const lineCandidate =
+    firstLineBreak === -1 ? cleaned : cleaned.slice(0, firstLineBreak);
+  const sentenceMatch = lineCandidate.match(/^[^.!?]+[.!?]/);
+  const result = (sentenceMatch ? sentenceMatch[0] : lineCandidate).trim();
+  // Strip trailing `:` (often left over from "this ball:" → bullet list).
+  return result.replace(/[:]$/, ".");
+}
+
+/** Lightweight segmented tab control used inside hand-size cards. */
+function CardTabs<T extends string>(props: {
+  active: T;
+  onChange: (id: T) => void;
+  tabs: { id: T; label: string }[];
+}) {
+  return (
+    <div className="card-tabs" role="tablist" onClick={(e) => e.stopPropagation()}>
+      {props.tabs.map((t) => (
+        <button
+          key={t.id}
+          type="button"
+          role="tab"
+          aria-selected={props.active === t.id}
+          className={`card-tab ${props.active === t.id ? "active" : ""}`}
+          onClick={(e) => {
+            // Don't bubble into the card's onClick (which opens the modal).
+            e.stopPropagation();
+            props.onChange(t.id);
+          }}
+        >
+          {t.label}
+        </button>
+      ))}
+    </div>
   );
 }
 
@@ -481,6 +613,9 @@ function Header(props: {
   name: string;
   nation: Nation;
   tier: Tier;
+  /** Optional element pinned to the right of the name row — used for the
+   *  batter silhouette so the handedness chip lives in the header. */
+  rightExtra?: React.ReactNode;
 }) {
   return (
     <header className="card-header">
@@ -499,6 +634,7 @@ function Header(props: {
           <span className="nation-flag">{NATION_FLAG[props.nation]}</span>
         </Tip>
         <span className="card-name">{props.name}</span>
+        {props.rightExtra && <span className="card-header-right">{props.rightExtra}</span>}
       </div>
     </header>
   );

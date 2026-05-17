@@ -6,7 +6,7 @@
       "name": "Virat Kohli",
       "nation": "India",
       "tier": "Elite",
-      "description": "Cover drive king. Flick through mid-wicket. Pulls anything short. Tracks the ball late, plays orthodox spin with ease — but the late wobble of drift and a sharp googly still get him every now and then.",
+      "description": "Cover drive king. Flick through mid-wicket. Pulls anything short. Tracks the ball late, plays orthodox spin with ease \u2014 but the late wobble of drift and a sharp googly still get him every now and then.",
       "strengths": [
         {
           "zone": {
@@ -91,7 +91,8 @@
         "Slower",
         "Topspin",
         "Carrom"
-      ]
+      ],
+      "handedness": "right"
     },
     {
       "id": "shubman-gill-bat",
@@ -99,7 +100,7 @@
       "name": "Shubman Gill",
       "nation": "India",
       "tier": "Elite",
-      "description": "Current India ODI captain, technically the most-correct young bat in world cricket. Straight drives down the ground are his signature. Late cuts the moving ball, plays patient defensive — but the moving ball outside off has caught him out at the highest level.",
+      "description": "Current India ODI captain, technically the most-correct young bat in world cricket. Straight drives down the ground are his signature. Late cuts the moving ball, plays patient defensive \u2014 but the moving ball outside off has caught him out at the highest level.",
       "strengths": [
         {
           "zone": {
@@ -185,7 +186,8 @@
         "Carrom",
         "Topspin",
         "Drift"
-      ]
+      ],
+      "handedness": "right"
     },
     {
       "id": "rohit-sharma-bat",
@@ -275,7 +277,8 @@
         "Seam",
         "Slower",
         "Topspin"
-      ]
+      ],
+      "handedness": "right"
     },
     {
       "id": "suryakumar-yadav-bat",
@@ -283,7 +286,7 @@
       "name": "Suryakumar Yadav",
       "nation": "India",
       "tier": "Gold",
-      "description": "World #1 T20I batter. 360-degree hitter — scoops, ramps, reverse sweeps. Eats spin alive in the middle overs. Sometimes leaves a gap going across; vulnerable to a sharp seamer angling back in.",
+      "description": "World #1 T20I batter. 360-degree hitter \u2014 scoops, ramps, reverse sweeps. Eats spin alive in the middle overs. Sometimes leaves a gap going across; vulnerable to a sharp seamer angling back in.",
       "strengths": [
         {
           "zone": {
@@ -366,7 +369,8 @@
         "Topspin",
         "Drift",
         "Googly"
-      ]
+      ],
+      "handedness": "right"
     },
     {
       "id": "yashasvi-jaiswal-bat",
@@ -456,7 +460,8 @@
         "Slower",
         "Topspin",
         "Drift"
-      ]
+      ],
+      "handedness": "left"
     },
     {
       "id": "tilak-varma-bat",
@@ -543,7 +548,8 @@
       "resistances": [
         "Topspin",
         "Drift"
-      ]
+      ],
+      "handedness": "left"
     },
     {
       "id": "rinku-singh-bat",
@@ -551,7 +557,7 @@
       "name": "Rinku Singh",
       "nation": "India",
       "tier": "Silver",
-      "description": "KKR death-overs finisher. Famous for clearing the rope on the leg side — the \"5 sixes in an over\" guy. Limited new-ball game; vulnerable in early-innings phases. Reads slower balls and cutters from death-overs experience.",
+      "description": "KKR death-overs finisher. Famous for clearing the rope on the leg side \u2014 the \"5 sixes in an over\" guy. Limited new-ball game; vulnerable in early-innings phases. Reads slower balls and cutters from death-overs experience.",
       "strengths": [
         {
           "zone": {
@@ -630,7 +636,8 @@
       "resistances": [
         "Slower",
         "Cutter"
-      ]
+      ],
+      "handedness": "right"
     },
     {
       "id": "abhishek-sharma-bat",
@@ -638,7 +645,7 @@
       "name": "Abhishek Sharma",
       "nation": "India",
       "tier": "Silver",
-      "description": "Sunrisers Hyderabad explosive opener. Hits big in powerplay — drives over extra cover, pulls anything short. Plays the new ball well; vulnerable when forced to defend on the back foot, especially against good-length balls in the corridor.",
+      "description": "Sunrisers Hyderabad explosive opener. Hits big in powerplay \u2014 drives over extra cover, pulls anything short. Plays the new ball well; vulnerable when forced to defend on the back foot, especially against good-length balls in the corridor.",
       "strengths": [
         {
           "zone": {
@@ -717,7 +724,8 @@
       "resistances": [
         "Swing",
         "Seam"
-      ]
+      ],
+      "handedness": "right"
     },
     {
       "id": "riyan-parag-bat",
@@ -800,7 +808,8 @@
           }
         }
       ],
-      "resistances": []
+      "resistances": [],
+      "handedness": "right"
     },
     {
       "id": "sai-sudharsan-bat",
@@ -808,7 +817,7 @@
       "name": "Sai Sudharsan",
       "nation": "India",
       "tier": "Bronze",
-      "description": "Tamil Nadu left-handed opener. 527 IPL runs in 2024 for GT. Technically correct, picks length well — but lacks the gear-shift to clear ropes consistently. T20I debut in 2024.",
+      "description": "Tamil Nadu left-handed opener. 527 IPL runs in 2024 for GT. Technically correct, picks length well \u2014 but lacks the gear-shift to clear ropes consistently. T20I debut in 2024.",
       "strengths": [],
       "neutrals": [
         {
@@ -883,7 +892,8 @@
           }
         }
       ],
-      "resistances": []
+      "resistances": [],
+      "handedness": "left"
     },
     {
       "id": "rahul-tewatia-bat",
@@ -891,7 +901,7 @@
       "name": "Rahul Tewatia",
       "nation": "India",
       "tier": "Bronze",
-      "description": "RR/GT lower-order finisher. Famous 5 sixes vs Cottrell in IPL 2020. Slogs to leg, but inconsistent — hits or misses with little in between. No real T20I career.",
+      "description": "RR/GT lower-order finisher. Famous 5 sixes vs Cottrell in IPL 2020. Slogs to leg, but inconsistent \u2014 hits or misses with little in between. No real T20I career.",
       "strengths": [],
       "neutrals": [
         {
@@ -966,7 +976,8 @@
           }
         }
       ],
-      "resistances": []
+      "resistances": [],
+      "handedness": "right"
     },
     {
       "id": "deepak-hooda-bat",
@@ -974,7 +985,7 @@
       "name": "Deepak Hooda",
       "nation": "India",
       "tier": "Bronze",
-      "description": "Off-spin all-rounder. T20Is sporadically — doesn't quite make the senior squad consistently. Hits through the line but technically limited; struggles outside off.",
+      "description": "Off-spin all-rounder. T20Is sporadically \u2014 doesn't quite make the senior squad consistently. Hits through the line but technically limited; struggles outside off.",
       "strengths": [],
       "neutrals": [
         {
@@ -1049,7 +1060,8 @@
           }
         }
       ],
-      "resistances": []
+      "resistances": [],
+      "handedness": "right"
     },
     {
       "id": "venkatesh-iyer-bat",
@@ -1132,7 +1144,8 @@
           }
         }
       ],
-      "resistances": []
+      "resistances": [],
+      "handedness": "left"
     },
     {
       "id": "travis-head-bat",
@@ -1225,7 +1238,8 @@
         "Carrom",
         "Topspin",
         "Drift"
-      ]
+      ],
+      "handedness": "left"
     },
     {
       "id": "mitchell-marsh-bat",
@@ -1233,7 +1247,7 @@
       "name": "Mitchell Marsh",
       "nation": "Australia",
       "tier": "Elite",
-      "description": "Current AUS T20I captain. **Player of the Match in the 2021 T20 WC Final** (77\\* off 50 — the trophy-winning innings). Lofted drives, pulls anything short, all-rounder pedigree. (All-rounder split — keeps his existing Bronze bowler card.)",
+      "description": "Current AUS T20I captain. **Player of the Match in the 2021 T20 WC Final** (77\\* off 50 \u2014 the trophy-winning innings). Lofted drives, pulls anything short, all-rounder pedigree. (All-rounder split \u2014 keeps his existing Bronze bowler card.)",
       "strengths": [
         {
           "zone": {
@@ -1318,7 +1332,8 @@
         "Googly",
         "Cutter",
         "Slower"
-      ]
+      ],
+      "handedness": "right"
     },
     {
       "id": "glenn-maxwell-bat",
@@ -1409,7 +1424,8 @@
         "Googly",
         "Slower",
         "Cutter"
-      ]
+      ],
+      "handedness": "right"
     },
     {
       "id": "marcus-stoinis-bat",
@@ -1499,7 +1515,8 @@
         "Seam",
         "Cutter",
         "Slower"
-      ]
+      ],
+      "handedness": "right"
     },
     {
       "id": "steve-smith-bat",
@@ -1507,7 +1524,7 @@
       "name": "Steve Smith",
       "nation": "Australia",
       "tier": "Gold",
-      "description": "Test/ODI legend, current AUS T20I returnee. Quirky technique — leaves leg stump exposed, then flicks across with wristy precision. Anchor with sudden gear shifts; world-class against pace and spin alike.",
+      "description": "Test/ODI legend, current AUS T20I returnee. Quirky technique \u2014 leaves leg stump exposed, then flicks across with wristy precision. Anchor with sudden gear shifts; world-class against pace and spin alike.",
       "strengths": [
         {
           "zone": {
@@ -1589,7 +1606,8 @@
         "Drift",
         "Carrom",
         "Googly"
-      ]
+      ],
+      "handedness": "right"
     },
     {
       "id": "tim-david-bat",
@@ -1597,7 +1615,7 @@
       "name": "Tim David",
       "nation": "Australia",
       "tier": "Silver",
-      "description": "Singapore-born T20 mercenary. MI/RCB. Massive death-overs hitter, leg-side dominant — the slog and the hook are his go-tos. Reads slower balls and cutters from his death-overs experience.",
+      "description": "Singapore-born T20 mercenary. MI/RCB. Massive death-overs hitter, leg-side dominant \u2014 the slog and the hook are his go-tos. Reads slower balls and cutters from his death-overs experience.",
       "strengths": [
         {
           "zone": {
@@ -1676,7 +1694,8 @@
       "resistances": [
         "Slower",
         "Cutter"
-      ]
+      ],
+      "handedness": "right"
     },
     {
       "id": "josh-inglis-bat",
@@ -1764,7 +1783,8 @@
         "Topspin",
         "Carrom",
         "Drift"
-      ]
+      ],
+      "handedness": "right"
     },
     {
       "id": "cameron-green-bat",
@@ -1851,7 +1871,8 @@
       "resistances": [
         "Swing",
         "Seam"
-      ]
+      ],
+      "handedness": "right"
     },
     {
       "id": "mitchell-owen-bat",
@@ -1934,7 +1955,8 @@
           }
         }
       ],
-      "resistances": []
+      "resistances": [],
+      "handedness": "right"
     },
     {
       "id": "cooper-connolly-bat",
@@ -2017,7 +2039,8 @@
           }
         }
       ],
-      "resistances": []
+      "resistances": [],
+      "handedness": "left"
     },
     {
       "id": "jake-fraser-mcgurk-bat",
@@ -2025,7 +2048,7 @@
       "name": "Jake Fraser-McGurk",
       "nation": "Australia",
       "tier": "Bronze",
-      "description": "Rajasthan Royals' explosive opener. IPL 2024 breakout — second-fastest IPL fifty ever. Has played T20Is for Australia but isn't established. Aggressive but raw — hits big when timing it, vulnerable when forced to defend.",
+      "description": "Rajasthan Royals' explosive opener. IPL 2024 breakout \u2014 second-fastest IPL fifty ever. Has played T20Is for Australia but isn't established. Aggressive but raw \u2014 hits big when timing it, vulnerable when forced to defend.",
       "strengths": [],
       "neutrals": [
         {
@@ -2100,7 +2123,8 @@
           }
         }
       ],
-      "resistances": []
+      "resistances": [],
+      "handedness": "right"
     },
     {
       "id": "matthew-renshaw-bat",
@@ -2108,7 +2132,7 @@
       "name": "Matthew Renshaw",
       "nation": "Australia",
       "tier": "Bronze",
-      "description": "Left-handed grinder. Domestic Sheffield Shield performer with limited T20I exposure. Defensive mindset — plays the percentages, vulnerable when asked to score quickly.",
+      "description": "Left-handed grinder. Domestic Sheffield Shield performer with limited T20I exposure. Defensive mindset \u2014 plays the percentages, vulnerable when asked to score quickly.",
       "strengths": [],
       "neutrals": [
         {
@@ -2183,7 +2207,8 @@
           }
         }
       ],
-      "resistances": []
+      "resistances": [],
+      "handedness": "left"
     },
     {
       "id": "ben-mcdermott-bat",
@@ -2191,7 +2216,7 @@
       "name": "Ben McDermott",
       "nation": "Australia",
       "tier": "Bronze",
-      "description": "Hobart Hurricanes BBL middle-order hitter. 8 T20I caps for Australia (last 2022). Specialist batter — back-foot pull and leg-side power. Vulnerable in the corridor outside off.",
+      "description": "Hobart Hurricanes BBL middle-order hitter. 8 T20I caps for Australia (last 2022). Specialist batter \u2014 back-foot pull and leg-side power. Vulnerable in the corridor outside off.",
       "strengths": [],
       "neutrals": [
         {
@@ -2266,7 +2291,8 @@
           }
         }
       ],
-      "resistances": []
+      "resistances": [],
+      "handedness": "right"
     },
     {
       "id": "jos-buttler-bat",
@@ -2274,7 +2300,7 @@
       "name": "Jos Buttler",
       "nation": "England",
       "tier": "Elite",
-      "description": "England's T20 captain and talisman. Destructive keeper-bat — ramps, scoops, lofted hits over extra cover. T20 WC 2022 winner. Plays spin from the BBL/IPL with comfort. Vulnerable mainly to skiddy seam back into him at the stumps.",
+      "description": "England's T20 captain and talisman. Destructive keeper-bat \u2014 ramps, scoops, lofted hits over extra cover. T20 WC 2022 winner. Plays spin from the BBL/IPL with comfort. Vulnerable mainly to skiddy seam back into him at the stumps.",
       "strengths": [
         {
           "zone": {
@@ -2359,7 +2385,8 @@
         "Carrom",
         "Topspin",
         "Drift"
-      ]
+      ],
+      "handedness": "right"
     },
     {
       "id": "joe-root-bat",
@@ -2453,7 +2480,8 @@
         "Slower",
         "Cutter",
         "Seam"
-      ]
+      ],
+      "handedness": "right"
     },
     {
       "id": "harry-brook-bat",
@@ -2461,7 +2489,7 @@
       "name": "Harry Brook",
       "nation": "England",
       "tier": "Gold",
-      "description": "England's #3, T20 WC star. Drives beautifully over extra cover, pulls anything short, all-round attacking. Technically sound for an aggressive batter — eats spin alive but vulnerable in the corridor outside off.",
+      "description": "England's #3, T20 WC star. Drives beautifully over extra cover, pulls anything short, all-round attacking. Technically sound for an aggressive batter \u2014 eats spin alive but vulnerable in the corridor outside off.",
       "strengths": [
         {
           "zone": {
@@ -2544,7 +2572,8 @@
         "Googly",
         "Carrom",
         "Cutter"
-      ]
+      ],
+      "handedness": "right"
     },
     {
       "id": "phil-salt-bat",
@@ -2634,7 +2663,8 @@
         "Seam",
         "Cutter",
         "Slower"
-      ]
+      ],
+      "handedness": "right"
     },
     {
       "id": "alex-hales-bat",
@@ -2642,7 +2672,7 @@
       "name": "Alex Hales",
       "nation": "England",
       "tier": "Gold",
-      "description": "RH explosive opener, T20 WC 2022 squad member. IPL star (RCB), recent T20I returnee. Drives, pulls, lofts — power-hitter from ball one. Vulnerable to the swinging new ball.",
+      "description": "RH explosive opener, T20 WC 2022 squad member. IPL star (RCB), recent T20I returnee. Drives, pulls, lofts \u2014 power-hitter from ball one. Vulnerable to the swinging new ball.",
       "strengths": [
         {
           "zone": {
@@ -2724,7 +2754,8 @@
         "Drift",
         "Carrom",
         "Cutter"
-      ]
+      ],
+      "handedness": "right"
     },
     {
       "id": "liam-livingstone-bat",
@@ -2812,7 +2843,8 @@
         "Slower",
         "Cutter",
         "Topspin"
-      ]
+      ],
+      "handedness": "right"
     },
     {
       "id": "ben-duckett-bat",
@@ -2820,7 +2852,7 @@
       "name": "Ben Duckett",
       "nation": "England",
       "tier": "Silver",
-      "description": "Left-handed opener. Sweeps and reverse-sweeps everything — a spin specialist. T20 WC 2024 squad. Vulnerable to pace and short balls.",
+      "description": "Left-handed opener. Sweeps and reverse-sweeps everything \u2014 a spin specialist. T20 WC 2024 squad. Vulnerable to pace and short balls.",
       "strengths": [
         {
           "zone": {
@@ -2900,7 +2932,8 @@
         "Topspin",
         "Drift",
         "Carrom"
-      ]
+      ],
+      "handedness": "left"
     },
     {
       "id": "sam-curran-bat",
@@ -2908,7 +2941,7 @@
       "name": "Sam Curran",
       "nation": "England",
       "tier": "Silver",
-      "description": "Left-arm all-rounder (batter card; bowler card carries his death-overs role). T20 WC 2022 Player of the Tournament for his bowling — useful aggressive lower-order hitter when needed.",
+      "description": "Left-arm all-rounder (batter card; bowler card carries his death-overs role). T20 WC 2022 Player of the Tournament for his bowling \u2014 useful aggressive lower-order hitter when needed.",
       "strengths": [
         {
           "zone": {
@@ -2987,7 +3020,8 @@
       "resistances": [
         "Slower",
         "Swing"
-      ]
+      ],
+      "handedness": "right"
     },
     {
       "id": "jason-roy-bat",
@@ -3071,7 +3105,8 @@
           }
         }
       ],
-      "resistances": []
+      "resistances": [],
+      "handedness": "right"
     },
     {
       "id": "sam-billings-bat",
@@ -3155,7 +3190,8 @@
           }
         }
       ],
-      "resistances": []
+      "resistances": [],
+      "handedness": "right"
     },
     {
       "id": "tom-banton-bat",
@@ -3239,7 +3275,8 @@
           }
         }
       ],
-      "resistances": []
+      "resistances": [],
+      "handedness": "right"
     },
     {
       "id": "dan-lawrence-bat",
@@ -3323,7 +3360,8 @@
           }
         }
       ],
-      "resistances": []
+      "resistances": [],
+      "handedness": "right"
     },
     {
       "id": "mason-crane-bat",
@@ -3407,7 +3445,8 @@
           }
         }
       ],
-      "resistances": []
+      "resistances": [],
+      "handedness": "right"
     },
     {
       "id": "heinrich-klaasen-bat",
@@ -3415,7 +3454,7 @@
       "name": "Heinrich Klaasen",
       "nation": "South Africa",
       "tier": "Elite",
-      "description": "Right-handed keeper-bat. SA's most feared T20 hitter. IPL MVP-tier; T20 WC 2024 best SA bat (190 runs, SR 137). Destroys spin and pace alike — only new-ball swing troubles him.",
+      "description": "Right-handed keeper-bat. SA's most feared T20 hitter. IPL MVP-tier; T20 WC 2024 best SA bat (190 runs, SR 137). Destroys spin and pace alike \u2014 only new-ball swing troubles him.",
       "strengths": [
         {
           "zone": {
@@ -3501,7 +3540,8 @@
         "Slower",
         "Cutter",
         "Seam"
-      ]
+      ],
+      "handedness": "right"
     },
     {
       "id": "ab-de-villiers-bat",
@@ -3509,7 +3549,7 @@
       "name": "AB de Villiers",
       "nation": "South Africa",
       "tier": "Elite",
-      "description": "Mr 360 — retired internationals 2018, 78 T20Is, IPL legend (RCB). Plays every shot in the book and several that aren't. Reverse sweeps over slip, scoops over fine leg, ramps the quick. The most complete T20 batter of his generation.",
+      "description": "Mr 360 \u2014 retired internationals 2018, 78 T20Is, IPL legend (RCB). Plays every shot in the book and several that aren't. Reverse sweeps over slip, scoops over fine leg, ramps the quick. The most complete T20 batter of his generation.",
       "strengths": [
         {
           "zone": {
@@ -3595,7 +3635,8 @@
         "Topspin",
         "Drift",
         "Googly"
-      ]
+      ],
+      "handedness": "right"
     },
     {
       "id": "quinton-de-kock-bat",
@@ -3603,7 +3644,7 @@
       "name": "Quinton de Kock",
       "nation": "South Africa",
       "tier": "Gold",
-      "description": "Left-handed keeper-bat. Retired internationally in 2024 but still IPL/SA20 star. T20 WC 2024 leading SA scorer (232 runs, SR 140). Pull, drive, sweep — pure pace specialist.",
+      "description": "Left-handed keeper-bat. Retired internationally in 2024 but still IPL/SA20 star. T20 WC 2024 leading SA scorer (232 runs, SR 140). Pull, drive, sweep \u2014 pure pace specialist.",
       "strengths": [
         {
           "zone": {
@@ -3685,7 +3726,8 @@
         "Seam",
         "Cutter",
         "Slower"
-      ]
+      ],
+      "handedness": "left"
     },
     {
       "id": "david-miller-bat",
@@ -3776,7 +3818,8 @@
         "Topspin",
         "Drift",
         "Googly"
-      ]
+      ],
+      "handedness": "left"
     },
     {
       "id": "faf-du-plessis-bat",
@@ -3867,7 +3910,8 @@
         "Topspin",
         "Drift",
         "Carrom"
-      ]
+      ],
+      "handedness": "right"
     },
     {
       "id": "aiden-markram-bat",
@@ -3955,7 +3999,8 @@
         "Topspin",
         "Drift",
         "Carrom"
-      ]
+      ],
+      "handedness": "right"
     },
     {
       "id": "tristan-stubbs-bat",
@@ -4043,7 +4088,8 @@
         "Slower",
         "Cutter",
         "Topspin"
-      ]
+      ],
+      "handedness": "right"
     },
     {
       "id": "ryan-rickelton-bat",
@@ -4131,7 +4177,8 @@
         "Topspin",
         "Carrom",
         "Drift"
-      ]
+      ],
+      "handedness": "left"
     },
     {
       "id": "reeza-hendricks-bat",
@@ -4215,7 +4262,8 @@
           }
         }
       ],
-      "resistances": []
+      "resistances": [],
+      "handedness": "right"
     },
     {
       "id": "rassie-van-der-dussen-bat",
@@ -4299,7 +4347,8 @@
           }
         }
       ],
-      "resistances": []
+      "resistances": [],
+      "handedness": "right"
     },
     {
       "id": "donovan-ferreira-bat",
@@ -4307,7 +4356,7 @@
       "name": "Donovan Ferreira",
       "nation": "South Africa",
       "tier": "Bronze",
-      "description": "Young IPL/SA20 power hitter. Raw at international level — clears the rope when he times it, gets out trying when he doesn't.",
+      "description": "Young IPL/SA20 power hitter. Raw at international level \u2014 clears the rope when he times it, gets out trying when he doesn't.",
       "strengths": [
         {
           "zone": {
@@ -4383,7 +4432,8 @@
           }
         }
       ],
-      "resistances": []
+      "resistances": [],
+      "handedness": "right"
     },
     {
       "id": "wiaan-mulder-bat",
@@ -4391,7 +4441,7 @@
       "name": "Wiaan Mulder",
       "nation": "South Africa",
       "tier": "Bronze",
-      "description": "Right-handed all-rounder (batter card; medium-pace bowler split below). Not a T20 specialist with the bat — useful lower-order overs.",
+      "description": "Right-handed all-rounder (batter card; medium-pace bowler split below). Not a T20 specialist with the bat \u2014 useful lower-order overs.",
       "strengths": [
         {
           "zone": {
@@ -4467,7 +4517,8 @@
           }
         }
       ],
-      "resistances": []
+      "resistances": [],
+      "handedness": "right"
     },
     {
       "id": "rilee-rossouw-bat",
@@ -4475,7 +4526,7 @@
       "name": "Rilee Rossouw",
       "nation": "South Africa",
       "tier": "Bronze",
-      "description": "Left-handed power hitter. 36 T20Is for SA in his 2014–2016 prime + 2022 WC century cameo. Aggressive Bronze profile — clears the rope or holes out.",
+      "description": "Left-handed power hitter. 36 T20Is for SA in his 2014\u20132016 prime + 2022 WC century cameo. Aggressive Bronze profile \u2014 clears the rope or holes out.",
       "strengths": [
         {
           "zone": {
@@ -4551,7 +4602,8 @@
           }
         }
       ],
-      "resistances": []
+      "resistances": [],
+      "handedness": "left"
     },
     {
       "id": "kane-williamson-bat",
@@ -4559,7 +4611,7 @@
       "name": "Kane Williamson",
       "nation": "New Zealand",
       "tier": "Elite",
-      "description": "NZ T20I icon. Test-class technique applied to T20 — the anchor who guides chases. T20 WC 2024 leading NZ scorer (139 runs). Reads spin and pace equally; sweep, drive, dab — every shot in the textbook.",
+      "description": "NZ T20I icon. Test-class technique applied to T20 \u2014 the anchor who guides chases. T20 WC 2024 leading NZ scorer (139 runs). Reads spin and pace equally; sweep, drive, dab \u2014 every shot in the textbook.",
       "strengths": [
         {
           "zone": {
@@ -4645,7 +4697,8 @@
         "Drift",
         "Googly",
         "Carrom"
-      ]
+      ],
+      "handedness": "right"
     },
     {
       "id": "brendon-mccullum-bat",
@@ -4653,7 +4706,7 @@
       "name": "Brendon McCullum",
       "nation": "New Zealand",
       "tier": "Elite",
-      "description": "Legend — retired 2016, RH explosive opener, 71 T20Is at SR ~136. Inaugural KKR captain (105 in IPL's first-ever match). Slogs everything in sight, pulls anything short, ramps the quick. Mid-2010s game-changing T20 mindset.",
+      "description": "Legend \u2014 retired 2016, RH explosive opener, 71 T20Is at SR ~136. Inaugural KKR captain (105 in IPL's first-ever match). Slogs everything in sight, pulls anything short, ramps the quick. Mid-2010s game-changing T20 mindset.",
       "strengths": [
         {
           "zone": {
@@ -4739,7 +4792,8 @@
         "Topspin",
         "Drift",
         "Googly"
-      ]
+      ],
+      "handedness": "right"
     },
     {
       "id": "glenn-phillips-bat",
@@ -4842,7 +4896,8 @@
         "Topspin",
         "Drift",
         "Googly"
-      ]
+      ],
+      "handedness": "right"
     },
     {
       "id": "devon-conway-bat",
@@ -4932,7 +4987,8 @@
         "Drift",
         "Carrom",
         "Googly"
-      ]
+      ],
+      "handedness": "left"
     },
     {
       "id": "ross-taylor-bat",
@@ -5022,7 +5078,8 @@
         "Cutter",
         "Topspin",
         "Drift"
-      ]
+      ],
+      "handedness": "right"
     },
     {
       "id": "mark-chapman-bat",
@@ -5110,7 +5167,8 @@
         "Topspin",
         "Drift",
         "Carrom"
-      ]
+      ],
+      "handedness": "left"
     },
     {
       "id": "daryl-mitchell-bat",
@@ -5197,7 +5255,8 @@
       "resistances": [
         "Slower",
         "Cutter"
-      ]
+      ],
+      "handedness": "right"
     },
     {
       "id": "rachin-ravindra-bat",
@@ -5285,7 +5344,8 @@
         "Topspin",
         "Carrom",
         "Drift"
-      ]
+      ],
+      "handedness": "left"
     },
     {
       "id": "colin-munro-bat",
@@ -5293,7 +5353,7 @@
       "name": "Colin Munro",
       "nation": "New Zealand",
       "tier": "Bronze",
-      "description": "Left-handed explosive opener. 65 T20Is for NZ in his 2014–2020 prime, three T20I centuries. Aggressive Bronze profile — slogs over midwicket, ramps; gets out trying to clear the rope.",
+      "description": "Left-handed explosive opener. 65 T20Is for NZ in his 2014\u20132020 prime, three T20I centuries. Aggressive Bronze profile \u2014 slogs over midwicket, ramps; gets out trying to clear the rope.",
       "strengths": [
         {
           "zone": {
@@ -5369,7 +5429,8 @@
           }
         }
       ],
-      "resistances": []
+      "resistances": [],
+      "handedness": "left"
     },
     {
       "id": "jimmy-neesham-bat",
@@ -5453,7 +5514,8 @@
           }
         }
       ],
-      "resistances": []
+      "resistances": [],
+      "handedness": "left"
     },
     {
       "id": "will-young-bat",
@@ -5537,7 +5599,8 @@
           }
         }
       ],
-      "resistances": []
+      "resistances": [],
+      "handedness": "right"
     },
     {
       "id": "tom-blundell-bat",
@@ -5621,7 +5684,8 @@
           }
         }
       ],
-      "resistances": []
+      "resistances": [],
+      "handedness": "right"
     },
     {
       "id": "michael-bracewell-bat",
@@ -5705,7 +5769,8 @@
           }
         }
       ],
-      "resistances": []
+      "resistances": [],
+      "handedness": "right"
     },
     {
       "id": "babar-azam-bat",
@@ -5799,7 +5864,8 @@
         "Topspin",
         "Drift",
         "Carrom"
-      ]
+      ],
+      "handedness": "right"
     },
     {
       "id": "shoaib-malik-bat",
@@ -5807,7 +5873,7 @@
       "name": "Shoaib Malik",
       "nation": "Pakistan",
       "tier": "Elite",
-      "description": "Retired 2024 — **124 T20Is, the most appearances ever for any player**. T20 WC 2009 winner, all-format PAK stalwart across two decades. Sweeps and reverse-laps anything from spinners; lofts straight off pace.",
+      "description": "Retired 2024 \u2014 **124 T20Is, the most appearances ever for any player**. T20 WC 2009 winner, all-format PAK stalwart across two decades. Sweeps and reverse-laps anything from spinners; lofts straight off pace.",
       "strengths": [
         {
           "zone": {
@@ -5893,7 +5959,8 @@
         "Slower",
         "Cutter",
         "Seam"
-      ]
+      ],
+      "handedness": "right"
     },
     {
       "id": "mohammad-rizwan-bat",
@@ -5901,7 +5968,7 @@
       "name": "Mohammad Rizwan",
       "nation": "Pakistan",
       "tier": "Gold",
-      "description": "Right-handed keeper-bat. World #1 T20I ranked at multiple points. Accumulator with class — drives, flicks, anchors. Vulnerable to short pace at the body.",
+      "description": "Right-handed keeper-bat. World #1 T20I ranked at multiple points. Accumulator with class \u2014 drives, flicks, anchors. Vulnerable to short pace at the body.",
       "strengths": [
         {
           "zone": {
@@ -5984,7 +6051,8 @@
         "Carrom",
         "Googly",
         "Slower"
-      ]
+      ],
+      "handedness": "right"
     },
     {
       "id": "fakhar-zaman-bat",
@@ -6074,7 +6142,8 @@
         "Cutter",
         "Topspin",
         "Drift"
-      ]
+      ],
+      "handedness": "left"
     },
     {
       "id": "mohammad-hafeez-bat",
@@ -6164,7 +6233,8 @@
         "Drift",
         "Carrom",
         "Googly"
-      ]
+      ],
+      "handedness": "right"
     },
     {
       "id": "salman-agha-bat",
@@ -6252,7 +6322,8 @@
         "Topspin",
         "Drift",
         "Carrom"
-      ]
+      ],
+      "handedness": "right"
     },
     {
       "id": "saim-ayub-bat",
@@ -6340,7 +6411,8 @@
         "Topspin",
         "Carrom",
         "Drift"
-      ]
+      ],
+      "handedness": "left"
     },
     {
       "id": "shahid-afridi-bat",
@@ -6348,7 +6420,7 @@
       "name": "Shahid Afridi",
       "nation": "Pakistan",
       "tier": "Silver",
-      "description": "Mid-2010s legend. 99 T20Is for PAK (last 2018), captain across formats, T20 WC 2007/2009 hero. Hit-or-miss slogger by his late career — averaged ~17 in T20Is at SR 150. Pure boundary-or-out.",
+      "description": "Mid-2010s legend. 99 T20Is for PAK (last 2018), captain across formats, T20 WC 2007/2009 hero. Hit-or-miss slogger by his late career \u2014 averaged ~17 in T20Is at SR 150. Pure boundary-or-out.",
       "strengths": [
         {
           "zone": {
@@ -6428,7 +6500,8 @@
         "Slower",
         "Cutter",
         "Topspin"
-      ]
+      ],
+      "handedness": "right"
     },
     {
       "id": "iftikhar-ahmed-bat",
@@ -6512,7 +6585,8 @@
           }
         }
       ],
-      "resistances": []
+      "resistances": [],
+      "handedness": "right"
     },
     {
       "id": "usman-khan-bat",
@@ -6596,7 +6670,8 @@
           }
         }
       ],
-      "resistances": []
+      "resistances": [],
+      "handedness": "right"
     },
     {
       "id": "asif-ali-bat",
@@ -6604,7 +6679,7 @@
       "name": "Asif Ali",
       "nation": "Pakistan",
       "tier": "Bronze",
-      "description": "Right-handed death-overs power hitter. 50+ T20Is for PAK, T20 WC 2021 cameos. Hits boundaries at the back end of the innings — or holes out trying.",
+      "description": "Right-handed death-overs power hitter. 50+ T20Is for PAK, T20 WC 2021 cameos. Hits boundaries at the back end of the innings \u2014 or holes out trying.",
       "strengths": [
         {
           "zone": {
@@ -6680,7 +6755,8 @@
           }
         }
       ],
-      "resistances": []
+      "resistances": [],
+      "handedness": "right"
     },
     {
       "id": "faheem-ashraf-bat",
@@ -6764,7 +6840,8 @@
           }
         }
       ],
-      "resistances": []
+      "resistances": [],
+      "handedness": "right"
     },
     {
       "id": "shadab-khan-bat",
@@ -6772,7 +6849,7 @@
       "name": "Shadab Khan",
       "nation": "Pakistan",
       "tier": "Bronze",
-      "description": "Right-handed leg-spin all-rounder (batter card; Bronze bowler split below). Clean lower-order hitter — was Silver-tier at his peak; current form has dropped him.",
+      "description": "Right-handed leg-spin all-rounder (batter card; Bronze bowler split below). Clean lower-order hitter \u2014 was Silver-tier at his peak; current form has dropped him.",
       "strengths": [
         {
           "zone": {
@@ -6848,7 +6925,8 @@
           }
         }
       ],
-      "resistances": []
+      "resistances": [],
+      "handedness": "right"
     },
     {
       "id": "pathum-nissanka-bat",
@@ -6856,7 +6934,7 @@
       "name": "Pathum Nissanka",
       "nation": "Sri Lanka",
       "tier": "Elite",
-      "description": "Right-handed opener. SL's most complete current T20 bat — only SL T20I centurion (vs Bangladesh 2024). Cover drives, cuts, flicks; reads spin and pace equally.",
+      "description": "Right-handed opener. SL's most complete current T20 bat \u2014 only SL T20I centurion (vs Bangladesh 2024). Cover drives, cuts, flicks; reads spin and pace equally.",
       "strengths": [
         {
           "zone": {
@@ -6942,7 +7020,8 @@
         "Drift",
         "Googly",
         "Carrom"
-      ]
+      ],
+      "handedness": "right"
     },
     {
       "id": "kumar-sangakkara-bat",
@@ -6950,7 +7029,7 @@
       "name": "Kumar Sangakkara",
       "nation": "Sri Lanka",
       "tier": "Elite",
-      "description": "Legend — retired internationals 2015, 56 T20Is, T20 WC 2014 winner, all-time-great LH keeper-bat. Glides, sweeps, drives off both feet, reverse-laps spin. The most technically-correct attacking bat of his era.",
+      "description": "Legend \u2014 retired internationals 2015, 56 T20Is, T20 WC 2014 winner, all-time-great LH keeper-bat. Glides, sweeps, drives off both feet, reverse-laps spin. The most technically-correct attacking bat of his era.",
       "strengths": [
         {
           "zone": {
@@ -7036,7 +7115,8 @@
         "Topspin",
         "Drift",
         "Googly"
-      ]
+      ],
+      "handedness": "left"
     },
     {
       "id": "charith-asalanka-bat",
@@ -7128,7 +7208,8 @@
         "Carrom",
         "Googly",
         "Slower"
-      ]
+      ],
+      "handedness": "left"
     },
     {
       "id": "kusal-mendis-bat",
@@ -7219,7 +7300,8 @@
         "Cutter",
         "Topspin",
         "Drift"
-      ]
+      ],
+      "handedness": "right"
     },
     {
       "id": "mahela-jayawardene-bat",
@@ -7227,7 +7309,7 @@
       "name": "Mahela Jayawardene",
       "nation": "Sri Lanka",
       "tier": "Gold",
-      "description": "Legend — retired 2014, 55 T20Is, T20 WC 2014 Player of the Tournament. RH right-hand stylist with the wristy whip through midwicket and the late cut signature. Captain across formats.",
+      "description": "Legend \u2014 retired 2014, 55 T20Is, T20 WC 2014 Player of the Tournament. RH right-hand stylist with the wristy whip through midwicket and the late cut signature. Captain across formats.",
       "strengths": [
         {
           "zone": {
@@ -7310,7 +7392,8 @@
         "Carrom",
         "Googly",
         "Slower"
-      ]
+      ],
+      "handedness": "right"
     },
     {
       "id": "kamindu-mendis-bat",
@@ -7398,7 +7481,8 @@
         "Topspin",
         "Carrom",
         "Drift"
-      ]
+      ],
+      "handedness": "left"
     },
     {
       "id": "kusal-perera-bat",
@@ -7486,7 +7570,8 @@
         "Slower",
         "Topspin",
         "Drift"
-      ]
+      ],
+      "handedness": "left"
     },
     {
       "id": "tillakaratne-dilshan-bat",
@@ -7494,7 +7579,7 @@
       "name": "Tillakaratne Dilshan",
       "nation": "Sri Lanka",
       "tier": "Silver",
-      "description": "Mid-2010s legend. 79 T20Is, 2014 T20 WC winner, \"Dilscoop\" inventor. Right-handed opener with the full shot range — late-career SR ~120 puts him at Silver, not Gold.",
+      "description": "Mid-2010s legend. 79 T20Is, 2014 T20 WC winner, \"Dilscoop\" inventor. Right-handed opener with the full shot range \u2014 late-career SR ~120 puts him at Silver, not Gold.",
       "strengths": [
         {
           "zone": {
@@ -7574,7 +7659,8 @@
         "Topspin",
         "Drift",
         "Carrom"
-      ]
+      ],
+      "handedness": "right"
     },
     {
       "id": "bhanuka-rajapaksa-bat",
@@ -7658,7 +7744,8 @@
           }
         }
       ],
-      "resistances": []
+      "resistances": [],
+      "handedness": "left"
     },
     {
       "id": "avishka-fernando-bat",
@@ -7742,7 +7829,8 @@
           }
         }
       ],
-      "resistances": []
+      "resistances": [],
+      "handedness": "right"
     },
     {
       "id": "niroshan-dickwella-bat",
@@ -7826,7 +7914,8 @@
           }
         }
       ],
-      "resistances": []
+      "resistances": [],
+      "handedness": "left"
     },
     {
       "id": "dunith-wellalage-bat",
@@ -7910,7 +7999,8 @@
           }
         }
       ],
-      "resistances": []
+      "resistances": [],
+      "handedness": "right"
     },
     {
       "id": "dasun-shanaka-bat",
@@ -7918,7 +8008,7 @@
       "name": "Dasun Shanaka",
       "nation": "Sri Lanka",
       "tier": "Bronze",
-      "description": "Right-handed former T20I captain (all-rounder split — Bronze bowler below). Death-overs slogger; explosive when timed, holes out when not.",
+      "description": "Right-handed former T20I captain (all-rounder split \u2014 Bronze bowler below). Death-overs slogger; explosive when timed, holes out when not.",
       "strengths": [
         {
           "zone": {
@@ -7994,7 +8084,8 @@
           }
         }
       ],
-      "resistances": []
+      "resistances": [],
+      "handedness": "right"
     },
     {
       "id": "nicholas-pooran-bat",
@@ -8002,7 +8093,7 @@
       "name": "Nicholas Pooran",
       "nation": "West Indies",
       "tier": "Elite",
-      "description": "Left-handed destroyer. IPL/T20 league superstar, current WI T20I vice-captain. Hits sixes across all lines; reads spin and pace equally — only the moving ball outside off troubles him.",
+      "description": "Left-handed destroyer. IPL/T20 league superstar, current WI T20I vice-captain. Hits sixes across all lines; reads spin and pace equally \u2014 only the moving ball outside off troubles him.",
       "strengths": [
         {
           "zone": {
@@ -8088,7 +8179,8 @@
         "Slower",
         "Cutter",
         "Seam"
-      ]
+      ],
+      "handedness": "left"
     },
     {
       "id": "chris-gayle-bat",
@@ -8096,7 +8188,7 @@
       "name": "Chris Gayle",
       "nation": "West Indies",
       "tier": "Elite",
-      "description": "All-time T20 batting legend — retired 2021, 79 T20Is + ~450 T20s globally. Universe Boss. Stands still, walks across, hits over long-on for fun. The original T20 superhero. Stroke-range universal, only the moving new ball troubles him.",
+      "description": "All-time T20 batting legend \u2014 retired 2021, 79 T20Is + ~450 T20s globally. Universe Boss. Stands still, walks across, hits over long-on for fun. The original T20 superhero. Stroke-range universal, only the moving new ball troubles him.",
       "strengths": [
         {
           "zone": {
@@ -8182,7 +8274,8 @@
         "Drift",
         "Googly",
         "Carrom"
-      ]
+      ],
+      "handedness": "right"
     },
     {
       "id": "andre-russell-bat",
@@ -8273,7 +8366,8 @@
         "Topspin",
         "Drift",
         "Googly"
-      ]
+      ],
+      "handedness": "right"
     },
     {
       "id": "brandon-king-bat",
@@ -8281,7 +8375,7 @@
       "name": "Brandon King",
       "nation": "West Indies",
       "tier": "Gold",
-      "description": "Current WI T20I opener. Right-handed top-order power — drives through the line, pulls anything short. Vulnerable to the ball nipping back into the stumps.",
+      "description": "Current WI T20I opener. Right-handed top-order power \u2014 drives through the line, pulls anything short. Vulnerable to the ball nipping back into the stumps.",
       "strengths": [
         {
           "zone": {
@@ -8363,7 +8457,8 @@
         "Cutter",
         "Topspin",
         "Drift"
-      ]
+      ],
+      "handedness": "right"
     },
     {
       "id": "kieron-pollard-bat",
@@ -8371,7 +8466,7 @@
       "name": "Kieron Pollard",
       "nation": "West Indies",
       "tier": "Gold",
-      "description": "Retired internationals 2022, 101 T20Is, MI IPL captain legend. Massive death-overs power-hitter — slogs over midwicket for sport, lofts straight, fearless against any pace.",
+      "description": "Retired internationals 2022, 101 T20Is, MI IPL captain legend. Massive death-overs power-hitter \u2014 slogs over midwicket for sport, lofts straight, fearless against any pace.",
       "strengths": [
         {
           "zone": {
@@ -8454,7 +8549,8 @@
         "Topspin",
         "Drift",
         "Googly"
-      ]
+      ],
+      "handedness": "right"
     },
     {
       "id": "shimron-hetmyer-bat",
@@ -8542,7 +8638,8 @@
         "Topspin",
         "Drift",
         "Carrom"
-      ]
+      ],
+      "handedness": "left"
     },
     {
       "id": "rovman-powell-bat",
@@ -8630,7 +8727,8 @@
         "Slower",
         "Cutter",
         "Topspin"
-      ]
+      ],
+      "handedness": "right"
     },
     {
       "id": "sherfane-rutherford-bat",
@@ -8718,7 +8816,8 @@
         "Topspin",
         "Carrom",
         "Drift"
-      ]
+      ],
+      "handedness": "left"
     },
     {
       "id": "johnson-charles-bat",
@@ -8802,7 +8901,8 @@
           }
         }
       ],
-      "resistances": []
+      "resistances": [],
+      "handedness": "right"
     },
     {
       "id": "roston-chase-bat",
@@ -8886,7 +8986,8 @@
           }
         }
       ],
-      "resistances": []
+      "resistances": [],
+      "handedness": "right"
     },
     {
       "id": "shai-hope-bat",
@@ -8894,7 +8995,7 @@
       "name": "Shai Hope",
       "nation": "West Indies",
       "tier": "Bronze",
-      "description": "Right-handed WI ODI captain. Technically clean — more ODI than T20 specialist, hence Bronze. Cover drives and flicks; struggles with short balls at the body.",
+      "description": "Right-handed WI ODI captain. Technically clean \u2014 more ODI than T20 specialist, hence Bronze. Cover drives and flicks; struggles with short balls at the body.",
       "strengths": [
         {
           "zone": {
@@ -8970,7 +9071,8 @@
           }
         }
       ],
-      "resistances": []
+      "resistances": [],
+      "handedness": "right"
     },
     {
       "id": "marlon-samuels-bat",
@@ -8978,7 +9080,7 @@
       "name": "Marlon Samuels",
       "nation": "West Indies",
       "tier": "Bronze",
-      "description": "Mid-2010s legend. T20 WC 2012 (78) AND 2016 (85*) final hero — only player to score 50+ in two T20 WC finals. Right-handed middle-order, retired 2020. Languid technique that frustrated bowlers and slogged on cue.",
+      "description": "Mid-2010s legend. T20 WC 2012 (78) AND 2016 (85*) final hero \u2014 only player to score 50+ in two T20 WC finals. Right-handed middle-order, retired 2020. Languid technique that frustrated bowlers and slogged on cue.",
       "strengths": [
         {
           "zone": {
@@ -9054,7 +9156,8 @@
           }
         }
       ],
-      "resistances": []
+      "resistances": [],
+      "handedness": "right"
     },
     {
       "id": "romario-shepherd-bat",
@@ -9138,7 +9241,8 @@
           }
         }
       ],
-      "resistances": []
+      "resistances": [],
+      "handedness": "right"
     },
     {
       "id": "litton-das-bat",
@@ -9146,7 +9250,7 @@
       "name": "Litton Das",
       "nation": "Bangladesh",
       "tier": "Elite",
-      "description": "Right-handed keeper-bat. Brief world #1 T20I ranking moment in 2022; remains BAN's most explosive top-order option. Pulls, drives, sweeps; reads spin and pace equally — only the moving ball outside off troubles him.",
+      "description": "Right-handed keeper-bat. Brief world #1 T20I ranking moment in 2022; remains BAN's most explosive top-order option. Pulls, drives, sweeps; reads spin and pace equally \u2014 only the moving ball outside off troubles him.",
       "strengths": [
         {
           "zone": {
@@ -9232,7 +9336,8 @@
         "Slower",
         "Cutter",
         "Seam"
-      ]
+      ],
+      "handedness": "right"
     },
     {
       "id": "junaid-siddique-bat",
@@ -9240,7 +9345,7 @@
       "name": "Junaid Siddique",
       "nation": "Bangladesh",
       "tier": "Elite",
-      "description": "Early-2010s LH opener — 11 T20Is + 50+ ODIs, BAN's first-generation T20 batsman. Ground stroke-maker with a strong off-side game. Played at the dawn of T20Is when Bangladesh were finding their feet at the format.",
+      "description": "Early-2010s LH opener \u2014 11 T20Is + 50+ ODIs, BAN's first-generation T20 batsman. Ground stroke-maker with a strong off-side game. Played at the dawn of T20Is when Bangladesh were finding their feet at the format.",
       "strengths": [
         {
           "zone": {
@@ -9325,7 +9430,8 @@
         "Drift",
         "Carrom",
         "Googly"
-      ]
+      ],
+      "handedness": "left"
     },
     {
       "id": "shakib-al-hasan-bat",
@@ -9415,7 +9521,8 @@
         "Drift",
         "Carrom",
         "Googly"
-      ]
+      ],
+      "handedness": "left"
     },
     {
       "id": "towhid-hridoy-bat",
@@ -9423,7 +9530,7 @@
       "name": "Towhid Hridoy",
       "nation": "Bangladesh",
       "tier": "Gold",
-      "description": "Right-handed rising middle-order. SR 130+ across recent T20Is. Clean striker, improving fast — pulls and lofts; vulnerable around off stump.",
+      "description": "Right-handed rising middle-order. SR 130+ across recent T20Is. Clean striker, improving fast \u2014 pulls and lofts; vulnerable around off stump.",
       "strengths": [
         {
           "zone": {
@@ -9506,7 +9613,8 @@
         "Topspin",
         "Drift",
         "Carrom"
-      ]
+      ],
+      "handedness": "right"
     },
     {
       "id": "imrul-kayes-bat",
@@ -9596,7 +9704,8 @@
         "Drift",
         "Carrom",
         "Slower"
-      ]
+      ],
+      "handedness": "left"
     },
     {
       "id": "najmul-hossain-shanto-bat",
@@ -9684,7 +9793,8 @@
         "Topspin",
         "Drift",
         "Carrom"
-      ]
+      ],
+      "handedness": "left"
     },
     {
       "id": "tamim-iqbal-bat",
@@ -9692,7 +9802,7 @@
       "name": "Tamim Iqbal",
       "nation": "Bangladesh",
       "tier": "Silver",
-      "description": "Left-handed legend. BAN's all-time T20I top scorer, retired internationally 2023. Anchor opener with classic technique — drives and flicks; vulnerable to short pace and the ball into the pads.",
+      "description": "Left-handed legend. BAN's all-time T20I top scorer, retired internationally 2023. Anchor opener with classic technique \u2014 drives and flicks; vulnerable to short pace and the ball into the pads.",
       "strengths": [
         {
           "zone": {
@@ -9772,7 +9882,8 @@
         "Topspin",
         "Carrom",
         "Slower"
-      ]
+      ],
+      "handedness": "left"
     },
     {
       "id": "soumya-sarkar-bat",
@@ -9780,7 +9891,7 @@
       "name": "Soumya Sarkar",
       "nation": "Bangladesh",
       "tier": "Silver",
-      "description": "Left-handed opener (batter card; Bronze bowler split below). Goes hard with the new ball — explosive when set, falls early when not.",
+      "description": "Left-handed opener (batter card; Bronze bowler split below). Goes hard with the new ball \u2014 explosive when set, falls early when not.",
       "strengths": [
         {
           "zone": {
@@ -9859,7 +9970,8 @@
       "resistances": [
         "Topspin",
         "Drift"
-      ]
+      ],
+      "handedness": "left"
     },
     {
       "id": "mushfiqur-rahim-bat",
@@ -9943,7 +10055,8 @@
           }
         }
       ],
-      "resistances": []
+      "resistances": [],
+      "handedness": "right"
     },
     {
       "id": "mahmudullah-riyad-bat",
@@ -9951,7 +10064,7 @@
       "name": "Mahmudullah Riyad",
       "nation": "Bangladesh",
       "tier": "Bronze",
-      "description": "Right-handed veteran finisher. T20 WC 2024 squad. Cool head at the death — slogs over midwicket, lofts straight; struggles vs the moving ball outside off.",
+      "description": "Right-handed veteran finisher. T20 WC 2024 squad. Cool head at the death \u2014 slogs over midwicket, lofts straight; struggles vs the moving ball outside off.",
       "strengths": [
         {
           "zone": {
@@ -10027,7 +10140,8 @@
           }
         }
       ],
-      "resistances": []
+      "resistances": [],
+      "handedness": "right"
     },
     {
       "id": "mehidy-hasan-miraz-bat",
@@ -10035,7 +10149,7 @@
       "name": "Mehidy Hasan Miraz",
       "nation": "Bangladesh",
       "tier": "Bronze",
-      "description": "Right-handed off-spinning all-rounder (batter card; Silver bowler split below). Lower-order bat — sweeps and works.",
+      "description": "Right-handed off-spinning all-rounder (batter card; Silver bowler split below). Lower-order bat \u2014 sweeps and works.",
       "strengths": [
         {
           "zone": {
@@ -10111,7 +10225,8 @@
           }
         }
       ],
-      "resistances": []
+      "resistances": [],
+      "handedness": "right"
     },
     {
       "id": "afif-hossain-bat",
@@ -10119,7 +10234,7 @@
       "name": "Afif Hossain",
       "nation": "Bangladesh",
       "tier": "Bronze",
-      "description": "Left-handed all-rounder. Current form has dropped him from Silver — sweeps and finishes when set; falls early when not.",
+      "description": "Left-handed all-rounder. Current form has dropped him from Silver \u2014 sweeps and finishes when set; falls early when not.",
       "strengths": [
         {
           "zone": {
@@ -10195,7 +10310,8 @@
           }
         }
       ],
-      "resistances": []
+      "resistances": [],
+      "handedness": "left"
     },
     {
       "id": "rishad-hossain-bat",
@@ -10203,7 +10319,7 @@
       "name": "Rishad Hossain",
       "nation": "Bangladesh",
       "tier": "Bronze",
-      "description": "Right-handed leg-spinning all-rounder (batter card; Silver bowler split below). Tail-ender bat — slogs when he can.",
+      "description": "Right-handed leg-spinning all-rounder (batter card; Silver bowler split below). Tail-ender bat \u2014 slogs when he can.",
       "strengths": [
         {
           "zone": {
@@ -10279,7 +10395,8 @@
           }
         }
       ],
-      "resistances": []
+      "resistances": [],
+      "handedness": "right"
     },
     {
       "id": "sikandar-raza-bat",
@@ -10287,7 +10404,7 @@
       "name": "Sikandar Raza",
       "nation": "Zimbabwe",
       "tier": "Elite",
-      "description": "Right-handed ZIM GOAT, current T20I captain. IPL/PSL star, T20 WC 2024 standout. Plays spin and pace beautifully — only the moving ball outside off troubles him (also Gold off-spin bowler split below).",
+      "description": "Right-handed ZIM GOAT, current T20I captain. IPL/PSL star, T20 WC 2024 standout. Plays spin and pace beautifully \u2014 only the moving ball outside off troubles him (also Gold off-spin bowler split below).",
       "strengths": [
         {
           "zone": {
@@ -10373,7 +10490,8 @@
         "Slower",
         "Cutter",
         "Seam"
-      ]
+      ],
+      "handedness": "right"
     },
     {
       "id": "andy-flower-bat",
@@ -10381,7 +10499,7 @@
       "name": "Andy Flower",
       "nation": "Zimbabwe",
       "tier": "Elite",
-      "description": "Honorary Elite — ZIM's all-time greatest batter (LH keeper-bat), retired 2003 just before T20Is existed. Wisden Cricketer of the Year 2002. World #1 ranked Test batter for stretches. Career-tier elite even without T20I caps. Sweep + flick + classical cuts.",
+      "description": "Honorary Elite \u2014 ZIM's all-time greatest batter (LH keeper-bat), retired 2003 just before T20Is existed. Wisden Cricketer of the Year 2002. World #1 ranked Test batter for stretches. Career-tier elite even without T20I caps. Sweep + flick + classical cuts.",
       "strengths": [
         {
           "zone": {
@@ -10467,7 +10585,8 @@
         "Topspin",
         "Drift",
         "Googly"
-      ]
+      ],
+      "handedness": "left"
     },
     {
       "id": "craig-ervine-bat",
@@ -10557,7 +10676,8 @@
         "Drift",
         "Carrom",
         "Googly"
-      ]
+      ],
+      "handedness": "left"
     },
     {
       "id": "sean-williams-bat",
@@ -10648,7 +10768,8 @@
         "Carrom",
         "Googly",
         "Slower"
-      ]
+      ],
+      "handedness": "left"
     },
     {
       "id": "hamilton-masakadza-bat",
@@ -10656,7 +10777,7 @@
       "name": "Hamilton Masakadza",
       "nation": "Zimbabwe",
       "tier": "Gold",
-      "description": "Legend — retired 2019, 66 T20Is, captain. ZIM's most-capped T20I bat at the time of retirement. Anchor opener, classy drives, plays both pace and spin patiently.",
+      "description": "Legend \u2014 retired 2019, 66 T20Is, captain. ZIM's most-capped T20I bat at the time of retirement. Anchor opener, classy drives, plays both pace and spin patiently.",
       "strengths": [
         {
           "zone": {
@@ -10738,7 +10859,8 @@
         "Cutter",
         "Topspin",
         "Drift"
-      ]
+      ],
+      "handedness": "right"
     },
     {
       "id": "regis-chakabva-bat",
@@ -10826,7 +10948,8 @@
         "Topspin",
         "Drift",
         "Carrom"
-      ]
+      ],
+      "handedness": "right"
     },
     {
       "id": "wessly-madhevere-bat",
@@ -10913,7 +11036,8 @@
       "resistances": [
         "Topspin",
         "Drift"
-      ]
+      ],
+      "handedness": "right"
     },
     {
       "id": "ryan-burl-bat",
@@ -11001,7 +11125,8 @@
         "Slower",
         "Cutter",
         "Topspin"
-      ]
+      ],
+      "handedness": "left"
     },
     {
       "id": "tadiwanashe-marumani-bat",
@@ -11085,7 +11210,8 @@
           }
         }
       ],
-      "resistances": []
+      "resistances": [],
+      "handedness": "right"
     },
     {
       "id": "brendan-taylor-bat",
@@ -11169,7 +11295,8 @@
           }
         }
       ],
-      "resistances": []
+      "resistances": [],
+      "handedness": "right"
     },
     {
       "id": "joylord-gumbie-bat",
@@ -11253,7 +11380,8 @@
           }
         }
       ],
-      "resistances": []
+      "resistances": [],
+      "handedness": "right"
     },
     {
       "id": "milton-shumba-bat",
@@ -11337,7 +11465,8 @@
           }
         }
       ],
-      "resistances": []
+      "resistances": [],
+      "handedness": "right"
     },
     {
       "id": "clive-madande-bat",
@@ -11421,7 +11550,8 @@
           }
         }
       ],
-      "resistances": []
+      "resistances": [],
+      "handedness": "right"
     },
     {
       "id": "rahmanullah-gurbaz-bat",
@@ -11429,7 +11559,7 @@
       "name": "Rahmanullah Gurbaz",
       "nation": "Afghanistan",
       "tier": "Elite",
-      "description": "Right-handed explosive opener. IPL star, T20 WC 2024 top AFG scorer (281 runs). Hits sixes everywhere; reads spin and pace equally — only the moving ball outside off troubles him.",
+      "description": "Right-handed explosive opener. IPL star, T20 WC 2024 top AFG scorer (281 runs). Hits sixes everywhere; reads spin and pace equally \u2014 only the moving ball outside off troubles him.",
       "strengths": [
         {
           "zone": {
@@ -11515,7 +11645,8 @@
         "Slower",
         "Cutter",
         "Seam"
-      ]
+      ],
+      "handedness": "right"
     },
     {
       "id": "asghar-afghan-bat",
@@ -11523,7 +11654,7 @@
       "name": "Asghar Afghan",
       "nation": "Afghanistan",
       "tier": "Elite",
-      "description": "Former AFG captain, retired 2021, 66 T20Is — most-experienced AFG bat of the rise-of-Afghanistan era. Solid middle-order anchor who carried the team through their early international growth.",
+      "description": "Former AFG captain, retired 2021, 66 T20Is \u2014 most-experienced AFG bat of the rise-of-Afghanistan era. Solid middle-order anchor who carried the team through their early international growth.",
       "strengths": [
         {
           "zone": {
@@ -11608,7 +11739,8 @@
         "Googly",
         "Slower",
         "Cutter"
-      ]
+      ],
+      "handedness": "right"
     },
     {
       "id": "ibrahim-zadran-bat",
@@ -11616,7 +11748,7 @@
       "name": "Ibrahim Zadran",
       "nation": "Afghanistan",
       "tier": "Gold",
-      "description": "Current AFG ODI captain. Right-handed classy anchor — drives, flicks, works the ball. Growing T20 game.",
+      "description": "Current AFG ODI captain. Right-handed classy anchor \u2014 drives, flicks, works the ball. Growing T20 game.",
       "strengths": [
         {
           "zone": {
@@ -11699,7 +11831,8 @@
         "Carrom",
         "Googly",
         "Slower"
-      ]
+      ],
+      "handedness": "right"
     },
     {
       "id": "hazratullah-zazai-bat",
@@ -11789,7 +11922,8 @@
         "Cutter",
         "Topspin",
         "Drift"
-      ]
+      ],
+      "handedness": "left"
     },
     {
       "id": "mohammad-nabi-bat",
@@ -11877,7 +12011,8 @@
         "Topspin",
         "Drift",
         "Carrom"
-      ]
+      ],
+      "handedness": "right"
     },
     {
       "id": "najibullah-zadran-bat",
@@ -11965,7 +12100,8 @@
         "Topspin",
         "Carrom",
         "Drift"
-      ]
+      ],
+      "handedness": "left"
     },
     {
       "id": "azmatullah-omarzai-bat",
@@ -12052,7 +12188,8 @@
       "resistances": [
         "Slower",
         "Topspin"
-      ]
+      ],
+      "handedness": "right"
     },
     {
       "id": "sediqullah-atal-bat",
@@ -12136,7 +12273,8 @@
           }
         }
       ],
-      "resistances": []
+      "resistances": [],
+      "handedness": "right"
     },
     {
       "id": "mohammad-shahzad-bat",
@@ -12144,7 +12282,7 @@
       "name": "Mohammad Shahzad",
       "nation": "Afghanistan",
       "tier": "Bronze",
-      "description": "Mid-2010s legend. Flamboyant right-handed keeper-bat, 80+ T20Is for AFG, retired ~2020. Slog-or-out Bronze archetype — clears the rope or holes out.",
+      "description": "Mid-2010s legend. Flamboyant right-handed keeper-bat, 80+ T20Is for AFG, retired ~2020. Slog-or-out Bronze archetype \u2014 clears the rope or holes out.",
       "strengths": [
         {
           "zone": {
@@ -12220,7 +12358,8 @@
           }
         }
       ],
-      "resistances": []
+      "resistances": [],
+      "handedness": "right"
     },
     {
       "id": "gulbadin-naib-bat",
@@ -12304,7 +12443,8 @@
           }
         }
       ],
-      "resistances": []
+      "resistances": [],
+      "handedness": "right"
     },
     {
       "id": "karim-janat-bat",
@@ -12388,7 +12528,8 @@
           }
         }
       ],
-      "resistances": []
+      "resistances": [],
+      "handedness": "right"
     },
     {
       "id": "darwish-rasooli-bat",
@@ -12472,7 +12613,8 @@
           }
         }
       ],
-      "resistances": []
+      "resistances": [],
+      "handedness": "right"
     },
     {
       "id": "paul-stirling-bat",
@@ -12480,7 +12622,7 @@
       "name": "Paul Stirling",
       "nation": "Ireland",
       "tier": "Elite",
-      "description": "Right-handed Ireland T20 GOAT. 100+ T20Is, 10+ T20I 50s. Explosive opener — smashes through off side, lofts over midwicket, sweeps spin. Reads pace and spin equally; only the moving ball outside off troubles him.",
+      "description": "Right-handed Ireland T20 GOAT. 100+ T20Is, 10+ T20I 50s. Explosive opener \u2014 smashes through off side, lofts over midwicket, sweeps spin. Reads pace and spin equally; only the moving ball outside off troubles him.",
       "strengths": [
         {
           "zone": {
@@ -12566,7 +12708,8 @@
         "Slower",
         "Cutter",
         "Seam"
-      ]
+      ],
+      "handedness": "right"
     },
     {
       "id": "eoin-morgan-bat",
@@ -12574,7 +12717,7 @@
       "name": "Eoin Morgan",
       "nation": "Ireland",
       "tier": "Elite",
-      "description": "Multi-nation legend — played 23 ODIs for Ireland 2006-2009 before switching to England, where he became the country's most successful T20I captain (T20 WC 2022 winner). LH explosive middle-order, sweeps, lofts, switch-hits. Anchored England's white-ball revolution.",
+      "description": "Multi-nation legend \u2014 played 23 ODIs for Ireland 2006-2009 before switching to England, where he became the country's most successful T20I captain (T20 WC 2022 winner). LH explosive middle-order, sweeps, lofts, switch-hits. Anchored England's white-ball revolution.",
       "strengths": [
         {
           "zone": {
@@ -12659,7 +12802,8 @@
         "Drift",
         "Carrom",
         "Googly"
-      ]
+      ],
+      "handedness": "left"
     },
     {
       "id": "andrew-balbirnie-bat",
@@ -12750,7 +12894,8 @@
         "Carrom",
         "Googly",
         "Slower"
-      ]
+      ],
+      "handedness": "right"
     },
     {
       "id": "harry-tector-bat",
@@ -12840,7 +12985,8 @@
         "Cutter",
         "Topspin",
         "Drift"
-      ]
+      ],
+      "handedness": "right"
     },
     {
       "id": "ed-joyce-bat",
@@ -12848,7 +12994,7 @@
       "name": "Ed Joyce",
       "nation": "Ireland",
       "tier": "Gold",
-      "description": "Multi-nation career — IRE → ENG → IRE. LH classy middle-order, retired 2018. Played in two ODI WCs across both countries. Drives off both feet, sweeps spin from his county-cricket pedigree.",
+      "description": "Multi-nation career \u2014 IRE \u2192 ENG \u2192 IRE. LH classy middle-order, retired 2018. Played in two ODI WCs across both countries. Drives off both feet, sweeps spin from his county-cricket pedigree.",
       "strengths": [
         {
           "zone": {
@@ -12930,7 +13076,8 @@
         "Drift",
         "Carrom",
         "Googly"
-      ]
+      ],
+      "handedness": "left"
     },
     {
       "id": "lorcan-tucker-bat",
@@ -13018,7 +13165,8 @@
         "Topspin",
         "Drift",
         "Carrom"
-      ]
+      ],
+      "handedness": "right"
     },
     {
       "id": "curtis-campher-bat",
@@ -13106,7 +13254,8 @@
         "Slower",
         "Topspin",
         "Drift"
-      ]
+      ],
+      "handedness": "right"
     },
     {
       "id": "george-dockrell-bat",
@@ -13193,7 +13342,8 @@
       "resistances": [
         "Topspin",
         "Carrom"
-      ]
+      ],
+      "handedness": "left"
     },
     {
       "id": "kevin-o-brien-bat",
@@ -13277,7 +13427,8 @@
           }
         }
       ],
-      "resistances": []
+      "resistances": [],
+      "handedness": "right"
     },
     {
       "id": "gareth-delany-bat",
@@ -13361,7 +13512,8 @@
           }
         }
       ],
-      "resistances": []
+      "resistances": [],
+      "handedness": "right"
     },
     {
       "id": "ross-adair-bat",
@@ -13445,7 +13597,8 @@
           }
         }
       ],
-      "resistances": []
+      "resistances": [],
+      "handedness": "right"
     },
     {
       "id": "neil-rock-bat",
@@ -13529,7 +13682,8 @@
           }
         }
       ],
-      "resistances": []
+      "resistances": [],
+      "handedness": "left"
     },
     {
       "id": "graham-hume-bat",
@@ -13613,7 +13767,8 @@
           }
         }
       ],
-      "resistances": []
+      "resistances": [],
+      "handedness": "right"
     },
     {
       "id": "paras-khadka-bat",
@@ -13703,7 +13858,8 @@
         "Drift",
         "Carrom",
         "Slower"
-      ]
+      ],
+      "handedness": "right"
     },
     {
       "id": "aasif-sheikh-bat",
@@ -13791,7 +13947,8 @@
         "Topspin",
         "Carrom",
         "Drift"
-      ]
+      ],
+      "handedness": "right"
     },
     {
       "id": "babar-hayat-bat",
@@ -13879,7 +14036,8 @@
         "Topspin",
         "Drift",
         "Carrom"
-      ]
+      ],
+      "handedness": "right"
     },
     {
       "id": "rahul-dravid-bat",
@@ -13887,7 +14045,7 @@
       "name": "Rahul Dravid",
       "nation": "Scotland",
       "tier": "Elite",
-      "description": "Multi-nation cricket trivia gold — played a single Pro40 game for Scotland in 2003 as a marquee signing. Mostly known as India's 'The Wall' — the ultimate Test/ODI anchor. Classical technique, drives, late cuts, defends.",
+      "description": "Multi-nation cricket trivia gold \u2014 played a single Pro40 game for Scotland in 2003 as a marquee signing. Mostly known as India's 'The Wall' \u2014 the ultimate Test/ODI anchor. Classical technique, drives, late cuts, defends.",
       "strengths": [
         {
           "zone": {
@@ -13973,7 +14131,8 @@
         "Topspin",
         "Drift",
         "Googly"
-      ]
+      ],
+      "handedness": "right"
     },
     {
       "id": "kyle-coetzer-bat",
@@ -14063,7 +14222,8 @@
         "Drift",
         "Carrom",
         "Slower"
-      ]
+      ],
+      "handedness": "right"
     },
     {
       "id": "richie-berrington-bat",
@@ -14151,7 +14311,8 @@
         "Topspin",
         "Drift",
         "Carrom"
-      ]
+      ],
+      "handedness": "right"
     },
     {
       "id": "george-munsey-bat",
@@ -14238,7 +14399,8 @@
       "resistances": [
         "Topspin",
         "Carrom"
-      ]
+      ],
+      "handedness": "left"
     },
     {
       "id": "corey-anderson-bat",
@@ -14246,7 +14408,7 @@
       "name": "Corey Anderson",
       "nation": "USA",
       "tier": "Gold",
-      "description": "Multi-nation career — NZ→USA. Played for NZ until 2018 (LH all-rounder, **once-fastest ODI century at 36 balls** vs WI 2014). Switched to USA 2023, T20 WC 2024 squad. Power-hitter top-order.",
+      "description": "Multi-nation career \u2014 NZ\u2192USA. Played for NZ until 2018 (LH all-rounder, **once-fastest ODI century at 36 balls** vs WI 2014). Switched to USA 2023, T20 WC 2024 squad. Power-hitter top-order.",
       "strengths": [
         {
           "zone": {
@@ -14328,7 +14490,8 @@
         "Cutter",
         "Topspin",
         "Drift"
-      ]
+      ],
+      "handedness": "left"
     },
     {
       "id": "aaron-jones-bat",
@@ -14336,7 +14499,7 @@
       "name": "Aaron Jones",
       "nation": "USA",
       "tier": "Silver",
-      "description": "Left-handed middle-order. T20 WC 2024 hero — 94* vs Canada in the opener; USA reached the Super Eights. Big sixes over the leg side.",
+      "description": "Left-handed middle-order. T20 WC 2024 hero \u2014 94* vs Canada in the opener; USA reached the Super Eights. Big sixes over the leg side.",
       "strengths": [
         {
           "zone": {
@@ -14415,7 +14578,8 @@
       "resistances": [
         "Topspin",
         "Drift"
-      ]
+      ],
+      "handedness": "left"
     },
     {
       "id": "monank-patel-bat",
@@ -14503,7 +14667,8 @@
         "Topspin",
         "Drift",
         "Carrom"
-      ]
+      ],
+      "handedness": "right"
     },
     {
       "id": "ryan-ten-doeschate-bat",
@@ -14511,7 +14676,7 @@
       "name": "Ryan ten Doeschate",
       "nation": "Netherlands",
       "tier": "Elite",
-      "description": "NED's most-iconic all-rounder — 33 T20Is for NED + IPL (KKR) / CPL legend. Career T20 SR ~135 across all leagues. The associate-cricket Elite. RH power-hitting middle-order with full shot range.",
+      "description": "NED's most-iconic all-rounder \u2014 33 T20Is for NED + IPL (KKR) / CPL legend. Career T20 SR ~135 across all leagues. The associate-cricket Elite. RH power-hitting middle-order with full shot range.",
       "strengths": [
         {
           "zone": {
@@ -14596,7 +14761,8 @@
         "Googly",
         "Slower",
         "Cutter"
-      ]
+      ],
+      "handedness": "right"
     },
     {
       "id": "bas-de-leede-bat",
@@ -14683,7 +14849,8 @@
       "resistances": [
         "Slower",
         "Topspin"
-      ]
+      ],
+      "handedness": "right"
     },
     {
       "id": "gerhard-erasmus-bat",
@@ -14771,7 +14938,8 @@
         "Topspin",
         "Drift",
         "Carrom"
-      ]
+      ],
+      "handedness": "right"
     }
   ],
   "bowlers": [
@@ -14801,7 +14969,7 @@
       "name": "Yuzvendra Chahal",
       "nation": "India",
       "tier": "Elite",
-      "description": "Most T20I wickets in India's history (96 in 80 matches). Right-arm leg-spinner — lethal disguised googly + skiddy quicker arm-ball. RR/RCB IPL stalwart and India's middle-overs match-winner across the late 2010s and 2020s. Two-skill Elite per the v1.1 rule.",
+      "description": "Most T20I wickets in India's history (96 in 80 matches). Right-arm leg-spinner \u2014 lethal disguised googly + skiddy quicker arm-ball. RR/RCB IPL stalwart and India's middle-overs match-winner across the late 2010s and 2020s. Two-skill Elite per the v1.1 rule.",
       "delivery": {
         "line": "Middle stump",
         "length": "Good length"
@@ -14875,7 +15043,7 @@
       "name": "Avesh Khan",
       "nation": "India",
       "tier": "Silver",
-      "description": "Reliable IPL good-length seamer. Couple of T20Is but mostly an LSG/RR/PBKS workhorse. Hits hard lengths consistently — no signature variation, just discipline.",
+      "description": "Reliable IPL good-length seamer. Couple of T20Is but mostly an LSG/RR/PBKS workhorse. Hits hard lengths consistently \u2014 no signature variation, just discipline.",
       "delivery": {
         "line": "Off stump",
         "length": "Good length"
@@ -14891,7 +15059,7 @@
       "name": "Hardik Pandya",
       "nation": "India",
       "tier": "Silver",
-      "description": "Medium-fast all-rounder. Heavy back-of-length hit-the-deck pacer. India's regular sixth-bowler when fit. No signature variation in T20s any more — just hard length and aggression.",
+      "description": "Medium-fast all-rounder. Heavy back-of-length hit-the-deck pacer. India's regular sixth-bowler when fit. No signature variation in T20s any more \u2014 just hard length and aggression.",
       "delivery": {
         "line": "Middle stump",
         "length": "Good length"
@@ -14907,7 +15075,7 @@
       "name": "Mayank Yadav",
       "nation": "India",
       "tier": "Silver",
-      "description": "Lucknow Super Giants. IPL 2024 breakout — consistent 150+ kph express pace. Bouncer specialist. Injury-hampered, so no real international career to speak of.",
+      "description": "Lucknow Super Giants. IPL 2024 breakout \u2014 consistent 150+ kph express pace. Bouncer specialist. Injury-hampered, so no real international career to speak of.",
       "delivery": {
         "line": "Middle stump",
         "length": "Short"
@@ -14923,7 +15091,7 @@
       "name": "Harshal Patel",
       "nation": "India",
       "tier": "Bronze",
-      "description": "IPL death-overs specialist. Famous for cutters, but Bronze bowlers carry no specific variation — he's just a back-of-length pacer here, hoping the batter mistimes.",
+      "description": "IPL death-overs specialist. Famous for cutters, but Bronze bowlers carry no specific variation \u2014 he's just a back-of-length pacer here, hoping the batter mistimes.",
       "delivery": {
         "line": "Outside off",
         "length": "Good length"
@@ -14955,7 +15123,7 @@
       "name": "Umran Malik",
       "nation": "India",
       "tier": "Bronze",
-      "description": "Raw pace, 150+ kph. Short of length specialist. Thrilling but erratic — limited T20Is, IPL-only most of his career.",
+      "description": "Raw pace, 150+ kph. Short of length specialist. Thrilling but erratic \u2014 limited T20Is, IPL-only most of his career.",
       "delivery": {
         "line": "Off stump",
         "length": "Short"
@@ -14987,7 +15155,7 @@
       "name": "Mukesh Kumar",
       "nation": "India",
       "tier": "Bronze",
-      "description": "Delhi Capitals seamer. Limited T20I exposure. Reliable IPL line-and-length bowler — no special variation, just plays the percentages.",
+      "description": "Delhi Capitals seamer. Limited T20I exposure. Reliable IPL line-and-length bowler \u2014 no special variation, just plays the percentages.",
       "delivery": {
         "line": "Off stump",
         "length": "Full"
@@ -15003,7 +15171,7 @@
       "name": "Mitchell Starc",
       "nation": "Australia",
       "tier": "Elite",
-      "description": "Left-arm express. Late in-swing into right-handers from the natural left-arm angle, devastating death-overs yorkers, world-class slower-ball variations (slower bouncers and slower yorkers). Two-skill Elite per the v1.1 rule — only one fires per ball, no stacking.",
+      "description": "Left-arm express. Late in-swing into right-handers from the natural left-arm angle, devastating death-overs yorkers, world-class slower-ball variations (slower bouncers and slower yorkers). Two-skill Elite per the v1.1 rule \u2014 only one fires per ball, no stacking.",
       "delivery": {
         "line": "Off stump",
         "length": "Full"
@@ -15061,7 +15229,7 @@
       "name": "Josh Hazlewood",
       "nation": "Australia",
       "tier": "Gold",
-      "description": "Metronomic seamer. Good length Outside off relentlessly — the corridor of uncertainty. Tier-based wide-call risk on Outside off (Gold = 15%) is the trade-off for the fishing line. Miserly economy.",
+      "description": "Metronomic seamer. Good length Outside off relentlessly \u2014 the corridor of uncertainty. Tier-based wide-call risk on Outside off (Gold = 15%) is the trade-off for the fishing line. Miserly economy.",
       "delivery": {
         "line": "Outside off",
         "length": "Good length"
@@ -15097,7 +15265,7 @@
       "name": "Nathan Ellis",
       "nation": "Australia",
       "tier": "Silver",
-      "description": "Death-overs specialist. Slower balls and cutters in real cricket — Silver bowlers carry no skill in v1.1, so he's just a wily yorker-length pacer here.",
+      "description": "Death-overs specialist. Slower balls and cutters in real cricket \u2014 Silver bowlers carry no skill in v1.1, so he's just a wily yorker-length pacer here.",
       "delivery": {
         "line": "Off stump",
         "length": "Full"
@@ -15113,7 +15281,7 @@
       "name": "Marcus Stoinis",
       "nation": "Australia",
       "tier": "Silver",
-      "description": "Medium-pace all-rounder. Hit-the-deck good-length seamer in real cricket — Silver bowlers carry no specific skill in v1.1.",
+      "description": "Medium-pace all-rounder. Hit-the-deck good-length seamer in real cricket \u2014 Silver bowlers carry no specific skill in v1.1.",
       "delivery": {
         "line": "Off stump",
         "length": "Good length"
@@ -15145,7 +15313,7 @@
       "name": "Ben Dwarshuis",
       "nation": "Australia",
       "tier": "Bronze",
-      "description": "Left-arm medium-pacer. BBL veteran with very limited international exposure. Bowls into the body from the left-arm angle — no specific skill at the Bronze tier.",
+      "description": "Left-arm medium-pacer. BBL veteran with very limited international exposure. Bowls into the body from the left-arm angle \u2014 no specific skill at the Bronze tier.",
       "delivery": {
         "line": "Leg stump",
         "length": "Full"
@@ -15193,7 +15361,7 @@
       "name": "Cameron Green",
       "nation": "Australia",
       "tier": "Bronze",
-      "description": "Medium-fast all-rounder (bowler card, paired with his Silver batter card via the all-rounder split). Hit-the-deck good-length seamer at this format — useful 5th-bowler with no specific skill at the Bronze tier.",
+      "description": "Medium-fast all-rounder (bowler card, paired with his Silver batter card via the all-rounder split). Hit-the-deck good-length seamer at this format \u2014 useful 5th-bowler with no specific skill at the Bronze tier.",
       "delivery": {
         "line": "Off stump",
         "length": "Good length"
@@ -15245,7 +15413,7 @@
       "name": "Stuart Broad",
       "nation": "England",
       "tier": "Elite",
-      "description": "Legend — retired 2023, all-time-great new-ball seamer with 56 T20I wickets. Late outswing from the natural angle, hits the deck hard with bounce. Two-skill Elite per the v1.1 rule.",
+      "description": "Legend \u2014 retired 2023, all-time-great new-ball seamer with 56 T20I wickets. Late outswing from the natural angle, hits the deck hard with bounce. Two-skill Elite per the v1.1 rule.",
       "delivery": {
         "line": "Outside off",
         "length": "Good length"
@@ -15319,7 +15487,7 @@
       "name": "Sam Curran",
       "nation": "England",
       "tier": "Silver",
-      "description": "Left-arm medium-pacer (bowler card, paired with his Silver batter card via the all-rounder split). T20 WC 2022 Player of the Tournament. Death-overs specialist with no specific skill at the Silver tier — just clever yorker-length lines.",
+      "description": "Left-arm medium-pacer (bowler card, paired with his Silver batter card via the all-rounder split). T20 WC 2022 Player of the Tournament. Death-overs specialist with no specific skill at the Silver tier \u2014 just clever yorker-length lines.",
       "delivery": {
         "line": "Off stump",
         "length": "Full"
@@ -15467,7 +15635,7 @@
       "name": "Imran Tahir",
       "nation": "South Africa",
       "tier": "Elite",
-      "description": "Legend leg-spinner — retired internationals 2019, 38 T20Is, IPL/CPL/PSL star, world's #1 ranked T20I bowler at his peak. Disguised wrong'un + drift away from RH bats. Wild celebrations after every wicket. Two-skill Elite per the v1.1 rule.",
+      "description": "Legend leg-spinner \u2014 retired internationals 2019, 38 T20Is, IPL/CPL/PSL star, world's #1 ranked T20I bowler at his peak. Disguised wrong'un + drift away from RH bats. Wild celebrations after every wicket. Two-skill Elite per the v1.1 rule.",
       "delivery": {
         "line": "Middle stump",
         "length": "Good length"
@@ -15523,7 +15691,7 @@
       "name": "Dale Steyn",
       "nation": "South Africa",
       "tier": "Gold",
-      "description": "Legend — retired 2021, all-time-great fast bowler, 47 T20Is. Late outswing, hits the deck hard with bounce, fierce competitor. Skill: **Seam**.",
+      "description": "Legend \u2014 retired 2021, all-time-great fast bowler, 47 T20Is. Late outswing, hits the deck hard with bounce, fierce competitor. Skill: **Seam**.",
       "delivery": {
         "line": "Off stump",
         "length": "Good length"
@@ -15605,7 +15773,7 @@
       "name": "Aiden Markram",
       "nation": "South Africa",
       "tier": "Bronze",
-      "description": "Part-time off-spin (all-rounder split — Silver batter card above). Handy filler overs.",
+      "description": "Part-time off-spin (all-rounder split \u2014 Silver batter card above). Handy filler overs.",
       "delivery": {
         "line": "Off stump",
         "length": "Good length"
@@ -15637,7 +15805,7 @@
       "name": "Wiaan Mulder",
       "nation": "South Africa",
       "tier": "Bronze",
-      "description": "Medium-fast all-rounder (bowler split — Bronze batter above). Fills overs.",
+      "description": "Medium-fast all-rounder (bowler split \u2014 Bronze batter above). Fills overs.",
       "delivery": {
         "line": "Middle stump",
         "length": "Good length"
@@ -15653,7 +15821,7 @@
       "name": "Andile Phehlukwayo",
       "nation": "South Africa",
       "tier": "Bronze",
-      "description": "Right-arm medium-fast. SA's go-to white-ball all-rounder 2017–2022 (50+ T20I caps). Skiddy slingshot action; lower-order LH hitter in real life but bowler-only card here.",
+      "description": "Right-arm medium-fast. SA's go-to white-ball all-rounder 2017\u20132022 (50+ T20I caps). Skiddy slingshot action; lower-order LH hitter in real life but bowler-only card here.",
       "delivery": {
         "line": "Leg stump",
         "length": "Good length"
@@ -15689,7 +15857,7 @@
       "name": "Daniel Vettori",
       "nation": "New Zealand",
       "tier": "Elite",
-      "description": "Legend — retired 2015, LA orthodox great, 102 T20Is, IPL stalwart. Subtle drift, disguised topspinner that skids on, miserly economy in middle overs. Two-skill Elite per the v1.1 rule.",
+      "description": "Legend \u2014 retired 2015, LA orthodox great, 102 T20Is, IPL stalwart. Subtle drift, disguised topspinner that skids on, miserly economy in middle overs. Two-skill Elite per the v1.1 rule.",
       "delivery": {
         "line": "Off stump",
         "length": "Good length"
@@ -15811,7 +15979,7 @@
       "name": "Glenn Phillips",
       "nation": "New Zealand",
       "tier": "Bronze",
-      "description": "Part-time right-arm off-spin (all-rounder split — Gold batter card above). Handy filler overs.",
+      "description": "Part-time right-arm off-spin (all-rounder split \u2014 Gold batter card above). Handy filler overs.",
       "delivery": {
         "line": "Off stump",
         "length": "Good length"
@@ -15827,7 +15995,7 @@
       "name": "Michael Bracewell",
       "nation": "New Zealand",
       "tier": "Bronze",
-      "description": "Right-arm off-spin all-rounder (bowler split — Bronze batter above). Domestic-tier overs filler.",
+      "description": "Right-arm off-spin all-rounder (bowler split \u2014 Bronze batter above). Domestic-tier overs filler.",
       "delivery": {
         "line": "Middle stump",
         "length": "Good length"
@@ -15859,7 +16027,7 @@
       "name": "Rachin Ravindra",
       "nation": "New Zealand",
       "tier": "Bronze",
-      "description": "Left-arm orthodox spin part-time (all-rounder split — Silver batter card above).",
+      "description": "Left-arm orthodox spin part-time (all-rounder split \u2014 Silver batter card above).",
       "delivery": {
         "line": "Leg stump",
         "length": "Good length"
@@ -15911,7 +16079,7 @@
       "name": "Saeed Ajmal",
       "nation": "Pakistan",
       "tier": "Elite",
-      "description": "Legend off-spinner — retired 2017, 64 T20Is, world's best spinner at his peak. The doosra (carrom) and disguised drift made him almost unplayable for a stretch. Two-skill Elite per the v1.1 rule.",
+      "description": "Legend off-spinner \u2014 retired 2017, 64 T20Is, world's best spinner at his peak. The doosra (carrom) and disguised drift made him almost unplayable for a stretch. Two-skill Elite per the v1.1 rule.",
       "delivery": {
         "line": "Middle stump",
         "length": "Good length"
@@ -16001,7 +16169,7 @@
       "name": "Abrar Ahmed",
       "nation": "Pakistan",
       "tier": "Silver",
-      "description": "Mystery right-arm spinner. Carrom ball and disguised wrong'un — but no specific skill chip at the Silver tier per v1.1.",
+      "description": "Mystery right-arm spinner. Carrom ball and disguised wrong'un \u2014 but no specific skill chip at the Silver tier per v1.1.",
       "delivery": {
         "line": "Middle stump",
         "length": "Good length"
@@ -16049,7 +16217,7 @@
       "name": "Faheem Ashraf",
       "nation": "Pakistan",
       "tier": "Bronze",
-      "description": "Right-arm medium-fast all-rounder (bowler split — Bronze batter above).",
+      "description": "Right-arm medium-fast all-rounder (bowler split \u2014 Bronze batter above).",
       "delivery": {
         "line": "Middle stump",
         "length": "Good length"
@@ -16081,7 +16249,7 @@
       "name": "Iftikhar Ahmed",
       "nation": "Pakistan",
       "tier": "Bronze",
-      "description": "Part-time right-arm off-spin (all-rounder split — Bronze batter above). Emergency filler.",
+      "description": "Part-time right-arm off-spin (all-rounder split \u2014 Bronze batter above). Emergency filler.",
       "delivery": {
         "line": "Leg stump",
         "length": "Good length"
@@ -16097,7 +16265,7 @@
       "name": "Shadab Khan",
       "nation": "Pakistan",
       "tier": "Bronze",
-      "description": "Right-arm leg-spinner (all-rounder split — Bronze batter above). Was PAK's Gold-tier leggie at his peak; current form has dropped him to Bronze (loses the googly skill chip).",
+      "description": "Right-arm leg-spinner (all-rounder split \u2014 Bronze batter above). Was PAK's Gold-tier leggie at his peak; current form has dropped him to Bronze (loses the googly skill chip).",
       "delivery": {
         "line": "Middle stump",
         "length": "Good length"
@@ -16133,7 +16301,7 @@
       "name": "Lasith Malinga",
       "nation": "Sri Lanka",
       "tier": "Elite",
-      "description": "Legend — retired 2021, 84 T20Is, all-time-great T20 death bowler, MI IPL talisman. Slingy round-arm action delivers the toe-crushing yorker; the slow-ball cutter is just as iconic. Two-skill Elite per the v1.1 rule.",
+      "description": "Legend \u2014 retired 2021, 84 T20Is, all-time-great T20 death bowler, MI IPL talisman. Slingy round-arm action delivers the toe-crushing yorker; the slow-ball cutter is just as iconic. Two-skill Elite per the v1.1 rule.",
       "delivery": {
         "line": "Off stump",
         "length": "Full"
@@ -16189,7 +16357,7 @@
       "name": "Ajantha Mendis",
       "nation": "Sri Lanka",
       "tier": "Gold",
-      "description": "Mystery spin pioneer — retired 2015, 39 T20Is. The original carrom-ball specialist who shocked the cricketing world before everyone learned to read him. Skill: **Carrom**.",
+      "description": "Mystery spin pioneer \u2014 retired 2015, 39 T20Is. The original carrom-ball specialist who shocked the cricketing world before everyone learned to read him. Skill: **Carrom**.",
       "delivery": {
         "line": "Middle stump",
         "length": "Good length"
@@ -16239,7 +16407,7 @@
       "name": "Dunith Wellalage",
       "nation": "Sri Lanka",
       "tier": "Silver",
-      "description": "Left-arm orthodox all-rounder (bowler split — Bronze batter above). Economical middle-overs operator.",
+      "description": "Left-arm orthodox all-rounder (bowler split \u2014 Bronze batter above). Economical middle-overs operator.",
       "delivery": {
         "line": "Off stump",
         "length": "Good length"
@@ -16271,7 +16439,7 @@
       "name": "Kamindu Mendis",
       "nation": "Sri Lanka",
       "tier": "Bronze",
-      "description": "Ambidextrous part-time spinner (all-rounder split — Silver batter above). Switches off-spin/leg-spin between deliveries — but no skill chip at the Bronze tier.",
+      "description": "Ambidextrous part-time spinner (all-rounder split \u2014 Silver batter above). Switches off-spin/leg-spin between deliveries \u2014 but no skill chip at the Bronze tier.",
       "delivery": {
         "line": "Middle stump",
         "length": "Good length"
@@ -16287,7 +16455,7 @@
       "name": "Dasun Shanaka",
       "nation": "Sri Lanka",
       "tier": "Bronze",
-      "description": "Right-arm medium pace (all-rounder split — Bronze batter above). Fills overs at the death.",
+      "description": "Right-arm medium pace (all-rounder split \u2014 Bronze batter above). Fills overs at the death.",
       "delivery": {
         "line": "Off stump",
         "length": "Good length"
@@ -16319,7 +16487,7 @@
       "name": "Angelo Mathews",
       "nation": "Sri Lanka",
       "tier": "Bronze",
-      "description": "Right-arm medium-pace (bowler-only card). SL all-format icon, 200+ international caps. Bowled key T20I overs in his prime — gentle pace into the corridor.",
+      "description": "Right-arm medium-pace (bowler-only card). SL all-format icon, 200+ international caps. Bowled key T20I overs in his prime \u2014 gentle pace into the corridor.",
       "delivery": {
         "line": "Middle stump",
         "length": "Good length"
@@ -16411,7 +16579,7 @@
       "name": "Carlos Brathwaite",
       "nation": "West Indies",
       "tier": "Gold",
-      "description": "T20 WC 2016 final hero — **4 sixes in 4 balls** off Stokes to win the trophy. 41 T20Is, RH all-rounder. Death-overs cutter and slower-ball variations. Skill: **Slower**.",
+      "description": "T20 WC 2016 final hero \u2014 **4 sixes in 4 balls** off Stokes to win the trophy. 41 T20Is, RH all-rounder. Death-overs cutter and slower-ball variations. Skill: **Slower**.",
       "delivery": {
         "line": "Off stump",
         "length": "Full"
@@ -16493,7 +16661,7 @@
       "name": "Roston Chase",
       "nation": "West Indies",
       "tier": "Bronze",
-      "description": "Right-arm off-spin (all-rounder split — Bronze batter above). Fills middle overs.",
+      "description": "Right-arm off-spin (all-rounder split \u2014 Bronze batter above). Fills middle overs.",
       "delivery": {
         "line": "Off stump",
         "length": "Good length"
@@ -16525,7 +16693,7 @@
       "name": "Gudakesh Motie",
       "nation": "West Indies",
       "tier": "Bronze",
-      "description": "Left-arm orthodox. Current WI T20I middle-overs operator — no skill chip at Bronze per v1.1.",
+      "description": "Left-arm orthodox. Current WI T20I middle-overs operator \u2014 no skill chip at Bronze per v1.1.",
       "delivery": {
         "line": "Leg stump",
         "length": "Good length"
@@ -16541,7 +16709,7 @@
       "name": "Romario Shepherd",
       "nation": "West Indies",
       "tier": "Bronze",
-      "description": "Right-arm medium-fast all-rounder (bowler split — Bronze batter above). Fills overs at the death.",
+      "description": "Right-arm medium-fast all-rounder (bowler split \u2014 Bronze batter above). Fills overs at the death.",
       "delivery": {
         "line": "Off stump",
         "length": "Full"
@@ -16577,7 +16745,7 @@
       "name": "Mashrafe Mortaza",
       "nation": "Bangladesh",
       "tier": "Elite",
-      "description": "Legend — retired 2020, 54 T20Is, beloved BAN captain figure across two decades. Right-arm new-ball specialist with smart slower-ball variations at the death. The heart and soul of Bangladesh cricket. Two-skill Elite per the v1.1 rule.",
+      "description": "Legend \u2014 retired 2020, 54 T20Is, beloved BAN captain figure across two decades. Right-arm new-ball specialist with smart slower-ball variations at the death. The heart and soul of Bangladesh cricket. Two-skill Elite per the v1.1 rule.",
       "delivery": {
         "line": "Middle stump",
         "length": "Good length"
@@ -16633,7 +16801,7 @@
       "name": "Abdur Razzak",
       "nation": "Bangladesh",
       "tier": "Gold",
-      "description": "Legend left-arm orthodox — retired 2018, 34 T20Is. Stock arm-ball drifting away from RH bats with smart loop. BAN's most-prolific spinner across formats for a decade. Skill: **Drift**.",
+      "description": "Legend left-arm orthodox \u2014 retired 2018, 34 T20Is. Stock arm-ball drifting away from RH bats with smart loop. BAN's most-prolific spinner across formats for a decade. Skill: **Drift**.",
       "delivery": {
         "line": "Off stump",
         "length": "Good length"
@@ -16651,7 +16819,7 @@
       "name": "Mehidy Hasan Miraz",
       "nation": "Bangladesh",
       "tier": "Silver",
-      "description": "Right-arm off-spinner (all-rounder split — Bronze batter above). Middle-overs control bowler.",
+      "description": "Right-arm off-spinner (all-rounder split \u2014 Bronze batter above). Middle-overs control bowler.",
       "delivery": {
         "line": "Off stump",
         "length": "Good length"
@@ -16683,7 +16851,7 @@
       "name": "Rishad Hossain",
       "nation": "Bangladesh",
       "tier": "Silver",
-      "description": "Right-arm leg-spinner (all-rounder split — Bronze batter above). Gets turn and bounce — but no skill chip at the Silver tier.",
+      "description": "Right-arm leg-spinner (all-rounder split \u2014 Bronze batter above). Gets turn and bounce \u2014 but no skill chip at the Silver tier.",
       "delivery": {
         "line": "Middle stump",
         "length": "Good length"
@@ -16763,7 +16931,7 @@
       "name": "Soumya Sarkar",
       "nation": "Bangladesh",
       "tier": "Bronze",
-      "description": "Part-time right-arm medium (all-rounder split — Silver batter above). Emergency overs.",
+      "description": "Part-time right-arm medium (all-rounder split \u2014 Silver batter above). Emergency overs.",
       "delivery": {
         "line": "Middle stump",
         "length": "Good length"
@@ -16799,7 +16967,7 @@
       "name": "Heath Streak",
       "nation": "Zimbabwe",
       "tier": "Elite",
-      "description": "Honorary Elite — ZIM's all-time greatest bowler, retired 2005 at the dawn of T20Is. Right-arm fast-medium with late seam, slower-ball variations. Captain figure, ZIM's all-format spearhead through their golden generation. Two-skill Elite per the v1.1 rule.",
+      "description": "Honorary Elite \u2014 ZIM's all-time greatest bowler, retired 2005 at the dawn of T20Is. Right-arm fast-medium with late seam, slower-ball variations. Captain figure, ZIM's all-format spearhead through their golden generation. Two-skill Elite per the v1.1 rule.",
       "delivery": {
         "line": "Middle stump",
         "length": "Good length"
@@ -16819,7 +16987,7 @@
       "name": "Sikandar Raza",
       "nation": "Zimbabwe",
       "tier": "Gold",
-      "description": "Right-arm off-spin (all-rounder split — Elite batter above). Skiddy quicker arm-ball is his middle-overs wicket-taker.",
+      "description": "Right-arm off-spin (all-rounder split \u2014 Elite batter above). Skiddy quicker arm-ball is his middle-overs wicket-taker.",
       "delivery": {
         "line": "Middle stump",
         "length": "Good length"
@@ -16855,7 +17023,7 @@
       "name": "Ray Price",
       "nation": "Zimbabwe",
       "tier": "Gold",
-      "description": "LA orthodox legend — retired 2014, 21 T20Is. Subtle drift away from RH bats with miserly economy. ZIM's longtime spin spearhead through the 2000s/early 2010s. Skill: **Drift**.",
+      "description": "LA orthodox legend \u2014 retired 2014, 21 T20Is. Subtle drift away from RH bats with miserly economy. ZIM's longtime spin spearhead through the 2000s/early 2010s. Skill: **Drift**.",
       "delivery": {
         "line": "Leg stump",
         "length": "Good length"
@@ -16873,7 +17041,7 @@
       "name": "Ryan Burl",
       "nation": "Zimbabwe",
       "tier": "Silver",
-      "description": "Right-arm leg-spinner (all-rounder split — Silver batter above). Gets turn and bounce — but no skill chip at Silver.",
+      "description": "Right-arm leg-spinner (all-rounder split \u2014 Silver batter above). Gets turn and bounce \u2014 but no skill chip at Silver.",
       "delivery": {
         "line": "Middle stump",
         "length": "Good length"
@@ -16905,7 +17073,7 @@
       "name": "Sean Williams",
       "nation": "Zimbabwe",
       "tier": "Silver",
-      "description": "Left-arm orthodox (all-rounder split — Gold batter above). Economical middle-overs operator.",
+      "description": "Left-arm orthodox (all-rounder split \u2014 Gold batter above). Economical middle-overs operator.",
       "delivery": {
         "line": "Off stump",
         "length": "Good length"
@@ -16937,7 +17105,7 @@
       "name": "Wessly Madhevere",
       "nation": "Zimbabwe",
       "tier": "Bronze",
-      "description": "Right-arm medium pace (all-rounder split — Silver batter above). Part-time filler.",
+      "description": "Right-arm medium pace (all-rounder split \u2014 Silver batter above). Part-time filler.",
       "delivery": {
         "line": "Middle stump",
         "length": "Good length"
@@ -16969,7 +17137,7 @@
       "name": "Milton Shumba",
       "nation": "Zimbabwe",
       "tier": "Bronze",
-      "description": "Part-time right-arm medium (all-rounder split — Bronze batter above). Emergency filler.",
+      "description": "Part-time right-arm medium (all-rounder split \u2014 Bronze batter above). Emergency filler.",
       "delivery": {
         "line": "Leg stump",
         "length": "Good length"
@@ -17093,7 +17261,7 @@
       "name": "Noor Ahmad",
       "nation": "Afghanistan",
       "tier": "Silver",
-      "description": "Young left-arm wrist spinner. KKR IPL star — loses the skill chip at Silver per v1.1.",
+      "description": "Young left-arm wrist spinner. KKR IPL star \u2014 loses the skill chip at Silver per v1.1.",
       "delivery": {
         "line": "Middle stump",
         "length": "Good length"
@@ -17109,7 +17277,7 @@
       "name": "Azmatullah Omarzai",
       "nation": "Afghanistan",
       "tier": "Silver",
-      "description": "Right-arm medium-fast all-rounder (bowler split — Silver batter above). Hits the deck with seam, but no skill chip at Silver.",
+      "description": "Right-arm medium-fast all-rounder (bowler split \u2014 Silver batter above). Hits the deck with seam, but no skill chip at Silver.",
       "delivery": {
         "line": "Leg stump",
         "length": "Good length"
@@ -17125,7 +17293,7 @@
       "name": "Mohammad Nabi",
       "nation": "Afghanistan",
       "tier": "Bronze",
-      "description": "Right-arm off-spin veteran (all-rounder split — Silver batter above). Economical, wise.",
+      "description": "Right-arm off-spin veteran (all-rounder split \u2014 Silver batter above). Economical, wise.",
       "delivery": {
         "line": "Off stump",
         "length": "Good length"
@@ -17141,7 +17309,7 @@
       "name": "Gulbadin Naib",
       "nation": "Afghanistan",
       "tier": "Bronze",
-      "description": "Right-arm medium pace (all-rounder split — Bronze batter above). Fills overs.",
+      "description": "Right-arm medium pace (all-rounder split \u2014 Bronze batter above). Fills overs.",
       "delivery": {
         "line": "Middle stump",
         "length": "Good length"
@@ -17173,7 +17341,7 @@
       "name": "Karim Janat",
       "nation": "Afghanistan",
       "tier": "Bronze",
-      "description": "Right-arm medium-fast (all-rounder split — Bronze batter above). Death-overs cutter style.",
+      "description": "Right-arm medium-fast (all-rounder split \u2014 Bronze batter above). Death-overs cutter style.",
       "delivery": {
         "line": "Off stump",
         "length": "Full"
@@ -17225,7 +17393,7 @@
       "name": "Boyd Rankin",
       "nation": "Ireland",
       "tier": "Elite",
-      "description": "Multi-nation career — IRE → ENG → IRE. RH tall pace, retired 2022, 56 T20Is across both countries. Bounce off the deck, late seam, slower-ball variations at the death. Two-skill Elite per the v1.1 rule.",
+      "description": "Multi-nation career \u2014 IRE \u2192 ENG \u2192 IRE. RH tall pace, retired 2022, 56 T20Is across both countries. Bounce off the deck, late seam, slower-ball variations at the death. Two-skill Elite per the v1.1 rule.",
       "delivery": {
         "line": "Middle stump",
         "length": "Good length"
@@ -17263,7 +17431,7 @@
       "name": "Curtis Campher",
       "nation": "Ireland",
       "tier": "Gold",
-      "description": "Right-arm medium-fast (all-rounder split — Silver batter above). T20 WC 2021 4-in-4 hero with new-ball outswing. Faces Gold tier wide-call risk on Outside off (15%).",
+      "description": "Right-arm medium-fast (all-rounder split \u2014 Silver batter above). T20 WC 2021 4-in-4 hero with new-ball outswing. Faces Gold tier wide-call risk on Outside off (15%).",
       "delivery": {
         "line": "Outside off",
         "length": "Good length"
@@ -17281,7 +17449,7 @@
       "name": "Tim Murtagh",
       "nation": "Ireland",
       "tier": "Gold",
-      "description": "Retired 2024 — RH swing legend. The disciplined county-cricket craftsman. Late outswing on a perfect line, miserly economy. Iconic Test moments (5/13 vs ENG at Lord's 2019). Skill: **Swing**.",
+      "description": "Retired 2024 \u2014 RH swing legend. The disciplined county-cricket craftsman. Late outswing on a perfect line, miserly economy. Iconic Test moments (5/13 vs ENG at Lord's 2019). Skill: **Swing**.",
       "delivery": {
         "line": "Off stump",
         "length": "Good length"
@@ -17299,7 +17467,7 @@
       "name": "George Dockrell",
       "nation": "Ireland",
       "tier": "Silver",
-      "description": "Left-arm orthodox (all-rounder split — Silver batter above). Experienced, economical middle-overs operator.",
+      "description": "Left-arm orthodox (all-rounder split \u2014 Silver batter above). Experienced, economical middle-overs operator.",
       "delivery": {
         "line": "Middle stump",
         "length": "Good length"
@@ -17315,7 +17483,7 @@
       "name": "Gareth Delany",
       "nation": "Ireland",
       "tier": "Silver",
-      "description": "Right-arm off-spin (all-rounder split — Bronze batter above). Middle-overs filler.",
+      "description": "Right-arm off-spin (all-rounder split \u2014 Bronze batter above). Middle-overs filler.",
       "delivery": {
         "line": "Off stump",
         "length": "Good length"
@@ -17347,7 +17515,7 @@
       "name": "Graham Hume",
       "nation": "Ireland",
       "tier": "Bronze",
-      "description": "Right-arm medium-fast (all-rounder split — Bronze batter above).",
+      "description": "Right-arm medium-fast (all-rounder split \u2014 Bronze batter above).",
       "delivery": {
         "line": "Middle stump",
         "length": "Good length"
@@ -17411,7 +17579,7 @@
       "name": "Harry Tector",
       "nation": "Ireland",
       "tier": "Bronze",
-      "description": "Part-time right-arm off-spin (all-rounder split — Gold batter above). Emergency filler.",
+      "description": "Part-time right-arm off-spin (all-rounder split \u2014 Gold batter above). Emergency filler.",
       "delivery": {
         "line": "Off stump",
         "length": "Good length"
@@ -17427,7 +17595,7 @@
       "name": "Sandeep Lamichhane",
       "nation": "Nepal",
       "tier": "Silver",
-      "description": "Right-arm leg-spinner. 95+ T20Is, IPL star (DC), Nepal's most exported cricketer. Disguised wrong'un — but loses the skill chip at Silver per v1.1.",
+      "description": "Right-arm leg-spinner. 95+ T20Is, IPL star (DC), Nepal's most exported cricketer. Disguised wrong'un \u2014 but loses the skill chip at Silver per v1.1.",
       "delivery": {
         "line": "Middle stump",
         "length": "Good length"
@@ -17475,7 +17643,7 @@
       "name": "Saurabh Netravalkar",
       "nation": "USA",
       "tier": "Silver",
-      "description": "Left-arm quick. T20 WC 2024 Super Over hero vs Pakistan — bowled the over that won USA the match.",
+      "description": "Left-arm quick. T20 WC 2024 Super Over hero vs Pakistan \u2014 bowled the over that won USA the match.",
       "delivery": {
         "line": "Off stump",
         "length": "Full"
@@ -17491,7 +17659,7 @@
       "name": "Roelof van der Merwe",
       "nation": "Netherlands",
       "tier": "Gold",
-      "description": "Multi-nation: SA → NED. LA wrist-spin all-rounder, IPL/county veteran. Disguised wrong'un, smart middle-overs operator. Skill: **Googly**.",
+      "description": "Multi-nation: SA \u2192 NED. LA wrist-spin all-rounder, IPL/county veteran. Disguised wrong'un, smart middle-overs operator. Skill: **Googly**.",
       "delivery": {
         "line": "Middle stump",
         "length": "Good length"
@@ -17574,7 +17742,7 @@
       "kind": "situation",
       "name": "DRS Review",
       "flavor": "Not out! The batsman survives on review.",
-      "description": "If your batsman gets out this ball, the dismissal is overturned and it becomes a **dot ball** instead. Does not change any other outcome — only triggers on a wicket result.",
+      "description": "If your batsman gets out this ball, the dismissal is overturned and it becomes a **dot ball** instead. Does not change any other outcome \u2014 only triggers on a wicket result.",
       "deck": "batting"
     },
     {
@@ -17582,7 +17750,7 @@
       "kind": "situation",
       "name": "Power Surge",
       "flavor": "The field is up! Time to attack.",
-      "description": "All outcomes on your batsman's card **upgrade one tier** this ball:\n- Dot → 1\n- 1 → 2\n- 2 → 4\n- 4 → 6\n\n**Weaknesses still trigger as wickets** — this does not protect against getting out. Only improves scoring zones.",
+      "description": "All outcomes on your batsman's card **upgrade one tier** this ball:\n- Dot \u2192 1\n- 1 \u2192 2\n- 2 \u2192 4\n- 4 \u2192 6\n\n**Weaknesses still trigger as wickets** \u2014 this does not protect against getting out. Only improves scoring zones.",
       "deck": "batting"
     },
     {
@@ -17598,7 +17766,7 @@
       "kind": "situation",
       "name": "Switch Hit",
       "flavor": "The batsman switches stance! Off side becomes leg side.",
-      "description": "Your batsman's card zones are **mirrored** for this ball:\n- Off stump ↔ Leg stump\n- 5th stump ↔ (treated as Leg stump)\n- Middle stump stays Middle stump\n- Wide outside off ↔ (treated as Leg stump)\n\nThe bowler's delivery zone does NOT change — only which part of the batsman's card it maps to. Fielding positions are NOT mirrored.",
+      "description": "Your batsman's card zones are **mirrored** for this ball:\n- Off stump \u2194 Leg stump\n- 5th stump \u2194 (treated as Leg stump)\n- Middle stump stays Middle stump\n- Wide outside off \u2194 (treated as Leg stump)\n\nThe bowler's delivery zone does NOT change \u2014 only which part of the batsman's card it maps to. Fielding positions are NOT mirrored.",
       "deck": "batting"
     },
     {
@@ -17606,7 +17774,7 @@
       "kind": "situation",
       "name": "Trot Down",
       "flavor": "The batsman charges down the pitch!",
-      "description": "Your batsman pre-meditates walking down the track, changing the effective length of the delivery:\n- **Good length → Full** (the batsman has closed the distance)\n- **Short → Good length** (the short ball arrives at good length height)\n- **Full → Full** (stays the same, already full)\n\nThe bowler's line stays unchanged. Only the length shifts.",
+      "description": "Your batsman pre-meditates walking down the track, changing the effective length of the delivery:\n- **Good length \u2192 Full** (the batsman has closed the distance)\n- **Short \u2192 Good length** (the short ball arrives at good length height)\n- **Full \u2192 Full** (stays the same, already full)\n\nThe bowler's line stays unchanged. Only the length shifts.",
       "deck": "batting"
     },
     {
@@ -17614,7 +17782,7 @@
       "kind": "situation",
       "name": "No Ball",
       "flavor": "Foot fault! The umpire's called it!",
-      "description": "The bowler oversteps the crease. This delivery:\n- **Cancels any wicket** — if the result was a wicket, it becomes a dot ball.\n- **+1 run** to the batting team (the no-ball extra).\n- **Re-bowled** — this delivery doesn't count against the innings ball total.\n\nThe runs from the actual outcome (e.g. a 4 or 6 if the batter still hit it) ALSO stand and are added on top of the +1 extra.\n\n> **Important — no free hit.** Unlike real T20 cricket, the No Ball card does **not** grant the next delivery free-hit status. The wicket protection applies only to *this* ball; the re-bowled ball resolves under normal rules.",
+      "description": "The bowler oversteps the crease. This delivery:\n- **Cancels any wicket** \u2014 if the result was a wicket, it becomes a dot ball.\n- **+1 run** to the batting team (the no-ball extra).\n- **Re-bowled** \u2014 this delivery doesn't count against the innings ball total.\n\nThe runs from the actual outcome (e.g. a 4 or 6 if the batter still hit it) ALSO stand and are added on top of the +1 extra.\n\n> **Important \u2014 no free hit.** Unlike real T20 cricket, the No Ball card does **not** grant the next delivery free-hit status. The wicket protection applies only to *this* ball; the re-bowled ball resolves under normal rules.",
       "deck": "batting"
     },
     {
@@ -17622,7 +17790,7 @@
       "kind": "situation",
       "name": "Shuffle Across",
       "flavor": "The batsman shuffles across his stumps.",
-      "description": "Your batsman steps across to the off side, treating the bowler's line as one stump further toward leg on their card:\n- **Outside off → Off stump**\n- **Off stump → Middle stump**\n- **Middle stump → Leg stump**\n- **Leg stump → Leg stump** (clamped — can't shuffle further)\n\nLength is unchanged. Inverse of Day 5 Pitch.\n\n**Wide-call risk.** If the bowler delivered on **Leg stump** when Shuffle Across is played, the batter has shuffled past the line — the umpire calls a wide. +1 extra run, ball is re-bowled.",
+      "description": "Your batsman steps across to the off side, treating the bowler's line as one stump further toward leg on their card:\n- **Outside off \u2192 Off stump**\n- **Off stump \u2192 Middle stump**\n- **Middle stump \u2192 Leg stump**\n- **Leg stump \u2192 Leg stump** (clamped \u2014 can't shuffle further)\n\nLength is unchanged. Inverse of Day 5 Pitch.\n\n**Wide-call risk.** If the bowler delivered on **Leg stump** when Shuffle Across is played, the batter has shuffled past the line \u2014 the umpire calls a wide. +1 extra run, ball is re-bowled.",
       "deck": "batting"
     },
     {
@@ -17630,7 +17798,7 @@
       "kind": "situation",
       "name": "Deep in the Crease",
       "flavor": "The batsman steps back, deep in his crease.",
-      "description": "Your batsman creates extra time by stepping back. The effective length shifts outward (toward the bowler):\n- **Good length → Short** (good length is met higher and earlier)\n- **Full → Good length** (full balls become drivable good-length deliveries)\n- **Short → wide call** (short balls bounce too high — auto-wide)\n\nThe bowler's line stays unchanged. Inverse of Trot Down.",
+      "description": "Your batsman creates extra time by stepping back. The effective length shifts outward (toward the bowler):\n- **Good length \u2192 Short** (good length is met higher and earlier)\n- **Full \u2192 Good length** (full balls become drivable good-length deliveries)\n- **Short \u2192 wide call** (short balls bounce too high \u2014 auto-wide)\n\nThe bowler's line stays unchanged. Inverse of Trot Down.",
       "deck": "batting"
     },
     {
@@ -17638,7 +17806,7 @@
       "kind": "situation",
       "name": "Old School Cricket Only",
       "flavor": "Play the game properly! No tricks today.",
-      "description": "**Cancels the opponent's situation card entirely.** Both situation cards are discarded and the ball resolves with just the batsman vs bowler cards — no situation effects.\n\nIf the opponent didn't play a situation card, this is wasted.",
+      "description": "**Cancels the opponent's situation card entirely.** Both situation cards are discarded and the ball resolves with just the batsman vs bowler cards \u2014 no situation effects.\n\nIf the opponent didn't play a situation card, this is wasted.",
       "deck": "batting"
     },
     {
@@ -17654,7 +17822,7 @@
       "kind": "situation",
       "name": "Review Appeal",
       "flavor": "Howzaaaaat! The bowler appeals for everything.",
-      "description": "If this ball results in a **dot ball**, it becomes a wicket appeal — **40% chance** the dot is upgraded to a wicket (LBW/caught behind).\n\nDoes not trigger on any other outcome (runs scored or existing wicket). Only dots become potential wickets.",
+      "description": "If this ball results in a **dot ball**, it becomes a wicket appeal \u2014 **40% chance** the dot is upgraded to a wicket (LBW/caught behind).\n\nDoes not trigger on any other outcome (runs scored or existing wicket). Only dots become potential wickets.",
       "deck": "bowling"
     },
     {
@@ -17670,7 +17838,7 @@
       "kind": "situation",
       "name": "Invariable Bounce",
       "flavor": "The ball doesn't come onto the bat. Everything is a mis-hit.",
-      "description": "All outcomes on the opponent's batsman card **downgrade one tier** this ball:\n- 6 → 4\n- 4 → 2\n- 2 → 1\n- 1 → Dot\n- Dot → Dot (stays)\n- Weakness → Weakness (stays)\n\nThis stacks with the bowler's adjective downgrade if applicable. A batsman facing an adjective they're not resistant to PLUS Invariable Bounce gets **double downgraded**.",
+      "description": "All outcomes on the opponent's batsman card **downgrade one tier** this ball:\n- 6 \u2192 4\n- 4 \u2192 2\n- 2 \u2192 1\n- 1 \u2192 Dot\n- Dot \u2192 Dot (stays)\n- Weakness \u2192 Weakness (stays)\n\nThis stacks with the bowler's adjective downgrade if applicable. A batsman facing an adjective they're not resistant to PLUS Invariable Bounce gets **double downgraded**.",
       "deck": "bowling"
     },
     {
@@ -17678,15 +17846,15 @@
       "kind": "situation",
       "name": "Day 5 Pitch",
       "flavor": "The pitch is crumbling. The ball is doing things.",
-      "description": "Your bowler's delivery line shifts **one line away from the batsman's body**:\n- Leg stump → Middle stump\n- Middle stump → Off stump\n- Off stump → 5th stump\n- 5th stump → Wide outside off\n- Wide outside off → Wide outside off (stays)\n\nThe length stays unchanged. The bowler's adjective and fielding still apply normally.",
+      "description": "Your bowler's delivery line shifts **one line away from the batsman's body**:\n- Leg stump \u2192 Middle stump\n- Middle stump \u2192 Off stump\n- Off stump \u2192 5th stump\n- 5th stump \u2192 Wide outside off\n- Wide outside off \u2192 Wide outside off (stays)\n\nThe length stays unchanged. The bowler's adjective and fielding still apply normally.",
       "deck": "bowling"
     },
     {
       "id": "biryani",
       "kind": "situation",
       "name": "Third Umpire Distracted by Biryani",
-      "flavor": "The third umpire's lunch arrived. Decisions get… liberal.",
-      "description": "A counter to extras. When played by the bowling side:\n- Any **No Ball** the batting side played has its effects **fully cancelled** — no extra run, no re-bowl, no wicket overturn.\n- Any **wide call** that would have happened (tier-based wide on Outside off, leg-side wide from Shuffle Across, Outside-off wide from Day 5 Pitch, Short auto-wide from Deep in the Crease) is converted to a **regular dot ball** — no extra run, ball counts.\n\nIf neither a No Ball was played nor a wide would have been called, this card is wasted.",
+      "flavor": "The third umpire's lunch arrived. Decisions get\u2026 liberal.",
+      "description": "A counter to extras. When played by the bowling side:\n- Any **No Ball** the batting side played has its effects **fully cancelled** \u2014 no extra run, no re-bowl, no wicket overturn.\n- Any **wide call** that would have happened (tier-based wide on Outside off, leg-side wide from Shuffle Across, Outside-off wide from Day 5 Pitch, Short auto-wide from Deep in the Crease) is converted to a **regular dot ball** \u2014 no extra run, ball counts.\n\nIf neither a No Ball was played nor a wide would have been called, this card is wasted.",
       "deck": "bowling"
     },
     {
@@ -17694,7 +17862,7 @@
       "kind": "situation",
       "name": "Old School Cricket Only",
       "flavor": "Play the game properly! No tricks today.",
-      "description": "**Cancels the opponent's situation card entirely.** Both situation cards are discarded and the ball resolves with just the batsman vs bowler cards — no situation effects.\n\nIf the opponent didn't play a situation card, this is wasted.",
+      "description": "**Cancels the opponent's situation card entirely.** Both situation cards are discarded and the ball resolves with just the batsman vs bowler cards \u2014 no situation effects.\n\nIf the opponent didn't play a situation card, this is wasted.",
       "deck": "bowling"
     }
   ]

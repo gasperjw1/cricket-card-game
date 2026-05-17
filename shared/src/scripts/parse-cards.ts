@@ -556,11 +556,33 @@ function parseBatsman(
     nation,
     tier,
     description,
+    handedness: detectHandedness(description),
     strengths,
     neutrals,
     weaknesses,
     resistances,
   };
+}
+
+/**
+ * Heuristic: scan the batter's flavor description for handedness markers
+ * ("LH", "lefty", "left-hander", "RHB", etc.). Defaults to "right" when
+ * neither is mentioned — most batters are right-handed. Yash can override
+ * any miss-tags by editing cards.json directly.
+ */
+function detectHandedness(description: string): "right" | "left" {
+  const leftRe = /\bLH\b|\bLHB\b|left[- ]hand|left[- ]hander|lefty|lefties|southpaw/i;
+  const rightRe = /\bRHB\b|right[- ]hand|right[- ]hander/i;
+  const leftMatch = leftRe.exec(description);
+  const rightMatch = rightRe.exec(description);
+  if (leftMatch && !rightMatch) return "left";
+  if (rightMatch && !leftMatch) return "right";
+  if (leftMatch && rightMatch) {
+    // Both mentioned (e.g. "the right-handed Kohli vs left-arm spinner").
+    // Whichever appears first wins.
+    return leftMatch.index < rightMatch.index ? "left" : "right";
+  }
+  return "right";
 }
 
 function getBucket(

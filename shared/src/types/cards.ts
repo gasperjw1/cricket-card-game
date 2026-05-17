@@ -116,6 +116,8 @@ export type Nation =
 
 export type CardKind = "batsman" | "bowler" | "situation";
 
+export type Handedness = "right" | "left";
+
 export interface BatsmanCard {
   id: string;
   kind: "batsman";
@@ -123,6 +125,10 @@ export interface BatsmanCard {
   nation: Nation;
   tier: Tier;
   description: string;
+  /** Batting handedness — drives card UI (mirrored zone grid + silhouette).
+   *  Engine doesn't use this; lookup is by line/length only. Default "right"
+   *  when missing from the data (back-compat). */
+  handedness?: Handedness;
   strengths: BatsmanOutcome[];
   neutrals: BatsmanOutcome[];
   weaknesses: BatsmanOutcome[];

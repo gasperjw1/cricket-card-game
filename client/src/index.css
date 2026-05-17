@@ -508,6 +508,11 @@ h1 {
   align-items: center;
   gap: 0.4rem;
 }
+.card-header-right {
+  margin-left: auto;
+  display: inline-flex;
+  align-items: center;
+}
 .kind-label {
   text-transform: uppercase;
   letter-spacing: 0.08em;
@@ -2037,4 +2042,195 @@ h1 {
 @keyframes portrait-rotate-hint {
   0%, 100% { transform: rotate(-15deg); }
   50% { transform: rotate(15deg); }
+}
+
+/* ───── Compact hand-card body (Summary / Shots tabs) ─────
+   Shrinks the per-card vertical footprint so a 4-card hand fits on
+   screen without scrolling. Modal viewer (size="view") still shows
+   the full stacked layout. */
+.card-tabs {
+  display: flex;
+  gap: 0.25rem;
+  padding: 0.2rem;
+  margin-bottom: 0.5rem;
+  background: #11181f;
+  border: 1px solid #2a3441;
+  border-radius: 8px;
+}
+.card-tab {
+  flex: 1;
+  appearance: none;
+  background: transparent;
+  border: none;
+  color: #8a939c;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 0.35rem 0.5rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+}
+.card-tab:hover {
+  color: #d6dde6;
+}
+.card-tab.active {
+  background: #2563eb;
+  color: #ffffff;
+}
+.card-tab-pane {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+.card-flavor.compact {
+  font-size: 0.78rem;
+  margin: 0;
+  /* Cap to 2 lines so a long archetype doesn't blow up the card. */
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.card-effect.compact {
+  font-size: 0.78rem;
+  color: #d6dde6;
+  line-height: 1.35;
+  /* Cap to 3 lines on hand-size situation cards. */
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.card-hand-hint {
+  margin-top: 0.2rem;
+  font-size: 0.65rem;
+  color: #5a6675;
+  text-align: center;
+  letter-spacing: 0.04em;
+  font-style: italic;
+}
+
+/* ───── Batter silhouette chip ───── */
+.batter-silhouette {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  color: #d6dde6;
+  background: #1c2530;
+  border: 1px solid #2a3441;
+  border-radius: 999px;
+  padding: 0.1rem 0.45rem 0.1rem 0.25rem;
+  line-height: 1;
+}
+.batter-silhouette svg {
+  display: block;
+}
+.batter-silhouette-label {
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  color: #8a939c;
+}
+
+/* ───── Zone grid (3 rows × 4 cols pitch chart) ───── */
+.zone-grid {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin: 0.25rem 0;
+}
+.zone-grid-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+.zone-grid-col-labels {
+  display: flex;
+  gap: 3px;
+  align-items: center;
+}
+.zone-grid-row-label-spacer {
+  width: 20px;
+  flex-shrink: 0;
+}
+.zone-grid-col-label {
+  flex: 1;
+  text-align: center;
+  font-size: 0.6rem;
+  font-weight: 700;
+  color: #6e7989;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  min-width: 28px;
+}
+.zone-grid-row {
+  display: flex;
+  gap: 3px;
+  align-items: center;
+}
+.zone-grid-row-label {
+  width: 20px;
+  font-size: 0.6rem;
+  font-weight: 700;
+  color: #6e7989;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  text-align: right;
+  flex-shrink: 0;
+}
+.zone-cell {
+  flex: 1;
+  min-width: 28px;
+  height: 28px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  font-family: ui-monospace, "SF Mono", Menlo, monospace;
+  font-size: 0.78rem;
+  font-weight: 700;
+  background: #1c2530;
+  border: 1px solid #2a3441;
+  color: #6e7989;
+}
+.zone-cell.dot {
+  background: #11181f;
+  color: #4a5566;
+}
+.zone-cell.r-1 { background: #2a3441; color: #d6dde6; border-color: #3a475a; }
+.zone-cell.r-2 { background: #2a3441; color: #d6dde6; border-color: #3a475a; }
+.zone-cell.r-3 { background: #2a3441; color: #d6dde6; border-color: #3a475a; }
+.zone-cell.r-4 { background: #2563eb; color: #ffffff; border-color: #2563eb; }
+.zone-cell.r-6 { background: #1d8a3a; color: #ffffff; border-color: #1d8a3a; }
+.zone-cell.wicket {
+  background: #b91c1c;
+  color: #ffffff;
+  border-color: #b91c1c;
+}
+.zone-cell.delivery {
+  background: #f5d76e;
+  color: #11254e;
+  border-color: #c9a227;
+  font-size: 1rem;
+}
+.zone-cell.empty {
+  background: #11181f;
+  color: #3a475a;
+}
+.zone-cell.highlighted {
+  outline: 2px solid #f5d76e;
+  outline-offset: 1px;
+}
+
+/* In the modal (view-size), the grid can breathe a bit more. */
+.card-view .zone-cell {
+  height: 34px;
+  font-size: 0.9rem;
+  min-width: 36px;
+}
+.card-view .zone-grid-col-label,
+.card-view .zone-grid-row-label {
+  font-size: 0.7rem;
 }
