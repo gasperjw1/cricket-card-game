@@ -705,7 +705,19 @@ export function resolveBall(input: ResolveBallInput): ResolutionResult {
   // dismissal-typed reason ("LBW down leg side", "edge fell short",
   // "bails didn't dislodge", etc.). The two buckets are mutually
   // exclusive — single roll picks one of three outcomes.
-  if (perksEnabled && !rebowled && outcome.type === "wicket") {
+  //
+  // EXCEPTION: run-outs cannot be saved. A run-out is itself a perk
+  // outcome (Step 16 converts a 1/2 into a wicket), and saving it
+  // would mean a single ball travels 1 run → wicket → 2-4 byes,
+  // which awards MORE runs than the original — feels broken to
+  // players ("the bowler earned the wicket, why am I getting runs?").
+  // Run-outs stick.
+  if (
+    perksEnabled &&
+    !rebowled &&
+    outcome.type === "wicket" &&
+    outcome.dismissalCategory !== "runout"
+  ) {
     const roll = random();
     const saveTotal = WICKET_SAVE_2_BYE_CHANCE + WICKET_SAVE_4_BYE_CHANCE;
     if (roll < saveTotal) {
@@ -832,10 +844,9 @@ function wicketSaveNarrative(
         narrative: `Keeper fumbled the stumping! Batter back in their crease, ${byes} byes.`,
       };
     case "runout":
-      return {
-        kind: "byes",
-        narrative: `Throw missed the stumps — ${byes} overthrows for free.`,
-      };
+      // Unreachable — Step 18 short-circuits runouts (see comment there).
+      // Kept for exhaustive switch coverage.
+      return { kind: "byes", narrative: "" };
   }
 }
 

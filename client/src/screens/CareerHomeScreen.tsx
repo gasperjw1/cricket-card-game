@@ -67,14 +67,28 @@ export function CareerHomeScreen({ onBack, client }: Props) {
       {!run && <NoRunView onStart={startRunAndDraft} stats={save} />}
 
       {run && run.stage === "won" && (
-        <WonView run={run} onClaim={() => {
-          // Trophy-pack flow happens in Session 3. For now, just end the run.
-          endRun();
-        }} />
+        <WonView
+          run={run}
+          onClaim={() => {
+            // Trophy pack was already opened by WCMatchOverFlow; just
+            // clean up the run state and route back to the MAIN home
+            // menu (not the career hub's "Start new run" state, which
+            // felt like the page was resetting to invite a new run
+            // unexpectedly).
+            endRun();
+            onBack();
+          }}
+        />
       )}
 
       {run && run.stage === "lost" && (
-        <LostView run={run} onClose={() => endRun()} />
+        <LostView
+          run={run}
+          onClose={() => {
+            endRun();
+            onBack();
+          }}
+        />
       )}
 
       {run && (run.stage === "group" || run.stage === "semi" || run.stage === "final") && (

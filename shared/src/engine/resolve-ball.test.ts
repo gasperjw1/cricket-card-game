@@ -880,6 +880,35 @@ describe("Phase perks — wicket save", () => {
     assert.equal(r.extraRuns, 4);
   });
 
+  it("does NOT save a run-out wicket even when roll is low", () => {
+    // Batter on a neutral zone — engine produces runs: 2. Step 16
+    // (run-out, 10% chance) converts to a wicket with category "runout".
+    // Step 18 (wicket-save) must skip run-outs.
+    //
+    // Test uses role-less batter + bowler so only Step 16 (run-out)
+    // and Step 18 (wicket-save attempt) consume random rolls. Both
+    // get 0.05; if save fires on runout, the wicket would become byes.
+    const rolls = [0.05, 0.05];
+    let idx = 0;
+    const r = resolveBall({
+      batsman: makeBatter({ role: undefined }), // no in-phase upgrade
+      bowler: makeBowler({
+        delivery: { line: "Middle stump", length: "Good length" }, // batter neutral 2
+        fielding: [],
+        role: undefined, // no in-phase wicket etc.
+      }),
+      battingSituation: null,
+      bowlingSituation: null,
+      phase: "middle",
+      random: () => rolls[idx++ % rolls.length]!,
+    });
+    assert.equal(r.finalOutcome.type, "wicket", "run-out wicket must stick");
+    if (r.finalOutcome.type === "wicket") {
+      assert.equal(r.finalOutcome.dismissalCategory, "runout");
+    }
+    assert.equal(r.extraRuns, 0, "no byes awarded on run-out");
+  });
+
   it("wicket stands when random rolls outside the save buckets", () => {
     const r = resolveBall({
       batsman: makeBatter({ role: "middle-order" }),

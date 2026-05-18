@@ -940,16 +940,14 @@ function WCMatchOverFlow({ client }: { client: MatchClient }) {
   const captured = opponentRef.current;
 
   if (phase === "result") {
+    const headline = wcResultHeadline(captured);
+    const detail = wcResultDetail(captured);
     return (
       <main>
-        <h1>{captured?.playerWon ? "🏆 You won!" : "🛑 Eliminated"}</h1>
+        <h1>{headline}</h1>
         {result && (
           <div className="result-card">
-            <div className="result-headline">
-              {captured?.playerWon
-                ? `Beat ${captured.opp.nation} — onto the next match!`
-                : `${captured?.opp.nation} won.`}
-            </div>
+            <div className="result-headline">{detail}</div>
             <div className="dim-text">{result.margin}</div>
           </div>
         )}
@@ -967,7 +965,11 @@ function WCMatchOverFlow({ client }: { client: MatchClient }) {
               }
             }}
           >
-            {captured?.playerWon ? "Open your pack →" : "Continue"}
+            {captured?.playerWon
+              ? captured.opp.stageLabel === "final"
+                ? "Open your Trophy pack →"
+                : "Open your pack →"
+              : "Continue"}
           </button>
         </div>
       </main>
@@ -1000,6 +1002,40 @@ function WCMatchOverFlow({ client }: { client: MatchClient }) {
       <button className="btn primary" onClick={client.leaveMatch}>Back to home</button>
     </main>
   );
+}
+
+/** Stage-specific headline for the WC result screen. */
+function wcResultHeadline(captured: { opp: { stageLabel: "group" | "semi" | "final" }; playerWon: boolean } | null): string {
+  if (!captured) return "Match Over";
+  if (!captured.playerWon) {
+    return captured.opp.stageLabel === "group"
+      ? "🛑 Group match lost"
+      : captured.opp.stageLabel === "semi"
+        ? "🛑 Semi-final lost — run over"
+        : "🛑 Final lost — so close";
+  }
+  // Wins
+  return captured.opp.stageLabel === "final"
+    ? "🏆 World Cup Champion!"
+    : captured.opp.stageLabel === "semi"
+      ? "🎉 Into the Final!"
+      : "✅ Match won";
+}
+
+/** Stage-specific detail line beneath the headline. */
+function wcResultDetail(captured: { opp: { stageLabel: "group" | "semi" | "final"; nation: string }; playerWon: boolean } | null): string {
+  if (!captured) return "";
+  if (!captured.playerWon) {
+    return `${captured.opp.nation} beat you in the ${captured.opp.stageLabel === "group" ? "group stage" : captured.opp.stageLabel === "semi" ? "semi-final" : "final"}.`;
+  }
+  switch (captured.opp.stageLabel) {
+    case "group":
+      return `Beat ${captured.opp.nation} in a group match. Onto the next one.`;
+    case "semi":
+      return `Beat ${captured.opp.nation} in the semi-final — you're in the FINAL!`;
+    case "final":
+      return `Beat ${captured.opp.nation} in the final. World Cup is yours. 🏆`;
+  }
 }
 
 function ScorecardSummary({ client }: { client: MatchClient }) {
