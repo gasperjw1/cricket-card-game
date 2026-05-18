@@ -2,9 +2,11 @@ import { useEffect, useRef, useState } from "react";
 import {
   HAND_SIZE,
   MATCH_FORMATS,
+  phaseForBall,
   type AnyCard,
   type BallOutcome,
   type BallResult,
+  type InningsPhase,
   type PlayerSlot,
   type ResolutionStep,
 } from "@swipe-sixer/shared";
@@ -76,6 +78,10 @@ export function InningsScreen({ client }: Props) {
     !matchState.pendingSwap &&
     !innings.isComplete;
   const canSubmit = !!mandatoryId && !awaitingReveal && !lastReveal && ballLive;
+  // Phase for the NEXT ball — drives the in-phase / out-of-phase highlight
+  // on cards in hand so the player can see at a glance which cards match
+  // the current moment of the innings.
+  const currentPhase = phaseForBall(matchState.format, innings.ballsBowled + 1);
   return (
     <main className="innings">
       <Scorebug matchState={matchState} />
@@ -86,7 +92,12 @@ export function InningsScreen({ client }: Props) {
         mandatoryId={mandatoryId}
         situationId={situationId}
         ballLive={ballLive}
+        requiredKind={requiredKind}
+        currentPhase={currentPhase}
         onCardOpen={(id) => setViewingCardId(id)}
+        onCardCommit={(card) =>
+          handleViewerSubmit(client, card, mandatoryId, situationId)
+        }
       />
 
       <SelectionFooter
@@ -207,7 +218,13 @@ function HandArea(props: {
   mandatoryId: string | null;
   situationId: string | null;
   ballLive: boolean;
+  /** Drives the per-card "Use as Batsman / Bowler" CTA. */
+  requiredKind: "batsman" | "bowler";
+  /** Current phase — passed to Card for in-phase highlight. */
+  currentPhase?: InningsPhase;
   onCardOpen: (id: string) => void;
+  /** Direct commit (skips the modal). */
+  onCardCommit: (card: AnyCard) => void;
 }) {
   const scrollerRef = useRef<HTMLDivElement>(null);
   const [carouselIndex, setCarouselIndex] = useState(0);
@@ -269,20 +286,42 @@ function HandArea(props: {
         {props.handCards.length === 0 && (
           <div className="hint">Waiting for hand…</div>
         )}
-        {props.handCards.map((card) => (
-          <div className="hand-slot" key={card.id}>
-            <Card
-              card={card}
-              size="hand"
-              selected={
-                card.id === props.mandatoryId || card.id === props.situationId
-              }
-              onClick={
-                props.ballLive ? () => props.onCardOpen(card.id) : undefined
-              }
-            />
-          </div>
-        ))}
+        {props.handCards.map((card) => {
+          const isSelected =
+            card.id === props.mandatoryId || card.id === props.situationId;
+          const canCommit =
+            props.ballLive &&
+            (card.kind === "situation" || card.kind === props.requiredKind);
+          const commitLabel = isSelected
+            ? "Selected ✓ tap to remove"
+            : card.kind === "situation"
+              ? "Add this situation"
+              : card.kind === "batsman"
+                ? "Use this batsman"
+                : "Use this bowler";
+          return (
+            <div className="hand-slot" key={card.id}>
+              <Card
+                card={card}
+                size="hand"
+                selected={isSelected}
+                onClick={
+                  props.ballLive ? () => props.onCardOpen(card.id) : undefined
+                }
+                currentPhase={props.currentPhase}
+              />
+              <button
+                type="button"
+                className={`btn ${isSelected ? "danger" : "primary"} hand-commit`}
+                disabled={!canCommit}
+                onClick={() => props.onCardCommit(card)}
+                aria-label={commitLabel}
+              >
+                {canCommit ? commitLabel : `${card.kind} card`}
+              </button>
+            </div>
+          );
+        })}
       </div>
       {props.handCards.length > 1 && (
         <div className="hand-carousel-controls" aria-hidden="true">

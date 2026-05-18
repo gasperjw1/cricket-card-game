@@ -47,21 +47,21 @@ export const MATCH_FORMATS: Record<MatchFormat, FormatConfig> = {
     oversPerInnings: 3,
     ballsPerInnings: 18,
     wicketsPerInnings: 5,
-    // 2+3+10+7 = 22 player cards + 6 situations = 28.
+    // 2+3+10+9 = 24 player cards + 6 situations = 30.
     //
     // DECK-SIZE MARGIN: an innings is 18 balls, and every ball consumes
     // ≥1 mandatory card. Mankad / Retired Out / Cramps burn TWO mandatory
     // cards in one ball (original + replacement). With bots playing sits
     // ~30% of the time, expected ~1-2 swap events per innings → up to
-    // 20 mandatories needed in the worst case. 22 player cards = 2-card
-    // safety margin so the deck never runs dry late.
+    // 20 mandatories needed in the worst case. 24 player cards = 4-card
+    // safety margin so the deck never runs dry late, even with bad luck.
     //
     // Tier supply per Test nation: E2/G3/S3/B5 per role. Silver bumped
-    // from 8 → 10 (own 3 + associate pool of 8 = 11 candidates). Bronze
-    // stays at 7 (own 5 + 2 cross-nation via the existing fallback in
+    // to 10 (own 3 + associate pool of 8 = 11 candidates). Bronze bumped
+    // to 9 (own 5 + 4 cross-nation via the existing fallback in
     // server/src/innings.ts buildDeck).
-    deckSize: 28,
-    tierDistribution: { Elite: 2, Gold: 3, Silver: 10, Bronze: 7 },
+    deckSize: 30,
+    tierDistribution: { Elite: 2, Gold: 3, Silver: 10, Bronze: 9 },
     situationCount: 6,
   },
 };

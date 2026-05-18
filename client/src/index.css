@@ -1156,16 +1156,41 @@ h1 {
   letter-spacing: 0.06em;
   color: #8a939c;
 }
+/* Horizontal-scrolling row of draft options — better on mobile than
+   vertical wrap (action buttons stay visible without scrolling). Cards
+   snap into view; ~1.5 cards visible on phone (peek at next), ~3+ on
+   tablet/desktop. */
 .draft-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  display: flex;
+  flex-direction: row;
   gap: 0.6rem;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  padding: 0.25rem 0 0.75rem;
+  /* Tiny scrollbar — hidden by default, visible on hover/scroll for
+     desktop discoverability. */
+  scrollbar-width: thin;
 }
 .draft-slot {
   cursor: pointer;
   transition: transform 0.12s, box-shadow 0.12s;
   border-radius: 10px;
   position: relative;
+  /* Each card claims a fixed-ish chunk of horizontal space so the row
+     scrolls evenly. ~70% viewport on phone (peek at next), narrower on
+     larger screens. */
+  flex: 0 0 70%;
+  scroll-snap-align: start;
+  max-width: 280px;
+  min-width: 220px;
+}
+@media (min-width: 540px) {
+  .draft-slot { flex: 0 0 32%; }
+}
+@media (min-width: 900px) {
+  .draft-slot { flex: 0 0 24%; }
 }
 .draft-slot:hover {
   transform: translateY(-2px);
@@ -1214,14 +1239,30 @@ h1 {
   font-size: 1rem;
 }
 .deck-mgmt-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  display: flex;
+  flex-direction: row;
   gap: 0.5rem;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  padding: 0.25rem 0 0.75rem;
+  scrollbar-width: thin;
 }
 .deck-mgmt-slot {
   cursor: default;
   transition: transform 0.12s, box-shadow 0.12s;
   border-radius: 10px;
+  flex: 0 0 70%;
+  scroll-snap-align: start;
+  max-width: 280px;
+  min-width: 220px;
+}
+@media (min-width: 540px) {
+  .deck-mgmt-slot { flex: 0 0 32%; }
+}
+@media (min-width: 900px) {
+  .deck-mgmt-slot { flex: 0 0 24%; }
 }
 .deck-mgmt-slot.inventory {
   cursor: pointer;
@@ -1580,6 +1621,22 @@ h1 {
   flex: 0 0 100%;
   scroll-snap-align: center;
   scroll-snap-stop: always;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+/* Full-width commit button directly under each hand card — saves a tap
+   vs opening the modal just to click "Use this batsman." Card itself
+   still opens the modal for full details. */
+.btn.hand-commit {
+  width: 100%;
+  padding: 0.6rem;
+  font-size: 0.85rem;
+  letter-spacing: 0.03em;
+}
+.btn.hand-commit:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
 }
 
 /* Desktop (>=540px): revert to the 4-column grid showing all cards. */
@@ -2344,42 +2401,9 @@ h1 {
   50% { transform: rotate(15deg); }
 }
 
-/* ───── Compact hand-card body (Summary / Shots tabs) ─────
-   Shrinks the per-card vertical footprint so a 4-card hand fits on
-   screen without scrolling. Modal viewer (size="view") still shows
-   the full stacked layout. */
-.card-tabs {
-  display: flex;
-  gap: 0.25rem;
-  padding: 0.2rem;
-  margin-bottom: 0.5rem;
-  background: #11181f;
-  border: 1px solid #2a3441;
-  border-radius: 8px;
-}
-.card-tab {
-  flex: 1;
-  appearance: none;
-  background: transparent;
-  border: none;
-  color: #8a939c;
-  font-size: 0.72rem;
-  font-weight: 600;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  padding: 0.35rem 0.5rem;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: background 0.15s, color 0.15s;
-}
-.card-tab:hover {
-  color: #d6dde6;
-}
-.card-tab.active {
-  background: #2563eb;
-  color: #ffffff;
-}
-.card-tab-pane {
+/* ───── Compact hand-card body (single combined view) ─────
+   Modal viewer (size="view") still shows the full stacked layout. */
+.card-hand-body {
   display: flex;
   flex-direction: column;
   gap: 0.45rem;
@@ -2455,6 +2479,17 @@ h1 {
   background: #3a1d2c;
   color: #ff8aa8;
   border-color: #5a2d40;
+}
+/* In-phase: bright green outline + sparkle. Visible from across the
+   hand without obscuring the role colour. */
+.role-chip.in-phase {
+  box-shadow: 0 0 0 2px #1d8a3a, 0 0 8px rgba(45, 184, 75, 0.5);
+  position: relative;
+}
+.role-chip-spark {
+  margin-left: 0.2rem;
+  color: #6ee07a;
+  font-size: 0.7rem;
 }
 .card-header-right-stack {
   display: inline-flex;

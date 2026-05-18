@@ -1,4 +1,3 @@
-import { useState } from "react";
 import type {
   Adjective,
   AnyCard,
@@ -8,11 +7,13 @@ import type {
   BowlerCard,
   BowlerRole,
   FieldingRegion,
+  InningsPhase,
   Nation,
   SituationCard,
   Tier,
   Zone,
 } from "@swipe-sixer/shared";
+import { BATTER_ROLE_TO_PHASE, BOWLER_ROLE_TO_PHASE } from "@swipe-sixer/shared";
 import { BatterSilhouette } from "./BatterSilhouette.tsx";
 import { CardEffectText } from "./CardEffectText.tsx";
 import { Tip } from "./Tip.tsx";
@@ -54,6 +55,11 @@ interface CardProps {
   onClick?: () => void;
   /** When set, filter the card to only show what fired this ball. */
   reveal?: RevealContext;
+  /** Current match phase (powerplay / middle / death). When set, the
+   *  role chip highlights green if the card's role matches the phase
+   *  ("in phase" → engine perks apply). Subtle visual reinforcement
+   *  of the role system. */
+  currentPhase?: InningsPhase;
 }
 
 export function Card(props: CardProps) {
@@ -111,7 +117,7 @@ function CardFrame(props: {
 
 // ─────────────────────────── Batsman ───────────────────────────
 
-function BatsmanCardView(props: { card: BatsmanCard; size?: "hand" | "view"; selected?: boolean; onClick?: () => void; reveal?: RevealContext }) {
+function BatsmanCardView(props: { card: BatsmanCard; size?: "hand" | "view"; selected?: boolean; onClick?: () => void; reveal?: RevealContext; currentPhase?: InningsPhase }) {
   const size = props.size ?? "hand";
   const { card } = props;
   const reveal = props.reveal;
@@ -131,7 +137,16 @@ function BatsmanCardView(props: { card: BatsmanCard; size?: "hand" | "view"; sel
         tier={card.tier}
         rightExtra={
           <span className="card-header-right-stack">
-            {card.role && <RoleChip role={card.role} kind="batter" />}
+            {card.role && (
+              <RoleChip
+                role={card.role}
+                kind="batter"
+                inPhase={
+                  props.currentPhase !== undefined &&
+                  BATTER_ROLE_TO_PHASE[card.role] === props.currentPhase
+                }
+              />
+            )}
             <BatterSilhouette handedness={card.handedness} size={size === "view" ? 32 : 26} />
           </span>
         }
@@ -183,36 +198,17 @@ function BatsmanCardView(props: { card: BatsmanCard; size?: "hand" | "view"; sel
   );
 }
 
-/** Compact body shown when a batsman is in the hand. Two tabs:
- *   Summary — short description (truncated) + resistance icons + "tap for details"
- *   Shots   — the 3x4 zone grid
- *  Defaults to Summary so the first thing the player sees is who the
- *  card is, not what they score where. */
+/** Compact body shown when a batsman is in the hand. Single combined
+ *  view: 1-line archetype + shots grid + resistance icons, no tabs.
+ *  Tapping the card still opens the modal for full details. */
 function BatsmanHandBody({ card }: { card: BatsmanCard }) {
-  const [tab, setTab] = useState<"summary" | "shots">("summary");
   return (
     <div className="card-hand-body">
-      <CardTabs
-        active={tab}
-        onChange={setTab}
-        tabs={[
-          { id: "summary", label: "Summary" },
-          { id: "shots", label: "Shots" },
-        ]}
-      />
-      {tab === "summary" ? (
-        <div className="card-tab-pane card-tab-summary">
-          {card.description && (
-            <p className="card-flavor compact">{firstSentence(card.description)}</p>
-          )}
-          <Resistances list={card.resistances} size="hand" />
-          <span className="card-hand-hint">Tap card for full details</span>
-        </div>
-      ) : (
-        <div className="card-tab-pane card-tab-shots">
-          <ZoneGrid mode="batter" card={card} />
-        </div>
+      {card.description && (
+        <p className="card-flavor compact">{firstSentence(card.description)}</p>
       )}
+      <ZoneGrid mode="batter" card={card} />
+      <Resistances list={card.resistances} size="hand" />
     </div>
   );
 }
@@ -403,7 +399,7 @@ function Resistances(props: { list: BatsmanCard["resistances"]; size: "hand" | "
 
 // ─────────────────────────── Bowler ───────────────────────────
 
-function BowlerCardView(props: { card: BowlerCard; size?: "hand" | "view"; selected?: boolean; onClick?: () => void; reveal?: RevealContext }) {
+function BowlerCardView(props: { card: BowlerCard; size?: "hand" | "view"; selected?: boolean; onClick?: () => void; reveal?: RevealContext; currentPhase?: InningsPhase }) {
   const size = props.size ?? "hand";
   const { card, reveal } = props;
   return (
@@ -414,7 +410,18 @@ function BowlerCardView(props: { card: BowlerCard; size?: "hand" | "view"; selec
         name={card.name}
         nation={card.nation}
         tier={card.tier}
-        rightExtra={card.role && <RoleChip role={card.role} kind="bowler" />}
+        rightExtra={
+          card.role && (
+            <RoleChip
+              role={card.role}
+              kind="bowler"
+              inPhase={
+                props.currentPhase !== undefined &&
+                BOWLER_ROLE_TO_PHASE[card.role] === props.currentPhase
+              }
+            />
+          )
+        }
       />
       {reveal ? (
         <>
@@ -436,33 +443,16 @@ function BowlerCardView(props: { card: BowlerCard; size?: "hand" | "view"; selec
   );
 }
 
-/** Compact hand body for bowler cards. Same tab pattern as batters. */
+/** Compact hand body for bowler cards. Single combined view:
+ *  1-line archetype + delivery grid + skill icons. */
 function BowlerHandBody({ card }: { card: BowlerCard }) {
-  const [tab, setTab] = useState<"summary" | "delivery">("summary");
   return (
     <div className="card-hand-body">
-      <CardTabs
-        active={tab}
-        onChange={setTab}
-        tabs={[
-          { id: "summary", label: "Summary" },
-          { id: "delivery", label: "Delivery" },
-        ]}
-      />
-      {tab === "summary" ? (
-        <div className="card-tab-pane card-tab-summary">
-          {card.description && (
-            <p className="card-flavor compact">{firstSentence(card.description)}</p>
-          )}
-          <BowlerSkillsRow card={card} />
-          <span className="card-hand-hint">Tap card for full details</span>
-        </div>
-      ) : (
-        <div className="card-tab-pane card-tab-shots">
-          <ZoneGrid mode="bowler" card={card} />
-          <BowlerFieldingRow card={card} />
-        </div>
+      {card.description && (
+        <p className="card-flavor compact">{firstSentence(card.description)}</p>
       )}
+      <ZoneGrid mode="bowler" card={card} />
+      <BowlerSkillsRow card={card} />
     </div>
   );
 }
@@ -585,33 +575,6 @@ function firstSentence(text: string): string {
   return result.replace(/[:]$/, ".");
 }
 
-/** Lightweight segmented tab control used inside hand-size cards. */
-function CardTabs<T extends string>(props: {
-  active: T;
-  onChange: (id: T) => void;
-  tabs: { id: T; label: string }[];
-}) {
-  return (
-    <div className="card-tabs" role="tablist" onClick={(e) => e.stopPropagation()}>
-      {props.tabs.map((t) => (
-        <button
-          key={t.id}
-          type="button"
-          role="tab"
-          aria-selected={props.active === t.id}
-          className={`card-tab ${props.active === t.id ? "active" : ""}`}
-          onClick={(e) => {
-            // Don't bubble into the card's onClick (which opens the modal).
-            e.stopPropagation();
-            props.onChange(t.id);
-          }}
-        >
-          {t.label}
-        </button>
-      ))}
-    </div>
-  );
-}
 
 // ─────────────────────────── Header & shared bits ───────────────────────────
 
@@ -661,18 +624,29 @@ function ZoneBadge({ zone, large }: { zone: Zone; large?: boolean }) {
 
 /** Phase / role chip shown in the card header. Color-codes which third
  *  of the innings the card is built for so the user can match cards to
- *  the current phase (shown in the scorebug). */
+ *  the current phase (shown in the scorebug).
+ *  inPhase=true adds a green "now active" outline so the player can see
+ *  at a glance which hand cards are best for the current ball. */
 function RoleChip({
   role,
   kind,
+  inPhase,
 }: {
   role: BatterRole | BowlerRole;
   kind: "batter" | "bowler";
+  inPhase?: boolean;
 }) {
   const meta = ROLE_META[role];
+  const baseTip = `${meta.long} — built for the ${meta.phase} phase. ${kind === "batter" ? "Plays best when bowling matches this phase; out-of-phase scoring shots have a 25% chance to become dots." : "Bowls best when matching this phase; out-of-phase deliveries to leg / outside-off have an extra wide chance."}`;
+  const tip = inPhase
+    ? `${baseTip} ✦ IN PHASE NOW — bonuses active this ball.`
+    : baseTip;
   return (
-    <Tip text={`${meta.long} — built for the ${meta.phase} phase. ${kind === "batter" ? "Plays best when bowling matches this phase; out-of-phase scoring shots have a 25% chance to become dots." : "Bowls best when matching this phase; out-of-phase deliveries to leg / outside-off have an extra wide chance."}`}>
-      <span className={`role-chip role-${meta.phase}`}>{meta.short}</span>
+    <Tip text={tip}>
+      <span className={`role-chip role-${meta.phase}${inPhase ? " in-phase" : ""}`}>
+        {meta.short}
+        {inPhase && <span className="role-chip-spark">✦</span>}
+      </span>
     </Tip>
   );
 }
