@@ -13673,7 +13673,7 @@
       "name": "Ross Adair",
       "nation": "Ireland",
       "tier": "Bronze",
-      "description": "Left-handed young top-order. Limited T20I exposure, domestic talent.",
+      "description": "Right-handed young top-order. Limited T20I exposure, domestic talent.",
       "strengths": [
         {
           "zone": {
@@ -13750,7 +13750,7 @@
         }
       ],
       "resistances": [],
-      "handedness": "left",
+      "handedness": "right",
       "role": "top-order"
     },
     {
