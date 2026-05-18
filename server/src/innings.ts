@@ -627,25 +627,34 @@ function runEngineAndAdvance(match: ServerMatch, cb: InningsCallbacks): void {
   };
 
   // Discard played cards (incl. swap replacements added to ctx.*PlayedIds).
-  // EXCEPTION: when the delivery is rebowled (No Ball or Wide), the bowler
-  // didn't deliver a legal ball — return the bowler's MANDATORY card to the
-  // bottom of their active deck instead of discarding. Situation cards
-  // played by the bowler still get discarded (they were "used up"). The
-  // batter's card is consumed normally — they got their chance to face it.
+  // EXCEPTION: when the delivery is rebowled (No Ball or Wide), the
+  // delivery wasn't legal — return BOTH the bowler's mandatory card AND
+  // the batter's mandatory card to the bottom of their active decks.
+  // Situation cards played still get discarded (they were "used up");
+  // only the mandatory pair survives.
   if (rebowled) {
     const bowlerMandatoryId = ctx.bowlingMandatory.id;
+    const batterMandatoryId = ctx.battingMandatory.id;
     const bowlingPlayedMinusMandatory = ctx.bowlingPlayedIds.filter(
       (id) => id !== bowlerMandatoryId,
     );
+    const battingPlayedMinusMandatory = ctx.battingPlayedIds.filter(
+      (id) => id !== batterMandatoryId,
+    );
     returnCardToActiveDeck(match, ctx.bowlingSlot, bowlerMandatoryId);
+    returnCardToActiveDeck(match, ctx.battingSlot, batterMandatoryId);
     consumePlayedByIds(
       match.decks[ctx.bowlingSlot],
       bowlingPlayedMinusMandatory,
     );
+    consumePlayedByIds(
+      match.decks[ctx.battingSlot],
+      battingPlayedMinusMandatory,
+    );
   } else {
     consumePlayedByIds(match.decks[ctx.bowlingSlot], ctx.bowlingPlayedIds);
+    consumePlayedByIds(match.decks[ctx.battingSlot], ctx.battingPlayedIds);
   }
-  consumePlayedByIds(match.decks[ctx.battingSlot], ctx.battingPlayedIds);
 
   // Tear down ball context now that we're done with it.
   match.ballContext = null;
