@@ -950,14 +950,24 @@ function WCMatchOverFlow({ client }: { client: MatchClient }) {
     recordMatch(playerWon ? "win" : "loss", opp);
     if (playerWon) {
       const isFinal = opp.stageLabel === "final";
-      const excludes = Object.keys(career.permanentCollection.cards);
+      // Exclude PLAYER cards already in the player's current run — both
+      // the active deck and the run inventory. Per spec: don't offer a
+      // Kohli they already drafted or already picked from a previous
+      // pack this run. Situation cards aren't excluded (they can
+      // repeat per Yash's design); generatePerWinPack ignores situation
+      // IDs in the excludes list internally.
+      const deckIds = run.deck
+        ? [...run.deck.battingDeck, ...run.deck.bowlingDeck]
+        : [];
+      const inventoryIds = run.inventory.cardIds;
+      const excludes = [...deckIds, ...inventoryIds];
       setPackContents(
         isFinal
           ? generateTrophyPack(excludes)
           : generatePerWinPack(opp.stageLabel === "semi" ? "semi" : "group", excludes),
       );
     }
-  }, [matchState?.result, mySlot, career.currentRun, career.permanentCollection.cards]);
+  }, [matchState?.result, mySlot, career.currentRun]);
 
   if (!matchState || !mySlot || !career.currentRun) return null;
   const result = matchState.result;

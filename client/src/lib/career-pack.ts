@@ -166,15 +166,17 @@ export function generatePerWinPack(
 
   // Guarantee diversity: 1 batter and 1 bowler at minimum. The kind
   // is forced; the tier still rolls (no situation card on these slots).
-  push(slots, used, pickByRoll(eliteChance, goldChance, 0, "batter") ?? randomBatter(used));
-  push(slots, used, pickByRoll(eliteChance, goldChance, 0, "bowler") ?? randomBowler(used));
+  push(slots, used, pickByRoll(eliteChance, goldChance, 0, "batter", used) ?? randomBatter(used));
+  push(slots, used, pickByRoll(eliteChance, goldChance, 0, "bowler", used) ?? randomBowler(used));
 
   // Remaining 4 slots: any kind, situations roll naturally.
   for (let i = 0; i < 4; i++) {
     const r = Math.random();
     let card: AnyCard | null = null;
     if (r < sitChance) card = randomSituation(used);
-    else card = Math.random() < 0.5 ? pickByRoll(eliteChance, goldChance, 0, "batter") : pickByRoll(eliteChance, goldChance, 0, "bowler");
+    else card = Math.random() < 0.5
+      ? pickByRoll(eliteChance, goldChance, 0, "batter", used)
+      : pickByRoll(eliteChance, goldChance, 0, "bowler", used);
     push(slots, used, card ?? randomSilver(used));
   }
 
@@ -222,6 +224,7 @@ function pickByRoll(
   goldChance: number,
   sitChance: number,
   kind: "batter" | "bowler",
+  used: Set<string>,
 ): AnyCard | null {
   const r = Math.random();
   if (r < sitChance) {
@@ -231,7 +234,14 @@ function pickByRoll(
   if (r < sitChance + eliteChance) tier = "Elite";
   else if (r < sitChance + eliteChance + goldChance) tier = "Gold";
   const pool = kind === "batter" ? CARDS.batsmen : CARDS.bowlers;
-  const filtered = pool.filter((c) => c.tier === tier);
+  // CRITICAL: filter by `used` so cards already in the player's
+  // deck/inventory are excluded. Previously this filter was missing
+  // and the exclude list only worked via the fallback path (e.g.,
+  // randomBatter → randomSilver), which meant duplicates leaked
+  // through the primary roll path.
+  const filtered = pool.filter(
+    (c) => c.tier === tier && !used.has(c.id),
+  );
   if (filtered.length === 0) return null;
   return filtered[Math.floor(Math.random() * filtered.length)] ?? null;
 }
