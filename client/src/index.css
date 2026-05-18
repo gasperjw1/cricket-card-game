@@ -1112,6 +1112,11 @@ h1 {
 .career-ladder-item.loss {
   background: #3a1d2c;
 }
+.career-ladder-item.hidden .career-ladder-nation {
+  color: #5a6675;
+  letter-spacing: 0.15em;
+  font-style: italic;
+}
 .career-ladder-stage {
   display: inline-block;
   min-width: 28px;
@@ -1148,6 +1153,22 @@ h1 {
 .career-ladder-result.next {
   background: #2563eb;
   color: #ffffff;
+}
+
+/* Pack opening (post-WC-match) — reuses .draft-grid + .draft-slot for the
+   card row, so we only need header + counter styling here. */
+.pack-header {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+.pack-header h1 {
+  margin: 0.3rem 0;
+}
+.pack-counter {
+  margin-top: 0.5rem;
+  font-size: 0.85rem;
+  color: #6aa3ff;
+  font-weight: 600;
 }
 
 /* Draft */

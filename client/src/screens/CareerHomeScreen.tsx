@@ -1,22 +1,24 @@
 import { useEffect, useState } from "react";
+import type { Nation } from "@swipe-sixer/shared";
 import {
   abandonRun,
   endRun,
   getCareer,
   startNewRun,
+  startWCMatch,
   subscribeCareer,
   type CareerSave,
   type WCRun,
 } from "../lib/career.ts";
 import { generateLadder } from "../lib/career-pack.ts";
+import type { MatchClient } from "../state.ts";
 import { DraftScreen } from "./DraftScreen.tsx";
 import { DeckManagementScreen } from "./DeckManagementScreen.tsx";
 
 interface Props {
   onBack: () => void;
-  /** Called when the player chooses to play the next match — caller is
-   *  responsible for wiring the actual match flow (Session 3). */
-  onPlayMatch?: (run: WCRun) => void;
+  /** Match client — used to spin up a WC match against the bot. */
+  client: MatchClient;
 }
 
 type SubMode = "home" | "draft" | "deck" | "abandon-confirm";
@@ -28,7 +30,7 @@ type SubMode = "home" | "draft" | "deck" | "abandon-confirm";
  *   - Match prep / ladder view (run in active stage)
  *   - Trophy / loss screen (run complete)
  */
-export function CareerHomeScreen({ onBack, onPlayMatch }: Props) {
+export function CareerHomeScreen({ onBack, client }: Props) {
   const [save, setSave] = useState<CareerSave>(getCareer);
   const [subMode, setSubMode] = useState<SubMode>("home");
 
@@ -78,7 +80,7 @@ export function CareerHomeScreen({ onBack, onPlayMatch }: Props) {
         <ActiveRunView
           run={run}
           onOpenDeck={() => setSubMode("deck")}
-          onPlayMatch={() => onPlayMatch?.(run)}
+          onPlayMatch={() => playNextWCMatch(run)}
           onAbandon={() => setSubMode("abandon-confirm")}
         />
       )}
@@ -105,6 +107,38 @@ export function CareerHomeScreen({ onBack, onPlayMatch }: Props) {
     const ladder = generateLadder();
     startNewRun("T3", ladder);
     setSubMode("draft");
+  }
+
+  /**
+   * Kick off the next WC match: spin up a bot match with the player's
+   * current deck and the locked-in opponent. The bot will be themed to
+   * the opponent's nation; the player's deck comes from their custom
+   * RunDeck.
+   *
+   * After the match runs through InningsScreen and ends, MatchOverView
+   * detects the wcMatchInFlight flag, records the result, and routes
+   * into pack-opening (Session 3.5, not yet built — for now it falls
+   * back to "Back to home" which returns here).
+   */
+  async function playNextWCMatch(run: WCRun): Promise<void> {
+    if (!run.deck) return;
+    const opp = run.ladder[run.history.length];
+    if (!opp) return;
+    startWCMatch();
+    await client.createBotMatch(
+      "You",
+      "YOU",
+      opp.difficulty,
+      run.format,
+      {
+        playerDeck: {
+          battingDeck: run.deck.battingDeck,
+          bowlingDeck: run.deck.bowlingDeck,
+        },
+        botNation: opp.nation as Nation,
+        botName: opp.nation,
+      },
+    );
   }
 }
 
@@ -230,18 +264,39 @@ function Ladder({
   ladder: WCRun["ladder"];
   history: WCRun["history"];
 }) {
+  // Knockout opponents (semi + final) stay HIDDEN until the player reaches
+  // that stage — otherwise the user knows exactly which nation is waiting
+  // at the end of their run, killing the tournament suspense. Group-stage
+  // opponents stay visible so the player can plan their group strategy.
   return (
     <ol className="career-ladder">
       {ladder.map((opp, i) => {
         const played = i < history.length;
         const result = played ? history[i]!.result : null;
-        const cls =
-          result === "win" ? "win" : result === "loss" ? "loss" : played ? "tied" : i === history.length ? "next" : "pending";
+        const isUnreachedKnockout =
+          !played &&
+          i > history.length &&
+          (opp.stageLabel === "semi" || opp.stageLabel === "final");
+        const cls = isUnreachedKnockout
+          ? "hidden"
+          : result === "win"
+            ? "win"
+            : result === "loss"
+              ? "loss"
+              : played
+                ? "tied"
+                : i === history.length
+                  ? "next"
+                  : "pending";
         return (
           <li key={i} className={`career-ladder-item ${cls}`}>
             <span className="career-ladder-stage">{stageBadge(opp.stageLabel)}</span>
-            <span className="career-ladder-nation">{opp.nation}</span>
-            <span className="career-ladder-diff dim-text">{opp.difficulty}</span>
+            <span className="career-ladder-nation">
+              {isUnreachedKnockout ? "???" : opp.nation}
+            </span>
+            <span className="career-ladder-diff dim-text">
+              {isUnreachedKnockout ? "—" : opp.difficulty}
+            </span>
             {result && <span className={`career-ladder-result ${result}`}>{result === "win" ? "WON" : result === "loss" ? "LOST" : "TIE"}</span>}
             {!result && i === history.length && <span className="career-ladder-result next">NEXT</span>}
           </li>

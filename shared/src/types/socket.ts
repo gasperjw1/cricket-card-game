@@ -1,4 +1,5 @@
 import type { MatchFormat } from "../constants.js";
+import type { Nation } from "./cards.js";
 import type {
   BallResult,
   BallSelection,
@@ -7,6 +8,14 @@ import type {
   PrivatePlayerView,
   PublicMatchState,
 } from "./game.js";
+
+/** Card ids for the player's pre-built deck in WC career mode. The
+ *  server resolves these against the global CARDS roster — only valid
+ *  ids accepted, anything missing falls back to the auto-build path. */
+export interface CustomPlayerDeck {
+  battingDeck: string[];
+  bowlingDeck: string[];
+}
 
 /**
  * Socket event contracts. Both client and server import these so the wire
@@ -46,6 +55,16 @@ export interface ClientToServerEvents {
       abbreviation: string;
       difficulty: BotDifficulty;
       format?: MatchFormat;
+      /** WC career mode only — client-supplied deck. Server validates
+       *  each id; missing ids are filtered out and the deck is topped up
+       *  via the standard build path. */
+      playerDeck?: CustomPlayerDeck;
+      /** WC career mode only — force the bot to be a specific nation
+       *  (the WC opponent for this match). When omitted, the server
+       *  picks at random. */
+      botNation?: Nation;
+      /** Bot's display name override (e.g. "TEAM AUSTRALIA"). */
+      botName?: string;
     },
     ack: (res: { inviteCode: string } & LobbyCredentials) => void,
   ) => void;

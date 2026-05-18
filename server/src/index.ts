@@ -144,13 +144,14 @@ io.on("connection", (socket) => {
     );
   });
 
-  socket.on("match:create-bot", ({ displayName, abbreviation, difficulty, format }, ack) => {
+  socket.on("match:create-bot", ({ displayName, abbreviation, difficulty, format, playerDeck, botNation, botName }, ack) => {
     const { match, playerToken } = registry.createBotMatch(
       displayName,
       abbreviation,
       difficulty,
       socket.id,
       format,
+      { playerDeck, botNation, botName },
     );
     socket.join(matchRoom(match.matchId));
     ack({

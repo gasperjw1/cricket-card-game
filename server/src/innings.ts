@@ -74,17 +74,25 @@ export interface InningsCallbacks {
  */
 export function startInnings1(match: ServerMatch, cb: InningsCallbacks): void {
   if (!match.coinToss?.battingSlot) return;
-  // Each player's deck is built independently. Bots get a themed
-  // single-nation deck (own 13 + associate Silvers) when their nation
-  // is a Test nation; Associate-nation bots and humans get a random
-  // multi-nation deck.
+  // Each player's deck is built independently:
+  //  - Bots: themed single-nation deck (own roster + associate Silvers)
+  //    when nation is a Test nation; random multi-nation otherwise.
+  //  - Humans: random multi-nation pool, UNLESS the client supplied a
+  //    custom deck (WC career mode). Custom deck is validated and any
+  //    missing card ids get filled in from the auto-build path.
+  const aCustom = !match.players.A.isBot ? match.playerCustomDeck : null;
+  const bCustom = !match.players.B?.isBot ? match.playerCustomDeck : null;
   match.decks = {
-    A: makePlayerDecks(match.format, {
-      botNation: match.players.A.isBot ? match.players.A.botNation : null,
-    }),
-    B: makePlayerDecks(match.format, {
-      botNation: match.players.B?.isBot ? match.players.B.botNation : null,
-    }),
+    A: aCustom
+      ? buildPlayerDecksFromCustom(match.format, aCustom)
+      : makePlayerDecks(match.format, {
+          botNation: match.players.A.isBot ? match.players.A.botNation : null,
+        }),
+    B: bCustom
+      ? buildPlayerDecksFromCustom(match.format, bCustom)
+      : makePlayerDecks(match.format, {
+          botNation: match.players.B?.isBot ? match.players.B.botNation : null,
+        }),
   };
   const battingSlot = match.coinToss.battingSlot;
   const bowlingSlot: PlayerSlot = battingSlot === "A" ? "B" : "A";
@@ -853,6 +861,67 @@ function makePlayerDecks(
     hand: [],
     discard: [],
   };
+}
+
+/**
+ * Build the player's decks from a client-supplied card-id list (WC
+ * career mode). Each id is resolved to a card from the global roster.
+ * Unknown ids are dropped; any shortfall is filled by the standard
+ * tier-based build so the deck always reaches format.deckSize (the
+ * engine assumes it).
+ */
+function buildPlayerDecksFromCustom(
+  format: MatchFormat,
+  custom: { battingDeck: string[]; bowlingDeck: string[] },
+): ServerDecks {
+  return {
+    battingDeck: resolveAndTopUp(format, "batting", custom.battingDeck),
+    bowlingDeck: resolveAndTopUp(format, "bowling", custom.bowlingDeck),
+    hand: [],
+    discard: [],
+  };
+}
+
+function resolveAndTopUp(
+  format: MatchFormat,
+  role: "batting" | "bowling",
+  ids: string[],
+): AnyCard[] {
+  const fmt = MATCH_FORMATS[format];
+  const allById = new Map<string, AnyCard>();
+  for (const c of CARDS.batsmen) allById.set(c.id, c);
+  for (const c of CARDS.bowlers) allById.set(c.id, c);
+  for (const c of CARDS.situations) allById.set(c.id, c);
+  // Resolve client ids (preserves duplicates — situations can repeat).
+  // Filter to cards valid for this deck role.
+  const resolved: AnyCard[] = [];
+  for (const id of ids) {
+    const card = allById.get(id);
+    if (!card) continue;
+    if (card.kind === "situation" && card.deck !== role) continue;
+    if (card.kind === "batsman" && role !== "batting") continue;
+    if (card.kind === "bowler" && role !== "bowling") continue;
+    resolved.push(card);
+  }
+  // Top up if the client's deck is short. Use the standard build pool
+  // (avoiding already-used non-situation cards by id).
+  if (resolved.length < fmt.deckSize) {
+    const used = new Set(resolved.filter((c) => c.kind !== "situation").map((c) => c.id));
+    const filler = buildDeck(format, role, null).filter(
+      (c) => !used.has(c.id),
+    );
+    while (resolved.length < fmt.deckSize && filler.length > 0) {
+      resolved.push(filler.shift()!);
+    }
+  }
+  // Truncate if client's deck is too long.
+  while (resolved.length > fmt.deckSize) resolved.pop();
+  // Shuffle so the play order isn't the client's submission order.
+  for (let i = resolved.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [resolved[i], resolved[j]] = [resolved[j]!, resolved[i]!];
+  }
+  return resolved;
 }
 
 /** Test nations are the 12 with full rosters. Associate nations have

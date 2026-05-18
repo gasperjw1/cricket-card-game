@@ -54,8 +54,9 @@ export interface BotIdentity {
   abbreviation: string;
 }
 
-export function pickBotIdentity(): BotIdentity {
+export function pickBotIdentity(forcedNation?: Nation): BotIdentity {
   const name = BOT_NAMES[Math.floor(Math.random() * BOT_NAMES.length)]!;
-  const nation = ALL_NATIONS[Math.floor(Math.random() * ALL_NATIONS.length)]!;
+  const nation = forcedNation
+    ?? ALL_NATIONS[Math.floor(Math.random() * ALL_NATIONS.length)]!;
   return { name, nation, abbreviation: NATION_CODES[nation] };
 }

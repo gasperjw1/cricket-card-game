@@ -98,7 +98,10 @@ export function HomeScreen({ client }: Props) {
   if (mode === "career") {
     return (
       <Suspense fallback={<main><h1>🏆 World Cup</h1><p className="dim-text">Loading…</p></main>}>
-        <CareerHomeScreen onBack={() => setMode("menu")} />
+        <CareerHomeScreen
+          onBack={() => setMode("menu")}
+          client={client}
+        />
       </Suspense>
     );
   }

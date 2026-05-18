@@ -70,6 +70,14 @@ export interface MatchClient {
     abbreviation: string,
     difficulty: import("@swipe-sixer/shared").BotDifficulty,
     format?: import("@swipe-sixer/shared").MatchFormat,
+    opts?: {
+      /** WC career mode: client-supplied deck (player slot only). */
+      playerDeck?: { battingDeck: string[]; bowlingDeck: string[] };
+      /** Lock the bot to a specific nation (WC opponent). */
+      botNation?: import("@swipe-sixer/shared").Nation;
+      /** Override the bot's display name (e.g. "TEAM AUSTRALIA"). */
+      botName?: string;
+    },
   ) => Promise<void>;
   joinMatch: (
     inviteCode: string,
@@ -234,12 +242,25 @@ export function useMatchClient(): MatchClient {
     abbreviation: string,
     difficulty: import("@swipe-sixer/shared").BotDifficulty,
     format?: import("@swipe-sixer/shared").MatchFormat,
+    opts?: {
+      playerDeck?: { battingDeck: string[]; bowlingDeck: string[] };
+      botNation?: import("@swipe-sixer/shared").Nation;
+      botName?: string;
+    },
   ): Promise<void> => {
     setErrorMessage(null);
     return new Promise<void>((resolve) => {
       socket.emit(
         "match:create-bot",
-        { displayName, abbreviation, difficulty, format },
+        {
+          displayName,
+          abbreviation,
+          difficulty,
+          format,
+          playerDeck: opts?.playerDeck,
+          botNation: opts?.botNation,
+          botName: opts?.botName,
+        },
         (res) => {
           persistSession(res.matchId, res.playerToken);
           sessionRef.current = { matchId: res.matchId, playerToken: res.playerToken };

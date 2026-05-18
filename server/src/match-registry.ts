@@ -95,6 +95,9 @@ export interface ServerMatch {
   phase: PublicMatchState["phase"];
   players: { A: ServerPlayer; B: ServerPlayer | null };
   createdAt: number;
+  /** WC career mode only — the client's pre-built deck (card ids).
+   *  Consumed at startInnings1; ignored after. null for non-career matches. */
+  playerCustomDeck: { battingDeck: string[]; bowlingDeck: string[] } | null;
   coinToss: CoinTossState | null;
   /** Innings flow state. Populated when the first innings starts. */
   decks: { A: ServerDecks; B: ServerDecks } | null;
@@ -164,6 +167,7 @@ export class MatchRegistry {
       matchId,
       inviteCode,
       format,
+      playerCustomDeck: null,
       phase: "lobby",
       players: {
         A: {
@@ -209,6 +213,14 @@ export class MatchRegistry {
     difficulty: BotDifficulty,
     socketId: string,
     format: MatchFormat = DEFAULT_MATCH_FORMAT,
+    opts?: {
+      /** WC career mode: client-supplied custom deck for the player. */
+      playerDeck?: { battingDeck: string[]; bowlingDeck: string[] };
+      /** Force the bot's nation (WC career uses this to lock the opponent). */
+      botNation?: import("@swipe-sixer/shared").Nation;
+      /** Override bot display name (e.g. "TEAM AUSTRALIA"). */
+      botName?: string;
+    },
   ): { match: ServerMatch; playerToken: string } {
     const { match, playerToken } = this.createMatch(
       displayName,
@@ -216,10 +228,14 @@ export class MatchRegistry {
       socketId,
       format,
     );
-    const bot = pickBotIdentity();
+    const bot = pickBotIdentity(opts?.botNation);
+    // Attach the custom player deck to the match so the innings startup
+    // path picks it up. Same shape as ServerDecks but with card IDs only;
+    // resolution happens at startInnings1 time.
+    match.playerCustomDeck = opts?.playerDeck ?? null;
     match.players.B = {
       slot: "B",
-      displayName: bot.name,
+      displayName: opts?.botName ?? bot.name,
       abbreviation: bot.abbreviation,
       playerToken: randomUUID(),  // never sent to a socket; placeholder
       socketId: null,

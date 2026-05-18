@@ -125,12 +125,18 @@ export interface PermanentCollection {
 export interface CareerSave {
   permanentCollection: PermanentCollection;
   currentRun: WCRun | null;
+  /** True when the user has kicked off a WC match and the actual
+   *  gameplay (InningsScreen) is in progress. The match-over screen
+   *  reads this to know whether to route into pack-opening (true) or
+   *  back to home (false). Cleared on match completion. */
+  wcMatchInFlight: boolean;
   savedAt: number;
 }
 
 const DEFAULTS: CareerSave = {
   permanentCollection: { cards: {}, trophies: 0, runsPlayed: 0 },
   currentRun: null,
+  wcMatchInFlight: false,
   savedAt: 0,
 };
 
@@ -154,6 +160,10 @@ function load(): CareerSave {
         },
       },
       currentRun: parsed.currentRun ?? null,
+      // Boot-time hygiene: if we restart with a stale wcMatchInFlight flag
+      // (user refreshed during a match), the matchState is gone — drop the
+      // flag so the UI doesn't expect a pack to open.
+      wcMatchInFlight: false,
       savedAt: parsed.savedAt ?? 0,
     };
   } catch {
@@ -247,6 +257,23 @@ export function setDraft(draft: DraftedDeck): void {
 export function setDeck(deck: RunDeck): void {
   if (!current.currentRun) return;
   current.currentRun.deck = deck;
+  persist();
+  notify();
+}
+
+/** Flag that a WC match has been kicked off — the actual gameplay
+ *  (InningsScreen) is now active. The match-over screen reads this to
+ *  route into pack-opening instead of back to home. */
+export function startWCMatch(): void {
+  current.wcMatchInFlight = true;
+  persist();
+  notify();
+}
+
+/** Clear the in-flight flag — called once the post-match pack is opened
+ *  (or skipped on a loss). */
+export function endWCMatch(): void {
+  current.wcMatchInFlight = false;
   persist();
   notify();
 }
