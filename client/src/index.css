@@ -1003,6 +1003,245 @@ h1 {
   border-color: #c9a227;
 }
 
+/* ───── Career mode (World Cup) ─────────────────────────────────────
+   Three screens share visual language:
+     1. CareerHomeScreen — entry / ladder view / trophy / loss
+     2. DraftScreen — 5-round draft, grid of cards
+     3. DeckManagementScreen — inventory ↔ deck swap UI
+*/
+.career-block {
+  margin: 1.5rem 0;
+  padding: 1rem;
+  background: #11181f;
+  border: 1px solid #2a3441;
+  border-radius: 10px;
+}
+.career-stats-footer {
+  margin-top: 2rem;
+  text-align: center;
+  font-size: 0.78rem;
+  color: #6e7989;
+  border-top: 1px solid #2a3441;
+  padding-top: 1rem;
+}
+.career-stage-heading {
+  font-size: 0.95rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #d6dde6;
+  margin: 0 0 0.75rem 0;
+}
+.career-next-match {
+  margin-top: 1rem;
+  padding: 0.9rem;
+  background: #1c2530;
+  border: 1px solid #3a475a;
+  border-radius: 8px;
+}
+.career-next-headline {
+  margin-bottom: 0.75rem;
+  font-size: 0.95rem;
+}
+.career-action-row {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+.career-action-row .btn {
+  flex: 1;
+  min-width: 130px;
+}
+
+/* Trophy + loss states */
+.career-won {
+  text-align: center;
+  background: linear-gradient(135deg, #1d3a23 0%, #16111f 100%);
+  border-color: #f5d76e;
+}
+.career-trophy-emoji {
+  font-size: 4rem;
+  line-height: 1;
+  margin-bottom: 0.5rem;
+}
+.career-lost {
+  background: linear-gradient(135deg, #3a1d2c 0%, #16111f 100%);
+  border-color: #8a2c4a;
+}
+
+/* Ladder */
+.career-ladder {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+.career-ladder-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.4rem 0.6rem;
+  border-radius: 6px;
+  background: #1c2530;
+  border: 1px solid #2a3441;
+  font-size: 0.85rem;
+}
+.career-ladder-item.next {
+  border-color: #2563eb;
+  background: #1c2a3a;
+}
+.career-ladder-item.win {
+  background: #1d3a23;
+}
+.career-ladder-item.loss {
+  background: #3a1d2c;
+}
+.career-ladder-stage {
+  display: inline-block;
+  min-width: 28px;
+  padding: 0.1rem 0.3rem;
+  border-radius: 4px;
+  background: #2a3441;
+  color: #d6dde6;
+  font-size: 0.65rem;
+  font-weight: 800;
+  text-align: center;
+}
+.career-ladder-nation {
+  flex: 1;
+  font-weight: 600;
+}
+.career-ladder-diff {
+  font-size: 0.72rem;
+}
+.career-ladder-result {
+  font-size: 0.65rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  padding: 0.1rem 0.4rem;
+  border-radius: 4px;
+}
+.career-ladder-result.win {
+  background: #1d8a3a;
+  color: #ffffff;
+}
+.career-ladder-result.loss {
+  background: #b91c1c;
+  color: #ffffff;
+}
+.career-ladder-result.next {
+  background: #2563eb;
+  color: #ffffff;
+}
+
+/* Draft */
+.draft-header {
+  margin-bottom: 1rem;
+}
+.draft-header h1 {
+  margin: 0.3rem 0;
+}
+.draft-counter {
+  margin-top: 0.5rem;
+  font-size: 0.85rem;
+  color: #6aa3ff;
+  font-weight: 600;
+}
+.draft-subhead {
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #8a939c;
+}
+.draft-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 0.6rem;
+}
+.draft-slot {
+  cursor: pointer;
+  transition: transform 0.12s, box-shadow 0.12s;
+  border-radius: 10px;
+  position: relative;
+}
+.draft-slot:hover {
+  transform: translateY(-2px);
+}
+.draft-slot.selected {
+  box-shadow: 0 0 0 3px #2563eb, 0 4px 12px rgba(37, 99, 235, 0.4);
+}
+.draft-actions {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 1.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid #2a3441;
+  position: sticky;
+  bottom: 0;
+  background: #0f1419;
+  z-index: 5;
+}
+.draft-actions .btn {
+  flex: 1;
+}
+
+/* Deck management */
+.deck-mgmt-tabs {
+  display: flex;
+  gap: 0.4rem;
+  margin: 1rem 0;
+}
+.deck-mgmt-tabs .btn.active {
+  background: #2563eb;
+  color: #ffffff;
+  border-color: #2563eb;
+}
+.deck-mgmt-section {
+  margin-bottom: 1.5rem;
+}
+.deck-mgmt-section-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+.deck-mgmt-section-head h2 {
+  margin: 0;
+  font-size: 1rem;
+}
+.deck-mgmt-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 0.5rem;
+}
+.deck-mgmt-slot {
+  cursor: default;
+  transition: transform 0.12s, box-shadow 0.12s;
+  border-radius: 10px;
+}
+.deck-mgmt-slot.inventory {
+  cursor: pointer;
+}
+.deck-mgmt-slot.inventory:hover {
+  transform: translateY(-2px);
+}
+.deck-mgmt-slot.inventory.picked {
+  box-shadow: 0 0 0 3px #2563eb, 0 4px 12px rgba(37, 99, 235, 0.4);
+}
+.deck-mgmt-slot.swap-target {
+  cursor: pointer;
+  box-shadow: 0 0 0 3px #1d8a3a, 0 4px 12px rgba(29, 138, 58, 0.4);
+  animation: swap-pulse 1.5s ease-in-out infinite;
+}
+@keyframes swap-pulse {
+  0%, 100% { box-shadow: 0 0 0 3px #1d8a3a, 0 4px 12px rgba(29, 138, 58, 0.4); }
+  50% { box-shadow: 0 0 0 5px #2db84b, 0 6px 16px rgba(45, 184, 75, 0.6); }
+}
+
 /* ───── Home-screen disclaimer + About modal ───── */
 .home-disclaimer {
   margin-top: 1.25rem;

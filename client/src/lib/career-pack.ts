@@ -122,8 +122,9 @@ export interface PackContents {
 
 /**
  * Generate a per-win pack. 6 slots, each independently rolled by
- * stage-tuned rarity. Always includes ≥1 batter, ≥1 bowler, ≥1
- * situation card so the player has a meaningful 2-of-6 choice.
+ * stage-tuned rarity. Guarantees ≥1 batter and ≥1 bowler so packs
+ * aren't degenerate single-role piles. Situation cards are NOT
+ * guaranteed — they appear ~10% per slot organically.
  */
 export function generatePerWinPack(
   stage: "group" | "semi",
@@ -137,13 +138,13 @@ export function generatePerWinPack(
   const slots: AnyCard[] = [];
   const used = new Set(excludeIds);
 
-  // Guarantee diversity: 1 batter, 1 bowler, 1 situation first.
-  push(slots, used, pickByRoll(eliteChance, goldChance, sitChance, "batter") ?? randomBatter(used));
-  push(slots, used, pickByRoll(eliteChance, goldChance, sitChance, "bowler") ?? randomBowler(used));
-  push(slots, used, randomSituation(used));
+  // Guarantee diversity: 1 batter and 1 bowler at minimum. The kind
+  // is forced; the tier still rolls (no situation card on these slots).
+  push(slots, used, pickByRoll(eliteChance, goldChance, 0, "batter") ?? randomBatter(used));
+  push(slots, used, pickByRoll(eliteChance, goldChance, 0, "bowler") ?? randomBowler(used));
 
-  // Remaining 3 slots: any kind.
-  for (let i = 0; i < 3; i++) {
+  // Remaining 4 slots: any kind, situations roll naturally.
+  for (let i = 0; i < 4; i++) {
     const r = Math.random();
     let card: AnyCard | null = null;
     if (r < sitChance) card = randomSituation(used);

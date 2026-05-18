@@ -5,6 +5,12 @@ import { SettingsPanel } from "../components/SettingsPanel.tsx";
 import { initSfx } from "../lib/sfx.ts";
 import type { MatchClient } from "../state.ts";
 
+// Career mode lazy-loaded — adds ~30KB of UI not needed on the home
+// screen unless the player taps "World Cup".
+const CareerHomeScreen = lazy(() =>
+  import("./CareerHomeScreen.tsx").then((m) => ({ default: m.CareerHomeScreen })),
+);
+
 // Lazy-loaded so the ~24KB of card-roster data the guide imports isn't
 // in the main bundle — only fetched when the user opens "How to play".
 const HowToPlayScreen = lazy(() => import("./HowToPlayScreen.tsx"));
@@ -13,7 +19,7 @@ interface Props {
   client: MatchClient;
 }
 
-type Mode = "menu" | "vs-cpu" | "create" | "join" | "how-to-play" | "about";
+type Mode = "menu" | "vs-cpu" | "create" | "join" | "how-to-play" | "about" | "career";
 type SettingsMode = "open" | "closed";
 
 /** Derive a default 4-char abbreviation from a display name. */
@@ -89,6 +95,14 @@ export function HomeScreen({ client }: Props) {
     );
   }
 
+  if (mode === "career") {
+    return (
+      <Suspense fallback={<main><h1>🏆 World Cup</h1><p className="dim-text">Loading…</p></main>}>
+        <CareerHomeScreen onBack={() => setMode("menu")} />
+      </Suspense>
+    );
+  }
+
   return (
     <main>
       <h1>Swipe Sixer</h1>
@@ -113,6 +127,12 @@ export function HomeScreen({ client }: Props) {
 
       {mode === "menu" && (
         <div className="menu">
+          <button
+            className="btn primary big"
+            onClick={() => { onAnyPrimary(); setMode("career"); }}
+          >
+            🏆 World Cup
+          </button>
           <button
             className="btn primary big"
             disabled={!client.connected}
