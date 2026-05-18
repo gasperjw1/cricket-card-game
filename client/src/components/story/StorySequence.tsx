@@ -110,7 +110,7 @@ function StagePanel({
         <div className="story-batter">
           <StoryImage
             src={batterImageSrc(result, story)}
-            fallbackEmoji={story.isWicket ? "💥" : "🏏"}
+            fallbackEmoji={story.isWicket ? "💥" : story.isRunOut ? "🏃" : "🏏"}
             alt={batterCaption(result, story)}
           />
           <div className="story-caption">{batterCaption(result, story)}</div>
@@ -168,6 +168,11 @@ function StagePanel({
  *  dismissal image; for runs we show the shot image. */
 function batterImageSrc(result: BallResult, story: StoryState): string {
   const o = result.finalOutcome;
+  // Run-out: the ball was hit (show shot image); the dismissal came after
+  // while running — we'll use the run-out dismissal image at the result stage.
+  if (story.isRunOut && o.type === "runs") {
+    return SHOT_IMAGES[o.shotCategory];
+  }
   if (story.isWicket && o.type === "wicket") {
     return DISMISSAL_IMAGES[o.dismissalCategory];
   }
@@ -182,6 +187,7 @@ function batterImageSrc(result: BallResult, story: StoryState): string {
  *  outcomes (1, 2) and dots fall back to emoji. */
 function resultImageSrc(result: BallResult, story: StoryState): string {
   const o = result.finalOutcome;
+  if (story.isRunOut) return DISMISSAL_IMAGES["runout"];
   if (story.isWicket && o.type === "wicket") return SIGNAL_IMAGES.out;
   if (o.type === "runs" && o.value === 6) return SIGNAL_IMAGES.six;
   // For 1, 2, 4, dot — no signal image yet. Fall through to emoji.
@@ -190,6 +196,9 @@ function resultImageSrc(result: BallResult, story: StoryState): string {
 
 function batterCaption(result: BallResult, story: StoryState): string {
   const o = result.finalOutcome;
+  if (story.isRunOut && o.type === "runs") {
+    return `${o.shot} — running!`;
+  }
   if (story.isWicket && o.type === "wicket") {
     return `Out — ${o.mode}`;
   }
@@ -201,6 +210,8 @@ function batterCaption(result: BallResult, story: StoryState): string {
 
 function resultEmoji(result: BallResult, story: StoryState): string {
   const o = result.finalOutcome;
+  // Run-out: always the running figure, regardless of runs scored.
+  if (story.isRunOut) return "🏃";
   if (story.isWicket && o.type === "wicket") {
     switch (o.dismissalCategory) {
       case "bowled": return "🎯";
@@ -219,14 +230,27 @@ function resultEmoji(result: BallResult, story: StoryState): string {
       default: return "•";
     }
   }
+  // Lucky escape with byes/dot — use the escape emoji
+  if (story.hasLuckyEscape) return "🍀";
   return "•";
 }
 
 function resultCaption(result: BallResult, story: StoryState): string {
   const o = result.finalOutcome;
+  // Run-out: runs scored, but a wicket also fell.
+  if (story.isRunOut && o.type === "runs") {
+    return `RUN OUT — ${o.value} run${o.value === 1 ? "" : "s"}`;
+  }
   if (story.isWicket && o.type === "wicket") {
     return `WICKET — ${o.dismissalCategory.replace("-", " ")}`;
   }
   if (o.type === "runs") return `${o.value} run${o.value === 1 ? "" : "s"}`;
+  // Lucky escape with byes — show the escape label from the resolution trail.
+  if (story.hasLuckyEscape) {
+    const escapeStep = result.resolutionSteps.find(
+      (s) => s.kind === "lucky-escape" && s.applied,
+    );
+    return escapeStep?.label ?? "Lucky escape!";
+  }
   return "Dot ball";
 }

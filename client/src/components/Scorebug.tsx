@@ -317,7 +317,11 @@ function CompletedOverChip({ balls, index }: { balls: BallResult[]; index: numbe
   let runs = 0;
   let wickets = 0;
   for (const b of balls) {
-    if (b.finalOutcome.type === "runs") runs += b.finalOutcome.value;
+    if (b.finalOutcome.type === "runs") {
+      runs += b.finalOutcome.value;
+      // Run-out perk: runs scored AND a wicket fell.
+      if (b.finalOutcome.runOut) wickets += 1;
+    }
     // Wickets that were SAVED into byes/leg-byes don't count toward
     // the wicket tally — the extras already roll into `runs` below.
     else if (b.finalOutcome.type === "wicket") wickets += 1;
@@ -358,6 +362,13 @@ function BallCircle({ result }: { result: BallResult }) {
     className += " wicket";
     label = "W";
     tip = `Ball ${result.ballNumber}: WICKET — ${result.finalOutcome.mode}.`;
+  } else if (result.finalOutcome.type === "runs" && result.finalOutcome.runOut) {
+    // Run-out: runs were scored but a wicket also fell. Show as "W" with
+    // the run count in the tooltip so the over chip reads correctly.
+    const v = result.finalOutcome.value;
+    className += " wicket run-out";
+    label = "RO";
+    tip = `Ball ${result.ballNumber}: RUN OUT — ${v} run${v === 1 ? "" : "s"} scored.`;
   } else if (result.finalOutcome.type === "runs") {
     const v = result.finalOutcome.value;
     className += ` r-${v}`;

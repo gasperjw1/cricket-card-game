@@ -797,11 +797,18 @@ function FinalOutcome({
       </div>
     );
   } else if (outcome.type === "runs") {
+    const isRunOut = !!outcome.runOut;
     main = (
-      <div className={`final-outcome runs r-${outcome.value}`}>
-        <Tip text={`The batter scores ${outcome.value} run${outcome.value === 1 ? "" : "s"}.`}>
+      <div className={`final-outcome runs r-${outcome.value}${isRunOut ? " run-out" : ""}`}>
+        <Tip text={isRunOut
+          ? `Run out! ${outcome.value} run${outcome.value === 1 ? "" : "s"} scored before the dismissal.`
+          : `The batter scores ${outcome.value} run${outcome.value === 1 ? "" : "s"}.`
+        }>
           <span>
-            {outcome.value} run{outcome.value === 1 ? "" : "s"} — {outcome.shot}
+            {isRunOut
+              ? `RUN OUT — ${outcome.value} run${outcome.value === 1 ? "" : "s"} — ${outcome.shot}`
+              : `${outcome.value} run${outcome.value === 1 ? "" : "s"} — ${outcome.shot}`
+            }
           </span>
         </Tip>
       </div>
@@ -855,7 +862,7 @@ function FinalOutcome({
 }
 
 function fmtOutcome(o: BallOutcome): string {
-  if (o.type === "runs") return `${o.value}`;
+  if (o.type === "runs") return o.runOut ? `${o.value}+RO` : `${o.value}`;
   if (o.type === "wicket") return "WKT";
   return "·";
 }
@@ -1173,6 +1180,8 @@ function BallByBallLog(props: {
 
 function ballLogClass(b: BallResult): string {
   if (b.finalOutcome.type === "wicket") return "is-wicket";
+  // Run-out: runs scored but a wicket also fell — highlight same as wicket.
+  if (b.finalOutcome.type === "runs" && b.finalOutcome.runOut) return "is-wicket";
   if (b.finalOutcome.type === "runs" && b.finalOutcome.value >= 4) return "is-boundary";
   if (b.extrasNote === "byes" || b.extrasNote === "leg-byes") return "is-byes";
   if (b.finalOutcome.type === "dot" && b.extraRuns === 0) return "is-dot";
@@ -1195,6 +1204,9 @@ function ballLogOutcome(b: BallResult): string {
   }
   if (o.type === "runs") {
     const extras = b.extraRuns > 0 ? ` (+${b.extraRuns} ${extrasNoteLabel})` : "";
+    if (o.runOut) {
+      return `RUN OUT — ${o.value} (${o.shot})${extras}${rebowled}`;
+    }
     return `${o.value} (${o.shot})${extras}${rebowled}`;
   }
   // Dot ball — but check for byes/leg-byes that overturned a wicket.

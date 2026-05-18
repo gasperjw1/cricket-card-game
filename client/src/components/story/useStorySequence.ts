@@ -30,6 +30,10 @@ export interface StoryState {
   hasBiryani: boolean;
   hasDRS: boolean;
   isWicket: boolean;
+  /** True when the bowler run-out perk fired — runs scored but a wicket also fell. */
+  isRunOut: boolean;
+  /** True when a lucky escape turned a dismissal into byes/bat-runs. */
+  hasLuckyEscape: boolean;
 }
 
 /** Per-stage duration in milliseconds at "normal" speed.
@@ -71,6 +75,12 @@ export function useStorySequence(result: BallResult): StoryState {
   );
   const hasDRS = result.resolutionSteps.some((s) => s.kind === "drs-review");
   const isWicket = result.finalOutcome.type === "wicket";
+  /** Bowler run-out perk: outcome is still "runs" but a wicket fell too. */
+  const isRunOut = result.finalOutcome.type === "runs" && !!result.finalOutcome.runOut;
+  /** Lucky escape: a dismissal was converted into byes/bat-runs by the 30% escape. */
+  const hasLuckyEscape = result.resolutionSteps.some(
+    (s) => s.kind === "lucky-escape" && s.applied,
+  );
 
   // Build the plan. Most balls: pitch → bowler → batter → result.
   // Wide balls skip the batter shot (nothing to play).
@@ -89,7 +99,7 @@ export function useStorySequence(result: BallResult): StoryState {
   // Lock the result + flags in refs so the SFX side-effect doesn't
   // re-fire on parent re-renders (the closure would re-evaluate).
   const resultRef = useRef(result);
-  const flagsRef = useRef({ isDay5, hasNoBall, hasWide, isWicket });
+  const flagsRef = useRef({ isDay5, hasNoBall, hasWide, isWicket, isRunOut });
 
   useEffect(() => {
     if (currentIndex >= planRef.current.length) return;
@@ -118,6 +128,8 @@ export function useStorySequence(result: BallResult): StoryState {
     hasBiryani,
     hasDRS,
     isWicket,
+    isRunOut,
+    hasLuckyEscape,
   };
 }
 
@@ -125,7 +137,7 @@ export function useStorySequence(result: BallResult): StoryState {
 function sfxForStage(
   stage: StoryStage,
   result: BallResult,
-  flags: { isDay5: boolean; hasNoBall: boolean; hasWide: boolean; isWicket: boolean },
+  flags: { isDay5: boolean; hasNoBall: boolean; hasWide: boolean; isWicket: boolean; isRunOut: boolean },
 ): SfxName[] | null {
   switch (stage) {
     case "pitch":
@@ -144,7 +156,7 @@ function sfxForStage(
           }
         }
       }
-      // Runs: pick light/heavy by value
+      // Runs: pick light/heavy by value (run-outs still hit the bat first)
       if (result.finalOutcome.type === "runs") {
         return result.finalOutcome.value >= 4
           ? ["bat-thwack-heavy"]
@@ -152,7 +164,7 @@ function sfxForStage(
       }
       return ["bat-thwack-light"];  // dot ball thunk
     case "result":
-      if (flags.isWicket) return ["crowd-gasp"];
+      if (flags.isWicket || flags.isRunOut) return ["crowd-gasp"];
       if (result.finalOutcome.type === "runs" && result.finalOutcome.value >= 4) {
         return ["crowd-cheer"];
       }
