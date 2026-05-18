@@ -770,14 +770,21 @@ function FinalOutcome({
   extrasNote: string | null;
   rebowled: boolean;
 }) {
+  const isByes = extrasNote === "byes" || extrasNote === "leg-byes";
   const extrasLabel =
-    extrasNote === "no-ball" ? "No Ball" : extrasNote === "wide" ? "Wide" : "extras";
+    extrasNote === "no-ball" ? "No Ball"
+      : extrasNote === "wide" ? "Wide"
+        : extrasNote === "byes" ? "byes"
+          : extrasNote === "leg-byes" ? "leg byes"
+            : "extras";
   const extrasTip =
     extrasNote === "no-ball"
       ? "No Ball: +1 extra run and the ball is re-bowled (doesn't count against the over)."
       : extrasNote === "wide"
         ? "Wide: +1 extra run and the ball is re-bowled (doesn't count against the over)."
-        : "Extras awarded on top of the outcome runs.";
+        : isByes
+          ? "Wicket was overturned by a bye / leg-bye save — the ball counts, runs added as extras."
+          : "Extras awarded on top of the outcome runs.";
 
   let main: JSX.Element;
   if (outcome.type === "wicket") {
@@ -798,6 +805,18 @@ function FinalOutcome({
         </Tip>
       </div>
     );
+  } else if (isByes) {
+    // Wicket was saved → outcome is dot but extras carry the byes.
+    // Show this prominently instead of a misleading "Dot ball."
+    main = (
+      <div className="final-outcome byes">
+        <Tip text="A wicket-save save converted the dismissal into byes / leg-byes. The ball counts toward the over; the extras add to the score.">
+          <span>
+            {extras} {extrasLabel.toUpperCase()} — wicket overturned
+          </span>
+        </Tip>
+      </div>
+    );
   } else {
     main = (
       <div className="final-outcome dot">
@@ -808,12 +827,15 @@ function FinalOutcome({
     );
   }
 
+  // Byes are already inlined in the main banner — don't duplicate them
+  // in the extras row.
+  const showExtrasPill = extras > 0 && !isByes;
   return (
     <>
       {main}
-      {(extras > 0 || rebowled) && (
+      {(showExtrasPill || rebowled) && (
         <div className="extras-row">
-          {extras > 0 && (
+          {showExtrasPill && (
             <Tip text={extrasTip}>
               <span className="extras-pill">
                 +{extras} {extrasLabel}
@@ -1132,16 +1154,34 @@ function BallByBallLog(props: {
 function ballLogClass(b: BallResult): string {
   if (b.finalOutcome.type === "wicket") return "is-wicket";
   if (b.finalOutcome.type === "runs" && b.finalOutcome.value >= 4) return "is-boundary";
+  if (b.extrasNote === "byes" || b.extrasNote === "leg-byes") return "is-byes";
   if (b.finalOutcome.type === "dot" && b.extraRuns === 0) return "is-dot";
   return "";
 }
 
 function ballLogOutcome(b: BallResult): string {
   const o = b.finalOutcome;
-  const extras = b.extraRuns > 0 ? ` (+${b.extraRuns} ${b.extrasNote ?? "extras"})` : "";
+  const isByes = b.extrasNote === "byes" || b.extrasNote === "leg-byes";
+  const extrasNoteLabel =
+    b.extrasNote === "byes" ? "byes"
+      : b.extrasNote === "leg-byes" ? "leg byes"
+        : b.extrasNote === "no-ball" ? "no-ball"
+          : b.extrasNote === "wide" ? "wide"
+            : "extras";
   const rebowled = b.rebowled ? " 🔁" : "";
-  if (o.type === "wicket") return `WICKET — ${o.dismissalCategory.replace("-", " ")}${extras}${rebowled}`;
-  if (o.type === "runs") return `${o.value} (${o.shot})${extras}${rebowled}`;
+  if (o.type === "wicket") {
+    const extras = b.extraRuns > 0 ? ` (+${b.extraRuns} ${extrasNoteLabel})` : "";
+    return `WICKET — ${o.dismissalCategory.replace("-", " ")}${extras}${rebowled}`;
+  }
+  if (o.type === "runs") {
+    const extras = b.extraRuns > 0 ? ` (+${b.extraRuns} ${extrasNoteLabel})` : "";
+    return `${o.value} (${o.shot})${extras}${rebowled}`;
+  }
+  // Dot ball — but check for byes/leg-byes that overturned a wicket.
+  if (isByes) {
+    return `${b.extraRuns} ${extrasNoteLabel} (wicket saved)${rebowled}`;
+  }
+  const extras = b.extraRuns > 0 ? ` (+${b.extraRuns} ${extrasNoteLabel})` : "";
   return `dot${extras}${rebowled}`;
 }
 

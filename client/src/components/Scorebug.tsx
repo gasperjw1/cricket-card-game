@@ -277,6 +277,8 @@ function CompletedOverChip({ balls, index }: { balls: BallResult[]; index: numbe
   let wickets = 0;
   for (const b of balls) {
     if (b.finalOutcome.type === "runs") runs += b.finalOutcome.value;
+    // Wickets that were SAVED into byes/leg-byes don't count toward
+    // the wicket tally — the extras already roll into `runs` below.
     else if (b.finalOutcome.type === "wicket") wickets += 1;
     runs += b.extraRuns;
   }
@@ -320,6 +322,14 @@ function BallCircle({ result }: { result: BallResult }) {
     className += ` r-${v}`;
     label = String(v);
     tip = `Ball ${result.ballNumber}: ${v} run${v === 1 ? "" : "s"} (${result.finalOutcome.shot}).`;
+  } else if (result.extrasNote === "byes" || result.extrasNote === "leg-byes") {
+    // Wicket-save fired — outcome is dot but extraRuns went to byes /
+    // leg byes. Show as "2b" / "4lb" with a tier-coloured background
+    // so the player can see the save in the ball log.
+    const isLb = result.extrasNote === "leg-byes";
+    className += isLb ? " lb" : " by";
+    label = `${result.extraRuns}${isLb ? "lb" : "b"}`;
+    tip = `Ball ${result.ballNumber}: ${result.extraRuns} ${isLb ? "leg byes" : "byes"} (wicket overturned).`;
   } else {
     className += " dot";
     label = "•";

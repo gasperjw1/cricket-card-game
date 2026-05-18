@@ -1017,6 +1017,22 @@ h1 {
   color: #11254e;
   border-color: #c9a227;
 }
+/* Byes / leg-byes — wicket-save outcomes. Distinct cool tones so the
+   player sees "wicket saved" at a glance vs a plain dot. */
+.ball-circle.by {
+  background: #1c4a3d;
+  color: #b9ecc8;
+  border-color: #2d6a55;
+  font-size: 0.55rem;
+  letter-spacing: 0;
+}
+.ball-circle.lb {
+  background: #4a3d1c;
+  color: #ecd9b9;
+  border-color: #6a552d;
+  font-size: 0.55rem;
+  letter-spacing: 0;
+}
 
 /* ───── Career mode (World Cup) ─────────────────────────────────────
    Three screens share visual language:
@@ -2428,6 +2444,7 @@ h1 {
 .final-outcome.runs.r-4 { background: #4ec3f5; color: #0f1419; }
 .final-outcome.runs.r-6 { background: #6ee07a; color: #0f1419; }
 .final-outcome.wicket { background: #b91c1c; color: #fff; }
+.final-outcome.byes { background: #1c4a3d; color: #b9ecc8; border: 1px solid #2d6a55; }
 
 /* ───── Match-over scorecard ───── */
 .scorecard {
@@ -2575,6 +2592,10 @@ h1 {
 }
 .ball-log-item.is-dot {
   opacity: 0.65;
+}
+.ball-log-item.is-byes {
+  border-left-color: #b9ecc8;
+  background: #122922;
 }
 .ball-log-num {
   font-family: ui-monospace, "SF Mono", Menlo, monospace;
