@@ -914,6 +914,25 @@ h1 {
   letter-spacing: 0.04em;
   min-width: 72px;
 }
+@media (min-width: 540px) {
+  /* Bigger score box on desktop — the extra width lets us be bolder */
+  .scorebug-score {
+    font-size: 1.35rem;
+    min-width: 90px;
+  }
+}
+/* Phase-based tints on the teams strip — subtle shift so the scorebug
+   "feels" different at death vs powerplay without being garish.
+   data-phase is set by Scorebug.tsx whenever an innings is in flight. */
+.scorebug[data-phase="powerplay"] .scorebug-teams {
+  background: linear-gradient(180deg, #1c3a78 0%, #11254e 100%);
+}
+.scorebug[data-phase="middle"] .scorebug-teams {
+  background: linear-gradient(180deg, #1c4a2a 0%, #112e1a 100%);
+}
+.scorebug[data-phase="death"] .scorebug-teams {
+  background: linear-gradient(180deg, #4a1c1c 0%, #2e1010 100%);
+}
 .scorebug-score .sep {
   color: #11254e;
   margin: 0 0.05rem;
@@ -1051,6 +1070,16 @@ h1 {
   border-color: #6a552d;
   font-size: 0.55rem;
   letter-spacing: 0;
+}
+/* Run-out: burnt-orange — wicket (red) + runs scored (not pure red).
+   Matches the "RO" label added by BallCircle in Scorebug.tsx. */
+.ball-circle.run-out {
+  background: #7c2d12;
+  color: #fde8d8;
+  border-color: #9a3412;
+  font-size: 0.6rem;
+  letter-spacing: 0;
+  box-shadow: 0 0 0 2px rgba(253, 186, 116, 0.25);
 }
 
 /* ───── Career mode (World Cup) ─────────────────────────────────────
@@ -2317,6 +2346,7 @@ h1 {
   .hand-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
+    align-items: stretch; /* each cell stretches to the tallest sibling */
     overflow: visible;
     margin: 0;
     padding: 0;
@@ -2325,6 +2355,11 @@ h1 {
   .hand-slot {
     flex: initial;
     scroll-snap-align: none;
+  }
+  /* Card fills the hand-slot vertically so all 4 cards in a row are the
+     same height regardless of content length (different stat blocks, etc) */
+  .hand-slot .card-hand {
+    flex: 1 1 auto;
   }
 }
 
@@ -2443,8 +2478,12 @@ h1 {
   position: fixed;
   inset: 0;
   background: rgba(0, 0, 0, 0.85);
-  display: grid;
-  place-items: center;
+  /* Use flex instead of grid so the inner panel can scroll on mobile
+     when content is taller than the viewport. grid + place-items:center
+     centres the item in the grid track — which doesn't scroll. */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   z-index: 60;
   padding: 1rem;
   overflow-y: auto;
@@ -2460,6 +2499,9 @@ h1 {
   flex-direction: column;
   gap: 1rem;
   align-items: center;
+  /* margin:auto centres vertically when the overlay has spare height;
+     scrolls from the top when content overflows. */
+  margin: auto;
 }
 /* Reveal stacks vertically: bowler on top, batter below, then resolution
    trail beneath. Same on mobile and desktop — stacking matches the real
@@ -2637,6 +2679,28 @@ h1 {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
+}
+/* "On the table" — make You/vs/Opponent side-by-side instead of stacked.
+   Saves ~40% vertical space on mobile so the swap picker fits the viewport. */
+.swap-table .reveal-cards {
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 0.5rem;
+  max-width: none;
+}
+.swap-table .reveal-cards > div {
+  flex: 1;
+  min-width: 0;
+}
+.swap-table .reveal-vs {
+  flex: 0 0 auto;
+  align-self: center;
+  padding: 0 0.2rem;
+}
+/* Compact font inside swap-table cards — they're narrower in the 3-col layout */
+.swap-table .card-hand {
+  font-size: 0.68rem;
 }
 .swap-meta {
   display: flex;
@@ -2822,6 +2886,27 @@ h1 {
 @media (min-width: 1100px) {
   #root:has(.how-to-play) {
     max-width: none;
+  }
+}
+
+/* ───── Desktop horizontal expansion ─────
+   Gameplay, draft, and deck-management screens benefit from extra width
+   on desktop — more cards visible, scorebug breathes. Use :has() so only
+   those screens get the wider layout; the lobby/home screens stay narrow. */
+@media (min-width: 900px) {
+  /* Innings screen (gameplay) */
+  #root:has(.innings-screen-root) {
+    max-width: 1100px;
+  }
+  /* Draft + deck management */
+  #root:has(.draft-header),
+  #root:has(.deck-mgmt-tabs) {
+    max-width: 1100px;
+  }
+  /* Scorebug bleed margin needs more room at wider widths */
+  .innings-screen-root .scorebug {
+    margin-left: -1.5rem;
+    margin-right: -1.5rem;
   }
 }
 

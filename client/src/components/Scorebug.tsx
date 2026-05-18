@@ -70,14 +70,21 @@ export function Scorebug({ matchState }: Props) {
   const aFlag = aNation ? NATION_FLAG[aNation] : null;
   const bFlag = bNation ? NATION_FLAG[bNation] : null;
 
+  // Phase drives the accent border color on the scorebug — powerplay blue,
+  // middle gold, death red. Tournament accent overrides when present.
+  const currentPhase = innings ? phaseForBall(matchState.format, innings.ballsBowled + 1) : null;
+  const phaseAccent =
+    currentPhase === "powerplay" ? "#3a7bd5"
+    : currentPhase === "middle" ? "#d4a72c"
+    : currentPhase === "death" ? "#d92535"
+    : "transparent";
+  const accentColor = tournamentAccent ?? phaseAccent;
+
   return (
     <section
       className="scorebug"
-      style={
-        tournamentAccent
-          ? { borderTopColor: tournamentAccent, borderTopWidth: "3px" }
-          : undefined
-      }
+      data-phase={currentPhase ?? undefined}
+      style={{ borderTopColor: accentColor, borderTopWidth: "3px" }}
     >
       {tournamentEmblem && (
         <div className="scorebug-tournament-emblem" aria-hidden="true">

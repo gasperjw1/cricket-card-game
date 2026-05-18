@@ -96,7 +96,7 @@ export function InningsScreen({ client }: Props) {
   // the current moment of the innings.
   const currentPhase = phaseForBall(matchState.format, innings.ballsBowled + 1);
   return (
-    <main className="innings">
+    <main className="innings innings-screen-root">
       <Scorebug matchState={matchState} />
 
       <HandArea
