@@ -1157,8 +1157,10 @@ h1 {
   color: #8a939c;
 }
 /* Wraps any horizontal-scrolling card row (draft, deck-management,
-   pack-opening). Adds gradient edge fades + a "swipe →" hint so the
-   user knows there are more cards offscreen.
+   pack-opening). Affordance for "more cards exist" is a clear PEEK
+   at the next/previous card — the card sizing leaves visible slivers
+   on either side. No gradient overlays (they obscured the edge cards
+   per playtest feedback).
 
    Usage:
      <div class="scroll-shell">
@@ -1168,24 +1170,6 @@ h1 {
 */
 .scroll-shell {
   position: relative;
-}
-.scroll-shell::before,
-.scroll-shell::after {
-  content: '';
-  position: absolute;
-  top: 1.8rem;       /* clear the count hint above */
-  bottom: 0.8rem;    /* clear the scrollbar */
-  width: 28px;
-  pointer-events: none;
-  z-index: 3;
-}
-.scroll-shell::before {
-  left: 0;
-  background: linear-gradient(to right, #0f1419 30%, rgba(15, 20, 25, 0) 100%);
-}
-.scroll-shell::after {
-  right: 0;
-  background: linear-gradient(to left, #0f1419 30%, rgba(15, 20, 25, 0) 100%);
 }
 .scroll-count {
   margin: 0 0 0.4rem 0;
@@ -1233,19 +1217,22 @@ h1 {
   transition: transform 0.12s, box-shadow 0.12s;
   border-radius: 10px;
   position: relative;
-  /* Each card claims a fixed-ish chunk of horizontal space so the row
-     scrolls evenly. ~70% viewport on phone (peek at next), narrower on
-     larger screens. */
-  flex: 0 0 70%;
+  /* Card sizing is the affordance for "more cards exist" — each
+     breakpoint leaves a clear sliver of the next/prev card visible
+     so the user always sees the row continues. Mobile shows ~1 card
+     + peek of next; desktop shows ~3 cards + peek of 4th. */
   scroll-snap-align: start;
+  flex: 0 0 75%;
   max-width: 280px;
   min-width: 220px;
 }
 @media (min-width: 540px) {
-  .draft-slot { flex: 0 0 32%; }
+  /* Tablet: ~2 cards + clear peek of 3rd. */
+  .draft-slot { flex: 0 0 42%; }
 }
 @media (min-width: 900px) {
-  .draft-slot { flex: 0 0 24%; }
+  /* Desktop: ~3 cards + half-card peek of the 4th on each side. */
+  .draft-slot { flex: 0 0 28%; }
 }
 .draft-slot:hover {
   transform: translateY(-2px);
@@ -1308,16 +1295,17 @@ h1 {
   cursor: default;
   transition: transform 0.12s, box-shadow 0.12s;
   border-radius: 10px;
-  flex: 0 0 70%;
+  /* See .draft-slot — same peek-as-affordance pattern. */
   scroll-snap-align: start;
+  flex: 0 0 75%;
   max-width: 280px;
   min-width: 220px;
 }
 @media (min-width: 540px) {
-  .deck-mgmt-slot { flex: 0 0 32%; }
+  .deck-mgmt-slot { flex: 0 0 42%; }
 }
 @media (min-width: 900px) {
-  .deck-mgmt-slot { flex: 0 0 24%; }
+  .deck-mgmt-slot { flex: 0 0 28%; }
 }
 .deck-mgmt-slot.inventory {
   cursor: pointer;
