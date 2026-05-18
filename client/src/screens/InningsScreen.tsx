@@ -558,12 +558,15 @@ function RevealOverlay(props: {
               visibleCount={stage.visibleCount}
             />
             {stage.isComplete && (
-              <FinalOutcome
-                outcome={result.finalOutcome}
-                extras={result.extraRuns}
-                extrasNote={result.extrasNote}
-                rebowled={result.rebowled}
-              />
+              <>
+                <CancelNotice result={result} />
+                <FinalOutcome
+                  outcome={result.finalOutcome}
+                  extras={result.extraRuns}
+                  extrasNote={result.extrasNote}
+                  rebowled={result.rebowled}
+                />
+              </>
             )}
           </>
         )}
@@ -646,6 +649,61 @@ function ResolutionTrail({
       })}
     </ol>
   );
+}
+
+/** Loud banner that flags when a situation card the player picked got
+ *  canceled by the opponent (Biryani cancels No Ball / DRS Review,
+ *  Old School cancels the opposite situation). The resolution trail
+ *  already shows this via a step, but players were missing it — when
+ *  you played No Ball expecting your wicket to be overturned and it
+ *  wasn't, you should SEE why. */
+function CancelNotice({ result }: { result: BallResult }) {
+  const battingSit = result.battingSelection.situationCard;
+  const bowlingSit = result.bowlingSelection.situationCard;
+
+  // Old School (either side) cancels the opposite side's situation
+  // outright. The cancel step has kind "old-school-cancel".
+  const oldSchoolCancel = result.resolutionSteps.find(
+    (s) => s.kind === "old-school-cancel" && s.applied,
+  );
+  if (oldSchoolCancel) {
+    // Which side's card got canceled? It's the side that DIDN'T play Old School.
+    const battingPlayedOldSchool = battingSit?.id === "old-school-batting";
+    const bowlingPlayedOldSchool = bowlingSit?.id === "old-school-bowling";
+    if (battingPlayedOldSchool && bowlingSit) {
+      return (
+        <div className="cancel-notice">
+          ⚠ <strong>Old School (batting)</strong> canceled the bowler's{" "}
+          <strong>{bowlingSit.name}</strong>.
+        </div>
+      );
+    }
+    if (bowlingPlayedOldSchool && battingSit) {
+      return (
+        <div className="cancel-notice">
+          ⚠ <strong>Old School (bowling)</strong> canceled the batter's{" "}
+          <strong>{battingSit.name}</strong>. Played card did not apply.
+        </div>
+      );
+    }
+  }
+
+  // Biryani nullifies No Ball (and any extras-awarding batting card).
+  // The 'biryani' step gets pushed only when Biryani actually canceled
+  // something — engine never emits it speculatively.
+  const biryaniStep = result.resolutionSteps.find(
+    (s) => s.kind === "biryani" && s.applied,
+  );
+  if (biryaniStep && battingSit) {
+    return (
+      <div className="cancel-notice">
+        🍛 <strong>Biryani</strong> canceled your{" "}
+        <strong>{battingSit.name}</strong>. Played as a legal delivery.
+      </div>
+    );
+  }
+
+  return null;
 }
 
 function FinalOutcome({

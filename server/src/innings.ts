@@ -302,6 +302,16 @@ function resolveBallTurn(
   };
   match.ballContext = ctx;
 
+  // Diagnostic log: every ball, dump which situation cards (if any) are
+  // on the table. Makes it possible to investigate post-hoc when a player
+  // reports "I played X but it didn't fire" — server logs persist in Fly
+  // via `fly logs`.
+  console.log(
+    `[ball] match=${match.matchId.slice(0, 8)} innings=${match.currentInnings} ` +
+    `bat=${ctx.battingSlot}(${ctx.battingMandatory.name}, sit=${ctx.battingSituation?.id ?? "—"}) ` +
+    `bowl=${ctx.bowlingSlot}(${ctx.bowlingMandatory.name}, sit=${ctx.bowlingSituation?.id ?? "—"})`,
+  );
+
   // ─── Step 1: Old School cancellation ───
   applyOldSchoolCancel(ctx);
 

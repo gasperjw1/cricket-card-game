@@ -1003,6 +1003,25 @@ h1 {
   border-color: #c9a227;
 }
 
+/* ───── Cancel-notice banner (Biryani / Old School wiped your sit card) ─────
+   Loud enough that a player can't miss why their played situation card
+   didn't do what they expected. Appears between the resolution trail
+   and the final-outcome banner on the reveal screen. */
+.cancel-notice {
+  margin: 0.5rem 0;
+  padding: 0.55rem 0.75rem;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #3a1d2c 0%, #2a1525 100%);
+  border: 1.5px solid #8a2c4a;
+  color: #ffd4d4;
+  font-size: 0.88rem;
+  line-height: 1.35;
+  text-align: center;
+}
+.cancel-notice strong {
+  color: #ff8aa8;
+}
+
 /* ───── Multi-over balls row (T3+) ─────
    In longer formats we can't render every ball as its own circle, so the
    row becomes [over-chip][over-chip]…[current-over: 6 circles][· · ·].

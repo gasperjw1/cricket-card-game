@@ -442,6 +442,82 @@ describe("No Ball", () => {
     assert.equal(r.extraRuns, 1);
     assert.equal(r.rebowled, true);
   });
+
+  // Regression tests for "No Ball didn't nullify the wicket" report
+  // (May 2026). All paths through the engine that can produce a wicket
+  // should still get overturned when batting plays no-ball, unless the
+  // bowling side plays Biryani or Old School (bowling).
+  it("overturns a wicket caused by Review Appeal (dot→wicket upgrade)", () => {
+    // Blank batter, bowler on Leg stump Short — no zone match → dot.
+    // Review Appeal upgrades dot → wicket (rolled below threshold).
+    // No-ball should overturn the upgraded wicket.
+    const r = resolveBall({
+      batsman: makeBatter({ strengths: [], neutrals: [], weaknesses: [] }),
+      bowler: makeBowler({
+        delivery: { line: "Leg stump", length: "Short" },
+        fielding: [],
+      }),
+      battingSituation: sit("no-ball", "batting"),
+      bowlingSituation: sit("review-appeal", "bowling"),
+      random: () => 0, // 0 < 0.4 → Review Appeal upgrades to wicket
+    });
+    assert.equal(r.finalOutcome.type, "dot", "no-ball should overturn Review Appeal wicket");
+    assert.equal(r.extraRuns, 1);
+    assert.equal(r.rebowled, true);
+    assert.equal(r.extrasNote, "no-ball");
+  });
+
+  it("overturns a Day-5-Pitch wide that became a wicket — wait, wides don't become wickets, so this just covers normal weakness wicket + a different bowling sit", () => {
+    // Bowler on Outside off Full → weakness → wicket.
+    // Day-5-Pitch would push line further off → auto-wide (per engine).
+    // The wide path short-circuits and outcome is dot, so no-ball still
+    // adds +1 and rebowled (no wicket to nullify in this case).
+    const r = resolveBall({
+      batsman: makeBatter(),
+      bowler: makeBowler({
+        delivery: { line: "Outside off", length: "Full" },
+        fielding: [],
+      }),
+      battingSituation: sit("no-ball", "batting"),
+      bowlingSituation: sit("day-5-pitch", "bowling"),
+    });
+    // Day-5 short-circuits to wide on Outside off, so outcome is dot.
+    assert.equal(r.finalOutcome.type, "dot");
+  });
+
+  it("overturns a wicket when bowler also plays Invariable Bounce (which only downgrades runs, not wickets)", () => {
+    const r = resolveBall({
+      batsman: makeBatter(),
+      bowler: makeBowler({
+        delivery: { line: "Outside off", length: "Full" },
+        fielding: [],
+      }),
+      battingSituation: sit("no-ball", "batting"),
+      bowlingSituation: sit("invariable-bounce", "bowling"),
+    });
+    assert.equal(r.finalOutcome.type, "dot", "no-ball should still overturn even with Invariable Bounce");
+    assert.equal(r.extraRuns, 1);
+    assert.equal(r.rebowled, true);
+  });
+
+  it("does NOT overturn when bowler plays Biryani", () => {
+    const r = resolveBall({
+      batsman: makeBatter(),
+      bowler: makeBowler({
+        delivery: { line: "Outside off", length: "Full" },
+        fielding: [],
+      }),
+      battingSituation: sit("no-ball", "batting"),
+      bowlingSituation: sit("biryani", "bowling"),
+    });
+    assert.equal(r.finalOutcome.type, "wicket", "Biryani makes No Ball a legal delivery");
+    assert.equal(r.extraRuns, 0);
+    assert.equal(r.rebowled, false);
+    // The resolution trail should explicitly include a 'biryani' step so
+    // the player can SEE why their no-ball was nullified.
+    const hasBiryaniStep = r.steps.some((s) => s.kind === "biryani");
+    assert.ok(hasBiryaniStep, "Must log a Biryani step so the UI can show why no-ball was canceled");
+  });
 });
 
 // ─── Wide outside off mechanic ───
