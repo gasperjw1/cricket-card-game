@@ -232,53 +232,59 @@ export default function HowToPlayScreen({ onBack }: Props) {
               Every ball, after the base lookup + skill + fielding + situation
               cards have all resolved, a series of probabilistic effects fire:
             </p>
-            <h3 className="example-heading">In your favour</h3>
-            <ul>
-              <li>
-                <strong>Batter in-phase upgrade (10%)</strong> — when your batter's
-                role matches the phase, a scoring shot ticks up one tier
-                (1→2, 2→4, 4→6).
-              </li>
-              <li>
-                <strong>Bowler in-phase wicket (10%)</strong> — when your bowler's
-                role matches the phase, a dot has a 10% chance to become a wicket
-                (yorker, new-ball nip, slower-ball deception).
-              </li>
-              <li>
-                <strong>Wicket save (30% total)</strong> — most wickets have a 15%
-                chance to become 2 byes/leg-byes and another 15% chance to become
-                4 — with a dismissal-typed narrative ("LBW down leg → leg byes",
-                "edge fell through gloves → byes"). The scorebug shows these as a
-                green or amber "2b" / "4lb" circle distinct from a plain dot.
-                <strong> Run-outs are exempt</strong> — once you're run out, you stay
-                run out.
-              </li>
-              <li>
-                <strong>Inside edge (5%)</strong> — a bowled-mode wicket has a 5%
-                chance to trickle past the stumps off the inside edge for 1–4 runs.
-              </li>
-              <li>
-                <strong>Misfield (5%)</strong> — boundary swap: 4 becomes 6 (or
-                vice versa) when a fielder fumbles on the rope.
-              </li>
-            </ul>
-            <h3 className="example-heading">Against you</h3>
-            <ul>
-              <li>
-                <strong>Batter out-of-phase dot (25%)</strong> — when your batter's
-                role doesn't match the phase, a scoring shot has a 25% chance to
-                fizzle to a dot.
-              </li>
-              <li>
-                <strong>Bowler out-of-phase wide bump (+20%)</strong> — when your
-                bowler is out of phase and delivers to leg / outside-off, the wide
-                chance jumps by 20%.
-              </li>
-              <li>
-                <strong>Run-out (10%)</strong> — a 1 or 2 has a 10% chance to
-                become a run-out wicket. Direct hits going for the second run.
-              </li>
-            </ul>
+            <div className="perks-grid">
+              <div>
+                <h3 className="example-heading">In your favour</h3>
+                <ul>
+                  <li>
+                    <strong>Batter in-phase upgrade (10%)</strong> — when your batter's
+                    role matches the phase, a scoring shot ticks up one tier
+                    (1→2, 2→4, 4→6).
+                  </li>
+                  <li>
+                    <strong>Bowler in-phase wicket (10%)</strong> — when your bowler's
+                    role matches the phase, a dot has a 10% chance to become a wicket
+                    (yorker, new-ball nip, slower-ball deception).
+                  </li>
+                  <li>
+                    <strong>Wicket save (30% total)</strong> — most wickets have a 15%
+                    chance to become 2 byes/leg-byes and another 15% chance to become
+                    4 — with a dismissal-typed narrative ("LBW down leg → leg byes",
+                    "edge fell through gloves → byes"). The scorebug shows these as a
+                    green or amber "2b" / "4lb" circle distinct from a plain dot.
+                    <strong> Run-outs are exempt</strong> — once you're run out, you stay
+                    run out.
+                  </li>
+                  <li>
+                    <strong>Inside edge (5%)</strong> — a bowled-mode wicket has a 5%
+                    chance to trickle past the stumps off the inside edge for 1–4 runs.
+                  </li>
+                  <li>
+                    <strong>Misfield (5%)</strong> — boundary swap: 4 becomes 6 (or
+                    vice versa) when a fielder fumbles on the rope.
+                  </li>
+                </ul>
+              </div>
+              <div>
+                <h3 className="example-heading">Against you</h3>
+                <ul>
+                  <li>
+                    <strong>Batter out-of-phase dot (25%)</strong> — when your batter's
+                    role doesn't match the phase, a scoring shot has a 25% chance to
+                    fizzle to a dot.
+                  </li>
+                  <li>
+                    <strong>Bowler out-of-phase wide bump (+20%)</strong> — when your
+                    bowler is out of phase and delivers to leg / outside-off, the wide
+                    chance jumps by 20%.
+                  </li>
+                  <li>
+                    <strong>Run-out (10%)</strong> — a 1 or 2 has a 10% chance to
+                    become a run-out wicket. Direct hits going for the second run.
+                  </li>
+                </ul>
+              </div>
+            </div>
           </section>
 
           <section id="extras">
@@ -537,6 +543,7 @@ export default function HowToPlayScreen({ onBack }: Props) {
             </ul>
           </section>
         </div>
+        <QuickReference />
       </div>
 
       <div className="form-actions" style={{ marginTop: "2rem" }}>
@@ -584,5 +591,87 @@ function ExampleCard({ caption, card }: { caption: string; card: AnyCard }) {
       <Card card={card} size="hand" />
       <figcaption>{caption}</figcaption>
     </figure>
+  );
+}
+
+/** Right-column "cheat sheet" — small tables of tier shapes, phase
+ *  mappings, key engine-perk percentages. Almost all icons + numbers,
+ *  minimal prose, so it doesn't overwhelm. Sticky on desktop so the
+ *  reference is always visible while reading the long-form copy.
+ *  Hidden on mobile (<900px) — the info is all in the inline sections. */
+function QuickReference() {
+  return (
+    <aside className="quick-ref" aria-label="Quick reference">
+      <h3 className="quick-ref-heading">Quick reference</h3>
+
+      <div className="quick-ref-card">
+        <div className="quick-ref-card-title">Batter tier shape</div>
+        <table className="quick-ref-table">
+          <thead>
+            <tr><th></th><th>S</th><th>N</th><th>W</th><th>R</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><span className="tier elite">Elite</span></td><td>3</td><td>2</td><td>1</td><td>6–7</td></tr>
+            <tr><td><span className="tier gold">Gold</span></td><td>2</td><td>2</td><td>2</td><td>4–5</td></tr>
+            <tr><td><span className="tier silver">Silver</span></td><td>2</td><td>1</td><td>3</td><td>2–3</td></tr>
+            <tr><td><span className="tier bronze">Bronze</span></td><td>1</td><td>2</td><td>3</td><td>0</td></tr>
+          </tbody>
+        </table>
+        <div className="quick-ref-legend">
+          S strengths · N neutrals · W weaknesses · R resistances (of 8)
+        </div>
+      </div>
+
+      <div className="quick-ref-card">
+        <div className="quick-ref-card-title">Bowler tier shape</div>
+        <table className="quick-ref-table">
+          <thead>
+            <tr><th></th><th>Skills</th><th>Fielding</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><span className="tier elite">Elite</span></td><td>2 (no-stack)</td><td>1–3</td></tr>
+            <tr><td><span className="tier gold">Gold</span></td><td>1</td><td>1–2</td></tr>
+            <tr><td><span className="tier silver">Silver</span></td><td>0</td><td>1–2</td></tr>
+            <tr><td><span className="tier bronze">Bronze</span></td><td>0</td><td>1–2</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div className="quick-ref-card">
+        <div className="quick-ref-card-title">Phases per format</div>
+        <table className="quick-ref-table">
+          <thead>
+            <tr><th></th><th>PP</th><th>Middle</th><th>Death</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>T1 (6b)</td><td>1–2</td><td>3–4</td><td>5–6</td></tr>
+            <tr><td>T3 (18b)</td><td>1–6</td><td>7–12</td><td>13–18</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div className="quick-ref-card">
+        <div className="quick-ref-card-title">Engine perks (%)</div>
+        <ul className="quick-ref-list">
+          <li><span className="quick-ref-pct good">+10%</span> Batter in-phase upgrade</li>
+          <li><span className="quick-ref-pct good">+10%</span> Bowler in-phase wicket</li>
+          <li><span className="quick-ref-pct good">+30%</span> Wicket → byes (no run-outs)</li>
+          <li><span className="quick-ref-pct good">+5%</span> Inside edge past stumps</li>
+          <li><span className="quick-ref-pct good">+5%</span> Misfield (4↔6)</li>
+          <li><span className="quick-ref-pct bad">−25%</span> Batter OOP scoring → dot</li>
+          <li><span className="quick-ref-pct bad">+20%</span> Bowler OOP wide bump</li>
+          <li><span className="quick-ref-pct bad">+10%</span> Run-out on neutral</li>
+        </ul>
+      </div>
+
+      <div className="quick-ref-card">
+        <div className="quick-ref-card-title">Tournaments</div>
+        <ul className="quick-ref-list compact">
+          <li>🌍 <strong>WC</strong> · 12 nations · 5G+SF+F = 7</li>
+          <li>🌏 <strong>Asia Cup</strong> · 5 nations · 4G+SF+F = 6</li>
+          <li>🏆 <strong>Champions</strong> · 8 nations · QF+SF+F = 3</li>
+        </ul>
+      </div>
+    </aside>
   );
 }

@@ -2786,12 +2786,16 @@ h1 {
 }
 
 /* How to Play guide */
-/* How-to-play page wrapper. On desktop becomes a 2-column grid
-   (TOC sidebar | content column) so the guide reads less vertically.
+/* How-to-play page wrapper. On desktop becomes a 3-column grid
+   (TOC sidebar | content | quick-reference cheat sheet) so the guide
+   uses the full viewport width without becoming a wall of text.
    On mobile collapses to a single column with the TOC stuck at the
-   top of the viewport. */
+   top of the viewport and the cheat sheet hidden (the info is in
+   the inline content sections already). */
 .how-to-play {
-  max-width: 960px;
+  /* Override the root #root max-width so the guide can breathe on
+     desktop while staying centred. */
+  max-width: 1280px;
   margin-left: auto;
   margin-right: auto;
 }
@@ -2808,19 +2812,32 @@ h1 {
 }
 
 /* Mobile/tablet: single-column stack. The TOC becomes a sticky
-   horizontal pill bar at the top. */
+   horizontal pill bar at the top. Quick reference hidden. */
 .how-to-play-shell {
   display: block;
 }
 
-/* Desktop: 2-column grid. Sticky TOC sidebar on the left + content
-   column on the right (cap content to ~520px for readability). */
+/* Wide-desktop break out of the global #root max-width so the guide
+   fills the viewport. The root padding stays; just stretch wider. */
+@media (min-width: 1100px) {
+  #root:has(.how-to-play) {
+    max-width: none;
+  }
+}
+
+/* Desktop: 3-column grid. Sticky TOC on left + content in middle +
+   sticky quick-reference cheat sheet on right. */
 @media (min-width: 900px) {
   .how-to-play-shell {
     display: grid;
     grid-template-columns: 220px minmax(0, 1fr);
     gap: 2rem;
     align-items: start;
+  }
+}
+@media (min-width: 1100px) {
+  .how-to-play-shell {
+    grid-template-columns: 220px minmax(0, 1fr) 260px;
   }
 }
 
@@ -2915,10 +2932,164 @@ h1 {
 .guide {
   text-align: left;
   margin-top: 0;
-  line-height: 1.55;
+  line-height: 1.6;
   color: #d4d8de;
-  /* Cap reading column at a comfortable width on wide grid cells. */
-  max-width: 640px;
+  /* Cap reading column at a comfortable width on wide grid cells.
+     The 3-column shell already constrains via its middle column. */
+  max-width: 760px;
+}
+
+/* Engine-perks "in your favour" vs "against you" — side-by-side on
+   wide enough viewports so the section reads horizontally instead
+   of running down forever. */
+.perks-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+@media (min-width: 720px) {
+  .perks-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+  }
+}
+
+/* Tier list as 2-column grid on wider screens. */
+@media (min-width: 720px) {
+  .tier-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.4rem 1rem;
+  }
+}
+
+/* Example cards row — 2 or 3 per row on desktop instead of stacked. */
+@media (min-width: 720px) {
+  .guide .example-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.2rem;
+  }
+  .guide .example-card .card {
+    /* Smaller per-card width since multiple sit side-by-side. */
+    max-width: 100%;
+  }
+}
+
+/* ───── Quick reference cheat sheet (right column on desktop) ───── */
+.quick-ref {
+  /* Hidden on mobile + tablet — all info appears in the inline
+     content sections. Only renders the panel on wide desktop. */
+  display: none;
+}
+@media (min-width: 1100px) {
+  .quick-ref {
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+    position: sticky;
+    top: 1.5rem;
+    padding: 0;
+    max-height: calc(100vh - 3rem);
+    overflow-y: auto;
+  }
+}
+.quick-ref-heading {
+  margin: 0 0 0.3rem;
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #8a939c;
+  padding: 0 0.1rem;
+}
+.quick-ref-card {
+  background: #11181f;
+  border: 1px solid #2a3441;
+  border-radius: 8px;
+  padding: 0.7rem 0.75rem;
+}
+.quick-ref-card-title {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #d6dde6;
+  margin-bottom: 0.45rem;
+}
+.quick-ref-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.78rem;
+  font-family: ui-monospace, "SF Mono", Menlo, monospace;
+}
+.quick-ref-table th {
+  text-align: right;
+  padding: 0.15rem 0.3rem;
+  color: #6e7989;
+  font-weight: 600;
+  font-size: 0.7rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  border-bottom: 1px solid #2a3441;
+}
+.quick-ref-table th:first-child {
+  text-align: left;
+}
+.quick-ref-table td {
+  padding: 0.18rem 0.3rem;
+  color: #d6dde6;
+  text-align: right;
+}
+.quick-ref-table td:first-child {
+  text-align: left;
+  white-space: nowrap;
+}
+.quick-ref-table .tier {
+  font-size: 0.65rem;
+  padding: 0.05rem 0.4rem;
+}
+.quick-ref-legend {
+  margin-top: 0.4rem;
+  font-size: 0.65rem;
+  color: #6e7989;
+  line-height: 1.4;
+}
+.quick-ref-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+.quick-ref-list li {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.77rem;
+  color: #d6dde6;
+}
+.quick-ref-list.compact li {
+  font-size: 0.74rem;
+  line-height: 1.35;
+}
+.quick-ref-pct {
+  flex-shrink: 0;
+  min-width: 42px;
+  padding: 0.1rem 0.35rem;
+  border-radius: 4px;
+  font-size: 0.7rem;
+  font-weight: 800;
+  font-family: ui-monospace, "SF Mono", Menlo, monospace;
+  text-align: center;
+}
+.quick-ref-pct.good {
+  background: #1d3a23;
+  color: #6ee07a;
+}
+.quick-ref-pct.bad {
+  background: #3a1d2c;
+  color: #ff8aa8;
 }
 .guide section {
   margin-bottom: 1.75rem;
