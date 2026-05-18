@@ -507,11 +507,16 @@ h1 {
   display: flex;
   align-items: center;
   gap: 0.4rem;
+  /* min-width:0 lets the name flex-shrink past its natural content
+     size so long names truncate with ellipsis instead of pushing the
+     silhouette / role chip past the card edge. */
+  min-width: 0;
 }
 .card-header-right {
   margin-left: auto;
   display: inline-flex;
   align-items: center;
+  flex-shrink: 0;
 }
 .kind-label {
   text-transform: uppercase;
@@ -521,8 +526,18 @@ h1 {
   font-size: 1rem;
   font-weight: 600;
   color: #e8e8e8;
+  /* Truncate long names — keeps every card the same width AND keeps
+     the right-side stack (silhouette + role chip) inside the card. */
+  flex: 1 1 0;
+  min-width: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .card-view .card-name {
+  /* Modal viewer has more room; let the full name wrap if needed. */
+  white-space: normal;
+  overflow: visible;
   font-size: 1.2rem;
 }
 .nation-flag {
@@ -1202,14 +1217,16 @@ h1 {
 .draft-grid {
   display: flex;
   flex-direction: row;
+  align-items: stretch;
   gap: 0.6rem;
   overflow-x: auto;
   overflow-y: hidden;
-  scroll-snap-type: x mandatory;
+  /* Proximity (not mandatory) — snap helps but doesn't fight the
+     user's momentum scroll on iOS Safari. Mandatory caused the
+     glitchy "snap-bounce-snap" behavior Yash hit during draft. */
+  scroll-snap-type: x proximity;
   -webkit-overflow-scrolling: touch;
   padding: 0.25rem 0 0.75rem;
-  /* Tiny scrollbar — hidden by default, visible on hover/scroll for
-     desktop discoverability. */
   scrollbar-width: thin;
 }
 .draft-slot {
@@ -1220,13 +1237,22 @@ h1 {
   /* Card sizing is the affordance for "more cards exist" — each
      breakpoint leaves a clear sliver of the next/prev card visible
      so the user always sees the row continues. Mobile shows ~1 card
-     + peek of next; desktop shows ~3 cards + peek of 4th.
-     min-width kept low so the peek isn't squeezed out at the 720px
-     container max-width. */
+     + peek of next; desktop shows ~3 cards + peek of 4th. */
   scroll-snap-align: start;
   flex: 0 0 75%;
   max-width: 280px;
   min-width: 180px;
+  /* Stretch + fill so every card in the row is the same height even
+     when their inner content differs (some cards have more resistance
+     icons, longer descriptions, etc.). */
+  display: flex;
+  flex-direction: column;
+}
+.draft-slot .card-hand {
+  flex: 1 1 auto;
+  /* Lock to a consistent minimum height so short-content cards don't
+     shrink below their neighbors. */
+  min-height: 320px;
 }
 @media (min-width: 540px) {
   /* Tablet: ~2 cards + clear peek of 3rd. */
@@ -1285,10 +1311,11 @@ h1 {
 .deck-mgmt-grid {
   display: flex;
   flex-direction: row;
+  align-items: stretch;
   gap: 0.5rem;
   overflow-x: auto;
   overflow-y: hidden;
-  scroll-snap-type: x mandatory;
+  scroll-snap-type: x proximity;
   -webkit-overflow-scrolling: touch;
   padding: 0.25rem 0 0.75rem;
   scrollbar-width: thin;
@@ -1297,11 +1324,18 @@ h1 {
   cursor: default;
   transition: transform 0.12s, box-shadow 0.12s;
   border-radius: 10px;
-  /* See .draft-slot — same peek-as-affordance pattern. */
+  /* See .draft-slot — same peek-as-affordance pattern, same
+     uniform-height stretch. */
   scroll-snap-align: start;
   flex: 0 0 75%;
   max-width: 280px;
   min-width: 180px;
+  display: flex;
+  flex-direction: column;
+}
+.deck-mgmt-slot .card-hand {
+  flex: 1 1 auto;
+  min-height: 320px;
 }
 @media (min-width: 540px) {
   .deck-mgmt-slot { flex: 0 0 42%; }
