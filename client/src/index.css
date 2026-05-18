@@ -2208,6 +2208,52 @@ h1 {
 }
 
 /* How to Play guide */
+/* How-to-play page wrapper — narrows the reading column on desktop so
+   sentences don't stretch across the full 720px container. Easier to
+   scan as a long-form vertical document. */
+.how-to-play {
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.how-to-play h1 {
+  text-align: center;
+}
+.how-to-play .tagline {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+/* Sticky table-of-contents pill row at the top of the guide. On mobile
+   it scrolls horizontally; on desktop it wraps vertically. */
+.guide-toc {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin: 1rem 0 1.5rem;
+  padding: 0.6rem;
+  background: #11181f;
+  border: 1px solid #2a3441;
+  border-radius: 10px;
+  justify-content: center;
+}
+.guide-toc a {
+  padding: 0.35rem 0.7rem;
+  border-radius: 999px;
+  background: #1c2530;
+  border: 1px solid #2a3441;
+  color: #d6dde6;
+  font-size: 0.75rem;
+  text-decoration: none;
+  letter-spacing: 0.04em;
+  transition: background 0.12s, transform 0.12s;
+}
+.guide-toc a:hover {
+  background: #2563eb;
+  color: #ffffff;
+  transform: translateY(-1px);
+}
+
 .guide {
   text-align: left;
   margin-top: 1.5rem;
@@ -2218,6 +2264,9 @@ h1 {
   margin-bottom: 1.75rem;
   padding-bottom: 1.25rem;
   border-bottom: 1px solid #1c2530;
+  /* Pad anchor jumps so heading lands a comfortable distance below the
+     top of the viewport. */
+  scroll-margin-top: 1rem;
 }
 .guide section:last-child {
   border-bottom: none;

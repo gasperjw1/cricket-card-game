@@ -1,5 +1,12 @@
 # Storytelling — Phase 2 Plan
 
+> **Status (v4): Phase 1 + emoji art shipped.** Story-sequence wiring
+> is live (pitch → bowler → batter → result stages, ~2-4s total with a
+> user-controllable speed setting). SFX hooks fire per stage but the
+> actual `.webm` files still need to be sourced — see
+> [sfx-sources.md](sfx-sources.md). Real-photo asset library is
+> backlogged; see [todo.md](todo.md).
+
 This doc lays out the art-direction and asset-sourcing plan for the
 result-screen storytelling sequence. Phase 1 (emoji-placeholder
 skeleton) is shipped; Phase 2 turns the placeholders into real

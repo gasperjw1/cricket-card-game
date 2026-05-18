@@ -273,29 +273,58 @@ All wide calls (tier-based and situation-card auto-wides) are cancelable by the 
 
 ---
 
-## Resolution Order with Situation Cards
+## Resolution Order (engine ball pipeline)
 
-When both players reveal their cards simultaneously:
+When both players reveal their cards simultaneously the engine walks
+through ~19 steps. Steps 1-2 happen upstream of the engine (server-side
+swap pick coordination); steps 3+ are inside `resolveBall`.
 
-1. **Check for Old School Cricket Only** — if either player played it, cancel the opponent's situation card. If BOTH played it, both are cancelled and ball resolves normally.
-2. **Check for Mankad / Retired Out / Cramps** — card swaps happen before the delivery resolves. New cards are played from hand.
-3. **Apply zone modifiers** — Trot Down (length shift), Day 5 Pitch (line shift), Switch Hit (zone mirror) modify the delivery zone or batsman card lookup.
-4. **Base lookup** — bowler's (possibly modified) delivery zone is looked up on the batsman's (possibly mirrored) card.
-5. **Apply Invariable Bounce** — if played, downgrade the outcome one tier.
-6. **Apply bowler adjective** — if batter isn't resistant, downgrade one tier (stacks with Invariable Bounce).
-7. **Apply bowler fielding** — if the shot goes to a covered region, downgrade one tier.
-8. **Apply Power Surge** — if played, upgrade the final outcome one tier.
-9. **Check for wicket + DRS Review** — if the result is a wicket and DRS Review was played, overturn to dot ball.
-10. **Apply Review Appeal** — if the final result is a dot ball and Review Appeal was played, 40% chance it becomes a wicket.
-11. **Final result.**
+1. **Old School Cricket Only cancellation** — if either player played it, cancel the opponent's situation card. If BOTH, both cancelled.
+2. **Mankad / Retired Out / Cramps swaps** — server pauses for swap-pick UI if needed; the new mandatory card replaces the old before engine resolution starts.
+3. **Zone modifiers** — Day 5 Pitch (line shift), Trot Down (length shift), Switch Hit (zone mirror), Shuffle Across (line offset), Deep in the Crease (length offset). Some short-circuit to an auto-wide.
+4. **Base lookup** — bowler's modified delivery zone is looked up on the batsman's modified card. Returns runs/wicket/dot.
+5. **Invariable Bounce** — if bowling played it, downgrade the outcome one tier.
+6. **Bowler adjective(s)** — un-resisted adjective downgrades one tier (no-stack rule for 2-adjective Elites).
+7. **Bowler fielding** — if the shot's natural region matches a fielding region, downgrade one tier.
+8. **Power Surge** — if batting played it, upgrade outcome one tier.
+9. **DRS Review** — wicket → dot if the batting side played it.
+10. **Review Appeal** — bowling-side gamble: dot → wicket on a 40% roll.
+11. **No Ball** — wicket → dot, +1 extras, **rebowled** (and **both mandatory cards return to deck**, per the v4 rebowl rule). Cancellable by Biryani.
+12. **Wide call** — Outside-off dots roll a tier-based wide chance (Bronze 40% → Elite 5%). Also fires on Leg stump when the bowler is out of phase (+20% bump). +1 extras, rebowled. Cancellable by Biryani.
+
+**Steps 13–19 are role/phase perks** (gated on the engine receiving a `phase` argument). All skip if the delivery was rebowled.
+
+13. **Batter in-phase upgrade** — 10% chance a scoring shot ticks up one tier when batter's role matches the current phase.
+14. **Batter out-of-phase dot** — 25% chance scoring → dot when the batter's role doesn't match the phase.
+15. **Misfield** — 5% chance a 4 ↔ 6 swap (fielder fumbles on the rope, or pulls one back).
+16. **Run-out on neutral** — 10% chance a 1 or 2 becomes a run-out wicket.
+17. **Inside edge** — 5% chance a bowled-mode wicket trickles past the stumps for 1–4 runs (bat runs, not extras).
+18. **Wicket save** — any wicket has a 30% chance to become byes/leg-byes (15% for 2-bye save, 15% for 4-bye save) with a dismissal-typed narrative ("LBW down leg → 2 leg byes", "edge fell short → 4 byes", etc.).
+19. **Bowler in-phase wicket** — 10% chance a dot → wicket when the bowler's role matches the phase (yorker / new-ball nip / death-overs slower-ball).
+
+Order rationale: wicket-save runs BEFORE bowler-in-phase-wicket so the bowler's earned wicket can't be undone by a wicket-save roll.
+
+---
+
+## Rebowl rule (v4 update)
+
+When a delivery is rebowled (No Ball or Wide), the bowler didn't get to bowl a legal ball and the batter didn't get to face one. Per the v4 rule, **both mandatory cards return to the bottom of their respective active decks** instead of being discarded. Situation cards still get consumed (they were "used up" — even the no-ball card itself).
 
 ---
 
 ## Deck Building Considerations
 
-With 11 unique situation cards available, players need to decide:
+Each format has its own deck-size + tier-distribution. As of v4:
 
-- **How many to include?** Each situation card takes a slot away from a batsman or bowler card. Too many = clogged hands. Too few = no tactical options.
-- **Which ones?** Old School Cricket Only is the safest pick — it's never wasted if the opponent plays a situation card. But if they never play one, you've wasted a deck slot.
-- **Anti-clog rule reminder:** If your hand is ALL situation cards, discard one and redraw. So running 8+ situation cards in a 20-card deck is very risky.
-- **Suggested split:** 14-16 player cards + 4-6 situation cards per deck.
+| Format | Total | Player cards | Situation cards | Tier mix (per role) |
+|--------|-------|--------------|-----------------|--------------------|
+| T1     | 20    | 15           | 5               | 2 Elite + 3 Gold + 7 Silver + 3 Bronze |
+| T3     | 30    | 24           | 6               | 2 Elite + 3 Gold + 10 Silver + 9 Bronze |
+
+T3 was bumped from 26 → 30 cards to provide swap-event safety margin (Mankad/Retired Out/Cramps each consume 2 mandatories in one ball).
+
+**Career-mode draft:** the player drafts 2 Elite + 3 Gold per role + 3 batting + 3 bowling situations. The rest auto-fills from the global pool.
+
+**Anti-clog rule reminder:** if your hand becomes all situation cards, the server discards one and redraws a player card. Running too many situation cards in your deck is risky.
+
+**Suggested situation count:** the format-default (5 for T1, 6 for T3) is balanced. Career drafts let you pick 3 of each side, so the remaining 3 (for T3) auto-fill randomly.

@@ -4,17 +4,55 @@
 **Lines:** Leg stump | Middle stump | Off stump | 5th stump | Wide outside off
 **Lengths:** Short | Good length | Full
 
-## Tier Reference
-| Tier | Strengths | Neutrals | Weaknesses | Resistances |
-|------|-----------|----------|------------|-------------|
-| Elite | 3 | 2 | 1 | 2 |
-| Gold | 3 | 2 | 1 | 1 |
-| Silver | 2 | 2 | 2 | 0 |
-| Bronze | 1 | 2 | 3 | 0 |
+## Tier Reference (v3 — current implementation)
 
-Everything not listed = dot ball.
+**Batsmen**
+
+| Tier   | Strengths | Neutrals | Weaknesses | Resistances (of 8 adjectives) |
+|--------|-----------|----------|------------|-------------------------------|
+| Elite  | 3         | 2        | 1          | 6–7                           |
+| Gold   | 2         | 2        | 2          | 4–5                           |
+| Silver | 2         | 1        | 3          | 2–3                           |
+| Bronze | 1         | 2        | 3          | 0                             |
+
+**Intentional outliers** (slightly stronger or weaker than tier baseline):
+
+- A few Gold cards (e.g. *Kusal Mendis*, *Charith Asalanka*, *Glenn Phillips*) keep the older 3-strength shape — read as "elite-flavoured Gold." Stronger than other Gold but slot in as Gold for deck-building.
+- Some Bronze cards are pure sloggers (S0 N3 W3 instead of S1 N2 W3) — no reliable scoring zone, just unpredictable hits. e.g. tail-end Indian/Australian power hitters.
+
+**Bowlers**
+
+| Tier   | Adjectives | Fielding regions |
+|--------|------------|------------------|
+| Elite  | 2 (no-stack rule fires only one per ball) | 1–3 |
+| Gold   | 1                                           | 1–2 |
+| Silver | 0                                           | 1–2 |
+| Bronze | 0                                           | 1–2 |
+
+The 8 bowler adjectives: **Swing, Seam, Cutter, Slower** (pace) and **Googly, Carrom, Topspin, Drift** (spin).
+
+Everything not listed in a batter's strengths/neutrals/weaknesses = dot ball at base lookup time.
 
 **Important:** Batter weaknesses are triggered by delivery ZONE only (line + length). Bowler adjectives are modifiers applied separately — they downgrade the batter's other outcomes but are never part of the weakness definition.
+
+## Roles & Phases (added v4)
+
+Every batter and bowler has a **role** that maps to a **phase** of the innings. Match formats split the innings into phases:
+
+- **T1 (6 balls):** balls 1–2 Powerplay · 3–4 Middle · 5–6 Death
+- **T3 (18 balls):** over 1 Powerplay · over 2 Middle · over 3 Death
+
+| Batter role  | Best phase | Bowler role   | Best phase |
+|--------------|------------|---------------|------------|
+| Top Order    | Powerplay  | Powerplay     | Powerplay  |
+| Middle Order | Middle     | Middle Overs  | Middle     |
+| Finisher     | Death      | Death Overs   | Death      |
+
+When a card's role matches the current phase, it gets a small bonus (in-phase upgrade for batters, in-phase wicket chance for bowlers). When mismatched, a small penalty (25% scoring → dot for batters, +20% wide chance on leg/outside-off for bowlers).
+
+## Handedness
+
+Each batter has `handedness: "right" | "left"`. Visual only — the engine looks up by line/length regardless. The card UI flips the zone-grid columns (leg stump on the right for lefties) and shows a mirrored silhouette.
 
 ---
 

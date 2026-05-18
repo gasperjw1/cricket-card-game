@@ -1,5 +1,11 @@
 # CPU Bot Opponent — Plan
 
+> **Status (v4): Phase 1 shipped.** Three difficulty tiers
+> (Gully / Domestic / International) are live in `server/src/bot/`. The
+> "Play vs CPU" home-screen entry wires through. International saves
+> Elite cards for the death phase (scaled per format). Phase 2 (smarter
+> heuristics) is in the backlog — see [todo.md](todo.md).
+
 This doc covers the design for adding a CPU/bot opponent so players can
 play solo without needing a friend. Based on Yash's feedback that many
 players have asked for this.
