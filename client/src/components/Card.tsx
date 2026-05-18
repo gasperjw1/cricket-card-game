@@ -4,7 +4,9 @@ import type {
   AnyCard,
   BatsmanCard,
   BatsmanOutcome,
+  BatterRole,
   BowlerCard,
+  BowlerRole,
   FieldingRegion,
   Nation,
   SituationCard,
@@ -127,7 +129,12 @@ function BatsmanCardView(props: { card: BatsmanCard; size?: "hand" | "view"; sel
         name={card.name}
         nation={card.nation}
         tier={card.tier}
-        rightExtra={<BatterSilhouette handedness={card.handedness} size={size === "view" ? 32 : 26} />}
+        rightExtra={
+          <span className="card-header-right-stack">
+            {card.role && <RoleChip role={card.role} kind="batter" />}
+            <BatterSilhouette handedness={card.handedness} size={size === "view" ? 32 : 26} />
+          </span>
+        }
       />
       {reveal ? (
         <>
@@ -407,6 +414,7 @@ function BowlerCardView(props: { card: BowlerCard; size?: "hand" | "view"; selec
         name={card.name}
         nation={card.nation}
         tier={card.tier}
+        rightExtra={card.role && <RoleChip role={card.role} kind="bowler" />}
       />
       {reveal ? (
         <>
@@ -650,6 +658,36 @@ function ZoneBadge({ zone, large }: { zone: Zone; large?: boolean }) {
     </Tip>
   );
 }
+
+/** Phase / role chip shown in the card header. Color-codes which third
+ *  of the innings the card is built for so the user can match cards to
+ *  the current phase (shown in the scorebug). */
+function RoleChip({
+  role,
+  kind,
+}: {
+  role: BatterRole | BowlerRole;
+  kind: "batter" | "bowler";
+}) {
+  const meta = ROLE_META[role];
+  return (
+    <Tip text={`${meta.long} — built for the ${meta.phase} phase. ${kind === "batter" ? "Plays best when bowling matches this phase; out-of-phase scoring shots have a 25% chance to become dots." : "Bowls best when matching this phase; out-of-phase deliveries to leg / outside-off have an extra wide chance."}`}>
+      <span className={`role-chip role-${meta.phase}`}>{meta.short}</span>
+    </Tip>
+  );
+}
+
+const ROLE_META: Record<
+  BatterRole | BowlerRole,
+  { short: string; long: string; phase: "powerplay" | "middle" | "death" }
+> = {
+  "top-order": { short: "TOP", long: "Top Order", phase: "powerplay" },
+  "middle-order": { short: "MID", long: "Middle Order", phase: "middle" },
+  finisher: { short: "FIN", long: "Finisher", phase: "death" },
+  powerplay: { short: "PP", long: "Powerplay", phase: "powerplay" },
+  "middle-overs": { short: "MO", long: "Middle Overs", phase: "middle" },
+  "death-overs": { short: "DO", long: "Death Overs", phase: "death" },
+};
 
 // ─────────────────────────── Face-down (opponent) ───────────────────────────
 

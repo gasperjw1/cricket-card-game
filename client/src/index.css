@@ -1003,6 +1003,48 @@ h1 {
   border-color: #c9a227;
 }
 
+/* ───── Home-screen disclaimer + About modal ───── */
+.home-disclaimer {
+  margin-top: 1.25rem;
+  font-size: 0.7rem;
+  line-height: 1.4;
+  color: #5a6675;
+  text-align: center;
+  max-width: 340px;
+}
+.btn.link {
+  appearance: none;
+  background: none;
+  border: none;
+  color: #2563eb;
+  text-decoration: underline;
+  padding: 0;
+  cursor: pointer;
+  font-size: inherit;
+}
+.btn.link.inline {
+  display: inline;
+}
+.about-modal h2 {
+  margin-top: 0;
+}
+.about-modal h3 {
+  margin-top: 1rem;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #8a939c;
+}
+.about-modal p {
+  font-size: 0.85rem;
+  line-height: 1.5;
+  color: #d6dde6;
+}
+.about-modal a {
+  color: #6aa3ff;
+  word-break: break-all;
+}
+
 /* ───── Cancel-notice banner (Biryani / Old School wiped your sit card) ─────
    Loud enough that a player can't miss why their played situation card
    didn't do what they expected. Appears between the resolution trail
@@ -2129,6 +2171,59 @@ h1 {
   text-align: center;
   letter-spacing: 0.04em;
   font-style: italic;
+}
+
+/* ───── Phase pill (scorebug status strip) + Role chip (card header) ─────
+   Color-coded so a player can match "the scorebug says POWERPLAY" with
+   "this card has a green PP chip". Powerplay = green, Middle = blue,
+   Death = red. */
+.phase-pill {
+  display: inline-block;
+  padding: 0.05rem 0.4rem;
+  border-radius: 4px;
+  font-size: 0.65rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  background: #1c2530;
+  border: 1px solid #3a475a;
+  color: #d6dde6;
+}
+.role-chip {
+  display: inline-block;
+  padding: 0.1rem 0.4rem;
+  border-radius: 4px;
+  font-size: 0.6rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  background: #1c2530;
+  border: 1px solid #3a475a;
+  color: #d6dde6;
+}
+.role-chip.role-powerplay,
+.phase-pill.role-powerplay {
+  background: #1d3a23;
+  color: #6ee07a;
+  border-color: #2d5a3a;
+}
+.role-chip.role-middle,
+.phase-pill.role-middle {
+  background: #1c2a3a;
+  color: #6aa3ff;
+  border-color: #2d4060;
+}
+.role-chip.role-death,
+.phase-pill.role-death {
+  background: #3a1d2c;
+  color: #ff8aa8;
+  border-color: #5a2d40;
+}
+.card-header-right-stack {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  margin-left: auto;
+  flex-wrap: wrap;
+  justify-content: flex-end;
 }
 
 /* ───── Batter silhouette chip ───── */

@@ -85,7 +85,15 @@ export type ResolutionStepKind =
   | "cramps"
   | "no-ball"
   | "wide"
-  | "biryani";
+  | "biryani"
+  // Role / phase perks — see shared/src/engine/resolve-ball.ts steps 13+.
+  | "in-phase-bonus"          // batter in phase, scoring shot upgraded
+  | "out-of-phase-dot"        // batter out of phase, scoring shot turned to dot
+  | "bowler-in-phase-wicket"  // bowler in phase, dot turned to wicket
+  | "run-out"                 // bowler perk, neutral turned to wicket
+  | "misfield"                // 4↔6 swap
+  | "inside-edge"             // bowled wicket turned to 1-4 runs off inside edge
+  | "wicket-save";            // wicket turned to byes/leg-byes
 
 export interface ResolutionStep {
   kind: ResolutionStepKind;

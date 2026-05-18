@@ -13,7 +13,7 @@ interface Props {
   client: MatchClient;
 }
 
-type Mode = "menu" | "vs-cpu" | "create" | "join" | "how-to-play";
+type Mode = "menu" | "vs-cpu" | "create" | "join" | "how-to-play" | "about";
 type SettingsMode = "open" | "closed";
 
 /** Derive a default 4-char abbreviation from a display name. */
@@ -153,9 +153,27 @@ export function HomeScreen({ client }: Props) {
             >
               ⚙ Settings
             </button>
+            <button
+              className="btn ghost small"
+              onClick={() => setMode("about")}
+            >
+              About
+            </button>
           </div>
+          <p className="home-disclaimer">
+            Fan-made cricket card game · not affiliated with the ICC, BCCI,
+            any cricket board, or any player.{" "}
+            <button
+              className="btn link inline"
+              onClick={() => setMode("about")}
+            >
+              Read more
+            </button>
+          </p>
         </div>
       )}
+
+      {mode === "about" && <AboutModal onClose={() => setMode("menu")} />}
 
       {settings === "open" && (
         <SettingsPanel onClose={() => setSettingsMode("closed")} />
@@ -370,4 +388,54 @@ function difficultyBlurb(d: BotDifficulty): string {
     case "Domestic": return "Bowls to your weaknesses, defends carefully.";
     case "International": return "Plus saves Elite cards for pressure balls.";
   }
+}
+
+/** Legal / attribution disclaimer modal — fan-made notice covering the
+ *  use of real player names. Reachable from the Home menu "About" button. */
+function AboutModal({ onClose }: { onClose: () => void }) {
+  return (
+    <div className="modal-backdrop" onClick={onClose}>
+      <div className="modal-content about-modal" onClick={(e) => e.stopPropagation()}>
+        <h2>About Swipe Sixer</h2>
+        <p>
+          Swipe Sixer is a fan-made, non-commercial cricket card game built
+          by a solo developer for cricket fans.
+        </p>
+        <h3>Disclaimer</h3>
+        <p>
+          This game is <strong>not affiliated with, endorsed by, sponsored
+          by, or connected to</strong> the International Cricket Council
+          (ICC), Board of Control for Cricket in India (BCCI), any other
+          national cricket board, any franchise league (IPL, BBL, PSL,
+          etc.), or any individual cricketer.
+        </p>
+        <p>
+          Player names are used purely for fan-creation purposes to
+          identify real-world cricketing abilities and styles in a
+          card-game context. All names, likenesses, logos, and trademarks
+          remain the property of their respective owners. No part of this
+          project is intended to suggest endorsement or partnership.
+        </p>
+        <p>
+          If you are a rights-holder and would like a player removed,
+          please reach out via the GitHub repository linked below.
+        </p>
+        <h3>Open source</h3>
+        <p>
+          <a
+            href="https://github.com/gasperjw1/cricket-card-game"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            github.com/gasperjw1/cricket-card-game
+          </a>
+        </p>
+        <div className="form-actions" style={{ marginTop: "1rem" }}>
+          <button className="btn primary" onClick={onClose}>
+            Close
+          </button>
+        </div>
+      </div>
+    </div>
+  );
 }

@@ -1,5 +1,7 @@
 import {
   MATCH_FORMATS,
+  PHASE_LABEL,
+  phaseForBall,
   type BallResult,
   type InningsState,
   type PublicMatchState,
@@ -149,17 +151,25 @@ function StatusStrip({
 
   if (innings && matchState.currentInnings === 2 && innings.target !== null) {
     const need = Math.max(0, innings.target - innings.runs);
+    const phase = phaseForBall(matchState.format, innings.ballsBowled + 1);
     return (
       <span>
-        TARGET {innings.target} · {battingAbbr} NEED {need}
+        TARGET {innings.target} · {battingAbbr} NEED {need} ·{" "}
+        <Tip text={`Each batter/bowler role plays best in its matching phase.`}>
+          <span className="phase-pill">{PHASE_LABEL[phase].toUpperCase()}</span>
+        </Tip>
       </span>
     );
   }
 
   if (innings && matchState.currentInnings === 1) {
+    const phase = phaseForBall(matchState.format, innings.ballsBowled + 1);
     return (
       <span>
-        INNINGS 1 · {battingAbbr} BATTING · {bowlingAbbr} BOWLING
+        INNINGS 1 · {battingAbbr} BAT · {bowlingAbbr} BOWL ·{" "}
+        <Tip text={`Each batter/bowler role plays best in its matching phase. ${PHASE_LABEL[phase]} fires bonuses for matched roles, penalties for mismatched ones.`}>
+          <span className="phase-pill">{PHASE_LABEL[phase].toUpperCase()}</span>
+        </Tip>
       </span>
     );
   }

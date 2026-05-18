@@ -557,11 +557,44 @@ function parseBatsman(
     tier,
     description,
     handedness: detectHandedness(description),
+    role: detectBatterRole(description),
     strengths,
     neutrals,
     weaknesses,
     resistances,
   };
+}
+
+/**
+ * Heuristic: detect batter role from description text. Mirrors the Python
+ * migration script that originally seeded cards.json. Yash can override
+ * any miss-tags by editing cards.json directly (this function runs only
+ * when regenerating from markdown).
+ */
+function detectBatterRole(
+  description: string,
+): "top-order" | "middle-order" | "finisher" {
+  const desc = description.toLowerCase();
+  if (/top[- ]order|opener|opening bat/i.test(desc)) return "top-order";
+  if (/finisher|death[- ]over|slogger|hitter|power.hit|big.hit|six.hitter|lower[- ]order|tail[- ]end/i.test(desc))
+    return "finisher";
+  if (/middle[- ]order|number [3-7]|no\.? *[3-7]|anchor/i.test(desc))
+    return "middle-order";
+  return "middle-order";
+}
+
+/** Heuristic: detect bowler role from description text. */
+function detectBowlerRole(
+  description: string,
+): "powerplay" | "middle-overs" | "death-overs" {
+  const desc = description.toLowerCase();
+  if (/death[- ]over|yorker|knuckle.ball|slower.ball.specialist|finisher.bowler/i.test(desc))
+    return "death-overs";
+  if (/new[- ]ball|powerplay|swing|opening bowler|opens.*bowl|seamer.*new/i.test(desc))
+    return "powerplay";
+  if (/middle[- ]over|spinner|spin|economical|defensive bowler|stock bowler|holding bowler/i.test(desc))
+    return "middle-overs";
+  return "middle-overs";
 }
 
 /**
@@ -650,6 +683,7 @@ function parseBowler(
     delivery,
     adjectives,
     fielding,
+    role: detectBowlerRole(description),
   };
 }
 

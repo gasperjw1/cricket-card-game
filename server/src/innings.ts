@@ -13,6 +13,7 @@ import {
   POST_BALL_PAUSE_SECONDS,
   SWAP_PICK_TIMER_SECONDS,
   TURN_TIMER_SECONDS,
+  phaseForBall,
   resolveBall,
   type AnyCard,
   type BallOutcome,
@@ -566,11 +567,13 @@ function runEngineAndAdvance(match: ServerMatch, cb: InningsCallbacks): void {
   const innings = currentInnings(match);
   if (!ctx || !innings || !match.decks) return;
 
+  const upcomingBallNumber = innings.ballsBowled + 1;
   const engineResult = resolveBall({
     batsman: ctx.battingMandatory,
     bowler: ctx.bowlingMandatory,
     battingSituation: ctx.battingSituation,
     bowlingSituation: ctx.bowlingSituation,
+    phase: phaseForBall(match.format, upcomingBallNumber),
   });
 
   let finalOutcome: BallOutcome = engineResult.finalOutcome;
@@ -624,8 +627,25 @@ function runEngineAndAdvance(match: ServerMatch, cb: InningsCallbacks): void {
   };
 
   // Discard played cards (incl. swap replacements added to ctx.*PlayedIds).
+  // EXCEPTION: when the delivery is rebowled (No Ball or Wide), the bowler
+  // didn't deliver a legal ball — return the bowler's MANDATORY card to the
+  // bottom of their active deck instead of discarding. Situation cards
+  // played by the bowler still get discarded (they were "used up"). The
+  // batter's card is consumed normally — they got their chance to face it.
+  if (rebowled) {
+    const bowlerMandatoryId = ctx.bowlingMandatory.id;
+    const bowlingPlayedMinusMandatory = ctx.bowlingPlayedIds.filter(
+      (id) => id !== bowlerMandatoryId,
+    );
+    returnCardToActiveDeck(match, ctx.bowlingSlot, bowlerMandatoryId);
+    consumePlayedByIds(
+      match.decks[ctx.bowlingSlot],
+      bowlingPlayedMinusMandatory,
+    );
+  } else {
+    consumePlayedByIds(match.decks[ctx.bowlingSlot], ctx.bowlingPlayedIds);
+  }
   consumePlayedByIds(match.decks[ctx.battingSlot], ctx.battingPlayedIds);
-  consumePlayedByIds(match.decks[ctx.bowlingSlot], ctx.bowlingPlayedIds);
 
   // Tear down ball context now that we're done with it.
   match.ballContext = null;
@@ -963,6 +983,26 @@ function consumePlayedByIds(decks: ServerDecks, ids: string[]): void {
       decks.discard.push(decks.hand.splice(idx, 1)[0]!);
     }
   }
+}
+
+/**
+ * Pull a card out of the player's hand and push it to the bottom of their
+ * currently-active deck. Used when a No Ball / Wide rebowl preserves the
+ * bowler card — they didn't get to deliver a legal ball, so they get to
+ * bowl it again later (after the deck cycles).
+ */
+function returnCardToActiveDeck(
+  match: ServerMatch,
+  slot: PlayerSlot,
+  cardId: string,
+): void {
+  if (!match.decks) return;
+  const decks = match.decks[slot];
+  const idx = decks.hand.findIndex((c) => c.id === cardId);
+  if (idx < 0) return;
+  const card = decks.hand.splice(idx, 1)[0]!;
+  const deckKey = activeDeckKey(match, slot);
+  decks[deckKey].push(card);
 }
 
 function autoPickSelection(

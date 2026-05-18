@@ -62,6 +62,101 @@ export const MATCH_FORMATS: Record<MatchFormat, FormatConfig> = {
 /** Default format when not specified (back-compat for older clients). */
 export const DEFAULT_MATCH_FORMAT: MatchFormat = "T1";
 
+/**
+ * Map a ball number (1..ballsPerInnings) to its match phase.
+ *
+ * T1 (6 balls):    balls 1-2 Powerplay · 3-4 Middle · 5-6 Death
+ * T3 (18 balls):   over 1 (1-6) Powerplay · over 2 (7-12) Middle · over 3 (13-18) Death
+ * T5 (30 balls):   overs 1-2 (1-12) Powerplay · overs 3-4 (13-24) Middle · over 5 (25-30) Death
+ *
+ * Drives the in-phase / out-of-phase engine rolls — a batter's role
+ * (top-order / middle-order / finisher) maps to a phase (powerplay /
+ * middle / death) and gets a bonus when this function returns that phase.
+ */
+export function phaseForBall(
+  format: MatchFormat,
+  ballNumber: number,
+): "powerplay" | "middle" | "death" {
+  // Clamp defensively — out-of-range numbers just bucket into the last phase.
+  const safeBall = Math.max(1, ballNumber);
+  switch (format) {
+    case "T1": {
+      if (safeBall <= 2) return "powerplay";
+      if (safeBall <= 4) return "middle";
+      return "death";
+    }
+    case "T3": {
+      if (safeBall <= 6) return "powerplay";
+      if (safeBall <= 12) return "middle";
+      return "death";
+    }
+  }
+}
+
+/** Map a card role to the match phase it prefers (and vice versa via reverse
+ *  lookup at the call site). Centralized so the role naming + phase naming
+ *  stay in lockstep. */
+export const BATTER_ROLE_TO_PHASE: Record<
+  "top-order" | "middle-order" | "finisher",
+  "powerplay" | "middle" | "death"
+> = {
+  "top-order": "powerplay",
+  "middle-order": "middle",
+  finisher: "death",
+};
+
+export const BOWLER_ROLE_TO_PHASE: Record<
+  "powerplay" | "middle-overs" | "death-overs",
+  "powerplay" | "middle" | "death"
+> = {
+  powerplay: "powerplay",
+  "middle-overs": "middle",
+  "death-overs": "death",
+};
+
+/** Human labels for UI display. */
+export const PHASE_LABEL: Record<"powerplay" | "middle" | "death", string> = {
+  powerplay: "Powerplay",
+  middle: "Middle Overs",
+  death: "Death Overs",
+};
+
+// ─────────────────────────── Engine perk probabilities ───────────────────────────
+// These knobs tune the new role-system perks. Keep them grouped so balance
+// tweaks are easy. All in [0,1].
+
+/** Per-roll chance a wicket is saved and becomes byes/leg-byes instead.
+ *  Two independent buckets — 2 byes and 4 byes. The two ARE mutually
+ *  exclusive (single roll picks one of three outcomes). */
+export const WICKET_SAVE_2_BYE_CHANCE = 0.15 as const;
+export const WICKET_SAVE_4_BYE_CHANCE = 0.15 as const;
+
+/** When the batter is OUT of their preferred phase, this is the chance
+ *  a scoring shot becomes a dot. */
+export const BATTER_OUT_OF_PHASE_DOT_CHANCE = 0.25 as const;
+
+/** Chance a neutral run (1 or 2) becomes a run-out wicket. Bowler perk. */
+export const BOWLER_NEUTRAL_RUNOUT_CHANCE = 0.10 as const;
+
+/** Extra wide-call chance ADDED to the existing tier-based wide chance when
+ *  the bowler is bowling on leg stump or outside off and out of phase. */
+export const BOWLER_OUT_OF_PHASE_WIDE_BUMP = 0.20 as const;
+
+/** When the batter IS in their preferred phase, chance a scoring shot
+ *  ticks up one tier (1→2, 2→4, 4→6). Symmetric to the OOP penalty. */
+export const BATTER_IN_PHASE_UPGRADE_CHANCE = 0.10 as const;
+
+/** When the bowler IS in their preferred phase, chance a dot becomes a
+ *  wicket (yorker / new-ball nip / death-overs slower-ball deception). */
+export const BOWLER_IN_PHASE_WICKET_CHANCE = 0.10 as const;
+
+/** Fielder misfield — boundary value flips (4 ↔ 6). Cheap variance. */
+export const MISFIELD_CHANCE = 0.05 as const;
+
+/** "Inside edge" — a bowled-mode wicket becomes 1-4 runs. Adds a
+ *  cricket-natural escape that's distinct from byes. */
+export const INSIDE_EDGE_CHANCE = 0.05 as const;
+
 export const TURN_TIMER_SECONDS = 30 as const;
 export const DRAFT_ROUND_TIMER_SECONDS = 15 as const;
 

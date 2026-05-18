@@ -118,6 +118,27 @@ export type CardKind = "batsman" | "bowler" | "situation";
 
 export type Handedness = "right" | "left";
 
+/** Match phase a batter is built for. Drives the in-phase bonus / out-of-phase
+ *  penalty system: batters get a 25% chance their scoring shot becomes a dot
+ *  when bowling outside their preferred phase, and a small upgrade chance
+ *  when bowling inside it.
+ *   - top-order: Powerplay (overs 1-2 in longer formats)
+ *   - middle-order: Middle Overs
+ *   - finisher: Death Overs */
+export type BatterRole = "top-order" | "middle-order" | "finisher";
+
+/** Match phase a bowler specializes in. Mirrors BatterRole — bowlers get a
+ *  wide chance bump when out of phase, and a wicket bonus when in phase.
+ *   - powerplay: new-ball swingers + early pacers
+ *   - middle-overs: spinners + economical pacers
+ *   - death-overs: yorker specialists + slower-ball merchants */
+export type BowlerRole = "powerplay" | "middle-overs" | "death-overs";
+
+/** Convert role keys to the phase they prefer — shared with phaseForBall()
+ *  so the engine can compare on the same key. Named "InningsPhase" to avoid
+ *  collision with the broader MatchPhase enum in game.ts (lobby/draft/etc). */
+export type InningsPhase = "powerplay" | "middle" | "death";
+
 export interface BatsmanCard {
   id: string;
   kind: "batsman";
@@ -129,6 +150,10 @@ export interface BatsmanCard {
    *  Engine doesn't use this; lookup is by line/length only. Default "right"
    *  when missing from the data (back-compat). */
   handedness?: Handedness;
+  /** Where in the innings this batter is built to perform. Drives the
+   *  in-phase bonus / out-of-phase penalty engine rolls. Default
+   *  "middle-order" when missing. */
+  role?: BatterRole;
   strengths: BatsmanOutcome[];
   neutrals: BatsmanOutcome[];
   weaknesses: BatsmanOutcome[];
@@ -151,6 +176,9 @@ export interface BowlerCard {
    */
   adjectives: Adjective[];
   fielding: FieldingRegion[];
+  /** Phase this bowler is built for. Drives the in-phase wicket bonus +
+   *  out-of-phase wide chance increase. Default "middle-overs". */
+  role?: BowlerRole;
 }
 
 export type SituationDeck = "batting" | "bowling";

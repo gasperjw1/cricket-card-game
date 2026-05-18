@@ -500,6 +500,20 @@ describe("No Ball", () => {
     assert.equal(r.rebowled, true);
   });
 
+  it("returns bowler card to deck via the rebowled flag (server-side behavior, asserted indirectly)", () => {
+    // The engine just sets rebowled=true; returning the bowler card to
+    // the deck is the server's responsibility (see returnCardToActiveDeck
+    // in server/src/innings.ts). This test documents the engine contract:
+    // rebowled=true is the SIGNAL the server reads.
+    const r = resolveBall({
+      batsman: makeBatter(),
+      bowler: makeBowler({ delivery: { line: "Outside off", length: "Full" }, fielding: [] }),
+      battingSituation: sit("no-ball", "batting"),
+      bowlingSituation: null,
+    });
+    assert.equal(r.rebowled, true, "engine flags rebowled; server uses this to return bowler card");
+  });
+
   it("does NOT overturn when bowler plays Biryani", () => {
     const r = resolveBall({
       batsman: makeBatter(),
@@ -821,5 +835,141 @@ describe("Two-adjective no-stack rule", () => {
     });
     assert.equal(r.finalOutcome.type, "runs");
     if (r.finalOutcome.type === "runs") assert.equal(r.finalOutcome.value, 6);
+  });
+});
+
+// ─── Role / phase perks ───
+// Note: these perks are gated by `phase` being provided. Tests above
+// omit phase to get deterministic legacy behavior.
+
+describe("Phase perks — wicket save", () => {
+  it("converts a weakness wicket to byes when random rolls low", () => {
+    const r = resolveBall({
+      batsman: makeBatter({ role: "middle-order" }),
+      bowler: makeBowler({
+        delivery: { line: "Outside off", length: "Full" },
+        fielding: [],
+      }),
+      battingSituation: null,
+      bowlingSituation: null,
+      phase: "middle",
+      random: () => 0.05, // 0.05 < 0.15 → 2 byes
+    });
+    assert.equal(r.finalOutcome.type, "dot", "wicket saved to dot");
+    assert.equal(r.extraRuns, 2, "2 byes/leg-byes awarded");
+    assert.ok(
+      r.extrasNote === "byes" || r.extrasNote === "leg-byes",
+      `extrasNote should be byes or leg-byes, got ${r.extrasNote}`,
+    );
+    assert.equal(r.rebowled, false, "byes don't trigger re-bowl");
+  });
+
+  it("converts a weakness wicket to 4 byes in the upper bucket", () => {
+    const r = resolveBall({
+      batsman: makeBatter({ role: "middle-order" }),
+      bowler: makeBowler({
+        delivery: { line: "Outside off", length: "Full" },
+        fielding: [],
+      }),
+      battingSituation: null,
+      bowlingSituation: null,
+      phase: "middle",
+      random: () => 0.20, // 0.15 <= 0.20 < 0.30 → 4 byes
+    });
+    assert.equal(r.finalOutcome.type, "dot");
+    assert.equal(r.extraRuns, 4);
+  });
+
+  it("wicket stands when random rolls outside the save buckets", () => {
+    const r = resolveBall({
+      batsman: makeBatter({ role: "middle-order" }),
+      bowler: makeBowler({
+        delivery: { line: "Outside off", length: "Full" },
+        fielding: [],
+      }),
+      battingSituation: null,
+      bowlingSituation: null,
+      phase: "middle",
+      random: () => 0.50, // > 0.30 → no save
+    });
+    assert.equal(r.finalOutcome.type, "wicket");
+  });
+});
+
+describe("Phase perks — batter out of phase", () => {
+  it("converts a scoring shot to a dot when batter is out of phase", () => {
+    const r = resolveBall({
+      batsman: makeBatter({ role: "finisher" }), // built for death overs
+      bowler: makeBowler({
+        delivery: { line: "Off stump", length: "Full" }, // batter's 6 zone
+        fielding: [],
+      }),
+      battingSituation: null,
+      bowlingSituation: null,
+      phase: "powerplay", // finisher in powerplay → out of phase
+      random: () => 0.10, // 0.10 < 0.25 → triggers dot
+    });
+    assert.equal(r.finalOutcome.type, "dot", "OOP scoring shot becomes dot");
+  });
+
+  it("does NOT downgrade when batter is in phase", () => {
+    const r = resolveBall({
+      batsman: makeBatter({ role: "top-order" }),
+      bowler: makeBowler({
+        delivery: { line: "Off stump", length: "Full" },
+        fielding: [],
+      }),
+      battingSituation: null,
+      bowlingSituation: null,
+      phase: "powerplay", // top-order in powerplay = in phase
+      random: () => 0.10,
+    });
+    // In phase → no OOP penalty. Could get in-phase upgrade though.
+    // Final outcome should be runs (4 after fielding cover downgrade from 6).
+    assert.equal(r.finalOutcome.type, "runs");
+  });
+});
+
+describe("Phase perks — bowler in-phase wicket", () => {
+  it("converts a dot to a wicket when bowler is in phase", () => {
+    // Blank batter so base lookup → dot.
+    const r = resolveBall({
+      batsman: makeBatter({
+        strengths: [], neutrals: [], weaknesses: [],
+        role: "middle-order",
+      }),
+      bowler: makeBowler({
+        delivery: { line: "Leg stump", length: "Short" },
+        fielding: [],
+        role: "death-overs",
+      }),
+      battingSituation: null,
+      bowlingSituation: null,
+      phase: "death", // bowler in phase
+      random: () => 0.05, // 0.05 < 0.10 → fires
+    });
+    assert.equal(r.finalOutcome.type, "wicket");
+  });
+});
+
+describe("Phase perks — bowler OOP wide bump", () => {
+  it("calls a wide on leg stump when bowler is out of phase and random rolls low", () => {
+    const r = resolveBall({
+      batsman: makeBatter({
+        strengths: [], neutrals: [], weaknesses: [],
+        role: "middle-order",
+      }),
+      bowler: makeBowler({
+        delivery: { line: "Leg stump", length: "Good length" },
+        fielding: [],
+        role: "death-overs",
+      }),
+      battingSituation: null,
+      bowlingSituation: null,
+      phase: "powerplay", // bowler OOP → +20% leg-stump wide chance
+      random: () => 0.05, // 0.05 < 0.20 → wide called
+    });
+    assert.equal(r.extrasNote, "wide");
+    assert.equal(r.rebowled, true);
   });
 });

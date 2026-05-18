@@ -12,8 +12,19 @@
  */
 
 import {
+  BATTER_IN_PHASE_UPGRADE_CHANCE,
+  BATTER_OUT_OF_PHASE_DOT_CHANCE,
+  BATTER_ROLE_TO_PHASE,
+  BOWLER_IN_PHASE_WICKET_CHANCE,
+  BOWLER_NEUTRAL_RUNOUT_CHANCE,
+  BOWLER_OUT_OF_PHASE_WIDE_BUMP,
+  BOWLER_ROLE_TO_PHASE,
   EXTRAS_RUNS,
+  INSIDE_EDGE_CHANCE,
+  MISFIELD_CHANCE,
   REVIEW_APPEAL_WICKET_CHANCE,
+  WICKET_SAVE_2_BYE_CHANCE,
+  WICKET_SAVE_4_BYE_CHANCE,
   WIDE_CHANCE_BY_TIER,
 } from "../constants.js";
 import type {
@@ -42,6 +53,10 @@ export interface ResolveBallInput {
   bowlingSituation: SituationCard | null;
   /** Random source in [0, 1). Defaults to Math.random; tests pass a deterministic value. */
   random?: () => number;
+  /** Current match phase — drives in-phase / out-of-phase perks for the
+   *  batter (role-vs-phase match) and bowler (role-vs-phase match).
+   *  Optional for back-compat; if omitted, no phase-based perks fire. */
+  phase?: "powerplay" | "middle" | "death";
 }
 
 export interface ResolutionResult {
@@ -480,18 +495,37 @@ export function resolveBall(input: ResolveBallInput): ResolutionResult {
     }
   }
 
-  // ───── Step 12: Outside off wide-call mechanic ─────
-  // Tier-based chance the umpire calls a wide when the bowler bowls Outside
-  // off and the outcome is a dot ball. Cancellable by Biryani — which logs
-  // a step explaining the wide was downgraded back to a regular dot.
-  if (
-    !rebowled &&
-    input.bowler.delivery.line === "Outside off" &&
-    outcome.type === "dot"
-  ) {
-    const chance = WIDE_CHANCE_BY_TIER[input.bowler.tier];
-    const roll = random();
-    if (roll < chance) {
+  // ───── Step 12: Wide-call mechanic ─────
+  // Two paths:
+  //   (a) Outside-off — tier-based wide chance (existing behavior). When the
+  //       bowler is OUT of phase (role-vs-current-phase mismatch), bump the
+  //       chance by +20%.
+  //   (b) Leg stump — no base wide chance, but +20% when the bowler is OOP.
+  // Both paths are cancellable by Biryani.
+  const bowlerPhase = input.bowler.role
+    ? BOWLER_ROLE_TO_PHASE[input.bowler.role]
+    : null;
+  const bowlerOutOfPhase =
+    !!input.phase && !!bowlerPhase && input.phase !== bowlerPhase;
+
+  if (!rebowled && outcome.type === "dot") {
+    const line = input.bowler.delivery.line;
+    let chance = 0;
+    if (line === "Outside off") {
+      // Base tier-based wide chance always applies; OOP bump only when
+      // perks are enabled (i.e. phase was provided to the engine).
+      chance = WIDE_CHANCE_BY_TIER[input.bowler.tier];
+      if (input.phase !== undefined && bowlerOutOfPhase) {
+        chance += BOWLER_OUT_OF_PHASE_WIDE_BUMP;
+      }
+    } else if (
+      input.phase !== undefined &&
+      line === "Leg stump" &&
+      bowlerOutOfPhase
+    ) {
+      chance = BOWLER_OUT_OF_PHASE_WIDE_BUMP;
+    }
+    if (chance > 0 && random() < chance) {
       if (biryaniInPlay) {
         steps.push({
           kind: "biryani",
@@ -500,10 +534,16 @@ export function resolveBall(input: ResolveBallInput): ResolutionResult {
           applied: true,
         });
       } else {
+        const reason =
+          line === "Leg stump"
+            ? `Down the leg side — umpire signals wide. Bowler is out of phase (+${Math.round(BOWLER_OUT_OF_PHASE_WIDE_BUMP * 100)}%).`
+            : bowlerOutOfPhase
+              ? `Outside off — wide called (${Math.round(chance * 100)}% inc. out-of-phase bump). +1 run, ball re-bowled.`
+              : `Outside off — wide called (${Math.round(chance * 100)}% for ${input.bowler.tier} tier). +1 run, ball re-bowled.`;
         steps.push({
           kind: "wide",
           label: "Wide called",
-          detail: `Outside off — umpire signals wide (${Math.round(chance * 100)}% chance for ${input.bowler.tier} tier). +1 run, ball re-bowled.`,
+          detail: reason,
           before: outcome,
           after: outcome,
           applied: true,
@@ -515,6 +555,213 @@ export function resolveBall(input: ResolveBallInput): ResolutionResult {
     }
   }
 
+  // ─────────────────────────────────────────────────────────────────
+  // Steps 13+ : Role / phase perks. Gated entirely by `phase` being
+  // provided — tests/callers that don't opt in get the legacy
+  // deterministic behavior (no random byes, no random run-outs).
+  // All also skipped when rebowled (no-ball or wide already
+  // short-circuited the delivery).
+  // ─────────────────────────────────────────────────────────────────
+  const perksEnabled = input.phase !== undefined;
+  const batterPhase = input.batsman.role
+    ? BATTER_ROLE_TO_PHASE[input.batsman.role]
+    : null;
+  const batterInPhase =
+    !!input.phase && !!batterPhase && input.phase === batterPhase;
+  const batterOutOfPhase =
+    !!input.phase && !!batterPhase && input.phase !== batterPhase;
+  const bowlerInPhase =
+    !!input.phase && !!bowlerPhase && input.phase === bowlerPhase;
+
+  // ───── Step 13: Batter in-phase upgrade ─────
+  // 10% chance a scoring shot ticks up one tier. Rewards playing the
+  // right batter in the right phase.
+  if (
+    !rebowled &&
+    batterInPhase &&
+    outcome.type === "runs" &&
+    random() < BATTER_IN_PHASE_UPGRADE_CHANCE
+  ) {
+    const before = outcome;
+    outcome = upgrade(outcome);
+    steps.push({
+      kind: "in-phase-bonus",
+      label: "In-phase bonus",
+      detail: `${input.batsman.name} is a ${input.batsman.role} in the ${input.phase} — extra timing! ${describeChange(before, outcome)}.`,
+      before,
+      after: outcome,
+      applied: !sameOutcome(before, outcome),
+    });
+  }
+
+  // ───── Step 14: Batter out-of-phase dot ─────
+  // 25% chance a scoring shot fizzles to a dot when the batter is in
+  // the wrong phase. Mirrors Step 13's bonus.
+  if (
+    !rebowled &&
+    batterOutOfPhase &&
+    outcome.type === "runs" &&
+    random() < BATTER_OUT_OF_PHASE_DOT_CHANCE
+  ) {
+    const before = outcome;
+    outcome = { type: "dot" };
+    steps.push({
+      kind: "out-of-phase-dot",
+      label: "Out of phase",
+      detail: `${input.batsman.name} (${input.batsman.role}) isn't built for the ${input.phase} — shot didn't connect cleanly. Dot ball.`,
+      before,
+      after: outcome,
+      applied: true,
+    });
+  }
+
+  // ───── Step 15: Misfield (4 ↔ 6 swap) ─────
+  if (
+    perksEnabled &&
+    !rebowled &&
+    outcome.type === "runs" &&
+    (outcome.value === 4 || outcome.value === 6) &&
+    random() < MISFIELD_CHANCE
+  ) {
+    const before = outcome;
+    const flipped = outcome.value === 4 ? 6 : 4;
+    outcome = {
+      type: "runs",
+      value: flipped,
+      shot: outcome.shot,
+      shotCategory: outcome.shotCategory,
+    };
+    steps.push({
+      kind: "misfield",
+      label: "Misfield",
+      detail:
+        flipped === 6
+          ? `Fielder fumbles on the rope — boundary becomes a six!`
+          : `Acrobatic save on the rope — six is pulled back to a four.`,
+      before,
+      after: outcome,
+      applied: true,
+    });
+  }
+
+  // ───── Step 16: Run-out on a neutral ─────
+  // 10% chance a 1 or 2 runs becomes a wicket. Bowler perk.
+  if (
+    perksEnabled &&
+    !rebowled &&
+    outcome.type === "runs" &&
+    (outcome.value === 1 || outcome.value === 2) &&
+    random() < BOWLER_NEUTRAL_RUNOUT_CHANCE
+  ) {
+    const before = outcome;
+    outcome = {
+      type: "wicket",
+      mode: "run out at the non-striker's end",
+      dismissalCategory: "runout",
+    };
+    steps.push({
+      kind: "run-out",
+      label: "Run out",
+      detail: `Direct hit going for the ${before.type === "runs" ? before.value : "?"}! ${input.batsman.name} caught short of the crease.`,
+      before,
+      after: outcome,
+      applied: true,
+    });
+  }
+
+  // ───── Step 17: Inside edge (bowled wicket only) ─────
+  // 5% chance a bowled-mode wicket trickles past the stumps off the
+  // inside edge for 1-4 runs. Different escape from the bye system —
+  // these are bat runs, not extras.
+  if (
+    perksEnabled &&
+    !rebowled &&
+    outcome.type === "wicket" &&
+    outcome.dismissalCategory === "bowled" &&
+    random() < INSIDE_EDGE_CHANCE
+  ) {
+    const before = outcome;
+    // Cricket-believable: usually 1 or 2 runs, occasionally 4 to fine leg.
+    const r = random();
+    const value: RunValue = r < 0.5 ? 1 : r < 0.85 ? 2 : 4;
+    outcome = {
+      type: "runs",
+      value,
+      shot: "inside edge past the stumps",
+      shotCategory: "mistime",
+    };
+    steps.push({
+      kind: "inside-edge",
+      label: "Inside edge",
+      detail: `Ball clipped the inside edge and skimmed past the stumps — ${value} run${value === 1 ? "" : "s"} instead of bowled.`,
+      before,
+      after: outcome,
+      applied: true,
+    });
+  }
+
+  // ───── Step 18: Wicket save (byes / leg-byes) ─────
+  // Any wicket has a chance to become 2 or 4 byes/leg-byes with a
+  // dismissal-typed reason ("LBW down leg side", "edge fell short",
+  // "bails didn't dislodge", etc.). The two buckets are mutually
+  // exclusive — single roll picks one of three outcomes.
+  if (perksEnabled && !rebowled && outcome.type === "wicket") {
+    const roll = random();
+    const saveTotal = WICKET_SAVE_2_BYE_CHANCE + WICKET_SAVE_4_BYE_CHANCE;
+    if (roll < saveTotal) {
+      const is4 = roll >= WICKET_SAVE_2_BYE_CHANCE;
+      const byes = is4 ? 4 : 2;
+      const before = outcome;
+      const { kind: byeKind, narrative } = wicketSaveNarrative(before.dismissalCategory, byes);
+      outcome = { type: "dot" };
+      extraRuns += byes;
+      extrasNote = byeKind; // "byes" | "leg-byes"
+      steps.push({
+        kind: "wicket-save",
+        label: `Saved → ${byes} ${byeKind === "leg-byes" ? "leg byes" : "byes"}`,
+        detail: narrative,
+        before,
+        after: outcome,
+        applied: true,
+      });
+    }
+  }
+
+  // ───── Step 19: Bowler in-phase wicket (dot → wicket) ─────
+  // 10% chance a dot ball becomes a wicket when the bowler is in the
+  // right phase. Yorker / new-ball nip / death-overs slower-ball.
+  // Runs LAST so this wicket is NOT undone by wicket-save.
+  if (
+    !rebowled &&
+    bowlerInPhase &&
+    outcome.type === "dot" &&
+    random() < BOWLER_IN_PHASE_WICKET_CHANCE
+  ) {
+    const before = outcome;
+    const phaseDismissal: { mode: string; dismissalCategory: "bowled" | "lbw" | "caught-keeper" } =
+      input.phase === "powerplay"
+        ? { mode: "nicked behind — new-ball nip", dismissalCategory: "caught-keeper" }
+        : input.phase === "death"
+          ? { mode: "yorker through the gate", dismissalCategory: "bowled" }
+          : { mode: "trapped LBW", dismissalCategory: "lbw" };
+    outcome = {
+      type: "wicket",
+      mode: phaseDismissal.mode,
+      dismissalCategory: phaseDismissal.dismissalCategory,
+    };
+    // Clear any "byes" extras that accumulated from a prior wicket-save
+    // (shouldn't happen — we're transitioning dot → wicket, not the
+    // other direction — but defensive).
+    steps.push({
+      kind: "bowler-in-phase-wicket",
+      label: "Phase wicket",
+      detail: `${input.bowler.name} is a ${input.bowler.role} in the ${input.phase} — they find the breakthrough. ${phaseDismissal.mode}!`,
+      before,
+      after: outcome,
+      applied: true,
+    });
+  }
+
   return {
     steps,
     finalOutcome: outcome,
@@ -523,6 +770,73 @@ export function resolveBall(input: ResolveBallInput): ResolutionResult {
     rebowled,
     lookupZone: lookupOnBatter,
   };
+}
+
+/**
+ * Build a believable "the wicket didn't actually happen" narrative based on
+ * the dismissal that almost was. Returns "byes" vs "leg-byes" as the
+ * extras-note key (used by the scoring + UI).
+ */
+function wicketSaveNarrative(
+  category:
+    | "bowled"
+    | "lbw"
+    | "caught-keeper"
+    | "caught-slip"
+    | "caught-cover"
+    | "caught-midwicket"
+    | "caught-point"
+    | "caught-deep"
+    | "caught-and-bowled"
+    | "stumped"
+    | "runout",
+  byes: number,
+): { kind: "byes" | "leg-byes"; narrative: string } {
+  switch (category) {
+    case "lbw":
+      return {
+        kind: "leg-byes",
+        narrative: `Ball was sliding down leg — umpire turns down the appeal. Batters scramble ${byes} leg byes.`,
+      };
+    case "bowled":
+      return {
+        kind: "byes",
+        narrative: `Ball skimmed the stumps — bails refused to come off! Batters jog through for ${byes}.`,
+      };
+    case "caught-keeper":
+      return {
+        kind: "byes",
+        narrative: `Keeper got fingers to it but couldn't hold — ${byes} byes through the gloves.`,
+      };
+    case "caught-slip":
+      return {
+        kind: "byes",
+        narrative: `Dropped at slip! Edge dies on the grass — batters take ${byes}.`,
+      };
+    case "caught-cover":
+    case "caught-point":
+    case "caught-midwicket":
+    case "caught-deep":
+      return {
+        kind: "byes",
+        narrative: `Fielder grasses the catch — ${byes} taken while the ball is misfielded.`,
+      };
+    case "caught-and-bowled":
+      return {
+        kind: "byes",
+        narrative: `Bowler reached for the return catch and palmed it down — ${byes} taken in the confusion.`,
+      };
+    case "stumped":
+      return {
+        kind: "byes",
+        narrative: `Keeper fumbled the stumping! Batter back in their crease, ${byes} byes.`,
+      };
+    case "runout":
+      return {
+        kind: "byes",
+        narrative: `Throw missed the stumps — ${byes} overthrows for free.`,
+      };
+  }
 }
 
 // ─────────────────────────── Helpers ───────────────────────────
