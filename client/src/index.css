@@ -2522,10 +2522,9 @@ h1 {
      scrolls from the top when content overflows. */
   margin: auto;
 }
-/* Reveal stacks vertically: bowler on top, batter below, then resolution
-   trail beneath. Same on mobile and desktop — stacking matches the real
-   broadcast view (bowler delivers → batter responds → result) and avoids
-   the cramped side-by-side layout on phones. */
+/* Reveal stacks vertically on mobile (bowler → batter → result, broadcast
+   style). On wider screens the two cards sit side-by-side so the overlay
+   doesn't require scrolling. */
 .reveal-cards {
   display: flex;
   flex-direction: column;
@@ -2537,6 +2536,17 @@ h1 {
   display: flex;
   flex-direction: column;
   align-items: stretch;
+}
+@media (min-width: 540px) {
+  .reveal-cards {
+    flex-direction: row;
+    align-items: flex-start;
+    max-width: none;
+  }
+  .reveal-side {
+    flex: 1;
+    min-width: 0;
+  }
 }
 .reveal-side-label {
   font-size: 0.7rem;
@@ -2733,6 +2743,23 @@ h1 {
 }
 .swap-grid {
   width: 100%;
+}
+/* SwapPicker on narrow phones: tighten padding and hide the zone-grid +
+   flavour text inside each card so the 3-column layout (You / vs / Opp)
+   actually fits without overflowing or requiring horizontal scroll. */
+@media (max-width: 539px) {
+  .reveal-inner.swap-picker {
+    padding: 1rem 0.75rem;
+  }
+  .swap-table {
+    padding: 0.75rem;
+  }
+  .swap-table .card-hand-body {
+    display: none;
+  }
+  .swap-table .card {
+    padding: 0.5rem 0.6rem;
+  }
 }
 
 /* Reveal footer (Continue + post-ball countdown) */
