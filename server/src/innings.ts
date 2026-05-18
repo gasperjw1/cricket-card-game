@@ -80,8 +80,12 @@ export function startInnings1(match: ServerMatch, cb: InningsCallbacks): void {
   //  - Humans: random multi-nation pool, UNLESS the client supplied a
   //    custom deck (WC career mode). Custom deck is validated and any
   //    missing card ids get filled in from the auto-build path.
+  // Explicit null check on players.B — otherwise `!undefined?.isBot` is
+  // `true` and bCustom would be set against a non-existent player.
   const aCustom = !match.players.A.isBot ? match.playerCustomDeck : null;
-  const bCustom = !match.players.B?.isBot ? match.playerCustomDeck : null;
+  const bCustom = match.players.B && !match.players.B.isBot
+    ? match.playerCustomDeck
+    : null;
   match.decks = {
     A: aCustom
       ? buildPlayerDecksFromCustom(match.format, aCustom)
@@ -604,8 +608,6 @@ function runEngineAndAdvance(match: ServerMatch, cb: InningsCallbacks): void {
   const lookupZone = engineResult.lookupZone;
 
   // Build the BallResult for broadcast.
-  const battingHand = match.decks[ctx.battingSlot].hand;
-  const bowlingHand = match.decks[ctx.bowlingSlot].hand;
   const battingReveal: RevealedSelection = {
     player: ctx.battingSlot,
     role: "batting",
@@ -669,10 +671,6 @@ function runEngineAndAdvance(match: ServerMatch, cb: InningsCallbacks): void {
   // Ensure any stale swap state is cleared.
   match.pendingSwap = null;
   clearSwapTimer(match);
-
-  // Suppress unused lint on hand variables
-  void battingHand;
-  void bowlingHand;
 
   advanceAfterBall(match, cb, result);
 }

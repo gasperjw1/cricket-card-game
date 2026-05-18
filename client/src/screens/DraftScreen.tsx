@@ -150,6 +150,7 @@ export function DraftScreen({ onComplete, onCancel }: Props) {
         onBack={roundIdx === 0 ? onCancel : () => setRoundIdx(roundIdx - 1)}
         title={round.title}
         blurb={round.blurb}
+        stepLabel={`${roundIdx + 1} of ${rounds.length}`}
       />
     );
   }
@@ -238,6 +239,7 @@ function SituationRound(props: {
   onBack: () => void;
   title: string;
   blurb: string;
+  stepLabel: string;
 }) {
   const { battingOptions, bowlingOptions, selected, onChange } = props;
   const battingSelected = selected.filter((id) =>
@@ -263,7 +265,7 @@ function SituationRound(props: {
   return (
     <main>
       <div className="draft-header">
-        <span className="dim-text">5 of 5</span>
+        <span className="dim-text">{props.stepLabel}</span>
         <h1>{props.title}</h1>
         <p className="dim-text">{props.blurb}</p>
         <p className="draft-counter">

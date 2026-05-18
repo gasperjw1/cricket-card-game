@@ -49,7 +49,7 @@ export function InningsScreen({ client }: Props) {
     matchState.currentInnings === 1 ? matchState.innings1 : matchState.innings2;
 
   // Match-over view, but only AFTER the user has dismissed the final ball's
-  // reveal. The server pauses 15s post-ball before transitioning to match-
+  // reveal. The server pauses POST_BALL_PAUSE_SECONDS (currently 10s) before transitioning to match-
   // over so this branch usually only fires once the player has clicked
   // Continue (or stayed past the auto-dismiss window).
   if (matchState.phase === "match-over" && !lastReveal) {
@@ -68,7 +68,6 @@ export function InningsScreen({ client }: Props) {
   const role: "batting" | "bowling" =
     innings.battingPlayer === mySlot ? "batting" : "bowling";
   const opponentSlot: PlayerSlot = mySlot === "A" ? "B" : "A";
-  const me = mySlot === "A" ? matchState.players.A : matchState.players.B!;
   const opponent =
     opponentSlot === "A" ? matchState.players.A : matchState.players.B!;
 
@@ -465,7 +464,9 @@ function SelectionSlot(props: {
 }
 
 function cardName(card: AnyCard): string {
-  if (card.kind === "situation") return card.name;
+  // All card kinds carry a `.name` directly — kept as a helper for
+  // call-site readability + future divergence (e.g. show tier next to
+  // player names but not situations).
   return card.name;
 }
 
@@ -782,7 +783,7 @@ function FinalOutcome({
   if (outcome.type === "wicket") {
     main = (
       <div className="final-outcome wicket">
-        <Tip text="The batter is out. They lose a wicket; max 2 per innings.">
+        <Tip text="The batter is out. They lose a wicket; the innings ends when the format's wicket cap is reached.">
           <span>WICKET — {outcome.mode}</span>
         </Tip>
       </div>
@@ -902,30 +903,28 @@ function WCMatchOverFlow({ client }: { client: MatchClient }) {
   } | null>(null);
   // Cache the result + opponent BEFORE we call recordMatch, since that
   // mutates the run's history.length (which would change "next opponent").
+  // Using a ref (not state) so writing it doesn't trigger a re-render.
   const opponentRef = useRef<{ opp: import("../lib/career.ts").WCOpponent; playerWon: boolean } | null>(null);
 
-  if (!matchState || !mySlot || !career.currentRun) return null;
-  const run = career.currentRun;
-  const result = matchState.result;
-
-  // Step 1 — capture result + record match on the WC ladder.
-  // Only run ONCE per WC match end (track via opponentRef).
-  if (!opponentRef.current && result) {
+  // Side-effect: when the match result first lands, record it on the
+  // ladder and roll the appropriate pack. Wrapped in useEffect so we
+  // don't violate React's "no setState during render of another
+  // component" rule (recordMatch + setPackContents both trigger
+  // subscriber updates / state changes). The `opponentRef` guard means
+  // this fires exactly once per match.
+  useEffect(() => {
+    if (opponentRef.current || !matchState?.result || !mySlot || !career.currentRun) {
+      return;
+    }
+    const run = career.currentRun;
     const opp = run.ladder[run.history.length];
     if (!opp) {
-      // No opponent — defensive, shouldn't happen.
       endWCMatch();
-      return (
-        <main>
-          <h1>Match Over</h1>
-          <button className="btn primary" onClick={client.leaveMatch}>Back to home</button>
-        </main>
-      );
+      return;
     }
-    const playerWon = result.winner === mySlot;
+    const playerWon = matchState.result.winner === mySlot;
     opponentRef.current = { opp, playerWon };
     recordMatch(playerWon ? "win" : "loss", opp);
-    // Roll the pack ONLY on a win.
     if (playerWon) {
       const isFinal = opp.stageLabel === "final";
       const excludes = Object.keys(career.permanentCollection.cards);
@@ -935,9 +934,21 @@ function WCMatchOverFlow({ client }: { client: MatchClient }) {
           : generatePerWinPack(opp.stageLabel === "semi" ? "semi" : "group", excludes),
       );
     }
-  }
+  }, [matchState?.result, mySlot, career.currentRun, career.permanentCollection.cards]);
 
+  if (!matchState || !mySlot || !career.currentRun) return null;
+  const result = matchState.result;
   const captured = opponentRef.current;
+
+  // If the result hasn't landed yet, render a loading shell.
+  if (!result || !captured) {
+    return (
+      <main>
+        <h1>Match Over</h1>
+        <p className="dim-text">Computing result…</p>
+      </main>
+    );
+  }
 
   if (phase === "result") {
     const headline = wcResultHeadline(captured);

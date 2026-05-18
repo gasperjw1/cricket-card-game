@@ -85,19 +85,23 @@ export const FIELDING_ICONS: Record<FieldingRegion, IconInfo> = {
 export const TIER_INFO: Record<Tier, { color: string; description: string }> = {
   Elite: {
     color: "#f5d76e",
-    description: "Elite — top tier. 3 strengths, 2 neutrals, 1 weakness, 2 resistances.",
+    description:
+      "Elite — top tier. Batters: 3 strengths, 2 neutrals, 1 weakness, ~7 of 8 adjective resistances. Bowlers carry 2 skills (no-stack rule).",
   },
   Gold: {
     color: "#d4a72c",
-    description: "Gold — 3 strengths, 2 neutrals, 1 weakness, 1 resistance.",
+    description:
+      "Gold — world-class. Batters: 2 strengths, 2 neutrals, 2 weaknesses, ~4-5 resistances. Bowlers carry 1 skill.",
   },
   Silver: {
     color: "#c0c5cd",
-    description: "Silver — 2 strengths, 2 neutrals, 2 weaknesses, no resistances.",
+    description:
+      "Silver — international regulars. Batters: 2 strengths, 1 neutral, 3 weaknesses, ~2-3 resistances. Bowlers have no skill.",
   },
   Bronze: {
     color: "#cd7f32",
-    description: "Bronze — 1 strength, 2 neutrals, 3 weaknesses, no resistances.",
+    description:
+      "Bronze — squad fillers. Batters: 1 strength, 2 neutrals, 3 weaknesses, no resistances. Bowlers have no skill.",
   },
 };
 

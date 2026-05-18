@@ -47,10 +47,15 @@ export function CareerHomeScreen({ onBack, client }: Props) {
   }, [run?.stage, subMode]);
 
   if (subMode === "draft") {
-    return <DraftScreen onComplete={() => setSubMode("home")} onCancel={() => {
-      abandonRun();
-      setSubMode("home");
-    }} />;
+    return (
+      <DraftScreen
+        onComplete={() => setSubMode("home")}
+        // Abandoning the draft kills the run — route through the
+        // confirmation modal so the user can't lose progress with one
+        // tap. (Previously: silent abandonRun on Back.)
+        onCancel={() => setSubMode("abandon-confirm")}
+      />
+    );
   }
 
   if (subMode === "deck") {
@@ -102,6 +107,7 @@ export function CareerHomeScreen({ onBack, client }: Props) {
 
       {subMode === "abandon-confirm" && (
         <AbandonConfirm
+          context={run?.stage === "drafting" ? "drafting" : "active"}
           onConfirm={() => {
             abandonRun();
             setSubMode("home");
@@ -148,9 +154,9 @@ export function CareerHomeScreen({ onBack, client }: Props) {
    * RunDeck.
    *
    * After the match runs through InningsScreen and ends, MatchOverView
-   * detects the wcMatchInFlight flag, records the result, and routes
-   * into pack-opening (Session 3.5, not yet built — for now it falls
-   * back to "Back to home" which returns here).
+   * detects the wcMatchInFlight flag and routes into WCMatchOverFlow,
+   * which records the result on the ladder, opens the appropriate pack,
+   * and routes back here on completion.
    */
   async function playNextWCMatch(run: WCRun): Promise<void> {
     if (!run.deck) return;
@@ -362,18 +368,30 @@ function Ladder({
   );
 }
 
-function AbandonConfirm({ onConfirm, onCancel }: { onConfirm: () => void; onCancel: () => void }) {
+function AbandonConfirm({
+  context,
+  onConfirm,
+  onCancel,
+}: {
+  /** Drives the message: "Abandon draft?" vs "Abandon run?". */
+  context: "drafting" | "active";
+  onConfirm: () => void;
+  onCancel: () => void;
+}) {
+  const draftMode = context === "drafting";
   return (
     <div className="modal-backdrop" onClick={onCancel}>
       <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-        <h2>Abandon this run?</h2>
+        <h2>{draftMode ? "Abandon this draft?" : "Abandon this run?"}</h2>
         <p>
-          You'll lose your current deck and run inventory. Trophies earned
-          previously are unaffected. This can't be undone.
+          {draftMode
+            ? "You'll lose your draft progress and have to start a new World Cup from scratch."
+            : "You'll lose your current deck and run inventory."}{" "}
+          Trophies earned previously are unaffected. This can't be undone.
         </p>
         <div className="form-actions">
           <button className="btn ghost" onClick={onCancel}>
-            Stay in the run
+            {draftMode ? "Back to draft" : "Stay in the run"}
           </button>
           <button className="btn danger" onClick={onConfirm}>
             Abandon
