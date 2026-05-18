@@ -82,10 +82,8 @@ storytelling sequences, settings, and a working World Cup career mode.
 ## In flight / next
 
 - [ ] **Source the 10 SFX files** per `docs/sfx-sources.md` and drop into `client/public/sfx/`
-- [ ] Pack-opening polish: per-card reveal animation, rarity-specific pull sounds, anticipation pause
-- [ ] Read-only collection-view modal (currently just a count in career-home footer)
 - [ ] Real-photo asset library — per-player shot images + bowler run-ups + celebrations
-- [ ] Edge-case tests for the WC state machine
+- [ ] Client-side test runner (vitest + jsdom) so we can unit-test career.ts / lib/* modules
 
 ## Backlog
 

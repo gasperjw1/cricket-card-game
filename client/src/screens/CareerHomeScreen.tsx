@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
-import type { Nation } from "@swipe-sixer/shared";
+import type { AnyCard, Nation } from "@swipe-sixer/shared";
+import { CARDS } from "@swipe-sixer/shared/data";
 import {
   abandonRun,
   endRun,
@@ -21,7 +22,7 @@ interface Props {
   client: MatchClient;
 }
 
-type SubMode = "home" | "draft" | "deck" | "abandon-confirm";
+type SubMode = "home" | "draft" | "deck" | "abandon-confirm" | "collection";
 
 /**
  * Hub for the World Cup career mode. Routes between:
@@ -95,11 +96,28 @@ export function CareerHomeScreen({ onBack, client }: Props) {
         />
       )}
 
-      <p className="career-stats-footer">
-        🏆 {save.permanentCollection.trophies} trophies ·{" "}
-        📦 {Object.values(save.permanentCollection.cards).reduce((a, b) => a + b, 0)} cards in stash ·{" "}
-        {save.permanentCollection.runsPlayed} runs played
-      </p>
+      <div className="career-stats-footer">
+        <p>
+          🏆 {save.permanentCollection.trophies} trophies ·{" "}
+          📦 {Object.values(save.permanentCollection.cards).reduce((a, b) => a + b, 0)} cards in stash ·{" "}
+          {save.permanentCollection.runsPlayed} runs played
+        </p>
+        {Object.keys(save.permanentCollection.cards).length > 0 && (
+          <button
+            className="btn ghost small"
+            onClick={() => setSubMode("collection")}
+          >
+            View stash →
+          </button>
+        )}
+      </div>
+
+      {subMode === "collection" && (
+        <CollectionModal
+          collection={save.permanentCollection}
+          onClose={() => setSubMode("home")}
+        />
+      )}
     </main>
   );
 
@@ -218,24 +236,26 @@ function ActiveRunView({
 }
 
 function WonView({ run, onClaim }: { run: WCRun; onClaim: () => void }) {
-  void run;
   return (
     <div className="career-block career-won">
       <div className="career-trophy-emoji">🏆</div>
       <h2>World Cup Champion!</h2>
       <p>
-        You've conquered the tournament. Open your <strong>Trophy pack</strong> to
-        add cards to your permanent collection.
+        Beat <strong>{run.ladder[run.ladder.length - 1]?.nation ?? "the final"}</strong> in
+        the final. Your Trophy pack cards have been added to your permanent
+        collection.
       </p>
       <button className="btn primary big" onClick={onClaim}>
-        Open Trophy pack
+        Finish run → home
       </button>
+      <RunRecapList history={run.history} />
     </div>
   );
 }
 
 function LostView({ run, onClose }: { run: WCRun; onClose: () => void }) {
   const lastMatch = run.history[run.history.length - 1];
+  const wins = run.history.filter((h) => h.result === "win").length;
   return (
     <div className="career-block career-lost">
       <h2>🛑 Run Ended</h2>
@@ -246,14 +266,36 @@ function LostView({ run, onClose }: { run: WCRun; onClose: () => void }) {
         </p>
       )}
       <p className="dim-text">
-        Won {run.history.filter((h) => h.result === "win").length} match
-        {run.history.filter((h) => h.result === "win").length === 1 ? "" : "es"}.
+        Won {wins} match{wins === 1 ? "" : "es"}.
         Run inventory discarded — your permanent collection is unchanged.
       </p>
-      <button className="btn primary" onClick={onClose}>
+      <RunRecapList history={run.history} />
+      <button className="btn primary" onClick={onClose} style={{ marginTop: "1rem" }}>
         Back to home
       </button>
     </div>
+  );
+}
+
+/** Compact per-match recap shown on the lost / won screens. Same shape
+ *  as the ladder row but only renders played matches, with the result
+ *  prominent. Gives the player a sense of "how far did I get + who beat
+ *  me where" without re-opening the ladder. */
+function RunRecapList({ history }: { history: WCRun["history"] }) {
+  if (history.length === 0) return null;
+  return (
+    <ol className="career-ladder run-recap" style={{ marginTop: "1rem" }}>
+      {history.map((h, i) => (
+        <li key={i} className={`career-ladder-item ${h.result}`}>
+          <span className="career-ladder-stage">{stageBadge(h.opponent.stageLabel)}</span>
+          <span className="career-ladder-nation">{h.opponent.nation}</span>
+          <span className="career-ladder-diff dim-text">{h.opponent.difficulty}</span>
+          <span className={`career-ladder-result ${h.result}`}>
+            {h.result === "win" ? "WON" : h.result === "loss" ? "LOST" : "TIE"}
+          </span>
+        </li>
+      ))}
+    </ol>
   );
 }
 
@@ -342,4 +384,103 @@ function stageLabel(stage: WCRun["stage"]): string {
 
 function stageBadge(label: "group" | "semi" | "final"): string {
   return label === "group" ? "G" : label === "semi" ? "SF" : "F";
+}
+
+/** Read-only modal showing the player's permanent collection. Cards are
+ *  resolved from ids + grouped by tier; duplicates show a small count
+ *  badge. v1 has no filter/sort UI — just a scrollable grid grouped
+ *  Elite → Gold → Silver → Bronze → Situations. */
+function CollectionModal({
+  collection,
+  onClose,
+}: {
+  collection: import("../lib/career.ts").PermanentCollection;
+  onClose: () => void;
+}) {
+  // Resolve card ids to full cards. Counts the duplicates so a 3x DRS
+  // Review shows once with a "×3" badge instead of three slots.
+  const entries: { card: AnyCard; count: number }[] = [];
+  for (const [id, count] of Object.entries(collection.cards)) {
+    const card = resolvePermCard(id);
+    if (card) entries.push({ card, count });
+  }
+
+  // Group by category: situations last, players by tier (Elite → Bronze).
+  const tierOrder: Record<string, number> = { Elite: 0, Gold: 1, Silver: 2, Bronze: 3 };
+  const players = entries.filter(
+    (e): e is { card: Exclude<AnyCard, { kind: "situation" }>; count: number } =>
+      e.card.kind !== "situation",
+  );
+  players.sort((a, b) => {
+    const ta = tierOrder[a.card.tier] ?? 99;
+    const tb = tierOrder[b.card.tier] ?? 99;
+    if (ta !== tb) return ta - tb;
+    return a.card.name.localeCompare(b.card.name);
+  });
+  const situations = entries.filter((e) => e.card.kind === "situation");
+  situations.sort((a, b) => a.card.name.localeCompare(b.card.name));
+
+  return (
+    <div className="modal-backdrop" onClick={onClose}>
+      <div className="modal-content collection-modal" onClick={(e) => e.stopPropagation()}>
+        <header className="collection-modal-header">
+          <h2>📦 Your stash</h2>
+          <button className="btn ghost small" onClick={onClose} aria-label="Close">
+            ✕
+          </button>
+        </header>
+        <p className="dim-text">
+          {entries.length === 0
+            ? "Empty. Win a World Cup trophy to earn cards for your permanent collection."
+            : `${entries.reduce((a, e) => a + e.count, 0)} cards across ${entries.length} unique entries. Earned from ${collection.trophies} trophy${collection.trophies === 1 ? "" : "s"}.`}
+        </p>
+
+        {players.length > 0 && (
+          <>
+            <h3 className="collection-section-head">Players</h3>
+            <ul className="collection-list">
+              {players.map(({ card, count }) => (
+                <li key={card.id} className="collection-row">
+                  <span className={`tier-pill tier-${card.tier.toLowerCase()}`}>
+                    {card.tier}
+                  </span>
+                  <span className="collection-name">{card.name}</span>
+                  <span className="collection-nation dim-text">{card.nation}</span>
+                  {count > 1 && <span className="collection-count">×{count}</span>}
+                </li>
+              ))}
+            </ul>
+          </>
+        )}
+
+        {situations.length > 0 && (
+          <>
+            <h3 className="collection-section-head">Situation cards</h3>
+            <ul className="collection-list">
+              {situations.map(({ card, count }) => (
+                <li key={card.id} className="collection-row">
+                  <span className="tier-pill tier-situation">SIT</span>
+                  <span className="collection-name">{card.name}</span>
+                  {count > 1 && <span className="collection-count">×{count}</span>}
+                </li>
+              ))}
+            </ul>
+          </>
+        )}
+
+        <div className="form-actions" style={{ marginTop: "1rem" }}>
+          <button className="btn primary" onClick={onClose}>Close</button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function resolvePermCard(id: string): AnyCard | null {
+  const all: AnyCard[] = [
+    ...CARDS.batsmen,
+    ...CARDS.bowlers,
+    ...CARDS.situations,
+  ];
+  return all.find((c) => c.id === id) ?? null;
 }

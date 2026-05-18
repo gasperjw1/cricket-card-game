@@ -1038,6 +1038,75 @@ h1 {
   color: #6e7989;
   border-top: 1px solid #2a3441;
   padding-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+.career-stats-footer p {
+  margin: 0;
+}
+
+/* Collection modal — read-only grid of cards in your permanent stash. */
+.collection-modal {
+  max-width: 480px;
+  max-height: 80vh;
+  overflow-y: auto;
+}
+.collection-modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.collection-modal-header h2 {
+  margin: 0;
+}
+.collection-section-head {
+  margin: 1.5rem 0 0.5rem;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #8a939c;
+}
+.collection-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+.collection-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.4rem 0.6rem;
+  background: #1c2530;
+  border: 1px solid #2a3441;
+  border-radius: 6px;
+  font-size: 0.85rem;
+}
+.collection-name {
+  flex: 1 1 0;
+  min-width: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-weight: 600;
+  color: #e8e8e8;
+}
+.collection-nation {
+  font-size: 0.7rem;
+  flex-shrink: 0;
+}
+.collection-count {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #6aa3ff;
+  background: #11181f;
+  padding: 0.1rem 0.4rem;
+  border-radius: 6px;
+  border: 1px solid #2a3441;
 }
 .career-stage-heading {
   font-size: 0.95rem;
@@ -1156,7 +1225,7 @@ h1 {
 }
 
 /* Pack opening (post-WC-match) — reuses .draft-grid + .draft-slot for the
-   card row, so we only need header + counter styling here. */
+   card row, plus its own face-down + rarity-flourish styles. */
 .pack-header {
   text-align: center;
   margin-bottom: 1rem;
@@ -1169,6 +1238,96 @@ h1 {
   font-size: 0.85rem;
   color: #6aa3ff;
   font-weight: 600;
+}
+
+/* Face-down pack card. Mimics the existing .card frame so the dimensions
+   match the revealed Card component (no layout shift on flip). */
+.pack-face-down {
+  width: 100%;
+  height: 100%;
+  min-height: 320px;
+  border-radius: 14px;
+  background: linear-gradient(160deg, #2a1c45 0%, #16111f 100%);
+  border: 2px solid #8a5cf5;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform 120ms ease, box-shadow 120ms ease;
+}
+.pack-face-down:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 24px rgba(138, 92, 245, 0.4);
+}
+.pack-face-down-back {
+  position: absolute;
+  inset: 0;
+  background-image: repeating-linear-gradient(
+    45deg,
+    transparent 0,
+    transparent 12px,
+    rgba(138, 92, 245, 0.1) 12px,
+    rgba(138, 92, 245, 0.1) 14px
+  );
+}
+.pack-face-down-emblem {
+  position: relative;
+  font-size: 3.5rem;
+  font-weight: 900;
+  color: #8a5cf5;
+  opacity: 0.55;
+  text-shadow: 0 0 18px rgba(138, 92, 245, 0.5);
+  font-family: ui-monospace, "SF Mono", Menlo, monospace;
+  animation: pack-pulse 2.4s ease-in-out infinite;
+}
+@keyframes pack-pulse {
+  0%, 100% { transform: scale(1); opacity: 0.55; }
+  50% { transform: scale(1.08); opacity: 0.8; }
+}
+
+/* Flip animation when a face-down card transitions to revealed.
+   We animate the .pack-slot wrapper because the inner content swaps
+   between FaceDownPackCard and Card; a Y-rotation conveys the flip. */
+.pack-slot {
+  perspective: 1000px;
+}
+.pack-slot .card-hand {
+  animation: pack-flip-in 420ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+@keyframes pack-flip-in {
+  0% {
+    transform: rotateY(-90deg);
+    opacity: 0;
+  }
+  60% {
+    opacity: 1;
+  }
+  100% {
+    transform: rotateY(0);
+    opacity: 1;
+  }
+}
+
+/* Elite-tier reveal flourish: golden glow shimmer + brief flash. */
+.pack-reveal-elite .card-hand {
+  animation:
+    pack-flip-in 420ms cubic-bezier(0.2, 0.8, 0.2, 1),
+    pack-elite-flash 1.2s ease-out;
+  box-shadow: 0 0 22px rgba(245, 215, 110, 0.7);
+}
+@keyframes pack-elite-flash {
+  0%   { box-shadow: 0 0 0 rgba(245, 215, 110, 0); }
+  30%  { box-shadow: 0 0 36px rgba(245, 215, 110, 1); }
+  100% { box-shadow: 0 0 22px rgba(245, 215, 110, 0.7); }
+}
+
+/* Gold-tier reveal: softer warm glow, no flash. */
+.pack-reveal-gold .card-hand {
+  animation: pack-flip-in 420ms cubic-bezier(0.2, 0.8, 0.2, 1);
+  box-shadow: 0 0 16px rgba(212, 167, 44, 0.6);
 }
 
 /* Draft */
