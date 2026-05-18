@@ -393,10 +393,14 @@ describe("Switch Hit", () => {
   });
 });
 
-// ─── DRS + Review Appeal interaction ───
+// ─── DRS + Review Appeal mutual cancel ───
 
-describe("DRS then Review Appeal", () => {
-  it("DRS turns wicket into dot, then Review Appeal can upgrade dot back to wicket", () => {
+describe("DRS Review + Review Appeal mutual cancel", () => {
+  it("both played on the same ball → both skip, base outcome survives untouched", () => {
+    // Base lookup: Outside off / Full → weakness wicket (caught-keeper).
+    // DRS Review + Review Appeal both in play → mutual cancel; neither fires.
+    // Lucky escape: no phase → perksEnabled = false → skip.
+    // Final: wicket stands.
     const r = resolveBall({
       batsman: makeBatter(),
       bowler: makeBowler({
@@ -405,9 +409,40 @@ describe("DRS then Review Appeal", () => {
       }),
       battingSituation: sit("drs-review", "batting"),
       bowlingSituation: sit("review-appeal", "bowling"),
-      random: () => 0, // ensure appeal succeeds
     });
     assert.equal(r.finalOutcome.type, "wicket");
+    const drs = r.steps.find((s) => s.kind === "drs-review");
+    assert.ok(drs, "drs-review step should appear");
+    assert.equal(drs!.applied, false, "DRS Review should NOT apply (cancelled)");
+    const ra = r.steps.find((s) => s.kind === "review-appeal");
+    assert.ok(ra, "review-appeal step should appear");
+    assert.equal(ra!.applied, false, "Review Appeal should NOT apply (cancelled)");
+  });
+
+  it("DRS alone still saves a wicket (no mutual cancel when RA absent)", () => {
+    const r = resolveBall({
+      batsman: makeBatter(),
+      bowler: makeBowler({ delivery: { line: "Outside off", length: "Full" }, fielding: [] }),
+      battingSituation: sit("drs-review", "batting"),
+      bowlingSituation: null,
+    });
+    assert.equal(r.finalOutcome.type, "dot");
+    const drs = r.steps.find((s) => s.kind === "drs-review");
+    assert.equal(drs!.applied, true);
+  });
+
+  it("Review Appeal alone still promotes a dot to a wicket (no mutual cancel when DRS absent)", () => {
+    // Blank batter → dot. RA roll = 0 < 0.40 → wicket.
+    const r = resolveBall({
+      batsman: makeBatter({ strengths: [], neutrals: [], weaknesses: [] }),
+      bowler: makeBowler({ delivery: { line: "Leg stump", length: "Short" }, fielding: [] }),
+      battingSituation: null,
+      bowlingSituation: sit("review-appeal", "bowling"),
+      random: () => 0,
+    });
+    assert.equal(r.finalOutcome.type, "wicket");
+    const ra = r.steps.find((s) => s.kind === "review-appeal");
+    assert.equal(ra!.applied, true);
   });
 });
 
@@ -842,86 +877,192 @@ describe("Two-adjective no-stack rule", () => {
 // Note: these perks are gated by `phase` being provided. Tests above
 // omit phase to get deterministic legacy behavior.
 
-describe("Phase perks — wicket save", () => {
-  it("converts a weakness wicket to byes when random rolls low", () => {
-    const r = resolveBall({
-      batsman: makeBatter({ role: "middle-order" }),
-      bowler: makeBowler({
-        delivery: { line: "Outside off", length: "Full" },
-        fielding: [],
-      }),
-      battingSituation: null,
-      bowlingSituation: null,
-      phase: "middle",
-      random: () => 0.05, // 0.05 < 0.15 → 2 byes
-    });
-    assert.equal(r.finalOutcome.type, "dot", "wicket saved to dot");
-    assert.equal(r.extraRuns, 2, "2 byes/leg-byes awarded");
-    assert.ok(
-      r.extrasNote === "byes" || r.extrasNote === "leg-byes",
-      `extrasNote should be byes or leg-byes, got ${r.extrasNote}`,
-    );
-    assert.equal(r.rebowled, false, "byes don't trigger re-bowl");
-  });
+// ─── Lucky escape (unified wicket-save + inside edge) ───
+// LUCKY_ESCAPE_CHANCE = 0.30 — roll < 0.30 triggers escape.
+// Escape type is determined by dismissal category.
 
-  it("converts a weakness wicket to 4 byes in the upper bucket", () => {
+describe("Lucky escape — bowled", () => {
+  it("bails don't fall (Full) → 2 byes, dot, no rebowl", () => {
     const r = resolveBall({
-      batsman: makeBatter({ role: "middle-order" }),
-      bowler: makeBowler({
-        delivery: { line: "Outside off", length: "Full" },
-        fielding: [],
+      batsman: makeBatter({
+        weaknesses: [{
+          zone: { line: "Middle stump", length: "Full" },
+          outcome: { type: "wicket", mode: "clean bowled", dismissalCategory: "bowled" },
+        }],
       }),
+      bowler: makeBowler({ delivery: { line: "Middle stump", length: "Full" }, fielding: [] }),
       battingSituation: null,
       bowlingSituation: null,
       phase: "middle",
-      random: () => 0.20, // 0.15 <= 0.20 < 0.30 → 4 byes
+      random: () => 0.05, // 0.05 < 0.30 → escape fires
     });
     assert.equal(r.finalOutcome.type, "dot");
-    assert.equal(r.extraRuns, 4);
+    assert.equal(r.extraRuns, 2);
+    assert.equal(r.extrasNote, "byes");
+    assert.equal(r.rebowled, false);
+    const step = r.steps.find((s) => s.kind === "lucky-escape");
+    assert.ok(step?.applied);
   });
 
-  it("does NOT save a run-out wicket even when roll is low", () => {
-    // Batter on a neutral zone — engine produces runs: 2. Step 16
-    // (run-out, 10% chance) converts to a wicket with category "runout".
-    // Step 18 (wicket-save) must skip run-outs.
-    //
-    // Test uses role-less batter + bowler so only Step 16 (run-out)
-    // and Step 18 (wicket-save attempt) consume random rolls. Both
-    // get 0.05; if save fires on runout, the wicket would become byes.
-    const rolls = [0.05, 0.05];
-    let idx = 0;
+  it("bails don't fall (Short) → 2 byes with different narrative", () => {
     const r = resolveBall({
-      batsman: makeBatter({ role: undefined }), // no in-phase upgrade
-      bowler: makeBowler({
-        delivery: { line: "Middle stump", length: "Good length" }, // batter neutral 2
-        fielding: [],
-        role: undefined, // no in-phase wicket etc.
+      batsman: makeBatter({
+        weaknesses: [{
+          zone: { line: "Middle stump", length: "Short" },
+          outcome: { type: "wicket", mode: "top edge bowled", dismissalCategory: "bowled" },
+        }],
       }),
+      bowler: makeBowler({ delivery: { line: "Middle stump", length: "Short" }, fielding: [] }),
       battingSituation: null,
       bowlingSituation: null,
       phase: "middle",
-      random: () => rolls[idx++ % rolls.length]!,
+      random: () => 0.05,
     });
-    assert.equal(r.finalOutcome.type, "wicket", "run-out wicket must stick");
-    if (r.finalOutcome.type === "wicket") {
-      assert.equal(r.finalOutcome.dismissalCategory, "runout");
-    }
-    assert.equal(r.extraRuns, 0, "no byes awarded on run-out");
+    assert.equal(r.extraRuns, 2);
+    assert.equal(r.extrasNote, "byes");
   });
+});
 
-  it("wicket stands when random rolls outside the save buckets", () => {
+describe("Lucky escape — LBW", () => {
+  it("leg-stump LBW → 'sliding down leg' → 2 leg byes", () => {
     const r = resolveBall({
-      batsman: makeBatter({ role: "middle-order" }),
-      bowler: makeBowler({
-        delivery: { line: "Outside off", length: "Full" },
-        fielding: [],
+      batsman: makeBatter({
+        weaknesses: [{
+          zone: { line: "Leg stump", length: "Good length" },
+          outcome: { type: "wicket", mode: "trapped LBW", dismissalCategory: "lbw" },
+        }],
       }),
+      bowler: makeBowler({ delivery: { line: "Leg stump", length: "Good length" }, fielding: [] }),
       battingSituation: null,
       bowlingSituation: null,
       phase: "middle",
-      random: () => 0.50, // > 0.30 → no save
+      random: () => 0.05,
+    });
+    assert.equal(r.finalOutcome.type, "dot");
+    assert.equal(r.extraRuns, 2);
+    assert.equal(r.extrasNote, "leg-byes");
+    const step = r.steps.find((s) => s.kind === "lucky-escape");
+    assert.ok(step?.detail.includes("leg"));
+  });
+
+  it("outside-off LBW → 'pitched outside off' → 2 leg byes", () => {
+    const r = resolveBall({
+      batsman: makeBatter({
+        weaknesses: [{
+          zone: { line: "Outside off", length: "Full" },
+          outcome: { type: "wicket", mode: "LBW", dismissalCategory: "lbw" },
+        }],
+      }),
+      bowler: makeBowler({ delivery: { line: "Outside off", length: "Full" }, fielding: [] }),
+      battingSituation: null,
+      bowlingSituation: null,
+      phase: "middle",
+      random: () => 0.05,
+    });
+    assert.equal(r.extrasNote, "leg-byes");
+    const step = r.steps.find((s) => s.kind === "lucky-escape");
+    assert.ok(step?.detail.includes("outside off"));
+  });
+});
+
+describe("Lucky escape — caught", () => {
+  it("caught-deep → dropped on the rope → 4 bat runs", () => {
+    const r = resolveBall({
+      batsman: makeBatter({
+        weaknesses: [{
+          zone: { line: "Middle stump", length: "Short" },
+          outcome: { type: "wicket", mode: "top edge caught deep", dismissalCategory: "caught-deep" },
+        }],
+      }),
+      bowler: makeBowler({ delivery: { line: "Middle stump", length: "Short" }, fielding: [] }),
+      battingSituation: null,
+      bowlingSituation: null,
+      phase: "middle",
+      random: () => 0.05,
+    });
+    assert.equal(r.finalOutcome.type, "runs");
+    if (r.finalOutcome.type === "runs") assert.equal(r.finalOutcome.value, 4);
+    assert.equal(r.extraRuns, 0, "bat runs are not extras");
+  });
+
+  it("caught-midwicket → fumbled → 1 bat run", () => {
+    const r = resolveBall({
+      batsman: makeBatter({
+        weaknesses: [{
+          zone: { line: "Leg stump", length: "Full" },
+          outcome: { type: "wicket", mode: "top edge midwicket", dismissalCategory: "caught-midwicket" },
+        }],
+      }),
+      bowler: makeBowler({ delivery: { line: "Leg stump", length: "Full" }, fielding: [] }),
+      battingSituation: null,
+      bowlingSituation: null,
+      phase: "middle",
+      random: () => 0.05,
+    });
+    if (r.finalOutcome.type === "runs") assert.equal(r.finalOutcome.value, 1);
+  });
+});
+
+describe("Lucky escape — stumped", () => {
+  it("inside edge → keeper can't gather → 2 bat runs", () => {
+    const r = resolveBall({
+      batsman: makeBatter({
+        weaknesses: [{
+          zone: { line: "Outside off", length: "Full" },
+          outcome: { type: "wicket", mode: "stumped", dismissalCategory: "stumped" },
+        }],
+      }),
+      bowler: makeBowler({ delivery: { line: "Outside off", length: "Full" }, fielding: [] }),
+      battingSituation: null,
+      bowlingSituation: null,
+      phase: "middle",
+      random: () => 0.05,
+    });
+    assert.equal(r.finalOutcome.type, "runs");
+    if (r.finalOutcome.type === "runs") assert.equal(r.finalOutcome.value, 2);
+    assert.equal(r.extraRuns, 0);
+  });
+});
+
+describe("Lucky escape — wicket stands / run-out excluded", () => {
+  it("wicket stands when roll >= LUCKY_ESCAPE_CHANCE (0.30)", () => {
+    const r = resolveBall({
+      batsman: makeBatter(),
+      bowler: makeBowler({ delivery: { line: "Outside off", length: "Full" }, fielding: [] }),
+      battingSituation: null,
+      bowlingSituation: null,
+      phase: "middle",
+      random: () => 0.50, // 0.50 >= 0.30 → no escape
     });
     assert.equal(r.finalOutcome.type, "wicket");
+  });
+
+  it("run-out keeps runs scored AND flags the dismissal — lucky escape does NOT apply", () => {
+    // Batter neutral 2 runs at Middle stump / Good length.
+    // Roll: 0.05 < BOWLER_NEUTRAL_RUNOUT_CHANCE (0.10) → run-out fires.
+    // Result: runs (2) + runOut:true. Lucky escape gate requires
+    // outcome.type === "wicket", which is never true for a run-out.
+    const r = resolveBall({
+      batsman: makeBatter({ role: undefined }),
+      bowler: makeBowler({
+        delivery: { line: "Middle stump", length: "Good length" },
+        fielding: [],
+        role: undefined,
+      }),
+      battingSituation: null,
+      bowlingSituation: null,
+      phase: "middle",
+      random: () => 0.05,
+    });
+    assert.equal(r.finalOutcome.type, "runs", "run-out result is runs, not wicket");
+    if (r.finalOutcome.type === "runs") {
+      assert.equal(r.finalOutcome.value, 2, "runs scored are preserved");
+      assert.equal(r.finalOutcome.runOut, true, "runOut flag set");
+    }
+    assert.equal(r.extraRuns, 0, "no extras on run-out");
+    // Lucky escape must not appear in the trail.
+    const escape = r.steps.find((s) => s.kind === "lucky-escape");
+    assert.equal(escape, undefined, "lucky-escape must not fire on run-out");
   });
 });
 
@@ -961,7 +1102,11 @@ describe("Phase perks — batter out of phase", () => {
 
 describe("Phase perks — bowler in-phase wicket", () => {
   it("converts a dot to a wicket when bowler is in phase", () => {
-    // Blank batter so base lookup → dot.
+    // Blank batter so base lookup → dot. Bowler in phase → dot→wicket (roll[0]=0.05).
+    // Lucky escape also fires if roll < 0.30 — use roll[1]=0.50 to suppress it
+    // (in-phase wicket now fires BEFORE lucky escape in the new tree order).
+    const rolls = [0.05, 0.50];
+    let idx = 0;
     const r = resolveBall({
       batsman: makeBatter({
         strengths: [], neutrals: [], weaknesses: [],
@@ -975,9 +1120,11 @@ describe("Phase perks — bowler in-phase wicket", () => {
       battingSituation: null,
       bowlingSituation: null,
       phase: "death", // bowler in phase
-      random: () => 0.05, // 0.05 < 0.10 → fires
+      random: () => rolls[idx++ % rolls.length]!,
     });
     assert.equal(r.finalOutcome.type, "wicket");
+    const step = r.steps.find((s) => s.kind === "bowler-in-phase-wicket");
+    assert.ok(step?.applied);
   });
 });
 
@@ -1003,58 +1150,51 @@ describe("Phase perks — bowler OOP wide bump", () => {
   });
 });
 
-// ─── DRS Review + in-phase wicket interaction ───
+// ─── DRS Review + bowler in-phase wicket interaction ───
+// In the new tree order, bowler in-phase fires BEFORE DRS Review, so
+// DRS Review can now save a wicket produced by the bowler's phase perk.
 
-describe("DRS Review vs Phase Wicket interaction", () => {
-  it("in-phase wicket does NOT re-fire after DRS Review saves a wicket on the same ball", () => {
-    // Scenario: batter has a weakness at the bowler's delivery zone → wicket
-    // on base lookup. DRS Review overturns it to a dot. Bowler is in-phase
-    // so Step 19 would normally have a 10% chance to convert the dot to a
-    // wicket — but that dot is DRS-protected and must be left alone.
+describe("DRS Review + Phase Wicket interaction (new tree order)", () => {
+  it("DRS Review saves a wicket produced by bowler in-phase", () => {
+    // Blank batter → dot from base lookup. Bowler in phase →
+    // dot→wicket (roll[0]=0.05 < 0.10). DRS Review played →
+    // wicket saved back to dot. Lucky escape: no random call (outcome is dot).
+    const rolls = [0.05]; // only one roll consumed: bowler in-phase
+    let idx = 0;
     const r = resolveBall({
-      batsman: makeBatter({
-        weaknesses: [
-          {
-            zone: { line: "Outside off", length: "Full" },
-            outcome: { type: "wicket", mode: "edge to keeper", dismissalCategory: "caught-keeper" },
-          },
-        ],
-        role: "middle-order",
-      }),
+      batsman: makeBatter({ strengths: [], neutrals: [], weaknesses: [] }),
       bowler: makeBowler({
-        delivery: { line: "Outside off", length: "Full" },
+        delivery: { line: "Leg stump", length: "Short" },
         fielding: [],
         role: "death-overs",
       }),
       battingSituation: sit("drs-review", "batting"),
       bowlingSituation: null,
-      phase: "death", // bowler in phase — Step 19 would fire without the guard
-      // random always returns 0.05 → below BOWLER_IN_PHASE_WICKET_CHANCE (0.10)
-      // so Step 19 WOULD fire if the guard is absent
-      random: () => 0.05,
+      phase: "death",
+      random: () => rolls[idx++ % rolls.length]!,
     });
-    // DRS Review must save the batter — dot ball, not a wicket.
-    assert.equal(r.finalOutcome.type, "dot");
-    // The DRS step must be in the trail, applied.
-    const drs = r.steps.find((s) => s.kind === "drs-review");
-    assert.ok(drs, "drs-review step should be present");
-    assert.equal(drs!.applied, true);
-    // The in-phase wicket step must NOT appear (it was skipped).
-    const phaseWicket = r.steps.find((s) => s.kind === "bowler-in-phase-wicket");
-    assert.equal(phaseWicket, undefined);
+    assert.equal(r.finalOutcome.type, "dot", "DRS saved the in-phase wicket");
+    const phaseStep = r.steps.find((s) => s.kind === "bowler-in-phase-wicket");
+    assert.ok(phaseStep?.applied, "bowler in-phase wicket fired");
+    const drsStep = r.steps.find((s) => s.kind === "drs-review");
+    assert.ok(drsStep?.applied, "DRS Review saved it");
   });
 
-  it("in-phase wicket still fires normally when DRS Review did NOT apply this ball", () => {
-    // Blank batter → dot on base lookup. No DRS. Bowler in phase.
-    // Step 19 should fire as normal.
+  it("in-phase wicket confirmed when DRS Review is not played", () => {
+    // Blank batter → dot. Bowler in phase, no DRS.
+    // roll[0]=0.05 fires in-phase wicket; roll[1]=0.50 blocks lucky escape.
+    const rolls = [0.05, 0.50];
+    let idx = 0;
     const r = resolveBall({
-      batsman: makeBatter({ strengths: [], neutrals: [], weaknesses: [], role: "middle-order" }),
+      batsman: makeBatter({ strengths: [], neutrals: [], weaknesses: [] }),
       bowler: makeBowler({ delivery: { line: "Leg stump", length: "Short" }, fielding: [], role: "death-overs" }),
       battingSituation: null,
       bowlingSituation: null,
       phase: "death",
-      random: () => 0.05, // fires in-phase wicket
+      random: () => rolls[idx++ % rolls.length]!,
     });
     assert.equal(r.finalOutcome.type, "wicket");
+    const phaseStep = r.steps.find((s) => s.kind === "bowler-in-phase-wicket");
+    assert.ok(phaseStep?.applied);
   });
 });

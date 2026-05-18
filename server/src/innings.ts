@@ -712,6 +712,11 @@ function advanceAfterBall(
   }
   if (result.finalOutcome.type === "runs") {
     innings.runs += result.finalOutcome.value;
+    // Run-out: batter is dismissed but the run(s) they scored still count.
+    // The runOut flag tells us to also decrement a wicket.
+    if (result.finalOutcome.runOut) {
+      innings.wickets += 1;
+    }
   } else if (result.finalOutcome.type === "wicket") {
     innings.wickets += 1;
   }

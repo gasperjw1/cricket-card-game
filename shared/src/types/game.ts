@@ -90,10 +90,8 @@ export type ResolutionStepKind =
   | "in-phase-bonus"          // batter in phase, scoring shot upgraded
   | "out-of-phase-dot"        // batter out of phase, scoring shot turned to dot
   | "bowler-in-phase-wicket"  // bowler in phase, dot turned to wicket
-  | "run-out"                 // bowler perk, neutral turned to wicket
-  | "misfield"                // 4↔6 swap
-  | "inside-edge"             // bowled wicket turned to 1-4 runs off inside edge
-  | "wicket-save";            // wicket turned to byes/leg-byes
+  | "run-out"                 // bowler perk, neutral 1/2 run — batter run out, runs still score
+  | "lucky-escape";           // unified escape: bails stay on / not out / dropped / inside edge
 
 export interface ResolutionStep {
   kind: ResolutionStepKind;
@@ -110,7 +108,7 @@ export interface ResolutionStep {
 }
 
 export type BallOutcome =
-  | { type: "runs"; value: number; shot: string; shotCategory: ShotCategory }
+  | { type: "runs"; value: number; shot: string; shotCategory: ShotCategory; runOut?: true }
   | { type: "wicket"; mode: string; dismissalCategory: DismissalCategory }
   | { type: "dot" };
 

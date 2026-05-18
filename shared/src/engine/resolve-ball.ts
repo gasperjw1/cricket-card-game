@@ -5,10 +5,38 @@
  * deterministic-or-random hook for Review Appeal, computes the final outcome
  * and a step-by-step breakdown the UI can use to animate the result.
  *
- * The 11-step canonical order from docs/situation-cards.md is implemented
- * inline below. Old School cancellation and Mankad/Retired Out/Cramps swaps
- * happen BEFORE this function is called — by the time we run, both situation
- * cards are either in effect or null, and both mandatory cards are final.
+ * Resolution tree (in order):
+ *
+ *   UPSTREAM (before this function):
+ *     Old School cancel · Mankad / Retired Out / Cramps swaps
+ *
+ *   ZONE MODIFIERS (Step 3):
+ *     Day 5 Pitch · Trot Down · Deep in Crease · Switch Hit · Shuffle Across
+ *     → auto-wide? Biryani → dot | else → wide (+1, rebowl)
+ *
+ *   BASE LOOKUP (Step 4) → RUNS / WICKET / DOT branch
+ *
+ *   RUNS branch:
+ *     Invariable Bounce → Adjectives → Fielding → Power Surge
+ *     → Batter in-phase upgrade → Batter out-of-phase dot (terminal)
+ *     → Run-out on 1/2 (runs scored + wicket flag, terminal)
+ *     [0-run downgrades feed DOT branch]
+ *
+ *   DOT branch:
+ *     Bowler in-phase wicket (10%) → feeds WICKET branch
+ *     DRS + Review Appeal mutual cancel (if both played, neither fires)
+ *     Review Appeal (40%) → feeds WICKET branch
+ *     Wide call (Biryani → dot | else → wide +1, rebowl)
+ *
+ *   WICKET branch (receives: base lookup, bowler in-phase, Review Appeal):
+ *     DRS Review → protected dot (terminal) [or mutual cancel]
+ *     No Ball → dot +1, rebowl (terminal) [Biryani cancels No Ball]
+ *     Lucky escape (30%):
+ *       bowled     → bails stay on → 2 byes (length-aware narrative)
+ *       lbw        → not out → 2 leg byes (delivery-line-aware narrative)
+ *       caught-*   → dropped catch → 1/2/4 bat runs (position-specific)
+ *       stumped    → inside edge → 2 bat runs
+ *     else → match wicket
  */
 
 import {
@@ -20,11 +48,8 @@ import {
   BOWLER_OUT_OF_PHASE_WIDE_BUMP,
   BOWLER_ROLE_TO_PHASE,
   EXTRAS_RUNS,
-  INSIDE_EDGE_CHANCE,
-  MISFIELD_CHANCE,
+  LUCKY_ESCAPE_CHANCE,
   REVIEW_APPEAL_WICKET_CHANCE,
-  WICKET_SAVE_2_BYE_CHANCE,
-  WICKET_SAVE_4_BYE_CHANCE,
   WIDE_CHANCE_BY_TIER,
 } from "../constants.js";
 import type {
@@ -32,6 +57,7 @@ import type {
   BatsmanCard,
   BatsmanOutcome,
   BowlerCard,
+  DismissalCategory,
   FieldingRegion,
   Length,
   Line,
@@ -62,7 +88,7 @@ export interface ResolveBallInput {
 export interface ResolutionResult {
   steps: ResolutionStep[];
   finalOutcome: BallOutcome;
-  /** Free runs awarded on top of finalOutcome (No Ball / Wide). */
+  /** Free runs awarded on top of finalOutcome (No Ball / Wide / byes). */
   extraRuns: number;
   /** Why extras were awarded, if any. */
   extrasNote: string | null;
@@ -94,8 +120,6 @@ export function resolveBall(input: ResolveBallInput): ResolutionResult {
   if (bowlingSit === "day-5-pitch") {
     const before = lookupZone;
     if (before.line === "Outside off") {
-      // Trying to shift further off — there's no line beyond Outside off.
-      // Umpire calls a wide instead.
       pendingAutoWide = {
         kind: "day-5-pitch",
         label: "Day 5 Pitch wide",
@@ -133,14 +157,9 @@ export function resolveBall(input: ResolveBallInput): ResolutionResult {
       applied: changed,
     });
   }
-  // Deep in the Crease: inverse of Trot Down. Shifts length outward toward
-  // the bowler. Short balls become auto-wides (the ball goes too high over
-  // the batter who's stepped back).
   if (battingSit === "deep-in-crease") {
     const before = lookupZone;
     if (before.length === "Short") {
-      // Already short — stepping back means it bounces higher than the
-      // batter can reach. Auto-wide.
       pendingAutoWide = pendingAutoWide ?? {
         kind: "deep-in-crease",
         label: "Deep in the Crease wide",
@@ -166,7 +185,6 @@ export function resolveBall(input: ResolveBallInput): ResolutionResult {
     }
   }
 
-  // Switch Hit mirrors the BATTER'S card lookup, not the delivery.
   let lookupOnBatter: Zone = lookupZone;
   if (battingSit === "switch-hit") {
     lookupOnBatter = { line: mirrorLine(lookupZone.line), length: lookupZone.length };
@@ -180,10 +198,6 @@ export function resolveBall(input: ResolveBallInput): ResolutionResult {
       applied: changed,
     });
   }
-  // Shuffle Across moves the batter toward the off side, so the bowler's
-  // line is met one stump further leg-side on the batter's card. Inverse of
-  // Day 5 Pitch. Leg-stump deliveries become auto-wides (batter has shuffled
-  // past the line).
   if (battingSit === "shuffle-across") {
     const before = lookupOnBatter;
     if (before.line === "Leg stump") {
@@ -213,8 +227,6 @@ export function resolveBall(input: ResolveBallInput): ResolutionResult {
   }
 
   // ───── Auto-wide short-circuit ─────
-  // If any zone modifier triggered a wide, resolve to a wide call (or a
-  // plain dot if Biryani cancels) and skip the rest of the chain.
   if (pendingAutoWide) {
     if (biryaniInPlay) {
       steps.push({
@@ -276,11 +288,6 @@ export function resolveBall(input: ResolveBallInput): ResolutionResult {
   }
 
   // ───── Step 6: bowler adjective(s) ─────
-  // Bowlers can carry 0, 1, or 2 adjectives. Only ONE downgrade fires per
-  // ball — even when both un-resisted, only the first un-resisted adjective
-  // applies its downgrade (no stacking). When the batter is resistant to
-  // every adjective, we record a no-effect step per resisted adjective so
-  // the breakdown shows what was blocked.
   if (input.bowler.adjectives.length > 0) {
     const resisted: Adjective[] = [];
     const unresisted: Adjective[] = [];
@@ -289,7 +296,6 @@ export function resolveBall(input: ResolveBallInput): ResolutionResult {
       else unresisted.push(a);
     }
     if (unresisted.length > 0) {
-      // Apply ONE downgrade — the first un-resisted adjective fires.
       const firing = unresisted[0]!;
       const before = outcome;
       outcome = downgrade(outcome);
@@ -304,8 +310,6 @@ export function resolveBall(input: ResolveBallInput): ResolutionResult {
         after: outcome,
         applied: changed,
       });
-      // Record any other adjectives the bowler had — un-resisted but blocked
-      // by the no-stack rule, OR resisted.
       for (let i = 1; i < unresisted.length; i++) {
         const blocked = unresisted[i]!;
         steps.push({
@@ -328,7 +332,6 @@ export function resolveBall(input: ResolveBallInput): ResolutionResult {
         });
       }
     } else {
-      // All adjectives resisted — record each as a blocked step.
       for (const r of resisted) {
         steps.push({
           kind: "adjective",
@@ -390,8 +393,97 @@ export function resolveBall(input: ResolveBallInput): ResolutionResult {
     }
   }
 
+  // ─────────────────────────────────────────────────────────────────
+  // Phase variables — declared here so they're available for the bowler
+  // in-phase step (which fires right after Power Surge), the wide-call
+  // mechanic, and batter perks later.
+  // ─────────────────────────────────────────────────────────────────
+  const perksEnabled = input.phase !== undefined;
+  const batterPhase = input.batsman.role
+    ? BATTER_ROLE_TO_PHASE[input.batsman.role]
+    : null;
+  const batterInPhase =
+    !!input.phase && !!batterPhase && input.phase === batterPhase;
+  const batterOutOfPhase =
+    !!input.phase && !!batterPhase && input.phase !== batterPhase;
+  const bowlerPhase = input.bowler.role
+    ? BOWLER_ROLE_TO_PHASE[input.bowler.role]
+    : null;
+  const bowlerOutOfPhase =
+    !!input.phase && !!bowlerPhase && input.phase !== bowlerPhase;
+  const bowlerInPhase =
+    !!input.phase && !!bowlerPhase && input.phase === bowlerPhase;
+
+  // Declare delivery-level tracking vars early so all subsequent steps can
+  // read/write them. rebowled gates phase perks; extraRuns / extrasNote
+  // accumulate across No Ball, Wide, and lucky escape.
+  let extraRuns = 0;
+  let extrasNote: string | null = null;
+  let rebowled = false;
+
+  // ───── Bowler in-phase wicket [MOVED: fires right after Power Surge] ─────
+  // Now fires early so DRS Review, No Ball, and the lucky escape can all
+  // interact with the resulting wicket. Previously ran last (Step 19)
+  // which made it immune to all subsequent protections.
+  //
+  // The dot→wicket transition only fires before DRS has had a chance to
+  // run, so there is no DRS-protected-dot concern here — the ordering
+  // itself ensures that a DRS-saved dot cannot be re-hit by this step.
+  if (
+    !rebowled &&
+    bowlerInPhase &&
+    outcome.type === "dot" &&
+    random() < BOWLER_IN_PHASE_WICKET_CHANCE
+  ) {
+    const before = outcome;
+    const phaseDismissal: { mode: string; dismissalCategory: "bowled" | "lbw" | "caught-keeper" } =
+      input.phase === "powerplay"
+        ? { mode: "nicked behind — new-ball nip", dismissalCategory: "caught-keeper" }
+        : input.phase === "death"
+          ? { mode: "yorker through the gate", dismissalCategory: "bowled" }
+          : { mode: "trapped LBW", dismissalCategory: "lbw" };
+    outcome = {
+      type: "wicket",
+      mode: phaseDismissal.mode,
+      dismissalCategory: phaseDismissal.dismissalCategory,
+    };
+    steps.push({
+      kind: "bowler-in-phase-wicket",
+      label: "Phase wicket",
+      detail: `${input.bowler.name} is a ${input.bowler.role} in the ${input.phase} — they find the breakthrough. ${phaseDismissal.mode}!`,
+      before,
+      after: outcome,
+      applied: true,
+    });
+  }
+
+  // ───── DRS Review + Review Appeal mutual cancel ─────
+  // If the batting side plays DRS Review AND the bowling side plays Review
+  // Appeal on the same ball, the two situation cards cancel each other:
+  // neither the wicket-save (DRS) nor the dot-to-wicket appeal (RA) fires.
+  // The base outcome passes through unaffected.
+  const bothDrsAndRa = battingSit === "drs-review" && bowlingSit === "review-appeal";
+  if (bothDrsAndRa) {
+    steps.push({
+      kind: "drs-review",
+      label: "DRS Review",
+      detail: `DRS Review and Review Appeal played simultaneously — they cancel each other out. Neither fires.`,
+      before: outcome,
+      after: outcome,
+      applied: false,
+    });
+    steps.push({
+      kind: "review-appeal",
+      label: "Review Appeal",
+      detail: `Review Appeal and DRS Review played simultaneously — they cancel each other out. Neither fires.`,
+      before: outcome,
+      after: outcome,
+      applied: false,
+    });
+  }
+
   // ───── Step 9: DRS Review ─────
-  if (battingSit === "drs-review") {
+  if (!bothDrsAndRa && battingSit === "drs-review") {
     if (outcome.type === "wicket") {
       const before = outcome;
       outcome = { type: "dot" };
@@ -416,7 +508,7 @@ export function resolveBall(input: ResolveBallInput): ResolutionResult {
   }
 
   // ───── Step 10: Review Appeal ─────
-  if (bowlingSit === "review-appeal") {
+  if (!bothDrsAndRa && bowlingSit === "review-appeal") {
     if (outcome.type === "dot") {
       const roll = random();
       if (roll < REVIEW_APPEAL_WICKET_CHANCE) {
@@ -453,12 +545,6 @@ export function resolveBall(input: ResolveBallInput): ResolutionResult {
   }
 
   // ───── Step 11: No Ball ─────
-  // No-ball cancels any wicket on this delivery, awards 1 free run, and the
-  // ball is re-bowled (doesn't count against the over). Cancellable by
-  // Biryani, in which case the No Ball does nothing.
-  let extraRuns = 0;
-  let extrasNote: string | null = null;
-  let rebowled = false;
   if (battingSit === "no-ball") {
     if (biryaniInPlay) {
       steps.push({
@@ -496,24 +582,10 @@ export function resolveBall(input: ResolveBallInput): ResolutionResult {
   }
 
   // ───── Step 12: Wide-call mechanic ─────
-  // Two paths:
-  //   (a) Outside-off — tier-based wide chance (existing behavior). When the
-  //       bowler is OUT of phase (role-vs-current-phase mismatch), bump the
-  //       chance by +20%.
-  //   (b) Leg stump — no base wide chance, but +20% when the bowler is OOP.
-  // Both paths are cancellable by Biryani.
-  const bowlerPhase = input.bowler.role
-    ? BOWLER_ROLE_TO_PHASE[input.bowler.role]
-    : null;
-  const bowlerOutOfPhase =
-    !!input.phase && !!bowlerPhase && input.phase !== bowlerPhase;
-
   if (!rebowled && outcome.type === "dot") {
     const line = input.bowler.delivery.line;
     let chance = 0;
     if (line === "Outside off") {
-      // Base tier-based wide chance always applies; OOP bump only when
-      // perks are enabled (i.e. phase was provided to the engine).
       chance = WIDE_CHANCE_BY_TIER[input.bowler.tier];
       if (input.phase !== undefined && bowlerOutOfPhase) {
         chance += BOWLER_OUT_OF_PHASE_WIDE_BUMP;
@@ -556,26 +628,11 @@ export function resolveBall(input: ResolveBallInput): ResolutionResult {
   }
 
   // ─────────────────────────────────────────────────────────────────
-  // Steps 13+ : Role / phase perks. Gated entirely by `phase` being
-  // provided — tests/callers that don't opt in get the legacy
-  // deterministic behavior (no random byes, no random run-outs).
-  // All also skipped when rebowled (no-ball or wide already
-  // short-circuited the delivery).
+  // Steps 13+ : Batter / bowler phase perks. All gated by perksEnabled
+  // (phase provided) and !rebowled (no-ball or wide already resolved).
   // ─────────────────────────────────────────────────────────────────
-  const perksEnabled = input.phase !== undefined;
-  const batterPhase = input.batsman.role
-    ? BATTER_ROLE_TO_PHASE[input.batsman.role]
-    : null;
-  const batterInPhase =
-    !!input.phase && !!batterPhase && input.phase === batterPhase;
-  const batterOutOfPhase =
-    !!input.phase && !!batterPhase && input.phase !== batterPhase;
-  const bowlerInPhase =
-    !!input.phase && !!bowlerPhase && input.phase === bowlerPhase;
 
   // ───── Step 13: Batter in-phase upgrade ─────
-  // 10% chance a scoring shot ticks up one tier. Rewards playing the
-  // right batter in the right phase.
   if (
     !rebowled &&
     batterInPhase &&
@@ -595,8 +652,6 @@ export function resolveBall(input: ResolveBallInput): ResolutionResult {
   }
 
   // ───── Step 14: Batter out-of-phase dot ─────
-  // 25% chance a scoring shot fizzles to a dot when the batter is in
-  // the wrong phase. Mirrors Step 13's bonus.
   if (
     !rebowled &&
     batterOutOfPhase &&
@@ -615,37 +670,11 @@ export function resolveBall(input: ResolveBallInput): ResolutionResult {
     });
   }
 
-  // ───── Step 15: Misfield (4 ↔ 6 swap) ─────
-  if (
-    perksEnabled &&
-    !rebowled &&
-    outcome.type === "runs" &&
-    (outcome.value === 4 || outcome.value === 6) &&
-    random() < MISFIELD_CHANCE
-  ) {
-    const before = outcome;
-    const flipped = outcome.value === 4 ? 6 : 4;
-    outcome = {
-      type: "runs",
-      value: flipped,
-      shot: outcome.shot,
-      shotCategory: outcome.shotCategory,
-    };
-    steps.push({
-      kind: "misfield",
-      label: "Misfield",
-      detail:
-        flipped === 6
-          ? `Fielder fumbles on the rope — boundary becomes a six!`
-          : `Acrobatic save on the rope — six is pulled back to a four.`,
-      before,
-      after: outcome,
-      applied: true,
-    });
-  }
-
-  // ───── Step 16: Run-out on a neutral ─────
-  // 10% chance a 1 or 2 runs becomes a wicket. Bowler perk.
+  // ───── Step 15: Run-out on a neutral ─────
+  // Bowler perk: 10% chance a 1 or 2 becomes a run-out. Unlike most wickets,
+  // a run-out still credits the runs already scored (the batter was caught
+  // short while attempting the run). The runOut flag tells the innings handler
+  // to decrement a wicket while also crediting the run value.
   if (
     perksEnabled &&
     !rebowled &&
@@ -655,126 +684,58 @@ export function resolveBall(input: ResolveBallInput): ResolutionResult {
   ) {
     const before = outcome;
     outcome = {
-      type: "wicket",
-      mode: "run out at the non-striker's end",
-      dismissalCategory: "runout",
+      type: "runs",
+      value: outcome.value,
+      shot: outcome.shot,
+      shotCategory: outcome.shotCategory,
+      runOut: true,
     };
     steps.push({
       kind: "run-out",
       label: "Run out",
-      detail: `Direct hit going for the ${before.type === "runs" ? before.value : "?"}! ${input.batsman.name} caught short of the crease.`,
+      detail: `Direct hit at the non-striker's end going for the ${before.type === "runs" ? before.value : "?"}! ${input.batsman.name} short of the crease — run out. Runs scored, wicket falls.`,
       before,
       after: outcome,
       applied: true,
     });
   }
 
-  // ───── Step 17: Inside edge (bowled wicket only) ─────
-  // 5% chance a bowled-mode wicket trickles past the stumps off the
-  // inside edge for 1-4 runs. Different escape from the bye system —
-  // these are bat runs, not extras.
+  // ───── Step 16: Lucky escape ─────
+  // A single probability roll determines whether a non-run-out wicket
+  // escapes dismissal. What the escape looks like depends entirely on
+  // the dismissal category — see buildLuckyEscape() below.
+  //
+  // Situation cards (DRS Review, No Ball) have already resolved above, so
+  // this step only sees wickets that survived those layers. The lucky escape
+  // is the final random-chance protection before the wicket is confirmed.
   if (
     perksEnabled &&
     !rebowled &&
     outcome.type === "wicket" &&
-    outcome.dismissalCategory === "bowled" &&
-    random() < INSIDE_EDGE_CHANCE
+    outcome.dismissalCategory !== "runout" &&
+    random() < LUCKY_ESCAPE_CHANCE
   ) {
     const before = outcome;
-    // Cricket-believable: usually 1 or 2 runs, occasionally 4 to fine leg.
-    const r = random();
-    const value: RunValue = r < 0.5 ? 1 : r < 0.85 ? 2 : 4;
-    outcome = {
-      type: "runs",
-      value,
-      shot: "inside edge past the stumps",
-      shotCategory: "mistime",
-    };
-    steps.push({
-      kind: "inside-edge",
-      label: "Inside edge",
-      detail: `Ball clipped the inside edge and skimmed past the stumps — ${value} run${value === 1 ? "" : "s"} instead of bowled.`,
-      before,
-      after: outcome,
-      applied: true,
-    });
-  }
-
-  // ───── Step 18: Wicket save (byes / leg-byes) ─────
-  // Any wicket has a chance to become 2 or 4 byes/leg-byes with a
-  // dismissal-typed reason ("LBW down leg side", "edge fell short",
-  // "bails didn't dislodge", etc.). The two buckets are mutually
-  // exclusive — single roll picks one of three outcomes.
-  //
-  // EXCEPTION: run-outs cannot be saved. A run-out is itself a perk
-  // outcome (Step 16 converts a 1/2 into a wicket), and saving it
-  // would mean a single ball travels 1 run → wicket → 2-4 byes,
-  // which awards MORE runs than the original — feels broken to
-  // players ("the bowler earned the wicket, why am I getting runs?").
-  // Run-outs stick.
-  if (
-    perksEnabled &&
-    !rebowled &&
-    outcome.type === "wicket" &&
-    outcome.dismissalCategory !== "runout"
-  ) {
-    const roll = random();
-    const saveTotal = WICKET_SAVE_2_BYE_CHANCE + WICKET_SAVE_4_BYE_CHANCE;
-    if (roll < saveTotal) {
-      const is4 = roll >= WICKET_SAVE_2_BYE_CHANCE;
-      const byes = is4 ? 4 : 2;
-      const before = outcome;
-      const { kind: byeKind, narrative } = wicketSaveNarrative(before.dismissalCategory, byes);
+    const escape = buildLuckyEscape(
+      outcome.dismissalCategory,
+      input.bowler.delivery, // original delivery, not modified zone (LBW law uses where ball pitched)
+    );
+    if (escape.outputType === "extras") {
       outcome = { type: "dot" };
-      extraRuns += byes;
-      extrasNote = byeKind; // "byes" | "leg-byes"
-      steps.push({
-        kind: "wicket-save",
-        label: `Saved → ${byes} ${byeKind === "leg-byes" ? "leg byes" : "byes"}`,
-        detail: narrative,
-        before,
-        after: outcome,
-        applied: true,
-      });
+      extraRuns += escape.runs;
+      extrasNote = escape.extrasNote;
+    } else {
+      outcome = {
+        type: "runs",
+        value: escape.runs,
+        shot: escape.shot,
+        shotCategory: "mistime",
+      };
     }
-  }
-
-  // ───── Step 19: Bowler in-phase wicket (dot → wicket) ─────
-  // 10% chance a dot ball becomes a wicket when the bowler is in the
-  // right phase. Yorker / new-ball nip / death-overs slower-ball.
-  // Runs LAST so this wicket is NOT undone by wicket-save.
-  //
-  // EXCEPTION: if DRS Review was applied this ball, the dot we see here
-  // came from an overturned wicket — the batting side earned that reprieve.
-  // The in-phase wicket must NOT re-fire on a DRS-protected dot, otherwise
-  // DRS Review is silently nullified by this step.
-  const drsApplied = steps.some((s) => s.kind === "drs-review" && s.applied);
-  if (
-    !rebowled &&
-    !drsApplied &&
-    bowlerInPhase &&
-    outcome.type === "dot" &&
-    random() < BOWLER_IN_PHASE_WICKET_CHANCE
-  ) {
-    const before = outcome;
-    const phaseDismissal: { mode: string; dismissalCategory: "bowled" | "lbw" | "caught-keeper" } =
-      input.phase === "powerplay"
-        ? { mode: "nicked behind — new-ball nip", dismissalCategory: "caught-keeper" }
-        : input.phase === "death"
-          ? { mode: "yorker through the gate", dismissalCategory: "bowled" }
-          : { mode: "trapped LBW", dismissalCategory: "lbw" };
-    outcome = {
-      type: "wicket",
-      mode: phaseDismissal.mode,
-      dismissalCategory: phaseDismissal.dismissalCategory,
-    };
-    // Clear any "byes" extras that accumulated from a prior wicket-save
-    // (shouldn't happen — we're transitioning dot → wicket, not the
-    // other direction — but defensive).
     steps.push({
-      kind: "bowler-in-phase-wicket",
-      label: "Phase wicket",
-      detail: `${input.bowler.name} is a ${input.bowler.role} in the ${input.phase} — they find the breakthrough. ${phaseDismissal.mode}!`,
+      kind: "lucky-escape",
+      label: escape.label,
+      detail: escape.detail,
       before,
       after: outcome,
       applied: true,
@@ -791,69 +752,166 @@ export function resolveBall(input: ResolveBallInput): ResolutionResult {
   };
 }
 
+// ─────────────────────────── Lucky escape builder ───────────────────────────
+
+interface LuckyEscapeExtras {
+  outputType: "extras";
+  runs: number;
+  extrasNote: "byes" | "leg-byes";
+  label: string;
+  detail: string;
+}
+interface LuckyEscapeBatRuns {
+  outputType: "bat-runs";
+  runs: RunValue;
+  shot: string;
+  label: string;
+  detail: string;
+}
+type LuckyEscapeResult = LuckyEscapeExtras | LuckyEscapeBatRuns;
+
 /**
- * Build a believable "the wicket didn't actually happen" narrative based on
- * the dismissal that almost was. Returns "byes" vs "leg-byes" as the
- * extras-note key (used by the scoring + UI).
+ * Build the narrative and outcome for a lucky escape, driven by dismissal type.
+ *
+ *   bowled    → bails don't fall → 2 byes (length-aware)
+ *   lbw       → not out → 2 leg byes (delivery-line-aware)
+ *   stumped   → inside edge, keeper stranded → 2 bat runs
+ *   caught-*  → dropped catch → 1/2/4 bat runs (per fielding position)
+ *
+ * Uses the original bowler delivery (pre-modifier) for LBW and bowled
+ * narratives — LBW law and stumping geometry reference where the ball
+ * actually pitched, not where the batter stood.
  */
-function wicketSaveNarrative(
-  category:
-    | "bowled"
-    | "lbw"
-    | "caught-keeper"
-    | "caught-slip"
-    | "caught-cover"
-    | "caught-midwicket"
-    | "caught-point"
-    | "caught-deep"
-    | "caught-and-bowled"
-    | "stumped"
-    | "runout",
-  byes: number,
-): { kind: "byes" | "leg-byes"; narrative: string } {
+function buildLuckyEscape(
+  category: DismissalCategory,
+  delivery: Zone,
+): LuckyEscapeResult {
   switch (category) {
-    case "lbw":
-      return {
-        kind: "leg-byes",
-        narrative: `Ball was sliding down leg — umpire turns down the appeal. Batters scramble ${byes} leg byes.`,
-      };
     case "bowled":
       return {
-        kind: "byes",
-        narrative: `Ball skimmed the stumps — bails refused to come off! Batters jog through for ${byes}.`,
+        outputType: "extras",
+        runs: 2,
+        extrasNote: "byes",
+        label: "Bails stay on",
+        detail: luckyEscapeBowledDetail(delivery.length),
       };
-    case "caught-keeper":
+
+    case "lbw":
       return {
-        kind: "byes",
-        narrative: `Keeper got fingers to it but couldn't hold — ${byes} byes through the gloves.`,
+        outputType: "extras",
+        runs: 2,
+        extrasNote: "leg-byes",
+        label: "Not out — LBW turned down",
+        detail: luckyEscapeLbwDetail(delivery.line),
       };
-    case "caught-slip":
-      return {
-        kind: "byes",
-        narrative: `Dropped at slip! Edge dies on the grass — batters take ${byes}.`,
-      };
-    case "caught-cover":
-    case "caught-point":
-    case "caught-midwicket":
-    case "caught-deep":
-      return {
-        kind: "byes",
-        narrative: `Fielder grasses the catch — ${byes} taken while the ball is misfielded.`,
-      };
-    case "caught-and-bowled":
-      return {
-        kind: "byes",
-        narrative: `Bowler reached for the return catch and palmed it down — ${byes} taken in the confusion.`,
-      };
+
     case "stumped":
       return {
-        kind: "byes",
-        narrative: `Keeper fumbled the stumping! Batter back in their crease, ${byes} byes.`,
+        outputType: "bat-runs",
+        runs: 2,
+        shot: "inside edge races to fine leg",
+        label: "Inside edge — stumping missed",
+        detail: `Stepped out of the crease, but the inside edge sent the ball racing to fine leg — keeper stranded, couldn't gather. Batters run 2.`,
       };
+
+    case "caught-keeper":
+      return {
+        outputType: "bat-runs",
+        runs: 2,
+        shot: "gloved to fine leg",
+        label: "Dropped by keeper",
+        detail: `Edged — keeper gets fingers to it but can't hold on. Ball squirts to fine leg, batters steal 2.`,
+      };
+
+    case "caught-slip":
+      return {
+        outputType: "bat-runs",
+        runs: 2,
+        shot: "edge races to third man",
+        label: "Grassed at slip",
+        detail: `Thick edge to slip — grassed! Ball races to third man, they come back for 2.`,
+      };
+
+    case "caught-cover":
+      return {
+        outputType: "bat-runs",
+        runs: 2,
+        shot: "mishit runs on",
+        label: "Dropped at cover",
+        detail: `Mishit to cover who shells it — ball runs on, 2 taken.`,
+      };
+
+    case "caught-point":
+      return {
+        outputType: "bat-runs",
+        runs: 2,
+        shot: "skied to point",
+        label: "Dropped at point",
+        detail: `Skied to point, sun in the eyes — dropped! Batters scramble 2.`,
+      };
+
+    case "caught-midwicket":
+      return {
+        outputType: "bat-runs",
+        runs: 1,
+        shot: "top edge to midwicket",
+        label: "Fumbled at midwicket",
+        detail: `Top edge to midwicket who fumbles — 1 taken in the confusion.`,
+      };
+
+    case "caught-deep":
+      return {
+        outputType: "bat-runs",
+        runs: 4,
+        shot: "boundary off the drop",
+        label: "Dropped on the rope",
+        detail: `Hit long — fielder on the rope can't hold, ball goes for 4.`,
+      };
+
+    case "caught-and-bowled":
+      return {
+        outputType: "bat-runs",
+        runs: 1,
+        shot: "palmed down off the return catch",
+        label: "C&B shelled",
+        detail: `Bowler got a hand to the return catch but palmed it down — batters scramble 1.`,
+      };
+
     case "runout":
-      // Unreachable — Step 18 short-circuits runouts (see comment there).
-      // Kept for exhaustive switch coverage.
-      return { kind: "byes", narrative: "" };
+      // Run-outs are excluded upstream — should never reach here.
+      return {
+        outputType: "extras",
+        runs: 0,
+        extrasNote: "byes",
+        label: "",
+        detail: "",
+      };
+  }
+}
+
+/** Length-aware bowled escape: ball hits stumps but both bails stay on. */
+function luckyEscapeBowledDetail(length: Length): string {
+  switch (length) {
+    case "Full":
+      return `Drilled into the base of off stump — somehow both bails refuse to budge. Keeper collects, 2 byes.`;
+    case "Good length":
+      return `Nips back into middle stump — bails rattle but hold on. 2 byes.`;
+    case "Short":
+      return `Rears up and clips the top of the stumps — bails wobble but stay put. 2 byes.`;
+  }
+}
+
+/** Delivery-line-aware LBW escape: the umpire turns down the appeal. */
+function luckyEscapeLbwDetail(line: Line): string {
+  switch (line) {
+    case "Outside off":
+      return `Pitched outside off stump — batter played a shot, not out under LBW law. Scampered 2 leg byes.`;
+    case "Off stump":
+      return `Good appeal, but the angle takes it past leg stump. Not out. 2 leg byes.`;
+    case "Middle stump":
+      return `Straight and full but too high — would clear the bails on impact. Not out. 2 leg byes.`;
+    case "Leg stump":
+      return `Sliding down leg side — umpire turns it down. Batters jog 2 leg byes.`;
   }
 }
 
@@ -870,7 +928,6 @@ function lookupOutcome(batsman: BatsmanCard, zone: Zone): BallOutcome {
       if (o.zone.line === zone.line && o.zone.length === zone.length) {
         if (isWicket) {
           if (o.outcome.type !== "wicket") {
-            // Defensive — shouldn't happen given how the parser builds cards.
             return { type: "wicket", mode: "out", dismissalCategory: "caught-deep" };
           }
           return {
@@ -915,7 +972,6 @@ function downgrade(o: BallOutcome): BallOutcome {
   if (o.type === "dot") return o;
   const next = TIER_DOWN[o.value as RunValue];
   if (next === 0) return { type: "dot" };
-  // Same shot, just timed worse — preserve the category.
   return { type: "runs", value: next, shot: o.shot, shotCategory: o.shotCategory };
 }
 
@@ -926,7 +982,7 @@ function upgrade(o: BallOutcome): BallOutcome {
       type: "runs",
       value: 1,
       shot: "scrambled single",
-      shotCategory: "defend",  // a scrambled single is a defensive nudge
+      shotCategory: "defend",
     };
   }
   const next = TIER_UP[o.value as RunValue];
@@ -944,14 +1000,12 @@ function adjectiveLabel(a: Adjective): string {
   return a;
 }
 
-/** Human-readable form of an outcome for use in step.detail strings. */
 function describeOutcome(o: BallOutcome): string {
   if (o.type === "runs") return `${o.shot} (${o.value})`;
   if (o.type === "wicket") return `wicket — ${o.mode}`;
   return "a dot ball";
 }
 
-/** "X (4) → X (2)" style narrative, with the shot text preserved. */
 function describeChange(before: BallOutcome, after: BallOutcome): string {
   return `${describeOutcome(before)} becomes ${describeOutcome(after)}`;
 }
@@ -963,32 +1017,24 @@ const LINE_ORDER: Line[] = [
   "Outside off",
 ];
 
-/** Day 5 Pitch shifts the line one step away from the batter's body (right-hander frame). */
 function shiftLineAway(line: Line): Line {
   const idx = LINE_ORDER.indexOf(line);
   if (idx < 0) return line;
   return LINE_ORDER[Math.min(idx + 1, LINE_ORDER.length - 1)]!;
 }
 
-/** Trot Down compresses the length: Good length → Full, Short → Good length, Full → Full. */
 function shiftLengthDown(length: Length): Length {
   if (length === "Short") return "Good length";
   if (length === "Good length") return "Full";
   return "Full";
 }
 
-/**
- * Deep in the Crease lengthens the effective length: Full → Good length,
- * Good length → Short. Short would cap, but the engine handles "Short →
- * auto-wide" upstream — this helper only sees Full or Good length.
- */
 function shiftLengthOut(length: Length): Length {
   if (length === "Full") return "Good length";
   if (length === "Good length") return "Short";
   return "Short";
 }
 
-/** Switch Hit mirrors the line on the batter's card. Outside off mirrors to Leg. */
 function mirrorLine(line: Line): Line {
   switch (line) {
     case "Off stump": return "Leg stump";
@@ -998,12 +1044,6 @@ function mirrorLine(line: Line): Line {
   }
 }
 
-/**
- * Shifts a line one step toward leg side (or off side). Clamps at the end:
- * shifting Leg stump toward leg stays at Leg stump; shifting Wide outside
- * off toward off stays at Wide outside off. Used by Shuffle Across (toward
- * leg) and parallels Day 5 Pitch's shiftLineAway (toward off).
- */
 function shiftLineToward(line: Line, direction: "leg" | "off"): Line {
   const idx = LINE_ORDER.indexOf(line);
   if (idx < 0) return line;
@@ -1011,12 +1051,6 @@ function shiftLineToward(line: Line, direction: "leg" | "off"): Line {
   return LINE_ORDER[next]!;
 }
 
-/**
- * Heuristic mapping of shot description → fielding region. Cards don't
- * currently carry an explicit region tag; we infer from the shot phrase.
- * Imprecise — many shots have no clean region match (lofts, slogs, scoops
- * that go over the field).
- */
 function inferFieldingRegion(shotText: string): FieldingRegion | null {
   const s = shotText.toLowerCase();
   if (s.includes("cover drive") || /\bcover\b/.test(s)) return "Cover";
@@ -1048,9 +1082,6 @@ function describeBaseLookup(
 ): string {
   const fmt = (z: Zone) => `${z.length} ${z.line.toLowerCase()}`;
   const same = delivery.line === effective.line && delivery.length === effective.length;
-  // When zone modifiers shifted the lookup, spell out the chain so the
-  // player understands why a delivery on Off stump may have been looked
-  // up at Middle stump on the batter's card.
   const prefix = same
     ? `${bowler.name} bowls ${fmt(delivery)}`
     : `${bowler.name} bowls ${fmt(delivery)}, looked up as ${fmt(effective)} on ${batsman.name}'s card after modifiers`;

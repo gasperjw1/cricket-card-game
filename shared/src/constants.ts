@@ -132,11 +132,12 @@ export const PHASE_LABEL: Record<"powerplay" | "middle" | "death", string> = {
 // These knobs tune the new role-system perks. Keep them grouped so balance
 // tweaks are easy. All in [0,1].
 
-/** Per-roll chance a wicket is saved and becomes byes/leg-byes instead.
- *  Two independent buckets — 2 byes and 4 byes. The two ARE mutually
- *  exclusive (single roll picks one of three outcomes). */
-export const WICKET_SAVE_2_BYE_CHANCE = 0.15 as const;
-export const WICKET_SAVE_4_BYE_CHANCE = 0.15 as const;
+/** Per-roll chance a non-run-out wicket triggers a lucky escape (bails staying
+ *  on, umpire turning down LBW, catch dropped, inside edge on stumping).
+ *  What actually happens depends on the dismissal category — see resolve-ball.ts
+ *  buildLuckyEscape(). Equivalent to the old WICKET_SAVE_2_BYE + WICKET_SAVE_4_BYE
+ *  combined (0.30 total). */
+export const LUCKY_ESCAPE_CHANCE = 0.30 as const;
 
 /** When the batter is OUT of their preferred phase, this is the chance
  *  a scoring shot becomes a dot. */
@@ -157,12 +158,6 @@ export const BATTER_IN_PHASE_UPGRADE_CHANCE = 0.10 as const;
  *  wicket (yorker / new-ball nip / death-overs slower-ball deception). */
 export const BOWLER_IN_PHASE_WICKET_CHANCE = 0.10 as const;
 
-/** Fielder misfield — boundary value flips (4 ↔ 6). Cheap variance. */
-export const MISFIELD_CHANCE = 0.05 as const;
-
-/** "Inside edge" — a bowled-mode wicket becomes 1-4 runs. Adds a
- *  cricket-natural escape that's distinct from byes. */
-export const INSIDE_EDGE_CHANCE = 0.05 as const;
 
 export const TURN_TIMER_SECONDS = 30 as const;
 export const DRAFT_ROUND_TIMER_SECONDS = 15 as const;
