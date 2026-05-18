@@ -1220,19 +1220,21 @@ h1 {
   /* Card sizing is the affordance for "more cards exist" — each
      breakpoint leaves a clear sliver of the next/prev card visible
      so the user always sees the row continues. Mobile shows ~1 card
-     + peek of next; desktop shows ~3 cards + peek of 4th. */
+     + peek of next; desktop shows ~3 cards + peek of 4th.
+     min-width kept low so the peek isn't squeezed out at the 720px
+     container max-width. */
   scroll-snap-align: start;
   flex: 0 0 75%;
   max-width: 280px;
-  min-width: 220px;
+  min-width: 180px;
 }
 @media (min-width: 540px) {
   /* Tablet: ~2 cards + clear peek of 3rd. */
   .draft-slot { flex: 0 0 42%; }
 }
 @media (min-width: 900px) {
-  /* Desktop: ~3 cards + half-card peek of the 4th on each side. */
-  .draft-slot { flex: 0 0 28%; }
+  /* Desktop: ~3 cards + half-card peek of the 4th. */
+  .draft-slot { flex: 0 0 26%; }
 }
 .draft-slot:hover {
   transform: translateY(-2px);
@@ -1299,13 +1301,13 @@ h1 {
   scroll-snap-align: start;
   flex: 0 0 75%;
   max-width: 280px;
-  min-width: 220px;
+  min-width: 180px;
 }
 @media (min-width: 540px) {
   .deck-mgmt-slot { flex: 0 0 42%; }
 }
 @media (min-width: 900px) {
-  .deck-mgmt-slot { flex: 0 0 28%; }
+  .deck-mgmt-slot { flex: 0 0 26%; }
 }
 .deck-mgmt-slot.inventory {
   cursor: pointer;
