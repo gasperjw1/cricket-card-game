@@ -1166,7 +1166,7 @@ Everything not listed = dot ball. Weaknesses are zone-only (no adjective referen
 *Young left-arm spin all-rounder (batter card; Silver LA orthodox bowler split below). Useful lower-order bat.*
 - **Strengths:** Full leg stump → sweep for 4
 - **Neutrals:** Good length middle stump → push for 2 | Full middle stump → drive for 1
-- **Weaknesses:** Short Outside off → caught at gully | Good length Outside off → edge | Good length middle stump → bowled
+- **Weaknesses:** Short Outside off → caught at gully | Good length Outside off → edge | Short middle stump → mistimed pull, caught at deep midwicket
 
 ### BRONZE — Dasun Shanaka
 *Right-handed former T20I captain (all-rounder split — Bronze bowler below). Death-overs slogger; explosive when timed, holes out when not.*
@@ -1853,7 +1853,7 @@ Everything not listed = dot ball. Weaknesses are zone-only (no adjective referen
 *South African-born right-handed all-rounder (batter card; Gold bowler split below). Useful middle-order, solid technique.*
 - **Strengths:** Full leg stump → flick for 4 | Full off stump → drive for 4
 - **Neutrals:** Good length middle stump → push for 1
-- **Weaknesses:** Short middle stump → caught fending | Good length middle stump → LBW | Good length Outside off → edge to slip
+- **Weaknesses:** Short middle stump → caught fending | Short leg stump → mistimed pull, caught at deep midwicket | Good length Outside off → edge to slip
 - **Resistances:** Slower, Topspin, Drift
 
 ### SILVER — George Dockrell
@@ -1879,7 +1879,7 @@ Everything not listed = dot ball. Weaknesses are zone-only (no adjective referen
 *Left-handed young top-order. Limited T20I exposure, domestic talent.*
 - **Strengths:** Full off stump → drive for 4
 - **Neutrals:** Good length middle stump → push for 2 | Good length leg stump → work for 1
-- **Weaknesses:** Short Outside off → caught at gully | Good length Outside off → edge | Good length middle stump → bowled
+- **Weaknesses:** Short Outside off → caught at gully | Good length Outside off → edge | Short middle stump → mistimed pull, caught at deep midwicket
 
 ### BRONZE — Neil Rock
 *Left-handed young keeper-bat. Domestic-level.*
@@ -2082,7 +2082,7 @@ Everything not listed = dot ball. Weaknesses are zone-only (no adjective referen
 *Right-handed all-rounder. T20 WC 2024 squad. Knocked SA out of T20 WC 2022 (his father Tim played for NED too).*
 - **Strengths:** Full off stump → drive for 4 | Full leg stump → flick for 4
 - **Neutrals:** Good length middle stump → push for 1
-- **Weaknesses:** Short middle stump → caught fending | Good length Outside off → edge to slip | Good length middle stump → LBW
+- **Weaknesses:** Short middle stump → caught fending | Good length Outside off → edge to slip | Short leg stump → mistimed pull, caught at deep midwicket
 - **Resistances:** Slower, Topspin
 
 ## BOWLERS

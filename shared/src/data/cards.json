@@ -7990,12 +7990,12 @@
         {
           "zone": {
             "line": "Middle stump",
-            "length": "Good length"
+            "length": "Short"
           },
           "outcome": {
             "type": "wicket",
-            "mode": "bowled",
-            "dismissalCategory": "bowled"
+            "mode": "mistimed pull, caught at deep midwicket",
+            "dismissalCategory": "caught-deep"
           }
         }
       ],
@@ -13229,13 +13229,13 @@
         },
         {
           "zone": {
-            "line": "Middle stump",
-            "length": "Good length"
+            "line": "Leg stump",
+            "length": "Short"
           },
           "outcome": {
             "type": "wicket",
-            "mode": "LBW",
-            "dismissalCategory": "lbw"
+            "mode": "mistimed pull, caught at deep midwicket",
+            "dismissalCategory": "caught-deep"
           }
         },
         {
@@ -13588,12 +13588,12 @@
         {
           "zone": {
             "line": "Middle stump",
-            "length": "Good length"
+            "length": "Short"
           },
           "outcome": {
             "type": "wicket",
-            "mode": "bowled",
-            "dismissalCategory": "bowled"
+            "mode": "mistimed pull, caught at deep midwicket",
+            "dismissalCategory": "caught-deep"
           }
         }
       ],
@@ -14836,13 +14836,13 @@
         },
         {
           "zone": {
-            "line": "Middle stump",
-            "length": "Good length"
+            "line": "Leg stump",
+            "length": "Short"
           },
           "outcome": {
             "type": "wicket",
-            "mode": "LBW",
-            "dismissalCategory": "lbw"
+            "mode": "mistimed pull, caught at deep midwicket",
+            "dismissalCategory": "caught-deep"
           }
         }
       ],

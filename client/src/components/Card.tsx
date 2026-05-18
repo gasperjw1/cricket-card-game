@@ -184,7 +184,7 @@ function BatsmanCardView(props: { card: BatsmanCard; size?: "hand" | "view"; sel
 function BatsmanHandBody({ card }: { card: BatsmanCard }) {
   const [tab, setTab] = useState<"summary" | "shots">("summary");
   return (
-    <div className="card-hand-body" onClick={(e) => e.stopPropagation()}>
+    <div className="card-hand-body">
       <CardTabs
         active={tab}
         onChange={setTab}
@@ -432,7 +432,7 @@ function BowlerCardView(props: { card: BowlerCard; size?: "hand" | "view"; selec
 function BowlerHandBody({ card }: { card: BowlerCard }) {
   const [tab, setTab] = useState<"summary" | "delivery">("summary");
   return (
-    <div className="card-hand-body" onClick={(e) => e.stopPropagation()}>
+    <div className="card-hand-body">
       <CardTabs
         active={tab}
         onChange={setTab}
