@@ -18,6 +18,7 @@ import { StorySequence } from "../components/story/StorySequence.tsx";
 import { useStorySequence } from "../components/story/useStorySequence.ts";
 import { Tip } from "../components/Tip.tsx";
 import {
+  TOURNAMENT_FORMATS,
   addToInventory,
   applyTrophyPack,
   endWCMatch,
@@ -1011,11 +1012,20 @@ function WCMatchOverFlow({ client }: { client: MatchClient }) {
 
   if (phase === "pack" && packContents && captured) {
     const isFinalTrophy = captured.opp.stageLabel === "final" && captured.playerWon;
+    const tournamentAccent =
+      isFinalTrophy && career.currentRun
+        ? TOURNAMENT_FORMATS[career.currentRun.tournament].accentColor
+        : undefined;
     return (
       <PackOpeningScreen
         label={packContents.label}
         offered={packContents.offered}
         pickN={2}
+        theme={
+          isFinalTrophy && tournamentAccent
+            ? { accentColor: tournamentAccent, isTrophy: true }
+            : undefined
+        }
         onConfirm={(pickedIds) => {
           if (isFinalTrophy) {
             applyTrophyPack(pickedIds);

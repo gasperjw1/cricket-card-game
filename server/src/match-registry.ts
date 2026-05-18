@@ -403,6 +403,7 @@ export class MatchRegistry {
         deckRemaining,
         isBot: player.isBot || undefined,
         botDifficulty: player.botDifficulty ?? undefined,
+        botNation: player.botNation ?? undefined,
       };
     };
     return {

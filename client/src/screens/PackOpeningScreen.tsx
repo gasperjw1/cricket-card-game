@@ -13,6 +13,13 @@ interface Props {
   pickN: number;
   /** Called with the picked card ids on confirm. */
   onConfirm: (pickedIds: string[]) => void;
+  /** Optional theme — wires the wrapper border + glow to a tournament
+   *  accent color. Used for trophy packs so the Asia Cup trophy pack
+   *  looks visibly different from the WC trophy pack. */
+  theme?: {
+    accentColor: string;
+    isTrophy: boolean;
+  };
 }
 
 type Phase = "revealing" | "picking";
@@ -29,7 +36,7 @@ type Phase = "revealing" | "picking";
  *      "Pick N to keep." The player taps to select / deselect, then
  *      hits Confirm. Selection animates with a small lift.
  */
-export function PackOpeningScreen({ label, offered, pickN, onConfirm }: Props) {
+export function PackOpeningScreen({ label, offered, pickN, onConfirm, theme }: Props) {
   const [phase, setPhase] = useState<Phase>("revealing");
   const [revealed, setRevealed] = useState<Set<number>>(new Set());
   const [picked, setPicked] = useState<number[]>([]);
@@ -74,7 +81,19 @@ export function PackOpeningScreen({ label, offered, pickN, onConfirm }: Props) {
   const canConfirm = phase === "picking" && picked.length === pickN;
 
   return (
-    <main>
+    <main
+      className={theme?.isTrophy ? "pack-trophy" : undefined}
+      style={
+        theme?.isTrophy
+          ? {
+              // Trophy pack: a gentle full-screen glow tinted to the
+              // tournament's accent color. Subtle, doesn't fight the
+              // card-flip animations.
+              background: `radial-gradient(circle at 50% 30%, ${theme.accentColor}22 0%, transparent 60%)`,
+            }
+          : undefined
+      }
+    >
       <div className="pack-header">
         <span className="dim-text">CARD PACK</span>
         <h1>{label}</h1>

@@ -7,7 +7,10 @@ import {
   type PublicMatchState,
   type PublicPlayerInfo,
 } from "@swipe-sixer/shared";
+import { getCareer } from "../lib/career.ts";
+import { TOURNAMENT_FORMATS } from "../lib/career.ts";
 import { useCountdown } from "../useCountdown.ts";
+import { NATION_COLOR, NATION_FLAG } from "./icons.ts";
 import { Tip } from "./Tip.tsx";
 
 interface Props {
@@ -49,17 +52,55 @@ export function Scorebug({ matchState }: Props) {
       ? `${Math.floor(ballsCounted / 6)}.${ballsCounted % 6}/${fmt.oversPerInnings}`
       : `0.${ballsCounted}`;
 
+  // Career-mode flavor: read the active WC run's tournament so we can
+  // show the emblem (🌍 / 🌏 / 🏆) on the scorebug + tint the bot side
+  // by its nation color.
+  const career = getCareer();
+  const wcTournament = career.wcMatchInFlight ? career.currentRun?.tournament : null;
+  const tournamentEmblem = wcTournament ? TOURNAMENT_FORMATS[wcTournament].emblem : null;
+  const tournamentAccent = wcTournament
+    ? TOURNAMENT_FORMATS[wcTournament].accentColor
+    : null;
+  // Nation tints. Only the bot side gets a real nation color; player
+  // stays neutral (we don't track which nation the human "represents").
+  const aNation = A.botNation ?? null;
+  const bNation = B?.botNation ?? null;
+  const aColor = aNation ? NATION_COLOR[aNation] : null;
+  const bColor = bNation ? NATION_COLOR[bNation] : null;
+  const aFlag = aNation ? NATION_FLAG[aNation] : null;
+  const bFlag = bNation ? NATION_FLAG[bNation] : null;
+
   return (
-    <section className="scorebug">
+    <section
+      className="scorebug"
+      style={
+        tournamentAccent
+          ? { borderTopColor: tournamentAccent, borderTopWidth: "3px" }
+          : undefined
+      }
+    >
+      {tournamentEmblem && (
+        <div className="scorebug-tournament-emblem" aria-hidden="true">
+          {tournamentEmblem}
+        </div>
+      )}
       <div className="scorebug-row">
         <div className="scorebug-teams">
           <Tip text={`${A.displayName} (${A.abbreviation}) vs ${B?.displayName ?? "—"} (${B?.abbreviation ?? "—"}) — ${fmt.label}`}>
             <span>
-              <strong className={display.battingPlayer === "A" ? "batting" : ""}>
+              <strong
+                className={display.battingPlayer === "A" ? "batting" : ""}
+                style={aColor ? { color: aColor } : undefined}
+              >
+                {aFlag && <span className="scorebug-team-flag">{aFlag}</span>}
                 {A.abbreviation}
               </strong>
               <span className="vs">v</span>
-              <strong className={display.battingPlayer === "B" ? "batting" : ""}>
+              <strong
+                className={display.battingPlayer === "B" ? "batting" : ""}
+                style={bColor ? { color: bColor } : undefined}
+              >
+                {bFlag && <span className="scorebug-team-flag">{bFlag}</span>}
                 {B?.abbreviation ?? "—"}
               </strong>
             </span>

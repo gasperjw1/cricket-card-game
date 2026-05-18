@@ -138,3 +138,29 @@ export const NATION_FLAG: Record<Nation, string> = {
   Netherlands: "🇳🇱",
   Namibia: "🇳🇦",
 };
+
+/** Primary team color per nation — used to tint the scorebug strip
+ *  and other small accents. Picked from each nation's traditional ODI/T20
+ *  jersey palette. The shades are dark-mode-friendly (mid-saturation,
+ *  legible white text on top). */
+export const NATION_COLOR: Record<Nation, string> = {
+  India: "#1e60a8",          // navy blue (ODI jersey)
+  Australia: "#ffcd33",       // baggy gold
+  England: "#1e3a8a",         // royal blue
+  "South Africa": "#1d8a3a",  // protea green
+  "New Zealand": "#111111",   // black caps
+  Pakistan: "#0f5a2e",        // dark green
+  "Sri Lanka": "#1e3a8a",     // dark blue (with yellow trim)
+  "West Indies": "#7a1426",   // maroon
+  Bangladesh: "#0a703a",      // dark green
+  Zimbabwe: "#c7942c",        // gold/yellow
+  Afghanistan: "#1a5fb4",     // blue
+  Ireland: "#1a8745",         // shamrock green
+  // Associates — generic blue/gray; rarely shown in WC matches anyway.
+  Nepal: "#ad1f2e",
+  "Hong Kong": "#b71c1c",
+  Scotland: "#2563eb",
+  USA: "#1a4d9c",
+  Netherlands: "#ef6c00",
+  Namibia: "#2a6b34",
+};

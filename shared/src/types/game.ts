@@ -212,6 +212,9 @@ export interface PublicPlayerInfo {
    *  client so the UI can show a "🤖 CPU" badge. */
   isBot?: boolean;
   botDifficulty?: BotDifficulty;
+  /** Nation the bot represents. Surfaced so the scorebug can tint by
+   *  team color + show a flag. Human players don't have a nation. */
+  botNation?: import("./cards.js").Nation;
 }
 
 export interface PrivatePlayerView {
