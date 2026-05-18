@@ -2786,34 +2786,68 @@ h1 {
 }
 
 /* How to Play guide */
-/* How-to-play page wrapper — narrows the reading column on desktop so
-   sentences don't stretch across the full 720px container. Easier to
-   scan as a long-form vertical document. */
+/* How-to-play page wrapper. On desktop becomes a 2-column grid
+   (TOC sidebar | content column) so the guide reads less vertically.
+   On mobile collapses to a single column with the TOC stuck at the
+   top of the viewport. */
 .how-to-play {
-  max-width: 600px;
+  max-width: 960px;
   margin-left: auto;
   margin-right: auto;
 }
-.how-to-play h1 {
+.how-to-play-header {
   text-align: center;
+  margin-bottom: 1rem;
+}
+.how-to-play-header h1 {
+  margin: 0;
 }
 .how-to-play .tagline {
   text-align: center;
-  margin-bottom: 1.5rem;
+  margin: 0.3rem 0 0;
 }
 
-/* Sticky table-of-contents pill row at the top of the guide. On mobile
-   it scrolls horizontally; on desktop it wraps vertically. */
+/* Mobile/tablet: single-column stack. The TOC becomes a sticky
+   horizontal pill bar at the top. */
+.how-to-play-shell {
+  display: block;
+}
+
+/* Desktop: 2-column grid. Sticky TOC sidebar on the left + content
+   column on the right (cap content to ~520px for readability). */
+@media (min-width: 900px) {
+  .how-to-play-shell {
+    display: grid;
+    grid-template-columns: 220px minmax(0, 1fr);
+    gap: 2rem;
+    align-items: start;
+  }
+}
+
+/* Table of contents. Mobile: sticky pill bar at top. Desktop: sticky
+   column-style menu in the sidebar (group headers + nested links). */
 .guide-toc {
+  /* Mobile pill bar */
+  position: sticky;
+  top: 0;
+  z-index: 12;
   display: flex;
   flex-wrap: wrap;
   gap: 0.35rem;
-  margin: 1rem 0 1.5rem;
-  padding: 0.6rem;
-  background: #11181f;
-  border: 1px solid #2a3441;
-  border-radius: 10px;
+  margin: 0 -1rem 1rem;
+  padding: 0.55rem 1rem;
+  background: rgba(15, 20, 25, 0.96);
+  border-bottom: 1px solid #2a3441;
   justify-content: center;
+  backdrop-filter: blur(6px);
+}
+/* On mobile collapse the group-label dividers — they don't render as
+   meaningful structure when items wrap into a pill row. */
+.guide-toc-group {
+  display: contents;
+}
+.guide-toc-group-label {
+  display: none;
 }
 .guide-toc a {
   padding: 0.35rem 0.7rem;
@@ -2824,7 +2858,7 @@ h1 {
   font-size: 0.75rem;
   text-decoration: none;
   letter-spacing: 0.04em;
-  transition: background 0.12s, transform 0.12s;
+  transition: background 0.12s, transform 0.12s, color 0.12s;
 }
 .guide-toc a:hover {
   background: #2563eb;
@@ -2832,11 +2866,59 @@ h1 {
   transform: translateY(-1px);
 }
 
+/* Desktop: TOC becomes a fixed-position sidebar (sticky within the
+   grid column) with grouped, vertically-stacked links. */
+@media (min-width: 900px) {
+  .guide-toc {
+    position: sticky;
+    top: 1.5rem;
+    /* override mobile bar styling */
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: stretch;
+    gap: 1rem;
+    margin: 0;
+    padding: 1rem 0.85rem;
+    background: #11181f;
+    border: 1px solid #2a3441;
+    border-bottom: 1px solid #2a3441;
+    border-radius: 10px;
+    backdrop-filter: none;
+    /* Cap height + scroll if guide ever grows past viewport */
+    max-height: calc(100vh - 3rem);
+    overflow-y: auto;
+  }
+  .guide-toc-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+  .guide-toc-group-label {
+    display: block;
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #6e7989;
+    margin-bottom: 0.15rem;
+    padding: 0 0.25rem;
+  }
+  .guide-toc a {
+    text-align: left;
+    border-radius: 6px;
+    padding: 0.35rem 0.6rem;
+    font-size: 0.78rem;
+    letter-spacing: 0.02em;
+  }
+}
+
 .guide {
   text-align: left;
-  margin-top: 1.5rem;
+  margin-top: 0;
   line-height: 1.55;
   color: #d4d8de;
+  /* Cap reading column at a comfortable width on wide grid cells. */
+  max-width: 640px;
 }
 .guide section {
   margin-bottom: 1.75rem;
