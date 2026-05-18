@@ -142,7 +142,7 @@ export function HomeScreen({ client }: Props) {
             className="btn primary big"
             onClick={() => { onAnyPrimary(); setMode("career"); }}
           >
-            🏆 World Cup
+            🏆 Career Mode
           </button>
           <button
             className="btn primary big"

@@ -268,56 +268,58 @@ function NoRunView({
         Win the trophy to add cards to your permanent collection.
       </p>
 
-      <fieldset className="career-picker">
-        <legend>Tournament</legend>
-        {(Object.keys(TOURNAMENT_FORMATS) as TournamentFormat[]).map((t) => {
-          const cfg = TOURNAMENT_FORMATS[t];
-          const wins = stats.stats.trophiesByTournament[t];
-          return (
-            <label key={t} className={tournament === t ? "selected" : ""}>
-              <input
-                type="radio"
-                name="tournament"
-                value={t}
-                checked={tournament === t}
-                onChange={() => setTournament(t)}
-              />
-              <strong>{cfg.label}</strong>
-              <small className="dim-text">{cfg.blurb}</small>
-              {wins > 0 && (
-                <span className="career-picker-badge">
-                  {wins} won
-                </span>
-              )}
-            </label>
-          );
-        })}
-      </fieldset>
+      <div className="career-pickers-row">
+        <fieldset className="career-picker">
+          <legend>Tournament</legend>
+          {(Object.keys(TOURNAMENT_FORMATS) as TournamentFormat[]).map((t) => {
+            const cfg = TOURNAMENT_FORMATS[t];
+            const wins = stats.stats.trophiesByTournament[t];
+            return (
+              <label key={t} className={tournament === t ? "selected" : ""}>
+                <input
+                  type="radio"
+                  name="tournament"
+                  value={t}
+                  checked={tournament === t}
+                  onChange={() => setTournament(t)}
+                />
+                <strong>{cfg.label}</strong>
+                <small className="dim-text">{cfg.blurb}</small>
+                {wins > 0 && (
+                  <span className="career-picker-badge">
+                    {wins} won
+                  </span>
+                )}
+              </label>
+            );
+          })}
+        </fieldset>
 
-      <fieldset className="career-picker">
-        <legend>Difficulty</legend>
-        {(["casual", "realistic", "legend"] as DifficultyMode[]).map((d) => {
-          const wins = stats.stats.trophiesByDifficulty[d];
-          return (
-            <label key={d} className={difficulty === d ? "selected" : ""}>
-              <input
-                type="radio"
-                name="difficulty"
-                value={d}
-                checked={difficulty === d}
-                onChange={() => setDifficulty(d)}
-              />
-              <strong>{DIFFICULTY_LABEL[d]}</strong>
-              <small className="dim-text">{DIFFICULTY_BLURB[d]}</small>
-              {wins > 0 && (
-                <span className="career-picker-badge">
-                  {wins} won
-                </span>
-              )}
-            </label>
-          );
-        })}
-      </fieldset>
+        <fieldset className="career-picker">
+          <legend>Difficulty</legend>
+          {(["casual", "realistic", "legend"] as DifficultyMode[]).map((d) => {
+            const wins = stats.stats.trophiesByDifficulty[d];
+            return (
+              <label key={d} className={difficulty === d ? "selected" : ""}>
+                <input
+                  type="radio"
+                  name="difficulty"
+                  value={d}
+                  checked={difficulty === d}
+                  onChange={() => setDifficulty(d)}
+                />
+                <strong>{DIFFICULTY_LABEL[d]}</strong>
+                <small className="dim-text">{DIFFICULTY_BLURB[d]}</small>
+                {wins > 0 && (
+                  <span className="career-picker-badge">
+                    {wins} won
+                  </span>
+                )}
+              </label>
+            );
+          })}
+        </fieldset>
+      </div>
 
       <button
         className="btn primary big"

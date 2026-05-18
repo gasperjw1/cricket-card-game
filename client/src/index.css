@@ -1261,6 +1261,25 @@ h1 {
 }
 
 /* ───── Career pickers (tournament + difficulty) on the start screen ───── */
+/* Two-column layout on desktop — tournament left, difficulty right. */
+.career-pickers-row {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+@media (min-width: 700px) {
+  .career-pickers-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    align-items: start;
+  }
+  /* Remove top margin on the fieldsets when inside the row — the row gap handles it. */
+  .career-pickers-row .career-picker {
+    margin-top: 0;
+  }
+}
+
 .career-picker {
   display: flex;
   flex-direction: column;
