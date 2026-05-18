@@ -60,6 +60,7 @@ Each batter has `handedness: "right" | "left"`. Visual only — the engine looks
 
 ### ELITE — Virat Kohli
 *Cover drive king. Flick through mid-wicket. Pulls anything short. Tracks the ball late, plays orthodox spin with ease — but the late wobble of drift and a sharp googly still get him every now and then.*
+- **Role:** top-order
 - **Strengths:**
   - Full off stump → cover drive for 4
   - Full leg stump → flick for 6
@@ -75,6 +76,7 @@ Each batter has `handedness: "right" | "left"`. Visual only — the engine looks
 
 ### ELITE — Shubman Gill
 *Current India ODI captain, technically the most-correct young bat in world cricket. Straight drives down the ground are his signature. Late cuts the moving ball, plays patient defensive — but the moving ball outside off has caught him out at the highest level.*
+- **Role:** top-order
 - **Strengths:**
   - Full middle stump → straight drive for 6
   - Good length off stump → punch through cover for 4
@@ -90,6 +92,7 @@ Each batter has `handedness: "right" | "left"`. Visual only — the engine looks
 
 ### GOLD — Rohit Sharma
 *Lofted straight drives. Pulls off the front foot from good length. Stronger on the leg side; vulnerable to the off-stump fishing line. Reads pace easily; struggles against sharp drift and the carrom ball.*
+- **Role:** top-order
 - **Strengths:**
   - Full middle stump → lofted straight drive for 6
   - Good length middle stump → pull for 4
@@ -105,6 +108,7 @@ Each batter has `handedness: "right" | "left"`. Visual only — the engine looks
 
 ### GOLD — Suryakumar Yadav
 *World #1 T20I batter. 360-degree hitter — scoops, ramps, reverse sweeps. Eats spin alive in the middle overs. Sometimes leaves a gap going across; vulnerable to a sharp seamer angling back in.*
+- **Role:** top-order
 - **Strengths:**
   - Full leg stump → scoop for 6
   - Short middle stump → ramp for 4
@@ -312,6 +316,7 @@ Each batter has `handedness: "right" | "left"`. Visual only — the engine looks
 
 ### SILVER — Hardik Pandya
 *Medium-fast all-rounder. Heavy back-of-length hit-the-deck pacer. India's regular sixth-bowler when fit. No signature variation in T20s any more — just hard length and aggression.*
+- **Role:** death-overs
 - **Delivery:** Good length middle stump
 - **Fielding:** Mid-wicket
 
@@ -319,6 +324,7 @@ Each batter has `handedness: "right" | "left"`. Visual only — the engine looks
 
 ### SILVER — Mayank Yadav
 *Lucknow Super Giants. IPL 2024 breakout — consistent 150+ kph express pace. Bouncer specialist. Injury-hampered, so no real international career to speak of.*
+- **Role:** powerplay
 - **Delivery:** Short middle stump
 - **Fielding:** Gully/Point
 
@@ -340,6 +346,7 @@ Each batter has `handedness: "right" | "left"`. Visual only — the engine looks
 
 ### BRONZE — Umran Malik
 *Raw pace, 150+ kph. Short of length specialist. Thrilling but erratic — limited T20Is, IPL-only most of his career.*
+- **Role:** powerplay
 - **Delivery:** Short off stump
 - **Fielding:** Gully/Point
 
@@ -410,6 +417,7 @@ Everything not listed = dot ball. Weaknesses are zone-only (no adjective referen
 
 ### ELITE — Mitchell Marsh
 *Current AUS T20I captain. **Player of the Match in the 2021 T20 WC Final** (77\* off 50 — the trophy-winning innings). Lofted drives, pulls anything short, all-rounder pedigree. (All-rounder split — keeps his existing Bronze bowler card.)*
+- **Role:** top-order
 - **Strengths:** Full middle stump → lofted straight drive for 6 | Short middle stump → pull for 4 | Full off stump → drive for 4
 - **Neutrals:** Good length middle stump → push for 2 | Good length leg stump → flick for 1
 - **Weaknesses:** Good length Outside off → edge to slip
@@ -486,10 +494,12 @@ Everything not listed = dot ball. Weaknesses are zone-only (no adjective referen
 
 ### ELITE — Mitchell Starc
 *Left-arm express. Late in-swing into right-handers from the natural left-arm angle, devastating death-overs yorkers, world-class slower-ball variations (slower bouncers and slower yorkers). Two-skill Elite per the v1.1 rule — only one fires per ball, no stacking.*
+- **Role:** powerplay
 - **Delivery:** Full off stump | **Adjective:** Swing, Slower | **Fielding:** Slip cordon + Mid-wicket
 
 ### ELITE — Pat Cummins
 *AUS Test captain + world-class fast bowler across all formats. Hits the deck hard with bounce, late seam off the surface, signature slower ball at the death. T20I selections sporadic but career-tier elite. Two-skill Elite per the v1.1 rule.*
+- **Role:** powerplay
 - **Delivery:** Good length middle stump | **Adjective:** Seam, Slower | **Fielding:** Slip cordon + Gully/Point
 
 ### GOLD — Adam Zampa
@@ -498,6 +508,7 @@ Everything not listed = dot ball. Weaknesses are zone-only (no adjective referen
 
 ### GOLD — Josh Hazlewood
 *Metronomic seamer. Good length Outside off relentlessly — the corridor of uncertainty. Tier-based wide-call risk on Outside off (Gold = 15%) is the trade-off for the fishing line. Miserly economy.*
+- **Role:** powerplay
 - **Delivery:** Good length Outside off | **Adjective:** Seam | **Fielding:** Slip cordon
 
 ### GOLD — Sean Abbott
@@ -544,6 +555,7 @@ Everything not listed = dot ball. Weaknesses are zone-only (no adjective referen
 
 ### ELITE — Jos Buttler
 *England's T20 captain and talisman. Destructive keeper-bat — ramps, scoops, lofted hits over extra cover. T20 WC 2022 winner. Plays spin from the BBL/IPL with comfort. Vulnerable mainly to skiddy seam back into him at the stumps.*
+- **Role:** top-order
 - **Strengths:** Full off stump → loft for 6 | Short middle stump → ramp for 4 | Full leg stump → scoop for 6
 - **Neutrals:** Good length off stump → push for 2 | Good length middle stump → work for 1
 - **Weaknesses:** Good length leg stump → LBW playing across
@@ -551,6 +563,7 @@ Everything not listed = dot ball. Weaknesses are zone-only (no adjective referen
 
 ### ELITE — Joe Root
 *England Test/ODI run machine, T20I returnee. Sweep specialist vs spin in the middle overs, late dabs anywhere on the off side, classical strengths in the corridor. Vulnerable mainly to high pace banged in short.*
+- **Role:** top-order
 - **Strengths:** Good length off stump → late cut for 4 | Full off stump → cover drive for 4 | Full leg stump → sweep for 6
 - **Neutrals:** Good length middle stump → push for 2 | Good length leg stump → reverse-sweep for 1
 - **Weaknesses:** Short middle stump → top edge caught
@@ -558,6 +571,7 @@ Everything not listed = dot ball. Weaknesses are zone-only (no adjective referen
 
 ### GOLD — Harry Brook
 *England's #3, T20 WC star. Drives beautifully over extra cover, pulls anything short, all-round attacking. Technically sound for an aggressive batter — eats spin alive but vulnerable in the corridor outside off.*
+- **Role:** top-order
 - **Strengths:** Full off stump → drive for 6 | Short middle stump → pull for 4
 - **Neutrals:** Good length leg stump → flick for 2 | Good length off stump → push for 1
 - **Weaknesses:** Good length middle stump → bowled going across | Full Outside off → caught at cover
@@ -632,6 +646,7 @@ Everything not listed = dot ball. Weaknesses are zone-only (no adjective referen
 
 ### ELITE — Jofra Archer
 *Express pace at 145+ kph. Yorker maestro with late seam off the deck and world-class slower-ball variations (slower bouncer, knuckle ball). When fit, unplayable. Two-skill Elite per the v1.1 rule.*
+- **Role:** powerplay
 - **Delivery:** Full middle stump | **Adjective:** Seam, Slower | **Fielding:** Mid-wicket + Cover
 
 ### ELITE — Stuart Broad
@@ -644,6 +659,7 @@ Everything not listed = dot ball. Weaknesses are zone-only (no adjective referen
 
 ### GOLD — Mark Wood
 *Express pacer (150+ kph when fit). Hits the deck hard with bounce, late seam off the surface. Death-overs short ball specialist.*
+- **Role:** powerplay
 - **Delivery:** Short middle stump | **Adjective:** Seam | **Fielding:** Gully/Point
 
 ### GOLD — Tymal Mills
@@ -656,6 +672,7 @@ Everything not listed = dot ball. Weaknesses are zone-only (no adjective referen
 
 ### SILVER — Reece Topley
 *Tall left-arm seamer. Powerplay specialist on the corridor with the new ball. Faces the Silver tier-based wide-call risk on Outside off (25%). Injury-prone.*
+- **Role:** death-overs
 - **Delivery:** Good length Outside off | **Fielding:** Slip cordon
 
 ### SILVER — Jamie Overton
@@ -697,6 +714,7 @@ Everything not listed = dot ball. Weaknesses are zone-only (no adjective referen
 
 ### ELITE — AB de Villiers
 *Mr 360 — retired internationals 2018, 78 T20Is, IPL legend (RCB). Plays every shot in the book and several that aren't. Reverse sweeps over slip, scoops over fine leg, ramps the quick. The most complete T20 batter of his generation.*
+- **Role:** top-order
 - **Strengths:** Full off stump → cover drive for 6 | Full leg stump → flick for 6 | Short middle stump → ramp for 4
 - **Neutrals:** Good length off stump → reverse sweep for 2 | Good length middle stump → push for 1
 - **Weaknesses:** Full Outside off → edge to keeper
@@ -704,6 +722,7 @@ Everything not listed = dot ball. Weaknesses are zone-only (no adjective referen
 
 ### GOLD — Quinton de Kock
 *Left-handed keeper-bat. Retired internationally in 2024 but still IPL/SA20 star. T20 WC 2024 leading SA scorer (232 runs, SR 140). Pull, drive, sweep — pure pace specialist.*
+- **Role:** top-order
 - **Strengths:** Short middle stump → pull for 6 | Full off stump → drive for 4
 - **Neutrals:** Good length off stump → push for 2 | Full leg stump → flick for 1
 - **Weaknesses:** Good length middle stump → bowled across | Full Outside off → caught at cover
@@ -718,6 +737,7 @@ Everything not listed = dot ball. Weaknesses are zone-only (no adjective referen
 
 ### GOLD — Faf du Plessis
 *Retired internationals 2021, 50 T20Is, IPL captain (CSK / RCB). Anchor with strong technique and clever pace control. Drives and pulls with classical timing.*
+- **Role:** top-order
 - **Strengths:** Full off stump → drive for 4 | Short middle stump → pull for 4
 - **Neutrals:** Good length off stump → push for 2 | Good length leg stump → flick for 1
 - **Weaknesses:** Good length middle stump → bowled across | Full Outside off → caught at cover
@@ -778,6 +798,7 @@ Everything not listed = dot ball. Weaknesses are zone-only (no adjective referen
 
 ### ELITE — Kagiso Rabada
 *Best SA T20 quick of his era. Yorker maestro, late seam off the deck, signature slow-ball cutter. Two-skill Elite per the v1.1 rule.*
+- **Role:** powerplay
 - **Delivery:** Full off stump | **Adjective:** Seam, Slower | **Fielding:** Slip cordon + Mid-wicket
 
 ### ELITE — Imran Tahir
@@ -786,6 +807,7 @@ Everything not listed = dot ball. Weaknesses are zone-only (no adjective referen
 
 ### GOLD — Anrich Nortje
 *150kph+ raw pace. Hits the deck hard with bounce; back-of-length intimidator.*
+- **Role:** death-overs
 - **Delivery:** Short middle stump | **Adjective:** Seam | **Fielding:** Gully/Point
 
 ### GOLD — Tabraiz Shamsi
@@ -818,6 +840,7 @@ Everything not listed = dot ball. Weaknesses are zone-only (no adjective referen
 
 ### BRONZE — Gerald Coetzee
 *Young right-arm fast bowler. Raw pace, erratic radar.*
+- **Role:** powerplay
 - **Delivery:** Short middle stump | **Fielding:** Gully/Point
 
 ### BRONZE — Wiaan Mulder
@@ -836,6 +859,7 @@ Everything not listed = dot ball. Weaknesses are zone-only (no adjective referen
 
 ### ELITE — Kane Williamson
 *NZ T20I icon. Test-class technique applied to T20 — the anchor who guides chases. T20 WC 2024 leading NZ scorer (139 runs). Reads spin and pace equally; sweep, drive, dab — every shot in the textbook.*
+- **Role:** top-order
 - **Strengths:** Full off stump → cover drive for 4 | Good length off stump → punch through cover for 4 | Full leg stump → flick for 4
 - **Neutrals:** Good length leg stump → work for 2 | Good length middle stump → defend for 1
 - **Weaknesses:** Short Outside off → mistimed cut caught at point
@@ -944,6 +968,7 @@ Everything not listed = dot ball. Weaknesses are zone-only (no adjective referen
 
 ### SILVER — Lockie Ferguson
 *Express right-arm pace (150kph+). Short ball is his weapon. No specific skill at the Silver tier.*
+- **Role:** death-overs
 - **Delivery:** Short middle stump | **Fielding:** Gully/Point
 
 ### SILVER — Mitchell Santner
@@ -982,6 +1007,7 @@ Everything not listed = dot ball. Weaknesses are zone-only (no adjective referen
 
 ### ELITE — Babar Azam
 *Right-handed PAK icon. Multi-time world #1 ranked T20I batter. Cover drive maestro, anchor archetype, scores all around the wicket. Plays pace and spin with equal class.*
+- **Role:** top-order
 - **Strengths:** Full off stump → cover drive for 6 | Full leg stump → flick for 4 | Good length off stump → punch through cover for 4
 - **Neutrals:** Good length middle stump → push for 2 | Good length leg stump → work for 1
 - **Weaknesses:** Short middle stump → top edge pulling caught
@@ -996,6 +1022,7 @@ Everything not listed = dot ball. Weaknesses are zone-only (no adjective referen
 
 ### GOLD — Mohammad Rizwan
 *Right-handed keeper-bat. World #1 T20I ranked at multiple points. Accumulator with class — drives, flicks, anchors. Vulnerable to short pace at the body.*
+- **Role:** top-order
 - **Strengths:** Full off stump → drive for 4 | Good length leg stump → flick for 4
 - **Neutrals:** Good length off stump → push for 2 | Good length middle stump → defend for 1
 - **Weaknesses:** Short Outside off → caught behind | Full middle stump → bowled
@@ -1110,6 +1137,7 @@ Everything not listed = dot ball. Weaknesses are zone-only (no adjective referen
 
 ### BRONZE — Mohammad Hasnain
 *Right-arm quick. Pace without control; high-variance Bronze profile.*
+- **Role:** powerplay
 - **Delivery:** Short middle stump | **Fielding:** Gully/Point
 
 ### BRONZE — Iftikhar Ahmed
@@ -1135,6 +1163,7 @@ Everything not listed = dot ball. Weaknesses are zone-only (no adjective referen
 
 ### ELITE — Kumar Sangakkara
 *Legend — retired internationals 2015, 56 T20Is, T20 WC 2014 winner, all-time-great LH keeper-bat. Glides, sweeps, drives off both feet, reverse-laps spin. The most technically-correct attacking bat of his era.*
+- **Role:** top-order
 - **Strengths:** Full off stump → cover drive for 6 | Good length off stump → late cut for 4 | Full leg stump → sweep for 4
 - **Neutrals:** Good length middle stump → push for 2 | Good length leg stump → flick for 1
 - **Weaknesses:** Short Outside off → caught behind
@@ -1149,6 +1178,7 @@ Everything not listed = dot ball. Weaknesses are zone-only (no adjective referen
 
 ### GOLD — Kusal Mendis
 *Aggressive right-handed keeper-bat. Pulls and cuts with power. Recent IPL form.*
+- **Role:** top-order
 - **Strengths:** Short middle stump → pull for 6 | Full off stump → drive for 4 | Full leg stump → flick for 4
 - **Neutrals:** Good length leg stump → work for 2 | Good length middle stump → push for 1
 - **Weaknesses:** Full middle stump → bowled across the line
@@ -1156,6 +1186,7 @@ Everything not listed = dot ball. Weaknesses are zone-only (no adjective referen
 
 ### GOLD — Mahela Jayawardene
 *Legend — retired 2014, 55 T20Is, T20 WC 2014 Player of the Tournament. RH right-hand stylist with the wristy whip through midwicket and the late cut signature. Captain across formats.*
+- **Role:** top-order
 - **Strengths:** Full leg stump → flick for 4 | Good length off stump → late cut for 4
 - **Neutrals:** Full off stump → cover drive for 2 | Good length middle stump → push for 1
 - **Weaknesses:** Short middle stump → caught fending | Full Outside off → edge to keeper
@@ -1281,6 +1312,7 @@ Everything not listed = dot ball. Weaknesses are zone-only (no adjective referen
 
 ### ELITE — Chris Gayle
 *All-time T20 batting legend — retired 2021, 79 T20Is + ~450 T20s globally. Universe Boss. Stands still, walks across, hits over long-on for fun. The original T20 superhero. Stroke-range universal, only the moving new ball troubles him.*
+- **Role:** top-order
 - **Strengths:** Full off stump → loft for 6 | Full middle stump → straight drive for 6 | Short middle stump → pull for 6
 - **Neutrals:** Good length leg stump → flick for 2 | Good length middle stump → push for 1
 - **Weaknesses:** Full Outside off → edge to keeper
@@ -1374,6 +1406,7 @@ Everything not listed = dot ball. Weaknesses are zone-only (no adjective referen
 
 ### GOLD — Alzarri Joseph
 *Right-arm express pace. Current WI T20I regular, hits the deck hard with bounce and seam off the surface.*
+- **Role:** powerplay
 - **Delivery:** Good length off stump | **Adjective:** Seam | **Fielding:** Slip cordon
 
 ### GOLD — Carlos Brathwaite
@@ -1386,6 +1419,7 @@ Everything not listed = dot ball. Weaknesses are zone-only (no adjective referen
 
 ### SILVER — Shamar Joseph
 *Right-arm raw express pace (150kph+). Recent Test breakout star, growing T20I role.*
+- **Role:** powerplay
 - **Delivery:** Short middle stump | **Fielding:** Gully/Point
 
 ### SILVER — Jason Holder
@@ -1434,6 +1468,7 @@ Everything not listed = dot ball. Weaknesses are zone-only (no adjective referen
 
 ### GOLD — Shakib Al Hasan
 *Left-handed all-time great all-rounder (batter card; Gold bowler split below). Sweeps and drives, plays spin as well as anyone in the modern game. Retired from internationals 2024; still active in T20 leagues.*
+- **Role:** top-order
 - **Strengths:** Full leg stump → sweep for 6 | Good length off stump → cut for 4
 - **Neutrals:** Full off stump → drive for 2 | Good length middle stump → push for 1
 - **Weaknesses:** Short Outside off → caught at gully | Good length leg stump → LBW going across
@@ -1516,6 +1551,7 @@ Everything not listed = dot ball. Weaknesses are zone-only (no adjective referen
 
 ### GOLD — Taskin Ahmed
 *Best current BAN quick. Right-arm pace with bounce, hits the deck hard with seam off the stumps.*
+- **Role:** powerplay
 - **Delivery:** Good length middle stump | **Adjective:** Seam | **Fielding:** Slip cordon
 
 ### GOLD — Shakib Al Hasan
@@ -1532,6 +1568,7 @@ Everything not listed = dot ball. Weaknesses are zone-only (no adjective referen
 
 ### SILVER — Nahid Rana
 *Right-arm raw express pace (150kph+). Exciting young quick attacking the stumps.*
+- **Role:** powerplay
 - **Delivery:** Short middle stump | **Fielding:** Gully/Point
 
 ### SILVER — Rishad Hossain
@@ -1601,6 +1638,7 @@ Everything not listed = dot ball. Weaknesses are zone-only (no adjective referen
 
 ### SILVER — Regis Chakabva
 *Right-handed keeper-bat. Aggressive opener, quick scorer.*
+- **Role:** middle-order
 - **Strengths:** Full middle stump → loft for 4 | Short middle stump → pull for 4
 - **Neutrals:** Good length leg stump → flick for 1
 - **Weaknesses:** Good length Outside off → edge | Full Outside off → caught at cover | Good length middle stump → bowled
@@ -1654,10 +1692,12 @@ Everything not listed = dot ball. Weaknesses are zone-only (no adjective referen
 
 ### ELITE — Blessing Muzarabani
 *Best ZIM quick in years. Tall right-arm express pace with steep bounce; signature slow-ball bouncer at the death. Two-skill Elite per the v1.1 rule.*
+- **Role:** powerplay
 - **Delivery:** Good length off stump | **Adjective:** Seam, Slower | **Fielding:** Gully/Point + Slip cordon
 
 ### ELITE — Heath Streak
 *Honorary Elite — ZIM's all-time greatest bowler, retired 2005 at the dawn of T20Is. Right-arm fast-medium with late seam, slower-ball variations. Captain figure, ZIM's all-format spearhead through their golden generation. Two-skill Elite per the v1.1 rule.*
+- **Role:** powerplay
 - **Delivery:** Good length middle stump | **Adjective:** Seam, Slower | **Fielding:** Slip cordon + Mid-wicket
 
 ### GOLD — Sikandar Raza
@@ -1726,6 +1766,7 @@ Everything not listed = dot ball. Weaknesses are zone-only (no adjective referen
 
 ### GOLD — Ibrahim Zadran
 *Current AFG ODI captain. Right-handed classy anchor — drives, flicks, works the ball. Growing T20 game.*
+- **Role:** top-order
 - **Strengths:** Full off stump → drive for 4 | Full leg stump → flick for 4
 - **Neutrals:** Good length off stump → push for 2 | Good length middle stump → defend for 1
 - **Weaknesses:** Short Outside off → caught behind | Short middle stump → top edge
@@ -1767,6 +1808,7 @@ Everything not listed = dot ball. Weaknesses are zone-only (no adjective referen
 
 ### BRONZE — Mohammad Shahzad
 *Mid-2010s legend. Flamboyant right-handed keeper-bat, 80+ T20Is for AFG, retired ~2020. Slog-or-out Bronze archetype — clears the rope or holes out.*
+- **Role:** top-order
 - **Strengths:** Full leg stump → slog for 6
 - **Neutrals:** Short middle stump → pull for 2 | Full off stump → drive for 1
 - **Weaknesses:** Good length Outside off → edge to keeper | Good length middle stump → bowled | Good length off stump → caught at cover
@@ -1861,6 +1903,7 @@ Everything not listed = dot ball. Weaknesses are zone-only (no adjective referen
 
 ### GOLD — Andrew Balbirnie
 *Right-handed elegant anchor, former Ireland captain. Beautiful drives off both feet. Vulnerable to short pace at the body.*
+- **Role:** top-order
 - **Strengths:** Full off stump → cover drive for 4 | Full middle stump → drive for 4
 - **Neutrals:** Good length off stump → push for 2 | Good length middle stump → defend for 1
 - **Weaknesses:** Short Outside off → caught behind | Short middle stump → top edge
@@ -1939,6 +1982,7 @@ Everything not listed = dot ball. Weaknesses are zone-only (no adjective referen
 
 ### ELITE — Boyd Rankin
 *Multi-nation career — IRE → ENG → IRE. RH tall pace, retired 2022, 56 T20Is across both countries. Bounce off the deck, late seam, slower-ball variations at the death. Two-skill Elite per the v1.1 rule.*
+- **Role:** powerplay
 - **Delivery:** Good length middle stump | **Adjective:** Seam, Slower | **Fielding:** Gully/Point + Slip cordon
 
 ### GOLD — Mark Adair

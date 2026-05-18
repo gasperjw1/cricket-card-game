@@ -504,6 +504,7 @@ function parseBatsman(
   const neutrals: BatsmanOutcome[] = [];
   const weaknesses: BatsmanOutcome[] = [];
   let resistances: Adjective[] = [];
+  let explicitBatRole: "top-order" | "middle-order" | "finisher" | null = null;
 
   // Mode A: compact — `- **Strengths:** outcome | outcome`
   // Mode B: India — `- **Strengths:**` then indented `  - outcome`
@@ -512,6 +513,17 @@ function parseBatsman(
   for (const raw of body) {
     const line = raw.trim();
     if (!line) continue;
+
+    // Explicit role override — `- **Role:** top-order` etc.
+    // Takes priority over heuristic detection when present.
+    const roleMatch = line.match(/^-\s+\*\*Role:\*\*\s*(.+)$/);
+    if (roleMatch) {
+      const r = roleMatch[1]!.trim().toLowerCase();
+      if (r === "top-order" || r === "middle-order" || r === "finisher") {
+        explicitBatRole = r;
+      }
+      continue;
+    }
 
     const compactMatch = line.match(
       /^-\s+\*\*(Strengths|Neutrals|Weaknesses|Resistances):\*\*\s*(.+)?$/,
@@ -557,7 +569,7 @@ function parseBatsman(
     tier,
     description,
     handedness: detectHandedness(description),
-    role: detectBatterRole(description),
+    role: explicitBatRole ?? detectBatterRole(description),
     strengths,
     neutrals,
     weaknesses,
@@ -638,10 +650,21 @@ function parseBowler(
   let delivery: Zone | null = null;
   let adjectives: Adjective[] = [];
   let fielding: FieldingRegion[] = [];
+  let explicitBowlRole: "powerplay" | "middle-overs" | "death-overs" | null = null;
 
   for (const raw of body) {
     const line = raw.trim();
     if (!line.startsWith("- ")) continue;
+
+    // Explicit role override — `- **Role:** powerplay` etc.
+    const roleMatch = line.match(/^-\s+\*\*Role:\*\*\s*(.+)$/);
+    if (roleMatch) {
+      const r = roleMatch[1]!.trim().toLowerCase();
+      if (r === "powerplay" || r === "middle-overs" || r === "death-overs") {
+        explicitBowlRole = r;
+      }
+      continue;
+    }
 
     // Compact: `- **Delivery:** X | **Adjective:** Y, Z | **Fielding:** ...`
     // Multi-line: each `- **Field:** X` on its own line
@@ -683,7 +706,7 @@ function parseBowler(
     delivery,
     adjectives,
     fielding,
-    role: detectBowlerRole(description),
+    role: explicitBowlRole ?? detectBowlerRole(description),
   };
 }
 
