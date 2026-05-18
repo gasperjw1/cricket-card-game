@@ -31,7 +31,7 @@
  *   WICKET branch (receives: base lookup, bowler in-phase, Review Appeal):
  *     DRS Review → protected dot (terminal) [or mutual cancel]
  *     No Ball → dot +1, rebowl (terminal) [Biryani cancels No Ball]
- *     Lucky escape (30%):
+ *     Lucky escape (20%, batter in-phase ONLY — OOP batters get no escape):
  *       bowled     → bails stay on → 2 byes (length-aware narrative)
  *       lbw        → not out → 2 leg byes (delivery-line-aware narrative)
  *       caught-*   → dropped catch → 1/2/4 bat runs (position-specific)
@@ -675,9 +675,13 @@ export function resolveBall(input: ResolveBallInput): ResolutionResult {
   // a run-out still credits the runs already scored (the batter was caught
   // short while attempting the run). The runOut flag tells the innings handler
   // to decrement a wicket while also crediting the run value.
+  //
+  // A batter IN their preferred phase reads the game better and calls runs
+  // more safely — they are immune to this perk. Only OOP batters are exposed.
   if (
     perksEnabled &&
     !rebowled &&
+    !batterInPhase &&
     outcome.type === "runs" &&
     (outcome.value === 1 || outcome.value === 2) &&
     random() < BOWLER_NEUTRAL_RUNOUT_CHANCE
@@ -706,11 +710,16 @@ export function resolveBall(input: ResolveBallInput): ResolutionResult {
   // the dismissal category — see buildLuckyEscape() below.
   //
   // Situation cards (DRS Review, No Ball) have already resolved above, so
-  // this step only sees wickets that survived those layers. The lucky escape
-  // is the final random-chance protection before the wicket is confirmed.
+  // this step only sees wickets that survived those layers.
+  //
+  // PHASE GATE: escape only fires when the batter is IN their preferred
+  // phase (e.g. top-order in powerplay). Playing an OOP batter forfeits
+  // all escape protection — wickets stick immediately. This makes
+  // role-vs-phase matching the primary skill expression in the system.
   if (
     perksEnabled &&
     !rebowled &&
+    batterInPhase &&
     outcome.type === "wicket" &&
     outcome.dismissalCategory !== "runout" &&
     random() < LUCKY_ESCAPE_CHANCE

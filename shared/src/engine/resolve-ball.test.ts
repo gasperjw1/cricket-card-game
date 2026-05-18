@@ -882,9 +882,10 @@ describe("Two-adjective no-stack rule", () => {
 // Escape type is determined by dismissal category.
 
 describe("Lucky escape — bowled", () => {
-  it("bails don't fall (Full) → 2 byes, dot, no rebowl", () => {
+  it("bails don't fall (Full) → 2 byes, dot, no rebowl (batter in phase)", () => {
     const r = resolveBall({
       batsman: makeBatter({
+        role: "middle-order", // in phase — escape can fire
         weaknesses: [{
           zone: { line: "Middle stump", length: "Full" },
           outcome: { type: "wicket", mode: "clean bowled", dismissalCategory: "bowled" },
@@ -894,7 +895,7 @@ describe("Lucky escape — bowled", () => {
       battingSituation: null,
       bowlingSituation: null,
       phase: "middle",
-      random: () => 0.05, // 0.05 < 0.30 → escape fires
+      random: () => 0.05, // 0.05 < 0.20 → escape fires
     });
     assert.equal(r.finalOutcome.type, "dot");
     assert.equal(r.extraRuns, 2);
@@ -904,9 +905,10 @@ describe("Lucky escape — bowled", () => {
     assert.ok(step?.applied);
   });
 
-  it("bails don't fall (Short) → 2 byes with different narrative", () => {
+  it("bails don't fall (Short) → 2 byes with different narrative (batter in phase)", () => {
     const r = resolveBall({
       batsman: makeBatter({
+        role: "middle-order",
         weaknesses: [{
           zone: { line: "Middle stump", length: "Short" },
           outcome: { type: "wicket", mode: "top edge bowled", dismissalCategory: "bowled" },
@@ -924,9 +926,10 @@ describe("Lucky escape — bowled", () => {
 });
 
 describe("Lucky escape — LBW", () => {
-  it("leg-stump LBW → 'sliding down leg' → 2 leg byes", () => {
+  it("leg-stump LBW → 'sliding down leg' → 2 leg byes (batter in phase)", () => {
     const r = resolveBall({
       batsman: makeBatter({
+        role: "middle-order",
         weaknesses: [{
           zone: { line: "Leg stump", length: "Good length" },
           outcome: { type: "wicket", mode: "trapped LBW", dismissalCategory: "lbw" },
@@ -945,9 +948,10 @@ describe("Lucky escape — LBW", () => {
     assert.ok(step?.detail.includes("leg"));
   });
 
-  it("outside-off LBW → 'pitched outside off' → 2 leg byes", () => {
+  it("outside-off LBW → 'pitched outside off' → 2 leg byes (batter in phase)", () => {
     const r = resolveBall({
       batsman: makeBatter({
+        role: "middle-order",
         weaknesses: [{
           zone: { line: "Outside off", length: "Full" },
           outcome: { type: "wicket", mode: "LBW", dismissalCategory: "lbw" },
@@ -966,9 +970,10 @@ describe("Lucky escape — LBW", () => {
 });
 
 describe("Lucky escape — caught", () => {
-  it("caught-deep → dropped on the rope → 4 bat runs", () => {
+  it("caught-deep → dropped on the rope → 4 bat runs (batter in phase)", () => {
     const r = resolveBall({
       batsman: makeBatter({
+        role: "middle-order",
         weaknesses: [{
           zone: { line: "Middle stump", length: "Short" },
           outcome: { type: "wicket", mode: "top edge caught deep", dismissalCategory: "caught-deep" },
@@ -985,9 +990,10 @@ describe("Lucky escape — caught", () => {
     assert.equal(r.extraRuns, 0, "bat runs are not extras");
   });
 
-  it("caught-midwicket → fumbled → 1 bat run", () => {
+  it("caught-midwicket → fumbled → 1 bat run (batter in phase)", () => {
     const r = resolveBall({
       batsman: makeBatter({
+        role: "middle-order",
         weaknesses: [{
           zone: { line: "Leg stump", length: "Full" },
           outcome: { type: "wicket", mode: "top edge midwicket", dismissalCategory: "caught-midwicket" },
@@ -1004,9 +1010,10 @@ describe("Lucky escape — caught", () => {
 });
 
 describe("Lucky escape — stumped", () => {
-  it("inside edge → keeper can't gather → 2 bat runs", () => {
+  it("inside edge → keeper can't gather → 2 bat runs (batter in phase)", () => {
     const r = resolveBall({
       batsman: makeBatter({
+        role: "middle-order",
         weaknesses: [{
           zone: { line: "Outside off", length: "Full" },
           outcome: { type: "wicket", mode: "stumped", dismissalCategory: "stumped" },
@@ -1025,23 +1032,40 @@ describe("Lucky escape — stumped", () => {
 });
 
 describe("Lucky escape — wicket stands / run-out excluded", () => {
-  it("wicket stands when roll >= LUCKY_ESCAPE_CHANCE (0.30)", () => {
+  it("wicket stands when batter is in phase but roll fails (>= 0.20)", () => {
     const r = resolveBall({
-      batsman: makeBatter(),
+      batsman: makeBatter({ role: "middle-order" }), // in phase
       bowler: makeBowler({ delivery: { line: "Outside off", length: "Full" }, fielding: [] }),
       battingSituation: null,
       bowlingSituation: null,
       phase: "middle",
-      random: () => 0.50, // 0.50 >= 0.30 → no escape
+      random: () => 0.50, // 0.50 >= 0.20 → escape roll fails
     });
     assert.equal(r.finalOutcome.type, "wicket");
   });
 
+  it("wicket stands when batter is OUT of phase — no escape regardless of roll", () => {
+    // Finisher in middle overs = out of phase → escape gate blocked entirely.
+    // Roll 0.01 is below both old (0.30) and new (0.20) thresholds but won't fire.
+    const r = resolveBall({
+      batsman: makeBatter({ role: "finisher" }), // finisher → death; current phase = middle → OOP
+      bowler: makeBowler({ delivery: { line: "Outside off", length: "Full" }, fielding: [] }),
+      battingSituation: null,
+      bowlingSituation: null,
+      phase: "middle",
+      random: () => 0.01, // low roll, but escape is gated by batterInPhase
+    });
+    assert.equal(r.finalOutcome.type, "wicket", "OOP batter gets no lucky escape");
+    const escape = r.steps.find((s) => s.kind === "lucky-escape");
+    assert.equal(escape, undefined, "lucky-escape step must not appear for OOP batter");
+  });
+
   it("run-out keeps runs scored AND flags the dismissal — lucky escape does NOT apply", () => {
-    // Batter neutral 2 runs at Middle stump / Good length.
-    // Roll: 0.05 < BOWLER_NEUTRAL_RUNOUT_CHANCE (0.10) → run-out fires.
-    // Result: runs (2) + runOut:true. Lucky escape gate requires
-    // outcome.type === "wicket", which is never true for a run-out.
+    // Batter (no role) neutral 2 runs at Middle stump / Good length.
+    // Roll: 0.05 < BOWLER_NEUTRAL_RUNOUT_CHANCE (0.10) → run-out fires
+    // (batter has no role → not in phase → not protected from run-out).
+    // Result: runs (2) + runOut:true. Lucky escape gate also requires
+    // batterInPhase which is false here, so it's doubly blocked.
     const r = resolveBall({
       batsman: makeBatter({ role: undefined }),
       bowler: makeBowler({
@@ -1060,9 +1084,31 @@ describe("Lucky escape — wicket stands / run-out excluded", () => {
       assert.equal(r.finalOutcome.runOut, true, "runOut flag set");
     }
     assert.equal(r.extraRuns, 0, "no extras on run-out");
-    // Lucky escape must not appear in the trail.
     const escape = r.steps.find((s) => s.kind === "lucky-escape");
     assert.equal(escape, undefined, "lucky-escape must not fire on run-out");
+  });
+
+  it("in-phase batter cannot be run out (even with low roll)", () => {
+    // Middle-order in middle phase = in phase → run-out perk blocked.
+    // Roll 0.15: skips batter in-phase upgrade (0.15 > 0.10).
+    // Outcome: plain 2 runs, no runOut flag.
+    const r = resolveBall({
+      batsman: makeBatter({ role: "middle-order" }),
+      bowler: makeBowler({
+        delivery: { line: "Middle stump", length: "Good length" },
+        fielding: [],
+        role: undefined,
+      }),
+      battingSituation: null,
+      bowlingSituation: null,
+      phase: "middle",
+      random: () => 0.15,
+    });
+    assert.equal(r.finalOutcome.type, "runs");
+    if (r.finalOutcome.type === "runs") {
+      assert.equal(r.finalOutcome.value, 2);
+      assert.equal(r.finalOutcome.runOut, undefined, "in-phase batter is immune to run-out perk");
+    }
   });
 });
 

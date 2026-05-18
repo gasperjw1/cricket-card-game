@@ -135,9 +135,13 @@ export const PHASE_LABEL: Record<"powerplay" | "middle" | "death", string> = {
 /** Per-roll chance a non-run-out wicket triggers a lucky escape (bails staying
  *  on, umpire turning down LBW, catch dropped, inside edge on stumping).
  *  What actually happens depends on the dismissal category — see resolve-ball.ts
- *  buildLuckyEscape(). Equivalent to the old WICKET_SAVE_2_BYE + WICKET_SAVE_4_BYE
- *  combined (0.30 total). */
-export const LUCKY_ESCAPE_CHANCE = 0.30 as const;
+ *  buildLuckyEscape().
+ *
+ *  IMPORTANT: this chance only applies when the batter is IN their preferred
+ *  phase (top-order in powerplay, middle-order in middle, finisher at death).
+ *  An out-of-phase batter gets zero protection — wickets stick. This makes
+ *  role-vs-phase matching meaningful: play the right batter, earn the escape. */
+export const LUCKY_ESCAPE_CHANCE = 0.20 as const;
 
 /** When the batter is OUT of their preferred phase, this is the chance
  *  a scoring shot becomes a dot. */
