@@ -1,16 +1,14 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import type { AnyCard } from "@swipe-sixer/shared";
 import { Card } from "../components/Card.tsx";
 import { HorizontalScroller } from "../components/HorizontalScroller.tsx";
 import { resolveCardIds } from "../lib/career-deck.ts";
 import {
   getCareer,
-  setDeck,
   subscribeCareer,
-  type RunDeck,
+  swapDeckInventoryCard,
   type WCRun,
 } from "../lib/career.ts";
-import { useEffect } from "react";
 
 interface Props {
   onBack: () => void;
@@ -18,16 +16,19 @@ interface Props {
 
 type Role = "batting" | "bowling";
 
+/** Where the currently-selected card lives. Bidirectional: tap either
+ *  side first, and eligible swap targets on the other side light up. */
+type Selection =
+  | { side: "deck"; cardId: string; slotIndex: number }
+  | { side: "inventory"; cardId: string; slotIndex: number }
+  | null;
+
 /**
- * Between-matches deck management. Player can swap cards between their
- * active deck and the run inventory. Swap rules:
- *   - Same kind only (batter↔batter, bowler↔bowler, sit↔sit)
- *   - Same deck-role for sits (batting sits stay in batting deck etc.)
- *   - Total deck size always preserved
- *
- * UI: tap an inventory card → highlighted swap candidates appear in the
- * deck → tap one to confirm swap. Or tap a deck card → can drop to inventory
- * (need a replacement first).
+ * Between-matches deck management. Player can swap cards between the
+ * active deck and the run inventory. Selection is bidirectional — tap
+ * a card on either side, then tap an eligible swap target on the other
+ * side to complete the swap. Same-kind / same-deck-side enforcement
+ * keeps swaps legal.
  */
 export function DeckManagementScreen({ onBack }: Props) {
   const [save, setSave] = useState(getCareer);
@@ -35,7 +36,13 @@ export function DeckManagementScreen({ onBack }: Props) {
   const run = save.currentRun;
 
   const [role, setRole] = useState<Role>("batting");
-  const [pickedInventoryId, setPickedInventoryId] = useState<string | null>(null);
+  const [selection, setSelection] = useState<Selection>(null);
+
+  // Reset selection when role changes — cards in one tab aren't
+  // swappable with cards in the other.
+  useEffect(() => {
+    setSelection(null);
+  }, [role]);
 
   if (!run || !run.deck) {
     return (
@@ -47,56 +54,76 @@ export function DeckManagementScreen({ onBack }: Props) {
   }
 
   const activeIds = role === "batting" ? run.deck.battingDeck : run.deck.bowlingDeck;
-  const activeCards = resolveCardIds(activeIds);
+  // Render each deck position separately even when cards repeat (e.g.
+  // multiple DRS Reviews). slotIndex distinguishes them.
+  const activeCards = activeIds.map((id, i) => ({
+    card: resolveCardIds([id])[0] ?? null,
+    slotIndex: i,
+    id,
+  })).filter((x): x is { card: AnyCard; slotIndex: number; id: string } => x.card !== null);
 
-  // Filter inventory to cards eligible for this deck role.
   const inventoryEligible = filterInventoryForRole(run, role);
 
-  // When an inventory card is picked, which deck cards can it replace?
-  const pickedInventoryCard = pickedInventoryId
-    ? resolveCardIds([pickedInventoryId])[0] ?? null
+  // Compute swap targets based on the current selection.
+  const selectedCard = selection
+    ? selection.side === "deck"
+      ? activeCards.find((x) => x.slotIndex === selection.slotIndex)?.card ?? null
+      : inventoryEligible.find((x) => x.slotIndex === selection.slotIndex)?.card ?? null
     : null;
-  const eligibleSwapTargets = pickedInventoryCard
-    ? activeCards.filter((c) => canSwap(c, pickedInventoryCard))
-    : [];
 
-  const onPickInventory = (id: string): void => {
-    setPickedInventoryId(pickedInventoryId === id ? null : id);
+  const eligibleDeckTargets = new Set<number>(); // slotIndex values
+  const eligibleInventoryTargets = new Set<number>();
+  if (selection && selectedCard) {
+    if (selection.side === "inventory") {
+      // Highlight eligible deck cards
+      for (const { card, slotIndex } of activeCards) {
+        if (canSwap(card, selectedCard)) eligibleDeckTargets.add(slotIndex);
+      }
+    } else {
+      // Highlight eligible inventory cards
+      for (const { card, slotIndex } of inventoryEligible) {
+        if (canSwap(card, selectedCard)) eligibleInventoryTargets.add(slotIndex);
+      }
+    }
+  }
+
+  const pickDeckSlot = (slotIndex: number, cardId: string): void => {
+    if (selection?.side === "deck" && selection.slotIndex === slotIndex) {
+      // Tapping the same selected card → deselect.
+      setSelection(null);
+      return;
+    }
+    if (selection?.side === "inventory") {
+      // Other side is selected → this is the swap target.
+      if (eligibleDeckTargets.has(slotIndex)) {
+        swapDeckInventoryCard(role, cardId, selection.cardId);
+        setSelection(null);
+      }
+      return;
+    }
+    setSelection({ side: "deck", cardId, slotIndex });
   };
 
-  const onSwap = (deckCardId: string): void => {
-    if (!pickedInventoryId || !run.deck) return;
-    const updated: RunDeck = {
-      battingDeck: [...run.deck.battingDeck],
-      bowlingDeck: [...run.deck.bowlingDeck],
-    };
-    const list = role === "batting" ? updated.battingDeck : updated.bowlingDeck;
-    const idx = list.indexOf(deckCardId);
-    if (idx < 0) return;
-    list[idx] = pickedInventoryId;
-    setDeck(updated);
-
-    // Move the swapped-out card to inventory, and remove the swapped-in
-    // card from inventory (manually since `addToInventory` only adds).
-    const newInventoryIds = run.inventory.cardIds
-      .filter((id, i, arr) => {
-        // Remove first occurrence of pickedInventoryId
-        if (id === pickedInventoryId) {
-          return arr.indexOf(pickedInventoryId) !== i;
-        }
-        return true;
-      })
-      .concat([deckCardId]);
-
-    // Direct mutation of the in-memory save (we have to bypass setDeck
-    // since it doesn't manage inventory). Persist via setDeck's call.
-    // Side-effect: the next setDeck call writes the whole save including
-    // the inventory we mutate here.
-    run.inventory.cardIds = newInventoryIds;
-    setDeck(updated); // re-persist
-
-    setPickedInventoryId(null);
+  const pickInventorySlot = (slotIndex: number, cardId: string): void => {
+    if (selection?.side === "inventory" && selection.slotIndex === slotIndex) {
+      setSelection(null);
+      return;
+    }
+    if (selection?.side === "deck") {
+      if (eligibleInventoryTargets.has(slotIndex)) {
+        swapDeckInventoryCard(role, selection.cardId, cardId);
+        setSelection(null);
+      }
+      return;
+    }
+    setSelection({ side: "inventory", cardId, slotIndex });
   };
+
+  const bannerText = selection
+    ? selection.side === "deck"
+      ? "Deck card selected. Tap a glowing card in your Inventory to swap, or the same card again to deselect."
+      : "Inventory card selected. Tap a glowing card in your Deck to swap, or the same card again to deselect."
+    : "Tap a card in either section to start a swap. Eligible swap targets on the other side will glow.";
 
   return (
     <main>
@@ -108,38 +135,43 @@ export function DeckManagementScreen({ onBack }: Props) {
       <div className="deck-mgmt-tabs">
         <button
           className={`btn ghost small ${role === "batting" ? "active" : ""}`}
-          onClick={() => { setRole("batting"); setPickedInventoryId(null); }}
+          onClick={() => setRole("batting")}
         >
           🏏 Batting Deck
         </button>
         <button
           className={`btn ghost small ${role === "bowling" ? "active" : ""}`}
-          onClick={() => { setRole("bowling"); setPickedInventoryId(null); }}
+          onClick={() => setRole("bowling")}
         >
           🎯 Bowling Deck
         </button>
       </div>
 
+      <div className="deck-mgmt-banner">{bannerText}</div>
+
       <section className="deck-mgmt-section">
         <header className="deck-mgmt-section-head">
           <h2>Active Deck ({activeCards.length})</h2>
-          {pickedInventoryId && (
-            <span className="dim-text">
-              Tap a highlighted card to swap in your selection
-            </span>
-          )}
         </header>
         <HorizontalScroller count={activeCards.length} noun="card">
           <div className="deck-mgmt-grid">
-            {activeCards.map((card, i) => {
-              const isSwapTarget = eligibleSwapTargets.includes(card);
+            {activeCards.map(({ card, slotIndex, id }) => {
+              const isSelected =
+                selection?.side === "deck" && selection.slotIndex === slotIndex;
+              const isSwapTarget = eligibleDeckTargets.has(slotIndex);
+              const cls = [
+                "deck-mgmt-slot",
+                "deck",
+                isSelected ? "picked" : "",
+                isSwapTarget ? "swap-target" : "",
+              ].filter(Boolean).join(" ");
               return (
                 <div
-                  key={`${card.id}-${i}`}
-                  className={`deck-mgmt-slot ${isSwapTarget ? "swap-target" : ""}`}
-                  onClick={isSwapTarget ? () => onSwap(card.id) : undefined}
+                  key={`deck-${slotIndex}`}
+                  className={cls}
+                  onClick={() => pickDeckSlot(slotIndex, id)}
                 >
-                  <Card card={card} size="hand" />
+                  <Card card={card} size="hand" selected={isSelected} />
                 </div>
               );
             })}
@@ -158,15 +190,26 @@ export function DeckManagementScreen({ onBack }: Props) {
         </header>
         <HorizontalScroller count={inventoryEligible.length} noun="card">
           <div className="deck-mgmt-grid">
-            {inventoryEligible.map(({ card, instanceIndex }) => (
-              <div
-                key={`${card.id}-inv-${instanceIndex}`}
-                className={`deck-mgmt-slot inventory ${pickedInventoryId === card.id ? "picked" : ""}`}
-                onClick={() => onPickInventory(card.id)}
-              >
-                <Card card={card} size="hand" selected={pickedInventoryId === card.id} />
-              </div>
-            ))}
+            {inventoryEligible.map(({ card, slotIndex, id }) => {
+              const isSelected =
+                selection?.side === "inventory" && selection.slotIndex === slotIndex;
+              const isSwapTarget = eligibleInventoryTargets.has(slotIndex);
+              const cls = [
+                "deck-mgmt-slot",
+                "inventory",
+                isSelected ? "picked" : "",
+                isSwapTarget ? "swap-target" : "",
+              ].filter(Boolean).join(" ");
+              return (
+                <div
+                  key={`inv-${slotIndex}`}
+                  className={cls}
+                  onClick={() => pickInventorySlot(slotIndex, id)}
+                >
+                  <Card card={card} size="hand" selected={isSelected} />
+                </div>
+              );
+            })}
           </div>
         </HorizontalScroller>
       </section>
@@ -177,33 +220,29 @@ export function DeckManagementScreen({ onBack }: Props) {
 // ─────────────────────────── Helpers ───────────────────────────
 
 /**
- * Inventory cards eligible for the active role's deck. Filters:
- *   - Batting deck: batsmen + batting-side situations
- *   - Bowling deck: bowlers + bowling-side situations
- *
- * Returns cards with their instance index so duplicates render
- * separately (an inventory of 2x "DRS Review" shows as two slots).
+ * Inventory cards eligible for the active role's deck.
+ * Returns one entry per inventory slot (duplicates kept distinct via
+ * slotIndex), with the resolved card and the original inventory id.
  */
 function filterInventoryForRole(
   run: WCRun,
   role: Role,
-): { card: AnyCard; instanceIndex: number }[] {
-  const resolved = resolveCardIds(run.inventory.cardIds);
-  const counts = new Map<string, number>();
-  const out: { card: AnyCard; instanceIndex: number }[] = [];
-  for (const c of resolved) {
-    const i = counts.get(c.id) ?? 0;
-    counts.set(c.id, i + 1);
+): { card: AnyCard; slotIndex: number; id: string }[] {
+  const ids = run.inventory.cardIds;
+  const out: { card: AnyCard; slotIndex: number; id: string }[] = [];
+  ids.forEach((id, i) => {
+    const card = resolveCardIds([id])[0] ?? null;
+    if (!card) return;
     if (role === "batting") {
-      if (c.kind === "batsman" || (c.kind === "situation" && c.deck === "batting")) {
-        out.push({ card: c, instanceIndex: i });
+      if (card.kind === "batsman" || (card.kind === "situation" && card.deck === "batting")) {
+        out.push({ card, slotIndex: i, id });
       }
     } else {
-      if (c.kind === "bowler" || (c.kind === "situation" && c.deck === "bowling")) {
-        out.push({ card: c, instanceIndex: i });
+      if (card.kind === "bowler" || (card.kind === "situation" && card.deck === "bowling")) {
+        out.push({ card, slotIndex: i, id });
       }
     }
-  }
+  });
   return out;
 }
 

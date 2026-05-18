@@ -1364,19 +1364,34 @@ h1 {
 @media (min-width: 900px) {
   .deck-mgmt-slot { flex: 0 0 26%; }
 }
+/* Both deck and inventory slots are tappable (bidirectional swap). */
+.deck-mgmt-slot.deck,
 .deck-mgmt-slot.inventory {
   cursor: pointer;
 }
+.deck-mgmt-slot.deck:hover,
 .deck-mgmt-slot.inventory:hover {
   transform: translateY(-2px);
 }
-.deck-mgmt-slot.inventory.picked {
+.deck-mgmt-slot.picked {
   box-shadow: 0 0 0 3px #2563eb, 0 4px 12px rgba(37, 99, 235, 0.4);
 }
 .deck-mgmt-slot.swap-target {
   cursor: pointer;
   box-shadow: 0 0 0 3px #1d8a3a, 0 4px 12px rgba(29, 138, 58, 0.4);
   animation: swap-pulse 1.5s ease-in-out infinite;
+}
+/* Instructional banner at the top of the deck-management screen. */
+.deck-mgmt-banner {
+  margin: 0.5rem 0 1rem;
+  padding: 0.6rem 0.9rem;
+  background: #1c2a3a;
+  border: 1px solid #2d4060;
+  border-radius: 8px;
+  color: #d6dde6;
+  font-size: 0.85rem;
+  line-height: 1.4;
+  text-align: center;
 }
 @keyframes swap-pulse {
   0%, 100% { box-shadow: 0 0 0 3px #1d8a3a, 0 4px 12px rgba(29, 138, 58, 0.4); }

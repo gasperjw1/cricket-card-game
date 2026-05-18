@@ -190,8 +190,40 @@ let current: CareerSave = load();
 
 const listeners = new Set<(s: CareerSave) => void>();
 
+/**
+ * Notify all subscribers with a fresh top-level CareerSave reference so
+ * React `useState` consumers actually re-render. Without the clone,
+ * setState would receive the same object reference and skip the render
+ * (React uses reference equality, not deep comparison).
+ *
+ * We also shallow-clone nested branches that change frequently
+ * (currentRun, currentRun.deck, currentRun.inventory) so consumers
+ * destructuring those still see fresh references.
+ */
 function notify(): void {
+  current = cloneShallow(current);
   for (const fn of listeners) fn(current);
+}
+
+function cloneShallow(save: CareerSave): CareerSave {
+  const next: CareerSave = {
+    ...save,
+    permanentCollection: { ...save.permanentCollection, cards: { ...save.permanentCollection.cards } },
+    currentRun: save.currentRun
+      ? {
+          ...save.currentRun,
+          deck: save.currentRun.deck
+            ? {
+                battingDeck: [...save.currentRun.deck.battingDeck],
+                bowlingDeck: [...save.currentRun.deck.bowlingDeck],
+              }
+            : null,
+          inventory: { cardIds: [...save.currentRun.inventory.cardIds] },
+          history: [...save.currentRun.history],
+        }
+      : null,
+  };
+  return next;
 }
 
 // ─────────────────────────── Public read API ───────────────────────────
@@ -278,10 +310,56 @@ export function endWCMatch(): void {
   notify();
 }
 
-/** Append cards to the run inventory (from a per-win pack pick). */
+/**
+ * Atomically swap one card in the active deck with one card in the run
+ * inventory. The removed deck card goes back to the inventory (first
+ * occurrence position); the inventory card slots into the deck at the
+ * same index the removed card occupied.
+ *
+ * Caller validates that the swap is legal (same kind, etc.) — this
+ * function only enforces the existence of both card ids.
+ */
+export function swapDeckInventoryCard(
+  role: "batting" | "bowling",
+  deckCardId: string,
+  inventoryCardId: string,
+): void {
+  if (!current.currentRun?.deck) return;
+  const run = current.currentRun;
+  const deckList = role === "batting" ? run.deck!.battingDeck : run.deck!.bowlingDeck;
+  const deckIdx = deckList.indexOf(deckCardId);
+  const invIdx = run.inventory.cardIds.indexOf(inventoryCardId);
+  if (deckIdx < 0 || invIdx < 0) return;
+
+  // Build fresh arrays so React's reference comparison triggers re-render.
+  const newDeckList = [...deckList];
+  newDeckList[deckIdx] = inventoryCardId;
+  const newInventoryIds = [...run.inventory.cardIds];
+  newInventoryIds.splice(invIdx, 1, deckCardId); // replace at same index
+
+  const newDeck: RunDeck = {
+    battingDeck: role === "batting" ? newDeckList : [...run.deck!.battingDeck],
+    bowlingDeck: role === "bowling" ? newDeckList : [...run.deck!.bowlingDeck],
+  };
+  current.currentRun = {
+    ...run,
+    deck: newDeck,
+    inventory: { cardIds: newInventoryIds },
+  };
+  persist();
+  notify();
+}
+
+/** Append cards to the run inventory (from a per-win pack pick).
+ *  Immutable update so React subscribers see new array reference. */
 export function addToInventory(cardIds: string[]): void {
   if (!current.currentRun) return;
-  current.currentRun.inventory.cardIds.push(...cardIds);
+  current.currentRun = {
+    ...current.currentRun,
+    inventory: {
+      cardIds: [...current.currentRun.inventory.cardIds, ...cardIds],
+    },
+  };
   persist();
   notify();
 }
