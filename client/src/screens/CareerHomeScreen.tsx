@@ -348,7 +348,11 @@ function ActiveRunView({
   return (
     <div className="career-block">
       <h2 className="career-stage-heading">
-        {stageLabel(run.stage)} · {run.groupWins} group win{run.groupWins === 1 ? "" : "s"}
+        {stageLabel(run.stage)}
+        {run.stage === "group" && (() => {
+          const config = TOURNAMENT_FORMATS[run.tournament];
+          return ` · ${run.groupPoints ?? run.groupWins * 2} / ${config.groupPointsToAdvance} pts`;
+        })()}
       </h2>
 
       <Ladder ladder={run.ladder} history={run.history} />

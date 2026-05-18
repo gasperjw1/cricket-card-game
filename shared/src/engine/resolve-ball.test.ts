@@ -1113,7 +1113,9 @@ describe("Lucky escape — wicket stands / run-out excluded", () => {
 });
 
 describe("Phase perks — batter out of phase", () => {
-  it("converts a scoring shot to a dot when batter is out of phase", () => {
+  it("demotes a scoring shot one tier (not dot) when batter is out of phase", () => {
+    // Finisher built for death; powerplay is OOP. Base outcome: 6 (Off stump Full).
+    // OOP roll 0.10 < 0.25 → demotion fires: 6 → 4 (not a dot).
     const r = resolveBall({
       batsman: makeBatter({ role: "finisher" }), // built for death overs
       bowler: makeBowler({
@@ -1123,9 +1125,40 @@ describe("Phase perks — batter out of phase", () => {
       battingSituation: null,
       bowlingSituation: null,
       phase: "powerplay", // finisher in powerplay → out of phase
-      random: () => 0.10, // 0.10 < 0.25 → triggers dot
+      random: () => 0.10, // 0.10 < 0.25 → triggers downgrade
     });
-    assert.equal(r.finalOutcome.type, "dot", "OOP scoring shot becomes dot");
+    assert.equal(r.finalOutcome.type, "runs", "OOP scoring shot is demoted, not dotted");
+    if (r.finalOutcome.type === "runs") {
+      assert.equal(r.finalOutcome.value, 4, "6-run shot demoted to 4 when OOP");
+    }
+    const oopStep = r.steps.find((s) => s.kind === "out-of-phase-downgrade");
+    assert.ok(oopStep?.applied, "out-of-phase-downgrade step must be applied");
+  });
+
+  it("does not demote a 1-run shot (already at minimum tier) — step applied:false", () => {
+    // Middle batter in powerplay is OOP. The neutral zone gives 2 runs.
+    // With random 0.10 < 0.25, OOP downgrade fires: 2 → 1.
+    const r = resolveBall({
+      batsman: makeBatter({
+        role: "middle-order", // middle → death mismatch with powerplay
+        strengths: [],
+        neutrals: [{ zone: { line: "Off stump", length: "Full" }, outcome: { type: "runs", value: 1, shot: "pushed single", shotCategory: "defend" } }],
+        weaknesses: [],
+      }),
+      bowler: makeBowler({ delivery: { line: "Off stump", length: "Full" }, fielding: [] }),
+      battingSituation: null,
+      bowlingSituation: null,
+      phase: "powerplay",
+      random: () => 0.10, // triggers downgrade roll
+    });
+    // 1-run shot demoted: 1 → 1 (clamped), no change
+    assert.equal(r.finalOutcome.type, "runs");
+    if (r.finalOutcome.type === "runs") {
+      assert.equal(r.finalOutcome.value, 1, "1-run shot cannot be demoted below 1");
+    }
+    const oopStep = r.steps.find((s) => s.kind === "out-of-phase-downgrade");
+    assert.ok(oopStep, "step is pushed");
+    assert.equal(oopStep?.applied, false, "applied:false when 1→1 (no change)");
   });
 
   it("does NOT downgrade when batter is in phase", () => {
@@ -1140,9 +1173,11 @@ describe("Phase perks — batter out of phase", () => {
       phase: "powerplay", // top-order in powerplay = in phase
       random: () => 0.10,
     });
-    // In phase → no OOP penalty. Could get in-phase upgrade though.
-    // Final outcome should be runs (4 after fielding cover downgrade from 6).
+    // In phase → no OOP downgrade. Could get in-phase upgrade though.
+    // Final outcome should be runs.
     assert.equal(r.finalOutcome.type, "runs");
+    const oopStep = r.steps.find((s) => s.kind === "out-of-phase-downgrade");
+    assert.equal(oopStep, undefined, "no OOP step for in-phase batter");
   });
 });
 

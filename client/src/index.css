@@ -3687,3 +3687,140 @@ h1 {
 .card-view .zone-grid-row-label {
   font-size: 0.7rem;
 }
+
+/* ───── Super Over ─────
+   Playoff tie-breaker: one ball per side, client-side engine.
+   Lightning bolt yellow-on-dark for visual impact. */
+.super-over-screen {
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  min-height: 100vh;
+  min-height: 100dvh;
+  padding-bottom: env(safe-area-inset-bottom, 0.5rem);
+}
+.super-over-header {
+  text-align: center;
+  padding: 1.25rem 0 0.5rem;
+  border-bottom: 2px solid #d4a72c;
+  margin-bottom: 0.5rem;
+}
+.super-over-title {
+  font-size: 2rem;
+  font-weight: 900;
+  color: #f5d76e;
+  margin: 0 0 0.3rem;
+  letter-spacing: 0.04em;
+  text-shadow: 0 0 18px rgba(245, 215, 110, 0.4);
+  animation: super-over-flash 1.2s ease-out;
+}
+@keyframes super-over-flash {
+  0%   { text-shadow: 0 0 0 rgba(245, 215, 110, 0); }
+  30%  { text-shadow: 0 0 40px rgba(245, 215, 110, 0.9); }
+  100% { text-shadow: 0 0 18px rgba(245, 215, 110, 0.4); }
+}
+.super-over-round {
+  font-size: 0.85rem;
+  color: #d4a72c;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 0.25rem;
+}
+.super-over-subtitle {
+  margin: 0;
+  color: #d6dde6;
+  font-size: 0.95rem;
+}
+.super-over-opponent-card {
+  max-width: 200px;
+  margin: 0 auto;
+  text-align: center;
+}
+.super-over-pick-label {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #8a939c;
+  margin-bottom: -0.25rem;
+}
+/* Override hand-grid to 2 cols in super over (4 cards on a narrow screen) */
+.super-over-hand.hand-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  overflow: visible;
+  margin: 0;
+  padding: 0;
+  scroll-snap-type: none;
+  gap: 0.5rem;
+}
+@media (min-width: 540px) {
+  .super-over-hand.hand-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+.super-over-cards-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+  max-width: 420px;
+  margin: 0 auto;
+  width: 100%;
+}
+.super-over-result-box {
+  text-align: center;
+  font-size: 2rem;
+  font-weight: 800;
+  padding: 1rem 1.5rem;
+  border-radius: 10px;
+  background: #1c2530;
+  color: #e8e8e8;
+  letter-spacing: 0.02em;
+  font-family: ui-monospace, "SF Mono", Menlo, monospace;
+  animation: outcome-pop 0.42s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.super-over-result-box.boundary { background: #1d3a23; color: #6ee07a; }
+.super-over-result-box.wicket   { background: #3a1c1c; color: #ff8181; }
+.super-over-result-box.opponent { background: #1c2530; }
+.super-over-scoreline {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.25rem;
+  background: #131a23;
+  border: 1px solid #2a3441;
+  border-radius: 12px;
+  text-align: center;
+}
+.super-over-score-block { display: flex; flex-direction: column; gap: 0.3rem; }
+.super-over-score-label {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #8a939c;
+}
+.super-over-score-runs {
+  font-size: 3rem;
+  font-weight: 900;
+  font-family: ui-monospace, "SF Mono", Menlo, monospace;
+  color: #f5d76e;
+  line-height: 1;
+}
+.super-over-score-sep {
+  font-size: 1rem;
+  color: #4a5566;
+  font-weight: 700;
+}
+.super-over-verdict {
+  text-align: center;
+  font-size: 1.3rem;
+  font-weight: 700;
+  padding: 0.75rem 1rem;
+  border-radius: 10px;
+  animation: outcome-pop 0.42s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.super-over-verdict.win  { background: #1d3a23; color: #6ee07a; }
+.super-over-verdict.loss { background: #2a1818; color: #ff8181; }
+.super-over-verdict.tied { background: #2a2a18; color: #f5d76e; }

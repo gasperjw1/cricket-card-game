@@ -67,7 +67,9 @@ export interface TournamentConfig {
   /** Number of group-stage matches before knockouts. 0 for sudden-death
    *  tournaments (Champions Trophy). */
   groupMatches: number;
-  /** Wins required from group to advance to the first knockout stage. */
+  /** Points required from the group stage to advance. Wins = 2 pts, ties = 1 pt. */
+  groupPointsToAdvance: number;
+  /** @deprecated kept for display; use groupPointsToAdvance for advancement logic. */
   groupWinsToAdvance: number;
   /** Knockout stages in order. Last entry is always "final". */
   knockoutStages: ("qf" | "semi" | "final")[];
@@ -100,10 +102,11 @@ export const TOURNAMENT_FORMATS: Record<TournamentFormat, TournamentConfig> = {
     label: "🌍 T20 World Cup",
     shortName: "T20 World Cup",
     emblem: "🌍",
-    blurb: "12-nation pool · 5 group matches (3 wins to advance) · semi · final.",
+    blurb: "12-nation pool · 5 group matches · 5 pts to advance (win=2, tie=1) · semi · final.",
     eligibleNations: ALL_TEST_NATIONS,
     groupMatches: 5,
-    groupWinsToAdvance: 3,
+    groupPointsToAdvance: 5,
+    groupWinsToAdvance: 3, // kept for display only
     knockoutStages: ["semi", "final"],
     accentColor: "#2563eb",
     headerGradient: "linear-gradient(135deg, #1c2a3a 0%, #11253e 60%, #0c1d33 100%)",
@@ -113,10 +116,11 @@ export const TOURNAMENT_FORMATS: Record<TournamentFormat, TournamentConfig> = {
     label: "🌏 Asia Cup",
     shortName: "Asia Cup",
     emblem: "🌏",
-    blurb: "Subcontinent only · 4 group matches (3 wins to advance) · semi · final.",
+    blurb: "Subcontinent only · 4 group matches · 3 pts to advance (win=2, tie=1) · semi · final.",
     eligibleNations: ASIA_CUP_NATIONS,
     groupMatches: 4,
-    groupWinsToAdvance: 3,
+    groupPointsToAdvance: 3,
+    groupWinsToAdvance: 3, // kept for display only
     knockoutStages: ["semi", "final"],
     accentColor: "#d4a72c",
     headerGradient: "linear-gradient(135deg, #2a1f0d 0%, #3a2912 60%, #1f1709 100%)",
@@ -126,9 +130,10 @@ export const TOURNAMENT_FORMATS: Record<TournamentFormat, TournamentConfig> = {
     label: "🏆 Champions Trophy",
     shortName: "Champions Trophy",
     emblem: "🏆",
-    blurb: "Top 8 · pure knockouts: quarter-final → semi → final. One loss and you're out.",
+    blurb: "Top 8 · pure knockouts: quarter-final → semi → final. Ties → super over.",
     eligibleNations: CHAMPIONS_TROPHY_NATIONS,
     groupMatches: 0,
+    groupPointsToAdvance: 0,
     groupWinsToAdvance: 0,
     knockoutStages: ["qf", "semi", "final"],
     accentColor: "#c0c5cd",
@@ -218,8 +223,10 @@ export interface WCRun {
   deck: RunDeck | null;
   /** Cards earned from per-win packs but not in the active deck. */
   inventory: RunInventory;
-  /** Number of group matches won so far. Used for group→knockout gating. */
+  /** Number of group matches won so far. Used for display. */
   groupWins: number;
+  /** Points accumulated in group stage (win=2, tie=1). Used for advancement gating. */
+  groupPoints: number;
   startedAt: number;
 }
 
@@ -315,6 +322,10 @@ function load(): CareerSave {
           ...parsed.currentRun,
           tournament: parsed.currentRun.tournament ?? "world-cup",
           difficulty: parsed.currentRun.difficulty ?? "realistic",
+          // groupPoints added in v6 — derive from groupWins for old saves
+          // (2 pts per win is the retroactive conversion).
+          groupPoints: parsed.currentRun.groupPoints
+            ?? ((parsed.currentRun.groupWins ?? 0) * 2),
         }
       : null;
     return {
@@ -455,6 +466,7 @@ export function startNewRun(
     deck: null,
     inventory: { cardIds: [] },
     groupWins: 0,
+    groupPoints: 0,
     startedAt: Date.now(),
   };
   current.currentRun = run;
@@ -557,9 +569,10 @@ export function addToInventory(cardIds: string[]): void {
 
 /**
  * Record a match result. Advances the WC stage automatically:
- *  - Group wins increment groupWins; on the 5th group match, advance
- *    to semi (if ≥3 wins) or end the run as lost.
- *  - Semi win → final; semi loss → lost.
+ *  - Group: wins add 2 pts, ties add 1 pt. After the last group match,
+ *    advance if groupPoints >= config.groupPointsToAdvance.
+ *  - Knockout: win → next stage; loss/tie → lost (ties should go to super
+ *    over BEFORE calling recordMatch — caller resolves super-over first).
  *  - Final win → won; final loss → lost.
  */
 export function recordMatch(result: WCMatchResult, opponent: WCOpponent): void {
@@ -569,8 +582,13 @@ export function recordMatch(result: WCMatchResult, opponent: WCOpponent): void {
     result,
     finishedAt: Date.now(),
   });
-  if (result === "win" && opponent.stageLabel === "group") {
-    current.currentRun.groupWins += 1;
+  if (opponent.stageLabel === "group") {
+    if (result === "win") {
+      current.currentRun.groupWins += 1;
+      current.currentRun.groupPoints += 2;
+    } else if (result === "tie") {
+      current.currentRun.groupPoints += 1;
+    }
   }
   // Stats updates.
   current.stats.matchesPlayed += 1;
@@ -599,8 +617,8 @@ function advanceStageAfterMatch(opp: WCOpponent, result: WCMatchResult): void {
       (h) => h.opponent.stageLabel === "group",
     ).length;
     if (groupMatchesPlayed >= config.groupMatches) {
-      // Group stage over. Advance if enough wins.
-      if (run.groupWins >= config.groupWinsToAdvance) {
+      // Group stage over. Advance if enough points (win=2, tie=1).
+      if (run.groupPoints >= config.groupPointsToAdvance) {
         run.stage = config.knockoutStages[0]!;
       } else {
         run.stage = "lost";
@@ -610,7 +628,9 @@ function advanceStageAfterMatch(opp: WCOpponent, result: WCMatchResult): void {
     return;
   }
 
-  // Knockout stage — sudden death. On loss, run over.
+  // Knockout stage — sudden death. Caller must resolve super-over BEFORE
+  // calling recordMatch, so by the time we get here "tie" is impossible
+  // (the caller converts a tie into win/loss via the super-over result).
   if (result === "loss" || result === "tie") {
     run.stage = "lost";
     return;

@@ -18,7 +18,7 @@
  *
  *   RUNS branch:
  *     Invariable Bounce → Adjectives → Fielding → Power Surge
- *     → Batter in-phase upgrade → Batter out-of-phase dot (terminal)
+ *     → Batter in-phase upgrade → Batter out-of-phase downgrade (6→4, 4→2, 2→1, clamped)
  *     → Run-out on 1/2 (runs scored + wicket flag, terminal)
  *     [0-run downgrades feed DOT branch]
  *
@@ -41,7 +41,7 @@
 
 import {
   BATTER_IN_PHASE_UPGRADE_CHANCE,
-  BATTER_OUT_OF_PHASE_DOT_CHANCE,
+  BATTER_OUT_OF_PHASE_DOWNGRADE_CHANCE,
   BATTER_ROLE_TO_PHASE,
   BOWLER_IN_PHASE_WICKET_CHANCE,
   BOWLER_NEUTRAL_RUNOUT_CHANCE,
@@ -651,22 +651,33 @@ export function resolveBall(input: ResolveBallInput): ResolutionResult {
     });
   }
 
-  // ───── Step 14: Batter out-of-phase dot ─────
+  // ───── Step 14: Batter out-of-phase downgrade ─────
+  // 25% chance a scoring shot is demoted one tier: 6→4, 4→2, 2→1, 1→1.
+  // Unlike the old "turn to dot" behaviour, the batter always scores
+  // *something* — just not as explosively as an in-phase player would.
+  // A 1-run scramble that can't be demoted further is marked applied:false
+  // (the roll fired but nothing changed) so the trail stays honest.
   if (
     !rebowled &&
     batterOutOfPhase &&
     outcome.type === "runs" &&
-    random() < BATTER_OUT_OF_PHASE_DOT_CHANCE
+    random() < BATTER_OUT_OF_PHASE_DOWNGRADE_CHANCE
   ) {
     const before = outcome;
-    outcome = { type: "dot" };
+    // Clamped-at-1 tier map: 6→4, 4→2, 2→1, 1→1 (can never reach dot).
+    const demotedValue = (
+      outcome.value === 6 ? 4
+      : outcome.value === 4 ? 2
+      : 1
+    ) as 1 | 2 | 4 | 6;
+    outcome = { ...outcome, value: demotedValue };
     steps.push({
-      kind: "out-of-phase-dot",
-      label: "Out of phase",
-      detail: `${input.batsman.name} (${input.batsman.role}) isn't built for the ${input.phase} — shot didn't connect cleanly. Dot ball.`,
+      kind: "out-of-phase-downgrade",
+      label: "Out of phase — mis-timed",
+      detail: `${input.batsman.name} (${input.batsman.role}) isn't built for the ${input.phase} — mis-timed the shot. ${describeChange(before, outcome)}.`,
       before,
       after: outcome,
-      applied: true,
+      applied: !sameOutcome(before, outcome),
     });
   }
 

@@ -144,8 +144,10 @@ export const PHASE_LABEL: Record<"powerplay" | "middle" | "death", string> = {
 export const LUCKY_ESCAPE_CHANCE = 0.20 as const;
 
 /** When the batter is OUT of their preferred phase, this is the chance
- *  a scoring shot becomes a dot. */
-export const BATTER_OUT_OF_PHASE_DOT_CHANCE = 0.25 as const;
+ *  a scoring shot is demoted one tier (6→4, 4→2, 2→1, 1 stays 1).
+ *  Replaces the old "turn to dot" mechanic — the batter still contributes
+ *  runs, just not as explosively as an in-phase player would. */
+export const BATTER_OUT_OF_PHASE_DOWNGRADE_CHANCE = 0.25 as const;
 
 /** Chance a neutral run (1 or 2) becomes a run-out wicket. Bowler perk. */
 export const BOWLER_NEUTRAL_RUNOUT_CHANCE = 0.10 as const;

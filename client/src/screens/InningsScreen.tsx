@@ -34,6 +34,7 @@ import type { MatchClient } from "../state.ts";
 import { useCountdown } from "../useCountdown.ts";
 import { useStagedReveal } from "../useStagedReveal.ts";
 import { PackOpeningScreen } from "./PackOpeningScreen.tsx";
+import { SuperOver } from "./SuperOver.tsx";
 import { SwapPicker } from "./SwapPicker.tsx";
 
 interface Props {
@@ -925,7 +926,7 @@ function WCMatchOverFlow({ client }: { client: MatchClient }) {
   const { matchState, mySlot } = client;
   const [career, setCareer] = useState(getCareer);
   useEffect(() => subscribeCareer(setCareer), []);
-  const [phase, setPhase] = useState<"result" | "pack" | "return">("result");
+  const [phase, setPhase] = useState<"result" | "super-over" | "pack" | "return">("result");
   // Cache the pack contents so re-renders don't reroll the random selection.
   const [packContents, setPackContents] = useState<{
     label: string;
@@ -934,14 +935,19 @@ function WCMatchOverFlow({ client }: { client: MatchClient }) {
   // Cache the result + opponent BEFORE we call recordMatch, since that
   // mutates the run's history.length (which would change "next opponent").
   // Using a ref (not state) so writing it doesn't trigger a re-render.
-  const opponentRef = useRef<{ opp: import("../lib/career.ts").WCOpponent; playerWon: boolean } | null>(null);
+  const opponentRef = useRef<{
+    opp: import("../lib/career.ts").WCOpponent;
+    playerWon: boolean;
+    isTie: boolean;
+  } | null>(null);
+  // Track the final result after super over is resolved (could differ from
+  // the match result if the super over flips the outcome).
+  const [superOverResult, setSuperOverResult] = useState<"player" | "opponent" | null>(null);
 
-  // Side-effect: when the match result first lands, record it on the
-  // ladder and roll the appropriate pack. Wrapped in useEffect so we
-  // don't violate React's "no setState during render of another
-  // component" rule (recordMatch + setPackContents both trigger
-  // subscriber updates / state changes). The `opponentRef` guard means
-  // this fires exactly once per match.
+  // Side-effect: when the match result first lands, record it on the ladder
+  // (group stage only — playoffs wait for super over resolution).
+  // Wrapped in useEffect so we don't violate React's "no setState during
+  // render" rule. The `opponentRef` guard means this fires exactly once.
   useEffect(() => {
     if (opponentRef.current || !matchState?.result || !mySlot || !career.currentRun) {
       return;
@@ -953,26 +959,21 @@ function WCMatchOverFlow({ client }: { client: MatchClient }) {
       return;
     }
     const playerWon = matchState.result.winner === mySlot;
-    opponentRef.current = { opp, playerWon };
-    recordMatch(playerWon ? "win" : "loss", opp);
+    const isTie = matchState.result.winner === "tie";
+    opponentRef.current = { opp, playerWon, isTie };
+
+    // Playoff tie → don't record yet; super over decides the winner.
+    const isPlayoff = opp.stageLabel !== "group";
+    if (isTie && isPlayoff) {
+      setPhase("super-over");
+      return;
+    }
+
+    // Group tie or any definitive result — record immediately.
+    const matchResult = playerWon ? "win" : isTie ? "tie" : "loss";
+    recordMatch(matchResult, opp);
     if (playerWon) {
-      const isFinal = opp.stageLabel === "final";
-      // Exclude PLAYER cards already in the player's current run — both
-      // the active deck and the run inventory. Per spec: don't offer a
-      // Kohli they already drafted or already picked from a previous
-      // pack this run. Situation cards aren't excluded (they can
-      // repeat per Yash's design); generatePerWinPack ignores situation
-      // IDs in the excludes list internally.
-      const deckIds = run.deck
-        ? [...run.deck.battingDeck, ...run.deck.bowlingDeck]
-        : [];
-      const inventoryIds = run.inventory.cardIds;
-      const excludes = [...deckIds, ...inventoryIds];
-      setPackContents(
-        isFinal
-          ? generateTrophyPack(excludes)
-          : generatePerWinPack(opp.stageLabel === "semi" ? "semi" : "group", excludes),
-      );
+      rollPack(run, opp, setPackContents);
     }
   }, [matchState?.result, mySlot, career.currentRun]);
 
@@ -990,9 +991,37 @@ function WCMatchOverFlow({ client }: { client: MatchClient }) {
     );
   }
 
+  // ── Super over phase: playoff tie-breaker ──────────────────────────────────
+  if (phase === "super-over" && career.currentRun?.deck) {
+    const opp = captured.opp;
+    return (
+      <SuperOver
+        playerDeck={career.currentRun.deck}
+        opponentNation={opp.nation}
+        difficulty={opp.difficulty}
+        onResult={(winner) => {
+          setSuperOverResult(winner);
+          const playerWon = winner === "player";
+          // Now record the super-over-resolved result.
+          recordMatch(playerWon ? "win" : "loss", opp);
+          if (playerWon) {
+            rollPack(career.currentRun!, opp, setPackContents);
+          }
+          setPhase("result");
+        }}
+      />
+    );
+  }
+
+  // Determine effective win/loss — use super over result if available.
+  const effectivePlayerWon =
+    superOverResult != null
+      ? superOverResult === "player"
+      : captured.playerWon;
+
   if (phase === "result") {
-    const headline = wcResultHeadline(captured);
-    const detail = wcResultDetail(captured);
+    const headline = wcResultHeadline({ ...captured, playerWon: effectivePlayerWon, isTie: captured.isTie && superOverResult == null });
+    const detail = wcResultDetail({ ...captured, playerWon: effectivePlayerWon });
     return (
       <main>
         <h1>{headline}</h1>
@@ -1007,7 +1036,7 @@ function WCMatchOverFlow({ client }: { client: MatchClient }) {
           <button
             className="btn primary big"
             onClick={() => {
-              if (captured?.playerWon && packContents) {
+              if (effectivePlayerWon && packContents) {
                 setPhase("pack");
               } else {
                 setPhase("return");
@@ -1016,7 +1045,7 @@ function WCMatchOverFlow({ client }: { client: MatchClient }) {
               }
             }}
           >
-            {captured?.playerWon
+            {effectivePlayerWon
               ? captured.opp.stageLabel === "final"
                 ? "Open your Trophy pack →"
                 : "Open your pack →"
@@ -1028,7 +1057,7 @@ function WCMatchOverFlow({ client }: { client: MatchClient }) {
   }
 
   if (phase === "pack" && packContents && captured) {
-    const isFinalTrophy = captured.opp.stageLabel === "final" && captured.playerWon;
+    const isFinalTrophy = captured.opp.stageLabel === "final" && effectivePlayerWon;
     const tournamentAccent =
       isFinalTrophy && career.currentRun
         ? TOURNAMENT_FORMATS[career.currentRun.tournament].accentColor
@@ -1064,10 +1093,36 @@ function WCMatchOverFlow({ client }: { client: MatchClient }) {
   );
 }
 
+/** Roll the appropriate post-win pack. Extracted to avoid duplication between
+ *  the normal match flow and the super-over resolution path. */
+function rollPack(
+  run: import("../lib/career.ts").WCRun,
+  opp: import("../lib/career.ts").WCOpponent,
+  setPackContents: (p: { label: string; offered: AnyCard[] }) => void,
+): void {
+  const isFinal = opp.stageLabel === "final";
+  const deckIds = run.deck
+    ? [...run.deck.battingDeck, ...run.deck.bowlingDeck]
+    : [];
+  const inventoryIds = run.inventory.cardIds;
+  const excludes = [...deckIds, ...inventoryIds];
+  setPackContents(
+    isFinal
+      ? generateTrophyPack(excludes)
+      : generatePerWinPack(opp.stageLabel === "semi" ? "semi" : "group", excludes),
+  );
+}
+
 /** Stage-specific headline for the WC result screen. */
-function wcResultHeadline(captured: { opp: { stageLabel: import("../lib/career.ts").StageLabel }; playerWon: boolean } | null): string {
+function wcResultHeadline(captured: {
+  opp: { stageLabel: import("../lib/career.ts").StageLabel };
+  playerWon: boolean;
+  isTie?: boolean;
+} | null): string {
   if (!captured) return "Match Over";
   const stage = captured.opp.stageLabel;
+  // Group-stage tie (no super over — 1 point earned)
+  if (captured.isTie && stage === "group") return "🤝 Match tied — 1 point";
   if (!captured.playerWon) {
     if (stage === "group") return "🛑 Group match lost";
     if (stage === "qf") return "🛑 Quarter-final lost — run over";
@@ -1082,9 +1137,16 @@ function wcResultHeadline(captured: { opp: { stageLabel: import("../lib/career.t
 }
 
 /** Stage-specific detail line beneath the headline. */
-function wcResultDetail(captured: { opp: { stageLabel: import("../lib/career.ts").StageLabel; nation: string }; playerWon: boolean } | null): string {
+function wcResultDetail(captured: {
+  opp: { stageLabel: import("../lib/career.ts").StageLabel; nation: string };
+  playerWon: boolean;
+  isTie?: boolean;
+} | null): string {
   if (!captured) return "";
   const stage = captured.opp.stageLabel;
+  if (captured.isTie && stage === "group") {
+    return `Tied with ${captured.opp.nation} in the group stage. +1 point.`;
+  }
   if (!captured.playerWon) {
     const stageName =
       stage === "group" ? "group stage"

@@ -88,7 +88,7 @@ export type ResolutionStepKind =
   | "biryani"
   // Role / phase perks — see shared/src/engine/resolve-ball.ts steps 13+.
   | "in-phase-bonus"          // batter in phase, scoring shot upgraded
-  | "out-of-phase-dot"        // batter out of phase, scoring shot turned to dot
+  | "out-of-phase-downgrade"  // batter out of phase, scoring shot demoted one tier (never fully dotted)
   | "bowler-in-phase-wicket"  // bowler in phase, dot turned to wicket
   | "run-out"                 // bowler perk, neutral 1/2 run — batter run out, runs still score
   | "lucky-escape";           // unified escape: bails stay on / not out / dropped / inside edge
