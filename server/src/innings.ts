@@ -450,7 +450,7 @@ function promptSwap(
   if (match.players[fromSlot]?.isBot) {
     const t = setTimeout(() => {
       if (!match.pendingSwap || match.pendingSwap.fromSlot !== fromSlot) return;
-      const pick = botPickSwap(match.pendingSwap.candidateIds);
+      const pick = botPickSwap(match);
       applySwapPick(match, cb, fromSlot, pick, /* auto */ true);
     }, 1200);
     match.timers.set(`bot-swap-${fromSlot}`, t);

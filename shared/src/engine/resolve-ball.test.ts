@@ -1002,3 +1002,59 @@ describe("Phase perks — bowler OOP wide bump", () => {
     assert.equal(r.rebowled, true);
   });
 });
+
+// ─── DRS Review + in-phase wicket interaction ───
+
+describe("DRS Review vs Phase Wicket interaction", () => {
+  it("in-phase wicket does NOT re-fire after DRS Review saves a wicket on the same ball", () => {
+    // Scenario: batter has a weakness at the bowler's delivery zone → wicket
+    // on base lookup. DRS Review overturns it to a dot. Bowler is in-phase
+    // so Step 19 would normally have a 10% chance to convert the dot to a
+    // wicket — but that dot is DRS-protected and must be left alone.
+    const r = resolveBall({
+      batsman: makeBatter({
+        weaknesses: [
+          {
+            zone: { line: "Outside off", length: "Full" },
+            outcome: { type: "wicket", mode: "edge to keeper", dismissalCategory: "caught-keeper" },
+          },
+        ],
+        role: "middle-order",
+      }),
+      bowler: makeBowler({
+        delivery: { line: "Outside off", length: "Full" },
+        fielding: [],
+        role: "death-overs",
+      }),
+      battingSituation: sit("drs-review", "batting"),
+      bowlingSituation: null,
+      phase: "death", // bowler in phase — Step 19 would fire without the guard
+      // random always returns 0.05 → below BOWLER_IN_PHASE_WICKET_CHANCE (0.10)
+      // so Step 19 WOULD fire if the guard is absent
+      random: () => 0.05,
+    });
+    // DRS Review must save the batter — dot ball, not a wicket.
+    assert.equal(r.finalOutcome.type, "dot");
+    // The DRS step must be in the trail, applied.
+    const drs = r.steps.find((s) => s.kind === "drs-review");
+    assert.ok(drs, "drs-review step should be present");
+    assert.equal(drs!.applied, true);
+    // The in-phase wicket step must NOT appear (it was skipped).
+    const phaseWicket = r.steps.find((s) => s.kind === "bowler-in-phase-wicket");
+    assert.equal(phaseWicket, undefined);
+  });
+
+  it("in-phase wicket still fires normally when DRS Review did NOT apply this ball", () => {
+    // Blank batter → dot on base lookup. No DRS. Bowler in phase.
+    // Step 19 should fire as normal.
+    const r = resolveBall({
+      batsman: makeBatter({ strengths: [], neutrals: [], weaknesses: [], role: "middle-order" }),
+      bowler: makeBowler({ delivery: { line: "Leg stump", length: "Short" }, fielding: [], role: "death-overs" }),
+      battingSituation: null,
+      bowlingSituation: null,
+      phase: "death",
+      random: () => 0.05, // fires in-phase wicket
+    });
+    assert.equal(r.finalOutcome.type, "wicket");
+  });
+});

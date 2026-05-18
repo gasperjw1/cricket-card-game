@@ -743,8 +743,15 @@ export function resolveBall(input: ResolveBallInput): ResolutionResult {
   // 10% chance a dot ball becomes a wicket when the bowler is in the
   // right phase. Yorker / new-ball nip / death-overs slower-ball.
   // Runs LAST so this wicket is NOT undone by wicket-save.
+  //
+  // EXCEPTION: if DRS Review was applied this ball, the dot we see here
+  // came from an overturned wicket — the batting side earned that reprieve.
+  // The in-phase wicket must NOT re-fire on a DRS-protected dot, otherwise
+  // DRS Review is silently nullified by this step.
+  const drsApplied = steps.some((s) => s.kind === "drs-review" && s.applied);
   if (
     !rebowled &&
+    !drsApplied &&
     bowlerInPhase &&
     outcome.type === "dot" &&
     random() < BOWLER_IN_PHASE_WICKET_CHANCE

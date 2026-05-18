@@ -171,8 +171,86 @@ function applyTierPrioritization(
 
 // ─── Swap pick (Mankad / Retired Out / Cramps) ───
 
-export function botPickSwap(candidateIds: string[]): string {
-  return candidateIds[Math.floor(Math.random() * candidateIds.length)]!;
+/**
+ * Strategically pick the best replacement card when a Mankad / Retired Out
+ * / Cramps swap forces the bot to swap out its current mandatory card.
+ *
+ * Swap type drives the strategy:
+ *   - Bot is batting (Mankad or Retired Out hit it): pick the batsman with
+ *     the FEWEST weakness zones that match the bowler's delivery. Tiebreak
+ *     by higher tier.
+ *   - Bot is bowling (Cramps hit it): pick the bowler whose delivery zone
+ *     hits the MOST weakness zones on the current batter. Tiebreak by
+ *     higher tier.
+ *
+ * Falls back to random if the candidate list can't be resolved to full
+ * card objects (pathological — shouldn't happen with a healthy deck).
+ */
+export function botPickSwap(match: ServerMatch): string {
+  const swap = match.pendingSwap!;
+  const candidateIds = swap.candidateIds;
+
+  // Resolve candidate IDs to full card objects from the bot's hand.
+  const botHand = match.decks?.[swap.fromSlot]?.hand ?? [];
+  const candidates = candidateIds
+    .map((id) => botHand.find((c) => c.id === id))
+    .filter((c): c is AnyCard => c != null);
+
+  if (candidates.length === 0) {
+    // Pathological fallback.
+    return candidateIds[Math.floor(Math.random() * candidateIds.length)]!;
+  }
+
+  const table = swap.table;
+  const isBattingSwap = swap.fromSlot === table.battingSlot;
+
+  if (isBattingSwap) {
+    // Bot needs the best replacement BATSMAN to face the current bowler.
+    // Fewer weakness zone matches against the bowler's delivery = better.
+    const batters = candidates.filter((c): c is BatsmanCard => c.kind === "batsman");
+    if (batters.length === 0) return candidateIds[0]!;
+    const bowler = table.bowlingMandatory;
+    const scored = batters.map((b) => ({
+      id: b.id,
+      weakVsBowler: b.weaknesses.filter(
+        (w) =>
+          w.zone.line === bowler.delivery.line &&
+          w.zone.length === bowler.delivery.length,
+      ).length,
+      tierScore: tierValue(b.tier),
+    }));
+    // Fewest weaknesses vs this bowler; tiebreak by higher overall tier.
+    scored.sort((a, b) => a.weakVsBowler - b.weakVsBowler || b.tierScore - a.tierScore);
+    return scored[0]!.id;
+  } else {
+    // Bot needs the best replacement BOWLER to bowl at the current batter.
+    // More weakness zone hits on the batter = better.
+    const bowlers = candidates.filter((c): c is BowlerCard => c.kind === "bowler");
+    if (bowlers.length === 0) return candidateIds[0]!;
+    const batter = table.battingMandatory;
+    const scored = bowlers.map((b) => ({
+      id: b.id,
+      weaknessHits: batter.weaknesses.filter(
+        (w) =>
+          w.zone.line === b.delivery.line &&
+          w.zone.length === b.delivery.length,
+      ).length,
+      tierScore: tierValue(b.tier),
+    }));
+    // Most weakness hits on the batter; tiebreak by higher tier.
+    scored.sort((a, b) => b.weaknessHits - a.weaknessHits || b.tierScore - a.tierScore);
+    return scored[0]!.id;
+  }
+}
+
+/** Numeric weight for a card tier — used to tiebreak equal heuristic scores. */
+function tierValue(tier: Tier): number {
+  switch (tier) {
+    case "Elite": return 4;
+    case "Gold": return 3;
+    case "Silver": return 2;
+    case "Bronze": return 1;
+  }
 }
 
 // ─── Helpers ───
