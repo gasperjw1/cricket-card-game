@@ -18,6 +18,7 @@ import {
 } from "../lib/career.ts";
 import { generateLadder } from "../lib/career-pack.ts";
 import { NewspaperRunSummary } from "./NewspaperRunSummary.tsx";
+import { PreMatchOverlay } from "./PreMatchOverlay.tsx";
 import type { MatchClient } from "../state.ts";
 import { DraftScreen } from "./DraftScreen.tsx";
 import { DeckManagementScreen } from "./DeckManagementScreen.tsx";
@@ -40,6 +41,9 @@ type SubMode = "home" | "draft" | "deck" | "abandon-confirm" | "collection" | "s
 export function CareerHomeScreen({ onBack, client }: Props) {
   const [save, setSave] = useState<CareerSave>(getCareer);
   const [subMode, setSubMode] = useState<SubMode>("home");
+  /** True while the pre-match "vs" overlay is showing — between
+   *  "Play match" tap and the actual match-create call. */
+  const [showPreMatch, setShowPreMatch] = useState(false);
 
   useEffect(() => subscribeCareer(setSave), []);
 
@@ -51,6 +55,19 @@ export function CareerHomeScreen({ onBack, client }: Props) {
       setSubMode("draft");
     }
   }, [run?.stage, subMode]);
+
+  if (showPreMatch && run) {
+    const opp = run.ladder[run.history.length];
+    if (opp) {
+      return (
+        <PreMatchOverlay
+          run={run}
+          opponent={opp}
+          onStart={() => void startMatchAfterOverlay()}
+        />
+      );
+    }
+  }
 
   if (subMode === "draft") {
     return (
@@ -73,7 +90,26 @@ export function CareerHomeScreen({ onBack, client }: Props) {
       <button className="btn ghost small" onClick={onBack} style={{ marginBottom: "1rem" }}>
         ← Back to menu
       </button>
-      <h1>🏆 World Cup</h1>
+      {/* Tournament-themed header. Shows the player which cup they're in
+          (or "Career mode" before a run starts) and color-codes the
+          accent across the hub. */}
+      {run ? (
+        <header
+          className="career-hub-header"
+          style={{
+            background: TOURNAMENT_FORMATS[run.tournament].headerGradient,
+            borderColor: TOURNAMENT_FORMATS[run.tournament].accentColor,
+          }}
+        >
+          <span className="career-hub-emblem">{TOURNAMENT_FORMATS[run.tournament].emblem}</span>
+          <h1 className="career-hub-title">
+            {TOURNAMENT_FORMATS[run.tournament].shortName}
+          </h1>
+          <span className="career-hub-difficulty">{DIFFICULTY_LABEL[run.difficulty]}</span>
+        </header>
+      ) : (
+        <h1>🏆 Career Mode</h1>
+      )}
 
       {!run && <NoRunView onStart={startRunAndDraft} stats={save} />}
       {subMode === "stats" && (
@@ -178,10 +214,22 @@ export function CareerHomeScreen({ onBack, client }: Props) {
    * which records the result on the ladder, opens the appropriate pack,
    * and routes back here on completion.
    */
-  async function playNextWCMatch(run: WCRun): Promise<void> {
+  /** Show the pre-match "vs" overlay. Actual match creation kicks off
+   *  when the overlay finishes (tap-to-skip or auto-timeout). */
+  function playNextWCMatch(run: WCRun): void {
     if (!run.deck) return;
     const opp = run.ladder[run.history.length];
     if (!opp) return;
+    setShowPreMatch(true);
+  }
+
+  /** Called from PreMatchOverlay when the player taps to start or the
+   *  auto-timer fires. Spins up the bot match. */
+  async function startMatchAfterOverlay(): Promise<void> {
+    if (!run?.deck) return;
+    const opp = run.ladder[run.history.length];
+    if (!opp) return;
+    setShowPreMatch(false);
     startWCMatch();
     await client.createBotMatch(
       "You",

@@ -57,6 +57,10 @@ export interface WCOpponent {
 export interface TournamentConfig {
   format: TournamentFormat;
   label: string;
+  /** Short display name without the emoji prefix ("T20 World Cup"). */
+  shortName: string;
+  /** Single emoji used as the tournament emblem in headers + pre-match. */
+  emblem: string;
   blurb: string;
   /** Test-nation pool eligible for this tournament. */
   eligibleNations: readonly string[];
@@ -67,6 +71,11 @@ export interface TournamentConfig {
   groupWinsToAdvance: number;
   /** Knockout stages in order. Last entry is always "final". */
   knockoutStages: ("qf" | "semi" | "final")[];
+  /** Accent color for UI theming (hex). Drives header backgrounds,
+   *  border accents on the career hub, pre-match overlay color, etc. */
+  accentColor: string;
+  /** Background gradient for the career-hub header. */
+  headerGradient: string;
 }
 
 const ALL_TEST_NATIONS: readonly string[] = [
@@ -89,29 +98,41 @@ export const TOURNAMENT_FORMATS: Record<TournamentFormat, TournamentConfig> = {
   "world-cup": {
     format: "world-cup",
     label: "🌍 T20 World Cup",
+    shortName: "T20 World Cup",
+    emblem: "🌍",
     blurb: "12-nation pool · 5 group matches (3 wins to advance) · semi · final.",
     eligibleNations: ALL_TEST_NATIONS,
     groupMatches: 5,
     groupWinsToAdvance: 3,
     knockoutStages: ["semi", "final"],
+    accentColor: "#2563eb",
+    headerGradient: "linear-gradient(135deg, #1c2a3a 0%, #11253e 60%, #0c1d33 100%)",
   },
   "asia-cup": {
     format: "asia-cup",
     label: "🌏 Asia Cup",
+    shortName: "Asia Cup",
+    emblem: "🌏",
     blurb: "Subcontinent only · 4 group matches (3 wins to advance) · semi · final.",
     eligibleNations: ASIA_CUP_NATIONS,
     groupMatches: 4,
     groupWinsToAdvance: 3,
     knockoutStages: ["semi", "final"],
+    accentColor: "#d4a72c",
+    headerGradient: "linear-gradient(135deg, #2a1f0d 0%, #3a2912 60%, #1f1709 100%)",
   },
   "champions-trophy": {
     format: "champions-trophy",
     label: "🏆 Champions Trophy",
+    shortName: "Champions Trophy",
+    emblem: "🏆",
     blurb: "Top 8 · pure knockouts: quarter-final → semi → final. One loss and you're out.",
     eligibleNations: CHAMPIONS_TROPHY_NATIONS,
     groupMatches: 0,
     groupWinsToAdvance: 0,
     knockoutStages: ["qf", "semi", "final"],
+    accentColor: "#c0c5cd",
+    headerGradient: "linear-gradient(135deg, #1a1c22 0%, #2a2d36 60%, #11141a 100%)",
   },
 };
 

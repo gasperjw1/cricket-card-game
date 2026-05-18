@@ -1047,6 +1047,149 @@ h1 {
   border: 1px solid #2a3441;
   border-radius: 10px;
 }
+
+/* ───── Tournament-themed hub header (per-run accent) ───── */
+.career-hub-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.85rem 1rem;
+  margin: 0.5rem 0 1rem;
+  border-radius: 12px;
+  border: 1px solid #3a475a;
+  border-left-width: 5px;
+}
+.career-hub-emblem {
+  font-size: 2rem;
+  line-height: 1;
+}
+.career-hub-title {
+  flex: 1;
+  margin: 0;
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: #ffffff;
+  letter-spacing: 0.01em;
+}
+.career-hub-difficulty {
+  padding: 0.25rem 0.6rem;
+  background: rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 999px;
+  color: #ffffff;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+/* ───── Pre-match "vs" overlay ───── */
+.pre-match {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.4rem;
+  padding: 2rem 1rem;
+  text-align: center;
+  color: #ffffff;
+  animation: pre-match-fade 320ms ease-out;
+}
+@keyframes pre-match-fade {
+  0% { opacity: 0; transform: scale(0.98); }
+  100% { opacity: 1; transform: scale(1); }
+}
+.pre-match-tournament {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+  letter-spacing: 0.18em;
+  font-weight: 800;
+  color: rgba(255, 255, 255, 0.7);
+}
+.pre-match-tournament-emblem {
+  font-size: 1.2rem;
+}
+.pre-match-stage {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.9);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+.pre-match-vs {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: 1.5rem;
+  align-items: center;
+  padding: 1.4rem 1.5rem;
+  background: rgba(0, 0, 0, 0.35);
+  border: 2px solid #2563eb;
+  border-radius: 14px;
+  width: 100%;
+  max-width: 480px;
+}
+.pre-match-team {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.35rem;
+}
+.pre-match-flag {
+  font-size: 3.5rem;
+  line-height: 1;
+}
+.pre-match-team-abbr {
+  font-size: 1.1rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+}
+.pre-match-team-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+.pre-match-versus {
+  font-size: 2.2rem;
+  font-weight: 900;
+  letter-spacing: 0.04em;
+  font-family: ui-monospace, "SF Mono", Menlo, monospace;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+}
+.pre-match-stadium {
+  text-align: center;
+}
+.pre-match-stadium-name {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #ffffff;
+  font-family: Georgia, serif;
+}
+.pre-match-stadium-city {
+  font-size: 0.85rem;
+  margin-top: 0.15rem;
+}
+.pre-match-stadium-tagline {
+  font-size: 0.75rem;
+  margin-top: 0.3rem;
+  font-style: italic;
+  max-width: 320px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.pre-match-tap-hint {
+  margin-top: 0.5rem;
+  font-size: 0.78rem;
+  color: rgba(255, 255, 255, 0.5);
+  letter-spacing: 0.06em;
+  animation: pre-match-tap-pulse 1.6s ease-in-out infinite;
+}
+@keyframes pre-match-tap-pulse {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 1; }
+}
 .career-stats-footer {
   margin-top: 2rem;
   text-align: center;

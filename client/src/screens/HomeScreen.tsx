@@ -2,6 +2,7 @@ import { lazy, Suspense, useState } from "react";
 import type { BotDifficulty, MatchFormat } from "@swipe-sixer/shared";
 import { MATCH_FORMATS } from "@swipe-sixer/shared";
 import { SettingsPanel } from "../components/SettingsPanel.tsx";
+import { getCareer } from "../lib/career.ts";
 import { initSfx } from "../lib/sfx.ts";
 import type { MatchClient } from "../state.ts";
 
@@ -28,7 +29,14 @@ function defaultAbbrFromName(name: string): string {
 }
 
 export function HomeScreen({ client }: Props) {
-  const [mode, setMode] = useState<Mode>("menu");
+  // When HomeScreen mounts (fresh load, OR re-mounted after a match
+  // ended), default into the career hub if the player has an active
+  // run. Otherwise show the main menu. Fixes the "kicked back to
+  // lobby" feel after each WC match — the user stays in their run.
+  const [mode, setMode] = useState<Mode>(() => {
+    const save = getCareer();
+    return save.currentRun ? "career" : "menu";
+  });
   const [displayName, setDisplayName] = useState("");
   const [abbreviation, setAbbreviation] = useState("");
   /** Has the user manually edited the abbreviation? If false, it auto-fills from displayName. */
