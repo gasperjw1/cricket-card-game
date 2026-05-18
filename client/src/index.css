@@ -1156,6 +1156,61 @@ h1 {
   letter-spacing: 0.06em;
   color: #8a939c;
 }
+/* Wraps any horizontal-scrolling card row (draft, deck-management,
+   pack-opening). Adds gradient edge fades + a "swipe →" hint so the
+   user knows there are more cards offscreen.
+
+   Usage:
+     <div class="scroll-shell">
+       <p class="scroll-count">10 options · swipe →</p>
+       <div class="draft-grid"> ... cards ... </div>
+     </div>
+*/
+.scroll-shell {
+  position: relative;
+}
+.scroll-shell::before,
+.scroll-shell::after {
+  content: '';
+  position: absolute;
+  top: 1.8rem;       /* clear the count hint above */
+  bottom: 0.8rem;    /* clear the scrollbar */
+  width: 28px;
+  pointer-events: none;
+  z-index: 3;
+}
+.scroll-shell::before {
+  left: 0;
+  background: linear-gradient(to right, #0f1419 30%, rgba(15, 20, 25, 0) 100%);
+}
+.scroll-shell::after {
+  right: 0;
+  background: linear-gradient(to left, #0f1419 30%, rgba(15, 20, 25, 0) 100%);
+}
+.scroll-count {
+  margin: 0 0 0.4rem 0;
+  padding: 0;
+  font-size: 0.72rem;
+  color: #8a939c;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+.scroll-count strong {
+  color: #d6dde6;
+  font-weight: 700;
+}
+/* Subtle attention-bounce on first paint — fades after the user
+   interacts so it doesn't keep nagging. */
+.scroll-arrow-hint {
+  display: inline-block;
+  animation: scroll-hint-bounce 1.6s ease-in-out 2;
+  margin-left: 0.2rem;
+}
+@keyframes scroll-hint-bounce {
+  0%, 100% { transform: translateX(0); }
+  50% { transform: translateX(6px); }
+}
+
 /* Horizontal-scrolling row of draft options — better on mobile than
    vertical wrap (action buttons stay visible without scrolling). Cards
    snap into view; ~1.5 cards visible on phone (peek at next), ~3+ on

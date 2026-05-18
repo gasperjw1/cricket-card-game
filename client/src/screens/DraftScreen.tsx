@@ -6,6 +6,7 @@ import type {
   SituationCard,
 } from "@swipe-sixer/shared";
 import { Card } from "../components/Card.tsx";
+import { HorizontalScroller } from "../components/HorizontalScroller.tsx";
 import {
   draftPoolBattingSituations,
   draftPoolBowlingSituations,
@@ -203,17 +204,19 @@ function PlayerRound(props: {
           {selected.length} / {pickN} picked
         </p>
       </div>
-      <div className="draft-grid">
-        {options.map((card) => (
-          <div
-            key={card.id}
-            className={`draft-slot ${selected.includes(card.id) ? "selected" : ""}`}
-            onClick={() => toggle(card.id)}
-          >
-            <Card card={card} size="hand" selected={selected.includes(card.id)} />
-          </div>
-        ))}
-      </div>
+      <HorizontalScroller count={options.length} noun="option">
+        <div className="draft-grid">
+          {options.map((card) => (
+            <div
+              key={card.id}
+              className={`draft-slot ${selected.includes(card.id) ? "selected" : ""}`}
+              onClick={() => toggle(card.id)}
+            >
+              <Card card={card} size="hand" selected={selected.includes(card.id)} />
+            </div>
+          ))}
+        </div>
+      </HorizontalScroller>
       <div className="draft-actions">
         <button className="btn ghost" onClick={props.onBack}>
           Back
@@ -268,29 +271,33 @@ function SituationRound(props: {
         </p>
       </div>
       <h3 className="draft-subhead">Batting situations</h3>
-      <div className="draft-grid">
-        {battingOptions.map((card) => (
-          <div
-            key={card.id}
-            className={`draft-slot ${selected.includes(card.id) ? "selected" : ""}`}
-            onClick={() => toggle(card.id, true)}
-          >
-            <Card card={card} size="hand" selected={selected.includes(card.id)} />
-          </div>
-        ))}
-      </div>
+      <HorizontalScroller count={battingOptions.length} noun="option">
+        <div className="draft-grid">
+          {battingOptions.map((card) => (
+            <div
+              key={card.id}
+              className={`draft-slot ${selected.includes(card.id) ? "selected" : ""}`}
+              onClick={() => toggle(card.id, true)}
+            >
+              <Card card={card} size="hand" selected={selected.includes(card.id)} />
+            </div>
+          ))}
+        </div>
+      </HorizontalScroller>
       <h3 className="draft-subhead">Bowling situations</h3>
-      <div className="draft-grid">
-        {bowlingOptions.map((card) => (
-          <div
-            key={card.id}
-            className={`draft-slot ${selected.includes(card.id) ? "selected" : ""}`}
-            onClick={() => toggle(card.id, false)}
-          >
-            <Card card={card} size="hand" selected={selected.includes(card.id)} />
-          </div>
-        ))}
-      </div>
+      <HorizontalScroller count={bowlingOptions.length} noun="option">
+        <div className="draft-grid">
+          {bowlingOptions.map((card) => (
+            <div
+              key={card.id}
+              className={`draft-slot ${selected.includes(card.id) ? "selected" : ""}`}
+              onClick={() => toggle(card.id, false)}
+            >
+              <Card card={card} size="hand" selected={selected.includes(card.id)} />
+            </div>
+          ))}
+        </div>
+      </HorizontalScroller>
       <div className="draft-actions">
         <button className="btn ghost" onClick={props.onBack}>
           Back
@@ -329,16 +336,18 @@ function ReviewScreen(props: {
   const section = (title: string, ids: string[]) => (
     <>
       <h3 className="draft-subhead">{title}</h3>
-      <div className="draft-grid">
-        {ids.map((id) => {
-          const c = pickedCard(id);
-          return c ? (
-            <div key={id} className="draft-slot selected">
-              <Card card={c} size="hand" />
-            </div>
-          ) : null;
-        })}
-      </div>
+      <HorizontalScroller count={ids.length} noun="card">
+        <div className="draft-grid">
+          {ids.map((id) => {
+            const c = pickedCard(id);
+            return c ? (
+              <div key={id} className="draft-slot selected">
+                <Card card={c} size="hand" />
+              </div>
+            ) : null;
+          })}
+        </div>
+      </HorizontalScroller>
     </>
   );
 

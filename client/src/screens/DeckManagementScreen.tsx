@@ -1,6 +1,7 @@
 import { useState } from "react";
 import type { AnyCard } from "@swipe-sixer/shared";
 import { Card } from "../components/Card.tsx";
+import { HorizontalScroller } from "../components/HorizontalScroller.tsx";
 import { resolveCardIds } from "../lib/career-deck.ts";
 import {
   getCareer,
@@ -128,20 +129,22 @@ export function DeckManagementScreen({ onBack }: Props) {
             </span>
           )}
         </header>
-        <div className="deck-mgmt-grid">
-          {activeCards.map((card, i) => {
-            const isSwapTarget = eligibleSwapTargets.includes(card);
-            return (
-              <div
-                key={`${card.id}-${i}`}
-                className={`deck-mgmt-slot ${isSwapTarget ? "swap-target" : ""}`}
-                onClick={isSwapTarget ? () => onSwap(card.id) : undefined}
-              >
-                <Card card={card} size="hand" />
-              </div>
-            );
-          })}
-        </div>
+        <HorizontalScroller count={activeCards.length} noun="card">
+          <div className="deck-mgmt-grid">
+            {activeCards.map((card, i) => {
+              const isSwapTarget = eligibleSwapTargets.includes(card);
+              return (
+                <div
+                  key={`${card.id}-${i}`}
+                  className={`deck-mgmt-slot ${isSwapTarget ? "swap-target" : ""}`}
+                  onClick={isSwapTarget ? () => onSwap(card.id) : undefined}
+                >
+                  <Card card={card} size="hand" />
+                </div>
+              );
+            })}
+          </div>
+        </HorizontalScroller>
       </section>
 
       <section className="deck-mgmt-section">
@@ -153,17 +156,19 @@ export function DeckManagementScreen({ onBack }: Props) {
             </span>
           )}
         </header>
-        <div className="deck-mgmt-grid">
-          {inventoryEligible.map(({ card, instanceIndex }) => (
-            <div
-              key={`${card.id}-inv-${instanceIndex}`}
-              className={`deck-mgmt-slot inventory ${pickedInventoryId === card.id ? "picked" : ""}`}
-              onClick={() => onPickInventory(card.id)}
-            >
-              <Card card={card} size="hand" selected={pickedInventoryId === card.id} />
-            </div>
-          ))}
-        </div>
+        <HorizontalScroller count={inventoryEligible.length} noun="card">
+          <div className="deck-mgmt-grid">
+            {inventoryEligible.map(({ card, instanceIndex }) => (
+              <div
+                key={`${card.id}-inv-${instanceIndex}`}
+                className={`deck-mgmt-slot inventory ${pickedInventoryId === card.id ? "picked" : ""}`}
+                onClick={() => onPickInventory(card.id)}
+              >
+                <Card card={card} size="hand" selected={pickedInventoryId === card.id} />
+              </div>
+            ))}
+          </div>
+        </HorizontalScroller>
       </section>
     </main>
   );
