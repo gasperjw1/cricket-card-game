@@ -49,12 +49,15 @@ export default function HowToPlayScreen({ onBack }: Props) {
   return (
     <main className="how-to-play">
       <header className="how-to-play-header">
+        <button type="button" className="btn ghost how-to-play-back-top" onClick={onBack}>
+          ← Home
+        </button>
         <h1>How to Play</h1>
         <p className="tagline">Swipe Sixer — turn-based cricket card game.</p>
       </header>
 
       <div className="how-to-play-shell">
-        <TableOfContents />
+        <TableOfContents onBack={onBack} />
         <div className="guide">
           <section id="basics">
             <h2>The basics</h2>
@@ -558,7 +561,7 @@ export default function HowToPlayScreen({ onBack }: Props) {
 /** Sticky TOC. On desktop renders as a left-column sidebar with section
  *  groups; on mobile collapses to a horizontal pill bar that sticks to
  *  the top of the viewport when scrolling. */
-function TableOfContents() {
+function TableOfContents({ onBack }: { onBack: () => void }) {
   const groups: { key: string; items: typeof TOC }[] = [];
   for (const item of TOC) {
     let g = groups.find((x) => x.key === item.group);
@@ -571,6 +574,13 @@ function TableOfContents() {
 
   return (
     <nav className="guide-toc">
+      <button
+        type="button"
+        className="guide-toc-home"
+        onClick={onBack}
+      >
+        ← Home
+      </button>
       {groups.map((group) => (
         <div key={group.key} className="guide-toc-group">
           <div className="guide-toc-group-label">{GROUP_LABELS[group.key]}</div>

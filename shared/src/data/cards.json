@@ -374,7 +374,7 @@
         "Googly"
       ],
       "handedness": "right",
-      "role": "middle-order"
+      "role": "top-order"
     },
     {
       "id": "yashasvi-jaiswal-bat",
@@ -1348,7 +1348,7 @@
         "Slower"
       ],
       "handedness": "right",
-      "role": "middle-order"
+      "role": "top-order"
     },
     {
       "id": "glenn-maxwell-bat",
@@ -2509,7 +2509,7 @@
         "Seam"
       ],
       "handedness": "right",
-      "role": "middle-order"
+      "role": "top-order"
     },
     {
       "id": "harry-brook-bat",
@@ -2602,7 +2602,7 @@
         "Cutter"
       ],
       "handedness": "right",
-      "role": "middle-order"
+      "role": "top-order"
     },
     {
       "id": "phil-salt-bat",
@@ -3677,7 +3677,7 @@
         "Googly"
       ],
       "handedness": "right",
-      "role": "middle-order"
+      "role": "top-order"
     },
     {
       "id": "quinton-de-kock-bat",
@@ -3955,7 +3955,7 @@
         "Carrom"
       ],
       "handedness": "right",
-      "role": "middle-order"
+      "role": "top-order"
     },
     {
       "id": "aiden-markram-bat",
@@ -4751,7 +4751,7 @@
         "Carrom"
       ],
       "handedness": "right",
-      "role": "middle-order"
+      "role": "top-order"
     },
     {
       "id": "brendon-mccullum-bat",
@@ -7196,7 +7196,7 @@
         "Googly"
       ],
       "handedness": "left",
-      "role": "middle-order"
+      "role": "top-order"
     },
     {
       "id": "charith-asalanka-bat",
@@ -7383,7 +7383,7 @@
         "Drift"
       ],
       "handedness": "right",
-      "role": "middle-order"
+      "role": "top-order"
     },
     {
       "id": "mahela-jayawardene-bat",
@@ -7476,7 +7476,7 @@
         "Slower"
       ],
       "handedness": "right",
-      "role": "middle-order"
+      "role": "top-order"
     },
     {
       "id": "kamindu-mendis-bat",
@@ -8368,7 +8368,7 @@
         "Carrom"
       ],
       "handedness": "right",
-      "role": "middle-order"
+      "role": "top-order"
     },
     {
       "id": "andre-russell-bat",
@@ -9629,7 +9629,7 @@
         "Googly"
       ],
       "handedness": "left",
-      "role": "middle-order"
+      "role": "top-order"
     },
     {
       "id": "towhid-hridoy-bat",
@@ -11072,7 +11072,7 @@
         "Carrom"
       ],
       "handedness": "right",
-      "role": "top-order"
+      "role": "middle-order"
     },
     {
       "id": "wessly-madhevere-bat",
@@ -11965,7 +11965,7 @@
         "Slower"
       ],
       "handedness": "right",
-      "role": "middle-order"
+      "role": "top-order"
     },
     {
       "id": "hazratullah-zazai-bat",
@@ -12498,7 +12498,7 @@
       ],
       "resistances": [],
       "handedness": "right",
-      "role": "middle-order"
+      "role": "top-order"
     },
     {
       "id": "gulbadin-naib-bat",
@@ -13040,7 +13040,7 @@
         "Slower"
       ],
       "handedness": "right",
-      "role": "middle-order"
+      "role": "top-order"
     },
     {
       "id": "harry-tector-bat",
@@ -15242,7 +15242,7 @@
       "fielding": [
         "Mid-wicket"
       ],
-      "role": "middle-overs"
+      "role": "death-overs"
     },
     {
       "id": "mayank-yadav-bowl",
@@ -15259,7 +15259,7 @@
       "fielding": [
         "Gully/Point"
       ],
-      "role": "middle-overs"
+      "role": "powerplay"
     },
     {
       "id": "harshal-patel-bowl",
@@ -15310,7 +15310,7 @@
       "fielding": [
         "Gully/Point"
       ],
-      "role": "middle-overs"
+      "role": "powerplay"
     },
     {
       "id": "ravi-bishnoi-bowl",
@@ -16015,7 +16015,7 @@
       "fielding": [
         "Gully/Point"
       ],
-      "role": "middle-overs"
+      "role": "powerplay"
     },
     {
       "id": "wiaan-mulder-bowl",
@@ -16485,7 +16485,7 @@
       "fielding": [
         "Gully/Point"
       ],
-      "role": "middle-overs"
+      "role": "powerplay"
     },
     {
       "id": "iftikhar-ahmed-bowl",
@@ -16834,7 +16834,7 @@
       "fielding": [
         "Slip cordon"
       ],
-      "role": "middle-overs"
+      "role": "powerplay"
     },
     {
       "id": "carlos-brathwaite-bowl",
@@ -16887,7 +16887,7 @@
       "fielding": [
         "Gully/Point"
       ],
-      "role": "middle-overs"
+      "role": "powerplay"
     },
     {
       "id": "jason-holder-bowl",
@@ -17122,7 +17122,7 @@
       "fielding": [
         "Gully/Point"
       ],
-      "role": "middle-overs"
+      "role": "powerplay"
     },
     {
       "id": "rishad-hossain-bowl",
@@ -17245,7 +17245,7 @@
         "Gully/Point",
         "Slip cordon"
       ],
-      "role": "middle-overs"
+      "role": "powerplay"
     },
     {
       "id": "heath-streak-bowl",
@@ -17266,7 +17266,7 @@
         "Slip cordon",
         "Mid-wicket"
       ],
-      "role": "middle-overs"
+      "role": "powerplay"
     },
     {
       "id": "sikandar-raza-bowl",
@@ -17717,7 +17717,7 @@
         "Gully/Point",
         "Slip cordon"
       ],
-      "role": "middle-overs"
+      "role": "powerplay"
     },
     {
       "id": "mark-adair-bowl",

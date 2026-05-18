@@ -2866,6 +2866,7 @@ h1 {
 .how-to-play-header {
   text-align: center;
   margin-bottom: 1rem;
+  position: relative;
 }
 .how-to-play-header h1 {
   margin: 0;
@@ -2873,6 +2874,61 @@ h1 {
 .how-to-play .tagline {
   text-align: center;
   margin: 0.3rem 0 0;
+}
+/* Back button in the page header — visible on mobile, hidden on desktop
+   where the sidebar TOC home button takes over. */
+.how-to-play-back-top {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  margin-bottom: 0.75rem;
+  font-size: 0.85rem;
+  color: #8ba0b8;
+  border-color: #2a3441;
+}
+.how-to-play-back-top:hover {
+  color: #d6dde6;
+  border-color: #4a5a6e;
+}
+@media (min-width: 900px) {
+  /* On desktop, the sidebar TOC has the home button — hide the header one. */
+  .how-to-play-back-top {
+    display: none;
+  }
+}
+
+/* ── TOC home button ── */
+.guide-toc-home {
+  /* Mobile: render as a pill just like the TOC section links */
+  padding: 0.35rem 0.7rem;
+  border-radius: 999px;
+  background: #1c2530;
+  border: 1px solid #2a3441;
+  color: #d6dde6;
+  font-size: 0.75rem;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  transition: background 0.12s, color 0.12s;
+  font-family: inherit;
+}
+.guide-toc-home:hover {
+  background: #2563eb;
+  color: #fff;
+}
+@media (min-width: 900px) {
+  .guide-toc-home {
+    /* Desktop sidebar: full-width block, distinct from section links */
+    display: block;
+    width: 100%;
+    border-radius: 6px;
+    text-align: left;
+    padding: 0.4rem 0.6rem;
+    font-size: 0.78rem;
+    letter-spacing: 0.02em;
+    background: #0f1a26;
+    border-color: #2a3441;
+    margin-bottom: 0.25rem;
+  }
 }
 
 /* Mobile/tablet: single-column stack. The TOC becomes a sticky
