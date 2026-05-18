@@ -1876,7 +1876,7 @@ Everything not listed = dot ball. Weaknesses are zone-only (no adjective referen
 - **Weaknesses:** Good length off stump → edge | Short middle stump → caught | Full off stump → mistimed drive
 
 ### BRONZE — Ross Adair
-*Right-handed young top-order. Limited T20I exposure, domestic talent.*
+*Left-handed young top-order. Limited T20I exposure, domestic talent.*
 - **Strengths:** Full off stump → drive for 4
 - **Neutrals:** Good length middle stump → push for 2 | Good length leg stump → work for 1
 - **Weaknesses:** Short Outside off → caught at gully | Good length Outside off → edge | Good length middle stump → bowled
