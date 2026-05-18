@@ -17,27 +17,115 @@ const STORAGE_KEY = "swipe-sixer-career-v1";
 
 // ─────────────────────────── Types ───────────────────────────
 
-/** Stage of a World Cup run. */
+/** Tournament variant — picked at run creation. Changes the ladder shape
+ *  + which nations are eligible. */
+export type TournamentFormat = "world-cup" | "asia-cup" | "champions-trophy";
+
+/** Difficulty mode — picked at run creation. Tunes bot levels across the
+ *  whole ladder. Hidden from the in-run UI per spec. */
+export type DifficultyMode = "casual" | "realistic" | "legend";
+
+/** Stage of a tournament run. */
 export type WCStage =
   | "drafting"     // player is in the draft, deck not yet built
-  | "group"        // playing group-stage matches (1-5)
+  | "group"        // playing group-stage matches (WC + Asia Cup only)
+  | "qf"           // quarter-final (Champions Trophy only)
   | "semi"         // semi-final (1 match)
   | "final"        // final (1 match)
   | "won"          // trophy won, post-final state
-  | "lost"         // eliminated (group failed-to-advance, semi loss, final loss)
+  | "lost"         // eliminated (group failed-to-advance, KO loss)
   | "abandoned";   // player dropped out
 
-/** A single opponent on the WC ladder, set at run creation. */
+/** Labels visible on the ladder UI. Subset of WCStage. */
+export type StageLabel = "group" | "qf" | "semi" | "final";
+
+/** A single opponent on the ladder, set at run creation. */
 export interface WCOpponent {
   /** Display name of the nation (matches Nation type values). */
   nation: string;
-  /** Server-side bot difficulty for this matchup. */
+  /** Server-side bot difficulty for this matchup. Drives the bot
+   *  Phase-1 controller. Hidden from the player's in-run ladder UI. */
   difficulty: "Gully" | "Domestic" | "International";
-  /** "group", "semi", or "final" — drives UI labels. */
-  stageLabel: "group" | "semi" | "final";
+  /** Drives UI labels + advancement logic. */
+  stageLabel: StageLabel;
   /** Has this match been played? Result is captured separately in record. */
   matchIndex: number;
 }
+
+/** Per-tournament shape: which nations are eligible, ladder layout,
+ *  group-advancement requirement. */
+export interface TournamentConfig {
+  format: TournamentFormat;
+  label: string;
+  blurb: string;
+  /** Test-nation pool eligible for this tournament. */
+  eligibleNations: readonly string[];
+  /** Number of group-stage matches before knockouts. 0 for sudden-death
+   *  tournaments (Champions Trophy). */
+  groupMatches: number;
+  /** Wins required from group to advance to the first knockout stage. */
+  groupWinsToAdvance: number;
+  /** Knockout stages in order. Last entry is always "final". */
+  knockoutStages: ("qf" | "semi" | "final")[];
+}
+
+const ALL_TEST_NATIONS: readonly string[] = [
+  "India", "Australia", "England", "South Africa", "New Zealand", "Pakistan",
+  "Sri Lanka", "West Indies", "Bangladesh", "Zimbabwe", "Afghanistan", "Ireland",
+];
+
+/** Subcontinental nations for Asia Cup. */
+const ASIA_CUP_NATIONS: readonly string[] = [
+  "India", "Pakistan", "Sri Lanka", "Bangladesh", "Afghanistan",
+];
+
+/** Top 8 nations for Champions Trophy (sudden-death knockout). */
+const CHAMPIONS_TROPHY_NATIONS: readonly string[] = [
+  "India", "Australia", "England", "South Africa", "New Zealand", "Pakistan",
+  "West Indies", "Bangladesh",
+];
+
+export const TOURNAMENT_FORMATS: Record<TournamentFormat, TournamentConfig> = {
+  "world-cup": {
+    format: "world-cup",
+    label: "🌍 T20 World Cup",
+    blurb: "12-nation pool · 5 group matches (3 wins to advance) · semi · final.",
+    eligibleNations: ALL_TEST_NATIONS,
+    groupMatches: 5,
+    groupWinsToAdvance: 3,
+    knockoutStages: ["semi", "final"],
+  },
+  "asia-cup": {
+    format: "asia-cup",
+    label: "🌏 Asia Cup",
+    blurb: "Subcontinent only · 4 group matches (3 wins to advance) · semi · final.",
+    eligibleNations: ASIA_CUP_NATIONS,
+    groupMatches: 4,
+    groupWinsToAdvance: 3,
+    knockoutStages: ["semi", "final"],
+  },
+  "champions-trophy": {
+    format: "champions-trophy",
+    label: "🏆 Champions Trophy",
+    blurb: "Top 8 · pure knockouts: quarter-final → semi → final. One loss and you're out.",
+    eligibleNations: CHAMPIONS_TROPHY_NATIONS,
+    groupMatches: 0,
+    groupWinsToAdvance: 0,
+    knockoutStages: ["qf", "semi", "final"],
+  },
+};
+
+/** UI labels + colors for difficulty modes. */
+export const DIFFICULTY_LABEL: Record<DifficultyMode, string> = {
+  casual: "Casual",
+  realistic: "Realistic",
+  legend: "Legend",
+};
+export const DIFFICULTY_BLURB: Record<DifficultyMode, string> = {
+  casual: "All opponents play at Gully level. Good for new players or quick wins.",
+  realistic: "Ramps up: easier in the group stage, International in the final.",
+  legend: "Every opponent plays at International level. Brutal — for vets only.",
+};
 
 export type WCMatchResult = "win" | "loss" | "tie";
 
@@ -90,8 +178,14 @@ export interface RunInventory {
 export interface WCRun {
   /** Set when the run starts. Locked to T3 for v1. */
   format: MatchFormat;
-  /** Full ladder (5 group + 1 semi + 1 final = 7 opponents), pre-rolled
-   *  at run start so the player sees their "draw" up front. */
+  /** Tournament variant — picked at run-creation. Drives ladder shape +
+   *  eligible nations. Defaults to "world-cup" for back-compat. */
+  tournament: TournamentFormat;
+  /** Difficulty mode — picked at run-creation. Hidden from the in-run
+   *  ladder UI per spec. */
+  difficulty: DifficultyMode;
+  /** Full ladder (length varies by tournament), pre-rolled at run start
+   *  so the player sees their "draw" up front. */
   ladder: WCOpponent[];
   /** Match history; index aligns with the ladder. */
   history: WCMatchRecord[];
@@ -103,7 +197,7 @@ export interface WCRun {
   deck: RunDeck | null;
   /** Cards earned from per-win packs but not in the active deck. */
   inventory: RunInventory;
-  /** Number of group matches won so far. Used for group→semi gating. */
+  /** Number of group matches won so far. Used for group→knockout gating. */
   groupWins: number;
   startedAt: number;
 }
@@ -122,9 +216,39 @@ export interface PermanentCollection {
   runsPlayed: number;
 }
 
+/**
+ * Lifetime career stats — tracked across all runs. Powers the
+ * dedicated CareerStatsScreen. Updated in recordMatch +
+ * applyTrophyPack so the values stay accurate.
+ */
+export interface CareerStats {
+  /** Total matches played (all results across all runs). */
+  matchesPlayed: number;
+  /** Total matches won (all stages, all runs). */
+  matchesWon: number;
+  /** Total runs scored by the player across every match (innings 1 +
+   *  innings 2 when player batted). */
+  totalRunsScored: number;
+  /** Total wickets taken (when player was bowling, innings the
+   *  opponent batted). */
+  totalWicketsTaken: number;
+  /** Longest consecutive matches won across runs. */
+  longestWinStreak: number;
+  /** Current streak — resets on any loss. */
+  currentWinStreak: number;
+  /** Trophies broken down by tournament. */
+  trophiesByTournament: Record<TournamentFormat, number>;
+  /** Trophies broken down by difficulty (records the hardest you've won). */
+  trophiesByDifficulty: Record<DifficultyMode, number>;
+  /** Total abandoned runs. */
+  runsAbandoned: number;
+}
+
 export interface CareerSave {
   permanentCollection: PermanentCollection;
   currentRun: WCRun | null;
+  /** Lifetime stats — see CareerStats. */
+  stats: CareerStats;
   /** True when the user has kicked off a WC match and the actual
    *  gameplay (InningsScreen) is in progress. The match-over screen
    *  reads this to know whether to route into pack-opening (true) or
@@ -133,9 +257,22 @@ export interface CareerSave {
   savedAt: number;
 }
 
+const DEFAULT_STATS: CareerStats = {
+  matchesPlayed: 0,
+  matchesWon: 0,
+  totalRunsScored: 0,
+  totalWicketsTaken: 0,
+  longestWinStreak: 0,
+  currentWinStreak: 0,
+  trophiesByTournament: { "world-cup": 0, "asia-cup": 0, "champions-trophy": 0 },
+  trophiesByDifficulty: { casual: 0, realistic: 0, legend: 0 },
+  runsAbandoned: 0,
+};
+
 const DEFAULTS: CareerSave = {
   permanentCollection: { cards: {}, trophies: 0, runsPlayed: 0 },
   currentRun: null,
+  stats: DEFAULT_STATS,
   wcMatchInFlight: false,
   savedAt: 0,
 };
@@ -150,6 +287,15 @@ function load(): CareerSave {
     const parsed = JSON.parse(raw) as Partial<CareerSave>;
     // Shallow merge with defaults so older saves missing newer fields
     // don't crash. Nested objects fall back individually.
+    const migratedRun = parsed.currentRun
+      ? {
+          // Spread first so we don't overwrite existing fields, then
+          // explicitly fall back to defaults when missing (pre-v5 saves).
+          ...parsed.currentRun,
+          tournament: parsed.currentRun.tournament ?? "world-cup",
+          difficulty: parsed.currentRun.difficulty ?? "realistic",
+        }
+      : null;
     return {
       permanentCollection: {
         ...DEFAULTS.permanentCollection,
@@ -159,7 +305,19 @@ function load(): CareerSave {
           ...(parsed.permanentCollection?.cards ?? {}),
         },
       },
-      currentRun: parsed.currentRun ?? null,
+      currentRun: migratedRun,
+      stats: {
+        ...DEFAULT_STATS,
+        ...(parsed.stats ?? {}),
+        trophiesByTournament: {
+          ...DEFAULT_STATS.trophiesByTournament,
+          ...(parsed.stats?.trophiesByTournament ?? {}),
+        },
+        trophiesByDifficulty: {
+          ...DEFAULT_STATS.trophiesByDifficulty,
+          ...(parsed.stats?.trophiesByDifficulty ?? {}),
+        },
+      },
       // Boot-time hygiene: if we restart with a stale wcMatchInFlight flag
       // (user refreshed during a match), the matchState is gone — drop the
       // flag so the UI doesn't expect a pack to open.
@@ -209,6 +367,11 @@ function cloneShallow(save: CareerSave): CareerSave {
   const next: CareerSave = {
     ...save,
     permanentCollection: { ...save.permanentCollection, cards: { ...save.permanentCollection.cards } },
+    stats: {
+      ...save.stats,
+      trophiesByTournament: { ...save.stats.trophiesByTournament },
+      trophiesByDifficulty: { ...save.stats.trophiesByDifficulty },
+    },
     currentRun: save.currentRun
       ? {
           ...save.currentRun,
@@ -249,7 +412,12 @@ export function subscribeCareer(fn: (s: CareerSave) => void): () => void {
  * If a run already exists, throws — callers must explicitly call
  * abandonRun() first to discard the previous run.
  */
-export function startNewRun(format: MatchFormat, ladder: WCOpponent[]): WCRun {
+export function startNewRun(
+  format: MatchFormat,
+  tournament: TournamentFormat,
+  difficulty: DifficultyMode,
+  ladder: WCOpponent[],
+): WCRun {
   if (current.currentRun) {
     throw new Error(
       "A run is already in progress. Call abandonRun() first.",
@@ -257,6 +425,8 @@ export function startNewRun(format: MatchFormat, ladder: WCOpponent[]): WCRun {
   }
   const run: WCRun = {
     format,
+    tournament,
+    difficulty,
     ladder,
     history: [],
     stage: "drafting",
@@ -381,6 +551,17 @@ export function recordMatch(result: WCMatchResult, opponent: WCOpponent): void {
   if (result === "win" && opponent.stageLabel === "group") {
     current.currentRun.groupWins += 1;
   }
+  // Stats updates.
+  current.stats.matchesPlayed += 1;
+  if (result === "win") {
+    current.stats.matchesWon += 1;
+    current.stats.currentWinStreak += 1;
+    if (current.stats.currentWinStreak > current.stats.longestWinStreak) {
+      current.stats.longestWinStreak = current.stats.currentWinStreak;
+    }
+  } else {
+    current.stats.currentWinStreak = 0;
+  }
   advanceStageAfterMatch(opponent, result);
   persist();
   notify();
@@ -389,23 +570,37 @@ export function recordMatch(result: WCMatchResult, opponent: WCOpponent): void {
 function advanceStageAfterMatch(opp: WCOpponent, result: WCMatchResult): void {
   if (!current.currentRun) return;
   const run = current.currentRun;
+  const config = TOURNAMENT_FORMATS[run.tournament];
+
   if (opp.stageLabel === "group") {
+    // Group-stage tournaments (WC, Asia Cup).
     const groupMatchesPlayed = run.history.filter(
       (h) => h.opponent.stageLabel === "group",
     ).length;
-    if (groupMatchesPlayed >= 5) {
-      // Group stage over. Advance if 3+ wins.
-      if (run.groupWins >= 3) {
-        run.stage = "semi";
+    if (groupMatchesPlayed >= config.groupMatches) {
+      // Group stage over. Advance if enough wins.
+      if (run.groupWins >= config.groupWinsToAdvance) {
+        run.stage = config.knockoutStages[0]!;
       } else {
         run.stage = "lost";
       }
     }
     // else: still in group stage, no change
-  } else if (opp.stageLabel === "semi") {
-    run.stage = result === "win" ? "final" : "lost";
-  } else if (opp.stageLabel === "final") {
-    run.stage = result === "win" ? "won" : "lost";
+    return;
+  }
+
+  // Knockout stage — sudden death. On loss, run over.
+  if (result === "loss" || result === "tie") {
+    run.stage = "lost";
+    return;
+  }
+  // Win — advance to next knockout, or "won" if this was the final.
+  const stages = config.knockoutStages;
+  const currentIdx = stages.indexOf(opp.stageLabel);
+  if (currentIdx === stages.length - 1) {
+    run.stage = "won";
+  } else {
+    run.stage = stages[currentIdx + 1]!;
   }
 }
 
@@ -432,6 +627,9 @@ export function applyTrophyPack(chosenCardIds: string[]): void {
       (current.permanentCollection.cards[id] ?? 0) + 1;
   }
   current.permanentCollection.trophies += 1;
+  // Stats: per-tournament + per-difficulty trophy counts.
+  current.stats.trophiesByTournament[current.currentRun.tournament] += 1;
+  current.stats.trophiesByDifficulty[current.currentRun.difficulty] += 1;
   persist();
   notify();
 }
@@ -455,6 +653,8 @@ export function endRun(): void {
  */
 export function abandonRun(): void {
   if (!current.currentRun) return;
+  current.stats.runsAbandoned += 1;
+  current.stats.currentWinStreak = 0;
   current.currentRun.stage = "abandoned";
   endRun();
 }

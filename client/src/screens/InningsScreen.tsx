@@ -1016,36 +1016,43 @@ function WCMatchOverFlow({ client }: { client: MatchClient }) {
 }
 
 /** Stage-specific headline for the WC result screen. */
-function wcResultHeadline(captured: { opp: { stageLabel: "group" | "semi" | "final" }; playerWon: boolean } | null): string {
+function wcResultHeadline(captured: { opp: { stageLabel: import("../lib/career.ts").StageLabel }; playerWon: boolean } | null): string {
   if (!captured) return "Match Over";
+  const stage = captured.opp.stageLabel;
   if (!captured.playerWon) {
-    return captured.opp.stageLabel === "group"
-      ? "🛑 Group match lost"
-      : captured.opp.stageLabel === "semi"
-        ? "🛑 Semi-final lost — run over"
-        : "🛑 Final lost — so close";
+    if (stage === "group") return "🛑 Group match lost";
+    if (stage === "qf") return "🛑 Quarter-final lost — run over";
+    if (stage === "semi") return "🛑 Semi-final lost — run over";
+    return "🛑 Final lost — so close";
   }
   // Wins
-  return captured.opp.stageLabel === "final"
-    ? "🏆 World Cup Champion!"
-    : captured.opp.stageLabel === "semi"
-      ? "🎉 Into the Final!"
-      : "✅ Match won";
+  if (stage === "final") return "🏆 Champions!";
+  if (stage === "semi") return "🎉 Into the Final!";
+  if (stage === "qf") return "🎉 Through to the Semi!";
+  return "✅ Match won";
 }
 
 /** Stage-specific detail line beneath the headline. */
-function wcResultDetail(captured: { opp: { stageLabel: "group" | "semi" | "final"; nation: string }; playerWon: boolean } | null): string {
+function wcResultDetail(captured: { opp: { stageLabel: import("../lib/career.ts").StageLabel; nation: string }; playerWon: boolean } | null): string {
   if (!captured) return "";
+  const stage = captured.opp.stageLabel;
   if (!captured.playerWon) {
-    return `${captured.opp.nation} beat you in the ${captured.opp.stageLabel === "group" ? "group stage" : captured.opp.stageLabel === "semi" ? "semi-final" : "final"}.`;
+    const stageName =
+      stage === "group" ? "group stage"
+        : stage === "qf" ? "quarter-final"
+          : stage === "semi" ? "semi-final"
+            : "final";
+    return `${captured.opp.nation} beat you in the ${stageName}.`;
   }
-  switch (captured.opp.stageLabel) {
+  switch (stage) {
     case "group":
       return `Beat ${captured.opp.nation} in a group match. Onto the next one.`;
+    case "qf":
+      return `Beat ${captured.opp.nation} in the quarter-final — through to the semi!`;
     case "semi":
       return `Beat ${captured.opp.nation} in the semi-final — you're in the FINAL!`;
     case "final":
-      return `Beat ${captured.opp.nation} in the final. World Cup is yours. 🏆`;
+      return `Beat ${captured.opp.nation} in the final. Trophy is yours. 🏆`;
   }
 }
 

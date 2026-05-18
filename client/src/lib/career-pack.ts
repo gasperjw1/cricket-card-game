@@ -10,63 +10,89 @@ import type {
   AnyCard,
   BatsmanCard,
   BowlerCard,
-  Nation,
   SituationCard,
   Tier,
 } from "@swipe-sixer/shared";
 import { CARDS } from "@swipe-sixer/shared/data";
-import type { WCOpponent } from "./career.ts";
+import {
+  TOURNAMENT_FORMATS,
+  type DifficultyMode,
+  type TournamentFormat,
+  type WCOpponent,
+} from "./career.ts";
 
 // ─────────────────────────── Ladder ───────────────────────────
 
-/**
- * Test nations the player can face. Associate nations are excluded
- * because their single-nation bot decks aren't viable (too few cards).
- */
-const TEST_NATIONS: Nation[] = [
-  "India", "Australia", "England", "South Africa", "New Zealand", "Pakistan",
-  "Sri Lanka", "West Indies", "Bangladesh", "Zimbabwe", "Afghanistan", "Ireland",
-];
+type BotLevel = "Gully" | "Domestic" | "International";
 
 /**
- * Generate a 7-opponent World Cup ladder:
- *   - 5 group-stage opponents (random sample, no duplicates)
- *   - 1 semi-final opponent (random from remaining)
- *   - 1 final opponent (random from remaining)
- *
- * Difficulty ramps per stage:
- *   - Group 1-2: Gully
- *   - Group 3-5: Domestic
- *   - Semi: Domestic
- *   - Final: International
+ * Pick the difficulty tier for a specific ladder slot, given the
+ * player's chosen mode + the stage. Casual = always Gully. Legend =
+ * always International. Realistic ramps by stage.
  */
-export function generateLadder(): WCOpponent[] {
-  const shuffled = shuffle([...TEST_NATIONS]);
-  const groupNations = shuffled.slice(0, 5);
-  const semiNation = shuffled[5]!;
-  const finalNation = shuffled[6]!;
+function difficultyForSlot(
+  mode: DifficultyMode,
+  stage: "group" | "qf" | "semi" | "final",
+  groupIdx: number,
+): BotLevel {
+  if (mode === "casual") return "Gully";
+  if (mode === "legend") return "International";
+  // realistic
+  if (stage === "group") return groupIdx < 2 ? "Gully" : "Domestic";
+  if (stage === "qf") return "Domestic";
+  if (stage === "semi") return "Domestic";
+  return "International"; // final
+}
+
+/**
+ * Generate a tournament ladder. Length + composition depend on the
+ * tournament config (TOURNAMENT_FORMATS in career.ts):
+ *
+ *   - World Cup: 5 group + semi + final = 7 matches
+ *   - Asia Cup:  4 group + semi + final = 6 matches (subcontinent pool)
+ *   - Champions Trophy: QF + semi + final = 3 matches (knockouts-only)
+ *
+ * Difficulty per slot is determined by the mode (Casual / Realistic /
+ * Legend) — see `difficultyForSlot`.
+ */
+export function generateLadder(
+  tournament: TournamentFormat,
+  difficulty: DifficultyMode,
+): WCOpponent[] {
+  const config = TOURNAMENT_FORMATS[tournament];
+  const pool = [...config.eligibleNations];
+  const shuffled = shuffle(pool);
 
   const ladder: WCOpponent[] = [];
-  groupNations.forEach((nation, i) => {
+  let matchIndex = 0;
+  let poolIdx = 0;
+
+  // Group stage (may be 0 for Champions Trophy).
+  for (let g = 0; g < config.groupMatches; g++) {
+    const nation = shuffled[poolIdx % shuffled.length]!;
+    poolIdx += 1;
     ladder.push({
       nation,
-      difficulty: i < 2 ? "Gully" : "Domestic",
+      difficulty: difficultyForSlot(difficulty, "group", g),
       stageLabel: "group",
-      matchIndex: i,
+      matchIndex,
     });
-  });
-  ladder.push({
-    nation: semiNation,
-    difficulty: "Domestic",
-    stageLabel: "semi",
-    matchIndex: 5,
-  });
-  ladder.push({
-    nation: finalNation,
-    difficulty: "International",
-    stageLabel: "final",
-    matchIndex: 6,
-  });
+    matchIndex += 1;
+  }
+
+  // Knockout stages.
+  for (const stage of config.knockoutStages) {
+    const nation = shuffled[poolIdx % shuffled.length]!;
+    poolIdx += 1;
+    ladder.push({
+      nation,
+      difficulty: difficultyForSlot(difficulty, stage, 0),
+      stageLabel: stage,
+      matchIndex,
+    });
+    matchIndex += 1;
+  }
+
   return ladder;
 }
 

@@ -1046,6 +1046,227 @@ h1 {
 .career-stats-footer p {
   margin: 0;
 }
+.career-stats-footer-actions {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+/* ───── Career pickers (tournament + difficulty) on the start screen ───── */
+.career-picker {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  border: 1px solid #2a3441;
+  border-radius: 8px;
+  padding: 0.7rem 0.8rem;
+  margin: 1rem 0;
+}
+.career-picker legend {
+  padding: 0 0.35rem;
+  font-size: 0.78rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #8a939c;
+}
+.career-picker label {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 0.7rem;
+  background: #1c2530;
+  border: 1px solid #2a3441;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: border-color 0.12s, background 0.12s;
+}
+.career-picker label.selected {
+  border-color: #2563eb;
+  background: #1c2a3a;
+}
+.career-picker label input[type="radio"] {
+  margin: 0;
+}
+.career-picker label strong {
+  grid-column: 2;
+  grid-row: 1;
+  font-size: 0.95rem;
+  color: #e8e8e8;
+}
+.career-picker label small {
+  grid-column: 2;
+  grid-row: 2;
+  font-size: 0.78rem;
+  line-height: 1.35;
+}
+.career-picker-badge {
+  grid-column: 3;
+  grid-row: 1 / span 2;
+  background: #1d3a23;
+  color: #6ee07a;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  padding: 0.2rem 0.45rem;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+
+/* ───── Career stats modal ───── */
+.career-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.6rem;
+  margin: 1rem 0;
+}
+@media (min-width: 540px) {
+  .career-stats-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+.career-stat-card {
+  background: #1c2530;
+  border: 1px solid #2a3441;
+  border-radius: 8px;
+  padding: 0.6rem 0.5rem;
+  text-align: center;
+}
+.career-stat-value {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #e8e8e8;
+  font-family: ui-monospace, "SF Mono", Menlo, monospace;
+}
+.career-stat-label {
+  font-size: 0.7rem;
+  color: #8a939c;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-top: 0.2rem;
+}
+
+/* ───── Newspaper-style run summary ───── */
+.newspaper {
+  font-family: Georgia, "Times New Roman", serif;
+  color: #1a1a1a;
+}
+.newspaper-paper {
+  background: #f1ecdf;
+  background-image: repeating-linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 0.015) 0,
+    rgba(0, 0, 0, 0.015) 1px,
+    transparent 1px,
+    transparent 3px
+  );
+  border: 1px solid #c4b896;
+  border-radius: 4px;
+  padding: 1.4rem 1.2rem;
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.5);
+}
+.newspaper-masthead {
+  border-bottom: 4px double #1a1a1a;
+  padding-bottom: 0.5rem;
+  margin-bottom: 0.9rem;
+  text-align: center;
+}
+.newspaper-name {
+  font-size: 1.8rem;
+  font-weight: 900;
+  letter-spacing: 0.04em;
+  font-family: "Times New Roman", Georgia, serif;
+  color: #1a1a1a;
+  text-transform: uppercase;
+}
+.newspaper-tagline {
+  font-size: 0.72rem;
+  font-style: italic;
+  color: #4a3f2e;
+  margin-top: 0.2rem;
+  letter-spacing: 0.05em;
+}
+.newspaper-headline {
+  font-size: 1.6rem;
+  font-weight: 900;
+  line-height: 1.1;
+  margin: 0.5rem 0 0.4rem;
+  color: #1a1a1a;
+  text-align: center;
+  letter-spacing: -0.01em;
+}
+.newspaper-headline.tone-dominant { color: #1d8a3a; }
+.newspaper-headline.tone-comeback { color: #b75300; }
+.newspaper-headline.tone-close-call { color: #b91c1c; }
+.newspaper-headline.tone-underdog { color: #6a2299; }
+.newspaper-subheadline {
+  font-size: 1rem;
+  font-style: italic;
+  color: #3a3a3a;
+  text-align: center;
+  margin: 0 0 1rem;
+  line-height: 1.35;
+}
+.newspaper-body {
+  font-size: 0.95rem;
+  line-height: 1.55;
+  color: #1a1a1a;
+  /* Drop-cap on first paragraph for newspaper feel. */
+}
+.newspaper-body p {
+  margin: 0 0 0.75rem;
+}
+.newspaper-body p:first-child::first-letter {
+  font-size: 2.3rem;
+  font-weight: 900;
+  float: left;
+  line-height: 0.9;
+  padding: 0.15rem 0.4rem 0 0;
+  color: #1a1a1a;
+}
+.newspaper-quote {
+  border-left: 4px solid #4a3f2e;
+  padding-left: 0.7rem;
+  font-style: italic;
+  color: #2a2a2a;
+  font-size: 1rem;
+}
+.newspaper-highlights {
+  margin-top: 1rem;
+  border-top: 2px solid #1a1a1a;
+  border-bottom: 2px solid #1a1a1a;
+  padding: 0.7rem 0;
+}
+.newspaper-highlights h3 {
+  margin: 0 0 0.4rem;
+  font-size: 0.95rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+.newspaper-highlights ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+.newspaper-highlights li {
+  font-size: 0.88rem;
+  line-height: 1.45;
+  color: #1a1a1a;
+}
+.newspaper-footer {
+  text-align: right;
+  margin-top: 0.7rem;
+  font-size: 0.75rem;
+  font-style: italic;
+  color: #4a3f2e;
+}
+.newspaper-footer .dim-text {
+  color: #4a3f2e;
+}
 
 /* Collection modal — read-only grid of cards in your permanent stash. */
 .collection-modal {

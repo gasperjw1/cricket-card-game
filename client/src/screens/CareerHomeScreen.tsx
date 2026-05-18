@@ -2,6 +2,9 @@ import { useEffect, useState } from "react";
 import type { AnyCard, Nation } from "@swipe-sixer/shared";
 import { CARDS } from "@swipe-sixer/shared/data";
 import {
+  DIFFICULTY_BLURB,
+  DIFFICULTY_LABEL,
+  TOURNAMENT_FORMATS,
   abandonRun,
   endRun,
   getCareer,
@@ -9,9 +12,12 @@ import {
   startWCMatch,
   subscribeCareer,
   type CareerSave,
+  type DifficultyMode,
+  type TournamentFormat,
   type WCRun,
 } from "../lib/career.ts";
 import { generateLadder } from "../lib/career-pack.ts";
+import { NewspaperRunSummary } from "./NewspaperRunSummary.tsx";
 import type { MatchClient } from "../state.ts";
 import { DraftScreen } from "./DraftScreen.tsx";
 import { DeckManagementScreen } from "./DeckManagementScreen.tsx";
@@ -22,7 +28,7 @@ interface Props {
   client: MatchClient;
 }
 
-type SubMode = "home" | "draft" | "deck" | "abandon-confirm" | "collection";
+type SubMode = "home" | "draft" | "deck" | "abandon-confirm" | "collection" | "stats";
 
 /**
  * Hub for the World Cup career mode. Routes between:
@@ -70,11 +76,14 @@ export function CareerHomeScreen({ onBack, client }: Props) {
       <h1>🏆 World Cup</h1>
 
       {!run && <NoRunView onStart={startRunAndDraft} stats={save} />}
+      {subMode === "stats" && (
+        <CareerStatsModal save={save} onClose={() => setSubMode("home")} />
+      )}
 
       {run && run.stage === "won" && (
-        <WonView
+        <NewspaperRunSummary
           run={run}
-          onClaim={() => {
+          onClose={() => {
             // Trophy pack was already opened by WCMatchOverFlow; just
             // clean up the run state and route back to the MAIN home
             // menu (not the career hub's "Start new run" state, which
@@ -122,14 +131,22 @@ export function CareerHomeScreen({ onBack, client }: Props) {
           📦 {Object.values(save.permanentCollection.cards).reduce((a, b) => a + b, 0)} cards in stash ·{" "}
           {save.permanentCollection.runsPlayed} runs played
         </p>
-        {Object.keys(save.permanentCollection.cards).length > 0 && (
+        <div className="career-stats-footer-actions">
+          {Object.keys(save.permanentCollection.cards).length > 0 && (
+            <button
+              className="btn ghost small"
+              onClick={() => setSubMode("collection")}
+            >
+              View stash →
+            </button>
+          )}
           <button
             className="btn ghost small"
-            onClick={() => setSubMode("collection")}
+            onClick={() => setSubMode("stats")}
           >
-            View stash →
+            📊 Career stats
           </button>
-        )}
+        </div>
       </div>
 
       {subMode === "collection" && (
@@ -141,9 +158,12 @@ export function CareerHomeScreen({ onBack, client }: Props) {
     </main>
   );
 
-  function startRunAndDraft(): void {
-    const ladder = generateLadder();
-    startNewRun("T3", ladder);
+  function startRunAndDraft(
+    tournament: TournamentFormat,
+    difficulty: DifficultyMode,
+  ): void {
+    const ladder = generateLadder(tournament, difficulty);
+    startNewRun("T3", tournament, difficulty, ladder);
     setSubMode("draft");
   }
 
@@ -182,25 +202,82 @@ export function CareerHomeScreen({ onBack, client }: Props) {
 
 // ─────────────────────────── Sub-views ───────────────────────────
 
-function NoRunView({ onStart, stats }: { onStart: () => void; stats: CareerSave }) {
+function NoRunView({
+  onStart,
+  stats,
+}: {
+  onStart: (tournament: TournamentFormat, difficulty: DifficultyMode) => void;
+  stats: CareerSave;
+}) {
+  const [tournament, setTournament] = useState<TournamentFormat>("world-cup");
+  const [difficulty, setDifficulty] = useState<DifficultyMode>("realistic");
+
   return (
     <div className="career-block">
       <p className="dim-text">
-        Draft a deck, beat 5 group-stage nations, advance through the
-        semi-final and final. Every match win earns a pack — pick 2 of 6
-        cards to swap into your deck. Win the trophy → permanent pack.
+        Pick a tournament + difficulty, then draft a deck. Every match
+        win earns a 6-card pack (pick 2 to add to your run inventory).
+        Win the trophy to add cards to your permanent collection.
       </p>
-      <p className="dim-text" style={{ marginTop: "0.5rem" }}>
-        Format: <strong>T3 (3 overs)</strong>. ~30 minutes per run.
-      </p>
-      <button className="btn primary big" onClick={onStart} style={{ marginTop: "1.5rem" }}>
-        🎲 Start new World Cup run
+
+      <fieldset className="career-picker">
+        <legend>Tournament</legend>
+        {(Object.keys(TOURNAMENT_FORMATS) as TournamentFormat[]).map((t) => {
+          const cfg = TOURNAMENT_FORMATS[t];
+          const wins = stats.stats.trophiesByTournament[t];
+          return (
+            <label key={t} className={tournament === t ? "selected" : ""}>
+              <input
+                type="radio"
+                name="tournament"
+                value={t}
+                checked={tournament === t}
+                onChange={() => setTournament(t)}
+              />
+              <strong>{cfg.label}</strong>
+              <small className="dim-text">{cfg.blurb}</small>
+              {wins > 0 && (
+                <span className="career-picker-badge">
+                  {wins} won
+                </span>
+              )}
+            </label>
+          );
+        })}
+      </fieldset>
+
+      <fieldset className="career-picker">
+        <legend>Difficulty</legend>
+        {(["casual", "realistic", "legend"] as DifficultyMode[]).map((d) => {
+          const wins = stats.stats.trophiesByDifficulty[d];
+          return (
+            <label key={d} className={difficulty === d ? "selected" : ""}>
+              <input
+                type="radio"
+                name="difficulty"
+                value={d}
+                checked={difficulty === d}
+                onChange={() => setDifficulty(d)}
+              />
+              <strong>{DIFFICULTY_LABEL[d]}</strong>
+              <small className="dim-text">{DIFFICULTY_BLURB[d]}</small>
+              {wins > 0 && (
+                <span className="career-picker-badge">
+                  {wins} won
+                </span>
+              )}
+            </label>
+          );
+        })}
+      </fieldset>
+
+      <button
+        className="btn primary big"
+        onClick={() => onStart(tournament, difficulty)}
+        style={{ marginTop: "1rem", width: "100%" }}
+      >
+        🎲 Start {TOURNAMENT_FORMATS[tournament].label.replace(/^[^\s]+ /, "")} ({DIFFICULTY_LABEL[difficulty]})
       </button>
-      {stats.permanentCollection.trophies > 0 && (
-        <p className="dim-text" style={{ marginTop: "1rem", fontSize: "0.78rem" }}>
-          You've won {stats.permanentCollection.trophies} trophy{stats.permanentCollection.trophies === 1 ? "" : "s"} previously.
-        </p>
-      )}
     </div>
   );
 }
@@ -251,24 +328,6 @@ function ActiveRunView({
       >
         Abandon run
       </button>
-    </div>
-  );
-}
-
-function WonView({ run, onClaim }: { run: WCRun; onClaim: () => void }) {
-  return (
-    <div className="career-block career-won">
-      <div className="career-trophy-emoji">🏆</div>
-      <h2>World Cup Champion!</h2>
-      <p>
-        Beat <strong>{run.ladder[run.ladder.length - 1]?.nation ?? "the final"}</strong> in
-        the final. Your Trophy pack cards have been added to your permanent
-        collection.
-      </p>
-      <button className="btn primary big" onClick={onClaim}>
-        Finish run → home
-      </button>
-      <RunRecapList history={run.history} />
     </div>
   );
 }
@@ -335,10 +394,12 @@ function Ladder({
       {ladder.map((opp, i) => {
         const played = i < history.length;
         const result = played ? history[i]!.result : null;
+        // Knockout opponents stay hidden as "???" until reached so the
+        // user doesn't see who's waiting at semi/final.
         const isUnreachedKnockout =
           !played &&
           i > history.length &&
-          (opp.stageLabel === "semi" || opp.stageLabel === "final");
+          opp.stageLabel !== "group";
         const cls = isUnreachedKnockout
           ? "hidden"
           : result === "win"
@@ -350,14 +411,16 @@ function Ladder({
                 : i === history.length
                   ? "next"
                   : "pending";
+        // Per v5: difficulty (Gully / Domestic / International) is hidden
+        // from the in-run ladder. The user picked their difficulty mode
+        // at run-start; surfacing per-match tier would just spoil the
+        // pressure curve. Stays in the data for the bot config, just
+        // not shown.
         return (
           <li key={i} className={`career-ladder-item ${cls}`}>
             <span className="career-ladder-stage">{stageBadge(opp.stageLabel)}</span>
             <span className="career-ladder-nation">
               {isUnreachedKnockout ? "???" : opp.nation}
-            </span>
-            <span className="career-ladder-diff dim-text">
-              {isUnreachedKnockout ? "—" : opp.difficulty}
             </span>
             {result && <span className={`career-ladder-result ${result}`}>{result === "win" ? "WON" : result === "loss" ? "LOST" : "TIE"}</span>}
             {!result && i === history.length && <span className="career-ladder-result next">NEXT</span>}
@@ -406,6 +469,7 @@ function stageLabel(stage: WCRun["stage"]): string {
   switch (stage) {
     case "drafting": return "Drafting";
     case "group": return "Group Stage";
+    case "qf": return "Quarter-Final";
     case "semi": return "Semi-Final";
     case "final": return "Final";
     case "won": return "Champion!";
@@ -414,8 +478,13 @@ function stageLabel(stage: WCRun["stage"]): string {
   }
 }
 
-function stageBadge(label: "group" | "semi" | "final"): string {
-  return label === "group" ? "G" : label === "semi" ? "SF" : "F";
+function stageBadge(label: import("../lib/career.ts").StageLabel): string {
+  switch (label) {
+    case "group": return "G";
+    case "qf": return "QF";
+    case "semi": return "SF";
+    case "final": return "F";
+  }
 }
 
 /** Read-only modal showing the player's permanent collection. Cards are
@@ -515,4 +584,89 @@ function resolvePermCard(id: string): AnyCard | null {
     ...CARDS.situations,
   ];
   return all.find((c) => c.id === id) ?? null;
+}
+
+/** Lifetime career stats modal — totals, win rate, per-tournament +
+ *  per-difficulty trophy counts, longest streak. */
+function CareerStatsModal({
+  save,
+  onClose,
+}: {
+  save: CareerSave;
+  onClose: () => void;
+}) {
+  const s = save.stats;
+  const totalTrophies = save.permanentCollection.trophies;
+  const winRate =
+    s.matchesPlayed > 0
+      ? `${Math.round((s.matchesWon / s.matchesPlayed) * 100)}%`
+      : "—";
+
+  const tournamentRows = (Object.keys(TOURNAMENT_FORMATS) as TournamentFormat[]).map(
+    (t) => ({
+      label: TOURNAMENT_FORMATS[t].label,
+      wins: s.trophiesByTournament[t],
+    }),
+  );
+  const difficultyRows = (["legend", "realistic", "casual"] as DifficultyMode[]).map(
+    (d) => ({
+      label: DIFFICULTY_LABEL[d],
+      wins: s.trophiesByDifficulty[d],
+    }),
+  );
+
+  return (
+    <div className="modal-backdrop" onClick={onClose}>
+      <div className="modal-content collection-modal" onClick={(e) => e.stopPropagation()}>
+        <header className="collection-modal-header">
+          <h2>📊 Career stats</h2>
+          <button className="btn ghost small" onClick={onClose} aria-label="Close">
+            ✕
+          </button>
+        </header>
+
+        <div className="career-stats-grid">
+          <StatCard label="Trophies" value={totalTrophies} />
+          <StatCard label="Matches played" value={s.matchesPlayed} />
+          <StatCard label="Win rate" value={winRate} />
+          <StatCard label="Longest win streak" value={s.longestWinStreak} />
+          <StatCard label="Current streak" value={s.currentWinStreak} />
+          <StatCard label="Runs abandoned" value={s.runsAbandoned} />
+        </div>
+
+        <h3 className="collection-section-head">Trophies by tournament</h3>
+        <ul className="collection-list">
+          {tournamentRows.map((row) => (
+            <li key={row.label} className="collection-row">
+              <span className="collection-name">{row.label}</span>
+              <span className="collection-count">{row.wins}</span>
+            </li>
+          ))}
+        </ul>
+
+        <h3 className="collection-section-head">Trophies by difficulty</h3>
+        <ul className="collection-list">
+          {difficultyRows.map((row) => (
+            <li key={row.label} className="collection-row">
+              <span className="collection-name">{row.label}</span>
+              <span className="collection-count">{row.wins}</span>
+            </li>
+          ))}
+        </ul>
+
+        <div className="form-actions" style={{ marginTop: "1rem" }}>
+          <button className="btn primary" onClick={onClose}>Close</button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function StatCard({ label, value }: { label: string; value: string | number }) {
+  return (
+    <div className="career-stat-card">
+      <div className="career-stat-value">{value}</div>
+      <div className="career-stat-label">{label}</div>
+    </div>
+  );
 }
