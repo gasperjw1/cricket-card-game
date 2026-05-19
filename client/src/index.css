@@ -2744,9 +2744,10 @@ h1 {
 .swap-grid {
   width: 100%;
 }
-/* SwapPicker on narrow phones: tighten padding and hide the zone-grid +
-   flavour text inside each card so the 3-column layout (You / vs / Opp)
-   actually fits without overflowing or requiring horizontal scroll. */
+/* SwapPicker on narrow phones: tighten outer padding, shrink card padding,
+   and scale the zone grid down (cell min-width 28→22 px, row-label 20→16 px)
+   so the full card — zone grid + flavour text — fits in the 2-col You/Opp
+   layout without overflow or hiding any content. */
 @media (max-width: 539px) {
   .reveal-inner.swap-picker {
     padding: 1rem 0.75rem;
@@ -2754,11 +2755,20 @@ h1 {
   .swap-table {
     padding: 0.75rem;
   }
-  .swap-table .card-hand-body {
-    display: none;
-  }
   .swap-table .card {
-    padding: 0.5rem 0.6rem;
+    padding: 0.5rem;
+  }
+  .swap-table .zone-cell {
+    min-width: 22px;
+    height: 22px;
+    font-size: 0.68rem;
+  }
+  .swap-table .zone-grid-row-label-spacer,
+  .swap-table .zone-grid-row-label {
+    width: 16px;
+  }
+  .swap-table .zone-grid-col-label {
+    min-width: 22px;
   }
 }
 
