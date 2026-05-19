@@ -34,6 +34,8 @@ export interface StoryState {
   isRunOut: boolean;
   /** True when a lucky escape turned a dismissal into byes/bat-runs. */
   hasLuckyEscape: boolean;
+  /** True when the Power Surge card upgraded a boundary (4→6 or similar). */
+  hasPowerSurge: boolean;
 }
 
 /** Per-stage duration in milliseconds at "normal" speed.
@@ -80,6 +82,10 @@ export function useStorySequence(result: BallResult): StoryState {
   /** Lucky escape: a dismissal was converted into byes/bat-runs by the 30% escape. */
   const hasLuckyEscape = result.resolutionSteps.some(
     (s) => s.kind === "lucky-escape" && s.applied,
+  );
+  /** Power Surge: a batting situation card upgraded a boundary (e.g. 4→6). */
+  const hasPowerSurge = result.resolutionSteps.some(
+    (s) => s.kind === "power-surge" && s.applied,
   );
 
   // Build the plan. Most balls: pitch → bowler → batter → result.
@@ -130,6 +136,7 @@ export function useStorySequence(result: BallResult): StoryState {
     isWicket,
     isRunOut,
     hasLuckyEscape,
+    hasPowerSurge,
   };
 }
 

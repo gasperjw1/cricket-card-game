@@ -72,8 +72,8 @@ function StagePanel({
       const bowlerCard = result.bowlingSelection.mandatoryCard;
       const archetype =
         bowlerCard.kind === "bowler" ? bowlerArchetype(bowlerCard) : "pace-rh";
-      // If a wide or no-ball was called, overlay the umpire signal
-      // image alongside the bowler emoji.
+      // If a wide or no-ball was called, show the umpire signal instead of
+      // the bowler (signal is the dominant visual moment for that delivery).
       const signalSrc = story.hasNoBall
         ? SIGNAL_IMAGES["no-ball"]
         : story.hasWide
@@ -110,7 +110,7 @@ function StagePanel({
         <div className="story-batter">
           <StoryImage
             src={batterImageSrc(result, story)}
-            fallbackEmoji={story.isWicket ? "💥" : story.isRunOut ? "🏃" : "🏏"}
+            fallbackEmoji={batterFallbackEmoji(result, story)}
             alt={batterCaption(result, story)}
           />
           <div className="story-caption">{batterCaption(result, story)}</div>
@@ -141,9 +141,11 @@ function StagePanel({
     case "drs":
       return (
         <div className="story-drs">
-          <span className="story-emoji" role="img" aria-label="DRS review">
-            🤔
-          </span>
+          <StoryImage
+            src={SIGNAL_IMAGES.drs}
+            fallbackEmoji="🤔"
+            alt="Batter raises the T — DRS review"
+          />
           <div className="story-caption">
             DRS Review — batter signals a T → 3rd umpire → <strong>Not out!</strong>
           </div>
@@ -153,9 +155,11 @@ function StagePanel({
     case "biryani":
       return (
         <div className="story-biryani">
-          <span className="story-emoji" role="img" aria-label="Biryani umpire">
-            🍛
-          </span>
+          <StoryImage
+            src={SIGNAL_IMAGES.biryani}
+            fallbackEmoji="🍛"
+            alt="Third umpire distracted by biryani — call cancelled"
+          />
           <div className="story-caption">
             Third umpire distracted by biryani — call cancelled, dot ball
           </div>
@@ -164,64 +168,73 @@ function StagePanel({
   }
 }
 
-/** Pick the right image for the batter stage. For wickets we show the
- *  dismissal image; for runs we show the shot image. */
+/** Pick the right image for the batter stage.
+ *  Priority order: lucky escape → wicket dismissal → shot image → defend dot. */
 function batterImageSrc(result: BallResult, story: StoryState): string {
   const o = result.finalOutcome;
-  // Run-out: the ball was hit (show shot image); the dismissal came after
-  // while running — we'll use the run-out dismissal image at the result stage.
-  if (story.isRunOut && o.type === "runs") {
-    return SHOT_IMAGES[o.shotCategory];
-  }
-  if (story.isWicket && o.type === "wicket") {
-    return DISMISSAL_IMAGES[o.dismissalCategory];
-  }
-  if (o.type === "runs") {
-    return SHOT_IMAGES[o.shotCategory];
-  }
-  return SHOT_IMAGES.defend;  // dot ball → defensive
+  // Lucky escape: nearly dismissed — show the near-miss image rather than
+  // the shot, since the dramatic moment is the bail wobble / spilled catch.
+  if (story.hasLuckyEscape) return SIGNAL_IMAGES["lucky-escape"];
+  // Run-out: the ball was hit normally (show shot); the wicket fell while
+  // running — that's the result stage's job (runout dismissal image).
+  if (story.isRunOut && o.type === "runs") return SHOT_IMAGES[o.shotCategory];
+  // Standard wicket: show the dismissal type at contact.
+  if (story.isWicket && o.type === "wicket") return DISMISSAL_IMAGES[o.dismissalCategory];
+  // Runs (including power-surge upgrades): show the shot played.
+  if (o.type === "runs") return SHOT_IMAGES[o.shotCategory];
+  // Dot ball — defender crouching, shoulder arms, no contact.
+  return SHOT_IMAGES.defend;
 }
 
-/** Result-stage image: for boundaries show the umpire signal (six/four
- *  via wide-arm signals); for wickets show "out" finger. Smaller
- *  outcomes (1, 2) and dots fall back to emoji. */
+function batterFallbackEmoji(result: BallResult, story: StoryState): string {
+  if (story.hasLuckyEscape) return "🍀";
+  if (story.isWicket) return "💥";
+  if (story.isRunOut) return "🏃";
+  return "🏏";
+}
+
+/** Result-stage image: umpire signals for boundaries / wickets; lucky
+ *  escape aftermath; run-out; Power Surge six. Falls back to emoji for
+ *  1-run and 2-run outcomes (no umpire signal for those). */
 function resultImageSrc(result: BallResult, story: StoryState): string {
   const o = result.finalOutcome;
+  // Run-out: scramble + direct hit — the dismissal image covers this.
   if (story.isRunOut) return DISMISSAL_IMAGES["runout"];
+  // Standard wicket — umpire raises the finger.
   if (story.isWicket && o.type === "wicket") return SIGNAL_IMAGES.out;
+  // Lucky escape — the aftermath: bails on, catch grassed, finger stays down.
+  if (story.hasLuckyEscape) return SIGNAL_IMAGES["lucky-escape"];
+  // Boundaries — umpire signals (Power Surge may have pushed 4→6 here).
   if (o.type === "runs" && o.value === 6) return SIGNAL_IMAGES.six;
-  // For 1, 2, 4, dot — no signal image yet. Fall through to emoji.
-  return SHOT_IMAGES.defend;  // unused when emoji fallback fires; placeholder src
+  if (o.type === "runs" && o.value === 4) return SIGNAL_IMAGES.four;
+  // 1-run, 2-run, dot — no standard umpire signal; emoji fallback fires.
+  return SHOT_IMAGES.defend;
 }
 
 function batterCaption(result: BallResult, story: StoryState): string {
   const o = result.finalOutcome;
-  if (story.isRunOut && o.type === "runs") {
-    return `${o.shot} — running!`;
-  }
-  if (story.isWicket && o.type === "wicket") {
-    return `Out — ${o.mode}`;
-  }
-  if (o.type === "runs") {
-    return o.shot;
-  }
+  if (story.hasLuckyEscape) return "Near miss!";
+  if (story.isRunOut && o.type === "runs") return `${o.shot} — running!`;
+  if (story.isWicket && o.type === "wicket") return `Out — ${o.mode}`;
+  if (o.type === "runs") return o.shot;
   return "Beaten — dot ball";
 }
 
 function resultEmoji(result: BallResult, story: StoryState): string {
   const o = result.finalOutcome;
-  // Run-out: always the running figure, regardless of runs scored.
   if (story.isRunOut) return "🏃";
+  if (story.hasLuckyEscape) return "🍀";
   if (story.isWicket && o.type === "wicket") {
     switch (o.dismissalCategory) {
-      case "bowled": return "🎯";
-      case "lbw": return "🦵";
+      case "bowled":  return "🎯";
+      case "lbw":     return "🦵";
       case "stumped": return "🧤";
-      case "runout": return "🏃";
-      default: return "🤲";  // catches
+      case "runout":  return "🏃";
+      default:        return "🤲";  // catches
     }
   }
   if (o.type === "runs") {
+    if (story.hasPowerSurge && o.value === 6) return "⚡6️⃣";
     switch (o.value) {
       case 6: return "6️⃣";
       case 4: return "4️⃣";
@@ -230,8 +243,6 @@ function resultEmoji(result: BallResult, story: StoryState): string {
       default: return "•";
     }
   }
-  // Lucky escape with byes/dot — use the escape emoji
-  if (story.hasLuckyEscape) return "🍀";
   return "•";
 }
 
@@ -242,9 +253,12 @@ function resultCaption(result: BallResult, story: StoryState): string {
     return `RUN OUT — ${o.value} run${o.value === 1 ? "" : "s"}`;
   }
   if (story.isWicket && o.type === "wicket") {
-    return `WICKET — ${o.dismissalCategory.replace("-", " ")}`;
+    return `WICKET — ${o.dismissalCategory.replace(/-/g, " ")}`;
   }
-  if (o.type === "runs") return `${o.value} run${o.value === 1 ? "" : "s"}`;
+  if (o.type === "runs") {
+    const surge = story.hasPowerSurge ? " ⚡ Power Surge!" : "";
+    return `${o.value} run${o.value === 1 ? "" : "s"}${surge}`;
+  }
   // Lucky escape with byes — show the escape label from the resolution trail.
   if (story.hasLuckyEscape) {
     const escapeStep = result.resolutionSteps.find(

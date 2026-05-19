@@ -72,8 +72,15 @@ export const DISMISSAL_IMAGES: Record<DismissalCategory, string> = {
 export const SIGNAL_IMAGES = {
   "no-ball": "/story/signals/no-ball.webp",
   wide: "/story/signals/wide.webp",
+  four: "/story/signals/four.webp",
   six: "/story/signals/six.webp",
   out: "/story/signals/out.webp",
+  /** TV review — the T-signal raised by the batter calling for DRS. */
+  drs: "/story/signals/drs.webp",
+  /** Biryani distraction — umpire waving off the call, meal in hand. */
+  biryani: "/story/signals/biryani.webp",
+  /** Lucky escape — bails wobble or catch spilled; batter survives. */
+  "lucky-escape": "/story/signals/lucky-escape.webp",
 } as const;
 
 /** Derive a bowler archetype from a BowlerCard. The adjective is the
