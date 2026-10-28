@@ -1,0 +1,961 @@
+personId,name,cricinfoId,fullName,country,dob,battingStyle,bowlingStyle,playingRole
+6ef13460,A Balbirnie,303423,Andrew Balbirnie,Ireland,1990-12-28,Right hand Bat,Right arm Offbreak,Batter
+64fb6b15,A Bohara,1058508,Abinash Bohara,Nepal,1997-07-30,Right hand Bat,Right arm Medium,Bowler
+e9e37173,A Busing-Volschenk,1234278,Alexander Busing-Volschenk,Namibia,2005-06-20,Right-hand bat,Right-arm medium,
+5b16a806,A Dananjaya,574178,Mahamarakkala Kurukulasooriya Patabendige Akila Dananjaya Perera,Sri Lanka,1993-10-04,Left hand Bat,"Right arm Offbreak, Legbreak",Allrounder
+803dbf1d,A Dutt,1195672,Aryan Dutt,Netherlands,2003-05-12,Right hand Bat,Right arm Offbreak,Bowler
+ddc0828d,A Flintoff,12856,Andrew Flintoff,England,1977-12-06,Right hand Bat,Right arm Fast medium,Allrounder
+a28a7fba,A Johnson,1323683,Aaron Johnson,Canada,,Right hand Bat,Right arm Offbreak,
+7cefb2a2,A Mehmood,497512,Adil Mehmood,Hong Kong,1988-12-31,Right hand Bat,Right arm Medium,Bowler
+6b19d823,A Mishra,31107,Amit Mishra,India,1982-11-24,Right hand Bat,Legbreak,Bowler
+4d1ec7eb,A Nao,524247,Alei Nao,Papua New Guinea,1993-12-09,Right hand Bat,Right arm Medium,Bowler
+3abe1ef6,A Ndlovu,596456,Ainsley Ndlovu,Zimbabwe,1996-01-26,Right hand Bat,Slow Left arm Orthodox,Bowler
+96fd40ae,A Nehra,31820,Ashish Nehra,India,1979-04-29,Right hand Bat,Left arm Medium fast,Bowler
+2503e881,A Nel,46569,Andre Nel,South Africa,1977-07-15,Right hand Bat,Right arm Fast medium,Bowler
+acdc62f5,A Nortje,481979,Anrich Arno Nortje,South Africa,1993-11-16,Right hand Bat,Right arm Fast,Bowler
+06cad4f0,A Sharafu,1161038,Alishan Sharafu,United Arab Emirates,2003-01-10,Right hand Bat,Right arm Medium,Opening Batter
+5661ef90,A Sharma,1294141,Aryansh Sharma,United Arab Emirates,2004-12-03,Right hand Bat,,Wicketkeeper Batter
+bd77eb62,A Symonds,7702,Andrew Symonds,Australia,1975-06-09,Right hand Bat,"Right arm Medium, Right arm Offbreak",Allrounder
+72e60730,A Vala,25056,Asadollah Vala,Papua New Guinea,1987-08-05,Left hand Bat,Right arm Offbreak,Batter
+14f96089,A Zampa,379504,Adam Zampa,Australia,1992-03-31,Right hand Bat,Legbreak Googly,Bowler
+7081491e,AA Obanda,291844,Alex Auma Obanda,Kenya,1987-12-25,Right hand Bat,Right arm Medium fast,Opening Batter
+7ecb9a14,Aamir Kaleem,455463,Syed Aamir Kaleem,Oman,1981-11-20,Left hand Bat,Slow Left arm Orthodox,Middle order Batter
+cd4d7695,Aarif Sheikh,701217,Aarif Sheikh,Nepal,1997-10-04,Right hand Bat,Right arm Medium,Top order Batter
+b66201dd,Aarnav Patel,1425319,Aarnav Patel,Kenya,2006-01-05,Right-hand bat,Legbreak,
+17aa4f1d,Aaron Jones,957645,Aaron Jones,United States of America,1994-10-19,Right hand Bat,Legbreak Googly,Top order Batter
+dcbea954,Aasif Sheikh,1058514,Aasif Sheikh,Nepal,2001-06-22,Right hand Bat,,Top order Batter
+d2d15439,Aayan Afzal Khan,1241265,Aayan Afzal Khan,United Arab Emirates,2005-11-15,Right hand Bat,Slow Left arm Orthodox,Bowling Allrounder
+fa463154,AB Agarkar,26184,Ajit Bhalchandra Agarkar,India,1977-12-04,Right hand Bat,Right arm Fast,Bowler
+c4487b84,AB de Villiers,44936,Abraham Benjamin de Villiers,South Africa,1984-02-17,Right hand Bat,Right arm Medium,Wicketkeeper Batter
+66b30f71,AB Dinda,227712,Ashok Bhimchandra Dinda,India,1984-03-25,Right hand Bat,Right arm Medium fast,Bowler
+2cec2a92,Abbas Afridi,1158538,Muhammad Abbas Afridi,Pakistan,2001-04-05,Right hand Bat,Right arm Medium fast,Bowler
+390ff45b,Abdul Razzaq,39836,Abdul Razzaq,Pakistan,1979-12-02,Right hand Bat,Right arm Fast medium,Allrounder
+888e32bf,Abdur Razzak,56283,Abdur Razzak,Bangladesh,1982-06-15,Left hand Bat,Slow Left arm Orthodox,Bowler
+d094e7d1,Abdur Rehman,39091,Abdur Rehman,Pakistan,1980-03-01,Left hand Bat,Slow Left arm Orthodox,Bowler
+f29185a1,Abhishek Sharma,1070183,Abhishek Sharma,India,2000-09-04,Left hand Bat,Slow Left arm Orthodox,Allrounder
+abb7c76c,Abrar Ahmed,734459,Abrar Ahmed,Pakistan,1998-10-16,Right hand Bat,Legbreak Googly,Bowler
+31803fac,Abu Hider,550137,Abu Hider Rony,Bangladesh,1996-02-14,Right hand Bat,Left arm Fast medium,Bowler
+5c756df3,Abul Hasan,373439,Mohammed Abul Hasan,Bangladesh,1992-08-05,Left hand Bat,Right arm Medium fast,Bowler
+a2421394,AC Agar,505120,Ashton Charles Agar,Australia,1993-10-14,Left hand Bat,Slow Left arm Orthodox,Bowler
+d8e79af0,AC Botha,44102,Andre Cornelius Botha,Ireland,1975-09-12,Left hand Bat,Right arm Medium,Allrounder
+e9a870ed,AC Evans,399259,Alasdair Campbell Evans,Scotland,1989-01-12,Right hand Bat,Right arm Medium fast,Bowler
+2b6e6dec,AC Gilchrist,5390,Adam Craig Gilchrist,Australia,1971-11-14,Left hand Bat,Right arm Offbreak,Wicketkeeper Batter
+92aeac25,AD Hales,249866,Alexander Daniel Hales,England,1989-01-03,Right hand Bat,Right arm Medium,Opening Batter
+3edb58fc,AD Mascarenhas,16932,Adrian Dimitri Mascarenhas,England,1977-10-30,Right hand Bat,Right arm Fast medium,Allrounder
+896d78ad,AD Mathews,49764,Angelo Davis Mathews,Sri Lanka,1987-06-02,Right hand Bat,Right arm Medium,Allrounder
+b98cdbf0,AD Poynter,210279,Andrew David Poynter,Ireland,1987-04-25,Right hand Bat,Right arm Offbreak,Batter
+bbd41817,AD Russell,276298,Andre Dwayne Russell,West Indies,1988-04-29,Right hand Bat,Right arm Fast,Allrounder
+d376bbaa,Adnan Ilyas,26038,Adnan Ilyas,Oman,1984-12-30,Right hand Bat,Right arm Medium,
+1bae756b,ADS Fletcher,51862,Andre David Stephon Fletcher,West Indies,1987-11-28,Right hand Bat,"Right arm Medium fast, Legbreak",Top order Batter
+350bb1b1,AF Milne,450860,Adam Fraser Milne,New Zealand,1992-04-13,Right hand Bat,Right arm Fast,Bowler
+37138918,Afif Hossain,935995,Afif Hossain Dhrubo,Bangladesh,1999-09-22,Left hand Bat,Right arm Offbreak,Allrounder
+53bc7b84,Aftab Ahmed,56266,Aftab Ahmed Chowdhury,Bangladesh,1985-11-10,Right hand Bat,Right arm Medium,Opening Batter
+9f0270e0,AG Cremer,55346,Alexander Graeme Cremer,Zimbabwe,1986-09-19,Right hand Bat,Legbreak Googly,Bowler
+89c16049,Agha Salman,623977,Agha Salman,Pakistan,1993-11-23,Right hand Bat,Right arm Offbreak,Allrounder
+d1305df0,AGS Gous,485379,Andries Gustav Stephanus Gous,South Africa,1993-11-24,Right hand Bat,,
+79b4839e,Ahmed Raza,245490,Ahmed Raza,United Arab Emirates,1988-10-10,Right hand Bat,Slow Left arm Orthodox,Bowler
+f8fd6e3f,Ahmed Shehzad,259410,Ahmed Shehzad,Pakistan,1991-11-23,Right hand Bat,Legbreak,Opening Batter
+96503059,Ahsan Malik,518097,Malik Ahsan Ahmad Jamil,Netherlands,1989-08-29,Right hand Bat,Right arm Medium fast,Bowler
+f6c2659d,Aizaz Khan,401540,Aizaz Mohammad Khan,Hong Kong,1993-03-21,Right hand Bat,Right arm Medium fast,Allrounder
+b8d490fd,AJ Finch,5334,Aaron James Finch,Australia,1986-11-17,Right hand Bat,Slow Left arm Orthodox,Top order Batter
+4d7f517e,AJ Hosein,530812,Akeal Jerome Hosein,West Indies,1993-04-25,Left hand Bat,Slow Left arm Orthodox,Bowler
+19c56e6e,AJ Mosca,1323416,Anthony Joseph Mosca,Italy,1991-08-21,Right hand Bat,,
+48f177f5,AJ Redmond,38264,Aaron James Redmond,New Zealand,1979-09-23,Right hand Bat,Legbreak,Top order Batter
+6a26221c,AK Markram,600498,Aiden Kyle Markram,South Africa,1994-10-04,Right hand Bat,Right arm Offbreak,Opening Batter
+5b1d6583,AK Sah,1058510,Anil Kumar Sah,Nepal,1998-11-17,Right hand Bat,Right arm Offbreak,Batting Allrounder
+9d0344f3,Akif Raja,681067,Raja Akifullah Khan,United Arab Emirates,1992-11-24,Left hand Bat,Right arm Medium fast,Bowler
+3f5f39cd,Al-Amin Hossain,511532,Al-Amin Hossain,Bangladesh,1990-01-01,Right hand Bat,Right arm Medium fast,Bowler
+cae17490,Ali Hasan,1323418,Ali Hasan,Italy,2002-10-29,Left hand Bat,Left arm Medium fast,
+b0eaaac6,Ali Khan,927119,Muhammad Ahsan Ali Khan,United States of America,1990-12-13,Right hand Bat,Right arm Fast medium,Bowler
+54279e23,Alok Kapali,56251,Alok Kapali,Bangladesh,1984-01-01,Right hand Bat,Legbreak,Allrounder
+80ec5dfd,AM Blignaut,55259,Arnoldus Mauritius Blignaut,Zimbabwe,1978-08-01,Left hand Bat,Right arm Medium fast,Allrounder
+26534b48,AM Guruge,49013,Asanka Manjula Guruge,United Arab Emirates,1981-02-14,Right hand Bat,Left arm Fast medium,Bowler
+7f8ecc51,AM Phangiso,46942,Aaron Mpho Phangiso,South Africa,1984-01-21,Right hand Bat,Slow Left arm Orthodox,Bowler
+29e95537,AM Rahane,277916,Ajinkya Madhukar Rahane,India,1988-06-06,Right hand Bat,Right arm Medium,Top order Batter
+3748955d,Amir Ali,387046,Syed Amir Ali,Oman,1978-11-24,Right hand Bat,Right arm Offbreak,Batter
+e4271302,Amjad Ali,39745,Amjad Ali,United Arab Emirates,1979-09-25,Left hand Bat,Legbreak,Batter
+18eaf2fa,Amjad Javed,25613,Amjad Javed,United Arab Emirates,1980-07-05,Right hand Bat,Right arm Medium,Allrounder
+dc36a6a5,AN Kervezee,214695,Alexei Nicolaas Kervezee,Netherlands,1989-09-11,Right hand Bat,Right arm Medium,Opening Batter
+72b245dd,Anamul Haque,380354,Mohammad Anamul Haque Bijoy,Bangladesh,1992-12-16,Right hand Bat,,Wicketkeeper Batter
+9e76cdb3,Ansh Patel,1216149,Ansh Pradipkumar Patel,India,2002-02-19,Right hand Bat,Slow Left arm Orthodox,Bowler
+599ce28e,Ansh Tandon,1058990,Ansh Tandon,United Arab Emirates,2001-11-08,Left hand Bat,Right arm Medium fast,
+552b228c,Anshuman Rath,452472,Anshuman Rath,Hong Kong,1997-11-05,Left hand Bat,Slow Left arm Orthodox,Wicketkeeper Batter
+b3b39bed,Aqib Ilyas,940593,Aqib Ilyas Sulehri,Oman,1992-09-05,Right hand Bat,"Right arm Offbreak, Legbreak Googly",Top order Batter
+568e5a4a,AR Cusack,293983,Alex Richard Cusack,Ireland,1980-10-29,Right hand Bat,Right arm Medium fast,Bowler
+e957b38f,AR McBrine,417381,Andrew Robert McBrine,Ireland,1993-04-30,Left hand Bat,Right arm Offbreak,Bowler
+a7a6c1c2,AR Odedara,1457977,Ashish Rambhai Odedara,Oman,1991-10-24,Right-hand bat,Slow left-arm orthodox,
+2e171977,AR Patel,554691,Axar Rajeshbhai Patel,India,1994-01-20,Left hand Bat,Slow Left arm Orthodox,Bowling Allrounder
+30d8136b,AR Ramjani,1178061,Alpesh Ravilal Ramjani,Uganda,1994-09-24,Left hand Bat,Slow Left arm Orthodox,
+f27f89e8,AR White,24286,Andrew Roland White,Ireland,1980-07-03,Right hand Bat,Right arm Offbreak,Allrounder
+1f7adc8a,Arafat Sunny,56268,Arafat Sunny,Bangladesh,1986-09-29,Left hand Bat,Slow Left arm Orthodox,Bowler
+244048f6,Arshdeep Singh,1125976,Arshdeep Singh,India,1999-02-05,Left hand Bat,Left arm Medium fast,Bowler
+099135ad,Aryan Lakra,1058989,Aryan Lakra,United Arab Emirates,2001-12-13,Left hand Bat,Slow Left arm Orthodox,Bowler
+b0946605,AS Joseph,670031,Alzarri Shaheim Joseph,West Indies,1996-11-20,Right hand Bat,Right arm Fast,Bowler
+9d1f42c6,Ashfaq Ahmed,39940,Mohammad Ashfaq Ahmed,United Arab Emirates,1985-03-26,Right hand Bat,Right arm Offbreak,Top order Batter
+0a4736eb,Asif Ali,494230,Asif Ali,Pakistan,1991-10-01,Right hand Bat,Right arm Offbreak,Middle order Batter
+a319edf8,AT Nidamanuru,1129328,Anil Teja Nidamanuru,Netherlands,1994-08-22,Right hand Bat,Right arm Offbreak,Allrounder
+249d60c9,AU Rashid,244497,Adil Usman Rashid,England,1988-02-17,Right hand Bat,Legbreak,Bowler
+b858be20,AV Lalcheta,543449,Ajay Vrajlal Lalcheta,Oman,1983-10-22,Left hand Bat,Slow Left arm Orthodox,Batting Allrounder
+44d6a8b8,Ayan Khan,956319,Ayaan Khan,Oman,1992-08-30,Left hand Bat,Slow Left arm Orthodox,Allrounder
+ee8f1a6d,Azam Khan,1137262,Azam Khan,Pakistan,1998-08-10,Right hand Bat,,Wicketkeeper
+82342b13,B Bhandari,437005,Binod Bhandari,Nepal,1990-01-25,Right hand Bat,Right arm Bowler,Wicketkeeper
+e7e86505,B Evans,696127,Brad Evans,Zimbabwe,1997-03-24,Right hand Bat,Right arm Fast,Allrounder
+dabbd0ae,B Fernando,629080,Binura Fernando,Sri Lanka,1995-07-12,Right hand Bat,Left arm Medium fast,Bowler
+2e81a32d,B Kumar,326016,Bhuvneshwar Kumar Singh,India,1990-02-05,Right hand Bat,Right arm Medium,Bowler
+dd09ff8e,B Lee,6278,Brett Lee,Australia,1976-11-08,Right hand Bat,Right arm Fast,Bowler
+f33cfd25,B Masaba,420492,Brian Masaba,Uganda,1991-09-22,Right hand Bat,"Right arm Fast medium, Legbreak Googly",Bowler
+dadb9703,B Mavuta,806239,Brandon Anesu Mavuta,Zimbabwe,1997-03-04,Right hand Bat,Legbreak,Allrounder
+449f4e3c,B Muzarabani,827051,Blessing Muzarabani,Zimbabwe,1996-10-02,Right hand Bat,Right arm Fast medium,Bowler
+98d05440,B Regmi,25955,Basant Regmi,Nepal,1986-04-06,Left hand Bat,Slow Left arm Orthodox,Bowler
+c26cd57a,B Shikongo,1069820,Ben Shikongo,Namibia,2000-05-08,Right hand Bat,Right arm Medium fast,Bowler
+1a448be0,B White,928059,Benjamin Charlie White,Ireland,1998-08-29,Right hand Bat,Legbreak,Bowler
+d953ed6a,B Zuiderent,24990,Bastiaan Zuiderent,Netherlands,1977-03-03,Right hand Bat,Right arm Medium,Middle order Batter
+7fca84b7,BA King,670035,Brandon Alexander King,West Indies,1994-12-16,Right hand Bat,,Top order Batter
+e087956b,BA Stokes,311158,Benjamin Andrew Stokes,England,1991-06-04,Left hand Bat,Right arm Fast medium,Allrounder
+8a75e999,Babar Azam,348144,Mohammad Babar Azam,Pakistan,1994-10-15,Right hand Bat,Right arm Offbreak,Batter
+fbb657bb,Babar Hayat,539304,Babar Hayat,Hong Kong,1992-01-05,Right hand Bat,Right arm Medium,Batter
+ab21795b,BAD Manenti,1065115,Benjamin Andrew Davey Manenti,Australia,1997-03-23,Right hand Bat,Right arm Offbreak,Bowler
+adbf0400,Basil Hameed,1209110,Basil Hameed,United Arab Emirates,1992-04-15,Right hand Bat,Right arm Offbreak,Middle order Batter
+ea0cdc12,BAW Mendis,268739,Balapuwaduge Ajantha Winslow Mendis,Sri Lanka,1985-03-11,Right hand Bat,Right arm Offbreak,Bowler
+b8a55852,BB McCullum,37737,Brendon Barrie McCullum,New Zealand,1981-09-27,Right hand Bat,"Right arm Medium, Right arm Offbreak",Wicketkeeper Batter
+0dbe27b8,BD Glover,595419,Brandon Dale Glover,Netherlands,1997-04-03,Right hand Bat,Right arm Fast,Bowler
+b56dc5f7,BE Hendricks,379927,Beuran Eric Hendricks,South Africa,1990-06-08,Left hand Bat,Left arm Fast medium,Bowler
+24ad97e7,BF Calitz,1193295,Benjamin Fredeman Calitz,Canada,2002-07-06,Left-hand bat,Right-arm slow,
+fc4375ef,BFW de Leede,1036191,Bas de Leede,Netherlands,1999-11-15,Right hand Bat,Right arm Fast medium,Batting Allrounder
+dcdb87f2,Bilal Khan,937953,Bilal Khan,Oman,1988-04-10,Left hand Bat,Left arm Medium fast,Bowler
+7662cf7a,Bilawal Bhatti,343305,Bilawal Bhatti,Pakistan,1991-09-17,Right hand Bat,Right arm Medium fast,Bowler
+eaa36b2a,BJ Bennett,1071484,Brian John Bennett,Zimbabwe,2003-11-10,Right-hand bat,Right-arm offbreak,
+2ecd844a,BJ Currie,1000791,Bradley James Currie,Scotland,1998-11-08,Right hand Bat,Left arm Fast medium,
+549aefcd,BJ Diamanti,36950,Brendon John Diamanti,New Zealand,1981-04-30,Right hand Bat,Right arm Medium fast,Batter
+e1b9f3a9,BJ Dwarshuis,679567,Benjamin James Dwarshuis,Australia,1994-06-23,Left hand Bat,Left arm Fast medium,Bowler
+b0c772ee,BJ Haddin,5560,Bradley James Haddin,Australia,1977-10-23,Right hand Bat,,Wicketkeeper Batter
+b57f8a9a,BJ Hodge,5674,Bradley John Hodge,Australia,1974-12-29,Right hand Bat,Right arm Offbreak,Top order Batter
+3766056b,BJ McCarthy,348059,Barry John McCarthy,Ireland,1992-09-13,Right hand Bat,Right arm Fast medium,Bowler
+436c763a,BJ McMullen,949473,Brandon McMullen,Scotland,1999-10-18,Right hand Bat,Right arm Medium,Batting Allrounder
+5d1e7582,BKG Mendis,629074,Balapuwaduge Kusal Gimhan Mendis,Sri Lanka,1995-02-02,Right hand Bat,Legbreak,Wicketkeeper Batter
+e85d03d6,BM Scholtz,330223,Bernard Martinus Scholtz,Namibia,1990-10-03,Right hand Bat,Slow Left arm Orthodox,Bowler
+9868bc75,BMAJ Mendis,49700,Balapuwaduge Manukulasuriya Amith Jeevan Mendis,Sri Lanka,1983-01-15,Left hand Bat,Legbreak,Allrounder
+634a7b21,BN Cooper,470699,Benjamin Nicolas Cooper,Netherlands,1992-02-10,Left hand Bat,Right arm Medium,Middle order Batter
+53597be1,BRM Taylor,55814,Brendan Ross Murray Taylor,Zimbabwe,1986-02-06,Right hand Bat,Right arm Offbreak,Wicketkeeper Batter
+3f61a062,BTJ Wheal,807535,Bradley Thomas James Wheal,Scotland,1996-08-28,Right hand Bat,Right arm Fast medium,Bowler
+37137c8b,BV Vitori,235514,Brian Vitalis Vitori,Zimbabwe,1990-02-22,Left hand Bat,Left arm Fast medium,Bowler
+172dff15,C Bosch,594322,Corbin Bosch,South Africa,1994-09-10,Right hand Bat,Right arm Fast medium,Allrounder
+478a63e7,C Campher,595921,Curtis Campher,Ireland,1999-04-20,Right hand Bat,Right arm Medium fast,Allrounder
+fe366f34,C Connolly,1210488,Cooper Connolly,Australia,2003-08-22,Left hand Bat,Slow Left arm Orthodox,Top order Batter
+eaa76d3c,C Green,1076713,Cameron Donald Green,Australia,1999-06-03,Right hand Bat,Right arm Fast medium,Batting Allrounder
+fb3e0d39,C Karunaratne,623695,Chamika Karunaratne,Sri Lanka,1996-05-29,Right hand Bat,Right arm Medium fast,Bowling Allrounder
+1e960f2a,C Kieswetter,230855,Craig Kieswetter,England,1987-11-28,Right hand Bat,Right arm Offbreak,Opening Batter
+395695ce,C Kyewuta,1107651,Cosmas Kyewuta,Uganda,2001-12-28,Right hand Bat,Right arm Medium,Bowler
+3560a786,C Madande,1045883,Clive Madande,Zimbabwe,2000-04-12,Right hand Bat,,Wicketkeeper Batter
+af2c687b,C Munro,232359,Colin Munro,New Zealand,1987-03-11,Left hand Bat,Right arm Medium fast,Opening Batter
+f7b2cbe8,C Viljoen,387845,Christoffel Viljoen,Namibia,1987-09-28,Right hand Bat,Right arm Medium,Allrounder
+9920dd86,CA Soper,574287,Chad Aiwati Soper,Papua New Guinea,1991-11-19,Right hand Bat,Right arm Medium fast,Bowler
+bd0a4a7d,CA Young,364343,Craig Alexander Young,Ireland,1990-04-04,Right hand Bat,Right arm Fast medium,Bowler
+8012d0b8,CAK Rajitha,499594,Chandrasekara Arachchilage Kasun Rajitha,Sri Lanka,1993-06-01,Right hand Bat,Right arm Medium fast,Bowler
+49691d7a,CB Mpofu,55633,Christopher Bobby Mpofu,Zimbabwe,1985-11-27,Right hand Bat,Right arm Fast medium,Bowler
+469ccead,CB Sole,671823,Christopher Barclay Sole,Scotland,1994-02-27,Right hand Bat,Right arm Medium,Bowler
+4751caa3,CBRLS Kumara,784375,Chandradasa Brahammana Ralalage Lahiru Sudesh Kumara,Sri Lanka,1997-02-13,Left hand Bat,Right arm Fast,Bowler
+e6d298e8,CD de Lange,44851,Con de Wet de Lange,Scotland,1981-02-11,Right hand Bat,Slow Left arm Orthodox,Bowling Allrounder
+f5390243,CD McMillan,37712,Craig Douglas McMillan,New Zealand,1976-09-13,Right hand Bat,Right arm Medium,Batter
+7b5c6c0b,CD Wallace,414971,Craig Donald Wallace,Scotland,1990-06-27,Right hand Bat,,Wicketkeeper Batter
+d285acaf,CE McConchie,526021,Cole Edward McConchie,New Zealand,1992-01-12,Right hand Bat,Right arm Offbreak,Allrounder
+e16e7347,CG Williams,316102,Craig George Williams,Namibia,1984-02-25,Right hand Bat,Right arm Medium,Top order Batter
+db584dad,CH Gayle,51880,Christopher Henry Gayle,West Indies,1979-09-21,Left hand Bat,Right arm Offbreak,Allrounder
+fb66ce1f,CH Morris,439952,Christopher Henry Morris,South Africa,1987-04-30,Right hand Bat,Right arm Fast medium,Bowling Allrounder
+6176f240,Chirag Suri,534734,Chirag Suri,United Arab Emirates,1995-02-18,Right hand Bat,"Right arm Offbreak, Legbreak Googly",Opening Batter
+8abdf100,CJ Anderson,277662,Corey James Anderson,New Zealand,1990-12-13,Left hand Bat,Left arm Medium fast,Batting Allrounder
+f32dbc84,CJ Chibhabha,55354,Chamunorwa Justice Chibhabha,Zimbabwe,1986-09-06,Right hand Bat,Right arm Medium,Top order Batter
+ffe699c0,CJ Jordan,288992,Christopher James Jordan,England,1988-10-04,Right hand Bat,Right arm Fast medium,Bowler
+4d84ad05,CJA Amini,332980,Charles Jordan Alewa Amini,Papua New Guinea,1992-04-14,Left hand Bat,Legbreak,Allrounder
+c46e9e56,CJO Smith,25112,Colin John Ogilvie Smith,Scotland,1972-09-27,Right hand Bat,,Wicketkeeper Batter
+31c04b7b,CJPF Kalugamage,1118836,Crishan Jorge Priyantha Fernando Kalugamage,Italy,1991-06-16,Right hand Bat,Right arm Offbreak,
+a21ea40c,CK Coventry,55329,Charles Kevin Coventry,Zimbabwe,1983-03-08,Right hand Bat,Legbreak,Top order Batter
+cfad138c,CK Kapugedera,209457,Chamara Kantha Kapugedera,Sri Lanka,1987-02-24,Right hand Bat,Right arm Medium,Middle order Batter
+d1c94b25,CK Langeveldt,45963,Charl Kenneth Langeveldt,South Africa,1974-12-17,Right hand Bat,Right arm Fast medium,Bowler
+d0513f63,CL White,8291,Cameron Leon White,Australia,1983-08-18,Right hand Bat,Legbreak Googly,Middle order Batter
+008589a4,CM Wright,25123,Craig McIntyre Wright,Scotland,1974-04-28,Right hand Bat,Right arm Medium,Bowler
+e734d090,CN Ackermann,379774,Colin Niel Ackermann,Netherlands,1991-04-04,Right hand Bat,Right arm Offbreak,Batting Allrounder
+f42064d5,CN Greaves,873199,Christopher Nicholas Greaves,Scotland,1990-10-12,Right hand Bat,Legbreak,Bowler
+5680f1ad,CO Obuya,24752,Collins Omondi Obuya,Kenya,1981-07-27,Right hand Bat,Legbreak,Allrounder
+e5309baa,CP Rizwan,474760,Chundangapoyil Puthiyapurayil Rizwan,United Arab Emirates,1988-04-19,Right hand Bat,Legbreak Googly,Middle order Batter
+4751827a,CP Schofield,20073,Christopher Paul Schofield,England,1978-10-06,Left hand Bat,Legbreak,Bowling Allrounder
+e342e5fb,CR Brathwaite,457249,Carlos Ricardo Brathwaite,West Indies,1988-07-18,Right hand Bat,Right arm Fast medium,Allrounder
+c96311d4,CR Ervine,55412,Craig Richard Ervine,Zimbabwe,1985-08-19,Left hand Bat,Right arm Offbreak,Middle order Batter
+4c5d73db,CR Woakes,247235,Christopher Roger Woakes,England,1989-03-02,Right hand Bat,Right arm Fast medium,Allrounder
+342d8ade,CRD Fernando,48835,Congenige Randhi Dilhara Fernando,Sri Lanka,1979-07-19,Right hand Bat,Right arm Fast medium,Bowler
+9c376401,CS MacLeod,232435,Calum Scott MacLeod,Scotland,1988-11-15,Right hand Bat,"Right arm Medium fast, Right arm Offbreak",Top order Batter
+05e0fab5,CS Martin,37700,Christopher Stewart Martin,New Zealand,1974-12-10,Right hand Bat,Right arm Fast medium,Bowler
+28496266,CT Mumba,672775,Carl Tapfuma Mumba,Zimbabwe,1995-05-06,Right hand Bat,Right arm Fast medium,Bowler
+a72b14ff,CT Tremlett,21650,Christopher Timothy Tremlett,England,1981-09-02,Right hand Bat,Right arm Medium fast,Bowler
+575ab3ce,CU Jayasinghe,49287,Halwathurage Chinthaka Umesh Jayasinghe,Sri Lanka,1978-05-19,Right hand Bat,Right arm Medium,Allrounder
+5b7ab5a9,CV Varun,1108375,Varun Chakravarthy Vinod,India,1991-08-29,Right hand Bat,Legbreak Googly,Bowler
+844e79d1,D Brevis,1070665,Dewald Brevis,South Africa,2003-04-29,Right hand Bat,Legbreak,Batting Allrounder
+f8c72766,D Heyliger,1061467,Dillon Heyliger,Canada,1989-10-21,Right hand Bat,Right arm Medium,Bowler
+48301a4b,D la Cock,1178065,Divan la Cock,Namibia,2003-02-23,Right hand Bat,Legbreak,Opening Batter
+de7d833e,D Madushanka,793007,Lokumarakkalage Dilshan Madushanka,Sri Lanka,2000-09-18,Right hand Bat,Left arm Medium fast,Bowler
+a5544576,D Murphy,297524,David Murphy,Scotland,1989-06-24,Right hand Bat,,Middle order Batter
+d96165b5,D Myers,946517,Dion Nephy Myers,Zimbabwe,2002-03-21,Right hand Bat,Right arm Medium,Top order Batter
+395179e8,D Parashar,1294144,Dhruv Parashar,United Arab Emirates,2004-12-20,Right-hand bat,Right-arm offbreak,
+11614d87,D Pretorius,327830,Dwaine Pretorius,South Africa,1989-03-29,Right hand Bat,Right arm Medium fast,Bowling Allrounder
+d1523761,D Ramdin,52917,Denesh Ramdin,West Indies,1985-03-13,Right hand Bat,,Wicketkeeper Batter
+053f3ce3,D Ravu,1122557,Damien Apa Ravu,Papua New Guinea,1994-05-03,Right hand Bat,Right arm Medium fast,Bowler
+aa8d28ae,D Wiese,221140,David Wiese,Namibia,1985-05-18,Right hand Bat,Right arm Medium fast,Allrounder
+d67d5f00,DA Miller,321777,David Andrew Miller,South Africa,1989-06-10,Left hand Bat,Right arm Offbreak,Middle order Batter
+dcce6f09,DA Warner,219889,David Andrew Warner,Australia,1986-10-27,Left hand Bat,Legbreak,Opening Batter
+2e9fdf9b,DAJ Bracewell,362541,Douglas Andrew John Bracewell,New Zealand,1990-09-28,Right hand Bat,Right arm Fast medium,Bowler
+83904270,DBL Powell,52790,Daren Brent Lyle Powell,West Indies,1978-04-15,Right hand Bat,Right arm Fast medium,Bowler
+07b6f54c,DDP D'Silva,1126694,Darius Del Piero D'Silva,United Arab Emirates,1998-04-16,Right hand Bat,Right arm Medium,
+45c2196c,DE Bollinger,4508,Douglas Erwin Bollinger,Australia,1981-07-24,Left hand Bat,Left arm Fast medium,Bowler
+0d37dea9,DE Budge,764321,Dylan Evers Budge,Scotland,1995-09-11,Right hand Bat,Right arm Medium,Allrounder
+ad733e72,DF Watts,25120,David Fraser Watts,Scotland,1979-06-05,Right hand Bat,Right arm Medium,Opening Batter
+87e562a9,DJ Bravo,51439,Dwayne John Bravo,West Indies,1983-10-07,Right hand Bat,Right arm Medium,Allrounder
+73ad96ed,DJ Hooda,497121,Deepak Jagbir Hooda,India,1995-04-19,Right hand Bat,Right arm Offbreak,Allrounder
+fd835ab3,DJ Hussey,5766,David John Hussey,Australia,1977-07-15,Right hand Bat,Right arm Offbreak,Allrounder
+ad9c32a2,DJ Malan,236489,Dawid Johannes Malan,England,1987-09-03,Left hand Bat,Legbreak,Top order Batter
+eade4650,DJ Mitchell,381743,Daryl Joseph Mitchell,New Zealand,1991-05-20,Right hand Bat,Right arm Medium,Allrounder
+d84a2d8e,DJ Reekers,38261,Darron John Reekers,Netherlands,1973-05-26,Right hand Bat,Right arm Medium,Opening Batter
+7f048519,DJ Willey,308251,David Jonathan Willey,England,1990-02-28,Left hand Bat,Left arm Fast medium,Bowling Allrounder
+c03c6200,DJG Sammy,53115,Daren Julius Garvey Sammy,West Indies,1983-12-20,Right hand Bat,Right arm Medium,Allrounder
+e770b214,DL Maddy,16876,Darren Lee Maddy,England,1974-05-23,Right hand Bat,Right arm Medium,Allrounder
+d7c6af50,DL Vettori,38710,Daniel Luca Vettori,New Zealand,1979-01-27,Left hand Bat,Slow Left arm Orthodox,Allrounder
+3185266a,DLS van Bunge,24964,Daan Lodewjk Samuel van Bunge,Netherlands,1982-10-19,Right hand Bat,Legbreak,Allrounder
+14b14cd8,DM Bravo,277472,Darren Michael Bravo,West Indies,1989-02-06,Left hand Bat,Right arm Medium,Top order Batter
+7d608e12,DM de Silva,465793,Dhananjaya Maduranga de Silva,Sri Lanka,1991-09-06,Right hand Bat,Right arm Offbreak,Allrounder
+9048c17e,DM Gondaria,529349,Dhiren Murji Gondaria,Kenya,1994-12-05,Right hand Bat,Right arm Medium fast,Batter
+46a7ac78,DM Nakrani,731523,Dinesh Maganiai Nakrani,Uganda,1991-09-21,Left hand Bat,Left arm Medium,
+736123bb,DN Wellalage,1152427,Dunith Nethmika Wellalage,Sri Lanka,2003-01-09,Left hand Bat,Slow Left arm Orthodox,Bowler
+e28bb0b9,DO Leicher,1256933,Dylan Otto Leicher,Namibia,2004-05-03,Right hand Bat,Right arm Medium,
+6ed3d5ac,DO Obuya,24760,David Oluoch Obuya,Kenya,1979-08-14,Right hand Bat,,Top order Batter
+df5a6881,DP Conway,379140,Devon Philip Conway,New Zealand,1991-07-08,Left hand Bat,Right arm Medium,Wicketkeeper Batter
+c404f58a,DP Nannes,6981,Dirk Peter Nannes,Australia,1976-05-16,Right hand Bat,Left arm Fast,Bowler
+d18f9182,DPMD Jayawardene,49289,Denagamage Proboth Mahela de Silva Jayawardene,Sri Lanka,1977-05-27,Right hand Bat,Right arm Medium,Batter
+f3abd0c9,DR Briggs,310107,Danny Richard Briggs,England,1991-04-30,Right hand Bat,Slow Left arm Orthodox,Bowler
+7c70083d,DR Brown,9254,Douglas Robert Brown,Scotland,1969-10-29,Right hand Bat,Right arm Fast medium,Bowler
+35205dfc,DR Smith,53118,Dwayne Romel Smith,West Indies,1983-04-12,Right hand Bat,Right arm Medium,Allrounder
+1747ea18,DS Airee,794707,Dipendra Singh Airee,Nepal,2000-01-24,Right hand Bat,"Right arm Medium, Right arm Offbreak",Middle order Batter
+e3540b8c,DS Bajwa,1229251,Dilpreet Singh Bajwa,Canada,2003-01-26,Right-hand bat,Right-arm offbreak,
+85ad2217,DS Smith,52962,Devon Sheldon Smith,West Indies,1981-10-21,Left hand Bat,Right arm Offbreak,Opening Batter
+2a2e6343,DT Christian,4864,Daniel Trevor Christian,Australia,1983-05-04,Right hand Bat,Right arm Fast medium,Allrounder
+e01895bb,DT Johnston,6038,David Trent Johnston,Ireland,1974-04-29,Right hand Bat,Right arm Fast medium,Bowler
+dbfb8218,DT Tiripano,392945,Donald Tatenda Tiripano,Zimbabwe,1988-03-17,Right hand Bat,Right arm Fast medium,Bowler
+8fd1a8f5,DW Steyn,47492,Dale Willem Steyn,South Africa,1983-06-27,Right hand Bat,Right arm Fast,Bowler
+d2babdd5,E Chigumbura,55343,Elton Chigumbura,Zimbabwe,1986-03-14,Right hand Bat,Right arm Fast medium,Allrounder
+0ebfb1ad,E Lewis,431901,Evin Lewis,West Indies,1991-12-27,Left hand Bat,,Opening Batter
+cefe0886,E Schiferli,24943,Edgar Schiferli,Netherlands,1976-05-17,Right hand Bat,Right arm Medium fast,Bowler
+6cedad99,EB Ringera,475816,Emmanuel Bundi Ringera,Kenya,1993-09-08,Right hand Bat,Right arm Medium fast,Bowler
+cb5100f1,Ebadat Hossain,932355,Ebadot Hossain Chowdhury,Bangladesh,1994-01-07,Right hand Bat,Right arm Fast medium,Bowler
+a48fc79d,EC Joyce,24249,Edmund Christopher Joyce,Ireland,1978-09-22,Left hand Bat,Right arm Medium,Top order Batter
+210b05cb,Ehsan Adil,547092,Ehsan Adil,Pakistan,1993-03-15,Right hand Bat,Right arm Fast medium,Bowler
+70456281,Ehsan Nawaz,718553,Ehsan Nawaz,Hong Kong,1995-03-21,Right hand Bat,Right arm Fast medium,Bowler
+7572bf45,EHSN Silva,50460,Elle Hennadige Shadeep Nadeeja Silva,United Arab Emirates,1978-08-18,Left hand Bat,Slow Left arm Orthodox,Bowler
+d2a6c0e6,EJG Morgan,24598,Eoin Joseph Gerard Morgan,England,1986-09-10,Left hand Bat,Right arm Medium,Middle order Batter
+817c1746,Elias Sunny,55883,Mohammad Elias Sunny,Bangladesh,1986-01-01,Left hand Bat,Slow Left arm Orthodox,Bowler
+5a22d91c,EMDY Munaweera,304735,Eldeniya Medagedara Dilshan Yasika Munaweera,Sri Lanka,1989-04-24,Right hand Bat,Right arm Offbreak,Opening Batter
+b6b3ee6e,F Achelam,1107652,Fred Achelam,Uganda,2001-01-27,Right hand Bat,,Wicketkeeper Batter
+dce2019b,F Behardien,44410,Farhaan Behardien,South Africa,1983-10-09,Right hand Bat,Right arm Fast medium,Batting Allrounder
+3355b542,F du Plessis,44828,Francois du Plessis,South Africa,1984-07-13,Right hand Bat,Legbreak,Middle order Batter
+e3fe4b49,F Hand,1099225,Fionn Hand,Ireland,1998-07-01,Right hand Bat,Right arm Medium,Bowling Allrounder
+21b67523,F Mutua,1178071,Francis Mutua,Kenya,2002-02-26,,,
+87e33d07,F Nsubuga,26139,Franco Nsubuga,Uganda,1980-08-28,Right hand Bat,Slow Left arm Orthodox,
+5d68fe4f,Fahad Nawaz,1126002,Fahad Nawaz,United Arab Emirates,2000-01-15,Right hand Bat,Slow Left arm Orthodox,Allrounder
+bd4ea627,Faheem Ashraf,681117,Faheem Ashraf,Pakistan,1994-01-16,Left hand Bat,Right arm Medium,Bowling Allrounder
+8b89eb80,Faizan Asif,447287,Faizan Asif,United Arab Emirates,1992-12-21,Left hand Bat,,Opening Batter
+1777c020,Fakhar Zaman,512191,Fakhar Zaman,Pakistan,1990-04-10,Left hand Bat,Slow Left arm Orthodox,Opening Batter
+4948a447,Farhad Reza,55894,Farhad Reza,Bangladesh,1986-06-16,Right hand Bat,Right arm Fast medium,Allrounder
+61f05b05,Fawad Alam,40250,Fawad Alam,Pakistan,1985-10-08,Left hand Bat,Slow Left arm Orthodox,Top order Batter
+bd9fbd51,Fayyaz Butt,436749,Ahmad Fayyaz Butt,Oman,1993-08-17,Right hand Bat,Right arm Medium fast,Bowler
+bf74b130,FH Allen,959759,Finnley Hugh Allen,New Zealand,1999-04-22,Right hand Bat,,Top order Batter
+a7c226e1,FH Edwards,51782,Fidel Henderson Edwards,West Indies,1982-02-06,Right hand Bat,Right arm Fast,Bowler
+c042b412,FJ Klaassen,1104703,Frederick Jack Klaassen,Netherlands,1992-11-13,Right hand Bat,Left arm Fast medium,Bowler
+bb345e0b,G Gambhir,28763,Gautam Gambhir,India,1981-10-14,Left hand Bat,Legbreak,Top order Batter
+59f509ed,G Goudie,25476,Gordon Goudie,Scotland,1987-08-12,Right hand Bat,Right arm Fast medium,Bowler
+b2e1d224,G Malla,233400,Gyanendra Malla,Nepal,1990-09-16,Right hand Bat,,Top order Batter
+97bdec3d,G Motie,670045,Gudakesh Motie,West Indies,1995-03-29,Left hand Bat,Slow Left arm Orthodox,Bowler
+a77472dc,G Stewart,1098186,Grant Stewart,Italy,1994-02-19,Right hand Bat,Right arm Medium fast,Bowling Allrounder
+1fbef290,G Wijekoon,50345,Wijekoon Mudiyanselage Gayan Ramyakumara,Sri Lanka,1976-12-21,Left hand Bat,Left arm Medium,Allrounder
+86421172,GA Lamb,55562,Gregory Arthur Lamb,Zimbabwe,1981-03-04,Right hand Bat,Right arm Offbreak,Allrounder
+46050f42,GA Rogers,272473,Glenn Alan Rogers,Scotland,1977-04-12,Right hand Bat,Slow Left arm Orthodox,Bowler
+da785bf8,GB Brent,55269,Gary Bazil Brent,Zimbabwe,1976-01-13,Right hand Bat,Right arm Medium,Bowler
+f708a0bc,GB Hogg,5681,George Bradley Hogg,Australia,1971-02-06,Left hand Bat,Left arm Wrist spin,Allrounder
+72861603,GC Smith,47270,Graeme Craig Smith,South Africa,1981-02-01,Left hand Bat,Right arm Offbreak,Opening Batter
+05de1a5a,GC Wilson,24609,Gary Craig Wilson,Ireland,1986-02-05,Right hand Bat,,Wicketkeeper Batter
+5b8fffb4,GD Drummond,295644,Gordon David Drummond,Scotland,1980-04-21,Right hand Bat,Right arm Medium fast,Bowler
+c03449e0,GD Elliott,44956,Grant David Elliott,New Zealand,1979-03-21,Right hand Bat,Right arm Medium,Allrounder
+9a46c4e5,GD Phillips,823509,Glenn Dominic Phillips,New Zealand,1996-12-06,Right hand Bat,Right arm Offbreak,Wicketkeeper Batter
+e5437608,GF Linde,481875,George Fredrik Linde,South Africa,1991-12-04,Left hand Bat,Slow Left arm Orthodox,Allrounder
+99cddc5e,GH Dockrell,348034,George Henry Dockrell,Ireland,1992-07-22,Right hand Bat,Slow Left arm Orthodox,Allrounder
+ced0ec25,Ghulam Shabber,950303,Ghulam Shabber,United Arab Emirates,1985-12-12,Left hand Bat,,Wicketkeeper Batter
+5056011d,GJ Bailey,4451,George John Bailey,Australia,1982-09-07,Right hand Bat,Right arm Medium,Top order Batter
+33b3d2df,GJ Delany,1099379,Gareth James Delany,Ireland,1997-04-28,Right hand Bat,Legbreak Googly,Batting Allrounder
+4d3097d8,GJ Hopkins,37248,Gareth James Hopkins,New Zealand,1976-11-24,Right hand Bat,,Wicketkeeper Batter
+b681e71e,GJ Maxwell,325026,Glenn James Maxwell,Australia,1988-10-14,Right hand Bat,Right arm Offbreak,Batting Allrounder
+8187519b,GM Hamilton,14020,Gavin Mark Hamilton,Scotland,1974-09-16,Left hand Bat,Right arm Medium fast,Middle order Batter
+d7e51f87,GM Muthui,1107667,Gerard Muthui Mwendwa,Kenya,1999-10-07,Right hand Bat,Right arm Offbreak,Allrounder
+3957a70a,GP Meade,807549,Gian-Piero Sergio Meade,Italy,1996-03-19,Right hand Bat,Right arm Medium fast,
+221ad9d9,GP Swann,20431,Graeme Peter Swann,England,1979-03-24,Right hand Bat,Right arm Offbreak,Bowler
+4ec96094,GR Adair,468573,George Ross Adair,Ireland,1994-04-21,Right hand Bat,Slow Left arm Orthodox,
+755a77c6,GS Ballance,232438,Gary Simon Ballance,Zimbabwe,1989-11-22,Left hand Bat,Legbreak,Middle order Batter
+b58b7db6,GSNFG Jayasuriya,422965,Gampalage Shehan Naveendra De Fonseka Gunawarna Jayasuriya,Sri Lanka,1991-09-12,Left hand Bat,Right arm Offbreak,Batting Allrounder
+4ebc70ca,GT Main,470777,Gavin Thomas Main,Scotland,1995-02-28,Right hand Bat,Right arm Fast,Bowler
+9811e35e,Gulsan Jha,1253822,Gulshan Kumar Jha,Nepal,2006-02-17,Left hand Bat,Right arm Medium,
+31865a5b,Gurdeep Singh,637496,Gurdeep Singh Bhagat,Kenya,1998-01-19,Left hand Bat,Legbreak,Opening Batter
+9dc3ea7e,H Hiri,646175,Hiri Hiri,Papua New Guinea,1995-05-01,Right hand Bat,Right arm Offbreak,Middle order Batter
+235c2bb6,H Klaasen,436757,Heinrich Klaasen,South Africa,1991-07-30,Right hand Bat,Right arm Offbreak,Wicketkeeper Batter
+31fbf891,H Masakadza,55608,Hamilton Masakadza,Zimbabwe,1983-08-09,Right hand Bat,Right arm Medium,Top order Batter
+c01d7726,H Thaker,914503,Harsh Thaker,Canada,1997-10-24,Right hand Bat,Right arm Offbreak,
+c13e34f4,Haider Ali,1168651,Haider Ali,Pakistan,2000-10-02,Right hand Bat,,Middle order Batter
+dd572696,Haider Ali,1160970,Haider Ali,Pakistan,1994-07-05,Left-hand bat,Slow left-arm orthodox,
+0b7b78c6,Hammad Mirza,1453642,Hammad Mirza,Oman,1998-05-12,Right-hand bat,,
+34cb2f69,Hamza Tahir,751151,Hamza Tahir,Scotland,1995-11-09,Right hand Bat,Slow Left arm Orthodox,Bowler
+8b5b6769,Harbhajan Singh,29264,Harbhajan Singh,India,1980-07-03,Right hand Bat,Right arm Offbreak,Bowler
+24bb1c2f,Haris Rauf,1161606,Haris Rauf,Pakistan,1993-11-07,Right hand Bat,Right arm Fast,Bowler
+0bf15e52,Harmeet Singh,422847,Harmeet Singh,India,1992-09-07,Left hand Bat,Slow Left arm Orthodox,
+2911de16,Hasan Ali,681305,Hasan Ali,Pakistan,1994-07-02,Right hand Bat,Right arm Medium fast,Bowler
+80ad39ac,Hasan Mahmud,926629,Hasan Mahmud,Bangladesh,1999-10-12,Right hand Bat,Right arm Medium,Bowler
+fb0abc20,Haseeb Amjad,539305,Haseeb Amjad,Hong Kong,1987-11-11,Right hand Bat,Right arm Medium fast,Bowler
+4ae1755b,HC Brook,911707,Harry Cherrington Brook,England,1999-02-22,Right hand Bat,Right arm Medium,Batter
+c5928dec,HDRL Thirimanne,301236,Hettige Don Rumesh Lahiru Thirimanne,Sri Lanka,1989-08-09,Left hand Bat,Right arm Medium fast,Top order Batter
+9948e262,HE van der Dussen,337790,Hendrik Erasmus van der Dussen,South Africa,1989-02-07,Right hand Bat,Legbreak,Top order Batter
+ff014c34,HG Munsey,671805,Henry George Munsey,Scotland,1993-02-21,Left hand Bat,Right arm Medium fast,Opening Batter
+98299b67,HGV Vare,1186229,Hila George Vaieke Vare,Papua New Guinea,2001-08-10,Left hand Bat,,
+e1d1b294,HH Gibbs,45224,Herschelle Herman Gibbs,South Africa,1974-02-23,Right hand Bat,Right arm Bowler,Opening Batter
+dbe50b21,HH Pandya,625371,Hardik Himanshu Pandya,India,1993-10-11,Right hand Bat,Right arm Medium fast,Allrounder
+0e56c514,HJ Manenti,1323417,Harry John Manenti,Italy,2000-10-05,Right hand Bat,Right arm Medium fast,
+e798611a,HM Amla,43906,Hashim Mahomed Amla,South Africa,1983-03-31,Right hand Bat,"Right arm Medium, Right arm Offbreak",Top order Batter
+03521fd3,HM Nicholls,539511,Henry Michael Nicholls,New Zealand,1991-11-15,Left hand Bat,Right arm Offbreak,Top order Batter
+d2fcce2f,HMRKB Herath,49178,Herath Mudiyanselage Rangana Keerthi Bandara Herath,Sri Lanka,1978-03-19,Left hand Bat,Slow Left arm Orthodox,Bowler
+915264c2,HN Ya France,308410,Helao Nafidi Ya France,Namibia,1990-04-23,Right hand Bat,Right arm Offbreak,Middle order Batter
+1ac2a995,HR Walsh,443263,Hayden Rashidi Walsh,West Indies,1992-04-23,Left hand Bat,Legbreak Googly,Bowler
+59ea70a4,HT Tector,961407,Harry Tom Tector,Ireland,1999-12-06,Right hand Bat,Right arm Offbreak,Middle order Batter
+5ad8c974,I Kaia,465327,Innocent Kaia,Zimbabwe,1992-08-10,Right hand Bat,Legbreak,Opening Batter
+5bb1a1c4,I Sharma,236779,Ishant Sharma,India,1988-09-02,Right hand Bat,Right arm Fast medium,Bowler
+ac5ae4af,I Udana,328026,Isuru Udana Tillakaratna,Sri Lanka,1988-02-17,Right hand Bat,Left arm Medium fast,Allrounder
+7429c452,I Wardlaw,509107,Iain Wardlaw,England,1985-06-29,Right hand Bat,Right arm Fast medium,Bowler
+ca92a578,IA Karim,348016,Irfan Ali Karim,Kenya,1992-09-25,Left hand Bat,Right arm Offbreak,Middle order Batter
+78f34e15,IE O'Brien,38108,Iain Edward O'Brien,New Zealand,1976-07-10,Right hand Bat,Right arm Fast medium,Bowler
+29e253dd,Iftikhar Ahmed,480603,Iftikhar Ahmed,Pakistan,1990-09-03,Right hand Bat,Right arm Offbreak,Middle order Batter
+b68a30f0,IG Butler,36331,Ian Gareth Butler,New Zealand,1981-11-24,Right hand Bat,Right arm Fast,Bowler
+5fa06777,IK Pathan,32685,Irfan Khan Pathan,India,1984-10-27,Left hand Bat,Left arm Medium fast,Allrounder
+9cb8d7a6,Imad Wasim,227758,Syed Imad Wasim,Pakistan,1988-12-18,Left hand Bat,Slow Left arm Orthodox,Allrounder
+0226b73a,Imran Haider,943275,Imran Haider,United Arab Emirates,1987-10-31,Right hand Bat,Legbreak Googly,Bowler
+3eb7c45d,Imran Nazir,40563,Imran Nazir,Pakistan,1981-12-16,Right hand Bat,Legbreak,Opening Batter
+acee4cc4,Imran Tahir,40618,Mohammad Imran Tahir,South Africa,1979-03-27,Right hand Bat,Legbreak Googly,Bowler
+5fbe14fc,Imrul Kayes,280734,Imrul Kayes,Bangladesh,1987-02-02,Left hand Bat,Slow Left arm Orthodox,Opening Batter
+5c124657,Irfan Ahmed,208253,Irfan Ahmed,Hong Kong,1989-11-20,Right hand Bat,Right arm Fast medium,Allrounder
+641ac5ff,IS Sodhi,559066,Inderbir Singh Sodhi,New Zealand,1992-10-31,Right hand Bat,Legbreak,Bowler
+752f7486,Ishan Kishan,720471,Ishan Pranav Kumar Pandey Kishan,India,1998-07-18,Left hand Bat,,Wicketkeeper Batter
+7c503806,J Botha,44149,Johan Botha,South Africa,1982-05-02,Right hand Bat,Right arm Offbreak,Allrounder
+0e63259d,J Campbell,1120613,Johnathan Mitchell Ross Campbell,Zimbabwe,1997-12-17,Left-hand bat,Legbreak,
+09a9d073,J Charles,333066,Johnson Charles,West Indies,1989-01-14,Right hand Bat,,Wicketkeeper Batter
+c8d74c21,J Gumbie,596376,Joylord Gumbie,Zimbabwe,1995-12-25,Right hand Bat,,Wicketkeeper Batter
+cde067e1,J Kariko,1295879,John Kariko,Papua New Guinea,2004-01-16,Left hand Bat,,
+d996ba33,J Kila,302875,Jason Kila,Papua New Guinea,1990-01-15,Left hand Bat,Slow Left arm Orthodox,Bowling Allrounder
+9061a703,J Little,928067,Joshua Brian Little,Ireland,1999-11-01,Right hand Bat,Left arm Fast medium,Bowler
+84212ffb,J Liyanage,681681,Kongala Liyanage Janith Vimukthi,Sri Lanka,1995-07-12,Right hand Bat,Right arm Fast medium,Batting Allrounder
+414d8a10,J Miyaji,1178060,Juma Miyagi,Uganda,2003-04-05,Right hand Bat,,
+8f02f6a8,J Mosca,1323415,Justin Mosca,Italy,1994-11-15,Left hand Bat,,
+a9520ac2,J Mubarak,49633,Jehan Mubarak,Sri Lanka,1981-01-10,Left hand Bat,Right arm Offbreak,Allrounder
+59559bc2,J Overton,510530,Jamie Overton,England,1994-04-10,Right hand Bat,Right arm Fast,Bowling Allrounder
+f7ce2ff9,J Ramanandi,1457840,Jiten Ramanandi,Oman,1994-09-15,Left-hand bat,Left-arm medium,
+7c681ee9,J Smits,24952,Jeroen Smits,Netherlands,1972-06-21,Right hand Bat,,Wicketkeeper Batter
+dadbdb68,JA Duffy,547766,Jacob Andrew Duffy,New Zealand,1994-08-02,Right hand Bat,Right arm Fast medium,Bowler
+c3d35165,JA Morkel,46248,Johannes Albertus Morkel,South Africa,1981-06-10,Left hand Bat,Right arm Medium fast,Bowling Allrounder
+6752c57b,Jahurul Islam,55944,Mohammad Jahurul Islam,Bangladesh,1986-12-12,Right hand Bat,Right arm Offbreak,Middle order Batter
+cd56a813,Jaker Ali,824541,Jaker Ali Anik,Bangladesh,1998-02-22,Right hand Bat,,Batter
+e662b18f,JAR Blain,25087,John Angus Rae Blain,Scotland,1979-01-04,Right hand Bat,Right arm Fast medium,Bowler
+5ec41cd7,Jasdeep Singh,772471,Jasdeep Singh,United States of America,1993-02-10,Right hand Bat,Right arm Medium,Bowler
+d7b3a420,Jaskaran Singh,376102,Jaskaran Singh Buttar,India,1989-09-04,Right hand Bat,Right arm Medium,Bowler
+d76ab352,Jaspreet Singh,1156455,Jaspreet Singh,Italy,1993-06-09,Right hand Bat,Right arm Fast medium,
+b80dd12c,Jatinder Singh,307756,Jatinder Singh,Oman,1989-03-05,Right hand Bat,Right arm Offbreak,Batter
+526e006d,Jay Odedra,1136106,Jay Virambhai Odedra,Oman,1989-11-05,Right hand Bat,Right arm Offbreak,Bowling Allrounder
+5574750c,JC Archer,669855,Jofra Chioke Archer,England,1995-04-01,Right hand Bat,Right arm Fast,Bowler
+99b75528,JC Buttler,308967,Joseph Charles Buttler,England,1990-09-08,Right hand Bat,,Wicketkeeper Batter
+49b6c09f,JC Tredwell,21646,James Cullum Tredwell,England,1982-02-27,Left hand Bat,Right arm Offbreak,Allrounder
+7c7303eb,JD Nel,25481,Johann Dewald Nel,Scotland,1980-06-06,Right hand Bat,Right arm Medium fast,Bowler
+91ffa6c6,JD Ryder,38373,Jesse Daniel Ryder,New Zealand,1984-08-06,Left hand Bat,Right arm Medium,Allrounder
+aceb7654,JDF Vandersay,370040,Jeffrey Dexter Francis Vandersay,Sri Lanka,1990-02-05,Right hand Bat,Legbreak,Bowler
+3eac9d95,JDP Oram,38062,Jacob David Philip Oram,New Zealand,1978-07-28,Left hand Bat,Right arm Fast medium,Allrounder
+9219eff0,JDS Neesham,355269,James Douglas Sheahan Neesham,New Zealand,1990-09-17,Left hand Bat,Right arm Medium fast,Batting Allrounder
+a343262c,JE Root,303669,Joseph Edward Root,England,1990-12-30,Right hand Bat,"Right arm Offbreak, Legbreak",Top order Batter
+4180d897,JE Taylor,53191,Jerome Everton Taylor,West Indies,1984-06-22,Right hand Bat,Right arm Fast,Bowler
+cf73ad76,JEC Franklin,37004,James Edward Charles Franklin,New Zealand,1980-11-07,Left hand Bat,Left arm Medium,Allrounder
+aae9ce90,JF Mooney,24237,John Francis Mooney,Ireland,1982-02-10,Left hand Bat,Right arm Medium,Allrounder
+91cd48e0,JF Smith,498582,Jason Franswyn Smith,South Africa,1994-10-11,Right hand Bat,Right arm Medium fast,Top order Batter
+3c55c703,JG Bethell,1194959,Jacob Graham Bethell,England,2003-10-23,Left hand Bat,Slow Left arm Orthodox,Batting Allrounder
+d3868bd0,JH Davey,407265,Joshua Henry Davey,Scotland,1990-08-03,Right hand Bat,Right arm Medium fast,Bowler
+86dc8f2e,JH Kallis,45789,Jacques Henry Kallis,South Africa,1975-10-16,Right hand Bat,Right arm Fast medium,Allrounder
+4373c57e,JH Stander,298195,Jan Hendrik Stander,Scotland,1982-01-04,Right hand Bat,Right arm Medium fast,Bowler
+bf2d865c,JJ Atkinson,292152,James John Atkinson,Hong Kong,1990-08-23,Right hand Bat,,Wicketkeeper
+462411b3,JJ Bumrah,625383,Jasprit Jasbirsingh Bumrah,India,1993-12-06,Right hand Bat,Right arm Fast,Bowler
+d1c36f5c,JJ Roy,298438,Jason Jonathan Roy,England,1990-07-21,Right hand Bat,,Opening Batter
+bb134e5c,JJ Smit,553821,Johannes Jonathan Smit,Namibia,1995-11-10,Right hand Bat,Left arm Medium fast,Bowling Allrounder
+6821ac10,JJ van der Wath,47693,Johannes Jacobus van der Wath,South Africa,1978-01-10,Right hand Bat,Right arm Medium fast,Allrounder
+270b3f8e,JK Kamande,24697,James Kabatha Kamande,Kenya,1978-12-12,Right hand Bat,Right arm Offbreak,Bowler
+e5542f57,JK Masara,722313,John Kumbirai Masara,Zimbabwe,1991-08-16,Right hand Bat,Legbreak,
+f8dcfe4e,JK Mukhiya,680279,Jitendra Kumar Mukhiya,Nepal,1992-11-22,Right hand Bat,Right arm Medium fast,Bowler
+d12143bf,JM Anderson,8608,James Michael Anderson,England,1982-07-30,Left hand Bat,Right arm Fast medium,Bowler
+abb83e27,JM Bairstow,297433,Jonathan Marc Bairstow,England,1989-09-26,Right hand Bat,Right arm Medium,Wicketkeeper Batter
+6581d753,JM Kemp,45797,Justin Miles Kemp,South Africa,1977-10-02,Right hand Bat,Right arm Fast medium,Bowling Allrounder
+52f08be8,JM Muirhead,533043,James Matthew Muirhead,Australia,1993-07-30,Right hand Bat,Legbreak,Bowler
+3c87f0c3,JN Frylinck,482478,Jan Nicolaas Frylinck,Namibia,1994-04-06,Left hand Bat,Left arm Fast medium,Allrounder
+f468293b,JN Loftie-Eaton,1071473,Jan Nicol Loftie-Eaton,Namibia,2001-03-15,Left hand Bat,"Right arm Medium, Legbreak",Batter
+44321a66,JN Snape,20278,Jeremy Nicholas Snape,England,1973-04-27,Right hand Bat,Right arm Offbreak,Bowler
+0f721006,JO Holder,391485,Jason Omar Holder,West Indies,1991-11-05,Right hand Bat,Right arm Medium fast,Bowling Allrounder
+bb9b51f4,JOA Gordon,276370,Jeremy Oliver Alster Gordon,Canada,1987-01-20,Right hand Bat,Right arm Fast medium,Bowler
+9f961c14,Joginder Sharma,29976,Joginder Sharma,India,1983-10-23,Right hand Bat,Right arm Fast medium,Allrounder
+7c63baa7,JP Bray,4433,Jeremy Paul Bray,Ireland,1973-11-30,Left hand Bat,,
+2e8994e7,JP Duminy,44932,Jean-Paul Duminy,South Africa,1984-04-14,Left hand Bat,Right arm Offbreak,Batting Allrounder
+808f425a,JP Faulkner,270484,James Peter Faulkner,Australia,1990-04-29,Right hand Bat,Left arm Fast medium,Bowling Allrounder
+989889ff,JP Inglis,662235,Joshua Patrick Inglis,Australia,1995-03-04,Right hand Bat,,Wicketkeeper Batter
+9f308dfc,JP Kotze,541991,Jean-Pierre Kotze,Namibia,1994-04-23,Left hand Bat,,Batter
+03806cf8,JR Hazlewood,288284,Josh Reginald Hazlewood,Australia,1991-01-08,Left hand Bat,Right arm Fast medium,Bowler
+2498e163,JR Hopes,5702,James Redfern Hopes,Australia,1978-10-24,Right hand Bat,Right arm Medium,Allrounder
+e68dd455,JS Foster,12877,James Savin Foster,England,1980-04-15,Right hand Bat,,Wicketkeeper Batter
+092ccf20,JS Kundi,1107663,Jasraj Singh Kundi,Kenya,1999-07-06,Right hand Bat,Right arm Medium,Allrounder
+f5821615,JS Patel,38141,Jeetan Shashi Patel,New Zealand,1980-05-07,Right hand Bat,Right arm Offbreak,Bowler
+537021f5,JT Brassell,1310415,Jack Thomas Brassell,Namibia,2005-03-31,Right-hand bat,Right-arm medium,
+42172c3c,JT Smuts,280490,Jon-Jon Trevor Smuts,South Africa,1988-09-21,Right hand Bat,Slow Left arm Orthodox,Batting Allrounder
+086f5984,Junaid Khan,259551,Mohammad Junaid Khan,Pakistan,1989-12-24,Right hand Bat,Left arm Fast,Bowler
+62e203d4,Junaid Siddique,55946,Mohammad Junaid Siddique,Bangladesh,1987-10-30,Left hand Bat,Right arm Offbreak,Top order Batter
+84dc72db,Junaid Siddique,1203754,Muhammad Junaid Siddique,United Arab Emirates,1992-12-06,Right hand Bat,Right arm Medium fast,Bowler
+9025e58f,Junaid Siddiqui,494847,Junaid Siddiqui,Canada,1985-03-25,Right hand Bat,Legbreak,Allrounder
+7be8a0ed,JW Dernbach,12461,Jade Winston Dernbach,England,1986-03-03,Right hand Bat,Right arm Fast medium,Bowler
+012829ff,JW Hastings,228622,John Wayne Hastings,Australia,1985-11-04,Right hand Bat,Right arm Fast medium,Allrounder
+e3386c8a,K Bhurtel,794713,Kushal Bhurtel,Nepal,1997-01-22,Right hand Bat,Right arm Medium,Opening Batter
+27b8d7b6,K Birkenstock,1057456,Karl Johan Birkenstock,Namibia,1996-03-27,Left hand Bat,Right arm Fast medium,Middle order Batter
+365229a8,K Doriga,646173,Kiplin Doriga,Papua New Guinea,1995-10-18,Right hand Bat,,Wicketkeeper Batter
+374bb5e7,K Klein,1195670,Kyle Klein,Netherlands,2001-07-03,Right-hand bat,Right-arm medium,
+9124e5ee,K Macheka,1210419,Kudakwashe Macheka,Zimbabwe,2000-09-25,Right-hand bat,Right-arm fast-medium,
+65cebd5d,K Mishara,1075863,Rajapaksha Vidana Pathiranalage Kamil Mishara,Sri Lanka,2001-04-24,Left hand Bat,Right arm Offbreak,Opening Batter
+e62dd25d,K Rabada,550215,Kagiso Rabada,South Africa,1995-05-25,Left hand Bat,Right arm Fast,Bowler
+531f0278,K Santokie,314622,Krishmar Santokie,West Indies,1984-12-20,Left hand Bat,Left arm Medium,Bowler
+10c158cc,K Sonavale,1443393,Karan Sonavale,Oman,,Right-hand bat,Right-arm offbreak,
+a3a275ec,K Waiswa,928109,Kenneth Waiswa,Uganda,1998-11-11,Right hand Bat,Right arm Medium,Allrounder
+68c56d09,KA Jamieson,625960,Kyle Alex Jamieson,New Zealand,1994-12-30,Right hand Bat,Right arm Fast medium,Bowler
+0b60eb09,KA Maharaj,267724,Keshav Athmanand Maharaj,South Africa,1990-02-07,Right hand Bat,Slow Left arm Orthodox,Bowler
+a757b0d8,KA Pollard,230559,Kieron Adrian Pollard,West Indies,1987-05-12,Right hand Bat,Right arm Medium,Batting Allrounder
+78eb4223,KAJ Roach,230553,Kemar Andre Jamal Roach,West Indies,1988-06-30,Right hand Bat,Right arm Fast medium,Bowler
+14810ee7,Kaleem Sana,385938,Kaleem Sana Rehman,Canada,1994-01-01,Right hand Bat,Left arm Medium fast,
+72253b87,Kaleemullah,1077307,Kaleemullah,Oman,1990-12-24,Right hand Bat,Right arm Medium,Bowler
+ff077124,Kamran Akmal,41028,Kamran Akmal,Pakistan,1982-01-13,Right hand Bat,,Wicketkeeper Batter
+75186c24,Kamran Shazad,623104,Kamran Shazad,United Arab Emirates,1980-08-25,Right hand Bat,Right arm Medium fast,Bowler
+f53b3e1d,Karan KC,800675,Karan KC,Nepal,1991-10-10,Right hand Bat,Right arm Fast,Allrounder
+24fcd95d,Kashif Daud,229225,Kashif Daud,United Arab Emirates,1986-02-10,Right hand Bat,Right arm Medium fast,Bowling Allrounder
+6b71e6cf,KC Sangakkara,50710,Kumar Chokshanada Sangakkara,Sri Lanka,1977-10-27,Left hand Bat,Right arm Offbreak,Wicketkeeper Batter
+c03f1114,KD Karthik,30045,Krishnakumar Dinesh Karthik,India,1985-06-01,Right hand Bat,Right arm Offbreak,Wicketkeeper Batter
+7fb32e5b,KD Mills,37740,Kyle David Mills,New Zealand,1979-03-15,Right hand Bat,Right arm Fast medium,Bowler
+d5ae21a2,KD Shah,401537,Kinchit Devang Shah,Hong Kong,1995-12-09,Left hand Bat,Right arm Offbreak,Top order Batter
+c4e73ff1,KH Prajapati,1276719,Kashyap Harishbhai Prajapati,Oman,1995-10-11,Right hand Bat,Right arm Offbreak,Top order Batter
+3ee90b67,Khalid Kail,624813,Khalid Kail,Oman,1996-10-13,Right-hand bat,,
+5eea345c,Khalid Latif,41046,Khalid Latif,Pakistan,1985-11-04,Right hand Bat,Right arm Offbreak,Top order Batter
+3cf54e77,Khawaja Nafay,1329699,Khawaja Muhammad Nafay,Pakistan,,Right hand Bat,Right arm Offbreak,
+934b36a6,Khawar Ali,585081,Khawar Ali,Oman,1985-12-20,Right hand Bat,Legbreak,Opening Batter
+ae6746e0,Khurram Khan,25589,Khurram Khan,United Arab Emirates,1971-06-21,Left hand Bat,Slow Left arm Orthodox,Top order Batter
+732c038e,KIC Asalanka,784367,Kariyawasam Indipalage Charith Asalanka,Sri Lanka,1997-06-29,Left hand Bat,Right arm Offbreak,Batting Allrounder
+a9da7784,KJ Abbott,297583,Kyle John Abbott,South Africa,1987-06-18,Right hand Bat,Right arm Fast medium,Bowler
+85d8110a,KJ Coetzer,25446,Kyle James Coetzer,Scotland,1984-04-14,Right hand Bat,Right arm Medium fast,Top order Batter
+243431b5,KJ O'Brien,24605,Kevin Joseph O'Brien,Ireland,1984-03-04,Right hand Bat,Right arm Medium fast,Batting Allrounder
+b17e2f24,KL Rahul,422108,Kannaur Lokesh Rahul,India,1992-04-18,Right hand Bat,,Opening Batter
+df08c69e,KM Dabengwa,55388,Keith Mbusi Dabengwa,Zimbabwe,1980-08-17,Left hand Bat,Slow Left arm Orthodox,Allrounder
+59792462,KM Jarvis,332996,Kyle Malcolm Jarvis,Zimbabwe,1989-02-16,Right hand Bat,Right arm Fast medium,Bowler
+469ea22b,KMDN Kulasekara,49535,Kulasekara Mudiyanselage Dinesh Nuwan Kulasekara,Sri Lanka,1982-07-22,Right hand Bat,Right arm Fast medium,Bowler
+585dda5d,KNA Bandara,958691,Koralegedera Nadeeja Ashen Bandara,Sri Lanka,1998-11-23,Right hand Bat,Legbreak,Middle order Batter
+b91f2a31,KP Meiyappan,1058987,Karthik Palaniapan Meiyappan,United Arab Emirates,2000-10-08,Right hand Bat,Legbreak,Bowler
+39f01cdb,KP Pietersen,19296,Kevin Peter Pietersen,England,1980-06-27,Right hand Bat,Right arm Offbreak,Top order Batter
+73c18486,KR Mayers,348056,Kyle Rico Mayers,West Indies,1992-09-08,Left hand Bat,Right arm Medium,Batting Allrounder
+d027ba9f,KS Williamson,277906,Kane Stuart Williamson,New Zealand,1990-08-08,Right hand Bat,Right arm Offbreak,Top order Batter
+107c26fb,KT Maphaka,1294342,Kwena Tshegofatso Maphaka,South Africa,2006-04-08,Left-hand bat,Left-arm fast,
+8d2c70ad,Kuldeep Yadav,559235,Kuldeep Yadav,India,1994-12-14,Left hand Bat,Left arm Wrist spin,Bowler
+7e9f1cde,Kushal Malla,1141934,Kushal Malla,Nepal,2004-03-05,Left hand Bat,Slow Left arm Orthodox,Batting Allrounder
+270bf7e2,KV Morea,524255,Kabua Vagi Morea,Papua New Guinea,1993-09-30,Right hand Bat,Left arm Medium,Bowler
+b2b50355,L Balaji,26829,Lakshmipathy Balaji,India,1981-09-27,Right hand Bat,Right arm Medium fast,Bowler
+b018e1eb,L Louwrens,827023,Lo-handre Louwrens,Namibia,1999-04-24,Right hand Bat,,Wicketkeeper Batter
+f834dcfc,L Ngidi,542023,Lungisani True-man Ngidi,South Africa,1996-03-29,Right hand Bat,Right arm Fast medium,Bowler
+0fa5042b,L Ronchi,7502,Luke Ronchi,New Zealand,1981-04-23,Right hand Bat,,Wicketkeeper Batter
+6b4593ee,L Siaka,440990,Lega Siaka,Papua New Guinea,1992-12-21,Right hand Bat,"Right arm Fast medium, Legbreak",Opening Batter
+3979b5e0,L Tucker,928057,Lorcan John Tucker,Ireland,1996-09-10,Right hand Bat,,Wicketkeeper Batter
+2764133a,L Vincent,38714,Lou Vincent,New Zealand,1978-11-11,Right hand Bat,Right arm Medium,Batter
+65b6943c,L Wood,573170,Luke Wood,England,1995-08-02,Left hand Bat,Left arm Fast medium,Bowling Allrounder
+4a461c24,LA Dawson,211855,Liam Andrew Dawson,England,1990-03-01,Right hand Bat,Slow Left arm Orthodox,Allrounder
+8dd02a98,LD Chandimal,300628,Lokuge Dinesh Chandimal,Sri Lanka,1989-11-18,Right hand Bat,Right arm Offbreak,Wicketkeeper Batter
+73e749e1,LE Bosman,44098,Lungile Edgar Bosman,South Africa,1977-04-14,Right hand Bat,Right arm Medium,Opening Batter
+9a963804,LE Plunkett,19264,Liam Edward Plunkett,England,1985-04-06,Right hand Bat,Right arm Fast,Bowler
+2f9d0389,LH Ferguson,493773,Lachlan Hammond Ferguson,New Zealand,1991-06-13,Right hand Bat,Right arm Fast,Bowler
+0404d43c,Liton Das,536936,Litton Kumer Das,Bangladesh,1994-10-13,Right hand Bat,Right arm Offbreak,Wicketkeeper Batter
+cca50cd6,LJ Wright,23460,Luke James Wright,England,1985-03-07,Right hand Bat,Right arm Medium,Top order Batter
+12bffe91,LL Tsotsobe,47666,Lonwabo Lopsy Tsotsobe,South Africa,1984-03-07,Right hand Bat,Left arm Fast medium,Bowler
+b8704508,LM Jongwe,541224,Luke Mafuwa Jongwe,Zimbabwe,1995-02-06,Right hand Bat,Right arm Fast medium,Bowler
+89f64c19,LMP Simmons,53116,Lendl Mark Platter Simmons,West Indies,1985-01-25,Right hand Bat,Right arm Medium fast,Top order Batter
+eb4f9c61,LN Oluoch,440162,Lucas Oluoch Ndandason,Kenya,1991-08-07,Right hand Bat,Left arm Fast medium,Bowler
+68c3f79d,LN Onyango,24711,Lameck Onyango Ngoche,Kenya,1973-09-22,Right hand Bat,Right arm Medium,Bowler
+6ad2d5f7,LN Rajbanshi,913853,Lalit Narayan Rajbanshi,Nepal,1999-02-27,Right hand Bat,Slow Left arm Orthodox,Bowler
+75c8a26b,Lokesh Bam,1090625,Lokesh Bam,Nepal,,,,
+1be70c88,LPC Silva,50431,Lindamlilage Prageeth Chamara Silva,Sri Lanka,1979-12-14,Right hand Bat,Legbreak,Batter
+b61a3e1a,LRPL Taylor,38699,Luteru Ross Poutoa Lote Taylor,New Zealand,1984-03-08,Right hand Bat,Right arm Offbreak,Middle order Batter
+50c6bc2b,LS Livingstone,403902,Liam Stephen Livingstone,England,1993-08-04,Right hand Bat,Legbreak,Batting Allrounder
+782fb776,LV van Beek,440522,Logan Verjus van Beek,Netherlands,1990-09-07,Right hand Bat,Right arm Medium fast,Bowler
+681af475,M Ansari,631264,Munis S Ansari,Oman,1984-04-01,Right hand Bat,Right arm Fast medium,Bowler
+26d80a9d,M Campopiano,1197103,Marcus Campopiano,Italy,1995-02-21,Right hand Bat,Right arm Offbreak,
+38214163,M Faraz Akram,1122851,Mohammad Faraz Akram,Zimbabwe,1993-10-03,Left hand Bat,Right arm Medium,Allrounder
+81c36ee9,M Jansen,696401,Marco Jansen,South Africa,2000-05-01,Right hand Bat,Left arm Fast,Bowling Allrounder
+6a71ba3a,M Levitt,1071504,Michael Levitt,Netherlands,2003-06-19,Right-hand bat,Right-arm fast,
+5bb5a915,M Morkel,46538,Morne Morkel,South Africa,1984-10-06,Left hand Bat,Right arm Fast,Bowler
+4ba44e19,M Muralitharan,49636,Muthiah Muralidaran,Sri Lanka,1972-04-17,Right hand Bat,Right arm Offbreak,Bowler
+20a941bb,M Ntini,46592,Makhaya Ntini,South Africa,1977-07-06,Right hand Bat,Right arm Fast,Bowler
+64839cb3,M Pathirana,1194795,Matheesha Pathirana,Sri Lanka,2002-12-18,Right hand Bat,Right arm Medium,Bowler
+6766ca00,M Shumba,951781,Milton Shumba,Zimbabwe,2000-10-19,Left hand Bat,Slow Left arm Orthodox,Top order Batter
+f24c6701,M Theekshana,1138316,Morawakage Maheesh Theekshana,Sri Lanka,2000-08-01,Right hand Bat,Right arm Offbreak,Bowler
+7eb36269,M van Lingen,833777,Michael van Lingen,Namibia,1997-10-24,Left hand Bat,Left arm Medium,Bowling Allrounder
+4b57e452,M Vijay,237095,Murali Vijay,India,1984-04-01,Right hand Bat,Right arm Offbreak,Opening Batter
+05f96194,MA Jones,1093091,Michael Alexander Jones,Scotland,1998-01-05,Right hand Bat,Right arm Offbreak,Top order Batter
+28131839,MA Leask,414966,Michael Alexander Leask,Scotland,1990-10-29,Right hand Bat,Right arm Offbreak,Allrounder
+0939c670,MA Ouma,24750,Morris Amollo Ouma,Kenya,1982-11-08,Right hand Bat,Right arm Offbreak,Wicketkeeper Batter
+4d0055a0,MA Parker,298197,Matthew Archibald Parker,Scotland,1990-03-02,Left hand Bat,Right arm Medium fast,Bowler
+3fb19989,MA Starc,311592,Mitchell Aaron Starc,Australia,1990-01-30,Left hand Bat,Left arm Fast,Bowler
+8d92a2c3,MA Wood,351588,Mark Andrew Wood,England,1990-01-11,Right hand Bat,Right arm Fast,Bowler
+58431ca0,MADI Hemantha,721041,Munasinghe Arachchige Dushan Ishara Hemantha,Sri Lanka,1994-05-24,Right hand Bat,Legbreak,
+9dad0f2e,Mahedi Hasan,833087,Mahedi Hasan,Bangladesh,1994-12-12,Right hand Bat,Right arm Offbreak,Allrounder
+bf1d7d3e,Mahmudullah,56025,Mohammad Mahmudullah,Bangladesh,1986-02-04,Right hand Bat,Right arm Offbreak,Allrounder
+e186f49c,Mashrafe Mortaza,56007,Mashrafe Bin Mortaza,Bangladesh,1983-10-05,Right hand Bat,Right arm Fast medium,Bowler
+c51add25,MB Kruger,574638,Malan Binneman Kruger,Namibia,1995-04-12,Right-hand bat,,
+3f18724b,MC Sorensen,531953,Max Christian Sorensen,Ireland,1985-11-18,Right hand Bat,Right arm Fast medium,Bowler
+509a7ca1,MD Gunathilaka,345821,Mashtayage Danushka Gunathilaka,Sri Lanka,1991-03-17,Left hand Bat,Right arm Offbreak,Allrounder
+25d7f1ac,MD Patel,1159641,Monank Dilipbhai Patel,United States of America,1993-05-01,Right hand Bat,,Top order Batter
+3ff033bb,MD Shanaka,437316,Madagamagamage Dasun Shanaka,Sri Lanka,1991-09-09,Right hand Bat,Right arm Medium,Allrounder
+f21043a5,MDKJ Perera,300631,Mathurage Don Kusal Janith Perera,Sri Lanka,1990-08-17,Left hand Bat,,Wicketkeeper Batter
+c58b0108,Mehedi Hasan Miraz,629063,Mehidy Hasan Miraz,Bangladesh,1997-10-25,Right hand Bat,Right arm Offbreak,Allrounder
+d7bfcc0b,Mehran Khan,888565,Mehran Khan,Oman,1987-04-13,Right hand Bat,Right arm Medium fast,Batter
+48fd7349,MEK Hussey,5939,Michael Edward Killeen Hussey,Australia,1975-05-27,Left hand Bat,Right arm Medium,Middle order Batter
+ab89348d,MF Maharoof,49638,Mohamed Farveez Maharoof,Sri Lanka,1984-09-07,Right hand Bat,Right arm Fast medium,Allrounder
+95a5e066,MG Erasmus,519070,Merwe Gerhard Erasmus,Namibia,1995-04-11,Right hand Bat,Right arm Offbreak,Allrounder
+f5180fe6,MG Johnson,6033,Mitchell Guy Johnson,Australia,1981-11-02,Left hand Bat,Left arm Fast,Bowler
+8b261d84,MH Cross,417268,Matthew Henry Cross,Scotland,1992-10-15,Right hand Bat,,Wicketkeeper Batter
+3812d56b,MH Yardy,23523,Michael Howard Yardy,England,1980-11-27,Left hand Bat,Slow Left arm Orthodox,Allrounder
+b4296080,Milind Kumar,451947,Milind Kumar,India,1991-02-15,Right hand Bat,Right arm Offbreak,Allrounder
+7eae4418,Misbah-ul-Haq,41378,Misbah-ul-Haq Khan Niazi,Pakistan,1974-05-28,Right hand Bat,Legbreak,Middle order Batter
+f842c2cf,MJ Clarke,4578,Michael John Clarke,Australia,1981-04-02,Right hand Bat,Slow Left arm Orthodox,Middle order Batter
+2be41edb,MJ Guptill,226492,Martin James Guptill,New Zealand,1986-09-30,Right hand Bat,Right arm Offbreak,Opening Batter
+e84ac20c,MJ Henry,506612,Matthew James Henry,New Zealand,1991-12-14,Right hand Bat,Right arm Fast medium,Bowler
+2c54c49b,MJ Humphreys,1263361,Matthew James Humphreys,Ireland,2002-09-28,Right hand Bat,Slow Left arm Orthodox,
+11df3dc8,MJ Lumb,16406,Michael John Lumb,England,1980-02-12,Left hand Bat,Right arm Medium,Top order Batter
+51a3c5ef,MJ McClenaghan,319439,Mitchell John McClenaghan,New Zealand,1986-06-11,Left hand Bat,Left arm Fast medium,Bowler
+1200550f,MJ Prior,18675,Matthew James Prior,England,1982-02-26,Right hand Bat,,Wicketkeeper Batter
+e4a0deae,MJ Santner,502714,Mitchell Josef Santner,New Zealand,1992-02-05,Left hand Bat,Slow Left arm Orthodox,Bowling Allrounder
+93b4fc78,MK Pandey,290630,Manish Krishnanand Pandey,India,1989-09-10,Right hand Bat,Right arm Medium,Top order Batter
+d8699ab7,ML Hayden,5616,Matthew Lawrence Hayden,Australia,1971-10-29,Left hand Bat,Right arm Medium,Opening Batter
+bb351c23,MM Ali,8917,Moeen Munir Ali,England,1987-06-18,Left hand Bat,Right arm Offbreak,Batting Allrounder
+4ff67681,MM Iqbal,25433,Moneeb Mohammed Iqbal,Scotland,1986-02-28,Right hand Bat,Legbreak,Batter
+759ac88f,MM Sharma,537119,Mohit Mahipal Sharma,India,1988-09-18,Right hand Bat,Right arm Medium,Bowler
+f846de6a,MN Samuels,52983,Marlon Nathaniel Samuels,West Indies,1981-02-05,Right hand Bat,Right arm Offbreak,Top order Batter
+ec4dada1,MN Waller,55872,Malcolm Noel Waller,Zimbabwe,1984-09-28,Right hand Bat,Right arm Offbreak,Batter
+e174dadd,Mohammad Amir,290948,Mohammad Amir,Pakistan,1992-04-13,Left hand Bat,Left arm Fast medium,Bowler
+2bb09eb2,Mohammad Ashraful,55988,Mohammad Ashraful,Bangladesh,1984-07-07,Right hand Bat,"Right arm Offbreak, Legbreak",Middle order Batter
+e03b66ec,Mohammad Asif,41411,Mohammad Asif,Pakistan,1982-12-20,Left hand Bat,Right arm Fast medium,Bowler
+c4a60a7b,Mohammad Ayaz,316400,Muhammad Ayaz,United Arab Emirates,1987-10-13,Left hand Bat,Left arm Medium fast,
+39713d08,Mohammad Boota,1125867,Mohammad Boota,United Arab Emirates,1983-01-05,Right hand Bat,Right arm Medium,Middle order Batter
+9ab63e7b,Mohammad Hafeez,41434,Mohammad Hafeez,Pakistan,1980-10-17,Right hand Bat,Right arm Offbreak,Allrounder
+ff3f6fc1,Mohammad Haris,1205559,Mohammad Haris,Pakistan,2001-03-30,Right hand Bat,Right arm Offbreak,Middle order Batter
+a8e3170f,Mohammad Irfan,429981,Mohammad Irfan,Pakistan,1982-06-06,Right hand Bat,Left arm Fast,Bowler
+77191792,Mohammad Mithun,269237,Mohammad Mithun,Bangladesh,1991-03-02,Right hand Bat,,Top order Batter
+79f8472d,Mohammad Mohsin,935881,Mohammad Mohsin,Pakistan,1996-04-15,Left hand Bat,Legbreak Googly,Bowling Allrounder
+c5d7b244,Mohammad Nadeem,41984,Mohammad Nadeem,Oman,1982-09-04,Right hand Bat,Right arm Medium fast,Allrounder
+7923a51d,Mohammad Naim,990081,Mohammad Naim Sheikh,Bangladesh,1999-08-22,Left hand Bat,,Opening Batter
+3086f7a4,Mohammad Nawaz,348148,Mohammad Nawaz,Pakistan,1994-03-21,Left hand Bat,Slow Left arm Orthodox,Allrounder
+2f26ac1a,Mohammad Rizwan,323389,Mohammad Rizwan,Pakistan,1992-06-01,Right hand Bat,,Wicketkeeper Batter
+b3a28446,Mohammad Saifuddin,629070,Mohammad Saifuddin,Bangladesh,1996-11-01,Left hand Bat,Right arm Medium fast,Bowling Allrounder
+68ddabdb,Mohammad Sami,41324,Mohammad Sami,Pakistan,1981-02-24,Right hand Bat,Right arm Fast,Bowler
+9e9af5f2,Mohammad Wasim,1185538,Mohammad Wasim,Pakistan,2001-08-25,Right hand Bat,Right arm Fast medium,Allrounder
+8cf9814c,Mohammed Shami,481896,Mohammed Shami Ahmed,India,1990-09-03,Right hand Bat,Right arm Fast,Bowler
+2f49c897,Mohammed Siraj,940973,Mohammed Siraj,India,1994-03-13,Right hand Bat,Right arm Fast,Bowler
+de0a3209,Mominul Haque,373696,Mominul Haque,Bangladesh,1991-09-29,Left hand Bat,Slow Left arm Orthodox,Middle order Batter
+8919756f,Mosaddek Hossain,550133,Mosaddek Hossain Saikat,Bangladesh,1995-12-10,Right hand Bat,Right arm Offbreak,Middle order Batter
+7b953689,MP Kuhnemann,774219,Matthew Paul Kuhnemann,Australia,1996-09-20,Left hand Bat,Slow Left arm Orthodox,Bowler
+b699df47,MP O'Dowd,643197,Maxwell Patrick O'Dowd,Netherlands,1994-03-04,Right hand Bat,Right arm Offbreak,Opening Batter
+d9273ee7,MP Stoinis,325012,Marcus Peter Stoinis,Australia,1989-08-16,Right hand Bat,Right arm Medium,Batting Allrounder
+fc55ec67,MR Adair,526441,Mark Richard Adair,Ireland,1996-03-27,Right hand Bat,Right arm Fast medium,Bowling Allrounder
+7d7ab238,MR Gillespie,37111,Mark Raymond Gillespie,New Zealand,1979-10-17,Right hand Bat,Right arm Fast medium,Bowler
+3d8feaf8,MR Marsh,272450,Mitchell Ross Marsh,Australia,1991-10-20,Right hand Bat,Right arm Medium,Allrounder
+a75a78eb,MR Swart,308794,Michael Richard Swart,Australia,1982-10-01,Right hand Bat,Right arm Offbreak,Middle order Batter
+1252f71a,MRJ Watt,659081,Mark Robert James Watt,Scotland,1996-07-29,Left hand Bat,Slow Left arm Orthodox,Bowler
+7fa12533,MS Chapman,438563,Mark Sinclair Chapman,New Zealand,1994-06-27,Left hand Bat,Slow Left arm Orthodox,Allrounder
+4a8a2e3b,MS Dhoni,28081,Mahendra Singh Dhoni,India,1981-07-07,Right hand Bat,Right arm Medium,Wicketkeeper Batter
+afa7e784,MS Wade,230193,Matthew Scott Wade,Australia,1987-12-26,Left hand Bat,Right arm Medium,Wicketkeeper Batter
+218d4d78,MT Renshaw,722303,Matthew Thomas Renshaw,Australia,1996-03-28,Left hand Bat,Right arm Offbreak,Batter
+37312a74,Mudassar Bukhari,245166,Mudassar Bukhari,Netherlands,1983-12-26,Right hand Bat,Right arm Medium fast,Allrounder
+8f3c6b8a,Muhammad Farooq,1323402,Muhammad Farooq,Cyprus,1998-02-03,Right hand Bat,Right arm Medium fast,
+098a757c,Muhammad Jawadullah,1353033,Muhammad Jawadullah,United Arab Emirates,1999-03-12,Left hand Bat,Left arm Fast medium,Bowler
+9103ecdb,Muhammad Rohid,1410354,Muhammad Rohid Khan,United Arab Emirates,2002-09-29,Left-hand bat,Left-arm medium-fast,
+45642393,Muhammad Usman,974719,Muhammad Usman,United Arab Emirates,1985-10-13,Left hand Bat,,Middle order Batter
+04029c44,Munir Dar,220613,Munir Ahmed Dar,Hong Kong,1974-03-04,Right hand Bat,Slow Left arm Orthodox,Allrounder
+a94e08ea,Mushfiqur Rahim,56029,Mohammad Mushfiqur Rahim,Bangladesh,1987-05-09,Right hand Bat,,Wicketkeeper Batter
+0a8fce53,Mustafizur Rahman,330902,Mustafizur Rahman,Bangladesh,1995-09-06,Left hand Bat,Left arm Fast medium,Bowler
+f3cb53a1,MV Boucher,44111,Mark Verdon Boucher,South Africa,1976-12-03,Right hand Bat,Right arm Medium,Wicketkeeper Batter
+83d17bbc,MW Forde,1209190,Matthew Walter Forde,West Indies,2002-04-29,Right hand Bat,Right arm Medium,Bowler
+8c7d6cbe,MW Machan,297488,Matthew William Machan,England,1991-02-15,Left hand Bat,Right arm Offbreak,Top order Batter
+72e361fe,N Davin,595790,Nikolaas Davin,Namibia,1997-12-19,Right hand Bat,Legbreak,Batter
+caf1b14c,N Deonarine,51659,Narsingh Deonarine,West Indies,1983-08-16,Left hand Bat,Right arm Offbreak,Batter
+e258a603,N Dutta,348135,Nikhil Dutta,Canada,1994-10-13,Right hand Bat,Right arm Offbreak,Bowler
+dd468277,N M'shangwe,392944,Natsai M'shangwe,Zimbabwe,1991-02-09,Right hand Bat,Legbreak,Bowler
+3e28808e,N Mugabe,594321,Neil Mugabe,Kenya,1995-03-31,Right-hand bat,,
+87a92b6b,N Pokana,646181,Nosaina Pokana,Papua New Guinea,1996-04-12,Right hand Bat,Left arm Fast,Bowler
+3241e3fd,N Pooran,604302,Nicholas Pooran,West Indies,1995-10-02,Left hand Bat,Right arm Offbreak,Wicketkeeper Batter
+ee1b6c27,N Thushara,955235,Ilandari Dewage Nuwan Thushara,Sri Lanka,1994-08-06,Right hand Bat,Right arm Medium fast,Bowler
+a36915ce,N Vanua,524253,Norman Vanua,Papua New Guinea,1993-12-02,Right hand Bat,Right arm Medium,Bowler
+43f4087c,NA Rock,1112535,Neil Alan Rock,Ireland,2000-09-24,Left hand Bat,,Wicketkeeper Batter
+023f6b02,Nadeem Ahmed,24230,Nadeem Ahmed,Hong Kong,1987-09-28,Right hand Bat,Slow Left arm Orthodox,Bowler
+d6ac6545,Nadif Chowdhury,56053,Nadif Chowdhury,Bangladesh,1987-04-21,Right hand Bat,Slow Left arm Orthodox,Batter
+02e83ac5,Naeem Islam,56054,Mohammed Naeem Islam,Bangladesh,1986-12-31,Right hand Bat,Right arm Offbreak,Allrounder
+25e26a23,Najeeb Amar,42106,Najeeb Amar,Hong Kong,1971-09-25,Left hand Bat,Slow Left arm Orthodox,Allrounder
+c63671e9,Naseem Khushi,1077310,Muhammad Naseem Khushi,Oman,1982-08-11,Right hand Bat,,Wicketkeeper
+9c9af282,Naseem Shah,1158088,Naseem Shah,Pakistan,2003-02-15,Right hand Bat,Right arm Fast,Bowler
+6eea0b32,Nasir Hossain,300618,Mohammad Nasir Hossain,Bangladesh,1991-11-30,Right hand Bat,Right arm Offbreak,Allrounder
+4c4a06fb,Nasir Jamshed,42321,Nasir Jamshed,Pakistan,1989-12-06,Left hand Bat,,Opening Batter
+37654b75,Nasum Ahmed,348049,Nasum Ahmed,Bangladesh,1994-12-05,Left hand Bat,Slow Left arm Orthodox,Bowler
+4aef496b,Nazimuddin,56059,Mohammed Nazimuddin,Bangladesh,1985-10-01,Right hand Bat,Right arm Medium,Batter
+1274d7ab,Nazmul Hossain Shanto,629058,Najmul Hossain Shanto,Bangladesh,1998-08-25,Left hand Bat,Right arm Offbreak,Top order Batter
+9d280648,NB Budayair,437757,Naresh Bahadur Budayair,Nepal,1991-10-15,Right hand Bat,Right arm Bowler,Opening Batter
+ef5cbaf6,NFI McCallum,25430,Neil Francis Ian McCallum,Scotland,1977-11-22,Right hand Bat,,Middle order Batter
+c5326dd0,NG Jones,406308,Nigel Geoffrey Jones,Ireland,1982-04-22,Right hand Bat,Right arm Medium,Allrounder
+e3eb9e46,Nizakat Khan,350629,Nizakat Khan,Hong Kong,1992-07-08,Right hand Bat,Legbreak,Allrounder
+84826f48,NJ O'Brien,24289,Niall John O'Brien,Ireland,1981-11-08,Left hand Bat,,Wicketkeeper Batter
+737e595d,NK Yadav,1058498,Nandan Kumar Yadav,Nepal,,Right-hand bat,Right-arm medium,
+5673a3fc,NL McCullum,37749,Nathan Leslie McCullum,New Zealand,1980-09-01,Right hand Bat,Right arm Offbreak,Bowler
+0f12f9df,NLTC Perera,233514,Narangoda Liyanaarachchilage Thisara Chirantha Perera,Sri Lanka,1989-04-03,Left hand Bat,Right arm Medium fast,Bowling Allrounder
+7805af0f,NM Carter,44493,Neil Miller Carter,South Africa,1975-01-29,Left hand Bat,Left arm Medium fast,Allrounder
+56ab442f,NM Coulter-Nile,261354,Nathan Mitchell Coulter-Nile,Australia,1987-10-11,Right hand Bat,Right arm Fast,Bowling Allrounder
+8ea6e670,NM Hauritz,5593,Nathan Michael Hauritz,Australia,1981-10-18,Right hand Bat,Right arm Offbreak,Bowler
+c07a1f41,NM Odhiambo,308418,Nelson Mandela Odhiambo,Kenya,1989-03-21,Right hand Bat,Right arm Medium fast,Bowler
+753b5a2d,NN Odhiambo,238612,Nehemiah Ngoche Odhiambo,Kenya,1983-08-07,Right hand Bat,Right arm Medium fast,Bowler
+ea3ffd1b,NO Miller,52622,Nikita O'Brien Miller,West Indies,1982-05-16,Right hand Bat,Slow Left arm Orthodox,Bowler
+f7d267f7,NP Kenjige,1041679,Nosthusha Pradeep Kenjige,United States of America,1991-03-02,Right hand Bat,Slow Left arm Orthodox,
+28fcb027,NP Mayavo,493753,Nyasha Prince Mayavo,Zimbabwe,1992-10-01,Right-hand bat,Legbreak,
+6b75c2b1,NR Kirton,820685,Nicholas Rasheed Kirton,Canada,1998-05-06,Left hand Bat,,Batting Allrounder
+b3bad3f2,NR Kumar,348129,Nitish Roenick Kumar,Canada,1994-05-21,Right hand Bat,Right arm Offbreak,Top order Batter
+74c6c6e0,NR Welch,696145,Nicholas Roy Welch,Zimbabwe,1998-02-05,Right hand Bat,Legbreak Googly,Opening Batter
+f427e63e,NRJ Croes,1191381,Noah Roderick Joseph Croes,Netherlands,1999-12-13,Right hand Bat,,Batter
+cbabd6ad,NS Dhaliwal,817069,Navneet Singh Dhaliwal,Canada,1988-10-10,Right hand Bat,Right arm Medium fast,Middle order Batter
+e343abe9,NS Poonia,19276,Navdeep Singh Poonia,Scotland,1986-05-11,Right hand Bat,Right arm Medium fast,Batter
+a354c917,NT Broom,36581,Neil Trevor Broom,New Zealand,1983-11-20,Right hand Bat,Right arm Medium,Middle order Batter
+9eb1455b,NT Ellis,826915,Nathan Ellis,Australia,1994-09-22,Right hand Bat,Right arm Fast medium,Bowler
+d365d463,Nurul Hasan,410765,Quazi Nurul Hasan,Bangladesh,1993-11-21,Right hand Bat,,Wicketkeeper Batter
+4c61a0f9,NW Bracken,4185,Nathan Wade Bracken,Australia,1977-09-12,Right hand Bat,Left arm Fast medium,Bowler
+63249474,O Davidson,1278259,Oliver Forbes Davidson,Scotland,2004-07-28,Left hand Bat,Slow Left arm Orthodox,
+ffc308ee,O Muzondo,1355079,Owen Muzondo,Zimbabwe,1998-02-19,Left-hand bat,Slow left-arm orthodox,
+7bf96684,OA Shah,20123,Owais Alam Shah,England,1978-10-22,Right hand Bat,Right arm Offbreak,Batter
+529eb9e0,OC McCoy,906783,Obed  Christopher McCoy,West Indies,1997-01-04,Left hand Bat,Left arm Fast medium,Bowler
+6b9eb501,OEG Baartman,535353,Ottniel Emile Graham Baartman,South Africa,1993-03-18,Right hand Bat,Right arm Medium fast,Bowler
+23cca426,OF Smith,820691,Odean Fabian Smith,West Indies,1996-11-01,Right hand Bat,Right arm Fast medium,Bowling Allrounder
+12c3ba4d,P Khadka,25967,Paras Khadka,Nepal,1987-10-24,Right hand Bat,"Right arm Medium fast, Right arm Offbreak",Allrounder
+f4a0a615,P Koech,578785,Peter Kipkoech Langat,Kenya,1993-10-19,Right hand Bat,Right arm Medium,Bowler
+e938e1bc,P Kumar,30732,Praveenkumar Sakat Singh,India,1986-10-02,Right hand Bat,Right arm Medium,Bowler
+8ee36b18,P Nissanka,1028655,Pathum Nissanka Silva,Sri Lanka,1998-05-18,Right hand Bat,,Top order Batter
+c1fdfb46,P Rathnayake,1171180,Pavan Rathnayake,Sri Lanka,2002-08-24,Right-hand bat,Right-arm offbreak,
+d047f983,P Sharma,1342166,Pushkar Sharma,Kenya,2000-10-12,Left hand Bat,Left arm Medium fast,
+9de271ef,P Utseya,55820,Prosper Utseya,Zimbabwe,1985-03-26,Right hand Bat,Right arm Offbreak,Bowler
+4557dc54,PA van Meekeren,348109,Paul Adriaan van Meekeren,Netherlands,1993-01-15,Right hand Bat,Right arm Fast medium,Bowler
+d2e67105,Pargat Singh,446690,Pargat Singh,Canada,1992-04-13,Right hand Bat,Right arm Offbreak,
+6c882e9a,PBB Rajapaksa,342619,Pramod Bhanuka Bandara Rajapaksa,Sri Lanka,1991-10-24,Left hand Bat,Right arm Medium,Top order Batter
+5500c675,PC Connell,303349,Peter Christopher Connell,Ireland,1981-08-13,Right hand Bat,Right arm Medium fast,Bowler
+a386e91b,PD Collingwood,10772,Paul David Collingwood,England,1976-05-26,Right hand Bat,Right arm Medium,Allrounder
+024fe464,PD McGlashan,37770,Peter Donald McGlashan,New Zealand,1979-06-22,Right hand Bat,,Wicketkeeper Batter
+3d284ca3,PD Salt,669365,Philip Dean Salt,England,1996-08-28,Right hand Bat,Right arm Offbreak,Wicketkeeper Batter
+10a2a1ff,PG Fulton,37091,Peter Gordon Fulton,New Zealand,1979-02-01,Right hand Bat,Right arm Medium,Top order Batter
+08548b13,PHKD Mendis,784373,Pasqual Handi Kamindu Dilanka Mendis,Sri Lanka,1998-09-30,Left hand Bat,"Right arm Offbreak, Slow Left arm Orthodox",Allrounder
+ded9240e,PJ Cummins,489889,Patrick James Cummins,Australia,1993-05-08,Right hand Bat,Right arm Fast,Bowler
+27cc4361,PJ Ongondo,24762,Peter Jimmy Carter Ongondo,Kenya,1977-02-10,Right hand Bat,Right arm Fast medium,Bowler
+a56f4b65,PL Mommsen,461281,Preston Luke Mommsen,Scotland,1987-10-14,Right hand Bat,Right arm Offbreak,Opening Batter
+3ee0050f,PM Liyanagamage,826689,Pramod Madushan Liyanagamage,Sri Lanka,1993-12-14,Right hand Bat,Right arm Medium fast,Bowler
+a22fb7b5,PM Nevill,6973,Peter Michael Nevill,Australia,1985-10-13,Right hand Bat,,Wicketkeeper
+abbdca1a,PM Seelaar,208657,Pieter Marinus Seelaar,Netherlands,1987-07-02,Right hand Bat,Slow Left arm Orthodox,Allrounder
+98ae73b1,PP Chawla,32966,Piyush Pramod Chawla,India,1988-12-24,Left hand Bat,Legbreak,Bowling Allrounder
+6c6591ab,PP Ojha,32130,Pragyan Prayash Ojha,India,1986-09-05,Left hand Bat,Slow Left arm Orthodox,Bowler
+cf494ffe,PR Stirling,303427,Paul Robert Stirling,Ireland,1990-09-03,Right hand Bat,Right arm Offbreak,Batting Allrounder
+c2f12310,PS Athavale,1402600,Pratik Shrikant Athavale,Oman,1997-04-20,Right-hand bat,Right-arm offbreak,
+327b58d3,PVD Chameera,552152,Pathira Vasan Dushmantha Chameera,Sri Lanka,1992-01-11,Right hand Bat,Right arm Fast,Bowler
+91052c96,PW Borren,36592,Peter William Borren,Netherlands,1983-08-21,Right hand Bat,Right arm Medium,Allrounder
+a97c8ec2,PWH de Silva,784379,Pinnaduwage Wanindu Hasaranga de Silva,Sri Lanka,1997-07-29,Right hand Bat,Legbreak,Allrounder
+372455c4,Q de Kock,379143,Quinton de Kock,South Africa,1992-12-17,Left hand Bat,,Wicketkeeper Batter
+495d42a5,R Ashwin,26421,Ravichandran Ashwin,India,1986-09-17,Right hand Bat,Right arm Offbreak,Bowling Allrounder
+c13b2833,R Flannigan,303412,Ryan Flannigan,Scotland,1988-06-30,Right hand Bat,Right arm Medium,Top order Batter
+c70448aa,R Hekure,646193,Riley Hekure,Papua New Guinea,1994-10-31,Right hand Bat,Right arm Medium,Bowler
+f4417987,R Mupfudza,1217623,Rodney Mupfudza,Zimbabwe,2001-08-12,Right-hand bat,Legbreak,
+5fef85ee,R Mutumbami,235516,Richmond Mutumbami,Zimbabwe,1989-06-11,Right hand Bat,Right arm Offbreak,Wicketkeeper Batter
+6e3f5a5c,R Ngarava,806241,Richard Ngarava,Zimbabwe,1997-12-28,Left hand Bat,Left arm Fast medium,Bowler
+6bc04a3e,R Obuya,1380565,Robinson Obuya,Uganda,2000-12-12,Right hand Bat,,
+650d5e49,R Powell,820351,Rovman Powell,West Indies,1993-07-23,Right hand Bat,Right arm Medium fast,Middle order Batter
+d68e7f48,R Rampaul,52912,Ravindranath Rampaul,West Indies,1984-10-15,Left hand Bat,Right arm Fast medium,Bowler
+ba5e1069,R Ravindra,959767,Rachin Ravindra,New Zealand,1999-11-18,Left hand Bat,Slow Left arm Orthodox,Batting Allrounder
+c5aef772,R Shepherd,677077,Romario Shepherd,West Indies,1994-11-26,Right hand Bat,Right arm Fast medium,Bowling Allrounder
+ff6a7ab5,R Trumpelmann,698317,Ruben Trumpelmann,Namibia,1998-02-01,Right hand Bat,Left arm Fast,Bowler
+41eb4a4f,R Vinay Kumar,35731,Ranganath Vinay Kumar,India,1984-02-12,Right hand Bat,Right arm Medium,Bowler
+fe93fd9d,RA Jadeja,234675,Ravindrasinh Anirudhsinh Jadeja,India,1988-12-06,Left hand Bat,Slow Left arm Orthodox,Allrounder
+369cc49c,Rafiullah,1174143,Rafiullah,Oman,,,,
+e045c165,Rameez Shahzad,220519,Rameez Shahzad,United Arab Emirates,1987-11-30,Right hand Bat,Right arm Offbreak,Top order Batter
+17efdeb8,Raqibul Hasan,56093,Mohammad Raqibul Hasan,Bangladesh,1987-10-08,Right hand Bat,Legbreak,Batter
+2f28dc94,RAS Lakmal,49619,Ranasinghe Arachchige Suranga Lakmal,Sri Lanka,1987-03-10,Right hand Bat,Right arm Fast medium,Bowler
+f80682f8,Ravinderpal Singh,1159653,Ravinderpal Singh,Canada,1988-10-14,Right hand Bat,Right arm Offbreak,Batter
+4f7279a4,Raza Hasan,343548,Raza Hasan,Pakistan,1992-07-08,Right hand Bat,Slow Left arm Orthodox,Bowler
+f88dc8de,RB Patel,1151337,Ronak Bharatibhai Patel,Uganda,1988-08-18,Right hand Bat,Slow Left arm Orthodox,
+e21bc7f3,RD Berrington,25490,Richard Douglas Berrington,Scotland,1987-04-03,Right hand Bat,Right arm Medium fast,Top order Batter
+2ed569a0,RD Chahar,1064812,Rahul Desraj Chahar,India,1999-08-04,Right hand Bat,Legbreak Googly,Bowler
+e66732f8,RD Rickelton,605661,Ryan David Rickelton,South Africa,1996-07-11,Left hand Bat,,Wicketkeeper Batter
+18c78b11,RE Levi,46148,Richard Ernst Levi,South Africa,1988-01-14,Right hand Bat,Right arm Medium,Opening Batter
+05c2ca46,RE van der Merwe,47850,Roelof Erasmus van der Merwe,Netherlands,1984-12-31,Right hand Bat,Slow Left arm Orthodox,Allrounder
+0ecb4de6,Rehan Ahmed,1263691,Rehan Ahmed,England,2004-08-13,Right hand Bat,Legbreak Googly,Bowling Allrounder
+011f6b42,RG Mukasa,233528,Roger Galwanao Mukasa,Uganda,1989-05-22,Right hand Bat,Right arm Offbreak,
+740742ef,RG Sharma,34102,Rohit Gurunath Sharma,India,1987-04-30,Right hand Bat,Right arm Offbreak,Top order Batter
+269cc4ff,Riazat Ali Shah,1129565,Riazat Ali Shah,Uganda,1998-02-20,Right hand Bat,Right arm Medium,
+5935d694,Rishad Hossain,1139523,Mohammad Rishad Hossain,Bangladesh,2002-07-15,Right hand Bat,Legbreak Googly,Bowler
+f6993a56,RJ Campbell,4527,Ryan John Campbell,Hong Kong,1972-02-07,Right hand Bat,Right arm Offbreak,Wicketkeeper Batter
+12eddf28,RJ Harris,5779,Ryan James Harris,Australia,1979-10-11,Right hand Bat,Right arm Fast,Bowler
+22860288,RJ Kirtley,15901,Robert James Kirtley,England,1975-01-10,Right hand Bat,Right arm Fast medium,Bowler
+8d8c24fd,RJ Nicol,38058,Robert James Nicol,New Zealand,1983-05-28,Right hand Bat,"Right arm Medium, Right arm Offbreak",Opening Batter
+26ff4c29,RJ Peterson,46750,Robin John Peterson,South Africa,1979-08-04,Left hand Bat,Slow Left arm Orthodox,Bowler
+9dca07d7,RJ Sidebottom,20187,Ryan Jay Sidebottom,England,1978-01-15,Left hand Bat,Left arm Fast medium,Bowler
+8db7f47f,RJW Topley,461632,Reece James William Topley,England,1994-02-21,Right hand Bat,Left arm Fast medium,Bowler
+7955eb15,RK Kleinveldt,45949,Rory Keith Kleinveldt,South Africa,1983-03-15,Right hand Bat,Right arm Fast medium,Bowler
+1a3cc554,RK Paudel,1072488,Rohit Kumar Paudel,Nepal,2002-09-02,Right hand Bat,Right arm Medium,Batting Allrounder
+0a509d6b,RK Singh,723105,Rinku Khanchand Singh,India,1997-10-12,Left hand Bat,Right arm Offbreak,Middle order Batter
+47d00fb5,RL Bhudia,24773,Rajesh Lalji Bhudia,Kenya,1984-11-22,Right hand Bat,Right arm Medium,Bowler
+3feda4fa,RL Chase,391832,Roston Lamar Chase,West Indies,1992-03-22,Right hand Bat,Right arm Offbreak,Allrounder
+27159c6a,RM Haq,25451,Rana Majid Haq Khan,Scotland,1983-02-11,Left hand Bat,Right arm Offbreak,Bowler
+2e966563,RM Hira,232356,Roneel Magan Hira,New Zealand,1987-01-23,Left hand Bat,Slow Left arm Orthodox,Bowler
+d1761087,RM West,38759,Regan Morris West,Ireland,1979-04-27,Left hand Bat,"Left arm Fast medium, Slow Left arm Orthodox",Bowler
+7fa2ab1f,RML Taylor,353431,Robert Meadows Lombe Taylor,Scotland,1989-12-21,Left hand Bat,Left arm Medium,Allrounder
+db1bf9c2,RN Patel,473378,Rushabhvardhan Nipun Patel,Kenya,1993-06-29,Left hand Bat,Right arm Medium fast,Batter
+4ec07775,RN ten Doeschate,47660,Ryan Neil ten Doeschate,Netherlands,1980-06-30,Right hand Bat,Right arm Medium fast,Allrounder
+d1988788,Rohan Mustafa,307808,Rohan Mustafa,United Arab Emirates,1988-10-07,Left hand Bat,Right arm Offbreak,Top order Batter
+b08252b8,RP Burl,495964,Ryan Ponsonby Burl,Zimbabwe,1994-04-15,Left hand Bat,Legbreak,Middle order Batter
+c3d1402f,RP Singh,35280,Rudra Pratap Singh,India,1985-12-06,Right hand Bat,Left arm Fast medium,Bowler
+b8cc58c9,RR Hendricks,269280,Reeza Raphael Hendricks,South Africa,1989-08-14,Right hand Bat,Right arm Offbreak,Opening Batter
+919a3be2,RR Pant,931581,Rishabh Rajendra Pant,India,1997-10-04,Left hand Bat,,Wicketkeeper Batter
+7fa6bd8e,RR Patel,267455,Rakep Rajendra Patel,Kenya,1989-07-12,Right hand Bat,Right arm Offbreak,Wicketkeeper Batter
+cad00a4d,RR Rossouw,318845,Rilee Roscoe Rossouw,South Africa,1989-10-09,Left hand Bat,Right arm Offbreak,Top order Batter
+36d33dd0,RR Sarwan,52969,Ramnaresh Ronnie Sarwan,West Indies,1980-06-23,Right hand Bat,Legbreak,Batter
+a670d624,RR Watson,25428,Ryan Robert Watson,Scotland,1976-11-12,Right hand Bat,"Right arm Medium, Right arm Offbreak",Middle order Batter
+7ca5e05d,RS Bopara,10582,Ravinder Singh Bopara,England,1985-05-04,Right hand Bat,Right arm Medium,Batting Allrounder
+7d415ea5,RT Ponting,7133,Ricky Thomas Ponting,Australia,1974-12-19,Right hand Bat,Right arm Medium,Top order Batter
+f56cd097,Rubel Hossain,300619,Mohammad Rubel Hossain,Bangladesh,1990-01-01,Right hand Bat,Right arm Fast,Bowler
+1c17e270,RV Uthappa,35582,Robin Venu Uthappa,India,1985-11-11,Right hand Bat,Right arm Medium,Batter
+2f0d7e4a,RW Chakabva,293831,Regis Wiriranai Chakabva,Zimbabwe,1987-09-20,Right hand Bat,Right arm Offbreak,Wicketkeeper Batter
+67af6f81,RW Price,55698,Raymond William Price,Zimbabwe,1976-06-12,Right hand Bat,Slow Left arm Orthodox,Bowler
+bcb01d8c,RWT Key,15876,Robert William Trevor Key,England,1979-05-12,Right hand Bat,Right arm Offbreak,Top order Batter
+76388dc8,S Badree,51433,Samuel Badree,West Indies,1981-03-09,Right hand Bat,Legbreak,Bowler
+9a95bebb,S Bau,420427,Sese Bau,Papua New Guinea,1992-06-23,Left hand Bat,Right arm Offbreak,Middle order Batter
+881a9bdd,S Chanderpaul,51469,Shivnarine Chanderpaul,West Indies,1974-08-16,Left hand Bat,Legbreak,Batter
+8955b928,S Dhakal,1147980,Sagar Dhakal,Nepal,2001-12-14,Right hand Bat,Slow Left arm Orthodox,
+0a476045,S Dhawan,28235,Shikhar Dhawan,India,1985-12-05,Left hand Bat,Right arm Offbreak,Opening Batter
+a4e37e47,S Dube,714451,Shivam Dube,India,1993-06-26,Left hand Bat,Right arm Medium,Allrounder
+3e6e9a5f,S Gill,1342172,Sachin Gill,Kenya,1996-12-04,Right-hand bat,Right-arm medium-fast,
+156378d8,S Jora,1161022,Sundeep Jora,Nepal,2001-10-20,Right hand Bat,,
+97290faf,S Joseph,1356971,Shamar Joseph,West Indies,1999-08-31,Left-hand bat,Right-arm fast,
+b410bd3d,S Lamichhane,960361,Sandeep Lamichhane,Nepal,2000-08-02,Right hand Bat,Legbreak Googly,Bowler
+1daa8927,S Malla,1147801,Sher Malla,Nepal,2002-12-01,Left-hand bat,Right-arm offbreak,
+e7ba1233,S Matsikenyeri,55612,Stuart Matsikenyeri,Zimbabwe,1983-05-03,Right hand Bat,Right arm Offbreak,Middle order Batter
+ee229588,S Movva,1206190,Shreyas Movva,Canada,1993-09-04,Right hand Bat,,
+f78e7113,S Prasanna,268740,Seekkuge Prasanna,Sri Lanka,1985-06-27,Right hand Bat,Legbreak,Allrounder
+f5f18a18,S Randiv,50438,Hewa Kaluhalamullage Suraj Randiv Kaluhalamulla,Sri Lanka,1985-01-30,Right hand Bat,Right arm Offbreak,Bowler
+9ab2914d,S Samarawickrama,629076,Wedagedara Sadeera Rashen Samarawickrama,Sri Lanka,1995-08-30,Right hand Bat,,Wicketkeeper Batter
+c2c975f9,S Sesazi,531312,Simon Ssesazi,Uganda,1996-06-06,Left hand Bat,Right arm Slow,
+612a395c,S Singh,1107669,Sukhdeep Singh,Kenya,2001-02-11,Right hand Bat,Right arm Offbreak,Allrounder
+6b8eb6e5,S Sreesanth,34274,Shanthakumaran Sreesanth,India,1983-02-06,Right hand Bat,Right arm Fast medium,Bowler
+3de06845,S Vesawkar,25977,Sharad Vesawkar,Nepal,1988-10-06,Right hand Bat,Right arm Offbreak,Middle order Batter
+b59db04f,SA Edwards,1127317,Scott Andrew Edwards,Netherlands,1996-08-23,Right hand Bat,,Wicketkeeper Batter
+81a0e294,SA Engelbrecht,315035,Sybrand Abraham Engelbrecht,South Africa,1988-09-15,Right hand Bat,Right arm Offbreak,
+271f83cd,SA Yadav,446507,Suryakumar Ashok Yadav,India,1990-09-14,Right hand Bat,"Right arm Medium, Right arm Offbreak",Batter
+f28a60e0,Saad Bin Zafar,359746,Saad Bin Zafar,Canada,1986-11-10,Left hand Bat,Slow Left arm Orthodox,Allrounder
+7147f314,Sabbir Rahman,373538,Mohammad Sabbir Rahman,Bangladesh,1991-11-22,Right hand Bat,Legbreak,Middle order Batter
+05d74535,Saeed Ajmal,42699,Saeed Ajmal,Pakistan,1977-10-14,Right hand Bat,Right arm Offbreak,Bowler
+3c4007d3,Sagar Pun,524095,Sagar Pun,Nepal,1993-03-01,Right hand Bat,Right arm Offbreak,Opening Batter
+1aba45cd,Sahibzada Farhan,647785,Sahibzada Farhan,Pakistan,1996-03-06,Right hand Bat,,Middle order Batter
+33609a8c,Saim Ayub,1161031,Saim Ayub,Pakistan,2002-05-24,Left hand Bat,Right arm Medium fast,Top order Batter
+4d6d6280,Salman Butt,42683,Salman Butt,Pakistan,1984-10-07,Left hand Bat,Right arm Offbreak,Batter
+7ab1eab7,Salman Mirza,1252522,Mohammad Salman Mirza,Pakistan,1994-01-01,Right hand Bat,Left arm Medium fast,Bowler
+4e1c9f6e,Sandeep Goud,1174024,Sandeep Goud,Oman,1991-11-08,Right hand Bat,Right arm Medium,Allrounder
+f3c150bb,Saqlain Sajib,280737,Saqlain Sajib,Bangladesh,1988-12-01,Left hand Bat,Slow Left arm Orthodox,Bowler
+2254ab79,Sarfraz Ahmed,227760,Sarfaraz Ahmed,Pakistan,1987-05-22,Right hand Bat,Right arm Offbreak,Wicketkeeper Batter
+57efa3be,SB Styris,38407,Scott Bernard Styris,New Zealand,1975-07-10,Right hand Bat,Right arm Medium,Allrounder
+97b0e4ff,SC van Schalkwyk,334621,Shadley Claude van Schalkwyk,South Africa,1988-08-05,Left hand Bat,Right arm Medium,
+afe57f7a,SC Williams,55870,Sean Colin Williams,Zimbabwe,1986-09-26,Left hand Bat,Slow Left arm Orthodox,Middle order Batter
+eba6a852,SCJ Broad,10617,Stuart Christopher John Broad,England,1986-06-24,Left hand Bat,Right arm Fast medium,Bowler
+1fc6ef83,SD Hope,581379,Shai Diego Hope,West Indies,1993-11-10,Right hand Bat,,Wicketkeeper Batter
+fdb8ed0d,SD Parry,215058,Stephen David Parry,England,1986-01-12,Right hand Bat,Slow Left arm Orthodox,Bowler
+4f629497,SE Bond,36326,Shane Edward Bond,New Zealand,1975-06-07,Right hand Bat,Right arm Fast,Bowler
+d014d5ac,SE Rutherford,914541,Sherfane Eviston Rutherford,West Indies,1998-08-15,Left hand Bat,Right arm Fast medium,Middle order Batter
+9de62878,Shadab Khan,922943,Shadab Khan,Pakistan,1998-10-04,Right hand Bat,Legbreak,Allrounder
+1a8eebbe,Shafiul Islam,288305,Shafiul Islam,Bangladesh,1989-10-06,Right hand Bat,Right arm Fast medium,Bowler
+090f9211,Shahadat Hossain,56149,Kazi Shahadat Hossain,Bangladesh,1986-08-07,Right hand Bat,Right arm Medium fast,Bowler
+45a7e761,Shaheen Shah Afridi,1072470,Shaheen Shah Afridi,Pakistan,2000-04-06,Left hand Bat,Left arm Fast,Bowler
+0dc00542,Shahid Afridi,42639,Sahibzada Mohammad Shahid Khan Afridi,Pakistan,1980-03-01,Right hand Bat,Legbreak Googly,Allrounder
+fd201eb4,Shahzaib Hasan,370846,Mohammad Shahzaib Hasan Khan,Pakistan,1989-12-25,Right hand Bat,Right arm Offbreak,Opening Batter
+e9630504,Shaiman Anwar,43121,Shaiman Anwar Butt,United Arab Emirates,1979-03-15,Right hand Bat,Legbreak Googly,Top order Batter
+e29e9c12,Shakeel Ahmed,681801,Shakeel Ahmed,Oman,1988-02-04,Left-hand bat,Slow left-arm orthodox,
+7dc35884,Shakib Al Hasan,56143,Shakib Al Hasan,Bangladesh,1987-03-24,Left hand Bat,Slow Left arm Orthodox,Allrounder
+711249d1,Shamim Hossain,1161044,Shamim Hossain Patwari,Bangladesh,2000-09-02,Left hand Bat,Right arm Offbreak,Allrounder
+02789d88,Shamsur Rahman,56154,Mohammad Shamsur Rahman,Bangladesh,1988-06-05,Right hand Bat,,Opening Batter
+6843a783,Shan Masood,233901,Shan Masood Khan,Pakistan,1989-10-14,Left hand Bat,Right arm Medium fast,Opening Batter
+ac387889,Sharif Asadullah,43181,Sharif Asadullah,United Arab Emirates,1984-12-14,Right hand Bat,Right arm Fast medium,Bowler
+7595b47f,Shariz Ahmad,1278252,Shariz Ahmad,Netherlands,2003-04-21,Left hand Bat,Legbreak Googly,Bowler
+193ef196,Sharjeel Khan,227762,Sharjeel Khan,Pakistan,1989-08-14,Left hand Bat,Legbreak,Opening Batter
+571e1d2a,Shayan Jahangir,647771,Shayan Jahangir,United States of America,1994-12-24,Right hand Bat,Right arm Medium fast,Batter
+21afb939,Shoaib Khan,1276700,Shoaib Khan,Oman,1992-12-06,Right hand Bat,Right arm Medium,Batter
+64c34cd0,Shoaib Malik,42657,Shoaib Malik,Pakistan,1982-02-01,Right hand Bat,Right arm Offbreak,Allrounder
+bb34fd31,Shoriful Islam,990039,Mohammad Shoriful Islam,Bangladesh,2001-06-03,Left hand Bat,Left arm Medium fast,Bowler
+6c7a68d0,Shubham Ranjane,554701,Shubham Subhash Ranjane,India,1994-03-26,Right hand Bat,Right arm Medium,Allrounder
+bb01f9e0,Shuvagata Hom,402992,Shuvagata Hom Chowdhury,Bangladesh,1986-11-11,Right hand Bat,Right arm Offbreak,Batting Allrounder
+0730a707,SI Kamea,1115025,Semo Igo Kamea,Papua New Guinea,2001-08-21,Left hand Bat,Left arm Fast,Bowler
+26d041c4,Sikandar Raza,299572,Sikandar Raza Butt,Zimbabwe,1986-04-24,Right hand Bat,Right arm Offbreak,Batting Allrounder
+c9945bdf,Simi Singh,1005257,Simi Singh,Ireland,1987-02-04,Right hand Bat,"Right arm Offbreak, Legbreak Googly",Bowling Allrounder
+e8511411,SJ Baard,437927,Stephan Julian Baard,Namibia,1992-04-29,Right hand Bat,Right arm Medium fast,Batter
+364ee2cf,SJ Benn,51248,Sulieman Jamaal Benn,West Indies,1981-07-22,Left hand Bat,Slow Left arm Orthodox,Bowler
+18261c22,SJ Myburgh,233712,Stephanus Johannes Myburgh,Netherlands,1984-02-28,Left hand Bat,Right arm Offbreak,Opening Batter
+c5a864d7,SJS Smith,25483,Simon James Stevenson Smith,Scotland,1979-12-08,Right hand Bat,,Wicketkeeper Batter
+a64e3b89,SK Atai,1115033,Simon Kwalahu Atai,Papua New Guinea,1999-09-19,Left hand Bat,,Wicketkeeper Batter
+1dc12ab9,SK Raina,33335,Suresh Kumar Raina,India,1986-11-27,Left hand Bat,Right arm Offbreak,Middle order Batter
+a12e1d51,SL Malinga,49758,Separamadu Lasith Malinga,Sri Lanka,1983-08-28,Right hand Bat,Right arm Fast,Bowler
+e94915e6,SM Curran,662973,Samuel Matthew Curran,England,1998-06-03,Left hand Bat,Left arm Medium fast,Allrounder
+88fccd6c,SM Pollock,46774,Shaun Maclean Pollock,South Africa,1973-07-16,Right hand Bat,Right arm Fast medium,Allrounder
+f43dd8c2,SM Sharif,414970,Safyaan Mohammed Sharif,Scotland,1991-05-24,Right hand Bat,Right arm Medium fast,Bowler
+cec44e08,SM Sharma,1199670,Sanchit Mohan Sharma,United Arab Emirates,2001-07-22,Right hand Bat,Right arm Medium,Bowler
+4c4fa80b,SMSM Senanayake,273439,Senanayake Mudiyanselage Sachithra Madhushanka Senanayake,Sri Lanka,1985-02-09,Right hand Bat,Right arm Offbreak,Bowler
+c8a3f688,SN Netravalkar,398513,Saurabh Naresh Netravalkar,United States of America,1991-10-16,Right hand Bat,Left arm Fast medium,Bowler
+1abb78f8,SN Thakur,475281,Shardul Narendra Thakur,India,1991-10-16,Right hand Bat,Right arm Medium,Bowler
+48a1d7b7,SO Hetmyer,670025,Shimron Odilon Hetmyer,West Indies,1996-12-26,Left hand Bat,,Top order Batter
+49118dc7,SO Ngoche,308515,Shem Obado Ngoche,Kenya,1989-06-06,Right hand Bat,Slow Left arm Orthodox,Bowler
+00d69fa4,SO Tikolo,24728,Stephen Ogonji Tikolo,Kenya,1971-06-25,Right hand Bat,Right arm Offbreak,Allrounder
+5a4c12ab,Sohag Gazi,444135,Sohag Gazi,Bangladesh,1991-08-05,Right hand Bat,Right arm Offbreak,Bowler
+b98b5e1c,Sohaib Maqsood,43266,Sohaib Maqsood,Pakistan,1987-04-15,Right hand Bat,Right arm Offbreak,Middle order Batter
+64d43928,Sohail Tanvir,43265,Sohail Tanvir,Pakistan,1984-12-12,Left hand Bat,Left arm Medium fast,Bowler
+1adb8ee8,Sompal Kami,701215,Sompal Kami,Nepal,1996-02-02,Right hand Bat,Right arm Fast medium,Bowling Allrounder
+4d9f9686,Soumya Sarkar,436677,Soumya Sarkar,Bangladesh,1993-02-25,Left hand Bat,Right arm Medium fast,Middle order Batter
+2d8aae2f,SP Gauchan,25964,Shakti Prasad Gauchan,Nepal,1984-04-22,Right hand Bat,Slow Left arm Orthodox,Bowler
+9a6b71d1,SP Khakurel,446807,Subash Prasad Khakurel,Nepal,1987-06-22,Right hand Bat,,Wicketkeeper Batter
+3b8e7647,SP Krishnamurthi,1277627,Sanjay Prasad Krishnamurthi,United States of America,2003-06-02,Right hand Bat,Slow Left arm Orthodox,
+9d430b40,SP Narine,230558,Sunil Philip Narine,West Indies,1988-05-26,Left hand Bat,Right arm Offbreak,Bowling Allrounder
+f5c198fb,SP Patil,447458,Swapnil Prakash Patil,United Arab Emirates,1985-04-15,Right hand Bat,,Wicketkeeper Batter
+30a45b23,SPD Smith,267192,Steven Peter Devereux Smith,Australia,1989-06-02,Right hand Bat,Legbreak Googly,Middle order Batter
+e9173fb0,SR Bhudia,1107656,Sachin Ramniklal Bhudia,Kenya,1998-09-24,Right hand Bat,Right arm Medium,Allrounder
+a3bfec5d,SR Clark,4582,Stuart Rupert Clark,Australia,1975-09-28,Right hand Bat,Right arm Fast medium,Bowler
+156d0ea2,SR Mukkamalla,1193310,Saiteja Reddy Mukkamalla,United States of America,2004-04-09,Right hand Bat,Right arm Offbreak,
+18fac429,SR Patel,18632,Samit Rohit Patel,England,1984-11-30,Right hand Bat,Slow Left arm Orthodox,Allrounder
+a9231c3f,SR Taylor,348133,Steven Ryan Taylor,United States of America,1993-11-09,Left hand Bat,Right arm Offbreak,Opening Batter
+7f3ad1ed,SR Thompson,414821,Stuart Robert Thompson,Ireland,1991-08-15,Left hand Bat,Right arm Medium fast,Bowler
+4329fbb5,SR Watson,8180,Shane Robert Watson,Australia,1981-06-17,Right hand Bat,Right arm Fast medium,Allrounder
+977b841a,SSJ Brooks,230555,Shamarh Shaqad Joshua Brooks,West Indies,1988-10-01,Right hand Bat,Legbreak,Top order Batter
+ccdd8308,ST Finn,210283,Steven Thomas Finn,England,1989-04-04,Right hand Bat,Right arm Fast medium,Bowler
+f233bbb4,ST Jayasuriya,49209,Sanath Teran Jayasuriya,Sri Lanka,1969-06-30,Left hand Bat,Slow Left arm Orthodox,Allrounder
+bf172ae6,Sufyan Mehmood,402066,Sufyan Mehmood,Oman,1991-10-21,Left hand Bat,Right arm Medium,Bowler
+8fb49ef8,Suhrawadi Shuvo,56138,MD Sohrawordi Shuvo,Bangladesh,1988-11-21,Left hand Bat,Slow Left arm Orthodox,Bowler
+3bf7c034,Sultan Ahmed,42876,Sultan Ahmed,Oman,1977-06-18,Right hand Bat,,Wicketkeeper Batter
+07687c15,Sultan Ahmed,873769,Sultan Ahmed,United Arab Emirates,1989-10-11,Left hand Bat,Slow Left arm Orthodox,Bowler
+bb9d73d8,Suraj Kumar,1156690,Suraj Kumar,Oman,1988-11-29,Right hand Bat,,Wicketkeeper Batter
+a4cc73aa,SV Samson,425943,Sanju Viswanath Samson,India,1994-11-11,Right hand Bat,,Wicketkeeper Batter
+c16d4035,SW Billings,297628,Samuel William Billings,England,1991-06-15,Right hand Bat,,Wicketkeeper Batter
+addfb70e,SW Tait,8076,Shaun William Tait,Australia,1983-02-22,Right hand Bat,Right arm Fast,Bowler
+ab23a6a1,Syed Haider,1126010,Syed Muhammad Haider Shah,United Arab Emirates,2001-04-26,Right-hand bat,,
+c520c3b9,Syed Naqvi,1387433,Syed Zain Abbas Naqvi,Italy,2002-01-02,Right hand Bat,Right arm Medium fast,
+b743f01b,Syed Rasel,56160,Syed Rasel,Bangladesh,1984-07-03,Left hand Bat,Left arm Medium fast,Bowler
+25f7b7d6,T Banton,877051,Tom Banton,England,1998-11-11,Right hand Bat,,Wicketkeeper Batter
+9ffd1ac1,T Bavuma,372116,Temba Bavuma,South Africa,1990-05-17,Right hand Bat,Right arm Medium,Middle order Batter
+d1d83db3,T Gwandu,1038205,Trevor Wesley Gwandu,Zimbabwe,1998-02-24,Right-hand bat,Right-arm medium,
+1fe81cc9,T Kamungozi,235521,Tafadzwa Paul Kamungozi,Zimbabwe,1987-06-08,Right hand Bat,Legbreak,Allrounder
+1688f2dc,T Lungameni,524075,Tangeni Lungameni,Namibia,1992-04-17,Left hand Bat,Left arm Medium,Bowler
+f55c526f,T Maruma,235524,Timycen Hlahla Maruma,Zimbabwe,1988-04-19,Right hand Bat,Legbreak Googly,Top order Batter
+3d5d51a5,T Marumani,946507,Tadiwanashe Marumani,Zimbabwe,2002-01-02,Left hand Bat,Right arm Offbreak,Top order Batter
+c9cac448,T Mishra,24790,Tanmay Mishra,India,1986-12-22,Right hand Bat,Right arm Fast medium,Middle order Batter
+fbcfa528,T Munyonga,1122853,Tony Tanaka Munyonga,Zimbabwe,1999-01-31,Right hand Bat,Right arm Offbreak,Allrounder
+21bf71ab,T Mupariwa,55652,Tawanda Mupariwa,Zimbabwe,1985-04-16,Right hand Bat,Right arm Fast medium,Bowler
+06fc82b8,T Musekiwa,1258606,Tashinga Musekiwa,Zimbabwe,2000-02-10,Right-hand bat,Right-arm medium,
+3b417422,T Panyangara,55705,Tinashe Panyangara,Zimbabwe,1985-10-21,Right hand Bat,Right arm Fast medium,Bowler
+a03bba42,T Shamsi,379145,Tabraiz Shamsi,South Africa,1990-02-18,Right hand Bat,Left arm Wrist spin,Bowler
+85b3fab2,T Stubbs,595978,Tristan Stubbs,South Africa,2000-08-14,Right hand Bat,Right arm Offbreak,Wicketkeeper Batter
+75de770f,T Taibu,55805,Tatenda Taibu,Zimbabwe,1983-05-14,Right hand Bat,Right arm Medium,Wicketkeeper Batter
+b2ae53f5,T Thushara,49677,Magina Thilan Thushara Mirando,Sri Lanka,1981-03-01,Left hand Bat,Left arm Fast medium,Bowler
+d99cc23a,T van der Gugten,333782,Timm van der Gugten,Netherlands,1991-02-25,Right hand Bat,Right arm Fast medium,Bowler
+a818c1be,TA Boult,277912,Trent Alexander Boult,New Zealand,1989-07-22,Right hand Bat,Left arm Fast medium,Bowler
+bf7842c9,TAM Siriwardana,222354,Tisse Appuhamilage Milinda Siriwardana,Sri Lanka,1985-12-04,Left hand Bat,Slow Left arm Orthodox,Allrounder
+3b041a12,Tamim Iqbal,56194,Tamim Iqbal Khan,Bangladesh,1989-03-20,Left hand Bat,,Opening Batter
+5f5ca1a7,Tanwir Afzal,260036,Tanwir Afzal,Hong Kong,1988-06-12,Right hand Bat,Right arm Fast medium,Allrounder
+5493ad5c,Tanzeel Sheikh,1320357,Tanzeel Sheikh,Kenya,1995-12-01,Right hand Bat,Right arm Medium,
+80fe764d,Tanzid Hasan,990023,Tanzid Hasan Tamim,Bangladesh,2000-12-01,Left hand Bat,,Opening Batter
+0b0cc297,Tanzim Hasan Sakib,1139520,Tanzim Hasan Sakib,Bangladesh,2002-10-20,Right hand Bat,Right arm Medium,Bowler
+ef18b66e,Taskin Ahmed,538506,Taskin Ahmed,Bangladesh,1995-04-03,Left hand Bat,Right arm Fast,Bowler
+f92c9151,TC Bruce,707113,Thomas Charles Bruce,New Zealand,1991-08-02,Right hand Bat,Right arm Offbreak,Top order Batter
+13c35c9e,TG Southee,232364,Timothy Grant Southee,New Zealand,1988-12-11,Right hand Bat,Right arm Medium fast,Bowler
+f1f99156,TH David,892749,Timothy Hays David,Australia,1996-03-16,Right hand Bat,Right arm Offbreak,Middle order Batter
+0348f9a5,TH Tector,1195143,Tim Heatley Tector,Ireland,2003-03-07,Right hand Bat,Right arm Offbreak,
+b0482a1d,Tilak Varma,1170265,Namboori Thakur Tilak Varma,India,2002-11-08,Left hand Bat,Right arm Offbreak,Batting Allrounder
+88fac705,TJ Draca,1437343,Thomas Jack Draca,Italy,2000-10-23,Right-hand bat,Right-arm medium,
+c89474d1,TJ Murtagh,17134,Timothy James Murtagh,Ireland,1981-08-02,Left hand Bat,Right arm Fast medium,Bowler
+8ce2080b,TJG Pringle,1193548,Timothy James Gerard Pringle,Netherlands,2002-08-29,Right hand Bat,Slow Left arm Orthodox,Allrounder
+5bbabe59,TL Chatara,425639,Tendai Larry Chatara,Zimbabwe,1991-02-28,Right hand Bat,Right arm Fast medium,Bowler
+61fb296e,TL Chivanga,1059122,Tanaka Lance Chivanga,Zimbabwe,1993-07-24,Right hand Bat,Right arm Fast,Bowler
+4663bd23,TL Seifert,625964,Tim Louis Seifert,New Zealand,1994-12-14,Right hand Bat,,Wicketkeeper Batter
+2318ba22,TLW Cooper,219885,Tom Lexley William Cooper,Netherlands,1986-11-26,Right hand Bat,Right arm Offbreak,Middle order Batter
+5bdcdb72,TM Dilshan,48472,Tillakaratne Mudiyanselage Dilshan,Sri Lanka,1976-10-14,Right hand Bat,Right arm Offbreak,Allrounder
+12b610c2,TM Head,530011,Travis Michael Head,Australia,1993-12-29,Left hand Bat,Right arm Offbreak,Middle order Batter
+2c13defe,TM Odoyo,24705,Thomas Odoyo Migai,Kenya,1978-05-12,Right hand Bat,Right arm Medium fast,Bowling Allrounder
+52980a48,TN de Grooth,25022,Tom Nico de Grooth,Netherlands,1979-05-14,Right hand Bat,Right arm Offbreak,Middle order Batter
+9e52a414,Towhid Hridoy,990031,Md Towhid Hridoy,Bangladesh,2000-12-04,Right hand Bat,Right arm Offbreak,Top order Batter
+a82eb3fb,TP Ura,302845,Tony Pala Ura,Papua New Guinea,1989-10-15,Right hand Bat,,Opening Batter
+4e1b4323,TS Kamunhukamwe,713811,Tinashe Stephen Kamunhukamwe,Zimbabwe,1995-07-10,Right hand Bat,Right arm Offbreak,Opening Batter
+245c97cb,TS Mills,459257,Tymal Solomon Mills,England,1992-08-12,Right hand Bat,Left arm Fast,Bowler
+58043739,TT Bresnan,9310,Timothy Thomas Bresnan,England,1985-02-28,Right hand Bat,Right arm Medium fast,Allrounder
+5feead83,TT Maposa,1360042,Tinotenda Tinashe Maposa,Zimbabwe,2003-08-29,Right-hand bat,Right-arm medium,
+2e4d5f94,TZ Chataira,1337556,Takudzwa Zivanai Chataira,Zimbabwe,1997-12-25,Right-hand bat,Right-arm medium,
+fd2bf2a0,Umar Akmal,317273,Umar Akmal,Pakistan,1990-05-26,Right hand Bat,Right arm Offbreak,Middle order Batter
+16dfcc19,Umar Gul,43524,Umar Gul,Pakistan,1982-10-15,Right hand Bat,Right arm Fast medium,Bowler
+bafb9238,Usman Khan,1123428,Usman Khan,Pakistan,1995-05-10,Right hand Bat,Right arm Offbreak,Top order Batter
+e94d1dcd,Usman Tariq,1333415,Usman Tariq,Pakistan,1998-01-01,Right-hand bat,Right-arm offbreak,
+331ea488,UT Khawaja,215155,Usman Tariq Khawaja,Australia,1986-12-18,Left hand Bat,Right arm Medium,Top order Batter
+dd37da14,UWMBCA Welegedara,51019,Uda Walawwe Mahim Bandaralage Chanaka Asanga Welegedara,Sri Lanka,1981-03-20,Right hand Bat,Left arm Fast medium,Bowler
+cddafe26,V Aravind,1178586,Vriitya Aravind,United Arab Emirates,2002-06-11,Right hand Bat,,Wicketkeeper
+ba607b88,V Kohli,253802,Virat Kohli,India,1988-11-05,Right hand Bat,Right arm Medium,Top order Batter
+8ba8195d,V Sehwag,35263,Virender Sehwag,India,1978-10-20,Right hand Bat,Right arm Offbreak,Top order Batter
+fd483a3e,V Shetty,342182,Vikrant Shetty,United Arab Emirates,1983-10-17,Right hand Bat,Right arm Offbreak,Middle order Batter
+101b1180,V Shukla,1457849,Vinayak Shukla,Oman,1994-06-18,Right-hand bat,,
+0fdabe05,V Sibanda,55787,Vusimuzi Sibanda,Zimbabwe,1983-10-10,Right hand Bat,"Right arm Medium, Right arm Offbreak",Opening Batter
+cfe70281,VD Philander,46945,Vernon Darryl Philander,South Africa,1985-06-24,Right hand Bat,Right arm Fast medium,Allrounder
+2a9eee66,Vikramjit Singh,1153767,Vikramjit Singh,Netherlands,2003-01-09,Left hand Bat,Right arm Medium fast,Opening Batter
+3df8f9d5,Vishil Patel,1332081,Vishil Patel,Kenya,2005-05-10,Right hand Bat,Legbreak,
+3a7ea906,VJ Kingma,416103,Vivian Jilling Kingma,Netherlands,1994-10-23,Right hand Bat,Right arm Medium fast,Bowler
+1bd16445,VM Nyauchi,453277,Victor Munyaradzi Nyauchi,Zimbabwe,1992-07-08,Right hand Bat,Right arm Fast medium,Bowler
+2af28253,Vraj Patel,1178080,Vraj Patel,Kenya,2002-03-21,Right hand Bat,Slow Left arm Orthodox,
+7ee2ce62,VS Solanki,20286,Vikram Singh Solanki,England,1976-04-01,Right hand Bat,Right arm Offbreak,Middle order Batter
+0d677597,W Barresi,44407,Wesley Barresi,Netherlands,1984-05-03,Right hand Bat,Right arm Offbreak,Batter
+a879b92c,W Madhevere,938959,Wessly Nyasha Madhevere,Zimbabwe,2000-09-04,Right hand Bat,Right arm Offbreak,Allrounder
+b3118300,Wahab Riaz,43590,Wahab Riaz,Pakistan,1985-06-28,Right hand Bat,Left arm Fast,Bowler
+3df3f50b,Waheed Ahmed,950309,Waheed Ahmed,United Arab Emirates,1985-11-15,Right hand Bat,Right arm Medium,Bowler
+a2eac9df,Waqas Barkat,350632,Waqas Barkat,Hong Kong,1990-02-17,Right hand Bat,Legbreak,Wicketkeeper Batter
+6f02fe2a,Waseem Muhammad,1241277,Muhammad Waseem,United Arab Emirates,1994-02-12,Right hand Bat,Right arm Medium,Opening Batter
+f19ccfad,Washington Sundar,719715,Washington Sundar,India,1999-10-05,Left hand Bat,Right arm Offbreak,Bowling Allrounder
+ea59139a,Wasim Ali,1058938,Wasim Ali,Oman,1998-12-07,Left hand Bat,Slow Left arm Orthodox,
+29b89ae8,WB Rankin,24599,William Boyd Rankin,Ireland,1984-07-05,Left hand Bat,Right arm Fast medium,Bowler
+3a60e0b5,WD Parnell,265564,Wayne Dillon Parnell,South Africa,1989-07-30,Left hand Bat,Left arm Medium fast,Bowler
+9caf69a1,WG Jacks,897549,William George Jacks,England,1998-11-21,Right hand Bat,Right arm Offbreak,Batter
+9550470d,WIA Fernando,784369,Weerahandige Inol Avishka Fernando,Sri Lanka,1998-04-05,Right hand Bat,Right arm Medium fast,Opening Batter
+c942a53b,WK McCallan,24251,William Kyle McCallan,Ireland,1975-08-27,Right hand Bat,Right arm Offbreak,Allrounder
+86e0f3f0,WL Madsen,46543,Wayne Lee Madsen,England,1984-01-02,Right hand Bat,Right arm Offbreak,Batter
+4bc0a378,WP Masakadza,571703,Wellington Pedzisai Masakadza,Zimbabwe,1993-10-04,Left hand Bat,Slow Left arm Orthodox,Bowler
+bcce309e,WPUJC Vaas,50804,Warnakulasuriya Patabendige Ushantha Joseph Chaminda Vaas,Sri Lanka,1974-01-27,Left hand Bat,Left arm Fast medium,Bowler
+2343b4bf,WT Mubayiwa,949577,Wallace Tapiwanashe Mubayiwa,Zimbabwe,1998-08-24,Left-hand bat,Slow left-arm orthodox,
+ec02b798,WTS Porterfield,24611,William Thomas Stuart Porterfield,Ireland,1984-09-06,Left hand Bat,Right arm Offbreak,Batter
+7ed9fd56,WU Tharanga,50747,Warushavithana Upul Tharanga,Sri Lanka,1985-02-02,Left hand Bat,,Batter
+60beb01b,WW Hinds,52057,Wavell Wayne Hinds,West Indies,1976-09-07,Left hand Bat,Right arm Medium,Batter
+3b53243a,XC Bartlett,1050545,Xavier Colin Bartlett,Australia,1998-12-17,Right hand Bat,Right arm Fast medium,Bowler
+502b2c81,XJ Doherty,5017,Xavier John Doherty,Australia,1982-11-22,Left hand Bat,Slow Left arm Orthodox,Bowler
+ffb504b1,XM Marshall,52626,Xavier Melbourne Marshall,United States of America,1986-03-27,Right hand Bat,Right arm Offbreak,Opening Batter
+5791b840,Yasir Ali Chowdhury,629059,Yasir Ali Chowdhury,Bangladesh,1996-03-06,Right hand Bat,Right arm Offbreak,Middle order Batter
+3cf5ae43,Yasir Arafat,43654,Yasir Arafat Satti,Pakistan,1982-03-12,Right hand Bat,Right arm Fast medium,Allrounder
+3c6ffae8,YK Pathan,32498,Yusuf Khan Pathan,India,1982-11-17,Right hand Bat,Right arm Offbreak,Allrounder
+33cb3411,Younis Khan,43652,Mohammad Younis Khan,Pakistan,1977-11-29,Right hand Bat,"Right arm Medium, Legbreak",Middle order Batter
+1c914163,Yuvraj Singh,36084,Yuvraj Singh,India,1981-12-12,Left hand Bat,Slow Left arm Orthodox,Middle order Batter
+017faef2,Z Groenewald,446860,Zhivago Groenewald,Namibia,1993-06-08,Left hand Bat,Slow Left arm Orthodox,Allrounder
+91a4a398,Z Khan,30102,Zaheer Khan,India,1978-10-08,Right hand Bat,Left arm Fast medium,Bowler
+f0e293b0,Zahoor Khan,384525,Zahoor Khan,United Arab Emirates,1989-05-25,Right hand Bat,Right arm Medium fast,Bowler
+d07dbc28,Zawar Farid,1196500,Zawar Farid,United Arab Emirates,1992-07-25,Right hand Bat,Right arm Medium,Bowler
+d99de998,ZB Lion-Cachet,1274487,Zach Benjamin Lion-Cachet,Netherlands,2003-12-15,Right-hand bat,Right-arm offbreak,
+8716233e,ZE Green,596664,Zane Edward Green,Namibia,1996-10-11,Left hand Bat,,Wicketkeeper Batter
+34464143,Zeeshan Maqsood,585083,Zeeshan Maqsood,Oman,1987-10-24,Left hand Bat,Slow Left arm Orthodox,Opening Batter
+c27518d2,Ziaur Rahman,56167,Ziaur Rahman,Bangladesh,1986-12-02,Right hand Bat,Right arm Fast medium,Allrounder
+3a0f6df2,Zulfiqar Babar,43871,Zulfiqar Babar,Pakistan,1978-12-10,Right hand Bat,Slow Left arm Orthodox,Bowler

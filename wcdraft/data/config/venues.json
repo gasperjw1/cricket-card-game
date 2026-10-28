@@ -1,0 +1,55 @@
+{
+  "$comment": "Canonical venues for every ground that has hosted a men's T20 World Cup match in the Cricsheet archive. `aliases` are the exact `info.venue` strings Cricsheet uses (they drift between editions). The build is strict: an unmapped World Cup venue is an error so this file stays complete. `homeTeam` is the Cricsheet team name whose home ground it is (used for host advantage).",
+  "venues": [
+    { "id": "kingsmead", "name": "Kingsmead", "city": "Durban", "country": "South Africa", "homeTeam": "South Africa", "aliases": ["Kingsmead"] },
+    { "id": "wanderers", "name": "The Wanderers", "city": "Johannesburg", "country": "South Africa", "homeTeam": "South Africa", "aliases": ["New Wanderers Stadium"] },
+    { "id": "newlands", "name": "Newlands", "city": "Cape Town", "country": "South Africa", "homeTeam": "South Africa", "aliases": ["Newlands"] },
+
+    { "id": "the-oval", "name": "The Oval", "city": "London", "country": "England", "homeTeam": "England", "aliases": ["Kennington Oval"] },
+    { "id": "lords", "name": "Lord's", "city": "London", "country": "England", "homeTeam": "England", "aliases": ["Lord's"] },
+    { "id": "trent-bridge", "name": "Trent Bridge", "city": "Nottingham", "country": "England", "homeTeam": "England", "aliases": ["Trent Bridge"] },
+
+    { "id": "gros-islet", "name": "Daren Sammy Stadium (Beausejour)", "city": "Gros Islet", "country": "Saint Lucia", "homeTeam": "West Indies", "aliases": ["Beausejour Stadium, Gros Islet", "Daren Sammy National Cricket Stadium, Gros Islet, St Lucia"] },
+    { "id": "bridgetown", "name": "Kensington Oval", "city": "Bridgetown", "country": "Barbados", "homeTeam": "West Indies", "aliases": ["Kensington Oval, Bridgetown", "Kensington Oval, Bridgetown, Barbados"] },
+    { "id": "providence", "name": "Providence Stadium", "city": "Providence", "country": "Guyana", "homeTeam": "West Indies", "aliases": ["Providence Stadium", "Providence Stadium, Guyana"] },
+    { "id": "kingstown", "name": "Arnos Vale", "city": "Kingstown", "country": "Saint Vincent and the Grenadines", "homeTeam": "West Indies", "aliases": ["Arnos Vale Ground, Kingstown, St Vincent"] },
+    { "id": "tarouba", "name": "Brian Lara Stadium", "city": "Tarouba", "country": "Trinidad and Tobago", "homeTeam": "West Indies", "aliases": ["Brian Lara Stadium, Tarouba, Trinidad"] },
+    { "id": "north-sound", "name": "Sir Vivian Richards Stadium", "city": "North Sound", "country": "Antigua and Barbuda", "homeTeam": "West Indies", "aliases": ["Sir Vivian Richards Stadium, North Sound, Antigua"] },
+
+    { "id": "hambantota", "name": "Mahinda Rajapaksa Stadium", "city": "Hambantota", "country": "Sri Lanka", "homeTeam": "Sri Lanka", "aliases": ["Mahinda Rajapaksa International Cricket Stadium, Sooriyawewa"] },
+    { "id": "pallekele", "name": "Pallekele", "city": "Kandy", "country": "Sri Lanka", "homeTeam": "Sri Lanka", "aliases": ["Pallekele International Cricket Stadium"] },
+    { "id": "premadasa", "name": "R Premadasa Stadium", "city": "Colombo", "country": "Sri Lanka", "homeTeam": "Sri Lanka", "aliases": ["R Premadasa Stadium", "R Premadasa Stadium, Colombo"] },
+    { "id": "ssc", "name": "Sinhalese Sports Club", "city": "Colombo", "country": "Sri Lanka", "homeTeam": "Sri Lanka", "aliases": ["Sinhalese Sports Club Ground, Colombo"] },
+
+    { "id": "mirpur", "name": "Shere Bangla National Stadium", "city": "Dhaka", "country": "Bangladesh", "homeTeam": "Bangladesh", "aliases": ["Shere Bangla National Stadium"] },
+    { "id": "sylhet", "name": "Sylhet Stadium", "city": "Sylhet", "country": "Bangladesh", "homeTeam": "Bangladesh", "aliases": ["Sylhet Stadium"] },
+    { "id": "chattogram", "name": "Zahur Ahmed Chowdhury Stadium", "city": "Chattogram", "country": "Bangladesh", "homeTeam": "Bangladesh", "aliases": ["Zahur Ahmed Chowdhury Stadium"] },
+
+    { "id": "eden-gardens", "name": "Eden Gardens", "city": "Kolkata", "country": "India", "homeTeam": "India", "aliases": ["Eden Gardens", "Eden Gardens, Kolkata"] },
+    { "id": "delhi", "name": "Arun Jaitley Stadium (Feroz Shah Kotla)", "city": "Delhi", "country": "India", "homeTeam": "India", "aliases": ["Feroz Shah Kotla", "Arun Jaitley Stadium, Delhi"] },
+    { "id": "dharamsala", "name": "HPCA Stadium", "city": "Dharamsala", "country": "India", "homeTeam": "India", "aliases": ["Himachal Pradesh Cricket Association Stadium"] },
+    { "id": "bengaluru", "name": "M Chinnaswamy Stadium", "city": "Bengaluru", "country": "India", "homeTeam": "India", "aliases": ["M Chinnaswamy Stadium"] },
+    { "id": "mohali", "name": "IS Bindra Stadium", "city": "Mohali", "country": "India", "homeTeam": "India", "aliases": ["Punjab Cricket Association IS Bindra Stadium, Mohali"] },
+    { "id": "nagpur", "name": "VCA Stadium, Jamtha", "city": "Nagpur", "country": "India", "homeTeam": "India", "aliases": ["Vidarbha Cricket Association Stadium, Jamtha"] },
+    { "id": "wankhede", "name": "Wankhede Stadium", "city": "Mumbai", "country": "India", "homeTeam": "India", "aliases": ["Wankhede Stadium", "Wankhede Stadium, Mumbai"] },
+    { "id": "chennai", "name": "MA Chidambaram Stadium (Chepauk)", "city": "Chennai", "country": "India", "homeTeam": "India", "aliases": ["MA Chidambaram Stadium, Chepauk, Chennai"] },
+    { "id": "ahmedabad", "name": "Narendra Modi Stadium", "city": "Ahmedabad", "country": "India", "homeTeam": "India", "aliases": ["Narendra Modi Stadium, Ahmedabad"] },
+
+    { "id": "al-amerat", "name": "Al Amerat Cricket Ground", "city": "Muscat", "country": "Oman", "homeTeam": "Oman", "aliases": ["Al Amerat Cricket Ground Oman Cricket (Ministry Turf 1)"] },
+    { "id": "dubai", "name": "Dubai International Stadium", "city": "Dubai", "country": "United Arab Emirates", "homeTeam": "United Arab Emirates", "aliases": ["Dubai International Cricket Stadium"] },
+    { "id": "sharjah", "name": "Sharjah Cricket Stadium", "city": "Sharjah", "country": "United Arab Emirates", "homeTeam": "United Arab Emirates", "aliases": ["Sharjah Cricket Stadium"] },
+    { "id": "abu-dhabi", "name": "Zayed Cricket Stadium", "city": "Abu Dhabi", "country": "United Arab Emirates", "homeTeam": "United Arab Emirates", "aliases": ["Zayed Cricket Stadium, Abu Dhabi"] },
+
+    { "id": "adelaide", "name": "Adelaide Oval", "city": "Adelaide", "country": "Australia", "homeTeam": "Australia", "aliases": ["Adelaide Oval"] },
+    { "id": "hobart", "name": "Bellerive Oval", "city": "Hobart", "country": "Australia", "homeTeam": "Australia", "aliases": ["Bellerive Oval, Hobart"] },
+    { "id": "brisbane", "name": "The Gabba", "city": "Brisbane", "country": "Australia", "homeTeam": "Australia", "aliases": ["Brisbane Cricket Ground, Woolloongabba, Brisbane"] },
+    { "id": "geelong", "name": "GMHBA Stadium", "city": "Geelong", "country": "Australia", "homeTeam": "Australia", "aliases": ["GMHBA Stadium, South Geelong, Victoria"] },
+    { "id": "mcg", "name": "Melbourne Cricket Ground", "city": "Melbourne", "country": "Australia", "homeTeam": "Australia", "aliases": ["Melbourne Cricket Ground"] },
+    { "id": "perth", "name": "Perth Stadium", "city": "Perth", "country": "Australia", "homeTeam": "Australia", "aliases": ["Perth Stadium"] },
+    { "id": "scg", "name": "Sydney Cricket Ground", "city": "Sydney", "country": "Australia", "homeTeam": "Australia", "aliases": ["Sydney Cricket Ground"] },
+
+    { "id": "lauderhill", "name": "Central Broward Park", "city": "Lauderhill", "country": "United States of America", "homeTeam": "United States of America", "aliases": ["Central Broward Regional Park Stadium Turf Ground, Lauderhill"] },
+    { "id": "dallas", "name": "Grand Prairie Stadium", "city": "Dallas", "country": "United States of America", "homeTeam": "United States of America", "aliases": ["Grand Prairie Stadium, Dallas"] },
+    { "id": "new-york", "name": "Nassau County International Cricket Stadium", "city": "New York", "country": "United States of America", "homeTeam": "United States of America", "aliases": ["Nassau County International Cricket Stadium, New York"] }
+  ]
+}

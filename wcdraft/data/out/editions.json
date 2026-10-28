@@ -1,0 +1,1852 @@
+[
+  {
+    "id": "2007",
+    "year": 2007,
+    "seasonKey": "2007/08",
+    "hosts": [
+      "South Africa"
+    ],
+    "hostTeams": [
+      "South Africa"
+    ],
+    "format": "4 groups of 3 → Super 8 (2 groups of 4) → semi-finals → final",
+    "rules": {
+      "tieBreak": "bowl-out",
+      "freeHit": "foot-fault-only",
+      "drs": false,
+      "concussionSub": false,
+      "stopClock": false
+    },
+    "afghanistan": null,
+    "standIn": null,
+    "slotChanges": [],
+    "firstMatch": "2007-09-11",
+    "lastMatch": "2007-09-24",
+    "teams": [
+      "Australia",
+      "Bangladesh",
+      "England",
+      "India",
+      "Kenya",
+      "New Zealand",
+      "Pakistan",
+      "Scotland",
+      "South Africa",
+      "Sri Lanka",
+      "West Indies",
+      "Zimbabwe"
+    ],
+    "groups": {
+      "A": [
+        "Bangladesh",
+        "South Africa",
+        "West Indies"
+      ],
+      "B": [
+        "Australia",
+        "England",
+        "Zimbabwe"
+      ],
+      "C": [
+        "Kenya",
+        "New Zealand",
+        "Sri Lanka"
+      ],
+      "D": [
+        "India",
+        "Pakistan",
+        "Scotland"
+      ],
+      "E": [
+        "England",
+        "India",
+        "New Zealand",
+        "South Africa"
+      ],
+      "F": [
+        "Australia",
+        "Bangladesh",
+        "Pakistan",
+        "Sri Lanka"
+      ]
+    },
+    "stages": {
+      "group A": 3,
+      "group C": 3,
+      "group D": 2,
+      "group B": 3,
+      "group E": 6,
+      "group F": 6,
+      "Semi Final": 2,
+      "Final": 1
+    },
+    "venues": {
+      "wanderers": 9,
+      "newlands": 9,
+      "kingsmead": 8
+    },
+    "hostWinPct": 80,
+    "associateUpsets": {
+      "wins": 0,
+      "crossTierMatches": 3
+    },
+    "matchesWithMissingData": 0,
+    "environment": {
+      "matches": 26,
+      "decided": 26,
+      "legalBalls": 5918,
+      "runsPerOver": 7.99,
+      "dotPct": 38.1,
+      "fourPct": 11.1,
+      "sixPct": 4.5,
+      "ballsPerWicket": 17,
+      "powerplayRpo": 7.46,
+      "middleRpo": 7.85,
+      "deathRpo": 9.04,
+      "firstInningsAvg": 160.3,
+      "firstInningsSd": 36.9,
+      "chaseWinPct": 50,
+      "tossFieldPct": 65,
+      "tossWinnerWinPct": 54,
+      "chaseUplift": -0.19,
+      "reducedInnings": 0,
+      "widesPerOver": 0.21,
+      "noBallsPerOver": 0.046,
+      "extrasPerOver": 0.49,
+      "dismissalFingerprintPct": {
+        "caught": 54,
+        "bowled": 20.7,
+        "run out": 11.8,
+        "lbw": 6.9,
+        "stumped": 3.2,
+        "caught and bowled": 3.2,
+        "hit wicket": 0.3
+      },
+      "reviews": {
+        "total": 0,
+        "upheldPct": 0,
+        "umpiresCallPct": 0,
+        "byBattingSidePct": 0
+      },
+      "rain": {
+        "dlFinishes": 0,
+        "noResults": 0
+      },
+      "ties": 1,
+      "populationVectors": {
+        "pp": {
+          "0": 0.4776,
+          "1": 0.2441,
+          "2": 0.0507,
+          "3": 0.0085,
+          "4": 0.1464,
+          "6": 0.0283,
+          "W": 0.0443
+        },
+        "mid": {
+          "0": 0.3122,
+          "1": 0.4214,
+          "2": 0.0828,
+          "3": 0.0048,
+          "4": 0.0916,
+          "6": 0.0432,
+          "W": 0.044
+        },
+        "death": {
+          "0": 0.2369,
+          "1": 0.3994,
+          "2": 0.0949,
+          "3": 0.0068,
+          "4": 0.0979,
+          "6": 0.0706,
+          "W": 0.0934
+        }
+      }
+    }
+  },
+  {
+    "id": "2009",
+    "year": 2009,
+    "seasonKey": "2009",
+    "hosts": [
+      "England"
+    ],
+    "hostTeams": [
+      "England"
+    ],
+    "format": "4 groups of 3 → Super 8 → semi-finals → final",
+    "rules": {
+      "tieBreak": "super-over",
+      "freeHit": "foot-fault-only",
+      "drs": false,
+      "concussionSub": false,
+      "stopClock": false
+    },
+    "afghanistan": null,
+    "standIn": null,
+    "slotChanges": [],
+    "firstMatch": "2009-06-05",
+    "lastMatch": "2009-06-21",
+    "teams": [
+      "Australia",
+      "Bangladesh",
+      "England",
+      "India",
+      "Ireland",
+      "Netherlands",
+      "New Zealand",
+      "Pakistan",
+      "Scotland",
+      "South Africa",
+      "Sri Lanka",
+      "West Indies"
+    ],
+    "groups": {
+      "A": [
+        "Bangladesh",
+        "India",
+        "Ireland"
+      ],
+      "B": [
+        "England",
+        "Netherlands",
+        "Pakistan"
+      ],
+      "C": [
+        "Australia",
+        "Sri Lanka",
+        "West Indies"
+      ],
+      "D": [
+        "New Zealand",
+        "Scotland",
+        "South Africa"
+      ],
+      "E": [
+        "England",
+        "India",
+        "South Africa",
+        "West Indies"
+      ],
+      "F": [
+        "Ireland",
+        "New Zealand",
+        "Pakistan",
+        "Sri Lanka"
+      ]
+    },
+    "stages": {
+      "group B": 3,
+      "group D": 3,
+      "group C": 3,
+      "group A": 3,
+      "group F": 6,
+      "group E": 6,
+      "Semi Final": 2,
+      "Final": 1
+    },
+    "venues": {
+      "trent-bridge": 10,
+      "the-oval": 9,
+      "lords": 8
+    },
+    "hostWinPct": 40,
+    "associateUpsets": {
+      "wins": 2,
+      "crossTierMatches": 9
+    },
+    "matchesWithMissingData": 0,
+    "environment": {
+      "matches": 27,
+      "decided": 27,
+      "legalBalls": 5998,
+      "runsPerOver": 7.63,
+      "dotPct": 36.3,
+      "fourPct": 11.1,
+      "sixPct": 2.8,
+      "ballsPerWicket": 17.8,
+      "powerplayRpo": 7.76,
+      "middleRpo": 6.81,
+      "deathRpo": 9.17,
+      "firstInningsAvg": 157.7,
+      "firstInningsSd": 26.2,
+      "chaseWinPct": 41,
+      "tossFieldPct": 48,
+      "tossWinnerWinPct": 48,
+      "chaseUplift": -0.61,
+      "reducedInnings": 3,
+      "widesPerOver": 0.18,
+      "noBallsPerOver": 0.029,
+      "extrasPerOver": 0.42,
+      "dismissalFingerprintPct": {
+        "caught": 56.7,
+        "bowled": 22,
+        "run out": 6.8,
+        "stumped": 5.9,
+        "lbw": 5,
+        "caught and bowled": 3.6
+      },
+      "reviews": {
+        "total": 0,
+        "upheldPct": 0,
+        "umpiresCallPct": 0,
+        "byBattingSidePct": 0
+      },
+      "rain": {
+        "dlFinishes": 1,
+        "noResults": 0
+      },
+      "ties": 0,
+      "populationVectors": {
+        "pp": {
+          "0": 0.4559,
+          "1": 0.2516,
+          "2": 0.0605,
+          "3": 0.0065,
+          "4": 0.1623,
+          "6": 0.0234,
+          "W": 0.0398
+        },
+        "mid": {
+          "0": 0.3161,
+          "1": 0.4386,
+          "2": 0.0954,
+          "3": 0.0067,
+          "4": 0.0757,
+          "6": 0.0204,
+          "W": 0.0471
+        },
+        "death": {
+          "0": 0.2011,
+          "1": 0.4099,
+          "2": 0.1413,
+          "3": 0.0078,
+          "4": 0.1064,
+          "6": 0.045,
+          "W": 0.0885
+        }
+      }
+    }
+  },
+  {
+    "id": "2010",
+    "year": 2010,
+    "seasonKey": "2010",
+    "hosts": [
+      "West Indies"
+    ],
+    "hostTeams": [
+      "West Indies"
+    ],
+    "format": "4 groups of 3 → Super 8 → semi-finals → final",
+    "rules": {
+      "tieBreak": "super-over",
+      "freeHit": "foot-fault-only",
+      "drs": false,
+      "concussionSub": false,
+      "stopClock": false
+    },
+    "afghanistan": {
+      "stage": "First round",
+      "group": "C",
+      "groupmates": [
+        "India",
+        "South Africa"
+      ],
+      "finish": "Eliminated in first round"
+    },
+    "standIn": {
+      "team": "United Arab Emirates",
+      "reason": "Afghanistan won the 2010 WT20 Qualifier (both finalists qualified); UAE finished 3rd. Takes First Round group C. Confidence high; runner-up Netherlands (4th)."
+    },
+    "slotChanges": [
+      {
+        "action": "add",
+        "team": "United Arab Emirates",
+        "stage": "First Round",
+        "group": "C"
+      }
+    ],
+    "firstMatch": "2010-04-30",
+    "lastMatch": "2010-05-16",
+    "teams": [
+      "Australia",
+      "Bangladesh",
+      "England",
+      "India",
+      "Ireland",
+      "New Zealand",
+      "Pakistan",
+      "South Africa",
+      "Sri Lanka",
+      "West Indies",
+      "Zimbabwe"
+    ],
+    "groups": {
+      "A": [
+        "Australia",
+        "Bangladesh",
+        "Pakistan"
+      ],
+      "B": [
+        "New Zealand",
+        "Sri Lanka",
+        "Zimbabwe"
+      ],
+      "C": [
+        "India",
+        "South Africa"
+      ],
+      "D": [
+        "England",
+        "Ireland",
+        "West Indies"
+      ],
+      "E": [
+        "England",
+        "New Zealand",
+        "Pakistan",
+        "South Africa"
+      ],
+      "F": [
+        "Australia",
+        "India",
+        "Sri Lanka",
+        "West Indies"
+      ]
+    },
+    "stages": {
+      "group D": 3,
+      "group B": 3,
+      "group A": 3,
+      "group C": 1,
+      "group E": 6,
+      "group F": 6,
+      "Semi Final": 2,
+      "Final": 1
+    },
+    "venues": {
+      "bridgetown": 10,
+      "gros-islet": 9,
+      "providence": 6
+    },
+    "hostWinPct": 60,
+    "associateUpsets": {
+      "wins": 0,
+      "crossTierMatches": 1
+    },
+    "matchesWithMissingData": 0,
+    "environment": {
+      "matches": 25,
+      "decided": 24,
+      "legalBalls": 5478,
+      "runsPerOver": 7.63,
+      "dotPct": 37.9,
+      "fourPct": 8.8,
+      "sixPct": 4.7,
+      "ballsPerWicket": 17.2,
+      "powerplayRpo": 6.81,
+      "middleRpo": 7.24,
+      "deathRpo": 9.64,
+      "firstInningsAvg": 155.8,
+      "firstInningsSd": 28.7,
+      "chaseWinPct": 42,
+      "tossFieldPct": 40,
+      "tossWinnerWinPct": 63,
+      "chaseUplift": -0.55,
+      "reducedInnings": 4,
+      "widesPerOver": 0.22,
+      "noBallsPerOver": 0.033,
+      "extrasPerOver": 0.45,
+      "dismissalFingerprintPct": {
+        "caught": 66,
+        "bowled": 15.4,
+        "run out": 7.9,
+        "lbw": 4.1,
+        "stumped": 3.8,
+        "caught and bowled": 2.8
+      },
+      "reviews": {
+        "total": 0,
+        "upheldPct": 0,
+        "umpiresCallPct": 0,
+        "byBattingSidePct": 0
+      },
+      "rain": {
+        "dlFinishes": 3,
+        "noResults": 1
+      },
+      "ties": 0,
+      "populationVectors": {
+        "pp": {
+          "0": 0.4717,
+          "1": 0.269,
+          "2": 0.0609,
+          "3": 0.0054,
+          "4": 0.1236,
+          "6": 0.0229,
+          "W": 0.0464
+        },
+        "mid": {
+          "0": 0.3112,
+          "1": 0.4477,
+          "2": 0.0821,
+          "3": 0.0036,
+          "4": 0.0636,
+          "6": 0.0471,
+          "W": 0.0447
+        },
+        "death": {
+          "0": 0.2265,
+          "1": 0.3888,
+          "2": 0.1141,
+          "3": 0.0033,
+          "4": 0.0933,
+          "6": 0.0808,
+          "W": 0.0933
+        }
+      }
+    }
+  },
+  {
+    "id": "2012",
+    "year": 2012,
+    "seasonKey": "2012/13",
+    "hosts": [
+      "Sri Lanka"
+    ],
+    "hostTeams": [
+      "Sri Lanka"
+    ],
+    "format": "4 groups of 3 → Super 8 → semi-finals → final",
+    "rules": {
+      "tieBreak": "super-over",
+      "freeHit": "foot-fault-only",
+      "drs": false,
+      "concussionSub": false,
+      "stopClock": false
+    },
+    "afghanistan": {
+      "stage": "First round",
+      "group": "A",
+      "groupmates": [
+        "England",
+        "India"
+      ],
+      "finish": "Eliminated in first round"
+    },
+    "standIn": {
+      "team": "Namibia",
+      "reason": "Afghanistan were runners-up in the 2012 WT20 Qualifier (both finalists qualified); Namibia finished 3rd. Takes First Round group A. Confidence high; runner-up Netherlands (4th)."
+    },
+    "slotChanges": [
+      {
+        "action": "add",
+        "team": "Namibia",
+        "stage": "First Round",
+        "group": "A"
+      }
+    ],
+    "firstMatch": "2012-09-18",
+    "lastMatch": "2012-10-07",
+    "teams": [
+      "Australia",
+      "Bangladesh",
+      "England",
+      "India",
+      "Ireland",
+      "New Zealand",
+      "Pakistan",
+      "South Africa",
+      "Sri Lanka",
+      "West Indies",
+      "Zimbabwe"
+    ],
+    "groups": {
+      "1": [
+        "England",
+        "New Zealand",
+        "Sri Lanka",
+        "West Indies"
+      ],
+      "2": [
+        "Australia",
+        "India",
+        "Pakistan",
+        "South Africa"
+      ],
+      "A": [
+        "England",
+        "India"
+      ],
+      "B": [
+        "Australia",
+        "Ireland",
+        "West Indies"
+      ],
+      "C": [
+        "South Africa",
+        "Sri Lanka",
+        "Zimbabwe"
+      ],
+      "D": [
+        "Bangladesh",
+        "New Zealand",
+        "Pakistan"
+      ]
+    },
+    "stages": {
+      "group C": 3,
+      "group B": 3,
+      "group D": 3,
+      "group A": 1,
+      "group 1": 6,
+      "group 2": 6,
+      "Semi Final": 2,
+      "Final": 1
+    },
+    "venues": {
+      "premadasa": 13,
+      "pallekele": 9,
+      "hambantota": 3
+    },
+    "hostWinPct": 71,
+    "associateUpsets": {
+      "wins": 0,
+      "crossTierMatches": 1
+    },
+    "matchesWithMissingData": 0,
+    "environment": {
+      "matches": 25,
+      "decided": 24,
+      "legalBalls": 5391,
+      "runsPerOver": 7.65,
+      "dotPct": 38,
+      "fourPct": 11,
+      "sixPct": 3.8,
+      "ballsPerWicket": 18.9,
+      "powerplayRpo": 6.95,
+      "middleRpo": 7.43,
+      "deathRpo": 9.25,
+      "firstInningsAvg": 155.2,
+      "firstInningsSd": 27,
+      "chaseWinPct": 46,
+      "tossFieldPct": 44,
+      "tossWinnerWinPct": 29,
+      "chaseUplift": -0.28,
+      "reducedInnings": 3,
+      "widesPerOver": 0.17,
+      "noBallsPerOver": 0.023,
+      "extrasPerOver": 0.44,
+      "dismissalFingerprintPct": {
+        "caught": 53.7,
+        "bowled": 23.5,
+        "lbw": 8.8,
+        "run out": 7,
+        "stumped": 4.9,
+        "caught and bowled": 2.1
+      },
+      "reviews": {
+        "total": 0,
+        "upheldPct": 0,
+        "umpiresCallPct": 0,
+        "byBattingSidePct": 0
+      },
+      "rain": {
+        "dlFinishes": 1,
+        "noResults": 1
+      },
+      "ties": 2,
+      "populationVectors": {
+        "pp": {
+          "0": 0.4789,
+          "1": 0.2675,
+          "2": 0.055,
+          "3": 0.0048,
+          "4": 0.131,
+          "6": 0.0223,
+          "W": 0.0405
+        },
+        "mid": {
+          "0": 0.3245,
+          "1": 0.4246,
+          "2": 0.079,
+          "3": 0.0029,
+          "4": 0.0856,
+          "6": 0.0409,
+          "W": 0.0426
+        },
+        "death": {
+          "0": 0.2434,
+          "1": 0.3756,
+          "2": 0.1014,
+          "3": 0.0054,
+          "4": 0.1357,
+          "6": 0.0525,
+          "W": 0.086
+        }
+      }
+    }
+  },
+  {
+    "id": "2014",
+    "year": 2014,
+    "seasonKey": "2013/14",
+    "hosts": [
+      "Bangladesh"
+    ],
+    "hostTeams": [
+      "Bangladesh"
+    ],
+    "format": "First round (2 groups of 4) → Super 10 (2 groups of 5) → semi-finals → final",
+    "rules": {
+      "tieBreak": "super-over",
+      "freeHit": "foot-fault-only",
+      "drs": false,
+      "concussionSub": false,
+      "stopClock": false
+    },
+    "afghanistan": {
+      "stage": "First round",
+      "group": "A",
+      "groupmates": [
+        "Bangladesh",
+        "Hong Kong",
+        "Nepal"
+      ],
+      "finish": "Eliminated in first round"
+    },
+    "standIn": {
+      "team": "Scotland",
+      "reason": "2013 WT20 Qualifier: top six qualified, Afghanistan runners-up; Scotland finished 7th (won the 7th-place play-off v PNG). Takes First Round group A. Confidence high; runner-up Papua New Guinea."
+    },
+    "slotChanges": [
+      {
+        "action": "add",
+        "team": "Scotland",
+        "stage": "First Round",
+        "group": "A"
+      }
+    ],
+    "firstMatch": "2014-03-16",
+    "lastMatch": "2014-04-06",
+    "teams": [
+      "Australia",
+      "Bangladesh",
+      "England",
+      "Hong Kong",
+      "India",
+      "Ireland",
+      "Nepal",
+      "Netherlands",
+      "New Zealand",
+      "Pakistan",
+      "South Africa",
+      "Sri Lanka",
+      "United Arab Emirates",
+      "West Indies",
+      "Zimbabwe"
+    ],
+    "groups": {
+      "1": [
+        "England",
+        "Netherlands",
+        "New Zealand",
+        "South Africa",
+        "Sri Lanka"
+      ],
+      "2": [
+        "Australia",
+        "Bangladesh",
+        "India",
+        "Pakistan",
+        "West Indies"
+      ],
+      "A": [
+        "Bangladesh",
+        "Hong Kong",
+        "Nepal"
+      ],
+      "B": [
+        "Ireland",
+        "Netherlands",
+        "United Arab Emirates",
+        "Zimbabwe"
+      ]
+    },
+    "stages": {
+      "First Round": 9,
+      "group 2": 10,
+      "group 1": 9,
+      "unlabelled": 1,
+      "Semi Final": 2,
+      "Final": 1
+    },
+    "venues": {
+      "chattogram": 13,
+      "mirpur": 13,
+      "sylhet": 6
+    },
+    "hostWinPct": 17,
+    "associateUpsets": {
+      "wins": 3,
+      "crossTierMatches": 9
+    },
+    "matchesWithMissingData": 0,
+    "environment": {
+      "matches": 32,
+      "decided": 32,
+      "legalBalls": 7065,
+      "runsPerOver": 7.6,
+      "dotPct": 39.1,
+      "fourPct": 11.1,
+      "sixPct": 4,
+      "ballsPerWicket": 18.1,
+      "powerplayRpo": 7.14,
+      "middleRpo": 7.29,
+      "deathRpo": 9.03,
+      "firstInningsAvg": 150.3,
+      "firstInningsSd": 31.7,
+      "chaseWinPct": 59,
+      "tossFieldPct": 72,
+      "tossWinnerWinPct": 56,
+      "chaseUplift": -0.17,
+      "reducedInnings": 5,
+      "widesPerOver": 0.18,
+      "noBallsPerOver": 0.019,
+      "extrasPerOver": 0.43,
+      "dismissalFingerprintPct": {
+        "caught": 56.7,
+        "bowled": 20.5,
+        "run out": 9.2,
+        "stumped": 5.4,
+        "lbw": 5.4,
+        "caught and bowled": 2.8
+      },
+      "reviews": {
+        "total": 0,
+        "upheldPct": 0,
+        "umpiresCallPct": 0,
+        "byBattingSidePct": 0
+      },
+      "rain": {
+        "dlFinishes": 3,
+        "noResults": 0
+      },
+      "ties": 0,
+      "populationVectors": {
+        "pp": {
+          "0": 0.4972,
+          "1": 0.2342,
+          "2": 0.0397,
+          "3": 0.0042,
+          "4": 0.1492,
+          "6": 0.0312,
+          "W": 0.0444
+        },
+        "mid": {
+          "0": 0.3052,
+          "1": 0.4557,
+          "2": 0.0735,
+          "3": 0.0029,
+          "4": 0.0793,
+          "6": 0.0379,
+          "W": 0.0456
+        },
+        "death": {
+          "0": 0.2678,
+          "1": 0.3633,
+          "2": 0.0955,
+          "3": 0.0021,
+          "4": 0.1248,
+          "6": 0.0593,
+          "W": 0.0872
+        }
+      }
+    }
+  },
+  {
+    "id": "2016",
+    "year": 2016,
+    "seasonKey": "2015/16",
+    "hosts": [
+      "India"
+    ],
+    "hostTeams": [
+      "India"
+    ],
+    "format": "First round (2 groups of 4) → Super 10 (2 groups of 5) → semi-finals → final",
+    "rules": {
+      "tieBreak": "super-over",
+      "freeHit": "all-no-balls",
+      "drs": false,
+      "concussionSub": false,
+      "stopClock": false
+    },
+    "afghanistan": {
+      "stage": "First round → Super 10",
+      "group": "B → 1",
+      "groupmates": [
+        "Scotland",
+        "Hong Kong",
+        "Zimbabwe",
+        "England",
+        "South Africa",
+        "Sri Lanka",
+        "West Indies"
+      ],
+      "finish": "Won first round group; 5th in Super 10 group 1"
+    },
+    "standIn": {
+      "team": "Namibia",
+      "reason": "2015 WT20 Qualifier: top six qualified, Afghanistan 5th; Namibia placed 7th (no 7th-place play-off). Takes First Round group B; the simulated group winner proceeds to Super 10. Confidence medium-high; runner-up Papua New Guinea, whom Afghanistan beat in Qualifier 3."
+    },
+    "slotChanges": [
+      {
+        "action": "add",
+        "team": "Namibia",
+        "stage": "First Round",
+        "group": "B"
+      }
+    ],
+    "firstMatch": "2016-03-08",
+    "lastMatch": "2016-04-03",
+    "teams": [
+      "Australia",
+      "Bangladesh",
+      "England",
+      "Hong Kong",
+      "India",
+      "Ireland",
+      "Netherlands",
+      "New Zealand",
+      "Oman",
+      "Pakistan",
+      "Scotland",
+      "South Africa",
+      "Sri Lanka",
+      "West Indies",
+      "Zimbabwe"
+    ],
+    "groups": {
+      "1": [
+        "England",
+        "South Africa",
+        "Sri Lanka",
+        "West Indies"
+      ],
+      "2": [
+        "Australia",
+        "Bangladesh",
+        "India",
+        "New Zealand",
+        "Pakistan"
+      ],
+      "A": [
+        "Bangladesh",
+        "Ireland",
+        "Netherlands",
+        "Oman"
+      ],
+      "B": [
+        "Hong Kong",
+        "Scotland",
+        "Zimbabwe"
+      ]
+    },
+    "stages": {
+      "First Round": 8,
+      "Super 10": 16,
+      "Semi Final": 2,
+      "Final": 1
+    },
+    "venues": {
+      "dharamsala": 6,
+      "nagpur": 5,
+      "eden-gardens": 4,
+      "wankhede": 3,
+      "bengaluru": 3,
+      "mohali": 3,
+      "delhi": 3
+    },
+    "hostWinPct": 60,
+    "associateUpsets": {
+      "wins": 0,
+      "crossTierMatches": 4
+    },
+    "matchesWithMissingData": 0,
+    "environment": {
+      "matches": 27,
+      "decided": 26,
+      "legalBalls": 5845,
+      "runsPerOver": 7.86,
+      "dotPct": 36.6,
+      "fourPct": 11.4,
+      "sixPct": 4.2,
+      "ballsPerWicket": 17.8,
+      "powerplayRpo": 7.47,
+      "middleRpo": 7.29,
+      "deathRpo": 9.64,
+      "firstInningsAvg": 158.9,
+      "firstInningsSd": 27.8,
+      "chaseWinPct": 50,
+      "tossFieldPct": 63,
+      "tossWinnerWinPct": 65,
+      "chaseUplift": -0.26,
+      "reducedInnings": 5,
+      "widesPerOver": 0.18,
+      "noBallsPerOver": 0.023,
+      "extrasPerOver": 0.45,
+      "dismissalFingerprintPct": {
+        "caught": 56.1,
+        "bowled": 20.1,
+        "run out": 9.5,
+        "lbw": 6.4,
+        "stumped": 6.4,
+        "caught and bowled": 1.5
+      },
+      "reviews": {
+        "total": 0,
+        "upheldPct": 0,
+        "umpiresCallPct": 0,
+        "byBattingSidePct": 0
+      },
+      "rain": {
+        "dlFinishes": 2,
+        "noResults": 1
+      },
+      "ties": 0,
+      "populationVectors": {
+        "pp": {
+          "0": 0.4693,
+          "1": 0.265,
+          "2": 0.0365,
+          "3": 0.0035,
+          "4": 0.158,
+          "6": 0.0289,
+          "W": 0.0388
+        },
+        "mid": {
+          "0": 0.303,
+          "1": 0.4657,
+          "2": 0.0701,
+          "3": 0.0012,
+          "4": 0.0792,
+          "6": 0.0359,
+          "W": 0.0449
+        },
+        "death": {
+          "0": 0.232,
+          "1": 0.3906,
+          "2": 0.0992,
+          "3": 0.0047,
+          "4": 0.1211,
+          "6": 0.0695,
+          "W": 0.0828
+        }
+      }
+    }
+  },
+  {
+    "id": "2021",
+    "year": 2021,
+    "seasonKey": "2021/22",
+    "hosts": [
+      "United Arab Emirates",
+      "Oman"
+    ],
+    "hostTeams": [
+      "Oman"
+    ],
+    "format": "First round (2 groups of 4) → Super 12 (2 groups of 6) → semi-finals → final",
+    "rules": {
+      "tieBreak": "super-over",
+      "freeHit": "all-no-balls",
+      "drs": true,
+      "concussionSub": true,
+      "stopClock": false
+    },
+    "afghanistan": {
+      "stage": "Super 12",
+      "group": "2",
+      "groupmates": [
+        "India",
+        "New Zealand",
+        "Pakistan",
+        "Namibia",
+        "Scotland"
+      ],
+      "finish": "4th in Super 12 group 2"
+    },
+    "standIn": {
+      "team": "Scotland",
+      "reason": "Afghanistan qualified automatically (8th in rankings at 31 Dec 2018). Next ranked was Scotland (11th), already qualified via the 2019 Qualifier, so Scotland take Afghanistan's Super 12 group 2 slot and United Arab Emirates (7th in the 2019 Qualifier) take Scotland's First Round group B slot. Confidence high."
+    },
+    "slotChanges": [
+      {
+        "action": "move",
+        "team": "Scotland",
+        "fromStage": "First Round",
+        "fromGroup": "B",
+        "stage": "Super 12",
+        "group": "2"
+      },
+      {
+        "action": "add",
+        "team": "United Arab Emirates",
+        "stage": "First Round",
+        "group": "B"
+      }
+    ],
+    "firstMatch": "2021-10-17",
+    "lastMatch": "2021-11-14",
+    "teams": [
+      "Australia",
+      "Bangladesh",
+      "England",
+      "India",
+      "Ireland",
+      "Namibia",
+      "Netherlands",
+      "New Zealand",
+      "Oman",
+      "Pakistan",
+      "Papua New Guinea",
+      "Scotland",
+      "South Africa",
+      "Sri Lanka",
+      "West Indies"
+    ],
+    "groups": {
+      "1": [
+        "Australia",
+        "Bangladesh",
+        "England",
+        "South Africa",
+        "Sri Lanka",
+        "West Indies"
+      ],
+      "2": [
+        "India",
+        "Namibia",
+        "New Zealand",
+        "Pakistan",
+        "Scotland"
+      ],
+      "A": [
+        "Ireland",
+        "Namibia",
+        "Netherlands",
+        "Sri Lanka"
+      ],
+      "B": [
+        "Bangladesh",
+        "Oman",
+        "Papua New Guinea",
+        "Scotland"
+      ]
+    },
+    "stages": {
+      "group B": 6,
+      "group A": 6,
+      "group 1": 15,
+      "group 2": 10,
+      "Semi Final": 2,
+      "Final": 1
+    },
+    "venues": {
+      "abu-dhabi": 12,
+      "dubai": 12,
+      "sharjah": 10,
+      "al-amerat": 6
+    },
+    "hostWinPct": 33,
+    "associateUpsets": {
+      "wins": 2,
+      "crossTierMatches": 13
+    },
+    "matchesWithMissingData": 0,
+    "environment": {
+      "matches": 40,
+      "decided": 40,
+      "legalBalls": 8689,
+      "runsPerOver": 7.43,
+      "dotPct": 38.1,
+      "fourPct": 9.5,
+      "sixPct": 4.1,
+      "ballsPerWicket": 18.6,
+      "powerplayRpo": 6.66,
+      "middleRpo": 7.1,
+      "deathRpo": 9.44,
+      "firstInningsAvg": 139.3,
+      "firstInningsSd": 37.2,
+      "chaseWinPct": 68,
+      "tossFieldPct": 78,
+      "tossWinnerWinPct": 70,
+      "chaseUplift": 0.51,
+      "reducedInnings": 0,
+      "widesPerOver": 0.2,
+      "noBallsPerOver": 0.03,
+      "extrasPerOver": 0.43,
+      "dismissalFingerprintPct": {
+        "caught": 57.9,
+        "bowled": 21.4,
+        "lbw": 9.6,
+        "run out": 7.5,
+        "caught and bowled": 2.4,
+        "stumped": 1.1,
+        "hit wicket": 0.2
+      },
+      "reviews": {
+        "total": 81,
+        "upheldPct": 17,
+        "umpiresCallPct": 17,
+        "byBattingSidePct": 31
+      },
+      "rain": {
+        "dlFinishes": 0,
+        "noResults": 0
+      },
+      "ties": 0,
+      "populationVectors": {
+        "pp": {
+          "0": 0.4736,
+          "1": 0.2799,
+          "2": 0.0469,
+          "3": 0.0066,
+          "4": 0.1205,
+          "6": 0.0253,
+          "W": 0.0472
+        },
+        "mid": {
+          "0": 0.3115,
+          "1": 0.4654,
+          "2": 0.0715,
+          "3": 0.0027,
+          "4": 0.0747,
+          "6": 0.0341,
+          "W": 0.0401
+        },
+        "death": {
+          "0": 0.249,
+          "1": 0.386,
+          "2": 0.0968,
+          "3": 0.0023,
+          "4": 0.0985,
+          "6": 0.0787,
+          "W": 0.0889
+        }
+      }
+    }
+  },
+  {
+    "id": "2022",
+    "year": 2022,
+    "seasonKey": "2022/23",
+    "hosts": [
+      "Australia"
+    ],
+    "hostTeams": [
+      "Australia"
+    ],
+    "format": "First round (2 groups of 4) → Super 12 (2 groups of 6) → semi-finals → final",
+    "rules": {
+      "tieBreak": "super-over",
+      "freeHit": "all-no-balls",
+      "drs": true,
+      "concussionSub": true,
+      "stopClock": false
+    },
+    "afghanistan": {
+      "stage": "Super 12",
+      "group": "1",
+      "groupmates": [
+        "Australia",
+        "England",
+        "New Zealand",
+        "Sri Lanka",
+        "Ireland"
+      ],
+      "finish": "6th in Super 12 group 1 (two washouts)"
+    },
+    "standIn": {
+      "team": "Sri Lanka",
+      "reason": "Afghanistan qualified automatically for the Super 12 (7th in rankings at 15 Nov 2021). Sri Lanka (9th) are promoted into Afghanistan's Super 12 group 1 slot; their vacated First Round group A slot cascades to Papua New Guinea (3rd in Global Qualifier B). Confidence medium; alternative Nepal (3rd in Global Qualifier A)."
+    },
+    "slotChanges": [
+      {
+        "action": "move",
+        "team": "Sri Lanka",
+        "fromStage": "First Round",
+        "fromGroup": "A",
+        "stage": "Super 12",
+        "group": "1"
+      },
+      {
+        "action": "add",
+        "team": "Papua New Guinea",
+        "stage": "First Round",
+        "group": "A"
+      }
+    ],
+    "firstMatch": "2022-10-16",
+    "lastMatch": "2022-11-13",
+    "teams": [
+      "Australia",
+      "Bangladesh",
+      "England",
+      "India",
+      "Ireland",
+      "Namibia",
+      "Netherlands",
+      "New Zealand",
+      "Pakistan",
+      "Scotland",
+      "South Africa",
+      "Sri Lanka",
+      "United Arab Emirates",
+      "West Indies",
+      "Zimbabwe"
+    ],
+    "groups": {
+      "1": [
+        "Australia",
+        "England",
+        "Ireland",
+        "New Zealand",
+        "Sri Lanka"
+      ],
+      "2": [
+        "Bangladesh",
+        "India",
+        "Netherlands",
+        "Pakistan",
+        "South Africa",
+        "Zimbabwe"
+      ],
+      "A": [
+        "Namibia",
+        "Netherlands",
+        "Sri Lanka",
+        "United Arab Emirates"
+      ],
+      "B": [
+        "Ireland",
+        "Scotland",
+        "West Indies",
+        "Zimbabwe"
+      ]
+    },
+    "stages": {
+      "group A": 6,
+      "group B": 6,
+      "group 1": 9,
+      "group 2": 15,
+      "Semi Final": 2,
+      "Final": 1
+    },
+    "venues": {
+      "hobart": 9,
+      "scg": 7,
+      "geelong": 6,
+      "adelaide": 6,
+      "mcg": 4,
+      "perth": 4,
+      "brisbane": 3
+    },
+    "hostWinPct": 67,
+    "associateUpsets": {
+      "wins": 4,
+      "crossTierMatches": 11
+    },
+    "matchesWithMissingData": 0,
+    "environment": {
+      "matches": 39,
+      "decided": 38,
+      "legalBalls": 8797,
+      "runsPerOver": 7.52,
+      "dotPct": 38,
+      "fourPct": 9.6,
+      "sixPct": 3.5,
+      "ballsPerWicket": 17.2,
+      "powerplayRpo": 6.91,
+      "middleRpo": 7.34,
+      "deathRpo": 8.79,
+      "firstInningsAvg": 155.2,
+      "firstInningsSd": 25.3,
+      "chaseWinPct": 42,
+      "tossFieldPct": 38,
+      "tossWinnerWinPct": 39,
+      "chaseUplift": -0.55,
+      "reducedInnings": 5,
+      "widesPerOver": 0.19,
+      "noBallsPerOver": 0.031,
+      "extrasPerOver": 0.45,
+      "dismissalFingerprintPct": {
+        "caught": 64.1,
+        "bowled": 17.8,
+        "run out": 6.8,
+        "lbw": 6.6,
+        "caught and bowled": 2.7,
+        "stumped": 1.8,
+        "hit wicket": 0.2
+      },
+      "reviews": {
+        "total": 78,
+        "upheldPct": 18,
+        "umpiresCallPct": 15,
+        "byBattingSidePct": 33
+      },
+      "rain": {
+        "dlFinishes": 3,
+        "noResults": 1
+      },
+      "ties": 0,
+      "populationVectors": {
+        "pp": {
+          "0": 0.4802,
+          "1": 0.2534,
+          "2": 0.0632,
+          "3": 0.0145,
+          "4": 0.1123,
+          "6": 0.0285,
+          "W": 0.0479
+        },
+        "mid": {
+          "0": 0.294,
+          "1": 0.4483,
+          "2": 0.0961,
+          "3": 0.0071,
+          "4": 0.0778,
+          "6": 0.031,
+          "W": 0.0457
+        },
+        "death": {
+          "0": 0.2687,
+          "1": 0.3574,
+          "2": 0.1246,
+          "3": 0.0116,
+          "4": 0.1024,
+          "6": 0.047,
+          "W": 0.0882
+        }
+      }
+    }
+  },
+  {
+    "id": "2024",
+    "year": 2024,
+    "seasonKey": "2024",
+    "hosts": [
+      "United States of America",
+      "West Indies"
+    ],
+    "hostTeams": [
+      "United States of America",
+      "West Indies"
+    ],
+    "format": "4 groups of 5 → Super 8 (2 groups of 4) → semi-finals → final",
+    "rules": {
+      "tieBreak": "super-over",
+      "freeHit": "all-no-balls",
+      "drs": true,
+      "concussionSub": true,
+      "stopClock": true
+    },
+    "afghanistan": {
+      "stage": "Group → Super 8 → semi-final",
+      "group": "C → 1",
+      "groupmates": [
+        "New Zealand",
+        "West Indies",
+        "Uganda",
+        "Papua New Guinea",
+        "India",
+        "Australia",
+        "Bangladesh"
+      ],
+      "finish": "Semi-final (lost to South Africa)"
+    },
+    "standIn": {
+      "team": "Zimbabwe",
+      "reason": "Afghanistan qualified as the next-best ranked side (10th at 14 Nov 2022); Zimbabwe were 11th on the last published pre-cut-off table. Takes group C. Confidence medium (exact cut-off table not retrievable); alternative Italy via the Europe cascade if Ireland were 11th."
+    },
+    "slotChanges": [
+      {
+        "action": "add",
+        "team": "Zimbabwe",
+        "stage": "Group",
+        "group": "C"
+      }
+    ],
+    "firstMatch": "2024-06-01",
+    "lastMatch": "2024-06-29",
+    "teams": [
+      "Australia",
+      "Bangladesh",
+      "Canada",
+      "England",
+      "India",
+      "Ireland",
+      "Namibia",
+      "Nepal",
+      "Netherlands",
+      "New Zealand",
+      "Oman",
+      "Pakistan",
+      "Papua New Guinea",
+      "Scotland",
+      "South Africa",
+      "Sri Lanka",
+      "Uganda",
+      "United States of America",
+      "West Indies"
+    ],
+    "groups": {
+      "1": [
+        "Australia",
+        "Bangladesh",
+        "India"
+      ],
+      "2": [
+        "England",
+        "South Africa",
+        "United States of America",
+        "West Indies"
+      ],
+      "A": [
+        "Canada",
+        "India",
+        "Ireland",
+        "Pakistan",
+        "United States of America"
+      ],
+      "B": [
+        "Australia",
+        "England",
+        "Namibia",
+        "Oman",
+        "Scotland"
+      ],
+      "C": [
+        "New Zealand",
+        "Papua New Guinea",
+        "Uganda",
+        "West Indies"
+      ],
+      "D": [
+        "Bangladesh",
+        "Nepal",
+        "Netherlands",
+        "South Africa",
+        "Sri Lanka"
+      ]
+    },
+    "stages": {
+      "group A": 8,
+      "group C": 6,
+      "group B": 10,
+      "group D": 9,
+      "group 2": 6,
+      "group 1": 3,
+      "Semi Final": 1,
+      "Final": 1
+    },
+    "venues": {
+      "bridgetown": 8,
+      "new-york": 8,
+      "north-sound": 8,
+      "gros-islet": 5,
+      "dallas": 4,
+      "providence": 4,
+      "tarouba": 3,
+      "kingstown": 3,
+      "lauderhill": 1
+    },
+    "hostWinPct": 50,
+    "associateUpsets": {
+      "wins": 2,
+      "crossTierMatches": 21
+    },
+    "matchesWithMissingData": 0,
+    "environment": {
+      "matches": 44,
+      "decided": 43,
+      "legalBalls": 9312,
+      "runsPerOver": 7.13,
+      "dotPct": 44.4,
+      "fourPct": 8.7,
+      "sixPct": 4.9,
+      "ballsPerWicket": 16.6,
+      "powerplayRpo": 6.81,
+      "middleRpo": 6.88,
+      "deathRpo": 8.25,
+      "firstInningsAvg": 134.9,
+      "firstInningsSd": 43.1,
+      "chaseWinPct": 58,
+      "tossFieldPct": 84,
+      "tossWinnerWinPct": 58,
+      "chaseUplift": 0.29,
+      "reducedInnings": 5,
+      "widesPerOver": 0.22,
+      "noBallsPerOver": 0.025,
+      "extrasPerOver": 0.43,
+      "dismissalFingerprintPct": {
+        "caught": 59.3,
+        "bowled": 18.2,
+        "lbw": 10.5,
+        "run out": 5.4,
+        "caught and bowled": 3.8,
+        "stumped": 2.7,
+        "retired out": 0.2
+      },
+      "reviews": {
+        "total": 91,
+        "upheldPct": 25,
+        "umpiresCallPct": 14,
+        "byBattingSidePct": 53
+      },
+      "rain": {
+        "dlFinishes": 3,
+        "noResults": 1
+      },
+      "ties": 2,
+      "populationVectors": {
+        "pp": {
+          "0": 0.5155,
+          "1": 0.2253,
+          "2": 0.0461,
+          "3": 0.0072,
+          "4": 0.1188,
+          "6": 0.0345,
+          "W": 0.0526
+        },
+        "mid": {
+          "0": 0.3748,
+          "1": 0.4004,
+          "2": 0.0594,
+          "3": 0.0041,
+          "4": 0.0631,
+          "6": 0.0471,
+          "W": 0.051
+        },
+        "death": {
+          "0": 0.3047,
+          "1": 0.3732,
+          "2": 0.0795,
+          "3": 0.0032,
+          "4": 0.0842,
+          "6": 0.0679,
+          "W": 0.0874
+        }
+      }
+    }
+  },
+  {
+    "id": "2026",
+    "year": 2026,
+    "seasonKey": "2025/26",
+    "hosts": [
+      "India",
+      "Sri Lanka"
+    ],
+    "hostTeams": [
+      "India",
+      "Sri Lanka"
+    ],
+    "format": "4 groups of 5 → Super 8 (2 groups of 4) → semi-finals → final",
+    "rules": {
+      "tieBreak": "super-over",
+      "freeHit": "all-no-balls",
+      "drs": true,
+      "concussionSub": true,
+      "stopClock": true
+    },
+    "afghanistan": {
+      "stage": "Group",
+      "group": "D",
+      "groupmates": [
+        "New Zealand",
+        "South Africa",
+        "United Arab Emirates",
+        "Canada"
+      ],
+      "finish": "3rd in group D; eliminated"
+    },
+    "standIn": {
+      "team": "Kenya",
+      "reason": "Afghanistan qualified automatically (top 7 of 2024 excluding hosts). Next ranked at 30 Jun 2024 was Zimbabwe (12th), who qualified via the Africa Regional Final anyway, so the slot cascades to Kenya (3rd in the 2025 Africa Regional Final). Takes group D. Confidence medium-high; alternative Scotland (13th), already in the real field."
+    },
+    "slotChanges": [
+      {
+        "action": "add",
+        "team": "Kenya",
+        "stage": "Group",
+        "group": "D"
+      }
+    ],
+    "firstMatch": "2026-02-07",
+    "lastMatch": "2026-03-08",
+    "teams": [
+      "Australia",
+      "Canada",
+      "England",
+      "India",
+      "Ireland",
+      "Italy",
+      "Namibia",
+      "Nepal",
+      "Netherlands",
+      "New Zealand",
+      "Oman",
+      "Pakistan",
+      "Scotland",
+      "South Africa",
+      "Sri Lanka",
+      "United Arab Emirates",
+      "United States of America",
+      "West Indies",
+      "Zimbabwe"
+    ],
+    "groups": {
+      "1": [
+        "India",
+        "South Africa",
+        "West Indies",
+        "Zimbabwe"
+      ],
+      "2": [
+        "England",
+        "New Zealand",
+        "Pakistan",
+        "Sri Lanka"
+      ],
+      "A": [
+        "India",
+        "Namibia",
+        "Netherlands",
+        "Pakistan",
+        "United States of America"
+      ],
+      "B": [
+        "Australia",
+        "Ireland",
+        "Oman",
+        "Sri Lanka",
+        "Zimbabwe"
+      ],
+      "C": [
+        "England",
+        "Italy",
+        "Nepal",
+        "Scotland",
+        "West Indies"
+      ],
+      "D": [
+        "Canada",
+        "New Zealand",
+        "South Africa",
+        "United Arab Emirates"
+      ]
+    },
+    "stages": {
+      "group A": 10,
+      "group C": 10,
+      "group B": 9,
+      "group D": 6,
+      "group 2": 5,
+      "group 1": 6,
+      "Semi Final": 2,
+      "Final": 1
+    },
+    "venues": {
+      "wankhede": 8,
+      "eden-gardens": 7,
+      "premadasa": 7,
+      "ahmedabad": 6,
+      "pallekele": 6,
+      "ssc": 5,
+      "delhi": 5,
+      "chennai": 5
+    },
+    "hostWinPct": 69,
+    "associateUpsets": {
+      "wins": 0,
+      "crossTierMatches": 20
+    },
+    "matchesWithMissingData": 0,
+    "environment": {
+      "matches": 49,
+      "decided": 49,
+      "legalBalls": 11118,
+      "runsPerOver": 8.74,
+      "dotPct": 34.9,
+      "fourPct": 11.9,
+      "sixPct": 6.5,
+      "ballsPerWicket": 17.2,
+      "powerplayRpo": 8.57,
+      "middleRpo": 8.25,
+      "deathRpo": 10.1,
+      "firstInningsAvg": 180.2,
+      "firstInningsSd": 35.7,
+      "chaseWinPct": 43,
+      "tossFieldPct": 71,
+      "tossWinnerWinPct": 43,
+      "chaseUplift": -0.66,
+      "reducedInnings": 0,
+      "widesPerOver": 0.21,
+      "noBallsPerOver": 0.021,
+      "extrasPerOver": 0.37,
+      "dismissalFingerprintPct": {
+        "caught": 67.5,
+        "bowled": 17.5,
+        "run out": 5.1,
+        "lbw": 4.5,
+        "stumped": 2.6,
+        "caught and bowled": 2.3,
+        "hit wicket": 0.3,
+        "retired out": 0.2
+      },
+      "reviews": {
+        "total": 85,
+        "upheldPct": 19,
+        "umpiresCallPct": 14,
+        "byBattingSidePct": 40
+      },
+      "rain": {
+        "dlFinishes": 0,
+        "noResults": 0
+      },
+      "ties": 0,
+      "populationVectors": {
+        "pp": {
+          "0": 0.4138,
+          "1": 0.269,
+          "2": 0.0465,
+          "3": 0.0028,
+          "4": 0.1644,
+          "6": 0.0541,
+          "W": 0.0493
+        },
+        "mid": {
+          "0": 0.2674,
+          "1": 0.4632,
+          "2": 0.0767,
+          "3": 0.0013,
+          "4": 0.0898,
+          "6": 0.0568,
+          "W": 0.0449
+        },
+        "death": {
+          "0": 0.2273,
+          "1": 0.3809,
+          "2": 0.0808,
+          "3": 0.0021,
+          "4": 0.1166,
+          "6": 0.0968,
+          "W": 0.0955
+        }
+      }
+    }
+  }
+]

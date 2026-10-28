@@ -1,0 +1,3103 @@
+{
+  "byEdition": {
+    "2007": {
+      "completeInnings": 40,
+      "bowlersUsed": {
+        "histogramPct": {
+          "5": 28,
+          "6": 58,
+          "7": 15
+        },
+        "mean": 5.88
+      },
+      "newBallQuotaCompletionByFirstTwoOvers": {
+        "<=10": {
+          "n": 25,
+          "pct": 84
+        },
+        "11-16": {
+          "n": 36,
+          "pct": 97
+        },
+        "17-24": {
+          "n": 19,
+          "pct": 74
+        },
+        "25+": {
+          "n": 3,
+          "pct": 33
+        }
+      },
+      "newBallBowlsAtDeathByFirstTwoOvers": {
+        "<=10": {
+          "n": 25,
+          "pct": 68
+        },
+        "11-16": {
+          "n": 36,
+          "pct": 69
+        },
+        "17-24": {
+          "n": 19,
+          "pct": 58
+        },
+        "25+": {
+          "n": 3,
+          "pct": 67
+        }
+      },
+      "returnsLaterByOverCost": {
+        "0-6": {
+          "n": 294,
+          "pct": 92
+        },
+        "7-11": {
+          "n": 228,
+          "pct": 89
+        },
+        "12-17": {
+          "n": 101,
+          "pct": 77
+        },
+        "18+": {
+          "n": 21,
+          "pct": 67
+        }
+      },
+      "overs19And20ByOpeningBowlerPct": 48,
+      "rankPhaseShare": {
+        "1": {
+          "oversPerInnings": 4,
+          "ppPct": 67,
+          "midPct": 18,
+          "deathPct": 16
+        },
+        "2": {
+          "oversPerInnings": 3.98,
+          "ppPct": 49,
+          "midPct": 28,
+          "deathPct": 23
+        },
+        "3": {
+          "oversPerInnings": 3.92,
+          "ppPct": 13,
+          "midPct": 65,
+          "deathPct": 22
+        },
+        "4": {
+          "oversPerInnings": 3.73,
+          "ppPct": 13,
+          "midPct": 68,
+          "deathPct": 18
+        },
+        "5": {
+          "oversPerInnings": 3.02,
+          "ppPct": 12,
+          "midPct": 67,
+          "deathPct": 21
+        },
+        "6": {
+          "oversPerInnings": 1.35,
+          "ppPct": 2,
+          "midPct": 78,
+          "deathPct": 20
+        }
+      },
+      "sixthBowler": {
+        "introducedOverHistogram": {
+          "6": 1,
+          "7": 2,
+          "8": 5,
+          "10": 2,
+          "11": 1,
+          "12": 5,
+          "13": 6,
+          "14": 1,
+          "15": 1,
+          "16": 1,
+          "17": 2,
+          "18": 1,
+          "19": 1
+        },
+        "oversPerInnings": 1.15
+      }
+    },
+    "2009": {
+      "completeInnings": 37,
+      "bowlersUsed": {
+        "histogramPct": {
+          "5": 11,
+          "6": 68,
+          "7": 19,
+          "8": 3
+        },
+        "mean": 6.14
+      },
+      "newBallQuotaCompletionByFirstTwoOvers": {
+        "<=10": {
+          "n": 18,
+          "pct": 89
+        },
+        "11-16": {
+          "n": 37,
+          "pct": 78
+        },
+        "17-24": {
+          "n": 17,
+          "pct": 47
+        },
+        "25+": {
+          "n": 4,
+          "pct": 50
+        }
+      },
+      "newBallBowlsAtDeathByFirstTwoOvers": {
+        "<=10": {
+          "n": 18,
+          "pct": 67
+        },
+        "11-16": {
+          "n": 37,
+          "pct": 70
+        },
+        "17-24": {
+          "n": 17,
+          "pct": 71
+        },
+        "25+": {
+          "n": 4,
+          "pct": 50
+        }
+      },
+      "returnsLaterByOverCost": {
+        "0-6": {
+          "n": 283,
+          "pct": 92
+        },
+        "7-11": {
+          "n": 231,
+          "pct": 81
+        },
+        "12-17": {
+          "n": 76,
+          "pct": 76
+        },
+        "18+": {
+          "n": 14,
+          "pct": 50
+        }
+      },
+      "overs19And20ByOpeningBowlerPct": 58,
+      "rankPhaseShare": {
+        "1": {
+          "oversPerInnings": 4,
+          "ppPct": 54,
+          "midPct": 20,
+          "deathPct": 26
+        },
+        "2": {
+          "oversPerInnings": 4,
+          "ppPct": 40,
+          "midPct": 32,
+          "deathPct": 28
+        },
+        "3": {
+          "oversPerInnings": 3.97,
+          "ppPct": 14,
+          "midPct": 70,
+          "deathPct": 16
+        },
+        "4": {
+          "oversPerInnings": 3.54,
+          "ppPct": 15,
+          "midPct": 68,
+          "deathPct": 18
+        },
+        "5": {
+          "oversPerInnings": 2.81,
+          "ppPct": 31,
+          "midPct": 53,
+          "deathPct": 16
+        },
+        "6": {
+          "oversPerInnings": 1.68,
+          "ppPct": 19,
+          "midPct": 76,
+          "deathPct": 5
+        }
+      },
+      "sixthBowler": {
+        "introducedOverHistogram": {
+          "1": 2,
+          "2": 4,
+          "5": 2,
+          "6": 2,
+          "7": 5,
+          "8": 2,
+          "9": 1,
+          "10": 6,
+          "11": 3,
+          "12": 4,
+          "13": 1,
+          "20": 1
+        },
+        "oversPerInnings": 1.38
+      }
+    },
+    "2010": {
+      "completeInnings": 36,
+      "bowlersUsed": {
+        "histogramPct": {
+          "5": 17,
+          "6": 64,
+          "7": 19
+        },
+        "mean": 6.03
+      },
+      "newBallQuotaCompletionByFirstTwoOvers": {
+        "<=10": {
+          "n": 24,
+          "pct": 79
+        },
+        "11-16": {
+          "n": 27,
+          "pct": 85
+        },
+        "17-24": {
+          "n": 23,
+          "pct": 65
+        },
+        "25+": {
+          "n": 5,
+          "pct": 80
+        }
+      },
+      "newBallBowlsAtDeathByFirstTwoOvers": {
+        "<=10": {
+          "n": 24,
+          "pct": 63
+        },
+        "11-16": {
+          "n": 27,
+          "pct": 85
+        },
+        "17-24": {
+          "n": 23,
+          "pct": 74
+        },
+        "25+": {
+          "n": 5,
+          "pct": 80
+        }
+      },
+      "returnsLaterByOverCost": {
+        "0-6": {
+          "n": 259,
+          "pct": 95
+        },
+        "7-11": {
+          "n": 233,
+          "pct": 85
+        },
+        "12-17": {
+          "n": 82,
+          "pct": 70
+        },
+        "18+": {
+          "n": 10,
+          "pct": 30
+        }
+      },
+      "overs19And20ByOpeningBowlerPct": 47,
+      "rankPhaseShare": {
+        "1": {
+          "oversPerInnings": 4,
+          "ppPct": 52,
+          "midPct": 25,
+          "deathPct": 23
+        },
+        "2": {
+          "oversPerInnings": 4,
+          "ppPct": 37,
+          "midPct": 36,
+          "deathPct": 27
+        },
+        "3": {
+          "oversPerInnings": 3.94,
+          "ppPct": 23,
+          "midPct": 54,
+          "deathPct": 23
+        },
+        "4": {
+          "oversPerInnings": 3.67,
+          "ppPct": 20,
+          "midPct": 63,
+          "deathPct": 17
+        },
+        "5": {
+          "oversPerInnings": 2.86,
+          "ppPct": 21,
+          "midPct": 66,
+          "deathPct": 13
+        },
+        "6": {
+          "oversPerInnings": 1.53,
+          "ppPct": 13,
+          "midPct": 80,
+          "deathPct": 7
+        }
+      },
+      "sixthBowler": {
+        "introducedOverHistogram": {
+          "2": 2,
+          "3": 1,
+          "4": 1,
+          "6": 1,
+          "7": 5,
+          "8": 1,
+          "9": 6,
+          "10": 2,
+          "12": 4,
+          "13": 2,
+          "14": 2,
+          "15": 1,
+          "16": 1,
+          "20": 1
+        },
+        "oversPerInnings": 1.33
+      }
+    },
+    "2012": {
+      "completeInnings": 33,
+      "bowlersUsed": {
+        "histogramPct": {
+          "5": 9,
+          "6": 76,
+          "7": 15
+        },
+        "mean": 6.06
+      },
+      "newBallQuotaCompletionByFirstTwoOvers": {
+        "<=10": {
+          "n": 28,
+          "pct": 86
+        },
+        "11-16": {
+          "n": 32,
+          "pct": 72
+        },
+        "17-24": {
+          "n": 13,
+          "pct": 62
+        },
+        "25+": {
+          "n": 3,
+          "pct": 33
+        }
+      },
+      "newBallBowlsAtDeathByFirstTwoOvers": {
+        "<=10": {
+          "n": 28,
+          "pct": 64
+        },
+        "11-16": {
+          "n": 32,
+          "pct": 56
+        },
+        "17-24": {
+          "n": 13,
+          "pct": 69
+        },
+        "25+": {
+          "n": 3,
+          "pct": 67
+        }
+      },
+      "returnsLaterByOverCost": {
+        "0-6": {
+          "n": 249,
+          "pct": 94
+        },
+        "7-11": {
+          "n": 205,
+          "pct": 87
+        },
+        "12-17": {
+          "n": 73,
+          "pct": 58
+        },
+        "18+": {
+          "n": 10,
+          "pct": 60
+        }
+      },
+      "overs19And20ByOpeningBowlerPct": 32,
+      "rankPhaseShare": {
+        "1": {
+          "oversPerInnings": 4,
+          "ppPct": 49,
+          "midPct": 30,
+          "deathPct": 20
+        },
+        "2": {
+          "oversPerInnings": 4,
+          "ppPct": 38,
+          "midPct": 36,
+          "deathPct": 27
+        },
+        "3": {
+          "oversPerInnings": 3.94,
+          "ppPct": 26,
+          "midPct": 49,
+          "deathPct": 25
+        },
+        "4": {
+          "oversPerInnings": 3.67,
+          "ppPct": 19,
+          "midPct": 65,
+          "deathPct": 16
+        },
+        "5": {
+          "oversPerInnings": 2.79,
+          "ppPct": 23,
+          "midPct": 65,
+          "deathPct": 12
+        },
+        "6": {
+          "oversPerInnings": 1.61,
+          "ppPct": 9,
+          "midPct": 75,
+          "deathPct": 15
+        }
+      },
+      "sixthBowler": {
+        "introducedOverHistogram": {
+          "2": 1,
+          "5": 1,
+          "6": 2,
+          "7": 4,
+          "8": 5,
+          "9": 2,
+          "10": 2,
+          "11": 5,
+          "12": 3,
+          "13": 2,
+          "15": 1,
+          "18": 2
+        },
+        "oversPerInnings": 1.42
+      }
+    },
+    "2014": {
+      "completeInnings": 43,
+      "bowlersUsed": {
+        "histogramPct": {
+          "5": 5,
+          "6": 65,
+          "7": 28,
+          "8": 2
+        },
+        "mean": 6.28
+      },
+      "newBallQuotaCompletionByFirstTwoOvers": {
+        "<=10": {
+          "n": 23,
+          "pct": 83
+        },
+        "11-16": {
+          "n": 38,
+          "pct": 63
+        },
+        "17-24": {
+          "n": 35,
+          "pct": 57
+        },
+        "25+": {
+          "n": 2,
+          "pct": 50
+        }
+      },
+      "newBallBowlsAtDeathByFirstTwoOvers": {
+        "<=10": {
+          "n": 23,
+          "pct": 65
+        },
+        "11-16": {
+          "n": 38,
+          "pct": 50
+        },
+        "17-24": {
+          "n": 35,
+          "pct": 57
+        },
+        "25+": {
+          "n": 2,
+          "pct": 50
+        }
+      },
+      "returnsLaterByOverCost": {
+        "0-6": {
+          "n": 322,
+          "pct": 92
+        },
+        "7-11": {
+          "n": 266,
+          "pct": 82
+        },
+        "12-17": {
+          "n": 114,
+          "pct": 63
+        },
+        "18+": {
+          "n": 12,
+          "pct": 42
+        }
+      },
+      "overs19And20ByOpeningBowlerPct": 40,
+      "rankPhaseShare": {
+        "1": {
+          "oversPerInnings": 4,
+          "ppPct": 50,
+          "midPct": 30,
+          "deathPct": 20
+        },
+        "2": {
+          "oversPerInnings": 3.98,
+          "ppPct": 37,
+          "midPct": 36,
+          "deathPct": 27
+        },
+        "3": {
+          "oversPerInnings": 3.91,
+          "ppPct": 20,
+          "midPct": 58,
+          "deathPct": 22
+        },
+        "4": {
+          "oversPerInnings": 3.47,
+          "ppPct": 23,
+          "midPct": 59,
+          "deathPct": 17
+        },
+        "5": {
+          "oversPerInnings": 2.7,
+          "ppPct": 24,
+          "midPct": 59,
+          "deathPct": 16
+        },
+        "6": {
+          "oversPerInnings": 1.95,
+          "ppPct": 15,
+          "midPct": 75,
+          "deathPct": 10
+        }
+      },
+      "sixthBowler": {
+        "introducedOverHistogram": {
+          "1": 4,
+          "2": 2,
+          "4": 1,
+          "6": 2,
+          "7": 5,
+          "8": 8,
+          "9": 6,
+          "11": 4,
+          "12": 1,
+          "13": 5,
+          "15": 1,
+          "16": 1,
+          "17": 1
+        },
+        "oversPerInnings": 1.58
+      }
+    },
+    "2016": {
+      "completeInnings": 39,
+      "bowlersUsed": {
+        "histogramPct": {
+          "5": 15,
+          "6": 62,
+          "7": 23
+        },
+        "mean": 6.08
+      },
+      "newBallQuotaCompletionByFirstTwoOvers": {
+        "<=10": {
+          "n": 25,
+          "pct": 76
+        },
+        "11-16": {
+          "n": 36,
+          "pct": 86
+        },
+        "17-24": {
+          "n": 23,
+          "pct": 74
+        },
+        "25+": {
+          "n": 6,
+          "pct": 33
+        }
+      },
+      "newBallBowlsAtDeathByFirstTwoOvers": {
+        "<=10": {
+          "n": 25,
+          "pct": 64
+        },
+        "11-16": {
+          "n": 36,
+          "pct": 61
+        },
+        "17-24": {
+          "n": 23,
+          "pct": 70
+        },
+        "25+": {
+          "n": 6,
+          "pct": 67
+        }
+      },
+      "returnsLaterByOverCost": {
+        "0-6": {
+          "n": 278,
+          "pct": 93
+        },
+        "7-11": {
+          "n": 251,
+          "pct": 87
+        },
+        "12-17": {
+          "n": 85,
+          "pct": 65
+        },
+        "18+": {
+          "n": 21,
+          "pct": 52
+        }
+      },
+      "overs19And20ByOpeningBowlerPct": 44,
+      "rankPhaseShare": {
+        "1": {
+          "oversPerInnings": 4,
+          "ppPct": 54,
+          "midPct": 25,
+          "deathPct": 21
+        },
+        "2": {
+          "oversPerInnings": 3.97,
+          "ppPct": 39,
+          "midPct": 33,
+          "deathPct": 28
+        },
+        "3": {
+          "oversPerInnings": 3.97,
+          "ppPct": 23,
+          "midPct": 55,
+          "deathPct": 23
+        },
+        "4": {
+          "oversPerInnings": 3.62,
+          "ppPct": 18,
+          "midPct": 65,
+          "deathPct": 17
+        },
+        "5": {
+          "oversPerInnings": 2.82,
+          "ppPct": 15,
+          "midPct": 68,
+          "deathPct": 16
+        },
+        "6": {
+          "oversPerInnings": 1.62,
+          "ppPct": 17,
+          "midPct": 78,
+          "deathPct": 5
+        }
+      },
+      "sixthBowler": {
+        "introducedOverHistogram": {
+          "2": 3,
+          "3": 2,
+          "4": 1,
+          "6": 3,
+          "7": 3,
+          "8": 3,
+          "9": 2,
+          "10": 5,
+          "11": 4,
+          "12": 1,
+          "13": 1,
+          "14": 2,
+          "15": 1,
+          "16": 1,
+          "17": 1
+        },
+        "oversPerInnings": 1.36
+      }
+    },
+    "2021": {
+      "completeInnings": 49,
+      "bowlersUsed": {
+        "histogramPct": {
+          "5": 29,
+          "6": 59,
+          "7": 12
+        },
+        "mean": 5.84
+      },
+      "newBallQuotaCompletionByFirstTwoOvers": {
+        "<=10": {
+          "n": 50,
+          "pct": 90
+        },
+        "11-16": {
+          "n": 49,
+          "pct": 73
+        },
+        "17-24": {
+          "n": 20,
+          "pct": 85
+        },
+        "25+": {
+          "n": 3,
+          "pct": 100
+        }
+      },
+      "newBallBowlsAtDeathByFirstTwoOvers": {
+        "<=10": {
+          "n": 50,
+          "pct": 72
+        },
+        "11-16": {
+          "n": 49,
+          "pct": 65
+        },
+        "17-24": {
+          "n": 20,
+          "pct": 75
+        },
+        "25+": {
+          "n": 3,
+          "pct": 100
+        }
+      },
+      "returnsLaterByOverCost": {
+        "0-6": {
+          "n": 424,
+          "pct": 94
+        },
+        "7-11": {
+          "n": 258,
+          "pct": 87
+        },
+        "12-17": {
+          "n": 90,
+          "pct": 69
+        },
+        "18+": {
+          "n": 13,
+          "pct": 69
+        }
+      },
+      "overs19And20ByOpeningBowlerPct": 43,
+      "rankPhaseShare": {
+        "1": {
+          "oversPerInnings": 4,
+          "ppPct": 47,
+          "midPct": 27,
+          "deathPct": 26
+        },
+        "2": {
+          "oversPerInnings": 4,
+          "ppPct": 43,
+          "midPct": 32,
+          "deathPct": 25
+        },
+        "3": {
+          "oversPerInnings": 3.96,
+          "ppPct": 26,
+          "midPct": 52,
+          "deathPct": 23
+        },
+        "4": {
+          "oversPerInnings": 3.73,
+          "ppPct": 22,
+          "midPct": 62,
+          "deathPct": 16
+        },
+        "5": {
+          "oversPerInnings": 3.04,
+          "ppPct": 13,
+          "midPct": 74,
+          "deathPct": 13
+        },
+        "6": {
+          "oversPerInnings": 1.27,
+          "ppPct": 11,
+          "midPct": 82,
+          "deathPct": 6
+        }
+      },
+      "sixthBowler": {
+        "introducedOverHistogram": {
+          "1": 4,
+          "4": 1,
+          "6": 1,
+          "7": 3,
+          "8": 11,
+          "9": 3,
+          "10": 3,
+          "11": 2,
+          "12": 3,
+          "13": 2,
+          "16": 1,
+          "18": 1
+        },
+        "oversPerInnings": 1.12
+      }
+    },
+    "2022": {
+      "completeInnings": 55,
+      "bowlersUsed": {
+        "histogramPct": {
+          "5": 22,
+          "6": 49,
+          "7": 29
+        },
+        "mean": 6.07
+      },
+      "newBallQuotaCompletionByFirstTwoOvers": {
+        "<=10": {
+          "n": 46,
+          "pct": 85
+        },
+        "11-16": {
+          "n": 54,
+          "pct": 78
+        },
+        "17-24": {
+          "n": 23,
+          "pct": 65
+        },
+        "25+": {
+          "n": 4,
+          "pct": 50
+        }
+      },
+      "newBallBowlsAtDeathByFirstTwoOvers": {
+        "<=10": {
+          "n": 46,
+          "pct": 72
+        },
+        "11-16": {
+          "n": 54,
+          "pct": 70
+        },
+        "17-24": {
+          "n": 23,
+          "pct": 74
+        },
+        "25+": {
+          "n": 4,
+          "pct": 75
+        }
+      },
+      "returnsLaterByOverCost": {
+        "0-6": {
+          "n": 457,
+          "pct": 90
+        },
+        "7-11": {
+          "n": 324,
+          "pct": 83
+        },
+        "12-17": {
+          "n": 110,
+          "pct": 73
+        },
+        "18+": {
+          "n": 13,
+          "pct": 54
+        }
+      },
+      "overs19And20ByOpeningBowlerPct": 44,
+      "rankPhaseShare": {
+        "1": {
+          "oversPerInnings": 4,
+          "ppPct": 49,
+          "midPct": 25,
+          "deathPct": 27
+        },
+        "2": {
+          "oversPerInnings": 3.96,
+          "ppPct": 39,
+          "midPct": 36,
+          "deathPct": 25
+        },
+        "3": {
+          "oversPerInnings": 3.84,
+          "ppPct": 31,
+          "midPct": 52,
+          "deathPct": 18
+        },
+        "4": {
+          "oversPerInnings": 3.55,
+          "ppPct": 18,
+          "midPct": 63,
+          "deathPct": 18
+        },
+        "5": {
+          "oversPerInnings": 3.02,
+          "ppPct": 15,
+          "midPct": 70,
+          "deathPct": 15
+        },
+        "6": {
+          "oversPerInnings": 1.64,
+          "ppPct": 14,
+          "midPct": 77,
+          "deathPct": 9
+        }
+      },
+      "sixthBowler": {
+        "introducedOverHistogram": {
+          "1": 4,
+          "2": 2,
+          "3": 1,
+          "4": 3,
+          "5": 1,
+          "7": 7,
+          "8": 4,
+          "9": 6,
+          "10": 1,
+          "11": 4,
+          "12": 3,
+          "13": 1,
+          "14": 3,
+          "15": 1,
+          "16": 1,
+          "17": 1
+        },
+        "oversPerInnings": 1.31
+      }
+    },
+    "2024": {
+      "completeInnings": 53,
+      "bowlersUsed": {
+        "histogramPct": {
+          "5": 21,
+          "6": 66,
+          "7": 13
+        },
+        "mean": 5.92
+      },
+      "newBallQuotaCompletionByFirstTwoOvers": {
+        "<=10": {
+          "n": 44,
+          "pct": 86
+        },
+        "11-16": {
+          "n": 43,
+          "pct": 81
+        },
+        "17-24": {
+          "n": 27,
+          "pct": 56
+        },
+        "25+": {
+          "n": 2,
+          "pct": 50
+        }
+      },
+      "newBallBowlsAtDeathByFirstTwoOvers": {
+        "<=10": {
+          "n": 44,
+          "pct": 66
+        },
+        "11-16": {
+          "n": 43,
+          "pct": 72
+        },
+        "17-24": {
+          "n": 27,
+          "pct": 56
+        },
+        "25+": {
+          "n": 2,
+          "pct": 0
+        }
+      },
+      "returnsLaterByOverCost": {
+        "0-6": {
+          "n": 451,
+          "pct": 93
+        },
+        "7-11": {
+          "n": 277,
+          "pct": 86
+        },
+        "12-17": {
+          "n": 110,
+          "pct": 67
+        },
+        "18+": {
+          "n": 24,
+          "pct": 54
+        }
+      },
+      "overs19And20ByOpeningBowlerPct": 37,
+      "rankPhaseShare": {
+        "1": {
+          "oversPerInnings": 4,
+          "ppPct": 51,
+          "midPct": 25,
+          "deathPct": 23
+        },
+        "2": {
+          "oversPerInnings": 4,
+          "ppPct": 40,
+          "midPct": 36,
+          "deathPct": 25
+        },
+        "3": {
+          "oversPerInnings": 3.89,
+          "ppPct": 25,
+          "midPct": 51,
+          "deathPct": 23
+        },
+        "4": {
+          "oversPerInnings": 3.64,
+          "ppPct": 16,
+          "midPct": 70,
+          "deathPct": 15
+        },
+        "5": {
+          "oversPerInnings": 3.02,
+          "ppPct": 20,
+          "midPct": 63,
+          "deathPct": 17
+        },
+        "6": {
+          "oversPerInnings": 1.45,
+          "ppPct": 14,
+          "midPct": 75,
+          "deathPct": 10
+        }
+      },
+      "sixthBowler": {
+        "introducedOverHistogram": {
+          "1": 1,
+          "2": 2,
+          "4": 2,
+          "6": 3,
+          "7": 1,
+          "8": 1,
+          "9": 4,
+          "10": 9,
+          "11": 4,
+          "12": 6,
+          "13": 2,
+          "14": 3,
+          "16": 1,
+          "17": 1,
+          "18": 1,
+          "19": 1
+        },
+        "oversPerInnings": 1.3
+      }
+    },
+    "2026": {
+      "completeInnings": 69,
+      "bowlersUsed": {
+        "histogramPct": {
+          "5": 10,
+          "6": 64,
+          "7": 25,
+          "8": 1
+        },
+        "mean": 6.17
+      },
+      "newBallQuotaCompletionByFirstTwoOvers": {
+        "<=10": {
+          "n": 33,
+          "pct": 70
+        },
+        "11-16": {
+          "n": 50,
+          "pct": 64
+        },
+        "17-24": {
+          "n": 50,
+          "pct": 72
+        },
+        "25+": {
+          "n": 16,
+          "pct": 50
+        }
+      },
+      "newBallBowlsAtDeathByFirstTwoOvers": {
+        "<=10": {
+          "n": 33,
+          "pct": 64
+        },
+        "11-16": {
+          "n": 50,
+          "pct": 70
+        },
+        "17-24": {
+          "n": 50,
+          "pct": 78
+        },
+        "25+": {
+          "n": 16,
+          "pct": 56
+        }
+      },
+      "returnsLaterByOverCost": {
+        "0-6": {
+          "n": 428,
+          "pct": 91
+        },
+        "7-11": {
+          "n": 427,
+          "pct": 87
+        },
+        "12-17": {
+          "n": 227,
+          "pct": 73
+        },
+        "18+": {
+          "n": 56,
+          "pct": 52
+        }
+      },
+      "overs19And20ByOpeningBowlerPct": 41,
+      "rankPhaseShare": {
+        "1": {
+          "oversPerInnings": 3.99,
+          "ppPct": 53,
+          "midPct": 23,
+          "deathPct": 24
+        },
+        "2": {
+          "oversPerInnings": 3.97,
+          "ppPct": 38,
+          "midPct": 36,
+          "deathPct": 26
+        },
+        "3": {
+          "oversPerInnings": 3.94,
+          "ppPct": 14,
+          "midPct": 64,
+          "deathPct": 22
+        },
+        "4": {
+          "oversPerInnings": 3.49,
+          "ppPct": 22,
+          "midPct": 62,
+          "deathPct": 16
+        },
+        "5": {
+          "oversPerInnings": 2.84,
+          "ppPct": 23,
+          "midPct": 63,
+          "deathPct": 14
+        },
+        "6": {
+          "oversPerInnings": 1.77,
+          "ppPct": 22,
+          "midPct": 66,
+          "deathPct": 11
+        }
+      },
+      "sixthBowler": {
+        "introducedOverHistogram": {
+          "1": 3,
+          "2": 6,
+          "3": 3,
+          "4": 2,
+          "5": 3,
+          "6": 4,
+          "7": 4,
+          "8": 9,
+          "9": 1,
+          "10": 3,
+          "11": 3,
+          "12": 5,
+          "13": 4,
+          "14": 4,
+          "15": 4,
+          "16": 2,
+          "17": 1,
+          "20": 1
+        },
+        "oversPerInnings": 1.45
+      }
+    }
+  },
+  "byTeamEdition": [
+    {
+      "editionId": "2007",
+      "team": "Australia",
+      "completeInnings": 6,
+      "bowlersUsed": {
+        "histogramPct": {
+          "5": 17,
+          "6": 83
+        },
+        "mean": 5.83
+      },
+      "overs19And20ByOpeningBowlerPct": 67,
+      "sixthBowlerOversPerInnings": 1.33
+    },
+    {
+      "editionId": "2007",
+      "team": "Bangladesh",
+      "completeInnings": 2,
+      "bowlersUsed": {
+        "histogramPct": {
+          "6": 100
+        },
+        "mean": 6
+      },
+      "overs19And20ByOpeningBowlerPct": 25,
+      "sixthBowlerOversPerInnings": 2
+    },
+    {
+      "editionId": "2007",
+      "team": "England",
+      "completeInnings": 4,
+      "bowlersUsed": {
+        "histogramPct": {
+          "6": 50,
+          "7": 50
+        },
+        "mean": 6.5
+      },
+      "overs19And20ByOpeningBowlerPct": 50,
+      "sixthBowlerOversPerInnings": 1.25
+    },
+    {
+      "editionId": "2007",
+      "team": "India",
+      "completeInnings": 6,
+      "bowlersUsed": {
+        "histogramPct": {
+          "5": 50,
+          "6": 50
+        },
+        "mean": 5.5
+      },
+      "overs19And20ByOpeningBowlerPct": 42,
+      "sixthBowlerOversPerInnings": 0.67
+    },
+    {
+      "editionId": "2007",
+      "team": "Kenya",
+      "completeInnings": 1,
+      "bowlersUsed": {
+        "histogramPct": {
+          "6": 100
+        },
+        "mean": 6
+      },
+      "overs19And20ByOpeningBowlerPct": 50,
+      "sixthBowlerOversPerInnings": 1
+    },
+    {
+      "editionId": "2007",
+      "team": "New Zealand",
+      "completeInnings": 3,
+      "bowlersUsed": {
+        "histogramPct": {
+          "5": 33,
+          "6": 67
+        },
+        "mean": 5.67
+      },
+      "overs19And20ByOpeningBowlerPct": 100,
+      "sixthBowlerOversPerInnings": 1.33
+    },
+    {
+      "editionId": "2007",
+      "team": "Pakistan",
+      "completeInnings": 7,
+      "bowlersUsed": {
+        "histogramPct": {
+          "5": 43,
+          "6": 57
+        },
+        "mean": 5.57
+      },
+      "overs19And20ByOpeningBowlerPct": 50,
+      "sixthBowlerOversPerInnings": 0.86
+    },
+    {
+      "editionId": "2007",
+      "team": "Scotland",
+      "completeInnings": 1,
+      "bowlersUsed": {
+        "histogramPct": {
+          "5": 100
+        },
+        "mean": 5
+      },
+      "overs19And20ByOpeningBowlerPct": 50,
+      "sixthBowlerOversPerInnings": 0
+    },
+    {
+      "editionId": "2007",
+      "team": "South Africa",
+      "completeInnings": 5,
+      "bowlersUsed": {
+        "histogramPct": {
+          "6": 80,
+          "7": 20
+        },
+        "mean": 6.2
+      },
+      "overs19And20ByOpeningBowlerPct": 10,
+      "sixthBowlerOversPerInnings": 1.6
+    },
+    {
+      "editionId": "2007",
+      "team": "Sri Lanka",
+      "completeInnings": 3,
+      "bowlersUsed": {
+        "histogramPct": {
+          "5": 67,
+          "7": 33
+        },
+        "mean": 5.67
+      },
+      "overs19And20ByOpeningBowlerPct": 0,
+      "sixthBowlerOversPerInnings": 0.67
+    },
+    {
+      "editionId": "2007",
+      "team": "Zimbabwe",
+      "completeInnings": 2,
+      "bowlersUsed": {
+        "histogramPct": {
+          "7": 100
+        },
+        "mean": 7
+      },
+      "overs19And20ByOpeningBowlerPct": 100,
+      "sixthBowlerOversPerInnings": 2
+    },
+    {
+      "editionId": "2009",
+      "team": "Australia",
+      "completeInnings": 1,
+      "bowlersUsed": {
+        "histogramPct": {
+          "6": 100
+        },
+        "mean": 6
+      },
+      "overs19And20ByOpeningBowlerPct": 100,
+      "sixthBowlerOversPerInnings": 2
+    },
+    {
+      "editionId": "2009",
+      "team": "Bangladesh",
+      "completeInnings": 1,
+      "bowlersUsed": {
+        "histogramPct": {
+          "6": 100
+        },
+        "mean": 6
+      },
+      "overs19And20ByOpeningBowlerPct": 50,
+      "sixthBowlerOversPerInnings": 2
+    },
+    {
+      "editionId": "2009",
+      "team": "England",
+      "completeInnings": 3,
+      "bowlersUsed": {
+        "histogramPct": {
+          "6": 67,
+          "7": 33
+        },
+        "mean": 6.33
+      },
+      "overs19And20ByOpeningBowlerPct": 50,
+      "sixthBowlerOversPerInnings": 1.67
+    },
+    {
+      "editionId": "2009",
+      "team": "India",
+      "completeInnings": 3,
+      "bowlersUsed": {
+        "histogramPct": {
+          "6": 67,
+          "8": 33
+        },
+        "mean": 6.67
+      },
+      "overs19And20ByOpeningBowlerPct": 50,
+      "sixthBowlerOversPerInnings": 2
+    },
+    {
+      "editionId": "2009",
+      "team": "Ireland",
+      "completeInnings": 4,
+      "bowlersUsed": {
+        "histogramPct": {
+          "5": 50,
+          "6": 50
+        },
+        "mean": 5.5
+      },
+      "overs19And20ByOpeningBowlerPct": 50,
+      "sixthBowlerOversPerInnings": 0.5
+    },
+    {
+      "editionId": "2009",
+      "team": "Netherlands",
+      "completeInnings": 2,
+      "bowlersUsed": {
+        "histogramPct": {
+          "5": 100
+        },
+        "mean": 5
+      },
+      "overs19And20ByOpeningBowlerPct": 75,
+      "sixthBowlerOversPerInnings": 0
+    },
+    {
+      "editionId": "2009",
+      "team": "New Zealand",
+      "completeInnings": 2,
+      "bowlersUsed": {
+        "histogramPct": {
+          "6": 100
+        },
+        "mean": 6
+      },
+      "overs19And20ByOpeningBowlerPct": 50,
+      "sixthBowlerOversPerInnings": 1.5
+    },
+    {
+      "editionId": "2009",
+      "team": "Pakistan",
+      "completeInnings": 5,
+      "bowlersUsed": {
+        "histogramPct": {
+          "6": 80,
+          "7": 20
+        },
+        "mean": 6.2
+      },
+      "overs19And20ByOpeningBowlerPct": 40,
+      "sixthBowlerOversPerInnings": 1.2
+    },
+    {
+      "editionId": "2009",
+      "team": "Scotland",
+      "completeInnings": 1,
+      "bowlersUsed": {
+        "histogramPct": {
+          "6": 100
+        },
+        "mean": 6
+      },
+      "overs19And20ByOpeningBowlerPct": 100,
+      "sixthBowlerOversPerInnings": 1
+    },
+    {
+      "editionId": "2009",
+      "team": "South Africa",
+      "completeInnings": 5,
+      "bowlersUsed": {
+        "histogramPct": {
+          "6": 40,
+          "7": 60
+        },
+        "mean": 6.6
+      },
+      "overs19And20ByOpeningBowlerPct": 100,
+      "sixthBowlerOversPerInnings": 1.6
+    },
+    {
+      "editionId": "2009",
+      "team": "Sri Lanka",
+      "completeInnings": 4,
+      "bowlersUsed": {
+        "histogramPct": {
+          "6": 100
+        },
+        "mean": 6
+      },
+      "overs19And20ByOpeningBowlerPct": 25,
+      "sixthBowlerOversPerInnings": 1.25
+    },
+    {
+      "editionId": "2009",
+      "team": "West Indies",
+      "completeInnings": 6,
+      "bowlersUsed": {
+        "histogramPct": {
+          "6": 67,
+          "7": 33
+        },
+        "mean": 6.33
+      },
+      "overs19And20ByOpeningBowlerPct": 58,
+      "sixthBowlerOversPerInnings": 1.83
+    },
+    {
+      "editionId": "2010",
+      "team": "Australia",
+      "completeInnings": 2,
+      "bowlersUsed": {
+        "histogramPct": {
+          "7": 100
+        },
+        "mean": 7
+      },
+      "overs19And20ByOpeningBowlerPct": 50,
+      "sixthBowlerOversPerInnings": 2
+    },
+    {
+      "editionId": "2010",
+      "team": "Bangladesh",
+      "completeInnings": 2,
+      "bowlersUsed": {
+        "histogramPct": {
+          "5": 50,
+          "7": 50
+        },
+        "mean": 6
+      },
+      "overs19And20ByOpeningBowlerPct": 50,
+      "sixthBowlerOversPerInnings": 0.5
+    },
+    {
+      "editionId": "2010",
+      "team": "England",
+      "completeInnings": 4,
+      "bowlersUsed": {
+        "histogramPct": {
+          "5": 50,
+          "6": 50
+        },
+        "mean": 5.5
+      },
+      "overs19And20ByOpeningBowlerPct": 75,
+      "sixthBowlerOversPerInnings": 0.5
+    },
+    {
+      "editionId": "2010",
+      "team": "India",
+      "completeInnings": 4,
+      "bowlersUsed": {
+        "histogramPct": {
+          "6": 100
+        },
+        "mean": 6
+      },
+      "overs19And20ByOpeningBowlerPct": 50,
+      "sixthBowlerOversPerInnings": 1.5
+    },
+    {
+      "editionId": "2010",
+      "team": "Ireland",
+      "completeInnings": 2,
+      "bowlersUsed": {
+        "histogramPct": {
+          "6": 50,
+          "7": 50
+        },
+        "mean": 6.5
+      },
+      "overs19And20ByOpeningBowlerPct": 25,
+      "sixthBowlerOversPerInnings": 1.5
+    },
+    {
+      "editionId": "2010",
+      "team": "New Zealand",
+      "completeInnings": 4,
+      "bowlersUsed": {
+        "histogramPct": {
+          "5": 25,
+          "6": 75
+        },
+        "mean": 5.75
+      },
+      "overs19And20ByOpeningBowlerPct": 50,
+      "sixthBowlerOversPerInnings": 1.25
+    },
+    {
+      "editionId": "2010",
+      "team": "Pakistan",
+      "completeInnings": 6,
+      "bowlersUsed": {
+        "histogramPct": {
+          "5": 17,
+          "6": 83
+        },
+        "mean": 5.83
+      },
+      "overs19And20ByOpeningBowlerPct": 42,
+      "sixthBowlerOversPerInnings": 1.5
+    },
+    {
+      "editionId": "2010",
+      "team": "South Africa",
+      "completeInnings": 4,
+      "bowlersUsed": {
+        "histogramPct": {
+          "6": 100
+        },
+        "mean": 6
+      },
+      "overs19And20ByOpeningBowlerPct": 38,
+      "sixthBowlerOversPerInnings": 1.25
+    },
+    {
+      "editionId": "2010",
+      "team": "Sri Lanka",
+      "completeInnings": 4,
+      "bowlersUsed": {
+        "histogramPct": {
+          "5": 25,
+          "6": 50,
+          "7": 25
+        },
+        "mean": 6
+      },
+      "overs19And20ByOpeningBowlerPct": 38,
+      "sixthBowlerOversPerInnings": 1.5
+    },
+    {
+      "editionId": "2010",
+      "team": "West Indies",
+      "completeInnings": 3,
+      "bowlersUsed": {
+        "histogramPct": {
+          "6": 33,
+          "7": 67
+        },
+        "mean": 6.67
+      },
+      "overs19And20ByOpeningBowlerPct": 33,
+      "sixthBowlerOversPerInnings": 1.67
+    },
+    {
+      "editionId": "2010",
+      "team": "Zimbabwe",
+      "completeInnings": 1,
+      "bowlersUsed": {
+        "histogramPct": {
+          "6": 100
+        },
+        "mean": 6
+      },
+      "overs19And20ByOpeningBowlerPct": 100,
+      "sixthBowlerOversPerInnings": 2
+    },
+    {
+      "editionId": "2012",
+      "team": "Australia",
+      "completeInnings": 6,
+      "bowlersUsed": {
+        "histogramPct": {
+          "6": 100
+        },
+        "mean": 6
+      },
+      "overs19And20ByOpeningBowlerPct": 42,
+      "sixthBowlerOversPerInnings": 1.5
+    },
+    {
+      "editionId": "2012",
+      "team": "Bangladesh",
+      "completeInnings": 1,
+      "bowlersUsed": {
+        "histogramPct": {
+          "7": 100
+        },
+        "mean": 7
+      },
+      "overs19And20ByOpeningBowlerPct": 0,
+      "sixthBowlerOversPerInnings": 1
+    },
+    {
+      "editionId": "2012",
+      "team": "England",
+      "completeInnings": 4,
+      "bowlersUsed": {
+        "histogramPct": {
+          "5": 50,
+          "6": 50
+        },
+        "mean": 5.5
+      },
+      "overs19And20ByOpeningBowlerPct": 38,
+      "sixthBowlerOversPerInnings": 0.75
+    },
+    {
+      "editionId": "2012",
+      "team": "India",
+      "completeInnings": 2,
+      "bowlersUsed": {
+        "histogramPct": {
+          "6": 100
+        },
+        "mean": 6
+      },
+      "overs19And20ByOpeningBowlerPct": 25,
+      "sixthBowlerOversPerInnings": 2
+    },
+    {
+      "editionId": "2012",
+      "team": "New Zealand",
+      "completeInnings": 4,
+      "bowlersUsed": {
+        "histogramPct": {
+          "5": 25,
+          "6": 50,
+          "7": 25
+        },
+        "mean": 6
+      },
+      "overs19And20ByOpeningBowlerPct": 13,
+      "sixthBowlerOversPerInnings": 1.25
+    },
+    {
+      "editionId": "2012",
+      "team": "Pakistan",
+      "completeInnings": 5,
+      "bowlersUsed": {
+        "histogramPct": {
+          "6": 100
+        },
+        "mean": 6
+      },
+      "overs19And20ByOpeningBowlerPct": 10,
+      "sixthBowlerOversPerInnings": 2
+    },
+    {
+      "editionId": "2012",
+      "team": "South Africa",
+      "completeInnings": 3,
+      "bowlersUsed": {
+        "histogramPct": {
+          "6": 33,
+          "7": 67
+        },
+        "mean": 6.67
+      },
+      "overs19And20ByOpeningBowlerPct": 50,
+      "sixthBowlerOversPerInnings": 1.33
+    },
+    {
+      "editionId": "2012",
+      "team": "Sri Lanka",
+      "completeInnings": 5,
+      "bowlersUsed": {
+        "histogramPct": {
+          "6": 100
+        },
+        "mean": 6
+      },
+      "overs19And20ByOpeningBowlerPct": 50,
+      "sixthBowlerOversPerInnings": 1.6
+    },
+    {
+      "editionId": "2012",
+      "team": "West Indies",
+      "completeInnings": 2,
+      "bowlersUsed": {
+        "histogramPct": {
+          "6": 50,
+          "7": 50
+        },
+        "mean": 6.5
+      },
+      "overs19And20ByOpeningBowlerPct": 25,
+      "sixthBowlerOversPerInnings": 1
+    },
+    {
+      "editionId": "2012",
+      "team": "Zimbabwe",
+      "completeInnings": 1,
+      "bowlersUsed": {
+        "histogramPct": {
+          "6": 100
+        },
+        "mean": 6
+      },
+      "overs19And20ByOpeningBowlerPct": 50,
+      "sixthBowlerOversPerInnings": 1
+    },
+    {
+      "editionId": "2014",
+      "team": "Australia",
+      "completeInnings": 4,
+      "bowlersUsed": {
+        "histogramPct": {
+          "6": 100
+        },
+        "mean": 6
+      },
+      "overs19And20ByOpeningBowlerPct": 50,
+      "sixthBowlerOversPerInnings": 1.75
+    },
+    {
+      "editionId": "2014",
+      "team": "Bangladesh",
+      "completeInnings": 4,
+      "bowlersUsed": {
+        "histogramPct": {
+          "6": 50,
+          "7": 50
+        },
+        "mean": 6.5
+      },
+      "overs19And20ByOpeningBowlerPct": 63,
+      "sixthBowlerOversPerInnings": 1.25
+    },
+    {
+      "editionId": "2014",
+      "team": "England",
+      "completeInnings": 3,
+      "bowlersUsed": {
+        "histogramPct": {
+          "6": 33,
+          "7": 67
+        },
+        "mean": 6.67
+      },
+      "overs19And20ByOpeningBowlerPct": 0,
+      "sixthBowlerOversPerInnings": 1.67
+    },
+    {
+      "editionId": "2014",
+      "team": "Hong Kong",
+      "completeInnings": 1,
+      "bowlersUsed": {
+        "histogramPct": {
+          "6": 100
+        },
+        "mean": 6
+      },
+      "overs19And20ByOpeningBowlerPct": 50,
+      "sixthBowlerOversPerInnings": 2
+    },
+    {
+      "editionId": "2014",
+      "team": "India",
+      "completeInnings": 4,
+      "bowlersUsed": {
+        "histogramPct": {
+          "6": 100
+        },
+        "mean": 6
+      },
+      "overs19And20ByOpeningBowlerPct": 50,
+      "sixthBowlerOversPerInnings": 1.75
+    },
+    {
+      "editionId": "2014",
+      "team": "Ireland",
+      "completeInnings": 2,
+      "bowlersUsed": {
+        "histogramPct": {
+          "6": 50,
+          "7": 50
+        },
+        "mean": 6.5
+      },
+      "overs19And20ByOpeningBowlerPct": 25,
+      "sixthBowlerOversPerInnings": 1
+    },
+    {
+      "editionId": "2014",
+      "team": "Netherlands",
+      "completeInnings": 4,
+      "bowlersUsed": {
+        "histogramPct": {
+          "7": 75,
+          "8": 25
+        },
+        "mean": 7.25
+      },
+      "overs19And20ByOpeningBowlerPct": 25,
+      "sixthBowlerOversPerInnings": 2
+    },
+    {
+      "editionId": "2014",
+      "team": "New Zealand",
+      "completeInnings": 4,
+      "bowlersUsed": {
+        "histogramPct": {
+          "5": 25,
+          "6": 50,
+          "7": 25
+        },
+        "mean": 6
+      },
+      "overs19And20ByOpeningBowlerPct": 50,
+      "sixthBowlerOversPerInnings": 1.25
+    },
+    {
+      "editionId": "2014",
+      "team": "Pakistan",
+      "completeInnings": 3,
+      "bowlersUsed": {
+        "histogramPct": {
+          "6": 100
+        },
+        "mean": 6
+      },
+      "overs19And20ByOpeningBowlerPct": 33,
+      "sixthBowlerOversPerInnings": 2.33
+    },
+    {
+      "editionId": "2014",
+      "team": "South Africa",
+      "completeInnings": 4,
+      "bowlersUsed": {
+        "histogramPct": {
+          "6": 100
+        },
+        "mean": 6
+      },
+      "overs19And20ByOpeningBowlerPct": 13,
+      "sixthBowlerOversPerInnings": 2
+    },
+    {
+      "editionId": "2014",
+      "team": "Sri Lanka",
+      "completeInnings": 3,
+      "bowlersUsed": {
+        "histogramPct": {
+          "5": 33,
+          "6": 67
+        },
+        "mean": 5.67
+      },
+      "overs19And20ByOpeningBowlerPct": 67,
+      "sixthBowlerOversPerInnings": 1
+    },
+    {
+      "editionId": "2014",
+      "team": "West Indies",
+      "completeInnings": 4,
+      "bowlersUsed": {
+        "histogramPct": {
+          "6": 25,
+          "7": 75
+        },
+        "mean": 6.75
+      },
+      "overs19And20ByOpeningBowlerPct": 50,
+      "sixthBowlerOversPerInnings": 1
+    },
+    {
+      "editionId": "2014",
+      "team": "Zimbabwe",
+      "completeInnings": 3,
+      "bowlersUsed": {
+        "histogramPct": {
+          "6": 100
+        },
+        "mean": 6
+      },
+      "overs19And20ByOpeningBowlerPct": 33,
+      "sixthBowlerOversPerInnings": 1.67
+    },
+    {
+      "editionId": "2016",
+      "team": "Australia",
+      "completeInnings": 4,
+      "bowlersUsed": {
+        "histogramPct": {
+          "6": 50,
+          "7": 50
+        },
+        "mean": 6.5
+      },
+      "overs19And20ByOpeningBowlerPct": 63,
+      "sixthBowlerOversPerInnings": 1.5
+    },
+    {
+      "editionId": "2016",
+      "team": "Bangladesh",
+      "completeInnings": 4,
+      "bowlersUsed": {
+        "histogramPct": {
+          "6": 75,
+          "7": 25
+        },
+        "mean": 6.25
+      },
+      "overs19And20ByOpeningBowlerPct": 38,
+      "sixthBowlerOversPerInnings": 1.75
+    },
+    {
+      "editionId": "2016",
+      "team": "England",
+      "completeInnings": 4,
+      "bowlersUsed": {
+        "histogramPct": {
+          "6": 75,
+          "7": 25
+        },
+        "mean": 6.25
+      },
+      "overs19And20ByOpeningBowlerPct": 38,
+      "sixthBowlerOversPerInnings": 1.75
+    },
+    {
+      "editionId": "2016",
+      "team": "Hong Kong",
+      "completeInnings": 1,
+      "bowlersUsed": {
+        "histogramPct": {
+          "6": 100
+        },
+        "mean": 6
+      },
+      "overs19And20ByOpeningBowlerPct": 50,
+      "sixthBowlerOversPerInnings": 1
+    },
+    {
+      "editionId": "2016",
+      "team": "India",
+      "completeInnings": 4,
+      "bowlersUsed": {
+        "histogramPct": {
+          "6": 100
+        },
+        "mean": 6
+      },
+      "overs19And20ByOpeningBowlerPct": 38,
+      "sixthBowlerOversPerInnings": 1.5
+    },
+    {
+      "editionId": "2016",
+      "team": "Ireland",
+      "completeInnings": 1,
+      "bowlersUsed": {
+        "histogramPct": {
+          "7": 100
+        },
+        "mean": 7
+      },
+      "overs19And20ByOpeningBowlerPct": 0,
+      "sixthBowlerOversPerInnings": 2
+    },
+    {
+      "editionId": "2016",
+      "team": "Netherlands",
+      "completeInnings": 1,
+      "bowlersUsed": {
+        "histogramPct": {
+          "6": 100
+        },
+        "mean": 6
+      },
+      "overs19And20ByOpeningBowlerPct": 50,
+      "sixthBowlerOversPerInnings": 1
+    },
+    {
+      "editionId": "2016",
+      "team": "New Zealand",
+      "completeInnings": 2,
+      "bowlersUsed": {
+        "histogramPct": {
+          "6": 50,
+          "7": 50
+        },
+        "mean": 6.5
+      },
+      "overs19And20ByOpeningBowlerPct": 25,
+      "sixthBowlerOversPerInnings": 2
+    },
+    {
+      "editionId": "2016",
+      "team": "Oman",
+      "completeInnings": 2,
+      "bowlersUsed": {
+        "histogramPct": {
+          "6": 50,
+          "7": 50
+        },
+        "mean": 6.5
+      },
+      "overs19And20ByOpeningBowlerPct": 50,
+      "sixthBowlerOversPerInnings": 1
+    },
+    {
+      "editionId": "2016",
+      "team": "Pakistan",
+      "completeInnings": 3,
+      "bowlersUsed": {
+        "histogramPct": {
+          "5": 67,
+          "6": 33
+        },
+        "mean": 5.33
+      },
+      "overs19And20ByOpeningBowlerPct": 50,
+      "sixthBowlerOversPerInnings": 0.67
+    },
+    {
+      "editionId": "2016",
+      "team": "Scotland",
+      "completeInnings": 2,
+      "bowlersUsed": {
+        "histogramPct": {
+          "5": 50,
+          "7": 50
+        },
+        "mean": 6
+      },
+      "overs19And20ByOpeningBowlerPct": 50,
+      "sixthBowlerOversPerInnings": 1
+    },
+    {
+      "editionId": "2016",
+      "team": "South Africa",
+      "completeInnings": 3,
+      "bowlersUsed": {
+        "histogramPct": {
+          "5": 33,
+          "6": 67
+        },
+        "mean": 5.67
+      },
+      "overs19And20ByOpeningBowlerPct": 83,
+      "sixthBowlerOversPerInnings": 1
+    },
+    {
+      "editionId": "2016",
+      "team": "Sri Lanka",
+      "completeInnings": 1,
+      "bowlersUsed": {
+        "histogramPct": {
+          "7": 100
+        },
+        "mean": 7
+      },
+      "overs19And20ByOpeningBowlerPct": 0,
+      "sixthBowlerOversPerInnings": 1
+    },
+    {
+      "editionId": "2016",
+      "team": "West Indies",
+      "completeInnings": 5,
+      "bowlersUsed": {
+        "histogramPct": {
+          "5": 40,
+          "6": 60
+        },
+        "mean": 5.6
+      },
+      "overs19And20ByOpeningBowlerPct": 40,
+      "sixthBowlerOversPerInnings": 1
+    },
+    {
+      "editionId": "2016",
+      "team": "Zimbabwe",
+      "completeInnings": 2,
+      "bowlersUsed": {
+        "histogramPct": {
+          "6": 100
+        },
+        "mean": 6
+      },
+      "overs19And20ByOpeningBowlerPct": 25,
+      "sixthBowlerOversPerInnings": 2
+    },
+    {
+      "editionId": "2021",
+      "team": "Australia",
+      "completeInnings": 5,
+      "bowlersUsed": {
+        "histogramPct": {
+          "5": 20,
+          "6": 80
+        },
+        "mean": 5.8
+      },
+      "overs19And20ByOpeningBowlerPct": 60,
+      "sixthBowlerOversPerInnings": 0.8
+    },
+    {
+      "editionId": "2021",
+      "team": "Bangladesh",
+      "completeInnings": 4,
+      "bowlersUsed": {
+        "histogramPct": {
+          "5": 75,
+          "6": 25
+        },
+        "mean": 5.25
+      },
+      "overs19And20ByOpeningBowlerPct": 38,
+      "sixthBowlerOversPerInnings": 0.25
+    },
+    {
+      "editionId": "2021",
+      "team": "England",
+      "completeInnings": 3,
+      "bowlersUsed": {
+        "histogramPct": {
+          "5": 67,
+          "6": 33
+        },
+        "mean": 5.33
+      },
+      "overs19And20ByOpeningBowlerPct": 0,
+      "sixthBowlerOversPerInnings": 0.67
+    },
+    {
+      "editionId": "2021",
+      "team": "India",
+      "completeInnings": 1,
+      "bowlersUsed": {
+        "histogramPct": {
+          "5": 100
+        },
+        "mean": 5
+      },
+      "overs19And20ByOpeningBowlerPct": 100,
+      "sixthBowlerOversPerInnings": 0
+    },
+    {
+      "editionId": "2021",
+      "team": "Ireland",
+      "completeInnings": 2,
+      "bowlersUsed": {
+        "histogramPct": {
+          "6": 100
+        },
+        "mean": 6
+      },
+      "overs19And20ByOpeningBowlerPct": 50,
+      "sixthBowlerOversPerInnings": 1
+    },
+    {
+      "editionId": "2021",
+      "team": "Namibia",
+      "completeInnings": 5,
+      "bowlersUsed": {
+        "histogramPct": {
+          "5": 20,
+          "6": 40,
+          "7": 40
+        },
+        "mean": 6.2
+      },
+      "overs19And20ByOpeningBowlerPct": 50,
+      "sixthBowlerOversPerInnings": 1.4
+    },
+    {
+      "editionId": "2021",
+      "team": "New Zealand",
+      "completeInnings": 4,
+      "bowlersUsed": {
+        "histogramPct": {
+          "5": 50,
+          "6": 25,
+          "7": 25
+        },
+        "mean": 5.75
+      },
+      "overs19And20ByOpeningBowlerPct": 63,
+      "sixthBowlerOversPerInnings": 0.5
+    },
+    {
+      "editionId": "2021",
+      "team": "Oman",
+      "completeInnings": 2,
+      "bowlersUsed": {
+        "histogramPct": {
+          "6": 100
+        },
+        "mean": 6
+      },
+      "overs19And20ByOpeningBowlerPct": 50,
+      "sixthBowlerOversPerInnings": 2
+    },
+    {
+      "editionId": "2021",
+      "team": "Pakistan",
+      "completeInnings": 4,
+      "bowlersUsed": {
+        "histogramPct": {
+          "5": 25,
+          "6": 75
+        },
+        "mean": 5.75
+      },
+      "overs19And20ByOpeningBowlerPct": 50,
+      "sixthBowlerOversPerInnings": 1.25
+    },
+    {
+      "editionId": "2021",
+      "team": "Papua New Guinea",
+      "completeInnings": 2,
+      "bowlersUsed": {
+        "histogramPct": {
+          "6": 50,
+          "7": 50
+        },
+        "mean": 6.5
+      },
+      "overs19And20ByOpeningBowlerPct": 25,
+      "sixthBowlerOversPerInnings": 1.5
+    },
+    {
+      "editionId": "2021",
+      "team": "Scotland",
+      "completeInnings": 6,
+      "bowlersUsed": {
+        "histogramPct": {
+          "6": 100
+        },
+        "mean": 6
+      },
+      "overs19And20ByOpeningBowlerPct": 58,
+      "sixthBowlerOversPerInnings": 1.83
+    },
+    {
+      "editionId": "2021",
+      "team": "South Africa",
+      "completeInnings": 4,
+      "bowlersUsed": {
+        "histogramPct": {
+          "5": 25,
+          "6": 75
+        },
+        "mean": 5.75
+      },
+      "overs19And20ByOpeningBowlerPct": 13,
+      "sixthBowlerOversPerInnings": 1.5
+    },
+    {
+      "editionId": "2021",
+      "team": "Sri Lanka",
+      "completeInnings": 5,
+      "bowlersUsed": {
+        "histogramPct": {
+          "5": 20,
+          "6": 60,
+          "7": 20
+        },
+        "mean": 6
+      },
+      "overs19And20ByOpeningBowlerPct": 40,
+      "sixthBowlerOversPerInnings": 1.4
+    },
+    {
+      "editionId": "2021",
+      "team": "West Indies",
+      "completeInnings": 2,
+      "bowlersUsed": {
+        "histogramPct": {
+          "5": 50,
+          "7": 50
+        },
+        "mean": 6
+      },
+      "overs19And20ByOpeningBowlerPct": 0,
+      "sixthBowlerOversPerInnings": 0.5
+    },
+    {
+      "editionId": "2022",
+      "team": "Australia",
+      "completeInnings": 2,
+      "bowlersUsed": {
+        "histogramPct": {
+          "5": 50,
+          "7": 50
+        },
+        "mean": 6
+      },
+      "overs19And20ByOpeningBowlerPct": 75,
+      "sixthBowlerOversPerInnings": 0.5
+    },
+    {
+      "editionId": "2022",
+      "team": "Bangladesh",
+      "completeInnings": 4,
+      "bowlersUsed": {
+        "histogramPct": {
+          "5": 50,
+          "6": 25,
+          "7": 25
+        },
+        "mean": 5.75
+      },
+      "overs19And20ByOpeningBowlerPct": 13,
+      "sixthBowlerOversPerInnings": 0.75
+    },
+    {
+      "editionId": "2022",
+      "team": "England",
+      "completeInnings": 5,
+      "bowlersUsed": {
+        "histogramPct": {
+          "6": 60,
+          "7": 40
+        },
+        "mean": 6.4
+      },
+      "overs19And20ByOpeningBowlerPct": 20,
+      "sixthBowlerOversPerInnings": 1.8
+    },
+    {
+      "editionId": "2022",
+      "team": "India",
+      "completeInnings": 3,
+      "bowlersUsed": {
+        "histogramPct": {
+          "5": 33,
+          "6": 67
+        },
+        "mean": 5.67
+      },
+      "overs19And20ByOpeningBowlerPct": 67,
+      "sixthBowlerOversPerInnings": 0.67
+    },
+    {
+      "editionId": "2022",
+      "team": "Ireland",
+      "completeInnings": 5,
+      "bowlersUsed": {
+        "histogramPct": {
+          "6": 80,
+          "7": 20
+        },
+        "mean": 6.2
+      },
+      "overs19And20ByOpeningBowlerPct": 80,
+      "sixthBowlerOversPerInnings": 1.8
+    },
+    {
+      "editionId": "2022",
+      "team": "Namibia",
+      "completeInnings": 2,
+      "bowlersUsed": {
+        "histogramPct": {
+          "6": 50,
+          "7": 50
+        },
+        "mean": 6.5
+      },
+      "overs19And20ByOpeningBowlerPct": 50,
+      "sixthBowlerOversPerInnings": 1
+    },
+    {
+      "editionId": "2022",
+      "team": "Netherlands",
+      "completeInnings": 7,
+      "bowlersUsed": {
+        "histogramPct": {
+          "6": 57,
+          "7": 43
+        },
+        "mean": 6.43
+      },
+      "overs19And20ByOpeningBowlerPct": 21,
+      "sixthBowlerOversPerInnings": 2
+    },
+    {
+      "editionId": "2022",
+      "team": "New Zealand",
+      "completeInnings": 4,
+      "bowlersUsed": {
+        "histogramPct": {
+          "5": 100
+        },
+        "mean": 5
+      },
+      "overs19And20ByOpeningBowlerPct": 63,
+      "sixthBowlerOversPerInnings": 0
+    },
+    {
+      "editionId": "2022",
+      "team": "Pakistan",
+      "completeInnings": 5,
+      "bowlersUsed": {
+        "histogramPct": {
+          "5": 40,
+          "6": 60
+        },
+        "mean": 5.6
+      },
+      "overs19And20ByOpeningBowlerPct": 30,
+      "sixthBowlerOversPerInnings": 1.2
+    },
+    {
+      "editionId": "2022",
+      "team": "South Africa",
+      "completeInnings": 3,
+      "bowlersUsed": {
+        "histogramPct": {
+          "5": 33,
+          "6": 67
+        },
+        "mean": 5.67
+      },
+      "overs19And20ByOpeningBowlerPct": 67,
+      "sixthBowlerOversPerInnings": 1
+    },
+    {
+      "editionId": "2022",
+      "team": "Sri Lanka",
+      "completeInnings": 5,
+      "bowlersUsed": {
+        "histogramPct": {
+          "5": 20,
+          "6": 60,
+          "7": 20
+        },
+        "mean": 6
+      },
+      "overs19And20ByOpeningBowlerPct": 50,
+      "sixthBowlerOversPerInnings": 1.2
+    },
+    {
+      "editionId": "2022",
+      "team": "United Arab Emirates",
+      "completeInnings": 3,
+      "bowlersUsed": {
+        "histogramPct": {
+          "7": 100
+        },
+        "mean": 7
+      },
+      "overs19And20ByOpeningBowlerPct": 17,
+      "sixthBowlerOversPerInnings": 1.33
+    },
+    {
+      "editionId": "2022",
+      "team": "West Indies",
+      "completeInnings": 1,
+      "bowlersUsed": {
+        "histogramPct": {
+          "6": 100
+        },
+        "mean": 6
+      },
+      "overs19And20ByOpeningBowlerPct": 0,
+      "sixthBowlerOversPerInnings": 2
+    },
+    {
+      "editionId": "2022",
+      "team": "Zimbabwe",
+      "completeInnings": 6,
+      "bowlersUsed": {
+        "histogramPct": {
+          "6": 50,
+          "7": 50
+        },
+        "mean": 6.5
+      },
+      "overs19And20ByOpeningBowlerPct": 58,
+      "sixthBowlerOversPerInnings": 1.83
+    },
+    {
+      "editionId": "2024",
+      "team": "Australia",
+      "completeInnings": 5,
+      "bowlersUsed": {
+        "histogramPct": {
+          "5": 40,
+          "6": 60
+        },
+        "mean": 5.6
+      },
+      "overs19And20ByOpeningBowlerPct": 20,
+      "sixthBowlerOversPerInnings": 1
+    },
+    {
+      "editionId": "2024",
+      "team": "Bangladesh",
+      "completeInnings": 5,
+      "bowlersUsed": {
+        "histogramPct": {
+          "6": 100
+        },
+        "mean": 6
+      },
+      "overs19And20ByOpeningBowlerPct": 20,
+      "sixthBowlerOversPerInnings": 1.4
+    },
+    {
+      "editionId": "2024",
+      "team": "Canada",
+      "completeInnings": 1,
+      "bowlersUsed": {
+        "histogramPct": {
+          "5": 100
+        },
+        "mean": 5
+      },
+      "overs19And20ByOpeningBowlerPct": 100,
+      "sixthBowlerOversPerInnings": 0
+    },
+    {
+      "editionId": "2024",
+      "team": "England",
+      "completeInnings": 4,
+      "bowlersUsed": {
+        "histogramPct": {
+          "6": 50,
+          "7": 50
+        },
+        "mean": 6.5
+      },
+      "overs19And20ByOpeningBowlerPct": 13,
+      "sixthBowlerOversPerInnings": 2
+    },
+    {
+      "editionId": "2024",
+      "team": "India",
+      "completeInnings": 5,
+      "bowlersUsed": {
+        "histogramPct": {
+          "6": 100
+        },
+        "mean": 6
+      },
+      "overs19And20ByOpeningBowlerPct": 60,
+      "sixthBowlerOversPerInnings": 1.4
+    },
+    {
+      "editionId": "2024",
+      "team": "Ireland",
+      "completeInnings": 1,
+      "bowlersUsed": {
+        "histogramPct": {
+          "6": 100
+        },
+        "mean": 6
+      },
+      "overs19And20ByOpeningBowlerPct": 50,
+      "sixthBowlerOversPerInnings": 2
+    },
+    {
+      "editionId": "2024",
+      "team": "Namibia",
+      "completeInnings": 1,
+      "bowlersUsed": {
+        "histogramPct": {
+          "5": 100
+        },
+        "mean": 5
+      },
+      "overs19And20ByOpeningBowlerPct": 100,
+      "sixthBowlerOversPerInnings": 0
+    },
+    {
+      "editionId": "2024",
+      "team": "Nepal",
+      "completeInnings": 2,
+      "bowlersUsed": {
+        "histogramPct": {
+          "6": 50,
+          "7": 50
+        },
+        "mean": 6.5
+      },
+      "overs19And20ByOpeningBowlerPct": 25,
+      "sixthBowlerOversPerInnings": 1.5
+    },
+    {
+      "editionId": "2024",
+      "team": "Netherlands",
+      "completeInnings": 3,
+      "bowlersUsed": {
+        "histogramPct": {
+          "5": 33,
+          "6": 67
+        },
+        "mean": 5.67
+      },
+      "overs19And20ByOpeningBowlerPct": 0,
+      "sixthBowlerOversPerInnings": 1.67
+    },
+    {
+      "editionId": "2024",
+      "team": "New Zealand",
+      "completeInnings": 2,
+      "bowlersUsed": {
+        "histogramPct": {
+          "5": 50,
+          "7": 50
+        },
+        "mean": 6
+      },
+      "overs19And20ByOpeningBowlerPct": 25,
+      "sixthBowlerOversPerInnings": 0.5
+    },
+    {
+      "editionId": "2024",
+      "team": "Oman",
+      "completeInnings": 2,
+      "bowlersUsed": {
+        "histogramPct": {
+          "6": 50,
+          "7": 50
+        },
+        "mean": 6.5
+      },
+      "overs19And20ByOpeningBowlerPct": 75,
+      "sixthBowlerOversPerInnings": 1.5
+    },
+    {
+      "editionId": "2024",
+      "team": "Pakistan",
+      "completeInnings": 3,
+      "bowlersUsed": {
+        "histogramPct": {
+          "5": 33,
+          "6": 67
+        },
+        "mean": 5.67
+      },
+      "overs19And20ByOpeningBowlerPct": 33,
+      "sixthBowlerOversPerInnings": 0.67
+    },
+    {
+      "editionId": "2024",
+      "team": "Scotland",
+      "completeInnings": 3,
+      "bowlersUsed": {
+        "histogramPct": {
+          "6": 100
+        },
+        "mean": 6
+      },
+      "overs19And20ByOpeningBowlerPct": 67,
+      "sixthBowlerOversPerInnings": 1.33
+    },
+    {
+      "editionId": "2024",
+      "team": "South Africa",
+      "completeInnings": 8,
+      "bowlersUsed": {
+        "histogramPct": {
+          "5": 38,
+          "6": 63
+        },
+        "mean": 5.63
+      },
+      "overs19And20ByOpeningBowlerPct": 25,
+      "sixthBowlerOversPerInnings": 1
+    },
+    {
+      "editionId": "2024",
+      "team": "Uganda",
+      "completeInnings": 2,
+      "bowlersUsed": {
+        "histogramPct": {
+          "5": 50,
+          "6": 50
+        },
+        "mean": 5.5
+      },
+      "overs19And20ByOpeningBowlerPct": 50,
+      "sixthBowlerOversPerInnings": 1.5
+    },
+    {
+      "editionId": "2024",
+      "team": "United States of America",
+      "completeInnings": 3,
+      "bowlersUsed": {
+        "histogramPct": {
+          "6": 33,
+          "7": 67
+        },
+        "mean": 6.67
+      },
+      "overs19And20ByOpeningBowlerPct": 67,
+      "sixthBowlerOversPerInnings": 1.67
+    },
+    {
+      "editionId": "2024",
+      "team": "West Indies",
+      "completeInnings": 3,
+      "bowlersUsed": {
+        "histogramPct": {
+          "6": 100
+        },
+        "mean": 6
+      },
+      "overs19And20ByOpeningBowlerPct": 33,
+      "sixthBowlerOversPerInnings": 2
+    },
+    {
+      "editionId": "2026",
+      "team": "Australia",
+      "completeInnings": 1,
+      "bowlersUsed": {
+        "histogramPct": {
+          "7": 100
+        },
+        "mean": 7
+      },
+      "overs19And20ByOpeningBowlerPct": 0,
+      "sixthBowlerOversPerInnings": 1
+    },
+    {
+      "editionId": "2026",
+      "team": "Canada",
+      "completeInnings": 2,
+      "bowlersUsed": {
+        "histogramPct": {
+          "6": 100
+        },
+        "mean": 6
+      },
+      "overs19And20ByOpeningBowlerPct": 50,
+      "sixthBowlerOversPerInnings": 1
+    },
+    {
+      "editionId": "2026",
+      "team": "England",
+      "completeInnings": 7,
+      "bowlersUsed": {
+        "histogramPct": {
+          "5": 14,
+          "6": 71,
+          "7": 14
+        },
+        "mean": 6
+      },
+      "overs19And20ByOpeningBowlerPct": 50,
+      "sixthBowlerOversPerInnings": 1.43
+    },
+    {
+      "editionId": "2026",
+      "team": "India",
+      "completeInnings": 6,
+      "bowlersUsed": {
+        "histogramPct": {
+          "5": 33,
+          "6": 50,
+          "7": 17
+        },
+        "mean": 5.83
+      },
+      "overs19And20ByOpeningBowlerPct": 42,
+      "sixthBowlerOversPerInnings": 1.33
+    },
+    {
+      "editionId": "2026",
+      "team": "Ireland",
+      "completeInnings": 2,
+      "bowlersUsed": {
+        "histogramPct": {
+          "6": 100
+        },
+        "mean": 6
+      },
+      "overs19And20ByOpeningBowlerPct": 50,
+      "sixthBowlerOversPerInnings": 1.5
+    },
+    {
+      "editionId": "2026",
+      "team": "Italy",
+      "completeInnings": 4,
+      "bowlersUsed": {
+        "histogramPct": {
+          "6": 75,
+          "7": 25
+        },
+        "mean": 6.25
+      },
+      "overs19And20ByOpeningBowlerPct": 38,
+      "sixthBowlerOversPerInnings": 1.75
+    },
+    {
+      "editionId": "2026",
+      "team": "Namibia",
+      "completeInnings": 3,
+      "bowlersUsed": {
+        "histogramPct": {
+          "6": 67,
+          "7": 33
+        },
+        "mean": 6.33
+      },
+      "overs19And20ByOpeningBowlerPct": 33,
+      "sixthBowlerOversPerInnings": 1.33
+    },
+    {
+      "editionId": "2026",
+      "team": "Nepal",
+      "completeInnings": 2,
+      "bowlersUsed": {
+        "histogramPct": {
+          "6": 100
+        },
+        "mean": 6
+      },
+      "overs19And20ByOpeningBowlerPct": 50,
+      "sixthBowlerOversPerInnings": 2.5
+    },
+    {
+      "editionId": "2026",
+      "team": "Netherlands",
+      "completeInnings": 4,
+      "bowlersUsed": {
+        "histogramPct": {
+          "6": 75,
+          "8": 25
+        },
+        "mean": 6.5
+      },
+      "overs19And20ByOpeningBowlerPct": 38,
+      "sixthBowlerOversPerInnings": 1.75
+    },
+    {
+      "editionId": "2026",
+      "team": "New Zealand",
+      "completeInnings": 6,
+      "bowlersUsed": {
+        "histogramPct": {
+          "6": 33,
+          "7": 67
+        },
+        "mean": 6.67
+      },
+      "overs19And20ByOpeningBowlerPct": 42,
+      "sixthBowlerOversPerInnings": 1.67
+    },
+    {
+      "editionId": "2026",
+      "team": "Oman",
+      "completeInnings": 2,
+      "bowlersUsed": {
+        "histogramPct": {
+          "6": 50,
+          "7": 50
+        },
+        "mean": 6.5
+      },
+      "overs19And20ByOpeningBowlerPct": 25,
+      "sixthBowlerOversPerInnings": 1.5
+    },
+    {
+      "editionId": "2026",
+      "team": "Pakistan",
+      "completeInnings": 5,
+      "bowlersUsed": {
+        "histogramPct": {
+          "6": 80,
+          "7": 20
+        },
+        "mean": 6.2
+      },
+      "overs19And20ByOpeningBowlerPct": 60,
+      "sixthBowlerOversPerInnings": 1.6
+    },
+    {
+      "editionId": "2026",
+      "team": "Scotland",
+      "completeInnings": 2,
+      "bowlersUsed": {
+        "histogramPct": {
+          "6": 100
+        },
+        "mean": 6
+      },
+      "overs19And20ByOpeningBowlerPct": 50,
+      "sixthBowlerOversPerInnings": 1
+    },
+    {
+      "editionId": "2026",
+      "team": "South Africa",
+      "completeInnings": 5,
+      "bowlersUsed": {
+        "histogramPct": {
+          "5": 60,
+          "6": 40
+        },
+        "mean": 5.4
+      },
+      "overs19And20ByOpeningBowlerPct": 10,
+      "sixthBowlerOversPerInnings": 0.4
+    },
+    {
+      "editionId": "2026",
+      "team": "Sri Lanka",
+      "completeInnings": 7,
+      "bowlersUsed": {
+        "histogramPct": {
+          "5": 14,
+          "6": 57,
+          "7": 29
+        },
+        "mean": 6.14
+      },
+      "overs19And20ByOpeningBowlerPct": 43,
+      "sixthBowlerOversPerInnings": 1.43
+    },
+    {
+      "editionId": "2026",
+      "team": "United Arab Emirates",
+      "completeInnings": 1,
+      "bowlersUsed": {
+        "histogramPct": {
+          "6": 100
+        },
+        "mean": 6
+      },
+      "overs19And20ByOpeningBowlerPct": 50,
+      "sixthBowlerOversPerInnings": 2
+    },
+    {
+      "editionId": "2026",
+      "team": "United States of America",
+      "completeInnings": 3,
+      "bowlersUsed": {
+        "histogramPct": {
+          "6": 67,
+          "7": 33
+        },
+        "mean": 6.33
+      },
+      "overs19And20ByOpeningBowlerPct": 50,
+      "sixthBowlerOversPerInnings": 1.33
+    },
+    {
+      "editionId": "2026",
+      "team": "West Indies",
+      "completeInnings": 2,
+      "bowlersUsed": {
+        "histogramPct": {
+          "6": 50,
+          "7": 50
+        },
+        "mean": 6.5
+      },
+      "overs19And20ByOpeningBowlerPct": 0,
+      "sixthBowlerOversPerInnings": 2
+    },
+    {
+      "editionId": "2026",
+      "team": "Zimbabwe",
+      "completeInnings": 5,
+      "bowlersUsed": {
+        "histogramPct": {
+          "6": 60,
+          "7": 40
+        },
+        "mean": 6.4
+      },
+      "overs19And20ByOpeningBowlerPct": 60,
+      "sixthBowlerOversPerInnings": 1.6
+    }
+  ]
+}

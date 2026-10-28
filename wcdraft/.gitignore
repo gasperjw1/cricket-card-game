@@ -1,0 +1,2 @@
+# Raw Cricsheet archive + derived index live here (≈300 MB). Re-create with `npm run data:fetch`.
+.cache/

@@ -1,0 +1,180 @@
+{
+  "$comment": "Hand-made squads for stand-in teams with no T20Is near the edition. Sources: Wikipedia '2012 ICC World Twenty20 Qualifier' (Squads section, UAE, March 2012; Namibia finished 3rd) plus each player's Wikipedia article for dob/handedness/bowling. Namibia had no T20I status in 2012 so Cricsheet has no ball-by-ball data. shortName follows Cricsheet initials+surname style. Compiled 2026-10-28.",
+  "squads": [
+    {
+      "editionId": "2012",
+      "team": "Namibia",
+      "source": "2012 ICC World Twenty20 Qualifier squad",
+      "players": [
+        {
+          "name": "Sarel Burger",
+          "shortName": "SF Burger",
+          "handedness": "R",
+          "bowlingType": "RFM",
+          "keeper": "",
+          "captain": "Y",
+          "dob": "1983-02-13",
+          "role": "all-rounder",
+          "sourceUrl": "https://en.wikipedia.org/wiki/Sarel_Burger",
+          "notes": "Captain (c) in qualifier squad list. Full name Sarel Francois Burger. Infobox: right-arm medium-fast, all-rounder. 53 vs Oman (PoM); 3/16 vs Afghanistan in Qualifying Final 1."
+        },
+        {
+          "name": "Raymond van Schoor",
+          "shortName": "R van Schoor",
+          "handedness": "R",
+          "bowlingType": "OB",
+          "keeper": "Y",
+          "captain": "",
+          "dob": "1990-05-23",
+          "role": "keeper-batter",
+          "sourceUrl": "https://en.wikipedia.org/wiki/Raymond_van_Schoor",
+          "notes": "Vice-captain and (wk) in qualifier squad list. Player of the Tournament: 324 runs in 9 inns, avg 54.00, SR 110.95, HS 79*, 3 fifties. Infobox role wicket-keeper; text calls him an occasional keeper. Bowls right-arm off break."
+        },
+        {
+          "name": "Gerhard Erasmus",
+          "shortName": "MG Erasmus",
+          "handedness": "R",
+          "bowlingType": "OB",
+          "keeper": "",
+          "captain": "",
+          "dob": "1995-04-11",
+          "role": "all-rounder",
+          "sourceUrl": "https://en.wikipedia.org/wiki/Gerhard_Erasmus",
+          "notes": "Full name Merwe Gerhard Erasmus. Aged 16 at the tournament; squad member only (later Namibia captain). Infobox: right-arm off break, all-rounder."
+        },
+        {
+          "name": "Hendrik Geldenhuys",
+          "shortName": "HW Geldenhuys",
+          "handedness": "L",
+          "bowlingType": "LFM",
+          "keeper": "",
+          "captain": "",
+          "dob": "1983-03-21",
+          "role": "bowler",
+          "sourceUrl": "https://en.wikipedia.org/wiki/Hendrik_Geldenhuys",
+          "notes": "Infobox: left-handed, left-arm fast-medium. No role stated on Wikipedia; 'bowler' inferred from bowling style. Article flagged as lacking inline citations."
+        },
+        {
+          "name": "Zhivago Groenewald",
+          "shortName": "Z Groenewald",
+          "handedness": "L",
+          "bowlingType": "",
+          "keeper": "",
+          "captain": "",
+          "dob": "1993-06-08",
+          "role": "",
+          "sourceUrl": "https://en.wikipedia.org/wiki/Zhivago_Groenewald",
+          "notes": "UNCONFIRMED bowling and role: Wikipedia infobox gives left-handed batting only, no bowling style or role. Aged 18 at the tournament."
+        },
+        {
+          "name": "Louis Klazinga",
+          "shortName": "L Klazinga",
+          "handedness": "R",
+          "bowlingType": "RFM",
+          "keeper": "",
+          "captain": "",
+          "dob": "1985-12-04",
+          "role": "bowler",
+          "sourceUrl": "https://en.wikipedia.org/wiki/Louis_Klazinga",
+          "notes": "Infobox: right-arm fast-medium. No role stated on Wikipedia; 'bowler' inferred from bowling style and 4/9 vs Kenya (PoM) at the qualifier."
+        },
+        {
+          "name": "Ian Opperman",
+          "shortName": "I Opperman",
+          "handedness": "R",
+          "bowlingType": "OB",
+          "keeper": "",
+          "captain": "",
+          "dob": "1989-03-27",
+          "role": "all-rounder",
+          "sourceUrl": "https://en.wikipedia.org/wiki/Ian_Opperman",
+          "notes": "International debut at this qualifier; played all 9 Namibia matches but batted only 4 innings and bowled 3.1 overs. Article text calls him an all-rounder; infobox: right-arm off-spin."
+        },
+        {
+          "name": "Bernard Scholtz",
+          "shortName": "BM Scholtz",
+          "handedness": "R",
+          "bowlingType": "SLA",
+          "keeper": "",
+          "captain": "",
+          "dob": "1990-10-03",
+          "role": "bowler",
+          "sourceUrl": "https://en.wikipedia.org/wiki/Bernard_Scholtz",
+          "notes": "Full name Bernard Martinus Scholtz. Article: right-handed batsman and slow left-arm bowler. No role field; 'bowler' inferred."
+        },
+        {
+          "name": "Nicolaas Scholtz",
+          "shortName": "NRP Scholtz",
+          "handedness": "L",
+          "bowlingType": "LB",
+          "keeper": "",
+          "captain": "",
+          "dob": "1986-11-05",
+          "role": "",
+          "sourceUrl": "https://en.wikipedia.org/wiki/Nicolaas_Scholtz_(cricketer)",
+          "notes": "Qualifier squad list spells him 'Nicholaas Scholtz'; article title is Nicolaas Reimert Petrus Scholtz. Infobox: left-handed, leg break. Role not stated on Wikipedia (left blank; in Namibian sides he is primarily a batter)."
+        },
+        {
+          "name": "Gerrie Snyman",
+          "shortName": "G Snyman",
+          "handedness": "R",
+          "bowlingType": "RFM",
+          "keeper": "",
+          "captain": "",
+          "dob": "1981-04-30",
+          "role": "all-rounder",
+          "sourceUrl": "https://en.wikipedia.org/wiki/Gerrie_Snyman",
+          "notes": "Infobox: right-arm fast-medium, all-rounder. 78 vs Italy at the qualifier."
+        },
+        {
+          "name": "Ewald Steenkamp",
+          "shortName": "E Steenkamp",
+          "handedness": "R",
+          "bowlingType": "none",
+          "keeper": "Y",
+          "captain": "",
+          "dob": "1988-04-18",
+          "role": "keeper-batter",
+          "sourceUrl": "https://en.wikipedia.org/wiki/Ewald_Steenkamp",
+          "notes": "(wk) in qualifier squad list; infobox role wicket-keeper, no bowling field."
+        },
+        {
+          "name": "Christi Viljoen",
+          "shortName": "C Viljoen",
+          "handedness": "R",
+          "bowlingType": "RM",
+          "keeper": "",
+          "captain": "",
+          "dob": "1987-09-28",
+          "role": "all-rounder",
+          "sourceUrl": "https://en.wikipedia.org/wiki/Christi_Viljoen",
+          "notes": "Full name Christoffel Viljoen. Infobox: right-arm medium, all-rounder. Namibia's top wicket-taker at the qualifier: 14 wkts in 9 matches, avg 12.71, econ 7.02, best 4/8 vs Oman; 48 runs from 5 inns."
+        },
+        {
+          "name": "Louis van der Westhuizen",
+          "shortName": "LP van der Westhuizen",
+          "handedness": "L",
+          "bowlingType": "SLA",
+          "keeper": "",
+          "captain": "",
+          "dob": "1988-03-31",
+          "role": "opener",
+          "sourceUrl": "https://en.wikipedia.org/wiki/Louis_van_der_Westhuizen",
+          "notes": "Full name Louis Petrus van der Westhuizen. Article: generally opens the batting in limited-overs cricket; slow left-arm orthodox. 106* vs Scotland (PoM), 34 and 2/37 vs Ireland at the qualifier."
+        },
+        {
+          "name": "Craig Williams",
+          "shortName": "CG Williams",
+          "handedness": "R",
+          "bowlingType": "RM",
+          "keeper": "",
+          "captain": "",
+          "dob": "1984-02-25",
+          "role": "top order",
+          "sourceUrl": "https://en.wikipedia.org/wiki/Craig_Williams_(cricketer)",
+          "notes": "Full name Craig George Williams. Infobox: right-arm medium, top order batsman. Qualifier squad list tags him (wk) but his article does not list him as a keeper; keeper left blank, set to Y if a third keeper is wanted."
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,6888 @@
+[
+  {
+    "id": "premadasa",
+    "name": "R Premadasa Stadium",
+    "city": "Colombo",
+    "country": "Sri Lanka",
+    "homeTeam": "Sri Lanka",
+    "overall": {
+      "matches": 20,
+      "decided": 19,
+      "legalBalls": 4411,
+      "runsPerOver": 7.6,
+      "dotPct": 37.8,
+      "fourPct": 11,
+      "sixPct": 3.6,
+      "ballsPerWicket": 17.7,
+      "powerplayRpo": 6.93,
+      "middleRpo": 7.25,
+      "deathRpo": 9.35,
+      "firstInningsAvg": 158.3,
+      "firstInningsSd": 22.5,
+      "chaseWinPct": 42,
+      "tossFieldPct": 45,
+      "tossWinnerWinPct": 26,
+      "chaseUplift": -0.59,
+      "reducedInnings": 2,
+      "widesPerOver": 0.16,
+      "noBallsPerOver": 0.018,
+      "extrasPerOver": 0.35,
+      "dismissalFingerprintPct": {
+        "caught": 55.8,
+        "bowled": 23.3,
+        "lbw": 7.2,
+        "stumped": 6.8,
+        "run out": 4,
+        "caught and bowled": 2.8
+      },
+      "reviews": {
+        "total": 14,
+        "upheldPct": 14,
+        "umpiresCallPct": 7,
+        "byBattingSidePct": 29
+      },
+      "rain": {
+        "dlFinishes": 1,
+        "noResults": 1
+      },
+      "ties": 0,
+      "populationVectors": {
+        "pp": {
+          "0": 0.473,
+          "1": 0.2703,
+          "2": 0.0473,
+          "3": 0.003,
+          "4": 0.1314,
+          "6": 0.0278,
+          "W": 0.0473
+        },
+        "mid": {
+          "0": 0.3063,
+          "1": 0.4316,
+          "2": 0.0932,
+          "3": 0.003,
+          "4": 0.0877,
+          "6": 0.0301,
+          "W": 0.0481
+        },
+        "death": {
+          "0": 0.2361,
+          "1": 0.3716,
+          "2": 0.1126,
+          "3": 0.0055,
+          "4": 0.129,
+          "6": 0.059,
+          "W": 0.0863
+        }
+      }
+    },
+    "byEdition": {
+      "2012": {
+        "matches": 13,
+        "decided": 12,
+        "legalBalls": 2772,
+        "runsPerOver": 7.41,
+        "dotPct": 39.2,
+        "fourPct": 10.5,
+        "sixPct": 3.7,
+        "ballsPerWicket": 18.5,
+        "powerplayRpo": 6.44,
+        "middleRpo": 7.34,
+        "deathRpo": 9.13,
+        "firstInningsAvg": 151.1,
+        "firstInningsSd": 25.2,
+        "chaseWinPct": 50,
+        "tossFieldPct": 38,
+        "tossWinnerWinPct": 33,
+        "chaseUplift": -0.23,
+        "reducedInnings": 2,
+        "widesPerOver": 0.15,
+        "noBallsPerOver": 0.024,
+        "extrasPerOver": 0.39,
+        "dismissalFingerprintPct": {
+          "caught": 50.7,
+          "bowled": 26,
+          "lbw": 10,
+          "stumped": 6,
+          "run out": 4.7,
+          "caught and bowled": 2.7
+        },
+        "reviews": {
+          "total": 0,
+          "upheldPct": 0,
+          "umpiresCallPct": 0,
+          "byBattingSidePct": 0
+        },
+        "rain": {
+          "dlFinishes": 1,
+          "noResults": 1
+        },
+        "ties": 0,
+        "populationVectors": {
+          "pp": {
+            "0": 0.5024,
+            "1": 0.2657,
+            "2": 0.0435,
+            "3": 0.0048,
+            "4": 0.1171,
+            "6": 0.0205,
+            "W": 0.0459
+          },
+          "mid": {
+            "0": 0.3164,
+            "1": 0.4302,
+            "2": 0.0799,
+            "3": 0.0032,
+            "4": 0.0839,
+            "6": 0.0387,
+            "W": 0.0476
+          },
+          "death": {
+            "0": 0.2575,
+            "1": 0.3731,
+            "2": 0.0989,
+            "3": 0.0056,
+            "4": 0.1343,
+            "6": 0.0522,
+            "W": 0.0784
+          }
+        }
+      },
+      "2026": {
+        "matches": 7,
+        "decided": 7,
+        "legalBalls": 1639,
+        "runsPerOver": 7.91,
+        "dotPct": 35.4,
+        "fourPct": 12,
+        "sixPct": 3.5,
+        "ballsPerWicket": 16.6,
+        "powerplayRpo": 7.8,
+        "middleRpo": 7.1,
+        "deathRpo": 9.69,
+        "firstInningsAvg": 170.6,
+        "firstInningsSd": 8.2,
+        "chaseWinPct": 29,
+        "tossFieldPct": 57,
+        "tossWinnerWinPct": 14,
+        "chaseUplift": -1.26,
+        "reducedInnings": 0,
+        "widesPerOver": 0.16,
+        "noBallsPerOver": 0.007,
+        "extrasPerOver": 0.29,
+        "dismissalFingerprintPct": {
+          "caught": 63.6,
+          "bowled": 19.2,
+          "stumped": 8.1,
+          "run out": 3,
+          "lbw": 3,
+          "caught and bowled": 3
+        },
+        "reviews": {
+          "total": 14,
+          "upheldPct": 14,
+          "umpiresCallPct": 7,
+          "byBattingSidePct": 29
+        },
+        "rain": {
+          "dlFinishes": 0,
+          "noResults": 0
+        },
+        "ties": 0,
+        "populationVectors": {
+          "pp": {
+            "0": 0.4246,
+            "1": 0.2778,
+            "2": 0.0536,
+            "3": 0,
+            "4": 0.1548,
+            "6": 0.0397,
+            "W": 0.0496
+          },
+          "mid": {
+            "0": 0.2897,
+            "1": 0.4339,
+            "2": 0.1151,
+            "3": 0.0026,
+            "4": 0.0939,
+            "6": 0.0159,
+            "W": 0.0489
+          },
+          "death": {
+            "0": 0.2058,
+            "1": 0.3694,
+            "2": 0.1319,
+            "3": 0.0053,
+            "4": 0.1214,
+            "6": 0.0686,
+            "W": 0.0976
+          }
+        }
+      }
+    }
+  },
+  {
+    "id": "bridgetown",
+    "name": "Kensington Oval",
+    "city": "Bridgetown",
+    "country": "Barbados",
+    "homeTeam": "West Indies",
+    "overall": {
+      "matches": 18,
+      "decided": 17,
+      "legalBalls": 3933,
+      "runsPerOver": 7.75,
+      "dotPct": 39,
+      "fourPct": 9.1,
+      "sixPct": 5.4,
+      "ballsPerWicket": 17.1,
+      "powerplayRpo": 7.09,
+      "middleRpo": 7.52,
+      "deathRpo": 9.17,
+      "firstInningsAvg": 157.1,
+      "firstInningsSd": 26.2,
+      "chaseWinPct": 35,
+      "tossFieldPct": 56,
+      "tossWinnerWinPct": 65,
+      "chaseUplift": -0.37,
+      "reducedInnings": 1,
+      "widesPerOver": 0.24,
+      "noBallsPerOver": 0.043,
+      "extrasPerOver": 0.48,
+      "dismissalFingerprintPct": {
+        "caught": 64.8,
+        "bowled": 16.1,
+        "lbw": 8.3,
+        "run out": 6.5,
+        "stumped": 3,
+        "caught and bowled": 1.3
+      },
+      "reviews": {
+        "total": 17,
+        "upheldPct": 35,
+        "umpiresCallPct": 6,
+        "byBattingSidePct": 59
+      },
+      "rain": {
+        "dlFinishes": 0,
+        "noResults": 1
+      },
+      "ties": 1,
+      "populationVectors": {
+        "pp": {
+          "0": 0.4747,
+          "1": 0.2614,
+          "2": 0.0588,
+          "3": 0.0025,
+          "4": 0.1242,
+          "6": 0.0319,
+          "W": 0.0466
+        },
+        "mid": {
+          "0": 0.3198,
+          "1": 0.4446,
+          "2": 0.0658,
+          "3": 0.0006,
+          "4": 0.0624,
+          "6": 0.0596,
+          "W": 0.0472
+        },
+        "death": {
+          "0": 0.2506,
+          "1": 0.3943,
+          "2": 0.0897,
+          "3": 0.0011,
+          "4": 0.0989,
+          "6": 0.0713,
+          "W": 0.0943
+        }
+      }
+    },
+    "byEdition": {
+      "2010": {
+        "matches": 10,
+        "decided": 10,
+        "legalBalls": 2329,
+        "runsPerOver": 7.65,
+        "dotPct": 39,
+        "fourPct": 8.8,
+        "sixPct": 5.1,
+        "ballsPerWicket": 17,
+        "powerplayRpo": 6.54,
+        "middleRpo": 7.46,
+        "deathRpo": 9.54,
+        "firstInningsAvg": 162.2,
+        "firstInningsSd": 19.7,
+        "chaseWinPct": 20,
+        "tossFieldPct": 50,
+        "tossWinnerWinPct": 70,
+        "chaseUplift": -0.96,
+        "reducedInnings": 0,
+        "widesPerOver": 0.26,
+        "noBallsPerOver": 0.041,
+        "extrasPerOver": 0.52,
+        "dismissalFingerprintPct": {
+          "caught": 67.9,
+          "bowled": 16.1,
+          "run out": 7.3,
+          "lbw": 4.4,
+          "stumped": 2.9,
+          "caught and bowled": 1.5
+        },
+        "reviews": {
+          "total": 0,
+          "upheldPct": 0,
+          "umpiresCallPct": 0,
+          "byBattingSidePct": 0
+        },
+        "rain": {
+          "dlFinishes": 0,
+          "noResults": 0
+        },
+        "ties": 0,
+        "populationVectors": {
+          "pp": {
+            "0": 0.4931,
+            "1": 0.2694,
+            "2": 0.0542,
+            "3": 0.0014,
+            "4": 0.1069,
+            "6": 0.0264,
+            "W": 0.0486
+          },
+          "mid": {
+            "0": 0.3139,
+            "1": 0.4444,
+            "2": 0.0685,
+            "3": 0.0009,
+            "4": 0.0694,
+            "6": 0.0537,
+            "W": 0.0491
+          },
+          "death": {
+            "0": 0.2552,
+            "1": 0.3819,
+            "2": 0.1002,
+            "3": 0.0019,
+            "4": 0.1002,
+            "6": 0.0775,
+            "W": 0.0832
+          }
+        }
+      },
+      "2024": {
+        "matches": 8,
+        "decided": 7,
+        "legalBalls": 1604,
+        "runsPerOver": 7.89,
+        "dotPct": 38.9,
+        "fourPct": 9.5,
+        "sixPct": 5.9,
+        "ballsPerWicket": 17.2,
+        "powerplayRpo": 7.81,
+        "middleRpo": 7.63,
+        "deathRpo": 8.59,
+        "firstInningsAvg": 149.7,
+        "firstInningsSd": 33.9,
+        "chaseWinPct": 57,
+        "tossFieldPct": 63,
+        "tossWinnerWinPct": 57,
+        "chaseUplift": 0.5,
+        "reducedInnings": 1,
+        "widesPerOver": 0.22,
+        "noBallsPerOver": 0.045,
+        "extrasPerOver": 0.42,
+        "dismissalFingerprintPct": {
+          "caught": 60.2,
+          "bowled": 16.1,
+          "lbw": 14,
+          "run out": 5.4,
+          "stumped": 3.2,
+          "caught and bowled": 1.1
+        },
+        "reviews": {
+          "total": 17,
+          "upheldPct": 35,
+          "umpiresCallPct": 6,
+          "byBattingSidePct": 59
+        },
+        "rain": {
+          "dlFinishes": 0,
+          "noResults": 1
+        },
+        "ties": 1,
+        "populationVectors": {
+          "pp": {
+            "0": 0.4484,
+            "1": 0.25,
+            "2": 0.0655,
+            "3": 0.004,
+            "4": 0.1488,
+            "6": 0.0397,
+            "W": 0.0437
+          },
+          "mid": {
+            "0": 0.329,
+            "1": 0.4449,
+            "2": 0.0615,
+            "3": 0,
+            "4": 0.0515,
+            "6": 0.0687,
+            "W": 0.0443
+          },
+          "death": {
+            "0": 0.2434,
+            "1": 0.4135,
+            "2": 0.0733,
+            "3": 0,
+            "4": 0.0968,
+            "6": 0.0616,
+            "W": 0.1114
+          }
+        }
+      }
+    }
+  },
+  {
+    "id": "pallekele",
+    "name": "Pallekele",
+    "city": "Kandy",
+    "country": "Sri Lanka",
+    "homeTeam": "Sri Lanka",
+    "overall": {
+      "matches": 15,
+      "decided": 15,
+      "legalBalls": 3433,
+      "runsPerOver": 8.34,
+      "dotPct": 35.8,
+      "fourPct": 12.8,
+      "sixPct": 4.7,
+      "ballsPerWicket": 18,
+      "powerplayRpo": 7.97,
+      "middleRpo": 8.01,
+      "deathRpo": 9.57,
+      "firstInningsAvg": 167.5,
+      "firstInningsSd": 31.1,
+      "chaseWinPct": 47,
+      "tossFieldPct": 53,
+      "tossWinnerWinPct": 27,
+      "chaseUplift": -0.31,
+      "reducedInnings": 0,
+      "widesPerOver": 0.17,
+      "noBallsPerOver": 0.019,
+      "extrasPerOver": 0.39,
+      "dismissalFingerprintPct": {
+        "caught": 53.9,
+        "bowled": 22,
+        "run out": 9.4,
+        "lbw": 8.9,
+        "caught and bowled": 2.6,
+        "stumped": 2.6,
+        "hit wicket": 0.5
+      },
+      "reviews": {
+        "total": 14,
+        "upheldPct": 29,
+        "umpiresCallPct": 14,
+        "byBattingSidePct": 50
+      },
+      "rain": {
+        "dlFinishes": 0,
+        "noResults": 0
+      },
+      "ties": 2,
+      "populationVectors": {
+        "pp": {
+          "0": 0.4435,
+          "1": 0.262,
+          "2": 0.0509,
+          "3": 0.0028,
+          "4": 0.1667,
+          "6": 0.0333,
+          "W": 0.0407
+        },
+        "mid": {
+          "0": 0.2922,
+          "1": 0.444,
+          "2": 0.0787,
+          "3": 0.0025,
+          "4": 0.0951,
+          "6": 0.0485,
+          "W": 0.039
+        },
+        "death": {
+          "0": 0.2379,
+          "1": 0.3529,
+          "2": 0.0967,
+          "3": 0.0026,
+          "4": 0.1425,
+          "6": 0.0654,
+          "W": 0.102
+        }
+      }
+    },
+    "byEdition": {
+      "2012": {
+        "matches": 9,
+        "decided": 9,
+        "legalBalls": 2114,
+        "runsPerOver": 8.12,
+        "dotPct": 35.9,
+        "fourPct": 12.2,
+        "sixPct": 4.4,
+        "ballsPerWicket": 20.3,
+        "powerplayRpo": 7.46,
+        "middleRpo": 7.84,
+        "deathRpo": 9.53,
+        "firstInningsAvg": 164.6,
+        "firstInningsSd": 20.8,
+        "chaseWinPct": 44,
+        "tossFieldPct": 33,
+        "tossWinnerWinPct": 22,
+        "chaseUplift": -0.27,
+        "reducedInnings": 0,
+        "widesPerOver": 0.17,
+        "noBallsPerOver": 0.017,
+        "extrasPerOver": 0.44,
+        "dismissalFingerprintPct": {
+          "caught": 58.7,
+          "bowled": 22.1,
+          "run out": 8.7,
+          "lbw": 6.7,
+          "caught and bowled": 1.9,
+          "stumped": 1.9
+        },
+        "reviews": {
+          "total": 0,
+          "upheldPct": 0,
+          "umpiresCallPct": 0,
+          "byBattingSidePct": 0
+        },
+        "rain": {
+          "dlFinishes": 0,
+          "noResults": 0
+        },
+        "ties": 2,
+        "populationVectors": {
+          "pp": {
+            "0": 0.4707,
+            "1": 0.2608,
+            "2": 0.0571,
+            "3": 0.0046,
+            "4": 0.1466,
+            "6": 0.0278,
+            "W": 0.0324
+          },
+          "mid": {
+            "0": 0.32,
+            "1": 0.4259,
+            "2": 0.0751,
+            "3": 0.0021,
+            "4": 0.0936,
+            "6": 0.0484,
+            "W": 0.035
+          },
+          "death": {
+            "0": 0.2186,
+            "1": 0.3846,
+            "2": 0.0972,
+            "3": 0.004,
+            "4": 0.1478,
+            "6": 0.0547,
+            "W": 0.0931
+          }
+        }
+      },
+      "2026": {
+        "matches": 6,
+        "decided": 6,
+        "legalBalls": 1319,
+        "runsPerOver": 8.7,
+        "dotPct": 35.6,
+        "fourPct": 13.7,
+        "sixPct": 5.4,
+        "ballsPerWicket": 15.2,
+        "powerplayRpo": 8.72,
+        "middleRpo": 8.27,
+        "deathRpo": 9.63,
+        "firstInningsAvg": 172,
+        "firstInningsSd": 44.4,
+        "chaseWinPct": 50,
+        "tossFieldPct": 83,
+        "tossWinnerWinPct": 33,
+        "chaseUplift": -0.37,
+        "reducedInnings": 0,
+        "widesPerOver": 0.16,
+        "noBallsPerOver": 0.023,
+        "extrasPerOver": 0.32,
+        "dismissalFingerprintPct": {
+          "caught": 48.3,
+          "bowled": 21.8,
+          "lbw": 11.5,
+          "run out": 10.3,
+          "stumped": 3.4,
+          "caught and bowled": 3.4,
+          "hit wicket": 1.1
+        },
+        "reviews": {
+          "total": 14,
+          "upheldPct": 29,
+          "umpiresCallPct": 14,
+          "byBattingSidePct": 50
+        },
+        "rain": {
+          "dlFinishes": 0,
+          "noResults": 0
+        },
+        "ties": 0,
+        "populationVectors": {
+          "pp": {
+            "0": 0.4028,
+            "1": 0.2639,
+            "2": 0.0417,
+            "3": 0,
+            "4": 0.1968,
+            "6": 0.0417,
+            "W": 0.0532
+          },
+          "mid": {
+            "0": 0.2484,
+            "1": 0.4724,
+            "2": 0.0844,
+            "3": 0.0032,
+            "4": 0.0974,
+            "6": 0.0487,
+            "W": 0.0455
+          },
+          "death": {
+            "0": 0.2731,
+            "1": 0.2952,
+            "2": 0.0959,
+            "3": 0,
+            "4": 0.1328,
+            "6": 0.0849,
+            "W": 0.1181
+          }
+        }
+      }
+    }
+  },
+  {
+    "id": "gros-islet",
+    "name": "Daren Sammy Stadium (Beausejour)",
+    "city": "Gros Islet",
+    "country": "Saint Lucia",
+    "homeTeam": "West Indies",
+    "overall": {
+      "matches": 14,
+      "decided": 14,
+      "legalBalls": 3267,
+      "runsPerOver": 8.37,
+      "dotPct": 34.6,
+      "fourPct": 10.2,
+      "sixPct": 5.7,
+      "ballsPerWicket": 19.3,
+      "powerplayRpo": 7.56,
+      "middleRpo": 8.1,
+      "deathRpo": 10.03,
+      "firstInningsAvg": 168.7,
+      "firstInningsSd": 28.4,
+      "chaseWinPct": 50,
+      "tossFieldPct": 50,
+      "tossWinnerWinPct": 43,
+      "chaseUplift": -0.18,
+      "reducedInnings": 0,
+      "widesPerOver": 0.2,
+      "noBallsPerOver": 0.022,
+      "extrasPerOver": 0.39,
+      "dismissalFingerprintPct": {
+        "caught": 69.8,
+        "bowled": 13,
+        "run out": 6.5,
+        "stumped": 4.7,
+        "lbw": 3.6,
+        "caught and bowled": 2.4
+      },
+      "reviews": {
+        "total": 6,
+        "upheldPct": 0,
+        "umpiresCallPct": 33,
+        "byBattingSidePct": 33
+      },
+      "rain": {
+        "dlFinishes": 0,
+        "noResults": 0
+      },
+      "ties": 0,
+      "populationVectors": {
+        "pp": {
+          "0": 0.4455,
+          "1": 0.2703,
+          "2": 0.0653,
+          "3": 0.0089,
+          "4": 0.1376,
+          "6": 0.0337,
+          "W": 0.0386
+        },
+        "mid": {
+          "0": 0.2791,
+          "1": 0.4484,
+          "2": 0.0899,
+          "3": 0.0053,
+          "4": 0.0833,
+          "6": 0.0549,
+          "W": 0.039
+        },
+        "death": {
+          "0": 0.2054,
+          "1": 0.4054,
+          "2": 0.1168,
+          "3": 0.0027,
+          "4": 0.0913,
+          "6": 0.0913,
+          "W": 0.0872
+        }
+      }
+    },
+    "byEdition": {
+      "2010": {
+        "matches": 9,
+        "decided": 9,
+        "legalBalls": 2104,
+        "runsPerOver": 8.01,
+        "dotPct": 35.1,
+        "fourPct": 9.9,
+        "sixPct": 4.7,
+        "ballsPerWicket": 18.6,
+        "powerplayRpo": 6.92,
+        "middleRpo": 7.89,
+        "deathRpo": 9.71,
+        "firstInningsAvg": 159.2,
+        "firstInningsSd": 29.7,
+        "chaseWinPct": 56,
+        "tossFieldPct": 22,
+        "tossWinnerWinPct": 44,
+        "chaseUplift": 0.02,
+        "reducedInnings": 0,
+        "widesPerOver": 0.16,
+        "noBallsPerOver": 0.029,
+        "extrasPerOver": 0.36,
+        "dismissalFingerprintPct": {
+          "caught": 66.4,
+          "bowled": 13.3,
+          "run out": 8,
+          "stumped": 5.3,
+          "caught and bowled": 3.5,
+          "lbw": 3.5
+        },
+        "reviews": {
+          "total": 0,
+          "upheldPct": 0,
+          "umpiresCallPct": 0,
+          "byBattingSidePct": 0
+        },
+        "rain": {
+          "dlFinishes": 0,
+          "noResults": 0
+        },
+        "ties": 0,
+        "populationVectors": {
+          "pp": {
+            "0": 0.4554,
+            "1": 0.2692,
+            "2": 0.0662,
+            "3": 0.0092,
+            "4": 0.1431,
+            "6": 0.0138,
+            "W": 0.0431
+          },
+          "mid": {
+            "0": 0.284,
+            "1": 0.4527,
+            "2": 0.1008,
+            "3": 0.0031,
+            "4": 0.0761,
+            "6": 0.0514,
+            "W": 0.0319
+          },
+          "death": {
+            "0": 0.1971,
+            "1": 0.4087,
+            "2": 0.1224,
+            "3": 0.0041,
+            "4": 0.0851,
+            "6": 0.083,
+            "W": 0.0996
+          }
+        }
+      },
+      "2024": {
+        "matches": 5,
+        "decided": 5,
+        "legalBalls": 1163,
+        "runsPerOver": 9.03,
+        "dotPct": 33.9,
+        "fourPct": 10.7,
+        "sixPct": 7.5,
+        "ballsPerWicket": 20.8,
+        "powerplayRpo": 8.72,
+        "middleRpo": 8.48,
+        "deathRpo": 10.61,
+        "firstInningsAvg": 185.8,
+        "firstInningsSd": 17.2,
+        "chaseWinPct": 40,
+        "tossFieldPct": 100,
+        "tossWinnerWinPct": 40,
+        "chaseUplift": -0.53,
+        "reducedInnings": 0,
+        "widesPerOver": 0.28,
+        "noBallsPerOver": 0.01,
+        "extrasPerOver": 0.44,
+        "dismissalFingerprintPct": {
+          "caught": 76.8,
+          "bowled": 12.5,
+          "stumped": 3.6,
+          "run out": 3.6,
+          "lbw": 3.6
+        },
+        "reviews": {
+          "total": 6,
+          "upheldPct": 0,
+          "umpiresCallPct": 33,
+          "byBattingSidePct": 33
+        },
+        "rain": {
+          "dlFinishes": 0,
+          "noResults": 0
+        },
+        "ties": 0,
+        "populationVectors": {
+          "pp": {
+            "0": 0.4278,
+            "1": 0.2722,
+            "2": 0.0639,
+            "3": 0.0083,
+            "4": 0.1278,
+            "6": 0.0694,
+            "W": 0.0306
+          },
+          "mid": {
+            "0": 0.2704,
+            "1": 0.4407,
+            "2": 0.0704,
+            "3": 0.0093,
+            "4": 0.0963,
+            "6": 0.0611,
+            "W": 0.0519
+          },
+          "death": {
+            "0": 0.2205,
+            "1": 0.3992,
+            "2": 0.1065,
+            "3": 0,
+            "4": 0.1027,
+            "6": 0.1065,
+            "W": 0.0646
+          }
+        }
+      }
+    }
+  },
+  {
+    "id": "mirpur",
+    "name": "Shere Bangla National Stadium",
+    "city": "Dhaka",
+    "country": "Bangladesh",
+    "homeTeam": "Bangladesh",
+    "overall": {
+      "matches": 13,
+      "decided": 13,
+      "legalBalls": 2988,
+      "runsPerOver": 7.58,
+      "dotPct": 39.7,
+      "fourPct": 10.6,
+      "sixPct": 4.4,
+      "ballsPerWicket": 19.7,
+      "powerplayRpo": 6.49,
+      "middleRpo": 7.5,
+      "deathRpo": 9.33,
+      "firstInningsAvg": 159,
+      "firstInningsSd": 21.9,
+      "chaseWinPct": 54,
+      "tossFieldPct": 54,
+      "tossWinnerWinPct": 54,
+      "chaseUplift": -0.77,
+      "reducedInnings": 3,
+      "widesPerOver": 0.19,
+      "noBallsPerOver": 0.026,
+      "extrasPerOver": 0.45,
+      "dismissalFingerprintPct": {
+        "caught": 54.6,
+        "bowled": 22.4,
+        "stumped": 9.2,
+        "run out": 7.9,
+        "lbw": 3.3,
+        "caught and bowled": 2.6
+      },
+      "reviews": {
+        "total": 0,
+        "upheldPct": 0,
+        "umpiresCallPct": 0,
+        "byBattingSidePct": 0
+      },
+      "rain": {
+        "dlFinishes": 1,
+        "noResults": 0
+      },
+      "ties": 0,
+      "populationVectors": {
+        "pp": {
+          "0": 0.5145,
+          "1": 0.2403,
+          "2": 0.0326,
+          "3": 0.0048,
+          "4": 0.1341,
+          "6": 0.0278,
+          "W": 0.0459
+        },
+        "mid": {
+          "0": 0.3172,
+          "1": 0.4573,
+          "2": 0.0604,
+          "3": 0.0024,
+          "4": 0.0805,
+          "6": 0.0459,
+          "W": 0.0362
+        },
+        "death": {
+          "0": 0.2692,
+          "1": 0.3556,
+          "2": 0.093,
+          "3": 0.0016,
+          "4": 0.1289,
+          "6": 0.0653,
+          "W": 0.0865
+        }
+      }
+    },
+    "byEdition": {
+      "2014": {
+        "matches": 13,
+        "decided": 13,
+        "legalBalls": 2988,
+        "runsPerOver": 7.58,
+        "dotPct": 39.7,
+        "fourPct": 10.6,
+        "sixPct": 4.4,
+        "ballsPerWicket": 19.7,
+        "powerplayRpo": 6.49,
+        "middleRpo": 7.5,
+        "deathRpo": 9.33,
+        "firstInningsAvg": 159,
+        "firstInningsSd": 21.9,
+        "chaseWinPct": 54,
+        "tossFieldPct": 54,
+        "tossWinnerWinPct": 54,
+        "chaseUplift": -0.77,
+        "reducedInnings": 3,
+        "widesPerOver": 0.19,
+        "noBallsPerOver": 0.026,
+        "extrasPerOver": 0.45,
+        "dismissalFingerprintPct": {
+          "caught": 54.6,
+          "bowled": 22.4,
+          "stumped": 9.2,
+          "run out": 7.9,
+          "lbw": 3.3,
+          "caught and bowled": 2.6
+        },
+        "reviews": {
+          "total": 0,
+          "upheldPct": 0,
+          "umpiresCallPct": 0,
+          "byBattingSidePct": 0
+        },
+        "rain": {
+          "dlFinishes": 1,
+          "noResults": 0
+        },
+        "ties": 0,
+        "populationVectors": {
+          "pp": {
+            "0": 0.5145,
+            "1": 0.2403,
+            "2": 0.0326,
+            "3": 0.0048,
+            "4": 0.1341,
+            "6": 0.0278,
+            "W": 0.0459
+          },
+          "mid": {
+            "0": 0.3172,
+            "1": 0.4573,
+            "2": 0.0604,
+            "3": 0.0024,
+            "4": 0.0805,
+            "6": 0.0459,
+            "W": 0.0362
+          },
+          "death": {
+            "0": 0.2692,
+            "1": 0.3556,
+            "2": 0.093,
+            "3": 0.0016,
+            "4": 0.1289,
+            "6": 0.0653,
+            "W": 0.0865
+          }
+        }
+      }
+    }
+  },
+  {
+    "id": "chattogram",
+    "name": "Zahur Ahmed Chowdhury Stadium",
+    "city": "Chattogram",
+    "country": "Bangladesh",
+    "homeTeam": "Bangladesh",
+    "overall": {
+      "matches": 13,
+      "decided": 13,
+      "legalBalls": 2754,
+      "runsPerOver": 7.45,
+      "dotPct": 40.1,
+      "fourPct": 11.5,
+      "sixPct": 3.3,
+      "ballsPerWicket": 16.1,
+      "powerplayRpo": 7.26,
+      "middleRpo": 6.92,
+      "deathRpo": 8.97,
+      "firstInningsAvg": 143.2,
+      "firstInningsSd": 40.9,
+      "chaseWinPct": 46,
+      "tossFieldPct": 92,
+      "tossWinnerWinPct": 54,
+      "chaseUplift": -0.24,
+      "reducedInnings": 1,
+      "widesPerOver": 0.2,
+      "noBallsPerOver": 0.017,
+      "extrasPerOver": 0.4,
+      "dismissalFingerprintPct": {
+        "caught": 59.1,
+        "bowled": 19.9,
+        "run out": 8.2,
+        "lbw": 7.6,
+        "stumped": 3.5,
+        "caught and bowled": 1.8
+      },
+      "reviews": {
+        "total": 0,
+        "upheldPct": 0,
+        "umpiresCallPct": 0,
+        "byBattingSidePct": 0
+      },
+      "rain": {
+        "dlFinishes": 1,
+        "noResults": 0
+      },
+      "ties": 0,
+      "populationVectors": {
+        "pp": {
+          "0": 0.5,
+          "1": 0.2271,
+          "2": 0.0414,
+          "3": 0.0056,
+          "4": 0.1521,
+          "6": 0.0291,
+          "W": 0.0447
+        },
+        "mid": {
+          "0": 0.3097,
+          "1": 0.4397,
+          "2": 0.0914,
+          "3": 0.0024,
+          "4": 0.0804,
+          "6": 0.0236,
+          "W": 0.0528
+        },
+        "death": {
+          "0": 0.2576,
+          "1": 0.3488,
+          "2": 0.1055,
+          "3": 0.0036,
+          "4": 0.127,
+          "6": 0.0572,
+          "W": 0.1002
+        }
+      }
+    },
+    "byEdition": {
+      "2014": {
+        "matches": 13,
+        "decided": 13,
+        "legalBalls": 2754,
+        "runsPerOver": 7.45,
+        "dotPct": 40.1,
+        "fourPct": 11.5,
+        "sixPct": 3.3,
+        "ballsPerWicket": 16.1,
+        "powerplayRpo": 7.26,
+        "middleRpo": 6.92,
+        "deathRpo": 8.97,
+        "firstInningsAvg": 143.2,
+        "firstInningsSd": 40.9,
+        "chaseWinPct": 46,
+        "tossFieldPct": 92,
+        "tossWinnerWinPct": 54,
+        "chaseUplift": -0.24,
+        "reducedInnings": 1,
+        "widesPerOver": 0.2,
+        "noBallsPerOver": 0.017,
+        "extrasPerOver": 0.4,
+        "dismissalFingerprintPct": {
+          "caught": 59.1,
+          "bowled": 19.9,
+          "run out": 8.2,
+          "lbw": 7.6,
+          "stumped": 3.5,
+          "caught and bowled": 1.8
+        },
+        "reviews": {
+          "total": 0,
+          "upheldPct": 0,
+          "umpiresCallPct": 0,
+          "byBattingSidePct": 0
+        },
+        "rain": {
+          "dlFinishes": 1,
+          "noResults": 0
+        },
+        "ties": 0,
+        "populationVectors": {
+          "pp": {
+            "0": 0.5,
+            "1": 0.2271,
+            "2": 0.0414,
+            "3": 0.0056,
+            "4": 0.1521,
+            "6": 0.0291,
+            "W": 0.0447
+          },
+          "mid": {
+            "0": 0.3097,
+            "1": 0.4397,
+            "2": 0.0914,
+            "3": 0.0024,
+            "4": 0.0804,
+            "6": 0.0236,
+            "W": 0.0528
+          },
+          "death": {
+            "0": 0.2576,
+            "1": 0.3488,
+            "2": 0.1055,
+            "3": 0.0036,
+            "4": 0.127,
+            "6": 0.0572,
+            "W": 0.1002
+          }
+        }
+      }
+    }
+  },
+  {
+    "id": "dubai",
+    "name": "Dubai International Stadium",
+    "city": "Dubai",
+    "country": "United Arab Emirates",
+    "homeTeam": "United Arab Emirates",
+    "overall": {
+      "matches": 12,
+      "decided": 12,
+      "legalBalls": 2404,
+      "runsPerOver": 7.74,
+      "dotPct": 39.1,
+      "fourPct": 10.4,
+      "sixPct": 4.7,
+      "ballsPerWicket": 20.2,
+      "powerplayRpo": 7.55,
+      "middleRpo": 6.94,
+      "deathRpo": 10.32,
+      "firstInningsAvg": 129,
+      "firstInningsSd": 40.6,
+      "chaseWinPct": 92,
+      "tossFieldPct": 100,
+      "tossWinnerWinPct": 92,
+      "chaseUplift": 2.12,
+      "reducedInnings": 0,
+      "widesPerOver": 0.21,
+      "noBallsPerOver": 0.037,
+      "extrasPerOver": 0.46,
+      "dismissalFingerprintPct": {
+        "caught": 63,
+        "bowled": 19.3,
+        "lbw": 10.1,
+        "run out": 4.2,
+        "caught and bowled": 2.5,
+        "stumped": 0.8
+      },
+      "reviews": {
+        "total": 17,
+        "upheldPct": 6,
+        "umpiresCallPct": 29,
+        "byBattingSidePct": 35
+      },
+      "rain": {
+        "dlFinishes": 0,
+        "noResults": 0
+      },
+      "ties": 0,
+      "populationVectors": {
+        "pp": {
+          "0": 0.4583,
+          "1": 0.2731,
+          "2": 0.0394,
+          "3": 0.0081,
+          "4": 0.1366,
+          "6": 0.044,
+          "W": 0.0405
+        },
+        "mid": {
+          "0": 0.3321,
+          "1": 0.4485,
+          "2": 0.0657,
+          "3": 0.0009,
+          "4": 0.0684,
+          "6": 0.0373,
+          "W": 0.0471
+        },
+        "death": {
+          "0": 0.2367,
+          "1": 0.3961,
+          "2": 0.0918,
+          "3": 0.0048,
+          "4": 0.1208,
+          "6": 0.0773,
+          "W": 0.0725
+        }
+      }
+    },
+    "byEdition": {
+      "2021": {
+        "matches": 12,
+        "decided": 12,
+        "legalBalls": 2404,
+        "runsPerOver": 7.74,
+        "dotPct": 39.1,
+        "fourPct": 10.4,
+        "sixPct": 4.7,
+        "ballsPerWicket": 20.2,
+        "powerplayRpo": 7.55,
+        "middleRpo": 6.94,
+        "deathRpo": 10.32,
+        "firstInningsAvg": 129,
+        "firstInningsSd": 40.6,
+        "chaseWinPct": 92,
+        "tossFieldPct": 100,
+        "tossWinnerWinPct": 92,
+        "chaseUplift": 2.12,
+        "reducedInnings": 0,
+        "widesPerOver": 0.21,
+        "noBallsPerOver": 0.037,
+        "extrasPerOver": 0.46,
+        "dismissalFingerprintPct": {
+          "caught": 63,
+          "bowled": 19.3,
+          "lbw": 10.1,
+          "run out": 4.2,
+          "caught and bowled": 2.5,
+          "stumped": 0.8
+        },
+        "reviews": {
+          "total": 17,
+          "upheldPct": 6,
+          "umpiresCallPct": 29,
+          "byBattingSidePct": 35
+        },
+        "rain": {
+          "dlFinishes": 0,
+          "noResults": 0
+        },
+        "ties": 0,
+        "populationVectors": {
+          "pp": {
+            "0": 0.4583,
+            "1": 0.2731,
+            "2": 0.0394,
+            "3": 0.0081,
+            "4": 0.1366,
+            "6": 0.044,
+            "W": 0.0405
+          },
+          "mid": {
+            "0": 0.3321,
+            "1": 0.4485,
+            "2": 0.0657,
+            "3": 0.0009,
+            "4": 0.0684,
+            "6": 0.0373,
+            "W": 0.0471
+          },
+          "death": {
+            "0": 0.2367,
+            "1": 0.3961,
+            "2": 0.0918,
+            "3": 0.0048,
+            "4": 0.1208,
+            "6": 0.0773,
+            "W": 0.0725
+          }
+        }
+      }
+    }
+  },
+  {
+    "id": "abu-dhabi",
+    "name": "Zayed Cricket Stadium",
+    "city": "Abu Dhabi",
+    "country": "United Arab Emirates",
+    "homeTeam": "United Arab Emirates",
+    "overall": {
+      "matches": 12,
+      "decided": 12,
+      "legalBalls": 2675,
+      "runsPerOver": 7.26,
+      "dotPct": 38.7,
+      "fourPct": 10.2,
+      "sixPct": 3,
+      "ballsPerWicket": 19.1,
+      "powerplayRpo": 6.19,
+      "middleRpo": 7.34,
+      "deathRpo": 8.77,
+      "firstInningsAvg": 139.4,
+      "firstInningsSd": 37.2,
+      "chaseWinPct": 75,
+      "tossFieldPct": 75,
+      "tossWinnerWinPct": 67,
+      "chaseUplift": 0.48,
+      "reducedInnings": 0,
+      "widesPerOver": 0.2,
+      "noBallsPerOver": 0.018,
+      "extrasPerOver": 0.45,
+      "dismissalFingerprintPct": {
+        "caught": 55,
+        "bowled": 22.9,
+        "lbw": 10,
+        "run out": 7.1,
+        "stumped": 2.1,
+        "caught and bowled": 2.1,
+        "hit wicket": 0.7
+      },
+      "reviews": {
+        "total": 26,
+        "upheldPct": 23,
+        "umpiresCallPct": 15,
+        "byBattingSidePct": 38
+      },
+      "rain": {
+        "dlFinishes": 0,
+        "noResults": 0
+      },
+      "ties": 0,
+      "populationVectors": {
+        "pp": {
+          "0": 0.5058,
+          "1": 0.2431,
+          "2": 0.0486,
+          "3": 0.0104,
+          "4": 0.1204,
+          "6": 0.015,
+          "W": 0.0567
+        },
+        "mid": {
+          "0": 0.3009,
+          "1": 0.4572,
+          "2": 0.0864,
+          "3": 0.0055,
+          "4": 0.0935,
+          "6": 0.0244,
+          "W": 0.0322
+        },
+        "death": {
+          "0": 0.2807,
+          "1": 0.3717,
+          "2": 0.1004,
+          "3": 0,
+          "4": 0.0911,
+          "6": 0.0688,
+          "W": 0.0874
+        }
+      }
+    },
+    "byEdition": {
+      "2021": {
+        "matches": 12,
+        "decided": 12,
+        "legalBalls": 2675,
+        "runsPerOver": 7.26,
+        "dotPct": 38.7,
+        "fourPct": 10.2,
+        "sixPct": 3,
+        "ballsPerWicket": 19.1,
+        "powerplayRpo": 6.19,
+        "middleRpo": 7.34,
+        "deathRpo": 8.77,
+        "firstInningsAvg": 139.4,
+        "firstInningsSd": 37.2,
+        "chaseWinPct": 75,
+        "tossFieldPct": 75,
+        "tossWinnerWinPct": 67,
+        "chaseUplift": 0.48,
+        "reducedInnings": 0,
+        "widesPerOver": 0.2,
+        "noBallsPerOver": 0.018,
+        "extrasPerOver": 0.45,
+        "dismissalFingerprintPct": {
+          "caught": 55,
+          "bowled": 22.9,
+          "lbw": 10,
+          "run out": 7.1,
+          "stumped": 2.1,
+          "caught and bowled": 2.1,
+          "hit wicket": 0.7
+        },
+        "reviews": {
+          "total": 26,
+          "upheldPct": 23,
+          "umpiresCallPct": 15,
+          "byBattingSidePct": 38
+        },
+        "rain": {
+          "dlFinishes": 0,
+          "noResults": 0
+        },
+        "ties": 0,
+        "populationVectors": {
+          "pp": {
+            "0": 0.5058,
+            "1": 0.2431,
+            "2": 0.0486,
+            "3": 0.0104,
+            "4": 0.1204,
+            "6": 0.015,
+            "W": 0.0567
+          },
+          "mid": {
+            "0": 0.3009,
+            "1": 0.4572,
+            "2": 0.0864,
+            "3": 0.0055,
+            "4": 0.0935,
+            "6": 0.0244,
+            "W": 0.0322
+          },
+          "death": {
+            "0": 0.2807,
+            "1": 0.3717,
+            "2": 0.1004,
+            "3": 0,
+            "4": 0.0911,
+            "6": 0.0688,
+            "W": 0.0874
+          }
+        }
+      }
+    }
+  },
+  {
+    "id": "eden-gardens",
+    "name": "Eden Gardens",
+    "city": "Kolkata",
+    "country": "India",
+    "homeTeam": "India",
+    "overall": {
+      "matches": 11,
+      "decided": 11,
+      "legalBalls": 2477,
+      "runsPerOver": 8.47,
+      "dotPct": 35.8,
+      "fourPct": 11.5,
+      "sixPct": 6.2,
+      "ballsPerWicket": 16.9,
+      "powerplayRpo": 7.36,
+      "middleRpo": 8.45,
+      "deathRpo": 10.24,
+      "firstInningsAvg": 177.3,
+      "firstInningsSd": 23.1,
+      "chaseWinPct": 45,
+      "tossFieldPct": 73,
+      "tossWinnerWinPct": 73,
+      "chaseUplift": -0.47,
+      "reducedInnings": 1,
+      "widesPerOver": 0.21,
+      "noBallsPerOver": 0.015,
+      "extrasPerOver": 0.4,
+      "dismissalFingerprintPct": {
+        "caught": 76.2,
+        "bowled": 19,
+        "lbw": 2.7,
+        "run out": 1.4,
+        "stumped": 0.7
+      },
+      "reviews": {
+        "total": 9,
+        "upheldPct": 22,
+        "umpiresCallPct": 22,
+        "byBattingSidePct": 44
+      },
+      "rain": {
+        "dlFinishes": 0,
+        "noResults": 0
+      },
+      "ties": 0,
+      "populationVectors": {
+        "pp": {
+          "0": 0.4392,
+          "1": 0.287,
+          "2": 0.041,
+          "3": 0.0053,
+          "4": 0.1415,
+          "6": 0.0384,
+          "W": 0.0476
+        },
+        "mid": {
+          "0": 0.2685,
+          "1": 0.4603,
+          "2": 0.0651,
+          "3": 0.0009,
+          "4": 0.0919,
+          "6": 0.0642,
+          "W": 0.0491
+        },
+        "death": {
+          "0": 0.2337,
+          "1": 0.3663,
+          "2": 0.0772,
+          "3": 0,
+          "4": 0.1287,
+          "6": 0.095,
+          "W": 0.099
+        }
+      }
+    },
+    "byEdition": {
+      "2016": {
+        "matches": 4,
+        "decided": 4,
+        "legalBalls": 895,
+        "runsPerOver": 7.47,
+        "dotPct": 37.7,
+        "fourPct": 10.9,
+        "sixPct": 3.9,
+        "ballsPerWicket": 16.9,
+        "powerplayRpo": 6.15,
+        "middleRpo": 7.31,
+        "deathRpo": 10.08,
+        "firstInningsAvg": 167,
+        "firstInningsSd": 29.9,
+        "chaseWinPct": 50,
+        "tossFieldPct": 50,
+        "tossWinnerWinPct": 100,
+        "chaseUplift": -0.97,
+        "reducedInnings": 1,
+        "widesPerOver": 0.14,
+        "noBallsPerOver": 0.02,
+        "extrasPerOver": 0.37,
+        "dismissalFingerprintPct": {
+          "caught": 62.3,
+          "bowled": 30.2,
+          "lbw": 3.8,
+          "run out": 1.9,
+          "stumped": 1.9
+        },
+        "reviews": {
+          "total": 0,
+          "upheldPct": 0,
+          "umpiresCallPct": 0,
+          "byBattingSidePct": 0
+        },
+        "rain": {
+          "dlFinishes": 0,
+          "noResults": 0
+        },
+        "ties": 0,
+        "populationVectors": {
+          "pp": {
+            "0": 0.4643,
+            "1": 0.3095,
+            "2": 0.0397,
+            "3": 0,
+            "4": 0.123,
+            "6": 0.0198,
+            "W": 0.0437
+          },
+          "mid": {
+            "0": 0.3148,
+            "1": 0.4603,
+            "2": 0.0503,
+            "3": 0,
+            "4": 0.0873,
+            "6": 0.0344,
+            "W": 0.0529
+          },
+          "death": {
+            "0": 0.2235,
+            "1": 0.3529,
+            "2": 0.1059,
+            "3": 0,
+            "4": 0.1412,
+            "6": 0.0765,
+            "W": 0.1
+          }
+        }
+      },
+      "2026": {
+        "matches": 7,
+        "decided": 7,
+        "legalBalls": 1582,
+        "runsPerOver": 9.03,
+        "dotPct": 34.8,
+        "fourPct": 11.8,
+        "sixPct": 7.5,
+        "ballsPerWicket": 16.8,
+        "powerplayRpo": 8.06,
+        "middleRpo": 9.11,
+        "deathRpo": 10.32,
+        "firstInningsAvg": 181.7,
+        "firstInningsSd": 20.6,
+        "chaseWinPct": 43,
+        "tossFieldPct": 86,
+        "tossWinnerWinPct": 57,
+        "chaseUplift": -0.17,
+        "reducedInnings": 0,
+        "widesPerOver": 0.25,
+        "noBallsPerOver": 0.011,
+        "extrasPerOver": 0.42,
+        "dismissalFingerprintPct": {
+          "caught": 84,
+          "bowled": 12.8,
+          "lbw": 2.1,
+          "run out": 1.1
+        },
+        "reviews": {
+          "total": 9,
+          "upheldPct": 22,
+          "umpiresCallPct": 22,
+          "byBattingSidePct": 44
+        },
+        "rain": {
+          "dlFinishes": 0,
+          "noResults": 0
+        },
+        "ties": 0,
+        "populationVectors": {
+          "pp": {
+            "0": 0.4266,
+            "1": 0.2758,
+            "2": 0.0417,
+            "3": 0.0079,
+            "4": 0.1508,
+            "6": 0.0476,
+            "W": 0.0496
+          },
+          "mid": {
+            "0": 0.245,
+            "1": 0.4603,
+            "2": 0.0727,
+            "3": 0.0013,
+            "4": 0.0942,
+            "6": 0.0794,
+            "W": 0.0471
+          },
+          "death": {
+            "0": 0.2388,
+            "1": 0.3731,
+            "2": 0.0627,
+            "3": 0,
+            "4": 0.1224,
+            "6": 0.1045,
+            "W": 0.0985
+          }
+        }
+      }
+    }
+  },
+  {
+    "id": "wankhede",
+    "name": "Wankhede Stadium",
+    "city": "Mumbai",
+    "country": "India",
+    "homeTeam": "India",
+    "overall": {
+      "matches": 11,
+      "decided": 11,
+      "legalBalls": 2526,
+      "runsPerOver": 9.47,
+      "dotPct": 33.6,
+      "fourPct": 12.4,
+      "sixPct": 8.4,
+      "ballsPerWicket": 19.1,
+      "powerplayRpo": 9.11,
+      "middleRpo": 8.8,
+      "deathRpo": 11.38,
+      "firstInningsAvg": 188.8,
+      "firstInningsSd": 43.2,
+      "chaseWinPct": 55,
+      "tossFieldPct": 91,
+      "tossWinnerWinPct": 64,
+      "chaseUplift": 0.01,
+      "reducedInnings": 0,
+      "widesPerOver": 0.25,
+      "noBallsPerOver": 0.021,
+      "extrasPerOver": 0.48,
+      "dismissalFingerprintPct": {
+        "caught": 64.4,
+        "bowled": 14.4,
+        "run out": 8.3,
+        "lbw": 6.8,
+        "stumped": 3,
+        "caught and bowled": 3
+      },
+      "reviews": {
+        "total": 12,
+        "upheldPct": 17,
+        "umpiresCallPct": 8,
+        "byBattingSidePct": 42
+      },
+      "rain": {
+        "dlFinishes": 0,
+        "noResults": 0
+      },
+      "ties": 0,
+      "populationVectors": {
+        "pp": {
+          "0": 0.4141,
+          "1": 0.2639,
+          "2": 0.0354,
+          "3": 0.0025,
+          "4": 0.1793,
+          "6": 0.0593,
+          "W": 0.0455
+        },
+        "mid": {
+          "0": 0.2768,
+          "1": 0.4514,
+          "2": 0.0681,
+          "3": 0,
+          "4": 0.0903,
+          "6": 0.0741,
+          "W": 0.0392
+        },
+        "death": {
+          "0": 0.2054,
+          "1": 0.3964,
+          "2": 0.0607,
+          "3": 0.0036,
+          "4": 0.1161,
+          "6": 0.1357,
+          "W": 0.0821
+        }
+      }
+    },
+    "byEdition": {
+      "2016": {
+        "matches": 3,
+        "decided": 3,
+        "legalBalls": 705,
+        "runsPerOver": 10.31,
+        "dotPct": 28.5,
+        "fourPct": 14.8,
+        "sixPct": 8.1,
+        "ballsPerWicket": 26.1,
+        "powerplayRpo": 10.42,
+        "middleRpo": 9.5,
+        "deathRpo": 11.78,
+        "firstInningsAvg": 201,
+        "firstInningsSd": 24.8,
+        "chaseWinPct": 100,
+        "tossFieldPct": 100,
+        "tossWinnerWinPct": 100,
+        "chaseUplift": 0.54,
+        "reducedInnings": 0,
+        "widesPerOver": 0.26,
+        "noBallsPerOver": 0.051,
+        "extrasPerOver": 0.59,
+        "dismissalFingerprintPct": {
+          "caught": 63,
+          "lbw": 14.8,
+          "bowled": 11.1,
+          "run out": 7.4,
+          "stumped": 3.7
+        },
+        "reviews": {
+          "total": 0,
+          "upheldPct": 0,
+          "umpiresCallPct": 0,
+          "byBattingSidePct": 0
+        },
+        "rain": {
+          "dlFinishes": 0,
+          "noResults": 0
+        },
+        "ties": 0,
+        "populationVectors": {
+          "pp": {
+            "0": 0.4028,
+            "1": 0.2407,
+            "2": 0.0324,
+            "3": 0.0046,
+            "4": 0.2315,
+            "6": 0.0556,
+            "W": 0.0324
+          },
+          "mid": {
+            "0": 0.2191,
+            "1": 0.4938,
+            "2": 0.0864,
+            "3": 0,
+            "4": 0.0895,
+            "6": 0.0772,
+            "W": 0.034
+          },
+          "death": {
+            "0": 0.1818,
+            "1": 0.4303,
+            "2": 0.0667,
+            "3": 0.0121,
+            "4": 0.1455,
+            "6": 0.1152,
+            "W": 0.0485
+          }
+        }
+      },
+      "2026": {
+        "matches": 8,
+        "decided": 8,
+        "legalBalls": 1821,
+        "runsPerOver": 9.14,
+        "dotPct": 35.6,
+        "fourPct": 11.5,
+        "sixPct": 8.5,
+        "ballsPerWicket": 17.3,
+        "powerplayRpo": 8.63,
+        "middleRpo": 8.53,
+        "deathRpo": 11.21,
+        "firstInningsAvg": 184.3,
+        "firstInningsSd": 49.1,
+        "chaseWinPct": 38,
+        "tossFieldPct": 88,
+        "tossWinnerWinPct": 50,
+        "chaseUplift": -0.21,
+        "reducedInnings": 0,
+        "widesPerOver": 0.25,
+        "noBallsPerOver": 0.01,
+        "extrasPerOver": 0.43,
+        "dismissalFingerprintPct": {
+          "caught": 64.8,
+          "bowled": 15.2,
+          "run out": 8.6,
+          "lbw": 4.8,
+          "caught and bowled": 3.8,
+          "stumped": 2.9
+        },
+        "reviews": {
+          "total": 12,
+          "upheldPct": 17,
+          "umpiresCallPct": 8,
+          "byBattingSidePct": 42
+        },
+        "rain": {
+          "dlFinishes": 0,
+          "noResults": 0
+        },
+        "ties": 0,
+        "populationVectors": {
+          "pp": {
+            "0": 0.4184,
+            "1": 0.2726,
+            "2": 0.0365,
+            "3": 0.0017,
+            "4": 0.1597,
+            "6": 0.0608,
+            "W": 0.0503
+          },
+          "mid": {
+            "0": 0.2988,
+            "1": 0.4353,
+            "2": 0.0612,
+            "3": 0,
+            "4": 0.0906,
+            "6": 0.0729,
+            "W": 0.0412
+          },
+          "death": {
+            "0": 0.2152,
+            "1": 0.3823,
+            "2": 0.0582,
+            "3": 0,
+            "4": 0.1038,
+            "6": 0.1443,
+            "W": 0.0962
+          }
+        }
+      }
+    }
+  },
+  {
+    "id": "trent-bridge",
+    "name": "Trent Bridge",
+    "city": "Nottingham",
+    "country": "England",
+    "homeTeam": "England",
+    "overall": {
+      "matches": 10,
+      "decided": 10,
+      "legalBalls": 2296,
+      "runsPerOver": 7.49,
+      "dotPct": 37.1,
+      "fourPct": 10.7,
+      "sixPct": 2.9,
+      "ballsPerWicket": 18.7,
+      "powerplayRpo": 7.81,
+      "middleRpo": 6.49,
+      "deathRpo": 9.23,
+      "firstInningsAvg": 157.1,
+      "firstInningsSd": 29,
+      "chaseWinPct": 40,
+      "tossFieldPct": 50,
+      "tossWinnerWinPct": 70,
+      "chaseUplift": -0.45,
+      "reducedInnings": 1,
+      "widesPerOver": 0.17,
+      "noBallsPerOver": 0.013,
+      "extrasPerOver": 0.4,
+      "dismissalFingerprintPct": {
+        "caught": 57.7,
+        "bowled": 22.8,
+        "run out": 8.1,
+        "lbw": 4.9,
+        "stumped": 3.3,
+        "caught and bowled": 3.3
+      },
+      "reviews": {
+        "total": 0,
+        "upheldPct": 0,
+        "umpiresCallPct": 0,
+        "byBattingSidePct": 0
+      },
+      "rain": {
+        "dlFinishes": 0,
+        "noResults": 0
+      },
+      "ties": 0,
+      "populationVectors": {
+        "pp": {
+          "0": 0.443,
+          "1": 0.2544,
+          "2": 0.0614,
+          "3": 0.0058,
+          "4": 0.174,
+          "6": 0.0234,
+          "W": 0.038
+        },
+        "mid": {
+          "0": 0.3226,
+          "1": 0.4444,
+          "2": 0.0897,
+          "3": 0.0058,
+          "4": 0.0643,
+          "6": 0.0214,
+          "W": 0.0517
+        },
+        "death": {
+          "0": 0.2353,
+          "1": 0.3874,
+          "2": 0.1339,
+          "3": 0.0081,
+          "4": 0.1055,
+          "6": 0.0548,
+          "W": 0.0751
+        }
+      }
+    },
+    "byEdition": {
+      "2009": {
+        "matches": 10,
+        "decided": 10,
+        "legalBalls": 2296,
+        "runsPerOver": 7.49,
+        "dotPct": 37.1,
+        "fourPct": 10.7,
+        "sixPct": 2.9,
+        "ballsPerWicket": 18.7,
+        "powerplayRpo": 7.81,
+        "middleRpo": 6.49,
+        "deathRpo": 9.23,
+        "firstInningsAvg": 157.1,
+        "firstInningsSd": 29,
+        "chaseWinPct": 40,
+        "tossFieldPct": 50,
+        "tossWinnerWinPct": 70,
+        "chaseUplift": -0.45,
+        "reducedInnings": 1,
+        "widesPerOver": 0.17,
+        "noBallsPerOver": 0.013,
+        "extrasPerOver": 0.4,
+        "dismissalFingerprintPct": {
+          "caught": 57.7,
+          "bowled": 22.8,
+          "run out": 8.1,
+          "lbw": 4.9,
+          "stumped": 3.3,
+          "caught and bowled": 3.3
+        },
+        "reviews": {
+          "total": 0,
+          "upheldPct": 0,
+          "umpiresCallPct": 0,
+          "byBattingSidePct": 0
+        },
+        "rain": {
+          "dlFinishes": 0,
+          "noResults": 0
+        },
+        "ties": 0,
+        "populationVectors": {
+          "pp": {
+            "0": 0.443,
+            "1": 0.2544,
+            "2": 0.0614,
+            "3": 0.0058,
+            "4": 0.174,
+            "6": 0.0234,
+            "W": 0.038
+          },
+          "mid": {
+            "0": 0.3226,
+            "1": 0.4444,
+            "2": 0.0897,
+            "3": 0.0058,
+            "4": 0.0643,
+            "6": 0.0214,
+            "W": 0.0517
+          },
+          "death": {
+            "0": 0.2353,
+            "1": 0.3874,
+            "2": 0.1339,
+            "3": 0.0081,
+            "4": 0.1055,
+            "6": 0.0548,
+            "W": 0.0751
+          }
+        }
+      }
+    }
+  },
+  {
+    "id": "providence",
+    "name": "Providence Stadium",
+    "city": "Providence",
+    "country": "Guyana",
+    "homeTeam": "West Indies",
+    "overall": {
+      "matches": 10,
+      "decided": 9,
+      "legalBalls": 1916,
+      "runsPerOver": 6.58,
+      "dotPct": 43.7,
+      "fourPct": 7.3,
+      "sixPct": 3.3,
+      "ballsPerWicket": 14.7,
+      "powerplayRpo": 6.78,
+      "middleRpo": 5.35,
+      "deathRpo": 9.13,
+      "firstInningsAvg": 139.8,
+      "firstInningsSd": 38.4,
+      "chaseWinPct": 56,
+      "tossFieldPct": 60,
+      "tossWinnerWinPct": 78,
+      "chaseUplift": -1.57,
+      "reducedInnings": 4,
+      "widesPerOver": 0.2,
+      "noBallsPerOver": 0.028,
+      "extrasPerOver": 0.47,
+      "dismissalFingerprintPct": {
+        "caught": 50,
+        "bowled": 23.1,
+        "lbw": 12.3,
+        "run out": 8.5,
+        "caught and bowled": 3.8,
+        "stumped": 2.3
+      },
+      "reviews": {
+        "total": 12,
+        "upheldPct": 25,
+        "umpiresCallPct": 25,
+        "byBattingSidePct": 75
+      },
+      "rain": {
+        "dlFinishes": 3,
+        "noResults": 1
+      },
+      "ties": 0,
+      "populationVectors": {
+        "pp": {
+          "0": 0.4913,
+          "1": 0.2361,
+          "2": 0.0573,
+          "3": 0.0069,
+          "4": 0.1163,
+          "6": 0.0295,
+          "W": 0.0625
+        },
+        "mid": {
+          "0": 0.3901,
+          "1": 0.422,
+          "2": 0.065,
+          "3": 0.0083,
+          "4": 0.0343,
+          "6": 0.0236,
+          "W": 0.0567
+        },
+        "death": {
+          "0": 0.2423,
+          "1": 0.3621,
+          "2": 0.1253,
+          "3": 0.0056,
+          "4": 0.1003,
+          "6": 0.0641,
+          "W": 0.1003
+        }
+      }
+    },
+    "byEdition": {
+      "2010": {
+        "matches": 6,
+        "decided": 5,
+        "legalBalls": 1045,
+        "runsPerOver": 6.82,
+        "dotPct": 41,
+        "fourPct": 6.6,
+        "sixPct": 3.6,
+        "ballsPerWicket": 15.4,
+        "powerplayRpo": 7.08,
+        "middleRpo": 5.33,
+        "deathRpo": 9.73,
+        "firstInningsAvg": 140.2,
+        "firstInningsSd": 38.1,
+        "chaseWinPct": 60,
+        "tossFieldPct": 50,
+        "tossWinnerWinPct": 80,
+        "chaseUplift": -1.44,
+        "reducedInnings": 4,
+        "widesPerOver": 0.24,
+        "noBallsPerOver": 0.023,
+        "extrasPerOver": 0.49,
+        "dismissalFingerprintPct": {
+          "caught": 61.8,
+          "bowled": 17.6,
+          "run out": 8.8,
+          "caught and bowled": 4.4,
+          "lbw": 4.4,
+          "stumped": 2.9
+        },
+        "reviews": {
+          "total": 0,
+          "upheldPct": 0,
+          "umpiresCallPct": 0,
+          "byBattingSidePct": 0
+        },
+        "rain": {
+          "dlFinishes": 3,
+          "noResults": 1
+        },
+        "ties": 0,
+        "populationVectors": {
+          "pp": {
+            "0": 0.4549,
+            "1": 0.2674,
+            "2": 0.066,
+            "3": 0.0069,
+            "4": 0.1215,
+            "6": 0.0347,
+            "W": 0.0486
+          },
+          "mid": {
+            "0": 0.3657,
+            "1": 0.4444,
+            "2": 0.0741,
+            "3": 0.0116,
+            "4": 0.0208,
+            "6": 0.0208,
+            "W": 0.0625
+          },
+          "death": {
+            "0": 0.2211,
+            "1": 0.3579,
+            "2": 0.1316,
+            "3": 0.0053,
+            "4": 0.0947,
+            "6": 0.0842,
+            "W": 0.1053
+          }
+        }
+      },
+      "2024": {
+        "matches": 4,
+        "decided": 4,
+        "legalBalls": 871,
+        "runsPerOver": 6.3,
+        "dotPct": 47,
+        "fourPct": 8.2,
+        "sixPct": 2.9,
+        "ballsPerWicket": 14,
+        "powerplayRpo": 6.35,
+        "middleRpo": 5.38,
+        "deathRpo": 8.45,
+        "firstInningsAvg": 139.3,
+        "firstInningsSd": 44.8,
+        "chaseWinPct": 50,
+        "tossFieldPct": 75,
+        "tossWinnerWinPct": 75,
+        "chaseUplift": -1.63,
+        "reducedInnings": 0,
+        "widesPerOver": 0.16,
+        "noBallsPerOver": 0.034,
+        "extrasPerOver": 0.43,
+        "dismissalFingerprintPct": {
+          "caught": 37.1,
+          "bowled": 29,
+          "lbw": 21,
+          "run out": 8.1,
+          "caught and bowled": 3.2,
+          "stumped": 1.6
+        },
+        "reviews": {
+          "total": 12,
+          "upheldPct": 25,
+          "umpiresCallPct": 25,
+          "byBattingSidePct": 75
+        },
+        "rain": {
+          "dlFinishes": 0,
+          "noResults": 0
+        },
+        "ties": 0,
+        "populationVectors": {
+          "pp": {
+            "0": 0.5278,
+            "1": 0.2049,
+            "2": 0.0486,
+            "3": 0.0069,
+            "4": 0.1111,
+            "6": 0.0243,
+            "W": 0.0764
+          },
+          "mid": {
+            "0": 0.4155,
+            "1": 0.3986,
+            "2": 0.0556,
+            "3": 0.0048,
+            "4": 0.0483,
+            "6": 0.0266,
+            "W": 0.0507
+          },
+          "death": {
+            "0": 0.2663,
+            "1": 0.3669,
+            "2": 0.1183,
+            "3": 0.0059,
+            "4": 0.1065,
+            "6": 0.0414,
+            "W": 0.0947
+          }
+        }
+      }
+    }
+  },
+  {
+    "id": "sharjah",
+    "name": "Sharjah Cricket Stadium",
+    "city": "Sharjah",
+    "country": "United Arab Emirates",
+    "homeTeam": "United Arab Emirates",
+    "overall": {
+      "matches": 10,
+      "decided": 10,
+      "legalBalls": 2232,
+      "runsPerOver": 7.44,
+      "dotPct": 36.5,
+      "fourPct": 9,
+      "sixPct": 4.3,
+      "ballsPerWicket": 19.1,
+      "powerplayRpo": 6.46,
+      "middleRpo": 6.83,
+      "deathRpo": 10.06,
+      "firstInningsAvg": 146.2,
+      "firstInningsSd": 42.1,
+      "chaseWinPct": 50,
+      "tossFieldPct": 80,
+      "tossWinnerWinPct": 50,
+      "chaseUplift": -0.51,
+      "reducedInnings": 0,
+      "widesPerOver": 0.2,
+      "noBallsPerOver": 0.03,
+      "extrasPerOver": 0.4,
+      "dismissalFingerprintPct": {
+        "caught": 47,
+        "bowled": 26.5,
+        "lbw": 12.8,
+        "run out": 10.3,
+        "caught and bowled": 3.4
+      },
+      "reviews": {
+        "total": 27,
+        "upheldPct": 15,
+        "umpiresCallPct": 11,
+        "byBattingSidePct": 26
+      },
+      "rain": {
+        "dlFinishes": 0,
+        "noResults": 0
+      },
+      "ties": 0,
+      "populationVectors": {
+        "pp": {
+          "0": 0.4431,
+          "1": 0.3333,
+          "2": 0.0472,
+          "3": 0.0042,
+          "4": 0.1153,
+          "6": 0.0167,
+          "W": 0.0403
+        },
+        "mid": {
+          "0": 0.323,
+          "1": 0.4726,
+          "2": 0.0568,
+          "3": 0.003,
+          "4": 0.0688,
+          "6": 0.0329,
+          "W": 0.0429
+        },
+        "death": {
+          "0": 0.2279,
+          "1": 0.3752,
+          "2": 0.1257,
+          "3": 0.0039,
+          "4": 0.0923,
+          "6": 0.0982,
+          "W": 0.0766
+        }
+      }
+    },
+    "byEdition": {
+      "2021": {
+        "matches": 10,
+        "decided": 10,
+        "legalBalls": 2232,
+        "runsPerOver": 7.44,
+        "dotPct": 36.5,
+        "fourPct": 9,
+        "sixPct": 4.3,
+        "ballsPerWicket": 19.1,
+        "powerplayRpo": 6.46,
+        "middleRpo": 6.83,
+        "deathRpo": 10.06,
+        "firstInningsAvg": 146.2,
+        "firstInningsSd": 42.1,
+        "chaseWinPct": 50,
+        "tossFieldPct": 80,
+        "tossWinnerWinPct": 50,
+        "chaseUplift": -0.51,
+        "reducedInnings": 0,
+        "widesPerOver": 0.2,
+        "noBallsPerOver": 0.03,
+        "extrasPerOver": 0.4,
+        "dismissalFingerprintPct": {
+          "caught": 47,
+          "bowled": 26.5,
+          "lbw": 12.8,
+          "run out": 10.3,
+          "caught and bowled": 3.4
+        },
+        "reviews": {
+          "total": 27,
+          "upheldPct": 15,
+          "umpiresCallPct": 11,
+          "byBattingSidePct": 26
+        },
+        "rain": {
+          "dlFinishes": 0,
+          "noResults": 0
+        },
+        "ties": 0,
+        "populationVectors": {
+          "pp": {
+            "0": 0.4431,
+            "1": 0.3333,
+            "2": 0.0472,
+            "3": 0.0042,
+            "4": 0.1153,
+            "6": 0.0167,
+            "W": 0.0403
+          },
+          "mid": {
+            "0": 0.323,
+            "1": 0.4726,
+            "2": 0.0568,
+            "3": 0.003,
+            "4": 0.0688,
+            "6": 0.0329,
+            "W": 0.0429
+          },
+          "death": {
+            "0": 0.2279,
+            "1": 0.3752,
+            "2": 0.1257,
+            "3": 0.0039,
+            "4": 0.0923,
+            "6": 0.0982,
+            "W": 0.0766
+          }
+        }
+      }
+    }
+  },
+  {
+    "id": "wanderers",
+    "name": "The Wanderers",
+    "city": "Johannesburg",
+    "country": "South Africa",
+    "homeTeam": "South Africa",
+    "overall": {
+      "matches": 9,
+      "decided": 9,
+      "legalBalls": 2092,
+      "runsPerOver": 8.62,
+      "dotPct": 35.5,
+      "fourPct": 12.4,
+      "sixPct": 5,
+      "ballsPerWicket": 17.4,
+      "powerplayRpo": 7.96,
+      "middleRpo": 8.42,
+      "deathRpo": 9.94,
+      "firstInningsAvg": 182.2,
+      "firstInningsSd": 34.5,
+      "chaseWinPct": 44,
+      "tossFieldPct": 78,
+      "tossWinnerWinPct": 44,
+      "chaseUplift": -1.02,
+      "reducedInnings": 0,
+      "widesPerOver": 0.24,
+      "noBallsPerOver": 0.037,
+      "extrasPerOver": 0.57,
+      "dismissalFingerprintPct": {
+        "caught": 53.3,
+        "bowled": 21.7,
+        "run out": 11.7,
+        "lbw": 7.5,
+        "stumped": 3.3,
+        "caught and bowled": 2.5
+      },
+      "reviews": {
+        "total": 0,
+        "upheldPct": 0,
+        "umpiresCallPct": 0,
+        "byBattingSidePct": 0
+      },
+      "rain": {
+        "dlFinishes": 0,
+        "noResults": 0
+      },
+      "ties": 0,
+      "populationVectors": {
+        "pp": {
+          "0": 0.4552,
+          "1": 0.2546,
+          "2": 0.0432,
+          "3": 0.0123,
+          "4": 0.1497,
+          "6": 0.037,
+          "W": 0.0478
+        },
+        "mid": {
+          "0": 0.2857,
+          "1": 0.4224,
+          "2": 0.0976,
+          "3": 0.0051,
+          "4": 0.1089,
+          "6": 0.0391,
+          "W": 0.0411
+        },
+        "death": {
+          "0": 0.2314,
+          "1": 0.3694,
+          "2": 0.0977,
+          "3": 0.0085,
+          "4": 0.1146,
+          "6": 0.0892,
+          "W": 0.0892
+        }
+      }
+    },
+    "byEdition": {
+      "2007": {
+        "matches": 9,
+        "decided": 9,
+        "legalBalls": 2092,
+        "runsPerOver": 8.62,
+        "dotPct": 35.5,
+        "fourPct": 12.4,
+        "sixPct": 5,
+        "ballsPerWicket": 17.4,
+        "powerplayRpo": 7.96,
+        "middleRpo": 8.42,
+        "deathRpo": 9.94,
+        "firstInningsAvg": 182.2,
+        "firstInningsSd": 34.5,
+        "chaseWinPct": 44,
+        "tossFieldPct": 78,
+        "tossWinnerWinPct": 44,
+        "chaseUplift": -1.02,
+        "reducedInnings": 0,
+        "widesPerOver": 0.24,
+        "noBallsPerOver": 0.037,
+        "extrasPerOver": 0.57,
+        "dismissalFingerprintPct": {
+          "caught": 53.3,
+          "bowled": 21.7,
+          "run out": 11.7,
+          "lbw": 7.5,
+          "stumped": 3.3,
+          "caught and bowled": 2.5
+        },
+        "reviews": {
+          "total": 0,
+          "upheldPct": 0,
+          "umpiresCallPct": 0,
+          "byBattingSidePct": 0
+        },
+        "rain": {
+          "dlFinishes": 0,
+          "noResults": 0
+        },
+        "ties": 0,
+        "populationVectors": {
+          "pp": {
+            "0": 0.4552,
+            "1": 0.2546,
+            "2": 0.0432,
+            "3": 0.0123,
+            "4": 0.1497,
+            "6": 0.037,
+            "W": 0.0478
+          },
+          "mid": {
+            "0": 0.2857,
+            "1": 0.4224,
+            "2": 0.0976,
+            "3": 0.0051,
+            "4": 0.1089,
+            "6": 0.0391,
+            "W": 0.0411
+          },
+          "death": {
+            "0": 0.2314,
+            "1": 0.3694,
+            "2": 0.0977,
+            "3": 0.0085,
+            "4": 0.1146,
+            "6": 0.0892,
+            "W": 0.0892
+          }
+        }
+      }
+    }
+  },
+  {
+    "id": "newlands",
+    "name": "Newlands",
+    "city": "Cape Town",
+    "country": "South Africa",
+    "homeTeam": "South Africa",
+    "overall": {
+      "matches": 9,
+      "decided": 9,
+      "legalBalls": 2005,
+      "runsPerOver": 7.4,
+      "dotPct": 39.7,
+      "fourPct": 10.2,
+      "sixPct": 3.7,
+      "ballsPerWicket": 17.1,
+      "powerplayRpo": 7.83,
+      "middleRpo": 7.09,
+      "deathRpo": 7.44,
+      "firstInningsAvg": 140.7,
+      "firstInningsSd": 23.3,
+      "chaseWinPct": 78,
+      "tossFieldPct": 56,
+      "tossWinnerWinPct": 56,
+      "chaseUplift": 0.68,
+      "reducedInnings": 0,
+      "widesPerOver": 0.14,
+      "noBallsPerOver": 0.06,
+      "extrasPerOver": 0.38,
+      "dismissalFingerprintPct": {
+        "caught": 59.8,
+        "run out": 12,
+        "bowled": 12,
+        "lbw": 9.4,
+        "caught and bowled": 4.3,
+        "stumped": 2.6
+      },
+      "reviews": {
+        "total": 0,
+        "upheldPct": 0,
+        "umpiresCallPct": 0,
+        "byBattingSidePct": 0
+      },
+      "rain": {
+        "dlFinishes": 0,
+        "noResults": 0
+      },
+      "ties": 0,
+      "populationVectors": {
+        "pp": {
+          "0": 0.4568,
+          "1": 0.2407,
+          "2": 0.0648,
+          "3": 0.0077,
+          "4": 0.1682,
+          "6": 0.0262,
+          "W": 0.0355
+        },
+        "mid": {
+          "0": 0.3344,
+          "1": 0.4199,
+          "2": 0.0769,
+          "3": 0.0064,
+          "4": 0.0716,
+          "6": 0.0395,
+          "W": 0.0513
+        },
+        "death": {
+          "0": 0.2637,
+          "1": 0.4466,
+          "2": 0.0784,
+          "3": 0.0071,
+          "4": 0.0641,
+          "6": 0.0475,
+          "W": 0.0926
+        }
+      }
+    },
+    "byEdition": {
+      "2007": {
+        "matches": 9,
+        "decided": 9,
+        "legalBalls": 2005,
+        "runsPerOver": 7.4,
+        "dotPct": 39.7,
+        "fourPct": 10.2,
+        "sixPct": 3.7,
+        "ballsPerWicket": 17.1,
+        "powerplayRpo": 7.83,
+        "middleRpo": 7.09,
+        "deathRpo": 7.44,
+        "firstInningsAvg": 140.7,
+        "firstInningsSd": 23.3,
+        "chaseWinPct": 78,
+        "tossFieldPct": 56,
+        "tossWinnerWinPct": 56,
+        "chaseUplift": 0.68,
+        "reducedInnings": 0,
+        "widesPerOver": 0.14,
+        "noBallsPerOver": 0.06,
+        "extrasPerOver": 0.38,
+        "dismissalFingerprintPct": {
+          "caught": 59.8,
+          "run out": 12,
+          "bowled": 12,
+          "lbw": 9.4,
+          "caught and bowled": 4.3,
+          "stumped": 2.6
+        },
+        "reviews": {
+          "total": 0,
+          "upheldPct": 0,
+          "umpiresCallPct": 0,
+          "byBattingSidePct": 0
+        },
+        "rain": {
+          "dlFinishes": 0,
+          "noResults": 0
+        },
+        "ties": 0,
+        "populationVectors": {
+          "pp": {
+            "0": 0.4568,
+            "1": 0.2407,
+            "2": 0.0648,
+            "3": 0.0077,
+            "4": 0.1682,
+            "6": 0.0262,
+            "W": 0.0355
+          },
+          "mid": {
+            "0": 0.3344,
+            "1": 0.4199,
+            "2": 0.0769,
+            "3": 0.0064,
+            "4": 0.0716,
+            "6": 0.0395,
+            "W": 0.0513
+          },
+          "death": {
+            "0": 0.2637,
+            "1": 0.4466,
+            "2": 0.0784,
+            "3": 0.0071,
+            "4": 0.0641,
+            "6": 0.0475,
+            "W": 0.0926
+          }
+        }
+      }
+    }
+  },
+  {
+    "id": "the-oval",
+    "name": "The Oval",
+    "city": "London",
+    "country": "England",
+    "homeTeam": "England",
+    "overall": {
+      "matches": 9,
+      "decided": 9,
+      "legalBalls": 1813,
+      "runsPerOver": 8.14,
+      "dotPct": 36.1,
+      "fourPct": 12.7,
+      "sixPct": 3.4,
+      "ballsPerWicket": 15.9,
+      "powerplayRpo": 8.5,
+      "middleRpo": 7.46,
+      "deathRpo": 9.09,
+      "firstInningsAvg": 165.6,
+      "firstInningsSd": 32.3,
+      "chaseWinPct": 44,
+      "tossFieldPct": 56,
+      "tossWinnerWinPct": 22,
+      "chaseUplift": -0.89,
+      "reducedInnings": 2,
+      "widesPerOver": 0.18,
+      "noBallsPerOver": 0.06,
+      "extrasPerOver": 0.44,
+      "dismissalFingerprintPct": {
+        "caught": 57.9,
+        "bowled": 23.7,
+        "lbw": 6.1,
+        "run out": 5.3,
+        "stumped": 4.4,
+        "caught and bowled": 2.6
+      },
+      "reviews": {
+        "total": 0,
+        "upheldPct": 0,
+        "umpiresCallPct": 0,
+        "byBattingSidePct": 0
+      },
+      "rain": {
+        "dlFinishes": 1,
+        "noResults": 0
+      },
+      "ties": 0,
+      "populationVectors": {
+        "pp": {
+          "0": 0.4514,
+          "1": 0.2396,
+          "2": 0.0538,
+          "3": 0.0087,
+          "4": 0.1719,
+          "6": 0.0313,
+          "W": 0.0434
+        },
+        "mid": {
+          "0": 0.3093,
+          "1": 0.4174,
+          "2": 0.1056,
+          "3": 0.0062,
+          "4": 0.0932,
+          "6": 0.0236,
+          "W": 0.0447
+        },
+        "death": {
+          "0": 0.1965,
+          "1": 0.3902,
+          "2": 0.1329,
+          "3": 0.0116,
+          "4": 0.104,
+          "6": 0.0462,
+          "W": 0.1185
+        }
+      }
+    },
+    "byEdition": {
+      "2009": {
+        "matches": 9,
+        "decided": 9,
+        "legalBalls": 1813,
+        "runsPerOver": 8.14,
+        "dotPct": 36.1,
+        "fourPct": 12.7,
+        "sixPct": 3.4,
+        "ballsPerWicket": 15.9,
+        "powerplayRpo": 8.5,
+        "middleRpo": 7.46,
+        "deathRpo": 9.09,
+        "firstInningsAvg": 165.6,
+        "firstInningsSd": 32.3,
+        "chaseWinPct": 44,
+        "tossFieldPct": 56,
+        "tossWinnerWinPct": 22,
+        "chaseUplift": -0.89,
+        "reducedInnings": 2,
+        "widesPerOver": 0.18,
+        "noBallsPerOver": 0.06,
+        "extrasPerOver": 0.44,
+        "dismissalFingerprintPct": {
+          "caught": 57.9,
+          "bowled": 23.7,
+          "lbw": 6.1,
+          "run out": 5.3,
+          "stumped": 4.4,
+          "caught and bowled": 2.6
+        },
+        "reviews": {
+          "total": 0,
+          "upheldPct": 0,
+          "umpiresCallPct": 0,
+          "byBattingSidePct": 0
+        },
+        "rain": {
+          "dlFinishes": 1,
+          "noResults": 0
+        },
+        "ties": 0,
+        "populationVectors": {
+          "pp": {
+            "0": 0.4514,
+            "1": 0.2396,
+            "2": 0.0538,
+            "3": 0.0087,
+            "4": 0.1719,
+            "6": 0.0313,
+            "W": 0.0434
+          },
+          "mid": {
+            "0": 0.3093,
+            "1": 0.4174,
+            "2": 0.1056,
+            "3": 0.0062,
+            "4": 0.0932,
+            "6": 0.0236,
+            "W": 0.0447
+          },
+          "death": {
+            "0": 0.1965,
+            "1": 0.3902,
+            "2": 0.1329,
+            "3": 0.0116,
+            "4": 0.104,
+            "6": 0.0462,
+            "W": 0.1185
+          }
+        }
+      }
+    }
+  },
+  {
+    "id": "hobart",
+    "name": "Bellerive Oval",
+    "city": "Hobart",
+    "country": "Australia",
+    "homeTeam": "Australia",
+    "overall": {
+      "matches": 9,
+      "decided": 8,
+      "legalBalls": 1914,
+      "runsPerOver": 7.7,
+      "dotPct": 35.5,
+      "fourPct": 10.7,
+      "sixPct": 3.1,
+      "ballsPerWicket": 18.1,
+      "powerplayRpo": 7.62,
+      "middleRpo": 7.36,
+      "deathRpo": 8.59,
+      "firstInningsAvg": 151.6,
+      "firstInningsSd": 17.7,
+      "chaseWinPct": 50,
+      "tossFieldPct": 33,
+      "tossWinnerWinPct": 13,
+      "chaseUplift": 0.14,
+      "reducedInnings": 2,
+      "widesPerOver": 0.2,
+      "noBallsPerOver": 0.047,
+      "extrasPerOver": 0.53,
+      "dismissalFingerprintPct": {
+        "caught": 67,
+        "bowled": 20.8,
+        "run out": 5.7,
+        "lbw": 3.8,
+        "caught and bowled": 1.9,
+        "stumped": 0.9
+      },
+      "reviews": {
+        "total": 20,
+        "upheldPct": 25,
+        "umpiresCallPct": 20,
+        "byBattingSidePct": 30
+      },
+      "rain": {
+        "dlFinishes": 0,
+        "noResults": 1
+      },
+      "ties": 0,
+      "populationVectors": {
+        "pp": {
+          "0": 0.4462,
+          "1": 0.2778,
+          "2": 0.0573,
+          "3": 0.0069,
+          "4": 0.1406,
+          "6": 0.0226,
+          "W": 0.0486
+        },
+        "mid": {
+          "0": 0.2708,
+          "1": 0.4884,
+          "2": 0.0845,
+          "3": 0.0081,
+          "4": 0.0671,
+          "6": 0.0347,
+          "W": 0.0463
+        },
+        "death": {
+          "0": 0.2843,
+          "1": 0.3815,
+          "2": 0.1072,
+          "3": 0.005,
+          "4": 0.1197,
+          "6": 0.0299,
+          "W": 0.0723
+        }
+      }
+    },
+    "byEdition": {
+      "2022": {
+        "matches": 9,
+        "decided": 8,
+        "legalBalls": 1914,
+        "runsPerOver": 7.7,
+        "dotPct": 35.5,
+        "fourPct": 10.7,
+        "sixPct": 3.1,
+        "ballsPerWicket": 18.1,
+        "powerplayRpo": 7.62,
+        "middleRpo": 7.36,
+        "deathRpo": 8.59,
+        "firstInningsAvg": 151.6,
+        "firstInningsSd": 17.7,
+        "chaseWinPct": 50,
+        "tossFieldPct": 33,
+        "tossWinnerWinPct": 13,
+        "chaseUplift": 0.14,
+        "reducedInnings": 2,
+        "widesPerOver": 0.2,
+        "noBallsPerOver": 0.047,
+        "extrasPerOver": 0.53,
+        "dismissalFingerprintPct": {
+          "caught": 67,
+          "bowled": 20.8,
+          "run out": 5.7,
+          "lbw": 3.8,
+          "caught and bowled": 1.9,
+          "stumped": 0.9
+        },
+        "reviews": {
+          "total": 20,
+          "upheldPct": 25,
+          "umpiresCallPct": 20,
+          "byBattingSidePct": 30
+        },
+        "rain": {
+          "dlFinishes": 0,
+          "noResults": 1
+        },
+        "ties": 0,
+        "populationVectors": {
+          "pp": {
+            "0": 0.4462,
+            "1": 0.2778,
+            "2": 0.0573,
+            "3": 0.0069,
+            "4": 0.1406,
+            "6": 0.0226,
+            "W": 0.0486
+          },
+          "mid": {
+            "0": 0.2708,
+            "1": 0.4884,
+            "2": 0.0845,
+            "3": 0.0081,
+            "4": 0.0671,
+            "6": 0.0347,
+            "W": 0.0463
+          },
+          "death": {
+            "0": 0.2843,
+            "1": 0.3815,
+            "2": 0.1072,
+            "3": 0.005,
+            "4": 0.1197,
+            "6": 0.0299,
+            "W": 0.0723
+          }
+        }
+      }
+    }
+  },
+  {
+    "id": "kingsmead",
+    "name": "Kingsmead",
+    "city": "Durban",
+    "country": "South Africa",
+    "homeTeam": "South Africa",
+    "overall": {
+      "matches": 8,
+      "decided": 8,
+      "legalBalls": 1821,
+      "runsPerOver": 7.91,
+      "dotPct": 39.2,
+      "fourPct": 10.8,
+      "sixPct": 4.8,
+      "ballsPerWicket": 16.4,
+      "powerplayRpo": 6.46,
+      "middleRpo": 8.04,
+      "deathRpo": 9.64,
+      "firstInningsAvg": 157.6,
+      "firstInningsSd": 41.9,
+      "chaseWinPct": 25,
+      "tossFieldPct": 63,
+      "tossWinnerWinPct": 63,
+      "chaseUplift": -0.26,
+      "reducedInnings": 0,
+      "widesPerOver": 0.24,
+      "noBallsPerOver": 0.04,
+      "extrasPerOver": 0.53,
+      "dismissalFingerprintPct": {
+        "caught": 48.6,
+        "bowled": 28.8,
+        "run out": 11.7,
+        "lbw": 3.6,
+        "stumped": 3.6,
+        "caught and bowled": 2.7,
+        "hit wicket": 0.9
+      },
+      "reviews": {
+        "total": 0,
+        "upheldPct": 0,
+        "umpiresCallPct": 0,
+        "byBattingSidePct": 0
+      },
+      "rain": {
+        "dlFinishes": 0,
+        "noResults": 0
+      },
+      "ties": 1,
+      "populationVectors": {
+        "pp": {
+          "0": 0.526,
+          "1": 0.2361,
+          "2": 0.0434,
+          "3": 0.0052,
+          "4": 0.1181,
+          "6": 0.0208,
+          "W": 0.0503
+        },
+        "mid": {
+          "0": 0.3183,
+          "1": 0.422,
+          "2": 0.072,
+          "3": 0.0024,
+          "4": 0.0939,
+          "6": 0.0524,
+          "W": 0.039
+        },
+        "death": {
+          "0": 0.2165,
+          "1": 0.3859,
+          "2": 0.1082,
+          "3": 0.0047,
+          "4": 0.1129,
+          "6": 0.0729,
+          "W": 0.0988
+        }
+      }
+    },
+    "byEdition": {
+      "2007": {
+        "matches": 8,
+        "decided": 8,
+        "legalBalls": 1821,
+        "runsPerOver": 7.91,
+        "dotPct": 39.2,
+        "fourPct": 10.8,
+        "sixPct": 4.8,
+        "ballsPerWicket": 16.4,
+        "powerplayRpo": 6.46,
+        "middleRpo": 8.04,
+        "deathRpo": 9.64,
+        "firstInningsAvg": 157.6,
+        "firstInningsSd": 41.9,
+        "chaseWinPct": 25,
+        "tossFieldPct": 63,
+        "tossWinnerWinPct": 63,
+        "chaseUplift": -0.26,
+        "reducedInnings": 0,
+        "widesPerOver": 0.24,
+        "noBallsPerOver": 0.04,
+        "extrasPerOver": 0.53,
+        "dismissalFingerprintPct": {
+          "caught": 48.6,
+          "bowled": 28.8,
+          "run out": 11.7,
+          "lbw": 3.6,
+          "stumped": 3.6,
+          "caught and bowled": 2.7,
+          "hit wicket": 0.9
+        },
+        "reviews": {
+          "total": 0,
+          "upheldPct": 0,
+          "umpiresCallPct": 0,
+          "byBattingSidePct": 0
+        },
+        "rain": {
+          "dlFinishes": 0,
+          "noResults": 0
+        },
+        "ties": 1,
+        "populationVectors": {
+          "pp": {
+            "0": 0.526,
+            "1": 0.2361,
+            "2": 0.0434,
+            "3": 0.0052,
+            "4": 0.1181,
+            "6": 0.0208,
+            "W": 0.0503
+          },
+          "mid": {
+            "0": 0.3183,
+            "1": 0.422,
+            "2": 0.072,
+            "3": 0.0024,
+            "4": 0.0939,
+            "6": 0.0524,
+            "W": 0.039
+          },
+          "death": {
+            "0": 0.2165,
+            "1": 0.3859,
+            "2": 0.1082,
+            "3": 0.0047,
+            "4": 0.1129,
+            "6": 0.0729,
+            "W": 0.0988
+          }
+        }
+      }
+    }
+  },
+  {
+    "id": "lords",
+    "name": "Lord's",
+    "city": "London",
+    "country": "England",
+    "homeTeam": "England",
+    "overall": {
+      "matches": 8,
+      "decided": 8,
+      "legalBalls": 1889,
+      "runsPerOver": 7.3,
+      "dotPct": 35.4,
+      "fourPct": 10.2,
+      "sixPct": 2,
+      "ballsPerWicket": 18.9,
+      "powerplayRpo": 6.86,
+      "middleRpo": 6.61,
+      "deathRpo": 9.17,
+      "firstInningsAvg": 150.4,
+      "firstInningsSd": 14.4,
+      "chaseWinPct": 38,
+      "tossFieldPct": 38,
+      "tossWinnerWinPct": 50,
+      "chaseUplift": -0.45,
+      "reducedInnings": 0,
+      "widesPerOver": 0.19,
+      "noBallsPerOver": 0.019,
+      "extrasPerOver": 0.44,
+      "dismissalFingerprintPct": {
+        "caught": 54,
+        "bowled": 19,
+        "stumped": 11,
+        "run out": 7,
+        "caught and bowled": 5,
+        "lbw": 4
+      },
+      "reviews": {
+        "total": 0,
+        "upheldPct": 0,
+        "umpiresCallPct": 0,
+        "byBattingSidePct": 0
+      },
+      "rain": {
+        "dlFinishes": 0,
+        "noResults": 0
+      },
+      "ties": 0,
+      "populationVectors": {
+        "pp": {
+          "0": 0.4757,
+          "1": 0.2604,
+          "2": 0.066,
+          "3": 0.0052,
+          "4": 0.1389,
+          "6": 0.0156,
+          "W": 0.0382
+        },
+        "mid": {
+          "0": 0.3148,
+          "1": 0.4514,
+          "2": 0.0926,
+          "3": 0.0081,
+          "4": 0.0729,
+          "6": 0.0162,
+          "W": 0.044
+        },
+        "death": {
+          "0": 0.167,
+          "1": 0.4499,
+          "2": 0.1559,
+          "3": 0.0045,
+          "4": 0.1091,
+          "6": 0.0334,
+          "W": 0.0802
+        }
+      }
+    },
+    "byEdition": {
+      "2009": {
+        "matches": 8,
+        "decided": 8,
+        "legalBalls": 1889,
+        "runsPerOver": 7.3,
+        "dotPct": 35.4,
+        "fourPct": 10.2,
+        "sixPct": 2,
+        "ballsPerWicket": 18.9,
+        "powerplayRpo": 6.86,
+        "middleRpo": 6.61,
+        "deathRpo": 9.17,
+        "firstInningsAvg": 150.4,
+        "firstInningsSd": 14.4,
+        "chaseWinPct": 38,
+        "tossFieldPct": 38,
+        "tossWinnerWinPct": 50,
+        "chaseUplift": -0.45,
+        "reducedInnings": 0,
+        "widesPerOver": 0.19,
+        "noBallsPerOver": 0.019,
+        "extrasPerOver": 0.44,
+        "dismissalFingerprintPct": {
+          "caught": 54,
+          "bowled": 19,
+          "stumped": 11,
+          "run out": 7,
+          "caught and bowled": 5,
+          "lbw": 4
+        },
+        "reviews": {
+          "total": 0,
+          "upheldPct": 0,
+          "umpiresCallPct": 0,
+          "byBattingSidePct": 0
+        },
+        "rain": {
+          "dlFinishes": 0,
+          "noResults": 0
+        },
+        "ties": 0,
+        "populationVectors": {
+          "pp": {
+            "0": 0.4757,
+            "1": 0.2604,
+            "2": 0.066,
+            "3": 0.0052,
+            "4": 0.1389,
+            "6": 0.0156,
+            "W": 0.0382
+          },
+          "mid": {
+            "0": 0.3148,
+            "1": 0.4514,
+            "2": 0.0926,
+            "3": 0.0081,
+            "4": 0.0729,
+            "6": 0.0162,
+            "W": 0.044
+          },
+          "death": {
+            "0": 0.167,
+            "1": 0.4499,
+            "2": 0.1559,
+            "3": 0.0045,
+            "4": 0.1091,
+            "6": 0.0334,
+            "W": 0.0802
+          }
+        }
+      }
+    }
+  },
+  {
+    "id": "north-sound",
+    "name": "Sir Vivian Richards Stadium",
+    "city": "North Sound",
+    "country": "Antigua and Barbuda",
+    "homeTeam": "West Indies",
+    "overall": {
+      "matches": 8,
+      "decided": 8,
+      "legalBalls": 1439,
+      "runsPerOver": 8.18,
+      "dotPct": 42,
+      "fourPct": 10.7,
+      "sixPct": 6.9,
+      "ballsPerWicket": 16.2,
+      "powerplayRpo": 8.32,
+      "middleRpo": 7.73,
+      "deathRpo": 9.17,
+      "firstInningsAvg": 133.4,
+      "firstInningsSd": 56.5,
+      "chaseWinPct": 63,
+      "tossFieldPct": 88,
+      "tossWinnerWinPct": 50,
+      "chaseUplift": 1.6,
+      "reducedInnings": 4,
+      "widesPerOver": 0.23,
+      "noBallsPerOver": 0.025,
+      "extrasPerOver": 0.42,
+      "dismissalFingerprintPct": {
+        "caught": 62.9,
+        "bowled": 16.9,
+        "lbw": 9,
+        "caught and bowled": 4.5,
+        "run out": 3.4,
+        "stumped": 2.2,
+        "retired out": 1.1
+      },
+      "reviews": {
+        "total": 9,
+        "upheldPct": 33,
+        "umpiresCallPct": 22,
+        "byBattingSidePct": 67
+      },
+      "rain": {
+        "dlFinishes": 3,
+        "noResults": 0
+      },
+      "ties": 0,
+      "populationVectors": {
+        "pp": {
+          "0": 0.4673,
+          "1": 0.2349,
+          "2": 0.0412,
+          "3": 0,
+          "4": 0.1404,
+          "6": 0.0654,
+          "W": 0.0508
+        },
+        "mid": {
+          "0": 0.3507,
+          "1": 0.4046,
+          "2": 0.0462,
+          "3": 0.0019,
+          "4": 0.079,
+          "6": 0.0539,
+          "W": 0.0636
+        },
+        "death": {
+          "0": 0.2838,
+          "1": 0.3784,
+          "2": 0.0901,
+          "3": 0,
+          "4": 0.0766,
+          "6": 0.0946,
+          "W": 0.0766
+        }
+      }
+    },
+    "byEdition": {
+      "2024": {
+        "matches": 8,
+        "decided": 8,
+        "legalBalls": 1439,
+        "runsPerOver": 8.18,
+        "dotPct": 42,
+        "fourPct": 10.7,
+        "sixPct": 6.9,
+        "ballsPerWicket": 16.2,
+        "powerplayRpo": 8.32,
+        "middleRpo": 7.73,
+        "deathRpo": 9.17,
+        "firstInningsAvg": 133.4,
+        "firstInningsSd": 56.5,
+        "chaseWinPct": 63,
+        "tossFieldPct": 88,
+        "tossWinnerWinPct": 50,
+        "chaseUplift": 1.6,
+        "reducedInnings": 4,
+        "widesPerOver": 0.23,
+        "noBallsPerOver": 0.025,
+        "extrasPerOver": 0.42,
+        "dismissalFingerprintPct": {
+          "caught": 62.9,
+          "bowled": 16.9,
+          "lbw": 9,
+          "caught and bowled": 4.5,
+          "run out": 3.4,
+          "stumped": 2.2,
+          "retired out": 1.1
+        },
+        "reviews": {
+          "total": 9,
+          "upheldPct": 33,
+          "umpiresCallPct": 22,
+          "byBattingSidePct": 67
+        },
+        "rain": {
+          "dlFinishes": 3,
+          "noResults": 0
+        },
+        "ties": 0,
+        "populationVectors": {
+          "pp": {
+            "0": 0.4673,
+            "1": 0.2349,
+            "2": 0.0412,
+            "3": 0,
+            "4": 0.1404,
+            "6": 0.0654,
+            "W": 0.0508
+          },
+          "mid": {
+            "0": 0.3507,
+            "1": 0.4046,
+            "2": 0.0462,
+            "3": 0.0019,
+            "4": 0.079,
+            "6": 0.0539,
+            "W": 0.0636
+          },
+          "death": {
+            "0": 0.2838,
+            "1": 0.3784,
+            "2": 0.0901,
+            "3": 0,
+            "4": 0.0766,
+            "6": 0.0946,
+            "W": 0.0766
+          }
+        }
+      }
+    }
+  },
+  {
+    "id": "delhi",
+    "name": "Arun Jaitley Stadium (Feroz Shah Kotla)",
+    "city": "Delhi",
+    "country": "India",
+    "homeTeam": "India",
+    "overall": {
+      "matches": 8,
+      "decided": 8,
+      "legalBalls": 1809,
+      "runsPerOver": 7.89,
+      "dotPct": 37.3,
+      "fourPct": 10.1,
+      "sixPct": 5.6,
+      "ballsPerWicket": 18.3,
+      "powerplayRpo": 8.02,
+      "middleRpo": 7.19,
+      "deathRpo": 9.26,
+      "firstInningsAvg": 154.3,
+      "firstInningsSd": 28.1,
+      "chaseWinPct": 75,
+      "tossFieldPct": 75,
+      "tossWinnerWinPct": 50,
+      "chaseUplift": 0.32,
+      "reducedInnings": 0,
+      "widesPerOver": 0.22,
+      "noBallsPerOver": 0.033,
+      "extrasPerOver": 0.41,
+      "dismissalFingerprintPct": {
+        "caught": 60.6,
+        "bowled": 16.2,
+        "run out": 11.1,
+        "lbw": 8.1,
+        "stumped": 2,
+        "caught and bowled": 1,
+        "hit wicket": 1
+      },
+      "reviews": {
+        "total": 11,
+        "upheldPct": 9,
+        "umpiresCallPct": 18,
+        "byBattingSidePct": 36
+      },
+      "rain": {
+        "dlFinishes": 0,
+        "noResults": 0
+      },
+      "ties": 0,
+      "populationVectors": {
+        "pp": {
+          "0": 0.4184,
+          "1": 0.2969,
+          "2": 0.0417,
+          "3": 0.0017,
+          "4": 0.1476,
+          "6": 0.0503,
+          "W": 0.0434
+        },
+        "mid": {
+          "0": 0.3173,
+          "1": 0.4731,
+          "2": 0.0504,
+          "3": 0.0012,
+          "4": 0.0656,
+          "6": 0.048,
+          "W": 0.0445
+        },
+        "death": {
+          "0": 0.2665,
+          "1": 0.3984,
+          "2": 0.0633,
+          "3": 0.0026,
+          "4": 0.1055,
+          "6": 0.0818,
+          "W": 0.0818
+        }
+      }
+    },
+    "byEdition": {
+      "2016": {
+        "matches": 3,
+        "decided": 3,
+        "legalBalls": 686,
+        "runsPerOver": 7.75,
+        "dotPct": 36.4,
+        "fourPct": 11.2,
+        "sixPct": 4.5,
+        "ballsPerWicket": 19.6,
+        "powerplayRpo": 7.53,
+        "middleRpo": 6.83,
+        "deathRpo": 10.11,
+        "firstInningsAvg": 148,
+        "firstInningsSd": 25.9,
+        "chaseWinPct": 67,
+        "tossFieldPct": 100,
+        "tossWinnerWinPct": 67,
+        "chaseUplift": 0.6,
+        "reducedInnings": 0,
+        "widesPerOver": 0.2,
+        "noBallsPerOver": 0.026,
+        "extrasPerOver": 0.42,
+        "dismissalFingerprintPct": {
+          "caught": 48.6,
+          "run out": 17.1,
+          "bowled": 17.1,
+          "lbw": 14.3,
+          "caught and bowled": 2.9
+        },
+        "reviews": {
+          "total": 0,
+          "upheldPct": 0,
+          "umpiresCallPct": 0,
+          "byBattingSidePct": 0
+        },
+        "rain": {
+          "dlFinishes": 0,
+          "noResults": 0
+        },
+        "ties": 0,
+        "populationVectors": {
+          "pp": {
+            "0": 0.4491,
+            "1": 0.2917,
+            "2": 0.0324,
+            "3": 0.0046,
+            "4": 0.1667,
+            "6": 0.0231,
+            "W": 0.0324
+          },
+          "mid": {
+            "0": 0.3086,
+            "1": 0.5062,
+            "2": 0.0278,
+            "3": 0.0031,
+            "4": 0.0802,
+            "6": 0.0309,
+            "W": 0.0432
+          },
+          "death": {
+            "0": 0.274,
+            "1": 0.363,
+            "2": 0.0753,
+            "3": 0.0068,
+            "4": 0.0959,
+            "6": 0.1096,
+            "W": 0.0753
+          }
+        }
+      },
+      "2026": {
+        "matches": 5,
+        "decided": 5,
+        "legalBalls": 1123,
+        "runsPerOver": 7.98,
+        "dotPct": 37.8,
+        "fourPct": 9.3,
+        "sixPct": 6.2,
+        "ballsPerWicket": 17.5,
+        "powerplayRpo": 8.32,
+        "middleRpo": 7.42,
+        "deathRpo": 8.73,
+        "firstInningsAvg": 158,
+        "firstInningsSd": 31.6,
+        "chaseWinPct": 80,
+        "tossFieldPct": 60,
+        "tossWinnerWinPct": 40,
+        "chaseUplift": 0.17,
+        "reducedInnings": 0,
+        "widesPerOver": 0.22,
+        "noBallsPerOver": 0.037,
+        "extrasPerOver": 0.4,
+        "dismissalFingerprintPct": {
+          "caught": 67.2,
+          "bowled": 15.6,
+          "run out": 7.8,
+          "lbw": 4.7,
+          "stumped": 3.1,
+          "hit wicket": 1.6
+        },
+        "reviews": {
+          "total": 11,
+          "upheldPct": 9,
+          "umpiresCallPct": 18,
+          "byBattingSidePct": 36
+        },
+        "rain": {
+          "dlFinishes": 0,
+          "noResults": 0
+        },
+        "ties": 0,
+        "populationVectors": {
+          "pp": {
+            "0": 0.4,
+            "1": 0.3,
+            "2": 0.0472,
+            "3": 0,
+            "4": 0.1361,
+            "6": 0.0667,
+            "W": 0.05
+          },
+          "mid": {
+            "0": 0.3226,
+            "1": 0.4528,
+            "2": 0.0642,
+            "3": 0,
+            "4": 0.0566,
+            "6": 0.0585,
+            "W": 0.0453
+          },
+          "death": {
+            "0": 0.2618,
+            "1": 0.4206,
+            "2": 0.0558,
+            "3": 0,
+            "4": 0.1116,
+            "6": 0.0644,
+            "W": 0.0858
+          }
+        }
+      }
+    }
+  },
+  {
+    "id": "new-york",
+    "name": "Nassau County International Cricket Stadium",
+    "city": "New York",
+    "country": "United States of America",
+    "homeTeam": "United States of America",
+    "overall": {
+      "matches": 8,
+      "decided": 8,
+      "legalBalls": 1785,
+      "runsPerOver": 5.74,
+      "dotPct": 51,
+      "fourPct": 5.7,
+      "sixPct": 3.1,
+      "ballsPerWicket": 16.8,
+      "powerplayRpo": 4.88,
+      "middleRpo": 5.84,
+      "deathRpo": 6.9,
+      "firstInningsAvg": 107.6,
+      "firstInningsSd": 17.4,
+      "chaseWinPct": 63,
+      "tossFieldPct": 75,
+      "tossWinnerWinPct": 63,
+      "chaseUplift": 0.34,
+      "reducedInnings": 0,
+      "widesPerOver": 0.22,
+      "noBallsPerOver": 0.03,
+      "extrasPerOver": 0.44,
+      "dismissalFingerprintPct": {
+        "caught": 63.2,
+        "bowled": 17.9,
+        "run out": 8.5,
+        "caught and bowled": 5.7,
+        "lbw": 3.8,
+        "stumped": 0.9
+      },
+      "reviews": {
+        "total": 13,
+        "upheldPct": 23,
+        "umpiresCallPct": 8,
+        "byBattingSidePct": 23
+      },
+      "rain": {
+        "dlFinishes": 0,
+        "noResults": 0
+      },
+      "ties": 0,
+      "populationVectors": {
+        "pp": {
+          "0": 0.6024,
+          "1": 0.1927,
+          "2": 0.0521,
+          "3": 0.0156,
+          "4": 0.066,
+          "6": 0.0191,
+          "W": 0.0521
+        },
+        "mid": {
+          "0": 0.4222,
+          "1": 0.3774,
+          "2": 0.0625,
+          "3": 0.0059,
+          "4": 0.0425,
+          "6": 0.0354,
+          "W": 0.0542
+        },
+        "death": {
+          "0": 0.3712,
+          "1": 0.3463,
+          "2": 0.0859,
+          "3": 0.0111,
+          "4": 0.0748,
+          "6": 0.0388,
+          "W": 0.072
+        }
+      }
+    },
+    "byEdition": {
+      "2024": {
+        "matches": 8,
+        "decided": 8,
+        "legalBalls": 1785,
+        "runsPerOver": 5.74,
+        "dotPct": 51,
+        "fourPct": 5.7,
+        "sixPct": 3.1,
+        "ballsPerWicket": 16.8,
+        "powerplayRpo": 4.88,
+        "middleRpo": 5.84,
+        "deathRpo": 6.9,
+        "firstInningsAvg": 107.6,
+        "firstInningsSd": 17.4,
+        "chaseWinPct": 63,
+        "tossFieldPct": 75,
+        "tossWinnerWinPct": 63,
+        "chaseUplift": 0.34,
+        "reducedInnings": 0,
+        "widesPerOver": 0.22,
+        "noBallsPerOver": 0.03,
+        "extrasPerOver": 0.44,
+        "dismissalFingerprintPct": {
+          "caught": 63.2,
+          "bowled": 17.9,
+          "run out": 8.5,
+          "caught and bowled": 5.7,
+          "lbw": 3.8,
+          "stumped": 0.9
+        },
+        "reviews": {
+          "total": 13,
+          "upheldPct": 23,
+          "umpiresCallPct": 8,
+          "byBattingSidePct": 23
+        },
+        "rain": {
+          "dlFinishes": 0,
+          "noResults": 0
+        },
+        "ties": 0,
+        "populationVectors": {
+          "pp": {
+            "0": 0.6024,
+            "1": 0.1927,
+            "2": 0.0521,
+            "3": 0.0156,
+            "4": 0.066,
+            "6": 0.0191,
+            "W": 0.0521
+          },
+          "mid": {
+            "0": 0.4222,
+            "1": 0.3774,
+            "2": 0.0625,
+            "3": 0.0059,
+            "4": 0.0425,
+            "6": 0.0354,
+            "W": 0.0542
+          },
+          "death": {
+            "0": 0.3712,
+            "1": 0.3463,
+            "2": 0.0859,
+            "3": 0.0111,
+            "4": 0.0748,
+            "6": 0.0388,
+            "W": 0.072
+          }
+        }
+      }
+    }
+  },
+  {
+    "id": "scg",
+    "name": "Sydney Cricket Ground",
+    "city": "Sydney",
+    "country": "Australia",
+    "homeTeam": "Australia",
+    "overall": {
+      "matches": 7,
+      "decided": 7,
+      "legalBalls": 1595,
+      "runsPerOver": 7.79,
+      "dotPct": 36.9,
+      "fourPct": 9.9,
+      "sixPct": 4.2,
+      "ballsPerWicket": 16.8,
+      "powerplayRpo": 7.46,
+      "middleRpo": 7.56,
+      "deathRpo": 8.78,
+      "firstInningsAvg": 175.6,
+      "firstInningsSd": 23.8,
+      "chaseWinPct": 29,
+      "tossFieldPct": 14,
+      "tossWinnerWinPct": 57,
+      "chaseUplift": -2.09,
+      "reducedInnings": 1,
+      "widesPerOver": 0.17,
+      "noBallsPerOver": 0.038,
+      "extrasPerOver": 0.34,
+      "dismissalFingerprintPct": {
+        "caught": 61.1,
+        "bowled": 16.8,
+        "lbw": 9.5,
+        "run out": 6.3,
+        "caught and bowled": 4.2,
+        "stumped": 2.1
+      },
+      "reviews": {
+        "total": 15,
+        "upheldPct": 20,
+        "umpiresCallPct": 0,
+        "byBattingSidePct": 40
+      },
+      "rain": {
+        "dlFinishes": 1,
+        "noResults": 0
+      },
+      "ties": 0,
+      "populationVectors": {
+        "pp": {
+          "0": 0.4466,
+          "1": 0.2607,
+          "2": 0.0662,
+          "3": 0.0085,
+          "4": 0.1154,
+          "6": 0.0491,
+          "W": 0.0534
+        },
+        "mid": {
+          "0": 0.2821,
+          "1": 0.4516,
+          "2": 0.0997,
+          "3": 0.0085,
+          "4": 0.0826,
+          "6": 0.0328,
+          "W": 0.0427
+        },
+        "death": {
+          "0": 0.261,
+          "1": 0.3695,
+          "2": 0.1349,
+          "3": 0.0088,
+          "4": 0.0909,
+          "6": 0.0469,
+          "W": 0.088
+        }
+      }
+    },
+    "byEdition": {
+      "2022": {
+        "matches": 7,
+        "decided": 7,
+        "legalBalls": 1595,
+        "runsPerOver": 7.79,
+        "dotPct": 36.9,
+        "fourPct": 9.9,
+        "sixPct": 4.2,
+        "ballsPerWicket": 16.8,
+        "powerplayRpo": 7.46,
+        "middleRpo": 7.56,
+        "deathRpo": 8.78,
+        "firstInningsAvg": 175.6,
+        "firstInningsSd": 23.8,
+        "chaseWinPct": 29,
+        "tossFieldPct": 14,
+        "tossWinnerWinPct": 57,
+        "chaseUplift": -2.09,
+        "reducedInnings": 1,
+        "widesPerOver": 0.17,
+        "noBallsPerOver": 0.038,
+        "extrasPerOver": 0.34,
+        "dismissalFingerprintPct": {
+          "caught": 61.1,
+          "bowled": 16.8,
+          "lbw": 9.5,
+          "run out": 6.3,
+          "caught and bowled": 4.2,
+          "stumped": 2.1
+        },
+        "reviews": {
+          "total": 15,
+          "upheldPct": 20,
+          "umpiresCallPct": 0,
+          "byBattingSidePct": 40
+        },
+        "rain": {
+          "dlFinishes": 1,
+          "noResults": 0
+        },
+        "ties": 0,
+        "populationVectors": {
+          "pp": {
+            "0": 0.4466,
+            "1": 0.2607,
+            "2": 0.0662,
+            "3": 0.0085,
+            "4": 0.1154,
+            "6": 0.0491,
+            "W": 0.0534
+          },
+          "mid": {
+            "0": 0.2821,
+            "1": 0.4516,
+            "2": 0.0997,
+            "3": 0.0085,
+            "4": 0.0826,
+            "6": 0.0328,
+            "W": 0.0427
+          },
+          "death": {
+            "0": 0.261,
+            "1": 0.3695,
+            "2": 0.1349,
+            "3": 0.0088,
+            "4": 0.0909,
+            "6": 0.0469,
+            "W": 0.088
+          }
+        }
+      }
+    }
+  },
+  {
+    "id": "sylhet",
+    "name": "Sylhet Stadium",
+    "city": "Sylhet",
+    "country": "Bangladesh",
+    "homeTeam": "Bangladesh",
+    "overall": {
+      "matches": 6,
+      "decided": 6,
+      "legalBalls": 1323,
+      "runsPerOver": 7.97,
+      "dotPct": 35.5,
+      "fourPct": 11.3,
+      "sixPct": 4.7,
+      "ballsPerWicket": 19.7,
+      "powerplayRpo": 8.31,
+      "middleRpo": 7.56,
+      "deathRpo": 8.4,
+      "firstInningsAvg": 147,
+      "firstInningsSd": 26.9,
+      "chaseWinPct": 100,
+      "tossFieldPct": 67,
+      "tossWinnerWinPct": 67,
+      "chaseUplift": 1.34,
+      "reducedInnings": 1,
+      "widesPerOver": 0.14,
+      "noBallsPerOver": 0.005,
+      "extrasPerOver": 0.44,
+      "dismissalFingerprintPct": {
+        "caught": 55.2,
+        "bowled": 17.9,
+        "run out": 14.9,
+        "caught and bowled": 6,
+        "lbw": 4.5,
+        "stumped": 1.5
+      },
+      "reviews": {
+        "total": 0,
+        "upheldPct": 0,
+        "umpiresCallPct": 0,
+        "byBattingSidePct": 0
+      },
+      "rain": {
+        "dlFinishes": 1,
+        "noResults": 0
+      },
+      "ties": 0,
+      "populationVectors": {
+        "pp": {
+          "0": 0.4545,
+          "1": 0.2374,
+          "2": 0.0505,
+          "3": 0,
+          "4": 0.1742,
+          "6": 0.0429,
+          "W": 0.0404
+        },
+        "mid": {
+          "0": 0.2694,
+          "1": 0.487,
+          "2": 0.0622,
+          "3": 0.0052,
+          "4": 0.0743,
+          "6": 0.0518,
+          "W": 0.0501
+        },
+        "death": {
+          "0": 0.2863,
+          "1": 0.4122,
+          "2": 0.0802,
+          "3": 0,
+          "4": 0.1107,
+          "6": 0.0496,
+          "W": 0.0611
+        }
+      }
+    },
+    "byEdition": {
+      "2014": {
+        "matches": 6,
+        "decided": 6,
+        "legalBalls": 1323,
+        "runsPerOver": 7.97,
+        "dotPct": 35.5,
+        "fourPct": 11.3,
+        "sixPct": 4.7,
+        "ballsPerWicket": 19.7,
+        "powerplayRpo": 8.31,
+        "middleRpo": 7.56,
+        "deathRpo": 8.4,
+        "firstInningsAvg": 147,
+        "firstInningsSd": 26.9,
+        "chaseWinPct": 100,
+        "tossFieldPct": 67,
+        "tossWinnerWinPct": 67,
+        "chaseUplift": 1.34,
+        "reducedInnings": 1,
+        "widesPerOver": 0.14,
+        "noBallsPerOver": 0.005,
+        "extrasPerOver": 0.44,
+        "dismissalFingerprintPct": {
+          "caught": 55.2,
+          "bowled": 17.9,
+          "run out": 14.9,
+          "caught and bowled": 6,
+          "lbw": 4.5,
+          "stumped": 1.5
+        },
+        "reviews": {
+          "total": 0,
+          "upheldPct": 0,
+          "umpiresCallPct": 0,
+          "byBattingSidePct": 0
+        },
+        "rain": {
+          "dlFinishes": 1,
+          "noResults": 0
+        },
+        "ties": 0,
+        "populationVectors": {
+          "pp": {
+            "0": 0.4545,
+            "1": 0.2374,
+            "2": 0.0505,
+            "3": 0,
+            "4": 0.1742,
+            "6": 0.0429,
+            "W": 0.0404
+          },
+          "mid": {
+            "0": 0.2694,
+            "1": 0.487,
+            "2": 0.0622,
+            "3": 0.0052,
+            "4": 0.0743,
+            "6": 0.0518,
+            "W": 0.0501
+          },
+          "death": {
+            "0": 0.2863,
+            "1": 0.4122,
+            "2": 0.0802,
+            "3": 0,
+            "4": 0.1107,
+            "6": 0.0496,
+            "W": 0.0611
+          }
+        }
+      }
+    }
+  },
+  {
+    "id": "dharamsala",
+    "name": "HPCA Stadium",
+    "city": "Dharamsala",
+    "country": "India",
+    "homeTeam": "India",
+    "overall": {
+      "matches": 6,
+      "decided": 5,
+      "legalBalls": 1030,
+      "runsPerOver": 7.75,
+      "dotPct": 38.9,
+      "fourPct": 12,
+      "sixPct": 3.6,
+      "ballsPerWicket": 14.9,
+      "powerplayRpo": 7.74,
+      "middleRpo": 7.14,
+      "deathRpo": 9,
+      "firstInningsAvg": 157.3,
+      "firstInningsSd": 16.1,
+      "chaseWinPct": 20,
+      "tossFieldPct": 67,
+      "tossWinnerWinPct": 20,
+      "chaseUplift": -1.26,
+      "reducedInnings": 3,
+      "widesPerOver": 0.16,
+      "noBallsPerOver": 0.023,
+      "extrasPerOver": 0.57,
+      "dismissalFingerprintPct": {
+        "caught": 58,
+        "bowled": 20.3,
+        "run out": 11.6,
+        "stumped": 7.2,
+        "lbw": 2.9
+      },
+      "reviews": {
+        "total": 0,
+        "upheldPct": 0,
+        "umpiresCallPct": 0,
+        "byBattingSidePct": 0
+      },
+      "rain": {
+        "dlFinishes": 1,
+        "noResults": 1
+      },
+      "ties": 0,
+      "populationVectors": {
+        "pp": {
+          "0": 0.4896,
+          "1": 0.2326,
+          "2": 0.0486,
+          "3": 0.0035,
+          "4": 0.1771,
+          "6": 0.0208,
+          "W": 0.0278
+        },
+        "mid": {
+          "0": 0.3175,
+          "1": 0.4418,
+          "2": 0.0608,
+          "3": 0.0026,
+          "4": 0.0952,
+          "6": 0.0291,
+          "W": 0.0529
+        },
+        "death": {
+          "0": 0.25,
+          "1": 0.3654,
+          "2": 0.125,
+          "3": 0,
+          "4": 0.101,
+          "6": 0.0577,
+          "W": 0.101
+        }
+      }
+    },
+    "byEdition": {
+      "2016": {
+        "matches": 6,
+        "decided": 5,
+        "legalBalls": 1030,
+        "runsPerOver": 7.75,
+        "dotPct": 38.9,
+        "fourPct": 12,
+        "sixPct": 3.6,
+        "ballsPerWicket": 14.9,
+        "powerplayRpo": 7.74,
+        "middleRpo": 7.14,
+        "deathRpo": 9,
+        "firstInningsAvg": 157.3,
+        "firstInningsSd": 16.1,
+        "chaseWinPct": 20,
+        "tossFieldPct": 67,
+        "tossWinnerWinPct": 20,
+        "chaseUplift": -1.26,
+        "reducedInnings": 3,
+        "widesPerOver": 0.16,
+        "noBallsPerOver": 0.023,
+        "extrasPerOver": 0.57,
+        "dismissalFingerprintPct": {
+          "caught": 58,
+          "bowled": 20.3,
+          "run out": 11.6,
+          "stumped": 7.2,
+          "lbw": 2.9
+        },
+        "reviews": {
+          "total": 0,
+          "upheldPct": 0,
+          "umpiresCallPct": 0,
+          "byBattingSidePct": 0
+        },
+        "rain": {
+          "dlFinishes": 1,
+          "noResults": 1
+        },
+        "ties": 0,
+        "populationVectors": {
+          "pp": {
+            "0": 0.4896,
+            "1": 0.2326,
+            "2": 0.0486,
+            "3": 0.0035,
+            "4": 0.1771,
+            "6": 0.0208,
+            "W": 0.0278
+          },
+          "mid": {
+            "0": 0.3175,
+            "1": 0.4418,
+            "2": 0.0608,
+            "3": 0.0026,
+            "4": 0.0952,
+            "6": 0.0291,
+            "W": 0.0529
+          },
+          "death": {
+            "0": 0.25,
+            "1": 0.3654,
+            "2": 0.125,
+            "3": 0,
+            "4": 0.101,
+            "6": 0.0577,
+            "W": 0.101
+          }
+        }
+      }
+    }
+  },
+  {
+    "id": "ahmedabad",
+    "name": "Narendra Modi Stadium",
+    "city": "Ahmedabad",
+    "country": "India",
+    "homeTeam": "India",
+    "overall": {
+      "matches": 6,
+      "decided": 6,
+      "legalBalls": 1387,
+      "runsPerOver": 9.33,
+      "dotPct": 33.7,
+      "fourPct": 12.5,
+      "sixPct": 7.7,
+      "ballsPerWicket": 18.3,
+      "powerplayRpo": 9.46,
+      "middleRpo": 8.97,
+      "deathRpo": 9.89,
+      "firstInningsAvg": 199.8,
+      "firstInningsSd": 30.4,
+      "chaseWinPct": 33,
+      "tossFieldPct": 67,
+      "tossWinnerWinPct": 67,
+      "chaseUplift": -1.38,
+      "reducedInnings": 0,
+      "widesPerOver": 0.27,
+      "noBallsPerOver": 0.035,
+      "extrasPerOver": 0.4,
+      "dismissalFingerprintPct": {
+        "caught": 76.3,
+        "bowled": 21.1,
+        "caught and bowled": 1.3,
+        "run out": 1.3
+      },
+      "reviews": {
+        "total": 7,
+        "upheldPct": 14,
+        "umpiresCallPct": 29,
+        "byBattingSidePct": 29
+      },
+      "rain": {
+        "dlFinishes": 0,
+        "noResults": 0
+      },
+      "ties": 0,
+      "populationVectors": {
+        "pp": {
+          "0": 0.4028,
+          "1": 0.2407,
+          "2": 0.0394,
+          "3": 0.0046,
+          "4": 0.1875,
+          "6": 0.0694,
+          "W": 0.0556
+        },
+        "mid": {
+          "0": 0.2361,
+          "1": 0.4907,
+          "2": 0.0617,
+          "3": 0.0015,
+          "4": 0.0895,
+          "6": 0.0756,
+          "W": 0.0448
+        },
+        "death": {
+          "0": 0.2476,
+          "1": 0.4007,
+          "2": 0.0717,
+          "3": 0,
+          "4": 0.1173,
+          "6": 0.0912,
+          "W": 0.0717
+        }
+      }
+    },
+    "byEdition": {
+      "2026": {
+        "matches": 6,
+        "decided": 6,
+        "legalBalls": 1387,
+        "runsPerOver": 9.33,
+        "dotPct": 33.7,
+        "fourPct": 12.5,
+        "sixPct": 7.7,
+        "ballsPerWicket": 18.3,
+        "powerplayRpo": 9.46,
+        "middleRpo": 8.97,
+        "deathRpo": 9.89,
+        "firstInningsAvg": 199.8,
+        "firstInningsSd": 30.4,
+        "chaseWinPct": 33,
+        "tossFieldPct": 67,
+        "tossWinnerWinPct": 67,
+        "chaseUplift": -1.38,
+        "reducedInnings": 0,
+        "widesPerOver": 0.27,
+        "noBallsPerOver": 0.035,
+        "extrasPerOver": 0.4,
+        "dismissalFingerprintPct": {
+          "caught": 76.3,
+          "bowled": 21.1,
+          "caught and bowled": 1.3,
+          "run out": 1.3
+        },
+        "reviews": {
+          "total": 7,
+          "upheldPct": 14,
+          "umpiresCallPct": 29,
+          "byBattingSidePct": 29
+        },
+        "rain": {
+          "dlFinishes": 0,
+          "noResults": 0
+        },
+        "ties": 0,
+        "populationVectors": {
+          "pp": {
+            "0": 0.4028,
+            "1": 0.2407,
+            "2": 0.0394,
+            "3": 0.0046,
+            "4": 0.1875,
+            "6": 0.0694,
+            "W": 0.0556
+          },
+          "mid": {
+            "0": 0.2361,
+            "1": 0.4907,
+            "2": 0.0617,
+            "3": 0.0015,
+            "4": 0.0895,
+            "6": 0.0756,
+            "W": 0.0448
+          },
+          "death": {
+            "0": 0.2476,
+            "1": 0.4007,
+            "2": 0.0717,
+            "3": 0,
+            "4": 0.1173,
+            "6": 0.0912,
+            "W": 0.0717
+          }
+        }
+      }
+    }
+  },
+  {
+    "id": "al-amerat",
+    "name": "Al Amerat Cricket Ground",
+    "city": "Muscat",
+    "country": "Oman",
+    "homeTeam": "Oman",
+    "overall": {
+      "matches": 6,
+      "decided": 6,
+      "legalBalls": 1378,
+      "runsPerOver": 7.18,
+      "dotPct": 37.8,
+      "fourPct": 7.8,
+      "sixPct": 4.6,
+      "ballsPerWicket": 15,
+      "powerplayRpo": 6.14,
+      "middleRpo": 7.3,
+      "deathRpo": 8.41,
+      "firstInningsAvg": 148.3,
+      "firstInningsSd": 22.4,
+      "chaseWinPct": 33,
+      "tossFieldPct": 33,
+      "tossWinnerWinPct": 67,
+      "chaseUplift": -0.49,
+      "reducedInnings": 0,
+      "widesPerOver": 0.18,
+      "noBallsPerOver": 0.044,
+      "extrasPerOver": 0.38,
+      "dismissalFingerprintPct": {
+        "caught": 69.6,
+        "bowled": 15.2,
+        "run out": 8.7,
+        "lbw": 4.3,
+        "stumped": 1.1,
+        "caught and bowled": 1.1
+      },
+      "reviews": {
+        "total": 11,
+        "upheldPct": 27,
+        "umpiresCallPct": 18,
+        "byBattingSidePct": 18
+      },
+      "rain": {
+        "dlFinishes": 0,
+        "noResults": 0
+      },
+      "ties": 0,
+      "populationVectors": {
+        "pp": {
+          "0": 0.4907,
+          "1": 0.2778,
+          "2": 0.0579,
+          "3": 0,
+          "4": 0.0972,
+          "6": 0.0231,
+          "W": 0.0532
+        },
+        "mid": {
+          "0": 0.2781,
+          "1": 0.5,
+          "2": 0.075,
+          "3": 0,
+          "4": 0.0578,
+          "6": 0.05,
+          "W": 0.0391
+        },
+        "death": {
+          "0": 0.2451,
+          "1": 0.415,
+          "2": 0.049,
+          "3": 0,
+          "4": 0.0915,
+          "6": 0.0654,
+          "W": 0.134
+        }
+      }
+    },
+    "byEdition": {
+      "2021": {
+        "matches": 6,
+        "decided": 6,
+        "legalBalls": 1378,
+        "runsPerOver": 7.18,
+        "dotPct": 37.8,
+        "fourPct": 7.8,
+        "sixPct": 4.6,
+        "ballsPerWicket": 15,
+        "powerplayRpo": 6.14,
+        "middleRpo": 7.3,
+        "deathRpo": 8.41,
+        "firstInningsAvg": 148.3,
+        "firstInningsSd": 22.4,
+        "chaseWinPct": 33,
+        "tossFieldPct": 33,
+        "tossWinnerWinPct": 67,
+        "chaseUplift": -0.49,
+        "reducedInnings": 0,
+        "widesPerOver": 0.18,
+        "noBallsPerOver": 0.044,
+        "extrasPerOver": 0.38,
+        "dismissalFingerprintPct": {
+          "caught": 69.6,
+          "bowled": 15.2,
+          "run out": 8.7,
+          "lbw": 4.3,
+          "stumped": 1.1,
+          "caught and bowled": 1.1
+        },
+        "reviews": {
+          "total": 11,
+          "upheldPct": 27,
+          "umpiresCallPct": 18,
+          "byBattingSidePct": 18
+        },
+        "rain": {
+          "dlFinishes": 0,
+          "noResults": 0
+        },
+        "ties": 0,
+        "populationVectors": {
+          "pp": {
+            "0": 0.4907,
+            "1": 0.2778,
+            "2": 0.0579,
+            "3": 0,
+            "4": 0.0972,
+            "6": 0.0231,
+            "W": 0.0532
+          },
+          "mid": {
+            "0": 0.2781,
+            "1": 0.5,
+            "2": 0.075,
+            "3": 0,
+            "4": 0.0578,
+            "6": 0.05,
+            "W": 0.0391
+          },
+          "death": {
+            "0": 0.2451,
+            "1": 0.415,
+            "2": 0.049,
+            "3": 0,
+            "4": 0.0915,
+            "6": 0.0654,
+            "W": 0.134
+          }
+        }
+      }
+    }
+  },
+  {
+    "id": "adelaide",
+    "name": "Adelaide Oval",
+    "city": "Adelaide",
+    "country": "Australia",
+    "homeTeam": "Australia",
+    "overall": {
+      "matches": 6,
+      "decided": 6,
+      "legalBalls": 1365,
+      "runsPerOver": 7.9,
+      "dotPct": 38.2,
+      "fourPct": 10.8,
+      "sixPct": 4.4,
+      "ballsPerWicket": 18.7,
+      "powerplayRpo": 7.03,
+      "middleRpo": 7.98,
+      "deathRpo": 9.03,
+      "firstInningsAvg": 156.5,
+      "firstInningsSd": 28.8,
+      "chaseWinPct": 50,
+      "tossFieldPct": 67,
+      "tossWinnerWinPct": 17,
+      "chaseUplift": 0.06,
+      "reducedInnings": 1,
+      "widesPerOver": 0.16,
+      "noBallsPerOver": 0.04,
+      "extrasPerOver": 0.38,
+      "dismissalFingerprintPct": {
+        "caught": 72.6,
+        "bowled": 13.7,
+        "lbw": 5.5,
+        "run out": 5.5,
+        "caught and bowled": 1.4,
+        "hit wicket": 1.4
+      },
+      "reviews": {
+        "total": 9,
+        "upheldPct": 0,
+        "umpiresCallPct": 33,
+        "byBattingSidePct": 33
+      },
+      "rain": {
+        "dlFinishes": 1,
+        "noResults": 0
+      },
+      "ties": 0,
+      "populationVectors": {
+        "pp": {
+          "0": 0.5076,
+          "1": 0.2475,
+          "2": 0.0606,
+          "3": 0.0101,
+          "4": 0.1136,
+          "6": 0.0354,
+          "W": 0.0253
+        },
+        "mid": {
+          "0": 0.2946,
+          "1": 0.4209,
+          "2": 0.101,
+          "3": 0.0034,
+          "4": 0.0976,
+          "6": 0.037,
+          "W": 0.0455
+        },
+        "death": {
+          "0": 0.2473,
+          "1": 0.3477,
+          "2": 0.1254,
+          "3": 0,
+          "4": 0.1183,
+          "6": 0.0573,
+          "W": 0.1039
+        }
+      }
+    },
+    "byEdition": {
+      "2022": {
+        "matches": 6,
+        "decided": 6,
+        "legalBalls": 1365,
+        "runsPerOver": 7.9,
+        "dotPct": 38.2,
+        "fourPct": 10.8,
+        "sixPct": 4.4,
+        "ballsPerWicket": 18.7,
+        "powerplayRpo": 7.03,
+        "middleRpo": 7.98,
+        "deathRpo": 9.03,
+        "firstInningsAvg": 156.5,
+        "firstInningsSd": 28.8,
+        "chaseWinPct": 50,
+        "tossFieldPct": 67,
+        "tossWinnerWinPct": 17,
+        "chaseUplift": 0.06,
+        "reducedInnings": 1,
+        "widesPerOver": 0.16,
+        "noBallsPerOver": 0.04,
+        "extrasPerOver": 0.38,
+        "dismissalFingerprintPct": {
+          "caught": 72.6,
+          "bowled": 13.7,
+          "lbw": 5.5,
+          "run out": 5.5,
+          "caught and bowled": 1.4,
+          "hit wicket": 1.4
+        },
+        "reviews": {
+          "total": 9,
+          "upheldPct": 0,
+          "umpiresCallPct": 33,
+          "byBattingSidePct": 33
+        },
+        "rain": {
+          "dlFinishes": 1,
+          "noResults": 0
+        },
+        "ties": 0,
+        "populationVectors": {
+          "pp": {
+            "0": 0.5076,
+            "1": 0.2475,
+            "2": 0.0606,
+            "3": 0.0101,
+            "4": 0.1136,
+            "6": 0.0354,
+            "W": 0.0253
+          },
+          "mid": {
+            "0": 0.2946,
+            "1": 0.4209,
+            "2": 0.101,
+            "3": 0.0034,
+            "4": 0.0976,
+            "6": 0.037,
+            "W": 0.0455
+          },
+          "death": {
+            "0": 0.2473,
+            "1": 0.3477,
+            "2": 0.1254,
+            "3": 0,
+            "4": 0.1183,
+            "6": 0.0573,
+            "W": 0.1039
+          }
+        }
+      }
+    }
+  },
+  {
+    "id": "geelong",
+    "name": "GMHBA Stadium",
+    "city": "Geelong",
+    "country": "Australia",
+    "homeTeam": "Australia",
+    "overall": {
+      "matches": 6,
+      "decided": 6,
+      "legalBalls": 1413,
+      "runsPerOver": 6.62,
+      "dotPct": 40.5,
+      "fourPct": 6.8,
+      "sixPct": 2.8,
+      "ballsPerWicket": 16.2,
+      "powerplayRpo": 6.29,
+      "middleRpo": 5.94,
+      "deathRpo": 8.36,
+      "firstInningsAvg": 142.8,
+      "firstInningsSd": 21.8,
+      "chaseWinPct": 33,
+      "tossFieldPct": 33,
+      "tossWinnerWinPct": 33,
+      "chaseUplift": -1.06,
+      "reducedInnings": 0,
+      "widesPerOver": 0.17,
+      "noBallsPerOver": 0.017,
+      "extrasPerOver": 0.36,
+      "dismissalFingerprintPct": {
+        "caught": 58.6,
+        "bowled": 23,
+        "run out": 9.2,
+        "lbw": 6.9,
+        "stumped": 1.1,
+        "caught and bowled": 1.1
+      },
+      "reviews": {
+        "total": 10,
+        "upheldPct": 30,
+        "umpiresCallPct": 10,
+        "byBattingSidePct": 20
+      },
+      "rain": {
+        "dlFinishes": 0,
+        "noResults": 0
+      },
+      "ties": 0,
+      "populationVectors": {
+        "pp": {
+          "0": 0.4583,
+          "1": 0.294,
+          "2": 0.0787,
+          "3": 0.0139,
+          "4": 0.0833,
+          "6": 0.0231,
+          "W": 0.0486
+        },
+        "mid": {
+          "0": 0.3426,
+          "1": 0.4398,
+          "2": 0.0849,
+          "3": 0.0093,
+          "4": 0.0509,
+          "6": 0.017,
+          "W": 0.0556
+        },
+        "death": {
+          "0": 0.2823,
+          "1": 0.3604,
+          "2": 0.1351,
+          "3": 0.018,
+          "4": 0.0781,
+          "6": 0.0511,
+          "W": 0.0751
+        }
+      }
+    },
+    "byEdition": {
+      "2022": {
+        "matches": 6,
+        "decided": 6,
+        "legalBalls": 1413,
+        "runsPerOver": 6.62,
+        "dotPct": 40.5,
+        "fourPct": 6.8,
+        "sixPct": 2.8,
+        "ballsPerWicket": 16.2,
+        "powerplayRpo": 6.29,
+        "middleRpo": 5.94,
+        "deathRpo": 8.36,
+        "firstInningsAvg": 142.8,
+        "firstInningsSd": 21.8,
+        "chaseWinPct": 33,
+        "tossFieldPct": 33,
+        "tossWinnerWinPct": 33,
+        "chaseUplift": -1.06,
+        "reducedInnings": 0,
+        "widesPerOver": 0.17,
+        "noBallsPerOver": 0.017,
+        "extrasPerOver": 0.36,
+        "dismissalFingerprintPct": {
+          "caught": 58.6,
+          "bowled": 23,
+          "run out": 9.2,
+          "lbw": 6.9,
+          "stumped": 1.1,
+          "caught and bowled": 1.1
+        },
+        "reviews": {
+          "total": 10,
+          "upheldPct": 30,
+          "umpiresCallPct": 10,
+          "byBattingSidePct": 20
+        },
+        "rain": {
+          "dlFinishes": 0,
+          "noResults": 0
+        },
+        "ties": 0,
+        "populationVectors": {
+          "pp": {
+            "0": 0.4583,
+            "1": 0.294,
+            "2": 0.0787,
+            "3": 0.0139,
+            "4": 0.0833,
+            "6": 0.0231,
+            "W": 0.0486
+          },
+          "mid": {
+            "0": 0.3426,
+            "1": 0.4398,
+            "2": 0.0849,
+            "3": 0.0093,
+            "4": 0.0509,
+            "6": 0.017,
+            "W": 0.0556
+          },
+          "death": {
+            "0": 0.2823,
+            "1": 0.3604,
+            "2": 0.1351,
+            "3": 0.018,
+            "4": 0.0781,
+            "6": 0.0511,
+            "W": 0.0751
+          }
+        }
+      }
+    }
+  },
+  {
+    "id": "ssc",
+    "name": "Sinhalese Sports Club",
+    "city": "Colombo",
+    "country": "Sri Lanka",
+    "homeTeam": "Sri Lanka",
+    "overall": {
+      "matches": 5,
+      "decided": 5,
+      "legalBalls": 1129,
+      "runsPerOver": 8.09,
+      "dotPct": 37.5,
+      "fourPct": 13,
+      "sixPct": 4.6,
+      "ballsPerWicket": 15.3,
+      "powerplayRpo": 8.02,
+      "middleRpo": 7.34,
+      "deathRpo": 9.86,
+      "firstInningsAvg": 174.8,
+      "firstInningsSd": 50.9,
+      "chaseWinPct": 40,
+      "tossFieldPct": 80,
+      "tossWinnerWinPct": 60,
+      "chaseUplift": -1.45,
+      "reducedInnings": 0,
+      "widesPerOver": 0.14,
+      "noBallsPerOver": 0.021,
+      "extrasPerOver": 0.27,
+      "dismissalFingerprintPct": {
+        "caught": 66.2,
+        "bowled": 17.6,
+        "run out": 6.8,
+        "caught and bowled": 4.1,
+        "lbw": 4.1,
+        "stumped": 1.4
+      },
+      "reviews": {
+        "total": 10,
+        "upheldPct": 30,
+        "umpiresCallPct": 10,
+        "byBattingSidePct": 60
+      },
+      "rain": {
+        "dlFinishes": 0,
+        "noResults": 0
+      },
+      "ties": 0,
+      "populationVectors": {
+        "pp": {
+          "0": 0.4667,
+          "1": 0.2056,
+          "2": 0.0361,
+          "3": 0.0028,
+          "4": 0.1917,
+          "6": 0.0389,
+          "W": 0.0583
+        },
+        "mid": {
+          "0": 0.2712,
+          "1": 0.4878,
+          "2": 0.0697,
+          "3": 0,
+          "4": 0.096,
+          "6": 0.0282,
+          "W": 0.0471
+        },
+        "death": {
+          "0": 0.2143,
+          "1": 0.3739,
+          "2": 0.0756,
+          "3": 0.0126,
+          "4": 0.1134,
+          "6": 0.0966,
+          "W": 0.1134
+        }
+      }
+    },
+    "byEdition": {
+      "2026": {
+        "matches": 5,
+        "decided": 5,
+        "legalBalls": 1129,
+        "runsPerOver": 8.09,
+        "dotPct": 37.5,
+        "fourPct": 13,
+        "sixPct": 4.6,
+        "ballsPerWicket": 15.3,
+        "powerplayRpo": 8.02,
+        "middleRpo": 7.34,
+        "deathRpo": 9.86,
+        "firstInningsAvg": 174.8,
+        "firstInningsSd": 50.9,
+        "chaseWinPct": 40,
+        "tossFieldPct": 80,
+        "tossWinnerWinPct": 60,
+        "chaseUplift": -1.45,
+        "reducedInnings": 0,
+        "widesPerOver": 0.14,
+        "noBallsPerOver": 0.021,
+        "extrasPerOver": 0.27,
+        "dismissalFingerprintPct": {
+          "caught": 66.2,
+          "bowled": 17.6,
+          "run out": 6.8,
+          "caught and bowled": 4.1,
+          "lbw": 4.1,
+          "stumped": 1.4
+        },
+        "reviews": {
+          "total": 10,
+          "upheldPct": 30,
+          "umpiresCallPct": 10,
+          "byBattingSidePct": 60
+        },
+        "rain": {
+          "dlFinishes": 0,
+          "noResults": 0
+        },
+        "ties": 0,
+        "populationVectors": {
+          "pp": {
+            "0": 0.4667,
+            "1": 0.2056,
+            "2": 0.0361,
+            "3": 0.0028,
+            "4": 0.1917,
+            "6": 0.0389,
+            "W": 0.0583
+          },
+          "mid": {
+            "0": 0.2712,
+            "1": 0.4878,
+            "2": 0.0697,
+            "3": 0,
+            "4": 0.096,
+            "6": 0.0282,
+            "W": 0.0471
+          },
+          "death": {
+            "0": 0.2143,
+            "1": 0.3739,
+            "2": 0.0756,
+            "3": 0.0126,
+            "4": 0.1134,
+            "6": 0.0966,
+            "W": 0.1134
+          }
+        }
+      }
+    }
+  },
+  {
+    "id": "nagpur",
+    "name": "VCA Stadium, Jamtha",
+    "city": "Nagpur",
+    "country": "India",
+    "homeTeam": "India",
+    "overall": {
+      "matches": 5,
+      "decided": 5,
+      "legalBalls": 1113,
+      "runsPerOver": 6.68,
+      "dotPct": 41.2,
+      "fourPct": 8.5,
+      "sixPct": 2.7,
+      "ballsPerWicket": 15.5,
+      "powerplayRpo": 6.02,
+      "middleRpo": 6.43,
+      "deathRpo": 8.12,
+      "firstInningsAvg": 136,
+      "firstInningsSd": 15.7,
+      "chaseWinPct": 40,
+      "tossFieldPct": 40,
+      "tossWinnerWinPct": 60,
+      "chaseUplift": -0.25,
+      "reducedInnings": 1,
+      "widesPerOver": 0.17,
+      "noBallsPerOver": 0.022,
+      "extrasPerOver": 0.42,
+      "dismissalFingerprintPct": {
+        "caught": 51.4,
+        "run out": 13.9,
+        "bowled": 13.9,
+        "stumped": 9.7,
+        "lbw": 6.9,
+        "caught and bowled": 4.2
+      },
+      "reviews": {
+        "total": 0,
+        "upheldPct": 0,
+        "umpiresCallPct": 0,
+        "byBattingSidePct": 0
+      },
+      "rain": {
+        "dlFinishes": 1,
+        "noResults": 0
+      },
+      "ties": 0,
+      "populationVectors": {
+        "pp": {
+          "0": 0.534,
+          "1": 0.2284,
+          "2": 0.0401,
+          "3": 0.0031,
+          "4": 0.1173,
+          "6": 0.0185,
+          "W": 0.0586
+        },
+        "mid": {
+          "0": 0.3251,
+          "1": 0.465,
+          "2": 0.0988,
+          "3": 0.0021,
+          "4": 0.0556,
+          "6": 0.0144,
+          "W": 0.0391
+        },
+        "death": {
+          "0": 0.2863,
+          "1": 0.3922,
+          "2": 0.0824,
+          "3": 0.0078,
+          "4": 0.0824,
+          "6": 0.0549,
+          "W": 0.0941
+        }
+      }
+    },
+    "byEdition": {
+      "2016": {
+        "matches": 5,
+        "decided": 5,
+        "legalBalls": 1113,
+        "runsPerOver": 6.68,
+        "dotPct": 41.2,
+        "fourPct": 8.5,
+        "sixPct": 2.7,
+        "ballsPerWicket": 15.5,
+        "powerplayRpo": 6.02,
+        "middleRpo": 6.43,
+        "deathRpo": 8.12,
+        "firstInningsAvg": 136,
+        "firstInningsSd": 15.7,
+        "chaseWinPct": 40,
+        "tossFieldPct": 40,
+        "tossWinnerWinPct": 60,
+        "chaseUplift": -0.25,
+        "reducedInnings": 1,
+        "widesPerOver": 0.17,
+        "noBallsPerOver": 0.022,
+        "extrasPerOver": 0.42,
+        "dismissalFingerprintPct": {
+          "caught": 51.4,
+          "run out": 13.9,
+          "bowled": 13.9,
+          "stumped": 9.7,
+          "lbw": 6.9,
+          "caught and bowled": 4.2
+        },
+        "reviews": {
+          "total": 0,
+          "upheldPct": 0,
+          "umpiresCallPct": 0,
+          "byBattingSidePct": 0
+        },
+        "rain": {
+          "dlFinishes": 1,
+          "noResults": 0
+        },
+        "ties": 0,
+        "populationVectors": {
+          "pp": {
+            "0": 0.534,
+            "1": 0.2284,
+            "2": 0.0401,
+            "3": 0.0031,
+            "4": 0.1173,
+            "6": 0.0185,
+            "W": 0.0586
+          },
+          "mid": {
+            "0": 0.3251,
+            "1": 0.465,
+            "2": 0.0988,
+            "3": 0.0021,
+            "4": 0.0556,
+            "6": 0.0144,
+            "W": 0.0391
+          },
+          "death": {
+            "0": 0.2863,
+            "1": 0.3922,
+            "2": 0.0824,
+            "3": 0.0078,
+            "4": 0.0824,
+            "6": 0.0549,
+            "W": 0.0941
+          }
+        }
+      }
+    }
+  },
+  {
+    "id": "chennai",
+    "name": "MA Chidambaram Stadium (Chepauk)",
+    "city": "Chennai",
+    "country": "India",
+    "homeTeam": "India",
+    "overall": {
+      "matches": 5,
+      "decided": 5,
+      "legalBalls": 1118,
+      "runsPerOver": 9.68,
+      "dotPct": 28.4,
+      "fourPct": 11.4,
+      "sixPct": 7.9,
+      "ballsPerWicket": 23.3,
+      "powerplayRpo": 9.8,
+      "middleRpo": 9.01,
+      "deathRpo": 11.12,
+      "firstInningsAvg": 199.4,
+      "firstInningsSd": 33.9,
+      "chaseWinPct": 40,
+      "tossFieldPct": 40,
+      "tossWinnerWinPct": 20,
+      "chaseUplift": -0.63,
+      "reducedInnings": 0,
+      "widesPerOver": 0.25,
+      "noBallsPerOver": 0.038,
+      "extrasPerOver": 0.45,
+      "dismissalFingerprintPct": {
+        "caught": 72.9,
+        "bowled": 16.7,
+        "lbw": 6.3,
+        "caught and bowled": 2.1,
+        "retired out": 2.1
+      },
+      "reviews": {
+        "total": 8,
+        "upheldPct": 13,
+        "umpiresCallPct": 13,
+        "byBattingSidePct": 25
+      },
+      "rain": {
+        "dlFinishes": 0,
+        "noResults": 0
+      },
+      "ties": 0,
+      "populationVectors": {
+        "pp": {
+          "0": 0.3611,
+          "1": 0.3139,
+          "2": 0.0833,
+          "3": 0.0056,
+          "4": 0.1389,
+          "6": 0.0722,
+          "W": 0.025
+        },
+        "mid": {
+          "0": 0.2185,
+          "1": 0.4944,
+          "2": 0.0815,
+          "3": 0.0019,
+          "4": 0.0944,
+          "6": 0.0704,
+          "W": 0.0389
+        },
+        "death": {
+          "0": 0.1606,
+          "1": 0.4541,
+          "2": 0.0872,
+          "3": 0,
+          "4": 0.1101,
+          "6": 0.1055,
+          "W": 0.0826
+        }
+      }
+    },
+    "byEdition": {
+      "2026": {
+        "matches": 5,
+        "decided": 5,
+        "legalBalls": 1118,
+        "runsPerOver": 9.68,
+        "dotPct": 28.4,
+        "fourPct": 11.4,
+        "sixPct": 7.9,
+        "ballsPerWicket": 23.3,
+        "powerplayRpo": 9.8,
+        "middleRpo": 9.01,
+        "deathRpo": 11.12,
+        "firstInningsAvg": 199.4,
+        "firstInningsSd": 33.9,
+        "chaseWinPct": 40,
+        "tossFieldPct": 40,
+        "tossWinnerWinPct": 20,
+        "chaseUplift": -0.63,
+        "reducedInnings": 0,
+        "widesPerOver": 0.25,
+        "noBallsPerOver": 0.038,
+        "extrasPerOver": 0.45,
+        "dismissalFingerprintPct": {
+          "caught": 72.9,
+          "bowled": 16.7,
+          "lbw": 6.3,
+          "caught and bowled": 2.1,
+          "retired out": 2.1
+        },
+        "reviews": {
+          "total": 8,
+          "upheldPct": 13,
+          "umpiresCallPct": 13,
+          "byBattingSidePct": 25
+        },
+        "rain": {
+          "dlFinishes": 0,
+          "noResults": 0
+        },
+        "ties": 0,
+        "populationVectors": {
+          "pp": {
+            "0": 0.3611,
+            "1": 0.3139,
+            "2": 0.0833,
+            "3": 0.0056,
+            "4": 0.1389,
+            "6": 0.0722,
+            "W": 0.025
+          },
+          "mid": {
+            "0": 0.2185,
+            "1": 0.4944,
+            "2": 0.0815,
+            "3": 0.0019,
+            "4": 0.0944,
+            "6": 0.0704,
+            "W": 0.0389
+          },
+          "death": {
+            "0": 0.1606,
+            "1": 0.4541,
+            "2": 0.0872,
+            "3": 0,
+            "4": 0.1101,
+            "6": 0.1055,
+            "W": 0.0826
+          }
+        }
+      }
+    }
+  },
+  {
+    "id": "mcg",
+    "name": "Melbourne Cricket Ground",
+    "city": "Melbourne",
+    "country": "Australia",
+    "homeTeam": "Australia",
+    "overall": {
+      "matches": 4,
+      "decided": 4,
+      "legalBalls": 901,
+      "runsPerOver": 7.7,
+      "dotPct": 39.4,
+      "fourPct": 10,
+      "sixPct": 3.3,
+      "ballsPerWicket": 15.8,
+      "powerplayRpo": 6.69,
+      "middleRpo": 7.43,
+      "deathRpo": 9.95,
+      "firstInningsAvg": 159.8,
+      "firstInningsSd": 20.1,
+      "chaseWinPct": 50,
+      "tossFieldPct": 75,
+      "tossWinnerWinPct": 75,
+      "chaseUplift": -0.74,
+      "reducedInnings": 1,
+      "widesPerOver": 0.3,
+      "noBallsPerOver": 0.027,
+      "extrasPerOver": 0.58,
+      "dismissalFingerprintPct": {
+        "caught": 63.2,
+        "bowled": 19.3,
+        "caught and bowled": 7,
+        "lbw": 5.3,
+        "run out": 3.5,
+        "stumped": 1.8
+      },
+      "reviews": {
+        "total": 7,
+        "upheldPct": 0,
+        "umpiresCallPct": 14,
+        "byBattingSidePct": 29
+      },
+      "rain": {
+        "dlFinishes": 1,
+        "noResults": 0
+      },
+      "ties": 0,
+      "populationVectors": {
+        "pp": {
+          "0": 0.504,
+          "1": 0.2024,
+          "2": 0.0675,
+          "3": 0.0437,
+          "4": 0.1032,
+          "6": 0.0238,
+          "W": 0.0556
+        },
+        "mid": {
+          "0": 0.3148,
+          "1": 0.4206,
+          "2": 0.1032,
+          "3": 0.0079,
+          "4": 0.0794,
+          "6": 0.0344,
+          "W": 0.0397
+        },
+        "death": {
+          "0": 0.2283,
+          "1": 0.337,
+          "2": 0.1033,
+          "3": 0.0163,
+          "4": 0.1467,
+          "6": 0.0489,
+          "W": 0.1196
+        }
+      }
+    },
+    "byEdition": {
+      "2022": {
+        "matches": 4,
+        "decided": 4,
+        "legalBalls": 901,
+        "runsPerOver": 7.7,
+        "dotPct": 39.4,
+        "fourPct": 10,
+        "sixPct": 3.3,
+        "ballsPerWicket": 15.8,
+        "powerplayRpo": 6.69,
+        "middleRpo": 7.43,
+        "deathRpo": 9.95,
+        "firstInningsAvg": 159.8,
+        "firstInningsSd": 20.1,
+        "chaseWinPct": 50,
+        "tossFieldPct": 75,
+        "tossWinnerWinPct": 75,
+        "chaseUplift": -0.74,
+        "reducedInnings": 1,
+        "widesPerOver": 0.3,
+        "noBallsPerOver": 0.027,
+        "extrasPerOver": 0.58,
+        "dismissalFingerprintPct": {
+          "caught": 63.2,
+          "bowled": 19.3,
+          "caught and bowled": 7,
+          "lbw": 5.3,
+          "run out": 3.5,
+          "stumped": 1.8
+        },
+        "reviews": {
+          "total": 7,
+          "upheldPct": 0,
+          "umpiresCallPct": 14,
+          "byBattingSidePct": 29
+        },
+        "rain": {
+          "dlFinishes": 1,
+          "noResults": 0
+        },
+        "ties": 0,
+        "populationVectors": {
+          "pp": {
+            "0": 0.504,
+            "1": 0.2024,
+            "2": 0.0675,
+            "3": 0.0437,
+            "4": 0.1032,
+            "6": 0.0238,
+            "W": 0.0556
+          },
+          "mid": {
+            "0": 0.3148,
+            "1": 0.4206,
+            "2": 0.1032,
+            "3": 0.0079,
+            "4": 0.0794,
+            "6": 0.0344,
+            "W": 0.0397
+          },
+          "death": {
+            "0": 0.2283,
+            "1": 0.337,
+            "2": 0.1033,
+            "3": 0.0163,
+            "4": 0.1467,
+            "6": 0.0489,
+            "W": 0.1196
+          }
+        }
+      }
+    }
+  },
+  {
+    "id": "perth",
+    "name": "Perth Stadium",
+    "city": "Perth",
+    "country": "Australia",
+    "homeTeam": "Australia",
+    "overall": {
+      "matches": 4,
+      "decided": 4,
+      "legalBalls": 900,
+      "runsPerOver": 6.87,
+      "dotPct": 41.9,
+      "fourPct": 8.1,
+      "sixPct": 2.9,
+      "ballsPerWicket": 17.3,
+      "powerplayRpo": 5.44,
+      "middleRpo": 7.36,
+      "deathRpo": 7.96,
+      "firstInningsAvg": 127.8,
+      "firstInningsSd": 27.3,
+      "chaseWinPct": 75,
+      "tossFieldPct": 25,
+      "tossWinnerWinPct": 50,
+      "chaseUplift": 1.02,
+      "reducedInnings": 0,
+      "widesPerOver": 0.19,
+      "noBallsPerOver": 0,
+      "extrasPerOver": 0.56,
+      "dismissalFingerprintPct": {
+        "caught": 59.6,
+        "bowled": 13.5,
+        "lbw": 11.5,
+        "run out": 9.6,
+        "caught and bowled": 3.8,
+        "stumped": 1.9
+      },
+      "reviews": {
+        "total": 12,
+        "upheldPct": 17,
+        "umpiresCallPct": 17,
+        "byBattingSidePct": 33
+      },
+      "rain": {
+        "dlFinishes": 0,
+        "noResults": 0
+      },
+      "ties": 0,
+      "populationVectors": {
+        "pp": {
+          "0": 0.566,
+          "1": 0.2257,
+          "2": 0.0451,
+          "3": 0.0208,
+          "4": 0.0799,
+          "6": 0.0139,
+          "W": 0.0486
+        },
+        "mid": {
+          "0": 0.3035,
+          "1": 0.4259,
+          "2": 0.0918,
+          "3": 0.0094,
+          "4": 0.0871,
+          "6": 0.0306,
+          "W": 0.0518
+        },
+        "death": {
+          "0": 0.3529,
+          "1": 0.2995,
+          "2": 0.1176,
+          "3": 0.0214,
+          "4": 0.0749,
+          "6": 0.0481,
+          "W": 0.0856
+        }
+      }
+    },
+    "byEdition": {
+      "2022": {
+        "matches": 4,
+        "decided": 4,
+        "legalBalls": 900,
+        "runsPerOver": 6.87,
+        "dotPct": 41.9,
+        "fourPct": 8.1,
+        "sixPct": 2.9,
+        "ballsPerWicket": 17.3,
+        "powerplayRpo": 5.44,
+        "middleRpo": 7.36,
+        "deathRpo": 7.96,
+        "firstInningsAvg": 127.8,
+        "firstInningsSd": 27.3,
+        "chaseWinPct": 75,
+        "tossFieldPct": 25,
+        "tossWinnerWinPct": 50,
+        "chaseUplift": 1.02,
+        "reducedInnings": 0,
+        "widesPerOver": 0.19,
+        "noBallsPerOver": 0,
+        "extrasPerOver": 0.56,
+        "dismissalFingerprintPct": {
+          "caught": 59.6,
+          "bowled": 13.5,
+          "lbw": 11.5,
+          "run out": 9.6,
+          "caught and bowled": 3.8,
+          "stumped": 1.9
+        },
+        "reviews": {
+          "total": 12,
+          "upheldPct": 17,
+          "umpiresCallPct": 17,
+          "byBattingSidePct": 33
+        },
+        "rain": {
+          "dlFinishes": 0,
+          "noResults": 0
+        },
+        "ties": 0,
+        "populationVectors": {
+          "pp": {
+            "0": 0.566,
+            "1": 0.2257,
+            "2": 0.0451,
+            "3": 0.0208,
+            "4": 0.0799,
+            "6": 0.0139,
+            "W": 0.0486
+          },
+          "mid": {
+            "0": 0.3035,
+            "1": 0.4259,
+            "2": 0.0918,
+            "3": 0.0094,
+            "4": 0.0871,
+            "6": 0.0306,
+            "W": 0.0518
+          },
+          "death": {
+            "0": 0.3529,
+            "1": 0.2995,
+            "2": 0.1176,
+            "3": 0.0214,
+            "4": 0.0749,
+            "6": 0.0481,
+            "W": 0.0856
+          }
+        }
+      }
+    }
+  },
+  {
+    "id": "dallas",
+    "name": "Grand Prairie Stadium",
+    "city": "Dallas",
+    "country": "United States of America",
+    "homeTeam": "United States of America",
+    "overall": {
+      "matches": 4,
+      "decided": 4,
+      "legalBalls": 928,
+      "runsPerOver": 7.58,
+      "dotPct": 40.2,
+      "fourPct": 9.6,
+      "sixPct": 5,
+      "ballsPerWicket": 18.9,
+      "powerplayRpo": 6.6,
+      "middleRpo": 7.96,
+      "deathRpo": 8.16,
+      "firstInningsAvg": 145.8,
+      "firstInningsSd": 39,
+      "chaseWinPct": 100,
+      "tossFieldPct": 100,
+      "tossWinnerWinPct": 100,
+      "chaseUplift": 0.48,
+      "reducedInnings": 0,
+      "widesPerOver": 0.28,
+      "noBallsPerOver": 0.026,
+      "extrasPerOver": 0.49,
+      "dismissalFingerprintPct": {
+        "caught": 57.1,
+        "lbw": 18.4,
+        "bowled": 14.3,
+        "run out": 6.1,
+        "caught and bowled": 2,
+        "stumped": 2
+      },
+      "reviews": {
+        "total": 15,
+        "upheldPct": 27,
+        "umpiresCallPct": 7,
+        "byBattingSidePct": 47
+      },
+      "rain": {
+        "dlFinishes": 0,
+        "noResults": 0
+      },
+      "ties": 1,
+      "populationVectors": {
+        "pp": {
+          "0": 0.5035,
+          "1": 0.2569,
+          "2": 0.0174,
+          "3": 0.0104,
+          "4": 0.1493,
+          "6": 0.0139,
+          "W": 0.0486
+        },
+        "mid": {
+          "0": 0.331,
+          "1": 0.4213,
+          "2": 0.0648,
+          "3": 0.0023,
+          "4": 0.0787,
+          "6": 0.0625,
+          "W": 0.0394
+        },
+        "death": {
+          "0": 0.2692,
+          "1": 0.4519,
+          "2": 0.0529,
+          "3": 0.0048,
+          "4": 0.0673,
+          "6": 0.0721,
+          "W": 0.0817
+        }
+      }
+    },
+    "byEdition": {
+      "2024": {
+        "matches": 4,
+        "decided": 4,
+        "legalBalls": 928,
+        "runsPerOver": 7.58,
+        "dotPct": 40.2,
+        "fourPct": 9.6,
+        "sixPct": 5,
+        "ballsPerWicket": 18.9,
+        "powerplayRpo": 6.6,
+        "middleRpo": 7.96,
+        "deathRpo": 8.16,
+        "firstInningsAvg": 145.8,
+        "firstInningsSd": 39,
+        "chaseWinPct": 100,
+        "tossFieldPct": 100,
+        "tossWinnerWinPct": 100,
+        "chaseUplift": 0.48,
+        "reducedInnings": 0,
+        "widesPerOver": 0.28,
+        "noBallsPerOver": 0.026,
+        "extrasPerOver": 0.49,
+        "dismissalFingerprintPct": {
+          "caught": 57.1,
+          "lbw": 18.4,
+          "bowled": 14.3,
+          "run out": 6.1,
+          "caught and bowled": 2,
+          "stumped": 2
+        },
+        "reviews": {
+          "total": 15,
+          "upheldPct": 27,
+          "umpiresCallPct": 7,
+          "byBattingSidePct": 47
+        },
+        "rain": {
+          "dlFinishes": 0,
+          "noResults": 0
+        },
+        "ties": 1,
+        "populationVectors": {
+          "pp": {
+            "0": 0.5035,
+            "1": 0.2569,
+            "2": 0.0174,
+            "3": 0.0104,
+            "4": 0.1493,
+            "6": 0.0139,
+            "W": 0.0486
+          },
+          "mid": {
+            "0": 0.331,
+            "1": 0.4213,
+            "2": 0.0648,
+            "3": 0.0023,
+            "4": 0.0787,
+            "6": 0.0625,
+            "W": 0.0394
+          },
+          "death": {
+            "0": 0.2692,
+            "1": 0.4519,
+            "2": 0.0529,
+            "3": 0.0048,
+            "4": 0.0673,
+            "6": 0.0721,
+            "W": 0.0817
+          }
+        }
+      }
+    }
+  },
+  {
+    "id": "kingstown",
+    "name": "Arnos Vale",
+    "city": "Kingstown",
+    "country": "Saint Vincent and the Grenadines",
+    "homeTeam": "West Indies",
+    "overall": {
+      "matches": 3,
+      "decided": 3,
+      "legalBalls": 713,
+      "runsPerOver": 6,
+      "dotPct": 51.3,
+      "fourPct": 9.5,
+      "sixPct": 2.5,
+      "ballsPerWicket": 15.2,
+      "powerplayRpo": 5.97,
+      "middleRpo": 5.78,
+      "deathRpo": 6.45,
+      "firstInningsAvg": 126.7,
+      "firstInningsSd": 28.4,
+      "chaseWinPct": 0,
+      "tossFieldPct": 100,
+      "tossWinnerWinPct": 0,
+      "chaseUplift": -0.78,
+      "reducedInnings": 0,
+      "widesPerOver": 0.16,
+      "noBallsPerOver": 0,
+      "extrasPerOver": 0.44,
+      "dismissalFingerprintPct": {
+        "caught": 46.8,
+        "bowled": 23.4,
+        "caught and bowled": 10.6,
+        "stumped": 8.5,
+        "run out": 6.4,
+        "lbw": 4.3
+      },
+      "reviews": {
+        "total": 8,
+        "upheldPct": 25,
+        "umpiresCallPct": 25,
+        "byBattingSidePct": 63
+      },
+      "rain": {
+        "dlFinishes": 0,
+        "noResults": 0
+      },
+      "ties": 0,
+      "populationVectors": {
+        "pp": {
+          "0": 0.588,
+          "1": 0.1574,
+          "2": 0.0278,
+          "3": 0.0046,
+          "4": 0.1481,
+          "6": 0.0139,
+          "W": 0.0602
+        },
+        "mid": {
+          "0": 0.429,
+          "1": 0.3827,
+          "2": 0.0586,
+          "3": 0,
+          "4": 0.0679,
+          "6": 0.0216,
+          "W": 0.0401
+        },
+        "death": {
+          "0": 0.422,
+          "1": 0.2659,
+          "2": 0.0694,
+          "3": 0,
+          "4": 0.0809,
+          "6": 0.0462,
+          "W": 0.1156
+        }
+      }
+    },
+    "byEdition": {
+      "2024": {
+        "matches": 3,
+        "decided": 3,
+        "legalBalls": 713,
+        "runsPerOver": 6,
+        "dotPct": 51.3,
+        "fourPct": 9.5,
+        "sixPct": 2.5,
+        "ballsPerWicket": 15.2,
+        "powerplayRpo": 5.97,
+        "middleRpo": 5.78,
+        "deathRpo": 6.45,
+        "firstInningsAvg": 126.7,
+        "firstInningsSd": 28.4,
+        "chaseWinPct": 0,
+        "tossFieldPct": 100,
+        "tossWinnerWinPct": 0,
+        "chaseUplift": -0.78,
+        "reducedInnings": 0,
+        "widesPerOver": 0.16,
+        "noBallsPerOver": 0,
+        "extrasPerOver": 0.44,
+        "dismissalFingerprintPct": {
+          "caught": 46.8,
+          "bowled": 23.4,
+          "caught and bowled": 10.6,
+          "stumped": 8.5,
+          "run out": 6.4,
+          "lbw": 4.3
+        },
+        "reviews": {
+          "total": 8,
+          "upheldPct": 25,
+          "umpiresCallPct": 25,
+          "byBattingSidePct": 63
+        },
+        "rain": {
+          "dlFinishes": 0,
+          "noResults": 0
+        },
+        "ties": 0,
+        "populationVectors": {
+          "pp": {
+            "0": 0.588,
+            "1": 0.1574,
+            "2": 0.0278,
+            "3": 0.0046,
+            "4": 0.1481,
+            "6": 0.0139,
+            "W": 0.0602
+          },
+          "mid": {
+            "0": 0.429,
+            "1": 0.3827,
+            "2": 0.0586,
+            "3": 0,
+            "4": 0.0679,
+            "6": 0.0216,
+            "W": 0.0401
+          },
+          "death": {
+            "0": 0.422,
+            "1": 0.2659,
+            "2": 0.0694,
+            "3": 0,
+            "4": 0.0809,
+            "6": 0.0462,
+            "W": 0.1156
+          }
+        }
+      }
+    }
+  },
+  {
+    "id": "tarouba",
+    "name": "Brian Lara Stadium",
+    "city": "Tarouba",
+    "country": "Trinidad and Tobago",
+    "homeTeam": "West Indies",
+    "overall": {
+      "matches": 3,
+      "decided": 3,
+      "legalBalls": 576,
+      "runsPerOver": 5.45,
+      "dotPct": 55.7,
+      "fourPct": 6.4,
+      "sixPct": 3.8,
+      "ballsPerWicket": 13.7,
+      "powerplayRpo": 4.36,
+      "middleRpo": 5.27,
+      "deathRpo": 7.96,
+      "firstInningsAvg": 89,
+      "firstInningsSd": 55.3,
+      "chaseWinPct": 67,
+      "tossFieldPct": 100,
+      "tossWinnerWinPct": 67,
+      "chaseUplift": 2.22,
+      "reducedInnings": 0,
+      "widesPerOver": 0.22,
+      "noBallsPerOver": 0.01,
+      "extrasPerOver": 0.41,
+      "dismissalFingerprintPct": {
+        "caught": 59.5,
+        "bowled": 19,
+        "lbw": 16.7,
+        "caught and bowled": 2.4,
+        "stumped": 2.4
+      },
+      "reviews": {
+        "total": 8,
+        "upheldPct": 25,
+        "umpiresCallPct": 13,
+        "byBattingSidePct": 75
+      },
+      "rain": {
+        "dlFinishes": 0,
+        "noResults": 0
+      },
+      "ties": 0,
+      "populationVectors": {
+        "pp": {
+          "0": 0.5849,
+          "1": 0.2547,
+          "2": 0.0094,
+          "3": 0,
+          "4": 0.0708,
+          "6": 0.0142,
+          "W": 0.066
+        },
+        "mid": {
+          "0": 0.5079,
+          "1": 0.2992,
+          "2": 0.0472,
+          "3": 0.0079,
+          "4": 0.0512,
+          "6": 0.0315,
+          "W": 0.0551
+        },
+        "death": {
+          "0": 0.3636,
+          "1": 0.3,
+          "2": 0.0273,
+          "3": 0,
+          "4": 0.0818,
+          "6": 0.1,
+          "W": 0.1273
+        }
+      }
+    },
+    "byEdition": {
+      "2024": {
+        "matches": 3,
+        "decided": 3,
+        "legalBalls": 576,
+        "runsPerOver": 5.45,
+        "dotPct": 55.7,
+        "fourPct": 6.4,
+        "sixPct": 3.8,
+        "ballsPerWicket": 13.7,
+        "powerplayRpo": 4.36,
+        "middleRpo": 5.27,
+        "deathRpo": 7.96,
+        "firstInningsAvg": 89,
+        "firstInningsSd": 55.3,
+        "chaseWinPct": 67,
+        "tossFieldPct": 100,
+        "tossWinnerWinPct": 67,
+        "chaseUplift": 2.22,
+        "reducedInnings": 0,
+        "widesPerOver": 0.22,
+        "noBallsPerOver": 0.01,
+        "extrasPerOver": 0.41,
+        "dismissalFingerprintPct": {
+          "caught": 59.5,
+          "bowled": 19,
+          "lbw": 16.7,
+          "caught and bowled": 2.4,
+          "stumped": 2.4
+        },
+        "reviews": {
+          "total": 8,
+          "upheldPct": 25,
+          "umpiresCallPct": 13,
+          "byBattingSidePct": 75
+        },
+        "rain": {
+          "dlFinishes": 0,
+          "noResults": 0
+        },
+        "ties": 0,
+        "populationVectors": {
+          "pp": {
+            "0": 0.5849,
+            "1": 0.2547,
+            "2": 0.0094,
+            "3": 0,
+            "4": 0.0708,
+            "6": 0.0142,
+            "W": 0.066
+          },
+          "mid": {
+            "0": 0.5079,
+            "1": 0.2992,
+            "2": 0.0472,
+            "3": 0.0079,
+            "4": 0.0512,
+            "6": 0.0315,
+            "W": 0.0551
+          },
+          "death": {
+            "0": 0.3636,
+            "1": 0.3,
+            "2": 0.0273,
+            "3": 0,
+            "4": 0.0818,
+            "6": 0.1,
+            "W": 0.1273
+          }
+        }
+      }
+    }
+  },
+  {
+    "id": "hambantota",
+    "name": "Mahinda Rajapaksa Stadium",
+    "city": "Hambantota",
+    "country": "Sri Lanka",
+    "homeTeam": "Sri Lanka",
+    "overall": {
+      "matches": 3,
+      "decided": 3,
+      "legalBalls": 505,
+      "runsPerOver": 7.05,
+      "dotPct": 39.6,
+      "fourPct": 9.1,
+      "sixPct": 1.6,
+      "ballsPerWicket": 16.3,
+      "powerplayRpo": 7.56,
+      "middleRpo": 6.11,
+      "deathRpo": 8.24,
+      "firstInningsAvg": 137.5,
+      "firstInningsSd": 62.9,
+      "chaseWinPct": 33,
+      "tossFieldPct": 100,
+      "tossWinnerWinPct": 33,
+      "chaseUplift": -1.05,
+      "reducedInnings": 1,
+      "widesPerOver": 0.29,
+      "noBallsPerOver": 0.048,
+      "extrasPerOver": 0.72,
+      "dismissalFingerprintPct": {
+        "caught": 51.6,
+        "bowled": 16.1,
+        "run out": 12.9,
+        "stumped": 9.7,
+        "lbw": 9.7
+      },
+      "reviews": {
+        "total": 0,
+        "upheldPct": 0,
+        "umpiresCallPct": 0,
+        "byBattingSidePct": 0
+      },
+      "rain": {
+        "dlFinishes": 0,
+        "noResults": 0
+      },
+      "ties": 0,
+      "populationVectors": {
+        "pp": {
+          "0": 0.4,
+          "1": 0.3,
+          "2": 0.1,
+          "3": 0.0056,
+          "4": 0.1389,
+          "6": 0.0111,
+          "W": 0.0444
+        },
+        "mid": {
+          "0": 0.3942,
+          "1": 0.3846,
+          "2": 0.0913,
+          "3": 0.0048,
+          "4": 0.0577,
+          "6": 0.0192,
+          "W": 0.0481
+        },
+        "death": {
+          "0": 0.3067,
+          "1": 0.3333,
+          "2": 0.1467,
+          "3": 0.0133,
+          "4": 0.0667,
+          "6": 0.04,
+          "W": 0.0933
+        }
+      }
+    },
+    "byEdition": {
+      "2012": {
+        "matches": 3,
+        "decided": 3,
+        "legalBalls": 505,
+        "runsPerOver": 7.05,
+        "dotPct": 39.6,
+        "fourPct": 9.1,
+        "sixPct": 1.6,
+        "ballsPerWicket": 16.3,
+        "powerplayRpo": 7.56,
+        "middleRpo": 6.11,
+        "deathRpo": 8.24,
+        "firstInningsAvg": 137.5,
+        "firstInningsSd": 62.9,
+        "chaseWinPct": 33,
+        "tossFieldPct": 100,
+        "tossWinnerWinPct": 33,
+        "chaseUplift": -1.05,
+        "reducedInnings": 1,
+        "widesPerOver": 0.29,
+        "noBallsPerOver": 0.048,
+        "extrasPerOver": 0.72,
+        "dismissalFingerprintPct": {
+          "caught": 51.6,
+          "bowled": 16.1,
+          "run out": 12.9,
+          "stumped": 9.7,
+          "lbw": 9.7
+        },
+        "reviews": {
+          "total": 0,
+          "upheldPct": 0,
+          "umpiresCallPct": 0,
+          "byBattingSidePct": 0
+        },
+        "rain": {
+          "dlFinishes": 0,
+          "noResults": 0
+        },
+        "ties": 0,
+        "populationVectors": {
+          "pp": {
+            "0": 0.4,
+            "1": 0.3,
+            "2": 0.1,
+            "3": 0.0056,
+            "4": 0.1389,
+            "6": 0.0111,
+            "W": 0.0444
+          },
+          "mid": {
+            "0": 0.3942,
+            "1": 0.3846,
+            "2": 0.0913,
+            "3": 0.0048,
+            "4": 0.0577,
+            "6": 0.0192,
+            "W": 0.0481
+          },
+          "death": {
+            "0": 0.3067,
+            "1": 0.3333,
+            "2": 0.1467,
+            "3": 0.0133,
+            "4": 0.0667,
+            "6": 0.04,
+            "W": 0.0933
+          }
+        }
+      }
+    }
+  },
+  {
+    "id": "bengaluru",
+    "name": "M Chinnaswamy Stadium",
+    "city": "Bengaluru",
+    "country": "India",
+    "homeTeam": "India",
+    "overall": {
+      "matches": 3,
+      "decided": 3,
+      "legalBalls": 701,
+      "runsPerOver": 7.3,
+      "dotPct": 38.7,
+      "fourPct": 10.1,
+      "sixPct": 4.3,
+      "ballsPerWicket": 17.5,
+      "powerplayRpo": 6.97,
+      "middleRpo": 6.76,
+      "deathRpo": 8.83,
+      "firstInningsAvg": 141.3,
+      "firstInningsSd": 17.5,
+      "chaseWinPct": 67,
+      "tossFieldPct": 100,
+      "tossWinnerWinPct": 67,
+      "chaseUplift": 0.48,
+      "reducedInnings": 0,
+      "widesPerOver": 0.14,
+      "noBallsPerOver": 0.009,
+      "extrasPerOver": 0.36,
+      "dismissalFingerprintPct": {
+        "caught": 47.5,
+        "bowled": 20,
+        "stumped": 12.5,
+        "run out": 10,
+        "lbw": 7.5,
+        "caught and bowled": 2.5
+      },
+      "reviews": {
+        "total": 0,
+        "upheldPct": 0,
+        "umpiresCallPct": 0,
+        "byBattingSidePct": 0
+      },
+      "rain": {
+        "dlFinishes": 0,
+        "noResults": 0
+      },
+      "ties": 0,
+      "populationVectors": {
+        "pp": {
+          "0": 0.4583,
+          "1": 0.3241,
+          "2": 0.0231,
+          "3": 0.0046,
+          "4": 0.1204,
+          "6": 0.037,
+          "W": 0.0324
+        },
+        "mid": {
+          "0": 0.3704,
+          "1": 0.4136,
+          "2": 0.0556,
+          "3": 0,
+          "4": 0.0586,
+          "6": 0.0525,
+          "W": 0.0494
+        },
+        "death": {
+          "0": 0.2236,
+          "1": 0.4161,
+          "2": 0.0807,
+          "3": 0,
+          "4": 0.1553,
+          "6": 0.0311,
+          "W": 0.0932
+        }
+      }
+    },
+    "byEdition": {
+      "2016": {
+        "matches": 3,
+        "decided": 3,
+        "legalBalls": 701,
+        "runsPerOver": 7.3,
+        "dotPct": 38.7,
+        "fourPct": 10.1,
+        "sixPct": 4.3,
+        "ballsPerWicket": 17.5,
+        "powerplayRpo": 6.97,
+        "middleRpo": 6.76,
+        "deathRpo": 8.83,
+        "firstInningsAvg": 141.3,
+        "firstInningsSd": 17.5,
+        "chaseWinPct": 67,
+        "tossFieldPct": 100,
+        "tossWinnerWinPct": 67,
+        "chaseUplift": 0.48,
+        "reducedInnings": 0,
+        "widesPerOver": 0.14,
+        "noBallsPerOver": 0.009,
+        "extrasPerOver": 0.36,
+        "dismissalFingerprintPct": {
+          "caught": 47.5,
+          "bowled": 20,
+          "stumped": 12.5,
+          "run out": 10,
+          "lbw": 7.5,
+          "caught and bowled": 2.5
+        },
+        "reviews": {
+          "total": 0,
+          "upheldPct": 0,
+          "umpiresCallPct": 0,
+          "byBattingSidePct": 0
+        },
+        "rain": {
+          "dlFinishes": 0,
+          "noResults": 0
+        },
+        "ties": 0,
+        "populationVectors": {
+          "pp": {
+            "0": 0.4583,
+            "1": 0.3241,
+            "2": 0.0231,
+            "3": 0.0046,
+            "4": 0.1204,
+            "6": 0.037,
+            "W": 0.0324
+          },
+          "mid": {
+            "0": 0.3704,
+            "1": 0.4136,
+            "2": 0.0556,
+            "3": 0,
+            "4": 0.0586,
+            "6": 0.0525,
+            "W": 0.0494
+          },
+          "death": {
+            "0": 0.2236,
+            "1": 0.4161,
+            "2": 0.0807,
+            "3": 0,
+            "4": 0.1553,
+            "6": 0.0311,
+            "W": 0.0932
+          }
+        }
+      }
+    }
+  },
+  {
+    "id": "mohali",
+    "name": "IS Bindra Stadium",
+    "city": "Mohali",
+    "country": "India",
+    "homeTeam": "India",
+    "overall": {
+      "matches": 3,
+      "decided": 3,
+      "legalBalls": 715,
+      "runsPerOver": 8.59,
+      "dotPct": 31.2,
+      "fourPct": 13.6,
+      "sixPct": 3.6,
+      "ballsPerWicket": 22.3,
+      "powerplayRpo": 8.61,
+      "middleRpo": 7.56,
+      "deathRpo": 10.49,
+      "firstInningsAvg": 177.7,
+      "firstInningsSd": 16.6,
+      "chaseWinPct": 33,
+      "tossFieldPct": 0,
+      "tossWinnerWinPct": 67,
+      "chaseUplift": -0.58,
+      "reducedInnings": 0,
+      "widesPerOver": 0.18,
+      "noBallsPerOver": 0.008,
+      "extrasPerOver": 0.43,
+      "dismissalFingerprintPct": {
+        "caught": 65.6,
+        "bowled": 28.1,
+        "stumped": 6.3
+      },
+      "reviews": {
+        "total": 0,
+        "upheldPct": 0,
+        "umpiresCallPct": 0,
+        "byBattingSidePct": 0
+      },
+      "rain": {
+        "dlFinishes": 0,
+        "noResults": 0
+      },
+      "ties": 0,
+      "populationVectors": {
+        "pp": {
+          "0": 0.4491,
+          "1": 0.25,
+          "2": 0.0324,
+          "3": 0.0046,
+          "4": 0.1898,
+          "6": 0.037,
+          "W": 0.037
+        },
+        "mid": {
+          "0": 0.25,
+          "1": 0.4846,
+          "2": 0.1019,
+          "3": 0,
+          "4": 0.0957,
+          "6": 0.0247,
+          "W": 0.0432
+        },
+        "death": {
+          "0": 0.16,
+          "1": 0.4171,
+          "2": 0.1543,
+          "3": 0.0057,
+          "4": 0.1486,
+          "6": 0.0571,
+          "W": 0.0571
+        }
+      }
+    },
+    "byEdition": {
+      "2016": {
+        "matches": 3,
+        "decided": 3,
+        "legalBalls": 715,
+        "runsPerOver": 8.59,
+        "dotPct": 31.2,
+        "fourPct": 13.6,
+        "sixPct": 3.6,
+        "ballsPerWicket": 22.3,
+        "powerplayRpo": 8.61,
+        "middleRpo": 7.56,
+        "deathRpo": 10.49,
+        "firstInningsAvg": 177.7,
+        "firstInningsSd": 16.6,
+        "chaseWinPct": 33,
+        "tossFieldPct": 0,
+        "tossWinnerWinPct": 67,
+        "chaseUplift": -0.58,
+        "reducedInnings": 0,
+        "widesPerOver": 0.18,
+        "noBallsPerOver": 0.008,
+        "extrasPerOver": 0.43,
+        "dismissalFingerprintPct": {
+          "caught": 65.6,
+          "bowled": 28.1,
+          "stumped": 6.3
+        },
+        "reviews": {
+          "total": 0,
+          "upheldPct": 0,
+          "umpiresCallPct": 0,
+          "byBattingSidePct": 0
+        },
+        "rain": {
+          "dlFinishes": 0,
+          "noResults": 0
+        },
+        "ties": 0,
+        "populationVectors": {
+          "pp": {
+            "0": 0.4491,
+            "1": 0.25,
+            "2": 0.0324,
+            "3": 0.0046,
+            "4": 0.1898,
+            "6": 0.037,
+            "W": 0.037
+          },
+          "mid": {
+            "0": 0.25,
+            "1": 0.4846,
+            "2": 0.1019,
+            "3": 0,
+            "4": 0.0957,
+            "6": 0.0247,
+            "W": 0.0432
+          },
+          "death": {
+            "0": 0.16,
+            "1": 0.4171,
+            "2": 0.1543,
+            "3": 0.0057,
+            "4": 0.1486,
+            "6": 0.0571,
+            "W": 0.0571
+          }
+        }
+      }
+    }
+  },
+  {
+    "id": "brisbane",
+    "name": "The Gabba",
+    "city": "Brisbane",
+    "country": "Australia",
+    "homeTeam": "Australia",
+    "overall": {
+      "matches": 3,
+      "decided": 3,
+      "legalBalls": 709,
+      "runsPerOver": 8.05,
+      "dotPct": 35,
+      "fourPct": 10.9,
+      "sixPct": 3.5,
+      "ballsPerWicket": 16.9,
+      "powerplayRpo": 6.75,
+      "middleRpo": 8.2,
+      "deathRpo": 9.41,
+      "firstInningsAvg": 169.3,
+      "firstInningsSd": 16.7,
+      "chaseWinPct": 0,
+      "tossFieldPct": 33,
+      "tossWinnerWinPct": 67,
+      "chaseUplift": -0.85,
+      "reducedInnings": 0,
+      "widesPerOver": 0.24,
+      "noBallsPerOver": 0.025,
+      "extrasPerOver": 0.44,
+      "dismissalFingerprintPct": {
+        "caught": 66.7,
+        "bowled": 11.9,
+        "run out": 9.5,
+        "stumped": 7.1,
+        "lbw": 4.8
+      },
+      "reviews": {
+        "total": 5,
+        "upheldPct": 20,
+        "umpiresCallPct": 20,
+        "byBattingSidePct": 60
+      },
+      "rain": {
+        "dlFinishes": 0,
+        "noResults": 0
+      },
+      "ties": 0,
+      "populationVectors": {
+        "pp": {
+          "0": 0.4954,
+          "1": 0.1991,
+          "2": 0.0648,
+          "3": 0.0139,
+          "4": 0.1389,
+          "6": 0.0231,
+          "W": 0.0648
+        },
+        "mid": {
+          "0": 0.2469,
+          "1": 0.463,
+          "2": 0.1296,
+          "3": 0,
+          "4": 0.0988,
+          "6": 0.0309,
+          "W": 0.0309
+        },
+        "death": {
+          "0": 0.2071,
+          "1": 0.3728,
+          "2": 0.1538,
+          "3": 0.0237,
+          "4": 0.0888,
+          "6": 0.0592,
+          "W": 0.0947
+        }
+      }
+    },
+    "byEdition": {
+      "2022": {
+        "matches": 3,
+        "decided": 3,
+        "legalBalls": 709,
+        "runsPerOver": 8.05,
+        "dotPct": 35,
+        "fourPct": 10.9,
+        "sixPct": 3.5,
+        "ballsPerWicket": 16.9,
+        "powerplayRpo": 6.75,
+        "middleRpo": 8.2,
+        "deathRpo": 9.41,
+        "firstInningsAvg": 169.3,
+        "firstInningsSd": 16.7,
+        "chaseWinPct": 0,
+        "tossFieldPct": 33,
+        "tossWinnerWinPct": 67,
+        "chaseUplift": -0.85,
+        "reducedInnings": 0,
+        "widesPerOver": 0.24,
+        "noBallsPerOver": 0.025,
+        "extrasPerOver": 0.44,
+        "dismissalFingerprintPct": {
+          "caught": 66.7,
+          "bowled": 11.9,
+          "run out": 9.5,
+          "stumped": 7.1,
+          "lbw": 4.8
+        },
+        "reviews": {
+          "total": 5,
+          "upheldPct": 20,
+          "umpiresCallPct": 20,
+          "byBattingSidePct": 60
+        },
+        "rain": {
+          "dlFinishes": 0,
+          "noResults": 0
+        },
+        "ties": 0,
+        "populationVectors": {
+          "pp": {
+            "0": 0.4954,
+            "1": 0.1991,
+            "2": 0.0648,
+            "3": 0.0139,
+            "4": 0.1389,
+            "6": 0.0231,
+            "W": 0.0648
+          },
+          "mid": {
+            "0": 0.2469,
+            "1": 0.463,
+            "2": 0.1296,
+            "3": 0,
+            "4": 0.0988,
+            "6": 0.0309,
+            "W": 0.0309
+          },
+          "death": {
+            "0": 0.2071,
+            "1": 0.3728,
+            "2": 0.1538,
+            "3": 0.0237,
+            "4": 0.0888,
+            "6": 0.0592,
+            "W": 0.0947
+          }
+        }
+      }
+    }
+  },
+  {
+    "id": "lauderhill",
+    "name": "Central Broward Park",
+    "city": "Lauderhill",
+    "country": "United States of America",
+    "homeTeam": "United States of America",
+    "overall": {
+      "matches": 1,
+      "decided": 1,
+      "legalBalls": 233,
+      "runsPerOver": 5.59,
+      "dotPct": 57.1,
+      "fourPct": 6.9,
+      "sixPct": 3.4,
+      "ballsPerWicket": 14.6,
+      "powerplayRpo": 6,
+      "middleRpo": 5.28,
+      "deathRpo": 5.66,
+      "firstInningsAvg": 106,
+      "firstInningsSd": 0,
+      "chaseWinPct": 100,
+      "tossFieldPct": 100,
+      "tossWinnerWinPct": 100,
+      "chaseUplift": 0.59,
+      "reducedInnings": 0,
+      "widesPerOver": 0.15,
+      "noBallsPerOver": 0,
+      "extrasPerOver": 0.36,
+      "dismissalFingerprintPct": {
+        "caught": 75,
+        "bowled": 12.5,
+        "lbw": 6.3,
+        "caught and bowled": 6.3
+      },
+      "reviews": {
+        "total": 3,
+        "upheldPct": 0,
+        "umpiresCallPct": 0,
+        "byBattingSidePct": 0
+      },
+      "rain": {
+        "dlFinishes": 0,
+        "noResults": 0
+      },
+      "ties": 0,
+      "populationVectors": {
+        "pp": {
+          "0": 0.5833,
+          "1": 0.0972,
+          "2": 0.0694,
+          "3": 0.0139,
+          "4": 0.125,
+          "6": 0.0139,
+          "W": 0.0972
+        },
+        "mid": {
+          "0": 0.4815,
+          "1": 0.287,
+          "2": 0.0556,
+          "3": 0.0093,
+          "4": 0.0648,
+          "6": 0.0278,
+          "W": 0.0741
+        },
+        "death": {
+          "0": 0.5094,
+          "1": 0.3585,
+          "2": 0.0189,
+          "3": 0,
+          "4": 0.0189,
+          "6": 0.0755,
+          "W": 0.0189
+        }
+      }
+    },
+    "byEdition": {
+      "2024": {
+        "matches": 1,
+        "decided": 1,
+        "legalBalls": 233,
+        "runsPerOver": 5.59,
+        "dotPct": 57.1,
+        "fourPct": 6.9,
+        "sixPct": 3.4,
+        "ballsPerWicket": 14.6,
+        "powerplayRpo": 6,
+        "middleRpo": 5.28,
+        "deathRpo": 5.66,
+        "firstInningsAvg": 106,
+        "firstInningsSd": 0,
+        "chaseWinPct": 100,
+        "tossFieldPct": 100,
+        "tossWinnerWinPct": 100,
+        "chaseUplift": 0.59,
+        "reducedInnings": 0,
+        "widesPerOver": 0.15,
+        "noBallsPerOver": 0,
+        "extrasPerOver": 0.36,
+        "dismissalFingerprintPct": {
+          "caught": 75,
+          "bowled": 12.5,
+          "lbw": 6.3,
+          "caught and bowled": 6.3
+        },
+        "reviews": {
+          "total": 3,
+          "upheldPct": 0,
+          "umpiresCallPct": 0,
+          "byBattingSidePct": 0
+        },
+        "rain": {
+          "dlFinishes": 0,
+          "noResults": 0
+        },
+        "ties": 0,
+        "populationVectors": {
+          "pp": {
+            "0": 0.5833,
+            "1": 0.0972,
+            "2": 0.0694,
+            "3": 0.0139,
+            "4": 0.125,
+            "6": 0.0139,
+            "W": 0.0972
+          },
+          "mid": {
+            "0": 0.4815,
+            "1": 0.287,
+            "2": 0.0556,
+            "3": 0.0093,
+            "4": 0.0648,
+            "6": 0.0278,
+            "W": 0.0741
+          },
+          "death": {
+            "0": 0.5094,
+            "1": 0.3585,
+            "2": 0.0189,
+            "3": 0,
+            "4": 0.0189,
+            "6": 0.0755,
+            "W": 0.0189
+          }
+        }
+      }
+    }
+  }
+]

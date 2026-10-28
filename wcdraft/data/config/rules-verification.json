@@ -1,0 +1,222 @@
+{
+  "$comment": "Playing-condition rules per men's T20 World Cup edition, verified 2026-10-28 against the official ICC Playing Conditions PDFs where they exist on icc-cricket.com (2021, 2022, 2024, 2026; text extracted locally from the PDFs) and otherwise against Wikipedia, ICC press releases and reputable media. Fields: tieBreak (tied match), freeHit ('foot-fault-only' | 'all-no-balls'), drs (bool), drsReviewsPerInnings (unsuccessful Player Reviews per innings; null when no DRS), concussionSub, stopClock, powerplayOvers, maxOutsideCircleAfterPowerplay, bouncersPerOver (fast short-pitched deliveries, above shoulder height, allowed per over), other (edition-specific notes), verification ('verified' = quoted from an official document; 'media' = reputable secondary source; 'inferred' = continuity/no direct document), sources. Known gap: no ICC document for 2007-2016 could be fetched (ESPNcricinfo returns 403; the 2010-11 ICC Playing Handbook PDF uses CID fonts and is not text-extractable), so 2007-2016 fielding/bouncer figures rest on secondary sources plus continuity with the 2021 PCs. See research_notes/T20 modifiers and ratings evidence/formats_and_rules.md.",
+  "commonToAllEditions": {
+    "powerplayOvers": 6,
+    "maxOutsideCircleDuringPowerplay": 2,
+    "maxOutsideCircleAfterPowerplay": 5,
+    "bouncersPerOver": 1,
+    "oversPerBowler": 4,
+    "impactOrTacticalSubstitutes": false,
+    "quote": "ICC Men's T20 World Cup 2021/2022/2024/2026 Playing Conditions cl. 28.7.2-28.7.5: 'these additional fielding restrictions shall apply to the first 6 overs of each innings (Powerplay overs) ... During the Powerplay overs only two fielders shall be permitted outside this fielding restriction area at the instant of delivery ... During the non Powerplay overs, no more than 5 fielders shall be permitted outside the fielding restriction area'. Cl. 41.6.1.5/41.6.1.8: 'A fast short-pitched delivery is defined as a ball, which passes or would have passed above the shoulder height of the striker ... In the event of a bowler bowling more than one fast short-pitched delivery in an over' [No ball]. Cl. 13.9.1: 'No bowler shall bowl more than 4 overs in an innings.' Cl. 1.2.1: 'Other than set out in clause 1.2.7 [Concussion Replacement], no player (member of the playing eleven) may be changed after the nomination'."
+  },
+  "editions": [
+    {
+      "editionId": "2007",
+      "tieBreak": "bowl-out",
+      "freeHit": "foot-fault-only",
+      "drs": false,
+      "drsReviewsPerInnings": null,
+      "concussionSub": false,
+      "stopClock": false,
+      "impactSub": false,
+      "powerplayOvers": 6,
+      "maxOutsideCircleAfterPowerplay": 5,
+      "bouncersPerOver": 1,
+      "other": "Only men's T20 WC decided by bowl-out: India beat Pakistan 3-0 after a tie in the Group D match at Durban on 14 Sep 2007 ('five bowlers from each side deliver one or two balls each at an unguarded wicket'). Group tiebreak order included 'lower bowling strike rate' before head-to-head (Wikipedia). Free hit: the Twenty20 free hit pre-dated the ODI free hit (ODIs adopted it Oct 2007); Reuters/Dawn, June 2007, describes the ODI proposal as 'copying the fast Twenty20 game which already has the rule'; 'initially only foot fault no-balls resulted in a free hit' (Wikipedia). No DRS (not used in any international format until 2008 Tests).",
+      "verification": { "tieBreak": "media", "freeHit": "media", "drs": "media", "fielding": "inferred", "bouncers": "inferred" },
+      "sources": [
+        "https://en.wikipedia.org/wiki/2007_ICC_World_Twenty20 (Format: 'In case of a tie ... a bowl-out decided the winner. This was applicable in all stages'; ranking criteria points, wins, NRR, bowling strike rate, head-to-head)",
+        "https://en.wikipedia.org/wiki/Bowl-out ('A bowl-out was also used on 14 September 2007 when India beat Pakistan 3-0'; replaced after the 2008 ICC Annual Conference)",
+        "https://www.dawn.com/news/249925 (Reuters, 2 Jun 2007: 'Copying the fast Twenty20 game which already has the rule')",
+        "https://en.wikipedia.org/wiki/Free_hit ('It came into international cricket in October 2007 ... Initially only foot fault no-balls resulted in a free hit')",
+        "https://en.wikipedia.org/wiki/Twenty20 ('During the first six overs, a maximum of two fielders can be outside the 30-yard circle ... After the first six overs, a maximum of five fielders')"
+      ]
+    },
+    {
+      "editionId": "2009",
+      "tieBreak": "super-over",
+      "freeHit": "foot-fault-only",
+      "drs": false,
+      "drsReviewsPerInnings": null,
+      "concussionSub": false,
+      "stopClock": false,
+      "impactSub": false,
+      "powerplayOvers": 6,
+      "maxOutsideCircleAfterPowerplay": 5,
+      "bouncersPerOver": 1,
+      "other": "First WC with the Super Over ('one-over eliminator'): at the ICC Annual Conference 2008 'it was decided that the bowl-out should be replaced by a one-over' eliminator for the 2009 Champions Trophy and 2009 World Twenty20; first ever Super Over was WI v NZ, 26 Dec 2008. No tied match occurred in 2009. Points not carried from group stage to Super 8 ('No points from the Group stage will be carried forward to the Super Eight series', ESPNcricinfo format page). Same five-step tiebreak as 2007.",
+      "verification": { "tieBreak": "media", "freeHit": "media", "drs": "media", "fielding": "inferred", "bouncers": "inferred" },
+      "sources": [
+        "https://en.wikipedia.org/wiki/2009_ICC_World_Twenty20 ('A tie is decided by a Super Over ... applies in all stages of the tournament'; tiebreak points, wins, NRR, bowling strike rate, head-to-head)",
+        "https://en.wikipedia.org/wiki/Bowl-out (2008 Annual Conference decision)",
+        "https://en.wikipedia.org/wiki/Super_Over ('The first-ever Super Over was used in a tied Twenty20 match between the West Indies and New Zealand on 26 December 2008')",
+        "https://www.espncricinfo.com/wt202009/content/page/407456.html (format page; direct fetch returned HTTP 403, quote taken from search snippet)"
+      ]
+    },
+    {
+      "editionId": "2010",
+      "tieBreak": "super-over",
+      "freeHit": "foot-fault-only",
+      "drs": false,
+      "drsReviewsPerInnings": null,
+      "concussionSub": false,
+      "stopClock": false,
+      "impactSub": false,
+      "powerplayOvers": 6,
+      "maxOutsideCircleAfterPowerplay": 5,
+      "bouncersPerOver": 1,
+      "other": "Super Over in all stages (none needed). Duckworth-Lewis used for rain-affected matches. Super 8 seedings 'not affected by group stage results'. Same five-step tiebreak.",
+      "verification": { "tieBreak": "media", "freeHit": "media", "drs": "media", "fielding": "inferred", "bouncers": "inferred" },
+      "sources": [
+        "https://en.wikipedia.org/wiki/2010_ICC_World_Twenty20 ('A tie is decided by a Super Over, in all stages'; seeding rule quotes; tiebreak order)",
+        "https://en.wikipedia.org/wiki/Free_hit (foot-fault only until 2015)"
+      ]
+    },
+    {
+      "editionId": "2012",
+      "tieBreak": "super-over",
+      "freeHit": "foot-fault-only",
+      "drs": false,
+      "drsReviewsPerInnings": null,
+      "concussionSub": false,
+      "stopClock": false,
+      "impactSub": false,
+      "powerplayOvers": 6,
+      "maxOutsideCircleAfterPowerplay": 5,
+      "bouncersPerOver": 1,
+      "other": "Two Super 8 matches went to a Super Over (Sri Lanka beat New Zealand 27 Sep; West Indies beat New Zealand 1 Oct). ICC Standard T20I Match Playing Conditions in force from 1 Oct 2012 (Wikipedia Super Over article). Duckworth-Lewis used; one match reduced to 7 overs a side (SA v SL). Same five-step tiebreak incl. bowling strike rate.",
+      "verification": { "tieBreak": "media", "freeHit": "media", "drs": "media", "fielding": "inferred", "bouncers": "inferred" },
+      "sources": [
+        "https://en.wikipedia.org/wiki/2012_ICC_World_Twenty20 ('Super Over applies to ties in all stages'; two Super 8 ties; tiebreak order)",
+        "https://en.wikipedia.org/wiki/Super_Over (Hesson 'lost two matches by Super Overs in the Super Eight group stage of the 2012 ICC World Twenty20'; Standard T20I PCs since 1 Oct 2012)"
+      ]
+    },
+    {
+      "editionId": "2014",
+      "tieBreak": "super-over",
+      "freeHit": "foot-fault-only",
+      "drs": false,
+      "drsReviewsPerInnings": null,
+      "concussionSub": false,
+      "stopClock": false,
+      "impactSub": false,
+      "powerplayOvers": 6,
+      "maxOutsideCircleAfterPowerplay": 5,
+      "bouncersPerOver": 1,
+      "other": "DRS: CONFLICT. Wikipedia's 2014 page says this was 'the first Men's T20 World Cup where the use of Decision Review System (DRS) was implemented' (and the DRS article: ICC agreed in Feb 2013 to use DRS at future World Twenty20s with one review per team), but the ICC's own 2021 announcement, as reported by ESPNcricinfo/The Bridge (10 Oct 2021), states DRS 'will make its debut in the men's T20 World Cup' in 2021. We follow the ICC statement: drs=false for 2014 (and 2016). Free hit still foot-fault only (all-no-ball free hit took effect 5 Jul 2015). Tiebreak (Wikipedia): most wins, NRR, head-to-head.",
+      "verification": { "tieBreak": "inferred", "freeHit": "media", "drs": "media (conflict noted)", "fielding": "inferred", "bouncers": "inferred" },
+      "sources": [
+        "https://en.wikipedia.org/wiki/2014_ICC_World_Twenty20 (DRS claim; tiebreak 'most wins, higher NRR, head-to-head record')",
+        "https://en.wikipedia.org/wiki/Decision_Review_System ('In February 2013, the ICC agreed the use for all future ICC World Twenty20 tournaments, with one review per team. DRS was used for the first time in a Twenty20 International in the 2014 ICC World Twenty20.')",
+        "https://thebridge.in/cricket/drs-first-time-men-t20-world-cup-25846 (10 Oct 2021: 'The Decision Review System (DRS) will make its debut in the men's T20 World Cup')",
+        "https://saca.org.za/wp-content/uploads/2015/11/ICC-Regulations-changes-June-2015-1.pdf ('CHANGES TO PLAYING REGULATIONS Effective 5 July, 2015 ... FREE HIT FROM ALL NO BALLS ... A Free Hit is to be awarded after all modes of No ball'; listed for T20I PCs too)"
+      ]
+    },
+    {
+      "editionId": "2016",
+      "tieBreak": "super-over",
+      "freeHit": "all-no-balls",
+      "drs": false,
+      "drsReviewsPerInnings": null,
+      "concussionSub": false,
+      "stopClock": false,
+      "impactSub": false,
+      "powerplayOvers": 6,
+      "maxOutsideCircleAfterPowerplay": 5,
+      "bouncersPerOver": 1,
+      "other": "First WC under the 5 Jul 2015 change: free hit after ALL modes of No ball ('Introduced to simplify the playing condition (no difference between foot-fault No balls and other No balls)'). DLS method for rain (India v Pakistan reduced to 18 overs). No DRS (see 2014 note; the ICC called 2021 the men's T20 WC debut). Semi-final venue swap rule if Pakistan finished 2nd in Group 2 (security). Tiebreak assumed as 2014 (wins, NRR, head-to-head) - not directly verified.",
+      "verification": { "tieBreak": "inferred", "freeHit": "verified (ICC 2015 changes document)", "drs": "media", "fielding": "inferred", "bouncers": "inferred" },
+      "sources": [
+        "https://saca.org.za/wp-content/uploads/2015/11/ICC-Regulations-changes-June-2015-1.pdf (effective 5 July 2015; 'Free Hit from all No balls' applied to ODI and T20I PCs)",
+        "https://en.wikipedia.org/wiki/Free_hit ('From 2015, the rules were changed so that all no-balls result in a free hit')",
+        "https://en.wikipedia.org/wiki/2016_ICC_World_Twenty20 (DLS; Super 10 tables; semi-final venue note)",
+        "https://thebridge.in/cricket/drs-first-time-men-t20-world-cup-25846 (DRS debut 2021)"
+      ]
+    },
+    {
+      "editionId": "2021",
+      "tieBreak": "super-over (repeated until a winner)",
+      "freeHit": "all-no-balls",
+      "drs": true,
+      "drsReviewsPerInnings": 2,
+      "concussionSub": true,
+      "stopClock": false,
+      "impactSub": false,
+      "powerplayOvers": 6,
+      "maxOutsideCircleAfterPowerplay": 5,
+      "bouncersPerOver": 1,
+      "other": "First men's T20 WC with DRS: ICC PC Appendix D 3.6.1 'In each innings, each team shall be allowed to make a maximum of two Player Review requests that are categorised as Unsuccessful' (one per innings in a Super Over, App. F para 12). The second review came from the June 2020 COVID interim regulations (less experienced home umpires). Concussion Replacement cl. 1.2.7 (ICC-wide since 1 Aug 2019). Tie: 'If the match is tied a Super Over is played. If the Super Over is a tie, then subsequent Super Overs shall be played until there is a winner' (16.3.1.2). Saliva banned (41.3.2.1 'no artificial substance or saliva is used', warnings then 5 penalty runs). COVID: squads of 15 plus up to 7 reserves (Wikipedia). Reserve days only for semi-finals and final (13.6.4); minimum 5 overs per side for a result, 10 in semis/final; if a semi cannot be completed the higher-placed Super 12 team advances. Tiebreak (16.10.5/16.10.6): wins, NRR, head-to-head (points then NRR in that match), original seeding. Semi-final pairing fixed: 1st Group 1 v 2nd Group 2; 1st Group 2 v 2nd Group 1.",
+      "verification": { "tieBreak": "verified", "freeHit": "verified (cl. 21.19.1 'all modes of No ball')", "drs": "verified", "concussionSub": "verified", "stopClock": "verified (absent from PCs)", "fielding": "verified", "bouncers": "verified" },
+      "sources": [
+        "https://images.icc-cricket.com/image/upload/prd/h54xnm2zg0vzf41bkrri.pdf (ICC Men's T20 World Cup 2021 Playing Conditions; cl. 1.2.7, 13.6.4, 16.3.1.2, 16.10, 21.19.1, 28.7, 41.3, 41.6, App. D 3.6.1, App. F)",
+        "https://www.espn.in/cricket/story/_/id/32408583/t20-world-cup-2021-faq (ESPNcricinfo FAQ: first men's T20 WC with reviews, 'a maximum of two unsuccessful requests per innings'; super overs 'keep playing ... until one wins')",
+        "https://thebridge.in/cricket/drs-first-time-men-t20-world-cup-25846 (ICC announcement, 10 Oct 2021)",
+        "https://www.onmanorama.com/sports/cricket/2019/07/19/icc-approves-concussion-substitutes.html ('This will be included in ICC playing conditions from 1 August 2019')",
+        "https://en.wikipedia.org/wiki/2021_ICC_Men%27s_T20_World_Cup (COVID squads of 15 + up to 7 additional players)"
+      ]
+    },
+    {
+      "editionId": "2022",
+      "tieBreak": "super-over (repeated until a winner)",
+      "freeHit": "all-no-balls",
+      "drs": true,
+      "drsReviewsPerInnings": 2,
+      "concussionSub": true,
+      "stopClock": false,
+      "impactSub": false,
+      "powerplayOvers": 6,
+      "maxOutsideCircleAfterPowerplay": 5,
+      "bouncersPerOver": 1,
+      "other": "First WC with the in-match over-rate penalty (ICC, Jan 2022; PC 13.8.1-13.8.2): 'The fielding side shall be in position to bowl the first ball of the final over of the innings by the scheduled (or re-scheduled) cessation time'; otherwise 'no more than 4 fielders shall be permitted outside the fielding restriction area' for the rest of the innings. Also first WC under the 1 Oct 2022 PC changes: saliva ban made permanent, running out the non-striker treated as a normal run-out, new batter takes strike after a catch even if batters crossed. Concussion replacement used (Netherlands: Logan van Beek for Bas de Leede v Pakistan). COVID clauses retained (Biosafety Advisory Group; travelling reserves must be used to field 11). Reserve days only semis/final; semi-final 1 Sydney, 2 Adelaide (host Australia to SF1 if qualified). Tiebreak as 2021.",
+      "verification": { "tieBreak": "verified", "freeHit": "verified", "drs": "verified", "concussionSub": "verified", "stopClock": "verified (absent)", "overRatePenalty": "verified", "fielding": "verified", "bouncers": "verified" },
+      "sources": [
+        "https://images.icc-cricket.com/image/upload/prd/uxsawulpvf8kexuujcnn.pdf (ICC Men's T20 World Cup 2022 Playing Conditions; cl. 1.1.3 BSAG, 1.2.7, 13.8, 16.3.1.2, 16.10, 21.19.1, 28.7, 41.6, App. D, App. F)",
+        "https://www.icc-cricket.com/news/changes-to-t20i-playing-conditions-come-into-effect (Jan 2022: 'one fewer fielder will be permitted outside of the 30-yard circle for the remaining overs of the innings'; first match WI v Ire, 16 Jan 2022)",
+        "https://www.icc-cricket.com/news/icc-announces-changes-to-playing-conditions (changes effective 1 Oct 2022: saliva, non-striker run-out, new batter on strike)",
+        "https://en.wikipedia.org/wiki/2022_ICC_Men%27s_T20_World_Cup (de Leede concussion replacement; washouts)"
+      ]
+    },
+    {
+      "editionId": "2024",
+      "tieBreak": "super-over (repeated until a winner)",
+      "freeHit": "all-no-balls",
+      "drs": true,
+      "drsReviewsPerInnings": 2,
+      "concussionSub": true,
+      "stopClock": true,
+      "impactSub": false,
+      "powerplayOvers": 6,
+      "maxOutsideCircleAfterPowerplay": 5,
+      "bouncersPerOver": 1,
+      "other": "First WC with the stop clock, made permanent from 1 Jun 2024 (PC 41.9.4): 'The fielding side shall be ready to start each over within 60 seconds of the previous over being completed. An electronic clock will be displayed at the ground that counts down seconds from 60 to zero'; first and second breach = warnings, third and subsequent = 5 penalty runs; clock not started if a new batter arrives, drinks, injury treatment, or time lost beyond the fielding side's control. Over-rate fielder penalty (13.8) retained. Super Overs used twice (Namibia beat Oman; USA beat Pakistan). Reserve day for SF1 (Trinidad, 60 min + 190 min reserve day) and the final (30 Jun); SF2 (Guyana) had 250 minutes of extra time and NO reserve day; minimum 5 overs (10 in knockouts). 'No points are carried forward from the First Round to the Second Round'. Tiebreak: wins, NRR, head-to-head, then First Round seedings (group stage) / T20I rankings (Super 8).",
+      "verification": { "tieBreak": "verified", "freeHit": "verified", "drs": "verified", "concussionSub": "verified", "stopClock": "verified", "fielding": "verified", "bouncers": "verified" },
+      "sources": [
+        "https://images.icc-cricket.com/image/upload/prd/euhohq8vpgzi0urumg3y.pdf (ICC Men's T20 World Cup 2024 Playing Conditions; cl. 13.6.2.1, 13.7.3, 13.8, 16.3.1.2, 16.10, 21.19.1, 28.7, 41.6, 41.9.4, App. D 3.6.1, App. F)",
+        "https://www.wisden.com/series/icc-mens-t20-world-cup-2024/cricket-news/stop-clock-becomes-permanent-in-cricket-playing-conditions-for-2024-t20-world-cup-announced (stop clock permanent 'from June 2024', 60 seconds, two warnings then five-run penalty; reserve days)",
+        "https://en.wikipedia.org/wiki/2024_ICC_Men%27s_T20_World_Cup (Super Overs in Match 3 and Match 11; no points carried; tiebreak order; semi-final reserve-day arrangements)",
+        "https://outlookindia.com/sports/cricket/t20-world-cup-how-teams-are-grouped-for-super-8s-pre-tournament-seedings-explained (seeds A1 India ... D2 Sri Lanka)"
+      ]
+    },
+    {
+      "editionId": "2026",
+      "tieBreak": "super-over (repeated until a winner)",
+      "freeHit": "all-no-balls",
+      "drs": true,
+      "drsReviewsPerInnings": 2,
+      "concussionSub": true,
+      "stopClock": true,
+      "impactSub": false,
+      "powerplayOvers": 6,
+      "maxOutsideCircleAfterPowerplay": 5,
+      "bouncersPerOver": 1,
+      "other": "Stop clock retained (41.9.4, now 'counts up seconds from zero to 60'; warning, final warning, then 5 penalty runs 'On the third and any subsequent occasion in an innings'). New since 2024: (a) reduced-innings powerplay expressed in overs AND balls (28.7.6 table: 5 overs -> 1.3, 6 -> 1.5, 7 -> 2.1, 8 -> 2.2, 9 -> 2.4, 10 -> 3.0 ... 19 -> 5.4); (b) airborne boundary-catch rule 19.5.2 (a fielder who jumps from outside the boundary may touch the ball once while airborne but must then land and remain inside the field of play); (c) saliva: if umpires believe saliva was applied they 'award 5 Penalty runs to the opposing side, and replace the ball' (41.3.7); (d) concussion replacements must be nominated before the match (1.2.7.1, 'nominated concussion replacement players'). First repeated Super Over at a men's T20 WC: South Africa beat Afghanistan in a second Super Over (group D, 11 Feb 2026; first Super Over 17/0 v 17/1). Reserve days for both semi-finals (5 and 6 Mar) and the final (9 Mar); if a semi cannot be completed the higher-placed Super Eights team advances; washed-out final = joint winners. Tiebreak (16.10.3): wins, NRR, head-to-head, then 'ICC Men's T20I Team Rankings as at 6 February 2026'. 'No points, wins or net run rate from the first round will be carried forward.'",
+      "verification": { "tieBreak": "verified", "freeHit": "verified", "drs": "verified", "concussionSub": "verified", "stopClock": "verified", "fielding": "verified", "bouncers": "verified" },
+      "sources": [
+        "https://images.icc-cricket.com/image/upload/prd/yyt7m8uh9c1uehrbvuwb.pdf (ICC Men's T20 World Cup 2026 Playing Conditions; cl. 1.2.7, 13.6.2.1, 16.3.1.2, 16.10.1-16.10.6, 19.5.2, 21.19.1, 28.7, 41.3.7, 41.6, 41.9.4, App. D 3.6.1, App. F, App. G)",
+        "https://en.wikipedia.org/wiki/2026_ICC_Men%27s_T20_World_Cup ('Match tied (South Africa won the second Super Over)'; pre-seeding and criticism; reserve days; final result)",
+        "https://www.wisden.com/series/icc-mens-t20-world-cup-2026/cricket-news/more-dead-rubbers-lopsided-groups-why-the-t20-world-cups-super-eights-pre-seedings-are-unfair (19 Feb 2026: 'India are X1, England Y1, Australia X2 and New Zealand Y2 ... West Indies take X3, Pakistan Y3, South Africa X4 and Sri Lanka Y4')",
+        "https://www.outlookindia.com/sports/cricket/icc-new-rules-2026-playing-conditions-tests-odis-t20is (context on 2025-26 ICC PC changes; secondary)"
+      ]
+    }
+  ]
+}

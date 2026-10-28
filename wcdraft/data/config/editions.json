@@ -1,0 +1,109 @@
+{
+  "$comment": "Hand-authored edition metadata for the men's T20 World Cup. Everything measurable comes from the Cricsheet archive at build time; this file holds only what the archive cannot tell us (hosts, rule era, Afghanistan's slot and stand-in). Verify rule flags before the engine relies on them. Stand-ins follow research_notes/T20 modifiers and ratings evidence/afghanistan_standins.md (2026-10-28).",
+  "worldCupEventNames": ["ICC World Twenty20", "World T20", "ICC Men's T20 World Cup"],
+  "fullMembers": [
+    { "team": "Australia", "since": 1909 }, { "team": "England", "since": 1909 }, { "team": "South Africa", "since": 1909 },
+    { "team": "West Indies", "since": 1926 }, { "team": "New Zealand", "since": 1926 }, { "team": "India", "since": 1926 },
+    { "team": "Pakistan", "since": 1952 }, { "team": "Sri Lanka", "since": 1981 }, { "team": "Zimbabwe", "since": 1992 },
+    { "team": "Bangladesh", "since": 2000 }, { "team": "Ireland", "since": 2017 }, { "team": "Afghanistan", "since": 2017 }
+  ],
+  "formWindowMonths": 24,
+  "editions": [
+    {
+      "id": "2007", "seasonKey": "2007/08", "year": 2007,
+      "hosts": ["South Africa"], "hostTeams": ["South Africa"],
+      "format": "4 groups of 3 → Super 8 (2 groups of 4) → semi-finals → final",
+      "rules": { "tieBreak": "bowl-out", "freeHit": "foot-fault-only", "drs": false, "concussionSub": false, "stopClock": false },
+      "afghanistan": null,
+      "standIn": null,
+      "slotChanges": []
+    },
+    {
+      "id": "2009", "seasonKey": "2009", "year": 2009,
+      "hosts": ["England"], "hostTeams": ["England"],
+      "format": "4 groups of 3 → Super 8 → semi-finals → final",
+      "rules": { "tieBreak": "super-over", "freeHit": "foot-fault-only", "drs": false, "concussionSub": false, "stopClock": false },
+      "afghanistan": null,
+      "standIn": null,
+      "slotChanges": []
+    },
+    {
+      "id": "2010", "seasonKey": "2010", "year": 2010,
+      "hosts": ["West Indies"], "hostTeams": ["West Indies"],
+      "format": "4 groups of 3 → Super 8 → semi-finals → final",
+      "rules": { "tieBreak": "super-over", "freeHit": "foot-fault-only", "drs": false, "concussionSub": false, "stopClock": false },
+      "afghanistan": { "stage": "First round", "group": "C", "groupmates": ["India", "South Africa"], "finish": "Eliminated in first round" },
+      "standIn": { "team": "United Arab Emirates", "reason": "Afghanistan won the 2010 WT20 Qualifier (both finalists qualified); UAE finished 3rd. Takes First Round group C. Confidence high; runner-up Netherlands (4th)." },
+      "slotChanges": [{ "action": "add", "team": "United Arab Emirates", "stage": "First Round", "group": "C" }]
+    },
+    {
+      "id": "2012", "seasonKey": "2012/13", "year": 2012,
+      "hosts": ["Sri Lanka"], "hostTeams": ["Sri Lanka"],
+      "format": "4 groups of 3 → Super 8 → semi-finals → final",
+      "rules": { "tieBreak": "super-over", "freeHit": "foot-fault-only", "drs": false, "concussionSub": false, "stopClock": false },
+      "afghanistan": { "stage": "First round", "group": "A", "groupmates": ["England", "India"], "finish": "Eliminated in first round" },
+      "standIn": { "team": "Namibia", "reason": "Afghanistan were runners-up in the 2012 WT20 Qualifier (both finalists qualified); Namibia finished 3rd. Takes First Round group A. Confidence high; runner-up Netherlands (4th)." },
+      "slotChanges": [{ "action": "add", "team": "Namibia", "stage": "First Round", "group": "A" }]
+    },
+    {
+      "id": "2014", "seasonKey": "2013/14", "year": 2014,
+      "hosts": ["Bangladesh"], "hostTeams": ["Bangladesh"],
+      "format": "First round (2 groups of 4) → Super 10 (2 groups of 5) → semi-finals → final",
+      "rules": { "tieBreak": "super-over", "freeHit": "foot-fault-only", "drs": false, "concussionSub": false, "stopClock": false },
+      "afghanistan": { "stage": "First round", "group": "A", "groupmates": ["Bangladesh", "Hong Kong", "Nepal"], "finish": "Eliminated in first round" },
+      "standIn": { "team": "Scotland", "reason": "2013 WT20 Qualifier: top six qualified, Afghanistan runners-up; Scotland finished 7th (won the 7th-place play-off v PNG). Takes First Round group A. Confidence high; runner-up Papua New Guinea." },
+      "slotChanges": [{ "action": "add", "team": "Scotland", "stage": "First Round", "group": "A" }]
+    },
+    {
+      "id": "2016", "seasonKey": "2015/16", "year": 2016,
+      "hosts": ["India"], "hostTeams": ["India"],
+      "format": "First round (2 groups of 4) → Super 10 (2 groups of 5) → semi-finals → final",
+      "rules": { "tieBreak": "super-over", "freeHit": "all-no-balls", "drs": false, "concussionSub": false, "stopClock": false },
+      "afghanistan": { "stage": "First round → Super 10", "group": "B → 1", "groupmates": ["Scotland", "Hong Kong", "Zimbabwe", "England", "South Africa", "Sri Lanka", "West Indies"], "finish": "Won first round group; 5th in Super 10 group 1" },
+      "standIn": { "team": "Namibia", "reason": "2015 WT20 Qualifier: top six qualified, Afghanistan 5th; Namibia placed 7th (no 7th-place play-off). Takes First Round group B; the simulated group winner proceeds to Super 10. Confidence medium-high; runner-up Papua New Guinea, whom Afghanistan beat in Qualifier 3." },
+      "slotChanges": [{ "action": "add", "team": "Namibia", "stage": "First Round", "group": "B" }]
+    },
+    {
+      "id": "2021", "seasonKey": "2021/22", "year": 2021,
+      "hosts": ["United Arab Emirates", "Oman"], "hostTeams": ["Oman"],
+      "format": "First round (2 groups of 4) → Super 12 (2 groups of 6) → semi-finals → final",
+      "rules": { "tieBreak": "super-over", "freeHit": "all-no-balls", "drs": true, "concussionSub": true, "stopClock": false },
+      "afghanistan": { "stage": "Super 12", "group": "2", "groupmates": ["India", "New Zealand", "Pakistan", "Namibia", "Scotland"], "finish": "4th in Super 12 group 2" },
+      "standIn": { "team": "Scotland", "reason": "Afghanistan qualified automatically (8th in rankings at 31 Dec 2018). Next ranked was Scotland (11th), already qualified via the 2019 Qualifier, so Scotland take Afghanistan's Super 12 group 2 slot and United Arab Emirates (7th in the 2019 Qualifier) take Scotland's First Round group B slot. Confidence high." },
+      "slotChanges": [
+        { "action": "move", "team": "Scotland", "fromStage": "First Round", "fromGroup": "B", "stage": "Super 12", "group": "2" },
+        { "action": "add", "team": "United Arab Emirates", "stage": "First Round", "group": "B" }
+      ]
+    },
+    {
+      "id": "2022", "seasonKey": "2022/23", "year": 2022,
+      "hosts": ["Australia"], "hostTeams": ["Australia"],
+      "format": "First round (2 groups of 4) → Super 12 (2 groups of 6) → semi-finals → final",
+      "rules": { "tieBreak": "super-over", "freeHit": "all-no-balls", "drs": true, "concussionSub": true, "stopClock": false },
+      "afghanistan": { "stage": "Super 12", "group": "1", "groupmates": ["Australia", "England", "New Zealand", "Sri Lanka", "Ireland"], "finish": "6th in Super 12 group 1 (two washouts)" },
+      "standIn": { "team": "Sri Lanka", "reason": "Afghanistan qualified automatically for the Super 12 (7th in rankings at 15 Nov 2021). Sri Lanka (9th) are promoted into Afghanistan's Super 12 group 1 slot; their vacated First Round group A slot cascades to Papua New Guinea (3rd in Global Qualifier B). Confidence medium; alternative Nepal (3rd in Global Qualifier A)." },
+      "slotChanges": [
+        { "action": "move", "team": "Sri Lanka", "fromStage": "First Round", "fromGroup": "A", "stage": "Super 12", "group": "1" },
+        { "action": "add", "team": "Papua New Guinea", "stage": "First Round", "group": "A" }
+      ]
+    },
+    {
+      "id": "2024", "seasonKey": "2024", "year": 2024,
+      "hosts": ["United States of America", "West Indies"], "hostTeams": ["United States of America", "West Indies"],
+      "format": "4 groups of 5 → Super 8 (2 groups of 4) → semi-finals → final",
+      "rules": { "tieBreak": "super-over", "freeHit": "all-no-balls", "drs": true, "concussionSub": true, "stopClock": true },
+      "afghanistan": { "stage": "Group → Super 8 → semi-final", "group": "C → 1", "groupmates": ["New Zealand", "West Indies", "Uganda", "Papua New Guinea", "India", "Australia", "Bangladesh"], "finish": "Semi-final (lost to South Africa)" },
+      "standIn": { "team": "Zimbabwe", "reason": "Afghanistan qualified as the next-best ranked side (10th at 14 Nov 2022); Zimbabwe were 11th on the last published pre-cut-off table. Takes group C. Confidence medium (exact cut-off table not retrievable); alternative Italy via the Europe cascade if Ireland were 11th." },
+      "slotChanges": [{ "action": "add", "team": "Zimbabwe", "stage": "Group", "group": "C" }]
+    },
+    {
+      "id": "2026", "seasonKey": "2025/26", "year": 2026,
+      "hosts": ["India", "Sri Lanka"], "hostTeams": ["India", "Sri Lanka"],
+      "format": "4 groups of 5 → Super 8 (2 groups of 4) → semi-finals → final",
+      "rules": { "tieBreak": "super-over", "freeHit": "all-no-balls", "drs": true, "concussionSub": true, "stopClock": true },
+      "afghanistan": { "stage": "Group", "group": "D", "groupmates": ["New Zealand", "South Africa", "United Arab Emirates", "Canada"], "finish": "3rd in group D; eliminated" },
+      "standIn": { "team": "Kenya", "reason": "Afghanistan qualified automatically (top 7 of 2024 excluding hosts). Next ranked at 30 Jun 2024 was Zimbabwe (12th), who qualified via the Africa Regional Final anyway, so the slot cascades to Kenya (3rd in the 2025 Africa Regional Final). Takes group D. Confidence medium-high; alternative Scotland (13th), already in the real field." },
+      "slotChanges": [{ "action": "add", "team": "Kenya", "stage": "Group", "group": "D" }]
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "name": "@swipe-sixer/wcdraft",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "description": "World Cup Draft — data pipeline (Phase 0) over the Cricsheet men's T20I archive.",
+  "scripts": {
+    "data:fetch": "tsx src/cli/fetch.ts",
+    "data:build": "tsx src/cli/build.ts",
+    "data:labels": "tsx src/cli/labels.ts",
+    "data:all": "npm run data:fetch && npm run data:build && npm run data:labels",
+    "ratings:build": "tsx src/cli/ratings.ts",
+    "typecheck": "tsc --noEmit",
+    "test": "node --import tsx --test --test-reporter=spec test/*.test.ts"
+  },
+  "devDependencies": {
+    "@types/node": "^20.14.0",
+    "tsx": "^4.19.2",
+    "typescript": "^5.5.4"
+  }
+}

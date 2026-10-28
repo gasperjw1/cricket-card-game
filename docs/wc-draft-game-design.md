@@ -1,0 +1,967 @@
+# World Cup Draft — Design Specification
+
+**Status:** Draft v0.1 (2026-10-28). Living document; sections marked *DECIDED* reflect
+conversations with Yash, sections marked *PROPOSED* are recommendations awaiting sign-off,
+and every number marked *MEASURED* was computed from the Cricsheet men's T20I archive
+(downloaded 2026-10-27) during design.
+
+**Companion material:**
+- Research report: `reports/Cricsheet data and cricket sim models.md` (engine literature, licence)
+- Research notes: `research_notes/Cricsheet data and cricket sim models/`
+- Prior-art installs: Cricket Coach 2014, OOTP 27 (see memory `reference_sim_game_installs`)
+
+---
+
+## 1. Vision and scope
+
+### 1.1 What it is
+
+An Era Ball–style draft-and-simulate game for men's T20 World Cups. The player:
+
+1. **Spins an identity** — a real (country, edition) pair, e.g. *India 2007*. They replace that
+   team and inherit its real schedule, venues, group, opponents and era rules.
+2. **Drafts a coach** from a panel of real head coaches, whose data-derived philosophy sets a
+   build target and the team's in-match intent.
+3. **Drafts eleven players**, one per spin of (country, edition), into eleven literal batting
+   positions.
+4. **Simulates the tournament** with a true ball-by-ball engine and sees whether the XI runs
+   the table.
+5. **Shares** a result card; competes on a leaderboard ranked by how the season went.
+
+### 1.2 Why this and not the management sim first (*DECIDED*)
+
+- The draft game and the management sim share the same **data layer** and **engine**. The draft
+  game is the thinnest possible client on top of a real simulation, so nothing built here is
+  thrown away when the management sim follows.
+- It fits short sessions, a share card and head-to-head, which suits Messenger and social
+  distribution far better than a management sim does.
+- It needs no card art. The aesthetic is text, badges and a share card.
+
+### 1.3 Design principle: true simulation, not a win curve (*DECIDED*)
+
+82-0 and 16-0 compute a strength number and push it through a win curve. We do not. Every
+match is simulated ball by ball; every modifier is a **data table with a documented source**,
+never a constant in code; the engine emits a full ball-by-ball log and scorecard even though
+the first UI only shows the record. Niche analytics (venue, dew, DRS, dismissal fingerprints,
+toss norms, upset rates, partnerships, fielding, phase specialists, era rules) are scoped now
+precisely so they carry forward.
+
+### 1.4 Scope boundaries
+
+| In scope (v1) | Later | Out |
+|---|---|---|
+| Men's T20 World Cups 2007–2026 (10 editions) | ODI World Cups (6 editions, 2003–2023) | Pre-2003 editions (no ball-by-ball data) |
+| Full-member and associate players present in Cricsheet | Associate coaches | Afghanistan (withheld by Cricsheet; *DECIDED* exclude) |
+| Default coach = real coach of identity team; coach panel draft | Cross-era coach modes, Gauntlet-style runs | Player likeness, logos, photos |
+| Classic and hidden-ratings modes, share card, leaderboard | Daily challenge, head-to-head | Monetisation |
+
+### 1.5 Prior art and what we take from each
+
+| Game | Take | Leave |
+|---|---|---|
+| **82-0** | Team+decade slot machine; hidden-stats mode | Additive stat total, no positions |
+| **Era Ball** | Choose the era you simulate in; position-fit penalties; era penalties; special tags; coach pick; real season + bracket + awards; Gauntlet as future franchise mode | Hand-tuned tiers (we derive) |
+| **16-0.app** | Franchise+season spin; slot-fit batting-order ratings; keeper attribute; overs-covered meter; Performance-vs-Squad leaderboard; cookieless, no-account | IPL only; win-curve season |
+| **Cricket Coach 2014** | Bowling plans per format/aggression tier; pitch 1–10 bounce scale; weather states; attribute vocabulary | Binary engine |
+| **OOTP** | Ratings stored as outcome components (contact/gap/power/eye ≈ dot/1/boundary/wicket); run-expectancy and leverage tables as text; engine knobs as config | Baseball |
+
+---
+
+## 2. Game loop
+
+### 2.1 Identity spin (*DECIDED*)
+
+- Spin yields a (country, edition) that actually competed. The user may reroll once (budget
+  shared with player rerolls? — *OPEN*).
+- Inherited from the real team: group, fixture list, venues and dates, era rules, tournament
+  bracket shape, and the real head coach as **default coach**.
+- Opponents field their **real elevens and batting orders** from Cricsheet `info.players` and
+  observed batting order. The user's XI replaces the identity team only.
+
+### 2.2 Coach panel (*DECIDED*)
+
+- Shown **first**, before any player pick. Panel of **3 coaches** drawn from the pool; pick one or
+  use the **single coach reroll** for a fresh panel of three. Coaches are **always drafted**; the
+  identity team's real coach is not forced (*DECIDED* 2026-10-28).
+- Panel is **stratified** across philosophy archetypes so the choice is meaningful (*PROPOSED*).
+- Card shows philosophy tags and the concrete build bonuses they unlock, not a letter grade.
+
+### 2.3 Player draft (*DECIDED*)
+
+- Eleven picks. Each spin yields a (country, edition) squad; the user picks one player from it
+  into an open slot.
+- Rerolls: **2 for the whole squad draft** (separate from the 1 coach reroll) (*DECIDED*).
+- Spins are **uniform over all squads** that competed, including associates (*DECIDED*).
+- One instance of a real person per XI (Gayle 2007 and Gayle 2012 cannot coexist) (*DECIDED*).
+- No overseas rule: it is an international tournament.
+- Mode: ratings visible, and each candidate shows their **T20I career record up to the start of
+  the drafted edition** (M, Inns, Runs, Avg, SR, 50s, HS; Wkts, Econ, SR, Best) (*DECIDED*).
+  A hidden-ratings mode is deferred.
+
+### 2.4 Lineup slots (*DECIDED*)
+
+Eleven slots are literal batting positions:
+
+| Slot group | Positions |
+|---|---|
+| Openers | 1, 2 |
+| Top order | 3, 4 |
+| Middle order | 5, 6 |
+| Lower order | 7, 8, 9 |
+| Tail | 10, 11 |
+
+- **Role** (batter / bowler / all-rounder) is a **per-edition** attribute derived from that
+  edition's usage, not a career summary: Mitchell Marsh 2014 is an all-rounder, Marsh 2024 an
+  opener who rarely bowls (*DECIDED*).
+- **Wicketkeeper is a tag**, not a role: keepers are batters who can keep. At least one
+  keeper-tagged player is required to lock the XI; more are allowed (*DECIDED*). **Anyone who has
+  ever kept is keeper-eligible in every edition** (*DECIDED* 2026-10-28), so KL Rahul 2021 and
+  2022 both carry the tag. Eligibility derives from three evidence columns in the labels sheet
+  (stumpings around the edition, Cricinfo keeper role, any T20I stumping ever) and can be
+  overridden by hand; every one of the 144 squads has at least one eligible keeper.
+- An **overs-covered meter** shows bowling depth. No hard bowler validation: the engine
+  punishes a weak fifth bowler legibly.
+- Position fit is scored from each player's real batting-position band (see §5.5).
+
+### 2.5 Simulation and result
+
+- Full tournament from the identity team's first fixture through the bracket.
+- Result screen: record, stage reached, scorecards, Orange/Purple Cap, tournament MVP, key
+  moments (super over, DLS finish, review drama, upset).
+- **Share card** with XI, coach, identity, record. Share link reproduces the season.
+- Leaderboard ranked by **Performance** (how the season went), shown beside **Squad rating**.
+
+---
+
+## 3. Data sources and licensing
+
+### 3.1 Cricsheet (primary) — *CONFIRMED*
+
+- Licence: **ODC-By 1.0** for all match data (since 7 Oct 2026). Attribution required wherever
+  derived data is publicly used; no non-commercial clause; no share-alike. The licence covers the
+  database, not player names/likenesses. Attribution text goes in README, in-game credits and a
+  `DATA-LICENSE` file.
+- Archive used: `t20s_male_json.zip` (3,646 men's T20Is as of 2026-10-27). World Cup matches
+  are identified by `info.event.name ∈ {"ICC World Twenty20", "World T20",
+  "ICC Men's T20 World Cup"}` — the dedicated event zip omits 2007–2012.
+- Per-delivery fields: batter, bowler, non_striker, runs {batter, extras, total, non_boundary},
+  typed extras, wickets [{kind, player_out, fielders}], review {by, umpire, batter, decision,
+  type, umpires_call} (2021+), replacements.
+- Per-match: dates, venue, city, toss {winner, decision}, outcome {winner, by, method, result},
+  event {name, stage, group}, players per team, registry (8-char person IDs), powerplays,
+  target, super_over flag.
+
+**Editions available** (*MEASURED*):
+
+| Edition | Season key | Matches in archive | Host |
+|---|---|---|---|
+| 2007 | 2007/08 | 26 | South Africa |
+| 2009 | 2009 | 27 | England |
+| 2010 | 2010 | 25 | West Indies |
+| 2012 | 2012/13 | 25 | Sri Lanka |
+| 2014 | 2013/14 | 32 | Bangladesh |
+| 2016 | 2015/16 | 27 | India |
+| 2021 | 2021/22 | 40 | UAE / Oman |
+| 2022 | 2022/23 | 39 | Australia |
+| 2024 | 2024 | 44 | USA / West Indies |
+| 2026 | 2025/26 | 49 | India / Sri Lanka |
+
+**Known gaps:** all Afghanistan men's matches withheld (removes ~20% of 2021–2026 World Cup
+matches and every Afghan player; *DECIDED* accept). No line/length, ball speed, shot type,
+field placements, handedness, bowling style, captain, coach, weather. ~15% of run-outs lack a
+named fielder.
+
+### 3.2 Hand-labelled and open-source supplements
+
+| Dataset | Source | Volume | Owner |
+|---|---|---|---|
+| Handedness, bowling type, date of birth, career keeper role | **cricketdata `player_meta` snapshot** (*DECIDED* 2026-10-28, replacing hand entry): ESPNcricinfo profile facts as at 24 Mar 2025, keyed by Cricsheet id; covers 891 of 903 WC players, bowling type for 795. Gaps and per-edition keeping are hand-labelled | ~900 distinct WC players | Pipeline + Yash for gaps |
+| Captain tenures per nation (T20I) | Wikipedia per-nation T20I captain lists (CC BY-SA) | ~30 nations | Agent-compiled, Yash spot-checks |
+| Head-coach tenures per nation | Wikipedia coach lists | ~150 coach-editions | Agent-compiled |
+| Climate normals per host city, tournament month | Public climate tables | ~40 venues | Agent-compiled |
+| Boundary dimensions (optional) | Public ground pages | ~40 venues | Later |
+| Existing card heat-maps → tags | `shared/src/data/cards.json` | 226 of 293 current cards appear in a WC (*MEASURED*) | Already owned |
+
+### 3.3 Explicitly excluded
+
+- Scraping ESPNcricinfo (Disney ToS prohibits). `python-espncricinfo` was security-vetted and is
+  clean (MIT, trusted publishing, no risky calls) but is a live scraper, bundles no data, and
+  depends on Playwright; **not used**.
+- Kaggle re-packs with unverified licences.
+
+### 3.4 T20I status caveat for associates
+
+All ICC members' men's matches have carried T20I status only since 1 January 2019. Before
+that, only selected associates had it, so pre-2019 associate players (e.g. Nepal and Hong Kong
+2014, Oman 2016) have thin or missing records in the archive even where they played many
+internationals. Form windows for those players fall back to the World Cup itself plus the
+qualifier matches that are present (`ICC World Twenty20 Qualifier` 2008–2015, partial; `ICC
+Men's T20 World Cup Qualifier` 2019 onward, 51+ matches).
+
+### 3.5 Footprint (*MEASURED* 2026-10-28)
+
+| Item | Size / cost |
+|---|---|
+| `t20s_male_json.zip` | 14 MB download; 289 MB extracted (3,646 files) |
+| ODI World Cup zip (future) | 1.7 MB; 47 MB extracted |
+| Full parse of all 3,646 T20Is in Python | 2.9 s, 17 MB peak RAM |
+| Derived JSON tables shipped in repo (estimate) | 5–20 MB |
+| One simulated T20 match | ~240 ball draws; sub-millisecond in TypeScript |
+| One tournament (≈45 matches) | well under a second |
+| Calibration run (1,000 tournaments) | seconds to low minutes, single core |
+
+The full Cricsheet archive (all formats, 148 MB zipped / ~3 GB extracted) is **not** needed.
+The raw zip need not be committed; the pipeline downloads it on demand and caches it outside
+the repo. Machine checked: 17 GB RAM, 428 GB free disk.
+
+---
+
+## 4. Data model
+
+All derived tables are produced by a deterministic pipeline (`tools/wc-data/`, *PROPOSED*
+location) from the raw archive and the hand-labelled CSVs, and written as JSON under
+`shared/src/data/wc/`. Every table carries `source`, `generated_at`, `cricsheet_snapshot`.
+
+### 4.1 Core entities
+
+```
+Edition        { id, year, seasonKey, hosts[], teams, format: {groups, super8|10|12, knockout},
+                 rules: {bowlOut|superOver, freeHitScope, drs, concussionSub, stopClock},
+                 env: EditionEnvironment, upsetRate, tossNorm, hostWinRate }
+Venue          { id, name, city, country, profile: VenueProfile, climate: {rainProbability} }
+Team           { id, name, isFullMember }
+Person         { id (cricsheet), names[], handedness, bowlingType, keeper: bool, cardId? }
+Squad          { editionId, teamId, personIds[], coachId, captainId, realXIsByMatch }
+PlayerEdition  { personId, editionId, teamId, bat: PhaseVectors, bowl: PhaseVectors,
+                 positionBand, formEnteringTournament, tournamentForm, fielding, keeping,
+                 rating: {bat, bowl, field, overall}, tags[] }
+Coach          { id, name, tenures[{teamId, from, to}], philosophy: PhilosophyProfile, tags[] }
+Captaincy      { personId, matches, winsAboveExpectation, rating, styleTags[] }
+Match (real)   { id, editionId, venueId, date, teams, toss, xis, battingOrders, outcome }
+```
+
+### 4.2 Derivations from Cricsheet (summary)
+
+| Derived field | Cricsheet source |
+|---|---|
+| Per-ball outcome counts by phase (PP 1–6, middle 7–15, death 16–20) | `runs.batter`, `wickets`, over index |
+| Batting position per innings → position band | Order of first appearance of `batter` |
+| Bowler phase usage, overs bowled, spell structure | First delivery's `bowler` per over |
+| Partnerships (for Dynamic Duos) | (`batter`, `non_striker`) pairs per ball |
+| Fielding (catches, run-out involvements), keeping (stumpings, catches as keeper) | `wickets[].fielders`, `wickets[].kind` |
+| Dismissal fingerprint per edition/venue | `wickets[].kind` |
+| Review behaviour (2021+) | `review` |
+| Dew proxy: 2nd-innings RPO − 1st-innings RPO | innings index |
+| Toss norms, bowl-first rate, toss-winner win rate | `info.toss`, `info.outcome` |
+| Rain: D/L finishes, no-results | `outcome.method`, absence of `winner` |
+| Real XIs and batting orders for CPU teams | `info.players`, batting order |
+| Team strength timeline (for captaincy expectation) | all men's T20Is |
+
+---
+
+## 5. Ratings specification
+
+### 5.1 Philosophy
+
+Ratings are **per-ball outcome vectors**, not scalars. A scalar 0–99 is derived for display and
+draft comparison; the engine consumes the vectors. This mirrors OOTP (ratings are outcome
+components) and the academic simulators (Davis–Perera–Swartz 2015).
+
+### 5.2 Batting base rating (*PROPOSED*)
+
+For each (person, edition):
+
+1. **Raw counts** over a form window of all men's T20Is in the 24 months before the edition's
+   first match, plus the edition itself weighted as form (§5.3): counts of {0, 1, 2, 3, 4, 6,
+   W} per phase, legal balls only; extras handled separately.
+2. **Shrinkage**: Dirichlet / pseudo-count blend toward the era-and-phase population vector with
+   prior strength **c = 50 balls per phase** (literature range 40–60). Players with tiny samples
+   land near era-average.
+3. **Era adjustment**: express each phase vector relative to the edition environment (§6.1) so a
+   2009 and a 2026 batter are comparable: `relative = player / editionAverage`.
+4. **Display scalar**: expected runs per ball and dismissal hazard combined into runs-above-
+   average per 20 balls, mapped to an era-adjusted percentile, then anchored to 40–99 for
+   display (*DECIDED* range 40–99; 16-0 uses 55–97).
+
+### 5.3 Tournament Form (*DECIDED*, parameters *PROPOSED*)
+
+- The player's World Cup performance in the drafted edition is **not** the base rating; it is
+  a modifier that fires **only when the simulation era equals the drafted edition**.
+- Magnitude: bounded ±5 display points (equivalently a capped multiplier on the vector), gated
+  at a minimum of **30 balls faced / 48 balls bowled** in that edition; below the gate it is
+  neutral.
+- Rationale: single-tournament samples are tiny (*MEASURED*: T20 WC median 39 balls faced,
+  66 balls bowled per player), so form is flavour layered on a stable base.
+
+### 5.4 Bowling base rating (*PROPOSED*)
+
+Same construction: per-phase conceded-outcome vectors and wicket hazard, shrunk with c = 50,
+era-relative, with a display scalar from runs-saved and wickets-above-average per 24 balls.
+Phase usage share from data defines the bowler's **natural phases** (powerplay / middle /
+death) used by the allocation policy.
+
+### 5.5 Position band and fit penalty (*DECIDED* concept, *PROPOSED* numbers)
+
+- From real batting positions: natural band = inter-quartile range of positions actually
+  batted (weighted toward the drafted edition).
+- Penalty on batting vector by distance from band: 0 inside band; −5% one position outside;
+  −12% two; −20% three or more. Bowlers at 10–11 carry no batting penalty. All-rounders have
+  wide bands by construction.
+- Slot also sets **expected balls faced** in the engine, so a number nine's value is mostly
+  bowling.
+
+### 5.6 Timeless tag (*DECIDED*, rule *PROPOSED*)
+
+- Data rule for the candidate list: top-decile era-adjusted rating in **≥ 3 editions spanning
+  ≥ 8 years**. Yash curates the final list.
+- Effect: no era penalty when played outside the home edition.
+- Expected candidates: Gayle, de Villiers, Rohit, Kohli, Shakib, Malinga, Southee, Warner,
+  Buttler, Dhoni. Yusuf Pathan is the canonical non-Timeless example.
+
+### 5.7 Era penalty for non-Timeless players (*PROPOSED*)
+
+- Playing outside the home edition applies a penalty growing with distance in years, e.g.
+  −3% per edition step, capped at −15%, applied to the relative vector before the destination
+  edition's environment is applied. Pre-DRS / pre-2015 players get no extra penalty (unlike
+  Era Ball's pre-3PT rule) — the environment scaling already handles scoring inflation.
+
+### 5.8 Fielding and keeping (*PROPOSED*)
+
+- Catches per match and run-out involvements per match (named fielders only), shrunk;
+  keepers additionally stumpings and catches as keeper. Feeds a fielding conversion multiplier
+  on catch-type dismissals (Perera–Davis–Swartz pattern) and the **Gun fielder** tag.
+
+### 5.9 Captaincy rating (*DECIDED*, method *PROPOSED*)
+
+- Eligibility: captained ≥ 1 men's T20I (any match, not only World Cups).
+- Captain per match from Wikipedia tenure tables joined to Cricsheet dates.
+- Rating = wins above expectation during tenure, where expectation comes from a team-strength
+  rating computed over all men's T20Is (Elo-style), shrunk by matches captained.
+- Style tags from Cricsheet: toss choice vs era norm, spin share in powerplay, hook speed,
+  bowler rotation breadth, death-over trust.
+- Effect: modulates the bowling-allocation policy (§7.5). Strong captain ≈ near-optimal
+  choices; weak captain adds noise and over-hooks.
+
+### 5.10 Coach philosophy (*DECIDED*, metrics *PROPOSED*)
+
+Computed over the coach's **whole T20I tenure** (30–60 matches typical), each indexed to the
+era average (1.00 = typical):
+
+| Metric | Definition |
+|---|---|
+| Powerplay intent | Team PP runs per over / era PP RPO |
+| Wicket preservation | Wickets down at 15 overs vs era |
+| Batting depth | Share of runs from positions 7–11 vs era |
+| Finisher reliance | Death-overs (16–20) RPO vs era |
+| Spin share | Spin overs share vs era (requires bowling types) |
+| Bowl-first preference | Fielding-first rate at toss |
+| All-rounder count | Mean bowlers who batted top 8 |
+
+Archetype tags derive from these (e.g. *Powerplay Aggressor*, *Anchor & Finish*, *Bat Deep*,
+*Spin Heavy*, *Pace Battery*, *Chase First*). Yash edits tags, because the metrics measure
+style, not intent, and are partly the captain's and squad's doing.
+
+*MEASURED* sanity check (India, World Cup innings only, indexed to edition):
+
+| Edition | Coach | PP intent | Wkts down @15 (team vs era) | Lower-order run share |
+|---|---|---|---|---|
+| 2014 | Fletcher | 1.00 | 2.3 vs 4.0 | 0.07 |
+| 2016 | Shastri | 0.85 | 3.8 vs 4.0 | 0.56 |
+| 2022 | Dravid | 0.87 | 3.5 vs 4.3 | 0.33 |
+| 2024 | Dravid | 1.14 | 4.2 vs 4.7 | 0.40 |
+| 2026 | Gambhir | 1.21 | 4.2 vs 4.3 | 0.55 |
+
+**Effects of the coach (*DECIDED*):**
+- Draft-time: each tag defines a **build bonus** condition (e.g. ≥ 3 batters above the era's
+  75th percentile PP intent; batting rating ≥ threshold at slots 7–8). Meeting it earns a
+  modest synergy bonus; missing it costs nothing.
+- In-sim: the coach sets the team's **default intent profile** per phase (§7.3).
+- The coach does **not** affect between-game form or CPU lineups.
+
+### 5.11 Other data tags (*PROPOSED*)
+
+| Tag | Data rule |
+|---|---|
+| Dynamic Duo | Pair with ≥ N partnership balls together and partnership RPO above era; bonus when both drafted and adjacent in order |
+| Gun Fielder | Top decile catches + run-out involvements per match |
+| Powerplay Specialist / Death Specialist (bowler) | ≥ 50% of overs in that phase and economy better than era |
+| Finisher | ≥ 40% of balls faced in overs 16–20 with SR above era death SR |
+| Anchor | Low dismissal hazard, below-era boundary rate, high balls faced per innings |
+| Giant-Killer | Starred (top-2 performer) in a full-member defeat by an associate |
+| Chase Master | Runs-above-average in second innings materially above first innings |
+| Big-Match | Positive runs/wickets-above-average in knockout matches across ≥ 2 editions |
+| Heat-map tags (current cards) | From `cards.json` strengths/adjectives: *Pull Specialist*, *Spin Killer*, *Yorker King*, etc. |
+
+---
+
+## 6. Modifier catalogue
+
+Every modifier is a table in `shared/src/data/wc/` with the evidence column filled.
+
+### 6.1 Edition environment (*MEASURED*, World Cup matches only)
+
+| Edition | Host | RPO | Dot % | 4s % | 6s % | Balls/wkt | PP RPO | Death RPO | 1st-inns avg | Chase win % | Toss→field % |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| 2007 | South Africa | 7.99 | 38.1 | 11.1 | 4.5 | 17.0 | 6.97 | 8.82 | 164 | 52 | 65 |
+| 2009 | England | 7.63 | 36.3 | 11.1 | 2.8 | 17.8 | 7.38 | 8.88 | 156 | 41 | 48 |
+| 2010 | West Indies | 7.63 | 37.9 | 8.8 | 4.7 | 17.2 | 6.38 | 9.28 | 159 | 42 | 40 |
+| 2012 | Sri Lanka | 7.65 | 38.0 | 11.0 | 3.8 | 18.9 | 6.60 | 9.27 | 154 | 45 | 44 |
+| 2014 | Bangladesh | 7.60 | 39.1 | 11.1 | 4.0 | 18.1 | 6.87 | 9.09 | 156 | 59 | 72 |
+| 2016 | India | 7.86 | 36.6 | 11.4 | 4.2 | 17.8 | 7.19 | 9.58 | 157 | 50 | 63 |
+| 2021 | UAE / Oman | 7.43 | 38.1 | 9.5 | 4.1 | 18.6 | 6.34 | 9.23 | 146 | 68 | 78 |
+| 2022 | Australia | 7.52 | 38.0 | 9.6 | 3.5 | 17.2 | 6.58 | 8.31 | 155 | 42 | 38 |
+| 2024 | USA / WI | 7.13 | 44.4 | 8.7 | 4.9 | 16.7 | 6.42 | 7.94 | 140 | 56 | 84 |
+| 2026 | India / SL | 8.74 | 34.9 | 11.9 | 6.5 | 17.2 | 8.27 | 9.95 | 182 | 43 | 71 |
+
+**Dismissal fingerprint and other per-edition facts (*MEASURED*):**
+
+| Edition | lbw % | bowled % | caught % | stumped % | run out % | DRS reviews (upheld / umpire's call) | D/L · NR · ties | Toss-winner win % | Host win % | Associate upsets | 2nd − 1st inns RPO |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| 2007 | 6.9 | 20.7 | 57.2 | 3.2 | 11.8 | none | 0 · 1 · 1 | 56 | 80 | 0/3 | −0.19 |
+| 2009 | 5.0 | 22.0 | 60.2 | 5.9 | 6.8 | none | 1 · 0 · 0 | 48 | – | 1/4 | −0.62 |
+| 2010 | 4.1 | 15.4 | 68.9 | 3.8 | 7.9 | none | 3 · 1 · 0 | 62 | – | 0/0 | −0.60 |
+| 2012 | 8.8 | 23.5 | 55.8 | 4.9 | 7.0 | none | 1 · 3 · 2 | 32 | 67 | 0/0 | −0.25 |
+| 2014 | 5.4 | 20.5 | 59.3 | 5.4 | 9.2 | none | 3 · 0 · 0 | 56 | 17 | 3/10 | −0.03 |
+| 2016 | 6.4 | 20.1 | 57.6 | 6.4 | 9.5 | none | 2 · 1 · 0 | 65 | 60 | 2/6 | −0.30 |
+| 2021 | 9.6 | 21.3 | 60.1 | 1.1 | 7.5 | 81 (17% / 17%) | 0 · 0 · 0 | 70 | – | 2/13 | +0.50 |
+| 2022 | 6.6 | 17.7 | 66.7 | 1.8 | 6.8 | 78 (18% / 15%) | 3 · 1 · 0 | 39 | 67 | 4/11 | −0.55 |
+| 2024 | 10.5 | 18.1 | 62.8 | 2.7 | 5.3 | 91 (25% / 14%) | 3 · 3 · 2 | 56 | 50 | 1/20 | +0.24 |
+| 2026 | 4.5 | 17.4 | 69.6 | 2.6 | 5.1 | 85 (19% / 14%) | 0 · 0 · 0 | 43 | 69 | 0/20 | −0.63 |
+
+**Application:** the edition environment scales the engine's situation vector τ (boundary
+rate, dot rate, dismissal hazard, powerplay and death scaling). Dismissal fingerprint shapes
+*how* wickets fall (commentary + fielding). Toss norms drive the AI captain's toss decision.
+Upset rate and host win rate calibrate associate and host modifiers.
+
+### 6.2 Venue profiles (*MEASURED*; venues with ≥ 5 WC matches, extremes shown)
+
+| Venue | Matches | RPO | Balls/wkt | 1st-inns avg | Chase win % | Stumped % | Bowled+lbw % | Dew (2nd − 1st RPO) |
+|---|---|---|---|---|---|---|---|---|
+| Nassau County, New York (2024) | 8 | 5.42 | 16.7 | 109 | 62 | 0.9 | 21.5 | +0.36 |
+| Dubai (2021) | 12 | 7.35 | 20.2 | 148 | **92** | 0.8 | 29.4 | **+2.20** |
+| Abu Dhabi (2021) | 12 | 7.00 | 19.1 | 139 | 75 | 2.1 | 32.9 | +0.44 |
+| Sylhet (2014) | 6 | 7.77 | 19.5 | 147 | 100 | 1.5 | 22.1 | +1.45 |
+| Antigua (2024) | 8 | 7.81 | 16.2 | 163 | 62 | 2.2 | 25.8 | +1.66 |
+| Lord's (2009) | 8 | 7.02 | 18.9 | 150 | 38 | **11.0** | 23.0 | −0.34 |
+| Shere Bangla, Dhaka (2014) | 13 | 7.28 | 19.7 | 159 | 54 | 9.2 | 25.7 | −0.58 |
+| Nagpur (2016) | 5 | 6.46 | 15.5 | 136 | 40 | 9.7 | 20.8 | −0.29 |
+| SCG (2022) | 7 | 7.48 | 16.8 | 176 | 29 | 2.1 | 26.3 | **−1.95** |
+| Bridgetown (2010) | 10 | 7.25 | 17.0 | 162 | **20** | 2.9 | 20.4 | −1.03 |
+| Chepauk (2026) | 5 | 9.24 | 23.3 | 199 | 40 | 0.0 | 22.9 | −0.72 |
+| Ahmedabad (2026) | 6 | 8.96 | 18.2 | 200 | 33 | 0.0 | 21.1 | −1.41 |
+| Wankhede (2026) | 8 | 8.84 | 17.3 | 184 | 38 | 2.9 | 20.0 | −0.19 |
+| Sharjah (2021) | 10 | 7.16 | 18.9 | 158 | 50 | 0.0 | **39.0** | −0.57 |
+
+**Application:** venue is the **primary** modifier source; edition is the fallback for venues
+with thin samples (shrink venue toward edition with prior strength ≈ 6 matches, *PROPOSED*).
+Dew → chase advantage; stumped share → spin friendliness proxy until bowling types exist;
+bowled+lbw share → low bounce / skid; RPO and balls/wkt → batting vs bowling friendliness.
+Spin-vs-pace economy by venue is added once bowling types are labelled.
+
+### 6.3 DRS (*MEASURED*, modelling *PROPOSED*)
+
+- Reviews recorded from 2021 onward only (consistent with DRS availability at T20 World
+  Cups). ~80–90 reviews per edition; ~17–25% upheld; ~14–17% umpire's call.
+- LBW share is higher in DRS editions on low/turning surfaces (2021: 9.6%, 2024: 10.5%) but
+  not on flat decks (2026: 4.5%). Model DRS as a **modest LBW-probability lift in DRS editions
+  conditioned on venue bounce**, plus review events in commentary at measured rates, including
+  overturned decisions and umpire's call. Not a major balance lever.
+
+### 6.4 Rain (*PROPOSED*)
+
+- Per-venue rain probability = blend of measured D/L and no-result frequency (edition/venue)
+  with public monthly climate normals for the host city in the tournament month.
+- When rain fires: reduced overs with a real DLS target computed from the Standard Edition
+  resource table (public), or no-result with points shared. Rare by design; the predictor
+  explains it.
+
+### 6.5 Rule-era touches (*DECIDED* to include; verify each before implementation)
+
+| Edition range | Rule |
+|---|---|
+| 2007 | Bowl-out for ties |
+| 2009 → | Super over for ties |
+| 2007–2015 | Free hit only for front-foot no-balls; 2015 → all no-balls |
+| 2021 → | DRS available; concussion substitutes |
+| 2024 → | Stop clock |
+| Per edition | Real group structure: Super 8 (2007, 2009, 2010), Super 10 (2012, 2014, 2016), Super 12 (2021, 2022), 20 teams + Super 8 (2024, 2026) |
+
+### 6.6 Explicitly flavour-only (no data source)
+
+Delivery-length vocabulary shifts (short/good/full → slot/yorker), cloud cover and swing
+conditions, pitch wear within a match. Represent in commentary text keyed to venue/edition;
+death-overs bowled+lbw share and six rate are the only quantitative proxies.
+
+---
+
+## 7. Engine contract
+
+### 7.1 Core model (from the research report; *DECIDED* direction)
+
+Per-ball categorical outcome over {0, 1, 2, 3, 4, 6, W} following Davis–Perera–Swartz (2015):
+
+```
+p(outcome | batter i, bowler k, over o, wickets w, context) ∝
+    τ[o][w]                 situation multiplier, estimated directly from Cricsheet
+  × p_i[phase]              batter relative vector (shrunk, era-adjusted, position-fit, form)
+  ⊕ q_k[phase]              bowler relative vector, combined as p + q − p̄ with clipping
+  × env[edition]            edition environment scaling
+  × venue[v]                venue profile scaling (dew applied to 2nd innings)
+  × intent[team][phase]     coach/chase-driven aggression shift (moves τ column)
+  × fielding Λ              per-fielder conversion on catch-type outcomes
+```
+
+- Extras drawn separately (~5% Bernoulli, wides/no-balls vs byes/leg-byes, era-scaled).
+- Eye-in multiplier on dismissal hazard for a new batter (Stevenson–Brewer form; batters start
+  at 25–50% of set ability, L ≈ 2–6 runs).
+- Innings-level random effect (pitch/day) to fix under-dispersion of pure Markov engines
+  (Mishra 2026 warning).
+- Chase rule: compare expected runs per resource vs required; shift intent column with 0.8
+  damping.
+
+### 7.2 Outputs
+
+- Ball-by-ball log (same schema as Cricsheet deliveries + engine annotations), scorecard,
+  partnerships, fall of wickets, review events, rain/DLS events, awards inputs.
+- Deterministic given a seed, so share links reproduce seasons.
+
+### 7.3 Intent profile
+
+Per team, per phase, default from **coach philosophy**; the chase rule and match state
+override at runtime. A high-intent powerplay raises boundary rate and dismissal hazard
+together, as the 2026 India data shows.
+
+### 7.4 Toss, captain decisions
+
+AI captain follows the **edition toss norm** adjusted by venue dew. Captain rating sets the
+noise level on all captain decisions.
+
+### 7.5 Bowling allocation policy (*DECIDED* approach; measured norms below)
+
+Per over, choose among eligible bowlers (quota < 4, did not bowl previous over) by utility:
+
+```
+score(k) = −E[runs | k, batters, phase, venue, era]
+           + λ_w · P(wicket | k, …)
+           − λ_spell · recentSpellEconomyPenalty(k)
+           + λ_match · matchupBonus(k, striker handedness/type)
+           + roleReservation(k, oversRemaining)      hold death/new-ball specialists
+           + captainStyle(k)                         per-captain tags
+           + ε(captainRating)                        noise shrinks with rating
+```
+
+The policy must reproduce the measured usage norms within a few points (acceptance test):
+
+| Measured behaviour (454 complete WC innings) | Value |
+|---|---|
+| Bowlers used per innings | 5: 17% · 6: 62% · 7: 20% · 8: 1% |
+| New-ball bowler completes 4 overs if first two overs cost ≤ 10 / 17–24 / 25+ | 83% / 66% / 52% |
+| Bowler returns later after an over costing 0–6 / 12–17 / 18+ | 92% / 70% / 54% |
+| Overs 19–20 bowled by an opening bowler | 43% |
+| New-ball bowler bowls at the death regardless of early economy | 62–68% |
+| Bowler #6 overs per innings; share in middle overs | 1.59; 75% |
+| Bowler #6 first introduced | mostly overs 7–12 |
+| Bowlers #4–#5 share of work in middle overs | 64–65% |
+
+Consequences: six bowlers is the norm; a hit frontline bowler is pulled from the spell about
+half the time after an 18+ over but almost always returns; death trust is sticky; a
+3-specialist + 3-all-rounder XI naturally yields specialists in PP/death and all-rounders in
+the middle.
+
+### 7.6 Tournament simulation
+
+Replays the identity team's real fixture list and venues; the rest of the group plays its
+real fixtures with real elevens; standings, net run rate, and the edition's real bracket
+decide progression. Ties resolved by bowl-out or super over per edition rules.
+
+---
+
+## 8. Draft rules and balancing
+
+- Spins draw (country, edition) uniformly over squads that exist (*DECIDED*).
+- Each spin shows the squad with ratings (Classic) or names only (Cricket-IQ), position band,
+  role, tags, and slot-fit preview as in 16-0.
+- Rerolls by difficulty: 0 / 1 / 3.
+- Synergy bonuses: coach build bonuses (§5.10), Dynamic Duos (§5.11). Keep each ≤ ~3 display
+  points so no single lever solves the draft.
+- Leaderboard: Performance score (stage reached, record, NRR) beside Squad rating.
+- **Unbeaten-run rarity target (*PROPOSED*):** the share of completed runs that finish
+  unbeaten, measured by simulating thousands of random drafts. 16-0's board shows twelve
+  perfect seasons in its top 25, which cheapens the hook. We tune variance, opponent strength
+  and knockout difficulty so that a perfect run is rare but reachable, e.g. under 3% of all
+  runs and under 15% of runs with a top-decile squad rating. It is a balancing dial, not a
+  gameplay rule.
+
+---
+
+## 9. Validation and acceptance tests
+
+Run before any UI is built, on simulated replays of real World Cups with real elevens:
+
+1. **Innings totals** Q–Q against real distribution per edition; first-innings SD ≈ 28–30.
+2. **Wickets-by-over** curve within tolerance per edition.
+3. **Per-ball marginals** within total-variation 0.02 of real for each edition.
+4. **Remaining-runs vs par** within ~5 runs of a Delta-style par table.
+5. **Bowler usage table** (§7.5) reproduced within a few points.
+6. **Venue effects** reproduced: Dubai chase advantage, Nassau par, SCG bat-first edge.
+7. **Rating stability**: shrunk rating in edition *n* predicts edition *n+1* better than raw
+   stats and better than career average (choose `c` by this test).
+8. **Win-probability calibration** of the live predictor on held-out real matches.
+
+---
+
+## 10. Build plan
+
+### Phase 0 — Data spike (no UI) — **BUILT 2026-10-28**
+
+Implemented in `wcdraft/` (see its README). The canonical measured tables now live in
+`wcdraft/data/out/` (`editions.json`, `venues.json`, `bowling-usage.json`,
+`lineup-deviation.json`) with a human-readable digest in `wcdraft/data/out/COVERAGE.md`; the
+tables in §6–7 of this document were the design-time measurements and differ in places: the
+pipeline counts wide and no-ball runs in runs-per-over, as a scorecard does (the design-time
+powerplay and death figures did not); first-innings averages now use natural innings only
+(20 overs or all out, rain-shortened excluded), which lowers them by 1–7 runs; ties settled by
+super over count as decided; and full-member status is time-varying, which changes the
+associate-upset counts. The generated tables are canonical. Results: 10 editions, 144 team-editions,
+903 people, 1,903 player-editions; 377 player-editions lack form data, 105 of them in 2007
+when almost no prior T20Is existed. Build runs in ≈3 s at ≈230 MB peak RAM; outputs total
+≈8 MB. Afghanistan stand-ins per edition are recorded in `wcdraft/data/config/editions.json`
+(UAE 2010, Namibia 2012, Scotland 2014, Namibia 2016, Scotland 2021 with UAE into the first
+round, Sri Lanka 2022 with PNG into the first round, Zimbabwe 2024, Kenya 2026), with evidence
+in `research_notes/T20 modifiers and ratings evidence/afghanistan_standins.md`.
+
+- `tools/wc-data/ingest`: stream `t20s_male_json.zip` → SQLite/DuckDB; filter WC events;
+  attribution file.
+- Tables: PlayerEdition raw counts by phase, batting positions, bowler usage, partnerships,
+  fielding, edition env, venue profiles, dismissal fingerprints, reviews, toss, rain.
+- Hand-label kickoff: handedness + bowling type (~900 players); captain tenures; coach tenures
+  (agent-compiled, Yash spot-checks).
+- Deliverable: JSON tables under `shared/src/data/wc/` + a notebook-style report of the
+  derived draft pools for a few spins (e.g. Netherlands 2014, India 2007, USA 2024).
+
+### Phase 0.5 — Review follow-ups — **BUILT 2026-10-28**
+
+Pipeline: striker dismissals off wides counted; rain-reduced innings flagged and excluded from
+phase vectors (nine down without rain = all out); ties settled by super over count as decided;
+stand-in squads built from the form window, or from the team's nearest T20Is within 60 months
+(UAE 2010 from 2014, Namibia 2016 from 2019), or from `hand-squads.json` (Namibia 2012);
+structured `slotChanges` per edition; `defaultXI` and `defaultBowlingOrder` for every
+team-edition; `team-style.json` (team × month) and `team-strength.json` (Elo timeline with
+per-match expectations, tiered starts) for tenure aggregation; chase uplift renamed; low-sample
+badge counted. Data compiled by agents from open sources, pending or landed in
+`wcdraft/data/config/`, all landed: Afghanistan's 36 real fixtures with venue ids and start
+times; captain tenures (244 rows; 80 associate and three full-member rows were read from
+ESPNcricinfo by the agent against the spec's no-scraping rule and are flagged for Yash's
+decision; rows are per captain, not per spell, with years only); head-coach tenures (235 rows,
+Wikipedia only, year precision for full members, two double credits to resolve); structured
+formats and rule verification (see §13.2 item 5 and §13.3 item 20); the Namibia 2012 hand
+squad (14 players); the twelve 2026 debutants (six flagged source conflicts).
+
+Decisions taken with this phase: use Cricsheet ODI data as a weak prior for 2007 and 2009 in
+Phase 1; identity reroll = 1; low-sample badge = fewer than 60 balls faced and 72 bowled.
+
+Known limitation carried into Phase 1: the Elo timeline inflates associates that dominate a
+closed regional circuit (Uganda sits sixth); replace with a regularised strength model before
+it drives opposition adjustment.
+
+### Phase 1 — Ratings prototype — **PROTOTYPE BUILT 2026-10-28**
+
+Implemented in `wcdraft/src/ratings/` with a validation sweep written to
+`wcdraft/data/out/RATINGS.md` (`npm run ratings:build`). Findings that changed the design:
+
+- **Dismissal rate is unpredictable at these sample sizes.** No estimator reaches r > 0.13 against
+  tournament dismissal rate, while scoring rate reaches 0.39–0.45. The dismissal cell therefore
+  carries a 1,000-ball prior; the scalar value keeps the 2.6-run wicket cost for cricket logic,
+  but anchors with genuinely low dismissal rates are undervalued (open item: credit hazard from
+  career-length evidence, e.g. Kohli 2016 rates 80 not 90).
+- **Membership tiers are too coarse for opposition adjustment; a two-way strength table works.**
+  Splitting form by full-member vs associate opposition lowered batting prediction. Judging a batter
+  against batters from teams of the same Elo strength facing the same opponent mix, then carrying
+  them through the tier gap, matched the best predictor and fixed the face validity problem
+  (PNG's Tony Ura and Uganda's bowlers no longer top the 2024 lists).
+- **Edges barely transfer upward.** For players with ≥120 balls against both associate and
+  full-member attacks (n = 44), the slope of log(edge vs strong) on log(edge vs weak) was 0.14.
+  The model carries max(0.1, 1 − Δ/300) of an edge up an Elo gap of Δ. This is the single most
+  consequential parameter for associate players and rests on a small sample; re-estimate it with
+  per-match opponent Elo in Phase 1.5.
+- **Bowling is the weak half.** Bowling prediction is 0.11 (vs 0.05 raw) and small-sample
+  associate bowlers still inflate; the two-way table costs bowling stability without predictive
+  gain, so bowlers use the one-way Elo mixture. A two-sided multiplicative model
+  (Bandyopadhyay-style batter × bowler × context) is the Phase 1.5 candidate.
+- **Validation targets must share the model's population**: valuing the tournament against a
+  different population than the rating created a spurious negative correlation across editions.
+- **Display** is percentile-anchored but linear in value (median 70, 99th percentile 99, 5th
+  percentile 45), with thin samples shrunk toward the middle before ranking, so stars separate.
+
+Decided inputs now in place: ODI archive as the 2007/2009 prior (badge lifts at ≥600 ODI balls
+faced / ≥900 bowled); identity reroll 1; badge thresholds 60/72. Model defaults are in
+`wcdraft/src/ratings/model.ts`; every parameter is documented with the evidence behind it.
+
+**Review of the first prototype (2026-10-28, with Yash).** Yash flagged inflated bowling ratings
+(Washington Sundar and Muzarabani 99 in 2026, Erasmus 98 in 2024). Diagnosis: value was measured
+against each tournament's *realised* scoring level, so the highest-scoring World Cup (2026, 8.7
+RPO) inflated every bowler (15 rated 95+, mean value +9.3) and the lowest (2024, 7.1 RPO)
+inflated every batter (12 rated 95+) and deflated bowlers (Bumrah 78). Fix: value is a **ratio to
+the population** and is measured against the **window-based population projected onto the
+edition's opponent mix**, never the tournament's own outcomes; the engine applies the edition
+environment at simulation time instead. Residual: Erasmus-type cases, where an associate's
+exposure is almost entirely weak opposition and the edition's *average* opponent mix understates
+the Super-8 step up; candidate fix is measuring the transfer gap against the strongest third of
+the edition's opponents.
+
+**Venue normalisation (agreed 2026-10-28).** Venue spread exceeds era spread (Nassau 5.4 RPO vs
+Chepauk 9.2 vs editions 7.1–8.7), so form must be judged against where it was earned. Design:
+(1) a venue factor per ground, shrunk venue → country → global because most grounds are thin;
+(2) each player's form normalised by the exposure-weighted factor of the grounds they played;
+(3) a **projected modifier** for the identity team's actual World Cup venues (fixtures are known),
+shown separately from a condition-neutral overall rather than folded into it; (4) condition
+interactions estimated at the **type level** (pace vs spin vs left-arm vs wrist spin by venue
+class, now measurable with the snapshot's bowling types), with **individual sensitivity only as a
+heavily shrunk term surfaced as a tag** when evidence is strong, because per-player samples per
+surface type are too thin and bounce is unobservable in Cricsheet (proxies: caught-behind and
+bowled shares, spin-vs-pace economy by ground); (5) the validation harness tests venue-adjusted
+form against raw form before any UI shows it. Pushback recorded: a per-player bounce-sensitivity
+estimate (the Jansen case) would mostly be noise at these sample sizes; the type-level inheritance
+is the honest version.
+
+**Outcome of the value fix (2026-10-28, late).** With ratio values measured against the
+window population on the edition's opponent mix: batting prediction 0.30 (raw strike rate 0.27),
+bowling 0.15 (raw 0.04), stability 0.77 / 0.66 (raw 0.45 / 0.44); bowlers rated 95+ fell from 15
+to 8 in 2026 and Bumrah 2024 rose from 78 to 96. The first venue model (a window-averaged
+ground scoring factor) was built, tested and **switched off**: it lowered batting prediction
+because factors average toward 1 across a window; the factors remain in the outputs for the
+per-innings, venue-type version. Still open: associate bowlers with no exposure to top sides
+(Erasmus 2024 at 99) need the transfer gap measured against the strongest third of the edition's
+opponents.
+
+Remaining Phase 1 items: Tournament Form and position bands are implemented; Timeless candidates
+(Gayle, Finch, Maxwell, Warner, Bumrah) are listed for curation; the card audit matches 222 cards
+with tier means 79 / 74 / 71 / 67 (Spearman ≈ 0.28). Not yet done: captaincy ratings and coach
+philosophy tags from the tenure tables, Elo regularisation, data tags beyond position/phase, and
+the Phase 1.5 bowling model.
+- Shrinkage, era adjustment, display scalar, position bands, Timeless candidates, Tournament
+  Form, tags. Validation test 7. Audit of the 226 overlapping hand-rated cards against derived
+  ratings.
+
+### Phase 1.5 — Per-innings context normalisation (NEXT, ≈1 day)
+
+Score every innings against the population of its own month, opponent-strength bin and ground
+(venue → country → global shrinkage) at accumulation time, so career, form and tournament blocks
+arrive pre-adjusted. Closes in one pass: the career opposition gap (career prior currently uses
+raw counts), the failed window-averaged venue factor (per-innings version), era mismatch in long
+careers, and thin-window anchoring. Also in this pass: edge-transfer gap measured against the
+strongest third of the edition's opponents; usage on ratings (matches played / team overs share,
+Squad Player tag below 25% of matches) and a within-team selection prior weighted by the harness;
+then a Yash review of the 2016/2024/2026 lists whose named errors become test cases. The same
+context populations become the engine's environment tables.
+
+### Parked (2026-10-28) — revisit only when a trigger below fires
+
+| Item | Why parked | Trigger to revisit |
+|---|---|---|
+| Captaincy ratings and coach philosophy tags from `captains.csv` / `coaches.csv` | Need name→person joins and only matter once an AI captain exists | Phase 2 bowling-allocation policy |
+| Decision on the 80 Cricinfo-sourced captain rows | Yash's call; no code depends on them yet | Captaincy work starts |
+| Two-sided (batter × bowler × context) bowling model | May be superseded by per-innings normalisation | Bowling prediction still < 0.15 after Phase 1.5 |
+| Elo regularisation (closed associate circuits inflate) | Tiered starts soften it; opposition adjustment uses bins | Associate team strength visibly wrong in sim results |
+| Individual condition sensitivity (Jansen-type bounce) | Per-player samples per surface too thin; bounce unobservable | Type-level interactions proven useful first |
+| Hazard credit from long careers (anchors like Kohli undervalued) | Hazard unpredictable at window sizes; career-length evidence is the only route | After per-innings refactor exposes per-innings hazard |
+| ODI prior refinement (crude SR / balls-per-out scaling) | Only 17 player-editions depend on it | 2007/2009 ratings look wrong in review |
+| Venue-type (spin/pace) interactions by ground class | Needs bowling-type labels joined per ball (now available) | Part of Phase 1.5 or immediately after |
+| Hand-review conflicts: six 2026 debutants, Namibia 2012 blanks, SA 2012 / NED 2022 coach double credits | Cell-level edits with no downstream effect yet | Before Phase 3 UI |
+| Official 15-man squads (non-playing members) | Draft pool is "players who appeared" | If playtesting misses obvious names |
+
+### Phase 2 — Engine
+- New module beside `shared/src/engine/resolve-ball.ts` (do not modify the card-game engine).
+- τ estimation, env/venue scaling, intent, bowling policy, toss, rain/DLS, super over,
+  brackets. Validation tests 1–6, 8.
+
+### Phase 3 — Draft client (thin)
+- Identity spin, coach panel, player spins, lineup slots, overs meter, simulate, result,
+  share card, leaderboard. Classic and Cricket-IQ.
+
+### Phase 4 — Modes and depth
+- Daily challenge, head-to-head, coach cross-era modes, associates' coaches, ODI edition.
+
+---
+
+## 11. Open questions for Yash
+
+Resolved 2026-10-28: reroll budget (1 coach, 2 squad); spins uniform over all squads; one
+instance per real person; coaches always drafted, 3 per panel; ratings-visible mode with
+career-to-date T20I stats.
+
+Resolved 2026-10-28 (second round): display rating range **40–99**; unbeaten-run rarity is
+tuned **after** the engine exists, not targeted up front; **no 12th man and no concussion
+substitutes** for now; Afghanistan's stand-in is **the team that lost the T20 World Cup
+Qualifier final for that edition, or the next team that would have qualified** had Afghanistan
+been absent (per-edition lookup in `wcdraft/data/config/editions.json`); associate-nation
+coverage is assessed from the full team/player database in Phase 0 (which teams per edition,
+then how many players lack data).
+
+Still open: none blocking Phase 0.
+
+---
+
+## 12. Appendix
+
+### 12.1 Cricsheet attribution text (draft)
+
+> Match data from Cricsheet (cricsheet.org), licensed under the Open Data Commons Attribution
+> License v1.0. This is an unofficial fan project, not affiliated with or endorsed by the ICC,
+> any cricket board, or any player. Player names and statistics are historical public record.
+
+### 12.2 Measurement notes
+
+- All *MEASURED* figures: men's T20 World Cup matches identified by event name in
+  `t20s_male_json.zip` downloaded 2026-10-27; Afghanistan matches absent (withheld).
+- "Complete innings" = 20 overs bowled, not a super over.
+- Phase boundaries: powerplay = overs 1–6; death = overs 17–20 (16–20 where stated).
+- Indices in §5.10 are team value / edition average over World Cup innings only; tenure-wide
+  indices will replace them in Phase 1.
+
+### 12.3 Afghanistan's slots per edition (withheld from the archive)
+
+Derived by cross-checking Cricsheet group memberships (the group with a missing team) against
+Wikipedia's *Afghanistan at the ICC Men's T20 World Cup*:
+
+| Edition | Stage | Group | Other teams | Result |
+|---|---|---|---|---|
+| 2010 | First round | C | India, South Africa | Eliminated |
+| 2012 | First round | A | England, India | Eliminated |
+| 2014 | First round | A | Bangladesh, Hong Kong, Nepal | Eliminated |
+| 2016 | First round → Super 10 | B → 1 | Scotland, Hong Kong, Zimbabwe → England, South Africa, Sri Lanka, West Indies | Won first round; 5th in Super 10 |
+| 2021 | Super 12 | 2 | India, New Zealand, Pakistan, Namibia, Scotland | 4th |
+| 2022 | Super 12 | 1 | Australia, England, New Zealand, Sri Lanka, Ireland | 6th (two washouts) |
+| 2024 | Group → Super 8 → SF | C → 1 | New Zealand, West Indies, Uganda, PNG → India, Australia, Bangladesh | Semi-final (lost to South Africa) |
+| 2026 | Group | D | New Zealand, South Africa, UAE, Canada | 3rd; eliminated |
+
+**Replacement policy (*DECIDED* 2026-10-28):** keep the real schedule shape by inserting a
+stand-in team in Afghanistan's slot: the team that lost that edition's qualifier final, or the
+next team that would have qualified (by the qualification route used that year) had Afghanistan
+been absent. The stand-in's lineup and philosophy come from its T20Is in the 24 months before
+the edition, including qualifiers. Per-edition stand-ins are recorded in the editions config.
+
+### 12.4 Scripts used during design
+
+Ad-hoc Python over the scratchpad archive; rewritten as the Phase 0 pipeline. Measured
+tables in §6–7 are the acceptance baselines for that pipeline.
+
+---
+
+## 13. Phase 0 review (2026-10-28)
+
+A fresh-eyes pass over the pipeline and this document after Phase 0 landed. Items marked
+**fixed** were corrected during the review; the rest are the backlog going into Phase 1.
+
+### 13.1 Fixed during the review
+
+- **First-innings average** included rain-shortened 18–19-over innings and excluded sides
+  bowled out inside 18 overs. Now "natural" innings only (20 overs or all out). Averages fell by
+  1–7 runs (2021: 146 → 139; 2024: 140 → 135).
+- **Ties settled by super over or bowl-out** were treated as undecided in chase-win and
+  toss-winner rates (35 such matches in the archive). The tie winner now counts.
+- **Full-member status was static.** Ireland and Afghanistan became full members in 2017, so
+  Ireland's 2009 win over Bangladesh is now an associate upset and Oman beating Ireland in 2016
+  is not. Config carries a `since` year per member.
+- **Card-roster name matching** pre-filled two players wrongly (e.g. "MR Kumar"); removed. The
+  snapshot covers 891 of 903, and card↔person mapping will be its own reviewed file.
+- **Keeper rule** implemented as decided: any evidence of ever keeping makes a player
+  keeper-eligible in every edition; the three evidence columns remain for audit.
+- Cricsheet's per-match `missing` flag is now surfaced (no World Cup match carries it).
+
+### 13.2 Gaps that need pipeline work before Phase 2
+
+1. **Stand-in squads.** Teams substituted for Afghanistan never played that edition, so they
+   have no squad or XI in the archive. Build each stand-in's squad and default XI from its
+   T20Is in the form window (most-used eleven). Affects UAE 2010/2021, Namibia 2012/2016,
+   Scotland 2014, Papua New Guinea 2022, Zimbabwe 2024, Kenya 2026.
+2. **Afghanistan's fixtures are withheld**, so the stand-in's dates and venues are unknown
+   from data. Hand-enter Afghanistan's real fixture list per edition (~45 matches) from open
+   sources so the stand-in inherits a faithful schedule.
+3. **Two-slot cascades** (2021: Scotland up, UAE in; 2022: Sri Lanka up, PNG in) do not fit
+   the single `standIn.team` field. Replace with structured `slotChanges` per edition.
+4. **Team-period style and strength tables are missing.** Coach philosophy and captaincy
+   wins-above-expectation both aggregate over tenures, which need (a) per team-month style
+   metrics and (b) a team-strength timeline over all T20Is. Add both as Phase 0.5 outputs so
+   tenure tables can be joined without re-parsing.
+5. **Tournament formats are prose.** The engine needs structured rules per edition: groups,
+   advancement counts, Super-stage composition, tiebreaks, and knockout pairing. *Resolved
+   2026-10-28:* `wcdraft/data/config/formats.json` holds all ten. Two findings overturned
+   assumptions: **no edition carried points forward** into its Super stage (the ODI World Cup
+   did; the T20 World Cup never has), and the Super-stage groups of 2007, 2009, 2010, 2012, 2024
+   and 2026 were **pre-seeded** (a group winner's next group was fixed by seeding, not by
+   finishing position, so an upset qualifier inherited the eliminated seed's slot), whereas
+   2014, 2016, 2021 and 2022 placed teams by position. The simulator must implement both.
+6. **No day/night information.** The dew proxy mixes afternoon and evening matches. Approximate
+   from same-day same-venue ordering (first match is the day game) or hand-enter start times
+   for World Cup matches.
+7. **Draft pools are "players who appeared", not official squads.** Non-playing squad members
+   are absent. Optional: add official 15-man squads from open sources with zero data and a
+   low-sample badge.
+8. **2007 and 2009 form windows are nearly empty** (105 and 63 player-editions lacking data).
+   Decision needed: use Cricsheet ODI data (same licence, small download) as a weak prior for
+   early editions, or hand-rate.
+9. **Reduced-overs innings distort phases.** Overs 6–9 of a 10-over innings are indexed as
+   "middle". Mark reduced innings via `scheduledOvers` / `target.overs` and exclude them from
+   phase vectors (≈5% of innings).
+10. **Dismissals off wides** (stumped or run out off a wide) are not in the striker's per-ball
+    vector because wides are skipped for batting. Count striker dismissals regardless of the
+    wide flag, or track them separately.
+
+### 13.3 Spec refinements
+
+11. **Opposition-quality adjustment is missing from the ratings spec.** Associate form windows
+    are earned against weaker attacks; Bandyopadhyay ranks opposition bowler among the top
+    three context effects. Add an opponent-strength covariate (or at least full-member vs
+    associate splits) to §5.2 and §5.4.
+12. **Era normalisation target is wrong in §5.2.** Form windows span 24 months of mixed
+    conditions, so normalise against the window's own population (per phase, per opposition
+    tier), then transport into the destination edition's environment.
+13. **The "16-0" framing does not fit World Cups.** A perfect run is 7 to 10 matches depending on
+    edition and starting stage. The target must be dynamic ("9-0") and the leaderboard must
+    normalise by path length, or first-round starters are penalised.
+14. **The era penalty (§5.7) has no data behind it.** Label it game design, or replace it with a
+    style-mismatch effect (intent vs era environment) that the data can price.
+15. **Timeless (§5.6)** should be judged on form ratings at each edition, not tournament stats,
+    and the three-edition requirement structurally excludes most associates; state that.
+16. **Run-outs are asymmetric**: the batter vector counts them as `W`, the bowler vector does
+    not. The engine must draw run-outs as a state event layered on the batter vector (as
+    Davis–Perera–Swartz do) and never from the bowler vector. Document in §7.1.
+17. **Identity reroll** is unspecified (coach 1, squad 2). Propose 1.
+18. **Default XI for unplayed pairings.** Simulated brackets create matches that never happened;
+    each CPU team-edition needs a default XI and order (the modal order from
+    `lineup-deviation.json` is the starting point).
+19. **Low-sample badge** rule still open; propose fewer than 60 form balls faced (or 72 bowled).
+20. **Rule flags (§6.5) are unverified.** *Resolved 2026-10-28:*
+    `wcdraft/data/config/rules-verification.json` quotes the official ICC playing conditions
+    for 2021–2026 clause by clause and secondary sources for 2007–2016; the existing flags are
+    consistent (free hit for all no-balls from 2016, DRS from 2021, stop clock from 2024).
+    One open conflict: Wikipedia claims DRS debuted at the 2014 edition with one review per
+    side, the ICC's 2021 announcement calls 2021 the debut; the ICC statement is followed and
+    no review is recorded in the 2014 or 2016 archive data. Two further constants hold for
+    every edition: a six-over powerplay with two fielders outside the circle, then five; and
+    one bouncer per over.
+21. **Host advantage** samples are 3–9 matches per edition; treat the measured value as a prior
+    around the literature's ×1.03, not as a fact.
+22. **The "dew proxy" is really a chase-uplift proxy**: second-innings scoring also reflects
+    target knowledge and intent, not only dew. Rename in outputs and keep the venue split.
+23. **First-innings SD varies 25–43 by edition**, so the acceptance target "≈ 28–30" in §9 must
+    be per edition, not global.
+24. **Per-team-edition usage norms** rest on 2–9 innings and are too noisy to drive the CPU;
+    use edition norms for behaviour and team norms only as flavour text.
+25. **Partnership pairs repeat across consecutive editions** because windows overlap; derive
+    Dynamic Duo tags per edition, not globally.
+26. **Snapshot staleness.** The biography snapshot is from March 2025: 12 unmatched 2026
+    debutants, and playing role is empty for ~70% of players, so the career-keeper column
+    undercounts; the all-time stumping column compensates.
+27. **Credits** must name both Cricsheet (ODC-By) and the cricketdata snapshot.
+
+### 13.4 Things that held up
+
+The per-ball accumulation, phase definitions, squad and XI capture, usage and deviation norms,
+venue mapping, and the snapshot join all reproduced the design-time numbers exactly where the
+definitions were unchanged, and the whole build stays under three seconds, so adding the tables
+above is cheap.
+
+Ad-hoc Python over the scratchpad archive; to be rewritten as the Phase 0 pipeline. Measured
+tables in §6–7 are the acceptance baselines for that pipeline.

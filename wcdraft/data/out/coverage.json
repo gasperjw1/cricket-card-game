@@ -1,0 +1,4712 @@
+{
+  "editions": [
+    {
+      "editionId": "2007",
+      "teams": [
+        {
+          "team": "Australia",
+          "standIn": false,
+          "squadSize": 13,
+          "withFormBatting": 4,
+          "withFormBowling": 3,
+          "withAnyPriorT20I": 11,
+          "lowSampleBadge": 13,
+          "lackingData": [
+            {
+              "id": "dd09ff8e",
+              "name": "B Lee",
+              "priorMatches": 3,
+              "formBatBalls": 21,
+              "formBowlBalls": 18
+            },
+            {
+              "id": "b0c772ee",
+              "name": "BJ Haddin",
+              "priorMatches": 1,
+              "formBatBalls": 0,
+              "formBowlBalls": 0
+            },
+            {
+              "id": "b57f8a9a",
+              "name": "BJ Hodge",
+              "priorMatches": 0,
+              "formBatBalls": 0,
+              "formBowlBalls": 0
+            },
+            {
+              "id": "48fd7349",
+              "name": "MEK Hussey",
+              "priorMatches": 4,
+              "formBatBalls": 9,
+              "formBowlBalls": 0
+            },
+            {
+              "id": "f5180fe6",
+              "name": "MG Johnson",
+              "priorMatches": 0,
+              "formBatBalls": 0,
+              "formBowlBalls": 0
+            },
+            {
+              "id": "d8699ab7",
+              "name": "ML Hayden",
+              "priorMatches": 2,
+              "formBatBalls": 8,
+              "formBowlBalls": 0
+            },
+            {
+              "id": "4329fbb5",
+              "name": "SR Watson",
+              "priorMatches": 1,
+              "formBatBalls": 6,
+              "formBowlBalls": 18
+            }
+          ]
+        },
+        {
+          "team": "Bangladesh",
+          "standIn": false,
+          "squadSize": 14,
+          "withFormBatting": 2,
+          "withFormBowling": 5,
+          "withAnyPriorT20I": 11,
+          "lowSampleBadge": 13,
+          "lackingData": [
+            {
+              "id": "53bc7b84",
+              "name": "Aftab Ahmed",
+              "priorMatches": 2,
+              "formBatBalls": 12,
+              "formBowlBalls": 0
+            },
+            {
+              "id": "62e203d4",
+              "name": "Junaid Siddique",
+              "priorMatches": 0,
+              "formBatBalls": 0,
+              "formBowlBalls": 0
+            },
+            {
+              "id": "bf1d7d3e",
+              "name": "Mahmudullah",
+              "priorMatches": 2,
+              "formBatBalls": 23,
+              "formBowlBalls": 0
+            },
+            {
+              "id": "a94e08ea",
+              "name": "Mushfiqur Rahim",
+              "priorMatches": 2,
+              "formBatBalls": 2,
+              "formBowlBalls": 0
+            },
+            {
+              "id": "d6ac6545",
+              "name": "Nadif Chowdhury",
+              "priorMatches": 0,
+              "formBatBalls": 0,
+              "formBowlBalls": 0
+            },
+            {
+              "id": "7dc35884",
+              "name": "Shakib Al Hasan",
+              "priorMatches": 0,
+              "formBatBalls": 0,
+              "formBowlBalls": 0
+            },
+            {
+              "id": "3b041a12",
+              "name": "Tamim Iqbal",
+              "priorMatches": 2,
+              "formBatBalls": 16,
+              "formBowlBalls": 0
+            }
+          ]
+        },
+        {
+          "team": "England",
+          "standIn": false,
+          "squadSize": 15,
+          "withFormBatting": 3,
+          "withFormBowling": 3,
+          "withAnyPriorT20I": 9,
+          "lowSampleBadge": 13,
+          "lackingData": [
+            {
+              "id": "ddc0828d",
+              "name": "A Flintoff",
+              "priorMatches": 2,
+              "formBatBalls": 2,
+              "formBowlBalls": 24
+            },
+            {
+              "id": "3edb58fc",
+              "name": "AD Mascarenhas",
+              "priorMatches": 2,
+              "formBatBalls": 20,
+              "formBowlBalls": 42
+            },
+            {
+              "id": "4751827a",
+              "name": "CP Schofield",
+              "priorMatches": 0,
+              "formBatBalls": 0,
+              "formBowlBalls": 0
+            },
+            {
+              "id": "a72b14ff",
+              "name": "CT Tremlett",
+              "priorMatches": 0,
+              "formBatBalls": 0,
+              "formBowlBalls": 0
+            },
+            {
+              "id": "e770b214",
+              "name": "DL Maddy",
+              "priorMatches": 0,
+              "formBatBalls": 0,
+              "formBowlBalls": 0
+            },
+            {
+              "id": "44321a66",
+              "name": "JN Snape",
+              "priorMatches": 0,
+              "formBatBalls": 0,
+              "formBowlBalls": 0
+            },
+            {
+              "id": "cca50cd6",
+              "name": "LJ Wright",
+              "priorMatches": 0,
+              "formBatBalls": 0,
+              "formBowlBalls": 0
+            },
+            {
+              "id": "1200550f",
+              "name": "MJ Prior",
+              "priorMatches": 2,
+              "formBatBalls": 28,
+              "formBowlBalls": 0
+            },
+            {
+              "id": "22860288",
+              "name": "RJ Kirtley",
+              "priorMatches": 0,
+              "formBatBalls": 0,
+              "formBowlBalls": 0
+            },
+            {
+              "id": "7ee2ce62",
+              "name": "VS Solanki",
+              "priorMatches": 1,
+              "formBatBalls": 0,
+              "formBowlBalls": 0
+            }
+          ]
+        },
+        {
+          "team": "India",
+          "standIn": false,
+          "squadSize": 14,
+          "withFormBatting": 0,
+          "withFormBowling": 0,
+          "withAnyPriorT20I": 7,
+          "lowSampleBadge": 14,
+          "lackingData": [
+            {
+              "id": "fa463154",
+              "name": "AB Agarkar",
+              "priorMatches": 1,
+              "formBatBalls": 0,
+              "formBowlBalls": 15
+            },
+            {
+              "id": "bb345e0b",
+              "name": "G Gambhir",
+              "priorMatches": 0,
+              "formBatBalls": 0,
+              "formBowlBalls": 0
+            },
+            {
+              "id": "8b5b6769",
+              "name": "Harbhajan Singh",
+              "priorMatches": 1,
+              "formBatBalls": 0,
+              "formBowlBalls": 18
+            },
+            {
+              "id": "5fa06777",
+              "name": "IK Pathan",
+              "priorMatches": 1,
+              "formBatBalls": 0,
+              "formBowlBalls": 24
+            },
+            {
+              "id": "9f961c14",
+              "name": "Joginder Sharma",
+              "priorMatches": 0,
+              "formBatBalls": 0,
+              "formBowlBalls": 0
+            },
+            {
+              "id": "c03f1114",
+              "name": "KD Karthik",
+              "priorMatches": 1,
+              "formBatBalls": 28,
+              "formBowlBalls": 0
+            },
+            {
+              "id": "4a8a2e3b",
+              "name": "MS Dhoni",
+              "priorMatches": 1,
+              "formBatBalls": 2,
+              "formBowlBalls": 0
+            },
+            {
+              "id": "740742ef",
+              "name": "RG Sharma",
+              "priorMatches": 0,
+              "formBatBalls": 0,
+              "formBowlBalls": 0
+            },
+            {
+              "id": "c3d1402f",
+              "name": "RP Singh",
+              "priorMatches": 0,
+              "formBatBalls": 0,
+              "formBowlBalls": 0
+            },
+            {
+              "id": "1c17e270",
+              "name": "RV Uthappa",
+              "priorMatches": 0,
+              "formBatBalls": 0,
+              "formBowlBalls": 0
+            },
+            {
+              "id": "6b8eb6e5",
+              "name": "S Sreesanth",
+              "priorMatches": 1,
+              "formBatBalls": 0,
+              "formBowlBalls": 24
+            },
+            {
+              "id": "8ba8195d",
+              "name": "V Sehwag",
+              "priorMatches": 1,
+              "formBatBalls": 29,
+              "formBowlBalls": 0
+            },
+            {
+              "id": "3c6ffae8",
+              "name": "YK Pathan",
+              "priorMatches": 0,
+              "formBatBalls": 0,
+              "formBowlBalls": 0
+            },
+            {
+              "id": "1c914163",
+              "name": "Yuvraj Singh",
+              "priorMatches": 0,
+              "formBatBalls": 0,
+              "formBowlBalls": 0
+            }
+          ]
+        },
+        {
+          "team": "Kenya",
+          "standIn": false,
+          "squadSize": 12,
+          "withFormBatting": 2,
+          "withFormBowling": 0,
+          "withAnyPriorT20I": 10,
+          "lowSampleBadge": 11,
+          "lackingData": [
+            {
+              "id": "7081491e",
+              "name": "AA Obanda",
+              "priorMatches": 1,
+              "formBatBalls": 17,
+              "formBowlBalls": 0
+            },
+            {
+              "id": "6ed3d5ac",
+              "name": "DO Obuya",
+              "priorMatches": 2,
+              "formBatBalls": 22,
+              "formBowlBalls": 0
+            },
+            {
+              "id": "270b3f8e",
+              "name": "JK Kamande",
+              "priorMatches": 2,
+              "formBatBalls": 14,
+              "formBowlBalls": 18
+            },
+            {
+              "id": "68c3f79d",
+              "name": "LN Onyango",
+              "priorMatches": 2,
+              "formBatBalls": 12,
+              "formBowlBalls": 30
+            },
+            {
+              "id": "0939c670",
+              "name": "MA Ouma",
+              "priorMatches": 0,
+              "formBatBalls": 0,
+              "formBowlBalls": 0
+            },
+            {
+              "id": "753b5a2d",
+              "name": "NN Odhiambo",
+              "priorMatches": 0,
+              "formBatBalls": 0,
+              "formBowlBalls": 0
+            },
+            {
+              "id": "27cc4361",
+              "name": "PJ Ongondo",
+              "priorMatches": 2,
+              "formBatBalls": 7,
+              "formBowlBalls": 42
+            },
+            {
+              "id": "47d00fb5",
+              "name": "RL Bhudia",
+              "priorMatches": 2,
+              "formBatBalls": 11,
+              "formBowlBalls": 40
+            },
+            {
+              "id": "00d69fa4",
+              "name": "SO Tikolo",
+              "priorMatches": 1,
+              "formBatBalls": 21,
+              "formBowlBalls": 0
+            },
+            {
+              "id": "2c13defe",
+              "name": "TM Odoyo",
+              "priorMatches": 2,
+              "formBatBalls": 20,
+              "formBowlBalls": 24
+            }
+          ]
+        },
+        {
+          "team": "New Zealand",
+          "standIn": false,
+          "squadSize": 13,
+          "withFormBatting": 4,
+          "withFormBowling": 2,
+          "withAnyPriorT20I": 10,
+          "lowSampleBadge": 12,
+          "lackingData": [
+            {
+              "id": "f5390243",
+              "name": "CD McMillan",
+              "priorMatches": 2,
+              "formBatBalls": 19,
+              "formBowlBalls": 0
+            },
+            {
+              "id": "05e0fab5",
+              "name": "CS Martin",
+              "priorMatches": 0,
+              "formBatBalls": 0,
+              "formBowlBalls": 0
+            },
+            {
+              "id": "d7c6af50",
+              "name": "DL Vettori",
+              "priorMatches": 0,
+              "formBatBalls": 0,
+              "formBowlBalls": 0
+            },
+            {
+              "id": "3eac9d95",
+              "name": "JDP Oram",
+              "priorMatches": 1,
+              "formBatBalls": 16,
+              "formBowlBalls": 0
+            },
+            {
+              "id": "b61a3e1a",
+              "name": "LRPL Taylor",
+              "priorMatches": 2,
+              "formBatBalls": 28,
+              "formBowlBalls": 0
+            },
+            {
+              "id": "7d7ab238",
+              "name": "MR Gillespie",
+              "priorMatches": 2,
+              "formBatBalls": 2,
+              "formBowlBalls": 19
+            },
+            {
+              "id": "5673a3fc",
+              "name": "NL McCullum",
+              "priorMatches": 0,
+              "formBatBalls": 0,
+              "formBowlBalls": 0
+            }
+          ]
+        },
+        {
+          "team": "Pakistan",
+          "standIn": false,
+          "squadSize": 13,
+          "withFormBatting": 3,
+          "withFormBowling": 2,
+          "withAnyPriorT20I": 12,
+          "lowSampleBadge": 13,
+          "lackingData": [
+            {
+              "id": "61f05b05",
+              "name": "Fawad Alam",
+              "priorMatches": 1,
+              "formBatBalls": 4,
+              "formBowlBalls": 24
+            },
+            {
+              "id": "3eb7c45d",
+              "name": "Imran Nazir",
+              "priorMatches": 2,
+              "formBatBalls": 29,
+              "formBowlBalls": 0
+            },
+            {
+              "id": "ff077124",
+              "name": "Kamran Akmal",
+              "priorMatches": 3,
+              "formBatBalls": 8,
+              "formBowlBalls": 0
+            },
+            {
+              "id": "4d6d6280",
+              "name": "Salman Butt",
+              "priorMatches": 2,
+              "formBatBalls": 27,
+              "formBowlBalls": 0
+            },
+            {
+              "id": "64d43928",
+              "name": "Sohail Tanvir",
+              "priorMatches": 0,
+              "formBatBalls": 0,
+              "formBowlBalls": 0
+            },
+            {
+              "id": "16dfcc19",
+              "name": "Umar Gul",
+              "priorMatches": 1,
+              "formBatBalls": 0,
+              "formBowlBalls": 18
+            },
+            {
+              "id": "3cf5ae43",
+              "name": "Yasir Arafat",
+              "priorMatches": 1,
+              "formBatBalls": 2,
+              "formBowlBalls": 24
+            },
+            {
+              "id": "33cb3411",
+              "name": "Younis Khan",
+              "priorMatches": 3,
+              "formBatBalls": 26,
+              "formBowlBalls": 22
+            }
+          ]
+        },
+        {
+          "team": "Scotland",
+          "standIn": false,
+          "squadSize": 11,
+          "withFormBatting": 0,
+          "withFormBowling": 0,
+          "withAnyPriorT20I": 0,
+          "lowSampleBadge": 11,
+          "lackingData": [
+            {
+              "id": "c46e9e56",
+              "name": "CJO Smith",
+              "priorMatches": 0,
+              "formBatBalls": 0,
+              "formBowlBalls": 0
+            },
+            {
+              "id": "008589a4",
+              "name": "CM Wright",
+              "priorMatches": 0,
+              "formBatBalls": 0,
+              "formBowlBalls": 0
+            },
+            {
+              "id": "ad733e72",
+              "name": "DF Watts",
+              "priorMatches": 0,
+              "formBatBalls": 0,
+              "formBowlBalls": 0
+            },
+            {
+              "id": "7c70083d",
+              "name": "DR Brown",
+              "priorMatches": 0,
+              "formBatBalls": 0,
+              "formBowlBalls": 0
+            },
+            {
+              "id": "8187519b",
+              "name": "GM Hamilton",
+              "priorMatches": 0,
+              "formBatBalls": 0,
+              "formBowlBalls": 0
+            },
+            {
+              "id": "e662b18f",
+              "name": "JAR Blain",
+              "priorMatches": 0,
+              "formBatBalls": 0,
+              "formBowlBalls": 0
+            },
+            {
+              "id": "7c7303eb",
+              "name": "JD Nel",
+              "priorMatches": 0,
+              "formBatBalls": 0,
+              "formBowlBalls": 0
+            },
+            {
+              "id": "ef5cbaf6",
+              "name": "NFI McCallum",
+              "priorMatches": 0,
+              "formBatBalls": 0,
+              "formBowlBalls": 0
+            },
+            {
+              "id": "e343abe9",
+              "name": "NS Poonia",
+              "priorMatches": 0,
+              "formBatBalls": 0,
+              "formBowlBalls": 0
+            },
+            {
+              "id": "27159c6a",
+              "name": "RM Haq",
+              "priorMatches": 0,
+              "formBatBalls": 0,
+              "formBowlBalls": 0
+            },
+            {
+              "id": "a670d624",
+              "name": "RR Watson",
+              "priorMatches": 0,
+              "formBatBalls": 0,
+              "formBowlBalls": 0
+            }
+          ]
+        },
+        {
+          "team": "South Africa",
+          "standIn": false,
+          "squadSize": 13,
+          "withFormBatting": 4,
+          "withFormBowling": 1,
+          "withAnyPriorT20I": 10,
+          "lowSampleBadge": 12,
+          "lackingData": [
+            {
+              "id": "2503e881",
+              "name": "A Nel",
+              "priorMatches": 1,
+              "formBatBalls": 2,
+              "formBowlBalls": 24
+            },
+            {
+              "id": "c4487b84",
+              "name": "AB de Villiers",
+              "priorMatches": 2,
+              "formBatBalls": 4,
+              "formBowlBalls": 0
+            },
+            {
+              "id": "2e8994e7",
+              "name": "JP Duminy",
+              "priorMatches": 0,
+              "formBatBalls": 0,
+              "formBowlBalls": 0
+            },
+            {
+              "id": "5bb5a915",
+              "name": "M Morkel",
+              "priorMatches": 0,
+              "formBatBalls": 0,
+              "formBowlBalls": 0
+            },
+            {
+              "id": "20a941bb",
+              "name": "M Ntini",
+              "priorMatches": 2,
+              "formBatBalls": 6,
+              "formBowlBalls": 30
+            },
+            {
+              "id": "f3cb53a1",
+              "name": "MV Boucher",
+              "priorMatches": 2,
+              "formBatBalls": 29,
+              "formBowlBalls": 0
+            },
+            {
+              "id": "88fccd6c",
+              "name": "SM Pollock",
+              "priorMatches": 3,
+              "formBatBalls": 22,
+              "formBowlBalls": 42
+            },
+            {
+              "id": "cfe70281",
+              "name": "VD Philander",
+              "priorMatches": 0,
+              "formBatBalls": 0,
+              "formBowlBalls": 0
+            }
+          ]
+        },
+        {
+          "team": "Sri Lanka",
+          "standIn": false,
+          "squadSize": 12,
+          "withFormBatting": 4,
+          "withFormBowling": 2,
+          "withAnyPriorT20I": 10,
+          "lowSampleBadge": 12,
+          "lackingData": [
+            {
+              "id": "d18f9182",
+              "name": "DPMD Jayawardene",
+              "priorMatches": 3,
+              "formBatBalls": 10,
+              "formBowlBalls": 6
+            },
+            {
+              "id": "1fbef290",
+              "name": "G Wijekoon",
+              "priorMatches": 0,
+              "formBatBalls": 0,
+              "formBowlBalls": 0
+            },
+            {
+              "id": "a9520ac2",
+              "name": "J Mubarak",
+              "priorMatches": 0,
+              "formBatBalls": 0,
+              "formBowlBalls": 0
+            },
+            {
+              "id": "1be70c88",
+              "name": "LPC Silva",
+              "priorMatches": 2,
+              "formBatBalls": 19,
+              "formBowlBalls": 6
+            },
+            {
+              "id": "ab89348d",
+              "name": "MF Maharoof",
+              "priorMatches": 2,
+              "formBatBalls": 8,
+              "formBowlBalls": 42
+            },
+            {
+              "id": "5bdcdb72",
+              "name": "TM Dilshan",
+              "priorMatches": 2,
+              "formBatBalls": 15,
+              "formBowlBalls": 33
+            },
+            {
+              "id": "bcce309e",
+              "name": "WPUJC Vaas",
+              "priorMatches": 1,
+              "formBatBalls": 0,
+              "formBowlBalls": 24
+            }
+          ]
+        },
+        {
+          "team": "West Indies",
+          "standIn": false,
+          "squadSize": 11,
+          "withFormBatting": 4,
+          "withFormBowling": 2,
+          "withAnyPriorT20I": 9,
+          "lowSampleBadge": 11,
+          "lackingData": [
+            {
+              "id": "d1523761",
+              "name": "D Ramdin",
+              "priorMatches": 3,
+              "formBatBalls": 25,
+              "formBowlBalls": 0
+            },
+            {
+              "id": "83904270",
+              "name": "DBL Powell",
+              "priorMatches": 2,
+              "formBatBalls": 0,
+              "formBowlBalls": 42
+            },
+            {
+              "id": "87e562a9",
+              "name": "DJ Bravo",
+              "priorMatches": 3,
+              "formBatBalls": 19,
+              "formBowlBalls": 22
+            },
+            {
+              "id": "a7c226e1",
+              "name": "FH Edwards",
+              "priorMatches": 0,
+              "formBatBalls": 0,
+              "formBowlBalls": 0
+            },
+            {
+              "id": "36d33dd0",
+              "name": "RR Sarwan",
+              "priorMatches": 0,
+              "formBatBalls": 0,
+              "formBowlBalls": 0
+            }
+          ]
+        },
+        {
+          "team": "Zimbabwe",
+          "standIn": false,
+          "squadSize": 11,
+          "withFormBatting": 0,
+          "withFormBowling": 0,
+          "withAnyPriorT20I": 0,
+          "lowSampleBadge": 11,
+          "lackingData": [
+            {
+              "id": "53597be1",
+              "name": "BRM Taylor",
+              "priorMatches": 0,
+              "formBatBalls": 0,
+              "formBowlBalls": 0
+            },
+            {
+              "id": "f32dbc84",
+              "name": "CJ Chibhabha",
+              "priorMatches": 0,
+              "formBatBalls": 0,
+              "formBowlBalls": 0
+            },
+            {
+              "id": "d2babdd5",
+              "name": "E Chigumbura",
+              "priorMatches": 0,
+              "formBatBalls": 0,
+              "formBowlBalls": 0
+            },
+            {
+              "id": "da785bf8",
+              "name": "GB Brent",
+              "priorMatches": 0,
+              "formBatBalls": 0,
+              "formBowlBalls": 0
+            },
+            {
+              "id": "31fbf891",
+              "name": "H Masakadza",
+              "priorMatches": 0,
+              "formBatBalls": 0,
+              "formBowlBalls": 0
+            },
+            {
+              "id": "df08c69e",
+              "name": "KM Dabengwa",
+              "priorMatches": 0,
+              "formBatBalls": 0,
+              "formBowlBalls": 0
+            },
+            {
+              "id": "9de271ef",
+              "name": "P Utseya",
+              "priorMatches": 0,
+              "formBatBalls": 0,
+              "formBowlBalls": 0
+            },
+            {
+              "id": "e7ba1233",
+              "name": "S Matsikenyeri",
+              "priorMatches": 0,
+              "formBatBalls": 0,
+              "formBowlBalls": 0
+            },
+            {
+              "id": "21bf71ab",
+              "name": "T Mupariwa",
+              "priorMatches": 0,
+              "formBatBalls": 0,
+              "formBowlBalls": 0
+            },
+            {
+              "id": "75de770f",
+              "name": "T Taibu",
+              "priorMatches": 0,
+              "formBatBalls": 0,
+              "formBowlBalls": 0
+            },
+            {
+              "id": "0fdabe05",
+              "name": "V Sibanda",
+              "priorMatches": 0,
+              "formBatBalls": 0,
+              "formBowlBalls": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "editionId": "2009",
+      "teams": [
+        {
+          "team": "Australia",
+          "standIn": false,
+          "squadSize": 12,
+          "withFormBatting": 7,
+          "withFormBowling": 6,
+          "withAnyPriorT20I": 12,
+          "lowSampleBadge": 2,
+          "lackingData": [
+            {
+              "id": "8ea6e670",
+              "name": "NM Hauritz",
+              "priorMatches": 1,
+              "formBatBalls": 7,
+              "formBowlBalls": 20
+            },
+            {
+              "id": "4329fbb5",
+              "name": "SR Watson",
+              "priorMatches": 4,
+              "formBatBalls": 29,
+              "formBowlBalls": 33
+            }
+          ]
+        },
+        {
+          "team": "Bangladesh",
+          "standIn": false,
+          "squadSize": 12,
+          "withFormBatting": 6,
+          "withFormBowling": 5,
+          "withAnyPriorT20I": 11,
+          "lowSampleBadge": 7,
+          "lackingData": [
+            {
+              "id": "a94e08ea",
+              "name": "Mushfiqur Rahim",
+              "priorMatches": 8,
+              "formBatBalls": 29,
+              "formBowlBalls": 0
+            },
+            {
+              "id": "02e83ac5",
+              "name": "Naeem Islam",
+              "priorMatches": 1,
+              "formBatBalls": 17,
+              "formBowlBalls": 12
+            },
+            {
+              "id": "17efdeb8",
+              "name": "Raqibul Hasan",
+              "priorMatches": 1,
+              "formBatBalls": 5,
+              "formBowlBalls": 0
+            },
+            {
+              "id": "f56cd097",
+              "name": "Rubel Hossain",
+              "priorMatches": 0,
+              "formBatBalls": 0,
+              "formBowlBalls": 0
+            },
+            {
+              "id": "090f9211",
+              "name": "Shahadat Hossain",
+              "priorMatches": 2,
+              "formBatBalls": 5,
+              "formBowlBalls": 36
+            }
+          ]
+        },
+        {
+          "team": "England",
+          "standIn": false,
+          "squadSize": 14,
+          "withFormBatting": 5,
+          "withFormBowling": 6,
+          "withAnyPriorT20I": 10,
+          "lowSampleBadge": 6,
+          "lackingData": [
+            {
+              "id": "249d60c9",
+              "name": "AU Rashid",
+              "priorMatches": 0,
+              "formBatBalls": 0,
+              "formBowlBalls": 0
+            },
+            {
+              "id": "d2a6c0e6",
+              "name": "EJG Morgan",
+              "priorMatches": 0,
+              "formBatBalls": 0,
+              "formBowlBalls": 0
+            },
+            {
+              "id": "e68dd455",
+              "name": "JS Foster",
+              "priorMatches": 0,
+              "formBatBalls": 0,
+              "formBowlBalls": 0
+            },
+            {
+              "id": "7ca5e05d",
+              "name": "RS Bopara",
+              "priorMatches": 2,
+              "formBatBalls": 11,
+              "formBowlBalls": 0
+            },
+            {
+              "id": "bcb01d8c",
+              "name": "RWT Key",
+              "priorMatches": 0,
+              "formBatBalls": 0,
+              "formBowlBalls": 0
+            }
+          ]
+        },
+        {
+          "team": "India",
+          "standIn": false,
+          "squadSize": 13,
+          "withFormBatting": 7,
+          "withFormBowling": 6,
+          "withAnyPriorT20I": 12,
+          "lowSampleBadge": 4,
+          "lackingData": [
+            {
+              "id": "6c6591ab",
+              "name": "PP Ojha",
+              "priorMatches": 0,
+              "formBatBalls": 0,
+              "formBowlBalls": 0
+            },
+            {
+              "id": "3c6ffae8",
+              "name": "YK Pathan",
+              "priorMatches": 4,
+              "formBatBalls": 28,
+              "formBowlBalls": 47
+            }
+          ]
+        },
+        {
+          "team": "Ireland",
+          "standIn": false,
+          "squadSize": 15,
+          "withFormBatting": 2,
+          "withFormBowling": 0,
+          "withAnyPriorT20I": 10,
+          "lowSampleBadge": 15,
+          "lackingData": [
+            {
+              "id": "568e5a4a",
+              "name": "AR Cusack",
+              "priorMatches": 1,
+              "formBatBalls": 2,
+              "formBowlBalls": 18
+            },
+            {
+              "id": "f27f89e8",
+              "name": "AR White",
+              "priorMatches": 1,
+              "formBatBalls": 3,
+              "formBowlBalls": 0
+            },
+            {
+              "id": "e01895bb",
+              "name": "DT Johnston",
+              "priorMatches": 1,
+              "formBatBalls": 14,
+              "formBowlBalls": 12
+            },
+            {
+              "id": "05de1a5a",
+              "name": "GC Wilson",
+              "priorMatches": 1,
+              "formBatBalls": 9,
+              "formBowlBalls": 0
+            },
+            {
+              "id": "aae9ce90",
+              "name": "JF Mooney",
+              "priorMatches": 0,
+              "formBatBalls": 0,
+              "formBowlBalls": 0
+            },
+            {
+              "id": "7c63baa7",
+              "name": "JP Bray",
+              "priorMatches": 0,
+              "formBatBalls": 0,
+              "formBowlBalls": 0
+            },
+            {
+              "id": "243431b5",
+              "name": "KJ O'Brien",
+              "priorMatches": 1,
+              "formBatBalls": 16,
+              "formBowlBalls": 24
+            },
+            {
+              "id": "5500c675",
+              "name": "PC Connell",
+              "priorMatches": 1,
+              "formBatBalls": 0,
+              "formBowlBalls": 24
+            },
+            {
+              "id": "cf494ffe",
+              "name": "PR Stirling",
+              "priorMatches": 0,
+              "formBatBalls": 0,
+              "formBowlBalls": 0
+            },
+            {
+              "id": "d1761087",
+              "name": "RM West",
+              "priorMatches": 0,
+              "formBatBalls": 0,
+              "formBowlBalls": 0
+            },
+            {
+              "id": "29b89ae8",
+              "name": "WB Rankin",
+              "priorMatches": 0,
+              "formBatBalls": 0,
+              "formBowlBalls": 0
+            },
+            {
+              "id": "c942a53b",
+              "name": "WK McCallan",
+              "priorMatches": 1,
+              "formBatBalls": 0,
+              "formBowlBalls": 2
+            },
+            {
+              "id": "ec02b798",
+              "name": "WTS Porterfield",
+              "priorMatches": 1,
+              "formBatBalls": 7,
+              "formBowlBalls": 0
+            }
+          ]
+        },
+        {
+          "team": "Netherlands",
+          "standIn": false,
+          "squadSize": 11,
+          "withFormBatting": 0,
+          "withFormBowling": 0,
+          "withAnyPriorT20I": 8,
+          "lowSampleBadge": 11,
+          "lackingData": [
+            {
+              "id": "dc36a6a5",
+              "name": "AN Kervezee",
+              "priorMatches": 0,
+              "formBatBalls": 0,
+              "formBowlBalls": 0
+            },
+            {
+              "id": "d953ed6a",
+              "name": "B Zuiderent",
+              "priorMatches": 0,
+              "formBatBalls": 0,
+              "formBowlBalls": 0
+            },
+            {
+              "id": "d84a2d8e",
+              "name": "DJ Reekers",
+              "priorMatches": 1,
+              "formBatBalls": 3,
+              "formBowlBalls": 0
+            },
+            {
+              "id": "3185266a",
+              "name": "DLS van Bunge",
+              "priorMatches": 1,
+              "formBatBalls": 2,
+              "formBowlBalls": 0
+            },
+            {
+              "id": "c404f58a",
+              "name": "DP Nannes",
+              "priorMatches": 0,
+              "formBatBalls": 0,
+              "formBowlBalls": 0
+            },
+            {
+              "id": "cefe0886",
+              "name": "E Schiferli",
+              "priorMatches": 1,
+              "formBatBalls": 0,
+              "formBowlBalls": 24
+            },
+            {
+              "id": "7c681ee9",
+              "name": "J Smits",
+              "priorMatches": 1,
+              "formBatBalls": 0,
+              "formBowlBalls": 0
+            },
+            {
+              "id": "abbdca1a",
+              "name": "PM Seelaar",
+              "priorMatches": 1,
+              "formBatBalls": 0,
+              "formBowlBalls": 24
+            },
+            {
+              "id": "91052c96",
+              "name": "PW Borren",
+              "priorMatches": 1,
+              "formBatBalls": 12,
+              "formBowlBalls": 24
+            },
+            {
+              "id": "4ec07775",
+              "name": "RN ten Doeschate",
+              "priorMatches": 1,
+              "formBatBalls": 18,
+              "formBowlBalls": 24
+            },
+            {
+              "id": "52980a48",
+              "name": "TN de Grooth",
+              "priorMatches": 1,
+              "formBatBalls": 28,
+              "formBowlBalls": 0
+            }
+          ]
+        },
+        {
+          "team": "New Zealand",
+          "standIn": false,
+          "squadSize": 16,
+          "withFormBatting": 8,
+          "withFormBowling": 7,
+          "withAnyPriorT20I": 14,
+          "lowSampleBadge": 7,
+          "lackingData": [
+            {
+              "id": "48f177f5",
+              "name": "AJ Redmond",
+              "priorMatches": 0,
+              "formBatBalls": 0,
+              "formBowlBalls": 0
+            },
+            {
+              "id": "549aefcd",
+              "name": "BJ Diamanti",
+              "priorMatches": 0,
+              "formBatBalls": 0,
+              "formBowlBalls": 0
+            },
+            {
+              "id": "cf73ad76",
+              "name": "JEC Franklin",
+              "priorMatches": 6,
+              "formBatBalls": 17,
+              "formBowlBalls": 6
+            },
+            {
+              "id": "5673a3fc",
+              "name": "NL McCullum",
+              "priorMatches": 4,
+              "formBatBalls": 10,
+              "formBowlBalls": 24
+            },
+            {
+              "id": "a354c917",
+              "name": "NT Broom",
+              "priorMatches": 3,
+              "formBatBalls": 29,
+              "formBowlBalls": 0
+            },
+            {
+              "id": "024fe464",
+              "name": "PD McGlashan",
+              "priorMatches": 2,
+              "formBatBalls": 0,
+              "formBowlBalls": 0
+            }
+          ]
+        },
+        {
+          "team": "Pakistan",
+          "standIn": false,
+          "squadSize": 15,
+          "withFormBatting": 6,
+          "withFormBowling": 6,
+          "withAnyPriorT20I": 13,
+          "lowSampleBadge": 6,
+          "lackingData": [
+            {
+              "id": "390ff45b",
+              "name": "Abdul Razzaq",
+              "priorMatches": 1,
+              "formBatBalls": 0,
+              "formBowlBalls": 0
+            },
+            {
+              "id": "f8fd6e3f",
+              "name": "Ahmed Shehzad",
+              "priorMatches": 1,
+              "formBatBalls": 12,
+              "formBowlBalls": 0
+            },
+            {
+              "id": "e174dadd",
+              "name": "Mohammad Amir",
+              "priorMatches": 0,
+              "formBatBalls": 0,
+              "formBowlBalls": 0
+            },
+            {
+              "id": "05d74535",
+              "name": "Saeed Ajmal",
+              "priorMatches": 1,
+              "formBatBalls": 0,
+              "formBowlBalls": 23
+            },
+            {
+              "id": "fd201eb4",
+              "name": "Shahzaib Hasan",
+              "priorMatches": 0,
+              "formBatBalls": 0,
+              "formBowlBalls": 0
+            }
+          ]
+        },
+        {
+          "team": "Scotland",
+          "standIn": false,
+          "squadSize": 13,
+          "withFormBatting": 6,
+          "withFormBowling": 1,
+          "withAnyPriorT20I": 10,
+          "lowSampleBadge": 12,
+          "lackingData": [
+            {
+              "id": "008589a4",
+              "name": "CM Wright",
+              "priorMatches": 1,
+              "formBatBalls": 18,
+              "formBowlBalls": 24
+            },
+            {
+              "id": "9c376401",
+              "name": "CS MacLeod",
+              "priorMatches": 0,
+              "formBatBalls": 0,
+              "formBowlBalls": 0
+            },
+            {
+              "id": "46050f42",
+              "name": "GA Rogers",
+              "priorMatches": 0,
+              "formBatBalls": 0,
+              "formBowlBalls": 0
+            },
+            {
+              "id": "5b8fffb4",
+              "name": "GD Drummond",
+              "priorMatches": 2,
+              "formBatBalls": 5,
+              "formBowlBalls": 42
+            },
+            {
+              "id": "8187519b",
+              "name": "GM Hamilton",
+              "priorMatches": 3,
+              "formBatBalls": 15,
+              "formBowlBalls": 0
+            },
+            {
+              "id": "4373c57e",
+              "name": "JH Stander",
+              "priorMatches": 0,
+              "formBatBalls": 0,
+              "formBowlBalls": 0
+            },
+            {
+              "id": "ef5cbaf6",
+              "name": "NFI McCallum",
+              "priorMatches": 3,
+              "formBatBalls": 3,
+              "formBowlBalls": 0
+            }
+          ]
+        },
+        {
+          "team": "South Africa",
+          "standIn": false,
+          "squadSize": 12,
+          "withFormBatting": 8,
+          "withFormBowling": 5,
+          "withAnyPriorT20I": 12,
+          "lowSampleBadge": 3,
+          "lackingData": [
+            {
+              "id": "86dc8f2e",
+              "name": "JH Kallis",
+              "priorMatches": 4,
+              "formBatBalls": 11,
+              "formBowlBalls": 12
+            }
+          ]
+        },
+        {
+          "team": "Sri Lanka",
+          "standIn": false,
+          "squadSize": 12,
+          "withFormBatting": 6,
+          "withFormBowling": 2,
+          "withAnyPriorT20I": 10,
+          "lowSampleBadge": 5,
+          "lackingData": [
+            {
+              "id": "896d78ad",
+              "name": "AD Mathews",
+              "priorMatches": 0,
+              "formBatBalls": 0,
+              "formBowlBalls": 0
+            },
+            {
+              "id": "ea0cdc12",
+              "name": "BAW Mendis",
+              "priorMatches": 1,
+              "formBatBalls": 0,
+              "formBowlBalls": 24
+            },
+            {
+              "id": "ac5ae4af",
+              "name": "I Udana",
+              "priorMatches": 0,
+              "formBatBalls": 0,
+              "formBowlBalls": 0
+            },
+            {
+              "id": "469ea22b",
+              "name": "KMDN Kulasekara",
+              "priorMatches": 1,
+              "formBatBalls": 3,
+              "formBowlBalls": 23
+            },
+            {
+              "id": "4ba44e19",
+              "name": "M Muralitharan",
+              "priorMatches": 1,
+              "formBatBalls": 0,
+              "formBowlBalls": 0
+            }
+          ]
+        },
+        {
+          "team": "West Indies",
+          "standIn": false,
+          "squadSize": 13,
+          "withFormBatting": 7,
+          "withFormBowling": 7,
+          "withAnyPriorT20I": 13,
+          "lowSampleBadge": 4,
+          "lackingData": [
+            {
+              "id": "1bae756b",
+              "name": "ADS Fletcher",
+              "priorMatches": 2,
+              "formBatBalls": 13,
+              "formBowlBalls": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "editionId": "2010",
+      "teams": [
+        {
+          "team": "Australia",
+          "standIn": false,
+          "squadSize": 12,
+          "withFormBatting": 8,
+          "withFormBowling": 7,
+          "withAnyPriorT20I": 12,
+          "lowSampleBadge": 1,
+          "lackingData": []
+        },
+        {
+          "team": "Bangladesh",
+          "standIn": false,
+          "squadSize": 13,
+          "withFormBatting": 6,
+          "withFormBowling": 3,
+          "withAnyPriorT20I": 10,
+          "lowSampleBadge": 9,
+          "lackingData": [
+            {
+              "id": "888e32bf",
+              "name": "Abdur Razzak",
+              "priorMatches": 10,
+              "formBatBalls": 2,
+              "formBowlBalls": 36
+            },
+            {
+              "id": "53bc7b84",
+              "name": "Aftab Ahmed",
+              "priorMatches": 9,
+              "formBatBalls": 14,
+              "formBowlBalls": 2
+            },
+            {
+              "id": "5fbe14fc",
+              "name": "Imrul Kayes",
+              "priorMatches": 0,
+              "formBatBalls": 0,
+              "formBowlBalls": 0
+            },
+            {
+              "id": "6752c57b",
+              "name": "Jahurul Islam",
+              "priorMatches": 0,
+              "formBatBalls": 0,
+              "formBowlBalls": 0
+            },
+            {
+              "id": "1a8eebbe",
+              "name": "Shafiul Islam",
+              "priorMatches": 1,
+              "formBatBalls": 9,
+              "formBowlBalls": 6
+            },
+            {
+              "id": "8fb49ef8",
+              "name": "Suhrawadi Shuvo",
+              "priorMatches": 0,
+              "formBatBalls": 0,
+              "formBowlBalls": 0
+            }
+          ]
+        },
+        {
+          "team": "England",
+          "standIn": false,
+          "squadSize": 12,
+          "withFormBatting": 5,
+          "withFormBowling": 6,
+          "withAnyPriorT20I": 10,
+          "lowSampleBadge": 3,
+          "lackingData": [
+            {
+              "id": "1e960f2a",
+              "name": "C Kieswetter",
+              "priorMatches": 0,
+              "formBatBalls": 0,
+              "formBowlBalls": 0
+            },
+            {
+              "id": "3812d56b",
+              "name": "MH Yardy",
+              "priorMatches": 3,
+              "formBatBalls": 0,
+              "formBowlBalls": 0
+            },
+            {
+              "id": "11df3dc8",
+              "name": "MJ Lumb",
+              "priorMatches": 0,
+              "formBatBalls": 0,
+              "formBowlBalls": 0
+            }
+          ]
+        },
+        {
+          "team": "India",
+          "standIn": false,
+          "squadSize": 15,
+          "withFormBatting": 8,
+          "withFormBowling": 5,
+          "withAnyPriorT20I": 12,
+          "lowSampleBadge": 6,
+          "lackingData": [
+            {
+              "id": "96fd40ae",
+              "name": "A Nehra",
+              "priorMatches": 2,
+              "formBatBalls": 13,
+              "formBowlBalls": 42
+            },
+            {
+              "id": "c03f1114",
+              "name": "KD Karthik",
+              "priorMatches": 6,
+              "formBatBalls": 1,
+              "formBowlBalls": 0
+            },
+            {
+              "id": "4b57e452",
+              "name": "M Vijay",
+              "priorMatches": 0,
+              "formBatBalls": 0,
+              "formBowlBalls": 0
+            },
+            {
+              "id": "e938e1bc",
+              "name": "P Kumar",
+              "priorMatches": 1,
+              "formBatBalls": 0,
+              "formBowlBalls": 0
+            },
+            {
+              "id": "98ae73b1",
+              "name": "PP Chawla",
+              "priorMatches": 0,
+              "formBatBalls": 0,
+              "formBowlBalls": 0
+            },
+            {
+              "id": "41eb4a4f",
+              "name": "R Vinay Kumar",
+              "priorMatches": 0,
+              "formBatBalls": 0,
+              "formBowlBalls": 0
+            }
+          ]
+        },
+        {
+          "team": "Ireland",
+          "standIn": false,
+          "squadSize": 11,
+          "withFormBatting": 8,
+          "withFormBowling": 5,
+          "withAnyPriorT20I": 11,
+          "lowSampleBadge": 2,
+          "lackingData": [
+            {
+              "id": "99cddc5e",
+              "name": "GH Dockrell",
+              "priorMatches": 2,
+              "formBatBalls": 0,
+              "formBowlBalls": 33
+            },
+            {
+              "id": "cf494ffe",
+              "name": "PR Stirling",
+              "priorMatches": 1,
+              "formBatBalls": 16,
+              "formBowlBalls": 0
+            }
+          ]
+        },
+        {
+          "team": "New Zealand",
+          "standIn": false,
+          "squadSize": 14,
+          "withFormBatting": 11,
+          "withFormBowling": 8,
+          "withAnyPriorT20I": 14,
+          "lowSampleBadge": 2,
+          "lackingData": []
+        },
+        {
+          "team": "Pakistan",
+          "standIn": false,
+          "squadSize": 14,
+          "withFormBatting": 7,
+          "withFormBowling": 4,
+          "withAnyPriorT20I": 13,
+          "lowSampleBadge": 5,
+          "lackingData": [
+            {
+              "id": "d094e7d1",
+              "name": "Abdur Rehman",
+              "priorMatches": 1,
+              "formBatBalls": 0,
+              "formBowlBalls": 0
+            },
+            {
+              "id": "5eea345c",
+              "name": "Khalid Latif",
+              "priorMatches": 2,
+              "formBatBalls": 14,
+              "formBowlBalls": 0
+            },
+            {
+              "id": "e03b66ec",
+              "name": "Mohammad Asif",
+              "priorMatches": 10,
+              "formBatBalls": 2,
+              "formBowlBalls": 24
+            },
+            {
+              "id": "9ab63e7b",
+              "name": "Mohammad Hafeez",
+              "priorMatches": 8,
+              "formBatBalls": 0,
+              "formBowlBalls": 0
+            },
+            {
+              "id": "68ddabdb",
+              "name": "Mohammad Sami",
+              "priorMatches": 0,
+              "formBatBalls": 0,
+              "formBowlBalls": 0
+            }
+          ]
+        },
+        {
+          "team": "South Africa",
+          "standIn": false,
+          "squadSize": 14,
+          "withFormBatting": 9,
+          "withFormBowling": 6,
+          "withAnyPriorT20I": 14,
+          "lowSampleBadge": 3,
+          "lackingData": [
+            {
+              "id": "d1c94b25",
+              "name": "CK Langeveldt",
+              "priorMatches": 4,
+              "formBatBalls": 0,
+              "formBowlBalls": 24
+            },
+            {
+              "id": "7955eb15",
+              "name": "RK Kleinveldt",
+              "priorMatches": 1,
+              "formBatBalls": 3,
+              "formBowlBalls": 6
+            }
+          ]
+        },
+        {
+          "team": "Sri Lanka",
+          "standIn": false,
+          "squadSize": 16,
+          "withFormBatting": 7,
+          "withFormBowling": 7,
+          "withAnyPriorT20I": 12,
+          "lowSampleBadge": 5,
+          "lackingData": [
+            {
+              "id": "575ab3ce",
+              "name": "CU Jayasinghe",
+              "priorMatches": 2,
+              "formBatBalls": 28,
+              "formBowlBalls": 0
+            },
+            {
+              "id": "8dd02a98",
+              "name": "LD Chandimal",
+              "priorMatches": 0,
+              "formBatBalls": 0,
+              "formBowlBalls": 0
+            },
+            {
+              "id": "0f12f9df",
+              "name": "NLTC Perera",
+              "priorMatches": 0,
+              "formBatBalls": 0,
+              "formBowlBalls": 0
+            },
+            {
+              "id": "f5f18a18",
+              "name": "S Randiv",
+              "priorMatches": 0,
+              "formBatBalls": 0,
+              "formBowlBalls": 0
+            },
+            {
+              "id": "dd37da14",
+              "name": "UWMBCA Welegedara",
+              "priorMatches": 0,
+              "formBatBalls": 0,
+              "formBowlBalls": 0
+            }
+          ]
+        },
+        {
+          "team": "United Arab Emirates",
+          "standIn": true,
+          "squadSize": 13,
+          "withFormBatting": 5,
+          "withFormBowling": 3,
+          "withAnyPriorT20I": 0,
+          "lowSampleBadge": 12,
+          "lackingData": [
+            {
+              "id": "79b4839e",
+              "name": "Ahmed Raza",
+              "priorMatches": 0,
+              "formBatBalls": 4,
+              "formBowlBalls": 26
+            },
+            {
+              "id": "e4271302",
+              "name": "Amjad Ali",
+              "priorMatches": 0,
+              "formBatBalls": 29,
+              "formBowlBalls": 0
+            },
+            {
+              "id": "7572bf45",
+              "name": "EHSN Silva",
+              "priorMatches": 0,
+              "formBatBalls": 22,
+              "formBowlBalls": 42
+            },
+            {
+              "id": "8b89eb80",
+              "name": "Faizan Asif",
+              "priorMatches": 0,
+              "formBatBalls": 22,
+              "formBowlBalls": 0
+            },
+            {
+              "id": "ac387889",
+              "name": "Sharif Asadullah",
+              "priorMatches": 0,
+              "formBatBalls": 0,
+              "formBowlBalls": 18
+            },
+            {
+              "id": "fd483a3e",
+              "name": "V Shetty",
+              "priorMatches": 0,
+              "formBatBalls": 13,
+              "formBowlBalls": 0
+            }
+          ]
+        },
+        {
+          "team": "West Indies",
+          "standIn": false,
+          "squadSize": 15,
+          "withFormBatting": 8,
+          "withFormBowling": 8,
+          "withAnyPriorT20I": 15,
+          "lowSampleBadge": 4,
+          "lackingData": [
+            {
+              "id": "d68e7f48",
+              "name": "R Rampaul",
+              "priorMatches": 6,
+              "formBatBalls": 9,
+              "formBowlBalls": 24
+            },
+            {
+              "id": "60beb01b",
+              "name": "WW Hinds",
+              "priorMatches": 3,
+              "formBatBalls": 16,
+              "formBowlBalls": 0
+            }
+          ]
+        },
+        {
+          "team": "Zimbabwe",
+          "standIn": false,
+          "squadSize": 13,
+          "withFormBatting": 1,
+          "withFormBowling": 0,
+          "withAnyPriorT20I": 8,
+          "lowSampleBadge": 13,
+          "lackingData": [
+            {
+              "id": "9f0270e0",
+              "name": "AG Cremer",
+              "priorMatches": 1,
+              "formBatBalls": 3,
+              "formBowlBalls": 24
+            },
+            {
+              "id": "80ec5dfd",
+              "name": "AM Blignaut",
+              "priorMatches": 0,
+              "formBatBalls": 0,
+              "formBowlBalls": 0
+            },
+            {
+              "id": "53597be1",
+              "name": "BRM Taylor",
+              "priorMatches": 3,
+              "formBatBalls": 3,
+              "formBowlBalls": 6
+            },
+            {
+              "id": "49691d7a",
+              "name": "CB Mpofu",
+              "priorMatches": 0,
+              "formBatBalls": 0,
+              "formBowlBalls": 0
+            },
+            {
+              "id": "a21ea40c",
+              "name": "CK Coventry",
+              "priorMatches": 0,
+              "formBatBalls": 0,
+              "formBowlBalls": 0
+            },
+            {
+              "id": "c96311d4",
+              "name": "CR Ervine",
+              "priorMatches": 0,
+              "formBatBalls": 0,
+              "formBowlBalls": 0
+            },
+            {
+              "id": "d2babdd5",
+              "name": "E Chigumbura",
+              "priorMatches": 3,
+              "formBatBalls": 19,
+              "formBowlBalls": 6
+            },
+            {
+              "id": "86421172",
+              "name": "GA Lamb",
+              "priorMatches": 1,
+              "formBatBalls": 28,
+              "formBowlBalls": 24
+            },
+            {
+              "id": "9de271ef",
+              "name": "P Utseya",
+              "priorMatches": 3,
+              "formBatBalls": 1,
+              "formBowlBalls": 24
+            },
+            {
+              "id": "67af6f81",
+              "name": "RW Price",
+              "priorMatches": 1,
+              "formBatBalls": 0,
+              "formBowlBalls": 24
+            },
+            {
+              "id": "f55c526f",
+              "name": "T Maruma",
+              "priorMatches": 0,
+              "formBatBalls": 0,
+              "formBowlBalls": 0
+            },
+            {
+              "id": "75de770f",
+              "name": "T Taibu",
+              "priorMatches": 3,
+              "formBatBalls": 7,
+              "formBowlBalls": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "editionId": "2012",
+      "teams": [
+        {
+          "team": "Australia",
+          "standIn": false,
+          "squadSize": 13,
+          "withFormBatting": 7,
+          "withFormBowling": 6,
+          "withAnyPriorT20I": 13,
+          "lowSampleBadge": 2,
+          "lackingData": [
+            {
+              "id": "b681e71e",
+              "name": "GJ Maxwell",
+              "priorMatches": 2,
+              "formBatBalls": 27,
+              "formBowlBalls": 36
+            },
+            {
+              "id": "3fb19989",
+              "name": "MA Starc",
+              "priorMatches": 2,
+              "formBatBalls": 0,
+              "formBowlBalls": 43
+            }
+          ]
+        },
+        {
+          "team": "Bangladesh",
+          "standIn": false,
+          "squadSize": 12,
+          "withFormBatting": 7,
+          "withFormBowling": 6,
+          "withAnyPriorT20I": 12,
+          "lowSampleBadge": 7,
+          "lackingData": [
+            {
+              "id": "5c756df3",
+              "name": "Abul Hasan",
+              "priorMatches": 1,
+              "formBatBalls": 0,
+              "formBowlBalls": 18
+            }
+          ]
+        },
+        {
+          "team": "England",
+          "standIn": false,
+          "squadSize": 14,
+          "withFormBatting": 10,
+          "withFormBowling": 7,
+          "withAnyPriorT20I": 14,
+          "lowSampleBadge": 3,
+          "lackingData": [
+            {
+              "id": "f3abd0c9",
+              "name": "DR Briggs",
+              "priorMatches": 1,
+              "formBatBalls": 0,
+              "formBowlBalls": 12
+            }
+          ]
+        },
+        {
+          "team": "India",
+          "standIn": false,
+          "squadSize": 14,
+          "withFormBatting": 6,
+          "withFormBowling": 4,
+          "withAnyPriorT20I": 14,
+          "lowSampleBadge": 7,
+          "lackingData": [
+            {
+              "id": "66b30f71",
+              "name": "AB Dinda",
+              "priorMatches": 4,
+              "formBatBalls": 0,
+              "formBowlBalls": 18
+            },
+            {
+              "id": "8b5b6769",
+              "name": "Harbhajan Singh",
+              "priorMatches": 21,
+              "formBatBalls": 7,
+              "formBowlBalls": 24
+            },
+            {
+              "id": "b2b50355",
+              "name": "L Balaji",
+              "priorMatches": 1,
+              "formBatBalls": 0,
+              "formBowlBalls": 24
+            },
+            {
+              "id": "98ae73b1",
+              "name": "PP Chawla",
+              "priorMatches": 3,
+              "formBatBalls": 0,
+              "formBowlBalls": 0
+            },
+            {
+              "id": "8ba8195d",
+              "name": "V Sehwag",
+              "priorMatches": 15,
+              "formBatBalls": 19,
+              "formBowlBalls": 0
+            },
+            {
+              "id": "91a4a398",
+              "name": "Z Khan",
+              "priorMatches": 12,
+              "formBatBalls": 0,
+              "formBowlBalls": 24
+            }
+          ]
+        },
+        {
+          "team": "Ireland",
+          "standIn": false,
+          "squadSize": 12,
+          "withFormBatting": 6,
+          "withFormBowling": 7,
+          "withAnyPriorT20I": 12,
+          "lowSampleBadge": 3,
+          "lackingData": [
+            {
+              "id": "c5326dd0",
+              "name": "NG Jones",
+              "priorMatches": 2,
+              "formBatBalls": 3,
+              "formBowlBalls": 6
+            },
+            {
+              "id": "84826f48",
+              "name": "NJ O'Brien",
+              "priorMatches": 10,
+              "formBatBalls": 8,
+              "formBowlBalls": 0
+            }
+          ]
+        },
+        {
+          "team": "Namibia",
+          "standIn": true,
+          "squadSize": 14,
+          "withFormBatting": 0,
+          "withFormBowling": 0,
+          "withAnyPriorT20I": 0,
+          "lowSampleBadge": 14,
+          "lackingData": [
+            {
+              "id": "hand:2012:bm-scholtz",
+              "name": "BM Scholtz",
+              "priorMatches": 0,
+              "formBatBalls": 0,
+              "formBowlBalls": 0
+            },
+            {
+              "id": "hand:2012:c-viljoen",
+              "name": "C Viljoen",
+              "priorMatches": 0,
+              "formBatBalls": 0,
+              "formBowlBalls": 0
+            },
+            {
+              "id": "hand:2012:cg-williams",
+              "name": "CG Williams",
+              "priorMatches": 0,
+              "formBatBalls": 0,
+              "formBowlBalls": 0
+            },
+            {
+              "id": "hand:2012:e-steenkamp",
+              "name": "E Steenkamp",
+              "priorMatches": 0,
+              "formBatBalls": 0,
+              "formBowlBalls": 0
+            },
+            {
+              "id": "hand:2012:g-snyman",
+              "name": "G Snyman",
+              "priorMatches": 0,
+              "formBatBalls": 0,
+              "formBowlBalls": 0
+            },
+            {
+              "id": "hand:2012:hw-geldenhuys",
+              "name": "HW Geldenhuys",
+              "priorMatches": 0,
+              "formBatBalls": 0,
+              "formBowlBalls": 0
+            },
+            {
+              "id": "hand:2012:i-opperman",
+              "name": "I Opperman",
+              "priorMatches": 0,
+              "formBatBalls": 0,
+              "formBowlBalls": 0
+            },
+            {
+              "id": "hand:2012:l-klazinga",
+              "name": "L Klazinga",
+              "priorMatches": 0,
+              "formBatBalls": 0,
+              "formBowlBalls": 0
+            },
+            {
+              "id": "hand:2012:lp-van-der-westhuizen",
+              "name": "LP van der Westhuizen",
+              "priorMatches": 0,
+              "formBatBalls": 0,
+              "formBowlBalls": 0
+            },
+            {
+              "id": "hand:2012:mg-erasmus",
+              "name": "MG Erasmus",
+              "priorMatches": 0,
+              "formBatBalls": 0,
+              "formBowlBalls": 0
+            },
+            {
+              "id": "hand:2012:nrp-scholtz",
+              "name": "NRP Scholtz",
+              "priorMatches": 0,
+              "formBatBalls": 0,
+              "formBowlBalls": 0
+            },
+            {
+              "id": "hand:2012:r-van-schoor",
+              "name": "R van Schoor",
+              "priorMatches": 0,
+              "formBatBalls": 0,
+              "formBowlBalls": 0
+            },
+            {
+              "id": "hand:2012:sf-burger",
+              "name": "SF Burger",
+              "priorMatches": 0,
+              "formBatBalls": 0,
+              "formBowlBalls": 0
+            },
+            {
+              "id": "hand:2012:z-groenewald",
+              "name": "Z Groenewald",
+              "priorMatches": 0,
+              "formBatBalls": 0,
+              "formBowlBalls": 0
+            }
+          ]
+        },
+        {
+          "team": "New Zealand",
+          "standIn": false,
+          "squadSize": 14,
+          "withFormBatting": 7,
+          "withFormBowling": 9,
+          "withAnyPriorT20I": 14,
+          "lowSampleBadge": 2,
+          "lackingData": [
+            {
+              "id": "d7c6af50",
+              "name": "DL Vettori",
+              "priorMatches": 29,
+              "formBatBalls": 0,
+              "formBowlBalls": 24
+            }
+          ]
+        },
+        {
+          "team": "Pakistan",
+          "standIn": false,
+          "squadSize": 13,
+          "withFormBatting": 10,
+          "withFormBowling": 7,
+          "withAnyPriorT20I": 13,
+          "lowSampleBadge": 4,
+          "lackingData": [
+            {
+              "id": "3cf5ae43",
+              "name": "Yasir Arafat",
+              "priorMatches": 9,
+              "formBatBalls": 22,
+              "formBowlBalls": 38
+            }
+          ]
+        },
+        {
+          "team": "South Africa",
+          "standIn": false,
+          "squadSize": 13,
+          "withFormBatting": 8,
+          "withFormBowling": 6,
+          "withAnyPriorT20I": 13,
+          "lowSampleBadge": 3,
+          "lackingData": [
+            {
+              "id": "8fd1a8f5",
+              "name": "DW Steyn",
+              "priorMatches": 22,
+              "formBatBalls": 0,
+              "formBowlBalls": 30
+            },
+            {
+              "id": "dce2019b",
+              "name": "F Behardien",
+              "priorMatches": 1,
+              "formBatBalls": 11,
+              "formBowlBalls": 0
+            },
+            {
+              "id": "3355b542",
+              "name": "F du Plessis",
+              "priorMatches": 2,
+              "formBatBalls": 9,
+              "formBowlBalls": 0
+            }
+          ]
+        },
+        {
+          "team": "Sri Lanka",
+          "standIn": false,
+          "squadSize": 13,
+          "withFormBatting": 7,
+          "withFormBowling": 5,
+          "withAnyPriorT20I": 11,
+          "lowSampleBadge": 6,
+          "lackingData": [
+            {
+              "id": "5b16a806",
+              "name": "A Dananjaya",
+              "priorMatches": 0,
+              "formBatBalls": 0,
+              "formBowlBalls": 0
+            },
+            {
+              "id": "ea0cdc12",
+              "name": "BAW Mendis",
+              "priorMatches": 19,
+              "formBatBalls": 1,
+              "formBowlBalls": 42
+            },
+            {
+              "id": "5a22d91c",
+              "name": "EMDY Munaweera",
+              "priorMatches": 0,
+              "formBatBalls": 0,
+              "formBowlBalls": 0
+            }
+          ]
+        },
+        {
+          "team": "West Indies",
+          "standIn": false,
+          "squadSize": 14,
+          "withFormBatting": 8,
+          "withFormBowling": 8,
+          "withAnyPriorT20I": 14,
+          "lowSampleBadge": 2,
+          "lackingData": [
+            {
+              "id": "d1523761",
+              "name": "D Ramdin",
+              "priorMatches": 26,
+              "formBatBalls": 9,
+              "formBowlBalls": 0
+            }
+          ]
+        },
+        {
+          "team": "Zimbabwe",
+          "standIn": false,
+          "squadSize": 13,
+          "withFormBatting": 5,
+          "withFormBowling": 5,
+          "withAnyPriorT20I": 12,
+          "lowSampleBadge": 6,
+          "lackingData": [
+            {
+              "id": "9f0270e0",
+              "name": "AG Cremer",
+              "priorMatches": 6,
+              "formBatBalls": 2,
+              "formBowlBalls": 36
+            },
+            {
+              "id": "37137c8b",
+              "name": "BV Vitori",
+              "priorMatches": 0,
+              "formBatBalls": 0,
+              "formBowlBalls": 0
+            },
+            {
+              "id": "c96311d4",
+              "name": "CR Ervine",
+              "priorMatches": 3,
+              "formBatBalls": 0,
+              "formBowlBalls": 0
+            },
+            {
+              "id": "e7ba1233",
+              "name": "S Matsikenyeri",
+              "priorMatches": 4,
+              "formBatBalls": 19,
+              "formBowlBalls": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "editionId": "2014",
+      "teams": [
+        {
+          "team": "Australia",
+          "standIn": false,
+          "squadSize": 15,
+          "withFormBatting": 6,
+          "withFormBowling": 8,
+          "withAnyPriorT20I": 15,
+          "lowSampleBadge": 4,
+          "lackingData": [
+            {
+              "id": "b0c772ee",
+              "name": "BJ Haddin",
+              "priorMatches": 29,
+              "formBatBalls": 18,
+              "formBowlBalls": 0
+            },
+            {
+              "id": "b57f8a9a",
+              "name": "BJ Hodge",
+              "priorMatches": 12,
+              "formBatBalls": 20,
+              "formBowlBalls": 6
+            },
+            {
+              "id": "45c2196c",
+              "name": "DE Bollinger",
+              "priorMatches": 2,
+              "formBatBalls": 0,
+              "formBowlBalls": 0
+            }
+          ]
+        },
+        {
+          "team": "Bangladesh",
+          "standIn": false,
+          "squadSize": 17,
+          "withFormBatting": 11,
+          "withFormBowling": 7,
+          "withAnyPriorT20I": 16,
+          "lowSampleBadge": 5,
+          "lackingData": [
+            {
+              "id": "3f5f39cd",
+              "name": "Al-Amin Hossain",
+              "priorMatches": 1,
+              "formBatBalls": 3,
+              "formBowlBalls": 24
+            },
+            {
+              "id": "4948a447",
+              "name": "Farhad Reza",
+              "priorMatches": 9,
+              "formBatBalls": 19,
+              "formBowlBalls": 24
+            },
+            {
+              "id": "ef18b66e",
+              "name": "Taskin Ahmed",
+              "priorMatches": 0,
+              "formBatBalls": 0,
+              "formBowlBalls": 0
+            }
+          ]
+        },
+        {
+          "team": "England",
+          "standIn": false,
+          "squadSize": 12,
+          "withFormBatting": 7,
+          "withFormBowling": 6,
+          "withAnyPriorT20I": 12,
+          "lowSampleBadge": 3,
+          "lackingData": [
+            {
+              "id": "bb351c23",
+              "name": "MM Ali",
+              "priorMatches": 2,
+              "formBatBalls": 12,
+              "formBowlBalls": 0
+            },
+            {
+              "id": "fdb8ed0d",
+              "name": "SD Parry",
+              "priorMatches": 2,
+              "formBatBalls": 0,
+              "formBowlBalls": 36
+            }
+          ]
+        },
+        {
+          "team": "Hong Kong",
+          "standIn": false,
+          "squadSize": 13,
+          "withFormBatting": 0,
+          "withFormBowling": 0,
+          "withAnyPriorT20I": 0,
+          "lowSampleBadge": 13,
+          "lackingData": [
+            {
+              "id": "f6c2659d",
+              "name": "Aizaz Khan",
+              "priorMatches": 0,
+              "formBatBalls": 0,
+              "formBowlBalls": 0
+            },
+            {
+              "id": "fbb657bb",
+              "name": "Babar Hayat",
+              "priorMatches": 0,
+              "formBatBalls": 0,
+              "formBowlBalls": 0
+            },
+            {
+              "id": "70456281",
+              "name": "Ehsan Nawaz",
+              "priorMatches": 0,
+              "formBatBalls": 0,
+              "formBowlBalls": 0
+            },
+            {
+              "id": "fb0abc20",
+              "name": "Haseeb Amjad",
+              "priorMatches": 0,
+              "formBatBalls": 0,
+              "formBowlBalls": 0
+            },
+            {
+              "id": "5c124657",
+              "name": "Irfan Ahmed",
+              "priorMatches": 0,
+              "formBatBalls": 0,
+              "formBowlBalls": 0
+            },
+            {
+              "id": "bf2d865c",
+              "name": "JJ Atkinson",
+              "priorMatches": 0,
+              "formBatBalls": 0,
+              "formBowlBalls": 0
+            },
+            {
+              "id": "7fa12533",
+              "name": "MS Chapman",
+              "priorMatches": 0,
+              "formBatBalls": 0,
+              "formBowlBalls": 0
+            },
+            {
+              "id": "04029c44",
+              "name": "Munir Dar",
+              "priorMatches": 0,
+              "formBatBalls": 0,
+              "formBowlBalls": 0
+            },
+            {
+              "id": "023f6b02",
+              "name": "Nadeem Ahmed",
+              "priorMatches": 0,
+              "formBatBalls": 0,
+              "formBowlBalls": 0
+            },
+            {
+              "id": "25e26a23",
+              "name": "Najeeb Amar",
+              "priorMatches": 0,
+              "formBatBalls": 0,
+              "formBowlBalls": 0
+            },
+            {
+              "id": "e3eb9e46",
+              "name": "Nizakat Khan",
+              "priorMatches": 0,
+              "formBatBalls": 0,
+              "formBowlBalls": 0
+            },
+            {
+              "id": "5f5ca1a7",
+              "name": "Tanwir Afzal",
+              "priorMatches": 0,
+              "formBatBalls": 0,
+              "formBowlBalls": 0
+            },
+            {
+              "id": "a2eac9df",
+              "name": "Waqas Barkat",
+              "priorMatches": 0,
+              "formBatBalls": 0,
+              "formBowlBalls": 0
+            }
+          ]
+        },
+        {
+          "team": "India",
+          "standIn": false,
+          "squadSize": 13,
+          "withFormBatting": 6,
+          "withFormBowling": 5,
+          "withAnyPriorT20I": 11,
+          "lowSampleBadge": 5,
+          "lackingData": [
+            {
+              "id": "6b19d823",
+              "name": "A Mishra",
+              "priorMatches": 1,
+              "formBatBalls": 0,
+              "formBowlBalls": 0
+            },
+            {
+              "id": "759ac88f",
+              "name": "MM Sharma",
+              "priorMatches": 0,
+              "formBatBalls": 0,
+              "formBowlBalls": 0
+            },
+            {
+              "id": "8cf9814c",
+              "name": "Mohammed Shami",
+              "priorMatches": 0,
+              "formBatBalls": 0,
+              "formBowlBalls": 0
+            },
+            {
+              "id": "0a476045",
+              "name": "S Dhawan",
+              "priorMatches": 2,
+              "formBatBalls": 19,
+              "formBowlBalls": 0
+            }
+          ]
+        },
+        {
+          "team": "Ireland",
+          "standIn": false,
+          "squadSize": 12,
+          "withFormBatting": 8,
+          "withFormBowling": 6,
+          "withAnyPriorT20I": 11,
+          "lowSampleBadge": 3,
+          "lackingData": [
+            {
+              "id": "e957b38f",
+              "name": "AR McBrine",
+              "priorMatches": 0,
+              "formBatBalls": 0,
+              "formBowlBalls": 0
+            },
+            {
+              "id": "7f3ad1ed",
+              "name": "SR Thompson",
+              "priorMatches": 2,
+              "formBatBalls": 8,
+              "formBowlBalls": 6
+            }
+          ]
+        },
+        {
+          "team": "Nepal",
+          "standIn": false,
+          "squadSize": 11,
+          "withFormBatting": 0,
+          "withFormBowling": 0,
+          "withAnyPriorT20I": 0,
+          "lowSampleBadge": 11,
+          "lackingData": [
+            {
+              "id": "82342b13",
+              "name": "B Bhandari",
+              "priorMatches": 0,
+              "formBatBalls": 0,
+              "formBowlBalls": 0
+            },
+            {
+              "id": "98d05440",
+              "name": "B Regmi",
+              "priorMatches": 0,
+              "formBatBalls": 0,
+              "formBowlBalls": 0
+            },
+            {
+              "id": "b2e1d224",
+              "name": "G Malla",
+              "priorMatches": 0,
+              "formBatBalls": 0,
+              "formBowlBalls": 0
+            },
+            {
+              "id": "f8dcfe4e",
+              "name": "JK Mukhiya",
+              "priorMatches": 0,
+              "formBatBalls": 0,
+              "formBowlBalls": 0
+            },
+            {
+              "id": "9d280648",
+              "name": "NB Budayair",
+              "priorMatches": 0,
+              "formBatBalls": 0,
+              "formBowlBalls": 0
+            },
+            {
+              "id": "12c3ba4d",
+              "name": "P Khadka",
+              "priorMatches": 0,
+              "formBatBalls": 0,
+              "formBowlBalls": 0
+            },
+            {
+              "id": "3de06845",
+              "name": "S Vesawkar",
+              "priorMatches": 0,
+              "formBatBalls": 0,
+              "formBowlBalls": 0
+            },
+            {
+              "id": "3c4007d3",
+              "name": "Sagar Pun",
+              "priorMatches": 0,
+              "formBatBalls": 0,
+              "formBowlBalls": 0
+            },
+            {
+              "id": "1adb8ee8",
+              "name": "Sompal Kami",
+              "priorMatches": 0,
+              "formBatBalls": 0,
+              "formBowlBalls": 0
+            },
+            {
+              "id": "2d8aae2f",
+              "name": "SP Gauchan",
+              "priorMatches": 0,
+              "formBatBalls": 0,
+              "formBowlBalls": 0
+            },
+            {
+              "id": "9a6b71d1",
+              "name": "SP Khakurel",
+              "priorMatches": 0,
+              "formBatBalls": 0,
+              "formBowlBalls": 0
+            }
+          ]
+        },
+        {
+          "team": "Netherlands",
+          "standIn": false,
+          "squadSize": 11,
+          "withFormBatting": 7,
+          "withFormBowling": 5,
+          "withAnyPriorT20I": 10,
+          "lowSampleBadge": 5,
+          "lackingData": [
+            {
+              "id": "782fb776",
+              "name": "LV van Beek",
+              "priorMatches": 0,
+              "formBatBalls": 0,
+              "formBowlBalls": 0
+            },
+            {
+              "id": "d99cc23a",
+              "name": "T van der Gugten",
+              "priorMatches": 4,
+              "formBatBalls": 8,
+              "formBowlBalls": 42
+            }
+          ]
+        },
+        {
+          "team": "New Zealand",
+          "standIn": false,
+          "squadSize": 13,
+          "withFormBatting": 9,
+          "withFormBowling": 7,
+          "withAnyPriorT20I": 13,
+          "lowSampleBadge": 2,
+          "lackingData": []
+        },
+        {
+          "team": "Pakistan",
+          "standIn": false,
+          "squadSize": 13,
+          "withFormBatting": 10,
+          "withFormBowling": 8,
+          "withAnyPriorT20I": 13,
+          "lowSampleBadge": 1,
+          "lackingData": []
+        },
+        {
+          "team": "Scotland",
+          "standIn": true,
+          "squadSize": 22,
+          "withFormBatting": 6,
+          "withFormBowling": 7,
+          "withAnyPriorT20I": 22,
+          "lowSampleBadge": 18,
+          "lackingData": [
+            {
+              "id": "7b5c6c0b",
+              "name": "CD Wallace",
+              "priorMatches": 1,
+              "formBatBalls": 1,
+              "formBowlBalls": 0
+            },
+            {
+              "id": "9c376401",
+              "name": "CS MacLeod",
+              "priorMatches": 7,
+              "formBatBalls": 25,
+              "formBowlBalls": 0
+            },
+            {
+              "id": "a5544576",
+              "name": "D Murphy",
+              "priorMatches": 1,
+              "formBatBalls": 21,
+              "formBowlBalls": 0
+            },
+            {
+              "id": "5b8fffb4",
+              "name": "GD Drummond",
+              "priorMatches": 6,
+              "formBatBalls": 0,
+              "formBowlBalls": 24
+            },
+            {
+              "id": "7429c452",
+              "name": "I Wardlaw",
+              "priorMatches": 1,
+              "formBatBalls": 3,
+              "formBowlBalls": 24
+            },
+            {
+              "id": "4373c57e",
+              "name": "JH Stander",
+              "priorMatches": 5,
+              "formBatBalls": 14,
+              "formBowlBalls": 24
+            },
+            {
+              "id": "4d0055a0",
+              "name": "MA Parker",
+              "priorMatches": 1,
+              "formBatBalls": 0,
+              "formBowlBalls": 24
+            },
+            {
+              "id": "8b261d84",
+              "name": "MH Cross",
+              "priorMatches": 2,
+              "formBatBalls": 2,
+              "formBowlBalls": 0
+            },
+            {
+              "id": "4ff67681",
+              "name": "MM Iqbal",
+              "priorMatches": 1,
+              "formBatBalls": 0,
+              "formBowlBalls": 24
+            },
+            {
+              "id": "c13b2833",
+              "name": "R Flannigan",
+              "priorMatches": 2,
+              "formBatBalls": 28,
+              "formBowlBalls": 0
+            },
+            {
+              "id": "c5a864d7",
+              "name": "SJS Smith",
+              "priorMatches": 2,
+              "formBatBalls": 0,
+              "formBowlBalls": 0
+            }
+          ]
+        },
+        {
+          "team": "South Africa",
+          "standIn": false,
+          "squadSize": 14,
+          "withFormBatting": 8,
+          "withFormBowling": 7,
+          "withAnyPriorT20I": 14,
+          "lowSampleBadge": 1,
+          "lackingData": [
+            {
+              "id": "b56dc5f7",
+              "name": "BE Hendricks",
+              "priorMatches": 2,
+              "formBatBalls": 11,
+              "formBowlBalls": 30
+            }
+          ]
+        },
+        {
+          "team": "Sri Lanka",
+          "standIn": false,
+          "squadSize": 14,
+          "withFormBatting": 9,
+          "withFormBowling": 8,
+          "withAnyPriorT20I": 14,
+          "lowSampleBadge": 2,
+          "lackingData": [
+            {
+              "id": "f78e7113",
+              "name": "S Prasanna",
+              "priorMatches": 2,
+              "formBatBalls": 12,
+              "formBowlBalls": 24
+            }
+          ]
+        },
+        {
+          "team": "United Arab Emirates",
+          "standIn": false,
+          "squadSize": 13,
+          "withFormBatting": 0,
+          "withFormBowling": 0,
+          "withAnyPriorT20I": 0,
+          "lowSampleBadge": 13,
+          "lackingData": [
+            {
+              "id": "79b4839e",
+              "name": "Ahmed Raza",
+              "priorMatches": 0,
+              "formBatBalls": 0,
+              "formBowlBalls": 0
+            },
+            {
+              "id": "26534b48",
+              "name": "AM Guruge",
+              "priorMatches": 0,
+              "formBatBalls": 0,
+              "formBowlBalls": 0
+            },
+            {
+              "id": "e4271302",
+              "name": "Amjad Ali",
+              "priorMatches": 0,
+              "formBatBalls": 0,
+              "formBowlBalls": 0
+            },
+            {
+              "id": "18eaf2fa",
+              "name": "Amjad Javed",
+              "priorMatches": 0,
+              "formBatBalls": 0,
+              "formBowlBalls": 0
+            },
+            {
+              "id": "7572bf45",
+              "name": "EHSN Silva",
+              "priorMatches": 0,
+              "formBatBalls": 0,
+              "formBowlBalls": 0
+            },
+            {
+              "id": "8b89eb80",
+              "name": "Faizan Asif",
+              "priorMatches": 0,
+              "formBatBalls": 0,
+              "formBowlBalls": 0
+            },
+            {
+              "id": "75186c24",
+              "name": "Kamran Shazad",
+              "priorMatches": 0,
+              "formBatBalls": 0,
+              "formBowlBalls": 0
+            },
+            {
+              "id": "ae6746e0",
+              "name": "Khurram Khan",
+              "priorMatches": 0,
+              "formBatBalls": 0,
+              "formBowlBalls": 0
+            },
+            {
+              "id": "d1988788",
+              "name": "Rohan Mustafa",
+              "priorMatches": 0,
+              "formBatBalls": 0,
+              "formBowlBalls": 0
+            },
+            {
+              "id": "e9630504",
+              "name": "Shaiman Anwar",
+              "priorMatches": 0,
+              "formBatBalls": 0,
+              "formBowlBalls": 0
+            },
+            {
+              "id": "ac387889",
+              "name": "Sharif Asadullah",
+              "priorMatches": 0,
+              "formBatBalls": 0,
+              "formBowlBalls": 0
+            },
+            {
+              "id": "f5c198fb",
+              "name": "SP Patil",
+              "priorMatches": 0,
+              "formBatBalls": 0,
+              "formBowlBalls": 0
+            },
+            {
+              "id": "fd483a3e",
+              "name": "V Shetty",
+              "priorMatches": 0,
+              "formBatBalls": 0,
+              "formBowlBalls": 0
+            }
+          ]
+        },
+        {
+          "team": "West Indies",
+          "standIn": false,
+          "squadSize": 11,
+          "withFormBatting": 10,
+          "withFormBowling": 8,
+          "withAnyPriorT20I": 11,
+          "lowSampleBadge": 0,
+          "lackingData": []
+        },
+        {
+          "team": "Zimbabwe",
+          "standIn": false,
+          "squadSize": 12,
+          "withFormBatting": 7,
+          "withFormBowling": 4,
+          "withAnyPriorT20I": 11,
+          "lowSampleBadge": 7,
+          "lackingData": [
+            {
+              "id": "1fe81cc9",
+              "name": "T Kamungozi",
+              "priorMatches": 0,
+              "formBatBalls": 0,
+              "formBowlBalls": 0
+            },
+            {
+              "id": "f55c526f",
+              "name": "T Maruma",
+              "priorMatches": 3,
+              "formBatBalls": 15,
+              "formBowlBalls": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "editionId": "2016",
+      "teams": [
+        {
+          "team": "Australia",
+          "standIn": false,
+          "squadSize": 14,
+          "withFormBatting": 7,
+          "withFormBowling": 5,
+          "withAnyPriorT20I": 14,
+          "lowSampleBadge": 7,
+          "lackingData": [
+            {
+              "id": "14f96089",
+              "name": "A Zampa",
+              "priorMatches": 1,
+              "formBatBalls": 5,
+              "formBowlBalls": 24
+            },
+            {
+              "id": "a2421394",
+              "name": "AC Agar",
+              "priorMatches": 1,
+              "formBatBalls": 0,
+              "formBowlBalls": 12
+            },
+            {
+              "id": "03806cf8",
+              "name": "JR Hazlewood",
+              "priorMatches": 5,
+              "formBatBalls": 0,
+              "formBowlBalls": 24
+            },
+            {
+              "id": "a22fb7b5",
+              "name": "PM Nevill",
+              "priorMatches": 2,
+              "formBatBalls": 5,
+              "formBowlBalls": 0
+            },
+            {
+              "id": "331ea488",
+              "name": "UT Khawaja",
+              "priorMatches": 2,
+              "formBatBalls": 16,
+              "formBowlBalls": 0
+            }
+          ]
+        },
+        {
+          "team": "Bangladesh",
+          "standIn": false,
+          "squadSize": 16,
+          "withFormBatting": 9,
+          "withFormBowling": 9,
+          "withAnyPriorT20I": 15,
+          "lowSampleBadge": 4,
+          "lackingData": [
+            {
+              "id": "f3c150bb",
+              "name": "Saqlain Sajib",
+              "priorMatches": 0,
+              "formBatBalls": 0,
+              "formBowlBalls": 0
+            },
+            {
+              "id": "bb01f9e0",
+              "name": "Shuvagata Hom",
+              "priorMatches": 2,
+              "formBatBalls": 7,
+              "formBowlBalls": 18
+            }
+          ]
+        },
+        {
+          "team": "England",
+          "standIn": false,
+          "squadSize": 12,
+          "withFormBatting": 8,
+          "withFormBowling": 7,
+          "withAnyPriorT20I": 12,
+          "lowSampleBadge": 1,
+          "lackingData": []
+        },
+        {
+          "team": "Hong Kong",
+          "standIn": false,
+          "squadSize": 12,
+          "withFormBatting": 10,
+          "withFormBowling": 6,
+          "withAnyPriorT20I": 10,
+          "lowSampleBadge": 4,
+          "lackingData": [
+            {
+              "id": "7cefb2a2",
+              "name": "A Mehmood",
+              "priorMatches": 0,
+              "formBatBalls": 0,
+              "formBowlBalls": 0
+            },
+            {
+              "id": "f6993a56",
+              "name": "RJ Campbell",
+              "priorMatches": 0,
+              "formBatBalls": 0,
+              "formBowlBalls": 0
+            }
+          ]
+        },
+        {
+          "team": "India",
+          "standIn": false,
+          "squadSize": 13,
+          "withFormBatting": 9,
+          "withFormBowling": 7,
+          "withAnyPriorT20I": 13,
+          "lowSampleBadge": 1,
+          "lackingData": [
+            {
+              "id": "93b4fc78",
+              "name": "MK Pandey",
+              "priorMatches": 2,
+              "formBatBalls": 22,
+              "formBowlBalls": 0
+            }
+          ]
+        },
+        {
+          "team": "Ireland",
+          "standIn": false,
+          "squadSize": 12,
+          "withFormBatting": 7,
+          "withFormBowling": 8,
+          "withAnyPriorT20I": 12,
+          "lowSampleBadge": 2,
+          "lackingData": []
+        },
+        {
+          "team": "Namibia",
+          "standIn": true,
+          "squadSize": 16,
+          "withFormBatting": 10,
+          "withFormBowling": 10,
+          "withAnyPriorT20I": 0,
+          "lowSampleBadge": 3,
+          "lackingData": [
+            {
+              "id": "b018e1eb",
+              "name": "L Louwrens",
+              "priorMatches": 0,
+              "formBatBalls": 15,
+              "formBowlBalls": 0
+            }
+          ]
+        },
+        {
+          "team": "Netherlands",
+          "standIn": false,
+          "squadSize": 12,
+          "withFormBatting": 6,
+          "withFormBowling": 8,
+          "withAnyPriorT20I": 12,
+          "lowSampleBadge": 0,
+          "lackingData": []
+        },
+        {
+          "team": "New Zealand",
+          "standIn": false,
+          "squadSize": 13,
+          "withFormBatting": 8,
+          "withFormBowling": 7,
+          "withAnyPriorT20I": 12,
+          "lowSampleBadge": 1,
+          "lackingData": [
+            {
+              "id": "03521fd3",
+              "name": "HM Nicholls",
+              "priorMatches": 0,
+              "formBatBalls": 0,
+              "formBowlBalls": 0
+            }
+          ]
+        },
+        {
+          "team": "Oman",
+          "standIn": false,
+          "squadSize": 11,
+          "withFormBatting": 8,
+          "withFormBowling": 7,
+          "withAnyPriorT20I": 11,
+          "lowSampleBadge": 2,
+          "lackingData": []
+        },
+        {
+          "team": "Pakistan",
+          "standIn": false,
+          "squadSize": 13,
+          "withFormBatting": 9,
+          "withFormBowling": 8,
+          "withAnyPriorT20I": 13,
+          "lowSampleBadge": 2,
+          "lackingData": [
+            {
+              "id": "5eea345c",
+              "name": "Khalid Latif",
+              "priorMatches": 6,
+              "formBatBalls": 0,
+              "formBowlBalls": 0
+            }
+          ]
+        },
+        {
+          "team": "Scotland",
+          "standIn": false,
+          "squadSize": 14,
+          "withFormBatting": 5,
+          "withFormBowling": 7,
+          "withAnyPriorT20I": 14,
+          "lowSampleBadge": 4,
+          "lackingData": [
+            {
+              "id": "e6d298e8",
+              "name": "CD de Lange",
+              "priorMatches": 1,
+              "formBatBalls": 0,
+              "formBowlBalls": 18
+            },
+            {
+              "id": "4ebc70ca",
+              "name": "GT Main",
+              "priorMatches": 1,
+              "formBatBalls": 0,
+              "formBowlBalls": 18
+            },
+            {
+              "id": "8c7d6cbe",
+              "name": "MW Machan",
+              "priorMatches": 6,
+              "formBatBalls": 26,
+              "formBowlBalls": 0
+            }
+          ]
+        },
+        {
+          "team": "South Africa",
+          "standIn": false,
+          "squadSize": 15,
+          "withFormBatting": 9,
+          "withFormBowling": 8,
+          "withAnyPriorT20I": 15,
+          "lowSampleBadge": 0,
+          "lackingData": []
+        },
+        {
+          "team": "Sri Lanka",
+          "standIn": false,
+          "squadSize": 14,
+          "withFormBatting": 10,
+          "withFormBowling": 8,
+          "withAnyPriorT20I": 14,
+          "lowSampleBadge": 1,
+          "lackingData": [
+            {
+              "id": "2f28dc94",
+              "name": "RAS Lakmal",
+              "priorMatches": 5,
+              "formBatBalls": 1,
+              "formBowlBalls": 42
+            }
+          ]
+        },
+        {
+          "team": "West Indies",
+          "standIn": false,
+          "squadSize": 13,
+          "withFormBatting": 9,
+          "withFormBowling": 5,
+          "withAnyPriorT20I": 13,
+          "lowSampleBadge": 4,
+          "lackingData": [
+            {
+              "id": "e342e5fb",
+              "name": "CR Brathwaite",
+              "priorMatches": 2,
+              "formBatBalls": 2,
+              "formBowlBalls": 18
+            },
+            {
+              "id": "4180d897",
+              "name": "JE Taylor",
+              "priorMatches": 19,
+              "formBatBalls": 12,
+              "formBowlBalls": 30
+            },
+            {
+              "id": "364ee2cf",
+              "name": "SJ Benn",
+              "priorMatches": 18,
+              "formBatBalls": 0,
+              "formBowlBalls": 18
+            }
+          ]
+        },
+        {
+          "team": "Zimbabwe",
+          "standIn": false,
+          "squadSize": 11,
+          "withFormBatting": 7,
+          "withFormBowling": 5,
+          "withAnyPriorT20I": 10,
+          "lowSampleBadge": 3,
+          "lackingData": [
+            {
+              "id": "dbfb8218",
+              "name": "DT Tiripano",
+              "priorMatches": 0,
+              "formBatBalls": 0,
+              "formBowlBalls": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "editionId": "2021",
+      "teams": [
+        {
+          "team": "Australia",
+          "standIn": false,
+          "squadSize": 12,
+          "withFormBatting": 9,
+          "withFormBowling": 7,
+          "withAnyPriorT20I": 12,
+          "lowSampleBadge": 0,
+          "lackingData": []
+        },
+        {
+          "team": "Bangladesh",
+          "standIn": false,
+          "squadSize": 15,
+          "withFormBatting": 11,
+          "withFormBowling": 10,
+          "withAnyPriorT20I": 15,
+          "lowSampleBadge": 1,
+          "lackingData": []
+        },
+        {
+          "team": "England",
+          "standIn": false,
+          "squadSize": 13,
+          "withFormBatting": 9,
+          "withFormBowling": 5,
+          "withAnyPriorT20I": 13,
+          "lowSampleBadge": 2,
+          "lackingData": [
+            {
+              "id": "4c5d73db",
+              "name": "CR Woakes",
+              "priorMatches": 10,
+              "formBatBalls": 0,
+              "formBowlBalls": 42
+            },
+            {
+              "id": "245c97cb",
+              "name": "TS Mills",
+              "priorMatches": 5,
+              "formBatBalls": 0,
+              "formBowlBalls": 0
+            }
+          ]
+        },
+        {
+          "team": "India",
+          "standIn": false,
+          "squadSize": 15,
+          "withFormBatting": 10,
+          "withFormBowling": 8,
+          "withAnyPriorT20I": 15,
+          "lowSampleBadge": 3,
+          "lackingData": [
+            {
+              "id": "495d42a5",
+              "name": "R Ashwin",
+              "priorMatches": 45,
+              "formBatBalls": 0,
+              "formBowlBalls": 0
+            }
+          ]
+        },
+        {
+          "team": "Ireland",
+          "standIn": false,
+          "squadSize": 12,
+          "withFormBatting": 10,
+          "withFormBowling": 8,
+          "withAnyPriorT20I": 12,
+          "lowSampleBadge": 2,
+          "lackingData": []
+        },
+        {
+          "team": "Namibia",
+          "standIn": false,
+          "squadSize": 14,
+          "withFormBatting": 6,
+          "withFormBowling": 7,
+          "withAnyPriorT20I": 14,
+          "lowSampleBadge": 6,
+          "lackingData": [
+            {
+              "id": "915264c2",
+              "name": "HN Ya France",
+              "priorMatches": 8,
+              "formBatBalls": 23,
+              "formBowlBalls": 30
+            },
+            {
+              "id": "f468293b",
+              "name": "JN Loftie-Eaton",
+              "priorMatches": 3,
+              "formBatBalls": 26,
+              "formBowlBalls": 42
+            },
+            {
+              "id": "27b8d7b6",
+              "name": "K Birkenstock",
+              "priorMatches": 7,
+              "formBatBalls": 11,
+              "formBowlBalls": 12
+            },
+            {
+              "id": "7eb36269",
+              "name": "M van Lingen",
+              "priorMatches": 1,
+              "formBatBalls": 0,
+              "formBowlBalls": 6
+            },
+            {
+              "id": "ff6a7ab5",
+              "name": "R Trumpelmann",
+              "priorMatches": 1,
+              "formBatBalls": 0,
+              "formBowlBalls": 24
+            }
+          ]
+        },
+        {
+          "team": "Netherlands",
+          "standIn": false,
+          "squadSize": 14,
+          "withFormBatting": 8,
+          "withFormBowling": 8,
+          "withAnyPriorT20I": 14,
+          "lowSampleBadge": 2,
+          "lackingData": [
+            {
+              "id": "782fb776",
+              "name": "LV van Beek",
+              "priorMatches": 8,
+              "formBatBalls": 0,
+              "formBowlBalls": 0
+            },
+            {
+              "id": "18261c22",
+              "name": "SJ Myburgh",
+              "priorMatches": 25,
+              "formBatBalls": 0,
+              "formBowlBalls": 0
+            }
+          ]
+        },
+        {
+          "team": "New Zealand",
+          "standIn": false,
+          "squadSize": 12,
+          "withFormBatting": 9,
+          "withFormBowling": 5,
+          "withAnyPriorT20I": 12,
+          "lowSampleBadge": 1,
+          "lackingData": [
+            {
+              "id": "350bb1b1",
+              "name": "AF Milne",
+              "priorMatches": 23,
+              "formBatBalls": 0,
+              "formBowlBalls": 30
+            }
+          ]
+        },
+        {
+          "team": "Oman",
+          "standIn": false,
+          "squadSize": 13,
+          "withFormBatting": 6,
+          "withFormBowling": 6,
+          "withAnyPriorT20I": 11,
+          "lowSampleBadge": 6,
+          "lackingData": [
+            {
+              "id": "44d6a8b8",
+              "name": "Ayan Khan",
+              "priorMatches": 0,
+              "formBatBalls": 0,
+              "formBowlBalls": 0
+            },
+            {
+              "id": "72253b87",
+              "name": "Kaleemullah",
+              "priorMatches": 5,
+              "formBatBalls": 6,
+              "formBowlBalls": 30
+            },
+            {
+              "id": "c4e73ff1",
+              "name": "KH Prajapati",
+              "priorMatches": 0,
+              "formBatBalls": 0,
+              "formBowlBalls": 0
+            },
+            {
+              "id": "c63671e9",
+              "name": "Naseem Khushi",
+              "priorMatches": 10,
+              "formBatBalls": 9,
+              "formBowlBalls": 0
+            }
+          ]
+        },
+        {
+          "team": "Pakistan",
+          "standIn": false,
+          "squadSize": 11,
+          "withFormBatting": 8,
+          "withFormBowling": 6,
+          "withAnyPriorT20I": 11,
+          "lowSampleBadge": 2,
+          "lackingData": []
+        },
+        {
+          "team": "Papua New Guinea",
+          "standIn": false,
+          "squadSize": 13,
+          "withFormBatting": 7,
+          "withFormBowling": 6,
+          "withAnyPriorT20I": 13,
+          "lowSampleBadge": 4,
+          "lackingData": [
+            {
+              "id": "9920dd86",
+              "name": "CA Soper",
+              "priorMatches": 8,
+              "formBatBalls": 0,
+              "formBowlBalls": 36
+            },
+            {
+              "id": "9dc3ea7e",
+              "name": "H Hiri",
+              "priorMatches": 1,
+              "formBatBalls": 0,
+              "formBowlBalls": 0
+            },
+            {
+              "id": "270bf7e2",
+              "name": "KV Morea",
+              "priorMatches": 1,
+              "formBatBalls": 0,
+              "formBowlBalls": 18
+            },
+            {
+              "id": "a64e3b89",
+              "name": "SK Atai",
+              "priorMatches": 2,
+              "formBatBalls": 25,
+              "formBowlBalls": 24
+            }
+          ]
+        },
+        {
+          "team": "Scotland",
+          "standIn": false,
+          "squadSize": 15,
+          "withFormBatting": 8,
+          "withFormBowling": 8,
+          "withAnyPriorT20I": 15,
+          "lowSampleBadge": 4,
+          "lackingData": [
+            {
+              "id": "3f61a062",
+              "name": "BTJ Wheal",
+              "priorMatches": 6,
+              "formBatBalls": 0,
+              "formBowlBalls": 18
+            },
+            {
+              "id": "f42064d5",
+              "name": "CN Greaves",
+              "priorMatches": 1,
+              "formBatBalls": 0,
+              "formBowlBalls": 24
+            },
+            {
+              "id": "0d37dea9",
+              "name": "DE Budge",
+              "priorMatches": 7,
+              "formBatBalls": 1,
+              "formBowlBalls": 6
+            }
+          ]
+        },
+        {
+          "team": "South Africa",
+          "standIn": false,
+          "squadSize": 12,
+          "withFormBatting": 9,
+          "withFormBowling": 6,
+          "withAnyPriorT20I": 12,
+          "lowSampleBadge": 1,
+          "lackingData": []
+        },
+        {
+          "team": "Sri Lanka",
+          "standIn": false,
+          "squadSize": 13,
+          "withFormBatting": 9,
+          "withFormBowling": 6,
+          "withAnyPriorT20I": 13,
+          "lowSampleBadge": 3,
+          "lackingData": [
+            {
+              "id": "dabbd0ae",
+              "name": "B Fernando",
+              "priorMatches": 4,
+              "formBatBalls": 14,
+              "formBowlBalls": 42
+            }
+          ]
+        },
+        {
+          "team": "United Arab Emirates",
+          "standIn": true,
+          "squadSize": 26,
+          "withFormBatting": 13,
+          "withFormBowling": 7,
+          "withAnyPriorT20I": 26,
+          "lowSampleBadge": 14,
+          "lackingData": [
+            {
+              "id": "06cad4f0",
+              "name": "A Sharafu",
+              "priorMatches": 4,
+              "formBatBalls": 28,
+              "formBowlBalls": 0
+            },
+            {
+              "id": "9d0344f3",
+              "name": "Akif Raja",
+              "priorMatches": 2,
+              "formBatBalls": 0,
+              "formBowlBalls": 30
+            },
+            {
+              "id": "599ce28e",
+              "name": "Ansh Tandon",
+              "priorMatches": 1,
+              "formBatBalls": 9,
+              "formBowlBalls": 0
+            },
+            {
+              "id": "9d1f42c6",
+              "name": "Ashfaq Ahmed",
+              "priorMatches": 10,
+              "formBatBalls": 10,
+              "formBowlBalls": 0
+            },
+            {
+              "id": "e5309baa",
+              "name": "CP Rizwan",
+              "priorMatches": 6,
+              "formBatBalls": 15,
+              "formBowlBalls": 0
+            },
+            {
+              "id": "ced0ec25",
+              "name": "Ghulam Shabber",
+              "priorMatches": 11,
+              "formBatBalls": 12,
+              "formBowlBalls": 0
+            },
+            {
+              "id": "0226b73a",
+              "name": "Imran Haider",
+              "priorMatches": 9,
+              "formBatBalls": 0,
+              "formBowlBalls": 18
+            },
+            {
+              "id": "b91f2a31",
+              "name": "KP Meiyappan",
+              "priorMatches": 2,
+              "formBatBalls": 0,
+              "formBowlBalls": 42
+            },
+            {
+              "id": "c4a60a7b",
+              "name": "Mohammad Ayaz",
+              "priorMatches": 1,
+              "formBatBalls": 2,
+              "formBowlBalls": 12
+            },
+            {
+              "id": "cec44e08",
+              "name": "SM Sharma",
+              "priorMatches": 1,
+              "formBatBalls": 0,
+              "formBowlBalls": 18
+            }
+          ]
+        },
+        {
+          "team": "West Indies",
+          "standIn": false,
+          "squadSize": 14,
+          "withFormBatting": 9,
+          "withFormBowling": 8,
+          "withAnyPriorT20I": 13,
+          "lowSampleBadge": 3,
+          "lackingData": [
+            {
+              "id": "d68e7f48",
+              "name": "R Rampaul",
+              "priorMatches": 23,
+              "formBatBalls": 0,
+              "formBowlBalls": 0
+            },
+            {
+              "id": "3feda4fa",
+              "name": "RL Chase",
+              "priorMatches": 0,
+              "formBatBalls": 0,
+              "formBowlBalls": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "editionId": "2022",
+      "teams": [
+        {
+          "team": "Australia",
+          "standIn": false,
+          "squadSize": 12,
+          "withFormBatting": 10,
+          "withFormBowling": 8,
+          "withAnyPriorT20I": 12,
+          "lowSampleBadge": 0,
+          "lackingData": []
+        },
+        {
+          "team": "Bangladesh",
+          "standIn": false,
+          "squadSize": 15,
+          "withFormBatting": 11,
+          "withFormBowling": 11,
+          "withAnyPriorT20I": 15,
+          "lowSampleBadge": 1,
+          "lackingData": []
+        },
+        {
+          "team": "England",
+          "standIn": false,
+          "squadSize": 13,
+          "withFormBatting": 11,
+          "withFormBowling": 8,
+          "withAnyPriorT20I": 13,
+          "lowSampleBadge": 0,
+          "lackingData": []
+        },
+        {
+          "team": "India",
+          "standIn": false,
+          "squadSize": 13,
+          "withFormBatting": 10,
+          "withFormBowling": 6,
+          "withAnyPriorT20I": 13,
+          "lowSampleBadge": 0,
+          "lackingData": []
+        },
+        {
+          "team": "Ireland",
+          "standIn": false,
+          "squadSize": 12,
+          "withFormBatting": 11,
+          "withFormBowling": 8,
+          "withAnyPriorT20I": 11,
+          "lowSampleBadge": 1,
+          "lackingData": [
+            {
+              "id": "e3fe4b49",
+              "name": "F Hand",
+              "priorMatches": 0,
+              "formBatBalls": 0,
+              "formBowlBalls": 0
+            }
+          ]
+        },
+        {
+          "team": "Namibia",
+          "standIn": false,
+          "squadSize": 12,
+          "withFormBatting": 10,
+          "withFormBowling": 8,
+          "withAnyPriorT20I": 12,
+          "lowSampleBadge": 0,
+          "lackingData": []
+        },
+        {
+          "team": "Netherlands",
+          "standIn": false,
+          "squadSize": 15,
+          "withFormBatting": 7,
+          "withFormBowling": 6,
+          "withAnyPriorT20I": 15,
+          "lowSampleBadge": 5,
+          "lackingData": [
+            {
+              "id": "0dbe27b8",
+              "name": "BD Glover",
+              "priorMatches": 19,
+              "formBatBalls": 3,
+              "formBowlBalls": 36
+            },
+            {
+              "id": "05c2ca46",
+              "name": "RE van der Merwe",
+              "priorMatches": 42,
+              "formBatBalls": 8,
+              "formBowlBalls": 36
+            },
+            {
+              "id": "d99cc23a",
+              "name": "T van der Gugten",
+              "priorMatches": 35,
+              "formBatBalls": 0,
+              "formBowlBalls": 18
+            },
+            {
+              "id": "2a9eee66",
+              "name": "Vikramjit Singh",
+              "priorMatches": 3,
+              "formBatBalls": 13,
+              "formBowlBalls": 0
+            }
+          ]
+        },
+        {
+          "team": "New Zealand",
+          "standIn": false,
+          "squadSize": 12,
+          "withFormBatting": 9,
+          "withFormBowling": 7,
+          "withAnyPriorT20I": 12,
+          "lowSampleBadge": 0,
+          "lackingData": []
+        },
+        {
+          "team": "Pakistan",
+          "standIn": false,
+          "squadSize": 14,
+          "withFormBatting": 10,
+          "withFormBowling": 7,
+          "withAnyPriorT20I": 14,
+          "lowSampleBadge": 1,
+          "lackingData": [
+            {
+              "id": "ff3f6fc1",
+              "name": "Mohammad Haris",
+              "priorMatches": 1,
+              "formBatBalls": 8,
+              "formBowlBalls": 0
+            }
+          ]
+        },
+        {
+          "team": "Papua New Guinea",
+          "standIn": true,
+          "squadSize": 18,
+          "withFormBatting": 12,
+          "withFormBowling": 11,
+          "withAnyPriorT20I": 18,
+          "lowSampleBadge": 4,
+          "lackingData": [
+            {
+              "id": "4d1ec7eb",
+              "name": "A Nao",
+              "priorMatches": 3,
+              "formBatBalls": 1,
+              "formBowlBalls": 24
+            },
+            {
+              "id": "9dc3ea7e",
+              "name": "H Hiri",
+              "priorMatches": 2,
+              "formBatBalls": 15,
+              "formBowlBalls": 0
+            },
+            {
+              "id": "d996ba33",
+              "name": "J Kila",
+              "priorMatches": 16,
+              "formBatBalls": 15,
+              "formBowlBalls": 0
+            }
+          ]
+        },
+        {
+          "team": "Scotland",
+          "standIn": false,
+          "squadSize": 11,
+          "withFormBatting": 8,
+          "withFormBowling": 6,
+          "withAnyPriorT20I": 11,
+          "lowSampleBadge": 1,
+          "lackingData": [
+            {
+              "id": "05f96194",
+              "name": "MA Jones",
+              "priorMatches": 1,
+              "formBatBalls": 2,
+              "formBowlBalls": 0
+            }
+          ]
+        },
+        {
+          "team": "South Africa",
+          "standIn": false,
+          "squadSize": 13,
+          "withFormBatting": 10,
+          "withFormBowling": 7,
+          "withAnyPriorT20I": 13,
+          "lowSampleBadge": 0,
+          "lackingData": []
+        },
+        {
+          "team": "Sri Lanka",
+          "standIn": false,
+          "squadSize": 16,
+          "withFormBatting": 11,
+          "withFormBowling": 8,
+          "withAnyPriorT20I": 16,
+          "lowSampleBadge": 2,
+          "lackingData": [
+            {
+              "id": "8012d0b8",
+              "name": "CAK Rajitha",
+              "priorMatches": 10,
+              "formBatBalls": 0,
+              "formBowlBalls": 0
+            },
+            {
+              "id": "3ee0050f",
+              "name": "PM Liyanagamage",
+              "priorMatches": 2,
+              "formBatBalls": 0,
+              "formBowlBalls": 37
+            }
+          ]
+        },
+        {
+          "team": "United Arab Emirates",
+          "standIn": false,
+          "squadSize": 15,
+          "withFormBatting": 8,
+          "withFormBowling": 7,
+          "withAnyPriorT20I": 14,
+          "lowSampleBadge": 4,
+          "lackingData": [
+            {
+              "id": "06cad4f0",
+              "name": "A Sharafu",
+              "priorMatches": 4,
+              "formBatBalls": 0,
+              "formBowlBalls": 0
+            },
+            {
+              "id": "d2d15439",
+              "name": "Aayan Afzal Khan",
+              "priorMatches": 2,
+              "formBatBalls": 17,
+              "formBowlBalls": 42
+            },
+            {
+              "id": "5d68fe4f",
+              "name": "Fahad Nawaz",
+              "priorMatches": 0,
+              "formBatBalls": 0,
+              "formBowlBalls": 0
+            }
+          ]
+        },
+        {
+          "team": "West Indies",
+          "standIn": false,
+          "squadSize": 12,
+          "withFormBatting": 12,
+          "withFormBowling": 6,
+          "withAnyPriorT20I": 12,
+          "lowSampleBadge": 1,
+          "lackingData": []
+        },
+        {
+          "team": "Zimbabwe",
+          "standIn": false,
+          "squadSize": 14,
+          "withFormBatting": 10,
+          "withFormBowling": 11,
+          "withAnyPriorT20I": 14,
+          "lowSampleBadge": 1,
+          "lackingData": []
+        }
+      ]
+    },
+    {
+      "editionId": "2024",
+      "teams": [
+        {
+          "team": "Australia",
+          "standIn": false,
+          "squadSize": 13,
+          "withFormBatting": 8,
+          "withFormBowling": 9,
+          "withAnyPriorT20I": 13,
+          "lowSampleBadge": 0,
+          "lackingData": []
+        },
+        {
+          "team": "Bangladesh",
+          "standIn": false,
+          "squadSize": 13,
+          "withFormBatting": 11,
+          "withFormBowling": 7,
+          "withAnyPriorT20I": 13,
+          "lowSampleBadge": 0,
+          "lackingData": []
+        },
+        {
+          "team": "Canada",
+          "standIn": false,
+          "squadSize": 13,
+          "withFormBatting": 9,
+          "withFormBowling": 5,
+          "withAnyPriorT20I": 13,
+          "lowSampleBadge": 2,
+          "lackingData": [
+            {
+              "id": "9025e58f",
+              "name": "Junaid Siddiqui",
+              "priorMatches": 18,
+              "formBatBalls": 0,
+              "formBowlBalls": 0
+            },
+            {
+              "id": "ee229588",
+              "name": "S Movva",
+              "priorMatches": 5,
+              "formBatBalls": 10,
+              "formBowlBalls": 0
+            }
+          ]
+        },
+        {
+          "team": "England",
+          "standIn": false,
+          "squadSize": 13,
+          "withFormBatting": 9,
+          "withFormBowling": 8,
+          "withAnyPriorT20I": 13,
+          "lowSampleBadge": 0,
+          "lackingData": []
+        },
+        {
+          "team": "India",
+          "standIn": false,
+          "squadSize": 12,
+          "withFormBatting": 8,
+          "withFormBowling": 7,
+          "withAnyPriorT20I": 12,
+          "lowSampleBadge": 1,
+          "lackingData": []
+        },
+        {
+          "team": "Ireland",
+          "standIn": false,
+          "squadSize": 12,
+          "withFormBatting": 10,
+          "withFormBowling": 9,
+          "withAnyPriorT20I": 12,
+          "lowSampleBadge": 0,
+          "lackingData": []
+        },
+        {
+          "team": "Namibia",
+          "standIn": false,
+          "squadSize": 14,
+          "withFormBatting": 11,
+          "withFormBowling": 9,
+          "withAnyPriorT20I": 14,
+          "lowSampleBadge": 0,
+          "lackingData": []
+        },
+        {
+          "team": "Nepal",
+          "standIn": false,
+          "squadSize": 13,
+          "withFormBatting": 9,
+          "withFormBowling": 9,
+          "withAnyPriorT20I": 13,
+          "lowSampleBadge": 2,
+          "lackingData": [
+            {
+              "id": "5b1d6583",
+              "name": "AK Sah",
+              "priorMatches": 2,
+              "formBatBalls": 17,
+              "formBowlBalls": 0
+            },
+            {
+              "id": "8955b928",
+              "name": "S Dhakal",
+              "priorMatches": 3,
+              "formBatBalls": 3,
+              "formBowlBalls": 18
+            }
+          ]
+        },
+        {
+          "team": "Netherlands",
+          "standIn": false,
+          "squadSize": 12,
+          "withFormBatting": 10,
+          "withFormBowling": 8,
+          "withAnyPriorT20I": 12,
+          "lowSampleBadge": 0,
+          "lackingData": []
+        },
+        {
+          "team": "New Zealand",
+          "standIn": false,
+          "squadSize": 12,
+          "withFormBatting": 10,
+          "withFormBowling": 7,
+          "withAnyPriorT20I": 12,
+          "lowSampleBadge": 0,
+          "lackingData": []
+        },
+        {
+          "team": "Oman",
+          "standIn": false,
+          "squadSize": 15,
+          "withFormBatting": 14,
+          "withFormBowling": 10,
+          "withAnyPriorT20I": 15,
+          "lowSampleBadge": 0,
+          "lackingData": []
+        },
+        {
+          "team": "Pakistan",
+          "standIn": false,
+          "squadSize": 14,
+          "withFormBatting": 11,
+          "withFormBowling": 8,
+          "withAnyPriorT20I": 14,
+          "lowSampleBadge": 1,
+          "lackingData": []
+        },
+        {
+          "team": "Papua New Guinea",
+          "standIn": false,
+          "squadSize": 13,
+          "withFormBatting": 10,
+          "withFormBowling": 9,
+          "withAnyPriorT20I": 13,
+          "lowSampleBadge": 0,
+          "lackingData": []
+        },
+        {
+          "team": "Scotland",
+          "standIn": false,
+          "squadSize": 12,
+          "withFormBatting": 9,
+          "withFormBowling": 7,
+          "withAnyPriorT20I": 12,
+          "lowSampleBadge": 0,
+          "lackingData": []
+        },
+        {
+          "team": "South Africa",
+          "standIn": false,
+          "squadSize": 12,
+          "withFormBatting": 9,
+          "withFormBowling": 6,
+          "withAnyPriorT20I": 12,
+          "lowSampleBadge": 1,
+          "lackingData": [
+            {
+              "id": "6b9eb501",
+              "name": "OEG Baartman",
+              "priorMatches": 1,
+              "formBatBalls": 1,
+              "formBowlBalls": 24
+            }
+          ]
+        },
+        {
+          "team": "Sri Lanka",
+          "standIn": false,
+          "squadSize": 12,
+          "withFormBatting": 10,
+          "withFormBowling": 6,
+          "withAnyPriorT20I": 12,
+          "lowSampleBadge": 2,
+          "lackingData": [
+            {
+              "id": "64839cb3",
+              "name": "M Pathirana",
+              "priorMatches": 2,
+              "formBatBalls": 0,
+              "formBowlBalls": 46
+            }
+          ]
+        },
+        {
+          "team": "Uganda",
+          "standIn": false,
+          "squadSize": 13,
+          "withFormBatting": 13,
+          "withFormBowling": 8,
+          "withAnyPriorT20I": 13,
+          "lowSampleBadge": 1,
+          "lackingData": []
+        },
+        {
+          "team": "United States of America",
+          "standIn": false,
+          "squadSize": 14,
+          "withFormBatting": 9,
+          "withFormBowling": 7,
+          "withAnyPriorT20I": 14,
+          "lowSampleBadge": 3,
+          "lackingData": [
+            {
+              "id": "571e1d2a",
+              "name": "Shayan Jahangir",
+              "priorMatches": 1,
+              "formBatBalls": 20,
+              "formBowlBalls": 0
+            }
+          ]
+        },
+        {
+          "team": "West Indies",
+          "standIn": false,
+          "squadSize": 14,
+          "withFormBatting": 12,
+          "withFormBowling": 8,
+          "withAnyPriorT20I": 14,
+          "lowSampleBadge": 0,
+          "lackingData": []
+        },
+        {
+          "team": "Zimbabwe",
+          "standIn": true,
+          "squadSize": 38,
+          "withFormBatting": 22,
+          "withFormBowling": 19,
+          "withAnyPriorT20I": 38,
+          "lowSampleBadge": 10,
+          "lackingData": [
+            {
+              "id": "dadb9703",
+              "name": "B Mavuta",
+              "priorMatches": 8,
+              "formBatBalls": 8,
+              "formBowlBalls": 18
+            },
+            {
+              "id": "755a77c6",
+              "name": "GS Ballance",
+              "priorMatches": 1,
+              "formBatBalls": 29,
+              "formBowlBalls": 0
+            },
+            {
+              "id": "e5542f57",
+              "name": "JK Masara",
+              "priorMatches": 1,
+              "formBatBalls": 0,
+              "formBowlBalls": 6
+            },
+            {
+              "id": "9124e5ee",
+              "name": "K Macheka",
+              "priorMatches": 2,
+              "formBatBalls": 0,
+              "formBowlBalls": 39
+            },
+            {
+              "id": "28fcb027",
+              "name": "NP Mayavo",
+              "priorMatches": 1,
+              "formBatBalls": 0,
+              "formBowlBalls": 0
+            },
+            {
+              "id": "61fb296e",
+              "name": "TL Chivanga",
+              "priorMatches": 3,
+              "formBatBalls": 0,
+              "formBowlBalls": 27
+            },
+            {
+              "id": "2e4d5f94",
+              "name": "TZ Chataira",
+              "priorMatches": 3,
+              "formBatBalls": 0,
+              "formBowlBalls": 42
+            },
+            {
+              "id": "1bd16445",
+              "name": "VM Nyauchi",
+              "priorMatches": 2,
+              "formBatBalls": 3,
+              "formBowlBalls": 24
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "editionId": "2026",
+      "teams": [
+        {
+          "team": "Australia",
+          "standIn": false,
+          "squadSize": 14,
+          "withFormBatting": 10,
+          "withFormBowling": 9,
+          "withAnyPriorT20I": 14,
+          "lowSampleBadge": 1,
+          "lackingData": [
+            {
+              "id": "218d4d78",
+              "name": "MT Renshaw",
+              "priorMatches": 3,
+              "formBatBalls": 22,
+              "formBowlBalls": 0
+            }
+          ]
+        },
+        {
+          "team": "Canada",
+          "standIn": false,
+          "squadSize": 12,
+          "withFormBatting": 10,
+          "withFormBowling": 8,
+          "withAnyPriorT20I": 12,
+          "lowSampleBadge": 1,
+          "lackingData": []
+        },
+        {
+          "team": "England",
+          "standIn": false,
+          "squadSize": 13,
+          "withFormBatting": 10,
+          "withFormBowling": 9,
+          "withAnyPriorT20I": 13,
+          "lowSampleBadge": 1,
+          "lackingData": []
+        },
+        {
+          "team": "India",
+          "standIn": false,
+          "squadSize": 15,
+          "withFormBatting": 11,
+          "withFormBowling": 10,
+          "withAnyPriorT20I": 15,
+          "lowSampleBadge": 0,
+          "lackingData": []
+        },
+        {
+          "team": "Ireland",
+          "standIn": false,
+          "squadSize": 13,
+          "withFormBatting": 12,
+          "withFormBowling": 8,
+          "withAnyPriorT20I": 13,
+          "lowSampleBadge": 0,
+          "lackingData": []
+        },
+        {
+          "team": "Italy",
+          "standIn": false,
+          "squadSize": 14,
+          "withFormBatting": 8,
+          "withFormBowling": 7,
+          "withAnyPriorT20I": 14,
+          "lowSampleBadge": 4,
+          "lackingData": [
+            {
+              "id": "cae17490",
+              "name": "Ali Hasan",
+              "priorMatches": 6,
+              "formBatBalls": 0,
+              "formBowlBalls": 18
+            },
+            {
+              "id": "c520c3b9",
+              "name": "Syed Naqvi",
+              "priorMatches": 4,
+              "formBatBalls": 14,
+              "formBowlBalls": 0
+            }
+          ]
+        },
+        {
+          "team": "Kenya",
+          "standIn": true,
+          "squadSize": 24,
+          "withFormBatting": 17,
+          "withFormBowling": 15,
+          "withAnyPriorT20I": 24,
+          "lowSampleBadge": 4,
+          "lackingData": [
+            {
+              "id": "b66201dd",
+              "name": "Aarnav Patel",
+              "priorMatches": 3,
+              "formBatBalls": 7,
+              "formBowlBalls": 42
+            },
+            {
+              "id": "31865a5b",
+              "name": "Gurdeep Singh",
+              "priorMatches": 9,
+              "formBatBalls": 24,
+              "formBowlBalls": 0
+            }
+          ]
+        },
+        {
+          "team": "Namibia",
+          "standIn": false,
+          "squadSize": 15,
+          "withFormBatting": 10,
+          "withFormBowling": 8,
+          "withAnyPriorT20I": 14,
+          "lowSampleBadge": 3,
+          "lackingData": [
+            {
+              "id": "e9e37173",
+              "name": "A Busing-Volschenk",
+              "priorMatches": 5,
+              "formBatBalls": 17,
+              "formBowlBalls": 42
+            },
+            {
+              "id": "0abb2525",
+              "name": "M Heingo",
+              "priorMatches": 1,
+              "formBatBalls": 0,
+              "formBowlBalls": 18
+            },
+            {
+              "id": "f1a042e5",
+              "name": "WP Myburgh",
+              "priorMatches": 0,
+              "formBatBalls": 0,
+              "formBowlBalls": 0
+            }
+          ]
+        },
+        {
+          "team": "Nepal",
+          "standIn": false,
+          "squadSize": 14,
+          "withFormBatting": 10,
+          "withFormBowling": 9,
+          "withAnyPriorT20I": 13,
+          "lowSampleBadge": 2,
+          "lackingData": [
+            {
+              "id": "1daa8927",
+              "name": "S Malla",
+              "priorMatches": 0,
+              "formBatBalls": 0,
+              "formBowlBalls": 0
+            }
+          ]
+        },
+        {
+          "team": "Netherlands",
+          "standIn": false,
+          "squadSize": 14,
+          "withFormBatting": 13,
+          "withFormBowling": 10,
+          "withAnyPriorT20I": 14,
+          "lowSampleBadge": 1,
+          "lackingData": [
+            {
+              "id": "c042b412",
+              "name": "FJ Klaassen",
+              "priorMatches": 39,
+              "formBatBalls": 0,
+              "formBowlBalls": 42
+            }
+          ]
+        },
+        {
+          "team": "New Zealand",
+          "standIn": false,
+          "squadSize": 14,
+          "withFormBatting": 9,
+          "withFormBowling": 9,
+          "withAnyPriorT20I": 14,
+          "lowSampleBadge": 1,
+          "lackingData": [
+            {
+              "id": "d285acaf",
+              "name": "CE McConchie",
+              "priorMatches": 12,
+              "formBatBalls": 20,
+              "formBowlBalls": 1
+            }
+          ]
+        },
+        {
+          "team": "Oman",
+          "standIn": false,
+          "squadSize": 15,
+          "withFormBatting": 12,
+          "withFormBowling": 9,
+          "withAnyPriorT20I": 15,
+          "lowSampleBadge": 2,
+          "lackingData": [
+            {
+              "id": "11cebda3",
+              "name": "Shafiq Jan",
+              "priorMatches": 1,
+              "formBatBalls": 0,
+              "formBowlBalls": 24
+            }
+          ]
+        },
+        {
+          "team": "Pakistan",
+          "standIn": false,
+          "squadSize": 15,
+          "withFormBatting": 11,
+          "withFormBowling": 10,
+          "withAnyPriorT20I": 15,
+          "lowSampleBadge": 2,
+          "lackingData": [
+            {
+              "id": "3cf54e77",
+              "name": "Khawaja Nafay",
+              "priorMatches": 2,
+              "formBatBalls": 27,
+              "formBowlBalls": 0
+            }
+          ]
+        },
+        {
+          "team": "Scotland",
+          "standIn": false,
+          "squadSize": 12,
+          "withFormBatting": 8,
+          "withFormBowling": 6,
+          "withAnyPriorT20I": 11,
+          "lowSampleBadge": 2,
+          "lackingData": [
+            {
+              "id": "63249474",
+              "name": "O Davidson",
+              "priorMatches": 0,
+              "formBatBalls": 0,
+              "formBowlBalls": 0
+            },
+            {
+              "id": "f92c9151",
+              "name": "TC Bruce",
+              "priorMatches": 17,
+              "formBatBalls": 0,
+              "formBowlBalls": 0
+            }
+          ]
+        },
+        {
+          "team": "South Africa",
+          "standIn": false,
+          "squadSize": 15,
+          "withFormBatting": 12,
+          "withFormBowling": 9,
+          "withAnyPriorT20I": 15,
+          "lowSampleBadge": 1,
+          "lackingData": []
+        },
+        {
+          "team": "Sri Lanka",
+          "standIn": false,
+          "squadSize": 17,
+          "withFormBatting": 12,
+          "withFormBowling": 9,
+          "withAnyPriorT20I": 17,
+          "lowSampleBadge": 4,
+          "lackingData": [
+            {
+              "id": "de7d833e",
+              "name": "D Madushanka",
+              "priorMatches": 13,
+              "formBatBalls": 1,
+              "formBowlBalls": 42
+            },
+            {
+              "id": "3ee0050f",
+              "name": "PM Liyanagamage",
+              "priorMatches": 7,
+              "formBatBalls": 0,
+              "formBowlBalls": 0
+            }
+          ]
+        },
+        {
+          "team": "United Arab Emirates",
+          "standIn": false,
+          "squadSize": 14,
+          "withFormBatting": 9,
+          "withFormBowling": 8,
+          "withAnyPriorT20I": 14,
+          "lowSampleBadge": 2,
+          "lackingData": [
+            {
+              "id": "fdee4a01",
+              "name": "Shoaib Khan",
+              "priorMatches": 2,
+              "formBatBalls": 17,
+              "formBowlBalls": 0
+            }
+          ]
+        },
+        {
+          "team": "United States of America",
+          "standIn": false,
+          "squadSize": 14,
+          "withFormBatting": 8,
+          "withFormBowling": 6,
+          "withAnyPriorT20I": 11,
+          "lowSampleBadge": 3,
+          "lackingData": [
+            {
+              "id": "210b05cb",
+              "name": "Ehsan Adil",
+              "priorMatches": 0,
+              "formBatBalls": 0,
+              "formBowlBalls": 0
+            },
+            {
+              "id": "79f8472d",
+              "name": "Mohammad Mohsin",
+              "priorMatches": 0,
+              "formBatBalls": 0,
+              "formBowlBalls": 0
+            },
+            {
+              "id": "6c7a68d0",
+              "name": "Shubham Ranjane",
+              "priorMatches": 0,
+              "formBatBalls": 0,
+              "formBowlBalls": 0
+            }
+          ]
+        },
+        {
+          "team": "West Indies",
+          "standIn": false,
+          "squadSize": 12,
+          "withFormBatting": 11,
+          "withFormBowling": 7,
+          "withAnyPriorT20I": 12,
+          "lowSampleBadge": 0,
+          "lackingData": []
+        },
+        {
+          "team": "Zimbabwe",
+          "standIn": false,
+          "squadSize": 15,
+          "withFormBatting": 12,
+          "withFormBowling": 10,
+          "withAnyPriorT20I": 15,
+          "lowSampleBadge": 1,
+          "lackingData": [
+            {
+              "id": "9f0270e0",
+              "name": "AG Cremer",
+              "priorMatches": 26,
+              "formBatBalls": 4,
+              "formBowlBalls": 42
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "totals": {
+    "distinctPeople": 987,
+    "playerEditions": 2074,
+    "lackingData": 432,
+    "lowSampleBadge": 617
+  }
+}

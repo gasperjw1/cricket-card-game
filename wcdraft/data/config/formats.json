@@ -1,0 +1,399 @@
+{
+  "$comment": "Structured tournament format for every men's T20 World Cup, 2007-2026. Hand-compiled 2026-10-28 from Wikipedia edition pages (format sections + group tables), the official ICC Playing Conditions PDFs for 2021/2022/2024/2026 (clause 16.10 Competition Format) and ICC/media explainers; see research_notes/T20 modifiers and ratings evidence/formats_and_rules.md for sources and open questions. Team names use Cricsheet spellings. Conventions: 'groups' lists teams in each group AS SEEDED/PLACED BEFORE RESULTS (seed labels in 'seeds' where the ICC published them); for Super stages 'slots' gives the pre-assigned seed slots that define each group, 'seededTeams' the teams those slots were allocated to before the tournament, and 'actualTeams' who ended up there. 'carriedOverPoints' is whether first-stage results counted in the next stage (false in every edition: the Super stage was always a fresh table). 'knockoutPairing' uses stage-group labels. 'afghanistan' records Afghanistan's slot at each stage so a stand-in can be slotted identically (stand-in choice lives in editions.json).",
+  "editions": [
+    {
+      "editionId": "2007",
+      "teams": 12,
+      "stages": [
+        {
+          "name": "Group Stage",
+          "groups": {
+            "A": ["South Africa", "West Indies", "Bangladesh"],
+            "B": ["Australia", "England", "Zimbabwe"],
+            "C": ["New Zealand", "Sri Lanka", "Kenya"],
+            "D": ["Pakistan", "India", "Scotland"]
+          },
+          "seeds": { "A1": "South Africa", "A2": "West Indies", "A3": "Bangladesh", "B1": "Australia", "B2": "England", "B3": "Zimbabwe", "C1": "New Zealand", "C2": "Sri Lanka", "C3": "Kenya", "D1": "Pakistan", "D2": "India", "D3": "Scotland" },
+          "matchesPerTeam": 2,
+          "advancement": "Top 2 of each group advance to the Super 8. Super 8 groups were PRE-SEEDED: seeds A1, B2, C1, D2 go to Group E and A2, B1, C2, D1 to Group F regardless of group finish (New Zealand kept C1 despite finishing below Sri Lanka). A third seed that qualified ahead of a seed took that seed's slot (Bangladesh took A2/West Indies' Group F place).",
+          "carriedOverPoints": false,
+          "tiebreakers": ["points", "wins", "net run rate", "lower bowling strike rate", "head-to-head"],
+          "knockoutPairing": null
+        },
+        {
+          "name": "Super 8",
+          "slots": { "E": ["A1", "B2", "C1", "D2"], "F": ["A2", "B1", "C2", "D1"] },
+          "seededTeams": { "E": ["South Africa", "England", "New Zealand", "India"], "F": ["West Indies", "Australia", "Sri Lanka", "Pakistan"] },
+          "actualTeams": { "E": ["South Africa", "England", "New Zealand", "India"], "F": ["Bangladesh", "Australia", "Sri Lanka", "Pakistan"] },
+          "groups": { "E": ["South Africa", "England", "New Zealand", "India"], "F": ["West Indies", "Australia", "Sri Lanka", "Pakistan"] },
+          "matchesPerTeam": 3,
+          "advancement": "Top 2 of each Super 8 group to the semi-finals.",
+          "carriedOverPoints": false,
+          "tiebreakers": ["points", "wins", "net run rate", "lower bowling strike rate", "head-to-head"],
+          "knockoutPairing": "E2 v F1 (SF1, Cape Town); E1 v F2 (SF2, Durban)"
+        },
+        { "name": "Semi-finals", "matchesPerTeam": 1, "advancement": "Winners to the final", "knockoutPairing": "E2 v F1; E1 v F2" },
+        { "name": "Final", "matchesPerTeam": 1 }
+      ],
+      "afghanistan": { "inTournament": false, "placement": null }
+    },
+    {
+      "editionId": "2009",
+      "teams": 12,
+      "stages": [
+        {
+          "name": "Group Stage",
+          "groups": {
+            "A": ["India", "Bangladesh", "Ireland"],
+            "B": ["Pakistan", "England", "Netherlands"],
+            "C": ["Australia", "Sri Lanka", "West Indies"],
+            "D": ["New Zealand", "South Africa", "Scotland"]
+          },
+          "seeds": { "A1": "India", "A2": "Bangladesh", "B1": "Pakistan", "B2": "England", "C1": "Australia", "C2": "Sri Lanka", "D1": "New Zealand", "D2": "South Africa" },
+          "overallSeeds": { "India": 1, "Pakistan": 2, "Australia": 3, "New Zealand": 4, "South Africa": 5, "Sri Lanka": 6, "England": 7, "Bangladesh": 8, "Ireland": 9, "Netherlands": 10, "West Indies": 11, "Scotland": 12 },
+          "matchesPerTeam": 2,
+          "advancement": "Top 2 of each group advance. Super 8 groups PRE-SEEDED (seedings based on 2007 performance): Group E = A1, B2, C1, D2; Group F = A2, B1, C2, D1. A non-seeded team that knocked out a seed inherited that seed (Ireland took A2 from Bangladesh; West Indies took C1 from Australia).",
+          "carriedOverPoints": false,
+          "tiebreakers": ["points", "wins", "net run rate", "lower bowling strike rate", "head-to-head"],
+          "knockoutPairing": null
+        },
+        {
+          "name": "Super 8",
+          "slots": { "E": ["A1", "B2", "C1", "D2"], "F": ["A2", "B1", "C2", "D1"] },
+          "seededTeams": { "E": ["India", "England", "Australia", "South Africa"], "F": ["Bangladesh", "Pakistan", "Sri Lanka", "New Zealand"] },
+          "actualTeams": { "E": ["India", "England", "West Indies", "South Africa"], "F": ["Ireland", "Pakistan", "Sri Lanka", "New Zealand"] },
+          "groups": { "E": ["India", "England", "Australia", "South Africa"], "F": ["Bangladesh", "Pakistan", "Sri Lanka", "New Zealand"] },
+          "matchesPerTeam": 3,
+          "advancement": "Top 2 of each Super 8 group to the semi-finals.",
+          "carriedOverPoints": false,
+          "tiebreakers": ["points", "wins", "net run rate", "lower bowling strike rate", "head-to-head"],
+          "knockoutPairing": "E1 v F2 (SF1, Trent Bridge: South Africa v Pakistan); F1 v E2 (SF2, The Oval: Sri Lanka v West Indies)"
+        },
+        { "name": "Semi-finals", "matchesPerTeam": 1, "advancement": "Winners to the final", "knockoutPairing": "E1 v F2; F1 v E2" },
+        { "name": "Final", "matchesPerTeam": 1 }
+      ],
+      "afghanistan": { "inTournament": false, "placement": null }
+    },
+    {
+      "editionId": "2010",
+      "teams": 12,
+      "stages": [
+        {
+          "name": "Group Stage",
+          "groups": {
+            "A": ["Pakistan", "Australia", "Bangladesh"],
+            "B": ["Sri Lanka", "New Zealand", "Zimbabwe"],
+            "C": ["South Africa", "India", "Afghanistan"],
+            "D": ["West Indies", "England", "Ireland"]
+          },
+          "seeds": { "A1": "Pakistan", "A2": "Australia", "B1": "Sri Lanka", "B2": "New Zealand", "C1": "South Africa", "C2": "India", "D1": "West Indies", "D2": "England" },
+          "matchesPerTeam": 2,
+          "advancement": "Top 2 of each group advance. Super 8 groups PRE-SEEDED, 'not affected by group stage results': Group E = top seed of A and C + second seed of B and D (A1, C1, B2, D2); Group F = top seed of B and D + second seed of A and C (B1, D1, A2, C2). A non-seeded team that knocked out a seed inherits that seed (not triggered in 2010).",
+          "carriedOverPoints": false,
+          "tiebreakers": ["points", "wins", "net run rate", "lower bowling strike rate", "head-to-head"],
+          "knockoutPairing": null
+        },
+        {
+          "name": "Super 8",
+          "slots": { "E": ["A1", "C1", "B2", "D2"], "F": ["B1", "D1", "A2", "C2"] },
+          "seededTeams": { "E": ["Pakistan", "South Africa", "New Zealand", "England"], "F": ["Sri Lanka", "West Indies", "Australia", "India"] },
+          "actualTeams": { "E": ["Pakistan", "South Africa", "New Zealand", "England"], "F": ["Sri Lanka", "West Indies", "Australia", "India"] },
+          "groups": { "E": ["Pakistan", "South Africa", "New Zealand", "England"], "F": ["Sri Lanka", "West Indies", "Australia", "India"] },
+          "matchesPerTeam": 3,
+          "advancement": "Top 2 of each Super 8 group to the semi-finals.",
+          "carriedOverPoints": false,
+          "tiebreakers": ["points", "wins", "net run rate", "lower bowling strike rate", "head-to-head"],
+          "knockoutPairing": "E1 v F2 (SF1, St Lucia 13 May: England v Sri Lanka); F1 v E2 (SF2, St Lucia 14 May: Australia v Pakistan)"
+        },
+        { "name": "Semi-finals", "matchesPerTeam": 1, "advancement": "Winners to the final", "knockoutPairing": "E1 v F2; F1 v E2" },
+        { "name": "Final", "matchesPerTeam": 1 }
+      ],
+      "afghanistan": {
+        "inTournament": true,
+        "placement": [
+          { "stage": "Group Stage", "group": "C", "slot": "unseeded qualifier (Q)", "groupmates": ["South Africa", "India"], "outcome": "3rd, eliminated (lost both)" }
+        ]
+      }
+    },
+    {
+      "editionId": "2012",
+      "teams": 12,
+      "stages": [
+        {
+          "name": "Group Stage",
+          "groups": {
+            "A": ["England", "India", "Afghanistan"],
+            "B": ["Australia", "West Indies", "Ireland"],
+            "C": ["Sri Lanka", "South Africa", "Zimbabwe"],
+            "D": ["Pakistan", "New Zealand", "Bangladesh"]
+          },
+          "seeds": { "A1": "England", "A2": "India", "B1": "Australia", "B2": "West Indies", "C1": "Sri Lanka", "C2": "South Africa", "D1": "Pakistan", "D2": "New Zealand", "Q1": "Ireland", "Q2": "Afghanistan" },
+          "matchesPerTeam": 2,
+          "advancement": "Top 2 of each group advance. Super 8 groups PRE-SEEDED, 'seedings used are those allocated at the start of the tournament and are not affected by group stage results': Group 1 = top seed of A and C + second seed of B and D (A1, C1, B2, D2); Group 2 = top seed of B and D + second seed of A and C (B1, D1, A2, C2). Non-seeded team knocking out a seed inherits that seed (not triggered).",
+          "carriedOverPoints": false,
+          "tiebreakers": ["points", "wins", "net run rate", "lower bowling strike rate", "head-to-head"],
+          "knockoutPairing": null
+        },
+        {
+          "name": "Super 8",
+          "slots": { "1": ["A1", "C1", "B2", "D2"], "2": ["B1", "D1", "A2", "C2"] },
+          "seededTeams": { "1": ["England", "Sri Lanka", "West Indies", "New Zealand"], "2": ["Australia", "Pakistan", "India", "South Africa"] },
+          "actualTeams": { "1": ["England", "Sri Lanka", "West Indies", "New Zealand"], "2": ["Australia", "Pakistan", "India", "South Africa"] },
+          "groups": { "1": ["England", "Sri Lanka", "West Indies", "New Zealand"], "2": ["Australia", "Pakistan", "India", "South Africa"] },
+          "matchesPerTeam": 3,
+          "advancement": "Top 2 of each Super 8 group to the semi-finals.",
+          "carriedOverPoints": false,
+          "tiebreakers": ["points", "wins", "net run rate", "lower bowling strike rate", "head-to-head"],
+          "knockoutPairing": "1st Group 1 v 2nd Group 2 (SF1, Colombo 4 Oct: Sri Lanka v Pakistan); 1st Group 2 v 2nd Group 1 (SF2, Colombo 5 Oct: Australia v West Indies)"
+        },
+        { "name": "Semi-finals", "matchesPerTeam": 1, "advancement": "Winners to the final", "knockoutPairing": "G1-1 v G2-2; G2-1 v G1-2" },
+        { "name": "Final", "matchesPerTeam": 1 }
+      ],
+      "afghanistan": {
+        "inTournament": true,
+        "placement": [
+          { "stage": "Group Stage", "group": "A", "slot": "Q2 (qualifier runner-up)", "groupmates": ["England", "India"], "outcome": "3rd, eliminated (lost both)" }
+        ]
+      }
+    },
+    {
+      "editionId": "2014",
+      "teams": 16,
+      "stages": [
+        {
+          "name": "First Round",
+          "groups": {
+            "A": ["Bangladesh", "Afghanistan", "Nepal", "Hong Kong"],
+            "B": ["Ireland", "Zimbabwe", "Netherlands", "United Arab Emirates"]
+          },
+          "matchesPerTeam": 3,
+          "advancement": "Group winner only advances. Pre-assigned: Group A winner joins Super 10 Group 2 (with India); Group B winner joins Super 10 Group 1 (with Sri Lanka). Both groups were decided on net run rate (Bangladesh, Netherlands).",
+          "carriedOverPoints": false,
+          "tiebreakers": ["points", "wins", "net run rate", "head-to-head"],
+          "knockoutPairing": null
+        },
+        {
+          "name": "Super 10",
+          "slots": { "1": ["Sri Lanka", "England", "South Africa", "New Zealand", "First Round B winner"], "2": ["India", "Pakistan", "West Indies", "Australia", "First Round A winner"] },
+          "seededTeams": { "1": ["Sri Lanka", "England", "South Africa", "New Zealand"], "2": ["India", "Pakistan", "West Indies", "Australia"] },
+          "actualTeams": { "1": ["Sri Lanka", "England", "South Africa", "New Zealand", "Netherlands"], "2": ["India", "Pakistan", "West Indies", "Australia", "Bangladesh"] },
+          "groups": { "1": ["Sri Lanka", "England", "South Africa", "New Zealand", "First Round B winner"], "2": ["India", "Pakistan", "West Indies", "Australia", "First Round A winner"] },
+          "matchesPerTeam": 4,
+          "advancement": "Top 2 of each Super 10 group to the semi-finals. The eight Full Members were placed directly by ICC T20I rankings at 8 Oct 2012.",
+          "carriedOverPoints": false,
+          "tiebreakers": ["points", "wins", "net run rate", "head-to-head"],
+          "knockoutPairing": "1st Group 1 v 2nd Group 2 (SF1, Mirpur 3 Apr: Sri Lanka v West Indies); 1st Group 2 v 2nd Group 1 (SF2, Mirpur 4 Apr: India v South Africa)"
+        },
+        { "name": "Semi-finals", "matchesPerTeam": 1, "advancement": "Winners to the final", "knockoutPairing": "G1-1 v G2-2; G2-1 v G1-2" },
+        { "name": "Final", "matchesPerTeam": 1 }
+      ],
+      "afghanistan": {
+        "inTournament": true,
+        "placement": [
+          { "stage": "First Round", "group": "A", "slot": "qualifier (2013 Qualifier runner-up)", "groupmates": ["Bangladesh", "Nepal", "Hong Kong"], "outcome": "Eliminated in First Round (Bangladesh won the group on NRR)" }
+        ]
+      }
+    },
+    {
+      "editionId": "2016",
+      "teams": 16,
+      "stages": [
+        {
+          "name": "First Round",
+          "groups": {
+            "A": ["Bangladesh", "Netherlands", "Ireland", "Oman"],
+            "B": ["Zimbabwe", "Scotland", "Hong Kong", "Afghanistan"]
+          },
+          "matchesPerTeam": 3,
+          "advancement": "Group winner only advances. Pre-assigned: Group A winner joins Super 10 Group 2 (with India); Group B winner joins Super 10 Group 1 (with West Indies).",
+          "carriedOverPoints": false,
+          "tiebreakers": ["points", "wins", "net run rate", "head-to-head"],
+          "knockoutPairing": null
+        },
+        {
+          "name": "Super 10",
+          "slots": { "1": ["West Indies", "England", "South Africa", "Sri Lanka", "First Round B winner"], "2": ["India", "Pakistan", "Australia", "New Zealand", "First Round A winner"] },
+          "seededTeams": { "1": ["West Indies", "England", "South Africa", "Sri Lanka"], "2": ["India", "Pakistan", "Australia", "New Zealand"] },
+          "actualTeams": { "1": ["West Indies", "England", "South Africa", "Sri Lanka", "Afghanistan"], "2": ["India", "Pakistan", "Australia", "New Zealand", "Bangladesh"] },
+          "groups": { "1": ["West Indies", "England", "South Africa", "Sri Lanka", "First Round B winner"], "2": ["India", "Pakistan", "Australia", "New Zealand", "First Round A winner"] },
+          "matchesPerTeam": 4,
+          "advancement": "Top 2 of each Super 10 group to the semi-finals.",
+          "carriedOverPoints": false,
+          "tiebreakers": ["points", "wins", "net run rate", "head-to-head"],
+          "knockoutPairing": "1st Group 2 v 2nd Group 1 (SF1, Delhi 30 Mar: New Zealand v England); 1st Group 1 v 2nd Group 2 (SF2, Mumbai 31 Mar: West Indies v India)"
+        },
+        { "name": "Semi-finals", "matchesPerTeam": 1, "advancement": "Winners to the final", "knockoutPairing": "G2-1 v G1-2; G1-1 v G2-2" },
+        { "name": "Final", "matchesPerTeam": 1 }
+      ],
+      "afghanistan": {
+        "inTournament": true,
+        "placement": [
+          { "stage": "First Round", "group": "B", "slot": "qualifier (2015 Qualifier 5th)", "groupmates": ["Zimbabwe", "Scotland", "Hong Kong"], "outcome": "Won group (3-0)" },
+          { "stage": "Super 10", "group": "1", "slot": "First Round B winner", "groupmates": ["West Indies", "England", "South Africa", "Sri Lanka"], "outcome": "5th (1-3; beat West Indies)" }
+        ]
+      }
+    },
+    {
+      "editionId": "2021",
+      "teams": 16,
+      "stages": [
+        {
+          "name": "First Round",
+          "groups": {
+            "A": ["Sri Lanka", "Ireland", "Netherlands", "Namibia"],
+            "B": ["Bangladesh", "Scotland", "Papua New Guinea", "Oman"]
+          },
+          "overallSeeds": { "Sri Lanka": 9, "Bangladesh": 10, "Ireland": 11, "Scotland": 12, "Papua New Guinea": 13, "Netherlands": 14, "Oman": 15, "Namibia": 16 },
+          "matchesPerTeam": 3,
+          "advancement": "Top 2 of each group advance, BY POSITION: 'The winner of Group A and the runner-up of Group B shall be placed in Group 1 of the Super 12s. The winner of Group B and the runner-up of Group A shall be placed in Group 2' (ICC PC 16.10.2). (Pre-tournament the ICC had intended Sri Lanka/Bangladesh to keep A1/B1 if they qualified; this was dropped after Scotland topped Group B.)",
+          "carriedOverPoints": false,
+          "tiebreakers": ["points", "wins", "net run rate", "head-to-head (points, then NRR in that match)", "original seeding"],
+          "knockoutPairing": null
+        },
+        {
+          "name": "Super 12",
+          "slots": { "1": ["England (1)", "Australia (3)", "South Africa (6)", "West Indies (8)", "A1", "B2"], "2": ["India (2)", "Pakistan (4)", "New Zealand (5)", "Afghanistan (7)", "B1", "A2"] },
+          "seededTeams": { "1": ["England", "Australia", "South Africa", "West Indies"], "2": ["India", "Pakistan", "New Zealand", "Afghanistan"] },
+          "actualTeams": { "1": ["England", "Australia", "South Africa", "West Indies", "Sri Lanka", "Bangladesh"], "2": ["India", "Pakistan", "New Zealand", "Afghanistan", "Scotland", "Namibia"] },
+          "groups": { "1": ["England", "Australia", "South Africa", "West Indies", "First Round A winner", "First Round B runner-up"], "2": ["India", "Pakistan", "New Zealand", "Afghanistan", "First Round B winner", "First Round A runner-up"] },
+          "matchesPerTeam": 5,
+          "advancement": "Top 2 of each Super 12 group to the semi-finals. Eight direct entrants placed by ICC T20I rankings (cut-off 31 Dec 2018, re-seeded 20 Mar 2021).",
+          "carriedOverPoints": false,
+          "tiebreakers": ["points", "wins", "net run rate", "head-to-head (points, then NRR in that match)", "original Super 12 seeding"],
+          "knockoutPairing": "1st Group 1 v 2nd Group 2 (SF1, Abu Dhabi: England v New Zealand); 1st Group 2 v 2nd Group 1 (SF2, Dubai: Pakistan v Australia)"
+        },
+        { "name": "Semi-finals", "matchesPerTeam": 1, "advancement": "Winners to the final", "knockoutPairing": "G1-1 v G2-2; G2-1 v G1-2" },
+        { "name": "Final", "matchesPerTeam": 1 }
+      ],
+      "afghanistan": {
+        "inTournament": true,
+        "placement": [
+          { "stage": "Super 12", "group": "2", "slot": "seed 7 (direct entrant)", "groupmates": ["India", "Pakistan", "New Zealand", "First Round B winner (Scotland)", "First Round A runner-up (Namibia)"], "outcome": "4th (2-3)" }
+        ]
+      }
+    },
+    {
+      "editionId": "2022",
+      "teams": 16,
+      "stages": [
+        {
+          "name": "First Round",
+          "groups": {
+            "A": ["Sri Lanka", "Namibia", "United Arab Emirates", "Netherlands"],
+            "B": ["West Indies", "Scotland", "Zimbabwe", "Ireland"]
+          },
+          "overallSeeds": { "Sri Lanka": 9, "West Indies": 10, "Scotland": 11, "Namibia": 12, "Zimbabwe": 13, "United Arab Emirates": 14, "Netherlands": 15, "Ireland": 16 },
+          "matchesPerTeam": 3,
+          "advancement": "Top 2 of each group advance, BY POSITION: Group A winner and Group B runner-up to Super 12 Group 1; Group B winner and Group A runner-up to Super 12 Group 2 (ICC PC 16.10.2).",
+          "carriedOverPoints": false,
+          "tiebreakers": ["points", "wins", "net run rate", "head-to-head (points, then NRR in that match)", "original seeding"],
+          "knockoutPairing": null
+        },
+        {
+          "name": "Super 12",
+          "slots": { "1": ["England (1)", "New Zealand (4)", "Australia (6)", "Afghanistan (7)", "A1", "B2"], "2": ["India (2)", "Pakistan (3)", "South Africa (5)", "Bangladesh (8)", "B1", "A2"] },
+          "seededTeams": { "1": ["England", "New Zealand", "Australia", "Afghanistan"], "2": ["India", "Pakistan", "South Africa", "Bangladesh"] },
+          "actualTeams": { "1": ["England", "New Zealand", "Australia", "Afghanistan", "Sri Lanka", "Ireland"], "2": ["India", "Pakistan", "South Africa", "Bangladesh", "Zimbabwe", "Netherlands"] },
+          "groups": { "1": ["England", "New Zealand", "Australia", "Afghanistan", "First Round A winner", "First Round B runner-up"], "2": ["India", "Pakistan", "South Africa", "Bangladesh", "First Round B winner", "First Round A runner-up"] },
+          "matchesPerTeam": 5,
+          "advancement": "Top 2 of each Super 12 group to the semi-finals. Direct entrants: 2021 finalists + next six by T20I rankings at 15 Nov 2021.",
+          "carriedOverPoints": false,
+          "tiebreakers": ["points", "wins", "net run rate", "head-to-head (points, then NRR in that match)", "original Super 12 seeding"],
+          "knockoutPairing": "1st Group 1 v 2nd Group 2 (SF1, Sydney 9 Nov: New Zealand v Pakistan); 1st Group 2 v 2nd Group 1 (SF2, Adelaide 10 Nov: India v England)"
+        },
+        { "name": "Semi-finals", "matchesPerTeam": 1, "advancement": "Winners to the final", "knockoutPairing": "G1-1 v G2-2; G2-1 v G1-2" },
+        { "name": "Final", "matchesPerTeam": 1 }
+      ],
+      "afghanistan": {
+        "inTournament": true,
+        "placement": [
+          { "stage": "Super 12", "group": "1", "slot": "seed 7 (direct entrant)", "groupmates": ["England", "New Zealand", "Australia", "First Round A winner (Sri Lanka)", "First Round B runner-up (Ireland)"], "outcome": "6th (0-3, two washouts, 2 pts)" }
+        ]
+      }
+    },
+    {
+      "editionId": "2024",
+      "teams": 20,
+      "stages": [
+        {
+          "name": "Group Stage",
+          "groups": {
+            "A": ["India", "Pakistan", "Ireland", "Canada", "United States of America"],
+            "B": ["England", "Australia", "Namibia", "Scotland", "Oman"],
+            "C": ["New Zealand", "West Indies", "Afghanistan", "Uganda", "Papua New Guinea"],
+            "D": ["South Africa", "Sri Lanka", "Bangladesh", "Netherlands", "Nepal"]
+          },
+          "seeds": { "A1": "India", "A2": "Pakistan", "B1": "England", "B2": "Australia", "C1": "New Zealand", "C2": "West Indies", "D1": "South Africa", "D2": "Sri Lanka" },
+          "matchesPerTeam": 4,
+          "advancement": "Top 2 of each group advance to the Super 8. PRE-SEEDED: 'The top two teams that qualify for the Second Round from each First Round Group will retain their seeding from the First Round ... regardless of whether they finished first or second in the Group. If A4 qualified instead of A1, A4 would assume the schedule of A1' (ICC PC 16.10.1). Super 8 Group 1 = A1, B2, C1, D2; Group 2 = A2, B1, C2, D1. 'No points are carried forward from the First Round to the Second Round.'",
+          "carriedOverPoints": false,
+          "tiebreakers": ["points", "wins", "net run rate", "head-to-head", "original group-stage seeding"],
+          "knockoutPairing": null
+        },
+        {
+          "name": "Super 8",
+          "slots": { "1": ["A1", "B2", "C1", "D2"], "2": ["A2", "B1", "C2", "D1"] },
+          "seededTeams": { "1": ["India", "Australia", "New Zealand", "Sri Lanka"], "2": ["Pakistan", "England", "West Indies", "South Africa"] },
+          "actualTeams": { "1": ["India", "Australia", "Afghanistan", "Bangladesh"], "2": ["United States of America", "England", "West Indies", "South Africa"] },
+          "groups": { "1": ["India", "Australia", "New Zealand", "Sri Lanka"], "2": ["Pakistan", "England", "West Indies", "South Africa"] },
+          "matchesPerTeam": 3,
+          "advancement": "Top 2 of each Super 8 group to the semi-finals. Teams start the Super 8 on zero points.",
+          "carriedOverPoints": false,
+          "tiebreakers": ["points", "wins", "net run rate", "head-to-head", "pre-tournament T20I rankings"],
+          "knockoutPairing": "1st Group 1 v 2nd Group 2 (SF2, Guyana 27 Jun: India v England); 1st Group 2 v 2nd Group 1 (SF1, Trinidad 26 Jun: South Africa v Afghanistan)"
+        },
+        { "name": "Semi-finals", "matchesPerTeam": 1, "advancement": "Winners to the final", "knockoutPairing": "G1-1 v G2-2; G2-1 v G1-2" },
+        { "name": "Final", "matchesPerTeam": 1 }
+      ],
+      "afghanistan": {
+        "inTournament": true,
+        "placement": [
+          { "stage": "Group Stage", "group": "C", "slot": "C3 (unseeded)", "groupmates": ["New Zealand", "West Indies", "Uganda", "Papua New Guinea"], "outcome": "1st in group (3-1); as a non-seed qualifying ahead of New Zealand they took the C1 slot" },
+          { "stage": "Super 8", "group": "1", "slot": "C1 (inherited from New Zealand)", "groupmates": ["India", "Australia", "Bangladesh"], "outcome": "2nd (2-1)" },
+          { "stage": "Semi-finals", "group": null, "slot": "2nd Group 1 (SF1 v 1st Group 2 South Africa, Trinidad)", "outcome": "Lost by 9 wickets" }
+        ]
+      }
+    },
+    {
+      "editionId": "2026",
+      "teams": 20,
+      "stages": [
+        {
+          "name": "Group Stage",
+          "groups": {
+            "A": ["India", "Pakistan", "United States of America", "Netherlands", "Namibia"],
+            "B": ["Australia", "Sri Lanka", "Ireland", "Zimbabwe", "Oman"],
+            "C": ["England", "West Indies", "Nepal", "Italy", "Scotland"],
+            "D": ["New Zealand", "South Africa", "Afghanistan", "Canada", "United Arab Emirates"]
+          },
+          "seeds": { "A1": "India", "A2": "Pakistan", "A3": "United States of America", "A4": "Netherlands", "A5": "Namibia", "B1": "Australia", "B2": "Sri Lanka", "B3": "Ireland", "B4": "Zimbabwe", "B5": "Oman", "C1": "England", "C2": "West Indies", "C3": "Nepal", "C4": "Italy", "C5": "Scotland", "D1": "New Zealand", "D2": "South Africa", "D3": "Afghanistan", "D4": "Canada", "D5": "United Arab Emirates" },
+          "matchesPerTeam": 4,
+          "advancement": "Top 2 of each group advance to the Super Eights. PRE-ASSIGNED by ICC PC 16.10.1: the eight seeded teams 'will compete in pre-assigned groups': Group 1 = X1 India (A1), X2 Australia (B1), X3 West Indies (C2), X4 South Africa (D2); Group 2 = Y1 England (C1), Y2 New Zealand (D1), Y3 Pakistan (A2), Y4 Sri Lanka (B2). A non-seeded qualifier takes the slot of the eliminated seed from its group; if neither seed qualifies, the group winner takes seed 1's slot and the runner-up seed 2's. Zimbabwe (Group B winner) took Australia's X2 slot. Because of how the seeds were allocated, every group winner landed in Group 1 and every runner-up in Group 2.",
+          "carriedOverPoints": false,
+          "tiebreakers": ["points", "wins", "net run rate", "head-to-head", "ICC T20I rankings at 6 Feb 2026"],
+          "knockoutPairing": null
+        },
+        {
+          "name": "Super 8",
+          "slots": { "1": ["X1 (A1)", "X2 (B1)", "X3 (C2)", "X4 (D2)"], "2": ["Y1 (C1)", "Y2 (D1)", "Y3 (A2)", "Y4 (B2)"] },
+          "seededTeams": { "1": ["India", "Australia", "West Indies", "South Africa"], "2": ["England", "New Zealand", "Pakistan", "Sri Lanka"] },
+          "actualTeams": { "1": ["India", "Zimbabwe", "West Indies", "South Africa"], "2": ["England", "New Zealand", "Pakistan", "Sri Lanka"] },
+          "groups": { "1": ["India", "Australia", "West Indies", "South Africa"], "2": ["England", "New Zealand", "Pakistan", "Sri Lanka"] },
+          "matchesPerTeam": 3,
+          "advancement": "Top 2 of each Super Eights group to the semi-finals. 'Teams will start the Super Eights with zero points. No points, wins or net run rate from the first round will be carried forward.' Group 1 played mainly in India, Group 2 in Sri Lanka.",
+          "carriedOverPoints": false,
+          "tiebreakers": ["points", "wins", "net run rate", "head-to-head", "ICC T20I rankings at 6 Feb 2026"],
+          "knockoutPairing": "1st Group 1 v 2nd Group 2 (SF1, Kolkata 4 Mar: South Africa v New Zealand); 1st Group 2 v 2nd Group 1 (SF2, Mumbai 5 Mar: England v India). Venue rule: SF1 moves to Colombo if Pakistan qualify; India play SF2 in Mumbai unless facing Pakistan."
+        },
+        { "name": "Semi-finals", "matchesPerTeam": 1, "advancement": "Winners to the final (Ahmedabad 8 Mar; India beat New Zealand by 96 runs)", "knockoutPairing": "G1-1 v G2-2; G2-1 v G1-2" },
+        { "name": "Final", "matchesPerTeam": 1 }
+      ],
+      "afghanistan": {
+        "inTournament": true,
+        "placement": [
+          { "stage": "Group Stage", "group": "D", "slot": "D3 (unseeded)", "groupmates": ["New Zealand", "South Africa", "Canada", "United Arab Emirates"], "outcome": "3rd (2-2, 4 pts; tied with South Africa and lost the second Super Over), eliminated" }
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "generatedAt": "2026-10-28T18:24:07.770Z",
+  "archive": {
+    "name": "t20s_male_json",
+    "url": "https://cricsheet.org/downloads/t20s_male_json.zip",
+    "licence": "Open Data Commons Attribution License v1.0 (ODC-By) — https://cricsheet.org/licensing/",
+    "downloadedAt": "2026-10-28T07:48:59.175Z",
+    "fileCount": 3646
+  },
+  "formWindowMonths": 24,
+  "thresholds": {
+    "batBalls": 30,
+    "bowlBalls": 48
+  },
+  "badgeThresholds": {
+    "batBalls": 60,
+    "bowlBalls": 72
+  }
+}
