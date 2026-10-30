@@ -898,8 +898,9 @@ Resolved 2026-10-30: card face is a **tier** (Bronze / Silver / Gold / Elite, Sw
 **role-relative** so a finisher's tier does not drop for facing few balls; **per-phase ratings
 shown for batting and bowling**; platform is a **website or app**, not Messenger. Details in §5.6.
 
-Still open: none blocking Phase 2. Tiers built 2026-10-30 (§5.6). Next in sequence: Yash reviews the
-Elite / Gold lists per edition in `wcdraft/data/out/RATINGS.md` (named errors become tests) → Phase 2
+Still open: none blocking Phase 2. Tiers built 2026-10-30 (§5.6). **Ratings accepted by Yash
+2026-10-30 as evidence-based**, without a name-by-name review; the known cases (Erasmus 2024 and
+Sundar 2026 Elite, Kohli 2024 Silver) stay in the parked table with their triggers. Next: Phase 2
 engine.
 
 ---
