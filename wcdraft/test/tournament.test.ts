@@ -65,6 +65,15 @@ describe("tournament", { skip: !engineReady() && "engine data not built" }, () =
     const id = a.identity!;
     assert.ok(id.played >= 4 && id.won + id.lost === id.played);
     assert.equal(id.unbeaten, id.champion && id.lost === 0);
+    // The exit names a stage the side actually played in (a group-stage exit must not read "Super 8").
+    for (let i = 0; i < 12; i += 1) {
+      const r = simulateTournament(data, data.progression, { seed: `exit-${i}`, identity: { team: "Netherlands", xi: teamFromDefault(data, "Netherlands") } });
+      const exit = r.identity!.exit;
+      if (exit === "champion") continue;
+      const stage = r.stages.find((s) => s.label === exit)!;
+      assert.ok(stage, `exit "${exit}" is a stage`);
+      assert.ok(stage.fixtures.some((f) => f.teams.includes("Netherlands")), `Netherlands played in the ${exit} they went out in`);
+    }
     // The stand-in plays Afghanistan's real fixtures at their venues.
     const zimUga = group.fixtures.find((f) => f.teams.includes("Zimbabwe") && f.teams.includes("Uganda"))!;
     const afg = data.afghanistanFixtures.find((f) => f.opponent === "Uganda")!;

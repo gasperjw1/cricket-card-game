@@ -1,0 +1,38 @@
+import type { PoolPlayer } from "../game/types.ts";
+
+export function TierBadge({ tier }: { tier: string }) {
+  return <span className={`tier tier-${tier.toLowerCase()}`}>{tier}</span>;
+}
+
+export function archetypeLabel(p: PoolPlayer): string {
+  const parts: string[] = [];
+  if (p.role !== "bowler" && p.archetype.batting) parts.push(p.archetype.batting);
+  if (p.role !== "batter" && p.archetype.bowling) parts.push(`${p.archetype.bowling} bowler`);
+  if (p.positionless) parts.push("positionless");
+  return parts.join(" · ") || p.role;
+}
+
+export function PlayerCard({ player, selected, compact, onClick }: { player: PoolPlayer; selected?: boolean; compact?: boolean; onClick?: () => void }) {
+  const p = player;
+  return (
+    <button type="button" className={`player ${selected ? "selected" : ""} ${compact ? "compact" : ""}`} onClick={onClick} disabled={!onClick}>
+      <div className="player-head">
+        <TierBadge tier={p.tier} />
+        <span className="player-name">{p.name}</span>
+        <span className="player-meta">{p.team} {p.editionId}</span>
+      </div>
+      <div className="player-line">
+        <span className="arch">{archetypeLabel(p)}</span>
+        {p.keeper && <span className="tag">WK</span>}
+        {p.squadPlayer && <span className="tag muted">squad player</span>}
+        {p.hand === "L" && <span className="tag muted">LHB</span>}
+      </div>
+      {!compact && (
+        <div className="phases">
+          <div><span className="k">Bat</span> <b>{p.bat}{p.batLow ? "*" : ""}</b> <small>{p.batPhases.pp} / {p.batPhases.mid} / {p.batPhases.death}</small></div>
+          <div><span className="k">Bowl</span> <b>{p.bowl}{p.bowlLow ? "*" : ""}</b> <small>{p.bowlPhases.pp} / {p.bowlPhases.mid} / {p.bowlPhases.death}</small></div>
+        </div>
+      )}
+    </button>
+  );
+}

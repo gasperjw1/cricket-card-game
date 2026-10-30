@@ -19,7 +19,7 @@ import type { OutcomeKey, Phase } from "../cricsheet/match.js";
 import type { BuildResult } from "../pipeline/build.js";
 import { ELO_BINS, eloBin, type EloBin } from "../analysis/team-strength.js";
 import { paths, readJson } from "../util/io.js";
-import { MODEL, OUTCOMES, PHASE_LIST, type BattingArchetype, type BlockIn, type BowlingArchetype, type PhaseVectors, type PlayerEditionIn, type PlayerRating, type SkillRating, type Tier as CardTier, type TierConfig, type Vector } from "./model.js";
+import { MODEL, OUTCOMES, PHASE_LIST, type BattingArchetype, type BlockIn, type BowlingArchetype, type EditionPopulations, type PhaseVectors, type PlayerEditionIn, type PlayerRating, type SkillRating, type Tier as CardTier, type TierConfig, type Vector } from "./model.js";
 import { rowMixtureInterp, smoothTwoWay, type TwoWayVectors } from "./two-way.js";
 import { battingValue, blend, bowlingValue, expectedRuns, normalise, relative, shrink, shrinkWithHazard, toVector, transport, UNIFORM } from "./vectors.js";
 
@@ -759,15 +759,25 @@ export function rateAll(r: BuildResult, opts: RateOptions = {}): PlayerRating[] 
   }
 
   // Display ranks a conservative value: shrunk toward 0 by the evidence behind it (winner's-curse guard).
-  const conservative = (s: Pick<SkillRating, "value" | "evidence">) => {
+  // Display ranks a conservative value: shrunk toward the median of the rated players by the
+  // evidence behind it (winner's-curse guard). Toward the median, not zero: after cohort
+  // standardisation the median rated player sits below zero, so shrinking toward zero printed an
+  // unmeasured player at 76–78 (above the median) instead of at the middle.
+  const medianValue = (skill: Skill) => {
+    const xs = partial.filter((x) => !x[skill].lowSample).map((x) => x[skill].value).sort((a, b) => a - b);
+    return xs.length ? xs[Math.floor(xs.length / 2)]! : 0;
+  };
+  const medians = { bat: medianValue("bat"), bowl: medianValue("bowl") };
+  const conservative = (s: Pick<SkillRating, "value" | "evidence">, skill: Skill) => {
     const n = s.evidence.formBalls + s.evidence.careerBalls + (s.evidence.source === "odi" ? MODEL.odiPriorStrength : 0);
-    return s.value * (n / (n + MODEL.displayEvidenceStrength));
+    const w = n / (n + MODEL.displayEvidenceStrength);
+    return medians[skill] + (s.value - medians[skill]) * w;
   };
   // Display: percentile-anchored but linear in value, so the top is not compressed. The median
   // maps to 70, the 99th percentile to 99 and the 5th percentile to 45; values beyond those
   // anchors extrapolate linearly and clip to the display range.
   const toDisplay = (skill: Skill) => {
-    const eligible = partial.filter((x) => !x[skill].lowSample).map((x) => conservative(x[skill])).sort((a, b) => a - b);
+    const eligible = partial.filter((x) => !x[skill].lowSample).map((x) => conservative(x[skill], skill)).sort((a, b) => a - b);
     const q = (f: number) => eligible[Math.min(eligible.length - 1, Math.max(0, Math.floor(f * (eligible.length - 1))))] ?? 0;
     const median = q(0.5), top = q(0.99), low = q(0.05);
     return (value: number) => {
@@ -794,7 +804,7 @@ export function rateAll(r: BuildResult, opts: RateOptions = {}): PlayerRating[] 
     const badge = skill === "bat" ? tierConfig.phaseBadge.batBalls : tierConfig.phaseBadge.bowlBalls;
     return {
       ...s,
-      ...display(conservative(s)),
+      ...display(conservative(s, skill)),
       displayByPhase: Object.fromEntries(PHASE_LIST.map((p) => [p, display(s.valueByPhase[p] * guard).display])) as Record<Phase, number>,
       phaseEvidence: Object.fromEntries(PHASE_LIST.map((p) => [p, { balls: balls[p], thin: balls[p] < badge }])) as Record<Phase, { balls: number; thin: boolean }>,
     };
@@ -810,7 +820,15 @@ export function rateAll(r: BuildResult, opts: RateOptions = {}): PlayerRating[] 
     // A role needs real evidence: a few career overs do not make a batter an all-rounder.
     const bowls = bowlBalls >= 150 && bowling.display >= 60;
     const bats = batBalls >= 150 && batting.display >= 60;
-    const role: PlayerRating["role"] = bats && bowls ? "all-rounder" : bowls ? "bowler" : bats ? "batter" : batBalls + bowlBalls === 0 ? "unknown" : batting.display >= bowling.display ? "batter" : "bowler";
+    // Fallback when neither skill clears the evidence bar: the skill with evidence wins over a
+    // prior-shaped number (a keeper with 49 batting is not a "bowler" because his unmeasured bowling
+    // prints 73), then the skill with more balls, then the higher display.
+    const fallback: PlayerRating["role"] =
+      batBalls + bowlBalls === 0 ? "unknown"
+      : batting.lowSample !== bowling.lowSample ? (batting.lowSample ? "bowler" : "batter")
+      : batBalls !== bowlBalls ? (batBalls > bowlBalls ? "batter" : "bowler")
+      : batting.display >= bowling.display ? "batter" : "bowler";
+    const role: PlayerRating["role"] = bats && bowls ? "all-rounder" : bowls ? "bowler" : bats ? "batter" : fallback;
     const top = Math.max(batting.display, bowling.display);
     const second = Math.min(batting.display, bowling.display);
     const overall = Math.min(MODEL.display.max, Math.round(top + (role === "all-rounder" ? 0.1 * (second - MODEL.display.min) : 0)));
@@ -837,18 +855,9 @@ export function rateAll(r: BuildResult, opts: RateOptions = {}): PlayerRating[] 
   });
 }
 
-/**
- * The populations the engine needs per edition (Phase 2): the value populations the rating
- * vectors live in (window population projected onto the edition's opponent mix, batting and
- * bowling) and the edition's realised population.
- */
-export interface EditionPopulations {
-  editionId: string;
-  valuePop: Record<Skill, PhaseVectors>;
-  editionPop: PhaseVectors;
-  editionBowlPop: PhaseVectors;
-}
+export type { EditionPopulations } from "./model.js";
 
+/** The populations the engine needs per edition (Phase 2); see `EditionPopulations` in model.ts. */
 export function editionPopulations(r: BuildResult): EditionPopulations[] {
   return [...buildContexts(r).values()].map((ctx) => ({
     editionId: ctx.editionId,

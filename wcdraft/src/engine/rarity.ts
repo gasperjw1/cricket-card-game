@@ -7,7 +7,7 @@
  */
 
 import type { BattingArchetype } from "../ratings/model.js";
-import type { EditionData } from "./load.js";
+import type { EditionData } from "./data.js";
 import { Rng } from "./rng.js";
 import { simulateTournament } from "./tournament.js";
 import type { EnginePlayer, EngineTeam } from "./types.js";

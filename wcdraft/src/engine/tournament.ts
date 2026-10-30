@@ -7,7 +7,7 @@
  */
 
 import { simulateMatch } from "./match.js";
-import { matchEnvironment, teamFromDefault, teamFromMatch, type EditionData, type SquadMatchOut } from "./load.js";
+import { matchEnvironment, teamFromDefault, teamFromMatch, type EditionData, type SquadMatchOut } from "./data.js";
 import type { GroupsStage, KnockoutStage, Progression } from "./progression.js";
 import { Rng } from "./rng.js";
 import type { EngineTeam, MatchResult } from "./types.js";
@@ -29,6 +29,10 @@ export interface FixtureResult extends Fixture {
   margin: MatchResult["margin"];
   tieBreak: MatchResult["tieBreak"];
   rain: MatchResult["rain"];
+  /** Full innings (scorecards) when kept; see `TournamentOptions.keepIdentityDetails`. */
+  innings?: MatchResult["innings"];
+  tossWinner?: string;
+  tossDecision?: "bat" | "field";
 }
 
 export interface StandingRow {
@@ -67,6 +71,8 @@ export interface TournamentOptions {
   /** Replace this team's eleven in every fixture (the drafted side). */
   identity?: { team: string; xi: EngineTeam };
   keepBallLogs?: boolean;
+  /** Keep the full scorecards of the identity team's fixtures (the result screen). */
+  keepIdentityDetails?: boolean;
 }
 
 const pairKey = (a: string, b: string) => [a, b].sort().join("|");
@@ -159,7 +165,12 @@ export function simulateTournament(data: EditionData, progression: Progression, 
     }
     const score = (i: 0 | 1) => `${result.innings[i].runs}/${result.innings[i].wickets} (${Math.floor(result.innings[i].legalBalls / 6)}.${result.innings[i].legalBalls % 6})`;
     const first = result.innings[0].team;
-    return { ...fixture, winner: result.winner, scores: first === a ? [score(0), score(1)] : [score(1), score(0)], margin: result.margin, tieBreak: result.tieBreak, rain: result.rain, _result: result } as FixtureResult & { _result: MatchResult };
+    const keep = opts.keepIdentityDetails && identity && (a === identity.team || b === identity.team);
+    return {
+      ...fixture, winner: result.winner, scores: first === a ? [score(0), score(1)] : [score(1), score(0)], margin: result.margin, tieBreak: result.tieBreak, rain: result.rain,
+      ...(keep ? { innings: result.innings, tossWinner: result.tossWinner, tossDecision: result.tossDecision } : {}),
+      _result: result,
+    } as FixtureResult & { _result: MatchResult };
   };
 
   const realFixture = (a: string, b: string, label: string): { venueId: string | null; date: string | null; realId: string | null } | null => {
@@ -172,8 +183,9 @@ export function simulateTournament(data: EditionData, progression: Progression, 
       const res = playGroups(stage, slots, play, venuePool, realFixture, standInFixtures, progression.standIn, rng);
       stages.push(res.stage);
       slots = res.slots;
-      if (identityRecord) {
-        // Qualifying slots only; the `#` entries record every team's finish position.
+      if (identityRecord && res.stage.fixtures.some((f) => f.teams.includes(identityRecord.team))) {
+        // Only stages the side actually played in can be where it went out; qualifying slots only
+        // (the `#` entries record every team's finish position).
         const advanced = Object.entries(res.slots).some(([slot, team]) => !slot.endsWith("#") && team === identityRecord.team);
         identityRecord.exit = advanced ? "advanced" : stage.label;
       }

@@ -193,8 +193,10 @@ p ∝ base[phase] × batRel^0.7 × bowlRel^0.7 × τ[innings][over][wickets] × 
 - Bowling allocation (`allocation.ts`) scores eligible bowlers per over by expected runs, wicket
   value, specialist bonuses, death reservation, spell continuity and a hit penalty, with Gumbel
   noise; it reproduces the measured bowlers-used norm within a few points.
-- `load.ts` builds teams from a real match's eleven and batting order or from a squad's default
-  eleven; `replay.ts` is the acceptance harness (environment, result calibration, bowler usage).
+- `data.ts` builds an edition's engine data from parsed JSON with no file-system dependency (the
+  browser client in `draft/` uses it with fetched files); `load.ts` is the Node reader over
+  `data/out/`. Both build teams from a real match's eleven and batting order or from a squad's
+  default eleven; `replay.ts` is the acceptance harness (environment, result calibration, bowler usage).
 - `progression.ts` compiles each edition's structure from `config/formats.json` (groups, seed
   slots, Super-stage slot rules, knockout pairings) with the Afghanistan stand-in in Afghanistan's
   slot; `tournament.ts` plays it: real pairings at their real venues with real elevens, generated

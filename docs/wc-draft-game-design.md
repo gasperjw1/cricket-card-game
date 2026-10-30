@@ -1055,9 +1055,28 @@ fielding. The simulation is not required to reproduce real results (§11).
   every edition's; real batters attack the best bowlers anyway). Phase run rates now sit within 3–5%
   of real in every phase and edition except the 2024 middle overs (6.44 vs 6.88).
 
-### Phase 3 — Draft client (thin)
-- Identity spin, coach panel, player spins, lineup slots, overs meter, simulate, result,
-  share card, leaderboard. Classic and Cricket-IQ.
+### Phase 3 — Draft client — **FIRST SLICE BUILT 2026-10-30**
+- `draft/` workspace: Vite + React web app (website or app, not Messenger) importing the engine's
+  pure modules as TypeScript source from `wcdraft/src`. `engine/load.ts` was split into
+  `engine/data.ts` (pure, builds edition data from parsed JSON; shared by Node and browser) and
+  the Node reader. A sync script copies the data files into `public/data/` and writes slim
+  per-edition pool files for the spin cards; full rating vectors load only at simulation time.
+- Built: identity spin (one reroll, real record and stand-in note), coach panel of three with tags
+  and intent words (one reroll), eleven squad spins with slot placement (archetype fit highlighted,
+  two rerolls, one instance per person), overs meter and keeper check, lineup review with reorder
+  and captain choice (captaincy rating shown), full-tournament simulation in the browser (≈1 s
+  including data), result screen with headline, your matches and scorecards, group tables and
+  knockouts. Seed-deterministic throughout. Verified end to end in the browser (Netherlands 2024
+  with a cross-era eleven: Taibu 2010, Jayasuriya 2007, Gayle 2009, Maxwell 2016 …).
+- Found and fixed on the way: unmeasured players printed 76–78 because the display guard shrank
+  toward zero while the median rated player sits below zero after cohort standardisation (now
+  shrinks toward the median: an unknown prints 70); the role fallback called a keeper with 49
+  batting a "bowler" because his unmeasured bowling printed 73 (the skill with evidence now wins);
+  the identity's exit stage could name a stage the side never played.
+- Not yet built: Cricket-IQ mode (names only), head-to-head, leaderboard (performance score beside
+  squad rating), share links, Timeless and Tournament Form tags on cards, ratings-visible career
+  stats, coach build bonuses and Dynamic Duos (§5.10–5.11), Positionless slot bonus, rarity tuning
+  on the real draft.
 
 ### Phase 4 — Modes and depth
 - Daily challenge, head-to-head, coach cross-era modes, associates' coaches, ODI edition.

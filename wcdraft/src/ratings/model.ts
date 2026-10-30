@@ -112,6 +112,19 @@ export const MODEL = {
 export type Vector = Record<OutcomeKey, number>;
 export type PhaseVectors = Record<Phase, Vector>;
 
+/**
+ * The populations the engine needs per edition: the value populations the rating vectors live in
+ * (window population projected onto the edition's opponent mix, batting and bowling) and the
+ * edition's realised population. Defined here, away from the Node-only rating pipeline, so the
+ * browser client can import the type.
+ */
+export interface EditionPopulations {
+  editionId: string;
+  valuePop: Record<"bat" | "bowl", PhaseVectors>;
+  editionPop: PhaseVectors;
+  editionBowlPop: PhaseVectors;
+}
+
 export const TIERS = ["Bronze", "Silver", "Gold", "Elite"] as const;
 export type Tier = (typeof TIERS)[number];
 

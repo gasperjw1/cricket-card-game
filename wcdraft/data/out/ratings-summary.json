@@ -2836,19 +2836,6 @@
       "bestDisplay": 99
     },
     {
-      "personId": "e4a0deae",
-      "name": "MJ Santner",
-      "skill": "bowling",
-      "editions": [
-        "2016",
-        "2021",
-        "2022",
-        "2024"
-      ],
-      "spanYears": 8,
-      "bestDisplay": 93
-    },
-    {
       "personId": "2be41edb",
       "name": "MJ Guptill",
       "skill": "batting",
@@ -2858,45 +2845,57 @@
         "2021"
       ],
       "spanYears": 9,
-      "bestDisplay": 96
+      "bestDisplay": 97
+    },
+    {
+      "personId": "9ab63e7b",
+      "name": "Mohammad Hafeez",
+      "skill": "bowling",
+      "editions": [
+        "2012",
+        "2014",
+        "2021"
+      ],
+      "spanYears": 9,
+      "bestDisplay": 85
     }
   ],
   "audit": {
     "byTier": {
       "Elite": {
         "n": 35,
-        "meanDisplay": 78.5
+        "meanDisplay": 79.9
       },
       "Gold": {
         "n": 63,
-        "meanDisplay": 73.7
+        "meanDisplay": 74.5
       },
       "Silver": {
         "n": 65,
-        "meanDisplay": 68.4
+        "meanDisplay": 69.9
       },
       "Bronze": {
         "n": 59,
-        "meanDisplay": 66.2
+        "meanDisplay": 66.4
       }
     },
-    "spearman": 0.291,
+    "spearman": 0.314,
     "tiers": {
       "exact": 0.311,
       "withinOne": 0.797,
-      "spearman": 0.326,
+      "spearman": 0.324,
       "confusion": {
         "Elite": {
           "Bronze": 0,
-          "Silver": 5,
-          "Gold": 14,
+          "Silver": 4,
+          "Gold": 15,
           "Elite": 16
         },
         "Gold": {
-          "Bronze": 0,
+          "Bronze": 1,
           "Silver": 17,
           "Gold": 25,
-          "Elite": 21
+          "Elite": 20
         },
         "Silver": {
           "Bronze": 6,
