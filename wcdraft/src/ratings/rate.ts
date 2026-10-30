@@ -44,6 +44,8 @@ export interface EditionContext {
   windowVenueFactors: Record<string, number>;
   /** How the tournament's realised scoring compared with the window: > 1 = flatter than the form era. */
   editionConditionFactor: number;
+  /** Mean Elo of the edition's strongest third of teams at its start (null when no team Elo is known). */
+  topThirdElo: number | null;
   odiPop: { strikeRate: number; ballsPerOut: number } | null;
 }
 
@@ -61,7 +63,15 @@ export function mixtureByExposure(byBin: Record<string, PhaseVectors>, exposure:
 
 export function buildContexts(r: BuildResult): Map<string, EditionContext> {
   const out = new Map<string, EditionContext>();
+  const teamElos = new Map<string, Map<string, number>>();
+  for (const pe of r.playerEditions as unknown as PlayerEditionIn[]) {
+    if (pe.teamElo === null) continue;
+    (teamElos.get(pe.editionId) ?? teamElos.set(pe.editionId, new Map()).get(pe.editionId)!).set(pe.team, pe.teamElo);
+  }
   for (const e of r.editions) {
+    const elos = [...(teamElos.get(e.id)?.values() ?? [])].sort((a, b) => b - a);
+    const top = elos.slice(0, Math.max(1, Math.ceil(elos.length / 3)));
+    const topThirdElo = top.length ? +(top.reduce((a, b) => a + b, 0) / top.length).toFixed(1) : null;
     const pv = e.environment.populationVectors;
     const editionPop = Object.fromEntries(PHASE_LIST.map((p) => [p, toVector(pv[p], UNIFORM)])) as PhaseVectors;
     const w = r.windowPopulation[e.id];
@@ -109,6 +119,7 @@ export function buildContexts(r: BuildResult): Map<string, EditionContext> {
       editionOpponentMix: { bat: mix(t, "battingByOppElo"), bowl: mix(t, "bowlingByOppElo") },
       windowVenueFactors: Object.fromEntries(Object.entries(w?.venueFactors ?? {}).map(([v, f]) => [v, f.factor])),
       editionConditionFactor: +(expectedRuns(pooledPop(editionPop)) / Math.max(0.2, expectedRuns(pooledPop(window.bat.full)))).toFixed(3),
+      topThirdElo,
       odiPop: balls > 0 && outs > 0 ? { strikeRate: (100 * runs) / balls, ballsPerOut: balls / outs } : null,
     });
   }
@@ -204,7 +215,15 @@ function cellRelative(
   return null;
 }
 
-function rateSkill(pe: PlayerEditionIn, ctx: EditionContext, skill: Skill, options: RateOptions = {}): Omit<SkillRating, "percentile" | "display"> {
+/** A skill rating before display mapping, plus the working vectors cohort centring needs. */
+type PartialSkill = Omit<SkillRating, "percentile" | "display"> & {
+  /** Relative vector after edge transfer, before cohort centring. */
+  carried: PhaseVectors;
+  /** The population the value is measured against (window population on the edition's opponent mix). */
+  valuePop: PhaseVectors;
+};
+
+function rateSkill(pe: PlayerEditionIn, ctx: EditionContext, skill: Skill, options: RateOptions = {}): PartialSkill {
   const merged: Required<RateOptions> = { ...DEFAULT_OPTIONS, ...options };
   const m = skill === "bowl" ? merged.bowlPriorMultiplier : 1;
   const opts: Required<RateOptions> = { ...merged, priorStrength: merged.priorStrength * m, phasePriorStrength: merged.phasePriorStrength * m, careerPriorStrength: merged.careerPriorStrength * m };
@@ -215,6 +234,7 @@ function rateSkill(pe: PlayerEditionIn, ctx: EditionContext, skill: Skill, optio
   const odi = odiRelative(pe, ctx, skill);
   const vectors = {} as PhaseVectors;
   const rel = {} as PhaseVectors;
+  const carriedAll = {} as PhaseVectors;
   const valueByPhase = {} as Record<Phase, number>;
   let source: SkillRating["evidence"]["source"] = "population";
 
@@ -243,10 +263,13 @@ function rateSkill(pe: PlayerEditionIn, ctx: EditionContext, skill: Skill, optio
   let transfer = 1;
   if (opts.transferScaleElo > 0) {
     const own = meanOpponentElo(pe.formExposure[skill]);
-    const dest = meanOpponentElo(ctx.editionOpponentMix[skill]);
+    const dest = opts.transferDestination === "topThird" ? ctx.topThirdElo : meanOpponentElo(ctx.editionOpponentMix[skill]);
     if (own !== null && dest !== null && dest > own) transfer = Math.max(0.1, 1 - (dest - own) / opts.transferScaleElo);
   }
-  if (opts.tierMode[skill] === "twoWay" && pe.teamElo !== null) {
+  // On the context-expected path the relative vector already contains the player's own team
+  // strength, so shaping its destination by the team tier counts that strength twice; it is
+  // optional there (`tierDestination`) and always on for the window path.
+  if ((opts.evidence === "window" || opts.tierDestination) && opts.tierMode[skill] === "twoWay" && pe.teamElo !== null) {
     const own = rowMixtureInterp(ctx.twoWay[skill], pe.teamElo, pe.formExposure[skill]);
     const dest = rowMixtureInterp(ctx.twoWay[skill], pe.teamElo, ctx.editionOpponentMix[skill]);
     if (own && dest) {
@@ -267,9 +290,13 @@ function rateSkill(pe: PlayerEditionIn, ctx: EditionContext, skill: Skill, optio
     pe, opts, null, c, skill,
   );
 
+  // Phase 1.5 path: context-expected evidence replaces the window-population normalisation.
+  const expectedPath = opts.evidence === "expected" ? rateSkillExpected(pe, ctx, skill, opts) : null;
+
   for (const phase of PHASE_LIST) {
     let cell: { rel: Vector; source: "form" | "career" } | null;
-    if (opts.phasePooling === "pooled") cell = pooled;
+    if (expectedPath) cell = expectedPath.source === "population" ? null : { rel: expectedPath.rel[phase], source: expectedPath.source };
+    else if (opts.phasePooling === "pooled") cell = pooled;
     else cell = cellRelative(
       (b) => phaseCounts(b, skill, phase),
       { destination: destinations[phase], tier: { full: windowPop.full[phase], associate: windowPop.associate[phase] }, elo: eloPop[phase] },
@@ -298,13 +325,15 @@ function rateSkill(pe: PlayerEditionIn, ctx: EditionContext, skill: Skill, optio
     if (venueFactor !== 1) phaseRel = Object.fromEntries(OUTCOMES.map((k) => [k, k === "W" || k === "0" ? phaseRel[k] : phaseRel[k] / venueFactor])) as Vector;
     rel[phase] = phaseRel;
     // Carry only the transferable share of the edge (log-scaled) into stronger opposition.
-    const carried = transfer === 1 ? phaseRel : (Object.fromEntries(OUTCOMES.map((k) => [k, Math.pow(phaseRel[k], transfer)])) as Vector);
-    vectors[phase] = transport(carried, destinations[phase]);
+    carriedAll[phase] = transfer === 1 ? phaseRel : (Object.fromEntries(OUTCOMES.map((k) => [k, Math.pow(phaseRel[k], transfer)])) as Vector);
+    vectors[phase] = transport(carriedAll[phase], destinations[phase]);
     valueByPhase[phase] = skill === "bat" ? battingValue(vectors[phase], valuePop[phase], opts.wicketCost) : bowlingValue(vectors[phase], valuePop[phase], opts.wicketCost);
   }
 
   const value = PHASE_LIST.reduce((a, p) => a + MODEL.phaseWeights[p] * valueByPhase[p], 0);
   return {
+    carried: carriedAll,
+    valuePop,
     vectors,
     relative: rel,
     value: +value.toFixed(2),
@@ -318,6 +347,7 @@ function rateSkill(pe: PlayerEditionIn, ctx: EditionContext, skill: Skill, optio
       source,
       transfer: +transfer.toFixed(3),
       venueFactor: +venueFactor.toFixed(3),
+      selectionShift: 0,
     },
     // The badge lifts when the form window is thin but a substantial ODI record stands in (2007/2009).
     lowSample: formBalls < (skill === "bat" ? MODEL.badge.batBalls : MODEL.badge.bowlBalls) && !(odi && odi.balls >= (skill === "bat" ? 600 : 900)),
@@ -410,6 +440,37 @@ export interface RateOptions {
   bowlPriorMultiplier?: number;
   /** Venue normalisation exponent (1 = full, 0 = off). */
   venueNormalisation?: number;
+  /**
+   * window   — relative vectors from window populations (tier / Elo / two-way tables)
+   * expected — Phase 1.5: observed ÷ context-expected counts accumulated per ball (period ×
+   *            opponent strength × venue), career-anchored and hierarchically shrunk
+   */
+  evidence?: "window" | "expected";
+  /** Selection prior weight (see MODEL.usage); 0 disables. */
+  selectionWeight?: number;
+  /** Form-window share at or above which being left out carries no information (1 = every miss counts). */
+  selectionMaxShare?: number;
+  /**
+   * Cohort centring (Phase 1.5). The context expectation is "an average T20I player of the period
+   * facing this opposition", and that average weakened as the T20I pool grew (World Cup squads
+   * beat it by 5% in 2010 and 13% in 2026), which inflated whole editions. `top10` re-expresses
+   * every relative vector against the evidence-weighted mean of the squads of the edition's ten
+   * strongest teams (all teams for ten-team editions), so a rating means the same thing relative
+   * to its era whatever the field size. `all` uses every squad; `none` disables.
+   */
+  cohortCentre?: "none" | "top10" | "all";
+  /**
+   * Shape the transport destination by the player's team tier (the two-way table) on the
+   * context-expected path as well. In theory this counts team strength twice; the sweep decides
+   * whether the extra tier gap earns its place.
+   */
+  tierDestination?: boolean;
+  /**
+   * The opposition the edge-transfer gap is measured to: the edition's balls-weighted opponent mix
+   * (which first-round associate fixtures dilute) or the mean Elo of the edition's strongest third
+   * (the sides an unbeaten run must beat).
+   */
+  transferDestination?: "mix" | "topThird";
 }
 
 /**
@@ -432,7 +493,79 @@ export const DEFAULT_OPTIONS: Required<RateOptions> = {
   transferScaleElo: MODEL.transferScaleElo,
   bowlPriorMultiplier: MODEL.bowlPriorMultiplier,
   venueNormalisation: MODEL.venueNormalisation,
+  evidence: MODEL.evidence,
+  selectionWeight: MODEL.usage.selectionWeight,
+  selectionMaxShare: MODEL.usage.selectionMaxShare,
+  cohortCentre: MODEL.cohort.centre,
+  tierDestination: MODEL.tierDestination,
+  transferDestination: MODEL.transferDestination,
 };
+
+/** Share of the team's matches the player was picked for; null when the team played too few. */
+export function usageShares(pe: PlayerEditionIn): PlayerRating["usage"] {
+  const u = pe.usage;
+  const formShare = u.formTeamMatches >= MODEL.usage.minTeamMatches ? +Math.min(1, u.formMatches / u.formTeamMatches).toFixed(3) : null;
+  const tournamentShare = u.tournamentTeamMatches >= MODEL.usage.minTournamentTeamMatches ? +Math.min(1, u.tournamentMatches / u.tournamentTeamMatches).toFixed(3) : null;
+  return { formShare, tournamentShare, squadPlayer: tournamentShare !== null && tournamentShare < MODEL.usage.squadPlayerShare };
+}
+
+/**
+ * Phase 1.5 evidence path: relative vector from observed ÷ expected counts.
+ * rel_k = (o_k + s·centre_k·q_k) / (e_k + s·q_k), q_k = e_k / n — shrinks toward `centre` with
+ * strength `s` pseudo-balls; the dismissal cell uses `sHazard`.
+ */
+function expectedRelative(
+  o: Record<OutcomeKey, number>,
+  e: Record<OutcomeKey, number>,
+  n: number,
+  centre: Vector,
+  s: number,
+  sHazard: number,
+): Vector {
+  const out = {} as Vector;
+  for (const k of OUTCOMES) {
+    const q = n > 0 ? e[k] / n : 0;
+    const strength = k === "W" ? sHazard : s;
+    const num = o[k] + strength * centre[k] * q;
+    const den = e[k] + strength * q;
+    out[k] = den > 0 ? num / den : centre[k];
+  }
+  return out;
+}
+
+function rateSkillExpected(pe: PlayerEditionIn, ctx: EditionContext, skill: Skill, opts: Required<RateOptions>): { rel: PhaseVectors; source: "form" | "career" | "population" } {
+  const c = opts.priorStrength;
+  const zero = (): Record<OutcomeKey, number> => ({ "0": 0, "1": 0, "2": 0, "3": 0, "4": 0, "6": 0, W: 0 });
+  const get = (block: BlockIn, phase: Phase | "all") => {
+    const o = zero(), e = zero();
+    let n = 0;
+    for (const p of phase === "all" ? PHASE_LIST : [phase]) {
+      const pc = block[skill].phases[p];
+      if (!pc) continue;
+      n += pc.balls;
+      for (const k of OUTCOMES) {
+        o[k] += pc.outcomes[k];
+        e[k] += pc.expected?.[k] ?? 0;
+      }
+    }
+    return { o, e, n };
+  };
+  // Level 1: career-to-date relative to context, shrunk toward neutral (1).
+  const careerAll = get(pe.careerToDate, "all");
+  const careerRel = expectedRelative(careerAll.o, careerAll.e, careerAll.n, UNIT, opts.careerPriorStrength, opts.hazardPriorStrength);
+  const priorStrength = Math.max(c, Math.min(MODEL.careerPriorCap, 0.5 * careerAll.n));
+  // Level 2: pooled form, shrunk toward the career centre.
+  const formAll = get(pe.form, "all");
+  const pooled = expectedRelative(formAll.o, formAll.e, formAll.n, careerRel, priorStrength, opts.hazardPriorStrength);
+  // Level 3: each phase, shrunk toward the pooled vector.
+  const rel = {} as PhaseVectors;
+  for (const p of PHASE_LIST) {
+    const f = get(pe.form, p);
+    rel[p] = opts.phasePooling === "pooled" ? pooled : expectedRelative(f.o, f.e, f.n, pooled, opts.phasePriorStrength, opts.hazardPriorStrength);
+  }
+  const source = formAll.n > 0 ? "form" : careerAll.n > 0 ? "career" : "population";
+  return { rel, source };
+}
 
 /** Exposure-weighted mean opponent Elo, using bin centres. */
 const BIN_CENTRE: Record<string, number> = { "<1400": 1350, "1400-1499": 1450, "1500-1599": 1550, "1600-1699": 1650, "1700-1799": 1750, "1800+": 1850 };
@@ -452,8 +585,84 @@ export function rateAll(r: BuildResult, opts: RateOptions = {}): PlayerRating[] 
   const rows = r.playerEditions as unknown as PlayerEditionIn[];
   const partial = rows.map((pe) => {
     const ctx = contexts.get(pe.editionId)!;
-    return { pe, ctx, bat: rateSkill(pe, ctx, "bat", opts), bowl: rateSkill(pe, ctx, "bowl", opts) };
+    return { pe, ctx, usage: usageShares(pe), bat: rateSkill(pe, ctx, "bat", opts), bowl: rateSkill(pe, ctx, "bowl", opts) };
   });
+
+  // Cohort centring (Phase 1.5): see RateOptions.cohortCentre. Vectors and values are re-expressed
+  // against the reference cohort's evidence-weighted mean relative vector; `relative` stays raw.
+  const cohortCentre = opts.cohortCentre ?? DEFAULT_OPTIONS.cohortCentre;
+  if (cohortCentre !== "none") {
+    const stats = new Map<Skill, { group: typeof partial; reference: Set<string> }[]>([["bat", []], ["bowl", []]]);
+    const byEdition = new Map<string, typeof partial>();
+    for (const x of partial) (byEdition.get(x.pe.editionId) ?? byEdition.set(x.pe.editionId, []).get(x.pe.editionId)!).push(x);
+    for (const group of byEdition.values()) {
+      const teamElo = new Map<string, number>();
+      for (const x of group) if (x.pe.teamElo !== null && !x.pe.standIn) teamElo.set(x.pe.team, x.pe.teamElo);
+      const ranked = [...teamElo].sort((a, b) => b[1] - a[1]).map(([team]) => team);
+      const reference = new Set(cohortCentre === "top10" ? ranked.slice(0, MODEL.cohort.teams) : ranked);
+      for (const skill of ["bat", "bowl"] as const) stats.get(skill)!.push({ group, reference });
+    }
+    // Scalar standardisation of the value only (dividing the vectors cell by cell changed
+    // within-edition rankings: batting r fell 0.32 → 0.27). Each edition's reference cohort is
+    // moved to mean 0 and to the evidence-weighted average spread of all editions' reference
+    // cohorts, so an edition with a widened field (twenty teams, record scoring) does not fill the
+    // top of a cross-era display scale on its own. Rankings within an edition and engine vectors
+    // are untouched.
+    for (const skill of ["bat", "bowl"] as const) {
+      const moments = stats.get(skill)!.map(({ group, reference }) => {
+        let w = 0, s1 = 0, s2 = 0;
+        for (const x of group) {
+          const s = x[skill];
+          const weight = s.evidence.formBalls + s.evidence.careerBalls;
+          if (s.lowSample || weight <= 0 || !reference.has(x.pe.team)) continue;
+          w += weight; s1 += weight * s.value; s2 += weight * s.value * s.value;
+        }
+        const mean = w > 0 ? s1 / w : 0;
+        const sd = w > 0 ? Math.sqrt(Math.max(0, s2 / w - mean * mean)) : 0;
+        return { group, w, mean, sd };
+      });
+      const totalW = moments.reduce((a, m) => a + m.w, 0);
+      const targetSd = totalW > 0 ? moments.reduce((a, m) => a + m.w * m.sd, 0) / totalW : 0;
+      for (const { group, w, mean, sd } of moments) {
+        if (w <= 0) continue;
+        const scale = sd > 0 && targetSd > 0 ? targetSd / sd : 1;
+        for (const x of group) {
+          const s = x[skill];
+          s.value = +((s.value - mean) * scale).toFixed(2);
+          for (const p of PHASE_LIST) s.valueByPhase[p] = +((s.valueByPhase[p] - mean) * scale).toFixed(2);
+        }
+      }
+    }
+  }
+
+  // Selection prior (Phase 1.5): selectors' revealed preference. A player picked for a share s of
+  // the team's form-window matches who rates d above the team's median loses w·(1−s)·d. One-sided
+  // and scalar-only: the engine vectors are what the balls say; the ranking also hears the selectors.
+  const selectionWeight = opts.selectionWeight ?? DEFAULT_OPTIONS.selectionWeight;
+  const selectionMaxShare = opts.selectionMaxShare ?? DEFAULT_OPTIONS.selectionMaxShare;
+  if (selectionWeight > 0) {
+    for (const skill of ["bat", "bowl"] as const) {
+      const groups = new Map<string, number[]>();
+      for (const x of partial) if (!x[skill].lowSample) (groups.get(`${x.pe.editionId}|${x.pe.team}`) ?? groups.set(`${x.pe.editionId}|${x.pe.team}`, []).get(`${x.pe.editionId}|${x.pe.team}`)!).push(x[skill].value);
+      const median = (xs: number[]) => {
+        const s = [...xs].sort((a, b) => a - b);
+        return s.length % 2 ? s[(s.length - 1) / 2]! : (s[s.length / 2 - 1]! + s[s.length / 2]!) / 2;
+      };
+      const medians = new Map([...groups].filter(([, xs]) => xs.length >= 3).map(([k, xs]) => [k, median(xs)]));
+      for (const x of partial) {
+        const s = x.usage.formShare;
+        const m = medians.get(`${x.pe.editionId}|${x.pe.team}`);
+        if (s === null || s >= selectionMaxShare || m === undefined || x[skill].value <= m) continue;
+        // Shortfall below the share at which selection stops being informative, rescaled to 0–1.
+        const shortfall = (selectionMaxShare - s) / selectionMaxShare;
+        const d = +(selectionWeight * shortfall * (x[skill].value - m)).toFixed(2);
+        if (d <= 0) continue;
+        x[skill].value = +(x[skill].value - d).toFixed(2);
+        for (const p of PHASE_LIST) x[skill].valueByPhase[p] = +(x[skill].valueByPhase[p] - d).toFixed(2);
+        x[skill].evidence.selectionShift = d;
+      }
+    }
+  }
 
   // Display ranks a conservative value: shrunk toward 0 by the evidence behind it (winner's-curse guard).
   const conservative = (s: Omit<SkillRating, "percentile" | "display">) => {
@@ -483,9 +692,10 @@ export function rateAll(r: BuildResult, opts: RateOptions = {}): PlayerRating[] 
   const batDisplay = toDisplay("bat");
   const bowlDisplay = toDisplay("bowl");
 
-  return partial.map(({ pe, ctx, bat, bowl }) => {
-    const batting: SkillRating = { ...bat, ...batDisplay(conservative(bat)) };
-    const bowling: SkillRating = { ...bowl, ...bowlDisplay(conservative(bowl)) };
+  const finish = ({ carried: _carried, valuePop: _valuePop, ...s }: PartialSkill, display: ReturnType<typeof toDisplay>): SkillRating => ({ ...s, ...display(conservative(s)) });
+  return partial.map(({ pe, ctx, usage, bat, bowl }) => {
+    const batting = finish(bat, batDisplay);
+    const bowling = finish(bowl, bowlDisplay);
     const batBalls = bat.evidence.formBalls + bat.evidence.careerBalls;
     const bowlBalls = bowl.evidence.formBalls + bowl.evidence.careerBalls;
     // A role needs real evidence: a few career overs do not make a batter an all-rounder.
@@ -508,6 +718,7 @@ export function rateAll(r: BuildResult, opts: RateOptions = {}): PlayerRating[] 
       position: positionBand(pe),
       bowlingPhases: bowlingPhases(pe),
       tournamentForm: tournamentForm(pe, ctx, batting, bowling),
+      usage,
       conditions: { editionConditionFactor: ctx.editionConditionFactor },
     };
   });

@@ -743,17 +743,63 @@ the Phase 1.5 bowling model.
   Form, tags. Validation test 7. Audit of the 226 overlapping hand-rated cards against derived
   ratings.
 
-### Phase 1.5 — Per-innings context normalisation (NEXT, ≈1 day)
+### Phase 1.5 — Per-ball context normalisation — **BUILT 2026-10-30**
 
-Score every innings against the population of its own month, opponent-strength bin and ground
-(venue → country → global shrinkage) at accumulation time, so career, form and tournament blocks
-arrive pre-adjusted. Closes in one pass: the career opposition gap (career prior currently uses
-raw counts), the failed window-averaged venue factor (per-innings version), era mismatch in long
-careers, and thin-window anchoring. Also in this pass: edge-transfer gap measured against the
-strongest third of the edition's opponents; usage on ratings (matches played / team overs share,
-Squad Player tag below 25% of matches) and a within-team selection prior weighted by the harness;
-then a Yash review of the 2016/2024/2026 lists whose named errors become test cases. The same
-context populations become the engine's environment tables.
+Plan: score every ball against the population of its own period, opponent-strength bin and ground
+at accumulation time, so career, form and tournament blocks arrive pre-adjusted; measure the
+edge-transfer gap against the strongest third of the edition's opponents; add usage (Squad Player
+tag, within-team selection prior weighted by the harness). Done; the same context populations
+(`ContextPopulation`, first pass of the build) become the engine's environment tables.
+
+**What was built.** `wcdraft/src/analysis/context-population.ts` (year-quarter × opponent bin ×
+phase counts, fallback chain, venue factors); every `PhaseCounts` now carries `expected` next to
+`outcomes`; `formByOppBin` and `usage` on each player-edition; `evidence: "expected"` rating path
+(`outcomes ÷ expected`, career-anchored, hierarchical phases); `transferGaps()` measurement;
+cohort standardisation; usage shares and the Squad Player tag; selection prior (off); within-edition
+correlation as the harness's primary metric. 28 tests. Build 12 s / 395 MB RSS; outputs 36 MB.
+
+**Results (validation sweep, `RATINGS.md`).** Within-edition prediction: batting 0.33 (Phase 1
+0.31; raw form 0.27), bowling 0.19 (Phase 1 0.17; raw 0.09). Stability 0.76 / 0.59. Findings
+that changed the design:
+
+- **The reference population drifts.** The context expectation is "an average T20I player of the
+  period facing this opposition", and that average weakened as the pool grew: World Cup squads beat
+  it by 5% in 2010 and 13% in 2026, so 2026 had twelve 99-rated batters. Fix: each edition's
+  values are shifted and scaled so the squads of its ten strongest teams have mean 0 and a common
+  spread (a scalar standardisation; dividing the vectors cell by cell lowered within-edition
+  batting prediction 0.32 → 0.27, so it was reverted). Rankings within an edition and engine
+  vectors are untouched.
+- **Pooled correlations reward level alignment, not skill.** The tournament target is valued
+  against the whole edition's population, whose composition changes with field size, so the pooled
+  r moved in step with whatever the model did to edition levels. The harness now reports
+  within-edition correlations first; the pooled ones remain for the record.
+- **Venue factor: bowling yes, batting no.** With the per-ball ground factor in the expectation,
+  bowling prediction rose (0.167 → 0.175) and batting fell (0.311 → 0.306, stability 0.746 →
+  0.732). Likely cause: a ground's factor is partly its home batters' quality. `CONTEXT_VENUE` in
+  the build is per skill.
+- **Transfer to the strongest third.** Measuring the Elo gap to the mean of the edition's top third
+  (rather than the balls-weighted opponent mix, which first-round associate fixtures dilute) raised
+  within-edition batting prediction 0.27 → 0.28 and bowling 0.19 → 0.20, and cut Erasmus 2024's
+  carried share from 0.65 to 0.35 and Ura's from 0.44 to 0.17. Direct measurement from the per-bin
+  counts: slope of edge-vs-strong on edge-vs-weak 0.23 (batting, n = 112 at ≥ 60 balls per group)
+  and 0.05 (bowling, n = 115); at ≥ 120 balls, 0.05 / 0.12 (n = 31). The linear 1 − Δ/300 rule is
+  kept (200 and 450 both validated worse once the destination moved).
+- **Tier destination stays on.** Shaping the transport destination by the player's team tier on
+  top of a context-neutral relative vector looks like counting team strength twice, but the sweep
+  was unambiguous (within-edition batting 0.32 with, 0.28 without), so it stays as an empirical
+  tier gap.
+- **Stronger priors.** The context-neutral ratios tolerate more shrinkage: c = 100 (bowling 200),
+  phase prior 300, hazard prior 2,000 all validated better than the Phase 1 values.
+- **Selection prior is off.** Rarely-picked players rating above their team median lose value with
+  weight w; the harness was neutral at w = 0.5 restricted to shares under 0.5 and negative beyond.
+  The knob (`selectionWeight`, `selectionMaxShare`) and the Squad Player tag remain. With it on at
+  0.5, Sundar 2026 bowling would fall by about 5 display points; the tag is what the draft UI shows.
+
+**Open for Yash's review (2016 / 2024 / 2026 lists in `RATINGS.md`).** Erasmus 2024 still 99 at
+bowling (an enormous raw edge against weak attacks; the parked two-sided bowling model is the fix if
+the review confirms it is wrong); Kohli 2022 / 2024 in the 70s (hazard credit, parked); Sammy 2016
+at 95 batting; Bumrah 2024 at 92 (thin, injury-hit window; Tournament Form adds +5); Ferguson 2026
+at 99. Named errors become test cases.
 
 ### Parked (2026-10-28) — revisit only when a trigger below fires
 
@@ -761,7 +807,9 @@ context populations become the engine's environment tables.
 |---|---|---|
 | Captaincy ratings and coach philosophy tags from `captains.csv` / `coaches.csv` | Need name→person joins and only matter once an AI captain exists | Phase 2 bowling-allocation policy |
 | Decision on the 80 Cricinfo-sourced captain rows | Yash's call; no code depends on them yet | Captaincy work starts |
-| Two-sided (batter × bowler × context) bowling model | May be superseded by per-innings normalisation | Bowling prediction still < 0.15 after Phase 1.5 |
+| Two-sided (batter × bowler × context) bowling model | Phase 1.5 lifted bowling prediction to 0.19 (within-edition); the Erasmus 2024 case remains | Yash's review confirms associate bowlers with no top-side exposure are still over-rated |
+| Selection prior (usage) weight > 0 | Harness neutral at w = 0.5 (shares < 0.5), negative beyond; Squad Player tag covers the UI need | Playtesters draft rarely-picked players on ratings alone |
+| Cohort standardisation by top-ten squads | Scalar fix for the drifting reference population; a two-way (own-team × opponent) context expectation would remove the cause | Per-edition spreads still look wrong after review (2026 has 8 batters at 95+, 2024 has 7) |
 | Elo regularisation (closed associate circuits inflate) | Tiered starts soften it; opposition adjustment uses bins | Associate team strength visibly wrong in sim results |
 | Individual condition sensitivity (Jansen-type bounce) | Per-player samples per surface too thin; bounce unobservable | Type-level interactions proven useful first |
 | Hazard credit from long careers (anchors like Kohli undervalued) | Hazard unpredictable at window sizes; career-length evidence is the only route | After per-innings refactor exposes per-innings hazard |

@@ -9,7 +9,8 @@
  */
 
 import type { Config } from "../config.js";
-import { mainInnings, type Match } from "../cricsheet/match.js";
+import { mainInnings, phaseOf, type Match } from "../cricsheet/match.js";
+import type { ContextPopulation } from "./context-population.js";
 import { getOrCreate } from "../util/stats.js";
 import { addInnings, cloneBlock, emptyBlock, summariseBlock, type PlayerBlock } from "./player-block.js";
 import { ELO_BINS, eloBin, type EloBin } from "./team-strength.js";
@@ -74,6 +75,13 @@ export class PlayerStore {
   readonly teamEloAtEdition = new Map<string, Map<string, number>>();
   /** Per (edition, person): form balls by venue string, batting and bowling, for venue normalisation. */
   private readonly formVenueBalls = new Map<string, Map<string, { bat: Record<string, number>; bowl: Record<string, number> }>>();
+  /**
+   * Phase 1.5: form blocks split by the opponent's Elo bin, keyed `${personId}|${bin}` per edition.
+   * Only pooled counts are exported; they feed the edge-transfer measurement (weak vs strong opposition).
+   */
+  private readonly formByBin = new Map<string, BlockMap>();
+  /** editionId → team → matches the team played inside the edition's form window (the usage denominator). */
+  private readonly formTeamMatches = new Map<string, Map<string, number>>();
   private readonly career: BlockMap = new Map();
   private readonly careerSnapshots = new Map<string, BlockMap>();
   /** Stumpings credited to a person anywhere in the archive, any date: the broadest "has kept" signal. */
@@ -133,7 +141,17 @@ export class PlayerStore {
    */
   addMatch(
     m: Match,
-    ctx: { wcEdition: string | null; formEditions: string[]; standInFallback: { editionId: string; team: string }[]; venueId: string | null; elo: MatchElo },
+    ctx: {
+      wcEdition: string | null;
+      formEditions: string[];
+      standInFallback: { editionId: string; team: string }[];
+      venueId: string | null;
+      elo: MatchElo;
+      /** Frozen context populations from the first pass; when present, blocks also accumulate expected outcomes. */
+      context?: ContextPopulation;
+      /** Whether the per-ball expectation includes the ground's scoring factor (default true), optionally per skill. */
+      contextVenue?: boolean | { bat: boolean; bowl: boolean };
+    },
   ): void {
     for (const [id, name] of m.names) if (!this.names.has(id)) this.names.set(id, name);
     this.recordExposure(m, ctx);
@@ -143,8 +161,9 @@ export class PlayerStore {
       }
     }
 
-    // Each target optionally restricts to innings where the *opposition* is of a given tier.
-    type Target = { blocks: BlockMap; member: (id: string) => boolean; opponentTier?: "full" | "associate" };
+    // Each target optionally restricts to innings where the *opposition* is of a given tier, or
+    // (binned) files each member's balls under the opponent's Elo bin instead of under the member alone.
+    type Target = { blocks: BlockMap; member: (id: string) => boolean; opponentTier?: "full" | "associate"; binned?: boolean };
     const targets: Target[] = [{ blocks: this.career, member: () => true }];
     if (ctx.wcEdition) {
       const members = this.squadMembers.get(ctx.wcEdition) ?? new Set<string>();
@@ -165,7 +184,14 @@ export class PlayerStore {
       targets.push({ blocks: getOrCreate(this.form, f.editionId, () => new Map()), member: f.member });
       targets.push({ blocks: getOrCreate(this.formVsFull, f.editionId, () => new Map()), member: f.member, opponentTier: "full" });
       targets.push({ blocks: getOrCreate(this.formVsAssociate, f.editionId, () => new Map()), member: f.member, opponentTier: "associate" });
+      targets.push({ blocks: getOrCreate(this.formByBin, f.editionId, () => new Map()), member: f.member, binned: true });
     }
+    // Usage denominator: every match a squad's team played inside the window counts, whether or
+    // not a given member was picked for it.
+    for (const e of ctx.formEditions) {
+      for (const team of m.teams) if (this.squads.get(e)?.has(team)) this.bumpTeamMatches(e, team);
+    }
+    for (const { editionId, team } of ctx.standInFallback) if (m.teams.includes(team)) this.bumpTeamMatches(editionId, team);
 
     const year = Number(m.date.slice(0, 4));
     const tierOf = (team: string): "full" | "associate" => (this.config.isFullMember(team, year) ? "full" : "associate");
@@ -178,20 +204,40 @@ export class PlayerStore {
         const scratch = emptyBlock();
         const battingTier = tierOf(inn.team);
         const bowlingTier = tierOf(inn.bowlingTeam);
+        const attackBin = eloBin(ctx.elo[inn.bowlingTeam] ?? 1500);
+        const batsideBin = eloBin(ctx.elo[inn.team] ?? 1500);
+        // Phase 1.5: per-ball expected outcomes for the striker (vs the attack) and the bowler (vs the batting side).
+        const cp = ctx.context;
+        // Context is constant within an innings except for the phase, so memoise per phase.
+        const memo: Record<string, Record<string, number>> = {};
+        const lookup = (skill: "bat" | "bowl", opp: number, over: number) => {
+          const key = `${skill}|${phaseOf(over)}`;
+          const useVenue = typeof ctx.contextVenue === "object" ? ctx.contextVenue[skill] : ctx.contextVenue !== false;
+          return (memo[key] ??= cp!.expected(skill, m.date, opp, phaseOf(over), useVenue ? m.venue : null));
+        };
+        const context = cp
+          ? {
+              bat: (b: { over: number }) => lookup("bat", ctx.elo[inn.bowlingTeam] ?? 1500, b.over) as Record<"0" | "1" | "2" | "3" | "4" | "6" | "W", number>,
+              bowl: (b: { over: number }) => lookup("bowl", ctx.elo[inn.team] ?? 1500, b.over) as Record<"0" | "1" | "2" | "3" | "4" | "6" | "W", number>,
+            }
+          : undefined;
         addInnings(
           inn,
           (id) => {
             if (!t.member(id)) return scratch;
+            // A batter in this innings faces the bowling side; anyone else credited (bowler, fielder) faces the batting side.
             if (t.opponentTier) {
-              // A batter in this innings faces the bowling side; anyone else credited (bowler, fielder) faces the batting side.
               const oppTier = inn.batters.has(id) ? bowlingTier : battingTier;
               if (oppTier !== t.opponentTier) return scratch;
             }
+            if (t.binned) return blocks(`${id}|${inn.batters.has(id) ? attackBin : batsideBin}`);
             return blocks(id);
           },
           touched,
+          { context },
         );
       }
+      if (t.binned) continue;
       for (const xi of Object.values(m.xis)) for (const id of xi) if (t.member(id) && !t.opponentTier) blocks(id).matches += 1;
       if (t.opponentTier) {
         for (const [team, xi] of Object.entries(m.xis)) {
@@ -208,6 +254,11 @@ export class PlayerStore {
       if (m.teams.some((t) => this.squads.get(e)?.get(t)?.source === "form-window")) this.recordSquadMatch(e, ctx.venueId ?? "", m, true);
     }
     for (const { editionId } of ctx.standInFallback) this.recordSquadMatch(editionId, ctx.venueId ?? "", m, true);
+  }
+
+  private bumpTeamMatches(editionId: string, team: string): void {
+    const byTeam = getOrCreate(this.formTeamMatches, editionId, () => new Map<string, number>());
+    byTeam.set(team, (byTeam.get(team) ?? 0) + 1);
   }
 
   /** Balls faced (vs the bowling side's Elo bin) and bowled (vs the batting side's Elo bin) per member. */
@@ -333,6 +384,23 @@ export class PlayerStore {
             teamElo: this.teamEloAtEdition.get(editionId)?.get(team) ?? null,
             /** Form balls by venue string (batting / bowling), for venue normalisation. */
             formVenueBalls: this.formVenueBalls.get(editionId)?.get(id) ?? { bat: {}, bowl: {} },
+            /** Pooled form counts (observed and context-expected) per opponent-Elo bin, for the edge-transfer measurement. */
+            formByOppBin: Object.fromEntries(
+              ELO_BINS.map((bin) => {
+                const b = this.formByBin.get(editionId)?.get(`${id}|${bin}`);
+                return [bin, b ? { bat: pooledCounts(b.bat.phases), bowl: pooledCounts(b.bowl.phases) } : null];
+              }).filter((x) => x[1] !== null),
+            ),
+            /**
+             * Selection evidence: matches the player was picked for against matches the team played,
+             * in the form window and in the tournament (both 0 for a stand-in's tournament).
+             */
+            usage: {
+              formMatches: form.matches,
+              formTeamMatches: this.formTeamMatches.get(editionId)?.get(team) ?? 0,
+              tournamentMatches: squad.standIn ? 0 : meta.matches,
+              tournamentTeamMatches: squad.standIn ? 0 : squad.matches.length,
+            },
             /** ODI career at the edition's start: summary only (no phases), the weak prior for 2007/2009. */
             odiCareerToDate: { summary: summariseBlock(odi), positions: odi.bat.positions, dismissals: odi.bat.dismissals },
           });
@@ -419,9 +487,22 @@ function defaultEleven(matches: SquadMatch[]): { xi: string[]; bowlers: string[]
  * Raw counts plus the derived summary, so Phase 1 can re-derive anything (including outcome
  * probabilities, which are deliberately not duplicated here) without re-parsing the archive.
  */
+/** Phase counts summed over phases (observed and context-expected), for compact per-bin exports. */
+function pooledCounts(ph: PlayerBlock["bat"]["phases"]) {
+  const out = { balls: 0, runs: 0, outcomes: { "0": 0, "1": 0, "2": 0, "3": 0, "4": 0, "6": 0, W: 0 } as Record<string, number>, expected: { "0": 0, "1": 0, "2": 0, "3": 0, "4": 0, "6": 0, W: 0 } as Record<string, number> };
+  for (const pc of Object.values(ph)) {
+    out.balls += pc.balls;
+    out.runs += pc.runs;
+    for (const [k, n] of Object.entries(pc.outcomes)) out.outcomes[k] = (out.outcomes[k] ?? 0) + n;
+    for (const [k, n] of Object.entries(pc.expected)) out.expected[k] = Math.round(((out.expected[k] ?? 0) + n) * 1e4) / 1e4;
+  }
+  return out;
+}
+
 function blockOut(b: PlayerBlock) {
+  const round4 = (o: Record<string, number>) => Object.fromEntries(Object.entries(o).map(([k, v]) => [k, Math.round(v * 1e4) / 1e4]));
   const phases = (ph: PlayerBlock["bat"]["phases"]) =>
-    Object.fromEntries(Object.entries(ph).map(([p, pc]) => [p, { balls: pc.balls, runs: pc.runs, outcomes: pc.outcomes }]));
+    Object.fromEntries(Object.entries(ph).map(([p, pc]) => [p, { balls: pc.balls, runs: pc.runs, outcomes: pc.outcomes, expected: round4(pc.expected) }]));
   return {
     summary: summariseBlock(b),
     bat: {

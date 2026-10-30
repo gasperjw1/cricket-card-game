@@ -12,8 +12,20 @@ export const RUNS: Record<OutcomeKey, number> = { "0": 0, "1": 1, "2": 2, "3": 3
 export const PHASE_LIST: Phase[] = ["pp", "mid", "death"];
 
 export const MODEL = {
-  /** Dirichlet prior strength in pseudo-balls (literature range 40–60; chosen by the reliability test). */
-  priorStrength: 50,
+  /**
+   * Evidence path (Phase 1.5, 2026-10-28). `expected`: every ball is compared with what an average
+   * player would have done in that ball's context (period × opponent strength × phase, plus the
+   * ground's scoring factor for bowling), so career, form and tournament blocks are all
+   * context-neutral before any shrinkage. `window`: the Phase 1 path (window populations by tier /
+   * Elo bin / two-way table), kept for comparison in the validation sweep.
+   */
+  evidence: "expected" as "expected" | "window",
+  /**
+   * Dirichlet prior strength in pseudo-balls for the form window over the career centre (the
+   * literature's 40–60 is for a raw rate; the context-neutral ratios tolerate a stronger prior —
+   * the sweep preferred 100 over 50 on both prediction and stability).
+   */
+  priorStrength: 100,
   /** Pseudo-balls of weight given to the T20I career-to-date block as the level-1 prior. */
   careerPriorStrength: 50,
   /** The career-anchored prior's strength over the form window grows with career balls (×0.5), up to this cap. */
@@ -21,11 +33,10 @@ export const MODEL = {
   /** Bowling priors are this many times stronger than batting priors (set by the validation sweep). */
   bowlPriorMultiplier: 2 as number,
   /**
-   * Venue normalisation of form: 1 = divide scoring outcomes by the exposure-weighted venue
-   * factor; 0 = off. OFF by default: the window-averaged ground factor lowered batting prediction
-   * (0.288 vs 0.297) and barely moved bowling (0.153 vs 0.150), because factors average toward 1
-   * over a 24-month window. The per-innings, venue-type version (spin/pace by ground class) is
-   * the Phase 1.5 design; the factors are still computed and exported for it.
+   * Window-averaged venue normalisation of form (the Phase 1 version): 1 = divide scoring outcomes
+   * by the exposure-weighted venue factor; 0 = off. Superseded by the per-ball ground factor inside
+   * the context expectation (`CONTEXT_VENUE` in the build), which the sweep keeps for bowling only:
+   * it raised bowling prediction (0.167 → 0.175) and lowered batting (0.311 → 0.306).
    */
   venueNormalisation: 0 as number,
   /** Pseudo-balls of weight given to the ODI-derived prior when T20 evidence is thin (2007/2009). */
@@ -37,9 +48,9 @@ export const MODEL = {
    * sample sizes (validation: r ≈ 0.09 for any estimator), so they are shrunk far harder than
    * scoring outcomes. Baseball's BABIP needs ~800 balls in play to reach r = 0.7.
    */
-  hazardPriorStrength: 1000 as number,
+  hazardPriorStrength: 2000 as number,
   /** Hierarchical phase model: how strongly each phase is held to the player's pooled vector. */
-  phasePriorStrength: 150 as number,
+  phasePriorStrength: 300 as number,
   /**
    * Edge transfer: a player's edge over their own tier against opposition of mean Elo E_own is
    * raised to the power max(0.1, 1 − (E_dest − E_own)/transferScaleElo) when carried to stronger
@@ -66,6 +77,28 @@ export const MODEL = {
   timeless: { topFraction: 0.1, minEditions: 3, minSpanYears: 8 },
   /** Positionless tag: inter-quartile batting position span of at least this many places. */
   positionlessSpan: 3,
+  /**
+   * Usage / selection (Phase 1.5). `selectionWeight` w: a player picked for share s of the team's
+   * form-window matches, rating above the team median by d, loses w·(1−s)·d of value (one-sided:
+   * not being picked is evidence against a high rating, not for one). Set by the validation sweep.
+   * Squad Player tag: tournament share below `squadPlayerShare`.
+   */
+  usage: { selectionWeight: 0 as number, selectionMaxShare: 1 as number, minTeamMatches: 5, squadPlayerShare: 0.25, minTournamentTeamMatches: 4 },
+  /**
+   * Cohort centring (Phase 1.5): relative vectors are re-expressed against the evidence-weighted
+   * mean of the squads of the edition's `teams` strongest sides, because the context expectation's
+   * reference (the average T20I player of the period) weakened as the pool grew and inflated the
+   * later editions (mean batting value 11 in 2026 vs ≈2 before 2022; twelve 99s).
+   */
+  cohort: { centre: "top10" as "none" | "top10" | "all", teams: 10 },
+  /**
+   * Shape the transport destination by team tier on the context-expected path (see RateOptions).
+   * Sweep 2026-10-28: within-edition batting prediction 0.32 with it vs 0.28 without; the extra
+   * tier gap is empirically earned even though it looks like double counting.
+   */
+  tierDestination: true as boolean,
+  /** Opposition the edge-transfer gap is measured to (see RateOptions). Sweep: strongest third 0.283 vs mix 0.266 (batting within-edition). */
+  transferDestination: "topThird" as "mix" | "topThird",
 } as const;
 
 export type Vector = Record<OutcomeKey, number>;
@@ -75,6 +108,8 @@ export interface PhaseCountsOut {
   balls: number;
   runs: number;
   outcomes: Record<OutcomeKey, number>;
+  /** Context-expected outcome counts over the same balls (Phase 1.5); zeros when unavailable. */
+  expected?: Record<OutcomeKey, number>;
 }
 
 /** The slice of a player-edition row the ratings code reads. */
@@ -106,7 +141,17 @@ export interface PlayerEditionIn {
   tournamentExposure: { bat: Record<string, number>; bowl: Record<string, number> };
   teamElo: number | null;
   formVenueBalls: { bat: Record<string, number>; bowl: Record<string, number> };
+  /** Pooled form counts per opponent-Elo bin (keys from ELO_BINS; absent bins had no balls). */
+  formByOppBin: Record<string, Record<"bat" | "bowl", PooledCountsIn>>;
+  usage: { formMatches: number; formTeamMatches: number; tournamentMatches: number; tournamentTeamMatches: number };
   odiCareerToDate: { summary: BlockIn["summary"] };
+}
+
+export interface PooledCountsIn {
+  balls: number;
+  runs: number;
+  outcomes: Record<OutcomeKey, number>;
+  expected: Record<OutcomeKey, number>;
 }
 
 export interface SkillRating {
@@ -133,6 +178,11 @@ export interface SkillRating {
     transfer: number;
     /** Exposure-weighted scoring factor of the grounds the form was earned on (1 = window average). */
     venueFactor: number;
+    /**
+     * Selection prior: value points removed because the player was picked for only a share of
+     * the team's form-window matches while rating above the team's median (0 when not applied).
+     */
+    selectionShift: number;
   };
   /** Percentile among rated player-editions (0–1) and the 40–99 display value. */
   percentile: number;
@@ -156,6 +206,12 @@ export interface PlayerRating {
   bowlingPhases: Record<Phase, number> | null;
   /** Era-locked Tournament Form modifier in display points (0 when gated out). */
   tournamentForm: { batting: number; bowling: number; gated: boolean };
+  /**
+   * Selection evidence. `formShare` = matches picked ÷ team matches in the form window (null when
+   * the team played fewer than `usage.minTeamMatches`); `tournamentShare` likewise for the World
+   * Cup itself. `squadPlayer` is the era-locked tag: picked for under a quarter of the tournament.
+   */
+  usage: { formShare: number | null; tournamentShare: number | null; squadPlayer: boolean };
   /**
    * Conditions context for the projected modifier (kept separate from the neutral overall):
    * how the tournament's realised scoring compared with the form era. Per-venue projection

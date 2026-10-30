@@ -12,6 +12,12 @@ export interface PhaseCounts {
   balls: number;
   runs: number;
   outcomes: OutcomeCounts;
+  /**
+   * Phase 1.5: the sum over the same balls of what an average player would have done in each
+   * ball's context (period × opponent strength × venue). `outcomes ÷ expected` is the player's
+   * context-neutral relative vector; empty (all zero) when no context model was supplied.
+   */
+  expected: OutcomeCounts;
 }
 
 export interface BatBlock {
@@ -68,7 +74,13 @@ export interface PlayerBlock {
 
 const emptyOutcomes = (): OutcomeCounts => ({ "0": 0, "1": 0, "2": 0, "3": 0, "4": 0, "6": 0, W: 0 });
 const emptyPhases = (): Record<Phase, PhaseCounts> =>
-  Object.fromEntries(PHASES.map((p) => [p, { balls: 0, runs: 0, outcomes: emptyOutcomes() }])) as Record<Phase, PhaseCounts>;
+  Object.fromEntries(PHASES.map((p) => [p, { balls: 0, runs: 0, outcomes: emptyOutcomes(), expected: emptyOutcomes() }])) as Record<Phase, PhaseCounts>;
+
+/** Supplies, per ball, the context-expected outcome probabilities for the striker and the bowler. */
+export interface BallContext {
+  bat: (ball: { over: number }) => OutcomeCounts;
+  bowl: (ball: { over: number }) => OutcomeCounts;
+}
 
 export function emptyBlock(): PlayerBlock {
   return {
@@ -109,7 +121,7 @@ export function addInnings(
   innings: Innings,
   blocks: (id: string) => PlayerBlock,
   touched: Set<string>,
-  opts: { phaseVectors?: boolean } = {},
+  opts: { phaseVectors?: boolean; context?: BallContext } = {},
 ): void {
   // ODI innings pass phaseVectors: false — T20 phase boundaries mean nothing over 50 overs.
   const phaseVectors = (opts.phaseVectors ?? true) && !innings.reduced;
@@ -128,6 +140,10 @@ export function addInnings(
       pc.balls += 1;
       pc.runs += ball.runsBatter;
       pc.outcomes[outcomeKey(ball.runsBatter, strikerOut)] += 1;
+      if (opts.context) {
+        const e = opts.context.bat(ball);
+        for (const k of OUTCOME_KEYS) pc.expected[k] += e[k];
+      }
       touched.add(ball.batter);
     }
     if (nonStrikerOut) {
@@ -143,6 +159,10 @@ export function addInnings(
       pc.balls += 1;
       pc.runs += ball.runsConceded;
       pc.outcomes[outcomeKey(ball.runsConceded, credited)] += 1;
+      if (opts.context) {
+        const e = opts.context.bowl(ball);
+        for (const k of OUTCOME_KEYS) pc.expected[k] += e[k];
+      }
     }
     if (ball.legal && ball.runsConceded === 0 && !credited) bowl.dots += 1;
     if (ball.isFour) bowl.fours += 1;

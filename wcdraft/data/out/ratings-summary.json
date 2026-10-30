@@ -1,9 +1,9 @@
 {
   "validation": [
     {
-      "variant": "DEFAULT: hierarchical(150), bat two-way / bowl elo, linear transfer 300, c=50 (bowl ×2), hazard 1000, career 50",
+      "variant": "DEFAULT (Phase 1.5): context-expected evidence, hierarchical(300), c=100 (bowl ×2), hazard 2000, career 50, linear transfer 300",
       "options": {
-        "priorStrength": 50,
+        "priorStrength": 100,
         "phasePooling": "hierarchical",
         "tierMode": {
           "bat": "twoWay",
@@ -11,490 +11,58 @@
         },
         "careerPriorStrength": 50,
         "wicketCost": 2.6,
-        "hazardPriorStrength": 1000,
-        "phasePriorStrength": 150,
+        "hazardPriorStrength": 2000,
+        "phasePriorStrength": 300,
         "transferScaleElo": 300,
         "bowlPriorMultiplier": 2,
-        "venueNormalisation": 0
+        "venueNormalisation": 0,
+        "evidence": "expected",
+        "selectionWeight": 0,
+        "selectionMaxShare": 1,
+        "cohortCentre": "top10",
+        "tierDestination": true,
+        "transferDestination": "topThird"
       },
       "predictive": {
         "batting": {
           "n": 392,
-          "model": 0.297,
-          "modelTiered": 0.303,
-          "rawFormValue": 0.279,
-          "rawFormRate": 0.268,
-          "careerRate": 0.259,
-          "runs": {
-            "model": 0.331,
-            "rawForm": 0.328
-          },
-          "hazard": {
-            "model": 0.13,
-            "rawForm": 0.076
-          }
-        },
-        "bowling": {
-          "n": 324,
-          "model": 0.15,
-          "modelTiered": 0.117,
-          "rawFormValue": 0.044,
-          "rawFormRate": 0.094,
-          "careerRate": 0.114,
-          "runs": {
-            "model": 0.165,
-            "rawForm": 0.083
-          },
-          "hazard": {
-            "model": 0.101,
-            "rawForm": 0.075
-          }
-        }
-      },
-      "stability": {
-        "batting": {
-          "n": 499,
-          "model": 0.769,
-          "rawFormSR": 0.454
-        },
-        "bowling": {
-          "n": 408,
-          "model": 0.658,
-          "rawFormEconomy": 0.44
-        }
-      }
-    },
-    {
-      "variant": "venue normalisation off",
-      "options": {
-        "priorStrength": 50,
-        "phasePooling": "hierarchical",
-        "tierMode": {
-          "bat": "twoWay",
-          "bowl": "elo"
-        },
-        "careerPriorStrength": 50,
-        "wicketCost": 2.6,
-        "hazardPriorStrength": 1000,
-        "phasePriorStrength": 150,
-        "transferScaleElo": 300,
-        "bowlPriorMultiplier": 2,
-        "venueNormalisation": 0
-      },
-      "predictive": {
-        "batting": {
-          "n": 392,
-          "model": 0.297,
-          "modelTiered": 0.303,
-          "rawFormValue": 0.279,
-          "rawFormRate": 0.268,
-          "careerRate": 0.259,
-          "runs": {
-            "model": 0.331,
-            "rawForm": 0.328
-          },
-          "hazard": {
-            "model": 0.13,
-            "rawForm": 0.076
-          }
-        },
-        "bowling": {
-          "n": 324,
-          "model": 0.15,
-          "modelTiered": 0.117,
-          "rawFormValue": 0.044,
-          "rawFormRate": 0.094,
-          "careerRate": 0.114,
-          "runs": {
-            "model": 0.165,
-            "rawForm": 0.083
-          },
-          "hazard": {
-            "model": 0.101,
-            "rawForm": 0.075
-          }
-        }
-      },
-      "stability": {
-        "batting": {
-          "n": 499,
-          "model": 0.769,
-          "rawFormSR": 0.454
-        },
-        "bowling": {
-          "n": 408,
-          "model": 0.658,
-          "rawFormEconomy": 0.44
-        }
-      }
-    },
-    {
-      "variant": "venue normalisation half",
-      "options": {
-        "priorStrength": 50,
-        "phasePooling": "hierarchical",
-        "tierMode": {
-          "bat": "twoWay",
-          "bowl": "elo"
-        },
-        "careerPriorStrength": 50,
-        "wicketCost": 2.6,
-        "hazardPriorStrength": 1000,
-        "phasePriorStrength": 150,
-        "transferScaleElo": 300,
-        "bowlPriorMultiplier": 2,
-        "venueNormalisation": 0.5
-      },
-      "predictive": {
-        "batting": {
-          "n": 392,
-          "model": 0.293,
-          "modelTiered": 0.298,
-          "rawFormValue": 0.279,
-          "rawFormRate": 0.268,
-          "careerRate": 0.259,
-          "runs": {
+          "within": {
             "model": 0.326,
-            "rawForm": 0.328
+            "rawFormValue": 0.272,
+            "rawFormRate": 0.268
           },
-          "hazard": {
-            "model": 0.127,
-            "rawForm": 0.076
-          }
-        },
-        "bowling": {
-          "n": 324,
-          "model": 0.152,
-          "modelTiered": 0.119,
-          "rawFormValue": 0.044,
-          "rawFormRate": 0.094,
-          "careerRate": 0.114,
-          "runs": {
-            "model": 0.167,
-            "rawForm": 0.083
-          },
-          "hazard": {
-            "model": 0.109,
-            "rawForm": 0.075
-          }
-        }
-      },
-      "stability": {
-        "batting": {
-          "n": 499,
-          "model": 0.769,
-          "rawFormSR": 0.454
-        },
-        "bowling": {
-          "n": 408,
-          "model": 0.66,
-          "rawFormEconomy": 0.44
-        }
-      }
-    },
-    {
-      "variant": "bowl prior ×1",
-      "options": {
-        "priorStrength": 50,
-        "phasePooling": "hierarchical",
-        "tierMode": {
-          "bat": "twoWay",
-          "bowl": "elo"
-        },
-        "careerPriorStrength": 50,
-        "wicketCost": 2.6,
-        "hazardPriorStrength": 1000,
-        "phasePriorStrength": 150,
-        "transferScaleElo": 300,
-        "bowlPriorMultiplier": 1,
-        "venueNormalisation": 0
-      },
-      "predictive": {
-        "batting": {
-          "n": 392,
-          "model": 0.297,
-          "modelTiered": 0.303,
+          "model": 0.305,
+          "modelTiered": 0.315,
           "rawFormValue": 0.279,
           "rawFormRate": 0.268,
           "careerRate": 0.259,
           "runs": {
-            "model": 0.331,
+            "model": 0.382,
             "rawForm": 0.328
           },
           "hazard": {
-            "model": 0.13,
+            "model": 0.134,
             "rawForm": 0.076
           }
         },
         "bowling": {
           "n": 324,
-          "model": 0.138,
-          "modelTiered": 0.106,
+          "within": {
+            "model": 0.19,
+            "rawFormValue": 0.087,
+            "rawFormRate": 0.102
+          },
+          "model": 0.18,
+          "modelTiered": 0.171,
           "rawFormValue": 0.044,
           "rawFormRate": 0.094,
           "careerRate": 0.114,
           "runs": {
-            "model": 0.145,
+            "model": 0.218,
             "rawForm": 0.083
           },
           "hazard": {
-            "model": 0.101,
-            "rawForm": 0.075
-          }
-        }
-      },
-      "stability": {
-        "batting": {
-          "n": 499,
-          "model": 0.769,
-          "rawFormSR": 0.454
-        },
-        "bowling": {
-          "n": 408,
-          "model": 0.641,
-          "rawFormEconomy": 0.44
-        }
-      }
-    },
-    {
-      "variant": "bowl prior ×4",
-      "options": {
-        "priorStrength": 50,
-        "phasePooling": "hierarchical",
-        "tierMode": {
-          "bat": "twoWay",
-          "bowl": "elo"
-        },
-        "careerPriorStrength": 50,
-        "wicketCost": 2.6,
-        "hazardPriorStrength": 1000,
-        "phasePriorStrength": 150,
-        "transferScaleElo": 300,
-        "bowlPriorMultiplier": 4,
-        "venueNormalisation": 0
-      },
-      "predictive": {
-        "batting": {
-          "n": 392,
-          "model": 0.297,
-          "modelTiered": 0.303,
-          "rawFormValue": 0.279,
-          "rawFormRate": 0.268,
-          "careerRate": 0.259,
-          "runs": {
-            "model": 0.331,
-            "rawForm": 0.328
-          },
-          "hazard": {
-            "model": 0.13,
-            "rawForm": 0.076
-          }
-        },
-        "bowling": {
-          "n": 324,
-          "model": 0.154,
-          "modelTiered": 0.121,
-          "rawFormValue": 0.044,
-          "rawFormRate": 0.094,
-          "careerRate": 0.114,
-          "runs": {
-            "model": 0.182,
-            "rawForm": 0.083
-          },
-          "hazard": {
-            "model": 0.102,
-            "rawForm": 0.075
-          }
-        }
-      },
-      "stability": {
-        "batting": {
-          "n": 499,
-          "model": 0.769,
-          "rawFormSR": 0.454
-        },
-        "bowling": {
-          "n": 408,
-          "model": 0.674,
-          "rawFormEconomy": 0.44
-        }
-      }
-    },
-    {
-      "variant": "two-way, full transfer (scale 0)",
-      "options": {
-        "priorStrength": 50,
-        "phasePooling": "hierarchical",
-        "tierMode": {
-          "bat": "twoWay",
-          "bowl": "elo"
-        },
-        "careerPriorStrength": 50,
-        "wicketCost": 2.6,
-        "hazardPriorStrength": 1000,
-        "phasePriorStrength": 150,
-        "transferScaleElo": 0,
-        "bowlPriorMultiplier": 2,
-        "venueNormalisation": 0
-      },
-      "predictive": {
-        "batting": {
-          "n": 392,
-          "model": 0.287,
-          "modelTiered": 0.291,
-          "rawFormValue": 0.279,
-          "rawFormRate": 0.268,
-          "careerRate": 0.259,
-          "runs": {
-            "model": 0.314,
-            "rawForm": 0.328
-          },
-          "hazard": {
-            "model": 0.137,
-            "rawForm": 0.076
-          }
-        },
-        "bowling": {
-          "n": 324,
-          "model": 0.118,
-          "modelTiered": 0.081,
-          "rawFormValue": 0.044,
-          "rawFormRate": 0.094,
-          "careerRate": 0.114,
-          "runs": {
-            "model": 0.132,
-            "rawForm": 0.083
-          },
-          "hazard": {
-            "model": 0.078,
-            "rawForm": 0.075
-          }
-        }
-      },
-      "stability": {
-        "batting": {
-          "n": 499,
-          "model": 0.734,
-          "rawFormSR": 0.454
-        },
-        "bowling": {
-          "n": 408,
-          "model": 0.637,
-          "rawFormEconomy": 0.44
-        }
-      }
-    },
-    {
-      "variant": "two-way, transfer 200",
-      "options": {
-        "priorStrength": 50,
-        "phasePooling": "hierarchical",
-        "tierMode": {
-          "bat": "twoWay",
-          "bowl": "elo"
-        },
-        "careerPriorStrength": 50,
-        "wicketCost": 2.6,
-        "hazardPriorStrength": 1000,
-        "phasePriorStrength": 150,
-        "transferScaleElo": 200,
-        "bowlPriorMultiplier": 2,
-        "venueNormalisation": 0
-      },
-      "predictive": {
-        "batting": {
-          "n": 392,
-          "model": 0.296,
-          "modelTiered": 0.302,
-          "rawFormValue": 0.279,
-          "rawFormRate": 0.268,
-          "careerRate": 0.259,
-          "runs": {
-            "model": 0.33,
-            "rawForm": 0.328
-          },
-          "hazard": {
-            "model": 0.125,
-            "rawForm": 0.076
-          }
-        },
-        "bowling": {
-          "n": 324,
-          "model": 0.167,
-          "modelTiered": 0.139,
-          "rawFormValue": 0.044,
-          "rawFormRate": 0.094,
-          "careerRate": 0.114,
-          "runs": {
-            "model": 0.183,
-            "rawForm": 0.083
-          },
-          "hazard": {
-            "model": 0.112,
-            "rawForm": 0.075
-          }
-        }
-      },
-      "stability": {
-        "batting": {
-          "n": 499,
-          "model": 0.777,
-          "rawFormSR": 0.454
-        },
-        "bowling": {
-          "n": 408,
-          "model": 0.658,
-          "rawFormEconomy": 0.44
-        }
-      }
-    },
-    {
-      "variant": "two-way, transfer 450",
-      "options": {
-        "priorStrength": 50,
-        "phasePooling": "hierarchical",
-        "tierMode": {
-          "bat": "twoWay",
-          "bowl": "elo"
-        },
-        "careerPriorStrength": 50,
-        "wicketCost": 2.6,
-        "hazardPriorStrength": 1000,
-        "phasePriorStrength": 150,
-        "transferScaleElo": 450,
-        "bowlPriorMultiplier": 2,
-        "venueNormalisation": 0
-      },
-      "predictive": {
-        "batting": {
-          "n": 392,
-          "model": 0.296,
-          "modelTiered": 0.302,
-          "rawFormValue": 0.279,
-          "rawFormRate": 0.268,
-          "careerRate": 0.259,
-          "runs": {
-            "model": 0.329,
-            "rawForm": 0.328
-          },
-          "hazard": {
-            "model": 0.133,
-            "rawForm": 0.076
-          }
-        },
-        "bowling": {
-          "n": 324,
-          "model": 0.138,
-          "modelTiered": 0.104,
-          "rawFormValue": 0.044,
-          "rawFormRate": 0.094,
-          "careerRate": 0.114,
-          "runs": {
-            "model": 0.153,
-            "rawForm": 0.083
-          },
-          "hazard": {
-            "model": 0.093,
+            "model": 0.124,
             "rawForm": 0.075
           }
         }
@@ -507,272 +75,16 @@
         },
         "bowling": {
           "n": 408,
-          "model": 0.656,
+          "model": 0.586,
           "rawFormEconomy": 0.44
         }
       }
     },
     {
-      "variant": "bat two-way / bowl two-way",
+      "variant": "Phase 1 default: window evidence (bat two-way / bowl elo), hierarchical(150), c=50, hazard 1000",
       "options": {
         "priorStrength": 50,
         "phasePooling": "hierarchical",
-        "tierMode": {
-          "bat": "twoWay",
-          "bowl": "twoWay"
-        },
-        "careerPriorStrength": 50,
-        "wicketCost": 2.6,
-        "hazardPriorStrength": 1000,
-        "phasePriorStrength": 150,
-        "transferScaleElo": 300,
-        "bowlPriorMultiplier": 2,
-        "venueNormalisation": 0
-      },
-      "predictive": {
-        "batting": {
-          "n": 392,
-          "model": 0.297,
-          "modelTiered": 0.303,
-          "rawFormValue": 0.279,
-          "rawFormRate": 0.268,
-          "careerRate": 0.259,
-          "runs": {
-            "model": 0.331,
-            "rawForm": 0.328
-          },
-          "hazard": {
-            "model": 0.13,
-            "rawForm": 0.076
-          }
-        },
-        "bowling": {
-          "n": 324,
-          "model": 0.149,
-          "modelTiered": 0.12,
-          "rawFormValue": 0.044,
-          "rawFormRate": 0.094,
-          "careerRate": 0.114,
-          "runs": {
-            "model": 0.168,
-            "rawForm": 0.083
-          },
-          "hazard": {
-            "model": 0.129,
-            "rawForm": 0.075
-          }
-        }
-      },
-      "stability": {
-        "batting": {
-          "n": 499,
-          "model": 0.769,
-          "rawFormSR": 0.454
-        },
-        "bowling": {
-          "n": 408,
-          "model": 0.639,
-          "rawFormEconomy": 0.44
-        }
-      }
-    },
-    {
-      "variant": "bat two-way / bowl none",
-      "options": {
-        "priorStrength": 50,
-        "phasePooling": "hierarchical",
-        "tierMode": {
-          "bat": "twoWay",
-          "bowl": "none"
-        },
-        "careerPriorStrength": 50,
-        "wicketCost": 2.6,
-        "hazardPriorStrength": 1000,
-        "phasePriorStrength": 150,
-        "transferScaleElo": 300,
-        "bowlPriorMultiplier": 2,
-        "venueNormalisation": 0
-      },
-      "predictive": {
-        "batting": {
-          "n": 392,
-          "model": 0.297,
-          "modelTiered": 0.303,
-          "rawFormValue": 0.279,
-          "rawFormRate": 0.268,
-          "careerRate": 0.259,
-          "runs": {
-            "model": 0.331,
-            "rawForm": 0.328
-          },
-          "hazard": {
-            "model": 0.13,
-            "rawForm": 0.076
-          }
-        },
-        "bowling": {
-          "n": 324,
-          "model": 0.135,
-          "modelTiered": 0.1,
-          "rawFormValue": 0.044,
-          "rawFormRate": 0.094,
-          "careerRate": 0.114,
-          "runs": {
-            "model": 0.148,
-            "rawForm": 0.083
-          },
-          "hazard": {
-            "model": 0.099,
-            "rawForm": 0.075
-          }
-        }
-      },
-      "stability": {
-        "batting": {
-          "n": 499,
-          "model": 0.769,
-          "rawFormSR": 0.454
-        },
-        "bowling": {
-          "n": 408,
-          "model": 0.674,
-          "rawFormEconomy": 0.44
-        }
-      }
-    },
-    {
-      "variant": "opposition none / none (control), transfer 300",
-      "options": {
-        "priorStrength": 50,
-        "phasePooling": "hierarchical",
-        "tierMode": {
-          "bat": "none",
-          "bowl": "none"
-        },
-        "careerPriorStrength": 50,
-        "wicketCost": 2.6,
-        "hazardPriorStrength": 1000,
-        "phasePriorStrength": 150,
-        "transferScaleElo": 300,
-        "bowlPriorMultiplier": 2,
-        "venueNormalisation": 0
-      },
-      "predictive": {
-        "batting": {
-          "n": 392,
-          "model": 0.292,
-          "modelTiered": 0.296,
-          "rawFormValue": 0.279,
-          "rawFormRate": 0.268,
-          "careerRate": 0.259,
-          "runs": {
-            "model": 0.305,
-            "rawForm": 0.328
-          },
-          "hazard": {
-            "model": 0.113,
-            "rawForm": 0.076
-          }
-        },
-        "bowling": {
-          "n": 324,
-          "model": 0.135,
-          "modelTiered": 0.1,
-          "rawFormValue": 0.044,
-          "rawFormRate": 0.094,
-          "careerRate": 0.114,
-          "runs": {
-            "model": 0.148,
-            "rawForm": 0.083
-          },
-          "hazard": {
-            "model": 0.099,
-            "rawForm": 0.075
-          }
-        }
-      },
-      "stability": {
-        "batting": {
-          "n": 499,
-          "model": 0.741,
-          "rawFormSR": 0.454
-        },
-        "bowling": {
-          "n": 408,
-          "model": 0.674,
-          "rawFormEconomy": 0.44
-        }
-      }
-    },
-    {
-      "variant": "opposition none / none, full transfer",
-      "options": {
-        "priorStrength": 50,
-        "phasePooling": "hierarchical",
-        "tierMode": {
-          "bat": "none",
-          "bowl": "none"
-        },
-        "careerPriorStrength": 50,
-        "wicketCost": 2.6,
-        "hazardPriorStrength": 1000,
-        "phasePriorStrength": 150,
-        "transferScaleElo": 0,
-        "bowlPriorMultiplier": 2,
-        "venueNormalisation": 0
-      },
-      "predictive": {
-        "batting": {
-          "n": 392,
-          "model": 0.279,
-          "modelTiered": 0.283,
-          "rawFormValue": 0.279,
-          "rawFormRate": 0.268,
-          "careerRate": 0.259,
-          "runs": {
-            "model": 0.298,
-            "rawForm": 0.328
-          },
-          "hazard": {
-            "model": 0.117,
-            "rawForm": 0.076
-          }
-        },
-        "bowling": {
-          "n": 324,
-          "model": 0.097,
-          "modelTiered": 0.057,
-          "rawFormValue": 0.044,
-          "rawFormRate": 0.094,
-          "careerRate": 0.114,
-          "runs": {
-            "model": 0.109,
-            "rawForm": 0.083
-          },
-          "hazard": {
-            "model": 0.075,
-            "rawForm": 0.075
-          }
-        }
-      },
-      "stability": {
-        "batting": {
-          "n": 499,
-          "model": 0.721,
-          "rawFormSR": 0.454
-        },
-        "bowling": {
-          "n": 408,
-          "model": 0.671,
-          "rawFormEconomy": 0.44
-        }
-      }
-    },
-    {
-      "variant": "pooled phases",
-      "options": {
-        "priorStrength": 50,
-        "phasePooling": "pooled",
         "tierMode": {
           "bat": "twoWay",
           "bowl": "elo"
@@ -783,34 +95,210 @@
         "phasePriorStrength": 150,
         "transferScaleElo": 300,
         "bowlPriorMultiplier": 2,
-        "venueNormalisation": 0
+        "venueNormalisation": 0,
+        "evidence": "window",
+        "selectionWeight": 0,
+        "selectionMaxShare": 1,
+        "cohortCentre": "top10",
+        "tierDestination": true,
+        "transferDestination": "topThird"
       },
       "predictive": {
         "batting": {
           "n": 392,
-          "model": 0.288,
-          "modelTiered": 0.294,
+          "within": {
+            "model": 0.309,
+            "rawFormValue": 0.272,
+            "rawFormRate": 0.268
+          },
+          "model": 0.29,
+          "modelTiered": 0.302,
           "rawFormValue": 0.279,
           "rawFormRate": 0.268,
           "careerRate": 0.259,
           "runs": {
-            "model": 0.361,
+            "model": 0.338,
             "rawForm": 0.328
           },
           "hazard": {
-            "model": 0.124,
+            "model": 0.134,
             "rawForm": 0.076
           }
         },
         "bowling": {
           "n": 324,
-          "model": 0.159,
+          "within": {
+            "model": 0.166,
+            "rawFormValue": 0.087,
+            "rawFormRate": 0.102
+          },
+          "model": 0.154,
+          "modelTiered": 0.13,
+          "rawFormValue": 0.044,
+          "rawFormRate": 0.094,
+          "careerRate": 0.114,
+          "runs": {
+            "model": 0.193,
+            "rawForm": 0.083
+          },
+          "hazard": {
+            "model": 0.122,
+            "rawForm": 0.075
+          }
+        }
+      },
+      "stability": {
+        "batting": {
+          "n": 499,
+          "model": 0.805,
+          "rawFormSR": 0.454
+        },
+        "bowling": {
+          "n": 408,
+          "model": 0.65,
+          "rawFormEconomy": 0.44
+        }
+      }
+    },
+    {
+      "variant": "Phase 1 window evidence with the Phase 1.5 priors",
+      "options": {
+        "priorStrength": 100,
+        "phasePooling": "hierarchical",
+        "tierMode": {
+          "bat": "twoWay",
+          "bowl": "elo"
+        },
+        "careerPriorStrength": 50,
+        "wicketCost": 2.6,
+        "hazardPriorStrength": 2000,
+        "phasePriorStrength": 300,
+        "transferScaleElo": 300,
+        "bowlPriorMultiplier": 2,
+        "venueNormalisation": 0,
+        "evidence": "window",
+        "selectionWeight": 0,
+        "selectionMaxShare": 1,
+        "cohortCentre": "top10",
+        "tierDestination": true,
+        "transferDestination": "topThird"
+      },
+      "predictive": {
+        "batting": {
+          "n": 392,
+          "within": {
+            "model": 0.314,
+            "rawFormValue": 0.272,
+            "rawFormRate": 0.268
+          },
+          "model": 0.296,
+          "modelTiered": 0.307,
+          "rawFormValue": 0.279,
+          "rawFormRate": 0.268,
+          "careerRate": 0.259,
+          "runs": {
+            "model": 0.342,
+            "rawForm": 0.328
+          },
+          "hazard": {
+            "model": 0.133,
+            "rawForm": 0.076
+          }
+        },
+        "bowling": {
+          "n": 324,
+          "within": {
+            "model": 0.167,
+            "rawFormValue": 0.087,
+            "rawFormRate": 0.102
+          },
+          "model": 0.156,
           "modelTiered": 0.131,
           "rawFormValue": 0.044,
           "rawFormRate": 0.094,
           "careerRate": 0.114,
           "runs": {
-            "model": 0.194,
+            "model": 0.199,
+            "rawForm": 0.083
+          },
+          "hazard": {
+            "model": 0.133,
+            "rawForm": 0.075
+          }
+        }
+      },
+      "stability": {
+        "batting": {
+          "n": 499,
+          "model": 0.821,
+          "rawFormSR": 0.454
+        },
+        "bowling": {
+          "n": 408,
+          "model": 0.696,
+          "rawFormEconomy": 0.44
+        }
+      }
+    },
+    {
+      "variant": "context-expected, Phase 1 priors (c=50, phase 150, hazard 1000)",
+      "options": {
+        "priorStrength": 50,
+        "phasePooling": "hierarchical",
+        "tierMode": {
+          "bat": "twoWay",
+          "bowl": "elo"
+        },
+        "careerPriorStrength": 50,
+        "wicketCost": 2.6,
+        "hazardPriorStrength": 1000,
+        "phasePriorStrength": 150,
+        "transferScaleElo": 300,
+        "bowlPriorMultiplier": 2,
+        "venueNormalisation": 0,
+        "evidence": "expected",
+        "selectionWeight": 0,
+        "selectionMaxShare": 1,
+        "cohortCentre": "top10",
+        "tierDestination": true,
+        "transferDestination": "topThird"
+      },
+      "predictive": {
+        "batting": {
+          "n": 392,
+          "within": {
+            "model": 0.321,
+            "rawFormValue": 0.272,
+            "rawFormRate": 0.268
+          },
+          "model": 0.3,
+          "modelTiered": 0.31,
+          "rawFormValue": 0.279,
+          "rawFormRate": 0.268,
+          "careerRate": 0.259,
+          "runs": {
+            "model": 0.378,
+            "rawForm": 0.328
+          },
+          "hazard": {
+            "model": 0.139,
+            "rawForm": 0.076
+          }
+        },
+        "bowling": {
+          "n": 324,
+          "within": {
+            "model": 0.183,
+            "rawFormValue": 0.087,
+            "rawFormRate": 0.102
+          },
+          "model": 0.172,
+          "modelTiered": 0.164,
+          "rawFormValue": 0.044,
+          "rawFormRate": 0.094,
+          "careerRate": 0.114,
+          "runs": {
+            "model": 0.207,
             "rawForm": 0.083
           },
           "hazard": {
@@ -822,20 +310,100 @@
       "stability": {
         "batting": {
           "n": 499,
-          "model": 0.723,
+          "model": 0.75,
           "rawFormSR": 0.454
         },
         "bowling": {
           "n": 408,
-          "model": 0.617,
+          "model": 0.551,
           "rawFormEconomy": 0.44
         }
       }
     },
     {
-      "variant": "per-phase",
+      "variant": "context-expected, pooled phases",
       "options": {
-        "priorStrength": 50,
+        "priorStrength": 100,
+        "phasePooling": "pooled",
+        "tierMode": {
+          "bat": "twoWay",
+          "bowl": "elo"
+        },
+        "careerPriorStrength": 50,
+        "wicketCost": 2.6,
+        "hazardPriorStrength": 2000,
+        "phasePriorStrength": 300,
+        "transferScaleElo": 300,
+        "bowlPriorMultiplier": 2,
+        "venueNormalisation": 0,
+        "evidence": "expected",
+        "selectionWeight": 0,
+        "selectionMaxShare": 1,
+        "cohortCentre": "top10",
+        "tierDestination": true,
+        "transferDestination": "topThird"
+      },
+      "predictive": {
+        "batting": {
+          "n": 392,
+          "within": {
+            "model": 0.326,
+            "rawFormValue": 0.272,
+            "rawFormRate": 0.268
+          },
+          "model": 0.305,
+          "modelTiered": 0.316,
+          "rawFormValue": 0.279,
+          "rawFormRate": 0.268,
+          "careerRate": 0.259,
+          "runs": {
+            "model": 0.384,
+            "rawForm": 0.328
+          },
+          "hazard": {
+            "model": 0.132,
+            "rawForm": 0.076
+          }
+        },
+        "bowling": {
+          "n": 324,
+          "within": {
+            "model": 0.194,
+            "rawFormValue": 0.087,
+            "rawFormRate": 0.102
+          },
+          "model": 0.185,
+          "modelTiered": 0.175,
+          "rawFormValue": 0.044,
+          "rawFormRate": 0.094,
+          "careerRate": 0.114,
+          "runs": {
+            "model": 0.222,
+            "rawForm": 0.083
+          },
+          "hazard": {
+            "model": 0.123,
+            "rawForm": 0.075
+          }
+        }
+      },
+      "stability": {
+        "batting": {
+          "n": 499,
+          "model": 0.777,
+          "rawFormSR": 0.454
+        },
+        "bowling": {
+          "n": 408,
+          "model": 0.615,
+          "rawFormEconomy": 0.44
+        }
+      }
+    },
+    {
+      "variant": "context-expected, per-phase (no pooling)",
+      "options": {
+        "priorStrength": 100,
         "phasePooling": "none",
         "tierMode": {
           "bat": "twoWay",
@@ -843,22 +411,513 @@
         },
         "careerPriorStrength": 50,
         "wicketCost": 2.6,
-        "hazardPriorStrength": 1000,
-        "phasePriorStrength": 150,
+        "hazardPriorStrength": 2000,
+        "phasePriorStrength": 300,
         "transferScaleElo": 300,
         "bowlPriorMultiplier": 2,
-        "venueNormalisation": 0
+        "venueNormalisation": 0,
+        "evidence": "expected",
+        "selectionWeight": 0,
+        "selectionMaxShare": 1,
+        "cohortCentre": "top10",
+        "tierDestination": true,
+        "transferDestination": "topThird"
       },
       "predictive": {
         "batting": {
           "n": 392,
-          "model": 0.32,
-          "modelTiered": 0.325,
+          "within": {
+            "model": 0.326,
+            "rawFormValue": 0.272,
+            "rawFormRate": 0.268
+          },
+          "model": 0.305,
+          "modelTiered": 0.315,
           "rawFormValue": 0.279,
           "rawFormRate": 0.268,
           "careerRate": 0.259,
           "runs": {
-            "model": 0.348,
+            "model": 0.382,
+            "rawForm": 0.328
+          },
+          "hazard": {
+            "model": 0.134,
+            "rawForm": 0.076
+          }
+        },
+        "bowling": {
+          "n": 324,
+          "within": {
+            "model": 0.19,
+            "rawFormValue": 0.087,
+            "rawFormRate": 0.102
+          },
+          "model": 0.18,
+          "modelTiered": 0.171,
+          "rawFormValue": 0.044,
+          "rawFormRate": 0.094,
+          "careerRate": 0.114,
+          "runs": {
+            "model": 0.218,
+            "rawForm": 0.083
+          },
+          "hazard": {
+            "model": 0.124,
+            "rawForm": 0.075
+          }
+        }
+      },
+      "stability": {
+        "batting": {
+          "n": 499,
+          "model": 0.761,
+          "rawFormSR": 0.454
+        },
+        "bowling": {
+          "n": 408,
+          "model": 0.586,
+          "rawFormEconomy": 0.44
+        }
+      }
+    },
+    {
+      "variant": "context-expected, no career prior",
+      "options": {
+        "priorStrength": 100,
+        "phasePooling": "hierarchical",
+        "tierMode": {
+          "bat": "twoWay",
+          "bowl": "elo"
+        },
+        "careerPriorStrength": 0,
+        "wicketCost": 2.6,
+        "hazardPriorStrength": 2000,
+        "phasePriorStrength": 300,
+        "transferScaleElo": 300,
+        "bowlPriorMultiplier": 2,
+        "venueNormalisation": 0,
+        "evidence": "expected",
+        "selectionWeight": 0,
+        "selectionMaxShare": 1,
+        "cohortCentre": "top10",
+        "tierDestination": true,
+        "transferDestination": "topThird"
+      },
+      "predictive": {
+        "batting": {
+          "n": 392,
+          "within": {
+            "model": 0.322,
+            "rawFormValue": 0.272,
+            "rawFormRate": 0.268
+          },
+          "model": 0.302,
+          "modelTiered": 0.313,
+          "rawFormValue": 0.279,
+          "rawFormRate": 0.268,
+          "careerRate": 0.259,
+          "runs": {
+            "model": 0.378,
+            "rawForm": 0.328
+          },
+          "hazard": {
+            "model": 0.134,
+            "rawForm": 0.076
+          }
+        },
+        "bowling": {
+          "n": 324,
+          "within": {
+            "model": 0.18,
+            "rawFormValue": 0.087,
+            "rawFormRate": 0.102
+          },
+          "model": 0.171,
+          "modelTiered": 0.16,
+          "rawFormValue": 0.044,
+          "rawFormRate": 0.094,
+          "careerRate": 0.114,
+          "runs": {
+            "model": 0.197,
+            "rawForm": 0.083
+          },
+          "hazard": {
+            "model": 0.121,
+            "rawForm": 0.075
+          }
+        }
+      },
+      "stability": {
+        "batting": {
+          "n": 499,
+          "model": 0.763,
+          "rawFormSR": 0.454
+        },
+        "bowling": {
+          "n": 408,
+          "model": 0.58,
+          "rawFormEconomy": 0.44
+        }
+      }
+    },
+    {
+      "variant": "context-expected, career prior 100",
+      "options": {
+        "priorStrength": 100,
+        "phasePooling": "hierarchical",
+        "tierMode": {
+          "bat": "twoWay",
+          "bowl": "elo"
+        },
+        "careerPriorStrength": 100,
+        "wicketCost": 2.6,
+        "hazardPriorStrength": 2000,
+        "phasePriorStrength": 300,
+        "transferScaleElo": 300,
+        "bowlPriorMultiplier": 2,
+        "venueNormalisation": 0,
+        "evidence": "expected",
+        "selectionWeight": 0,
+        "selectionMaxShare": 1,
+        "cohortCentre": "top10",
+        "tierDestination": true,
+        "transferDestination": "topThird"
+      },
+      "predictive": {
+        "batting": {
+          "n": 392,
+          "within": {
+            "model": 0.326,
+            "rawFormValue": 0.272,
+            "rawFormRate": 0.268
+          },
+          "model": 0.305,
+          "modelTiered": 0.315,
+          "rawFormValue": 0.279,
+          "rawFormRate": 0.268,
+          "careerRate": 0.259,
+          "runs": {
+            "model": 0.383,
+            "rawForm": 0.328
+          },
+          "hazard": {
+            "model": 0.135,
+            "rawForm": 0.076
+          }
+        },
+        "bowling": {
+          "n": 324,
+          "within": {
+            "model": 0.192,
+            "rawFormValue": 0.087,
+            "rawFormRate": 0.102
+          },
+          "model": 0.182,
+          "modelTiered": 0.173,
+          "rawFormValue": 0.044,
+          "rawFormRate": 0.094,
+          "careerRate": 0.114,
+          "runs": {
+            "model": 0.224,
+            "rawForm": 0.083
+          },
+          "hazard": {
+            "model": 0.125,
+            "rawForm": 0.075
+          }
+        }
+      },
+      "stability": {
+        "batting": {
+          "n": 499,
+          "model": 0.759,
+          "rawFormSR": 0.454
+        },
+        "bowling": {
+          "n": 408,
+          "model": 0.58,
+          "rawFormEconomy": 0.44
+        }
+      }
+    },
+    {
+      "variant": "cohort centre: none",
+      "options": {
+        "priorStrength": 100,
+        "phasePooling": "hierarchical",
+        "tierMode": {
+          "bat": "twoWay",
+          "bowl": "elo"
+        },
+        "careerPriorStrength": 50,
+        "wicketCost": 2.6,
+        "hazardPriorStrength": 2000,
+        "phasePriorStrength": 300,
+        "transferScaleElo": 300,
+        "bowlPriorMultiplier": 2,
+        "venueNormalisation": 0,
+        "evidence": "expected",
+        "selectionWeight": 0,
+        "selectionMaxShare": 1,
+        "cohortCentre": "none",
+        "tierDestination": true,
+        "transferDestination": "topThird"
+      },
+      "predictive": {
+        "batting": {
+          "n": 392,
+          "within": {
+            "model": 0.325,
+            "rawFormValue": 0.272,
+            "rawFormRate": 0.268
+          },
+          "model": 0.318,
+          "modelTiered": 0.323,
+          "rawFormValue": 0.279,
+          "rawFormRate": 0.268,
+          "careerRate": 0.259,
+          "runs": {
+            "model": 0.382,
+            "rawForm": 0.328
+          },
+          "hazard": {
+            "model": 0.134,
+            "rawForm": 0.076
+          }
+        },
+        "bowling": {
+          "n": 324,
+          "within": {
+            "model": 0.197,
+            "rawFormValue": 0.087,
+            "rawFormRate": 0.102
+          },
+          "model": 0.185,
+          "modelTiered": 0.175,
+          "rawFormValue": 0.044,
+          "rawFormRate": 0.094,
+          "careerRate": 0.114,
+          "runs": {
+            "model": 0.218,
+            "rawForm": 0.083
+          },
+          "hazard": {
+            "model": 0.124,
+            "rawForm": 0.075
+          }
+        }
+      },
+      "stability": {
+        "batting": {
+          "n": 499,
+          "model": 0.76,
+          "rawFormSR": 0.454
+        },
+        "bowling": {
+          "n": 408,
+          "model": 0.588,
+          "rawFormEconomy": 0.44
+        }
+      }
+    },
+    {
+      "variant": "cohort centre: all squads",
+      "options": {
+        "priorStrength": 100,
+        "phasePooling": "hierarchical",
+        "tierMode": {
+          "bat": "twoWay",
+          "bowl": "elo"
+        },
+        "careerPriorStrength": 50,
+        "wicketCost": 2.6,
+        "hazardPriorStrength": 2000,
+        "phasePriorStrength": 300,
+        "transferScaleElo": 300,
+        "bowlPriorMultiplier": 2,
+        "venueNormalisation": 0,
+        "evidence": "expected",
+        "selectionWeight": 0,
+        "selectionMaxShare": 1,
+        "cohortCentre": "all",
+        "tierDestination": true,
+        "transferDestination": "topThird"
+      },
+      "predictive": {
+        "batting": {
+          "n": 392,
+          "within": {
+            "model": 0.323,
+            "rawFormValue": 0.272,
+            "rawFormRate": 0.268
+          },
+          "model": 0.318,
+          "modelTiered": 0.326,
+          "rawFormValue": 0.279,
+          "rawFormRate": 0.268,
+          "careerRate": 0.259,
+          "runs": {
+            "model": 0.382,
+            "rawForm": 0.328
+          },
+          "hazard": {
+            "model": 0.134,
+            "rawForm": 0.076
+          }
+        },
+        "bowling": {
+          "n": 324,
+          "within": {
+            "model": 0.189,
+            "rawFormValue": 0.087,
+            "rawFormRate": 0.102
+          },
+          "model": 0.178,
+          "modelTiered": 0.166,
+          "rawFormValue": 0.044,
+          "rawFormRate": 0.094,
+          "careerRate": 0.114,
+          "runs": {
+            "model": 0.218,
+            "rawForm": 0.083
+          },
+          "hazard": {
+            "model": 0.124,
+            "rawForm": 0.075
+          }
+        }
+      },
+      "stability": {
+        "batting": {
+          "n": 499,
+          "model": 0.754,
+          "rawFormSR": 0.454
+        },
+        "bowling": {
+          "n": 408,
+          "model": 0.585,
+          "rawFormEconomy": 0.44
+        }
+      }
+    },
+    {
+      "variant": "full transfer (scale 0)",
+      "options": {
+        "priorStrength": 100,
+        "phasePooling": "hierarchical",
+        "tierMode": {
+          "bat": "twoWay",
+          "bowl": "elo"
+        },
+        "careerPriorStrength": 50,
+        "wicketCost": 2.6,
+        "hazardPriorStrength": 2000,
+        "phasePriorStrength": 300,
+        "transferScaleElo": 0,
+        "bowlPriorMultiplier": 2,
+        "venueNormalisation": 0,
+        "evidence": "expected",
+        "selectionWeight": 0,
+        "selectionMaxShare": 1,
+        "cohortCentre": "top10",
+        "tierDestination": true,
+        "transferDestination": "topThird"
+      },
+      "predictive": {
+        "batting": {
+          "n": 392,
+          "within": {
+            "model": 0.302,
+            "rawFormValue": 0.272,
+            "rawFormRate": 0.268
+          },
+          "model": 0.289,
+          "modelTiered": 0.297,
+          "rawFormValue": 0.279,
+          "rawFormRate": 0.268,
+          "careerRate": 0.259,
+          "runs": {
+            "model": 0.362,
+            "rawForm": 0.328
+          },
+          "hazard": {
+            "model": 0.143,
+            "rawForm": 0.076
+          }
+        },
+        "bowling": {
+          "n": 324,
+          "within": {
+            "model": 0.157,
+            "rawFormValue": 0.087,
+            "rawFormRate": 0.102
+          },
+          "model": 0.146,
+          "modelTiered": 0.128,
+          "rawFormValue": 0.044,
+          "rawFormRate": 0.094,
+          "careerRate": 0.114,
+          "runs": {
+            "model": 0.17,
+            "rawForm": 0.083
+          },
+          "hazard": {
+            "model": 0.084,
+            "rawForm": 0.075
+          }
+        }
+      },
+      "stability": {
+        "batting": {
+          "n": 499,
+          "model": 0.701,
+          "rawFormSR": 0.454
+        },
+        "bowling": {
+          "n": 408,
+          "model": 0.558,
+          "rawFormEconomy": 0.44
+        }
+      }
+    },
+    {
+      "variant": "transfer 200",
+      "options": {
+        "priorStrength": 100,
+        "phasePooling": "hierarchical",
+        "tierMode": {
+          "bat": "twoWay",
+          "bowl": "elo"
+        },
+        "careerPriorStrength": 50,
+        "wicketCost": 2.6,
+        "hazardPriorStrength": 2000,
+        "phasePriorStrength": 300,
+        "transferScaleElo": 200,
+        "bowlPriorMultiplier": 2,
+        "venueNormalisation": 0,
+        "evidence": "expected",
+        "selectionWeight": 0,
+        "selectionMaxShare": 1,
+        "cohortCentre": "top10",
+        "tierDestination": true,
+        "transferDestination": "topThird"
+      },
+      "predictive": {
+        "batting": {
+          "n": 392,
+          "within": {
+            "model": 0.324,
+            "rawFormValue": 0.272,
+            "rawFormRate": 0.268
+          },
+          "model": 0.302,
+          "modelTiered": 0.312,
+          "rawFormValue": 0.279,
+          "rawFormRate": 0.268,
+          "careerRate": 0.259,
+          "runs": {
+            "model": 0.376,
             "rawForm": 0.328
           },
           "hazard": {
@@ -868,13 +927,898 @@
         },
         "bowling": {
           "n": 324,
-          "model": 0.143,
-          "modelTiered": 0.112,
+          "within": {
+            "model": 0.197,
+            "rawFormValue": 0.087,
+            "rawFormRate": 0.102
+          },
+          "model": 0.189,
+          "modelTiered": 0.184,
           "rawFormValue": 0.044,
           "rawFormRate": 0.094,
           "careerRate": 0.114,
           "runs": {
-            "model": 0.171,
+            "model": 0.233,
+            "rawForm": 0.083
+          },
+          "hazard": {
+            "model": 0.133,
+            "rawForm": 0.075
+          }
+        }
+      },
+      "stability": {
+        "batting": {
+          "n": 499,
+          "model": 0.765,
+          "rawFormSR": 0.454
+        },
+        "bowling": {
+          "n": 408,
+          "model": 0.554,
+          "rawFormEconomy": 0.44
+        }
+      }
+    },
+    {
+      "variant": "transfer 450",
+      "options": {
+        "priorStrength": 100,
+        "phasePooling": "hierarchical",
+        "tierMode": {
+          "bat": "twoWay",
+          "bowl": "elo"
+        },
+        "careerPriorStrength": 50,
+        "wicketCost": 2.6,
+        "hazardPriorStrength": 2000,
+        "phasePriorStrength": 300,
+        "transferScaleElo": 450,
+        "bowlPriorMultiplier": 2,
+        "venueNormalisation": 0,
+        "evidence": "expected",
+        "selectionWeight": 0,
+        "selectionMaxShare": 1,
+        "cohortCentre": "top10",
+        "tierDestination": true,
+        "transferDestination": "topThird"
+      },
+      "predictive": {
+        "batting": {
+          "n": 392,
+          "within": {
+            "model": 0.323,
+            "rawFormValue": 0.272,
+            "rawFormRate": 0.268
+          },
+          "model": 0.303,
+          "modelTiered": 0.313,
+          "rawFormValue": 0.279,
+          "rawFormRate": 0.268,
+          "careerRate": 0.259,
+          "runs": {
+            "model": 0.381,
+            "rawForm": 0.328
+          },
+          "hazard": {
+            "model": 0.138,
+            "rawForm": 0.076
+          }
+        },
+        "bowling": {
+          "n": 324,
+          "within": {
+            "model": 0.178,
+            "rawFormValue": 0.087,
+            "rawFormRate": 0.102
+          },
+          "model": 0.167,
+          "modelTiered": 0.154,
+          "rawFormValue": 0.044,
+          "rawFormRate": 0.094,
+          "careerRate": 0.114,
+          "runs": {
+            "model": 0.202,
+            "rawForm": 0.083
+          },
+          "hazard": {
+            "model": 0.11,
+            "rawForm": 0.075
+          }
+        }
+      },
+      "stability": {
+        "batting": {
+          "n": 499,
+          "model": 0.748,
+          "rawFormSR": 0.454
+        },
+        "bowling": {
+          "n": 408,
+          "model": 0.589,
+          "rawFormEconomy": 0.44
+        }
+      }
+    },
+    {
+      "variant": "transfer to the strongest third",
+      "options": {
+        "priorStrength": 100,
+        "phasePooling": "hierarchical",
+        "tierMode": {
+          "bat": "twoWay",
+          "bowl": "elo"
+        },
+        "careerPriorStrength": 50,
+        "wicketCost": 2.6,
+        "hazardPriorStrength": 2000,
+        "phasePriorStrength": 300,
+        "transferScaleElo": 300,
+        "bowlPriorMultiplier": 2,
+        "venueNormalisation": 0,
+        "evidence": "expected",
+        "selectionWeight": 0,
+        "selectionMaxShare": 1,
+        "cohortCentre": "top10",
+        "tierDestination": true,
+        "transferDestination": "topThird"
+      },
+      "predictive": {
+        "batting": {
+          "n": 392,
+          "within": {
+            "model": 0.326,
+            "rawFormValue": 0.272,
+            "rawFormRate": 0.268
+          },
+          "model": 0.305,
+          "modelTiered": 0.315,
+          "rawFormValue": 0.279,
+          "rawFormRate": 0.268,
+          "careerRate": 0.259,
+          "runs": {
+            "model": 0.382,
+            "rawForm": 0.328
+          },
+          "hazard": {
+            "model": 0.134,
+            "rawForm": 0.076
+          }
+        },
+        "bowling": {
+          "n": 324,
+          "within": {
+            "model": 0.19,
+            "rawFormValue": 0.087,
+            "rawFormRate": 0.102
+          },
+          "model": 0.18,
+          "modelTiered": 0.171,
+          "rawFormValue": 0.044,
+          "rawFormRate": 0.094,
+          "careerRate": 0.114,
+          "runs": {
+            "model": 0.218,
+            "rawForm": 0.083
+          },
+          "hazard": {
+            "model": 0.124,
+            "rawForm": 0.075
+          }
+        }
+      },
+      "stability": {
+        "batting": {
+          "n": 499,
+          "model": 0.761,
+          "rawFormSR": 0.454
+        },
+        "bowling": {
+          "n": 408,
+          "model": 0.586,
+          "rawFormEconomy": 0.44
+        }
+      }
+    },
+    {
+      "variant": "transfer to the strongest third, scale 450",
+      "options": {
+        "priorStrength": 100,
+        "phasePooling": "hierarchical",
+        "tierMode": {
+          "bat": "twoWay",
+          "bowl": "elo"
+        },
+        "careerPriorStrength": 50,
+        "wicketCost": 2.6,
+        "hazardPriorStrength": 2000,
+        "phasePriorStrength": 300,
+        "transferScaleElo": 450,
+        "bowlPriorMultiplier": 2,
+        "venueNormalisation": 0,
+        "evidence": "expected",
+        "selectionWeight": 0,
+        "selectionMaxShare": 1,
+        "cohortCentre": "top10",
+        "tierDestination": true,
+        "transferDestination": "topThird"
+      },
+      "predictive": {
+        "batting": {
+          "n": 392,
+          "within": {
+            "model": 0.323,
+            "rawFormValue": 0.272,
+            "rawFormRate": 0.268
+          },
+          "model": 0.303,
+          "modelTiered": 0.313,
+          "rawFormValue": 0.279,
+          "rawFormRate": 0.268,
+          "careerRate": 0.259,
+          "runs": {
+            "model": 0.381,
+            "rawForm": 0.328
+          },
+          "hazard": {
+            "model": 0.138,
+            "rawForm": 0.076
+          }
+        },
+        "bowling": {
+          "n": 324,
+          "within": {
+            "model": 0.178,
+            "rawFormValue": 0.087,
+            "rawFormRate": 0.102
+          },
+          "model": 0.167,
+          "modelTiered": 0.154,
+          "rawFormValue": 0.044,
+          "rawFormRate": 0.094,
+          "careerRate": 0.114,
+          "runs": {
+            "model": 0.202,
+            "rawForm": 0.083
+          },
+          "hazard": {
+            "model": 0.11,
+            "rawForm": 0.075
+          }
+        }
+      },
+      "stability": {
+        "batting": {
+          "n": 499,
+          "model": 0.748,
+          "rawFormSR": 0.454
+        },
+        "bowling": {
+          "n": 408,
+          "model": 0.589,
+          "rawFormEconomy": 0.44
+        }
+      }
+    },
+    {
+      "variant": "transfer to the strongest third, scale 600",
+      "options": {
+        "priorStrength": 100,
+        "phasePooling": "hierarchical",
+        "tierMode": {
+          "bat": "twoWay",
+          "bowl": "elo"
+        },
+        "careerPriorStrength": 50,
+        "wicketCost": 2.6,
+        "hazardPriorStrength": 2000,
+        "phasePriorStrength": 300,
+        "transferScaleElo": 600,
+        "bowlPriorMultiplier": 2,
+        "venueNormalisation": 0,
+        "evidence": "expected",
+        "selectionWeight": 0,
+        "selectionMaxShare": 1,
+        "cohortCentre": "top10",
+        "tierDestination": true,
+        "transferDestination": "topThird"
+      },
+      "predictive": {
+        "batting": {
+          "n": 392,
+          "within": {
+            "model": 0.319,
+            "rawFormValue": 0.272,
+            "rawFormRate": 0.268
+          },
+          "model": 0.302,
+          "modelTiered": 0.311,
+          "rawFormValue": 0.279,
+          "rawFormRate": 0.268,
+          "careerRate": 0.259,
+          "runs": {
+            "model": 0.379,
+            "rawForm": 0.328
+          },
+          "hazard": {
+            "model": 0.14,
+            "rawForm": 0.076
+          }
+        },
+        "bowling": {
+          "n": 324,
+          "within": {
+            "model": 0.172,
+            "rawFormValue": 0.087,
+            "rawFormRate": 0.102
+          },
+          "model": 0.161,
+          "modelTiered": 0.146,
+          "rawFormValue": 0.044,
+          "rawFormRate": 0.094,
+          "careerRate": 0.114,
+          "runs": {
+            "model": 0.193,
+            "rawForm": 0.083
+          },
+          "hazard": {
+            "model": 0.103,
+            "rawForm": 0.075
+          }
+        }
+      },
+      "stability": {
+        "batting": {
+          "n": 499,
+          "model": 0.738,
+          "rawFormSR": 0.454
+        },
+        "bowling": {
+          "n": 408,
+          "model": 0.584,
+          "rawFormEconomy": 0.44
+        }
+      }
+    },
+    {
+      "variant": "tier destination on (two-way shape on the expected path)",
+      "options": {
+        "priorStrength": 100,
+        "phasePooling": "hierarchical",
+        "tierMode": {
+          "bat": "twoWay",
+          "bowl": "elo"
+        },
+        "careerPriorStrength": 50,
+        "wicketCost": 2.6,
+        "hazardPriorStrength": 2000,
+        "phasePriorStrength": 300,
+        "transferScaleElo": 300,
+        "bowlPriorMultiplier": 2,
+        "venueNormalisation": 0,
+        "evidence": "expected",
+        "selectionWeight": 0,
+        "selectionMaxShare": 1,
+        "cohortCentre": "top10",
+        "tierDestination": true,
+        "transferDestination": "topThird"
+      },
+      "predictive": {
+        "batting": {
+          "n": 392,
+          "within": {
+            "model": 0.326,
+            "rawFormValue": 0.272,
+            "rawFormRate": 0.268
+          },
+          "model": 0.305,
+          "modelTiered": 0.315,
+          "rawFormValue": 0.279,
+          "rawFormRate": 0.268,
+          "careerRate": 0.259,
+          "runs": {
+            "model": 0.382,
+            "rawForm": 0.328
+          },
+          "hazard": {
+            "model": 0.134,
+            "rawForm": 0.076
+          }
+        },
+        "bowling": {
+          "n": 324,
+          "within": {
+            "model": 0.19,
+            "rawFormValue": 0.087,
+            "rawFormRate": 0.102
+          },
+          "model": 0.18,
+          "modelTiered": 0.171,
+          "rawFormValue": 0.044,
+          "rawFormRate": 0.094,
+          "careerRate": 0.114,
+          "runs": {
+            "model": 0.218,
+            "rawForm": 0.083
+          },
+          "hazard": {
+            "model": 0.124,
+            "rawForm": 0.075
+          }
+        }
+      },
+      "stability": {
+        "batting": {
+          "n": 499,
+          "model": 0.761,
+          "rawFormSR": 0.454
+        },
+        "bowling": {
+          "n": 408,
+          "model": 0.586,
+          "rawFormEconomy": 0.44
+        }
+      }
+    },
+    {
+      "variant": "tier destination on, transfer to the strongest third",
+      "options": {
+        "priorStrength": 100,
+        "phasePooling": "hierarchical",
+        "tierMode": {
+          "bat": "twoWay",
+          "bowl": "elo"
+        },
+        "careerPriorStrength": 50,
+        "wicketCost": 2.6,
+        "hazardPriorStrength": 2000,
+        "phasePriorStrength": 300,
+        "transferScaleElo": 300,
+        "bowlPriorMultiplier": 2,
+        "venueNormalisation": 0,
+        "evidence": "expected",
+        "selectionWeight": 0,
+        "selectionMaxShare": 1,
+        "cohortCentre": "top10",
+        "tierDestination": true,
+        "transferDestination": "topThird"
+      },
+      "predictive": {
+        "batting": {
+          "n": 392,
+          "within": {
+            "model": 0.326,
+            "rawFormValue": 0.272,
+            "rawFormRate": 0.268
+          },
+          "model": 0.305,
+          "modelTiered": 0.315,
+          "rawFormValue": 0.279,
+          "rawFormRate": 0.268,
+          "careerRate": 0.259,
+          "runs": {
+            "model": 0.382,
+            "rawForm": 0.328
+          },
+          "hazard": {
+            "model": 0.134,
+            "rawForm": 0.076
+          }
+        },
+        "bowling": {
+          "n": 324,
+          "within": {
+            "model": 0.19,
+            "rawFormValue": 0.087,
+            "rawFormRate": 0.102
+          },
+          "model": 0.18,
+          "modelTiered": 0.171,
+          "rawFormValue": 0.044,
+          "rawFormRate": 0.094,
+          "careerRate": 0.114,
+          "runs": {
+            "model": 0.218,
+            "rawForm": 0.083
+          },
+          "hazard": {
+            "model": 0.124,
+            "rawForm": 0.075
+          }
+        }
+      },
+      "stability": {
+        "batting": {
+          "n": 499,
+          "model": 0.761,
+          "rawFormSR": 0.454
+        },
+        "bowling": {
+          "n": 408,
+          "model": 0.586,
+          "rawFormEconomy": 0.44
+        }
+      }
+    },
+    {
+      "variant": "tier destination on, cohort centre none",
+      "options": {
+        "priorStrength": 100,
+        "phasePooling": "hierarchical",
+        "tierMode": {
+          "bat": "twoWay",
+          "bowl": "elo"
+        },
+        "careerPriorStrength": 50,
+        "wicketCost": 2.6,
+        "hazardPriorStrength": 2000,
+        "phasePriorStrength": 300,
+        "transferScaleElo": 300,
+        "bowlPriorMultiplier": 2,
+        "venueNormalisation": 0,
+        "evidence": "expected",
+        "selectionWeight": 0,
+        "selectionMaxShare": 1,
+        "cohortCentre": "none",
+        "tierDestination": true,
+        "transferDestination": "topThird"
+      },
+      "predictive": {
+        "batting": {
+          "n": 392,
+          "within": {
+            "model": 0.325,
+            "rawFormValue": 0.272,
+            "rawFormRate": 0.268
+          },
+          "model": 0.318,
+          "modelTiered": 0.323,
+          "rawFormValue": 0.279,
+          "rawFormRate": 0.268,
+          "careerRate": 0.259,
+          "runs": {
+            "model": 0.382,
+            "rawForm": 0.328
+          },
+          "hazard": {
+            "model": 0.134,
+            "rawForm": 0.076
+          }
+        },
+        "bowling": {
+          "n": 324,
+          "within": {
+            "model": 0.197,
+            "rawFormValue": 0.087,
+            "rawFormRate": 0.102
+          },
+          "model": 0.185,
+          "modelTiered": 0.175,
+          "rawFormValue": 0.044,
+          "rawFormRate": 0.094,
+          "careerRate": 0.114,
+          "runs": {
+            "model": 0.218,
+            "rawForm": 0.083
+          },
+          "hazard": {
+            "model": 0.124,
+            "rawForm": 0.075
+          }
+        }
+      },
+      "stability": {
+        "batting": {
+          "n": 499,
+          "model": 0.76,
+          "rawFormSR": 0.454
+        },
+        "bowling": {
+          "n": 408,
+          "model": 0.588,
+          "rawFormEconomy": 0.44
+        }
+      }
+    },
+    {
+      "variant": "selection prior 0.5 (every miss counts)",
+      "options": {
+        "priorStrength": 100,
+        "phasePooling": "hierarchical",
+        "tierMode": {
+          "bat": "twoWay",
+          "bowl": "elo"
+        },
+        "careerPriorStrength": 50,
+        "wicketCost": 2.6,
+        "hazardPriorStrength": 2000,
+        "phasePriorStrength": 300,
+        "transferScaleElo": 300,
+        "bowlPriorMultiplier": 2,
+        "venueNormalisation": 0,
+        "evidence": "expected",
+        "selectionWeight": 0.5,
+        "selectionMaxShare": 1,
+        "cohortCentre": "top10",
+        "tierDestination": true,
+        "transferDestination": "topThird"
+      },
+      "predictive": {
+        "batting": {
+          "n": 392,
+          "within": {
+            "model": 0.324,
+            "rawFormValue": 0.272,
+            "rawFormRate": 0.268
+          },
+          "model": 0.302,
+          "modelTiered": 0.312,
+          "rawFormValue": 0.279,
+          "rawFormRate": 0.268,
+          "careerRate": 0.259,
+          "runs": {
+            "model": 0.382,
+            "rawForm": 0.328
+          },
+          "hazard": {
+            "model": 0.134,
+            "rawForm": 0.076
+          }
+        },
+        "bowling": {
+          "n": 324,
+          "within": {
+            "model": 0.186,
+            "rawFormValue": 0.087,
+            "rawFormRate": 0.102
+          },
+          "model": 0.175,
+          "modelTiered": 0.164,
+          "rawFormValue": 0.044,
+          "rawFormRate": 0.094,
+          "careerRate": 0.114,
+          "runs": {
+            "model": 0.218,
+            "rawForm": 0.083
+          },
+          "hazard": {
+            "model": 0.124,
+            "rawForm": 0.075
+          }
+        }
+      },
+      "stability": {
+        "batting": {
+          "n": 499,
+          "model": 0.761,
+          "rawFormSR": 0.454
+        },
+        "bowling": {
+          "n": 408,
+          "model": 0.576,
+          "rawFormEconomy": 0.44
+        }
+      }
+    },
+    {
+      "variant": "selection prior 0.5, shares below 0.5 only",
+      "options": {
+        "priorStrength": 100,
+        "phasePooling": "hierarchical",
+        "tierMode": {
+          "bat": "twoWay",
+          "bowl": "elo"
+        },
+        "careerPriorStrength": 50,
+        "wicketCost": 2.6,
+        "hazardPriorStrength": 2000,
+        "phasePriorStrength": 300,
+        "transferScaleElo": 300,
+        "bowlPriorMultiplier": 2,
+        "venueNormalisation": 0,
+        "evidence": "expected",
+        "selectionWeight": 0.5,
+        "selectionMaxShare": 0.5,
+        "cohortCentre": "top10",
+        "tierDestination": true,
+        "transferDestination": "topThird"
+      },
+      "predictive": {
+        "batting": {
+          "n": 392,
+          "within": {
+            "model": 0.321,
+            "rawFormValue": 0.272,
+            "rawFormRate": 0.268
+          },
+          "model": 0.3,
+          "modelTiered": 0.31,
+          "rawFormValue": 0.279,
+          "rawFormRate": 0.268,
+          "careerRate": 0.259,
+          "runs": {
+            "model": 0.382,
+            "rawForm": 0.328
+          },
+          "hazard": {
+            "model": 0.134,
+            "rawForm": 0.076
+          }
+        },
+        "bowling": {
+          "n": 324,
+          "within": {
+            "model": 0.191,
+            "rawFormValue": 0.087,
+            "rawFormRate": 0.102
+          },
+          "model": 0.18,
+          "modelTiered": 0.17,
+          "rawFormValue": 0.044,
+          "rawFormRate": 0.094,
+          "careerRate": 0.114,
+          "runs": {
+            "model": 0.218,
+            "rawForm": 0.083
+          },
+          "hazard": {
+            "model": 0.124,
+            "rawForm": 0.075
+          }
+        }
+      },
+      "stability": {
+        "batting": {
+          "n": 499,
+          "model": 0.762,
+          "rawFormSR": 0.454
+        },
+        "bowling": {
+          "n": 408,
+          "model": 0.584,
+          "rawFormEconomy": 0.44
+        }
+      }
+    },
+    {
+      "variant": "selection prior 1.0, shares below 0.5 only",
+      "options": {
+        "priorStrength": 100,
+        "phasePooling": "hierarchical",
+        "tierMode": {
+          "bat": "twoWay",
+          "bowl": "elo"
+        },
+        "careerPriorStrength": 50,
+        "wicketCost": 2.6,
+        "hazardPriorStrength": 2000,
+        "phasePriorStrength": 300,
+        "transferScaleElo": 300,
+        "bowlPriorMultiplier": 2,
+        "venueNormalisation": 0,
+        "evidence": "expected",
+        "selectionWeight": 1,
+        "selectionMaxShare": 0.5,
+        "cohortCentre": "top10",
+        "tierDestination": true,
+        "transferDestination": "topThird"
+      },
+      "predictive": {
+        "batting": {
+          "n": 392,
+          "within": {
+            "model": 0.315,
+            "rawFormValue": 0.272,
+            "rawFormRate": 0.268
+          },
+          "model": 0.294,
+          "modelTiered": 0.304,
+          "rawFormValue": 0.279,
+          "rawFormRate": 0.268,
+          "careerRate": 0.259,
+          "runs": {
+            "model": 0.382,
+            "rawForm": 0.328
+          },
+          "hazard": {
+            "model": 0.134,
+            "rawForm": 0.076
+          }
+        },
+        "bowling": {
+          "n": 324,
+          "within": {
+            "model": 0.189,
+            "rawFormValue": 0.087,
+            "rawFormRate": 0.102
+          },
+          "model": 0.178,
+          "modelTiered": 0.166,
+          "rawFormValue": 0.044,
+          "rawFormRate": 0.094,
+          "careerRate": 0.114,
+          "runs": {
+            "model": 0.218,
+            "rawForm": 0.083
+          },
+          "hazard": {
+            "model": 0.124,
+            "rawForm": 0.075
+          }
+        }
+      },
+      "stability": {
+        "batting": {
+          "n": 499,
+          "model": 0.759,
+          "rawFormSR": 0.454
+        },
+        "bowling": {
+          "n": 408,
+          "model": 0.575,
+          "rawFormEconomy": 0.44
+        }
+      }
+    },
+    {
+      "variant": "c=50",
+      "options": {
+        "priorStrength": 50,
+        "phasePooling": "hierarchical",
+        "tierMode": {
+          "bat": "twoWay",
+          "bowl": "elo"
+        },
+        "careerPriorStrength": 50,
+        "wicketCost": 2.6,
+        "hazardPriorStrength": 2000,
+        "phasePriorStrength": 300,
+        "transferScaleElo": 300,
+        "bowlPriorMultiplier": 2,
+        "venueNormalisation": 0,
+        "evidence": "expected",
+        "selectionWeight": 0,
+        "selectionMaxShare": 1,
+        "cohortCentre": "top10",
+        "tierDestination": true,
+        "transferDestination": "topThird"
+      },
+      "predictive": {
+        "batting": {
+          "n": 392,
+          "within": {
+            "model": 0.325,
+            "rawFormValue": 0.272,
+            "rawFormRate": 0.268
+          },
+          "model": 0.304,
+          "modelTiered": 0.315,
+          "rawFormValue": 0.279,
+          "rawFormRate": 0.268,
+          "careerRate": 0.259,
+          "runs": {
+            "model": 0.381,
+            "rawForm": 0.328
+          },
+          "hazard": {
+            "model": 0.134,
+            "rawForm": 0.076
+          }
+        },
+        "bowling": {
+          "n": 324,
+          "within": {
+            "model": 0.188,
+            "rawFormValue": 0.087,
+            "rawFormRate": 0.102
+          },
+          "model": 0.177,
+          "modelTiered": 0.168,
+          "rawFormValue": 0.044,
+          "rawFormRate": 0.094,
+          "careerRate": 0.114,
+          "runs": {
+            "model": 0.212,
             "rawForm": 0.083
           },
           "hazard": {
@@ -886,20 +1830,260 @@
       "stability": {
         "batting": {
           "n": 499,
-          "model": 0.78,
+          "model": 0.761,
           "rawFormSR": 0.454
         },
         "bowling": {
           "n": 408,
-          "model": 0.628,
+          "model": 0.569,
           "rawFormEconomy": 0.44
         }
       }
     },
     {
-      "variant": "phase prior 50",
+      "variant": "c=150",
       "options": {
-        "priorStrength": 50,
+        "priorStrength": 150,
+        "phasePooling": "hierarchical",
+        "tierMode": {
+          "bat": "twoWay",
+          "bowl": "elo"
+        },
+        "careerPriorStrength": 50,
+        "wicketCost": 2.6,
+        "hazardPriorStrength": 2000,
+        "phasePriorStrength": 300,
+        "transferScaleElo": 300,
+        "bowlPriorMultiplier": 2,
+        "venueNormalisation": 0,
+        "evidence": "expected",
+        "selectionWeight": 0,
+        "selectionMaxShare": 1,
+        "cohortCentre": "top10",
+        "tierDestination": true,
+        "transferDestination": "topThird"
+      },
+      "predictive": {
+        "batting": {
+          "n": 392,
+          "within": {
+            "model": 0.328,
+            "rawFormValue": 0.272,
+            "rawFormRate": 0.268
+          },
+          "model": 0.307,
+          "modelTiered": 0.317,
+          "rawFormValue": 0.279,
+          "rawFormRate": 0.268,
+          "careerRate": 0.259,
+          "runs": {
+            "model": 0.384,
+            "rawForm": 0.328
+          },
+          "hazard": {
+            "model": 0.135,
+            "rawForm": 0.076
+          }
+        },
+        "bowling": {
+          "n": 324,
+          "within": {
+            "model": 0.192,
+            "rawFormValue": 0.087,
+            "rawFormRate": 0.102
+          },
+          "model": 0.183,
+          "modelTiered": 0.174,
+          "rawFormValue": 0.044,
+          "rawFormRate": 0.094,
+          "careerRate": 0.114,
+          "runs": {
+            "model": 0.222,
+            "rawForm": 0.083
+          },
+          "hazard": {
+            "model": 0.126,
+            "rawForm": 0.075
+          }
+        }
+      },
+      "stability": {
+        "batting": {
+          "n": 499,
+          "model": 0.763,
+          "rawFormSR": 0.454
+        },
+        "bowling": {
+          "n": 408,
+          "model": 0.601,
+          "rawFormEconomy": 0.44
+        }
+      }
+    },
+    {
+      "variant": "phase prior 150",
+      "options": {
+        "priorStrength": 100,
+        "phasePooling": "hierarchical",
+        "tierMode": {
+          "bat": "twoWay",
+          "bowl": "elo"
+        },
+        "careerPriorStrength": 50,
+        "wicketCost": 2.6,
+        "hazardPriorStrength": 2000,
+        "phasePriorStrength": 150,
+        "transferScaleElo": 300,
+        "bowlPriorMultiplier": 2,
+        "venueNormalisation": 0,
+        "evidence": "expected",
+        "selectionWeight": 0,
+        "selectionMaxShare": 1,
+        "cohortCentre": "top10",
+        "tierDestination": true,
+        "transferDestination": "topThird"
+      },
+      "predictive": {
+        "batting": {
+          "n": 392,
+          "within": {
+            "model": 0.326,
+            "rawFormValue": 0.272,
+            "rawFormRate": 0.268
+          },
+          "model": 0.305,
+          "modelTiered": 0.315,
+          "rawFormValue": 0.279,
+          "rawFormRate": 0.268,
+          "careerRate": 0.259,
+          "runs": {
+            "model": 0.38,
+            "rawForm": 0.328
+          },
+          "hazard": {
+            "model": 0.134,
+            "rawForm": 0.076
+          }
+        },
+        "bowling": {
+          "n": 324,
+          "within": {
+            "model": 0.187,
+            "rawFormValue": 0.087,
+            "rawFormRate": 0.102
+          },
+          "model": 0.177,
+          "modelTiered": 0.168,
+          "rawFormValue": 0.044,
+          "rawFormRate": 0.094,
+          "careerRate": 0.114,
+          "runs": {
+            "model": 0.214,
+            "rawForm": 0.083
+          },
+          "hazard": {
+            "model": 0.124,
+            "rawForm": 0.075
+          }
+        }
+      },
+      "stability": {
+        "batting": {
+          "n": 499,
+          "model": 0.752,
+          "rawFormSR": 0.454
+        },
+        "bowling": {
+          "n": 408,
+          "model": 0.566,
+          "rawFormEconomy": 0.44
+        }
+      }
+    },
+    {
+      "variant": "phase prior 600",
+      "options": {
+        "priorStrength": 100,
+        "phasePooling": "hierarchical",
+        "tierMode": {
+          "bat": "twoWay",
+          "bowl": "elo"
+        },
+        "careerPriorStrength": 50,
+        "wicketCost": 2.6,
+        "hazardPriorStrength": 2000,
+        "phasePriorStrength": 600,
+        "transferScaleElo": 300,
+        "bowlPriorMultiplier": 2,
+        "venueNormalisation": 0,
+        "evidence": "expected",
+        "selectionWeight": 0,
+        "selectionMaxShare": 1,
+        "cohortCentre": "top10",
+        "tierDestination": true,
+        "transferDestination": "topThird"
+      },
+      "predictive": {
+        "batting": {
+          "n": 392,
+          "within": {
+            "model": 0.326,
+            "rawFormValue": 0.272,
+            "rawFormRate": 0.268
+          },
+          "model": 0.305,
+          "modelTiered": 0.315,
+          "rawFormValue": 0.279,
+          "rawFormRate": 0.268,
+          "careerRate": 0.259,
+          "runs": {
+            "model": 0.383,
+            "rawForm": 0.328
+          },
+          "hazard": {
+            "model": 0.135,
+            "rawForm": 0.076
+          }
+        },
+        "bowling": {
+          "n": 324,
+          "within": {
+            "model": 0.192,
+            "rawFormValue": 0.087,
+            "rawFormRate": 0.102
+          },
+          "model": 0.182,
+          "modelTiered": 0.173,
+          "rawFormValue": 0.044,
+          "rawFormRate": 0.094,
+          "careerRate": 0.114,
+          "runs": {
+            "model": 0.22,
+            "rawForm": 0.083
+          },
+          "hazard": {
+            "model": 0.125,
+            "rawForm": 0.075
+          }
+        }
+      },
+      "stability": {
+        "batting": {
+          "n": 499,
+          "model": 0.767,
+          "rawFormSR": 0.454
+        },
+        "bowling": {
+          "n": 408,
+          "model": 0.598,
+          "rawFormEconomy": 0.44
+        }
+      }
+    },
+    {
+      "variant": "hazard prior 1000",
+      "options": {
+        "priorStrength": 100,
         "phasePooling": "hierarchical",
         "tierMode": {
           "bat": "twoWay",
@@ -908,233 +2092,57 @@
         "careerPriorStrength": 50,
         "wicketCost": 2.6,
         "hazardPriorStrength": 1000,
-        "phasePriorStrength": 50,
+        "phasePriorStrength": 300,
         "transferScaleElo": 300,
         "bowlPriorMultiplier": 2,
-        "venueNormalisation": 0
+        "venueNormalisation": 0,
+        "evidence": "expected",
+        "selectionWeight": 0,
+        "selectionMaxShare": 1,
+        "cohortCentre": "top10",
+        "tierDestination": true,
+        "transferDestination": "topThird"
       },
       "predictive": {
         "batting": {
           "n": 392,
-          "model": 0.293,
-          "modelTiered": 0.299,
-          "rawFormValue": 0.279,
-          "rawFormRate": 0.268,
-          "careerRate": 0.259,
-          "runs": {
-            "model": 0.323,
-            "rawForm": 0.328
+          "within": {
+            "model": 0.322,
+            "rawFormValue": 0.272,
+            "rawFormRate": 0.268
           },
-          "hazard": {
-            "model": 0.129,
-            "rawForm": 0.076
-          }
-        },
-        "bowling": {
-          "n": 324,
-          "model": 0.144,
-          "modelTiered": 0.113,
-          "rawFormValue": 0.044,
-          "rawFormRate": 0.094,
-          "careerRate": 0.114,
-          "runs": {
-            "model": 0.157,
-            "rawForm": 0.083
-          },
-          "hazard": {
-            "model": 0.101,
-            "rawForm": 0.075
-          }
-        }
-      },
-      "stability": {
-        "batting": {
-          "n": 499,
-          "model": 0.745,
-          "rawFormSR": 0.454
-        },
-        "bowling": {
-          "n": 408,
-          "model": 0.599,
-          "rawFormEconomy": 0.44
-        }
-      }
-    },
-    {
-      "variant": "hazard prior 50 (none extra)",
-      "options": {
-        "priorStrength": 50,
-        "phasePooling": "hierarchical",
-        "tierMode": {
-          "bat": "twoWay",
-          "bowl": "elo"
-        },
-        "careerPriorStrength": 50,
-        "wicketCost": 2.6,
-        "hazardPriorStrength": 50,
-        "phasePriorStrength": 150,
-        "transferScaleElo": 300,
-        "bowlPriorMultiplier": 2,
-        "venueNormalisation": 0
-      },
-      "predictive": {
-        "batting": {
-          "n": 392,
-          "model": 0.272,
-          "modelTiered": 0.278,
-          "rawFormValue": 0.279,
-          "rawFormRate": 0.268,
-          "careerRate": 0.259,
-          "runs": {
-            "model": 0.325,
-            "rawForm": 0.328
-          },
-          "hazard": {
-            "model": 0.095,
-            "rawForm": 0.076
-          }
-        },
-        "bowling": {
-          "n": 324,
-          "model": 0.145,
-          "modelTiered": 0.112,
-          "rawFormValue": 0.044,
-          "rawFormRate": 0.094,
-          "careerRate": 0.114,
-          "runs": {
-            "model": 0.161,
-            "rawForm": 0.083
-          },
-          "hazard": {
-            "model": 0.07,
-            "rawForm": 0.075
-          }
-        }
-      },
-      "stability": {
-        "batting": {
-          "n": 499,
-          "model": 0.718,
-          "rawFormSR": 0.454
-        },
-        "bowling": {
-          "n": 408,
-          "model": 0.62,
-          "rawFormEconomy": 0.44
-        }
-      }
-    },
-    {
-      "variant": "hazard prior 300",
-      "options": {
-        "priorStrength": 50,
-        "phasePooling": "hierarchical",
-        "tierMode": {
-          "bat": "twoWay",
-          "bowl": "elo"
-        },
-        "careerPriorStrength": 50,
-        "wicketCost": 2.6,
-        "hazardPriorStrength": 300,
-        "phasePriorStrength": 150,
-        "transferScaleElo": 300,
-        "bowlPriorMultiplier": 2,
-        "venueNormalisation": 0
-      },
-      "predictive": {
-        "batting": {
-          "n": 392,
-          "model": 0.285,
-          "modelTiered": 0.291,
-          "rawFormValue": 0.279,
-          "rawFormRate": 0.268,
-          "careerRate": 0.259,
-          "runs": {
-            "model": 0.327,
-            "rawForm": 0.328
-          },
-          "hazard": {
-            "model": 0.117,
-            "rawForm": 0.076
-          }
-        },
-        "bowling": {
-          "n": 324,
-          "model": 0.149,
-          "modelTiered": 0.117,
-          "rawFormValue": 0.044,
-          "rawFormRate": 0.094,
-          "careerRate": 0.114,
-          "runs": {
-            "model": 0.163,
-            "rawForm": 0.083
-          },
-          "hazard": {
-            "model": 0.094,
-            "rawForm": 0.075
-          }
-        }
-      },
-      "stability": {
-        "batting": {
-          "n": 499,
-          "model": 0.753,
-          "rawFormSR": 0.454
-        },
-        "bowling": {
-          "n": 408,
-          "model": 0.645,
-          "rawFormEconomy": 0.44
-        }
-      }
-    },
-    {
-      "variant": "hazard prior 3000",
-      "options": {
-        "priorStrength": 50,
-        "phasePooling": "hierarchical",
-        "tierMode": {
-          "bat": "twoWay",
-          "bowl": "elo"
-        },
-        "careerPriorStrength": 50,
-        "wicketCost": 2.6,
-        "hazardPriorStrength": 3000,
-        "phasePriorStrength": 150,
-        "transferScaleElo": 300,
-        "bowlPriorMultiplier": 2,
-        "venueNormalisation": 0
-      },
-      "predictive": {
-        "batting": {
-          "n": 392,
-          "model": 0.305,
+          "model": 0.301,
           "modelTiered": 0.311,
           "rawFormValue": 0.279,
           "rawFormRate": 0.268,
           "careerRate": 0.259,
           "runs": {
-            "model": 0.334,
+            "model": 0.381,
             "rawForm": 0.328
           },
           "hazard": {
-            "model": 0.126,
+            "model": 0.139,
             "rawForm": 0.076
           }
         },
         "bowling": {
           "n": 324,
-          "model": 0.151,
-          "modelTiered": 0.119,
+          "within": {
+            "model": 0.188,
+            "rawFormValue": 0.087,
+            "rawFormRate": 0.102
+          },
+          "model": 0.178,
+          "modelTiered": 0.17,
           "rawFormValue": 0.044,
           "rawFormRate": 0.094,
           "careerRate": 0.114,
           "runs": {
-            "model": 0.168,
+            "model": 0.217,
             "rawForm": 0.083
           },
           "hazard": {
-            "model": 0.115,
+            "model": 0.113,
             "rawForm": 0.075
           }
         }
@@ -1142,7 +2150,407 @@
       "stability": {
         "batting": {
           "n": 499,
-          "model": 0.775,
+          "model": 0.759,
+          "rawFormSR": 0.454
+        },
+        "bowling": {
+          "n": 408,
+          "model": 0.586,
+          "rawFormEconomy": 0.44
+        }
+      }
+    },
+    {
+      "variant": "hazard prior 4000",
+      "options": {
+        "priorStrength": 100,
+        "phasePooling": "hierarchical",
+        "tierMode": {
+          "bat": "twoWay",
+          "bowl": "elo"
+        },
+        "careerPriorStrength": 50,
+        "wicketCost": 2.6,
+        "hazardPriorStrength": 4000,
+        "phasePriorStrength": 300,
+        "transferScaleElo": 300,
+        "bowlPriorMultiplier": 2,
+        "venueNormalisation": 0,
+        "evidence": "expected",
+        "selectionWeight": 0,
+        "selectionMaxShare": 1,
+        "cohortCentre": "top10",
+        "tierDestination": true,
+        "transferDestination": "topThird"
+      },
+      "predictive": {
+        "batting": {
+          "n": 392,
+          "within": {
+            "model": 0.329,
+            "rawFormValue": 0.272,
+            "rawFormRate": 0.268
+          },
+          "model": 0.308,
+          "modelTiered": 0.318,
+          "rawFormValue": 0.279,
+          "rawFormRate": 0.268,
+          "careerRate": 0.259,
+          "runs": {
+            "model": 0.383,
+            "rawForm": 0.328
+          },
+          "hazard": {
+            "model": 0.125,
+            "rawForm": 0.076
+          }
+        },
+        "bowling": {
+          "n": 324,
+          "within": {
+            "model": 0.191,
+            "rawFormValue": 0.087,
+            "rawFormRate": 0.102
+          },
+          "model": 0.181,
+          "modelTiered": 0.171,
+          "rawFormValue": 0.044,
+          "rawFormRate": 0.094,
+          "careerRate": 0.114,
+          "runs": {
+            "model": 0.219,
+            "rawForm": 0.083
+          },
+          "hazard": {
+            "model": 0.135,
+            "rawForm": 0.075
+          }
+        }
+      },
+      "stability": {
+        "batting": {
+          "n": 499,
+          "model": 0.761,
+          "rawFormSR": 0.454
+        },
+        "bowling": {
+          "n": 408,
+          "model": 0.584,
+          "rawFormEconomy": 0.44
+        }
+      }
+    },
+    {
+      "variant": "bowl prior ×1",
+      "options": {
+        "priorStrength": 100,
+        "phasePooling": "hierarchical",
+        "tierMode": {
+          "bat": "twoWay",
+          "bowl": "elo"
+        },
+        "careerPriorStrength": 50,
+        "wicketCost": 2.6,
+        "hazardPriorStrength": 2000,
+        "phasePriorStrength": 300,
+        "transferScaleElo": 300,
+        "bowlPriorMultiplier": 1,
+        "venueNormalisation": 0,
+        "evidence": "expected",
+        "selectionWeight": 0,
+        "selectionMaxShare": 1,
+        "cohortCentre": "top10",
+        "tierDestination": true,
+        "transferDestination": "topThird"
+      },
+      "predictive": {
+        "batting": {
+          "n": 392,
+          "within": {
+            "model": 0.326,
+            "rawFormValue": 0.272,
+            "rawFormRate": 0.268
+          },
+          "model": 0.305,
+          "modelTiered": 0.315,
+          "rawFormValue": 0.279,
+          "rawFormRate": 0.268,
+          "careerRate": 0.259,
+          "runs": {
+            "model": 0.382,
+            "rawForm": 0.328
+          },
+          "hazard": {
+            "model": 0.134,
+            "rawForm": 0.076
+          }
+        },
+        "bowling": {
+          "n": 324,
+          "within": {
+            "model": 0.182,
+            "rawFormValue": 0.087,
+            "rawFormRate": 0.102
+          },
+          "model": 0.172,
+          "modelTiered": 0.163,
+          "rawFormValue": 0.044,
+          "rawFormRate": 0.094,
+          "careerRate": 0.114,
+          "runs": {
+            "model": 0.203,
+            "rawForm": 0.083
+          },
+          "hazard": {
+            "model": 0.119,
+            "rawForm": 0.075
+          }
+        }
+      },
+      "stability": {
+        "batting": {
+          "n": 499,
+          "model": 0.761,
+          "rawFormSR": 0.454
+        },
+        "bowling": {
+          "n": 408,
+          "model": 0.553,
+          "rawFormEconomy": 0.44
+        }
+      }
+    },
+    {
+      "variant": "bowl prior ×4",
+      "options": {
+        "priorStrength": 100,
+        "phasePooling": "hierarchical",
+        "tierMode": {
+          "bat": "twoWay",
+          "bowl": "elo"
+        },
+        "careerPriorStrength": 50,
+        "wicketCost": 2.6,
+        "hazardPriorStrength": 2000,
+        "phasePriorStrength": 300,
+        "transferScaleElo": 300,
+        "bowlPriorMultiplier": 4,
+        "venueNormalisation": 0,
+        "evidence": "expected",
+        "selectionWeight": 0,
+        "selectionMaxShare": 1,
+        "cohortCentre": "top10",
+        "tierDestination": true,
+        "transferDestination": "topThird"
+      },
+      "predictive": {
+        "batting": {
+          "n": 392,
+          "within": {
+            "model": 0.326,
+            "rawFormValue": 0.272,
+            "rawFormRate": 0.268
+          },
+          "model": 0.305,
+          "modelTiered": 0.315,
+          "rawFormValue": 0.279,
+          "rawFormRate": 0.268,
+          "careerRate": 0.259,
+          "runs": {
+            "model": 0.382,
+            "rawForm": 0.328
+          },
+          "hazard": {
+            "model": 0.134,
+            "rawForm": 0.076
+          }
+        },
+        "bowling": {
+          "n": 324,
+          "within": {
+            "model": 0.198,
+            "rawFormValue": 0.087,
+            "rawFormRate": 0.102
+          },
+          "model": 0.189,
+          "modelTiered": 0.181,
+          "rawFormValue": 0.044,
+          "rawFormRate": 0.094,
+          "careerRate": 0.114,
+          "runs": {
+            "model": 0.235,
+            "rawForm": 0.083
+          },
+          "hazard": {
+            "model": 0.127,
+            "rawForm": 0.075
+          }
+        }
+      },
+      "stability": {
+        "batting": {
+          "n": 499,
+          "model": 0.761,
+          "rawFormSR": 0.454
+        },
+        "bowling": {
+          "n": 408,
+          "model": 0.637,
+          "rawFormEconomy": 0.44
+        }
+      }
+    },
+    {
+      "variant": "wicket cost 0 (diagnostic)",
+      "options": {
+        "priorStrength": 100,
+        "phasePooling": "hierarchical",
+        "tierMode": {
+          "bat": "twoWay",
+          "bowl": "elo"
+        },
+        "careerPriorStrength": 50,
+        "wicketCost": 0,
+        "hazardPriorStrength": 2000,
+        "phasePriorStrength": 300,
+        "transferScaleElo": 300,
+        "bowlPriorMultiplier": 2,
+        "venueNormalisation": 0,
+        "evidence": "expected",
+        "selectionWeight": 0,
+        "selectionMaxShare": 1,
+        "cohortCentre": "top10",
+        "tierDestination": true,
+        "transferDestination": "topThird"
+      },
+      "predictive": {
+        "batting": {
+          "n": 392,
+          "within": {
+            "model": 0.33,
+            "rawFormValue": 0.272,
+            "rawFormRate": 0.268
+          },
+          "model": 0.31,
+          "modelTiered": 0.321,
+          "rawFormValue": 0.279,
+          "rawFormRate": 0.268,
+          "careerRate": 0.259,
+          "runs": {
+            "model": 0.382,
+            "rawForm": 0.328
+          },
+          "hazard": {
+            "model": 0.134,
+            "rawForm": 0.076
+          }
+        },
+        "bowling": {
+          "n": 324,
+          "within": {
+            "model": 0.19,
+            "rawFormValue": 0.087,
+            "rawFormRate": 0.102
+          },
+          "model": 0.18,
+          "modelTiered": 0.17,
+          "rawFormValue": 0.044,
+          "rawFormRate": 0.094,
+          "careerRate": 0.114,
+          "runs": {
+            "model": 0.218,
+            "rawForm": 0.083
+          },
+          "hazard": {
+            "model": 0.124,
+            "rawForm": 0.075
+          }
+        }
+      },
+      "stability": {
+        "batting": {
+          "n": 499,
+          "model": 0.756,
+          "rawFormSR": 0.454
+        },
+        "bowling": {
+          "n": 408,
+          "model": 0.579,
+          "rawFormEconomy": 0.44
+        }
+      }
+    },
+    {
+      "variant": "window evidence, opposition none / none (control)",
+      "options": {
+        "priorStrength": 50,
+        "phasePooling": "hierarchical",
+        "tierMode": {
+          "bat": "none",
+          "bowl": "none"
+        },
+        "careerPriorStrength": 50,
+        "wicketCost": 2.6,
+        "hazardPriorStrength": 1000,
+        "phasePriorStrength": 150,
+        "transferScaleElo": 300,
+        "bowlPriorMultiplier": 2,
+        "venueNormalisation": 0,
+        "evidence": "window",
+        "selectionWeight": 0,
+        "selectionMaxShare": 1,
+        "cohortCentre": "top10",
+        "tierDestination": true,
+        "transferDestination": "topThird"
+      },
+      "predictive": {
+        "batting": {
+          "n": 392,
+          "within": {
+            "model": 0.303,
+            "rawFormValue": 0.272,
+            "rawFormRate": 0.268
+          },
+          "model": 0.297,
+          "modelTiered": 0.305,
+          "rawFormValue": 0.279,
+          "rawFormRate": 0.268,
+          "careerRate": 0.259,
+          "runs": {
+            "model": 0.29,
+            "rawForm": 0.328
+          },
+          "hazard": {
+            "model": 0.116,
+            "rawForm": 0.076
+          }
+        },
+        "bowling": {
+          "n": 324,
+          "within": {
+            "model": 0.156,
+            "rawFormValue": 0.087,
+            "rawFormRate": 0.102
+          },
+          "model": 0.146,
+          "modelTiered": 0.12,
+          "rawFormValue": 0.044,
+          "rawFormRate": 0.094,
+          "careerRate": 0.114,
+          "runs": {
+            "model": 0.18,
+            "rawForm": 0.083
+          },
+          "hazard": {
+            "model": 0.121,
+            "rawForm": 0.075
+          }
+        }
+      },
+      "stability": {
+        "batting": {
+          "n": 499,
+          "model": 0.757,
           "rawFormSR": 0.454
         },
         "bowling": {
@@ -1153,137 +2561,9 @@
       }
     },
     {
-      "variant": "no career prior",
+      "variant": "window evidence, window-averaged venue normalisation on",
       "options": {
         "priorStrength": 50,
-        "phasePooling": "hierarchical",
-        "tierMode": {
-          "bat": "twoWay",
-          "bowl": "elo"
-        },
-        "careerPriorStrength": 0,
-        "wicketCost": 2.6,
-        "hazardPriorStrength": 1000,
-        "phasePriorStrength": 150,
-        "transferScaleElo": 300,
-        "bowlPriorMultiplier": 2,
-        "venueNormalisation": 0
-      },
-      "predictive": {
-        "batting": {
-          "n": 392,
-          "model": 0.299,
-          "modelTiered": 0.306,
-          "rawFormValue": 0.279,
-          "rawFormRate": 0.268,
-          "careerRate": 0.259,
-          "runs": {
-            "model": 0.368,
-            "rawForm": 0.328
-          },
-          "hazard": {
-            "model": 0.122,
-            "rawForm": 0.076
-          }
-        },
-        "bowling": {
-          "n": 324,
-          "model": 0.155,
-          "modelTiered": 0.132,
-          "rawFormValue": 0.044,
-          "rawFormRate": 0.094,
-          "careerRate": 0.114,
-          "runs": {
-            "model": 0.207,
-            "rawForm": 0.083
-          },
-          "hazard": {
-            "model": 0.136,
-            "rawForm": 0.075
-          }
-        }
-      },
-      "stability": {
-        "batting": {
-          "n": 499,
-          "model": 0.677,
-          "rawFormSR": 0.454
-        },
-        "bowling": {
-          "n": 408,
-          "model": 0.381,
-          "rawFormEconomy": 0.44
-        }
-      }
-    },
-    {
-      "variant": "career prior 150",
-      "options": {
-        "priorStrength": 50,
-        "phasePooling": "hierarchical",
-        "tierMode": {
-          "bat": "twoWay",
-          "bowl": "elo"
-        },
-        "careerPriorStrength": 150,
-        "wicketCost": 2.6,
-        "hazardPriorStrength": 1000,
-        "phasePriorStrength": 150,
-        "transferScaleElo": 300,
-        "bowlPriorMultiplier": 2,
-        "venueNormalisation": 0
-      },
-      "predictive": {
-        "batting": {
-          "n": 392,
-          "model": 0.302,
-          "modelTiered": 0.307,
-          "rawFormValue": 0.279,
-          "rawFormRate": 0.268,
-          "careerRate": 0.259,
-          "runs": {
-            "model": 0.346,
-            "rawForm": 0.328
-          },
-          "hazard": {
-            "model": 0.13,
-            "rawForm": 0.076
-          }
-        },
-        "bowling": {
-          "n": 324,
-          "model": 0.156,
-          "modelTiered": 0.126,
-          "rawFormValue": 0.044,
-          "rawFormRate": 0.094,
-          "careerRate": 0.114,
-          "runs": {
-            "model": 0.185,
-            "rawForm": 0.083
-          },
-          "hazard": {
-            "model": 0.101,
-            "rawForm": 0.075
-          }
-        }
-      },
-      "stability": {
-        "batting": {
-          "n": 499,
-          "model": 0.749,
-          "rawFormSR": 0.454
-        },
-        "bowling": {
-          "n": 408,
-          "model": 0.607,
-          "rawFormEconomy": 0.44
-        }
-      }
-    },
-    {
-      "variant": "c=30",
-      "options": {
-        "priorStrength": 30,
         "phasePooling": "hierarchical",
         "tierMode": {
           "bat": "twoWay",
@@ -1295,18 +2575,29 @@
         "phasePriorStrength": 150,
         "transferScaleElo": 300,
         "bowlPriorMultiplier": 2,
-        "venueNormalisation": 0
+        "venueNormalisation": 1,
+        "evidence": "window",
+        "selectionWeight": 0,
+        "selectionMaxShare": 1,
+        "cohortCentre": "top10",
+        "tierDestination": true,
+        "transferDestination": "topThird"
       },
       "predictive": {
         "batting": {
           "n": 392,
-          "model": 0.297,
-          "modelTiered": 0.302,
+          "within": {
+            "model": 0.302,
+            "rawFormValue": 0.272,
+            "rawFormRate": 0.268
+          },
+          "model": 0.284,
+          "modelTiered": 0.295,
           "rawFormValue": 0.279,
           "rawFormRate": 0.268,
           "careerRate": 0.259,
           "runs": {
-            "model": 0.33,
+            "model": 0.331,
             "rawForm": 0.328
           },
           "hazard": {
@@ -1316,17 +2607,22 @@
         },
         "bowling": {
           "n": 324,
-          "model": 0.149,
-          "modelTiered": 0.117,
+          "within": {
+            "model": 0.178,
+            "rawFormValue": 0.087,
+            "rawFormRate": 0.102
+          },
+          "model": 0.166,
+          "modelTiered": 0.146,
           "rawFormValue": 0.044,
           "rawFormRate": 0.094,
           "careerRate": 0.114,
           "runs": {
-            "model": 0.164,
+            "model": 0.202,
             "rawForm": 0.083
           },
           "hazard": {
-            "model": 0.102,
+            "model": 0.135,
             "rawForm": 0.075
           }
         }
@@ -1334,146 +2630,85 @@
       "stability": {
         "batting": {
           "n": 499,
-          "model": 0.769,
+          "model": 0.805,
           "rawFormSR": 0.454
         },
         "bowling": {
           "n": 408,
-          "model": 0.657,
-          "rawFormEconomy": 0.44
-        }
-      }
-    },
-    {
-      "variant": "c=80",
-      "options": {
-        "priorStrength": 80,
-        "phasePooling": "hierarchical",
-        "tierMode": {
-          "bat": "twoWay",
-          "bowl": "elo"
-        },
-        "careerPriorStrength": 50,
-        "wicketCost": 2.6,
-        "hazardPriorStrength": 1000,
-        "phasePriorStrength": 150,
-        "transferScaleElo": 300,
-        "bowlPriorMultiplier": 2,
-        "venueNormalisation": 0
-      },
-      "predictive": {
-        "batting": {
-          "n": 392,
-          "model": 0.298,
-          "modelTiered": 0.303,
-          "rawFormValue": 0.279,
-          "rawFormRate": 0.268,
-          "careerRate": 0.259,
-          "runs": {
-            "model": 0.332,
-            "rawForm": 0.328
-          },
-          "hazard": {
-            "model": 0.13,
-            "rawForm": 0.076
-          }
-        },
-        "bowling": {
-          "n": 324,
-          "model": 0.15,
-          "modelTiered": 0.118,
-          "rawFormValue": 0.044,
-          "rawFormRate": 0.094,
-          "careerRate": 0.114,
-          "runs": {
-            "model": 0.167,
-            "rawForm": 0.083
-          },
-          "hazard": {
-            "model": 0.101,
-            "rawForm": 0.075
-          }
-        }
-      },
-      "stability": {
-        "batting": {
-          "n": 499,
-          "model": 0.769,
-          "rawFormSR": 0.454
-        },
-        "bowling": {
-          "n": 408,
-          "model": 0.664,
-          "rawFormEconomy": 0.44
-        }
-      }
-    },
-    {
-      "variant": "wicket cost 0 (diagnostic)",
-      "options": {
-        "priorStrength": 50,
-        "phasePooling": "hierarchical",
-        "tierMode": {
-          "bat": "twoWay",
-          "bowl": "elo"
-        },
-        "careerPriorStrength": 50,
-        "wicketCost": 0,
-        "hazardPriorStrength": 1000,
-        "phasePriorStrength": 150,
-        "transferScaleElo": 300,
-        "bowlPriorMultiplier": 2,
-        "venueNormalisation": 0
-      },
-      "predictive": {
-        "batting": {
-          "n": 392,
-          "model": 0.303,
-          "modelTiered": 0.309,
-          "rawFormValue": 0.279,
-          "rawFormRate": 0.268,
-          "careerRate": 0.259,
-          "runs": {
-            "model": 0.331,
-            "rawForm": 0.328
-          },
-          "hazard": {
-            "model": 0.13,
-            "rawForm": 0.076
-          }
-        },
-        "bowling": {
-          "n": 324,
-          "model": 0.152,
-          "modelTiered": 0.12,
-          "rawFormValue": 0.044,
-          "rawFormRate": 0.094,
-          "careerRate": 0.114,
-          "runs": {
-            "model": 0.165,
-            "rawForm": 0.083
-          },
-          "hazard": {
-            "model": 0.101,
-            "rawForm": 0.075
-          }
-        }
-      },
-      "stability": {
-        "batting": {
-          "n": 499,
-          "model": 0.766,
-          "rawFormSR": 0.454
-        },
-        "bowling": {
-          "n": 408,
-          "model": 0.659,
+          "model": 0.646,
           "rawFormEconomy": 0.44
         }
       }
     }
   ],
+  "transfer": [
+    {
+      "skill": "bat",
+      "n": 31,
+      "slope": 0.054,
+      "correlation": 0.07,
+      "meanEdgeWeak": 0.226,
+      "meanEdgeStrong": 0.066,
+      "minBalls": 120
+    },
+    {
+      "skill": "bowl",
+      "n": 31,
+      "slope": 0.115,
+      "correlation": 0.152,
+      "meanEdgeWeak": 0.097,
+      "meanEdgeStrong": 0.054,
+      "minBalls": 120
+    },
+    {
+      "skill": "bat",
+      "n": 112,
+      "slope": 0.228,
+      "correlation": 0.283,
+      "meanEdgeWeak": 0.24,
+      "meanEdgeStrong": 0.021,
+      "minBalls": 60
+    },
+    {
+      "skill": "bowl",
+      "n": 115,
+      "slope": 0.053,
+      "correlation": 0.103,
+      "meanEdgeWeak": 0.167,
+      "meanEdgeStrong": 0.081,
+      "minBalls": 60
+    }
+  ],
   "timeless": [
+    {
+      "personId": "dcce6f09",
+      "name": "DA Warner",
+      "skill": "batting",
+      "editions": [
+        "2009",
+        "2010",
+        "2012",
+        "2016",
+        "2022",
+        "2024"
+      ],
+      "spanYears": 15,
+      "bestDisplay": 98
+    },
+    {
+      "personId": "0dc00542",
+      "name": "Shahid Afridi",
+      "skill": "batting",
+      "editions": [
+        "2007",
+        "2009",
+        "2010",
+        "2012",
+        "2016"
+      ],
+      "spanYears": 9,
+      "bestDisplay": 99
+    },
     {
       "personId": "b681e71e",
       "name": "GJ Maxwell",
@@ -1481,38 +2716,11 @@
       "editions": [
         "2016",
         "2021",
-        "2022",
         "2024",
         "2026"
       ],
       "spanYears": 10,
-      "bestDisplay": 98
-    },
-    {
-      "personId": "b8d490fd",
-      "name": "AJ Finch",
-      "skill": "batting",
-      "editions": [
-        "2014",
-        "2016",
-        "2021",
-        "2022"
-      ],
-      "spanYears": 8,
       "bestDisplay": 99
-    },
-    {
-      "personId": "dcce6f09",
-      "name": "DA Warner",
-      "skill": "batting",
-      "editions": [
-        "2010",
-        "2016",
-        "2022",
-        "2024"
-      ],
-      "spanYears": 14,
-      "bestDisplay": 91
     },
     {
       "personId": "462411b3",
@@ -1526,28 +2734,41 @@
       ],
       "spanYears": 10,
       "bestDisplay": 99
+    },
+    {
+      "personId": "e4a0deae",
+      "name": "MJ Santner",
+      "skill": "bowling",
+      "editions": [
+        "2016",
+        "2021",
+        "2022",
+        "2024"
+      ],
+      "spanYears": 8,
+      "bestDisplay": 96
     }
   ],
   "audit": {
     "byTier": {
       "Elite": {
         "n": 35,
-        "meanDisplay": 80.9
+        "meanDisplay": 79.4
       },
       "Gold": {
         "n": 63,
-        "meanDisplay": 75.5
+        "meanDisplay": 73.7
       },
       "Silver": {
         "n": 65,
-        "meanDisplay": 73.4
+        "meanDisplay": 68.4
       },
       "Bronze": {
         "n": 59,
-        "meanDisplay": 68.9
+        "meanDisplay": 66.7
       }
     },
-    "spearman": 0.286,
+    "spearman": 0.294,
     "matched": 222
   }
 }

@@ -59,7 +59,7 @@ wcdraft/
 |---|---|
 | `editions.json` | Per edition: scoring environment (RPO, dot/4/6 %, balls per wicket, phase RPO, first-innings avg/SD, chase win %, toss norms, dew proxy, extras), dismissal fingerprint, DRS review counts, rain, groups and stages, host win %, associate upsets, population outcome vectors per phase, rule flags, Afghanistan slot and stand-in |
 | `venues.json` | Same environment block per canonical venue, overall and per edition |
-| `player-editions/<edition>.json` | One row per (player, edition, team): `tournament`, `form` (24 months before), `formByOpposition` (the same form split by whether the opposition was a full member or an associate at the time), `careerToDate` (T20I snapshot at the edition's first match) and `odiCareerToDate` (ODI snapshot, summary only; the weak prior for 2007/2009). Blocks hold raw per-phase outcome counts for batting and bowling, batting positions, dismissal kinds, fielding counts, and a display summary |
+| `player-editions/<edition>.json` | One row per (player, edition, team): `tournament`, `form` (24 months before), `formByOpposition` (the same form split by whether the opposition was a full member or an associate at the time), `formByOppBin` (pooled form counts per opponent-Elo bin), `careerToDate` (T20I snapshot at the edition's first match), `odiCareerToDate` (ODI snapshot, summary only; the weak prior for 2007/2009) and `usage` (matches picked vs team matches, form window and tournament). Blocks hold raw per-phase outcome counts for batting and bowling **and the context-expected counts over the same balls** (Phase 1.5), batting positions, dismissal kinds, fielding counts, and a display summary |
 | `window-population.json` | Per edition: form-window outcome vectors per phase, split by the tier of the side faced (batting vs full/associate attacks; bowling vs full/associate batting). Shrinkage priors and normalisation targets for ratings |
 | `team-strength-odi.json` | The same Elo timeline over men's ODIs (team strength before T20Is existed; ODI captaincy baseline) |
 | `squads/<edition>.json` | Per team-edition: players with appearances, inferred keepers, a `defaultXI` (most-used eleven in modal batting order) and `defaultBowlingOrder` for pairings that never happened, and every real match with XI, batting order, bowler per over, venue and result. Stand-in teams (Afghanistan's replacements) are included with `standIn: true` and a `source` of `form-window`, `nearest-t20is` (first T20Is after the edition, within 60 months) or `hand` (from `config/hand-squads.json`) |
@@ -72,46 +72,59 @@ wcdraft/
 | `coverage.json`, `COVERAGE.md` | Which teams and players each edition gives us and who lacks form data |
 | `meta.json` | Archive snapshot, licence, form window, thresholds |
 
-## Ratings (Phase 1 prototype)
+## Ratings (Phase 1.5)
 
 ```bash
-npm run ratings:build --workspace wcdraft   # ≈12 s → data/out/ratings/<edition>.json, RATINGS.md, ratings-summary.json
+npm run ratings:build --workspace wcdraft   # ≈16 s → data/out/ratings/<edition>.json, RATINGS.md, ratings-summary.json
 ```
 
 `src/ratings/` turns the player-edition tables into per-ball outcome vectors per phase and a
-40–99 display rating per skill. The model, chosen by the validation sweep in `RATINGS.md`:
+40–99 display rating per skill. The model, chosen by the validation sweep in `RATINGS.md`
+(every knob and the evidence behind it is documented in `src/ratings/model.ts`):
 
-1. **Career anchor**: the T20I career-to-date vector, shrunk toward the population, is the prior
-   centre; its strength grows with career balls (×0.5, capped at 300) so a thin form window cannot
-   overturn a long record.
-2. **Form**: the 24-month window is shrunk toward that prior (50 pseudo-balls, bowling ×2), with
-   the dismissal cell on its own 1,000-ball prior because dismissal rates do not stabilise at these
-   sample sizes (validation: r ≈ 0.1 for any estimator).
-3. **Phases**: a pooled vector first, then each phase shrunk toward it with a 150-ball prior.
-4. **Opposition**: batters are judged against batters from teams of the same strength facing the
-   same opponent mix (a two-way, log-additively smoothed Elo table) and carried through the
-   tier-to-tier gap into the edition's opponent mix; bowlers against what all bowlers conceded to
-   batting sides of the strengths they faced. Only a measured share of an edge earned against weaker
-   opposition is carried upward (≈0.15 left at a 250-Elo step).
-5. **Venue normalisation** (computed, off by default): each ground in the form window gets a
-   scoring factor (runs per ball ÷ window average, shrunk toward 1 with a 1,200-ball prior) and
-   each player an exposure-weighted factor. Dividing scoring outcomes by it did not improve
-   prediction, because window-averaged factors sit near 1; the per-innings, venue-type version
-   (spin vs pace by ground class) and a projected modifier for the identity team's fixtures are
-   the next step, and the factors are exported for it.
+1. **Context-expected evidence** (Phase 1.5). A first pass over the whole archive builds outcome
+   populations by year-quarter × opponent-Elo bin × phase (sparse cells fall back quarter → year →
+   all-time, then to "any opponent"; minimum 600 balls per cell) plus a scoring factor per ground
+   (shrunk toward 1 with a 1,200-ball prior). The main pass then accumulates, next to every
+   player's observed outcome counts, the counts an average player would have produced in each
+   ball's context. `outcomes ÷ expected` is a context-neutral relative vector, so career, form and
+   tournament blocks arrive pre-adjusted for era, opposition and (for bowling only, by the sweep)
+   ground. This replaced the Phase 1 window-population normalisation.
+2. **Career anchor**: the career-to-date relative vector, shrunk toward neutral, is the prior
+   centre; its strength grows with career balls (×0.5, capped at 300).
+3. **Form**: the 24-month window is shrunk toward that prior (100 pseudo-balls, bowling ×2), the
+   dismissal cell on its own 2,000-ball prior because dismissal rates do not stabilise at these
+   sample sizes.
+4. **Phases**: a pooled vector first, then each phase shrunk toward it with a 300-ball prior.
+5. **Edge transfer**: only part of an edge earned against weaker opposition is carried up to the
+   **strongest third of the edition's teams** (the sides an unbeaten run must beat): the share is
+   max(0.1, 1 − Δ/300) for an Elo gap Δ. Measured directly from the per-bin form counts, the slope
+   of a player's edge against strong opposition on their edge against weak opposition is 0.23
+   (batting, n = 112) and 0.05 (bowling, n = 115). The transport destination is still shaped by the
+   player's team tier (two-way table): the sweep showed it earns its place even though it looks
+   like counting team strength twice.
 6. **Value**: percentage of population expected runs gained (or saved), net of 2.6 runs per extra
-   dismissal, against the **window population projected onto the edition's opponent mix**, never
-   the tournament's realised scoring (which inflated whole editions); phase-weighted 0.30 / 0.45
-   / 0.25. The display rating maps the median to 70, the 99th percentile to 99 and the 5th to
-   45, linear in value, after shrinking thin samples toward the middle.
+   dismissal, against the window population projected onto the edition's opponent mix; phase
+   weights 0.30 / 0.45 / 0.25. **Cohort standardisation**: the context expectation's reference (an
+   average T20I player of the period) weakened as the T20I pool grew, so World Cup squads beat it
+   by 5% in 2010 and 13% in 2026 and later editions filled the top of the scale. Each edition's
+   values are therefore shifted and scaled so the squads of its ten strongest teams have mean 0
+   and a common spread; rankings within an edition and engine vectors are untouched. The display
+   maps the median to 70, the 99th percentile to 99 and the 5th to 45, linear in value, after
+   shrinking thin samples toward the middle.
+7. **Usage**: `usage.formShare` / `tournamentShare` (matches picked ÷ team matches) and the
+   era-locked **Squad Player** tag (under 25% of the tournament; 76 player-editions). A within-team
+   selection prior (rarely picked players rating above their team median lose value) is
+   implemented but **off**: the sweep found it neutral to slightly negative.
 
-Validation (pre-tournament rating vs what happened in that World Cup, 392 batting and 324
-bowling player-editions): batting r = 0.30 vs 0.27 for raw strike rate and 0.28 for the same
-value formula on raw form; bowling r = 0.15 vs 0.04 raw. Edition-to-edition stability 0.77 /
-0.66 vs 0.45 / 0.44 raw. Known limits: associate bowlers with little exposure to top sides still
-rate high (Erasmus 2024), because the edge-transfer gap is measured against the edition's average
-opponent rather than the Super-8 field; anchors with low dismissal rates (Kohli) are undervalued
-because hazard is shrunk hard; ODI priors for 2007/2009 are crude.
+Validation, primary metric = within-edition correlation between the pre-tournament rating and
+the raw value in that World Cup (each edition demeaned, so field composition cannot masquerade as
+skill; 392 batting / 324 bowling player-editions): batting 0.33 vs 0.27 for raw form and raw
+strike rate (Phase 1: 0.31); bowling 0.19 vs 0.09 raw (Phase 1: 0.17). Edition-to-edition
+stability 0.76 / 0.59 vs 0.45 / 0.44 raw. Known limits for Yash's review: Erasmus 2024 still
+rates 99 at bowling after a 0.35 transfer share (the two-sided bowling model is the parked fix);
+anchors with low dismissal rates (Kohli 2022/2024 in the 70s) are undervalued because hazard is
+shrunk hard; ODI priors for 2007/2009 are crude; Sundar 2026 bowls 89 with the Squad Player tag.
 
 ## Conventions
 

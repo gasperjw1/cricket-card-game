@@ -8,8 +8,8 @@ import assert from "node:assert/strict";
 import { describe, it } from "node:test";
 import { archiveIsReady } from "../src/cricsheet/archive.js";
 import { runBuild, type BuildResult } from "../src/pipeline/build.js";
-import { auditCards, timelessCandidates, validate } from "../src/ratings/analysis.js";
-import { MODEL } from "../src/ratings/model.js";
+import { auditCards, timelessCandidates, transferGaps, validate } from "../src/ratings/analysis.js";
+import { MODEL, OUTCOMES, PHASE_LIST, type PlayerEditionIn } from "../src/ratings/model.js";
 import { rateAll } from "../src/ratings/rate.js";
 import { normalise, shrink, shrinkWithHazard, transport } from "../src/ratings/vectors.js";
 
@@ -71,18 +71,68 @@ describe("Phase 1 ratings", { skip: !ready && "archive not fetched" }, () => {
     const rohit = r.find((x) => x.name === "RG Sharma" && x.editionId === "2024");
     assert.ok(ura && rohit);
     assert.ok(ura.batting.evidence.transfer < 0.7, `PNG edge transfer ${ura.batting.evidence.transfer}`);
-    assert.equal(rohit.batting.evidence.transfer, 1);
+    // The gap is measured to the edition's strongest third, so even India carries a little less than everything.
+    assert.ok(rohit.batting.evidence.transfer > 0.7 && rohit.batting.evidence.transfer > ura.batting.evidence.transfer + 0.3, `India edge transfer ${rohit.batting.evidence.transfer}`);
     assert.ok(rohit.batting.display > ura.batting.display);
   });
 
   it("beats the naive baselines on predictive validity and stability for batting", () => {
     const [def] = validate(build(), [{ variant: "default", options: { ...MODEL, ...{} } as never }].map((v) => ({ variant: v.variant, options: {} as never })));
     assert.ok(def);
-    const b = def.predictive.batting;
+    // Within-edition correlations: the pooled ones also score level alignment, which cohort centring deliberately changes.
+    const b = def.predictive.batting.within, w = def.predictive.bowling.within;
     assert.ok((b.model ?? 0) > (b.rawFormRate ?? 1), `model ${b.model} vs raw SR ${b.rawFormRate}`);
     assert.ok((b.model ?? 0) > (b.rawFormValue ?? 1), `model ${b.model} vs raw form value ${b.rawFormValue}`);
     assert.ok((def.stability.batting.model ?? 0) > (def.stability.batting.rawFormSR ?? 1));
-    assert.ok((def.predictive.bowling.model ?? 0) > (def.predictive.bowling.rawFormValue ?? 1));
+    assert.ok((w.model ?? 0) > (w.rawFormValue ?? 1), `bowling model ${w.model} vs raw form value ${w.rawFormValue}`);
+  });
+
+  it("accumulates context-expected counts that sum to the balls they cover (Phase 1.5)", () => {
+    const rows = build().playerEditions as unknown as PlayerEditionIn[];
+    let checked = 0;
+    for (const pe of rows) {
+      for (const block of [pe.form, pe.careerToDate, pe.tournament]) {
+        for (const skill of ["bat", "bowl"] as const) {
+          for (const p of PHASE_LIST) {
+            const pc = block[skill].phases[p];
+            if (!pc || pc.balls === 0) continue;
+            const sum = OUTCOMES.reduce((a, k) => a + (pc.expected?.[k] ?? 0), 0);
+            assert.ok(Math.abs(sum - pc.balls) < 0.01 * pc.balls + 0.01, `${pe.name} ${pe.editionId} ${skill} ${p}: expected sums to ${sum} over ${pc.balls} balls`);
+            checked += 1;
+          }
+        }
+      }
+    }
+    assert.ok(checked > 5000, `checked ${checked} phase cells`);
+  });
+
+  it("derives usage shares and the Squad Player tag from selection, not from balls", () => {
+    const r = rateAll(build());
+    for (const x of r) {
+      for (const s of [x.usage.formShare, x.usage.tournamentShare]) if (s !== null) assert.ok(s >= 0 && s <= 1, `${x.name} share ${s}`);
+      if (x.standIn) assert.equal(x.usage.tournamentShare, null, `${x.name} stand-in has no tournament share`);
+    }
+    const sundar = r.find((x) => x.name === "Washington Sundar" && x.editionId === "2026");
+    assert.ok(sundar?.usage.squadPlayer, "Sundar played 2 of India's 9 matches in 2026");
+    const bumrah = r.find((x) => x.name === "JJ Bumrah" && x.editionId === "2026");
+    assert.equal(bumrah?.usage.squadPlayer, false);
+    const tagged = r.filter((x) => x.usage.squadPlayer).length;
+    assert.ok(tagged > 20 && tagged < 0.1 * r.length, `Squad Player tags: ${tagged}`);
+    // Default weight is 0 (set by the sweep), so no rating is shifted by selection.
+    assert.ok(r.every((x) => x.batting.evidence.selectionShift === 0 && x.bowling.evidence.selectionShift === 0));
+    // With the prior on, a rarely-picked player rating above the team median loses value and nobody gains.
+    const on = rateAll(build(), { selectionWeight: 0.5, selectionMaxShare: 0.5 });
+    const shifted = on.filter((x) => x.bowling.evidence.selectionShift > 0);
+    assert.ok(shifted.length > 0 && shifted.every((x) => (x.usage.formShare ?? 1) < 0.5));
+    const sundarOn = on.find((x) => x.name === "Washington Sundar" && x.editionId === "2026");
+    assert.ok((sundarOn?.bowling.value ?? 0) < (sundar?.bowling.value ?? 0));
+  });
+
+  it("measures an edge-transfer slope well below 1 against the strongest third", () => {
+    for (const t of transferGaps(build(), 60)) {
+      assert.ok(t.n >= 50, `${t.skill}: n = ${t.n}`);
+      assert.ok(t.slope !== null && t.slope < 0.6, `${t.skill}: slope ${t.slope}`);
+    }
   });
 
   it("lists the expected Timeless candidates and agrees with the card tiers in direction", () => {

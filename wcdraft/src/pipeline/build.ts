@@ -12,6 +12,7 @@
  */
 
 import { BowlingUsageAnalysis } from "../analysis/bowling-usage.js";
+import { ContextPopulation } from "../analysis/context-population.js";
 import { EditionsAnalysis } from "../analysis/editions.js";
 import { LineupDeviationAnalysis } from "../analysis/lineup-deviation.js";
 import { PartnershipsAnalysis } from "../analysis/partnerships.js";
@@ -32,6 +33,14 @@ export const BADGE_THRESHOLDS = { batBalls: 60, bowlBalls: 72 } as const;
 /** Stand-in squads with no T20Is in the form window use their nearest T20Is after the edition, within this span. */
 export const STAND_IN_FALLBACK_MONTHS = 60;
 export const STAND_IN_FALLBACK_MATCHES = 12;
+/**
+ * Phase 1.5: whether the per-ball context expectation includes the ground's scoring factor, per
+ * skill. Set by the validation sweep (2026-10-28): on for bowling (prediction 0.167 → 0.175), off
+ * for batting (0.311 → 0.306 and stability 0.746 → 0.732 when on). The likely reason is that a
+ * ground's factor is partly its home batters' quality, so dividing it out of a batter's record
+ * removes signal, while a bowler's record gains from knowing how flat the ground was.
+ */
+export const CONTEXT_VENUE = { bat: false, bowl: true } as const;
 
 interface EditionWindow {
   id: string;
@@ -150,6 +159,21 @@ export function runBuild(log: (msg: string) => void = () => {}): BuildResult {
   const teamStrength = new TeamStrengthAnalysis(config.isFullMember);
   const windowPopulation = new WindowPopulationAnalysis(config);
 
+  // Phase 1.5 first pass: context populations (period × opponent strength × phase, venue factors)
+  // over the whole archive, with their own Elo so pre-match strengths match the main pass.
+  const contextPopulation = new ContextPopulation();
+  {
+    const eloPass = new TeamStrengthAnalysis(config.isFullMember);
+    for (const entry of index) {
+      const m = normaliseMatch(readMatch(entry.file), entry.id);
+      const elo = Object.fromEntries(m.teams.map((t) => [t, eloPass.ratingOf(t, m.date)]));
+      contextPopulation.add(m, elo);
+      eloPass.add(m);
+    }
+    contextPopulation.freeze();
+    log(`Context populations: ${JSON.stringify(contextPopulation.summary())}`);
+  }
+
   const pendingSnapshots = [...windows].sort((a, b) => a.start.localeCompare(b.start));
   let read = 0;
 
@@ -171,7 +195,7 @@ export function runBuild(log: (msg: string) => void = () => {}): BuildResult {
     const venue = wcEdition ? venues.resolve(m) : null;
     // Pre-match Elo of both sides, read before this match updates the ratings.
     const elo = Object.fromEntries(m.teams.map((t) => [t, teamStrength.ratingOf(t, m.date)]));
-    store.addMatch(m, { wcEdition, formEditions, standInFallback: fallbackByMatch.get(entry.id) ?? [], venueId: venue?.id ?? null, elo });
+    store.addMatch(m, { wcEdition, formEditions, standInFallback: fallbackByMatch.get(entry.id) ?? [], venueId: venue?.id ?? null, elo, context: contextPopulation, contextVenue: CONTEXT_VENUE });
     teamStyle.add(m);
     teamStrength.add(m);
     for (const ed of formEditions) windowPopulation.add(ed, m, elo, "window");

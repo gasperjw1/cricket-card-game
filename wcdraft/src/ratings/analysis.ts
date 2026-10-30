@@ -9,9 +9,10 @@
 
 import { existsSync } from "node:fs";
 import type { Phase } from "../cricsheet/match.js";
+import { ELO_BINS, eloBin, type EloBin } from "../analysis/team-strength.js";
 import type { BuildResult } from "../pipeline/build.js";
 import { paths, readJson } from "../util/io.js";
-import { MODEL, PHASE_LIST, type PhaseVectors, type PlayerEditionIn, type PlayerRating, type Vector } from "./model.js";
+import { MODEL, OUTCOMES, PHASE_LIST, RUNS, type PhaseVectors, type PlayerEditionIn, type PlayerRating, type Vector } from "./model.js";
 import { buildContexts, DEFAULT_OPTIONS, mixtureByExposure, rateAll, type RateOptions } from "./rate.js";
 import { battingValue, bowlingValue, expectedRuns, normalise, toVector } from "./vectors.js";
 
@@ -122,8 +123,31 @@ function rawValues(r: BuildResult): Map<string, { target: Record<"bat" | "bowl",
   return out;
 }
 
+/** Pearson correlation after removing each edition's mean from both series (ranking skill, free of level alignment). */
+export function withinEdition(xs: number[], ys: number[], editions: string[]): number | null {
+  const sums = new Map<string, { n: number; x: number; y: number }>();
+  for (let i = 0; i < editions.length; i += 1) {
+    const s = sums.get(editions[i]!) ?? sums.set(editions[i]!, { n: 0, x: 0, y: 0 }).get(editions[i]!)!;
+    s.n += 1; s.x += xs[i]!; s.y += ys[i]!;
+  }
+  const dx: number[] = [], dy: number[] = [];
+  for (let i = 0; i < editions.length; i += 1) {
+    const s = sums.get(editions[i]!)!;
+    if (s.n < 5) continue;
+    dx.push(xs[i]! - s.x / s.n);
+    dy.push(ys[i]! - s.y / s.n);
+  }
+  return pearson(dx, dy);
+}
+
 export interface PredictiveCell {
   n: number;
+  /**
+   * Within-edition correlations (each edition demeaned first): the primary ranking metric, because
+   * the pooled correlation also rewards matching each edition's level, which depends on the field's
+   * composition rather than on player skill.
+   */
+  within: { model: number | null; rawFormValue: number | null; rawFormRate: number | null };
   /** model rating vs tournament value against the edition population */
   model: number | null;
   /** model rating vs tournament value against the tier faced (opposition-adjusted target) */
@@ -151,30 +175,49 @@ const base = (o: Partial<RateOptions>): Required<RateOptions> => ({ ...DEFAULT_O
 type TM = "split" | "mixture" | "elo" | "twoWay" | "none";
 const tiers = (bat: TM, bowl: TM) => ({ bat, bowl });
 
+/** The Phase 1 defaults, for the like-for-like comparison rows. */
+const PHASE1 = { evidence: "window" as const, priorStrength: 50, phasePriorStrength: 150, hazardPriorStrength: 1000 };
+
 export const VALIDATION_VARIANTS: { variant: string; options: Required<RateOptions> }[] = [
-  { variant: "DEFAULT: hierarchical(150), bat two-way / bowl elo, linear transfer 300, c=50 (bowl ×2), hazard 1000, career 50", options: base({}) },
-  { variant: "venue normalisation off", options: base({ venueNormalisation: 0 }) },
-  { variant: "venue normalisation half", options: base({ venueNormalisation: 0.5 }) },
+  { variant: "DEFAULT (Phase 1.5): context-expected evidence, hierarchical(300), c=100 (bowl ×2), hazard 2000, career 50, linear transfer 300", options: base({}) },
+  { variant: "Phase 1 default: window evidence (bat two-way / bowl elo), hierarchical(150), c=50, hazard 1000", options: base(PHASE1) },
+  { variant: "Phase 1 window evidence with the Phase 1.5 priors", options: base({ evidence: "window" }) },
+  // Context-expected path: structure
+  { variant: "context-expected, Phase 1 priors (c=50, phase 150, hazard 1000)", options: base({ priorStrength: 50, phasePriorStrength: 150, hazardPriorStrength: 1000 }) },
+  { variant: "context-expected, pooled phases", options: base({ phasePooling: "pooled" }) },
+  { variant: "context-expected, per-phase (no pooling)", options: base({ phasePooling: "none" }) },
+  { variant: "context-expected, no career prior", options: base({ careerPriorStrength: 0 }) },
+  { variant: "context-expected, career prior 100", options: base({ careerPriorStrength: 100 }) },
+  // Cohort centring
+  { variant: "cohort centre: none", options: base({ cohortCentre: "none" }) },
+  { variant: "cohort centre: all squads", options: base({ cohortCentre: "all" }) },
+  // Edge transfer and tier destination
+  { variant: "full transfer (scale 0)", options: base({ transferScaleElo: 0 }) },
+  { variant: "transfer 200", options: base({ transferScaleElo: 200 }) },
+  { variant: "transfer 450", options: base({ transferScaleElo: 450 }) },
+  { variant: "transfer to the strongest third", options: base({ transferDestination: "topThird" }) },
+  { variant: "transfer to the strongest third, scale 450", options: base({ transferDestination: "topThird", transferScaleElo: 450 }) },
+  { variant: "transfer to the strongest third, scale 600", options: base({ transferDestination: "topThird", transferScaleElo: 600 }) },
+  { variant: "tier destination on (two-way shape on the expected path)", options: base({ tierDestination: true }) },
+  { variant: "tier destination on, transfer to the strongest third", options: base({ tierDestination: true, transferDestination: "topThird" }) },
+  { variant: "tier destination on, cohort centre none", options: base({ tierDestination: true, cohortCentre: "none" }) },
+  // Selection prior (usage): the sweep set the default weight to 0 — see the spec's Phase 1.5 results.
+  { variant: "selection prior 0.5 (every miss counts)", options: base({ selectionWeight: 0.5 }) },
+  { variant: "selection prior 0.5, shares below 0.5 only", options: base({ selectionWeight: 0.5, selectionMaxShare: 0.5 }) },
+  { variant: "selection prior 1.0, shares below 0.5 only", options: base({ selectionWeight: 1, selectionMaxShare: 0.5 }) },
+  // Shrinkage strengths around the default
+  { variant: "c=50", options: base({ priorStrength: 50 }) },
+  { variant: "c=150", options: base({ priorStrength: 150 }) },
+  { variant: "phase prior 150", options: base({ phasePriorStrength: 150 }) },
+  { variant: "phase prior 600", options: base({ phasePriorStrength: 600 }) },
+  { variant: "hazard prior 1000", options: base({ hazardPriorStrength: 1000 }) },
+  { variant: "hazard prior 4000", options: base({ hazardPriorStrength: 4000 }) },
   { variant: "bowl prior ×1", options: base({ bowlPriorMultiplier: 1 }) },
   { variant: "bowl prior ×4", options: base({ bowlPriorMultiplier: 4 }) },
-  { variant: "two-way, full transfer (scale 0)", options: base({ transferScaleElo: 0 }) },
-  { variant: "two-way, transfer 200", options: base({ transferScaleElo: 200 }) },
-  { variant: "two-way, transfer 450", options: base({ transferScaleElo: 450 }) },
-  { variant: "bat two-way / bowl two-way", options: base({ tierMode: tiers("twoWay", "twoWay") }) },
-  { variant: "bat two-way / bowl none", options: base({ tierMode: tiers("twoWay", "none") }) },
-  { variant: "opposition none / none (control), transfer 300", options: base({ tierMode: tiers("none", "none") }) },
-  { variant: "opposition none / none, full transfer", options: base({ tierMode: tiers("none", "none"), transferScaleElo: 0 }) },
-  { variant: "pooled phases", options: base({ phasePooling: "pooled" }) },
-  { variant: "per-phase", options: base({ phasePooling: "none" }) },
-  { variant: "phase prior 50", options: base({ phasePriorStrength: 50 }) },
-  { variant: "hazard prior 50 (none extra)", options: base({ hazardPriorStrength: 50 }) },
-  { variant: "hazard prior 300", options: base({ hazardPriorStrength: 300 }) },
-  { variant: "hazard prior 3000", options: base({ hazardPriorStrength: 3000 }) },
-  { variant: "no career prior", options: base({ careerPriorStrength: 0 }) },
-  { variant: "career prior 150", options: base({ careerPriorStrength: 150 }) },
-  { variant: "c=30", options: base({ priorStrength: 30 }) },
-  { variant: "c=80", options: base({ priorStrength: 80 }) },
   { variant: "wicket cost 0 (diagnostic)", options: base({ wicketCost: 0 }) },
+  // Window-evidence controls kept for the record
+  { variant: "window evidence, opposition none / none (control)", options: base({ ...PHASE1, tierMode: tiers("none", "none") }) },
+  { variant: "window evidence, window-averaged venue normalisation on", options: base({ ...PHASE1, venueNormalisation: 1 }) },
 ];
 
 /**
@@ -195,6 +238,7 @@ export function validate(r: BuildResult, variants = VALIDATION_VARIANTS): Valida
 
     // Predictive
     const cell = () => ({
+      ed: [] as string[],
       model: [] as number[], modelT: [] as number[], rawValue: [] as number[], rawRate: [] as number[], career: [] as number[], target: [] as number[], targetT: [] as number[],
       mRuns: [] as number[], mHaz: [] as number[], fRuns: [] as number[], fHaz: [] as number[], tRuns: [] as number[], tHaz: [] as number[],
     });
@@ -203,12 +247,14 @@ export function validate(r: BuildResult, variants = VALIDATION_VARIANTS): Valida
       const rt = byKey.get(key)!, x = pe.get(key)!;
       const tb = v.target.bat, tw = v.target.bowl;
       if (tb.edition !== null && tb.tiered !== null && tb.balls >= 60 && x.form.summary.bat.balls >= 60 && x.form.summary.bat.strikeRate !== null && v.formBaseline.bat !== null) {
+        pb.ed.push(x.editionId);
         pb.model.push(rt.batting.value); pb.modelT.push(rt.batting.value); pb.rawValue.push(v.formBaseline.bat); pb.rawRate.push(x.form.summary.bat.strikeRate);
         pb.career.push(x.careerToDate.summary.bat.strikeRate ?? x.form.summary.bat.strikeRate); pb.target.push(tb.edition); pb.targetT.push(tb.tiered);
         const mc = modelComponents(rt.batting.vectors), fc = components(x.form.bat);
         pb.mRuns.push(mc.runsPerBall); pb.mHaz.push(mc.hazard); pb.fRuns.push(fc.runsPerBall ?? 0); pb.fHaz.push(fc.hazard ?? 0); pb.tRuns.push(tb.runsPerBall ?? 0); pb.tHaz.push(tb.hazard ?? 0);
       }
       if (tw.edition !== null && tw.tiered !== null && tw.balls >= 72 && x.form.summary.bowl.balls >= 72 && x.form.summary.bowl.economy !== null && v.formBaseline.bowl !== null) {
+        pw.ed.push(x.editionId);
         pw.model.push(rt.bowling.value); pw.modelT.push(rt.bowling.value); pw.rawValue.push(v.formBaseline.bowl); pw.rawRate.push(-x.form.summary.bowl.economy);
         pw.career.push(-(x.careerToDate.summary.bowl.economy ?? x.form.summary.bowl.economy)); pw.target.push(tw.edition); pw.targetT.push(tw.tiered);
         const mc = modelComponents(rt.bowling.vectors), fc = components(x.form.bowl);
@@ -217,6 +263,7 @@ export function validate(r: BuildResult, variants = VALIDATION_VARIANTS): Valida
     }
     const predictiveCell = (c: ReturnType<typeof cell>): PredictiveCell => ({
       n: c.target.length,
+      within: { model: withinEdition(c.model, c.target, c.ed), rawFormValue: withinEdition(c.rawValue, c.target, c.ed), rawFormRate: withinEdition(c.rawRate, c.target, c.ed) },
       model: pearson(c.model, c.target),
       modelTiered: pearson(c.modelT, c.targetT),
       rawFormValue: pearson(c.rawValue, c.target),
@@ -250,6 +297,81 @@ export function validate(r: BuildResult, variants = VALIDATION_VARIANTS): Valida
         bowling: { n: sw.model.length, model: pearson(sw.model, sw.next), rawFormEconomy: pearson(sw.raw, sw.rawNext) },
       },
     };
+  });
+}
+
+export interface TransferGap {
+  skill: "bat" | "bowl";
+  /** Player-editions with ≥ minBalls in both the weak and the strong group. */
+  n: number;
+  /** OLS slope of the strong-opposition log edge on the weak-opposition log edge (1 = full transfer, 0 = none). */
+  slope: number | null;
+  correlation: number | null;
+  /** Mean log edge in each group (0 = exactly what the context expected). */
+  meanEdgeWeak: number | null;
+  meanEdgeStrong: number | null;
+  minBalls: number;
+}
+
+/**
+ * Edge transfer against the strongest third (Phase 1.5). For each edition the "strong" group is
+ * the Elo bins at or above the bin of the team ranked in the edition's top third by Elo at the
+ * start; the "weak" group is every bin at least two below that. A player's edge in each group is
+ * the log ratio of actual to context-expected runs net of the wicket cost, from the per-ball
+ * context model (so weak and strong are already judged against their own baselines, and any
+ * residual slope below 1 is genuine non-transfer rather than scoring-level difference).
+ */
+export function transferGaps(r: BuildResult, minBalls = 120): TransferGap[] {
+  const rows = r.playerEditions as unknown as PlayerEditionIn[];
+  const teamElos = new Map<string, Map<string, number>>();
+  for (const pe of rows) if (pe.teamElo !== null) (teamElos.get(pe.editionId) ?? teamElos.set(pe.editionId, new Map()).get(pe.editionId)!).set(pe.team, pe.teamElo);
+  const strongIndex = new Map<string, number>();
+  for (const [ed, byTeam] of teamElos) {
+    const elos = [...byTeam.values()].sort((a, b) => b - a);
+    const threshold = elos[Math.ceil(elos.length / 3) - 1] ?? elos[0]!;
+    strongIndex.set(ed, ELO_BINS.indexOf(eloBin(threshold)));
+  }
+  const net = (c: Record<string, number>) => OUTCOMES.reduce((a, k) => a + (k === "W" ? -MODEL.wicketCost : RUNS[k]) * (c[k] ?? 0), 0);
+  return (["bat", "bowl"] as const).map((skill) => {
+    const weak: number[] = [], strong: number[] = [];
+    for (const pe of rows) {
+      const si = strongIndex.get(pe.editionId);
+      if (si === undefined) continue;
+      const group = (pick: (i: number) => boolean) => {
+        let balls = 0;
+        const o: Record<string, number> = {}, e: Record<string, number> = {};
+        for (const [bin, counts] of Object.entries(pe.formByOppBin)) {
+          if (!pick(ELO_BINS.indexOf(bin as EloBin))) continue;
+          balls += counts[skill].balls;
+          for (const k of OUTCOMES) {
+            o[k] = (o[k] ?? 0) + counts[skill].outcomes[k];
+            e[k] = (e[k] ?? 0) + counts[skill].expected[k];
+          }
+        }
+        if (balls < minBalls) return null;
+        const a = net(o), x = net(e);
+        if (a <= 0 || x <= 0) return null;
+        return skill === "bat" ? Math.log(a / x) : Math.log(x / a);
+      };
+      const w = group((i) => i <= si - 2), s = group((i) => i >= si);
+      if (w === null || s === null) continue;
+      weak.push(w);
+      strong.push(s);
+    }
+    const n = weak.length;
+    const mean = (xs: number[]) => (xs.length ? xs.reduce((a, b) => a + b, 0) / xs.length : null);
+    let slope: number | null = null;
+    if (n >= 3) {
+      const mw = mean(weak)!, ms = mean(strong)!;
+      let sxy = 0, sxx = 0;
+      for (let i = 0; i < n; i += 1) {
+        sxy += (weak[i]! - mw) * (strong[i]! - ms);
+        sxx += (weak[i]! - mw) ** 2;
+      }
+      slope = sxx > 0 ? +(sxy / sxx).toFixed(3) : null;
+    }
+    const round = (x: number | null) => (x === null ? null : +x.toFixed(3));
+    return { skill, n, slope, correlation: n >= 3 ? round(pearson(weak, strong)) : null, meanEdgeWeak: round(mean(weak)), meanEdgeStrong: round(mean(strong)), minBalls };
   });
 }
 
