@@ -50,6 +50,14 @@ h3 { font-size: 16px; margin: 0 0 8px; }
 .tag.muted { color: var(--muted); }
 .tags { display: flex; gap: 6px; flex-wrap: wrap; }
 
+.brief p { margin: 6px 0; }
+.brief .tag { margin-left: 4px; }
+.brief .grounds { margin: 6px 0; padding-left: 18px; }
+.brief .grounds li { margin: 6px 0; }
+.brief-box { margin: 6px 0 12px; }
+.brief-box summary { cursor: pointer; color: var(--muted); font-size: 13px; }
+.inslot { color: var(--muted); font-size: 12px; white-space: nowrap; margin-right: 6px; }
+
 .player { display: block; width: 100%; text-align: left; background: var(--card-2); padding: 10px; border-radius: 12px; }
 .player.selected { outline: 2px solid var(--accent); }
 .player.compact { padding: 6px 8px; background: transparent; border: none; }

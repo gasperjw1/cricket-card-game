@@ -1,7 +1,8 @@
-import type { EditionOut, SquadOut } from "../../../wcdraft/src/engine/data.ts";
+import type { EditionOut, SquadOut, VenueOut } from "../../../wcdraft/src/engine/data.ts";
+import { VenueBrief, venueCountsFor } from "../components/VenueBrief.tsx";
 import type { Identity } from "../game/types.ts";
 
-export function IdentityScreen({ identity, editions, squads, rerolls, onReroll, onConfirm }: { identity: Identity | null; editions: EditionOut[]; squads: SquadOut[]; rerolls: number; onReroll: () => void; onConfirm: () => void }) {
+export function IdentityScreen({ identity, editions, venues, squads, rerolls, onReroll, onConfirm }: { identity: Identity | null; editions: EditionOut[]; venues: VenueOut[]; squads: SquadOut[]; rerolls: number; onReroll: () => void; onConfirm: () => void }) {
   if (!identity) return <section className="card"><h2>Spinning…</h2></section>;
   const edition = editions.find((e) => e.id === identity.editionId);
   const squad = squads.find((s) => s.team === identity.team);
@@ -17,6 +18,8 @@ export function IdentityScreen({ identity, editions, squads, rerolls, onReroll, 
       ) : (
         <p className="note">Real record: {wins}–{real.length - wins} in {real.length} matches. Your drafted XI plays the same fixtures at the same grounds; the rest of the field plays its real elevens.</p>
       )}
+      <h3>Grounds and conditions</h3>
+      <VenueBrief editionId={identity.editionId} editions={editions} venues={venues} venueCounts={venueCountsFor(identity.team, squads, edition)} />
       <div className="row">
         <button type="button" onClick={onReroll} disabled={rerolls <= 0}>Reroll ({rerolls} left)</button>
         <button type="button" className="primary" onClick={onConfirm}>Take it</button>

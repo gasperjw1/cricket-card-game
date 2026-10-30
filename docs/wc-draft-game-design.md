@@ -1073,6 +1073,14 @@ fielding. The simulation is not required to reproduce real results (§11).
   shrinks toward the median: an unknown prints 70); the role fallback called a keeper with 49
   batting a "bowler" because his unmeasured bowling printed 73 (the skill with evidence now wins);
   the identity's exit stage could name a stage the side never played.
+- **Card review additions (2026-10-30, after Yash's playtest):** shown skills with backup evidence
+  (ratings §5.6 / README item 8); every card carries the batting hand and, for anyone who bowls,
+  the bowling code; **batting out of position** is shown as the player's batting number re-weighted
+  to the phase mix the slot actually faces (`environment.positionPhaseBalls`, new in the edition and
+  venue profiles; `draft/src/game/slots.ts`), on the "Place here" button, the slot row and the
+  lineup; a **grounds and conditions brief** (edition against the archive, the side's own grounds
+  with spin-against-pace from the new `paceSpin` split, plain-words chips and what they ask of the
+  eleven) sits on the identity screen and the draft header. Measured, not hand-written.
 - Not yet built: Cricket-IQ mode (names only), head-to-head, leaderboard (performance score beside
   squad rating), share links, Timeless and Tournament Form tags on cards, ratings-visible career
   stats, coach build bonuses and Dynamic Duos (§5.10–5.11), Positionless slot bonus, rarity tuning

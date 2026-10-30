@@ -2,15 +2,28 @@ import assert from "node:assert/strict";
 import { describe, it } from "node:test";
 import { Rng } from "../../wcdraft/src/engine/rng.ts";
 import { drawCoachPanel, drawSquad, fits, lineupProblems, oversCovered, slotsFor, spinPlayers, squadUniverse } from "../src/game/rules.ts";
+import { batInSlot, slotWeights } from "../src/game/slots.ts";
 import type { PoolPlayer } from "../src/game/types.ts";
 
 const player = (over: Partial<PoolPlayer>): PoolPlayer => ({
   id: over.id ?? Math.random().toString(36).slice(2), name: "X", team: "T", editionId: "2024", standIn: false, tier: "Silver", tierScore: 0.5, role: "batter",
   archetype: { batting: "top order", bowling: null }, bat: 70, bowl: 50, batPhases: { pp: 70, mid: 70, death: 70 }, bowlPhases: { pp: 50, mid: 50, death: 50 },
-  batLow: false, bowlLow: true, batShown: true, bowlShown: false, domesticBalls: { bat: 0, bowl: 0 }, squadPlayer: false, position: 3, positionless: false, hand: "R", bowlingType: null, keeper: false, ...over,
+  batLow: false, bowlLow: true, batShown: true, bowlShown: false, domesticBalls: { bat: 0, bowl: 0 }, batWeights: { pp: 0.3, mid: 0.45, death: 0.25 }, squadPlayer: false, position: 3, positionless: false, hand: "R", bowlingType: null, keeper: false, ...over,
 });
 
 describe("draft rules", () => {
+  it("re-weights a batter's number to the overs a slot faces", () => {
+    const editions = [{ id: "2024", environment: { positionPhaseBalls: { "1": { pp: 900, mid: 400, death: 50 }, "7": { pp: 10, mid: 300, death: 400 } } } }] as never;
+    const opener = slotWeights(editions, "2024", 1);
+    const seven = slotWeights(editions, "2024", 7);
+    assert.ok(opener.pp > 0.6 && seven.death > 0.5);
+    // A powerplay specialist (pp 85, death 60) loses value at No. 7 and gains none as an opener he already is.
+    const p = player({ bat: 78, batPhases: { pp: 85, mid: 76, death: 60 }, batWeights: opener });
+    assert.equal(batInSlot(p, opener), 78);
+    assert.ok(batInSlot(p, seven) < 72, `at seven ${batInSlot(p, seven)}`);
+    assert.equal(batInSlot(player({ batShown: false, bat: 70 }), seven), 70, "an unshown batting number is left alone");
+  });
+
   it("fits archetypes to slots and widens when nothing natural is open", () => {
     const finisher = player({ archetype: { batting: "finisher", bowling: null } });
     assert.ok(fits(finisher, "lower") && fits(finisher, "middle") && !fits(finisher, "opener"));

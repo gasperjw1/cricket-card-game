@@ -53,6 +53,25 @@ export interface EnvironmentOut {
   reducedInnings: number;
   rain: { dlFinishes: number; noResults: number };
   populationVectors: Record<Phase, Record<string, number>>;
+  // Descriptive fields the draft client's venue brief reads (optional: older outputs lack them).
+  powerplayRpo?: number;
+  middleRpo?: number;
+  deathRpo?: number;
+  ballsPerWicket?: number;
+  chaseWinPct?: number;
+  firstInningsAvg?: number;
+  dotPct?: number;
+  sixPct?: number;
+  /** Legal balls faced by batting position ("1" … "11") and phase. */
+  positionPhaseBalls?: Record<string, Record<Phase, number>>;
+  paceSpin?: { pace: PaceSpinOut; spin: PaceSpinOut; unknownPct: number };
+}
+
+export interface PaceSpinOut {
+  balls: number;
+  rpo: number;
+  ballsPerWicket: number;
+  sharePct: number;
 }
 
 export interface EditionOut {
@@ -63,6 +82,8 @@ export interface EditionOut {
   format?: string;
   rules: { tieBreak: string };
   environment: EnvironmentOut;
+  /** Matches hosted per venue id in this edition (the grounds a stand-in without fixtures plays at). */
+  venues?: Record<string, number>;
   standIn: { team: string; reason?: string } | null;
   slotChanges: StandInRules["slotChanges"];
   teams: string[];

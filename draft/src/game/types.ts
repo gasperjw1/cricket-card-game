@@ -24,6 +24,8 @@ export interface PoolPlayer {
   batShown: boolean;
   bowlShown: boolean;
   domesticBalls: { bat: number; bowl: number };
+  /** Phase weights behind the headline batting number (the overs he actually batted in); see game/slots.ts. */
+  batWeights: Record<Phase, number>;
   squadPlayer: boolean;
   position: number | null;
   positionless: boolean;

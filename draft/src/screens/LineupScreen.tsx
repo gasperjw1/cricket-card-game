@@ -1,10 +1,12 @@
-import type { CaptainOut } from "../../../wcdraft/src/engine/data.ts";
+import type { CaptainOut, EditionOut } from "../../../wcdraft/src/engine/data.ts";
 import { PlayerCard } from "../components/PlayerCard.tsx";
 import { SLOTS, lineupProblems, oversCovered, squadRating } from "../game/rules.ts";
+import { batInSlot, describeWeights, slotWeights } from "../game/slots.ts";
 import type { RunState } from "../game/types.ts";
 
-export function LineupScreen({ state, captains, onSwap, onCaptain, onBack, onSimulate }: { state: RunState; captains: CaptainOut[]; onSwap: (a: number, b: number) => void; onCaptain: (id: string | null) => void; onBack: () => void; onSimulate: () => void }) {
+export function LineupScreen({ state, captains, editions, onSwap, onCaptain, onBack, onSimulate }: { state: RunState; captains: CaptainOut[]; editions: EditionOut[]; onSwap: (a: number, b: number) => void; onCaptain: (id: string | null) => void; onBack: () => void; onSimulate: () => void }) {
   const problems = lineupProblems(state.picks);
+  const weights = SLOTS.map((s) => slotWeights(editions, state.identity?.editionId ?? "", s.index + 1));
   const rated = (id: string) => captains.filter((c) => c.personId === id).sort((a, b) => b.matches - a.matches)[0];
   const picks = state.picks;
   const defaultCaptain = picks.filter(Boolean).map((p) => ({ p: p!, c: rated(p!.id) })).filter((x) => x.c).sort((a, b) => b.c!.z - a.c!.z)[0]?.p.id ?? null;
@@ -16,11 +18,14 @@ export function LineupScreen({ state, captains, onSwap, onCaptain, onBack, onSim
       <ol className="slots">
         {SLOTS.map((s) => {
           const p = picks[s.index];
+          const w = weights[s.index]!;
+          const here = p && p.batShown ? batInSlot(p, w) : null;
           return (
-            <li key={s.index} className="slot filled">
+            <li key={s.index} className="slot filled" title={`${s.label} ${describeWeights(w)}`}>
               <span className="slot-label">{s.label}</span>
               {p && <PlayerCard player={p} compact />}
               <span className="moves">
+                {here !== null && <span className="inslot" title={`Headline ${p!.bat}; ${describeWeights(w)}`}>bat {here}{here !== p!.bat ? " here" : ""}</span>}
                 <button type="button" disabled={s.index === 0} onClick={() => onSwap(s.index, s.index - 1)} aria-label="move up">↑</button>
                 <button type="button" disabled={s.index === 10} onClick={() => onSwap(s.index, s.index + 1)} aria-label="move down">↓</button>
               </span>

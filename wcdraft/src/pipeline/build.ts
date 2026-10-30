@@ -15,6 +15,7 @@ import { BowlingUsageAnalysis } from "../analysis/bowling-usage.js";
 import { ContextPopulation } from "../analysis/context-population.js";
 import { SituationAnalysis, type SituationTables } from "../analysis/situation.js";
 import { MatchupAnalysis, type MatchupTables } from "../analysis/matchups.js";
+import { setBowlingTypeLookup } from "../analysis/environment.js";
 import { buildCaptaincy, type CaptaincyTables } from "../analysis/captaincy.js";
 import { DomesticAnalysis, type DomesticOut } from "../analysis/domestic.js";
 import { buildCoaches, type CoachTables } from "../analysis/coaches.js";
@@ -179,6 +180,7 @@ export function runBuild(log: (msg: string) => void = () => {}): BuildResult {
   // Phase 2b: matchups (batting hand × bowler type) need each player's own averages first.
   const labels = readLabels();
   const matchups = new MatchupAnalysis(labels);
+  setBowlingTypeLookup((id) => labels.get(id)?.bowlingType);
   {
     const eloPass = new TeamStrengthAnalysis(config.isFullMember);
     for (const entry of index) {

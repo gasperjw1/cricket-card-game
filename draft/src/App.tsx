@@ -139,14 +139,14 @@ export function App() {
       {state.error && <p className="error">{state.error}</p>}
       {state.step === "home" && <HomeScreen ready={!!universe} onStart={(seed) => dispatch({ type: "start", seed })} />}
       {state.step === "identity" && shared && (
-        <IdentityScreen identity={state.identity} editions={shared.editions} squads={state.identity ? squadsByEdition?.get(state.identity.editionId) ?? [] : []} rerolls={state.identityRerolls} onReroll={() => spinIdentity(true)} onConfirm={() => dispatch({ type: "confirmIdentity" })} />
+        <IdentityScreen identity={state.identity} editions={shared.editions} venues={shared.venues} squads={state.identity ? squadsByEdition?.get(state.identity.editionId) ?? [] : []} rerolls={state.identityRerolls} onReroll={() => spinIdentity(true)} onConfirm={() => dispatch({ type: "confirmIdentity" })} />
       )}
       {state.step === "coach" && <CoachScreen panel={state.coachPanel} rerolls={state.coachRerolls} onReroll={() => spinCoaches(true)} onPick={(coach) => dispatch({ type: "pickCoach", coach })} />}
-      {state.step === "draft" && (
-        <DraftScreen state={state} onPlace={(player, slot) => dispatch({ type: "place", player, slot })} onReroll={() => void spinSquad(true)} onLineup={() => dispatch({ type: "toLineup" })} />
+      {state.step === "draft" && shared && (
+        <DraftScreen state={state} editions={shared.editions} venues={shared.venues} squads={state.identity ? squadsByEdition?.get(state.identity.editionId) ?? [] : []} onPlace={(player, slot) => dispatch({ type: "place", player, slot })} onReroll={() => void spinSquad(true)} onLineup={() => dispatch({ type: "toLineup" })} />
       )}
       {state.step === "lineup" && shared && (
-        <LineupScreen state={state} captains={shared.captains} onSwap={(a, b) => dispatch({ type: "swap", a, b })} onCaptain={(id) => dispatch({ type: "captain", id })} onBack={() => dispatch({ type: "backToDraft" })} onSimulate={() => void simulate()} />
+        <LineupScreen state={state} captains={shared.captains} editions={shared.editions} onSwap={(a, b) => dispatch({ type: "swap", a, b })} onCaptain={(id) => dispatch({ type: "captain", id })} onBack={() => dispatch({ type: "backToDraft" })} onSimulate={() => void simulate()} />
       )}
       {state.step === "simulating" && <section className="card"><h2>Simulating the {state.identity?.editionId} World Cup…</h2><p>Every match of the tournament, ball by ball.</p></section>}
       {state.step === "result" && state.result && shared && <ResultScreen state={state} result={state.result} editions={shared.editions} onAgain={() => dispatch({ type: "home" })} />}

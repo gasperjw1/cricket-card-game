@@ -74,6 +74,78 @@
           "6": 0.059,
           "W": 0.0863
         }
+      },
+      "positionPhaseBalls": {
+        "1": {
+          "pp": 421,
+          "mid": 216,
+          "death": 25
+        },
+        "2": {
+          "pp": 477,
+          "mid": 187,
+          "death": 18
+        },
+        "3": {
+          "pp": 326,
+          "mid": 382,
+          "death": 58
+        },
+        "4": {
+          "pp": 106,
+          "mid": 470,
+          "death": 123
+        },
+        "5": {
+          "pp": 53,
+          "mid": 326,
+          "death": 66
+        },
+        "6": {
+          "pp": 11,
+          "mid": 273,
+          "death": 188
+        },
+        "7": {
+          "pp": 10,
+          "mid": 82,
+          "death": 175
+        },
+        "8": {
+          "pp": 0,
+          "mid": 87,
+          "death": 153
+        },
+        "9": {
+          "pp": 0,
+          "mid": 22,
+          "death": 98
+        },
+        "10": {
+          "pp": 0,
+          "mid": 16,
+          "death": 15
+        },
+        "11": {
+          "pp": 0,
+          "mid": 7,
+          "death": 20
+        }
+      },
+      "paceSpin": {
+        "pace": {
+          "balls": 2008,
+          "rpo": 7.92,
+          "ballsPerWicket": 17.5,
+          "sharePct": 46
+        },
+        "spin": {
+          "balls": 2403,
+          "rpo": 7.06,
+          "ballsPerWicket": 19.5,
+          "sharePct": 54
+        },
+        "unknownPct": 0
       }
     },
     "byEdition": {
@@ -146,6 +218,78 @@
             "6": 0.0522,
             "W": 0.0784
           }
+        },
+        "positionPhaseBalls": {
+          "1": {
+            "pp": 255,
+            "mid": 128,
+            "death": 3
+          },
+          "2": {
+            "pp": 315,
+            "mid": 151,
+            "death": 18
+          },
+          "3": {
+            "pp": 246,
+            "mid": 230,
+            "death": 39
+          },
+          "4": {
+            "pp": 58,
+            "mid": 311,
+            "death": 61
+          },
+          "5": {
+            "pp": 26,
+            "mid": 197,
+            "death": 50
+          },
+          "6": {
+            "pp": 0,
+            "mid": 175,
+            "death": 120
+          },
+          "7": {
+            "pp": 0,
+            "mid": 56,
+            "death": 113
+          },
+          "8": {
+            "pp": 0,
+            "mid": 31,
+            "death": 77
+          },
+          "9": {
+            "pp": 0,
+            "mid": 10,
+            "death": 62
+          },
+          "10": {
+            "pp": 0,
+            "mid": 16,
+            "death": 7
+          },
+          "11": {
+            "pp": 0,
+            "mid": 7,
+            "death": 10
+          }
+        },
+        "paceSpin": {
+          "pace": {
+            "balls": 1452,
+            "rpo": 7.76,
+            "ballsPerWicket": 19.6,
+            "sharePct": 52
+          },
+          "spin": {
+            "balls": 1320,
+            "rpo": 6.66,
+            "ballsPerWicket": 19.4,
+            "sharePct": 48
+          },
+          "unknownPct": 0
         }
       },
       "2026": {
@@ -217,6 +361,78 @@
             "6": 0.0686,
             "W": 0.0976
           }
+        },
+        "positionPhaseBalls": {
+          "1": {
+            "pp": 166,
+            "mid": 88,
+            "death": 22
+          },
+          "2": {
+            "pp": 162,
+            "mid": 36,
+            "death": 0
+          },
+          "3": {
+            "pp": 80,
+            "mid": 152,
+            "death": 19
+          },
+          "4": {
+            "pp": 48,
+            "mid": 159,
+            "death": 62
+          },
+          "5": {
+            "pp": 27,
+            "mid": 129,
+            "death": 16
+          },
+          "6": {
+            "pp": 11,
+            "mid": 98,
+            "death": 68
+          },
+          "7": {
+            "pp": 10,
+            "mid": 26,
+            "death": 62
+          },
+          "8": {
+            "pp": 0,
+            "mid": 56,
+            "death": 76
+          },
+          "9": {
+            "pp": 0,
+            "mid": 12,
+            "death": 36
+          },
+          "10": {
+            "pp": 0,
+            "mid": 0,
+            "death": 8
+          },
+          "11": {
+            "pp": 0,
+            "mid": 0,
+            "death": 10
+          }
+        },
+        "paceSpin": {
+          "pace": {
+            "balls": 556,
+            "rpo": 8.33,
+            "ballsPerWicket": 13.6,
+            "sharePct": 34
+          },
+          "spin": {
+            "balls": 1083,
+            "rpo": 7.54,
+            "ballsPerWicket": 19.7,
+            "sharePct": 66
+          },
+          "unknownPct": 0
         }
       }
     }
@@ -296,6 +512,78 @@
           "6": 0.0713,
           "W": 0.0943
         }
+      },
+      "positionPhaseBalls": {
+        "1": {
+          "pp": 390,
+          "mid": 157,
+          "death": 38
+        },
+        "2": {
+          "pp": 450,
+          "mid": 240,
+          "death": 33
+        },
+        "3": {
+          "pp": 249,
+          "mid": 321,
+          "death": 46
+        },
+        "4": {
+          "pp": 105,
+          "mid": 324,
+          "death": 65
+        },
+        "5": {
+          "pp": 50,
+          "mid": 280,
+          "death": 142
+        },
+        "6": {
+          "pp": 16,
+          "mid": 301,
+          "death": 131
+        },
+        "7": {
+          "pp": 0,
+          "mid": 114,
+          "death": 139
+        },
+        "8": {
+          "pp": 0,
+          "mid": 37,
+          "death": 126
+        },
+        "9": {
+          "pp": 0,
+          "mid": 25,
+          "death": 80
+        },
+        "10": {
+          "pp": 0,
+          "mid": 4,
+          "death": 46
+        },
+        "11": {
+          "pp": 0,
+          "mid": 0,
+          "death": 24
+        }
+      },
+      "paceSpin": {
+        "pace": {
+          "balls": 2370,
+          "rpo": 7.82,
+          "ballsPerWicket": 17.1,
+          "sharePct": 60
+        },
+        "spin": {
+          "balls": 1563,
+          "rpo": 7.27,
+          "ballsPerWicket": 20.6,
+          "sharePct": 40
+        },
+        "unknownPct": 0
       }
     },
     "byEdition": {
@@ -368,6 +656,78 @@
             "6": 0.0775,
             "W": 0.0832
           }
+        },
+        "positionPhaseBalls": {
+          "1": {
+            "pp": 221,
+            "mid": 89,
+            "death": 27
+          },
+          "2": {
+            "pp": 247,
+            "mid": 144,
+            "death": 18
+          },
+          "3": {
+            "pp": 144,
+            "mid": 220,
+            "death": 38
+          },
+          "4": {
+            "pp": 61,
+            "mid": 180,
+            "death": 54
+          },
+          "5": {
+            "pp": 31,
+            "mid": 114,
+            "death": 85
+          },
+          "6": {
+            "pp": 16,
+            "mid": 186,
+            "death": 56
+          },
+          "7": {
+            "pp": 0,
+            "mid": 93,
+            "death": 82
+          },
+          "8": {
+            "pp": 0,
+            "mid": 25,
+            "death": 81
+          },
+          "9": {
+            "pp": 0,
+            "mid": 25,
+            "death": 45
+          },
+          "10": {
+            "pp": 0,
+            "mid": 4,
+            "death": 27
+          },
+          "11": {
+            "pp": 0,
+            "mid": 0,
+            "death": 16
+          }
+        },
+        "paceSpin": {
+          "pace": {
+            "balls": 1444,
+            "rpo": 7.8,
+            "ballsPerWicket": 18.3,
+            "sharePct": 62
+          },
+          "spin": {
+            "balls": 885,
+            "rpo": 6.96,
+            "ballsPerWicket": 18.4,
+            "sharePct": 38
+          },
+          "unknownPct": 0
         }
       },
       "2024": {
@@ -439,6 +799,78 @@
             "6": 0.0616,
             "W": 0.1114
           }
+        },
+        "positionPhaseBalls": {
+          "1": {
+            "pp": 169,
+            "mid": 68,
+            "death": 11
+          },
+          "2": {
+            "pp": 203,
+            "mid": 96,
+            "death": 15
+          },
+          "3": {
+            "pp": 105,
+            "mid": 101,
+            "death": 8
+          },
+          "4": {
+            "pp": 44,
+            "mid": 144,
+            "death": 11
+          },
+          "5": {
+            "pp": 19,
+            "mid": 166,
+            "death": 57
+          },
+          "6": {
+            "pp": 0,
+            "mid": 115,
+            "death": 75
+          },
+          "7": {
+            "pp": 0,
+            "mid": 21,
+            "death": 57
+          },
+          "8": {
+            "pp": 0,
+            "mid": 12,
+            "death": 45
+          },
+          "9": {
+            "pp": 0,
+            "mid": 0,
+            "death": 35
+          },
+          "10": {
+            "pp": 0,
+            "mid": 0,
+            "death": 19
+          },
+          "11": {
+            "pp": 0,
+            "mid": 0,
+            "death": 8
+          }
+        },
+        "paceSpin": {
+          "pace": {
+            "balls": 926,
+            "rpo": 7.84,
+            "ballsPerWicket": 15.4,
+            "sharePct": 58
+          },
+          "spin": {
+            "balls": 678,
+            "rpo": 7.69,
+            "ballsPerWicket": 24.2,
+            "sharePct": 42
+          },
+          "unknownPct": 0
         }
       }
     }
@@ -519,6 +951,78 @@
           "6": 0.0654,
           "W": 0.102
         }
+      },
+      "positionPhaseBalls": {
+        "1": {
+          "pp": 405,
+          "mid": 260,
+          "death": 41
+        },
+        "2": {
+          "pp": 363,
+          "mid": 192,
+          "death": 22
+        },
+        "3": {
+          "pp": 175,
+          "mid": 346,
+          "death": 82
+        },
+        "4": {
+          "pp": 114,
+          "mid": 344,
+          "death": 92
+        },
+        "5": {
+          "pp": 21,
+          "mid": 211,
+          "death": 113
+        },
+        "6": {
+          "pp": 1,
+          "mid": 119,
+          "death": 133
+        },
+        "7": {
+          "pp": 1,
+          "mid": 67,
+          "death": 136
+        },
+        "8": {
+          "pp": 0,
+          "mid": 26,
+          "death": 42
+        },
+        "9": {
+          "pp": 0,
+          "mid": 17,
+          "death": 51
+        },
+        "10": {
+          "pp": 0,
+          "mid": 6,
+          "death": 31
+        },
+        "11": {
+          "pp": 0,
+          "mid": 0,
+          "death": 22
+        }
+      },
+      "paceSpin": {
+        "pace": {
+          "balls": 1751,
+          "rpo": 8.66,
+          "ballsPerWicket": 18.4,
+          "sharePct": 51
+        },
+        "spin": {
+          "balls": 1682,
+          "rpo": 7.71,
+          "ballsPerWicket": 21.6,
+          "sharePct": 49
+        },
+        "unknownPct": 0
       }
     },
     "byEdition": {
@@ -591,6 +1095,78 @@
             "6": 0.0547,
             "W": 0.0931
           }
+        },
+        "positionPhaseBalls": {
+          "1": {
+            "pp": 252,
+            "mid": 150,
+            "death": 15
+          },
+          "2": {
+            "pp": 245,
+            "mid": 144,
+            "death": 21
+          },
+          "3": {
+            "pp": 84,
+            "mid": 246,
+            "death": 69
+          },
+          "4": {
+            "pp": 62,
+            "mid": 226,
+            "death": 63
+          },
+          "5": {
+            "pp": 5,
+            "mid": 117,
+            "death": 82
+          },
+          "6": {
+            "pp": 0,
+            "mid": 66,
+            "death": 108
+          },
+          "7": {
+            "pp": 0,
+            "mid": 13,
+            "death": 72
+          },
+          "8": {
+            "pp": 0,
+            "mid": 8,
+            "death": 22
+          },
+          "9": {
+            "pp": 0,
+            "mid": 2,
+            "death": 27
+          },
+          "10": {
+            "pp": 0,
+            "mid": 0,
+            "death": 10
+          },
+          "11": {
+            "pp": 0,
+            "mid": 0,
+            "death": 5
+          }
+        },
+        "paceSpin": {
+          "pace": {
+            "balls": 1158,
+            "rpo": 8.44,
+            "ballsPerWicket": 19.3,
+            "sharePct": 55
+          },
+          "spin": {
+            "balls": 956,
+            "rpo": 7.32,
+            "ballsPerWicket": 27.3,
+            "sharePct": 45
+          },
+          "unknownPct": 0
         }
       },
       "2026": {
@@ -663,6 +1239,78 @@
             "6": 0.0849,
             "W": 0.1181
           }
+        },
+        "positionPhaseBalls": {
+          "1": {
+            "pp": 153,
+            "mid": 110,
+            "death": 26
+          },
+          "2": {
+            "pp": 118,
+            "mid": 48,
+            "death": 1
+          },
+          "3": {
+            "pp": 91,
+            "mid": 100,
+            "death": 13
+          },
+          "4": {
+            "pp": 52,
+            "mid": 118,
+            "death": 29
+          },
+          "5": {
+            "pp": 16,
+            "mid": 94,
+            "death": 31
+          },
+          "6": {
+            "pp": 1,
+            "mid": 53,
+            "death": 25
+          },
+          "7": {
+            "pp": 1,
+            "mid": 54,
+            "death": 64
+          },
+          "8": {
+            "pp": 0,
+            "mid": 18,
+            "death": 20
+          },
+          "9": {
+            "pp": 0,
+            "mid": 15,
+            "death": 24
+          },
+          "10": {
+            "pp": 0,
+            "mid": 6,
+            "death": 21
+          },
+          "11": {
+            "pp": 0,
+            "mid": 0,
+            "death": 17
+          }
+        },
+        "paceSpin": {
+          "pace": {
+            "balls": 593,
+            "rpo": 9.11,
+            "ballsPerWicket": 16.9,
+            "sharePct": 45
+          },
+          "spin": {
+            "balls": 726,
+            "rpo": 8.23,
+            "ballsPerWicket": 16.9,
+            "sharePct": 55
+          },
+          "unknownPct": 0
         }
       }
     }
@@ -742,6 +1390,78 @@
           "6": 0.0913,
           "W": 0.0872
         }
+      },
+      "positionPhaseBalls": {
+        "1": {
+          "pp": 383,
+          "mid": 183,
+          "death": 22
+        },
+        "2": {
+          "pp": 302,
+          "mid": 189,
+          "death": 16
+        },
+        "3": {
+          "pp": 252,
+          "mid": 300,
+          "death": 70
+        },
+        "4": {
+          "pp": 60,
+          "mid": 402,
+          "death": 96
+        },
+        "5": {
+          "pp": 13,
+          "mid": 263,
+          "death": 139
+        },
+        "6": {
+          "pp": 0,
+          "mid": 125,
+          "death": 175
+        },
+        "7": {
+          "pp": 0,
+          "mid": 22,
+          "death": 104
+        },
+        "8": {
+          "pp": 0,
+          "mid": 5,
+          "death": 58
+        },
+        "9": {
+          "pp": 0,
+          "mid": 15,
+          "death": 22
+        },
+        "10": {
+          "pp": 0,
+          "mid": 7,
+          "death": 20
+        },
+        "11": {
+          "pp": 0,
+          "mid": 1,
+          "death": 23
+        }
+      },
+      "paceSpin": {
+        "pace": {
+          "balls": 1844,
+          "rpo": 8.39,
+          "ballsPerWicket": 19,
+          "sharePct": 56
+        },
+        "spin": {
+          "balls": 1423,
+          "rpo": 8.03,
+          "ballsPerWicket": 23.3,
+          "sharePct": 44
+        },
+        "unknownPct": 0
       }
     },
     "byEdition": {
@@ -814,6 +1534,78 @@
             "6": 0.083,
             "W": 0.0996
           }
+        },
+        "positionPhaseBalls": {
+          "1": {
+            "pp": 238,
+            "mid": 106,
+            "death": 8
+          },
+          "2": {
+            "pp": 190,
+            "mid": 102,
+            "death": 10
+          },
+          "3": {
+            "pp": 154,
+            "mid": 214,
+            "death": 64
+          },
+          "4": {
+            "pp": 55,
+            "mid": 260,
+            "death": 60
+          },
+          "5": {
+            "pp": 13,
+            "mid": 155,
+            "death": 95
+          },
+          "6": {
+            "pp": 0,
+            "mid": 102,
+            "death": 85
+          },
+          "7": {
+            "pp": 0,
+            "mid": 21,
+            "death": 66
+          },
+          "8": {
+            "pp": 0,
+            "mid": 1,
+            "death": 41
+          },
+          "9": {
+            "pp": 0,
+            "mid": 7,
+            "death": 15
+          },
+          "10": {
+            "pp": 0,
+            "mid": 3,
+            "death": 16
+          },
+          "11": {
+            "pp": 0,
+            "mid": 1,
+            "death": 22
+          }
+        },
+        "paceSpin": {
+          "pace": {
+            "balls": 1143,
+            "rpo": 7.76,
+            "ballsPerWicket": 17.6,
+            "sharePct": 54
+          },
+          "spin": {
+            "balls": 961,
+            "rpo": 8,
+            "ballsPerWicket": 24.6,
+            "sharePct": 46
+          },
+          "unknownPct": 0
         }
       },
       "2024": {
@@ -884,6 +1676,78 @@
             "6": 0.1065,
             "W": 0.0646
           }
+        },
+        "positionPhaseBalls": {
+          "1": {
+            "pp": 145,
+            "mid": 77,
+            "death": 14
+          },
+          "2": {
+            "pp": 112,
+            "mid": 87,
+            "death": 6
+          },
+          "3": {
+            "pp": 98,
+            "mid": 86,
+            "death": 6
+          },
+          "4": {
+            "pp": 5,
+            "mid": 142,
+            "death": 36
+          },
+          "5": {
+            "pp": 0,
+            "mid": 108,
+            "death": 44
+          },
+          "6": {
+            "pp": 0,
+            "mid": 23,
+            "death": 90
+          },
+          "7": {
+            "pp": 0,
+            "mid": 1,
+            "death": 38
+          },
+          "8": {
+            "pp": 0,
+            "mid": 4,
+            "death": 17
+          },
+          "9": {
+            "pp": 0,
+            "mid": 8,
+            "death": 7
+          },
+          "10": {
+            "pp": 0,
+            "mid": 4,
+            "death": 4
+          },
+          "11": {
+            "pp": 0,
+            "mid": 0,
+            "death": 1
+          }
+        },
+        "paceSpin": {
+          "pace": {
+            "balls": 701,
+            "rpo": 9.42,
+            "ballsPerWicket": 21.9,
+            "sharePct": 60
+          },
+          "spin": {
+            "balls": 462,
+            "rpo": 8.09,
+            "ballsPerWicket": 21,
+            "sharePct": 40
+          },
+          "unknownPct": 0
         }
       }
     }
@@ -963,6 +1827,78 @@
           "6": 0.0653,
           "W": 0.0865
         }
+      },
+      "positionPhaseBalls": {
+        "1": {
+          "pp": 310,
+          "mid": 155,
+          "death": 29
+        },
+        "2": {
+          "pp": 336,
+          "mid": 194,
+          "death": 23
+        },
+        "3": {
+          "pp": 202,
+          "mid": 346,
+          "death": 54
+        },
+        "4": {
+          "pp": 59,
+          "mid": 298,
+          "death": 144
+        },
+        "5": {
+          "pp": 26,
+          "mid": 209,
+          "death": 88
+        },
+        "6": {
+          "pp": 3,
+          "mid": 93,
+          "death": 143
+        },
+        "7": {
+          "pp": 0,
+          "mid": 53,
+          "death": 88
+        },
+        "8": {
+          "pp": 0,
+          "mid": 31,
+          "death": 19
+        },
+        "9": {
+          "pp": 0,
+          "mid": 15,
+          "death": 34
+        },
+        "10": {
+          "pp": 0,
+          "mid": 3,
+          "death": 28
+        },
+        "11": {
+          "pp": 0,
+          "mid": 0,
+          "death": 5
+        }
+      },
+      "paceSpin": {
+        "pace": {
+          "balls": 1381,
+          "rpo": 8.09,
+          "ballsPerWicket": 20.6,
+          "sharePct": 46
+        },
+        "spin": {
+          "balls": 1607,
+          "rpo": 6.84,
+          "ballsPerWicket": 22.3,
+          "sharePct": 54
+        },
+        "unknownPct": 0
       }
     },
     "byEdition": {
@@ -1035,6 +1971,78 @@
             "6": 0.0653,
             "W": 0.0865
           }
+        },
+        "positionPhaseBalls": {
+          "1": {
+            "pp": 310,
+            "mid": 155,
+            "death": 29
+          },
+          "2": {
+            "pp": 336,
+            "mid": 194,
+            "death": 23
+          },
+          "3": {
+            "pp": 202,
+            "mid": 346,
+            "death": 54
+          },
+          "4": {
+            "pp": 59,
+            "mid": 298,
+            "death": 144
+          },
+          "5": {
+            "pp": 26,
+            "mid": 209,
+            "death": 88
+          },
+          "6": {
+            "pp": 3,
+            "mid": 93,
+            "death": 143
+          },
+          "7": {
+            "pp": 0,
+            "mid": 53,
+            "death": 88
+          },
+          "8": {
+            "pp": 0,
+            "mid": 31,
+            "death": 19
+          },
+          "9": {
+            "pp": 0,
+            "mid": 15,
+            "death": 34
+          },
+          "10": {
+            "pp": 0,
+            "mid": 3,
+            "death": 28
+          },
+          "11": {
+            "pp": 0,
+            "mid": 0,
+            "death": 5
+          }
+        },
+        "paceSpin": {
+          "pace": {
+            "balls": 1381,
+            "rpo": 8.09,
+            "ballsPerWicket": 20.6,
+            "sharePct": 46
+          },
+          "spin": {
+            "balls": 1607,
+            "rpo": 6.84,
+            "ballsPerWicket": 22.3,
+            "sharePct": 54
+          },
+          "unknownPct": 0
         }
       }
     }
@@ -1114,6 +2122,78 @@
           "6": 0.0572,
           "W": 0.1002
         }
+      },
+      "positionPhaseBalls": {
+        "1": {
+          "pp": 341,
+          "mid": 93,
+          "death": 5
+        },
+        "2": {
+          "pp": 332,
+          "mid": 188,
+          "death": 14
+        },
+        "3": {
+          "pp": 147,
+          "mid": 234,
+          "death": 57
+        },
+        "4": {
+          "pp": 89,
+          "mid": 294,
+          "death": 61
+        },
+        "5": {
+          "pp": 9,
+          "mid": 229,
+          "death": 117
+        },
+        "6": {
+          "pp": 8,
+          "mid": 101,
+          "death": 97
+        },
+        "7": {
+          "pp": 0,
+          "mid": 59,
+          "death": 85
+        },
+        "8": {
+          "pp": 0,
+          "mid": 33,
+          "death": 39
+        },
+        "9": {
+          "pp": 0,
+          "mid": 23,
+          "death": 32
+        },
+        "10": {
+          "pp": 0,
+          "mid": 9,
+          "death": 35
+        },
+        "11": {
+          "pp": 0,
+          "mid": 6,
+          "death": 17
+        }
+      },
+      "paceSpin": {
+        "pace": {
+          "balls": 1856,
+          "rpo": 7.52,
+          "ballsPerWicket": 18.4,
+          "sharePct": 67
+        },
+        "spin": {
+          "balls": 898,
+          "rpo": 6.79,
+          "ballsPerWicket": 16.3,
+          "sharePct": 33
+        },
+        "unknownPct": 0
       }
     },
     "byEdition": {
@@ -1186,6 +2266,78 @@
             "6": 0.0572,
             "W": 0.1002
           }
+        },
+        "positionPhaseBalls": {
+          "1": {
+            "pp": 341,
+            "mid": 93,
+            "death": 5
+          },
+          "2": {
+            "pp": 332,
+            "mid": 188,
+            "death": 14
+          },
+          "3": {
+            "pp": 147,
+            "mid": 234,
+            "death": 57
+          },
+          "4": {
+            "pp": 89,
+            "mid": 294,
+            "death": 61
+          },
+          "5": {
+            "pp": 9,
+            "mid": 229,
+            "death": 117
+          },
+          "6": {
+            "pp": 8,
+            "mid": 101,
+            "death": 97
+          },
+          "7": {
+            "pp": 0,
+            "mid": 59,
+            "death": 85
+          },
+          "8": {
+            "pp": 0,
+            "mid": 33,
+            "death": 39
+          },
+          "9": {
+            "pp": 0,
+            "mid": 23,
+            "death": 32
+          },
+          "10": {
+            "pp": 0,
+            "mid": 9,
+            "death": 35
+          },
+          "11": {
+            "pp": 0,
+            "mid": 6,
+            "death": 17
+          }
+        },
+        "paceSpin": {
+          "pace": {
+            "balls": 1856,
+            "rpo": 7.52,
+            "ballsPerWicket": 18.4,
+            "sharePct": 67
+          },
+          "spin": {
+            "balls": 898,
+            "rpo": 6.79,
+            "ballsPerWicket": 16.3,
+            "sharePct": 33
+          },
+          "unknownPct": 0
         }
       }
     }
@@ -1265,6 +2417,78 @@
           "6": 0.0773,
           "W": 0.0725
         }
+      },
+      "positionPhaseBalls": {
+        "1": {
+          "pp": 336,
+          "mid": 209,
+          "death": 29
+        },
+        "2": {
+          "pp": 305,
+          "mid": 163,
+          "death": 14
+        },
+        "3": {
+          "pp": 165,
+          "mid": 213,
+          "death": 68
+        },
+        "4": {
+          "pp": 42,
+          "mid": 142,
+          "death": 39
+        },
+        "5": {
+          "pp": 13,
+          "mid": 163,
+          "death": 58
+        },
+        "6": {
+          "pp": 3,
+          "mid": 105,
+          "death": 72
+        },
+        "7": {
+          "pp": 0,
+          "mid": 78,
+          "death": 67
+        },
+        "8": {
+          "pp": 0,
+          "mid": 9,
+          "death": 29
+        },
+        "9": {
+          "pp": 0,
+          "mid": 24,
+          "death": 23
+        },
+        "10": {
+          "pp": 0,
+          "mid": 10,
+          "death": 11
+        },
+        "11": {
+          "pp": 0,
+          "mid": 10,
+          "death": 4
+        }
+      },
+      "paceSpin": {
+        "pace": {
+          "balls": 1441,
+          "rpo": 8.27,
+          "ballsPerWicket": 21.8,
+          "sharePct": 60
+        },
+        "spin": {
+          "balls": 963,
+          "rpo": 6.55,
+          "ballsPerWicket": 20.1,
+          "sharePct": 40
+        },
+        "unknownPct": 0
       }
     },
     "byEdition": {
@@ -1337,6 +2561,78 @@
             "6": 0.0773,
             "W": 0.0725
           }
+        },
+        "positionPhaseBalls": {
+          "1": {
+            "pp": 336,
+            "mid": 209,
+            "death": 29
+          },
+          "2": {
+            "pp": 305,
+            "mid": 163,
+            "death": 14
+          },
+          "3": {
+            "pp": 165,
+            "mid": 213,
+            "death": 68
+          },
+          "4": {
+            "pp": 42,
+            "mid": 142,
+            "death": 39
+          },
+          "5": {
+            "pp": 13,
+            "mid": 163,
+            "death": 58
+          },
+          "6": {
+            "pp": 3,
+            "mid": 105,
+            "death": 72
+          },
+          "7": {
+            "pp": 0,
+            "mid": 78,
+            "death": 67
+          },
+          "8": {
+            "pp": 0,
+            "mid": 9,
+            "death": 29
+          },
+          "9": {
+            "pp": 0,
+            "mid": 24,
+            "death": 23
+          },
+          "10": {
+            "pp": 0,
+            "mid": 10,
+            "death": 11
+          },
+          "11": {
+            "pp": 0,
+            "mid": 10,
+            "death": 4
+          }
+        },
+        "paceSpin": {
+          "pace": {
+            "balls": 1441,
+            "rpo": 8.27,
+            "ballsPerWicket": 21.8,
+            "sharePct": 60
+          },
+          "spin": {
+            "balls": 963,
+            "rpo": 6.55,
+            "ballsPerWicket": 20.1,
+            "sharePct": 40
+          },
+          "unknownPct": 0
         }
       }
     }
@@ -1417,6 +2713,78 @@
           "6": 0.0688,
           "W": 0.0874
         }
+      },
+      "positionPhaseBalls": {
+        "1": {
+          "pp": 297,
+          "mid": 236,
+          "death": 41
+        },
+        "2": {
+          "pp": 268,
+          "mid": 103,
+          "death": 11
+        },
+        "3": {
+          "pp": 154,
+          "mid": 240,
+          "death": 20
+        },
+        "4": {
+          "pp": 83,
+          "mid": 243,
+          "death": 66
+        },
+        "5": {
+          "pp": 59,
+          "mid": 269,
+          "death": 91
+        },
+        "6": {
+          "pp": 3,
+          "mid": 88,
+          "death": 89
+        },
+        "7": {
+          "pp": 0,
+          "mid": 55,
+          "death": 70
+        },
+        "8": {
+          "pp": 0,
+          "mid": 36,
+          "death": 61
+        },
+        "9": {
+          "pp": 0,
+          "mid": 3,
+          "death": 68
+        },
+        "10": {
+          "pp": 0,
+          "mid": 0,
+          "death": 14
+        },
+        "11": {
+          "pp": 0,
+          "mid": 0,
+          "death": 7
+        }
+      },
+      "paceSpin": {
+        "pace": {
+          "balls": 1739,
+          "rpo": 7.12,
+          "ballsPerWicket": 20,
+          "sharePct": 65
+        },
+        "spin": {
+          "balls": 936,
+          "rpo": 6.9,
+          "ballsPerWicket": 21.8,
+          "sharePct": 35
+        },
+        "unknownPct": 0
       }
     },
     "byEdition": {
@@ -1490,6 +2858,78 @@
             "6": 0.0688,
             "W": 0.0874
           }
+        },
+        "positionPhaseBalls": {
+          "1": {
+            "pp": 297,
+            "mid": 236,
+            "death": 41
+          },
+          "2": {
+            "pp": 268,
+            "mid": 103,
+            "death": 11
+          },
+          "3": {
+            "pp": 154,
+            "mid": 240,
+            "death": 20
+          },
+          "4": {
+            "pp": 83,
+            "mid": 243,
+            "death": 66
+          },
+          "5": {
+            "pp": 59,
+            "mid": 269,
+            "death": 91
+          },
+          "6": {
+            "pp": 3,
+            "mid": 88,
+            "death": 89
+          },
+          "7": {
+            "pp": 0,
+            "mid": 55,
+            "death": 70
+          },
+          "8": {
+            "pp": 0,
+            "mid": 36,
+            "death": 61
+          },
+          "9": {
+            "pp": 0,
+            "mid": 3,
+            "death": 68
+          },
+          "10": {
+            "pp": 0,
+            "mid": 0,
+            "death": 14
+          },
+          "11": {
+            "pp": 0,
+            "mid": 0,
+            "death": 7
+          }
+        },
+        "paceSpin": {
+          "pace": {
+            "balls": 1739,
+            "rpo": 7.12,
+            "ballsPerWicket": 20,
+            "sharePct": 65
+          },
+          "spin": {
+            "balls": 936,
+            "rpo": 6.9,
+            "ballsPerWicket": 21.8,
+            "sharePct": 35
+          },
+          "unknownPct": 0
         }
       }
     }
@@ -1568,6 +3008,78 @@
           "6": 0.095,
           "W": 0.099
         }
+      },
+      "positionPhaseBalls": {
+        "1": {
+          "pp": 268,
+          "mid": 91,
+          "death": 0
+        },
+        "2": {
+          "pp": 242,
+          "mid": 157,
+          "death": 10
+        },
+        "3": {
+          "pp": 169,
+          "mid": 225,
+          "death": 46
+        },
+        "4": {
+          "pp": 85,
+          "mid": 257,
+          "death": 58
+        },
+        "5": {
+          "pp": 28,
+          "mid": 229,
+          "death": 36
+        },
+        "6": {
+          "pp": 0,
+          "mid": 135,
+          "death": 122
+        },
+        "7": {
+          "pp": 0,
+          "mid": 48,
+          "death": 83
+        },
+        "8": {
+          "pp": 0,
+          "mid": 20,
+          "death": 72
+        },
+        "9": {
+          "pp": 0,
+          "mid": 9,
+          "death": 47
+        },
+        "10": {
+          "pp": 0,
+          "mid": 3,
+          "death": 17
+        },
+        "11": {
+          "pp": 0,
+          "mid": 1,
+          "death": 19
+        }
+      },
+      "paceSpin": {
+        "pace": {
+          "balls": 1393,
+          "rpo": 8.46,
+          "ballsPerWicket": 15.5,
+          "sharePct": 56
+        },
+        "spin": {
+          "balls": 1084,
+          "rpo": 8.19,
+          "ballsPerWicket": 19.7,
+          "sharePct": 44
+        },
+        "unknownPct": 0
       }
     },
     "byEdition": {
@@ -1639,6 +3151,78 @@
             "6": 0.0765,
             "W": 0.1
           }
+        },
+        "positionPhaseBalls": {
+          "1": {
+            "pp": 83,
+            "mid": 10,
+            "death": 0
+          },
+          "2": {
+            "pp": 89,
+            "mid": 48,
+            "death": 0
+          },
+          "3": {
+            "pp": 83,
+            "mid": 159,
+            "death": 23
+          },
+          "4": {
+            "pp": 16,
+            "mid": 59,
+            "death": 42
+          },
+          "5": {
+            "pp": 17,
+            "mid": 81,
+            "death": 8
+          },
+          "6": {
+            "pp": 0,
+            "mid": 43,
+            "death": 28
+          },
+          "7": {
+            "pp": 0,
+            "mid": 4,
+            "death": 16
+          },
+          "8": {
+            "pp": 0,
+            "mid": 16,
+            "death": 36
+          },
+          "9": {
+            "pp": 0,
+            "mid": 8,
+            "death": 12
+          },
+          "10": {
+            "pp": 0,
+            "mid": 3,
+            "death": 5
+          },
+          "11": {
+            "pp": 0,
+            "mid": 1,
+            "death": 5
+          }
+        },
+        "paceSpin": {
+          "pace": {
+            "balls": 525,
+            "rpo": 7.58,
+            "ballsPerWicket": 15.4,
+            "sharePct": 59
+          },
+          "spin": {
+            "balls": 370,
+            "rpo": 6.84,
+            "ballsPerWicket": 20.6,
+            "sharePct": 41
+          },
+          "unknownPct": 0
         }
       },
       "2026": {
@@ -1708,6 +3292,78 @@
             "6": 0.1045,
             "W": 0.0985
           }
+        },
+        "positionPhaseBalls": {
+          "1": {
+            "pp": 185,
+            "mid": 81,
+            "death": 0
+          },
+          "2": {
+            "pp": 153,
+            "mid": 109,
+            "death": 10
+          },
+          "3": {
+            "pp": 86,
+            "mid": 66,
+            "death": 23
+          },
+          "4": {
+            "pp": 69,
+            "mid": 198,
+            "death": 16
+          },
+          "5": {
+            "pp": 11,
+            "mid": 148,
+            "death": 28
+          },
+          "6": {
+            "pp": 0,
+            "mid": 92,
+            "death": 94
+          },
+          "7": {
+            "pp": 0,
+            "mid": 44,
+            "death": 67
+          },
+          "8": {
+            "pp": 0,
+            "mid": 4,
+            "death": 36
+          },
+          "9": {
+            "pp": 0,
+            "mid": 1,
+            "death": 35
+          },
+          "10": {
+            "pp": 0,
+            "mid": 0,
+            "death": 12
+          },
+          "11": {
+            "pp": 0,
+            "mid": 0,
+            "death": 14
+          }
+        },
+        "paceSpin": {
+          "pace": {
+            "balls": 868,
+            "rpo": 8.99,
+            "ballsPerWicket": 15.5,
+            "sharePct": 55
+          },
+          "spin": {
+            "balls": 714,
+            "rpo": 8.88,
+            "ballsPerWicket": 19.3,
+            "sharePct": 45
+          },
+          "unknownPct": 0
         }
       }
     }
@@ -1787,6 +3443,78 @@
           "6": 0.1357,
           "W": 0.0821
         }
+      },
+      "positionPhaseBalls": {
+        "1": {
+          "pp": 282,
+          "mid": 112,
+          "death": 0
+        },
+        "2": {
+          "pp": 249,
+          "mid": 152,
+          "death": 14
+        },
+        "3": {
+          "pp": 164,
+          "mid": 226,
+          "death": 23
+        },
+        "4": {
+          "pp": 73,
+          "mid": 312,
+          "death": 122
+        },
+        "5": {
+          "pp": 24,
+          "mid": 180,
+          "death": 104
+        },
+        "6": {
+          "pp": 0,
+          "mid": 132,
+          "death": 103
+        },
+        "7": {
+          "pp": 0,
+          "mid": 31,
+          "death": 80
+        },
+        "8": {
+          "pp": 0,
+          "mid": 15,
+          "death": 75
+        },
+        "9": {
+          "pp": 0,
+          "mid": 6,
+          "death": 25
+        },
+        "10": {
+          "pp": 0,
+          "mid": 5,
+          "death": 8
+        },
+        "11": {
+          "pp": 0,
+          "mid": 3,
+          "death": 6
+        }
+      },
+      "paceSpin": {
+        "pace": {
+          "balls": 1518,
+          "rpo": 9.77,
+          "ballsPerWicket": 22.3,
+          "sharePct": 60
+        },
+        "spin": {
+          "balls": 1008,
+          "rpo": 8.63,
+          "ballsPerWicket": 19,
+          "sharePct": 40
+        },
+        "unknownPct": 0
       }
     },
     "byEdition": {
@@ -1858,6 +3586,78 @@
             "6": 0.1152,
             "W": 0.0485
           }
+        },
+        "positionPhaseBalls": {
+          "1": {
+            "pp": 88,
+            "mid": 42,
+            "death": 0
+          },
+          "2": {
+            "pp": 70,
+            "mid": 65,
+            "death": 11
+          },
+          "3": {
+            "pp": 45,
+            "mid": 67,
+            "death": 20
+          },
+          "4": {
+            "pp": 12,
+            "mid": 93,
+            "death": 48
+          },
+          "5": {
+            "pp": 1,
+            "mid": 39,
+            "death": 41
+          },
+          "6": {
+            "pp": 0,
+            "mid": 18,
+            "death": 30
+          },
+          "7": {
+            "pp": 0,
+            "mid": 0,
+            "death": 12
+          },
+          "8": {
+            "pp": 0,
+            "mid": 0,
+            "death": 3
+          },
+          "9": {
+            "pp": 0,
+            "mid": 0,
+            "death": 0
+          },
+          "10": {
+            "pp": 0,
+            "mid": 0,
+            "death": 0
+          },
+          "11": {
+            "pp": 0,
+            "mid": 0,
+            "death": 0
+          }
+        },
+        "paceSpin": {
+          "pace": {
+            "balls": 447,
+            "rpo": 10.83,
+            "ballsPerWicket": 27.9,
+            "sharePct": 63
+          },
+          "spin": {
+            "balls": 258,
+            "rpo": 8.98,
+            "ballsPerWicket": 28.7,
+            "sharePct": 37
+          },
+          "unknownPct": 0
         }
       },
       "2026": {
@@ -1929,6 +3729,78 @@
             "6": 0.1443,
             "W": 0.0962
           }
+        },
+        "positionPhaseBalls": {
+          "1": {
+            "pp": 194,
+            "mid": 70,
+            "death": 0
+          },
+          "2": {
+            "pp": 179,
+            "mid": 87,
+            "death": 3
+          },
+          "3": {
+            "pp": 119,
+            "mid": 159,
+            "death": 3
+          },
+          "4": {
+            "pp": 61,
+            "mid": 219,
+            "death": 74
+          },
+          "5": {
+            "pp": 23,
+            "mid": 141,
+            "death": 63
+          },
+          "6": {
+            "pp": 0,
+            "mid": 114,
+            "death": 73
+          },
+          "7": {
+            "pp": 0,
+            "mid": 31,
+            "death": 68
+          },
+          "8": {
+            "pp": 0,
+            "mid": 15,
+            "death": 72
+          },
+          "9": {
+            "pp": 0,
+            "mid": 6,
+            "death": 25
+          },
+          "10": {
+            "pp": 0,
+            "mid": 5,
+            "death": 8
+          },
+          "11": {
+            "pp": 0,
+            "mid": 3,
+            "death": 6
+          }
+        },
+        "paceSpin": {
+          "pace": {
+            "balls": 1071,
+            "rpo": 9.33,
+            "ballsPerWicket": 20.6,
+            "sharePct": 59
+          },
+          "spin": {
+            "balls": 750,
+            "rpo": 8.5,
+            "ballsPerWicket": 17,
+            "sharePct": 41
+          },
+          "unknownPct": 0
         }
       }
     }
@@ -2008,6 +3880,78 @@
           "6": 0.0548,
           "W": 0.0751
         }
+      },
+      "positionPhaseBalls": {
+        "1": {
+          "pp": 284,
+          "mid": 143,
+          "death": 19
+        },
+        "2": {
+          "pp": 226,
+          "mid": 139,
+          "death": 7
+        },
+        "3": {
+          "pp": 161,
+          "mid": 216,
+          "death": 21
+        },
+        "4": {
+          "pp": 42,
+          "mid": 212,
+          "death": 59
+        },
+        "5": {
+          "pp": 7,
+          "mid": 145,
+          "death": 103
+        },
+        "6": {
+          "pp": 0,
+          "mid": 132,
+          "death": 96
+        },
+        "7": {
+          "pp": 0,
+          "mid": 69,
+          "death": 45
+        },
+        "8": {
+          "pp": 0,
+          "mid": 16,
+          "death": 50
+        },
+        "9": {
+          "pp": 0,
+          "mid": 6,
+          "death": 49
+        },
+        "10": {
+          "pp": 0,
+          "mid": 2,
+          "death": 41
+        },
+        "11": {
+          "pp": 0,
+          "mid": 0,
+          "death": 6
+        }
+      },
+      "paceSpin": {
+        "pace": {
+          "balls": 1321,
+          "rpo": 8.04,
+          "ballsPerWicket": 22.4,
+          "sharePct": 58
+        },
+        "spin": {
+          "balls": 975,
+          "rpo": 6.35,
+          "ballsPerWicket": 18.1,
+          "sharePct": 42
+        },
+        "unknownPct": 0
       }
     },
     "byEdition": {
@@ -2080,6 +4024,78 @@
             "6": 0.0548,
             "W": 0.0751
           }
+        },
+        "positionPhaseBalls": {
+          "1": {
+            "pp": 284,
+            "mid": 143,
+            "death": 19
+          },
+          "2": {
+            "pp": 226,
+            "mid": 139,
+            "death": 7
+          },
+          "3": {
+            "pp": 161,
+            "mid": 216,
+            "death": 21
+          },
+          "4": {
+            "pp": 42,
+            "mid": 212,
+            "death": 59
+          },
+          "5": {
+            "pp": 7,
+            "mid": 145,
+            "death": 103
+          },
+          "6": {
+            "pp": 0,
+            "mid": 132,
+            "death": 96
+          },
+          "7": {
+            "pp": 0,
+            "mid": 69,
+            "death": 45
+          },
+          "8": {
+            "pp": 0,
+            "mid": 16,
+            "death": 50
+          },
+          "9": {
+            "pp": 0,
+            "mid": 6,
+            "death": 49
+          },
+          "10": {
+            "pp": 0,
+            "mid": 2,
+            "death": 41
+          },
+          "11": {
+            "pp": 0,
+            "mid": 0,
+            "death": 6
+          }
+        },
+        "paceSpin": {
+          "pace": {
+            "balls": 1321,
+            "rpo": 8.04,
+            "ballsPerWicket": 22.4,
+            "sharePct": 58
+          },
+          "spin": {
+            "balls": 975,
+            "rpo": 6.35,
+            "ballsPerWicket": 18.1,
+            "sharePct": 42
+          },
+          "unknownPct": 0
         }
       }
     }
@@ -2159,6 +4175,78 @@
           "6": 0.0641,
           "W": 0.1003
         }
+      },
+      "positionPhaseBalls": {
+        "1": {
+          "pp": 205,
+          "mid": 102,
+          "death": 28
+        },
+        "2": {
+          "pp": 219,
+          "mid": 40,
+          "death": 0
+        },
+        "3": {
+          "pp": 144,
+          "mid": 80,
+          "death": 0
+        },
+        "4": {
+          "pp": 71,
+          "mid": 205,
+          "death": 29
+        },
+        "5": {
+          "pp": 39,
+          "mid": 172,
+          "death": 61
+        },
+        "6": {
+          "pp": 19,
+          "mid": 84,
+          "death": 69
+        },
+        "7": {
+          "pp": 1,
+          "mid": 84,
+          "death": 68
+        },
+        "8": {
+          "pp": 0,
+          "mid": 36,
+          "death": 44
+        },
+        "9": {
+          "pp": 0,
+          "mid": 37,
+          "death": 33
+        },
+        "10": {
+          "pp": 0,
+          "mid": 12,
+          "death": 16
+        },
+        "11": {
+          "pp": 0,
+          "mid": 7,
+          "death": 11
+        }
+      },
+      "paceSpin": {
+        "pace": {
+          "balls": 1006,
+          "rpo": 6.97,
+          "ballsPerWicket": 14.8,
+          "sharePct": 53
+        },
+        "spin": {
+          "balls": 820,
+          "rpo": 5.88,
+          "ballsPerWicket": 17.4,
+          "sharePct": 43
+        },
+        "unknownPct": 5
       }
     },
     "byEdition": {
@@ -2231,6 +4319,78 @@
             "6": 0.0842,
             "W": 0.1053
           }
+        },
+        "positionPhaseBalls": {
+          "1": {
+            "pp": 144,
+            "mid": 67,
+            "death": 28
+          },
+          "2": {
+            "pp": 141,
+            "mid": 19,
+            "death": 0
+          },
+          "3": {
+            "pp": 83,
+            "mid": 60,
+            "death": 0
+          },
+          "4": {
+            "pp": 21,
+            "mid": 76,
+            "death": 3
+          },
+          "5": {
+            "pp": 11,
+            "mid": 110,
+            "death": 44
+          },
+          "6": {
+            "pp": 10,
+            "mid": 47,
+            "death": 40
+          },
+          "7": {
+            "pp": 0,
+            "mid": 35,
+            "death": 31
+          },
+          "8": {
+            "pp": 0,
+            "mid": 14,
+            "death": 15
+          },
+          "9": {
+            "pp": 0,
+            "mid": 7,
+            "death": 16
+          },
+          "10": {
+            "pp": 0,
+            "mid": 6,
+            "death": 7
+          },
+          "11": {
+            "pp": 0,
+            "mid": 4,
+            "death": 6
+          }
+        },
+        "paceSpin": {
+          "pace": {
+            "balls": 575,
+            "rpo": 7.06,
+            "ballsPerWicket": 15.5,
+            "sharePct": 55
+          },
+          "spin": {
+            "balls": 470,
+            "rpo": 6.15,
+            "ballsPerWicket": 19.6,
+            "sharePct": 45
+          },
+          "unknownPct": 0
         }
       },
       "2024": {
@@ -2302,6 +4462,78 @@
             "6": 0.0414,
             "W": 0.0947
           }
+        },
+        "positionPhaseBalls": {
+          "1": {
+            "pp": 61,
+            "mid": 35,
+            "death": 0
+          },
+          "2": {
+            "pp": 78,
+            "mid": 21,
+            "death": 0
+          },
+          "3": {
+            "pp": 61,
+            "mid": 20,
+            "death": 0
+          },
+          "4": {
+            "pp": 50,
+            "mid": 129,
+            "death": 26
+          },
+          "5": {
+            "pp": 28,
+            "mid": 62,
+            "death": 17
+          },
+          "6": {
+            "pp": 9,
+            "mid": 37,
+            "death": 29
+          },
+          "7": {
+            "pp": 1,
+            "mid": 49,
+            "death": 37
+          },
+          "8": {
+            "pp": 0,
+            "mid": 22,
+            "death": 29
+          },
+          "9": {
+            "pp": 0,
+            "mid": 30,
+            "death": 17
+          },
+          "10": {
+            "pp": 0,
+            "mid": 6,
+            "death": 9
+          },
+          "11": {
+            "pp": 0,
+            "mid": 3,
+            "death": 5
+          }
+        },
+        "paceSpin": {
+          "pace": {
+            "balls": 431,
+            "rpo": 6.84,
+            "ballsPerWicket": 13.9,
+            "sharePct": 49
+          },
+          "spin": {
+            "balls": 350,
+            "rpo": 5.5,
+            "ballsPerWicket": 15.2,
+            "sharePct": 40
+          },
+          "unknownPct": 10
         }
       }
     }
@@ -2380,6 +4612,78 @@
           "6": 0.0982,
           "W": 0.0766
         }
+      },
+      "positionPhaseBalls": {
+        "1": {
+          "pp": 268,
+          "mid": 87,
+          "death": 16
+        },
+        "2": {
+          "pp": 275,
+          "mid": 114,
+          "death": 26
+        },
+        "3": {
+          "pp": 128,
+          "mid": 279,
+          "death": 61
+        },
+        "4": {
+          "pp": 32,
+          "mid": 203,
+          "death": 69
+        },
+        "5": {
+          "pp": 9,
+          "mid": 170,
+          "death": 71
+        },
+        "6": {
+          "pp": 4,
+          "mid": 105,
+          "death": 117
+        },
+        "7": {
+          "pp": 3,
+          "mid": 30,
+          "death": 78
+        },
+        "8": {
+          "pp": 1,
+          "mid": 4,
+          "death": 35
+        },
+        "9": {
+          "pp": 0,
+          "mid": 6,
+          "death": 24
+        },
+        "10": {
+          "pp": 0,
+          "mid": 2,
+          "death": 8
+        },
+        "11": {
+          "pp": 0,
+          "mid": 3,
+          "death": 4
+        }
+      },
+      "paceSpin": {
+        "pace": {
+          "balls": 1351,
+          "rpo": 7.67,
+          "ballsPerWicket": 22.5,
+          "sharePct": 61
+        },
+        "spin": {
+          "balls": 881,
+          "rpo": 6.7,
+          "ballsPerWicket": 19.6,
+          "sharePct": 39
+        },
+        "unknownPct": 0
       }
     },
     "byEdition": {
@@ -2451,6 +4755,78 @@
             "6": 0.0982,
             "W": 0.0766
           }
+        },
+        "positionPhaseBalls": {
+          "1": {
+            "pp": 268,
+            "mid": 87,
+            "death": 16
+          },
+          "2": {
+            "pp": 275,
+            "mid": 114,
+            "death": 26
+          },
+          "3": {
+            "pp": 128,
+            "mid": 279,
+            "death": 61
+          },
+          "4": {
+            "pp": 32,
+            "mid": 203,
+            "death": 69
+          },
+          "5": {
+            "pp": 9,
+            "mid": 170,
+            "death": 71
+          },
+          "6": {
+            "pp": 4,
+            "mid": 105,
+            "death": 117
+          },
+          "7": {
+            "pp": 3,
+            "mid": 30,
+            "death": 78
+          },
+          "8": {
+            "pp": 1,
+            "mid": 4,
+            "death": 35
+          },
+          "9": {
+            "pp": 0,
+            "mid": 6,
+            "death": 24
+          },
+          "10": {
+            "pp": 0,
+            "mid": 2,
+            "death": 8
+          },
+          "11": {
+            "pp": 0,
+            "mid": 3,
+            "death": 4
+          }
+        },
+        "paceSpin": {
+          "pace": {
+            "balls": 1351,
+            "rpo": 7.67,
+            "ballsPerWicket": 22.5,
+            "sharePct": 61
+          },
+          "spin": {
+            "balls": 881,
+            "rpo": 6.7,
+            "ballsPerWicket": 19.6,
+            "sharePct": 39
+          },
+          "unknownPct": 0
         }
       }
     }
@@ -2530,6 +4906,78 @@
           "6": 0.0892,
           "W": 0.0892
         }
+      },
+      "positionPhaseBalls": {
+        "1": {
+          "pp": 214,
+          "mid": 82,
+          "death": 13
+        },
+        "2": {
+          "pp": 197,
+          "mid": 152,
+          "death": 21
+        },
+        "3": {
+          "pp": 139,
+          "mid": 148,
+          "death": 6
+        },
+        "4": {
+          "pp": 82,
+          "mid": 239,
+          "death": 53
+        },
+        "5": {
+          "pp": 16,
+          "mid": 150,
+          "death": 58
+        },
+        "6": {
+          "pp": 0,
+          "mid": 114,
+          "death": 135
+        },
+        "7": {
+          "pp": 0,
+          "mid": 54,
+          "death": 93
+        },
+        "8": {
+          "pp": 0,
+          "mid": 25,
+          "death": 34
+        },
+        "9": {
+          "pp": 0,
+          "mid": 1,
+          "death": 31
+        },
+        "10": {
+          "pp": 0,
+          "mid": 8,
+          "death": 24
+        },
+        "11": {
+          "pp": 0,
+          "mid": 0,
+          "death": 3
+        }
+      },
+      "paceSpin": {
+        "pace": {
+          "balls": 1478,
+          "rpo": 8.47,
+          "ballsPerWicket": 21.4,
+          "sharePct": 71
+        },
+        "spin": {
+          "balls": 614,
+          "rpo": 8.34,
+          "ballsPerWicket": 16.6,
+          "sharePct": 29
+        },
+        "unknownPct": 0
       }
     },
     "byEdition": {
@@ -2602,6 +5050,78 @@
             "6": 0.0892,
             "W": 0.0892
           }
+        },
+        "positionPhaseBalls": {
+          "1": {
+            "pp": 214,
+            "mid": 82,
+            "death": 13
+          },
+          "2": {
+            "pp": 197,
+            "mid": 152,
+            "death": 21
+          },
+          "3": {
+            "pp": 139,
+            "mid": 148,
+            "death": 6
+          },
+          "4": {
+            "pp": 82,
+            "mid": 239,
+            "death": 53
+          },
+          "5": {
+            "pp": 16,
+            "mid": 150,
+            "death": 58
+          },
+          "6": {
+            "pp": 0,
+            "mid": 114,
+            "death": 135
+          },
+          "7": {
+            "pp": 0,
+            "mid": 54,
+            "death": 93
+          },
+          "8": {
+            "pp": 0,
+            "mid": 25,
+            "death": 34
+          },
+          "9": {
+            "pp": 0,
+            "mid": 1,
+            "death": 31
+          },
+          "10": {
+            "pp": 0,
+            "mid": 8,
+            "death": 24
+          },
+          "11": {
+            "pp": 0,
+            "mid": 0,
+            "death": 3
+          }
+        },
+        "paceSpin": {
+          "pace": {
+            "balls": 1478,
+            "rpo": 8.47,
+            "ballsPerWicket": 21.4,
+            "sharePct": 71
+          },
+          "spin": {
+            "balls": 614,
+            "rpo": 8.34,
+            "ballsPerWicket": 16.6,
+            "sharePct": 29
+          },
+          "unknownPct": 0
         }
       }
     }
@@ -2681,6 +5201,78 @@
           "6": 0.0475,
           "W": 0.0926
         }
+      },
+      "positionPhaseBalls": {
+        "1": {
+          "pp": 242,
+          "mid": 75,
+          "death": 15
+        },
+        "2": {
+          "pp": 232,
+          "mid": 216,
+          "death": 10
+        },
+        "3": {
+          "pp": 109,
+          "mid": 134,
+          "death": 12
+        },
+        "4": {
+          "pp": 24,
+          "mid": 161,
+          "death": 26
+        },
+        "5": {
+          "pp": 36,
+          "mid": 144,
+          "death": 33
+        },
+        "6": {
+          "pp": 5,
+          "mid": 119,
+          "death": 75
+        },
+        "7": {
+          "pp": 0,
+          "mid": 57,
+          "death": 75
+        },
+        "8": {
+          "pp": 0,
+          "mid": 16,
+          "death": 75
+        },
+        "9": {
+          "pp": 0,
+          "mid": 14,
+          "death": 60
+        },
+        "10": {
+          "pp": 0,
+          "mid": 0,
+          "death": 25
+        },
+        "11": {
+          "pp": 0,
+          "mid": 0,
+          "death": 15
+        }
+      },
+      "paceSpin": {
+        "pace": {
+          "balls": 1483,
+          "rpo": 7.21,
+          "ballsPerWicket": 18.5,
+          "sharePct": 74
+        },
+        "spin": {
+          "balls": 522,
+          "rpo": 7.43,
+          "ballsPerWicket": 23.7,
+          "sharePct": 26
+        },
+        "unknownPct": 0
       }
     },
     "byEdition": {
@@ -2753,6 +5345,78 @@
             "6": 0.0475,
             "W": 0.0926
           }
+        },
+        "positionPhaseBalls": {
+          "1": {
+            "pp": 242,
+            "mid": 75,
+            "death": 15
+          },
+          "2": {
+            "pp": 232,
+            "mid": 216,
+            "death": 10
+          },
+          "3": {
+            "pp": 109,
+            "mid": 134,
+            "death": 12
+          },
+          "4": {
+            "pp": 24,
+            "mid": 161,
+            "death": 26
+          },
+          "5": {
+            "pp": 36,
+            "mid": 144,
+            "death": 33
+          },
+          "6": {
+            "pp": 5,
+            "mid": 119,
+            "death": 75
+          },
+          "7": {
+            "pp": 0,
+            "mid": 57,
+            "death": 75
+          },
+          "8": {
+            "pp": 0,
+            "mid": 16,
+            "death": 75
+          },
+          "9": {
+            "pp": 0,
+            "mid": 14,
+            "death": 60
+          },
+          "10": {
+            "pp": 0,
+            "mid": 0,
+            "death": 25
+          },
+          "11": {
+            "pp": 0,
+            "mid": 0,
+            "death": 15
+          }
+        },
+        "paceSpin": {
+          "pace": {
+            "balls": 1483,
+            "rpo": 7.21,
+            "ballsPerWicket": 18.5,
+            "sharePct": 74
+          },
+          "spin": {
+            "balls": 522,
+            "rpo": 7.43,
+            "ballsPerWicket": 23.7,
+            "sharePct": 26
+          },
+          "unknownPct": 0
         }
       }
     }
@@ -2832,6 +5496,78 @@
           "6": 0.0462,
           "W": 0.1185
         }
+      },
+      "positionPhaseBalls": {
+        "1": {
+          "pp": 212,
+          "mid": 179,
+          "death": 32
+        },
+        "2": {
+          "pp": 241,
+          "mid": 80,
+          "death": 2
+        },
+        "3": {
+          "pp": 98,
+          "mid": 140,
+          "death": 10
+        },
+        "4": {
+          "pp": 55,
+          "mid": 175,
+          "death": 30
+        },
+        "5": {
+          "pp": 24,
+          "mid": 112,
+          "death": 52
+        },
+        "6": {
+          "pp": 15,
+          "mid": 67,
+          "death": 65
+        },
+        "7": {
+          "pp": 3,
+          "mid": 31,
+          "death": 64
+        },
+        "8": {
+          "pp": 0,
+          "mid": 30,
+          "death": 35
+        },
+        "9": {
+          "pp": 0,
+          "mid": 2,
+          "death": 27
+        },
+        "10": {
+          "pp": 0,
+          "mid": 3,
+          "death": 15
+        },
+        "11": {
+          "pp": 0,
+          "mid": 0,
+          "death": 14
+        }
+      },
+      "paceSpin": {
+        "pace": {
+          "balls": 1170,
+          "rpo": 8.44,
+          "ballsPerWicket": 15.6,
+          "sharePct": 65
+        },
+        "spin": {
+          "balls": 643,
+          "rpo": 7.09,
+          "ballsPerWicket": 20.1,
+          "sharePct": 35
+        },
+        "unknownPct": 0
       }
     },
     "byEdition": {
@@ -2904,6 +5640,78 @@
             "6": 0.0462,
             "W": 0.1185
           }
+        },
+        "positionPhaseBalls": {
+          "1": {
+            "pp": 212,
+            "mid": 179,
+            "death": 32
+          },
+          "2": {
+            "pp": 241,
+            "mid": 80,
+            "death": 2
+          },
+          "3": {
+            "pp": 98,
+            "mid": 140,
+            "death": 10
+          },
+          "4": {
+            "pp": 55,
+            "mid": 175,
+            "death": 30
+          },
+          "5": {
+            "pp": 24,
+            "mid": 112,
+            "death": 52
+          },
+          "6": {
+            "pp": 15,
+            "mid": 67,
+            "death": 65
+          },
+          "7": {
+            "pp": 3,
+            "mid": 31,
+            "death": 64
+          },
+          "8": {
+            "pp": 0,
+            "mid": 30,
+            "death": 35
+          },
+          "9": {
+            "pp": 0,
+            "mid": 2,
+            "death": 27
+          },
+          "10": {
+            "pp": 0,
+            "mid": 3,
+            "death": 15
+          },
+          "11": {
+            "pp": 0,
+            "mid": 0,
+            "death": 14
+          }
+        },
+        "paceSpin": {
+          "pace": {
+            "balls": 1170,
+            "rpo": 8.44,
+            "ballsPerWicket": 15.6,
+            "sharePct": 65
+          },
+          "spin": {
+            "balls": 643,
+            "rpo": 7.09,
+            "ballsPerWicket": 20.1,
+            "sharePct": 35
+          },
+          "unknownPct": 0
         }
       }
     }
@@ -2983,6 +5791,78 @@
           "6": 0.0299,
           "W": 0.0723
         }
+      },
+      "positionPhaseBalls": {
+        "1": {
+          "pp": 202,
+          "mid": 102,
+          "death": 27
+        },
+        "2": {
+          "pp": 216,
+          "mid": 83,
+          "death": 16
+        },
+        "3": {
+          "pp": 110,
+          "mid": 107,
+          "death": 5
+        },
+        "4": {
+          "pp": 60,
+          "mid": 178,
+          "death": 29
+        },
+        "5": {
+          "pp": 20,
+          "mid": 184,
+          "death": 69
+        },
+        "6": {
+          "pp": 22,
+          "mid": 109,
+          "death": 49
+        },
+        "7": {
+          "pp": 0,
+          "mid": 78,
+          "death": 66
+        },
+        "8": {
+          "pp": 0,
+          "mid": 29,
+          "death": 52
+        },
+        "9": {
+          "pp": 0,
+          "mid": 7,
+          "death": 20
+        },
+        "10": {
+          "pp": 0,
+          "mid": 6,
+          "death": 36
+        },
+        "11": {
+          "pp": 0,
+          "mid": 0,
+          "death": 32
+        }
+      },
+      "paceSpin": {
+        "pace": {
+          "balls": 1278,
+          "rpo": 7.66,
+          "ballsPerWicket": 19.1,
+          "sharePct": 67
+        },
+        "spin": {
+          "balls": 636,
+          "rpo": 7.03,
+          "ballsPerWicket": 19.3,
+          "sharePct": 33
+        },
+        "unknownPct": 0
       }
     },
     "byEdition": {
@@ -3055,6 +5935,78 @@
             "6": 0.0299,
             "W": 0.0723
           }
+        },
+        "positionPhaseBalls": {
+          "1": {
+            "pp": 202,
+            "mid": 102,
+            "death": 27
+          },
+          "2": {
+            "pp": 216,
+            "mid": 83,
+            "death": 16
+          },
+          "3": {
+            "pp": 110,
+            "mid": 107,
+            "death": 5
+          },
+          "4": {
+            "pp": 60,
+            "mid": 178,
+            "death": 29
+          },
+          "5": {
+            "pp": 20,
+            "mid": 184,
+            "death": 69
+          },
+          "6": {
+            "pp": 22,
+            "mid": 109,
+            "death": 49
+          },
+          "7": {
+            "pp": 0,
+            "mid": 78,
+            "death": 66
+          },
+          "8": {
+            "pp": 0,
+            "mid": 29,
+            "death": 52
+          },
+          "9": {
+            "pp": 0,
+            "mid": 7,
+            "death": 20
+          },
+          "10": {
+            "pp": 0,
+            "mid": 6,
+            "death": 36
+          },
+          "11": {
+            "pp": 0,
+            "mid": 0,
+            "death": 32
+          }
+        },
+        "paceSpin": {
+          "pace": {
+            "balls": 1278,
+            "rpo": 7.66,
+            "ballsPerWicket": 19.1,
+            "sharePct": 67
+          },
+          "spin": {
+            "balls": 636,
+            "rpo": 7.03,
+            "ballsPerWicket": 19.3,
+            "sharePct": 33
+          },
+          "unknownPct": 0
         }
       }
     }
@@ -3135,6 +6087,78 @@
           "6": 0.0729,
           "W": 0.0988
         }
+      },
+      "positionPhaseBalls": {
+        "1": {
+          "pp": 235,
+          "mid": 70,
+          "death": 3
+        },
+        "2": {
+          "pp": 172,
+          "mid": 90,
+          "death": 0
+        },
+        "3": {
+          "pp": 75,
+          "mid": 104,
+          "death": 3
+        },
+        "4": {
+          "pp": 43,
+          "mid": 152,
+          "death": 42
+        },
+        "5": {
+          "pp": 34,
+          "mid": 167,
+          "death": 99
+        },
+        "6": {
+          "pp": 16,
+          "mid": 118,
+          "death": 73
+        },
+        "7": {
+          "pp": 1,
+          "mid": 66,
+          "death": 68
+        },
+        "8": {
+          "pp": 0,
+          "mid": 28,
+          "death": 54
+        },
+        "9": {
+          "pp": 0,
+          "mid": 18,
+          "death": 47
+        },
+        "10": {
+          "pp": 0,
+          "mid": 7,
+          "death": 25
+        },
+        "11": {
+          "pp": 0,
+          "mid": 0,
+          "death": 11
+        }
+      },
+      "paceSpin": {
+        "pace": {
+          "balls": 1533,
+          "rpo": 7.76,
+          "ballsPerWicket": 19.4,
+          "sharePct": 84
+        },
+        "spin": {
+          "balls": 288,
+          "rpo": 7.54,
+          "ballsPerWicket": 16,
+          "sharePct": 16
+        },
+        "unknownPct": 0
       }
     },
     "byEdition": {
@@ -3208,6 +6232,78 @@
             "6": 0.0729,
             "W": 0.0988
           }
+        },
+        "positionPhaseBalls": {
+          "1": {
+            "pp": 235,
+            "mid": 70,
+            "death": 3
+          },
+          "2": {
+            "pp": 172,
+            "mid": 90,
+            "death": 0
+          },
+          "3": {
+            "pp": 75,
+            "mid": 104,
+            "death": 3
+          },
+          "4": {
+            "pp": 43,
+            "mid": 152,
+            "death": 42
+          },
+          "5": {
+            "pp": 34,
+            "mid": 167,
+            "death": 99
+          },
+          "6": {
+            "pp": 16,
+            "mid": 118,
+            "death": 73
+          },
+          "7": {
+            "pp": 1,
+            "mid": 66,
+            "death": 68
+          },
+          "8": {
+            "pp": 0,
+            "mid": 28,
+            "death": 54
+          },
+          "9": {
+            "pp": 0,
+            "mid": 18,
+            "death": 47
+          },
+          "10": {
+            "pp": 0,
+            "mid": 7,
+            "death": 25
+          },
+          "11": {
+            "pp": 0,
+            "mid": 0,
+            "death": 11
+          }
+        },
+        "paceSpin": {
+          "pace": {
+            "balls": 1533,
+            "rpo": 7.76,
+            "ballsPerWicket": 19.4,
+            "sharePct": 84
+          },
+          "spin": {
+            "balls": 288,
+            "rpo": 7.54,
+            "ballsPerWicket": 16,
+            "sharePct": 16
+          },
+          "unknownPct": 0
         }
       }
     }
@@ -3287,6 +6383,78 @@
           "6": 0.0334,
           "W": 0.0802
         }
+      },
+      "positionPhaseBalls": {
+        "1": {
+          "pp": 226,
+          "mid": 126,
+          "death": 6
+        },
+        "2": {
+          "pp": 183,
+          "mid": 105,
+          "death": 6
+        },
+        "3": {
+          "pp": 98,
+          "mid": 151,
+          "death": 15
+        },
+        "4": {
+          "pp": 59,
+          "mid": 275,
+          "death": 89
+        },
+        "5": {
+          "pp": 8,
+          "mid": 121,
+          "death": 92
+        },
+        "6": {
+          "pp": 2,
+          "mid": 54,
+          "death": 91
+        },
+        "7": {
+          "pp": 0,
+          "mid": 8,
+          "death": 70
+        },
+        "8": {
+          "pp": 0,
+          "mid": 13,
+          "death": 52
+        },
+        "9": {
+          "pp": 0,
+          "mid": 6,
+          "death": 21
+        },
+        "10": {
+          "pp": 0,
+          "mid": 5,
+          "death": 4
+        },
+        "11": {
+          "pp": 0,
+          "mid": 0,
+          "death": 3
+        }
+      },
+      "paceSpin": {
+        "pace": {
+          "balls": 1205,
+          "rpo": 7.42,
+          "ballsPerWicket": 21.9,
+          "sharePct": 64
+        },
+        "spin": {
+          "balls": 684,
+          "rpo": 6.57,
+          "ballsPerWicket": 18,
+          "sharePct": 36
+        },
+        "unknownPct": 0
       }
     },
     "byEdition": {
@@ -3359,6 +6527,78 @@
             "6": 0.0334,
             "W": 0.0802
           }
+        },
+        "positionPhaseBalls": {
+          "1": {
+            "pp": 226,
+            "mid": 126,
+            "death": 6
+          },
+          "2": {
+            "pp": 183,
+            "mid": 105,
+            "death": 6
+          },
+          "3": {
+            "pp": 98,
+            "mid": 151,
+            "death": 15
+          },
+          "4": {
+            "pp": 59,
+            "mid": 275,
+            "death": 89
+          },
+          "5": {
+            "pp": 8,
+            "mid": 121,
+            "death": 92
+          },
+          "6": {
+            "pp": 2,
+            "mid": 54,
+            "death": 91
+          },
+          "7": {
+            "pp": 0,
+            "mid": 8,
+            "death": 70
+          },
+          "8": {
+            "pp": 0,
+            "mid": 13,
+            "death": 52
+          },
+          "9": {
+            "pp": 0,
+            "mid": 6,
+            "death": 21
+          },
+          "10": {
+            "pp": 0,
+            "mid": 5,
+            "death": 4
+          },
+          "11": {
+            "pp": 0,
+            "mid": 0,
+            "death": 3
+          }
+        },
+        "paceSpin": {
+          "pace": {
+            "balls": 1205,
+            "rpo": 7.42,
+            "ballsPerWicket": 21.9,
+            "sharePct": 64
+          },
+          "spin": {
+            "balls": 684,
+            "rpo": 6.57,
+            "ballsPerWicket": 18,
+            "sharePct": 36
+          },
+          "unknownPct": 0
         }
       }
     }
@@ -3439,6 +6679,78 @@
           "6": 0.0946,
           "W": 0.0766
         }
+      },
+      "positionPhaseBalls": {
+        "1": {
+          "pp": 180,
+          "mid": 90,
+          "death": 2
+        },
+        "2": {
+          "pp": 194,
+          "mid": 47,
+          "death": 14
+        },
+        "3": {
+          "pp": 119,
+          "mid": 132,
+          "death": 1
+        },
+        "4": {
+          "pp": 56,
+          "mid": 114,
+          "death": 7
+        },
+        "5": {
+          "pp": 8,
+          "mid": 95,
+          "death": 36
+        },
+        "6": {
+          "pp": 0,
+          "mid": 88,
+          "death": 58
+        },
+        "7": {
+          "pp": 0,
+          "mid": 58,
+          "death": 38
+        },
+        "8": {
+          "pp": 0,
+          "mid": 13,
+          "death": 33
+        },
+        "9": {
+          "pp": 0,
+          "mid": 9,
+          "death": 23
+        },
+        "10": {
+          "pp": 0,
+          "mid": 6,
+          "death": 13
+        },
+        "11": {
+          "pp": 0,
+          "mid": 1,
+          "death": 4
+        }
+      },
+      "paceSpin": {
+        "pace": {
+          "balls": 827,
+          "rpo": 8,
+          "ballsPerWicket": 16.5,
+          "sharePct": 57
+        },
+        "spin": {
+          "balls": 612,
+          "rpo": 8.17,
+          "ballsPerWicket": 17.5,
+          "sharePct": 43
+        },
+        "unknownPct": 0
       }
     },
     "byEdition": {
@@ -3512,6 +6824,78 @@
             "6": 0.0946,
             "W": 0.0766
           }
+        },
+        "positionPhaseBalls": {
+          "1": {
+            "pp": 180,
+            "mid": 90,
+            "death": 2
+          },
+          "2": {
+            "pp": 194,
+            "mid": 47,
+            "death": 14
+          },
+          "3": {
+            "pp": 119,
+            "mid": 132,
+            "death": 1
+          },
+          "4": {
+            "pp": 56,
+            "mid": 114,
+            "death": 7
+          },
+          "5": {
+            "pp": 8,
+            "mid": 95,
+            "death": 36
+          },
+          "6": {
+            "pp": 0,
+            "mid": 88,
+            "death": 58
+          },
+          "7": {
+            "pp": 0,
+            "mid": 58,
+            "death": 38
+          },
+          "8": {
+            "pp": 0,
+            "mid": 13,
+            "death": 33
+          },
+          "9": {
+            "pp": 0,
+            "mid": 9,
+            "death": 23
+          },
+          "10": {
+            "pp": 0,
+            "mid": 6,
+            "death": 13
+          },
+          "11": {
+            "pp": 0,
+            "mid": 1,
+            "death": 4
+          }
+        },
+        "paceSpin": {
+          "pace": {
+            "balls": 827,
+            "rpo": 8,
+            "ballsPerWicket": 16.5,
+            "sharePct": 57
+          },
+          "spin": {
+            "balls": 612,
+            "rpo": 8.17,
+            "ballsPerWicket": 17.5,
+            "sharePct": 43
+          },
+          "unknownPct": 0
         }
       }
     }
@@ -3592,6 +6976,78 @@
           "6": 0.0818,
           "W": 0.0818
         }
+      },
+      "positionPhaseBalls": {
+        "1": {
+          "pp": 220,
+          "mid": 95,
+          "death": 16
+        },
+        "2": {
+          "pp": 162,
+          "mid": 56,
+          "death": 0
+        },
+        "3": {
+          "pp": 138,
+          "mid": 213,
+          "death": 23
+        },
+        "4": {
+          "pp": 31,
+          "mid": 183,
+          "death": 42
+        },
+        "5": {
+          "pp": 18,
+          "mid": 158,
+          "death": 69
+        },
+        "6": {
+          "pp": 7,
+          "mid": 95,
+          "death": 81
+        },
+        "7": {
+          "pp": 0,
+          "mid": 42,
+          "death": 59
+        },
+        "8": {
+          "pp": 0,
+          "mid": 12,
+          "death": 56
+        },
+        "9": {
+          "pp": 0,
+          "mid": 0,
+          "death": 20
+        },
+        "10": {
+          "pp": 0,
+          "mid": 0,
+          "death": 10
+        },
+        "11": {
+          "pp": 0,
+          "mid": 0,
+          "death": 3
+        }
+      },
+      "paceSpin": {
+        "pace": {
+          "balls": 1142,
+          "rpo": 7.91,
+          "ballsPerWicket": 20,
+          "sharePct": 63
+        },
+        "spin": {
+          "balls": 667,
+          "rpo": 7.5,
+          "ballsPerWicket": 21.5,
+          "sharePct": 37
+        },
+        "unknownPct": 0
       }
     },
     "byEdition": {
@@ -3663,6 +7119,78 @@
             "6": 0.1096,
             "W": 0.0753
           }
+        },
+        "positionPhaseBalls": {
+          "1": {
+            "pp": 98,
+            "mid": 62,
+            "death": 9
+          },
+          "2": {
+            "pp": 50,
+            "mid": 49,
+            "death": 0
+          },
+          "3": {
+            "pp": 43,
+            "mid": 74,
+            "death": 5
+          },
+          "4": {
+            "pp": 6,
+            "mid": 44,
+            "death": 36
+          },
+          "5": {
+            "pp": 12,
+            "mid": 51,
+            "death": 35
+          },
+          "6": {
+            "pp": 7,
+            "mid": 27,
+            "death": 4
+          },
+          "7": {
+            "pp": 0,
+            "mid": 13,
+            "death": 11
+          },
+          "8": {
+            "pp": 0,
+            "mid": 4,
+            "death": 29
+          },
+          "9": {
+            "pp": 0,
+            "mid": 0,
+            "death": 9
+          },
+          "10": {
+            "pp": 0,
+            "mid": 0,
+            "death": 7
+          },
+          "11": {
+            "pp": 0,
+            "mid": 0,
+            "death": 1
+          }
+        },
+        "paceSpin": {
+          "pace": {
+            "balls": 421,
+            "rpo": 7.44,
+            "ballsPerWicket": 22.2,
+            "sharePct": 61
+          },
+          "spin": {
+            "balls": 265,
+            "rpo": 7.74,
+            "ballsPerWicket": 26.5,
+            "sharePct": 39
+          },
+          "unknownPct": 0
         }
       },
       "2026": {
@@ -3734,6 +7262,78 @@
             "6": 0.0644,
             "W": 0.0858
           }
+        },
+        "positionPhaseBalls": {
+          "1": {
+            "pp": 122,
+            "mid": 33,
+            "death": 7
+          },
+          "2": {
+            "pp": 112,
+            "mid": 7,
+            "death": 0
+          },
+          "3": {
+            "pp": 95,
+            "mid": 139,
+            "death": 18
+          },
+          "4": {
+            "pp": 25,
+            "mid": 139,
+            "death": 6
+          },
+          "5": {
+            "pp": 6,
+            "mid": 107,
+            "death": 34
+          },
+          "6": {
+            "pp": 0,
+            "mid": 68,
+            "death": 77
+          },
+          "7": {
+            "pp": 0,
+            "mid": 29,
+            "death": 48
+          },
+          "8": {
+            "pp": 0,
+            "mid": 8,
+            "death": 27
+          },
+          "9": {
+            "pp": 0,
+            "mid": 0,
+            "death": 11
+          },
+          "10": {
+            "pp": 0,
+            "mid": 0,
+            "death": 3
+          },
+          "11": {
+            "pp": 0,
+            "mid": 0,
+            "death": 2
+          }
+        },
+        "paceSpin": {
+          "pace": {
+            "balls": 721,
+            "rpo": 8.18,
+            "ballsPerWicket": 19,
+            "sharePct": 64
+          },
+          "spin": {
+            "balls": 402,
+            "rpo": 7.34,
+            "ballsPerWicket": 19.1,
+            "sharePct": 36
+          },
+          "unknownPct": 0
         }
       }
     }
@@ -3813,6 +7413,78 @@
           "6": 0.0388,
           "W": 0.072
         }
+      },
+      "positionPhaseBalls": {
+        "1": {
+          "pp": 197,
+          "mid": 100,
+          "death": 9
+        },
+        "2": {
+          "pp": 124,
+          "mid": 39,
+          "death": 0
+        },
+        "3": {
+          "pp": 137,
+          "mid": 110,
+          "death": 0
+        },
+        "4": {
+          "pp": 89,
+          "mid": 137,
+          "death": 36
+        },
+        "5": {
+          "pp": 20,
+          "mid": 199,
+          "death": 55
+        },
+        "6": {
+          "pp": 9,
+          "mid": 151,
+          "death": 73
+        },
+        "7": {
+          "pp": 0,
+          "mid": 50,
+          "death": 59
+        },
+        "8": {
+          "pp": 0,
+          "mid": 37,
+          "death": 58
+        },
+        "9": {
+          "pp": 0,
+          "mid": 10,
+          "death": 53
+        },
+        "10": {
+          "pp": 0,
+          "mid": 13,
+          "death": 6
+        },
+        "11": {
+          "pp": 0,
+          "mid": 2,
+          "death": 12
+        }
+      },
+      "paceSpin": {
+        "pace": {
+          "balls": 1417,
+          "rpo": 5.46,
+          "ballsPerWicket": 17.3,
+          "sharePct": 79
+        },
+        "spin": {
+          "balls": 368,
+          "rpo": 6.23,
+          "ballsPerWicket": 24.5,
+          "sharePct": 21
+        },
+        "unknownPct": 0
       }
     },
     "byEdition": {
@@ -3885,6 +7557,78 @@
             "6": 0.0388,
             "W": 0.072
           }
+        },
+        "positionPhaseBalls": {
+          "1": {
+            "pp": 197,
+            "mid": 100,
+            "death": 9
+          },
+          "2": {
+            "pp": 124,
+            "mid": 39,
+            "death": 0
+          },
+          "3": {
+            "pp": 137,
+            "mid": 110,
+            "death": 0
+          },
+          "4": {
+            "pp": 89,
+            "mid": 137,
+            "death": 36
+          },
+          "5": {
+            "pp": 20,
+            "mid": 199,
+            "death": 55
+          },
+          "6": {
+            "pp": 9,
+            "mid": 151,
+            "death": 73
+          },
+          "7": {
+            "pp": 0,
+            "mid": 50,
+            "death": 59
+          },
+          "8": {
+            "pp": 0,
+            "mid": 37,
+            "death": 58
+          },
+          "9": {
+            "pp": 0,
+            "mid": 10,
+            "death": 53
+          },
+          "10": {
+            "pp": 0,
+            "mid": 13,
+            "death": 6
+          },
+          "11": {
+            "pp": 0,
+            "mid": 2,
+            "death": 12
+          }
+        },
+        "paceSpin": {
+          "pace": {
+            "balls": 1417,
+            "rpo": 5.46,
+            "ballsPerWicket": 17.3,
+            "sharePct": 79
+          },
+          "spin": {
+            "balls": 368,
+            "rpo": 6.23,
+            "ballsPerWicket": 24.5,
+            "sharePct": 21
+          },
+          "unknownPct": 0
         }
       }
     }
@@ -3964,6 +7708,78 @@
           "6": 0.0469,
           "W": 0.088
         }
+      },
+      "positionPhaseBalls": {
+        "1": {
+          "pp": 143,
+          "mid": 53,
+          "death": 7
+        },
+        "2": {
+          "pp": 166,
+          "mid": 112,
+          "death": 13
+        },
+        "3": {
+          "pp": 117,
+          "mid": 163,
+          "death": 56
+        },
+        "4": {
+          "pp": 45,
+          "mid": 113,
+          "death": 45
+        },
+        "5": {
+          "pp": 25,
+          "mid": 123,
+          "death": 59
+        },
+        "6": {
+          "pp": 8,
+          "mid": 72,
+          "death": 34
+        },
+        "7": {
+          "pp": 0,
+          "mid": 53,
+          "death": 52
+        },
+        "8": {
+          "pp": 0,
+          "mid": 25,
+          "death": 19
+        },
+        "9": {
+          "pp": 0,
+          "mid": 22,
+          "death": 25
+        },
+        "10": {
+          "pp": 0,
+          "mid": 12,
+          "death": 17
+        },
+        "11": {
+          "pp": 0,
+          "mid": 2,
+          "death": 14
+        }
+      },
+      "paceSpin": {
+        "pace": {
+          "balls": 993,
+          "rpo": 8.14,
+          "ballsPerWicket": 17.7,
+          "sharePct": 62
+        },
+        "spin": {
+          "balls": 602,
+          "rpo": 6.85,
+          "ballsPerWicket": 18.2,
+          "sharePct": 38
+        },
+        "unknownPct": 0
       }
     },
     "byEdition": {
@@ -4036,6 +7852,78 @@
             "6": 0.0469,
             "W": 0.088
           }
+        },
+        "positionPhaseBalls": {
+          "1": {
+            "pp": 143,
+            "mid": 53,
+            "death": 7
+          },
+          "2": {
+            "pp": 166,
+            "mid": 112,
+            "death": 13
+          },
+          "3": {
+            "pp": 117,
+            "mid": 163,
+            "death": 56
+          },
+          "4": {
+            "pp": 45,
+            "mid": 113,
+            "death": 45
+          },
+          "5": {
+            "pp": 25,
+            "mid": 123,
+            "death": 59
+          },
+          "6": {
+            "pp": 8,
+            "mid": 72,
+            "death": 34
+          },
+          "7": {
+            "pp": 0,
+            "mid": 53,
+            "death": 52
+          },
+          "8": {
+            "pp": 0,
+            "mid": 25,
+            "death": 19
+          },
+          "9": {
+            "pp": 0,
+            "mid": 22,
+            "death": 25
+          },
+          "10": {
+            "pp": 0,
+            "mid": 12,
+            "death": 17
+          },
+          "11": {
+            "pp": 0,
+            "mid": 2,
+            "death": 14
+          }
+        },
+        "paceSpin": {
+          "pace": {
+            "balls": 993,
+            "rpo": 8.14,
+            "ballsPerWicket": 17.7,
+            "sharePct": 62
+          },
+          "spin": {
+            "balls": 602,
+            "rpo": 6.85,
+            "ballsPerWicket": 18.2,
+            "sharePct": 38
+          },
+          "unknownPct": 0
         }
       }
     }
@@ -4115,6 +8003,78 @@
           "6": 0.0496,
           "W": 0.0611
         }
+      },
+      "positionPhaseBalls": {
+        "1": {
+          "pp": 172,
+          "mid": 74,
+          "death": 0
+        },
+        "2": {
+          "pp": 121,
+          "mid": 23,
+          "death": 0
+        },
+        "3": {
+          "pp": 77,
+          "mid": 195,
+          "death": 33
+        },
+        "4": {
+          "pp": 38,
+          "mid": 95,
+          "death": 29
+        },
+        "5": {
+          "pp": 21,
+          "mid": 140,
+          "death": 54
+        },
+        "6": {
+          "pp": 3,
+          "mid": 69,
+          "death": 49
+        },
+        "7": {
+          "pp": 0,
+          "mid": 25,
+          "death": 45
+        },
+        "8": {
+          "pp": 0,
+          "mid": 4,
+          "death": 14
+        },
+        "9": {
+          "pp": 0,
+          "mid": 4,
+          "death": 19
+        },
+        "10": {
+          "pp": 0,
+          "mid": 0,
+          "death": 17
+        },
+        "11": {
+          "pp": 0,
+          "mid": 0,
+          "death": 2
+        }
+      },
+      "paceSpin": {
+        "pace": {
+          "balls": 770,
+          "rpo": 7.92,
+          "ballsPerWicket": 24.1,
+          "sharePct": 58
+        },
+        "spin": {
+          "balls": 553,
+          "rpo": 7.45,
+          "ballsPerWicket": 22.1,
+          "sharePct": 42
+        },
+        "unknownPct": 0
       }
     },
     "byEdition": {
@@ -4187,6 +8147,78 @@
             "6": 0.0496,
             "W": 0.0611
           }
+        },
+        "positionPhaseBalls": {
+          "1": {
+            "pp": 172,
+            "mid": 74,
+            "death": 0
+          },
+          "2": {
+            "pp": 121,
+            "mid": 23,
+            "death": 0
+          },
+          "3": {
+            "pp": 77,
+            "mid": 195,
+            "death": 33
+          },
+          "4": {
+            "pp": 38,
+            "mid": 95,
+            "death": 29
+          },
+          "5": {
+            "pp": 21,
+            "mid": 140,
+            "death": 54
+          },
+          "6": {
+            "pp": 3,
+            "mid": 69,
+            "death": 49
+          },
+          "7": {
+            "pp": 0,
+            "mid": 25,
+            "death": 45
+          },
+          "8": {
+            "pp": 0,
+            "mid": 4,
+            "death": 14
+          },
+          "9": {
+            "pp": 0,
+            "mid": 4,
+            "death": 19
+          },
+          "10": {
+            "pp": 0,
+            "mid": 0,
+            "death": 17
+          },
+          "11": {
+            "pp": 0,
+            "mid": 0,
+            "death": 2
+          }
+        },
+        "paceSpin": {
+          "pace": {
+            "balls": 770,
+            "rpo": 7.92,
+            "ballsPerWicket": 24.1,
+            "sharePct": 58
+          },
+          "spin": {
+            "balls": 553,
+            "rpo": 7.45,
+            "ballsPerWicket": 22.1,
+            "sharePct": 42
+          },
+          "unknownPct": 0
         }
       }
     }
@@ -4265,6 +8297,78 @@
           "6": 0.0577,
           "W": 0.101
         }
+      },
+      "positionPhaseBalls": {
+        "1": {
+          "pp": 176,
+          "mid": 108,
+          "death": 33
+        },
+        "2": {
+          "pp": 142,
+          "mid": 20,
+          "death": 0
+        },
+        "3": {
+          "pp": 36,
+          "mid": 128,
+          "death": 17
+        },
+        "4": {
+          "pp": 16,
+          "mid": 69,
+          "death": 16
+        },
+        "5": {
+          "pp": 16,
+          "mid": 58,
+          "death": 22
+        },
+        "6": {
+          "pp": 1,
+          "mid": 22,
+          "death": 41
+        },
+        "7": {
+          "pp": 7,
+          "mid": 9,
+          "death": 45
+        },
+        "8": {
+          "pp": 1,
+          "mid": 3,
+          "death": 17
+        },
+        "9": {
+          "pp": 1,
+          "mid": 5,
+          "death": 14
+        },
+        "10": {
+          "pp": 0,
+          "mid": 3,
+          "death": 2
+        },
+        "11": {
+          "pp": 0,
+          "mid": 1,
+          "death": 1
+        }
+      },
+      "paceSpin": {
+        "pace": {
+          "balls": 634,
+          "rpo": 7.49,
+          "ballsPerWicket": 18.6,
+          "sharePct": 62
+        },
+        "spin": {
+          "balls": 396,
+          "rpo": 7.29,
+          "ballsPerWicket": 14.7,
+          "sharePct": 38
+        },
+        "unknownPct": 0
       }
     },
     "byEdition": {
@@ -4336,6 +8440,78 @@
             "6": 0.0577,
             "W": 0.101
           }
+        },
+        "positionPhaseBalls": {
+          "1": {
+            "pp": 176,
+            "mid": 108,
+            "death": 33
+          },
+          "2": {
+            "pp": 142,
+            "mid": 20,
+            "death": 0
+          },
+          "3": {
+            "pp": 36,
+            "mid": 128,
+            "death": 17
+          },
+          "4": {
+            "pp": 16,
+            "mid": 69,
+            "death": 16
+          },
+          "5": {
+            "pp": 16,
+            "mid": 58,
+            "death": 22
+          },
+          "6": {
+            "pp": 1,
+            "mid": 22,
+            "death": 41
+          },
+          "7": {
+            "pp": 7,
+            "mid": 9,
+            "death": 45
+          },
+          "8": {
+            "pp": 1,
+            "mid": 3,
+            "death": 17
+          },
+          "9": {
+            "pp": 1,
+            "mid": 5,
+            "death": 14
+          },
+          "10": {
+            "pp": 0,
+            "mid": 3,
+            "death": 2
+          },
+          "11": {
+            "pp": 0,
+            "mid": 1,
+            "death": 1
+          }
+        },
+        "paceSpin": {
+          "pace": {
+            "balls": 634,
+            "rpo": 7.49,
+            "ballsPerWicket": 18.6,
+            "sharePct": 62
+          },
+          "spin": {
+            "balls": 396,
+            "rpo": 7.29,
+            "ballsPerWicket": 14.7,
+            "sharePct": 38
+          },
+          "unknownPct": 0
         }
       }
     }
@@ -4413,6 +8589,78 @@
           "6": 0.0912,
           "W": 0.0717
         }
+      },
+      "positionPhaseBalls": {
+        "1": {
+          "pp": 141,
+          "mid": 101,
+          "death": 10
+        },
+        "2": {
+          "pp": 149,
+          "mid": 14,
+          "death": 0
+        },
+        "3": {
+          "pp": 61,
+          "mid": 124,
+          "death": 18
+        },
+        "4": {
+          "pp": 38,
+          "mid": 100,
+          "death": 13
+        },
+        "5": {
+          "pp": 34,
+          "mid": 96,
+          "death": 35
+        },
+        "6": {
+          "pp": 9,
+          "mid": 104,
+          "death": 75
+        },
+        "7": {
+          "pp": 0,
+          "mid": 73,
+          "death": 65
+        },
+        "8": {
+          "pp": 0,
+          "mid": 17,
+          "death": 35
+        },
+        "9": {
+          "pp": 0,
+          "mid": 19,
+          "death": 37
+        },
+        "10": {
+          "pp": 0,
+          "mid": 0,
+          "death": 13
+        },
+        "11": {
+          "pp": 0,
+          "mid": 0,
+          "death": 6
+        }
+      },
+      "paceSpin": {
+        "pace": {
+          "balls": 943,
+          "rpo": 9.19,
+          "ballsPerWicket": 18.1,
+          "sharePct": 68
+        },
+        "spin": {
+          "balls": 444,
+          "rpo": 9.39,
+          "ballsPerWicket": 19.3,
+          "sharePct": 32
+        },
+        "unknownPct": 0
       }
     },
     "byEdition": {
@@ -4483,6 +8731,78 @@
             "6": 0.0912,
             "W": 0.0717
           }
+        },
+        "positionPhaseBalls": {
+          "1": {
+            "pp": 141,
+            "mid": 101,
+            "death": 10
+          },
+          "2": {
+            "pp": 149,
+            "mid": 14,
+            "death": 0
+          },
+          "3": {
+            "pp": 61,
+            "mid": 124,
+            "death": 18
+          },
+          "4": {
+            "pp": 38,
+            "mid": 100,
+            "death": 13
+          },
+          "5": {
+            "pp": 34,
+            "mid": 96,
+            "death": 35
+          },
+          "6": {
+            "pp": 9,
+            "mid": 104,
+            "death": 75
+          },
+          "7": {
+            "pp": 0,
+            "mid": 73,
+            "death": 65
+          },
+          "8": {
+            "pp": 0,
+            "mid": 17,
+            "death": 35
+          },
+          "9": {
+            "pp": 0,
+            "mid": 19,
+            "death": 37
+          },
+          "10": {
+            "pp": 0,
+            "mid": 0,
+            "death": 13
+          },
+          "11": {
+            "pp": 0,
+            "mid": 0,
+            "death": 6
+          }
+        },
+        "paceSpin": {
+          "pace": {
+            "balls": 943,
+            "rpo": 9.19,
+            "ballsPerWicket": 18.1,
+            "sharePct": 68
+          },
+          "spin": {
+            "balls": 444,
+            "rpo": 9.39,
+            "ballsPerWicket": 19.3,
+            "sharePct": 32
+          },
+          "unknownPct": 0
         }
       }
     }
@@ -4562,6 +8882,78 @@
           "6": 0.0654,
           "W": 0.134
         }
+      },
+      "positionPhaseBalls": {
+        "1": {
+          "pp": 142,
+          "mid": 65,
+          "death": 4
+        },
+        "2": {
+          "pp": 111,
+          "mid": 63,
+          "death": 0
+        },
+        "3": {
+          "pp": 114,
+          "mid": 120,
+          "death": 5
+        },
+        "4": {
+          "pp": 57,
+          "mid": 158,
+          "death": 20
+        },
+        "5": {
+          "pp": 5,
+          "mid": 106,
+          "death": 47
+        },
+        "6": {
+          "pp": 3,
+          "mid": 39,
+          "death": 31
+        },
+        "7": {
+          "pp": 0,
+          "mid": 47,
+          "death": 51
+        },
+        "8": {
+          "pp": 0,
+          "mid": 29,
+          "death": 61
+        },
+        "9": {
+          "pp": 0,
+          "mid": 12,
+          "death": 45
+        },
+        "10": {
+          "pp": 0,
+          "mid": 1,
+          "death": 21
+        },
+        "11": {
+          "pp": 0,
+          "mid": 0,
+          "death": 21
+        }
+      },
+      "paceSpin": {
+        "pace": {
+          "balls": 810,
+          "rpo": 7.41,
+          "ballsPerWicket": 15.6,
+          "sharePct": 59
+        },
+        "spin": {
+          "balls": 538,
+          "rpo": 6.48,
+          "ballsPerWicket": 17.9,
+          "sharePct": 39
+        },
+        "unknownPct": 2
       }
     },
     "byEdition": {
@@ -4634,6 +9026,78 @@
             "6": 0.0654,
             "W": 0.134
           }
+        },
+        "positionPhaseBalls": {
+          "1": {
+            "pp": 142,
+            "mid": 65,
+            "death": 4
+          },
+          "2": {
+            "pp": 111,
+            "mid": 63,
+            "death": 0
+          },
+          "3": {
+            "pp": 114,
+            "mid": 120,
+            "death": 5
+          },
+          "4": {
+            "pp": 57,
+            "mid": 158,
+            "death": 20
+          },
+          "5": {
+            "pp": 5,
+            "mid": 106,
+            "death": 47
+          },
+          "6": {
+            "pp": 3,
+            "mid": 39,
+            "death": 31
+          },
+          "7": {
+            "pp": 0,
+            "mid": 47,
+            "death": 51
+          },
+          "8": {
+            "pp": 0,
+            "mid": 29,
+            "death": 61
+          },
+          "9": {
+            "pp": 0,
+            "mid": 12,
+            "death": 45
+          },
+          "10": {
+            "pp": 0,
+            "mid": 1,
+            "death": 21
+          },
+          "11": {
+            "pp": 0,
+            "mid": 0,
+            "death": 21
+          }
+        },
+        "paceSpin": {
+          "pace": {
+            "balls": 810,
+            "rpo": 7.41,
+            "ballsPerWicket": 15.6,
+            "sharePct": 59
+          },
+          "spin": {
+            "balls": 538,
+            "rpo": 6.48,
+            "ballsPerWicket": 17.9,
+            "sharePct": 39
+          },
+          "unknownPct": 2
         }
       }
     }
@@ -4713,6 +9177,78 @@
           "6": 0.0573,
           "W": 0.1039
         }
+      },
+      "positionPhaseBalls": {
+        "1": {
+          "pp": 181,
+          "mid": 103,
+          "death": 4
+        },
+        "2": {
+          "pp": 186,
+          "mid": 129,
+          "death": 3
+        },
+        "3": {
+          "pp": 62,
+          "mid": 164,
+          "death": 29
+        },
+        "4": {
+          "pp": 3,
+          "mid": 109,
+          "death": 20
+        },
+        "5": {
+          "pp": 0,
+          "mid": 88,
+          "death": 75
+        },
+        "6": {
+          "pp": 0,
+          "mid": 37,
+          "death": 50
+        },
+        "7": {
+          "pp": 0,
+          "mid": 9,
+          "death": 23
+        },
+        "8": {
+          "pp": 0,
+          "mid": 9,
+          "death": 34
+        },
+        "9": {
+          "pp": 0,
+          "mid": 0,
+          "death": 25
+        },
+        "10": {
+          "pp": 0,
+          "mid": 0,
+          "death": 14
+        },
+        "11": {
+          "pp": 0,
+          "mid": 0,
+          "death": 8
+        }
+      },
+      "paceSpin": {
+        "pace": {
+          "balls": 975,
+          "rpo": 7.96,
+          "ballsPerWicket": 18.8,
+          "sharePct": 71
+        },
+        "spin": {
+          "balls": 390,
+          "rpo": 7.2,
+          "ballsPerWicket": 22.9,
+          "sharePct": 29
+        },
+        "unknownPct": 0
       }
     },
     "byEdition": {
@@ -4785,6 +9321,78 @@
             "6": 0.0573,
             "W": 0.1039
           }
+        },
+        "positionPhaseBalls": {
+          "1": {
+            "pp": 181,
+            "mid": 103,
+            "death": 4
+          },
+          "2": {
+            "pp": 186,
+            "mid": 129,
+            "death": 3
+          },
+          "3": {
+            "pp": 62,
+            "mid": 164,
+            "death": 29
+          },
+          "4": {
+            "pp": 3,
+            "mid": 109,
+            "death": 20
+          },
+          "5": {
+            "pp": 0,
+            "mid": 88,
+            "death": 75
+          },
+          "6": {
+            "pp": 0,
+            "mid": 37,
+            "death": 50
+          },
+          "7": {
+            "pp": 0,
+            "mid": 9,
+            "death": 23
+          },
+          "8": {
+            "pp": 0,
+            "mid": 9,
+            "death": 34
+          },
+          "9": {
+            "pp": 0,
+            "mid": 0,
+            "death": 25
+          },
+          "10": {
+            "pp": 0,
+            "mid": 0,
+            "death": 14
+          },
+          "11": {
+            "pp": 0,
+            "mid": 0,
+            "death": 8
+          }
+        },
+        "paceSpin": {
+          "pace": {
+            "balls": 975,
+            "rpo": 7.96,
+            "ballsPerWicket": 18.8,
+            "sharePct": 71
+          },
+          "spin": {
+            "balls": 390,
+            "rpo": 7.2,
+            "ballsPerWicket": 22.9,
+            "sharePct": 29
+          },
+          "unknownPct": 0
         }
       }
     }
@@ -4864,6 +9472,78 @@
           "6": 0.0511,
           "W": 0.0751
         }
+      },
+      "positionPhaseBalls": {
+        "1": {
+          "pp": 144,
+          "mid": 102,
+          "death": 37
+        },
+        "2": {
+          "pp": 170,
+          "mid": 61,
+          "death": 10
+        },
+        "3": {
+          "pp": 66,
+          "mid": 89,
+          "death": 21
+        },
+        "4": {
+          "pp": 25,
+          "mid": 96,
+          "death": 16
+        },
+        "5": {
+          "pp": 24,
+          "mid": 127,
+          "death": 46
+        },
+        "6": {
+          "pp": 3,
+          "mid": 75,
+          "death": 49
+        },
+        "7": {
+          "pp": 0,
+          "mid": 54,
+          "death": 40
+        },
+        "8": {
+          "pp": 0,
+          "mid": 20,
+          "death": 52
+        },
+        "9": {
+          "pp": 0,
+          "mid": 17,
+          "death": 22
+        },
+        "10": {
+          "pp": 0,
+          "mid": 7,
+          "death": 27
+        },
+        "11": {
+          "pp": 0,
+          "mid": 0,
+          "death": 13
+        }
+      },
+      "paceSpin": {
+        "pace": {
+          "balls": 878,
+          "rpo": 6.96,
+          "ballsPerWicket": 18.7,
+          "sharePct": 62
+        },
+        "spin": {
+          "balls": 535,
+          "rpo": 5.73,
+          "ballsPerWicket": 16.7,
+          "sharePct": 38
+        },
+        "unknownPct": 0
       }
     },
     "byEdition": {
@@ -4936,6 +9616,78 @@
             "6": 0.0511,
             "W": 0.0751
           }
+        },
+        "positionPhaseBalls": {
+          "1": {
+            "pp": 144,
+            "mid": 102,
+            "death": 37
+          },
+          "2": {
+            "pp": 170,
+            "mid": 61,
+            "death": 10
+          },
+          "3": {
+            "pp": 66,
+            "mid": 89,
+            "death": 21
+          },
+          "4": {
+            "pp": 25,
+            "mid": 96,
+            "death": 16
+          },
+          "5": {
+            "pp": 24,
+            "mid": 127,
+            "death": 46
+          },
+          "6": {
+            "pp": 3,
+            "mid": 75,
+            "death": 49
+          },
+          "7": {
+            "pp": 0,
+            "mid": 54,
+            "death": 40
+          },
+          "8": {
+            "pp": 0,
+            "mid": 20,
+            "death": 52
+          },
+          "9": {
+            "pp": 0,
+            "mid": 17,
+            "death": 22
+          },
+          "10": {
+            "pp": 0,
+            "mid": 7,
+            "death": 27
+          },
+          "11": {
+            "pp": 0,
+            "mid": 0,
+            "death": 13
+          }
+        },
+        "paceSpin": {
+          "pace": {
+            "balls": 878,
+            "rpo": 6.96,
+            "ballsPerWicket": 18.7,
+            "sharePct": 62
+          },
+          "spin": {
+            "balls": 535,
+            "rpo": 5.73,
+            "ballsPerWicket": 16.7,
+            "sharePct": 38
+          },
+          "unknownPct": 0
         }
       }
     }
@@ -5015,6 +9767,78 @@
           "6": 0.0966,
           "W": 0.1134
         }
+      },
+      "positionPhaseBalls": {
+        "1": {
+          "pp": 134,
+          "mid": 83,
+          "death": 15
+        },
+        "2": {
+          "pp": 106,
+          "mid": 35,
+          "death": 4
+        },
+        "3": {
+          "pp": 54,
+          "mid": 42,
+          "death": 0
+        },
+        "4": {
+          "pp": 52,
+          "mid": 151,
+          "death": 16
+        },
+        "5": {
+          "pp": 6,
+          "mid": 85,
+          "death": 40
+        },
+        "6": {
+          "pp": 8,
+          "mid": 77,
+          "death": 34
+        },
+        "7": {
+          "pp": 0,
+          "mid": 41,
+          "death": 25
+        },
+        "8": {
+          "pp": 0,
+          "mid": 7,
+          "death": 21
+        },
+        "9": {
+          "pp": 0,
+          "mid": 8,
+          "death": 59
+        },
+        "10": {
+          "pp": 0,
+          "mid": 2,
+          "death": 14
+        },
+        "11": {
+          "pp": 0,
+          "mid": 0,
+          "death": 10
+        }
+      },
+      "paceSpin": {
+        "pace": {
+          "balls": 535,
+          "rpo": 8.68,
+          "ballsPerWicket": 14.9,
+          "sharePct": 47
+        },
+        "spin": {
+          "balls": 594,
+          "rpo": 7.39,
+          "ballsPerWicket": 18,
+          "sharePct": 53
+        },
+        "unknownPct": 0
       }
     },
     "byEdition": {
@@ -5087,6 +9911,78 @@
             "6": 0.0966,
             "W": 0.1134
           }
+        },
+        "positionPhaseBalls": {
+          "1": {
+            "pp": 134,
+            "mid": 83,
+            "death": 15
+          },
+          "2": {
+            "pp": 106,
+            "mid": 35,
+            "death": 4
+          },
+          "3": {
+            "pp": 54,
+            "mid": 42,
+            "death": 0
+          },
+          "4": {
+            "pp": 52,
+            "mid": 151,
+            "death": 16
+          },
+          "5": {
+            "pp": 6,
+            "mid": 85,
+            "death": 40
+          },
+          "6": {
+            "pp": 8,
+            "mid": 77,
+            "death": 34
+          },
+          "7": {
+            "pp": 0,
+            "mid": 41,
+            "death": 25
+          },
+          "8": {
+            "pp": 0,
+            "mid": 7,
+            "death": 21
+          },
+          "9": {
+            "pp": 0,
+            "mid": 8,
+            "death": 59
+          },
+          "10": {
+            "pp": 0,
+            "mid": 2,
+            "death": 14
+          },
+          "11": {
+            "pp": 0,
+            "mid": 0,
+            "death": 10
+          }
+        },
+        "paceSpin": {
+          "pace": {
+            "balls": 535,
+            "rpo": 8.68,
+            "ballsPerWicket": 14.9,
+            "sharePct": 47
+          },
+          "spin": {
+            "balls": 594,
+            "rpo": 7.39,
+            "ballsPerWicket": 18,
+            "sharePct": 53
+          },
+          "unknownPct": 0
         }
       }
     }
@@ -5166,6 +10062,78 @@
           "6": 0.0549,
           "W": 0.0941
         }
+      },
+      "positionPhaseBalls": {
+        "1": {
+          "pp": 102,
+          "mid": 42,
+          "death": 6
+        },
+        "2": {
+          "pp": 101,
+          "mid": 60,
+          "death": 7
+        },
+        "3": {
+          "pp": 84,
+          "mid": 23,
+          "death": 0
+        },
+        "4": {
+          "pp": 39,
+          "mid": 129,
+          "death": 32
+        },
+        "5": {
+          "pp": 24,
+          "mid": 83,
+          "death": 13
+        },
+        "6": {
+          "pp": 10,
+          "mid": 82,
+          "death": 41
+        },
+        "7": {
+          "pp": 0,
+          "mid": 56,
+          "death": 58
+        },
+        "8": {
+          "pp": 0,
+          "mid": 6,
+          "death": 54
+        },
+        "9": {
+          "pp": 0,
+          "mid": 17,
+          "death": 31
+        },
+        "10": {
+          "pp": 0,
+          "mid": 0,
+          "death": 10
+        },
+        "11": {
+          "pp": 0,
+          "mid": 0,
+          "death": 3
+        }
+      },
+      "paceSpin": {
+        "pace": {
+          "balls": 555,
+          "rpo": 6.79,
+          "ballsPerWicket": 18.5,
+          "sharePct": 50
+        },
+        "spin": {
+          "balls": 558,
+          "rpo": 6.15,
+          "ballsPerWicket": 17.4,
+          "sharePct": 50
+        },
+        "unknownPct": 0
       }
     },
     "byEdition": {
@@ -5238,6 +10206,78 @@
             "6": 0.0549,
             "W": 0.0941
           }
+        },
+        "positionPhaseBalls": {
+          "1": {
+            "pp": 102,
+            "mid": 42,
+            "death": 6
+          },
+          "2": {
+            "pp": 101,
+            "mid": 60,
+            "death": 7
+          },
+          "3": {
+            "pp": 84,
+            "mid": 23,
+            "death": 0
+          },
+          "4": {
+            "pp": 39,
+            "mid": 129,
+            "death": 32
+          },
+          "5": {
+            "pp": 24,
+            "mid": 83,
+            "death": 13
+          },
+          "6": {
+            "pp": 10,
+            "mid": 82,
+            "death": 41
+          },
+          "7": {
+            "pp": 0,
+            "mid": 56,
+            "death": 58
+          },
+          "8": {
+            "pp": 0,
+            "mid": 6,
+            "death": 54
+          },
+          "9": {
+            "pp": 0,
+            "mid": 17,
+            "death": 31
+          },
+          "10": {
+            "pp": 0,
+            "mid": 0,
+            "death": 10
+          },
+          "11": {
+            "pp": 0,
+            "mid": 0,
+            "death": 3
+          }
+        },
+        "paceSpin": {
+          "pace": {
+            "balls": 555,
+            "rpo": 6.79,
+            "ballsPerWicket": 18.5,
+            "sharePct": 50
+          },
+          "spin": {
+            "balls": 558,
+            "rpo": 6.15,
+            "ballsPerWicket": 17.4,
+            "sharePct": 50
+          },
+          "unknownPct": 0
         }
       }
     }
@@ -5316,6 +10356,78 @@
           "6": 0.1055,
           "W": 0.0826
         }
+      },
+      "positionPhaseBalls": {
+        "1": {
+          "pp": 145,
+          "mid": 121,
+          "death": 28
+        },
+        "2": {
+          "pp": 141,
+          "mid": 95,
+          "death": 11
+        },
+        "3": {
+          "pp": 67,
+          "mid": 149,
+          "death": 12
+        },
+        "4": {
+          "pp": 5,
+          "mid": 88,
+          "death": 31
+        },
+        "5": {
+          "pp": 2,
+          "mid": 44,
+          "death": 76
+        },
+        "6": {
+          "pp": 0,
+          "mid": 8,
+          "death": 44
+        },
+        "7": {
+          "pp": 0,
+          "mid": 11,
+          "death": 8
+        },
+        "8": {
+          "pp": 0,
+          "mid": 5,
+          "death": 3
+        },
+        "9": {
+          "pp": 0,
+          "mid": 7,
+          "death": 0
+        },
+        "10": {
+          "pp": 0,
+          "mid": 10,
+          "death": 1
+        },
+        "11": {
+          "pp": 0,
+          "mid": 2,
+          "death": 4
+        }
+      },
+      "paceSpin": {
+        "pace": {
+          "balls": 674,
+          "rpo": 10.11,
+          "ballsPerWicket": 22.5,
+          "sharePct": 60
+        },
+        "spin": {
+          "balls": 444,
+          "rpo": 8.73,
+          "ballsPerWicket": 26.1,
+          "sharePct": 40
+        },
+        "unknownPct": 0
       }
     },
     "byEdition": {
@@ -5387,6 +10499,78 @@
             "6": 0.1055,
             "W": 0.0826
           }
+        },
+        "positionPhaseBalls": {
+          "1": {
+            "pp": 145,
+            "mid": 121,
+            "death": 28
+          },
+          "2": {
+            "pp": 141,
+            "mid": 95,
+            "death": 11
+          },
+          "3": {
+            "pp": 67,
+            "mid": 149,
+            "death": 12
+          },
+          "4": {
+            "pp": 5,
+            "mid": 88,
+            "death": 31
+          },
+          "5": {
+            "pp": 2,
+            "mid": 44,
+            "death": 76
+          },
+          "6": {
+            "pp": 0,
+            "mid": 8,
+            "death": 44
+          },
+          "7": {
+            "pp": 0,
+            "mid": 11,
+            "death": 8
+          },
+          "8": {
+            "pp": 0,
+            "mid": 5,
+            "death": 3
+          },
+          "9": {
+            "pp": 0,
+            "mid": 7,
+            "death": 0
+          },
+          "10": {
+            "pp": 0,
+            "mid": 10,
+            "death": 1
+          },
+          "11": {
+            "pp": 0,
+            "mid": 2,
+            "death": 4
+          }
+        },
+        "paceSpin": {
+          "pace": {
+            "balls": 674,
+            "rpo": 10.11,
+            "ballsPerWicket": 22.5,
+            "sharePct": 60
+          },
+          "spin": {
+            "balls": 444,
+            "rpo": 8.73,
+            "ballsPerWicket": 26.1,
+            "sharePct": 40
+          },
+          "unknownPct": 0
         }
       }
     }
@@ -5466,6 +10650,78 @@
           "6": 0.0489,
           "W": 0.1196
         }
+      },
+      "positionPhaseBalls": {
+        "1": {
+          "pp": 78,
+          "mid": 18,
+          "death": 0
+        },
+        "2": {
+          "pp": 70,
+          "mid": 46,
+          "death": 1
+        },
+        "3": {
+          "pp": 86,
+          "mid": 98,
+          "death": 26
+        },
+        "4": {
+          "pp": 47,
+          "mid": 89,
+          "death": 38
+        },
+        "5": {
+          "pp": 7,
+          "mid": 83,
+          "death": 9
+        },
+        "6": {
+          "pp": 0,
+          "mid": 63,
+          "death": 39
+        },
+        "7": {
+          "pp": 0,
+          "mid": 26,
+          "death": 24
+        },
+        "8": {
+          "pp": 0,
+          "mid": 6,
+          "death": 17
+        },
+        "9": {
+          "pp": 0,
+          "mid": 0,
+          "death": 16
+        },
+        "10": {
+          "pp": 0,
+          "mid": 0,
+          "death": 11
+        },
+        "11": {
+          "pp": 0,
+          "mid": 0,
+          "death": 3
+        }
+      },
+      "paceSpin": {
+        "pace": {
+          "balls": 609,
+          "rpo": 7.47,
+          "ballsPerWicket": 15.6,
+          "sharePct": 68
+        },
+        "spin": {
+          "balls": 292,
+          "rpo": 7.64,
+          "ballsPerWicket": 18.3,
+          "sharePct": 32
+        },
+        "unknownPct": 0
       }
     },
     "byEdition": {
@@ -5538,6 +10794,78 @@
             "6": 0.0489,
             "W": 0.1196
           }
+        },
+        "positionPhaseBalls": {
+          "1": {
+            "pp": 78,
+            "mid": 18,
+            "death": 0
+          },
+          "2": {
+            "pp": 70,
+            "mid": 46,
+            "death": 1
+          },
+          "3": {
+            "pp": 86,
+            "mid": 98,
+            "death": 26
+          },
+          "4": {
+            "pp": 47,
+            "mid": 89,
+            "death": 38
+          },
+          "5": {
+            "pp": 7,
+            "mid": 83,
+            "death": 9
+          },
+          "6": {
+            "pp": 0,
+            "mid": 63,
+            "death": 39
+          },
+          "7": {
+            "pp": 0,
+            "mid": 26,
+            "death": 24
+          },
+          "8": {
+            "pp": 0,
+            "mid": 6,
+            "death": 17
+          },
+          "9": {
+            "pp": 0,
+            "mid": 0,
+            "death": 16
+          },
+          "10": {
+            "pp": 0,
+            "mid": 0,
+            "death": 11
+          },
+          "11": {
+            "pp": 0,
+            "mid": 0,
+            "death": 3
+          }
+        },
+        "paceSpin": {
+          "pace": {
+            "balls": 609,
+            "rpo": 7.47,
+            "ballsPerWicket": 15.6,
+            "sharePct": 68
+          },
+          "spin": {
+            "balls": 292,
+            "rpo": 7.64,
+            "ballsPerWicket": 18.3,
+            "sharePct": 32
+          },
+          "unknownPct": 0
         }
       }
     }
@@ -5617,6 +10945,78 @@
           "6": 0.0481,
           "W": 0.0856
         }
+      },
+      "positionPhaseBalls": {
+        "1": {
+          "pp": 110,
+          "mid": 41,
+          "death": 0
+        },
+        "2": {
+          "pp": 94,
+          "mid": 26,
+          "death": 3
+        },
+        "3": {
+          "pp": 55,
+          "mid": 77,
+          "death": 1
+        },
+        "4": {
+          "pp": 27,
+          "mid": 121,
+          "death": 26
+        },
+        "5": {
+          "pp": 2,
+          "mid": 111,
+          "death": 21
+        },
+        "6": {
+          "pp": 0,
+          "mid": 27,
+          "death": 11
+        },
+        "7": {
+          "pp": 0,
+          "mid": 20,
+          "death": 43
+        },
+        "8": {
+          "pp": 0,
+          "mid": 1,
+          "death": 39
+        },
+        "9": {
+          "pp": 0,
+          "mid": 1,
+          "death": 30
+        },
+        "10": {
+          "pp": 0,
+          "mid": 0,
+          "death": 5
+        },
+        "11": {
+          "pp": 0,
+          "mid": 0,
+          "death": 8
+        }
+      },
+      "paceSpin": {
+        "pace": {
+          "balls": 659,
+          "rpo": 6.02,
+          "ballsPerWicket": 20,
+          "sharePct": 73
+        },
+        "spin": {
+          "balls": 241,
+          "rpo": 8.02,
+          "ballsPerWicket": 18.5,
+          "sharePct": 27
+        },
+        "unknownPct": 0
       }
     },
     "byEdition": {
@@ -5689,6 +11089,78 @@
             "6": 0.0481,
             "W": 0.0856
           }
+        },
+        "positionPhaseBalls": {
+          "1": {
+            "pp": 110,
+            "mid": 41,
+            "death": 0
+          },
+          "2": {
+            "pp": 94,
+            "mid": 26,
+            "death": 3
+          },
+          "3": {
+            "pp": 55,
+            "mid": 77,
+            "death": 1
+          },
+          "4": {
+            "pp": 27,
+            "mid": 121,
+            "death": 26
+          },
+          "5": {
+            "pp": 2,
+            "mid": 111,
+            "death": 21
+          },
+          "6": {
+            "pp": 0,
+            "mid": 27,
+            "death": 11
+          },
+          "7": {
+            "pp": 0,
+            "mid": 20,
+            "death": 43
+          },
+          "8": {
+            "pp": 0,
+            "mid": 1,
+            "death": 39
+          },
+          "9": {
+            "pp": 0,
+            "mid": 1,
+            "death": 30
+          },
+          "10": {
+            "pp": 0,
+            "mid": 0,
+            "death": 5
+          },
+          "11": {
+            "pp": 0,
+            "mid": 0,
+            "death": 8
+          }
+        },
+        "paceSpin": {
+          "pace": {
+            "balls": 659,
+            "rpo": 6.02,
+            "ballsPerWicket": 20,
+            "sharePct": 73
+          },
+          "spin": {
+            "balls": 241,
+            "rpo": 8.02,
+            "ballsPerWicket": 18.5,
+            "sharePct": 27
+          },
+          "unknownPct": 0
         }
       }
     }
@@ -5768,6 +11240,78 @@
           "6": 0.0721,
           "W": 0.0817
         }
+      },
+      "positionPhaseBalls": {
+        "1": {
+          "pp": 79,
+          "mid": 10,
+          "death": 0
+        },
+        "2": {
+          "pp": 92,
+          "mid": 100,
+          "death": 14
+        },
+        "3": {
+          "pp": 75,
+          "mid": 85,
+          "death": 2
+        },
+        "4": {
+          "pp": 36,
+          "mid": 118,
+          "death": 42
+        },
+        "5": {
+          "pp": 6,
+          "mid": 80,
+          "death": 32
+        },
+        "6": {
+          "pp": 0,
+          "mid": 18,
+          "death": 19
+        },
+        "7": {
+          "pp": 0,
+          "mid": 15,
+          "death": 37
+        },
+        "8": {
+          "pp": 0,
+          "mid": 6,
+          "death": 35
+        },
+        "9": {
+          "pp": 0,
+          "mid": 0,
+          "death": 19
+        },
+        "10": {
+          "pp": 0,
+          "mid": 0,
+          "death": 6
+        },
+        "11": {
+          "pp": 0,
+          "mid": 0,
+          "death": 2
+        }
+      },
+      "paceSpin": {
+        "pace": {
+          "balls": 624,
+          "rpo": 7.15,
+          "ballsPerWicket": 19.5,
+          "sharePct": 67
+        },
+        "spin": {
+          "balls": 304,
+          "rpo": 8.01,
+          "ballsPerWicket": 21.7,
+          "sharePct": 33
+        },
+        "unknownPct": 0
       }
     },
     "byEdition": {
@@ -5840,6 +11384,78 @@
             "6": 0.0721,
             "W": 0.0817
           }
+        },
+        "positionPhaseBalls": {
+          "1": {
+            "pp": 79,
+            "mid": 10,
+            "death": 0
+          },
+          "2": {
+            "pp": 92,
+            "mid": 100,
+            "death": 14
+          },
+          "3": {
+            "pp": 75,
+            "mid": 85,
+            "death": 2
+          },
+          "4": {
+            "pp": 36,
+            "mid": 118,
+            "death": 42
+          },
+          "5": {
+            "pp": 6,
+            "mid": 80,
+            "death": 32
+          },
+          "6": {
+            "pp": 0,
+            "mid": 18,
+            "death": 19
+          },
+          "7": {
+            "pp": 0,
+            "mid": 15,
+            "death": 37
+          },
+          "8": {
+            "pp": 0,
+            "mid": 6,
+            "death": 35
+          },
+          "9": {
+            "pp": 0,
+            "mid": 0,
+            "death": 19
+          },
+          "10": {
+            "pp": 0,
+            "mid": 0,
+            "death": 6
+          },
+          "11": {
+            "pp": 0,
+            "mid": 0,
+            "death": 2
+          }
+        },
+        "paceSpin": {
+          "pace": {
+            "balls": 624,
+            "rpo": 7.15,
+            "ballsPerWicket": 19.5,
+            "sharePct": 67
+          },
+          "spin": {
+            "balls": 304,
+            "rpo": 8.01,
+            "ballsPerWicket": 21.7,
+            "sharePct": 33
+          },
+          "unknownPct": 0
         }
       }
     }
@@ -5919,6 +11535,78 @@
           "6": 0.0462,
           "W": 0.1156
         }
+      },
+      "positionPhaseBalls": {
+        "1": {
+          "pp": 79,
+          "mid": 40,
+          "death": 2
+        },
+        "2": {
+          "pp": 74,
+          "mid": 21,
+          "death": 10
+        },
+        "3": {
+          "pp": 18,
+          "mid": 31,
+          "death": 0
+        },
+        "4": {
+          "pp": 30,
+          "mid": 84,
+          "death": 11
+        },
+        "5": {
+          "pp": 11,
+          "mid": 46,
+          "death": 17
+        },
+        "6": {
+          "pp": 4,
+          "mid": 52,
+          "death": 41
+        },
+        "7": {
+          "pp": 0,
+          "mid": 43,
+          "death": 34
+        },
+        "8": {
+          "pp": 0,
+          "mid": 5,
+          "death": 19
+        },
+        "9": {
+          "pp": 0,
+          "mid": 2,
+          "death": 19
+        },
+        "10": {
+          "pp": 0,
+          "mid": 0,
+          "death": 15
+        },
+        "11": {
+          "pp": 0,
+          "mid": 0,
+          "death": 5
+        }
+      },
+      "paceSpin": {
+        "pace": {
+          "balls": 477,
+          "rpo": 5.72,
+          "ballsPerWicket": 17,
+          "sharePct": 67
+        },
+        "spin": {
+          "balls": 236,
+          "rpo": 5.82,
+          "ballsPerWicket": 14.8,
+          "sharePct": 33
+        },
+        "unknownPct": 0
       }
     },
     "byEdition": {
@@ -5991,6 +11679,78 @@
             "6": 0.0462,
             "W": 0.1156
           }
+        },
+        "positionPhaseBalls": {
+          "1": {
+            "pp": 79,
+            "mid": 40,
+            "death": 2
+          },
+          "2": {
+            "pp": 74,
+            "mid": 21,
+            "death": 10
+          },
+          "3": {
+            "pp": 18,
+            "mid": 31,
+            "death": 0
+          },
+          "4": {
+            "pp": 30,
+            "mid": 84,
+            "death": 11
+          },
+          "5": {
+            "pp": 11,
+            "mid": 46,
+            "death": 17
+          },
+          "6": {
+            "pp": 4,
+            "mid": 52,
+            "death": 41
+          },
+          "7": {
+            "pp": 0,
+            "mid": 43,
+            "death": 34
+          },
+          "8": {
+            "pp": 0,
+            "mid": 5,
+            "death": 19
+          },
+          "9": {
+            "pp": 0,
+            "mid": 2,
+            "death": 19
+          },
+          "10": {
+            "pp": 0,
+            "mid": 0,
+            "death": 15
+          },
+          "11": {
+            "pp": 0,
+            "mid": 0,
+            "death": 5
+          }
+        },
+        "paceSpin": {
+          "pace": {
+            "balls": 477,
+            "rpo": 5.72,
+            "ballsPerWicket": 17,
+            "sharePct": 67
+          },
+          "spin": {
+            "balls": 236,
+            "rpo": 5.82,
+            "ballsPerWicket": 14.8,
+            "sharePct": 33
+          },
+          "unknownPct": 0
         }
       }
     }
@@ -6069,6 +11829,78 @@
           "6": 0.1,
           "W": 0.1273
         }
+      },
+      "positionPhaseBalls": {
+        "1": {
+          "pp": 55,
+          "mid": 6,
+          "death": 0
+        },
+        "2": {
+          "pp": 77,
+          "mid": 14,
+          "death": 0
+        },
+        "3": {
+          "pp": 41,
+          "mid": 22,
+          "death": 0
+        },
+        "4": {
+          "pp": 21,
+          "mid": 34,
+          "death": 0
+        },
+        "5": {
+          "pp": 17,
+          "mid": 40,
+          "death": 2
+        },
+        "6": {
+          "pp": 1,
+          "mid": 60,
+          "death": 30
+        },
+        "7": {
+          "pp": 0,
+          "mid": 45,
+          "death": 3
+        },
+        "8": {
+          "pp": 0,
+          "mid": 21,
+          "death": 31
+        },
+        "9": {
+          "pp": 0,
+          "mid": 12,
+          "death": 22
+        },
+        "10": {
+          "pp": 0,
+          "mid": 0,
+          "death": 14
+        },
+        "11": {
+          "pp": 0,
+          "mid": 0,
+          "death": 8
+        }
+      },
+      "paceSpin": {
+        "pace": {
+          "balls": 392,
+          "rpo": 5.08,
+          "ballsPerWicket": 13.1,
+          "sharePct": 68
+        },
+        "spin": {
+          "balls": 170,
+          "rpo": 5.58,
+          "ballsPerWicket": 14.2,
+          "sharePct": 30
+        },
+        "unknownPct": 2
       }
     },
     "byEdition": {
@@ -6140,6 +11972,78 @@
             "6": 0.1,
             "W": 0.1273
           }
+        },
+        "positionPhaseBalls": {
+          "1": {
+            "pp": 55,
+            "mid": 6,
+            "death": 0
+          },
+          "2": {
+            "pp": 77,
+            "mid": 14,
+            "death": 0
+          },
+          "3": {
+            "pp": 41,
+            "mid": 22,
+            "death": 0
+          },
+          "4": {
+            "pp": 21,
+            "mid": 34,
+            "death": 0
+          },
+          "5": {
+            "pp": 17,
+            "mid": 40,
+            "death": 2
+          },
+          "6": {
+            "pp": 1,
+            "mid": 60,
+            "death": 30
+          },
+          "7": {
+            "pp": 0,
+            "mid": 45,
+            "death": 3
+          },
+          "8": {
+            "pp": 0,
+            "mid": 21,
+            "death": 31
+          },
+          "9": {
+            "pp": 0,
+            "mid": 12,
+            "death": 22
+          },
+          "10": {
+            "pp": 0,
+            "mid": 0,
+            "death": 14
+          },
+          "11": {
+            "pp": 0,
+            "mid": 0,
+            "death": 8
+          }
+        },
+        "paceSpin": {
+          "pace": {
+            "balls": 392,
+            "rpo": 5.08,
+            "ballsPerWicket": 13.1,
+            "sharePct": 68
+          },
+          "spin": {
+            "balls": 170,
+            "rpo": 5.58,
+            "ballsPerWicket": 14.2,
+            "sharePct": 30
+          },
+          "unknownPct": 2
         }
       }
     }
@@ -6218,6 +12122,78 @@
           "6": 0.04,
           "W": 0.0933
         }
+      },
+      "positionPhaseBalls": {
+        "1": {
+          "pp": 82,
+          "mid": 30,
+          "death": 0
+        },
+        "2": {
+          "pp": 62,
+          "mid": 27,
+          "death": 0
+        },
+        "3": {
+          "pp": 28,
+          "mid": 19,
+          "death": 0
+        },
+        "4": {
+          "pp": 34,
+          "mid": 54,
+          "death": 20
+        },
+        "5": {
+          "pp": 7,
+          "mid": 46,
+          "death": 15
+        },
+        "6": {
+          "pp": 3,
+          "mid": 5,
+          "death": 2
+        },
+        "7": {
+          "pp": 0,
+          "mid": 29,
+          "death": 5
+        },
+        "8": {
+          "pp": 0,
+          "mid": 4,
+          "death": 7
+        },
+        "9": {
+          "pp": 0,
+          "mid": 0,
+          "death": 9
+        },
+        "10": {
+          "pp": 0,
+          "mid": 0,
+          "death": 15
+        },
+        "11": {
+          "pp": 0,
+          "mid": 0,
+          "death": 2
+        }
+      },
+      "paceSpin": {
+        "pace": {
+          "balls": 321,
+          "rpo": 7.07,
+          "ballsPerWicket": 20.1,
+          "sharePct": 64
+        },
+        "spin": {
+          "balls": 184,
+          "rpo": 5.97,
+          "ballsPerWicket": 16.7,
+          "sharePct": 36
+        },
+        "unknownPct": 0
       }
     },
     "byEdition": {
@@ -6289,6 +12265,78 @@
             "6": 0.04,
             "W": 0.0933
           }
+        },
+        "positionPhaseBalls": {
+          "1": {
+            "pp": 82,
+            "mid": 30,
+            "death": 0
+          },
+          "2": {
+            "pp": 62,
+            "mid": 27,
+            "death": 0
+          },
+          "3": {
+            "pp": 28,
+            "mid": 19,
+            "death": 0
+          },
+          "4": {
+            "pp": 34,
+            "mid": 54,
+            "death": 20
+          },
+          "5": {
+            "pp": 7,
+            "mid": 46,
+            "death": 15
+          },
+          "6": {
+            "pp": 3,
+            "mid": 5,
+            "death": 2
+          },
+          "7": {
+            "pp": 0,
+            "mid": 29,
+            "death": 5
+          },
+          "8": {
+            "pp": 0,
+            "mid": 4,
+            "death": 7
+          },
+          "9": {
+            "pp": 0,
+            "mid": 0,
+            "death": 9
+          },
+          "10": {
+            "pp": 0,
+            "mid": 0,
+            "death": 15
+          },
+          "11": {
+            "pp": 0,
+            "mid": 0,
+            "death": 2
+          }
+        },
+        "paceSpin": {
+          "pace": {
+            "balls": 321,
+            "rpo": 7.07,
+            "ballsPerWicket": 20.1,
+            "sharePct": 64
+          },
+          "spin": {
+            "balls": 184,
+            "rpo": 5.97,
+            "ballsPerWicket": 16.7,
+            "sharePct": 36
+          },
+          "unknownPct": 0
         }
       }
     }
@@ -6368,6 +12416,78 @@
           "6": 0.0311,
           "W": 0.0932
         }
+      },
+      "positionPhaseBalls": {
+        "1": {
+          "pp": 117,
+          "mid": 65,
+          "death": 15
+        },
+        "2": {
+          "pp": 62,
+          "mid": 7,
+          "death": 0
+        },
+        "3": {
+          "pp": 33,
+          "mid": 55,
+          "death": 0
+        },
+        "4": {
+          "pp": 4,
+          "mid": 89,
+          "death": 2
+        },
+        "5": {
+          "pp": 0,
+          "mid": 59,
+          "death": 18
+        },
+        "6": {
+          "pp": 0,
+          "mid": 26,
+          "death": 46
+        },
+        "7": {
+          "pp": 0,
+          "mid": 23,
+          "death": 46
+        },
+        "8": {
+          "pp": 0,
+          "mid": 0,
+          "death": 26
+        },
+        "9": {
+          "pp": 0,
+          "mid": 0,
+          "death": 7
+        },
+        "10": {
+          "pp": 0,
+          "mid": 0,
+          "death": 1
+        },
+        "11": {
+          "pp": 0,
+          "mid": 0,
+          "death": 0
+        }
+      },
+      "paceSpin": {
+        "pace": {
+          "balls": 380,
+          "rpo": 7.83,
+          "ballsPerWicket": 23.8,
+          "sharePct": 54
+        },
+        "spin": {
+          "balls": 321,
+          "rpo": 6.26,
+          "ballsPerWicket": 16.9,
+          "sharePct": 46
+        },
+        "unknownPct": 0
       }
     },
     "byEdition": {
@@ -6440,6 +12560,78 @@
             "6": 0.0311,
             "W": 0.0932
           }
+        },
+        "positionPhaseBalls": {
+          "1": {
+            "pp": 117,
+            "mid": 65,
+            "death": 15
+          },
+          "2": {
+            "pp": 62,
+            "mid": 7,
+            "death": 0
+          },
+          "3": {
+            "pp": 33,
+            "mid": 55,
+            "death": 0
+          },
+          "4": {
+            "pp": 4,
+            "mid": 89,
+            "death": 2
+          },
+          "5": {
+            "pp": 0,
+            "mid": 59,
+            "death": 18
+          },
+          "6": {
+            "pp": 0,
+            "mid": 26,
+            "death": 46
+          },
+          "7": {
+            "pp": 0,
+            "mid": 23,
+            "death": 46
+          },
+          "8": {
+            "pp": 0,
+            "mid": 0,
+            "death": 26
+          },
+          "9": {
+            "pp": 0,
+            "mid": 0,
+            "death": 7
+          },
+          "10": {
+            "pp": 0,
+            "mid": 0,
+            "death": 1
+          },
+          "11": {
+            "pp": 0,
+            "mid": 0,
+            "death": 0
+          }
+        },
+        "paceSpin": {
+          "pace": {
+            "balls": 380,
+            "rpo": 7.83,
+            "ballsPerWicket": 23.8,
+            "sharePct": 54
+          },
+          "spin": {
+            "balls": 321,
+            "rpo": 6.26,
+            "ballsPerWicket": 16.9,
+            "sharePct": 46
+          },
+          "unknownPct": 0
         }
       }
     }
@@ -6516,6 +12708,78 @@
           "6": 0.0571,
           "W": 0.0571
         }
+      },
+      "positionPhaseBalls": {
+        "1": {
+          "pp": 115,
+          "mid": 26,
+          "death": 0
+        },
+        "2": {
+          "pp": 68,
+          "mid": 52,
+          "death": 0
+        },
+        "3": {
+          "pp": 27,
+          "mid": 67,
+          "death": 26
+        },
+        "4": {
+          "pp": 6,
+          "mid": 85,
+          "death": 25
+        },
+        "5": {
+          "pp": 0,
+          "mid": 76,
+          "death": 27
+        },
+        "6": {
+          "pp": 0,
+          "mid": 18,
+          "death": 69
+        },
+        "7": {
+          "pp": 0,
+          "mid": 0,
+          "death": 20
+        },
+        "8": {
+          "pp": 0,
+          "mid": 0,
+          "death": 5
+        },
+        "9": {
+          "pp": 0,
+          "mid": 0,
+          "death": 1
+        },
+        "10": {
+          "pp": 0,
+          "mid": 0,
+          "death": 2
+        },
+        "11": {
+          "pp": 0,
+          "mid": 0,
+          "death": 0
+        }
+      },
+      "paceSpin": {
+        "pace": {
+          "balls": 463,
+          "rpo": 8.79,
+          "ballsPerWicket": 22,
+          "sharePct": 65
+        },
+        "spin": {
+          "balls": 252,
+          "rpo": 7.67,
+          "ballsPerWicket": 22.9,
+          "sharePct": 35
+        },
+        "unknownPct": 0
       }
     },
     "byEdition": {
@@ -6585,6 +12849,78 @@
             "6": 0.0571,
             "W": 0.0571
           }
+        },
+        "positionPhaseBalls": {
+          "1": {
+            "pp": 115,
+            "mid": 26,
+            "death": 0
+          },
+          "2": {
+            "pp": 68,
+            "mid": 52,
+            "death": 0
+          },
+          "3": {
+            "pp": 27,
+            "mid": 67,
+            "death": 26
+          },
+          "4": {
+            "pp": 6,
+            "mid": 85,
+            "death": 25
+          },
+          "5": {
+            "pp": 0,
+            "mid": 76,
+            "death": 27
+          },
+          "6": {
+            "pp": 0,
+            "mid": 18,
+            "death": 69
+          },
+          "7": {
+            "pp": 0,
+            "mid": 0,
+            "death": 20
+          },
+          "8": {
+            "pp": 0,
+            "mid": 0,
+            "death": 5
+          },
+          "9": {
+            "pp": 0,
+            "mid": 0,
+            "death": 1
+          },
+          "10": {
+            "pp": 0,
+            "mid": 0,
+            "death": 2
+          },
+          "11": {
+            "pp": 0,
+            "mid": 0,
+            "death": 0
+          }
+        },
+        "paceSpin": {
+          "pace": {
+            "balls": 463,
+            "rpo": 8.79,
+            "ballsPerWicket": 22,
+            "sharePct": 65
+          },
+          "spin": {
+            "balls": 252,
+            "rpo": 7.67,
+            "ballsPerWicket": 22.9,
+            "sharePct": 35
+          },
+          "unknownPct": 0
         }
       }
     }
@@ -6663,6 +12999,78 @@
           "6": 0.0592,
           "W": 0.0947
         }
+      },
+      "positionPhaseBalls": {
+        "1": {
+          "pp": 58,
+          "mid": 57,
+          "death": 15
+        },
+        "2": {
+          "pp": 66,
+          "mid": 37,
+          "death": 6
+        },
+        "3": {
+          "pp": 67,
+          "mid": 65,
+          "death": 10
+        },
+        "4": {
+          "pp": 15,
+          "mid": 80,
+          "death": 30
+        },
+        "5": {
+          "pp": 4,
+          "mid": 23,
+          "death": 27
+        },
+        "6": {
+          "pp": 5,
+          "mid": 18,
+          "death": 32
+        },
+        "7": {
+          "pp": 1,
+          "mid": 24,
+          "death": 26
+        },
+        "8": {
+          "pp": 0,
+          "mid": 11,
+          "death": 10
+        },
+        "9": {
+          "pp": 0,
+          "mid": 6,
+          "death": 3
+        },
+        "10": {
+          "pp": 0,
+          "mid": 3,
+          "death": 5
+        },
+        "11": {
+          "pp": 0,
+          "mid": 0,
+          "death": 5
+        }
+      },
+      "paceSpin": {
+        "pace": {
+          "balls": 438,
+          "rpo": 8.27,
+          "ballsPerWicket": 15.6,
+          "sharePct": 62
+        },
+        "spin": {
+          "balls": 271,
+          "rpo": 7.26,
+          "ballsPerWicket": 27.1,
+          "sharePct": 38
+        },
+        "unknownPct": 0
       }
     },
     "byEdition": {
@@ -6734,6 +13142,78 @@
             "6": 0.0592,
             "W": 0.0947
           }
+        },
+        "positionPhaseBalls": {
+          "1": {
+            "pp": 58,
+            "mid": 57,
+            "death": 15
+          },
+          "2": {
+            "pp": 66,
+            "mid": 37,
+            "death": 6
+          },
+          "3": {
+            "pp": 67,
+            "mid": 65,
+            "death": 10
+          },
+          "4": {
+            "pp": 15,
+            "mid": 80,
+            "death": 30
+          },
+          "5": {
+            "pp": 4,
+            "mid": 23,
+            "death": 27
+          },
+          "6": {
+            "pp": 5,
+            "mid": 18,
+            "death": 32
+          },
+          "7": {
+            "pp": 1,
+            "mid": 24,
+            "death": 26
+          },
+          "8": {
+            "pp": 0,
+            "mid": 11,
+            "death": 10
+          },
+          "9": {
+            "pp": 0,
+            "mid": 6,
+            "death": 3
+          },
+          "10": {
+            "pp": 0,
+            "mid": 3,
+            "death": 5
+          },
+          "11": {
+            "pp": 0,
+            "mid": 0,
+            "death": 5
+          }
+        },
+        "paceSpin": {
+          "pace": {
+            "balls": 438,
+            "rpo": 8.27,
+            "ballsPerWicket": 15.6,
+            "sharePct": 62
+          },
+          "spin": {
+            "balls": 271,
+            "rpo": 7.26,
+            "ballsPerWicket": 27.1,
+            "sharePct": 38
+          },
+          "unknownPct": 0
         }
       }
     }
@@ -6811,6 +13291,78 @@
           "6": 0.0755,
           "W": 0.0189
         }
+      },
+      "positionPhaseBalls": {
+        "1": {
+          "pp": 19,
+          "mid": 0,
+          "death": 0
+        },
+        "2": {
+          "pp": 19,
+          "mid": 0,
+          "death": 0
+        },
+        "3": {
+          "pp": 4,
+          "mid": 26,
+          "death": 6
+        },
+        "4": {
+          "pp": 7,
+          "mid": 8,
+          "death": 0
+        },
+        "5": {
+          "pp": 11,
+          "mid": 6,
+          "death": 0
+        },
+        "6": {
+          "pp": 10,
+          "mid": 2,
+          "death": 0
+        },
+        "7": {
+          "pp": 2,
+          "mid": 23,
+          "death": 0
+        },
+        "8": {
+          "pp": 0,
+          "mid": 28,
+          "death": 12
+        },
+        "9": {
+          "pp": 0,
+          "mid": 7,
+          "death": 5
+        },
+        "10": {
+          "pp": 0,
+          "mid": 4,
+          "death": 14
+        },
+        "11": {
+          "pp": 0,
+          "mid": 4,
+          "death": 16
+        }
+      },
+      "paceSpin": {
+        "pace": {
+          "balls": 180,
+          "rpo": 5.37,
+          "ballsPerWicket": 15,
+          "sharePct": 77
+        },
+        "spin": {
+          "balls": 53,
+          "rpo": 5.55,
+          "ballsPerWicket": 13.3,
+          "sharePct": 23
+        },
+        "unknownPct": 0
       }
     },
     "byEdition": {
@@ -6881,6 +13433,78 @@
             "6": 0.0755,
             "W": 0.0189
           }
+        },
+        "positionPhaseBalls": {
+          "1": {
+            "pp": 19,
+            "mid": 0,
+            "death": 0
+          },
+          "2": {
+            "pp": 19,
+            "mid": 0,
+            "death": 0
+          },
+          "3": {
+            "pp": 4,
+            "mid": 26,
+            "death": 6
+          },
+          "4": {
+            "pp": 7,
+            "mid": 8,
+            "death": 0
+          },
+          "5": {
+            "pp": 11,
+            "mid": 6,
+            "death": 0
+          },
+          "6": {
+            "pp": 10,
+            "mid": 2,
+            "death": 0
+          },
+          "7": {
+            "pp": 2,
+            "mid": 23,
+            "death": 0
+          },
+          "8": {
+            "pp": 0,
+            "mid": 28,
+            "death": 12
+          },
+          "9": {
+            "pp": 0,
+            "mid": 7,
+            "death": 5
+          },
+          "10": {
+            "pp": 0,
+            "mid": 4,
+            "death": 14
+          },
+          "11": {
+            "pp": 0,
+            "mid": 4,
+            "death": 16
+          }
+        },
+        "paceSpin": {
+          "pace": {
+            "balls": 180,
+            "rpo": 5.37,
+            "ballsPerWicket": 15,
+            "sharePct": 77
+          },
+          "spin": {
+            "balls": 53,
+            "rpo": 5.55,
+            "ballsPerWicket": 13.3,
+            "sharePct": 23
+          },
+          "unknownPct": 0
         }
       }
     }

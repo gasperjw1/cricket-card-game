@@ -43,6 +43,28 @@ tags and intent words) → Draft (squad spin, slot placement, overs meter, keepe
 (reorder, captain, problems) → Result (headline, your matches with scorecards, group tables,
 knockouts). Classic mode only; Cricket-IQ, head-to-head, leaderboard and share links follow.
 
+## Cards, slots and grounds (added 2026-10-30)
+
+- **Shown skills.** A card prints a batting or bowling number only when the record exists
+  (T20Is, the last four league seasons, or ODIs; see `wcdraft/README.md` ratings item 8); otherwise
+  "rarely bats" / "rarely bowls". Every card carries the batting hand (RHB/LHB) and, for anyone
+  who bowls, the Cricinfo bowling code (RFM, OB, SLA …, spelled out on hover).
+- **Batting out of position** (`src/game/slots.ts`, tested). The engine applies a batter's
+  per-phase vectors ball by ball, so a No. 3 at No. 7 is judged on his death-overs numbers. Each
+  slot carries the phase mix that position actually faces in the identity's edition
+  (`environment.positionPhaseBalls`, pooled across editions when thin), and a selected player's
+  "Place here" button, the filled slot row and the lineup rows show his batting number re-weighted
+  to that slot. Hover a slot for the mix ("faces 61% powerplay, 35% middle, 4% death").
+- **Grounds and conditions** (`src/components/VenueBrief.tsx`). The identity screen and the
+  draft header describe the edition against the whole archive (runs an over, powerplay and death
+  rates, balls per wicket, chases won, spin against pace) and list the grounds your fixtures are
+  at with the same numbers and plain-words chips (low-scoring, spin-friendly, chase ground, death
+  overs fly …), ending with what those grounds ask of the eleven. All of it is measured from the
+  ball-by-ball data the engine plays on; nothing is written by hand per venue.
+- **Spins skip mostly blank squads** (`blankSquads` in `public/data/index.json`, written by the
+  sync script): Namibia standing in for Afghanistan 2012 has no record in that era. The tournament
+  still simulates them.
+
 ## Notes
 
 - `tsconfig.app.json` is a leftover stub; `tsconfig.json` (app) and `tsconfig.node.json` (config
