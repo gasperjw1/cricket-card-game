@@ -60,6 +60,17 @@ export interface MatchEnvironment {
   overs: number;
   maxOversPerBowler: number;
   tieBreak: "super-over" | "bowl-out" | "none";
+  /** Rain: probability the match is affected at this ground in this edition, and how affected matches split. */
+  rain: { pAffected: number; noResultShare: number };
+}
+
+export interface RainEvent {
+  kind: "no-result" | "reduced" | "chase-cut";
+  /** Overs per side after a reduction before the start (both innings). */
+  oversPerSide: number;
+  /** For a chase cut short: the legal balls bowled when play stopped and the par score at that point. */
+  cutAtBalls: number | null;
+  parScore: number | null;
 }
 
 export interface BallRecord {
@@ -100,6 +111,8 @@ export interface BowlerLine {
 export interface InningsResult {
   index: 1 | 2;
   team: string;
+  /** Overs the side was scheduled to face (20 unless rain reduced the match). */
+  scheduledOvers: number;
   runs: number;
   wickets: number;
   legalBalls: number;
@@ -123,6 +136,7 @@ export interface MatchResult {
   /** Super-over or bowl-out innings when the match was tied. */
   tieBreak: { winner: string; method: "super-over" | "bowl-out" | "coin"; innings?: InningsResult[] } | null;
   winner: string | null;
-  margin: { runs: number } | { wickets: number; ballsLeft: number } | null;
+  margin: { runs: number } | { wickets: number; ballsLeft: number } | { dls: true; runs: number } | null;
+  rain: RainEvent | null;
   balls: BallRecord[];
 }

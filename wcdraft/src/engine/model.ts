@@ -62,6 +62,16 @@ export const ENGINE = {
   /** Share of the venue's scoring factor applied (1 = full). */
   venueExponent: 1 as number,
   /**
+   * Rain (Phase 2b). An affected match is a no-result, a reduction before the start to the same
+   * overs per side (drawn from the archive's distribution of reduced first innings), or a chase cut
+   * short between `chaseCut` fractions of its balls and decided on the data-derived resource table
+   * (`situation.json` → resources: mean first-innings runs still to come by balls left × wickets
+   * down, as a share of a full innings — the same construction as DLS Standard Edition, fitted to
+   * T20I data rather than the proprietary professional edition). A chase needs at least `minOvers`
+   * overs for a result. The share of affected matches that are no-results comes from the edition.
+   */
+  rain: { minOvers: 5, chaseCut: [0.35, 0.9] as [number, number], chaseCutShare: 0.4, venuePriorMatches: 10 },
+  /**
    * Global calibration on the scoring cells and the dismissal cell, fitted by the replay sweep so
    * that real elevens reproduce their editions' run rate and balls per wicket on average. The
    * state terms are conditional means measured on real state frequencies; a dynamic simulation

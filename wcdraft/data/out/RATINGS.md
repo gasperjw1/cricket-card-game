@@ -1,6 +1,6 @@
 # World Cup Draft — ratings (Phase 1.5)
 
-Generated 2026-10-30T10:19Z. Model: expected evidence, prior strength 100 balls (bowling ×2), phase prior 300, hazard prior 2000, career prior 50, ODI prior 30, transfer scale 300 Elo to the strongest third, cohort centre top10, wicket cost 2.6 runs, display 40–99, low-sample badge < 60 balls faced / < 72 bowled.
+Generated 2026-10-30T10:27Z. Model: expected evidence, prior strength 100 balls (bowling ×2), phase prior 300, hazard prior 2000, career prior 50, ODI prior 30, transfer scale 300 Elo to the strongest third, cohort centre top10, wicket cost 2.6 runs, display 40–99, low-sample badge < 60 balls faced / < 72 bowled.
 
 Ratings are per-phase outcome vectors; the display number maps the phase-weighted value (per cent of population expected runs, standardised per edition against the squads of its ten strongest teams) onto 40–99 across every rated player-edition, so a 90 in 2009 and a 90 in 2026 mean the same thing relative to their eras.
 

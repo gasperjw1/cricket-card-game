@@ -17,7 +17,9 @@ export interface BowlerState {
 }
 
 export interface AllocationInput {
+  /** Real over index, and its equivalent in a 20-over innings (the same unless rain reduced the match). */
   over: number;
+  eqOver: number;
   oversInInnings: number;
   maxOvers: number;
   bowlers: BowlerState[];
@@ -30,9 +32,9 @@ export interface AllocationInput {
 
 /** The bowler for this over. */
 export function chooseBowler(input: AllocationInput, rng: Rng): BowlerState {
-  const { over, oversInInnings, maxOvers, bowlers, previousBowler } = input;
-  const phase = phaseOf(over);
-  const deathStart = Math.max(0, oversInInnings - 5);
+  const { over, eqOver, oversInInnings, maxOvers, bowlers, previousBowler } = input;
+  const phase = phaseOf(eqOver);
+  const deathStart = Math.max(0, oversInInnings - Math.ceil(oversInInnings / 4));
   let eligible = bowlers.filter((b) => b.overs.length < maxOvers && b.player.id !== previousBowler && b.player.canBowl);
   if (!eligible.length) eligible = bowlers.filter((b) => b.overs.length < maxOvers && b.player.id !== previousBowler);
   if (!eligible.length) eligible = bowlers.filter((b) => b.overs.length < maxOvers);

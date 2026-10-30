@@ -28,7 +28,7 @@ for (let i = 0; i < sims; i += 1) {
     for (const st of r.stages) {
       console.log(`\n${st.label}`);
       if (st.groups) for (const [g, rows] of Object.entries(st.groups)) console.log(`  Group ${g}: ${rows.map((x) => `${x.team} ${x.points}pts (${x.won}-${x.lost}, NRR ${x.nrr > 0 ? "+" : ""}${x.nrr})`).join(" | ")}`);
-      for (const f of st.fixtures) console.log(`  ${f.teams[0]} ${f.scores[0]} v ${f.teams[1]} ${f.scores[1]} → ${f.winner}${f.tieBreak ? ` (${f.tieBreak.method})` : ""}${f.venueId ? ` @ ${f.venueId}` : ""}`);
+      for (const f of st.fixtures) console.log(`  ${f.teams[0]} ${f.scores[0]} v ${f.teams[1]} ${f.scores[1]} → ${f.winner ?? "no result"}${f.tieBreak ? ` (${f.tieBreak.method})` : ""}${f.rain ? ` [rain: ${f.rain.kind}${f.rain.kind === "reduced" ? ` ${f.rain.oversPerSide} ov` : f.rain.parScore !== null ? ` par ${f.rain.parScore}` : ""}]` : ""}${f.venueId ? ` @ ${f.venueId}` : ""}`);
     }
   }
 }

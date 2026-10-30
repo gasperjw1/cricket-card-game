@@ -179,6 +179,10 @@ p ∝ base[phase] × batRel^0.7 × bowlRel^0.7 × τ[innings][over][wickets] × 
   lose boundaries to leg-spin and left-arm spin, pace is hand-neutral.
 - Extras (wides, no-balls with a free hit, byes) are drawn from the edition's rates; the toss
   follows the edition's field-first norm; ties go to a super over, bowl-out or coin per edition.
+- Rain: a ground-and-edition probability of an affected match, split into no-results, equal
+  reductions (5–19 overs, from the archive's distribution) and chases cut short, the last decided
+  on a resource table fitted to T20I first innings (`situation.json` → `resources`, the DLS
+  Standard Edition construction on our own data). Washed-out knockouts get a reserve day.
 - Bowling allocation (`allocation.ts`) scores eligible bowlers per over by expected runs, wicket
   value, specialist bonuses, death reservation, spell continuity and a hit penalty, with Gumbel
   noise; it reproduces the measured bowlers-used norm within a few points.

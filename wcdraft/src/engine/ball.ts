@@ -117,6 +117,19 @@ export class SituationModel {
   get dayEffects(): SituationTables["dayEffects"] {
     return this.tables.dayEffects;
   }
+
+  /** Share of a full innings' expected runs still available with `ballsLeft` and `wickets` down (rain rules). */
+  resource(ballsLeft: number, wickets: number): number {
+    const b = Math.max(0, Math.min(120, Math.round(ballsLeft)));
+    const w = Math.max(0, Math.min(9, wickets));
+    if (wickets >= 10 || b === 0) return 0;
+    const table = this.tables.resources;
+    return table?.[w]?.[b] ?? b / 120;
+  }
+
+  get reducedOvers(): Record<string, number> {
+    return this.tables.reducedOvers ?? {};
+  }
 }
 
 export interface BallContext {

@@ -979,8 +979,27 @@ fielding. The simulation is not required to reproduce real results (§11).
   which is what a realism term should do. The bowling-allocation policy inherits the matchup through
   the ball model, so a captain now prefers the off-spinner to a left-hander on merit (the spec's
   λ_match). Unlabelled players (111 without a bowling type, 4 without a hand) get a unit multiplier.
-- Not yet built: rain and DLS, intent profiles from coach philosophy, captain-rating noise,
-  fielding Λ, and the validation tests 1–6, 8 of §9 against the tournament layer.
+- **Rain and DLS-style rules — BUILT 2026-10-30** (`match.ts` `drawRain`, `ENGINE.rain`,
+  `situation.json` → `resources`, `reducedOvers`). A match is rain-affected with a probability
+  from the ground (DL finishes + no-results + half the uncounted reduced innings, shrunk toward
+  the edition's rate with a ten-match prior: 2024 North Sound 25%, Bridgetown 11%, New York 6%;
+  2016 Dharamsala 25%; 2021 UAE 0%). An affected match is one of: **no-result** (the edition's share
+  of its rain events; a partial first innings, points shared, no run-rate effect), **reduced before
+  the start** to the same overs a side (drawn from the archive's distribution of rain-shortened
+  first innings, 5–19 overs; bowlers' quota ⌈N/5⌉; situation tables read at the equivalent 20-over
+  position so a 10-over game keeps its powerplay and death), or a **chase cut short** between 35%
+  and 90% of its balls and decided on the resource table. The resource table is DLS Standard
+  Edition's construction fitted to T20I data: mean first-innings runs still to come by balls left ×
+  wickets down as a share of a full innings, over every natural 20-over first innings, smoothed
+  monotone (half the balls with no wicket down = 66% of the runs; five down = 39%); the
+  professional edition is proprietary and the standard tables are 50-over, so a data-derived table
+  is both honest and closer to T20 scoring shapes. Par = first-innings total × resources used; above
+  par wins "by DLS". Knockouts washed out are replayed once (reserve day), then the higher-placed
+  side goes through. First-innings interruptions are folded into the equal-overs case (no G50-style
+  uplift). Replay metrics unchanged (2024 chase win 58.9% vs 58 real). Rain can be switched off per
+  match (`rainProbability: 0`) for dry-weather modes.
+- Not yet built: intent profiles from coach philosophy, captain-rating noise, fielding Λ, and the
+  validation tests 1–6, 8 of §9 against the tournament layer.
 
 ### Phase 3 — Draft client (thin)
 - Identity spin, coach panel, player spins, lineup slots, overs meter, simulate, result,

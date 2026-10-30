@@ -86,6 +86,42 @@ describe("engine", { skip: !engineReady() && "engine data not built" }, () => {
     assert.ok(a.balls.length > 200);
   });
 
+  it("plays rain-affected matches by the rules: no-results, equal reductions and resource-table chase cuts", () => {
+    const resources = data.situation;
+    assert.equal(resources.resource(120, 0), 1);
+    assert.equal(resources.resource(0, 3), 0);
+    assert.ok(resources.resource(60, 0) > resources.resource(60, 5) && resources.resource(60, 5) > resources.resource(30, 5), "resources fall with fewer balls and more wickets");
+    assert.ok(resources.resource(60, 0) > 0.45 && resources.resource(60, 0) < 0.7, `half the balls with wickets in hand ≈ ${resources.resource(60, 0)} of the runs`);
+    const kinds = new Map<string, number>();
+    for (let i = 0; i < 120; i += 1) {
+      const r = simulateMatch(india, southAfrica, env, data.situation, { seed: `rain-${i}`, rainProbability: 1 });
+      assert.ok(r.rain, "every match is rain-affected at probability 1");
+      kinds.set(r.rain!.kind, (kinds.get(r.rain!.kind) ?? 0) + 1);
+      if (r.rain!.kind === "no-result") {
+        assert.equal(r.winner, null);
+        assert.equal(r.innings[1].legalBalls, 0);
+      } else if (r.rain!.kind === "reduced") {
+        const n = r.rain!.oversPerSide;
+        assert.ok(n >= 5 && n < 20, `reduced to ${n} overs`);
+        for (const inn of r.innings) {
+          assert.equal(inn.scheduledOvers, n);
+          assert.ok(inn.legalBalls <= n * 6);
+          for (const bw of inn.bowling) assert.ok(bw.overs.length <= Math.ceil(n / 5), `${bw.name} bowled ${bw.overs.length} of ${n} overs`);
+        }
+        assert.ok(r.winner);
+      } else {
+        assert.ok(r.winner);
+        if (r.rain!.parScore !== null) {
+          assert.ok(r.innings[1].legalBalls <= r.rain!.cutAtBalls!);
+          assert.ok(r.margin && "dls" in r.margin);
+        }
+      }
+    }
+    assert.ok((kinds.get("no-result") ?? 0) > 0 && (kinds.get("reduced") ?? 0) > 0 && (kinds.get("chase-cut") ?? 0) > 0, JSON.stringify([...kinds]));
+    const dry = simulateMatch(india, southAfrica, env, data.situation, { seed: "dry", rainProbability: 0 });
+    assert.equal(dry.rain, null);
+  });
+
   it("reproduces the 2024 edition's environment, results and bowler usage within tolerance (acceptance)", () => {
     const s = replayEdition("2024", 12, 42);
     assert.ok(s.matchCount >= 40, `matches replayed ${s.matchCount}`);

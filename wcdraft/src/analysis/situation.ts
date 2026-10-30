@@ -50,6 +50,14 @@ export interface SituationTables {
   ballInOver: StateTable;
   chaseDots: StateTable;
   dayEffects: { bowler: DayEffect; batter: DayEffect };
+  /**
+   * Resource table for rain rules (Phase 2b): mean first-innings runs still to come from a state
+   * (balls left b, wickets down w) as a share of the mean full-innings total, from every natural
+   * 20-over first innings. `resources[w][b]`, b = 0..120, w = 0..9; monotone in both directions.
+   */
+  resources: number[][];
+  /** Scheduled overs of first innings reduced before the start (rain): overs → count. */
+  reducedOvers: Record<string, number>;
 }
 
 export const CHASE_BANDS = ["<6", "6-8", "8-10", "10-12", "12+"] as const;
@@ -142,10 +150,21 @@ export class SituationAnalysis {
   private readonly batterTotals = new Map<string, PlayerTotals>();
   private readonly bowlerInnings: { id: string; balls: number; runs: number }[] = [];
   private readonly batterInnings: { id: string; balls: number; runs: number }[] = [];
+  /** [wickets][ballsLeft] → { n, remainingRuns } over natural first innings. */
+  private readonly remaining: { n: number; runs: number }[][] = Array.from({ length: 10 }, () => Array.from({ length: 121 }, () => ({ n: 0, runs: 0 })));
+  private fullTotals = { n: 0, runs: 0 };
+  private readonly reducedOvers = new Map<number, number>();
 
   add(m: Match): void {
     for (const inn of mainInnings(m)) {
       const number = inn.index + 1;
+      // Overs a rain-shortened first innings actually ran to (the archive does not say whether the
+      // cut came before or during the innings; both feed the engine's reduced-overs draw).
+      if (number === 1 && inn.reduced && inn.wickets < 10 && inn.legalBalls >= 30) {
+        const overs = Math.ceil(inn.legalBalls / 6);
+        if (overs < 20) this.reducedOvers.set(overs, (this.reducedOvers.get(overs) ?? 0) + 1);
+      }
+      if (number === 1 && !inn.reduced && !inn.superOver && inn.scheduledOvers === 20) this.addResources(inn);
       if (inn.reduced || inn.superOver || number > 2 || inn.oversStarted === 0) continue;
       const target = number === 2 ? inn.target : null;
       type Rec = { over: number; wickets: number; outcome: OutcomeKey; runsBatter: number; runsTotal: number; legal: boolean; batter: string; bowler: string; legalInOver: number };
@@ -218,6 +237,45 @@ export class SituationAnalysis {
     }
   }
 
+  /** Runs still to come from every (balls left, wickets down) state of a natural first innings. */
+  private addResources(inn: { balls: { legal: boolean; runsTotal: number; wickets: unknown[] }[]; total: number }): void {
+    this.fullTotals.n += 1;
+    this.fullTotals.runs += inn.total;
+    let legal = 0, runs = 0, wickets = 0;
+    // State before each legal ball, plus the terminal state.
+    for (const b of inn.balls) {
+      if (b.legal) {
+        const cell = this.remaining[Math.min(9, wickets)]![120 - legal]!;
+        cell.n += 1;
+        cell.runs += inn.total - runs;
+        legal += 1;
+      }
+      runs += b.runsTotal;
+      wickets += b.wickets.length;
+      if (legal >= 120 || wickets >= 10) break;
+    }
+  }
+
+  private resourceTable(): number[][] {
+    const full = this.fullTotals.n ? this.fullTotals.runs / this.fullTotals.n : 1;
+    const raw = this.remaining.map((row) => row.map((c) => (c.n >= 30 ? c.runs / c.n / full : NaN)));
+    // Fill thin cells from neighbours, then enforce monotonicity: more balls left or fewer wickets down never means fewer resources.
+    const table: number[][] = raw.map((row) => row.slice());
+    for (let w = 0; w < 10; w += 1) {
+      table[w]![0] = 0;
+      for (let b = 1; b <= 120; b += 1) if (Number.isNaN(table[w]![b]!)) table[w]![b] = table[w]![b - 1]!;
+    }
+    for (let w = 9; w >= 0; w -= 1) for (let b = 1; b <= 120; b += 1) {
+      let v = table[w]![b]!;
+      v = Math.max(v, table[w]![b - 1]!);
+      if (w < 9) v = Math.max(v, table[w + 1]![b]!);
+      table[w]![b] = v;
+    }
+    // A full innings with no wicket down is 100% of the resources by definition.
+    const top = table[0]![120]! || 1;
+    return table.map((row) => row.map((v) => Math.min(1, +(v / top).toFixed(4))));
+  }
+
   private dayEffect(totals: Map<string, PlayerTotals>, innings: { id: string; balls: number; runs: number }[], minTotalBalls: number, minInningsBalls: number): DayEffect {
     let n = 0, sumZ2 = 0, sumBalls = 0, sumRatio = 0;
     for (const x of innings) {
@@ -250,6 +308,8 @@ export class SituationAnalysis {
         bowler: this.dayEffect(this.bowlerTotals, this.bowlerInnings, 600, 18),
         batter: this.dayEffect(this.batterTotals, this.batterInnings, 300, 10),
       },
+      resources: this.resourceTable(),
+      reducedOvers: Object.fromEntries([...this.reducedOvers.entries()].sort((a, b) => a[0] - b[0]).map(([k, v]) => [String(k), v])),
     };
   }
 }

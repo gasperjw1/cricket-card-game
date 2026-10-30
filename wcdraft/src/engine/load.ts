@@ -13,6 +13,7 @@ import { OUTCOMES, PHASE_LIST, type PhaseVectors, type PlayerRating, type Vector
 import type { EditionPopulations } from "../ratings/rate.js";
 import { paths, readJson } from "../util/io.js";
 import { SituationModel } from "./ball.js";
+import { ENGINE } from "./model.js";
 import { buildProgression, type FormatEdition, type Progression, type StandInRules } from "./progression.js";
 import type { EnginePlayer, EngineTeam, MatchEnvironment } from "./types.js";
 
@@ -45,6 +46,7 @@ export interface SquadOut {
 }
 
 interface EnvironmentOut {
+  matches: number;
   runsPerOver: number;
   chaseUplift: number;
   tossFieldPct: number;
@@ -52,6 +54,8 @@ interface EnvironmentOut {
   noBallsPerOver: number;
   extrasPerOver: number;
   legalBalls: number;
+  reducedInnings: number;
+  rain: { dlFinishes: number; noResults: number };
   populationVectors: Record<Phase, Record<string, number>>;
 }
 
@@ -194,7 +198,18 @@ export function matchEnvironment(data: EditionData, venueId: string | null, over
   }
   const base = Object.fromEntries(PHASE_LIST.map((p) => [p, Object.fromEntries(OUTCOMES.map((k) => [k, env.populationVectors[p]?.[k] ?? 1 / 7])) as Vector])) as PhaseVectors;
   const tieBreak = data.edition.rules.tieBreak === "super-over" ? "super-over" : data.edition.rules.tieBreak === "bowl-out" ? "bowl-out" : "none";
+  // Rain: affected matches ≈ DL finishes + no-results + half of the reduced innings not already counted;
+  // the venue's rate shrunk toward the edition's with a prior of a few matches.
+  const affected = (e: EnvironmentOut) => (e.rain?.dlFinishes ?? 0) + (e.rain?.noResults ?? 0) + 0.5 * Math.max(0, (e.reducedInnings ?? 0) - (e.rain?.dlFinishes ?? 0) - (e.rain?.noResults ?? 0));
+  const editionRate = env.matches ? affected(env) / env.matches : 0;
+  let pAffected = editionRate;
+  if (venue) {
+    const v = venue.byEdition[data.edition.id] ?? venue.overall;
+    pAffected = (affected(v) + ENGINE.rain.venuePriorMatches * editionRate) / ((v.matches ?? 0) + ENGINE.rain.venuePriorMatches);
+  }
+  const noResultShare = affected(env) > 0 ? (env.rain?.noResults ?? 0) / affected(env) : 0.2;
   return {
+    rain: { pAffected: +Math.min(0.5, pAffected).toFixed(3), noResultShare: +noResultShare.toFixed(3) },
     editionId: data.edition.id,
     base,
     venueFactor,

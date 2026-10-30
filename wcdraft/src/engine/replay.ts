@@ -68,6 +68,14 @@ export function replayEdition(editionId: string, sims: number, seed = 1): Replay
     const totals: number[] = [];
     for (let s = 0; s < sims; s += 1) {
       const r: MatchResult = simulateMatch(teamA, teamB, matchEnv, data.situation, { seed: `${seed}:${g.match.id}:${s}`, battingFirst });
+      // The real environment figures count reduced innings too, but first-innings averages and chase
+      // wins are over natural, decided matches; mirror that here.
+      if (r.rain) {
+        for (const inn of r.innings) { runs += inn.runs; balls += inn.legalBalls; wickets += inn.wickets; dots += inn.outcomes["0"] + inn.outcomes.W - inn.byeBalls; fours += inn.outcomes["4"]; sixes += inn.outcomes["6"]; }
+        if (r.winner === g.a) winsA += 1;
+        else if (!r.winner) winsA += 0.5;
+        continue;
+      }
       if (r.winner === g.a) winsA += 1;
       for (const inn of r.innings) {
         runs += inn.runs;

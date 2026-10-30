@@ -28,6 +28,7 @@ export interface FixtureResult extends Fixture {
   scores: [string, string];
   margin: MatchResult["margin"];
   tieBreak: MatchResult["tieBreak"];
+  rain: MatchResult["rain"];
 }
 
 export interface StandingRow {
@@ -153,11 +154,12 @@ export function simulateTournament(data: EditionData, progression: Progression, 
     if (identityRecord && (a === identityRecord.team || b === identityRecord.team)) {
       identityRecord.played += 1;
       if (result.winner === identityRecord.team) identityRecord.won += 1;
-      else { identityRecord.lost += 1; identityRecord.unbeaten = false; }
+      else if (result.winner) { identityRecord.lost += 1; identityRecord.unbeaten = false; }
+      // A no-result is neither a win nor a loss; an unbeaten run survives it.
     }
     const score = (i: 0 | 1) => `${result.innings[i].runs}/${result.innings[i].wickets} (${Math.floor(result.innings[i].legalBalls / 6)}.${result.innings[i].legalBalls % 6})`;
     const first = result.innings[0].team;
-    return { ...fixture, winner: result.winner, scores: first === a ? [score(0), score(1)] : [score(1), score(0)], margin: result.margin, tieBreak: result.tieBreak, _result: result } as FixtureResult & { _result: MatchResult };
+    return { ...fixture, winner: result.winner, scores: first === a ? [score(0), score(1)] : [score(1), score(0)], margin: result.margin, tieBreak: result.tieBreak, rain: result.rain, _result: result } as FixtureResult & { _result: MatchResult };
   };
 
   const realFixture = (a: string, b: string, label: string): { venueId: string | null; date: string | null; realId: string | null } | null => {
@@ -170,10 +172,10 @@ export function simulateTournament(data: EditionData, progression: Progression, 
       const res = playGroups(stage, slots, play, venuePool, realFixture, standInFixtures, progression.standIn, rng);
       stages.push(res.stage);
       slots = res.slots;
-      if (identityRecord && identityRecord.unbeaten !== undefined) {
-        const advanced = Object.values(res.slots).includes(identityRecord.team);
-        if (!advanced) identityRecord.exit = stage.label;
-        else identityRecord.exit = "advanced";
+      if (identityRecord) {
+        // Qualifying slots only; the `#` entries record every team's finish position.
+        const advanced = Object.entries(res.slots).some(([slot, team]) => !slot.endsWith("#") && team === identityRecord.team);
+        identityRecord.exit = advanced ? "advanced" : stage.label;
       }
     } else {
       const res = playKnockout(stage, slots, previousKnockoutWinners, play, venuePool);
@@ -272,10 +274,11 @@ function realVenueFor(a: string, b: string, group: string, standIn: string | nul
 function tally(rows: Map<string, StandingRow>, f: FixtureResult & { _result?: MatchResult }): void {
   const r = f._result;
   if (!r) return;
-  for (const inn of r.innings) {
+  // A no-result carries no run-rate information.
+  for (const inn of r.rain?.kind === "no-result" ? [] : r.innings) {
     const bat = rows.get(inn.team), bowl = rows.get(inn.team === f.teams[0] ? f.teams[1] : f.teams[0]);
     if (!bat || !bowl) continue;
-    const quota = inn.wickets >= 10 ? 120 : inn.legalBalls;
+    const quota = inn.wickets >= 10 ? inn.scheduledOvers * 6 : inn.legalBalls;
     bat.runsFor += inn.runs; bat.ballsFaced += quota;
     bowl.runsAgainst += inn.runs; bowl.ballsBowled += quota;
   }
@@ -299,7 +302,10 @@ function playKnockout(stage: KnockoutStage, slots: Record<string, string>, previ
       return slots[`${ref}#`] ?? slots[ref] ?? ref;
     };
     const a = side(pair[0]), b = side(pair[1]);
-    const f = play({ stageId: stage.id, stageLabel: stage.label, group: null, teams: [a, b], venueId: pool[i % Math.max(1, pool.length)] ?? null, date: null, realId: null });
+    let f = play({ stageId: stage.id, stageLabel: stage.label, group: null, teams: [a, b], venueId: pool[i % Math.max(1, pool.length)] ?? null, date: null, realId: null });
+    // Reserve day: a washed-out knockout is replayed once; if the weather wins again, the side that
+    // finished higher in the previous stage (named first in the pairing) goes through.
+    if (!f.winner) f = play({ stageId: `${stage.id}-reserve`, stageLabel: `${stage.label} (reserve day)`, group: null, teams: [a, b], venueId: pool[i % Math.max(1, pool.length)] ?? null, date: null, realId: null });
     fixtures.push(f);
     winners.push(f.winner ?? a);
   });
