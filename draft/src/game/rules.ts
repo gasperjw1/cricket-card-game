@@ -59,10 +59,14 @@ export function lineupProblems(picks: (PoolPlayer | null)[]): string[] {
   return problems;
 }
 
-/** Every (team, edition) squad that exists, the spin space (uniform; decided 2026-10-28). */
-export function squadUniverse(squadsByEdition: Map<string, SquadOut[]>): SquadRef[] {
+/**
+ * Every (team, edition) squad that exists, the spin space (uniform; decided 2026-10-28), minus the
+ * squads whose cards are mostly blank (listed by the sync script; a stand-in side with no record).
+ */
+export function squadUniverse(squadsByEdition: Map<string, SquadOut[]>, blank: { editionId: string; team: string }[] = []): SquadRef[] {
+  const skip = new Set(blank.map((b) => `${b.editionId}|${b.team}`));
   const out: SquadRef[] = [];
-  for (const [editionId, squads] of squadsByEdition) for (const s of squads) out.push({ team: s.team, editionId, standIn: s.standIn });
+  for (const [editionId, squads] of squadsByEdition) for (const s of squads) if (!skip.has(`${editionId}|${s.team}`)) out.push({ team: s.team, editionId, standIn: s.standIn });
   return out.sort((a, b) => a.editionId.localeCompare(b.editionId) || a.team.localeCompare(b.team));
 }
 

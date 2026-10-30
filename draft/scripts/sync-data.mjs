@@ -50,6 +50,7 @@ for (const line of labelLines.slice(1)) {
 const keeperEligible = (row) => !!row && (row.keeper === "Y" || row.keeperCareer === "Y" || Number(row.keeperAnyT20I) > 0);
 
 const editions = readdirSync(resolve(outDir, "ratings")).filter((f) => /^\d{4}\.json$/.test(f)).map((f) => f.slice(0, 4)).sort();
+const blankSquads = [];
 for (const ed of editions) {
   copy(resolve(outDir, "ratings", `${ed}.json`), `ratings/${ed}.json`);
   copy(resolve(outDir, "squads", `${ed}.json`), `squads/${ed}.json`);
@@ -65,6 +66,16 @@ for (const ed of editions) {
     keeper: keeperEligible(labels.get(r.personId)),
   }));
   writeFileSync(resolve(out, "pool", `${ed}.json`), JSON.stringify(pool));
+  // Squads whose cards are mostly blank (a stand-in side with no record in that era, e.g. Namibia
+  // standing in for Afghanistan 2012) stay in the tournament but are not spun in the draft.
+  const byTeam = new Map();
+  for (const p of pool) {
+    const t = byTeam.get(p.team) ?? { n: 0, shown: 0 };
+    t.n += 1; if (p.batShown || p.bowlShown) t.shown += 1;
+    byTeam.set(p.team, t);
+  }
+  for (const [team, t] of byTeam) if (t.shown < t.n / 2) blankSquads.push({ editionId: ed, team });
 }
-writeFileSync(resolve(out, "index.json"), JSON.stringify({ editions, generatedAt: new Date().toISOString() }, null, 2));
+writeFileSync(resolve(out, "index.json"), JSON.stringify({ editions, blankSquads, generatedAt: new Date().toISOString() }, null, 2));
+if (blankSquads.length) console.log(`sync-data: not spun (mostly blank cards): ${blankSquads.map((s) => `${s.team} ${s.editionId}`).join(", ")}`);
 console.log(`sync-data: ${editions.length} editions → ${out}`);

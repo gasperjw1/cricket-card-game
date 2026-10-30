@@ -1110,7 +1110,11 @@ not on Cricsheet). Built the same day (`wcdraft/README.md` ratings item 8): the 
 overs do not make him a bowler in 2024), the ODI record vouches for bowling only in 2007 and 2009,
 the role's own skill is always shown with the low-sample badge carrying the warning, and a hidden
 skill cannot earn an all-rounder role. 889 of 2,074 bowling numbers and 488 batting numbers are
-hidden; 18% of specialist batters show a bowling number. Pool note: a squad holds the players who
+hidden; 18% of specialist batters show a bowling number. Tournament debutants with no earlier
+record (Rohit 2007, Amir 2009) are rated from the tournament itself (`source: "tournament"`, kept
+out of the validation); 19 player-editions with no record anywhere are Bronze with both skills
+hidden, and the one squad that is mostly blank (Namibia standing in for Afghanistan 2012) is not
+spun. Pool note: a squad holds the players who
 appeared, so West Indies 2007 (two matches, one eleven) has 11 cards; official 15-man squads
 remain a parked item. Open: whether the Elite thin-evidence cap should count career balls as well as
 window balls (Livingstone 2021 sits first among 2021 batters but is capped at Gold on 78 window balls).

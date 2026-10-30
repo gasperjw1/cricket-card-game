@@ -113,7 +113,7 @@
             "rawFormValue": 0.272,
             "rawFormRate": 0.268
           },
-          "model": 0.318,
+          "model": 0.319,
           "modelTiered": 0.333,
           "rawFormValue": 0.279,
           "rawFormRate": 0.268,
@@ -130,7 +130,7 @@
         "bowling": {
           "n": 324,
           "within": {
-            "model": 0.168,
+            "model": 0.169,
             "rawFormValue": 0.087,
             "rawFormRate": 0.102
           },
@@ -314,7 +314,7 @@
       "stability": {
         "batting": {
           "n": 499,
-          "model": 0.737,
+          "model": 0.736,
           "rawFormSR": 0.454
         },
         "bowling": {
@@ -697,7 +697,7 @@
         "bowling": {
           "n": 324,
           "within": {
-            "model": 0.195,
+            "model": 0.196,
             "rawFormValue": 0.087,
             "rawFormRate": 0.102
           },
@@ -944,7 +944,7 @@
             "rawFormValue": 0.087,
             "rawFormRate": 0.102
           },
-          "model": 0.15,
+          "model": 0.149,
           "modelTiered": 0.141,
           "rawFormValue": 0.044,
           "rawFormRate": 0.094,
@@ -967,7 +967,7 @@
         },
         "bowling": {
           "n": 408,
-          "model": 0.55,
+          "model": 0.551,
           "rawFormEconomy": 0.44
         }
       }
@@ -1367,7 +1367,7 @@
       "stability": {
         "batting": {
           "n": 499,
-          "model": 0.728,
+          "model": 0.727,
           "rawFormSR": 0.454
         },
         "bowling": {
@@ -1669,11 +1669,11 @@
         "bowling": {
           "n": 324,
           "within": {
-            "model": 0.191,
+            "model": 0.19,
             "rawFormValue": 0.087,
             "rawFormRate": 0.102
           },
-          "model": 0.179,
+          "model": 0.178,
           "modelTiered": 0.173,
           "rawFormValue": 0.044,
           "rawFormRate": 0.094,
@@ -1729,7 +1729,7 @@
         "batting": {
           "n": 392,
           "within": {
-            "model": 0.341,
+            "model": 0.342,
             "rawFormValue": 0.272,
             "rawFormRate": 0.268
           },
@@ -2134,7 +2134,7 @@
         "batting": {
           "n": 392,
           "within": {
-            "model": 0.345,
+            "model": 0.346,
             "rawFormValue": 0.272,
             "rawFormRate": 0.268
           },
@@ -2155,7 +2155,7 @@
         "bowling": {
           "n": 324,
           "within": {
-            "model": 0.192,
+            "model": 0.193,
             "rawFormValue": 0.087,
             "rawFormRate": 0.102
           },
@@ -2587,7 +2587,7 @@
         },
         "bowling": {
           "n": 408,
-          "model": 0.583,
+          "model": 0.584,
           "rawFormEconomy": 0.44
         }
       }
@@ -2722,12 +2722,12 @@
         "bowling": {
           "n": 324,
           "within": {
-            "model": 0.178,
+            "model": 0.179,
             "rawFormValue": 0.087,
             "rawFormRate": 0.102
           },
-          "model": 0.167,
-          "modelTiered": 0.157,
+          "model": 0.168,
+          "modelTiered": 0.158,
           "rawFormValue": 0.044,
           "rawFormRate": 0.094,
           "careerRate": 0.114,
@@ -2852,7 +2852,7 @@
     "byTier": {
       "Elite": {
         "n": 35,
-        "meanDisplay": 80.3
+        "meanDisplay": 80.4
       },
       "Gold": {
         "n": 63,
@@ -2870,8 +2870,8 @@
     "spearman": 0.314,
     "tiers": {
       "exact": 0.302,
-      "withinOne": 0.784,
-      "spearman": 0.326,
+      "withinOne": 0.775,
+      "spearman": 0.311,
       "confusion": {
         "Elite": {
           "Bronze": 0,
@@ -2886,15 +2886,15 @@
           "Elite": 23
         },
         "Silver": {
-          "Bronze": 5,
-          "Silver": 21,
+          "Bronze": 4,
+          "Silver": 22,
           "Gold": 24,
           "Elite": 15
         },
         "Bronze": {
-          "Bronze": 6,
-          "Silver": 25,
-          "Gold": 19,
+          "Bronze": 5,
+          "Silver": 24,
+          "Gold": 21,
           "Elite": 9
         }
       }

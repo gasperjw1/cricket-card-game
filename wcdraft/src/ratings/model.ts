@@ -62,7 +62,7 @@ export const MODEL = {
    * are deep enough; later, a lifetime of occasional ODI overs (Kohli's 662 balls) does not make a
    * bowler.
    */
-  shown: { formBalls: { bat: 60, bowl: 96 }, careerBalls: { bat: 120, bowl: 180 }, odiBalls: { bat: 120, bowl: 240 }, odiBowlEditions: ["2007", "2009"] as readonly string[] },
+  shown: { formBalls: { bat: 60, bowl: 96 }, careerBalls: { bat: 120, bowl: 180 }, odiBalls: { bat: 120, bowl: 240 }, odiBowlEditions: ["2007", "2009"] as readonly string[], tournamentBalls: { bat: 24, bowl: 36 } },
   /** Runs a wicket costs a batting side in T20, from the expected-runs literature (≈2.4–3.1 by over band). */
   wicketCost: 2.6 as number,
   /**
@@ -237,7 +237,8 @@ export interface SkillRating {
     domesticBalls: number;
     /** Domestic T20 balls in the last RECENT_SEASONS seasons (the recency test behind `shown`). */
     domesticRecentBalls: number;
-    source: "form" | "career" | "domestic" | "odi" | "population";
+    /** "tournament": a debutant with no pre-tournament record anywhere, rated from the tournament's own balls. */
+    source: "form" | "career" | "domestic" | "odi" | "tournament" | "population";
     /** Share of the player's edge carried into the edition's opposition (1 = all of it). */
     transfer: number;
     /** Exposure-weighted scoring factor of the grounds the form was earned on (1 = window average). */

@@ -181,6 +181,16 @@ describe("Phase 1 ratings", { skip: !ready && "archive not fetched" }, () => {
       if (x.role === "bowler" || x.role === "all-rounder") assert.ok(x.bowling.shown, `${x.name} ${x.editionId} is a ${x.role} with hidden bowling`);
       if (x.role === "batter" || x.role === "all-rounder") assert.ok(x.batting.shown, `${x.name} ${x.editionId} is a ${x.role} with hidden batting`);
     }
+    // Debutants with no earlier record are rated from the tournament itself; a player with no record
+    // anywhere (appeared, neither batted nor bowled) is a Bronze card with both skills hidden.
+    const rohit = get("RG Sharma", "2007");
+    assert.equal(rohit.batting.evidence.source, "tournament");
+    assert.ok(rohit.batting.shown, "Rohit 2007 batting shown from the tournament");
+    const mathews = get("AD Mathews", "2009");
+    assert.ok(mathews.batting.shown || mathews.bowling.shown, "Mathews 2009 (debutant with a thin IPL record) has a card");
+    const blank = r.filter((x) => !x.batting.shown && !x.bowling.shown);
+    assert.ok(blank.length < 30, `${blank.length} player-editions with nothing shown`);
+    for (const x of blank) assert.equal(x.tier, "Bronze", `${x.name} ${x.editionId} has no record but is ${x.tier}`);
     const withDomestic = r.filter((x) => x.batting.evidence.domesticBalls > 0).length / r.length;
     assert.ok(withDomestic > 0.4, `${(100 * withDomestic).toFixed(0)}% of player-editions carry domestic batting evidence`);
     // Phase numbers agree with the headline for an unmeasured skill (both at the median).

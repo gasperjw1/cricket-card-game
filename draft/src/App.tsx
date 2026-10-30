@@ -77,7 +77,7 @@ export function App() {
         const entries = await Promise.all(s.editionIds.map(async (id) => [id, await loadSquads(id)] as const));
         const map = new Map(entries);
         setSquadsByEdition(map);
-        setUniverse(squadUniverse(map));
+        setUniverse(squadUniverse(map, s.blankSquads));
       })
       .catch((e: Error) => setLoadError(e.message));
   }, []);

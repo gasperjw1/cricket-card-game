@@ -140,8 +140,15 @@ npm run ratings:build --workspace wcdraft   # ≈16 s → data/out/ratings/<edit
    all-rounder role. The client prints "rarely bowls" / "rarely bats" instead of a prior-shaped
    number. Result over 2,074 player-editions: 889 bowling numbers hidden (735 specialist batters),
    488 batting numbers hidden (356 specialist bowlers), 18% of specialist batters show a bowling
-   number, 52% of player-editions carry domestic batting evidence. Phase numbers shrink toward the
-   median exactly like the headline.
+   number, 52% of player-editions carry domestic batting evidence. A **tournament debutant** with no
+   record anywhere before the event (no T20Is, no recent league, no ODIs: Rohit 2007, Amir 2009,
+   Mathews 2009) is rated from the tournament's own balls, `source: "tournament"`, shown from 24
+   balls faced / 36 bowled (162 player-editions; the within-edition validation already needs 60
+   pre-tournament balls, so they stay out of it). A player with no record even there (appeared,
+   neither batted nor bowled; 19 player-editions) is a Bronze card with both skills hidden. The
+   draft client's sync script lists squads whose cards are mostly blank (`blankSquads` in
+   `index.json`: only Namibia standing in for Afghanistan 2012) and the spin skips them; they still
+   play in the simulated tournament. Phase numbers shrink toward the median exactly like the headline.
 9. **Tiers, roles and phases** (spec §5.6). The headline value weights phases by the player's own
    exposure (a finisher over the death overs he bats in, a new-ball bowler over the powerplay;
    population weights as a 60-ball prior), so the card `tier` is role-relative: the better skill

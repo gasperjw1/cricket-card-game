@@ -37,6 +37,8 @@ describe("draft rules", () => {
   it("spins deterministically over the squad universe and drops drafted people", () => {
     const universe = squadUniverse(new Map([["2024", [{ team: "India", editionId: "2024", standIn: false }, { team: "Uganda", editionId: "2024", standIn: false }] as never], ["2016", [{ team: "Oman", editionId: "2016", standIn: false }] as never]]));
     assert.equal(universe.length, 3);
+    const squads = new Map([["2012", [{ team: "Namibia", editionId: "2012", standIn: true }, { team: "India", editionId: "2012", standIn: false }] as never]]);
+    assert.deepEqual(squadUniverse(squads, [{ editionId: "2012", team: "Namibia" }]).map((s) => s.team), ["India"], "mostly blank squads are not spun");
     assert.deepEqual(drawSquad(universe, new Rng("s")), drawSquad(universe, new Rng("s")));
     const pool = [player({ id: "a", team: "India", tierScore: 0.9 }), player({ id: "b", team: "India", tierScore: 0.95 }), player({ id: "c", team: "Uganda" })];
     assert.deepEqual(spinPlayers(pool, "India", new Set(["b"])).map((p) => p.id), ["a"]);

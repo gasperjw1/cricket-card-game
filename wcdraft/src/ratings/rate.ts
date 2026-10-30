@@ -633,6 +633,15 @@ function expectedRelative(
   return out;
 }
 
+/**
+ * Whether the backup records vouch for a skill the T20I record does not: a recent domestic T20
+ * record, or an ODI record (batting in every edition; bowling only in the pre-league editions).
+ */
+function backupVouches(ev: Pick<SkillRating["evidence"], "domesticRecentBalls" | "odiBalls">, skill: Skill, editionId: string): boolean {
+  const odiVouches = ev.odiBalls >= MODEL.shown.odiBalls[skill] && (skill === "bat" || MODEL.shown.odiBowlEditions.includes(editionId));
+  return ev.domesticRecentBalls >= MODEL.domestic.shownBalls[skill] || odiVouches;
+}
+
 /** Domestic T20 career counts for a skill, pooled over phases (null when the player has none). */
 function domesticCounts(pe: PlayerEditionIn, skill: Skill): { o: Record<OutcomeKey, number>; e: Record<OutcomeKey, number>; n: number } | null {
   const d = pe.domesticToDate?.[skill];
@@ -707,7 +716,18 @@ export function rateAll(r: BuildResult, opts: RateOptions = {}): PlayerRating[] 
   const rows = r.playerEditions as unknown as PlayerEditionIn[];
   const partial = rows.map((pe) => {
     const ctx = contexts.get(pe.editionId)!;
-    return { pe, ctx, usage: usageShares(pe), bat: rateSkill(pe, ctx, "bat", opts), bowl: rateSkill(pe, ctx, "bowl", opts) };
+    // A debutant with no pre-tournament record anywhere (no T20Is, no leagues, no ODIs) is rated
+    // from the tournament's own balls rather than left at the population prior: Rohit 2007 and
+    // Amir 2009 get a card. The source is labelled so the validation can leave them out.
+    const rated = (skill: Skill): PartialSkill => {
+      const s = rateSkill(pe, ctx, skill, opts);
+      const noT20I = s.evidence.formBalls + s.evidence.careerBalls === 0;
+      if (!noT20I || backupVouches(s.evidence, skill, pe.editionId) || totalBalls(pe.tournament, skill) === 0) return s;
+      const debut: PlayerEditionIn = { ...pe, form: pe.tournament, formByOpposition: pe.tournamentByOpposition, formExposure: pe.tournamentExposure, formVenueBalls: { bat: {}, bowl: {} }, formByOppBin: {} };
+      const t = rateSkill(debut, ctx, skill, opts);
+      return { ...t, evidence: { ...t.evidence, source: "tournament" } };
+    };
+    return { pe, ctx, usage: usageShares(pe), bat: rated("bat"), bowl: rated("bowl") };
   });
 
   // Cohort centring (Phase 1.5): see RateOptions.cohortCentre. Vectors and values are re-expressed
@@ -831,8 +851,8 @@ export function rateAll(r: BuildResult, opts: RateOptions = {}): PlayerRating[] 
     const balls = phaseBalls(pe, skill);
     const badge = skill === "bat" ? tierConfig.phaseBadge.batBalls : tierConfig.phaseBadge.bowlBalls;
     const ev = s.evidence;
-    const odiVouches = ev.odiBalls >= MODEL.shown.odiBalls[skill] && (skill === "bat" || MODEL.shown.odiBowlEditions.includes(pe.editionId));
-    const shown = ev.formBalls >= MODEL.shown.formBalls[skill] || ev.careerBalls >= MODEL.shown.careerBalls[skill] || ev.domesticRecentBalls >= MODEL.domestic.shownBalls[skill] || odiVouches;
+    const formBar = ev.source === "tournament" ? MODEL.shown.tournamentBalls[skill] : MODEL.shown.formBalls[skill];
+    const shown = ev.formBalls >= formBar || ev.careerBalls >= MODEL.shown.careerBalls[skill] || backupVouches(ev, skill, pe.editionId);
     return {
       ...s,
       ...display(conservative(s, skill)),
@@ -880,7 +900,8 @@ export function rateAll(r: BuildResult, opts: RateOptions = {}): PlayerRating[] 
       batting,
       bowling,
       overall,
-      tier: tierOf(batting, bowling, tierScore, tierConfig),
+      // No record anywhere, not even in the tournament: a Bronze card, not a median-shaped Silver.
+      tier: batting.shown || bowling.shown ? tierOf(batting, bowling, tierScore, tierConfig) : "Bronze",
       tierScore,
       role,
       archetype: archetypeOf(pe, position, bowling),

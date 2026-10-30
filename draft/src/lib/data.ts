@@ -25,6 +25,8 @@ export interface SharedData {
   captains: CaptainOut[];
   labels: Map<string, PlayerLabel>;
   editionIds: string[];
+  /** Squads the sync script found mostly blank (no record in that era); simulated, never spun. */
+  blankSquads: { editionId: string; team: string }[];
 }
 
 const base = `${import.meta.env.BASE_URL}data`;
@@ -46,7 +48,7 @@ let sharedPromise: Promise<SharedData> | null = null;
 export function loadShared(): Promise<SharedData> {
   sharedPromise ??= (async () => {
     const [index, editions, venues, populations, situationTables, matchups, formats, afghanistan, coaches, captains, labelsCsv] = await Promise.all([
-      json<{ editions: string[] }>("index.json"),
+      json<{ editions: string[]; blankSquads?: { editionId: string; team: string }[] }>("index.json"),
       json<EditionOut[]>("editions.json"),
       json<VenueOut[]>("venues.json"),
       json<EditionPopulations[]>("ratings/populations.json"),
@@ -63,6 +65,7 @@ export function loadShared(): Promise<SharedData> {
     return {
       editions, venues, populations, situationTables, matchups, situation: new SituationModel(situationTables, matchups),
       formats: formats.editions, afghanistanFixtures: afghanistan.fixtures, coaches: coaches.coaches, captains: captains.captains, labels, editionIds: index.editions,
+      blankSquads: index.blankSquads ?? [],
     };
   })();
   return sharedPromise;
