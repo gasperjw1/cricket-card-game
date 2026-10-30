@@ -1,6 +1,7 @@
 /**
- * Match summary (decided 2026-10-30): the two sides with score and overs, the leading batters and
- * bowlers under each, the result line, toss and ground, player of the match. The full scorecard
+ * Match summary (decided 2026-10-30): laid out by innings, not by team. The first innings sits on
+ * the left (batting side's score, its leading batters, the fielding side's leading bowlers), the
+ * second on the right. Result line, toss and ground, player of the match; the full scorecard
  * opens underneath.
  */
 
@@ -26,25 +27,23 @@ export function rainText(f: FixtureResult): string | null {
   return "Rain: no result";
 }
 
-function Side({ inn, highlight }: { inn: InningsResult; highlight: Set<string> }) {
+export const ordinal = (i: number) => (i === 1 ? "1st" : "2nd");
+
+function Innings({ inn, fielding, highlight }: { inn: InningsResult; fielding: string; highlight: Set<string> }) {
   const bats = [...inn.batting].filter((b) => b.balls > 0 || b.out).sort((a, b) => b.runs - a.runs || a.balls - b.balls).slice(0, 2);
+  const best = [...inn.bowling].sort((a, b) => b.wickets - a.wickets || a.runs - b.runs).slice(0, 2);
   return (
     <div className="mc-side">
-      <div className="mc-team">{inn.team}</div>
+      <div className="mc-team"><span className="mc-innings">{ordinal(inn.index)} innings</span> {inn.team}</div>
       <div className="mc-score">{inn.runs}<span className="mc-wk">/{inn.wickets}</span></div>
       <div className="small">{oversText(inn.legalBalls)} ov{inn.target !== null ? ` · target ${inn.target}` : ""}</div>
       <div className="mc-lines">
         {bats.map((b) => <div key={b.id} className={highlight.has(b.id) ? "hl" : ""}><span>{b.name}</span><b>{b.runs}{b.out ? "" : "*"} ({b.balls})</b></div>)}
       </div>
-    </div>
-  );
-}
-
-function Bowlers({ inn, highlight }: { inn: InningsResult; highlight: Set<string> }) {
-  const best = [...inn.bowling].sort((a, b) => b.wickets - a.wickets || a.runs - b.runs).slice(0, 2);
-  return (
-    <div className="mc-lines">
-      {best.map((w) => <div key={w.id} className={highlight.has(w.id) ? "hl" : ""}><span>{w.name}</span><b>{w.wickets}/{w.runs}</b> <small>({oversText(w.balls)})</small></div>)}
+      <div className="mc-lines mc-bowl">
+        <div className="small">{fielding} bowling</div>
+        {best.map((w) => <div key={w.id} className={highlight.has(w.id) ? "hl" : ""}><span>{w.name}</span><b>{w.wickets}/{w.runs}</b> <small>({oversText(w.balls)})</small></div>)}
+      </div>
     </div>
   );
 }
@@ -62,16 +61,10 @@ export function MatchCard({ fixture, me, stageLabel, venues, highlight, children
         <b className={`mc-result ${won}`}>{marginText(f)}</b>
       </div>
       {i1 && i2 ? (
-        <>
-          <div className="mc-teams">
-            <Side inn={i1} highlight={highlight} />
-            <Side inn={i2} highlight={highlight} />
-          </div>
-          <div className="mc-teams mc-bowl">
-            <Bowlers inn={i2} highlight={highlight} />
-            <Bowlers inn={i1} highlight={highlight} />
-          </div>
-        </>
+        <div className="mc-teams">
+          <Innings inn={i1} fielding={i2.team} highlight={highlight} />
+          <Innings inn={i2} fielding={i1.team} highlight={highlight} />
+        </div>
       ) : (
         <p><b>{f.teams[0]} {f.scores[0]}</b> v <b>{f.teams[1]} {f.scores[1]}</b></p>
       )}

@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
 import { describe, it } from "node:test";
 import { Rng } from "../../wcdraft/src/engine/rng.ts";
-import { drawCoachPanel, drawSquad, fits, lineupProblems, oversCovered, slotsFor, spinPlayers, squadUniverse } from "../src/game/rules.ts";
+import { drawCoachPanel, drawSquad, eligible, fits, lineupProblems, needs, oversCovered, slotsFor, spinPlayers, squadUniverse } from "../src/game/rules.ts";
 import { batInSlot, slotWeights } from "../src/game/slots.ts";
 import type { PoolPlayer } from "../src/game/types.ts";
 
@@ -12,6 +12,25 @@ const player = (over: Partial<PoolPlayer>): PoolPlayer => ({
 });
 
 describe("draft rules", () => {
+  it("locks the draft to bowlers and keepers once the open slots are down to what the side still needs", () => {
+    const bat = player({ role: "batter", bowlShown: false, keeper: false });
+    const bowler = player({ role: "bowler", bowlShown: true, keeper: false });
+    const keeper = player({ role: "batter", bowlShown: false, keeper: true });
+    const picks = (...ps: typeof bat[]) => [...ps, ...Array(11 - ps.length).fill(null)] as (typeof bat | null)[];
+    // Five batters taken: six slots left, five bowlers and a keeper needed, so batters are out.
+    const five = picks(bat, bat, bat, bat, bat);
+    assert.deepEqual(needs(five), { bowlers: 5, keeper: 1, open: 6 });
+    assert.equal(eligible(bat, five), false);
+    assert.equal(eligible(bowler, five), true);
+    assert.equal(eligible(keeper, five), true);
+    // Four batters taken: still one slot of slack, anyone goes.
+    assert.equal(eligible(bat, picks(bat, bat, bat, bat)), true);
+    // Keeper and four bowlers already in: with six open and one bowler needed, batters are fine until the last slot.
+    assert.equal(eligible(bat, picks(keeper, bowler, bowler, bowler, bowler)), true);
+    assert.equal(eligible(bat, picks(keeper, bowler, bowler, bowler, bowler, bat, bat, bat, bat, bat)), false);
+    assert.equal(eligible(bowler, picks(keeper, bowler, bowler, bowler, bowler, bat, bat, bat, bat, bat)), true);
+  });
+
   it("re-weights a batter's number to the overs a slot faces", () => {
     const editions = [{ id: "2024", environment: { positionPhaseBalls: { "1": { pp: 900, mid: 400, death: 50 }, "7": { pp: 10, mid: 300, death: 400 } } } }] as never;
     const opener = slotWeights(editions, "2024", 1);

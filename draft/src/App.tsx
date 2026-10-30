@@ -2,7 +2,7 @@ import { useEffect, useMemo, useReducer, useState } from "react";
 import { Rng } from "../../wcdraft/src/engine/rng.ts";
 import type { CoachOut, SquadOut } from "../../wcdraft/src/engine/data.ts";
 import { loadPool, loadShared, loadSquads, type SharedData } from "./lib/data.ts";
-import { BUDGET, coachPool, drawCoachPanel, drawSquad, spinPlayers, squadUniverse, type SquadRef } from "./game/rules.ts";
+import { BUDGET, coachPool, drawCoachPanel, drawSquad, eligible, spinPlayers, squadUniverse, type SquadRef } from "./game/rules.ts";
 import { runTournament } from "./game/simulate.ts";
 import type { PoolPlayer, RunState, Spin } from "./game/types.ts";
 import { HomeScreen } from "./screens/HomeScreen.tsx";
@@ -105,7 +105,8 @@ export function App() {
       const squad = drawSquad(universe, r);
       const pool = await loadPool(squad.editionId);
       const players = spinPlayers(pool, squad.team, taken);
-      if (players.length) { dispatch({ type: "spin", spin: { team: squad.team, editionId: squad.editionId, players }, reroll }); return; }
+      // A spin must offer someone the side can still take (bowlers or a keeper once the slots are tight).
+      if (players.some((p) => eligible(p, state.picks))) { dispatch({ type: "spin", spin: { team: squad.team, editionId: squad.editionId, players }, reroll }); return; }
     }
     dispatch({ type: "error", message: "No squad with undrafted players found; try a reroll." });
   };

@@ -74,6 +74,8 @@ export interface TournamentOptions {
   /** Replace this team's eleven in every fixture (the drafted side). */
   identity?: { team: string; xi: EngineTeam };
   keepBallLogs?: boolean;
+  /** Keep every fixture's innings (scorecards) and player of the match, for tournament-wide stats; ball logs stay identity-only. */
+  keepScorecards?: boolean;
   /** Keep the full scorecards of the identity team's fixtures (the result screen). */
   keepIdentityDetails?: boolean;
 }
@@ -171,7 +173,8 @@ export function simulateTournament(data: EditionData, progression: Progression, 
     const first = result.innings[0].team;
     return {
       ...fixture, winner: result.winner, scores: first === a ? [score(0), score(1)] : [score(1), score(0)], margin: result.margin, tieBreak: result.tieBreak, rain: result.rain,
-      ...(keep ? { innings: result.innings, balls: result.balls, potm: playerOfTheMatch(result), tossWinner: result.tossWinner, tossDecision: result.tossDecision } : {}),
+      ...(keep || opts.keepScorecards ? { innings: result.innings, potm: playerOfTheMatch(result), tossWinner: result.tossWinner, tossDecision: result.tossDecision } : {}),
+      ...(keep ? { balls: result.balls } : {}),
       _result: result,
     } as FixtureResult & { _result: MatchResult };
   };

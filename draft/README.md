@@ -78,8 +78,18 @@ knockouts). Classic mode only; Cricket-IQ, head-to-head, leaderboard and share l
   scores and overs, leading batters and bowlers, result line, toss, ground and date, player of the
   match) with the full scorecard underneath (`components/Scorecard.tsx`: batter with how he went,
   R B 4s 6s SR, extras and total, fall of wickets, stands, O M R W Econ). Your own players are
-  highlighted. A "your squad in the tournament" table aggregates the kept scorecards. Still to
-  come: match-by-match pacing and live playback (steps 3 and 4 of the review plan).
+  highlighted. Both the summary card and the scorecard are laid out **by innings**: first innings
+  on the left (batting side, then the fielding side's bowling), second on the right.
+- **Result tabs**: Your matches · Stats · Tables · Knockouts. Stats holds your squad's batting and
+  bowling and the **tournament leaders** over every match (`keepScorecards` keeps all fixtures'
+  innings; ball logs stay identity-only): most runs, wickets, sixes, boundaries, best strike rate
+  (60+ balls), best economy (12+ overs), player-of-the-match awards. Your players are highlighted.
+  Knockouts show full match cards. Still to come: match-by-match pacing and live playback (steps 3
+  and 4 of the review plan).
+- **Draft guard** (`eligible` / `needs` in `rules.ts`, tested): once the open slots are down to what
+  the side still needs (five players who bowl and a keeper), players who meet neither need are
+  greyed out and a note says why; a spin always offers someone who can still be taken. The guard
+  first bites after five picks with no bowlers or keeper among them.
 
 ## Notes
 

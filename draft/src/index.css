@@ -125,6 +125,19 @@ h3 { font-size: 16px; margin: 0 0 8px; }
 .sc-fow .k { color: var(--ink); font-weight: 600; margin-right: 6px; }
 .num-good { color: var(--accent); }
 .num-bad { color: var(--danger); }
+.mc-innings { color: var(--muted); font-size: 11px; text-transform: uppercase; letter-spacing: 0.05em; margin-right: 4px; }
+
+/* Result tabs and leaders */
+.tabs { display: flex; gap: 6px; flex-wrap: wrap; margin: 0 0 14px; }
+.tabs button { border-radius: 999px; padding: 6px 14px; }
+.tabs button.active { background: var(--accent); color: var(--accent-ink); border-color: transparent; font-weight: 700; }
+.leaders-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(360px, 1fr)); gap: 12px 20px; margin-top: 10px; }
+.leaders td:first-child { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 220px; }
+.leaders .rank { display: inline-block; min-width: 18px; color: var(--muted); font-size: 12px; }
+
+/* Draft guard */
+.player.ineligible { opacity: 0.38; filter: grayscale(0.6); cursor: not-allowed; }
+.lock-note { color: var(--gold); }
 @media (max-width: 480px) { .mc-score { font-size: 24px; } .sc-bat th:nth-child(4), .sc-bat td:nth-child(4), .sc-bat th:nth-child(5), .sc-bat td:nth-child(5) { display: none; } }
 .table { width: 100%; border-collapse: collapse; font-size: 13px; margin-bottom: 10px; }
 .table th, .table td { text-align: left; padding: 4px 6px; border-bottom: 1px solid var(--line); }

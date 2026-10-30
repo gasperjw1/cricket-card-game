@@ -33,5 +33,5 @@ export async function assembleTeam(input: SimulateInput): Promise<EngineTeam> {
 
 export async function runTournament(input: SimulateInput): Promise<TournamentResult> {
   const [data, xi] = await Promise.all([loadEditionData(input.identity.editionId), assembleTeam(input)]);
-  return simulateTournament(data, data.progression, { seed: input.seed, identity: { team: input.identity.team, xi }, keepIdentityDetails: true });
+  return simulateTournament(data, data.progression, { seed: input.seed, identity: { team: input.identity.team, xi }, keepIdentityDetails: true, keepScorecards: true });
 }

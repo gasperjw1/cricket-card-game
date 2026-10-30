@@ -48,6 +48,24 @@ export function oversCovered(picks: (PoolPlayer | null)[]): number {
   return Math.min(20, 4 * picks.filter((p) => p && bowls(p)).length);
 }
 
+/** What the eleven still needs: bowlers short of five, a keeper if none, and the open slots left. */
+export function needs(picks: (PoolPlayer | null)[]): { bowlers: number; keeper: number; open: number } {
+  const chosen = picks.filter(Boolean) as PoolPlayer[];
+  return { bowlers: Math.max(0, 5 - chosen.filter(bowls).length), keeper: chosen.some((p) => p.keeper) ? 0 : 1, open: 11 - chosen.length };
+}
+
+/**
+ * Whether a player may still be taken (decided 2026-10-30): once the open slots are down to what
+ * the side still needs (five bowlers and a keeper), only players who meet a need are selectable. A
+ * keeper who bowls meets both; with one slot left and both still needed the eleven is already
+ * invalid, so anyone who meets either need stays selectable rather than locking the draft.
+ */
+export function eligible(p: PoolPlayer, picks: (PoolPlayer | null)[]): boolean {
+  const n = needs(picks);
+  if (n.open > n.bowlers + n.keeper) return true;
+  return (n.bowlers > 0 && bowls(p)) || (n.keeper > 0 && p.keeper);
+}
+
 export function lineupProblems(picks: (PoolPlayer | null)[]): string[] {
   const problems: string[] = [];
   const filled = picks.filter(Boolean).length;

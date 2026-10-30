@@ -29,7 +29,7 @@ export function dismissalText(d: Dismissal | null, out: boolean): string {
 const srClass = (sr: number, balls: number) => (balls < 6 ? "" : sr >= 150 ? "num-good" : sr < 100 ? "num-bad" : "");
 const econClass = (econ: number, balls: number) => (balls < 12 ? "" : econ <= 6.5 ? "num-good" : econ >= 9.5 ? "num-bad" : "");
 
-export function Scorecard({ inn, highlight }: { inn: InningsResult; highlight: Set<string> }) {
+export function Scorecard({ inn, fielding, highlight }: { inn: InningsResult; fielding: string; highlight: Set<string> }) {
   const names = new Map(inn.batting.map((b) => [b.id, b.name]));
   const batted = inn.batting.filter((b) => b.balls > 0 || b.out);
   const runRate = inn.legalBalls ? ((6 * inn.runs) / inn.legalBalls).toFixed(2) : "–";
@@ -38,7 +38,7 @@ export function Scorecard({ inn, highlight }: { inn: InningsResult; highlight: S
   return (
     <div className="sc">
       <table className="sc-table sc-bat">
-        <thead><tr><th>{inn.team}</th><th>R</th><th>B</th><th>4s</th><th>6s</th><th>SR</th></tr></thead>
+        <thead><tr><th><span className="mc-innings">{inn.index === 1 ? "1st" : "2nd"} innings</span> {inn.team} batting</th><th>R</th><th>B</th><th>4s</th><th>6s</th><th>SR</th></tr></thead>
         <tbody>
           {batted.map((b) => {
             const sr = b.balls ? (100 * b.runs) / b.balls : 0;
@@ -61,7 +61,7 @@ export function Scorecard({ inn, highlight }: { inn: InningsResult; highlight: S
         <p className="sc-fow"><span className="k">Stands</span> {stands.map((p) => `${p.runs} (${p.balls}) ${names.get(p.batters[0]) ?? ""}–${names.get(p.batters[1]) ?? ""}${p.wicket === null ? "*" : ""}`).join(" · ")}</p>
       )}
       <table className="sc-table">
-        <thead><tr><th>Bowling</th><th>O</th><th>M</th><th>R</th><th>W</th><th>Econ</th></tr></thead>
+        <thead><tr><th>{fielding} bowling</th><th>O</th><th>M</th><th>R</th><th>W</th><th>Econ</th></tr></thead>
         <tbody>
           {inn.bowling.map((w) => {
             const econ = w.balls ? (6 * w.runs) / w.balls : 0;

@@ -2,7 +2,7 @@ import { useMemo, useState } from "react";
 import type { EditionOut, SquadOut, VenueOut } from "../../../wcdraft/src/engine/data.ts";
 import { PlayerCard } from "../components/PlayerCard.tsx";
 import { VenueBrief, venueCountsFor } from "../components/VenueBrief.tsx";
-import { SLOTS, keeperCovered, oversCovered, slotsFor } from "../game/rules.ts";
+import { SLOTS, eligible, keeperCovered, needs, oversCovered, slotsFor } from "../game/rules.ts";
 import { batInSlot, describeWeights, slotWeights } from "../game/slots.ts";
 import type { PoolPlayer, RunState } from "../game/types.ts";
 
@@ -16,6 +16,10 @@ export function DraftScreen({ state, editions, venues, squads, onPlace, onReroll
   const weights = useMemo(() => SLOTS.map((s) => slotWeights(editions, editionId, s.index + 1)), [editions, editionId]);
   const edition = editions.find((e) => e.id === editionId);
   const venueCounts = useMemo(() => (state.identity ? venueCountsFor(state.identity.team, squads, edition) : {}), [state.identity, squads, edition]);
+  // Once the open slots are down to what the side still needs, only bowlers and keepers can be taken.
+  const need = needs(state.picks);
+  const locked = need.open <= need.bowlers + need.keeper && need.open > 0;
+  const needText = [need.bowlers ? `${need.bowlers} more bowler${need.bowlers === 1 ? "" : "s"}` : "", need.keeper ? "a keeper" : ""].filter(Boolean).join(" and ");
   return (
     <section className="draft">
       <div className="card">
@@ -29,9 +33,10 @@ export function DraftScreen({ state, editions, venues, squads, onPlace, onReroll
         {state.spin ? (
           <>
             <h2>{state.spin.team} · {state.spin.editionId}</h2>
+            {locked && <p className="small lock-note">Your side still needs {needText} with {need.open} slot{need.open === 1 ? "" : "s"} left, so only players who bowl{need.keeper ? " or keep" : ""} can be taken now.</p>}
             <p className="small">Take one player into a slot. {selected ? (open.natural ? "Highlighted slots fit him; each shows his batting number in that slot." : "No natural slot left; he can fill any open one, at the batting number shown.") : "Tap a player first."}</p>
             <div className="spin-grid">
-              {state.spin.players.map((p) => <PlayerCard key={p.id} player={p} selected={selected?.id === p.id} onClick={() => setSelected(selected?.id === p.id ? null : p)} />)}
+              {state.spin.players.map((p) => <PlayerCard key={p.id} player={p} selected={selected?.id === p.id} ineligible={!eligible(p, state.picks)} onClick={() => setSelected(selected?.id === p.id ? null : p)} />)}
             </div>
             <div className="row">
               <button type="button" onClick={() => { setSelected(null); onReroll(); }} disabled={state.spinRerolls <= 0}>Reroll squad ({state.spinRerolls} left)</button>

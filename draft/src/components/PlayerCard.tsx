@@ -21,10 +21,10 @@ export function archetypeLabel(p: PoolPlayer): string {
   return parts.join(" · ") || p.role;
 }
 
-export function PlayerCard({ player, selected, compact, onClick }: { player: PoolPlayer; selected?: boolean; compact?: boolean; onClick?: () => void }) {
+export function PlayerCard({ player, selected, compact, ineligible, onClick }: { player: PoolPlayer; selected?: boolean; compact?: boolean; ineligible?: boolean; onClick?: () => void }) {
   const p = player;
   return (
-    <button type="button" className={`player ${selected ? "selected" : ""} ${compact ? "compact" : ""}`} onClick={onClick} disabled={!onClick}>
+    <button type="button" className={`player ${selected ? "selected" : ""} ${compact ? "compact" : ""} ${ineligible ? "ineligible" : ""}`} onClick={onClick} disabled={!onClick || ineligible} title={ineligible ? "Your side still needs bowlers or a keeper; only they can be taken now" : undefined}>
       <div className="player-head">
         <TierBadge tier={p.tier} />
         <span className="player-name">{p.name}</span>

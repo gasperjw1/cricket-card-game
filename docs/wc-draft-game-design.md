@@ -1087,7 +1087,12 @@ fielding. The simulation is not required to reproduce real results (§11).
   **built**; (3) match-by-match pacing (simulate once, reveal fixture by fixture with play next /
   sim to my next / sim the rest, hub tabs for fixtures, standings, bracket, squad stats); (4) live
   playback of the ball log with templated commentary and speed control; (5) headlines. The engine's
-  own play is untouched by (1): dismissal detail is drawn on a forked stream.
+  own play is untouched by (1): dismissal detail is drawn on a forked stream. Same day, after Yash's
+  second look: summary and scorecard laid out by innings (first innings left, second right), a
+  **Stats tab** (your squad plus tournament leaders over every match: runs, wickets, sixes,
+  boundaries, strike rate, economy, awards; all fixtures' scorecards are now kept), and a **draft
+  guard**: once the open slots equal what the side still needs (five who bowl, a keeper), only
+  players meeting a need can be taken; the rule bites first after five picks.
 - Not yet built: Cricket-IQ mode (names only), head-to-head, leaderboard (performance score beside
   squad rating), share links, Timeless and Tournament Form tags on cards, ratings-visible career
   stats, coach build bonuses and Dynamic Duos (§5.10–5.11), Positionless slot bonus, rarity tuning
