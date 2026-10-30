@@ -1,0 +1,84 @@
+{
+  "editionId": "2024",
+  "runs": 200,
+  "unbeatenPct": 0.5,
+  "championPct": 5.5,
+  "meanWinPct": 42.4,
+  "byDecile": [
+    {
+      "decile": 1,
+      "runs": 20,
+      "meanScore": 69.8,
+      "unbeatenPct": 0,
+      "championPct": 0
+    },
+    {
+      "decile": 2,
+      "runs": 20,
+      "meanScore": 71.9,
+      "unbeatenPct": 0,
+      "championPct": 5
+    },
+    {
+      "decile": 3,
+      "runs": 20,
+      "meanScore": 72.8,
+      "unbeatenPct": 0,
+      "championPct": 0
+    },
+    {
+      "decile": 4,
+      "runs": 20,
+      "meanScore": 73.7,
+      "unbeatenPct": 5,
+      "championPct": 10
+    },
+    {
+      "decile": 5,
+      "runs": 20,
+      "meanScore": 74.4,
+      "unbeatenPct": 0,
+      "championPct": 0
+    },
+    {
+      "decile": 6,
+      "runs": 20,
+      "meanScore": 75.3,
+      "unbeatenPct": 0,
+      "championPct": 10
+    },
+    {
+      "decile": 7,
+      "runs": 20,
+      "meanScore": 76.2,
+      "unbeatenPct": 0,
+      "championPct": 5
+    },
+    {
+      "decile": 8,
+      "runs": 20,
+      "meanScore": 77,
+      "unbeatenPct": 0,
+      "championPct": 15
+    },
+    {
+      "decile": 9,
+      "runs": 20,
+      "meanScore": 78,
+      "unbeatenPct": 0,
+      "championPct": 0
+    },
+    {
+      "decile": 10,
+      "runs": 20,
+      "meanScore": 79.6,
+      "unbeatenPct": 0,
+      "championPct": 10
+    }
+  ],
+  "real": {
+    "runs": 100,
+    "unbeatenPct": 1,
+    "championPct": 8
+  }
+}

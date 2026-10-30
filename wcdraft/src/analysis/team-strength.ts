@@ -6,16 +6,19 @@
  * strength. Plain Elo, no margin-of-victory term, K = 24; a decided tie-break counts as a win,
  * an undecided tie as a half.
  *
- * Known limitation: associates play mostly each other, so a team that dominates a weak regional
- * circuit (Uganda, Spain) drifts above its true level. Tiered starting ratings (full members
- * 1600, others 1400) soften this; Phase 1 should replace it with a regularised model before the
- * ratings feed opposition adjustment.
+ * Connectivity regularisation (2026-10-30, triggered by the tournament simulation rating Uganda
+ * at 1668 and a 53% win rate in the 2024 World Cup): associates play mostly each other, so a team
+ * that dominates a closed regional circuit drifts above its true level. The rating *read out* for
+ * a team caps the excess above `connectivity.cap` by the share of its last `connectivity.window`
+ * matches played against full members: a side that has not met a full member cannot read above
+ * 1500, a side whose recent games were half against full members keeps half of its excess. The
+ * raw rating still drives the Elo updates, so the system stays a plain Elo underneath.
  */
 
 import type { Match } from "../cricsheet/match.js";
 import { getOrCreate, round } from "../util/stats.js";
 
-export const ELO = { k: 24, initialFullMember: 1600, initialAssociate: 1400 } as const;
+export const ELO = { k: 24, initialFullMember: 1600, initialAssociate: 1400, connectivity: { window: 20, cap: 1500 } } as const;
 
 /** Opponent-strength bins used to condition population vectors and player exposure. */
 export const ELO_BIN_EDGES = [1400, 1500, 1600, 1700, 1800] as const;
@@ -49,14 +52,32 @@ export class TeamStrengthAnalysis {
     return this.isFullMember(team, Number(date.slice(0, 4))) ? ELO.initialFullMember : ELO.initialAssociate;
   }
 
-  /** Current (pre-match, if called before `add`) rating of a team. */
+  /** Whether each of a team's recent opponents was a full member at the time (newest last). */
+  private readonly recentOpposition = new Map<string, boolean[]>();
+
+  /** Current (pre-match, if called before `add`) rating of a team, connectivity-regularised. */
   ratingOf(team: string, date: string): number {
+    const raw = this.rating.get(team) ?? this.start(team, date);
+    const recent = this.recentOpposition.get(team);
+    if (!recent || !recent.length || raw <= ELO.connectivity.cap) return raw;
+    const fullShare = recent.filter(Boolean).length / recent.length;
+    return ELO.connectivity.cap + (raw - ELO.connectivity.cap) * fullShare;
+  }
+
+  /** The unregularised rating (for the timeline output). */
+  rawRatingOf(team: string, date: string): number {
     return this.rating.get(team) ?? this.start(team, date);
   }
 
   add(m: Match): void {
     const [a, b] = m.teams;
     if (!a || !b) return;
+    const year = Number(m.date.slice(0, 4));
+    for (const [team, opp] of [[a, b], [b, a]] as const) {
+      const list = getOrCreate(this.recentOpposition, team, () => []);
+      list.push(this.isFullMember(opp, year));
+      if (list.length > ELO.connectivity.window) list.shift();
+    }
     const winner = m.winner ?? m.tieWinner;
     if (!winner && m.result !== "tie") return; // no result: no information
     const ra = this.rating.get(a) ?? this.start(a, m.date);

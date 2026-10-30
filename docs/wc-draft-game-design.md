@@ -858,7 +858,7 @@ at 99. Named errors become test cases.
 | Two-sided (batter × bowler × context) bowling model | Phase 1.5 lifted bowling prediction to 0.19 (within-edition); the Erasmus 2024 case remains | Yash's review confirms associate bowlers with no top-side exposure are still over-rated |
 | Selection prior (usage) weight > 0 | Harness neutral at w = 0.5 (shares < 0.5), negative beyond; Squad Player tag covers the UI need | Playtesters draft rarely-picked players on ratings alone |
 | Cohort standardisation by top-ten squads | Scalar fix for the drifting reference population; a two-way (own-team × opponent) context expectation would remove the cause | Per-edition spreads still look wrong after review (2026 has 8 batters at 95+, 2024 has 7) |
-| Elo regularisation (closed associate circuits inflate) | Tiered starts soften it; opposition adjustment uses bins | Associate team strength visibly wrong in sim results |
+| ~~Elo regularisation (closed associate circuits inflate)~~ **Done 2026-10-30**: connectivity rule in `team-strength.ts` (excess above 1500 scaled by the share of the last 20 matches vs full members) | Trigger fired: Uganda at 1668 won 53% of simulated 2024 matches | Revisit if a well-connected associate (Netherlands, Scotland) looks wrong |
 | Individual condition sensitivity (Jansen-type bounce) | Per-player samples per surface too thin; bounce unobservable | Type-level interactions proven useful first |
 | Hazard credit from long careers (anchors like Kohli undervalued) | Hazard unpredictable at window sizes; career-length evidence is the only route | After per-innings refactor exposes per-innings hazard |
 | ODI prior refinement (crude SR / balls-per-out scaling) | Only 17 player-editions depend on it | 2007/2009 ratings look wrong in review |
@@ -926,10 +926,44 @@ at 99. Named errors become test cases.
   `npm run engine:calibrate -- 24 exponents|dispersion|terms|calibration|chase`. Tests:
   `test/engine.test.ts` (determinism, bookkeeping invariants, state-term directions, 2024 replay
   within tolerance).
+- **Tournament layer — BUILT 2026-10-30** (`engine/progression.ts`, `engine/tournament.ts`,
+  `engine/rarity.ts`; `npm run engine:tournament -- 2024 India 200`, `npm run engine:rarity -- 2024 300`).
+  - Progression is compiled from `formats.json` for all ten editions: group lists, pre-tournament
+    seed slots, Super-stage slot rules and knockout pairings. Seed-slot inheritance follows the ICC
+    rule (a seeded qualifier keeps its slot; a non-seed takes the highest vacated slot of its group),
+    first-round winners join their pre-assigned Super 10 / Super 12 group, and the stand-in takes
+    Afghanistan's slot at every stage, including the 2021/22 direct-entrant slot (Scotland and Sri
+    Lanka move up, UAE and PNG fill the first round) per `editions.json`.
+  - Fixtures: every real pairing keeps its real venue, date and who batted first; the stand-in plays
+    Afghanistan's real fixtures at their venues (`afghanistan-fixtures.json`); pairings that never
+    happened cycle through the venues that stage really used. Opponents field the eleven they really
+    fielded against that opponent, else their default eleven; the identity team fields the drafted
+    eleven everywhere.
+  - Standings: 2 points a win, net run rate with the full quota charged to a side bowled out, order by
+    points → wins → NRR → head-to-head → original seeding. Ties go to the edition's tie-break rule.
+  - Team-level calibration (150 full tournaments, real elevens): 2024 India 68% match wins and 21%
+    titles, then England, New Zealand, Pakistan, Australia, West Indies (61–68%), South Africa 57%,
+    associates 26–45%; 2022 the six strongest full members 63–66%; 2016 South Africa, Australia,
+    West Indies, India on top. Two fixes came out of this check and both improved the ratings
+    harness (within-edition batting 0.326 → 0.341): (1) **Elo connectivity regularisation** (the
+    parked item): a team's read-out rating keeps only the share of its excess above 1500 equal to
+    the share of its last 20 matches against full members, which took Uganda from 1668 to 1508 and
+    from a 53% simulated win rate to 41%; (2) the **edge-transfer split**: only exposure two or more
+    bins below the edition's top-third cutoff is discounted, as the slope was measured, which stopped
+    India's batters carrying 77% of their edge because their 2022–24 opposition averaged below the
+    top third (India had been simulating weaker than Pakistan).
+  - Rarity (first measurement, 200 random slot-constrained drafts in random identity slots, 2024):
+    champion 5.5%, unbeaten champion 0.5%, mean match win rate 42%; top squad decile 10% champion,
+    0% unbeaten. Real elevens in a random slot: champion 8%, unbeaten 1%. Random drafts are weak
+    (the pool is mostly Silver), so the spec's targets will be re-measured once the draft client's
+    rerolls, coach bonuses and spin tiers exist; the dial is `data/config/tiers.json` plus
+    `ENGINE` constants.
+  - Review case surfaced: Kohli 2016 now Gold at the 89th batting percentile (was Elite at the
+    94th); his value is scoring-rate led while his dismissal rate is shrunk hard (parked hazard
+    credit). The tier test treats Gold or Elite as acceptable for him.
 - Not yet built (Phase 2b): rain and DLS, intent profiles from coach philosophy, fielding Λ,
-  captain-rating noise, matchup terms (handedness / bowling type), tournament simulation with
-  standings, net run rate and brackets, and the unbeaten-run rarity measurement. Validation
-  tests 1–6, 8 of §9 remain to be written against the tournament layer.
+  captain-rating noise, matchup terms (handedness / bowling type), and the validation tests 1–6, 8
+  of §9 against the tournament layer.
 
 ### Phase 3 — Draft client (thin)
 - Identity spin, coach panel, player spins, lineup slots, overs meter, simulate, result,

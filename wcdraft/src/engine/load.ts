@@ -11,6 +11,7 @@ import { OUTCOMES, PHASE_LIST, type PhaseVectors, type PlayerRating, type Vector
 import type { EditionPopulations } from "../ratings/rate.js";
 import { paths, readJson } from "../util/io.js";
 import { SituationModel } from "./ball.js";
+import { buildProgression, type FormatEdition, type Progression, type StandInRules } from "./progression.js";
 import type { EnginePlayer, EngineTeam, MatchEnvironment } from "./types.js";
 
 export interface SquadMatchOut {
@@ -57,6 +58,19 @@ export interface EditionOut {
   year: number;
   rules: { tieBreak: string };
   environment: EnvironmentOut;
+  standIn: { team: string } | null;
+  slotChanges: StandInRules["slotChanges"];
+  teams: string[];
+}
+
+export interface AfghanistanFixture {
+  editionId: string;
+  date: string;
+  stage: string;
+  group: string | null;
+  opponent: string;
+  venueId: string;
+  afghanistanBattedFirst: boolean | null;
 }
 
 export interface VenueOut {
@@ -73,6 +87,8 @@ export interface EditionData {
   players: Map<string, EnginePlayer>;
   populations: EditionPopulations;
   situation: SituationModel;
+  progression: Progression;
+  afghanistanFixtures: AfghanistanFixture[];
 }
 
 const VENUE_PRIOR_BALLS = 1200;
@@ -118,7 +134,11 @@ export function loadEdition(editionId: string): EditionData {
   const players = new Map(ratings.map((r) => [`${r.team}|${r.personId}`, toEnginePlayer(r, populations)]));
   centreOnCohort(players, squads);
   situationCache ??= readJson<SituationTables>(resolve(paths.out, "situation.json"));
-  return { edition, venues, squads, players, populations, situation: new SituationModel(situationCache) };
+  const formats = readJson<{ editions: FormatEdition[] }>(resolve(paths.config, "formats.json")).editions.find((f) => f.editionId === editionId);
+  if (!formats) throw new Error(`no format for ${editionId} in formats.json`);
+  const progression = buildProgression(formats, { standIn: edition.standIn, slotChanges: edition.slotChanges ?? [] });
+  const afghanistanFixtures = readJson<{ fixtures: AfghanistanFixture[] }>(resolve(paths.config, "afghanistan-fixtures.json")).fixtures.filter((f) => f.editionId === editionId);
+  return { edition, venues, squads, players, populations, situation: new SituationModel(situationCache), progression, afghanistanFixtures };
 }
 
 /**

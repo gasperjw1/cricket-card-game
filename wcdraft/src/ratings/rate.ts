@@ -17,6 +17,7 @@
 import { resolve } from "node:path";
 import type { OutcomeKey, Phase } from "../cricsheet/match.js";
 import type { BuildResult } from "../pipeline/build.js";
+import { ELO_BINS, eloBin, type EloBin } from "../analysis/team-strength.js";
 import { paths, readJson } from "../util/io.js";
 import { MODEL, OUTCOMES, PHASE_LIST, type BattingArchetype, type BlockIn, type BowlingArchetype, type PhaseVectors, type PlayerEditionIn, type PlayerRating, type SkillRating, type Tier as CardTier, type TierConfig, type Vector } from "./model.js";
 import { rowMixtureInterp, smoothTwoWay, type TwoWayVectors } from "./two-way.js";
@@ -286,9 +287,28 @@ function rateSkill(pe: PlayerEditionIn, ctx: EditionContext, skill: Skill, optio
   // and untouched for steps down or sideways.
   let transfer = 1;
   if (opts.transferScaleElo > 0) {
-    const own = meanOpponentElo(pe.formExposure[skill]);
     const dest = opts.transferDestination === "topThird" ? ctx.topThirdElo : meanOpponentElo(ctx.editionOpponentMix[skill]);
-    if (own !== null && dest !== null && dest > own) transfer = Math.max(0.1, 1 - (dest - own) / opts.transferScaleElo);
+    if (opts.transferDestination === "topThird" && dest !== null) {
+      // Only the edge earned two or more bins below the cutoff is discounted, which is how the
+      // transfer slope was measured; exposure in the cutoff bin and the one below carries in full.
+      // (Before this split India's 2024 batters carried 77% of their edge because their 2022–24
+      // opposition averaged below the top third, which made India weaker than Pakistan in the sim.)
+      const cutoff = ELO_BINS.indexOf(eloBin(dest));
+      let strong = 0, weak = 0, weakElo = 0;
+      for (const [bin, balls] of Object.entries(pe.formExposure[skill])) {
+        if (balls <= 0 || !(bin in BIN_CENTRE)) continue;
+        if (ELO_BINS.indexOf(bin as EloBin) >= cutoff - 1) strong += balls;
+        else { weak += balls; weakElo += balls * BIN_CENTRE[bin]!; }
+      }
+      if (weak > 0) {
+        const own = weakElo / weak;
+        const t = own < dest ? Math.max(0.1, 1 - (dest - own) / opts.transferScaleElo) : 1;
+        transfer = (strong + weak * t) / (strong + weak);
+      }
+    } else {
+      const own = meanOpponentElo(pe.formExposure[skill]);
+      if (own !== null && dest !== null && dest > own) transfer = Math.max(0.1, 1 - (dest - own) / opts.transferScaleElo);
+    }
   }
   // On the context-expected path the relative vector already contains the player's own team
   // strength, so shaping its destination by the team tier counts that strength twice; it is

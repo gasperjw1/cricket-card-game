@@ -12,6 +12,8 @@
     "ratings:build": "tsx src/cli/ratings.ts",
     "engine:replay": "tsx src/cli/replay.ts",
     "engine:calibrate": "tsx src/cli/calibrate.ts",
+    "engine:tournament": "tsx src/cli/tournament.ts",
+    "engine:rarity": "tsx src/cli/rarity.ts",
     "typecheck": "tsc --noEmit",
     "test": "node --import tsx --test --test-reporter=spec test/*.test.ts"
   },

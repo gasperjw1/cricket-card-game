@@ -71,7 +71,7 @@ wcdraft/
 | `team-strength.json` | Elo timeline over all men's T20Is: rating per team per month and every match with its pre-match win expectation (for captaincy wins-above-expectation and opposition quality). Tiered starts: full members 1600, others 1400; see the known limitation in the source header |
 | `situation.json` | Engine situation tables: outcome counts by innings × over × wickets down, by innings × phase, and by chase required-rate band × phase |
 | `ratings/populations.json` | Per edition: the value populations the rating vectors live in and the realised edition population (engine inputs) |
-| `engine/replay-<edition>.json` | Replay harness output for an edition (written by `npm run engine:replay`) |
+| `engine/replay-<edition>.json`, `engine/rarity-<edition>.json` | Replay harness and rarity measurement outputs (written by `npm run engine:replay` / `engine:rarity`) |
 | `coverage.json`, `COVERAGE.md` | Which teams and players each edition gives us and who lacks form data |
 | `meta.json` | Archive snapshot, licence, form window, thresholds |
 
@@ -147,8 +147,10 @@ shrunk hard; ODI priors for 2007/2009 are crude; Sundar 2026 bowls 89 with the S
 ## Engine (Phase 2)
 
 ```bash
-npm run engine:replay -- 2024 100      # replay an edition's real matches with real elevens, compare with reality
-npm run engine:calibrate -- 20         # sweep the combination exponents over five editions
+npm run engine:replay -- 2024 100              # replay an edition's real matches with real elevens, compare with reality
+npm run engine:calibrate -- 24 dispersion      # sweep engine constants (exponents | dispersion | terms | calibration | chase)
+npm run engine:tournament -- 2024 India 200    # full tournaments with India's default eleven as the identity side
+npm run engine:rarity -- 2024 300              # unbeaten-run rarity for random drafts in random identity slots
 ```
 
 `src/engine/` is the per-ball simulator the draft game and, later, the management sim run on.
@@ -177,6 +179,12 @@ p ∝ base[phase] × batRel^0.7 × bowlRel^0.7 × τ[innings][over][wickets] × 
   noise; it reproduces the measured bowlers-used norm within a few points.
 - `load.ts` builds teams from a real match's eleven and batting order or from a squad's default
   eleven; `replay.ts` is the acceptance harness (environment, result calibration, bowler usage).
+- `progression.ts` compiles each edition's structure from `config/formats.json` (groups, seed
+  slots, Super-stage slot rules, knockout pairings) with the Afghanistan stand-in in Afghanistan's
+  slot; `tournament.ts` plays it: real pairings at their real venues with real elevens, generated
+  pairings at the stage's venues, standings with net run rate and the edition's tie-breakers,
+  seed-slot inheritance, knockouts, and an identity team fielding a drafted eleven; `rarity.ts`
+  measures how often random slot-constrained drafts go unbeaten.
 
 Replay of 2024 (44 matches × 40): run rate 7.13 real vs 6.96 simulated, balls per wicket 16.6 vs
 16.2, dot % 44.4 vs 44.5, chase win 58% vs 61%, favourite right in 73% of decided matches, Brier
