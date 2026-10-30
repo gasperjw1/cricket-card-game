@@ -15,6 +15,8 @@ import { BowlingUsageAnalysis } from "../analysis/bowling-usage.js";
 import { ContextPopulation } from "../analysis/context-population.js";
 import { SituationAnalysis, type SituationTables } from "../analysis/situation.js";
 import { MatchupAnalysis, type MatchupTables } from "../analysis/matchups.js";
+import { buildCaptaincy, type CaptaincyTables } from "../analysis/captaincy.js";
+import { buildCoaches, type CoachTables } from "../analysis/coaches.js";
 import { readLabels } from "./labels.js";
 import { EditionsAnalysis } from "../analysis/editions.js";
 import { LineupDeviationAnalysis } from "../analysis/lineup-deviation.js";
@@ -80,6 +82,9 @@ export interface BuildResult {
   situation: SituationTables;
   /** Engine matchup tables (Phase 2b): observed vs expected outcomes by batting hand × bowler class × phase. */
   matchups: MatchupTables;
+  /** Captaincy ratings (wins above Elo expectation, shrunk) joined to people; coach philosophy tags and intent profiles. */
+  captaincy: CaptaincyTables;
+  coaches: CoachTables;
   coverage: Coverage;
 }
 
@@ -263,6 +268,9 @@ export function runBuild(log: (msg: string) => void = () => {}): BuildResult {
   }
 
   const playerEditions = store.playerEditions();
+  const people = store.people();
+  const teamStrengthOut = teamStrength.summary();
+  const teamStyleOut = teamStyle.summary();
   const result: BuildResult = {
     meta: {
       generatedAt: new Date().toISOString(),
@@ -274,13 +282,15 @@ export function runBuild(log: (msg: string) => void = () => {}): BuildResult {
     editions: editions.summary(),
     venues: venues.summary(),
     playerEditions,
-    people: store.people(),
+    people,
     squads: store.squadsOut(),
     bowlingUsage: usage.summary(),
     lineupDeviation: lineup.summary(store.names),
     partnerships: partnerships.summary(store.names),
-    teamStyle: teamStyle.summary(),
-    teamStrength: teamStrength.summary(),
+    teamStyle: teamStyleOut,
+    teamStrength: teamStrengthOut,
+    captaincy: buildCaptaincy(people, teamStrengthOut.teams),
+    coaches: buildCoaches(teamStyleOut),
     odiTeamStrength: odiStrength.summary(),
     odiPopulationByYear,
     windowPopulation: windowPopulation.summary(),

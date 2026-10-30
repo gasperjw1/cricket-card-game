@@ -150,6 +150,8 @@ export interface BallContext {
   consecutiveDots: number;
   /** True on the delivery after a no-ball: the striker cannot be out other than run out. */
   freeHit: boolean;
+  /** Batting side's coach intent for this phase, SD units (0 when unknown). */
+  intent?: number;
 }
 
 const pow = (v: Vector, e: number): Vector => (e === 1 ? v : (Object.fromEntries(OUTCOMES.map((k) => [k, Math.pow(v[k], e)])) as Vector));
@@ -178,6 +180,20 @@ export function outcomeDistribution(striker: EnginePlayer, bowler: EnginePlayer,
     total += out[k];
   }
   for (const k of OUTCOMES) out[k] = total > 0 ? out[k] / total : 1 / OUTCOMES.length;
+  // Coach intent, applied in absolute terms after normalisation: boundaries and hazard both move
+  // by their multipliers and the mass comes out of the other cells, so the risk really is paid.
+  const z = Math.max(-ENGINE.intent.clip, Math.min(ENGINE.intent.clip, ctx.intent ?? 0));
+  if (z !== 0) {
+    const b4 = out["4"] * (1 + ENGINE.intent.boundaryPerSd * z), b6 = out["6"] * (1 + ENGINE.intent.boundaryPerSd * z);
+    const w = out.W * (1 + ENGINE.intent.hazardPerSd * z);
+    const fixed = b4 + b6 + w;
+    const restOld = 1 - out["4"] - out["6"] - out.W;
+    const restNew = Math.max(0.05, 1 - fixed);
+    const scale = restOld > 0 ? restNew / restOld : 1;
+    for (const k of OUTCOMES) out[k] = k === "4" ? b4 : k === "6" ? b6 : k === "W" ? w : out[k] * scale;
+    const t2 = OUTCOMES.reduce((a, k) => a + out[k], 0);
+    for (const k of OUTCOMES) out[k] /= t2;
+  }
   return out;
 }
 

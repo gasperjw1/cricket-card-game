@@ -853,8 +853,8 @@ at 99. Named errors become test cases.
 
 | Item | Why parked | Trigger to revisit |
 |---|---|---|
-| Captaincy ratings and coach philosophy tags from `captains.csv` / `coaches.csv` | Need name→person joins and only matter once an AI captain exists | Phase 2 bowling-allocation policy |
-| Decision on the 80 Cricinfo-sourced captain rows | Yash's call; no code depends on them yet | Captaincy work starts |
+| ~~Captaincy ratings and coach philosophy tags~~ **Done 2026-10-30** (`captaincy.json`, `coaches.json`; engine intent and allocation noise) | — | — |
+| Decision on the 80 Cricinfo-sourced captain rows | Excluded from `captaincy.json` (`includeCricinfoRows` flag); mostly associate stand-in captains, who therefore play with average captaincy | Yash's call |
 | Two-sided (batter × bowler × context) bowling model | Phase 1.5 lifted bowling prediction to 0.19 (within-edition); the Erasmus 2024 case remains | Yash's review confirms associate bowlers with no top-side exposure are still over-rated |
 | Selection prior (usage) weight > 0 | Harness neutral at w = 0.5 (shares < 0.5), negative beyond; Squad Player tag covers the UI need | Playtesters draft rarely-picked players on ratings alone |
 | Cohort standardisation by top-ten squads | Scalar fix for the drifting reference population; a two-way (own-team × opponent) context expectation would remove the cause | Per-edition spreads still look wrong after review (2026 has 8 batters at 95+, 2024 has 7) |
@@ -998,8 +998,45 @@ fielding. The simulation is not required to reproduce real results (§11).
   side goes through. First-innings interruptions are folded into the equal-overs case (no G50-style
   uplift). Replay metrics unchanged (2024 chase win 58.9% vs 58 real). Rain can be switched off per
   match (`rainProbability: 0`) for dry-weather modes.
-- Not yet built: intent profiles from coach philosophy, captain-rating noise, fielding Λ, and the
-  validation tests 1–6, 8 of §9 against the tournament layer.
+- **Coach philosophy and intent — BUILT 2026-10-30** (`analysis/coaches.ts` → `coaches.json`;
+  `ENGINE.intent`). Every tenure in `coaches.csv` is scored on era-relative team style over its
+  months (powerplay run rate, powerplay wickets per over, death run rate, lower-order run share,
+  wickets at 15, bowlers used, bowl-first share; team ÷ era − 1, innings-weighted), standardised
+  across coaches and shrunk by innings ÷ (innings + 20). Tags fire at |z| ≥ 0.6 with ≥ 20 innings:
+  Powerplay aggressor / anchor, Wicket preserver / Risk taker, Death hitter / conservative, Deep
+  batting / Top-heavy, Six-bowler rotation / Frontline trust, Bowl first / Bat first. 163 coaches
+  profiled (72 tenures lack style data, mostly pre-2007 or associate stand-ins); 103 rows carry the
+  World Cups coached, which is how a CPU side gets its coach. Face checks: Dravid 2021–24
+  *Powerplay aggressor, Wicket preserver, Death hitter, Top-heavy*; Gambhir and McCullum both
+  *Powerplay aggressor, Death hitter*; Fletcher 2011–15 *Wicket preserver, Death conservative, Bat
+  first*; Gibson's West Indies *Powerplay anchor*; Sammy's *Deep batting, Death hitter*. The engine
+  reads `intent` (powerplay z, middle z from wickets at 15, death z; clipped ±1.5): z = +1 lifts the
+  boundary cells ×1.15 (sized to the coach-level SD of era-relative powerplay run rate, 7.3%, with
+  boundaries carrying ≈60% of runs) and the dismissal cell ×1.03, applied in absolute terms after
+  normalisation so the risk is really paid. The risk slope comes from the setness curve (the one
+  place a batter accelerates by choice); the team-month and chase data were both confounded (better
+  sides score more *and* lose fewer; steep chases raise hazard ×1.46 for ×1.05 boundaries). Coach
+  intent does not touch the opponents' form or lineups (decision 2026-10-27).
+- **Captaincy — BUILT 2026-10-30** (`analysis/captaincy.ts` → `captaincy.json`;
+  `ENGINE.captainNoiseSlope`). Wins above Elo expectation per tenure in `captains.csv`
+  (expectation = the team's mean pre-match win probability over the tenure years × matches), shrunk
+  with a 20-match prior and standardised (clipped ±2). 121 captains join to Cricsheet people by
+  surname + initial within the team; 39 tenures have no person in the World Cup pool (Vaughan,
+  Strauss, Cook …) and 4 are ambiguous. **The 80 ESPNcricinfo-sourced rows stay excluded until
+  Yash decides** (they are mostly associate stand-in captains, so the main effect is that those
+  sides play with average captaincy). In the engine the fielding captain's z scales the
+  bowling-allocation noise: noise × (1 − 0.3 z), clipped to 0.4–1.6, so Rohit (z 1.6) picks bowlers
+  with half the randomness of an average captain. A CPU side's captain is the tenure covering the
+  edition year whose holder is in that eleven; the drafted side will name its own (Phase 3).
+- **Fielding Λ — PARKED 2026-10-30.** Cricsheet records catches, stumpings and run-outs but no
+  drops, misfields or chances, so a per-fielder conversion rate is not identifiable: a fielder with
+  many catches is one whose bowlers induce edges. The dismissal fingerprints (caught 59%, bowled 18%,
+  lbw 10% in 2024) are available for commentary and the dismissal-kind draw in the ball log, which
+  is where fielding will show up first. Trigger to revisit: a data source with fielding chances.
+- Replay metrics with intent and captaincy active are unchanged (2024: run rate 7.03 vs 7.13,
+  dot 44.5 vs 44.4, chase win 59 vs 58, Brier 0.168).
+- Not yet built: the validation tests 1–6, 8 of §9 against the tournament layer (see the Phase 2b
+  acceptance note below).
 
 ### Phase 3 — Draft client (thin)
 - Identity spin, coach panel, player spins, lineup slots, overs meter, simulate, result,

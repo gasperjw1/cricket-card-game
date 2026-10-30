@@ -49,6 +49,20 @@ export const ENGINE = {
   matchupExponent: 1 as number,
   matchupPrior: 2000 as number,
   /**
+   * Coach intent (Phase 2b, `analysis/coaches.ts`): one SD of coach-tenure intent moves the
+   * boundary cells by `boundaryPerSd` and the dismissal cell by `hazardPerSd`. Size: the coach-level
+   * SD of era-relative powerplay run rate is 7.3% (`coaches.json` → indexSd) and boundaries carry
+   * about 60% of runs, so z = +1 lifts boundary cells ×1.12. Risk cost: neither the team-month data
+   * (confounded by team quality: better sides score more and lose fewer) nor the chase table
+   * (confounded by pressure and opposition: hazard ×1.46 for ×1.05 boundaries) gives a clean
+   * chosen-intent frontier; the setness curve does, since the same batter accelerates by choice as
+   * he gets set (balls 25+: runs ×1.16, hazard ×1.06, i.e. ≈0.35 hazard per unit of scoring), which
+   * puts one SD of intent at ≈ +2.6% hazard.
+   */
+  intent: { boundaryPerSd: 0.15 as number, hazardPerSd: 0.03 as number, clip: 1.5 },
+  /** Captaincy: allocation noise × (1 − captainNoiseSlope × z), clipped to [0.4, 1.6] (z from `captaincy.json`). */
+  captainNoiseSlope: 0.3 as number,
+  /**
    * Dispersion. The variance decomposition in `situation.json` gives per-innings scoring effects of
    * SD 0.21 (bowler) and 0.19 (batter) against each player's career mean, which also absorb
    * opponent, venue and era for that player; the engine already conditions on those, so the day

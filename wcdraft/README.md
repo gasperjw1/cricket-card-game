@@ -71,6 +71,8 @@ wcdraft/
 | `team-strength.json` | Elo timeline over all men's T20Is: rating per team per month and every match with its pre-match win expectation (for captaincy wins-above-expectation and opposition quality). Tiered starts: full members 1600, others 1400; see the known limitation in the source header |
 | `situation.json` | Engine situation tables: outcome counts by innings × over × wickets down, by innings × phase, by chase required-rate band × phase, streak (with shuffled null), setness, ball-in-over, chase dots, day effects |
 | `matchups.json` | Engine matchup tables: observed vs expected outcomes by batting hand × bowler class × phase |
+| `coaches.json` | Coach tenures with era-relative style indices, philosophy tags and the engine's per-phase intent profile; the World Cups each coached |
+| `captaincy.json` | Captaincy ratings: wins above Elo expectation per tenure, shrunk and standardised, joined to Cricsheet people (Cricinfo-sourced rows excluded pending a decision) |
 | `ratings/populations.json` | Per edition: the value populations the rating vectors live in and the realised edition population (engine inputs) |
 | `engine/replay-<edition>.json`, `engine/rarity-<edition>.json` | Replay harness and rarity measurement outputs (written by `npm run engine:replay` / `engine:rarity`) |
 | `coverage.json`, `COVERAGE.md` | Which teams and players each edition gives us and who lacks form data |
@@ -161,8 +163,13 @@ It is pure given its inputs and a seed. Per delivery (`ball.ts`):
 p ∝ base[phase] × batRel^0.7 × bowlRel^0.7 × τ[innings][over][wickets] × chase[required rate]^0.15
     × streak (residual over a shuffled null) × setness (striker's balls faced) × ballInOver × chaseDots
     × matchup (batting hand × bowler class) × match, innings and player day effects × venue factor
-    × calibration (scoring 0.95, hazard 1.04)
+    × calibration (scoring 0.95, hazard 1.04), then coach intent on the boundary and dismissal cells
 ```
+
+- Coach intent (`coaches.json`) and captaincy (`captaincy.json`) attach to CPU sides from the
+  coach who took the team to that World Cup and the captain whose tenure covers it; the drafted
+  side gets its drafted coach and named captain. Intent buys boundaries with risk; a better captain
+  chooses bowlers with less noise.
 
 - `base` is the edition's realised per-phase population; the player relative vectors come from
   the ratings and are divided by the appearance-weighted mean of the edition's real squads so

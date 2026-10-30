@@ -41,6 +41,10 @@ export interface EngineTeam {
   players: EnginePlayer[];
   /** Player ids in batting order (all eleven). */
   battingOrder: string[];
+  /** Coach intent profile per phase in SD units (0 = era average); from the coach at that World Cup or the drafted coach. */
+  intent?: Record<Phase, number>;
+  /** Captaincy rating in SD units (0 = average); scales the bowling-allocation noise. */
+  captainZ?: number;
 }
 
 /** Scoring environment for one match. */

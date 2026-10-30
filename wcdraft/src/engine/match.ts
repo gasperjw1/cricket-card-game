@@ -65,8 +65,9 @@ export function simulateInnings(batting: EngineTeam, bowling: EngineTeam, env: M
 
   for (let over = 0; over < opts.overs && !done(); over += 1) {
     const eq = equivalentOver(over, opts.overs);
-    const ctxBase: BallContext = { innings: opts.index, over: eq, wickets, strikerBalls: 0, requiredRpo: null, scoringFactor, playerFactor: 1, streak: streakNow(), ballInOver: 1, consecutiveDots, freeHit: false };
-    const b = chooseBowler({ over, eqOver: eq, oversInInnings: opts.overs, maxOvers, bowlers, previousBowler, batters: [striker, nonStriker], env, situation, ctx: ctxBase }, rng);
+    const intent = batting.intent?.[phaseOf(eq)] ?? 0;
+    const ctxBase: BallContext = { innings: opts.index, over: eq, wickets, strikerBalls: 0, requiredRpo: null, scoringFactor, playerFactor: 1, streak: streakNow(), ballInOver: 1, consecutiveDots, freeHit: false, intent };
+    const b = chooseBowler({ over, eqOver: eq, oversInInnings: opts.overs, maxOvers, bowlers, previousBowler, batters: [striker, nonStriker], env, situation, ctx: ctxBase, captainZ: bowling.captainZ }, rng);
     b.overs.push(over);
     b.runsByOver.push(0);
     previousBowler = b.player.id;
@@ -85,7 +86,7 @@ export function simulateInnings(batting: EngineTeam, bowling: EngineTeam, env: M
       const ctx: BallContext = {
         innings: opts.index, over: eq, wickets, strikerBalls: sLine.balls, requiredRpo, scoringFactor,
         playerFactor: (batDay.get(striker.id) ?? 1) * (bowlDay.get(b.player.id) ?? 1),
-        streak: streakNow(), ballInOver: ballsThisOver + 1, consecutiveDots, freeHit: freeHit || noBall,
+        streak: streakNow(), ballInOver: ballsThisOver + 1, consecutiveDots, freeHit: freeHit || noBall, intent,
       };
       const dist = outcomeDistribution(striker, b.player, env, situation, ctx);
       const outcome = OUTCOMES[rng.pick(OUTCOMES.map((k) => dist[k]))]!;

@@ -70,7 +70,7 @@ describe("engine", { skip: !engineReady() && "engine data not built" }, () => {
     const b = simulateMatch(india, southAfrica, env, data.situation, { seed: "final-2024", keepBallLog: true });
     assert.deepEqual(a, b);
     const c = simulateMatch(india, southAfrica, env, data.situation, { seed: "another" });
-    assert.notDeepEqual(a.innings[0].runs + a.innings[1].runs, c.innings[0].runs + c.innings[1].runs);
+    assert.notDeepEqual(a.innings, c.innings, "a different seed plays a different match");
     for (const inn of a.innings) {
       assert.ok(inn.wickets <= 10 && inn.legalBalls <= 120);
       const batterRuns = inn.batting.reduce((s, x) => s + x.runs, 0);
@@ -113,13 +113,30 @@ describe("engine", { skip: !engineReady() && "engine data not built" }, () => {
         assert.ok(r.winner);
         if (r.rain!.parScore !== null) {
           assert.ok(r.innings[1].legalBalls <= r.rain!.cutAtBalls!);
-          assert.ok(r.margin && "dls" in r.margin);
+          // Decided on the par score, or level with par and settled by the tie-break.
+          assert.ok((r.margin && "dls" in r.margin) || r.tieBreak, `chase cut at par ${r.rain!.parScore}: margin ${JSON.stringify(r.margin)}`);
         }
       }
     }
     assert.ok((kinds.get("no-result") ?? 0) > 0 && (kinds.get("reduced") ?? 0) > 0 && (kinds.get("chase-cut") ?? 0) > 0, JSON.stringify([...kinds]));
     const dry = simulateMatch(india, southAfrica, env, data.situation, { seed: "dry", rainProbability: 0 });
     assert.equal(dry.rain, null);
+  });
+
+  it("carries coach intent and captaincy into the match (Phase 2b)", () => {
+    const profile = data.profiles.get("India")!;
+    assert.ok(profile.coach && profile.coach.name === "Rahul Dravid", `India 2024 coach ${profile.coach?.name}`);
+    assert.ok(profile.coach!.tags.includes("Powerplay aggressor"));
+    assert.ok(profile.captain && profile.captain.name === "RG Sharma", `India 2024 captain ${profile.captain?.name}`);
+    assert.ok(india.intent && india.intent.pp > 0.5, `India powerplay intent ${india.intent?.pp}`);
+    assert.ok(typeof india.captainZ === "number");
+    const striker = india.players.find((p) => p.name === "V Kohli")!;
+    const bowler = southAfrica.players.find((p) => p.name === "K Rabada")!;
+    const base = { innings: 1 as const, over: 3, wickets: 0, strikerBalls: 12, requiredRpo: null, scoringFactor: 1, playerFactor: 1, streak: "4-7" as const, ballInOver: 3, consecutiveDots: 0, freeHit: false };
+    const hot = outcomeDistribution(striker, bowler, env, data.situation, { ...base, intent: 1.5 });
+    const cold = outcomeDistribution(striker, bowler, env, data.situation, { ...base, intent: -1.5 });
+    assert.ok(hot["4"] + hot["6"] > cold["4"] + cold["6"] && hot.W > cold.W, "aggressive intent buys boundaries with risk");
+    assert.ok(expectedRunsOf(hot) > expectedRunsOf(cold));
   });
 
   it("reproduces the 2024 edition's environment, results and bowler usage within tolerance (acceptance)", () => {

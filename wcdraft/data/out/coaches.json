@@ -1,0 +1,6439 @@
+{
+  "tagThreshold": 0.6,
+  "minInnings": 8,
+  "indexSd": {
+    "ppIntent": 0.0779,
+    "ppPreservation": 0.1405,
+    "deathIntent": 0.0855,
+    "lowerOrderShare": 0.0343,
+    "wicketsAt15": 0.1064,
+    "bowlersUsed": 0.4028,
+    "bowlFirst": 0.1296
+  },
+  "coaches": [
+    {
+      "team": "Australia",
+      "coachName": "John Buchanan",
+      "role": "head coach",
+      "from": "1999",
+      "to": "2007",
+      "worldCups": [],
+      "months": 8,
+      "innings": 13,
+      "indices": {
+        "ppIntent": 0.1175,
+        "ppPreservation": 0.2161,
+        "deathIntent": 0.0524,
+        "lowerOrderShare": -0.0317,
+        "wicketsAt15": -0.1082,
+        "bowlersUsed": -1.2454,
+        "bowlFirst": -0.0338
+      },
+      "z": {
+        "ppIntent": 0.376,
+        "ppPreservation": 0.548,
+        "deathIntent": -0.044,
+        "lowerOrderShare": -0.357,
+        "wicketsAt15": -0.246,
+        "bowlersUsed": -0.901,
+        "bowlFirst": -0.162
+      },
+      "tags": [],
+      "intent": {
+        "pp": 0.376,
+        "mid": -0.246,
+        "death": -0.044
+      }
+    },
+    {
+      "team": "Australia",
+      "coachName": "Tim Nielsen",
+      "role": "head coach",
+      "from": "2007",
+      "to": "2011",
+      "worldCups": [
+        "2007",
+        "2009",
+        "2010"
+      ],
+      "months": 19,
+      "innings": 41,
+      "indices": {
+        "ppIntent": 0.0762,
+        "ppPreservation": 0.1337,
+        "deathIntent": 0.1023,
+        "lowerOrderShare": -0.0081,
+        "wicketsAt15": -0.071,
+        "bowlersUsed": -0.8227,
+        "bowlFirst": -0.0888
+      },
+      "z": {
+        "ppIntent": 0.285,
+        "ppPreservation": 0.542,
+        "deathIntent": 0.318,
+        "lowerOrderShare": -0.146,
+        "wicketsAt15": -0.184,
+        "bowlersUsed": -0.832,
+        "bowlFirst": -0.561
+      },
+      "tags": [
+        "Frontline trust"
+      ],
+      "intent": {
+        "pp": 0.285,
+        "mid": -0.184,
+        "death": 0.318
+      }
+    },
+    {
+      "team": "Australia",
+      "coachName": "Mickey Arthur",
+      "role": "head coach",
+      "from": "2011",
+      "to": "2013",
+      "worldCups": [
+        "2012"
+      ],
+      "months": 11,
+      "innings": 23,
+      "indices": {
+        "ppIntent": 0.03,
+        "ppPreservation": 0.2,
+        "deathIntent": -0.0843,
+        "lowerOrderShare": 0.0007,
+        "wicketsAt15": -0.0555,
+        "bowlersUsed": -0.12,
+        "bowlFirst": 0.1696
+      },
+      "z": {
+        "ppIntent": -0.091,
+        "ppPreservation": 0.683,
+        "deathIntent": -0.915,
+        "lowerOrderShare": 0.021,
+        "wicketsAt15": -0.068,
+        "bowlersUsed": 0.271,
+        "bowlFirst": 0.62
+      },
+      "tags": [
+        "Wicket preserver",
+        "Death conservative",
+        "Bowl first"
+      ],
+      "intent": {
+        "pp": -0.091,
+        "mid": -0.068,
+        "death": -0.915
+      }
+    },
+    {
+      "team": "Australia",
+      "coachName": "Darren Lehmann",
+      "role": "head coach",
+      "from": "2013",
+      "to": "2018",
+      "worldCups": [
+        "2014",
+        "2016"
+      ],
+      "months": 21,
+      "innings": 48,
+      "indices": {
+        "ppIntent": 0.1097,
+        "ppPreservation": 0.2138,
+        "deathIntent": 0.0458,
+        "lowerOrderShare": -0.0214,
+        "wicketsAt15": -0.096,
+        "bowlersUsed": -0.0217,
+        "bowlFirst": 0.0771
+      },
+      "z": {
+        "ppIntent": 0.603,
+        "ppPreservation": 0.971,
+        "deathIntent": -0.133,
+        "lowerOrderShare": -0.427,
+        "wicketsAt15": -0.359,
+        "bowlersUsed": 0.53,
+        "bowlFirst": 0.314
+      },
+      "tags": [
+        "Powerplay aggressor",
+        "Wicket preserver"
+      ],
+      "intent": {
+        "pp": 0.603,
+        "mid": -0.359,
+        "death": -0.133
+      }
+    },
+    {
+      "team": "Australia",
+      "coachName": "Justin Langer",
+      "role": "head coach",
+      "from": "2018",
+      "to": "2022",
+      "worldCups": [
+        "2021"
+      ],
+      "months": 22,
+      "innings": 71,
+      "indices": {
+        "ppIntent": 0.0968,
+        "ppPreservation": 0.08,
+        "deathIntent": 0.0406,
+        "lowerOrderShare": 0.002,
+        "wicketsAt15": -0.0236,
+        "bowlersUsed": -0.3655,
+        "bowlFirst": 0.181
+      },
+      "z": {
+        "ppIntent": 0.537,
+        "ppPreservation": 0.33,
+        "deathIntent": -0.194,
+        "lowerOrderShare": 0.06,
+        "wicketsAt15": 0.134,
+        "bowlersUsed": -0.08,
+        "bowlFirst": 0.973
+      },
+      "tags": [
+        "Bowl first"
+      ],
+      "intent": {
+        "pp": 0.537,
+        "mid": 0.134,
+        "death": -0.194
+      }
+    },
+    {
+      "team": "Australia",
+      "coachName": "Andrew McDonald",
+      "role": "head coach",
+      "from": "2022",
+      "to": "",
+      "worldCups": [
+        "2022",
+        "2024",
+        "2026"
+      ],
+      "months": 20,
+      "innings": 68,
+      "indices": {
+        "ppIntent": 0.259,
+        "ppPreservation": 0.0128,
+        "deathIntent": 0.0572,
+        "lowerOrderShare": -0.022,
+        "wicketsAt15": 0.0591,
+        "bowlersUsed": -0.319,
+        "bowlFirst": 0.1893
+      },
+      "z": {
+        "ppIntent": 2.141,
+        "ppPreservation": -0.042,
+        "deathIntent": -0.042,
+        "lowerOrderShare": -0.481,
+        "wicketsAt15": 0.733,
+        "bowlersUsed": 0.01,
+        "bowlFirst": 1.013
+      },
+      "tags": [
+        "Powerplay aggressor",
+        "Bowl first"
+      ],
+      "intent": {
+        "pp": 1.5,
+        "mid": 0.733,
+        "death": -0.042
+      }
+    },
+    {
+      "team": "Bangladesh",
+      "coachName": "Jamie Siddons",
+      "role": "head coach",
+      "from": "2007-10-28",
+      "to": "2011",
+      "worldCups": [
+        "2009",
+        "2010"
+      ],
+      "months": 7,
+      "innings": 9,
+      "indices": {
+        "ppIntent": -0.1205,
+        "ppPreservation": -0.3261,
+        "deathIntent": -0.2258,
+        "lowerOrderShare": 0.1788,
+        "wicketsAt15": 0.3443,
+        "bowlersUsed": -1.3067,
+        "bowlFirst": 0.0022
+      },
+      "z": {
+        "ppIntent": -0.653,
+        "ppPreservation": -0.766,
+        "deathIntent": -1.044,
+        "lowerOrderShare": 1.622,
+        "wicketsAt15": 1.127,
+        "bowlersUsed": -0.757,
+        "bowlFirst": -0.041
+      },
+      "tags": [],
+      "intent": {
+        "pp": -0.653,
+        "mid": 1.127,
+        "death": -1.044
+      }
+    },
+    {
+      "team": "Bangladesh",
+      "coachName": "Richard Pybus",
+      "role": "head coach",
+      "from": "2011",
+      "to": "2012",
+      "worldCups": [
+        "2012"
+      ],
+      "months": 5,
+      "innings": 8,
+      "indices": {
+        "ppIntent": 0.034,
+        "ppPreservation": -0.0446,
+        "deathIntent": 0.0335,
+        "lowerOrderShare": 0.0126,
+        "wicketsAt15": -0.1037,
+        "bowlersUsed": 0.2412,
+        "bowlFirst": -0.0362
+      },
+      "z": {
+        "ppIntent": -0.034,
+        "ppPreservation": -0.132,
+        "deathIntent": -0.095,
+        "lowerOrderShare": 0.11,
+        "wicketsAt15": -0.166,
+        "bowlersUsed": 0.401,
+        "bowlFirst": -0.123
+      },
+      "tags": [],
+      "intent": {
+        "pp": -0.034,
+        "mid": -0.166,
+        "death": -0.095
+      }
+    },
+    {
+      "team": "Bangladesh",
+      "coachName": "Shane Jurgensen",
+      "role": "head coach",
+      "from": "2012",
+      "to": "2014",
+      "worldCups": [
+        "2014"
+      ],
+      "months": 9,
+      "innings": 18,
+      "indices": {
+        "ppIntent": 0.0732,
+        "ppPreservation": -0.2034,
+        "deathIntent": 0.0093,
+        "lowerOrderShare": 0.01,
+        "wicketsAt15": 0.0445,
+        "bowlersUsed": -0.2033,
+        "bowlFirst": 0.0717
+      },
+      "z": {
+        "ppIntent": 0.182,
+        "ppPreservation": -0.755,
+        "deathIntent": -0.291,
+        "lowerOrderShare": 0.147,
+        "wicketsAt15": 0.385,
+        "bowlersUsed": 0.142,
+        "bowlFirst": 0.191
+      },
+      "tags": [],
+      "intent": {
+        "pp": 0.182,
+        "mid": 0.385,
+        "death": -0.291
+      }
+    },
+    {
+      "team": "Bangladesh",
+      "coachName": "Chandika Hathurusingha",
+      "role": "head coach",
+      "from": "2014",
+      "to": "2017",
+      "worldCups": [
+        "2016"
+      ],
+      "months": 12,
+      "innings": 35,
+      "indices": {
+        "ppIntent": -0.0054,
+        "ppPreservation": -0.1424,
+        "deathIntent": -0.0457,
+        "lowerOrderShare": 0.0462,
+        "wicketsAt15": 0.1642,
+        "bowlersUsed": -0.4457,
+        "bowlFirst": 0.0466
+      },
+      "z": {
+        "ppIntent": -0.397,
+        "ppPreservation": -0.738,
+        "deathIntent": -0.801,
+        "lowerOrderShare": 0.868,
+        "wicketsAt15": 1.233,
+        "bowlersUsed": -0.192,
+        "bowlFirst": 0.133
+      },
+      "tags": [
+        "Risk taker",
+        "Death conservative",
+        "Deep batting"
+      ],
+      "intent": {
+        "pp": -0.397,
+        "mid": 1.233,
+        "death": -0.801
+      }
+    },
+    {
+      "team": "Bangladesh",
+      "coachName": "Courtney Walsh",
+      "role": "interim",
+      "from": "2018",
+      "to": "2018",
+      "worldCups": [],
+      "months": 5,
+      "innings": 13,
+      "indices": {
+        "ppIntent": -0.0456,
+        "ppPreservation": -0.2493,
+        "deathIntent": -0.0218,
+        "lowerOrderShare": 0.0082,
+        "wicketsAt15": 0.0553,
+        "bowlersUsed": -0.3785,
+        "bowlFirst": -0.1285
+      },
+      "z": {
+        "ppIntent": -0.449,
+        "ppPreservation": -0.756,
+        "deathIntent": -0.386,
+        "lowerOrderShare": 0.101,
+        "wicketsAt15": 0.36,
+        "bowlersUsed": -0.053,
+        "bowlFirst": -0.45
+      },
+      "tags": [],
+      "intent": {
+        "pp": -0.449,
+        "mid": 0.36,
+        "death": -0.386
+      }
+    },
+    {
+      "team": "Bangladesh",
+      "coachName": "Richard Halsall",
+      "role": "interim",
+      "from": "2018",
+      "to": "2018",
+      "worldCups": [],
+      "months": 5,
+      "innings": 13,
+      "indices": {
+        "ppIntent": -0.0456,
+        "ppPreservation": -0.2493,
+        "deathIntent": -0.0218,
+        "lowerOrderShare": 0.0082,
+        "wicketsAt15": 0.0553,
+        "bowlersUsed": -0.3785,
+        "bowlFirst": -0.1285
+      },
+      "z": {
+        "ppIntent": -0.449,
+        "ppPreservation": -0.756,
+        "deathIntent": -0.386,
+        "lowerOrderShare": 0.101,
+        "wicketsAt15": 0.36,
+        "bowlersUsed": -0.053,
+        "bowlFirst": -0.45
+      },
+      "tags": [],
+      "intent": {
+        "pp": -0.449,
+        "mid": 0.36,
+        "death": -0.386
+      }
+    },
+    {
+      "team": "Bangladesh",
+      "coachName": "Steve Rhodes",
+      "role": "head coach",
+      "from": "2018",
+      "to": "2019",
+      "worldCups": [],
+      "months": 7,
+      "innings": 17,
+      "indices": {
+        "ppIntent": -0.0275,
+        "ppPreservation": -0.1512,
+        "deathIntent": -0.0253,
+        "lowerOrderShare": -0.0071,
+        "wicketsAt15": -0.0008,
+        "bowlersUsed": -0.1718,
+        "bowlFirst": -0.0006
+      },
+      "z": {
+        "ppIntent": -0.417,
+        "ppPreservation": -0.561,
+        "deathIntent": -0.469,
+        "lowerOrderShare": -0.086,
+        "wicketsAt15": 0.177,
+        "bowlersUsed": 0.174,
+        "bowlFirst": -0.071
+      },
+      "tags": [],
+      "intent": {
+        "pp": -0.417,
+        "mid": 0.177,
+        "death": -0.469
+      }
+    },
+    {
+      "team": "Bangladesh",
+      "coachName": "Russell Domingo",
+      "role": "head coach",
+      "from": "2019",
+      "to": "2022",
+      "worldCups": [
+        "2021"
+      ],
+      "months": 15,
+      "innings": 49,
+      "indices": {
+        "ppIntent": -0.0596,
+        "ppPreservation": -0.016,
+        "deathIntent": -0.0255,
+        "lowerOrderShare": 0.0059,
+        "wicketsAt15": 0.0123,
+        "bowlersUsed": -0.0994,
+        "bowlFirst": -0.1453
+      },
+      "z": {
+        "ppIntent": -0.937,
+        "ppPreservation": -0.185,
+        "deathIntent": -0.726,
+        "lowerOrderShare": 0.135,
+        "wicketsAt15": 0.361,
+        "bowlersUsed": 0.396,
+        "bowlFirst": -0.903
+      },
+      "tags": [
+        "Powerplay anchor",
+        "Death conservative",
+        "Bat first"
+      ],
+      "intent": {
+        "pp": -0.937,
+        "mid": 0.361,
+        "death": -0.726
+      }
+    },
+    {
+      "team": "Bangladesh",
+      "coachName": "Sridharan Sriram",
+      "role": "T20I head coach",
+      "from": "2022",
+      "to": "2022",
+      "worldCups": [
+        "2022"
+      ],
+      "months": 5,
+      "innings": 16,
+      "indices": {
+        "ppIntent": 0.065,
+        "ppPreservation": -0.0658,
+        "deathIntent": 0.0289,
+        "lowerOrderShare": 0.0064,
+        "wicketsAt15": 0.0681,
+        "bowlersUsed": -0.0887,
+        "bowlFirst": -0.1275
+      },
+      "z": {
+        "ppIntent": 0.124,
+        "ppPreservation": -0.273,
+        "deathIntent": -0.172,
+        "lowerOrderShare": 0.091,
+        "wicketsAt15": 0.46,
+        "bowlersUsed": 0.26,
+        "bowlFirst": -0.504
+      },
+      "tags": [],
+      "intent": {
+        "pp": 0.124,
+        "mid": 0.46,
+        "death": -0.172
+      }
+    },
+    {
+      "team": "Bangladesh",
+      "coachName": "Chandika Hathurusingha",
+      "role": "head coach",
+      "from": "2023",
+      "to": "2024",
+      "worldCups": [
+        "2024"
+      ],
+      "months": 8,
+      "innings": 33,
+      "indices": {
+        "ppIntent": 0.0005,
+        "ppPreservation": -0.0625,
+        "deathIntent": 0.0056,
+        "lowerOrderShare": 0.0011,
+        "wicketsAt15": -0.0203,
+        "bowlersUsed": -0.2245,
+        "bowlFirst": 0.213
+      },
+      "z": {
+        "ppIntent": -0.342,
+        "ppPreservation": -0.368,
+        "deathIntent": -0.41,
+        "lowerOrderShare": 0.032,
+        "wicketsAt15": 0.126,
+        "bowlersUsed": 0.154,
+        "bowlFirst": 0.93
+      },
+      "tags": [
+        "Bowl first"
+      ],
+      "intent": {
+        "pp": -0.342,
+        "mid": 0.126,
+        "death": -0.41
+      }
+    },
+    {
+      "team": "Bangladesh",
+      "coachName": "Phil Simmons",
+      "role": "head coach",
+      "from": "2024",
+      "to": "",
+      "worldCups": [
+        "2026"
+      ],
+      "months": 18,
+      "innings": 58,
+      "indices": {
+        "ppIntent": -0.0256,
+        "ppPreservation": -0.1333,
+        "deathIntent": 0.0484,
+        "lowerOrderShare": 0.0123,
+        "wicketsAt15": 0.0045,
+        "bowlersUsed": -0.7852,
+        "bowlFirst": 0.2072
+      },
+      "z": {
+        "ppIntent": -0.657,
+        "ppPreservation": -0.814,
+        "deathIntent": -0.117,
+        "lowerOrderShare": 0.28,
+        "wicketsAt15": 0.324,
+        "bowlersUsed": -0.851,
+        "bowlFirst": 1.077
+      },
+      "tags": [
+        "Powerplay anchor",
+        "Risk taker",
+        "Frontline trust",
+        "Bowl first"
+      ],
+      "intent": {
+        "pp": -0.657,
+        "mid": 0.324,
+        "death": -0.117
+      }
+    },
+    {
+      "team": "Canada",
+      "coachName": "Davy Jacobs",
+      "role": "head coach",
+      "from": "",
+      "to": "2017",
+      "worldCups": [],
+      "months": 4,
+      "innings": 9,
+      "indices": {
+        "ppIntent": -0.1046,
+        "ppPreservation": 0.0198,
+        "deathIntent": -0.1319,
+        "lowerOrderShare": 0.0583,
+        "wicketsAt15": 0.1149,
+        "bowlersUsed": 0.0611,
+        "bowlFirst": 0.0422
+      },
+      "z": {
+        "ppIntent": -0.589,
+        "ppPreservation": -0.002,
+        "deathIntent": -0.704,
+        "lowerOrderShare": 0.533,
+        "wicketsAt15": 0.457,
+        "bowlersUsed": 0.297,
+        "bowlFirst": 0.055
+      },
+      "tags": [],
+      "intent": {
+        "pp": -0.589,
+        "mid": 0.457,
+        "death": -0.704
+      }
+    },
+    {
+      "team": "Canada",
+      "coachName": "Ingleton Liburd",
+      "role": "head coach",
+      "from": "",
+      "to": "",
+      "worldCups": [
+        "2026"
+      ],
+      "months": 20,
+      "innings": 72,
+      "indices": {
+        "ppIntent": 0.0543,
+        "ppPreservation": 0.1016,
+        "deathIntent": 0.1704,
+        "lowerOrderShare": 0.0168,
+        "wicketsAt15": -0.0924,
+        "bowlersUsed": -0.7619,
+        "bowlFirst": -0.0978
+      },
+      "z": {
+        "ppIntent": 0.111,
+        "ppPreservation": 0.452,
+        "deathIntent": 0.993,
+        "lowerOrderShare": 0.398,
+        "wicketsAt15": -0.372,
+        "bowlersUsed": -0.851,
+        "bowlFirst": -0.708
+      },
+      "tags": [
+        "Death hitter",
+        "Frontline trust",
+        "Bat first"
+      ],
+      "intent": {
+        "pp": 0.111,
+        "mid": -0.372,
+        "death": 0.993
+      }
+    },
+    {
+      "team": "Canada",
+      "coachName": "Gus Logie",
+      "role": "head coach",
+      "from": "2012-05",
+      "to": "",
+      "worldCups": [],
+      "months": 18,
+      "innings": 67,
+      "indices": {
+        "ppIntent": 0.0682,
+        "ppPreservation": 0.1168,
+        "deathIntent": 0.1917,
+        "lowerOrderShare": 0.0109,
+        "wicketsAt15": -0.1085,
+        "bowlersUsed": -0.8291,
+        "bowlFirst": -0.0907
+      },
+      "z": {
+        "ppIntent": 0.247,
+        "ppPreservation": 0.528,
+        "deathIntent": 1.169,
+        "lowerOrderShare": 0.259,
+        "wicketsAt15": -0.483,
+        "bowlersUsed": -0.966,
+        "bowlFirst": -0.655
+      },
+      "tags": [
+        "Death hitter",
+        "Frontline trust",
+        "Bat first"
+      ],
+      "intent": {
+        "pp": 0.247,
+        "mid": -0.483,
+        "death": 1.169
+      }
+    },
+    {
+      "team": "Canada",
+      "coachName": "Henry Osinde",
+      "role": "interim",
+      "from": "2017",
+      "to": "",
+      "worldCups": [],
+      "months": 16,
+      "innings": 63,
+      "indices": {
+        "ppIntent": 0.077,
+        "ppPreservation": 0.1133,
+        "deathIntent": 0.2136,
+        "lowerOrderShare": 0.0109,
+        "wicketsAt15": -0.122,
+        "bowlersUsed": -0.8795,
+        "bowlFirst": -0.1178
+      },
+      "z": {
+        "ppIntent": 0.329,
+        "ppPreservation": 0.501,
+        "deathIntent": 1.347,
+        "lowerOrderShare": 0.255,
+        "wicketsAt15": -0.572,
+        "bowlersUsed": -1.047,
+        "bowlFirst": -0.804
+      },
+      "tags": [
+        "Death hitter",
+        "Frontline trust",
+        "Bat first"
+      ],
+      "intent": {
+        "pp": 0.329,
+        "mid": -0.572,
+        "death": 1.347
+      }
+    },
+    {
+      "team": "Canada",
+      "coachName": "Monty Desai",
+      "role": "head coach",
+      "from": "2019",
+      "to": "2019",
+      "worldCups": [],
+      "months": 2,
+      "innings": 10,
+      "indices": {
+        "ppIntent": 0.022,
+        "ppPreservation": 0.2111,
+        "deathIntent": 0.1544,
+        "lowerOrderShare": -0.0228,
+        "wicketsAt15": -0.1755,
+        "bowlersUsed": -0.59,
+        "bowlFirst": -0.088
+      },
+      "z": {
+        "ppIntent": -0.091,
+        "ppPreservation": 0.452,
+        "deathIntent": 0.361,
+        "lowerOrderShare": -0.215,
+        "wicketsAt15": -0.419,
+        "bowlersUsed": -0.22,
+        "bowlFirst": -0.276
+      },
+      "tags": [],
+      "intent": {
+        "pp": -0.091,
+        "mid": -0.419,
+        "death": 0.361
+      }
+    },
+    {
+      "team": "Canada",
+      "coachName": "Pubudu Dassanayake",
+      "role": "head coach",
+      "from": "2022",
+      "to": "",
+      "worldCups": [
+        "2024"
+      ],
+      "months": 13,
+      "innings": 49,
+      "indices": {
+        "ppIntent": 0.0543,
+        "ppPreservation": 0.0448,
+        "deathIntent": 0.2101,
+        "lowerOrderShare": 0.0283,
+        "wicketsAt15": -0.071,
+        "bowlersUsed": -1.0798,
+        "bowlFirst": -0.1016
+      },
+      "z": {
+        "ppIntent": 0.101,
+        "ppPreservation": 0.123,
+        "deathIntent": 1.231,
+        "lowerOrderShare": 0.599,
+        "wicketsAt15": -0.195,
+        "bowlersUsed": -1.332,
+        "bowlFirst": -0.663
+      },
+      "tags": [
+        "Death hitter",
+        "Frontline trust",
+        "Bat first"
+      ],
+      "intent": {
+        "pp": 0.101,
+        "mid": -0.195,
+        "death": 1.231
+      }
+    },
+    {
+      "team": "England",
+      "coachName": "Duncan Fletcher",
+      "role": "head coach",
+      "from": "1999",
+      "to": "2007",
+      "worldCups": [],
+      "months": 6,
+      "innings": 11,
+      "indices": {
+        "ppIntent": -0.0177,
+        "ppPreservation": -0.091,
+        "deathIntent": -0.013,
+        "lowerOrderShare": 0.0097,
+        "wicketsAt15": -0.0104,
+        "bowlersUsed": -0.6909,
+        "bowlFirst": -0.0727
+      },
+      "z": {
+        "ppIntent": -0.277,
+        "ppPreservation": -0.282,
+        "deathIntent": -0.311,
+        "lowerOrderShare": 0.107,
+        "wicketsAt15": 0.105,
+        "bowlersUsed": -0.323,
+        "bowlFirst": -0.252
+      },
+      "tags": [],
+      "intent": {
+        "pp": -0.277,
+        "mid": 0.105,
+        "death": -0.311
+      }
+    },
+    {
+      "team": "England",
+      "coachName": "Peter Moores",
+      "role": "head coach",
+      "from": "2007",
+      "to": "2009",
+      "worldCups": [
+        "2007"
+      ],
+      "months": 8,
+      "innings": 19,
+      "indices": {
+        "ppIntent": 0.0415,
+        "ppPreservation": -0.0131,
+        "deathIntent": -0.023,
+        "lowerOrderShare": -0.0164,
+        "wicketsAt15": -0.0827,
+        "bowlersUsed": 0.0395,
+        "bowlFirst": -0.2032
+      },
+      "z": {
+        "ppIntent": -0.011,
+        "ppPreservation": -0.116,
+        "deathIntent": -0.484,
+        "lowerOrderShare": -0.224,
+        "wicketsAt15": -0.187,
+        "bowlersUsed": 0.44,
+        "bowlFirst": -0.837
+      },
+      "tags": [],
+      "intent": {
+        "pp": -0.011,
+        "mid": -0.187,
+        "death": -0.484
+      }
+    },
+    {
+      "team": "England",
+      "coachName": "Andy Flower",
+      "role": "head coach",
+      "from": "2009",
+      "to": "2014",
+      "worldCups": [
+        "2009",
+        "2010",
+        "2012"
+      ],
+      "months": 24,
+      "innings": 56,
+      "indices": {
+        "ppIntent": 0.0407,
+        "ppPreservation": -0.0349,
+        "deathIntent": -0.0159,
+        "lowerOrderShare": -0.0065,
+        "wicketsAt15": 0.0009,
+        "bowlersUsed": -0.3668,
+        "bowlFirst": 0.0784
+      },
+      "z": {
+        "ppIntent": -0.024,
+        "ppPreservation": -0.29,
+        "deathIntent": -0.671,
+        "lowerOrderShare": -0.126,
+        "wicketsAt15": 0.296,
+        "bowlersUsed": -0.078,
+        "bowlFirst": 0.335
+      },
+      "tags": [
+        "Death conservative"
+      ],
+      "intent": {
+        "pp": -0.024,
+        "mid": 0.296,
+        "death": -0.671
+      }
+    },
+    {
+      "team": "England",
+      "coachName": "Ashley Giles",
+      "role": "T20I head coach",
+      "from": "2012",
+      "to": "2014",
+      "worldCups": [
+        "2014"
+      ],
+      "months": 13,
+      "innings": 30,
+      "indices": {
+        "ppIntent": 0.0379,
+        "ppPreservation": -0.1503,
+        "deathIntent": 0.0246,
+        "lowerOrderShare": 0.028,
+        "wicketsAt15": 0.1148,
+        "bowlersUsed": -0.2667,
+        "bowlFirst": 0.1227
+      },
+      "z": {
+        "ppIntent": -0.041,
+        "ppPreservation": -0.73,
+        "deathIntent": -0.262,
+        "lowerOrderShare": 0.5,
+        "wicketsAt15": 0.884,
+        "bowlersUsed": 0.085,
+        "bowlFirst": 0.478
+      },
+      "tags": [
+        "Risk taker"
+      ],
+      "intent": {
+        "pp": -0.041,
+        "mid": 0.884,
+        "death": -0.262
+      }
+    },
+    {
+      "team": "England",
+      "coachName": "Peter Moores",
+      "role": "head coach",
+      "from": "2014",
+      "to": "2015",
+      "worldCups": [],
+      "months": 8,
+      "innings": 17,
+      "indices": {
+        "ppIntent": -0.0118,
+        "ppPreservation": -0.1949,
+        "deathIntent": 0.0694,
+        "lowerOrderShare": 0.0442,
+        "wicketsAt15": 0.0346,
+        "bowlersUsed": -0.4694,
+        "bowlFirst": -0.1882
+      },
+      "z": {
+        "ppIntent": -0.325,
+        "ppPreservation": -0.704,
+        "deathIntent": 0.04,
+        "lowerOrderShare": 0.6,
+        "wicketsAt15": 0.33,
+        "bowlersUsed": -0.166,
+        "bowlFirst": -0.736
+      },
+      "tags": [],
+      "intent": {
+        "pp": -0.325,
+        "mid": 0.33,
+        "death": 0.04
+      }
+    },
+    {
+      "team": "England",
+      "coachName": "Trevor Bayliss",
+      "role": "head coach",
+      "from": "2015",
+      "to": "2019",
+      "worldCups": [
+        "2016"
+      ],
+      "months": 19,
+      "innings": 38,
+      "indices": {
+        "ppIntent": 0.104,
+        "ppPreservation": 0.1152,
+        "deathIntent": 0.0422,
+        "lowerOrderShare": -0.0271,
+        "wicketsAt15": -0.0702,
+        "bowlersUsed": -0.5595,
+        "bowlFirst": 0.1355
+      },
+      "z": {
+        "ppIntent": 0.512,
+        "ppPreservation": 0.442,
+        "deathIntent": -0.151,
+        "lowerOrderShare": -0.505,
+        "wicketsAt15": -0.174,
+        "bowlersUsed": -0.383,
+        "bowlFirst": 0.586
+      },
+      "tags": [],
+      "intent": {
+        "pp": 0.512,
+        "mid": -0.174,
+        "death": -0.151
+      }
+    },
+    {
+      "team": "England",
+      "coachName": "Chris Silverwood",
+      "role": "head coach",
+      "from": "2019",
+      "to": "2022",
+      "worldCups": [
+        "2021"
+      ],
+      "months": 18,
+      "innings": 58,
+      "indices": {
+        "ppIntent": 0.1434,
+        "ppPreservation": 0.0834,
+        "deathIntent": 0.1106,
+        "lowerOrderShare": -0.0394,
+        "wicketsAt15": -0.1264,
+        "bowlersUsed": -0.0874,
+        "bowlFirst": 0.296
+      },
+      "z": {
+        "ppIntent": 0.957,
+        "ppPreservation": 0.333,
+        "deathIntent": 0.424,
+        "lowerOrderShare": -0.84,
+        "wicketsAt15": -0.591,
+        "bowlersUsed": 0.437,
+        "bowlFirst": 1.587
+      },
+      "tags": [
+        "Powerplay aggressor",
+        "Top-heavy",
+        "Bowl first"
+      ],
+      "intent": {
+        "pp": 0.957,
+        "mid": -0.591,
+        "death": 0.424
+      }
+    },
+    {
+      "team": "England",
+      "coachName": "Matthew Mott",
+      "role": "T20I head coach",
+      "from": "2022",
+      "to": "2024",
+      "worldCups": [
+        "2022",
+        "2024"
+      ],
+      "months": 13,
+      "innings": 50,
+      "indices": {
+        "ppIntent": 0.2028,
+        "ppPreservation": 0.2019,
+        "deathIntent": 0.1173,
+        "lowerOrderShare": -0.0493,
+        "wicketsAt15": -0.1047,
+        "bowlersUsed": 0.1218,
+        "bowlFirst": 0.1876
+      },
+      "z": {
+        "ppIntent": 1.464,
+        "ppPreservation": 0.922,
+        "deathIntent": 0.463,
+        "lowerOrderShare": -1.012,
+        "wicketsAt15": -0.422,
+        "bowlersUsed": 0.791,
+        "bowlFirst": 0.927
+      },
+      "tags": [
+        "Powerplay aggressor",
+        "Wicket preserver",
+        "Top-heavy",
+        "Six-bowler rotation",
+        "Bowl first"
+      ],
+      "intent": {
+        "pp": 1.464,
+        "mid": -0.422,
+        "death": 0.463
+      }
+    },
+    {
+      "team": "England",
+      "coachName": "Paul Collingwood",
+      "role": "interim",
+      "from": "2022-02",
+      "to": "2022",
+      "worldCups": [],
+      "months": 4,
+      "innings": 19,
+      "indices": {
+        "ppIntent": 0.1954,
+        "ppPreservation": 0.042,
+        "deathIntent": 0.1836,
+        "lowerOrderShare": -0.0327,
+        "wicketsAt15": -0.0584,
+        "bowlersUsed": 0.0374,
+        "bowlFirst": 0.1732
+      },
+      "z": {
+        "ppIntent": 0.952,
+        "ppPreservation": 0.075,
+        "deathIntent": 0.694,
+        "lowerOrderShare": -0.455,
+        "wicketsAt15": -0.076,
+        "bowlersUsed": 0.437,
+        "bowlFirst": 0.578
+      },
+      "tags": [],
+      "intent": {
+        "pp": 0.952,
+        "mid": -0.076,
+        "death": 0.694
+      }
+    },
+    {
+      "team": "England",
+      "coachName": "Brendon McCullum",
+      "role": "T20I head coach",
+      "from": "2025-01",
+      "to": "",
+      "worldCups": [
+        "2026"
+      ],
+      "months": 9,
+      "innings": 29,
+      "indices": {
+        "ppIntent": 0.2674,
+        "ppPreservation": 0.0423,
+        "deathIntent": 0.2418,
+        "lowerOrderShare": -0.0206,
+        "wicketsAt15": -0.1538,
+        "bowlersUsed": -0.6497,
+        "bowlFirst": 0.0952
+      },
+      "z": {
+        "ppIntent": 1.704,
+        "ppPreservation": 0.092,
+        "deathIntent": 1.245,
+        "lowerOrderShare": -0.344,
+        "wicketsAt15": -0.623,
+        "bowlersUsed": -0.478,
+        "bowlFirst": 0.346
+      },
+      "tags": [
+        "Powerplay aggressor",
+        "Death hitter"
+      ],
+      "intent": {
+        "pp": 1.5,
+        "mid": -0.623,
+        "death": 1.245
+      }
+    },
+    {
+      "team": "Hong Kong",
+      "coachName": "Charlie Burke",
+      "role": "head coach",
+      "from": "2010",
+      "to": "2015",
+      "worldCups": [
+        "2014"
+      ],
+      "months": 4,
+      "innings": 9,
+      "indices": {
+        "ppIntent": -0.1832,
+        "ppPreservation": -0.1999,
+        "deathIntent": -0.1546,
+        "lowerOrderShare": 0.1312,
+        "wicketsAt15": 0.1934,
+        "bowlersUsed": -0.2189,
+        "bowlFirst": 0.4178
+      },
+      "z": {
+        "ppIntent": -0.902,
+        "ppPreservation": -0.487,
+        "deathIntent": -0.786,
+        "lowerOrderShare": 1.192,
+        "wicketsAt15": 0.686,
+        "bowlersUsed": 0.081,
+        "bowlFirst": 0.954
+      },
+      "tags": [],
+      "intent": {
+        "pp": -0.902,
+        "mid": 0.686,
+        "death": -0.786
+      }
+    },
+    {
+      "team": "Hong Kong",
+      "coachName": "Simon Cook",
+      "role": "head coach",
+      "from": "2015",
+      "to": "2019",
+      "worldCups": [
+        "2016"
+      ],
+      "months": 8,
+      "innings": 25,
+      "indices": {
+        "ppIntent": -0.0392,
+        "ppPreservation": -0.2596,
+        "deathIntent": -0.0556,
+        "lowerOrderShare": 0.0632,
+        "wicketsAt15": 0.0579,
+        "bowlersUsed": 0.2308,
+        "bowlFirst": -0.1064
+      },
+      "z": {
+        "ppIntent": -0.588,
+        "ppPreservation": -1.107,
+        "deathIntent": -0.763,
+        "lowerOrderShare": 1.033,
+        "wicketsAt15": 0.521,
+        "bowlersUsed": 0.766,
+        "bowlFirst": -0.539
+      },
+      "tags": [
+        "Risk taker",
+        "Death conservative",
+        "Deep batting",
+        "Six-bowler rotation"
+      ],
+      "intent": {
+        "pp": -0.588,
+        "mid": 0.521,
+        "death": -0.763
+      }
+    },
+    {
+      "team": "Hong Kong",
+      "coachName": "Trent Johnston",
+      "role": "head coach",
+      "from": "2019",
+      "to": "2022",
+      "worldCups": [],
+      "months": 6,
+      "innings": 27,
+      "indices": {
+        "ppIntent": -0.0182,
+        "ppPreservation": -0.175,
+        "deathIntent": -0.0322,
+        "lowerOrderShare": 0.0019,
+        "wicketsAt15": -0.1225,
+        "bowlersUsed": 0.1904,
+        "bowlFirst": -0.0552
+      },
+      "z": {
+        "ppIntent": -0.453,
+        "ppPreservation": -0.799,
+        "deathIntent": -0.632,
+        "lowerOrderShare": 0.043,
+        "wicketsAt15": -0.435,
+        "bowlersUsed": 0.734,
+        "bowlFirst": -0.331
+      },
+      "tags": [
+        "Risk taker",
+        "Death conservative",
+        "Six-bowler rotation"
+      ],
+      "intent": {
+        "pp": -0.453,
+        "mid": -0.435,
+        "death": -0.632
+      }
+    },
+    {
+      "team": "Hong Kong",
+      "coachName": "Simon Willis",
+      "role": "head coach",
+      "from": "2023",
+      "to": "2025",
+      "worldCups": [],
+      "months": 14,
+      "innings": 61,
+      "indices": {
+        "ppIntent": 0.0379,
+        "ppPreservation": 0.0261,
+        "deathIntent": 0.0341,
+        "lowerOrderShare": -0.0145,
+        "wicketsAt15": -0.1345,
+        "bowlersUsed": -0.2293,
+        "bowlFirst": -0.0057
+      },
+      "z": {
+        "ppIntent": -0.051,
+        "ppPreservation": 0.03,
+        "deathIntent": -0.245,
+        "lowerOrderShare": -0.304,
+        "wicketsAt15": -0.656,
+        "bowlersUsed": 0.177,
+        "bowlFirst": -0.146
+      },
+      "tags": [],
+      "intent": {
+        "pp": -0.051,
+        "mid": -0.656,
+        "death": -0.245
+      }
+    },
+    {
+      "team": "Hong Kong",
+      "coachName": "Kaushal Silva",
+      "role": "head coach",
+      "from": "2025",
+      "to": "",
+      "worldCups": [],
+      "months": 10,
+      "innings": 38,
+      "indices": {
+        "ppIntent": 0.0626,
+        "ppPreservation": 0.1094,
+        "deathIntent": 0.0019,
+        "lowerOrderShare": -0.0353,
+        "wicketsAt15": -0.1618,
+        "bowlersUsed": -0.4832,
+        "bowlFirst": -0.0371
+      },
+      "z": {
+        "ppIntent": 0.163,
+        "ppPreservation": 0.415,
+        "deathIntent": -0.46,
+        "lowerOrderShare": -0.661,
+        "wicketsAt15": -0.739,
+        "bowlersUsed": -0.259,
+        "bowlFirst": -0.286
+      },
+      "tags": [
+        "Top-heavy"
+      ],
+      "intent": {
+        "pp": 0.163,
+        "mid": -0.739,
+        "death": -0.46
+      }
+    },
+    {
+      "team": "India",
+      "coachName": "Greg Chappell",
+      "role": "head coach",
+      "from": "2005",
+      "to": "2007",
+      "worldCups": [],
+      "months": 3,
+      "innings": 8,
+      "indices": {
+        "ppIntent": -0.0625,
+        "ppPreservation": 0.0045,
+        "deathIntent": 0.1606,
+        "lowerOrderShare": -0.0678,
+        "wicketsAt15": -0.241,
+        "bowlersUsed": -0.2813,
+        "bowlFirst": -0.345
+      },
+      "z": {
+        "ppIntent": -0.388,
+        "ppPreservation": -0.033,
+        "deathIntent": 0.33,
+        "lowerOrderShare": -0.559,
+        "wicketsAt15": -0.535,
+        "bowlersUsed": 0.03,
+        "bowlFirst": -0.803
+      },
+      "tags": [],
+      "intent": {
+        "pp": -0.388,
+        "mid": -0.535,
+        "death": 0.33
+      }
+    },
+    {
+      "team": "India",
+      "coachName": "Lalchand Rajput",
+      "role": "head coach",
+      "from": "2007",
+      "to": "2008",
+      "worldCups": [
+        "2007"
+      ],
+      "months": 3,
+      "innings": 8,
+      "indices": {
+        "ppIntent": -0.0671,
+        "ppPreservation": -0.1563,
+        "deathIntent": 0.1048,
+        "lowerOrderShare": -0.0229,
+        "wicketsAt15": -0.1749,
+        "bowlersUsed": -0.99,
+        "bowlFirst": -0.3863
+      },
+      "z": {
+        "ppIntent": -0.405,
+        "ppPreservation": -0.359,
+        "deathIntent": 0.143,
+        "lowerOrderShare": -0.185,
+        "wicketsAt15": -0.357,
+        "bowlersUsed": -0.472,
+        "bowlFirst": -0.895
+      },
+      "tags": [],
+      "intent": {
+        "pp": -0.405,
+        "mid": -0.357,
+        "death": 0.143
+      }
+    },
+    {
+      "team": "India",
+      "coachName": "Gary Kirsten",
+      "role": "head coach",
+      "from": "2008",
+      "to": "2011",
+      "worldCups": [
+        "2009",
+        "2010"
+      ],
+      "months": 10,
+      "innings": 20,
+      "indices": {
+        "ppIntent": -0.0281,
+        "ppPreservation": -0.1448,
+        "deathIntent": 0.0623,
+        "lowerOrderShare": 0.0363,
+        "wicketsAt15": 0.0972,
+        "bowlersUsed": -0.5665,
+        "bowlFirst": 0.042
+      },
+      "z": {
+        "ppIntent": -0.458,
+        "ppPreservation": -0.588,
+        "deathIntent": 0.003,
+        "lowerOrderShare": 0.538,
+        "wicketsAt15": 0.653,
+        "bowlersUsed": -0.301,
+        "bowlFirst": 0.087
+      },
+      "tags": [],
+      "intent": {
+        "pp": -0.458,
+        "mid": 0.653,
+        "death": 0.003
+      }
+    },
+    {
+      "team": "India",
+      "coachName": "Duncan Fletcher",
+      "role": "head coach",
+      "from": "2011",
+      "to": "2015",
+      "worldCups": [
+        "2012",
+        "2014"
+      ],
+      "months": 15,
+      "innings": 26,
+      "indices": {
+        "ppIntent": 0.0476,
+        "ppPreservation": 0.2013,
+        "deathIntent": -0.0214,
+        "lowerOrderShare": -0.018,
+        "wicketsAt15": -0.0941,
+        "bowlersUsed": -0.5369,
+        "bowlFirst": 0.0419
+      },
+      "z": {
+        "ppIntent": 0.032,
+        "ppPreservation": 0.727,
+        "deathIntent": -0.551,
+        "lowerOrderShare": -0.286,
+        "wicketsAt15": -0.278,
+        "bowlersUsed": -0.298,
+        "bowlFirst": 0.098
+      },
+      "tags": [
+        "Wicket preserver"
+      ],
+      "intent": {
+        "pp": 0.032,
+        "mid": -0.278,
+        "death": -0.551
+      }
+    },
+    {
+      "team": "India",
+      "coachName": "Ravi Shastri",
+      "role": "head coach",
+      "from": "2014",
+      "to": "2016",
+      "worldCups": [
+        "2016"
+      ],
+      "months": 10,
+      "innings": 27,
+      "indices": {
+        "ppIntent": 0.0308,
+        "ppPreservation": 0.1264,
+        "deathIntent": 0.0797,
+        "lowerOrderShare": -0.0532,
+        "wicketsAt15": -0.1442,
+        "bowlersUsed": -0.0767,
+        "bowlFirst": 0.1719
+      },
+      "z": {
+        "ppIntent": -0.091,
+        "ppPreservation": 0.433,
+        "deathIntent": 0.119,
+        "lowerOrderShare": -0.88,
+        "wicketsAt15": -0.553,
+        "bowlersUsed": 0.353,
+        "bowlFirst": 0.676
+      },
+      "tags": [
+        "Top-heavy",
+        "Bowl first"
+      ],
+      "intent": {
+        "pp": -0.091,
+        "mid": -0.553,
+        "death": 0.119
+      }
+    },
+    {
+      "team": "India",
+      "coachName": "Sanjay Bangar",
+      "role": "interim",
+      "from": "2016",
+      "to": "2016",
+      "worldCups": [],
+      "months": 5,
+      "innings": 18,
+      "indices": {
+        "ppIntent": -0.001,
+        "ppPreservation": 0.0291,
+        "deathIntent": 0.1809,
+        "lowerOrderShare": -0.0654,
+        "wicketsAt15": -0.112,
+        "bowlersUsed": -0.0017,
+        "bowlFirst": 0.2889
+      },
+      "z": {
+        "ppIntent": -0.269,
+        "ppPreservation": 0.029,
+        "deathIntent": 0.659,
+        "lowerOrderShare": -0.893,
+        "wicketsAt15": -0.312,
+        "bowlersUsed": 0.379,
+        "bowlFirst": 0.985
+      },
+      "tags": [],
+      "intent": {
+        "pp": -0.269,
+        "mid": -0.312,
+        "death": 0.659
+      }
+    },
+    {
+      "team": "India",
+      "coachName": "Anil Kumble",
+      "role": "head coach",
+      "from": "2016",
+      "to": "2017",
+      "worldCups": [],
+      "months": 12,
+      "innings": 30,
+      "indices": {
+        "ppIntent": 0.0017,
+        "ppPreservation": 0.0019,
+        "deathIntent": 0.111,
+        "lowerOrderShare": -0.0544,
+        "wicketsAt15": -0.1457,
+        "bowlersUsed": -0.7613,
+        "bowlFirst": 0.1847
+      },
+      "z": {
+        "ppIntent": -0.32,
+        "ppPreservation": -0.079,
+        "deathIntent": 0.344,
+        "lowerOrderShare": -0.94,
+        "wicketsAt15": -0.586,
+        "bowlersUsed": -0.652,
+        "bowlFirst": 0.765
+      },
+      "tags": [
+        "Top-heavy",
+        "Frontline trust",
+        "Bowl first"
+      ],
+      "intent": {
+        "pp": -0.32,
+        "mid": -0.586,
+        "death": 0.344
+      }
+    },
+    {
+      "team": "India",
+      "coachName": "Sanjay Bangar",
+      "role": "interim",
+      "from": "2017",
+      "to": "2017",
+      "worldCups": [],
+      "months": 7,
+      "innings": 12,
+      "indices": {
+        "ppIntent": 0.0057,
+        "ppPreservation": -0.0387,
+        "deathIntent": 0.0062,
+        "lowerOrderShare": -0.0377,
+        "wicketsAt15": -0.1962,
+        "bowlersUsed": -1.9008,
+        "bowlFirst": 0.0283
+      },
+      "z": {
+        "ppIntent": -0.181,
+        "ppPreservation": -0.158,
+        "deathIntent": -0.244,
+        "lowerOrderShare": -0.405,
+        "wicketsAt15": -0.544,
+        "bowlersUsed": -1.468,
+        "bowlFirst": 0.026
+      },
+      "tags": [],
+      "intent": {
+        "pp": -0.181,
+        "mid": -0.544,
+        "death": -0.244
+      }
+    },
+    {
+      "team": "India",
+      "coachName": "Ravi Shastri",
+      "role": "head coach",
+      "from": "2017",
+      "to": "2021",
+      "worldCups": [
+        "2021"
+      ],
+      "months": 24,
+      "innings": 69,
+      "indices": {
+        "ppIntent": 0.0556,
+        "ppPreservation": 0.1514,
+        "deathIntent": 0.0734,
+        "lowerOrderShare": -0.0358,
+        "wicketsAt15": -0.1714,
+        "bowlersUsed": -0.9578,
+        "bowlFirst": 0.1648
+      },
+      "z": {
+        "ppIntent": 0.123,
+        "ppPreservation": 0.722,
+        "deathIntent": 0.105,
+        "lowerOrderShare": -0.794,
+        "wicketsAt15": -0.944,
+        "bowlersUsed": -1.22,
+        "bowlFirst": 0.87
+      },
+      "tags": [
+        "Wicket preserver",
+        "Top-heavy",
+        "Frontline trust",
+        "Bowl first"
+      ],
+      "intent": {
+        "pp": 0.123,
+        "mid": -0.944,
+        "death": 0.105
+      }
+    },
+    {
+      "team": "India",
+      "coachName": "Rahul Dravid",
+      "role": "head coach",
+      "from": "2021",
+      "to": "2024",
+      "worldCups": [
+        "2022",
+        "2024"
+      ],
+      "months": 21,
+      "innings": 92,
+      "indices": {
+        "ppIntent": 0.1329,
+        "ppPreservation": 0.1262,
+        "deathIntent": 0.1968,
+        "lowerOrderShare": -0.0585,
+        "wicketsAt15": -0.2157,
+        "bowlersUsed": -0.593,
+        "bowlFirst": -0.0045
+      },
+      "z": {
+        "ppIntent": 0.946,
+        "ppPreservation": 0.618,
+        "deathIntent": 1.296,
+        "lowerOrderShare": -1.384,
+        "wicketsAt15": -1.342,
+        "bowlersUsed": -0.549,
+        "bowlFirst": -0.152
+      },
+      "tags": [
+        "Powerplay aggressor",
+        "Wicket preserver",
+        "Death hitter",
+        "Top-heavy"
+      ],
+      "intent": {
+        "pp": 0.946,
+        "mid": -1.342,
+        "death": 1.296
+      }
+    },
+    {
+      "team": "India",
+      "coachName": "VVS Laxman",
+      "role": "interim",
+      "from": "2024",
+      "to": "2024",
+      "worldCups": [],
+      "months": 4,
+      "innings": 21,
+      "indices": {
+        "ppIntent": 0.18,
+        "ppPreservation": 0.0445,
+        "deathIntent": 0.2502,
+        "lowerOrderShare": -0.0687,
+        "wicketsAt15": -0.2258,
+        "bowlersUsed": -0.27,
+        "bowlFirst": -0.0614
+      },
+      "z": {
+        "ppIntent": 0.9,
+        "ppPreservation": 0.088,
+        "deathIntent": 1.128,
+        "lowerOrderShare": -1.015,
+        "wicketsAt15": -0.886,
+        "bowlersUsed": 0.069,
+        "bowlFirst": -0.32
+      },
+      "tags": [
+        "Powerplay aggressor",
+        "Death hitter",
+        "Top-heavy"
+      ],
+      "intent": {
+        "pp": 0.9,
+        "mid": -0.886,
+        "death": 1.128
+      }
+    },
+    {
+      "team": "India",
+      "coachName": "Gautam Gambhir",
+      "role": "head coach",
+      "from": "2024",
+      "to": "",
+      "worldCups": [
+        "2026"
+      ],
+      "months": 17,
+      "innings": 73,
+      "indices": {
+        "ppIntent": 0.2798,
+        "ppPreservation": -0.0341,
+        "deathIntent": 0.2245,
+        "lowerOrderShare": -0.0368,
+        "wicketsAt15": -0.1233,
+        "bowlersUsed": -0.4801,
+        "bowlFirst": 0.0081
+      },
+      "z": {
+        "ppIntent": 2.385,
+        "ppPreservation": -0.305,
+        "deathIntent": 1.493,
+        "lowerOrderShare": -0.827,
+        "wicketsAt15": -0.601,
+        "bowlersUsed": -0.304,
+        "bowlFirst": -0.069
+      },
+      "tags": [
+        "Powerplay aggressor",
+        "Death hitter",
+        "Top-heavy"
+      ],
+      "intent": {
+        "pp": 1.5,
+        "mid": -0.601,
+        "death": 1.493
+      }
+    },
+    {
+      "team": "Ireland",
+      "coachName": "Phil Simmons",
+      "role": "head coach",
+      "from": "2007",
+      "to": "2015",
+      "worldCups": [
+        "2009",
+        "2010",
+        "2012",
+        "2014"
+      ],
+      "months": 13,
+      "innings": 27,
+      "indices": {
+        "ppIntent": -0.0612,
+        "ppPreservation": -0.035,
+        "deathIntent": -0.0436,
+        "lowerOrderShare": 0.0048,
+        "wicketsAt15": 0.0599,
+        "bowlersUsed": -1.2385,
+        "bowlFirst": 0.2181
+      },
+      "z": {
+        "ppIntent": -0.77,
+        "ppPreservation": -0.227,
+        "deathIntent": -0.709,
+        "lowerOrderShare": 0.091,
+        "wicketsAt15": 0.55,
+        "bowlersUsed": -1.304,
+        "bowlFirst": 0.881
+      },
+      "tags": [
+        "Powerplay anchor",
+        "Death conservative",
+        "Frontline trust",
+        "Bowl first"
+      ],
+      "intent": {
+        "pp": -0.77,
+        "mid": 0.55,
+        "death": -0.709
+      }
+    },
+    {
+      "team": "Ireland",
+      "coachName": "John Bracewell",
+      "role": "head coach",
+      "from": "2015",
+      "to": "2017",
+      "worldCups": [
+        "2016"
+      ],
+      "months": 6,
+      "innings": 11,
+      "indices": {
+        "ppIntent": -0.076,
+        "ppPreservation": 0.0347,
+        "deathIntent": -0.0991,
+        "lowerOrderShare": 0.0409,
+        "wicketsAt15": -0.0817,
+        "bowlersUsed": -0.5709,
+        "bowlFirst": -0.0455
+      },
+      "z": {
+        "ppIntent": -0.543,
+        "ppPreservation": 0.036,
+        "deathIntent": -0.668,
+        "lowerOrderShare": 0.429,
+        "wicketsAt15": -0.133,
+        "bowlersUsed": -0.218,
+        "bowlFirst": -0.178
+      },
+      "tags": [],
+      "intent": {
+        "pp": -0.543,
+        "mid": -0.133,
+        "death": -0.668
+      }
+    },
+    {
+      "team": "Ireland",
+      "coachName": "Graham Ford",
+      "role": "head coach",
+      "from": "2017",
+      "to": "2021",
+      "worldCups": [
+        "2021"
+      ],
+      "months": 13,
+      "innings": 44,
+      "indices": {
+        "ppIntent": 0.1144,
+        "ppPreservation": 0.1346,
+        "deathIntent": -0.051,
+        "lowerOrderShare": 0.0064,
+        "wicketsAt15": 0.0474,
+        "bowlersUsed": -0.262,
+        "bowlFirst": 0.0995
+      },
+      "z": {
+        "ppIntent": 0.628,
+        "ppPreservation": 0.558,
+        "deathIntent": -0.908,
+        "lowerOrderShare": 0.141,
+        "wicketsAt15": 0.577,
+        "bowlersUsed": 0.106,
+        "bowlFirst": 0.425
+      },
+      "tags": [
+        "Powerplay aggressor",
+        "Death conservative"
+      ],
+      "intent": {
+        "pp": 0.628,
+        "mid": 0.577,
+        "death": -0.908
+      }
+    },
+    {
+      "team": "Ireland",
+      "coachName": "David Ripley",
+      "role": "interim",
+      "from": "2021",
+      "to": "2022",
+      "worldCups": [],
+      "months": 11,
+      "innings": 38,
+      "indices": {
+        "ppIntent": 0.0957,
+        "ppPreservation": -0.0338,
+        "deathIntent": -0.078,
+        "lowerOrderShare": 0.0507,
+        "wicketsAt15": 0.1253,
+        "bowlersUsed": -0.2853,
+        "bowlFirst": 0.1547
+      },
+      "z": {
+        "ppIntent": 0.442,
+        "ppPreservation": -0.253,
+        "deathIntent": -1.072,
+        "lowerOrderShare": 0.979,
+        "wicketsAt15": 1.03,
+        "bowlersUsed": 0.063,
+        "bowlFirst": 0.684
+      },
+      "tags": [
+        "Death conservative",
+        "Deep batting",
+        "Bowl first"
+      ],
+      "intent": {
+        "pp": 0.442,
+        "mid": 1.03,
+        "death": -1.072
+      }
+    },
+    {
+      "team": "Ireland",
+      "coachName": "Heinrich Malan",
+      "role": "head coach",
+      "from": "2022-01",
+      "to": "2026",
+      "worldCups": [
+        "2022",
+        "2024",
+        "2026"
+      ],
+      "months": 22,
+      "innings": 64,
+      "indices": {
+        "ppIntent": 0.0543,
+        "ppPreservation": -0.0423,
+        "deathIntent": 0.0466,
+        "lowerOrderShare": 0.0554,
+        "wicketsAt15": 0.004,
+        "bowlersUsed": -0.4275,
+        "bowlFirst": 0.1387
+      },
+      "z": {
+        "ppIntent": 0.108,
+        "ppPreservation": -0.341,
+        "deathIntent": -0.136,
+        "lowerOrderShare": 1.243,
+        "wicketsAt15": 0.328,
+        "bowlersUsed": -0.196,
+        "bowlFirst": 0.701
+      },
+      "tags": [
+        "Deep batting",
+        "Bowl first"
+      ],
+      "intent": {
+        "pp": 0.108,
+        "mid": 0.328,
+        "death": -0.136
+      }
+    },
+    {
+      "team": "Ireland",
+      "coachName": "Gary Wilson",
+      "role": "head coach",
+      "from": "2026",
+      "to": "",
+      "worldCups": [],
+      "months": 3,
+      "innings": 10,
+      "indices": {
+        "ppIntent": -0.1613,
+        "ppPreservation": -0.278,
+        "deathIntent": 0.1042,
+        "lowerOrderShare": 0.0459,
+        "wicketsAt15": 0.0307,
+        "bowlersUsed": -0.594,
+        "bowlFirst": -0.041
+      },
+      "z": {
+        "ppIntent": -0.875,
+        "ppPreservation": -0.708,
+        "deathIntent": 0.165,
+        "lowerOrderShare": 0.452,
+        "wicketsAt15": 0.227,
+        "bowlersUsed": -0.223,
+        "bowlFirst": -0.156
+      },
+      "tags": [],
+      "intent": {
+        "pp": -0.875,
+        "mid": 0.227,
+        "death": 0.165
+      }
+    },
+    {
+      "team": "Italy",
+      "coachName": "John Davison",
+      "role": "head coach",
+      "from": "2025",
+      "to": "",
+      "worldCups": [
+        "2026"
+      ],
+      "months": 3,
+      "innings": 10,
+      "indices": {
+        "ppIntent": 0.0217,
+        "ppPreservation": -0.1681,
+        "deathIntent": -0.1621,
+        "lowerOrderShare": 0.0047,
+        "wicketsAt15": 0.1915,
+        "bowlersUsed": -0.077,
+        "bowlFirst": 0.12
+      },
+      "z": {
+        "ppIntent": -0.092,
+        "ppPreservation": -0.447,
+        "deathIntent": -0.873,
+        "lowerOrderShare": 0.052,
+        "wicketsAt15": 0.731,
+        "bowlersUsed": 0.204,
+        "bowlFirst": 0.259
+      },
+      "tags": [],
+      "intent": {
+        "pp": -0.092,
+        "mid": 0.731,
+        "death": -0.873
+      }
+    },
+    {
+      "team": "Kenya",
+      "coachName": "Robin Brown",
+      "role": "head coach",
+      "from": "2012",
+      "to": "2013",
+      "worldCups": [],
+      "months": 5,
+      "innings": 11,
+      "indices": {
+        "ppIntent": -0.2082,
+        "ppPreservation": -0.4458,
+        "deathIntent": 0.0002,
+        "lowerOrderShare": 0.1018,
+        "wicketsAt15": 0.2749,
+        "bowlersUsed": -1.4364,
+        "bowlFirst": -0.1755
+      },
+      "z": {
+        "ppIntent": -1.146,
+        "ppPreservation": -1.177,
+        "deathIntent": -0.256,
+        "lowerOrderShare": 1.058,
+        "wicketsAt15": 1.057,
+        "bowlersUsed": -0.98,
+        "bowlFirst": -0.534
+      },
+      "tags": [],
+      "intent": {
+        "pp": -1.146,
+        "mid": 1.057,
+        "death": -0.256
+      }
+    },
+    {
+      "team": "Kenya",
+      "coachName": "Maurice Odumbe",
+      "role": "head coach",
+      "from": "2018",
+      "to": "2021",
+      "worldCups": [],
+      "months": 4,
+      "innings": 18,
+      "indices": {
+        "ppIntent": 0.0202,
+        "ppPreservation": 0.1483,
+        "deathIntent": 0.0105,
+        "lowerOrderShare": -0.0803,
+        "wicketsAt15": -0.2322,
+        "bowlersUsed": 0.1567,
+        "bowlFirst": -0.2144
+      },
+      "z": {
+        "ppIntent": -0.14,
+        "ppPreservation": 0.431,
+        "deathIntent": -0.285,
+        "lowerOrderShare": -1.099,
+        "wicketsAt15": -0.848,
+        "bowlersUsed": 0.566,
+        "bowlFirst": -0.855
+      },
+      "tags": [],
+      "intent": {
+        "pp": -0.14,
+        "mid": -0.848,
+        "death": -0.285
+      }
+    },
+    {
+      "team": "Kenya",
+      "coachName": "David Obuya",
+      "role": "head coach",
+      "from": "2021",
+      "to": "2023",
+      "worldCups": [],
+      "months": 7,
+      "innings": 36,
+      "indices": {
+        "ppIntent": 0.0434,
+        "ppPreservation": 0.2547,
+        "deathIntent": 0.1349,
+        "lowerOrderShare": -0.0399,
+        "wicketsAt15": -0.226,
+        "bowlersUsed": -0.1739,
+        "bowlFirst": -0.2511
+      },
+      "z": {
+        "ppIntent": 0.001,
+        "ppPreservation": 1.072,
+        "deathIntent": 0.549,
+        "lowerOrderShare": -0.735,
+        "wicketsAt15": -1.113,
+        "bowlersUsed": 0.24,
+        "bowlFirst": -1.342
+      },
+      "tags": [
+        "Wicket preserver",
+        "Top-heavy",
+        "Bat first"
+      ],
+      "intent": {
+        "pp": 0.001,
+        "mid": -1.113,
+        "death": 0.549
+      }
+    },
+    {
+      "team": "Kenya",
+      "coachName": "Dodda Ganesh",
+      "role": "head coach",
+      "from": "2023",
+      "to": "2024",
+      "worldCups": [],
+      "months": 6,
+      "innings": 34,
+      "indices": {
+        "ppIntent": 0.0143,
+        "ppPreservation": 0.0785,
+        "deathIntent": 0.0526,
+        "lowerOrderShare": -0.0311,
+        "wicketsAt15": -0.055,
+        "bowlersUsed": 0.1021,
+        "bowlFirst": -0.1112
+      },
+      "z": {
+        "ppIntent": -0.234,
+        "ppPreservation": 0.26,
+        "deathIntent": -0.069,
+        "lowerOrderShare": -0.558,
+        "wicketsAt15": -0.078,
+        "bowlersUsed": 0.666,
+        "bowlFirst": -0.635
+      },
+      "tags": [
+        "Six-bowler rotation",
+        "Bat first"
+      ],
+      "intent": {
+        "pp": -0.234,
+        "mid": -0.078,
+        "death": -0.069
+      }
+    },
+    {
+      "team": "Kenya",
+      "coachName": "Lameck Onyango",
+      "role": "head coach",
+      "from": "2023",
+      "to": "",
+      "worldCups": [],
+      "months": 13,
+      "innings": 61,
+      "indices": {
+        "ppIntent": 0.0604,
+        "ppPreservation": 0.0786,
+        "deathIntent": 0.0757,
+        "lowerOrderShare": -0.0252,
+        "wicketsAt15": -0.0671,
+        "bowlersUsed": -0.1492,
+        "bowlFirst": -0.1236
+      },
+      "z": {
+        "ppIntent": 0.166,
+        "ppPreservation": 0.311,
+        "deathIntent": 0.122,
+        "lowerOrderShare": -0.538,
+        "wicketsAt15": -0.178,
+        "bowlersUsed": 0.327,
+        "bowlFirst": -0.831
+      },
+      "tags": [
+        "Bat first"
+      ],
+      "intent": {
+        "pp": 0.166,
+        "mid": -0.178,
+        "death": 0.122
+      }
+    },
+    {
+      "team": "Namibia",
+      "coachName": "Craig Williams",
+      "role": "head coach",
+      "from": "",
+      "to": "",
+      "worldCups": [
+        "2026"
+      ],
+      "months": 26,
+      "innings": 95,
+      "indices": {
+        "ppIntent": 0.0407,
+        "ppPreservation": 0.0574,
+        "deathIntent": 0.0908,
+        "lowerOrderShare": -0.0203,
+        "wicketsAt15": -0.0772,
+        "bowlersUsed": 0.0287,
+        "bowlFirst": -0.0217
+      },
+      "z": {
+        "ppIntent": -0.026,
+        "ppPreservation": 0.217,
+        "deathIntent": 0.279,
+        "lowerOrderShare": -0.473,
+        "wicketsAt15": -0.274,
+        "bowlersUsed": 0.724,
+        "bowlFirst": -0.263
+      },
+      "tags": [
+        "Six-bowler rotation"
+      ],
+      "intent": {
+        "pp": -0.026,
+        "mid": -0.274,
+        "death": 0.279
+      }
+    },
+    {
+      "team": "Namibia",
+      "coachName": "Pierre de Bruyn",
+      "role": "head coach",
+      "from": "2018-12",
+      "to": "",
+      "worldCups": [
+        "2021",
+        "2022",
+        "2024"
+      ],
+      "months": 26,
+      "innings": 95,
+      "indices": {
+        "ppIntent": 0.0407,
+        "ppPreservation": 0.0574,
+        "deathIntent": 0.0908,
+        "lowerOrderShare": -0.0203,
+        "wicketsAt15": -0.0772,
+        "bowlersUsed": 0.0287,
+        "bowlFirst": -0.0217
+      },
+      "z": {
+        "ppIntent": -0.026,
+        "ppPreservation": 0.217,
+        "deathIntent": 0.279,
+        "lowerOrderShare": -0.473,
+        "wicketsAt15": -0.274,
+        "bowlersUsed": 0.724,
+        "bowlFirst": -0.263
+      },
+      "tags": [
+        "Six-bowler rotation"
+      ],
+      "intent": {
+        "pp": -0.026,
+        "mid": -0.274,
+        "death": 0.279
+      }
+    },
+    {
+      "team": "Nepal",
+      "coachName": "Pubudu Dassanayake",
+      "role": "head coach",
+      "from": "2011-08-23",
+      "to": "2015-10",
+      "worldCups": [
+        "2014"
+      ],
+      "months": 3,
+      "innings": 8,
+      "indices": {
+        "ppIntent": -0.3157,
+        "ppPreservation": -0.3971,
+        "deathIntent": -0.08,
+        "lowerOrderShare": 0.1234,
+        "wicketsAt15": 0.2722,
+        "bowlersUsed": -1.8087,
+        "bowlFirst": 0.2937
+      },
+      "z": {
+        "ppIntent": -1.317,
+        "ppPreservation": -0.849,
+        "deathIntent": -0.474,
+        "lowerOrderShare": 1.032,
+        "wicketsAt15": 0.844,
+        "bowlersUsed": -1.053,
+        "bowlFirst": 0.605
+      },
+      "tags": [],
+      "intent": {
+        "pp": -1.317,
+        "mid": 0.844,
+        "death": -0.474
+      }
+    },
+    {
+      "team": "Nepal",
+      "coachName": "Jagat Tamata",
+      "role": "head coach",
+      "from": "2015",
+      "to": "2019",
+      "worldCups": [],
+      "months": 7,
+      "innings": 23,
+      "indices": {
+        "ppIntent": -0.1123,
+        "ppPreservation": -0.2359,
+        "deathIntent": -0.0375,
+        "lowerOrderShare": 0.0388,
+        "wicketsAt15": 0.1214,
+        "bowlersUsed": -0.0791,
+        "bowlFirst": 0.1817
+      },
+      "z": {
+        "ppIntent": -1.068,
+        "ppPreservation": -0.976,
+        "deathIntent": -0.622,
+        "lowerOrderShare": 0.615,
+        "wicketsAt15": 0.821,
+        "bowlersUsed": 0.325,
+        "bowlFirst": 0.67
+      },
+      "tags": [
+        "Powerplay anchor",
+        "Risk taker",
+        "Death conservative",
+        "Deep batting",
+        "Bowl first"
+      ],
+      "intent": {
+        "pp": -1.068,
+        "mid": 0.821,
+        "death": -0.622
+      }
+    },
+    {
+      "team": "Nepal",
+      "coachName": "Umesh Patwal",
+      "role": "head coach",
+      "from": "2019",
+      "to": "2020",
+      "worldCups": [],
+      "months": 7,
+      "innings": 20,
+      "indices": {
+        "ppIntent": 0.003,
+        "ppPreservation": -0.1475,
+        "deathIntent": -0.0301,
+        "lowerOrderShare": 0.02,
+        "wicketsAt15": 0.0899,
+        "bowlersUsed": 0.02,
+        "bowlFirst": 0.1455
+      },
+      "z": {
+        "ppIntent": -0.258,
+        "ppPreservation": -0.598,
+        "deathIntent": -0.538,
+        "lowerOrderShare": 0.3,
+        "wicketsAt15": 0.62,
+        "bowlersUsed": 0.427,
+        "bowlFirst": 0.486
+      },
+      "tags": [],
+      "intent": {
+        "pp": -0.258,
+        "mid": 0.62,
+        "death": -0.538
+      }
+    },
+    {
+      "team": "Nepal",
+      "coachName": "Pubudu Dassanayake",
+      "role": "head coach",
+      "from": "2021-12",
+      "to": "2022",
+      "worldCups": [],
+      "months": 4,
+      "innings": 17,
+      "indices": {
+        "ppIntent": 0.0447,
+        "ppPreservation": 0.0123,
+        "deathIntent": 0.0222,
+        "lowerOrderShare": -0.0482,
+        "wicketsAt15": -0.1111,
+        "bowlersUsed": 0.6171,
+        "bowlFirst": 0.1435
+      },
+      "z": {
+        "ppIntent": 0.009,
+        "ppPreservation": -0.027,
+        "deathIntent": -0.213,
+        "lowerOrderShare": -0.636,
+        "wicketsAt15": -0.299,
+        "bowlersUsed": 1.074,
+        "bowlFirst": 0.44
+      },
+      "tags": [],
+      "intent": {
+        "pp": 0.009,
+        "mid": -0.299,
+        "death": -0.213
+      }
+    },
+    {
+      "team": "Nepal",
+      "coachName": "Manoj Prabhakar",
+      "role": "head coach",
+      "from": "2022",
+      "to": "2022",
+      "worldCups": [],
+      "months": 4,
+      "innings": 17,
+      "indices": {
+        "ppIntent": 0.0447,
+        "ppPreservation": 0.0123,
+        "deathIntent": 0.0222,
+        "lowerOrderShare": -0.0482,
+        "wicketsAt15": -0.1111,
+        "bowlersUsed": 0.6171,
+        "bowlFirst": 0.1435
+      },
+      "z": {
+        "ppIntent": 0.009,
+        "ppPreservation": -0.027,
+        "deathIntent": -0.213,
+        "lowerOrderShare": -0.636,
+        "wicketsAt15": -0.299,
+        "bowlersUsed": 1.074,
+        "bowlFirst": 0.44
+      },
+      "tags": [],
+      "intent": {
+        "pp": 0.009,
+        "mid": -0.299,
+        "death": -0.213
+      }
+    },
+    {
+      "team": "Nepal",
+      "coachName": "Monty Desai",
+      "role": "head coach",
+      "from": "2023",
+      "to": "2025-02",
+      "worldCups": [
+        "2024"
+      ],
+      "months": 9,
+      "innings": 34,
+      "indices": {
+        "ppIntent": 0.1001,
+        "ppPreservation": 0.171,
+        "deathIntent": 0.2628,
+        "lowerOrderShare": -0.0048,
+        "wicketsAt15": -0.0681,
+        "bowlersUsed": -0.0621,
+        "bowlFirst": 0.1062
+      },
+      "z": {
+        "ppIntent": 0.46,
+        "ppPreservation": 0.674,
+        "deathIntent": 1.48,
+        "lowerOrderShare": -0.076,
+        "wicketsAt15": -0.156,
+        "bowlersUsed": 0.409,
+        "bowlFirst": 0.421
+      },
+      "tags": [
+        "Wicket preserver",
+        "Death hitter"
+      ],
+      "intent": {
+        "pp": 0.46,
+        "mid": -0.156,
+        "death": 1.48
+      }
+    },
+    {
+      "team": "Nepal",
+      "coachName": "Stuart Law",
+      "role": "head coach",
+      "from": "2025-03",
+      "to": "",
+      "worldCups": [
+        "2026"
+      ],
+      "months": 8,
+      "innings": 24,
+      "indices": {
+        "ppIntent": 0.0531,
+        "ppPreservation": 0.1999,
+        "deathIntent": 0.2213,
+        "lowerOrderShare": -0.0228,
+        "wicketsAt15": -0.1886,
+        "bowlersUsed": 0.1079,
+        "bowlFirst": 0.0842
+      },
+      "z": {
+        "ppIntent": 0.069,
+        "ppPreservation": 0.697,
+        "deathIntent": 1.017,
+        "lowerOrderShare": -0.352,
+        "wicketsAt15": -0.753,
+        "bowlersUsed": 0.585,
+        "bowlFirst": 0.273
+      },
+      "tags": [
+        "Wicket preserver",
+        "Death hitter"
+      ],
+      "intent": {
+        "pp": 0.069,
+        "mid": -0.753,
+        "death": 1.017
+      }
+    },
+    {
+      "team": "Netherlands",
+      "coachName": "Ashley Noffke",
+      "role": "head coach",
+      "from": "",
+      "to": "",
+      "worldCups": [],
+      "months": 36,
+      "innings": 114,
+      "indices": {
+        "ppIntent": 0.0235,
+        "ppPreservation": 0.0173,
+        "deathIntent": 0.0056,
+        "lowerOrderShare": -0.0107,
+        "wicketsAt15": -0.002,
+        "bowlersUsed": -0.423,
+        "bowlFirst": -0.0446
+      },
+      "z": {
+        "ppIntent": -0.215,
+        "ppPreservation": -0.02,
+        "deathIntent": -0.56,
+        "lowerOrderShare": -0.249,
+        "wicketsAt15": 0.319,
+        "bowlersUsed": -0.209,
+        "bowlFirst": -0.42
+      },
+      "tags": [],
+      "intent": {
+        "pp": -0.215,
+        "mid": 0.319,
+        "death": -0.56
+      }
+    },
+    {
+      "team": "Netherlands",
+      "coachName": "Peter Drinnen",
+      "role": "head coach",
+      "from": "2008-01",
+      "to": "2013-10",
+      "worldCups": [
+        "2009"
+      ],
+      "months": 6,
+      "innings": 11,
+      "indices": {
+        "ppIntent": -0.0077,
+        "ppPreservation": -0.0566,
+        "deathIntent": -0.1443,
+        "lowerOrderShare": 0.0266,
+        "wicketsAt15": 0.1198,
+        "bowlersUsed": -2.3627,
+        "bowlFirst": -0.0818
+      },
+      "z": {
+        "ppIntent": -0.232,
+        "ppPreservation": -0.195,
+        "deathIntent": -0.856,
+        "lowerOrderShare": 0.281,
+        "wicketsAt15": 0.539,
+        "bowlersUsed": -1.796,
+        "bowlFirst": -0.277
+      },
+      "tags": [],
+      "intent": {
+        "pp": -0.232,
+        "mid": 0.539,
+        "death": -0.856
+      }
+    },
+    {
+      "team": "Netherlands",
+      "coachName": "Anton Roux",
+      "role": "head coach",
+      "from": "2013-10",
+      "to": "2016",
+      "worldCups": [
+        "2014",
+        "2016"
+      ],
+      "months": 5,
+      "innings": 18,
+      "indices": {
+        "ppIntent": 0.0589,
+        "ppPreservation": 0.012,
+        "deathIntent": -0.0089,
+        "lowerOrderShare": -0.0654,
+        "wicketsAt15": -0.1627,
+        "bowlersUsed": 0.0661,
+        "bowlFirst": 0.0344
+      },
+      "z": {
+        "ppIntent": 0.095,
+        "ppPreservation": -0.029,
+        "deathIntent": -0.392,
+        "lowerOrderShare": -0.893,
+        "wicketsAt15": -0.538,
+        "bowlersUsed": 0.459,
+        "bowlFirst": 0.054
+      },
+      "tags": [],
+      "intent": {
+        "pp": 0.095,
+        "mid": -0.538,
+        "death": -0.392
+      }
+    },
+    {
+      "team": "Netherlands",
+      "coachName": "Ryan Campbell",
+      "role": "head coach",
+      "from": "2017-04",
+      "to": "2022-11",
+      "worldCups": [
+        "2021",
+        "2022"
+      ],
+      "months": 13,
+      "innings": 49,
+      "indices": {
+        "ppIntent": 0.0236,
+        "ppPreservation": -0.0146,
+        "deathIntent": 0.0246,
+        "lowerOrderShare": -0.0308,
+        "wicketsAt15": -0.0043,
+        "bowlersUsed": -0.198,
+        "bowlFirst": -0.2235
+      },
+      "z": {
+        "ppIntent": -0.179,
+        "ppPreservation": -0.178,
+        "deathIntent": -0.31,
+        "lowerOrderShare": -0.624,
+        "wicketsAt15": 0.251,
+        "bowlersUsed": 0.222,
+        "bowlFirst": -1.332
+      },
+      "tags": [
+        "Top-heavy",
+        "Bat first"
+      ],
+      "intent": {
+        "pp": -0.179,
+        "mid": 0.251,
+        "death": -0.31
+      }
+    },
+    {
+      "team": "Netherlands",
+      "coachName": "Ryan Cook",
+      "role": "head coach",
+      "from": "2022-11",
+      "to": "",
+      "worldCups": [
+        "2022",
+        "2024",
+        "2026"
+      ],
+      "months": 12,
+      "innings": 35,
+      "indices": {
+        "ppIntent": 0.0168,
+        "ppPreservation": 0.1412,
+        "deathIntent": 0.0197,
+        "lowerOrderShare": 0.0193,
+        "wicketsAt15": -0.0006,
+        "bowlersUsed": -0.3823,
+        "bowlFirst": 0.1326
+      },
+      "z": {
+        "ppIntent": -0.216,
+        "ppPreservation": 0.547,
+        "deathIntent": -0.314,
+        "lowerOrderShare": 0.37,
+        "wicketsAt15": 0.247,
+        "bowlersUsed": -0.092,
+        "bowlFirst": 0.556
+      },
+      "tags": [],
+      "intent": {
+        "pp": -0.216,
+        "mid": 0.247,
+        "death": -0.314
+      }
+    },
+    {
+      "team": "New Zealand",
+      "coachName": "John Bracewell",
+      "role": "head coach",
+      "from": "2003",
+      "to": "2008",
+      "worldCups": [
+        "2007"
+      ],
+      "months": 10,
+      "innings": 18,
+      "indices": {
+        "ppIntent": -0.0204,
+        "ppPreservation": 0.046,
+        "deathIntent": 0.028,
+        "lowerOrderShare": 0.0458,
+        "wicketsAt15": 0.1274,
+        "bowlersUsed": -1.1561,
+        "bowlFirst": 0.0111
+      },
+      "z": {
+        "ppIntent": -0.387,
+        "ppPreservation": 0.086,
+        "deathIntent": -0.188,
+        "lowerOrderShare": 0.64,
+        "wicketsAt15": 0.754,
+        "bowlersUsed": -0.979,
+        "bowlFirst": -0.03
+      },
+      "tags": [],
+      "intent": {
+        "pp": -0.387,
+        "mid": 0.754,
+        "death": -0.188
+      }
+    },
+    {
+      "team": "New Zealand",
+      "coachName": "Andy Moles",
+      "role": "head coach",
+      "from": "2008",
+      "to": "2009",
+      "worldCups": [
+        "2009"
+      ],
+      "months": 7,
+      "innings": 16,
+      "indices": {
+        "ppIntent": -0.0856,
+        "ppPreservation": -0.1236,
+        "deathIntent": -0.056,
+        "lowerOrderShare": -0.0041,
+        "wicketsAt15": -0.0061,
+        "bowlersUsed": -0.4462,
+        "bowlFirst": 0.2875
+      },
+      "z": {
+        "ppIntent": -0.735,
+        "ppPreservation": -0.456,
+        "deathIntent": -0.613,
+        "lowerOrderShare": -0.045,
+        "wicketsAt15": 0.149,
+        "bowlersUsed": -0.135,
+        "bowlFirst": 0.919
+      },
+      "tags": [],
+      "intent": {
+        "pp": -0.735,
+        "mid": 0.149,
+        "death": -0.613
+      }
+    },
+    {
+      "team": "New Zealand",
+      "coachName": "Mark Greatbatch",
+      "role": "head coach",
+      "from": "2010",
+      "to": "2010",
+      "worldCups": [
+        "2010"
+      ],
+      "months": 4,
+      "innings": 12,
+      "indices": {
+        "ppIntent": -0.076,
+        "ppPreservation": -0.0406,
+        "deathIntent": -0.002,
+        "lowerOrderShare": -0.0284,
+        "wicketsAt15": 0.0636,
+        "bowlersUsed": -0.2067,
+        "bowlFirst": -0.0342
+      },
+      "z": {
+        "ppIntent": -0.574,
+        "ppPreservation": -0.163,
+        "deathIntent": -0.28,
+        "lowerOrderShare": -0.303,
+        "wicketsAt15": 0.372,
+        "bowlersUsed": 0.109,
+        "bowlFirst": -0.155
+      },
+      "tags": [],
+      "intent": {
+        "pp": -0.574,
+        "mid": 0.372,
+        "death": -0.28
+      }
+    },
+    {
+      "team": "New Zealand",
+      "coachName": "John Wright",
+      "role": "head coach",
+      "from": "2010",
+      "to": "2012",
+      "worldCups": [],
+      "months": 10,
+      "innings": 27,
+      "indices": {
+        "ppIntent": -0.0337,
+        "ppPreservation": 0.1292,
+        "deathIntent": 0.0328,
+        "lowerOrderShare": 0.001,
+        "wicketsAt15": -0.0396,
+        "bowlersUsed": 0.0956,
+        "bowlFirst": 0.0111
+      },
+      "z": {
+        "ppIntent": -0.568,
+        "ppPreservation": 0.445,
+        "deathIntent": -0.195,
+        "lowerOrderShare": 0.028,
+        "wicketsAt15": 0.012,
+        "bowlersUsed": 0.599,
+        "bowlFirst": -0.037
+      },
+      "tags": [],
+      "intent": {
+        "pp": -0.568,
+        "mid": 0.012,
+        "death": -0.195
+      }
+    },
+    {
+      "team": "New Zealand",
+      "coachName": "Mike Hesson",
+      "role": "head coach",
+      "from": "2012",
+      "to": "2018",
+      "worldCups": [
+        "2012",
+        "2014",
+        "2016"
+      ],
+      "months": 24,
+      "innings": 61,
+      "indices": {
+        "ppIntent": 0.0222,
+        "ppPreservation": 0.2127,
+        "deathIntent": 0.0071,
+        "lowerOrderShare": -0.0027,
+        "wicketsAt15": -0.0279,
+        "bowlersUsed": 0.0351,
+        "bowlFirst": -0.0716
+      },
+      "z": {
+        "ppIntent": -0.203,
+        "ppPreservation": 1.03,
+        "deathIntent": -0.483,
+        "lowerOrderShare": -0.045,
+        "wicketsAt15": 0.099,
+        "bowlersUsed": 0.672,
+        "bowlFirst": -0.529
+      },
+      "tags": [
+        "Wicket preserver",
+        "Six-bowler rotation"
+      ],
+      "intent": {
+        "pp": -0.203,
+        "mid": 0.099,
+        "death": -0.483
+      }
+    },
+    {
+      "team": "New Zealand",
+      "coachName": "Gary Stead",
+      "role": "head coach",
+      "from": "2018",
+      "to": "2025",
+      "worldCups": [
+        "2021",
+        "2022",
+        "2024"
+      ],
+      "months": 39,
+      "innings": 129,
+      "indices": {
+        "ppIntent": 0.0571,
+        "ppPreservation": 0.0429,
+        "deathIntent": 0.0964,
+        "lowerOrderShare": -0.0174,
+        "wicketsAt15": -0.0726,
+        "bowlersUsed": -0.3065,
+        "bowlFirst": -0.0415
+      },
+      "z": {
+        "ppIntent": 0.154,
+        "ppPreservation": 0.138,
+        "deathIntent": 0.35,
+        "lowerOrderShare": -0.422,
+        "wicketsAt15": -0.25,
+        "bowlersUsed": 0.038,
+        "bowlFirst": -0.407
+      },
+      "tags": [],
+      "intent": {
+        "pp": 0.154,
+        "mid": -0.25,
+        "death": 0.35
+      }
+    },
+    {
+      "team": "New Zealand",
+      "coachName": "Rob Walter",
+      "role": "head coach",
+      "from": "2025-06",
+      "to": "",
+      "worldCups": [
+        "2026"
+      ],
+      "months": 8,
+      "innings": 32,
+      "indices": {
+        "ppIntent": 0.1846,
+        "ppPreservation": 0.1549,
+        "deathIntent": 0.1289,
+        "lowerOrderShare": 0.0192,
+        "wicketsAt15": -0.0726,
+        "bowlersUsed": -0.185,
+        "bowlFirst": 0.0675
+      },
+      "z": {
+        "ppIntent": 1.118,
+        "ppPreservation": 0.588,
+        "deathIntent": 0.482,
+        "lowerOrderShare": 0.356,
+        "wicketsAt15": -0.178,
+        "bowlersUsed": 0.212,
+        "bowlFirst": 0.228
+      },
+      "tags": [
+        "Powerplay aggressor"
+      ],
+      "intent": {
+        "pp": 1.118,
+        "mid": -0.178,
+        "death": 0.482
+      }
+    },
+    {
+      "team": "Oman",
+      "coachName": "Duleep Mendis",
+      "role": "head coach",
+      "from": "",
+      "to": "",
+      "worldCups": [
+        "2016",
+        "2021",
+        "2024",
+        "2026"
+      ],
+      "months": 27,
+      "innings": 104,
+      "indices": {
+        "ppIntent": -0.0306,
+        "ppPreservation": -0.1239,
+        "deathIntent": -0.0031,
+        "lowerOrderShare": 0.0385,
+        "wicketsAt15": 0.0796,
+        "bowlersUsed": 0.313,
+        "bowlFirst": 0.1684
+      },
+      "z": {
+        "ppIntent": -0.795,
+        "ppPreservation": -0.862,
+        "deathIntent": -0.637,
+        "lowerOrderShare": 0.956,
+        "wicketsAt15": 0.958,
+        "bowlersUsed": 1.327,
+        "bowlFirst": 0.964
+      },
+      "tags": [
+        "Powerplay anchor",
+        "Risk taker",
+        "Death conservative",
+        "Deep batting",
+        "Six-bowler rotation",
+        "Bowl first"
+      ],
+      "intent": {
+        "pp": -0.795,
+        "mid": 0.958,
+        "death": -0.637
+      }
+    },
+    {
+      "team": "Pakistan",
+      "coachName": "Bob Woolmer",
+      "role": "head coach",
+      "from": "2004",
+      "to": "2007",
+      "worldCups": [],
+      "months": 2,
+      "innings": 10,
+      "indices": {
+        "ppIntent": 0.064,
+        "ppPreservation": 0.0437,
+        "deathIntent": 0.1114,
+        "lowerOrderShare": -0.0304,
+        "wicketsAt15": -0.0091,
+        "bowlersUsed": -0.234,
+        "bowlFirst": 0.306
+      },
+      "z": {
+        "ppIntent": 0.089,
+        "ppPreservation": 0.055,
+        "deathIntent": 0.193,
+        "lowerOrderShare": -0.289,
+        "wicketsAt15": 0.103,
+        "bowlersUsed": 0.075,
+        "bowlFirst": 0.737
+      },
+      "tags": [],
+      "intent": {
+        "pp": 0.089,
+        "mid": 0.103,
+        "death": 0.193
+      }
+    },
+    {
+      "team": "Pakistan",
+      "coachName": "Geoff Lawson",
+      "role": "head coach",
+      "from": "2007",
+      "to": "2008",
+      "worldCups": [
+        "2007"
+      ],
+      "months": 3,
+      "innings": 12,
+      "indices": {
+        "ppIntent": 0.0016,
+        "ppPreservation": -0.1082,
+        "deathIntent": 0.13,
+        "lowerOrderShare": -0.0066,
+        "wicketsAt15": 0.0084,
+        "bowlersUsed": -0.5,
+        "bowlFirst": 0.255
+      },
+      "z": {
+        "ppIntent": -0.2,
+        "ppPreservation": -0.344,
+        "deathIntent": 0.299,
+        "lowerOrderShare": -0.065,
+        "wicketsAt15": 0.177,
+        "bowlersUsed": -0.164,
+        "bowlFirst": 0.682
+      },
+      "tags": [],
+      "intent": {
+        "pp": -0.2,
+        "mid": 0.177,
+        "death": 0.299
+      }
+    },
+    {
+      "team": "Pakistan",
+      "coachName": "Intikhab Alam",
+      "role": "head coach",
+      "from": "2008",
+      "to": "2010",
+      "worldCups": [
+        "2009"
+      ],
+      "months": 12,
+      "innings": 32,
+      "indices": {
+        "ppIntent": -0.0458,
+        "ppPreservation": -0.0493,
+        "deathIntent": -0.0113,
+        "lowerOrderShare": 0.0163,
+        "wicketsAt15": -0.0285,
+        "bowlersUsed": -1.1725,
+        "bowlFirst": -0.1269
+      },
+      "z": {
+        "ppIntent": -0.703,
+        "ppPreservation": -0.306,
+        "deathIntent": -0.527,
+        "lowerOrderShare": 0.303,
+        "wicketsAt15": 0.078,
+        "bowlersUsed": -1.296,
+        "bowlFirst": -0.695
+      },
+      "tags": [
+        "Powerplay anchor",
+        "Frontline trust",
+        "Bat first"
+      ],
+      "intent": {
+        "pp": -0.703,
+        "mid": 0.078,
+        "death": -0.527
+      }
+    },
+    {
+      "team": "Pakistan",
+      "coachName": "Waqar Younis",
+      "role": "head coach",
+      "from": "2010",
+      "to": "2011",
+      "worldCups": [
+        "2010"
+      ],
+      "months": 9,
+      "innings": 23,
+      "indices": {
+        "ppIntent": 0.0091,
+        "ppPreservation": 0.0245,
+        "deathIntent": -0.0164,
+        "lowerOrderShare": 0.0214,
+        "wicketsAt15": 0.0213,
+        "bowlersUsed": -1.2483,
+        "bowlFirst": -0.1139
+      },
+      "z": {
+        "ppIntent": -0.234,
+        "ppPreservation": 0.015,
+        "deathIntent": -0.49,
+        "lowerOrderShare": 0.343,
+        "wicketsAt15": 0.318,
+        "bowlersUsed": -1.228,
+        "bowlFirst": -0.55
+      },
+      "tags": [
+        "Frontline trust"
+      ],
+      "intent": {
+        "pp": -0.234,
+        "mid": 0.318,
+        "death": -0.49
+      }
+    },
+    {
+      "team": "Pakistan",
+      "coachName": "Mohsin Khan",
+      "role": "interim",
+      "from": "2011",
+      "to": "2012",
+      "worldCups": [],
+      "months": 8,
+      "innings": 21,
+      "indices": {
+        "ppIntent": -0.0514,
+        "ppPreservation": -0.1282,
+        "deathIntent": -0.037,
+        "lowerOrderShare": 0.0184,
+        "wicketsAt15": 0.0813,
+        "bowlersUsed": -0.1133,
+        "bowlFirst": -0.1
+      },
+      "z": {
+        "ppIntent": -0.622,
+        "ppPreservation": -0.542,
+        "deathIntent": -0.593,
+        "lowerOrderShare": 0.284,
+        "wicketsAt15": 0.593,
+        "bowlersUsed": 0.268,
+        "bowlFirst": -0.472
+      },
+      "tags": [
+        "Powerplay anchor"
+      ],
+      "intent": {
+        "pp": -0.622,
+        "mid": 0.593,
+        "death": -0.593
+      }
+    },
+    {
+      "team": "Pakistan",
+      "coachName": "Dav Whatmore",
+      "role": "head coach",
+      "from": "2012-03-04",
+      "to": "2014",
+      "worldCups": [
+        "2012"
+      ],
+      "months": 13,
+      "innings": 30,
+      "indices": {
+        "ppIntent": -0.1087,
+        "ppPreservation": -0.1111,
+        "deathIntent": -0.0874,
+        "lowerOrderShare": 0.0228,
+        "wicketsAt15": 0.0625,
+        "bowlersUsed": -0.504,
+        "bowlFirst": -0.1007
+      },
+      "z": {
+        "ppIntent": -1.171,
+        "ppPreservation": -0.562,
+        "deathIntent": -1.048,
+        "lowerOrderShare": 0.41,
+        "wicketsAt15": 0.589,
+        "bowlersUsed": -0.268,
+        "bowlFirst": -0.556
+      },
+      "tags": [
+        "Powerplay anchor",
+        "Death conservative"
+      ],
+      "intent": {
+        "pp": -1.171,
+        "mid": 0.589,
+        "death": -1.048
+      }
+    },
+    {
+      "team": "Pakistan",
+      "coachName": "Waqar Younis",
+      "role": "head coach",
+      "from": "2014",
+      "to": "2016",
+      "worldCups": [
+        "2016"
+      ],
+      "months": 14,
+      "innings": 32,
+      "indices": {
+        "ppIntent": -0.0697,
+        "ppPreservation": -0.0762,
+        "deathIntent": 0.0633,
+        "lowerOrderShare": 0.0143,
+        "wicketsAt15": -0.019,
+        "bowlersUsed": -0.6194,
+        "bowlFirst": -0.0884
+      },
+      "z": {
+        "ppIntent": -0.892,
+        "ppPreservation": -0.423,
+        "deathIntent": 0.01,
+        "lowerOrderShare": 0.268,
+        "wicketsAt15": 0.132,
+        "bowlersUsed": -0.451,
+        "bowlFirst": -0.512
+      },
+      "tags": [
+        "Powerplay anchor"
+      ],
+      "intent": {
+        "pp": -0.892,
+        "mid": 0.132,
+        "death": 0.01
+      }
+    },
+    {
+      "team": "Pakistan",
+      "coachName": "Mickey Arthur",
+      "role": "head coach",
+      "from": "2016",
+      "to": "2019",
+      "worldCups": [],
+      "months": 18,
+      "innings": 53,
+      "indices": {
+        "ppIntent": -0.0471,
+        "ppPreservation": 0.1079,
+        "deathIntent": 0.0574,
+        "lowerOrderShare": -0.0466,
+        "wicketsAt15": -0.1845,
+        "bowlersUsed": -0.4692,
+        "bowlFirst": -0.11
+      },
+      "z": {
+        "ppIntent": -0.842,
+        "ppPreservation": 0.452,
+        "deathIntent": -0.038,
+        "lowerOrderShare": -0.971,
+        "wicketsAt15": -0.974,
+        "bowlersUsed": -0.261,
+        "bowlFirst": -0.725
+      },
+      "tags": [
+        "Powerplay anchor",
+        "Top-heavy",
+        "Bat first"
+      ],
+      "intent": {
+        "pp": -0.842,
+        "mid": -0.974,
+        "death": -0.038
+      }
+    },
+    {
+      "team": "Pakistan",
+      "coachName": "Misbah-ul-Haq",
+      "role": "head coach",
+      "from": "2019",
+      "to": "2021",
+      "worldCups": [],
+      "months": 15,
+      "innings": 44,
+      "indices": {
+        "ppIntent": -0.0612,
+        "ppPreservation": 0.1704,
+        "deathIntent": 0.0455,
+        "lowerOrderShare": -0.0074,
+        "wicketsAt15": -0.2501,
+        "bowlersUsed": -0.5559,
+        "bowlFirst": -0.0082
+      },
+      "z": {
+        "ppIntent": -0.922,
+        "ppPreservation": 0.734,
+        "deathIntent": -0.132,
+        "lowerOrderShare": -0.135,
+        "wicketsAt15": -1.346,
+        "bowlersUsed": -0.396,
+        "bowlFirst": -0.146
+      },
+      "tags": [
+        "Powerplay anchor",
+        "Wicket preserver"
+      ],
+      "intent": {
+        "pp": -0.922,
+        "mid": -1.346,
+        "death": -0.132
+      }
+    },
+    {
+      "team": "Pakistan",
+      "coachName": "Saqlain Mushtaq",
+      "role": "head coach",
+      "from": "2021",
+      "to": "2023",
+      "worldCups": [
+        "2021",
+        "2022"
+      ],
+      "months": 13,
+      "innings": 55,
+      "indices": {
+        "ppIntent": -0.0327,
+        "ppPreservation": 0.302,
+        "deathIntent": 0.0842,
+        "lowerOrderShare": -0.0002,
+        "wicketsAt15": -0.199,
+        "bowlersUsed": -0.4875,
+        "bowlFirst": -0.0025
+      },
+      "z": {
+        "ppIntent": -0.715,
+        "ppPreservation": 1.469,
+        "deathIntent": 0.191,
+        "lowerOrderShare": 0.01,
+        "wicketsAt15": -1.083,
+        "bowlersUsed": -0.298,
+        "bowlFirst": -0.124
+      },
+      "tags": [
+        "Powerplay anchor",
+        "Wicket preserver"
+      ],
+      "intent": {
+        "pp": -0.715,
+        "mid": -1.083,
+        "death": 0.191
+      }
+    },
+    {
+      "team": "Pakistan",
+      "coachName": "Mohammad Hafeez",
+      "role": "interim",
+      "from": "2023",
+      "to": "2024",
+      "worldCups": [],
+      "months": 8,
+      "innings": 30,
+      "indices": {
+        "ppIntent": 0.114,
+        "ppPreservation": 0.154,
+        "deathIntent": 0.1292,
+        "lowerOrderShare": 0.029,
+        "wicketsAt15": -0.0191,
+        "bowlersUsed": -0.489,
+        "bowlFirst": 0.0727
+      },
+      "z": {
+        "ppIntent": 0.545,
+        "ppPreservation": 0.57,
+        "deathIntent": 0.472,
+        "lowerOrderShare": 0.518,
+        "wicketsAt15": 0.128,
+        "bowlersUsed": -0.245,
+        "bowlFirst": 0.247
+      },
+      "tags": [],
+      "intent": {
+        "pp": 0.545,
+        "mid": 0.128,
+        "death": 0.472
+      }
+    },
+    {
+      "team": "Pakistan",
+      "coachName": "Azhar Mahmood",
+      "role": "interim",
+      "from": "2024",
+      "to": "2024",
+      "worldCups": [],
+      "months": 6,
+      "innings": 25,
+      "indices": {
+        "ppIntent": 0.1364,
+        "ppPreservation": 0.2027,
+        "deathIntent": 0.1054,
+        "lowerOrderShare": 0.0001,
+        "wicketsAt15": -0.0786,
+        "bowlersUsed": -0.3492,
+        "bowlFirst": 0.1064
+      },
+      "z": {
+        "ppIntent": 0.665,
+        "ppPreservation": 0.721,
+        "deathIntent": 0.283,
+        "lowerOrderShare": 0.012,
+        "wicketsAt15": -0.192,
+        "bowlersUsed": -0.034,
+        "bowlFirst": 0.373
+      },
+      "tags": [
+        "Powerplay aggressor",
+        "Wicket preserver"
+      ],
+      "intent": {
+        "pp": 0.665,
+        "mid": -0.192,
+        "death": 0.283
+      }
+    },
+    {
+      "team": "Pakistan",
+      "coachName": "Gary Kirsten",
+      "role": "T20I head coach",
+      "from": "2024",
+      "to": "2024-10-28",
+      "worldCups": [
+        "2024"
+      ],
+      "months": 4,
+      "innings": 18,
+      "indices": {
+        "ppIntent": 0.0917,
+        "ppPreservation": 0.18,
+        "deathIntent": 0.031,
+        "lowerOrderShare": 0.0197,
+        "wicketsAt15": -0.1182,
+        "bowlersUsed": -0.1756,
+        "bowlFirst": 0.2772
+      },
+      "z": {
+        "ppIntent": 0.295,
+        "ppPreservation": 0.538,
+        "deathIntent": -0.171,
+        "lowerOrderShare": 0.28,
+        "wicketsAt15": -0.34,
+        "bowlersUsed": 0.175,
+        "bowlFirst": 0.942
+      },
+      "tags": [],
+      "intent": {
+        "pp": 0.295,
+        "mid": -0.34,
+        "death": -0.171
+      }
+    },
+    {
+      "team": "Pakistan",
+      "coachName": "Aaqib Javed",
+      "role": "interim",
+      "from": "2024-11-18",
+      "to": "2025",
+      "worldCups": [],
+      "months": 10,
+      "innings": 38,
+      "indices": {
+        "ppIntent": 0.0009,
+        "ppPreservation": -0.0562,
+        "deathIntent": 0.1442,
+        "lowerOrderShare": 0.0369,
+        "wicketsAt15": 0.0146,
+        "bowlersUsed": -0.0745,
+        "bowlFirst": -0.0374
+      },
+      "z": {
+        "ppIntent": -0.356,
+        "ppPreservation": -0.358,
+        "deathIntent": 0.631,
+        "lowerOrderShare": 0.716,
+        "wicketsAt15": 0.348,
+        "bowlersUsed": 0.406,
+        "bowlFirst": -0.288
+      },
+      "tags": [
+        "Death hitter",
+        "Deep batting"
+      ],
+      "intent": {
+        "pp": -0.356,
+        "mid": 0.348,
+        "death": 0.631
+      }
+    },
+    {
+      "team": "Pakistan",
+      "coachName": "Mike Hesson",
+      "role": "T20I head coach",
+      "from": "2025",
+      "to": "",
+      "worldCups": [
+        "2026"
+      ],
+      "months": 11,
+      "innings": 45,
+      "indices": {
+        "ppIntent": -0.0025,
+        "ppPreservation": -0.0417,
+        "deathIntent": 0.1186,
+        "lowerOrderShare": 0.0253,
+        "wicketsAt15": -0.0541,
+        "bowlersUsed": 0.0244,
+        "bowlFirst": 0.0004
+      },
+      "z": {
+        "ppIntent": -0.406,
+        "ppPreservation": -0.307,
+        "deathIntent": 0.459,
+        "lowerOrderShare": 0.523,
+        "wicketsAt15": -0.08,
+        "bowlersUsed": 0.599,
+        "bowlFirst": -0.102
+      },
+      "tags": [],
+      "intent": {
+        "pp": -0.406,
+        "mid": -0.08,
+        "death": 0.459
+      }
+    },
+    {
+      "team": "Papua New Guinea",
+      "coachName": "Api Leka",
+      "role": "head coach",
+      "from": "2007",
+      "to": "",
+      "worldCups": [],
+      "months": 17,
+      "innings": 60,
+      "indices": {
+        "ppIntent": 0.0368,
+        "ppPreservation": -0.1134,
+        "deathIntent": 0.0615,
+        "lowerOrderShare": 0.012,
+        "wicketsAt15": 0.0034,
+        "bowlersUsed": 0.122,
+        "bowlFirst": 0.0563
+      },
+      "z": {
+        "ppIntent": -0.061,
+        "ppPreservation": -0.715,
+        "deathIntent": -0.004,
+        "lowerOrderShare": 0.276,
+        "wicketsAt15": 0.32,
+        "bowlersUsed": 0.83,
+        "bowlFirst": 0.213
+      },
+      "tags": [
+        "Risk taker",
+        "Six-bowler rotation"
+      ],
+      "intent": {
+        "pp": -0.061,
+        "mid": 0.32,
+        "death": -0.004
+      }
+    },
+    {
+      "team": "Papua New Guinea",
+      "coachName": "Joe Dawes",
+      "role": "head coach",
+      "from": "2018",
+      "to": "2021",
+      "worldCups": [],
+      "months": 4,
+      "innings": 16,
+      "indices": {
+        "ppIntent": 0.0638,
+        "ppPreservation": -0.026,
+        "deathIntent": 0.1059,
+        "lowerOrderShare": 0.0446,
+        "wicketsAt15": -0.0056,
+        "bowlersUsed": 0.8469,
+        "bowlFirst": -0.1731
+      },
+      "z": {
+        "ppIntent": 0.117,
+        "ppPreservation": -0.147,
+        "deathIntent": 0.229,
+        "lowerOrderShare": 0.585,
+        "wicketsAt15": 0.152,
+        "bowlersUsed": 1.292,
+        "bowlFirst": -0.66
+      },
+      "tags": [],
+      "intent": {
+        "pp": 0.117,
+        "mid": 0.152,
+        "death": 0.229
+      }
+    },
+    {
+      "team": "Papua New Guinea",
+      "coachName": "Carl Sandri",
+      "role": "head coach",
+      "from": "2021-03",
+      "to": "2022-08",
+      "worldCups": [
+        "2021"
+      ],
+      "months": 4,
+      "innings": 16,
+      "indices": {
+        "ppIntent": 0.019,
+        "ppPreservation": -0.4566,
+        "deathIntent": 0.0684,
+        "lowerOrderShare": 0.0746,
+        "wicketsAt15": 0.1232,
+        "bowlersUsed": 0.3313,
+        "bowlFirst": 0.305
+      },
+      "z": {
+        "ppIntent": -0.138,
+        "ppPreservation": -1.509,
+        "deathIntent": 0.034,
+        "lowerOrderShare": 0.974,
+        "wicketsAt15": 0.69,
+        "bowlersUsed": 0.723,
+        "bowlFirst": 0.979
+      },
+      "tags": [],
+      "intent": {
+        "pp": -0.138,
+        "mid": 0.69,
+        "death": 0.034
+      }
+    },
+    {
+      "team": "Papua New Guinea",
+      "coachName": "Mark Coles",
+      "role": "interim",
+      "from": "2022",
+      "to": "2023",
+      "worldCups": [],
+      "months": 5,
+      "innings": 18,
+      "indices": {
+        "ppIntent": 0.0807,
+        "ppPreservation": -0.1978,
+        "deathIntent": 0.1349,
+        "lowerOrderShare": 0.0037,
+        "wicketsAt15": 0.0166,
+        "bowlersUsed": 0.2194,
+        "bowlFirst": 0.1817
+      },
+      "z": {
+        "ppIntent": 0.228,
+        "ppPreservation": -0.736,
+        "deathIntent": 0.405,
+        "lowerOrderShare": 0.06,
+        "wicketsAt15": 0.261,
+        "bowlersUsed": 0.639,
+        "bowlFirst": 0.593
+      },
+      "tags": [],
+      "intent": {
+        "pp": 0.228,
+        "mid": 0.261,
+        "death": 0.405
+      }
+    },
+    {
+      "team": "Papua New Guinea",
+      "coachName": "Nathan Reardon",
+      "role": "head coach",
+      "from": "2023",
+      "to": "2024",
+      "worldCups": [],
+      "months": 4,
+      "innings": 18,
+      "indices": {
+        "ppIntent": 0.1002,
+        "ppPreservation": -0.0695,
+        "deathIntent": 0.055,
+        "lowerOrderShare": -0.0136,
+        "wicketsAt15": 0.0116,
+        "bowlersUsed": -0.985,
+        "bowlFirst": 0.1228
+      },
+      "z": {
+        "ppIntent": 0.347,
+        "ppPreservation": -0.304,
+        "deathIntent": -0.038,
+        "lowerOrderShare": -0.179,
+        "wicketsAt15": 0.238,
+        "bowlersUsed": -0.777,
+        "bowlFirst": 0.378
+      },
+      "tags": [],
+      "intent": {
+        "pp": 0.347,
+        "mid": 0.238,
+        "death": -0.038
+      }
+    },
+    {
+      "team": "Papua New Guinea",
+      "coachName": "Tatenda Taibu",
+      "role": "head coach",
+      "from": "2024",
+      "to": "",
+      "worldCups": [
+        "2024"
+      ],
+      "months": 5,
+      "innings": 20,
+      "indices": {
+        "ppIntent": 0.0145,
+        "ppPreservation": -0.1376,
+        "deathIntent": -0.0166,
+        "lowerOrderShare": -0.0037,
+        "wicketsAt15": -0.0146,
+        "bowlersUsed": -0.75,
+        "bowlFirst": 0.094
+      },
+      "z": {
+        "ppIntent": -0.184,
+        "ppPreservation": -0.563,
+        "deathIntent": -0.459,
+        "lowerOrderShare": -0.044,
+        "wicketsAt15": 0.128,
+        "bowlersUsed": -0.528,
+        "bowlFirst": 0.287
+      },
+      "tags": [],
+      "intent": {
+        "pp": -0.184,
+        "mid": 0.128,
+        "death": -0.459
+      }
+    },
+    {
+      "team": "Scotland",
+      "coachName": "Peter Steindl",
+      "role": "head coach",
+      "from": "2007-07",
+      "to": "2013",
+      "worldCups": [
+        "2007",
+        "2009"
+      ],
+      "months": 6,
+      "innings": 11,
+      "indices": {
+        "ppIntent": -0.0106,
+        "ppPreservation": -0.4682,
+        "deathIntent": -0.064,
+        "lowerOrderShare": 0.0166,
+        "wicketsAt15": 0.1201,
+        "bowlersUsed": -0.1373,
+        "bowlFirst": 0.0355
+      },
+      "z": {
+        "ppIntent": -0.245,
+        "ppPreservation": -1.234,
+        "deathIntent": -0.522,
+        "lowerOrderShare": 0.178,
+        "wicketsAt15": 0.54,
+        "bowlersUsed": 0.165,
+        "bowlFirst": 0.044
+      },
+      "tags": [],
+      "intent": {
+        "pp": -0.245,
+        "mid": 0.54,
+        "death": -0.522
+      }
+    },
+    {
+      "team": "Scotland",
+      "coachName": "Grant Bradburn",
+      "role": "head coach",
+      "from": "2014-04",
+      "to": "2018-09",
+      "worldCups": [
+        "2016"
+      ],
+      "months": 7,
+      "innings": 18,
+      "indices": {
+        "ppIntent": 0.0857,
+        "ppPreservation": 0.0255,
+        "deathIntent": 0.0203,
+        "lowerOrderShare": -0.0005,
+        "wicketsAt15": 0.1287,
+        "bowlersUsed": -0.9117,
+        "bowlFirst": -0.0139
+      },
+      "z": {
+        "ppIntent": 0.259,
+        "ppPreservation": 0.017,
+        "deathIntent": -0.23,
+        "lowerOrderShare": 0.002,
+        "wicketsAt15": 0.76,
+        "bowlersUsed": -0.691,
+        "bowlFirst": -0.122
+      },
+      "tags": [],
+      "intent": {
+        "pp": 0.259,
+        "mid": 0.76,
+        "death": -0.23
+      }
+    },
+    {
+      "team": "Scotland",
+      "coachName": "Shane Burger",
+      "role": "head coach",
+      "from": "2019-01",
+      "to": "2023-01",
+      "worldCups": [
+        "2021",
+        "2022"
+      ],
+      "months": 8,
+      "innings": 31,
+      "indices": {
+        "ppIntent": 0.0345,
+        "ppPreservation": 0.058,
+        "deathIntent": 0.0731,
+        "lowerOrderShare": -0.0164,
+        "wicketsAt15": -0.1274,
+        "bowlersUsed": -0.8035,
+        "bowlFirst": -0.1435
+      },
+      "z": {
+        "ppIntent": -0.068,
+        "ppPreservation": 0.162,
+        "deathIntent": 0.08,
+        "lowerOrderShare": -0.279,
+        "wicketsAt15": -0.489,
+        "bowlersUsed": -0.723,
+        "bowlFirst": -0.764
+      },
+      "tags": [
+        "Frontline trust",
+        "Bat first"
+      ],
+      "intent": {
+        "pp": -0.068,
+        "mid": -0.489,
+        "death": 0.08
+      }
+    },
+    {
+      "team": "Scotland",
+      "coachName": "Doug Watson",
+      "role": "head coach",
+      "from": "2023",
+      "to": "2025-09",
+      "worldCups": [
+        "2024"
+      ],
+      "months": 7,
+      "innings": 25,
+      "indices": {
+        "ppIntent": 0.1124,
+        "ppPreservation": -0.0168,
+        "deathIntent": -0.0016,
+        "lowerOrderShare": -0.0041,
+        "wicketsAt15": -0.0145,
+        "bowlersUsed": -0.0288,
+        "bowlFirst": -0.1216
+      },
+      "z": {
+        "ppIntent": 0.493,
+        "ppPreservation": -0.147,
+        "deathIntent": -0.413,
+        "lowerOrderShare": -0.056,
+        "wicketsAt15": 0.143,
+        "bowlersUsed": 0.407,
+        "bowlFirst": -0.604
+      },
+      "tags": [
+        "Bat first"
+      ],
+      "intent": {
+        "pp": 0.493,
+        "mid": 0.143,
+        "death": -0.413
+      }
+    },
+    {
+      "team": "South Africa",
+      "coachName": "Mickey Arthur",
+      "role": "head coach",
+      "from": "2005",
+      "to": "2010",
+      "worldCups": [
+        "2007",
+        "2009"
+      ],
+      "months": 14,
+      "innings": 33,
+      "indices": {
+        "ppIntent": -0.0293,
+        "ppPreservation": 0.0808,
+        "deathIntent": 0.036,
+        "lowerOrderShare": -0.0148,
+        "wicketsAt15": -0.1726,
+        "bowlersUsed": -0.2673,
+        "bowlFirst": -0.05
+      },
+      "z": {
+        "ppIntent": -0.58,
+        "ppPreservation": 0.267,
+        "deathIntent": -0.189,
+        "lowerOrderShare": -0.257,
+        "wicketsAt15": -0.765,
+        "bowlersUsed": 0.088,
+        "bowlFirst": -0.334
+      },
+      "tags": [],
+      "intent": {
+        "pp": -0.58,
+        "mid": -0.765,
+        "death": -0.189
+      }
+    },
+    {
+      "team": "South Africa",
+      "coachName": "Corrie van Zyl",
+      "role": "head coach",
+      "from": "2010",
+      "to": "2011",
+      "worldCups": [
+        "2010"
+      ],
+      "months": 4,
+      "innings": 13,
+      "indices": {
+        "ppIntent": -0.0133,
+        "ppPreservation": 0.0347,
+        "deathIntent": 0.1124,
+        "lowerOrderShare": -0.004,
+        "wicketsAt15": -0.0758,
+        "bowlersUsed": -0.1177,
+        "bowlFirst": -0.0492
+      },
+      "z": {
+        "ppIntent": -0.286,
+        "ppPreservation": 0.04,
+        "deathIntent": 0.233,
+        "lowerOrderShare": -0.039,
+        "wicketsAt15": -0.126,
+        "bowlersUsed": 0.202,
+        "bowlFirst": -0.209
+      },
+      "tags": [],
+      "intent": {
+        "pp": -0.286,
+        "mid": -0.126,
+        "death": 0.233
+      }
+    },
+    {
+      "team": "South Africa",
+      "coachName": "Gary Kirsten",
+      "role": "head coach",
+      "from": "2011",
+      "to": "2013",
+      "worldCups": [
+        "2012"
+      ],
+      "months": 10,
+      "innings": 23,
+      "indices": {
+        "ppIntent": 0.0125,
+        "ppPreservation": -0.239,
+        "deathIntent": 0.1107,
+        "lowerOrderShare": 0.0027,
+        "wicketsAt15": -0.0927,
+        "bowlersUsed": -0.3017,
+        "bowlFirst": -0.0935
+      },
+      "z": {
+        "ppIntent": -0.211,
+        "ppPreservation": -0.988,
+        "deathIntent": 0.305,
+        "lowerOrderShare": 0.052,
+        "wicketsAt15": -0.256,
+        "bowlersUsed": 0.03,
+        "bowlFirst": -0.466
+      },
+      "tags": [
+        "Risk taker"
+      ],
+      "intent": {
+        "pp": -0.211,
+        "mid": -0.256,
+        "death": 0.305
+      }
+    },
+    {
+      "team": "South Africa",
+      "coachName": "Russell Domingo",
+      "role": "T20I head coach",
+      "from": "2012",
+      "to": "2013",
+      "worldCups": [
+        "2012"
+      ],
+      "months": 8,
+      "innings": 20,
+      "indices": {
+        "ppIntent": 0.0227,
+        "ppPreservation": -0.1828,
+        "deathIntent": 0.0961,
+        "lowerOrderShare": -0.0135,
+        "wicketsAt15": -0.147,
+        "bowlersUsed": -0.3305,
+        "bowlFirst": -0.0575
+      },
+      "z": {
+        "ppIntent": -0.132,
+        "ppPreservation": -0.724,
+        "deathIntent": 0.2,
+        "lowerOrderShare": -0.188,
+        "wicketsAt15": -0.494,
+        "bowlersUsed": -0.008,
+        "bowlFirst": -0.297
+      },
+      "tags": [
+        "Risk taker"
+      ],
+      "intent": {
+        "pp": -0.132,
+        "mid": -0.494,
+        "death": 0.2
+      }
+    },
+    {
+      "team": "South Africa",
+      "coachName": "Russell Domingo",
+      "role": "head coach",
+      "from": "2013",
+      "to": "2017",
+      "worldCups": [
+        "2014",
+        "2016"
+      ],
+      "months": 16,
+      "innings": 44,
+      "indices": {
+        "ppIntent": 0.086,
+        "ppPreservation": 0.0913,
+        "deathIntent": 0.066,
+        "lowerOrderShare": -0.0371,
+        "wicketsAt15": -0.128,
+        "bowlersUsed": -0.3693,
+        "bowlFirst": -0.2402
+      },
+      "z": {
+        "ppIntent": 0.377,
+        "ppPreservation": 0.347,
+        "deathIntent": 0.033,
+        "lowerOrderShare": -0.73,
+        "wicketsAt15": -0.557,
+        "bowlersUsed": -0.077,
+        "bowlFirst": -1.378
+      },
+      "tags": [
+        "Top-heavy",
+        "Bat first"
+      ],
+      "intent": {
+        "pp": 0.377,
+        "mid": -0.557,
+        "death": 0.033
+      }
+    },
+    {
+      "team": "South Africa",
+      "coachName": "Ottis Gibson",
+      "role": "head coach",
+      "from": "2017",
+      "to": "2019",
+      "worldCups": [],
+      "months": 11,
+      "innings": 24,
+      "indices": {
+        "ppIntent": -0.0229,
+        "ppPreservation": 0.1221,
+        "deathIntent": 0.0308,
+        "lowerOrderShare": -0.0414,
+        "wicketsAt15": -0.1217,
+        "bowlersUsed": -0.8196,
+        "bowlFirst": -0.09
+      },
+      "z": {
+        "ppIntent": -0.463,
+        "ppPreservation": 0.394,
+        "deathIntent": -0.199,
+        "lowerOrderShare": -0.647,
+        "wicketsAt15": -0.41,
+        "bowlersUsed": -0.671,
+        "bowlFirst": -0.461
+      },
+      "tags": [
+        "Top-heavy",
+        "Frontline trust"
+      ],
+      "intent": {
+        "pp": -0.463,
+        "mid": -0.41,
+        "death": -0.199
+      }
+    },
+    {
+      "team": "South Africa",
+      "coachName": "Mark Boucher",
+      "role": "head coach",
+      "from": "2019",
+      "to": "2022",
+      "worldCups": [
+        "2021",
+        "2022"
+      ],
+      "months": 19,
+      "innings": 55,
+      "indices": {
+        "ppIntent": 0.0162,
+        "ppPreservation": 0.1277,
+        "deathIntent": 0.109,
+        "lowerOrderShare": -0.0399,
+        "wicketsAt15": -0.1524,
+        "bowlersUsed": -0.4287,
+        "bowlFirst": 0.0585
+      },
+      "z": {
+        "ppIntent": -0.254,
+        "ppPreservation": 0.56,
+        "deathIntent": 0.404,
+        "lowerOrderShare": -0.838,
+        "wicketsAt15": -0.762,
+        "bowlersUsed": -0.191,
+        "bowlFirst": 0.221
+      },
+      "tags": [
+        "Top-heavy"
+      ],
+      "intent": {
+        "pp": -0.254,
+        "mid": -0.762,
+        "death": 0.404
+      }
+    },
+    {
+      "team": "South Africa",
+      "coachName": "Malibongwe Maketa",
+      "role": "interim",
+      "from": "2022",
+      "to": "2023",
+      "worldCups": [],
+      "months": 10,
+      "innings": 22,
+      "indices": {
+        "ppIntent": 0.0924,
+        "ppPreservation": -0.2088,
+        "deathIntent": 0.1576,
+        "lowerOrderShare": -0.0251,
+        "wicketsAt15": -0.1069,
+        "bowlersUsed": -1.1045,
+        "bowlFirst": 0.1164
+      },
+      "z": {
+        "ppIntent": 0.331,
+        "ppPreservation": -0.855,
+        "deathIntent": 0.586,
+        "lowerOrderShare": -0.373,
+        "wicketsAt15": -0.321,
+        "bowlersUsed": -1.015,
+        "bowlFirst": 0.392
+      },
+      "tags": [
+        "Risk taker",
+        "Frontline trust"
+      ],
+      "intent": {
+        "pp": 0.331,
+        "mid": -0.321,
+        "death": 0.586
+      }
+    },
+    {
+      "team": "South Africa",
+      "coachName": "Rob Walter",
+      "role": "T20I head coach",
+      "from": "2023-01",
+      "to": "2025-04-30",
+      "worldCups": [
+        "2024"
+      ],
+      "months": 11,
+      "innings": 28,
+      "indices": {
+        "ppIntent": 0.1508,
+        "ppPreservation": -0.1716,
+        "deathIntent": 0.1204,
+        "lowerOrderShare": -0.0232,
+        "wicketsAt15": -0.05,
+        "bowlersUsed": -0.4893,
+        "bowlFirst": 0.0654
+      },
+      "z": {
+        "ppIntent": 0.806,
+        "ppPreservation": -0.797,
+        "deathIntent": 0.399,
+        "lowerOrderShare": -0.383,
+        "wicketsAt15": -0.045,
+        "bowlersUsed": -0.239,
+        "bowlFirst": 0.207
+      },
+      "tags": [
+        "Powerplay aggressor",
+        "Risk taker"
+      ],
+      "intent": {
+        "pp": 0.806,
+        "mid": -0.045,
+        "death": 0.399
+      }
+    },
+    {
+      "team": "South Africa",
+      "coachName": "Shukri Conrad",
+      "role": "head coach",
+      "from": "2025",
+      "to": "",
+      "worldCups": [
+        "2026"
+      ],
+      "months": 11,
+      "innings": 36,
+      "indices": {
+        "ppIntent": 0.0991,
+        "ppPreservation": 0.0396,
+        "deathIntent": 0.0756,
+        "lowerOrderShare": 0.0021,
+        "wicketsAt15": -0.0539,
+        "bowlersUsed": -0.5317,
+        "bowlFirst": 0.1158
+      },
+      "z": {
+        "ppIntent": 0.462,
+        "ppPreservation": 0.087,
+        "deathIntent": 0.103,
+        "lowerOrderShare": 0.051,
+        "wicketsAt15": -0.073,
+        "bowlersUsed": -0.332,
+        "bowlFirst": 0.478
+      },
+      "tags": [],
+      "intent": {
+        "pp": 0.462,
+        "mid": -0.073,
+        "death": 0.103
+      }
+    },
+    {
+      "team": "Sri Lanka",
+      "coachName": "Trevor Bayliss",
+      "role": "head coach",
+      "from": "2007",
+      "to": "2011",
+      "worldCups": [
+        "2007",
+        "2009",
+        "2010"
+      ],
+      "months": 13,
+      "innings": 33,
+      "indices": {
+        "ppIntent": 0.0798,
+        "ppPreservation": 0.0314,
+        "deathIntent": -0.0178,
+        "lowerOrderShare": -0.037,
+        "wicketsAt15": -0.0685,
+        "bowlersUsed": -0.057,
+        "bowlFirst": -0.1667
+      },
+      "z": {
+        "ppIntent": 0.293,
+        "ppPreservation": 0.049,
+        "deathIntent": -0.58,
+        "lowerOrderShare": -0.659,
+        "wicketsAt15": -0.156,
+        "bowlersUsed": 0.413,
+        "bowlFirst": -0.895
+      },
+      "tags": [
+        "Top-heavy",
+        "Bat first"
+      ],
+      "intent": {
+        "pp": 0.293,
+        "mid": -0.156,
+        "death": -0.58
+      }
+    },
+    {
+      "team": "Sri Lanka",
+      "coachName": "Geoff Marsh",
+      "role": "head coach",
+      "from": "2011",
+      "to": "2012",
+      "worldCups": [],
+      "months": 7,
+      "innings": 13,
+      "indices": {
+        "ppIntent": 0.1439,
+        "ppPreservation": 0.2486,
+        "deathIntent": -0.0107,
+        "lowerOrderShare": -0.0132,
+        "wicketsAt15": -0.1239,
+        "bowlersUsed": -0.1046,
+        "bowlFirst": -0.0085
+      },
+      "z": {
+        "ppIntent": 0.509,
+        "ppPreservation": 0.639,
+        "deathIntent": -0.334,
+        "lowerOrderShare": -0.144,
+        "wicketsAt15": -0.304,
+        "bowlersUsed": 0.215,
+        "bowlFirst": -0.085
+      },
+      "tags": [],
+      "intent": {
+        "pp": 0.509,
+        "mid": -0.304,
+        "death": -0.334
+      }
+    },
+    {
+      "team": "Sri Lanka",
+      "coachName": "Graham Ford",
+      "role": "head coach",
+      "from": "2012",
+      "to": "2013",
+      "worldCups": [
+        "2012"
+      ],
+      "months": 9,
+      "innings": 18,
+      "indices": {
+        "ppIntent": 0.1379,
+        "ppPreservation": 0.2206,
+        "deathIntent": 0.0083,
+        "lowerOrderShare": -0.0072,
+        "wicketsAt15": -0.0496,
+        "bowlersUsed": 0.0417,
+        "bowlFirst": 0.0678
+      },
+      "z": {
+        "ppIntent": 0.576,
+        "ppPreservation": 0.675,
+        "deathIntent": -0.297,
+        "lowerOrderShare": -0.09,
+        "wicketsAt15": -0.035,
+        "bowlersUsed": 0.43,
+        "bowlFirst": 0.177
+      },
+      "tags": [],
+      "intent": {
+        "pp": 0.576,
+        "mid": -0.035,
+        "death": -0.297
+      }
+    },
+    {
+      "team": "Sri Lanka",
+      "coachName": "Paul Farbrace",
+      "role": "head coach",
+      "from": "2013",
+      "to": "2014",
+      "worldCups": [
+        "2014"
+      ],
+      "months": 9,
+      "innings": 18,
+      "indices": {
+        "ppIntent": 0.0973,
+        "ppPreservation": 0.0079,
+        "deathIntent": 0.0759,
+        "lowerOrderShare": -0.0099,
+        "wicketsAt15": -0.0048,
+        "bowlersUsed": -0.1006,
+        "bowlFirst": 0.015
+      },
+      "z": {
+        "ppIntent": 0.329,
+        "ppPreservation": -0.043,
+        "deathIntent": 0.078,
+        "lowerOrderShare": -0.128,
+        "wicketsAt15": 0.165,
+        "bowlersUsed": 0.263,
+        "bowlFirst": -0.016
+      },
+      "tags": [],
+      "intent": {
+        "pp": 0.329,
+        "mid": 0.165,
+        "death": 0.078
+      }
+    },
+    {
+      "team": "Sri Lanka",
+      "coachName": "Marvan Atapattu",
+      "role": "head coach",
+      "from": "2014",
+      "to": "2015",
+      "worldCups": [],
+      "months": 7,
+      "innings": 13,
+      "indices": {
+        "ppIntent": 0.0876,
+        "ppPreservation": -0.0194,
+        "deathIntent": 0.1198,
+        "lowerOrderShare": 0.017,
+        "wicketsAt15": 0.001,
+        "bowlersUsed": -0.31,
+        "bowlFirst": -0.0769
+      },
+      "z": {
+        "ppIntent": 0.225,
+        "ppPreservation": -0.112,
+        "deathIntent": 0.267,
+        "lowerOrderShare": 0.202,
+        "wicketsAt15": 0.159,
+        "bowlersUsed": 0.014,
+        "bowlFirst": -0.293
+      },
+      "tags": [],
+      "intent": {
+        "pp": 0.225,
+        "mid": 0.159,
+        "death": 0.267
+      }
+    },
+    {
+      "team": "Sri Lanka",
+      "coachName": "Jerome Jayaratne",
+      "role": "interim",
+      "from": "2015",
+      "to": "2016",
+      "worldCups": [],
+      "months": 8,
+      "innings": 19,
+      "indices": {
+        "ppIntent": 0.0011,
+        "ppPreservation": -0.2272,
+        "deathIntent": -0.1148,
+        "lowerOrderShare": 0.0841,
+        "wicketsAt15": 0.148,
+        "bowlersUsed": 0.2458,
+        "bowlFirst": 0.2063
+      },
+      "z": {
+        "ppIntent": -0.264,
+        "ppPreservation": -0.859,
+        "deathIntent": -1.007,
+        "lowerOrderShare": 1.202,
+        "wicketsAt15": 0.87,
+        "bowlersUsed": 0.689,
+        "bowlFirst": 0.703
+      },
+      "tags": [],
+      "intent": {
+        "pp": -0.264,
+        "mid": 0.87,
+        "death": -1.007
+      }
+    },
+    {
+      "team": "Sri Lanka",
+      "coachName": "Graham Ford",
+      "role": "head coach",
+      "from": "2016",
+      "to": "2017",
+      "worldCups": [
+        "2016"
+      ],
+      "months": 11,
+      "innings": 29,
+      "indices": {
+        "ppIntent": -0.0138,
+        "ppPreservation": -0.3336,
+        "deathIntent": -0.1717,
+        "lowerOrderShare": 0.0779,
+        "wicketsAt15": 0.1635,
+        "bowlersUsed": 0.3655,
+        "bowlFirst": 0.2048
+      },
+      "z": {
+        "ppIntent": -0.433,
+        "ppPreservation": -1.491,
+        "deathIntent": -1.617,
+        "lowerOrderShare": 1.354,
+        "wicketsAt15": 1.143,
+        "bowlersUsed": 1.013,
+        "bowlFirst": 0.846
+      },
+      "tags": [
+        "Risk taker",
+        "Death conservative",
+        "Deep batting",
+        "Six-bowler rotation",
+        "Bowl first"
+      ],
+      "intent": {
+        "pp": -0.433,
+        "mid": 1.143,
+        "death": -1.5
+      }
+    },
+    {
+      "team": "Sri Lanka",
+      "coachName": "Nic Pothas",
+      "role": "interim",
+      "from": "2017",
+      "to": "2017",
+      "worldCups": [],
+      "months": 6,
+      "innings": 14,
+      "indices": {
+        "ppIntent": 0.0133,
+        "ppPreservation": -0.3525,
+        "deathIntent": -0.159,
+        "lowerOrderShare": 0.0487,
+        "wicketsAt15": 0.1115,
+        "bowlersUsed": 0.3857,
+        "bowlFirst": 0.1014
+      },
+      "z": {
+        "ppIntent": -0.158,
+        "ppPreservation": -1.093,
+        "deathIntent": -1.064,
+        "lowerOrderShare": 0.592,
+        "wicketsAt15": 0.594,
+        "bowlersUsed": 0.726,
+        "bowlFirst": 0.26
+      },
+      "tags": [],
+      "intent": {
+        "pp": -0.158,
+        "mid": 0.594,
+        "death": -1.064
+      }
+    },
+    {
+      "team": "Sri Lanka",
+      "coachName": "Chandika Hathurusingha",
+      "role": "head coach",
+      "from": "2017",
+      "to": "2019",
+      "worldCups": [],
+      "months": 15,
+      "innings": 34,
+      "indices": {
+        "ppIntent": 0.0453,
+        "ppPreservation": -0.1498,
+        "deathIntent": -0.0566,
+        "lowerOrderShare": 0.0411,
+        "wicketsAt15": 0.1101,
+        "bowlersUsed": -0.135,
+        "bowlFirst": 0.0388
+      },
+      "z": {
+        "ppIntent": 0.017,
+        "ppPreservation": -0.763,
+        "deathIntent": -0.873,
+        "lowerOrderShare": 0.766,
+        "wicketsAt15": 0.9,
+        "bowlersUsed": 0.295,
+        "bowlFirst": 0.094
+      },
+      "tags": [
+        "Risk taker",
+        "Death conservative",
+        "Deep batting"
+      ],
+      "intent": {
+        "pp": 0.017,
+        "mid": 0.9,
+        "death": -0.873
+      }
+    },
+    {
+      "team": "Sri Lanka",
+      "coachName": "Mickey Arthur",
+      "role": "head coach",
+      "from": "2019",
+      "to": "2021",
+      "worldCups": [
+        "2021"
+      ],
+      "months": 13,
+      "innings": 36,
+      "indices": {
+        "ppIntent": -0.0125,
+        "ppPreservation": -0.1887,
+        "deathIntent": -0.0494,
+        "lowerOrderShare": 0.0281,
+        "wicketsAt15": 0.1065,
+        "bowlersUsed": -0.6364,
+        "bowlFirst": 0.0711
+      },
+      "z": {
+        "ppIntent": -0.46,
+        "ppPreservation": -0.957,
+        "deathIntent": -0.837,
+        "lowerOrderShare": 0.538,
+        "wicketsAt15": 0.897,
+        "bowlersUsed": -0.498,
+        "bowlFirst": 0.257
+      },
+      "tags": [
+        "Risk taker",
+        "Death conservative"
+      ],
+      "intent": {
+        "pp": -0.46,
+        "mid": 0.897,
+        "death": -0.837
+      }
+    },
+    {
+      "team": "Sri Lanka",
+      "coachName": "Rumesh Ratnayake",
+      "role": "interim",
+      "from": "2022",
+      "to": "2022",
+      "worldCups": [],
+      "months": 5,
+      "innings": 21,
+      "indices": {
+        "ppIntent": -0.0577,
+        "ppPreservation": -0.0433,
+        "deathIntent": -0.0185,
+        "lowerOrderShare": 0.0121,
+        "wicketsAt15": 0.0622,
+        "bowlersUsed": -0.2729,
+        "bowlFirst": 0.0557
+      },
+      "z": {
+        "ppIntent": -0.664,
+        "ppPreservation": -0.233,
+        "deathIntent": -0.481,
+        "lowerOrderShare": 0.19,
+        "wicketsAt15": 0.501,
+        "bowlersUsed": 0.065,
+        "bowlFirst": 0.143
+      },
+      "tags": [
+        "Powerplay anchor"
+      ],
+      "intent": {
+        "pp": -0.664,
+        "mid": 0.501,
+        "death": -0.481
+      }
+    },
+    {
+      "team": "Sri Lanka",
+      "coachName": "Chris Silverwood",
+      "role": "head coach",
+      "from": "2022",
+      "to": "2024",
+      "worldCups": [
+        "2022",
+        "2024"
+      ],
+      "months": 14,
+      "innings": 46,
+      "indices": {
+        "ppIntent": 0.0302,
+        "ppPreservation": 0.1173,
+        "deathIntent": -0.0108,
+        "lowerOrderShare": -0.0127,
+        "wicketsAt15": -0.0562,
+        "bowlersUsed": -0.6276,
+        "bowlFirst": 0.0622
+      },
+      "z": {
+        "ppIntent": -0.116,
+        "ppPreservation": 0.48,
+        "deathIntent": -0.592,
+        "lowerOrderShare": -0.245,
+        "wicketsAt15": -0.094,
+        "bowlersUsed": -0.526,
+        "bowlFirst": 0.23
+      },
+      "tags": [],
+      "intent": {
+        "pp": -0.116,
+        "mid": -0.094,
+        "death": -0.592
+      }
+    },
+    {
+      "team": "Sri Lanka",
+      "coachName": "Sanath Jayasuriya",
+      "role": "head coach",
+      "from": "2024",
+      "to": "2026",
+      "worldCups": [
+        "2026"
+      ],
+      "months": 16,
+      "innings": 59,
+      "indices": {
+        "ppIntent": 0.0444,
+        "ppPreservation": -0.0104,
+        "deathIntent": -0.0144,
+        "lowerOrderShare": -0.0016,
+        "wicketsAt15": -0.0477,
+        "bowlersUsed": -0.8697,
+        "bowlFirst": 0.0871
+      },
+      "z": {
+        "ppIntent": 0.011,
+        "ppPreservation": -0.164,
+        "deathIntent": -0.666,
+        "lowerOrderShare": -0.021,
+        "wicketsAt15": -0.041,
+        "bowlersUsed": -1.012,
+        "bowlFirst": 0.39
+      },
+      "tags": [
+        "Death conservative",
+        "Frontline trust"
+      ],
+      "intent": {
+        "pp": 0.011,
+        "mid": -0.041,
+        "death": -0.666
+      }
+    },
+    {
+      "team": "Sri Lanka",
+      "coachName": "Gary Kirsten",
+      "role": "head coach",
+      "from": "2026",
+      "to": "",
+      "worldCups": [],
+      "months": 5,
+      "innings": 23,
+      "indices": {
+        "ppIntent": -0.0367,
+        "ppPreservation": -0.2411,
+        "deathIntent": -0.0122,
+        "lowerOrderShare": 0.0577,
+        "wicketsAt15": 0.0496,
+        "bowlersUsed": -1.0443,
+        "bowlFirst": 0.0783
+      },
+      "z": {
+        "ppIntent": -0.549,
+        "ppPreservation": -0.996,
+        "deathIntent": -0.464,
+        "lowerOrderShare": 0.909,
+        "wicketsAt15": 0.46,
+        "bowlersUsed": -0.956,
+        "bowlFirst": 0.243
+      },
+      "tags": [
+        "Risk taker",
+        "Deep batting",
+        "Frontline trust"
+      ],
+      "intent": {
+        "pp": -0.549,
+        "mid": 0.46,
+        "death": -0.464
+      }
+    },
+    {
+      "team": "Uganda",
+      "coachName": "Laurence Mahatlane",
+      "role": "head coach",
+      "from": "2020-07",
+      "to": "2023-10",
+      "worldCups": [],
+      "months": 10,
+      "innings": 59,
+      "indices": {
+        "ppIntent": 0.021,
+        "ppPreservation": 0.0495,
+        "deathIntent": 0.0936,
+        "lowerOrderShare": -0.0161,
+        "wicketsAt15": -0.0846,
+        "bowlersUsed": -0.1678,
+        "bowlFirst": -0.239
+      },
+      "z": {
+        "ppIntent": -0.213,
+        "ppPreservation": 0.154,
+        "deathIntent": 0.277,
+        "lowerOrderShare": -0.336,
+        "wicketsAt15": -0.3,
+        "bowlersUsed": 0.29,
+        "bowlFirst": -1.489
+      },
+      "tags": [
+        "Bat first"
+      ],
+      "intent": {
+        "pp": -0.213,
+        "mid": -0.3,
+        "death": 0.277
+      }
+    },
+    {
+      "team": "Uganda",
+      "coachName": "Abhay Sharma",
+      "role": "head coach",
+      "from": "2024-04",
+      "to": "2025-10",
+      "worldCups": [
+        "2024"
+      ],
+      "months": 6,
+      "innings": 23,
+      "indices": {
+        "ppIntent": -0.122,
+        "ppPreservation": -0.0568,
+        "deathIntent": 0.0943,
+        "lowerOrderShare": -0.0171,
+        "wicketsAt15": -0.1495,
+        "bowlersUsed": -0.6048,
+        "bowlFirst": -0.0809
+      },
+      "z": {
+        "ppIntent": -1.135,
+        "ppPreservation": -0.294,
+        "deathIntent": 0.203,
+        "lowerOrderShare": -0.256,
+        "wicketsAt15": -0.541,
+        "bowlersUsed": -0.373,
+        "bowlFirst": -0.414
+      },
+      "tags": [
+        "Powerplay anchor"
+      ],
+      "intent": {
+        "pp": -1.135,
+        "mid": -0.541,
+        "death": 0.203
+      }
+    },
+    {
+      "team": "Uganda",
+      "coachName": "Steve Tikolo",
+      "role": "head coach",
+      "from": "2026-03",
+      "to": "",
+      "worldCups": [],
+      "months": 2,
+      "innings": 14,
+      "indices": {
+        "ppIntent": 0.2286,
+        "ppPreservation": -0.067,
+        "deathIntent": 0.3361,
+        "lowerOrderShare": -0.0482,
+        "wicketsAt15": -0.1243,
+        "bowlersUsed": -0.4607,
+        "bowlFirst": -0.2893
+      },
+      "z": {
+        "ppIntent": 0.98,
+        "ppPreservation": -0.257,
+        "deathIntent": 1.321,
+        "lowerOrderShare": -0.57,
+        "wicketsAt15": -0.319,
+        "bowlersUsed": -0.14,
+        "bowlFirst": -0.981
+      },
+      "tags": [],
+      "intent": {
+        "pp": 0.98,
+        "mid": -0.319,
+        "death": 1.321
+      }
+    },
+    {
+      "team": "United Arab Emirates",
+      "coachName": "Aaqib Javed",
+      "role": "head coach",
+      "from": "2012-02",
+      "to": "2016",
+      "worldCups": [
+        "2014"
+      ],
+      "months": 5,
+      "innings": 16,
+      "indices": {
+        "ppIntent": -0.1588,
+        "ppPreservation": -0.2159,
+        "deathIntent": -0.1054,
+        "lowerOrderShare": 0.0384,
+        "wicketsAt15": 0.17,
+        "bowlersUsed": -2.3087,
+        "bowlFirst": -0.1944
+      },
+      "z": {
+        "ppIntent": -1.153,
+        "ppPreservation": -0.748,
+        "deathIntent": -0.87,
+        "lowerOrderShare": 0.505,
+        "wicketsAt15": 0.885,
+        "bowlersUsed": -2.19,
+        "bowlFirst": -0.733
+      },
+      "tags": [],
+      "intent": {
+        "pp": -1.153,
+        "mid": 0.885,
+        "death": -0.87
+      }
+    },
+    {
+      "team": "United Arab Emirates",
+      "coachName": "Dougie Brown",
+      "role": "head coach",
+      "from": "2017-01",
+      "to": "",
+      "worldCups": [],
+      "months": 34,
+      "innings": 109,
+      "indices": {
+        "ppIntent": 0.065,
+        "ppPreservation": 0.108,
+        "deathIntent": 0.0789,
+        "lowerOrderShare": -0.034,
+        "wicketsAt15": -0.168,
+        "bowlersUsed": -0.3849,
+        "bowlFirst": -0.0202
+      },
+      "z": {
+        "ppIntent": 0.237,
+        "ppPreservation": 0.526,
+        "deathIntent": 0.168,
+        "lowerOrderShare": -0.821,
+        "wicketsAt15": -1.002,
+        "bowlersUsed": -0.128,
+        "bowlFirst": -0.259
+      },
+      "tags": [
+        "Top-heavy"
+      ],
+      "intent": {
+        "pp": 0.237,
+        "mid": -1.002,
+        "death": 0.168
+      }
+    },
+    {
+      "team": "United Arab Emirates",
+      "coachName": "Robin Singh",
+      "role": "head coach",
+      "from": "2020",
+      "to": "",
+      "worldCups": [
+        "2022"
+      ],
+      "months": 26,
+      "innings": 91,
+      "indices": {
+        "ppIntent": 0.0855,
+        "ppPreservation": 0.1784,
+        "deathIntent": 0.0876,
+        "lowerOrderShare": -0.0409,
+        "wicketsAt15": -0.1981,
+        "bowlersUsed": -0.3119,
+        "bowlFirst": -0.0685
+      },
+      "z": {
+        "ppIntent": 0.445,
+        "ppPreservation": 0.921,
+        "deathIntent": 0.247,
+        "lowerOrderShare": -0.961,
+        "wicketsAt15": -1.204,
+        "bowlersUsed": 0.025,
+        "bowlFirst": -0.557
+      },
+      "tags": [
+        "Wicket preserver",
+        "Top-heavy"
+      ],
+      "intent": {
+        "pp": 0.445,
+        "mid": -1.204,
+        "death": 0.247
+      }
+    },
+    {
+      "team": "United Arab Emirates",
+      "coachName": "Lalchand Rajput",
+      "role": "head coach",
+      "from": "2024-02",
+      "to": "",
+      "worldCups": [
+        "2026"
+      ],
+      "months": 16,
+      "innings": 54,
+      "indices": {
+        "ppIntent": 0.0895,
+        "ppPreservation": 0.2235,
+        "deathIntent": 0.1287,
+        "lowerOrderShare": -0.0551,
+        "wicketsAt15": -0.2449,
+        "bowlersUsed": -0.4391,
+        "bowlFirst": -0.0359
+      },
+      "z": {
+        "ppIntent": 0.433,
+        "ppPreservation": 1.054,
+        "deathIntent": 0.57,
+        "lowerOrderShare": -1.157,
+        "wicketsAt15": -1.393,
+        "bowlersUsed": -0.209,
+        "bowlFirst": -0.312
+      },
+      "tags": [
+        "Wicket preserver",
+        "Top-heavy"
+      ],
+      "intent": {
+        "pp": 0.433,
+        "mid": -1.393,
+        "death": 0.57
+      }
+    },
+    {
+      "team": "United States of America",
+      "coachName": "J. Arunkumar",
+      "role": "head coach",
+      "from": "2020",
+      "to": "2022",
+      "worldCups": [],
+      "months": 3,
+      "innings": 12,
+      "indices": {
+        "ppIntent": 0.1421,
+        "ppPreservation": 0.2466,
+        "deathIntent": 0.0217,
+        "lowerOrderShare": 0.0243,
+        "wicketsAt15": 0.0156,
+        "bowlersUsed": 0.295,
+        "bowlFirst": 0.1167
+      },
+      "z": {
+        "ppIntent": 0.476,
+        "ppPreservation": 0.603,
+        "deathIntent": -0.176,
+        "lowerOrderShare": 0.272,
+        "wicketsAt15": 0.203,
+        "bowlersUsed": 0.576,
+        "bowlFirst": 0.281
+      },
+      "tags": [],
+      "intent": {
+        "pp": 0.476,
+        "mid": 0.203,
+        "death": -0.176
+      }
+    },
+    {
+      "team": "United States of America",
+      "coachName": "Kevin Darlington",
+      "role": "interim",
+      "from": "2023",
+      "to": "2024",
+      "worldCups": [],
+      "months": 6,
+      "innings": 23,
+      "indices": {
+        "ppIntent": 0.1171,
+        "ppPreservation": 0.2619,
+        "deathIntent": 0.0622,
+        "lowerOrderShare": -0.0122,
+        "wicketsAt15": -0.1348,
+        "bowlersUsed": 0.1209,
+        "bowlFirst": 0.1604
+      },
+      "z": {
+        "ppIntent": 0.508,
+        "ppPreservation": 0.919,
+        "deathIntent": 0.002,
+        "lowerOrderShare": -0.18,
+        "wicketsAt15": -0.467,
+        "bowlersUsed": 0.591,
+        "bowlFirst": 0.582
+      },
+      "tags": [
+        "Wicket preserver"
+      ],
+      "intent": {
+        "pp": 0.508,
+        "mid": -0.467,
+        "death": 0.002
+      }
+    },
+    {
+      "team": "United States of America",
+      "coachName": "Stuart Law",
+      "role": "head coach",
+      "from": "2024",
+      "to": "2024",
+      "worldCups": [
+        "2024"
+      ],
+      "months": 6,
+      "innings": 23,
+      "indices": {
+        "ppIntent": 0.1171,
+        "ppPreservation": 0.2619,
+        "deathIntent": 0.0622,
+        "lowerOrderShare": -0.0122,
+        "wicketsAt15": -0.1348,
+        "bowlersUsed": 0.1209,
+        "bowlFirst": 0.1604
+      },
+      "z": {
+        "ppIntent": 0.508,
+        "ppPreservation": 0.919,
+        "deathIntent": 0.002,
+        "lowerOrderShare": -0.18,
+        "wicketsAt15": -0.467,
+        "bowlersUsed": 0.591,
+        "bowlFirst": 0.582
+      },
+      "tags": [
+        "Wicket preserver"
+      ],
+      "intent": {
+        "pp": 0.508,
+        "mid": -0.467,
+        "death": 0.002
+      }
+    },
+    {
+      "team": "United States of America",
+      "coachName": "Pubudu Dassanayake",
+      "role": "head coach",
+      "from": "2025",
+      "to": "",
+      "worldCups": [
+        "2026"
+      ],
+      "months": 3,
+      "innings": 13,
+      "indices": {
+        "ppIntent": 0.2056,
+        "ppPreservation": 0.3103,
+        "deathIntent": 0.1095,
+        "lowerOrderShare": -0.0915,
+        "wicketsAt15": -0.3178,
+        "bowlersUsed": -0.1338,
+        "bowlFirst": -0.1177
+      },
+      "z": {
+        "ppIntent": 0.821,
+        "ppPreservation": 0.812,
+        "deathIntent": 0.219,
+        "lowerOrderShare": -1.042,
+        "wicketsAt15": -1.022,
+        "bowlersUsed": 0.186,
+        "bowlFirst": -0.417
+      },
+      "tags": [],
+      "intent": {
+        "pp": 0.821,
+        "mid": -1.022,
+        "death": 0.219
+      }
+    },
+    {
+      "team": "West Indies",
+      "coachName": "John Dyson",
+      "role": "head coach",
+      "from": "2007",
+      "to": "2009",
+      "worldCups": [
+        "2007",
+        "2009"
+      ],
+      "months": 7,
+      "innings": 14,
+      "indices": {
+        "ppIntent": 0.0433,
+        "ppPreservation": 0.1918,
+        "deathIntent": -0.0112,
+        "lowerOrderShare": -0.0402,
+        "wicketsAt15": -0.161,
+        "bowlersUsed": -0.7471,
+        "bowlFirst": 0.1857
+      },
+      "z": {
+        "ppIntent": 0,
+        "ppPreservation": 0.502,
+        "deathIntent": -0.352,
+        "lowerOrderShare": -0.474,
+        "wicketsAt15": -0.461,
+        "bowlersUsed": -0.432,
+        "bowlFirst": 0.528
+      },
+      "tags": [],
+      "intent": {
+        "pp": 0,
+        "mid": -0.461,
+        "death": -0.352
+      }
+    },
+    {
+      "team": "West Indies",
+      "coachName": "David Williams",
+      "role": "interim",
+      "from": "2009",
+      "to": "2010",
+      "worldCups": [],
+      "months": 6,
+      "innings": 16,
+      "indices": {
+        "ppIntent": -0.0532,
+        "ppPreservation": -0.0254,
+        "deathIntent": -0.0305,
+        "lowerOrderShare": 0.0546,
+        "wicketsAt15": 0.0019,
+        "bowlersUsed": -0.1594,
+        "bowlFirst": 0.2313
+      },
+      "z": {
+        "ppIntent": -0.55,
+        "ppPreservation": -0.145,
+        "deathIntent": -0.48,
+        "lowerOrderShare": 0.715,
+        "wicketsAt15": 0.183,
+        "bowlersUsed": 0.182,
+        "bowlFirst": 0.727
+      },
+      "tags": [],
+      "intent": {
+        "pp": -0.55,
+        "mid": 0.183,
+        "death": -0.48
+      }
+    },
+    {
+      "team": "West Indies",
+      "coachName": "Ottis Gibson",
+      "role": "head coach",
+      "from": "2010",
+      "to": "2014",
+      "worldCups": [
+        "2010",
+        "2012",
+        "2014"
+      ],
+      "months": 21,
+      "innings": 43,
+      "indices": {
+        "ppIntent": -0.0481,
+        "ppPreservation": 0.1285,
+        "deathIntent": 0.0952,
+        "lowerOrderShare": 0.0042,
+        "wicketsAt15": -0.1085,
+        "bowlersUsed": -0.1495,
+        "bowlFirst": -0.2328
+      },
+      "z": {
+        "ppIntent": -0.801,
+        "ppPreservation": 0.525,
+        "deathIntent": 0.266,
+        "lowerOrderShare": 0.096,
+        "wicketsAt15": -0.428,
+        "bowlersUsed": 0.296,
+        "bowlFirst": -1.329
+      },
+      "tags": [
+        "Powerplay anchor",
+        "Bat first"
+      ],
+      "intent": {
+        "pp": -0.801,
+        "mid": -0.428,
+        "death": 0.266
+      }
+    },
+    {
+      "team": "West Indies",
+      "coachName": "Phil Simmons",
+      "role": "head coach",
+      "from": "2015",
+      "to": "2016",
+      "worldCups": [
+        "2016"
+      ],
+      "months": 6,
+      "innings": 15,
+      "indices": {
+        "ppIntent": -0.0131,
+        "ppPreservation": -0.032,
+        "deathIntent": -0.0599,
+        "lowerOrderShare": 0.0251,
+        "wicketsAt15": 0.136,
+        "bowlersUsed": -0.1273,
+        "bowlFirst": 0.2547
+      },
+      "z": {
+        "ppIntent": -0.31,
+        "ppPreservation": -0.16,
+        "deathIntent": -0.61,
+        "lowerOrderShare": 0.321,
+        "wicketsAt15": 0.717,
+        "bowlersUsed": 0.209,
+        "bowlFirst": 0.778
+      },
+      "tags": [],
+      "intent": {
+        "pp": -0.31,
+        "mid": 0.717,
+        "death": -0.61
+      }
+    },
+    {
+      "team": "West Indies",
+      "coachName": "Stuart Law",
+      "role": "head coach",
+      "from": "2017",
+      "to": "2018",
+      "worldCups": [],
+      "months": 11,
+      "innings": 19,
+      "indices": {
+        "ppIntent": -0.0002,
+        "ppPreservation": 0.0911,
+        "deathIntent": -0.1079,
+        "lowerOrderShare": 0.0834,
+        "wicketsAt15": 0.209,
+        "bowlersUsed": -0.51,
+        "bowlFirst": 0.1363
+      },
+      "z": {
+        "ppIntent": -0.272,
+        "ppPreservation": 0.245,
+        "deathIntent": -0.968,
+        "lowerOrderShare": 1.192,
+        "wicketsAt15": 1.149,
+        "bowlersUsed": -0.225,
+        "bowlFirst": 0.439
+      },
+      "tags": [],
+      "intent": {
+        "pp": -0.272,
+        "mid": 1.149,
+        "death": -0.968
+      }
+    },
+    {
+      "team": "West Indies",
+      "coachName": "Nic Pothas",
+      "role": "interim",
+      "from": "2018",
+      "to": "2018",
+      "worldCups": [],
+      "months": 6,
+      "innings": 12,
+      "indices": {
+        "ppIntent": -0.0158,
+        "ppPreservation": -0.0943,
+        "deathIntent": -0.1526,
+        "lowerOrderShare": 0.0793,
+        "wicketsAt15": 0.245,
+        "bowlersUsed": -0.7108,
+        "bowlFirst": 0.2158
+      },
+      "z": {
+        "ppIntent": -0.284,
+        "ppPreservation": -0.306,
+        "deathIntent": -0.941,
+        "lowerOrderShare": 0.873,
+        "wicketsAt15": 1.011,
+        "bowlersUsed": -0.36,
+        "bowlFirst": 0.568
+      },
+      "tags": [],
+      "intent": {
+        "pp": -0.284,
+        "mid": 1.011,
+        "death": -0.941
+      }
+    },
+    {
+      "team": "West Indies",
+      "coachName": "Richard Pybus",
+      "role": "interim",
+      "from": "2019",
+      "to": "2019",
+      "worldCups": [],
+      "months": 3,
+      "innings": 8,
+      "indices": {
+        "ppIntent": -0.1179,
+        "ppPreservation": -0.8066,
+        "deathIntent": 0.0902,
+        "lowerOrderShare": 0.0529,
+        "wicketsAt15": 0.1818,
+        "bowlersUsed": -0.1212,
+        "bowlFirst": 0.0263
+      },
+      "z": {
+        "ppIntent": -0.591,
+        "ppPreservation": -1.682,
+        "deathIntent": 0.095,
+        "lowerOrderShare": 0.445,
+        "wicketsAt15": 0.601,
+        "bowlersUsed": 0.144,
+        "bowlFirst": 0.015
+      },
+      "tags": [],
+      "intent": {
+        "pp": -0.591,
+        "mid": 0.601,
+        "death": 0.095
+      }
+    },
+    {
+      "team": "West Indies",
+      "coachName": "Floyd Reifer",
+      "role": "interim",
+      "from": "2019",
+      "to": "2019",
+      "worldCups": [],
+      "months": 3,
+      "innings": 8,
+      "indices": {
+        "ppIntent": -0.1179,
+        "ppPreservation": -0.8066,
+        "deathIntent": 0.0902,
+        "lowerOrderShare": 0.0529,
+        "wicketsAt15": 0.1818,
+        "bowlersUsed": -0.1212,
+        "bowlFirst": 0.0263
+      },
+      "z": {
+        "ppIntent": -0.591,
+        "ppPreservation": -1.682,
+        "deathIntent": 0.095,
+        "lowerOrderShare": 0.445,
+        "wicketsAt15": 0.601,
+        "bowlersUsed": 0.144,
+        "bowlFirst": 0.015
+      },
+      "tags": [],
+      "intent": {
+        "pp": -0.591,
+        "mid": 0.601,
+        "death": 0.095
+      }
+    },
+    {
+      "team": "West Indies",
+      "coachName": "Phil Simmons",
+      "role": "head coach",
+      "from": "2019",
+      "to": "2022",
+      "worldCups": [
+        "2021",
+        "2022"
+      ],
+      "months": 17,
+      "innings": 58,
+      "indices": {
+        "ppIntent": 0.0671,
+        "ppPreservation": -0.0589,
+        "deathIntent": 0.0989,
+        "lowerOrderShare": 0.0312,
+        "wicketsAt15": 0.0813,
+        "bowlersUsed": 0.079,
+        "bowlFirst": 0.1771
+      },
+      "z": {
+        "ppIntent": 0.228,
+        "ppPreservation": -0.42,
+        "deathIntent": 0.322,
+        "lowerOrderShare": 0.689,
+        "wicketsAt15": 0.861,
+        "bowlersUsed": 0.744,
+        "bowlFirst": 0.905
+      },
+      "tags": [
+        "Deep batting",
+        "Six-bowler rotation",
+        "Bowl first"
+      ],
+      "intent": {
+        "pp": 0.228,
+        "mid": 0.861,
+        "death": 0.322
+      }
+    },
+    {
+      "team": "West Indies",
+      "coachName": "Andre Coley",
+      "role": "interim",
+      "from": "2022",
+      "to": "2022",
+      "worldCups": [],
+      "months": 5,
+      "innings": 23,
+      "indices": {
+        "ppIntent": 0.056,
+        "ppPreservation": 0.0819,
+        "deathIntent": 0.0386,
+        "lowerOrderShare": 0.0407,
+        "wicketsAt15": 0.0901,
+        "bowlersUsed": 0.0722,
+        "bowlFirst": 0.183
+      },
+      "z": {
+        "ppIntent": 0.088,
+        "ppPreservation": 0.234,
+        "deathIntent": -0.145,
+        "lowerOrderShare": 0.644,
+        "wicketsAt15": 0.664,
+        "bowlersUsed": 0.526,
+        "bowlFirst": 0.675
+      },
+      "tags": [
+        "Deep batting",
+        "Bowl first"
+      ],
+      "intent": {
+        "pp": 0.088,
+        "mid": 0.664,
+        "death": -0.145
+      }
+    },
+    {
+      "team": "West Indies",
+      "coachName": "Andre Coley",
+      "role": "head coach",
+      "from": "2023",
+      "to": "2025",
+      "worldCups": [],
+      "months": 16,
+      "innings": 58,
+      "indices": {
+        "ppIntent": 0.1272,
+        "ppPreservation": 0.0738,
+        "deathIntent": 0.1958,
+        "lowerOrderShare": 0.0499,
+        "wicketsAt15": 0.0826,
+        "bowlersUsed": -0.194,
+        "bowlFirst": 0.11
+      },
+      "z": {
+        "ppIntent": 0.802,
+        "ppPreservation": 0.282,
+        "deathIntent": 1.164,
+        "lowerOrderShare": 1.095,
+        "wicketsAt15": 0.87,
+        "bowlersUsed": 0.24,
+        "bowlFirst": 0.52
+      },
+      "tags": [
+        "Powerplay aggressor",
+        "Death hitter",
+        "Deep batting"
+      ],
+      "intent": {
+        "pp": 0.802,
+        "mid": 0.87,
+        "death": 1.164
+      }
+    },
+    {
+      "team": "West Indies",
+      "coachName": "Daren Sammy",
+      "role": "T20I head coach",
+      "from": "2023-05",
+      "to": "",
+      "worldCups": [
+        "2024",
+        "2026"
+      ],
+      "months": 20,
+      "innings": 72,
+      "indices": {
+        "ppIntent": 0.1258,
+        "ppPreservation": 0.0763,
+        "deathIntent": 0.2156,
+        "lowerOrderShare": 0.0362,
+        "wicketsAt15": 0.0372,
+        "bowlersUsed": -0.3937,
+        "bowlFirst": 0.1556
+      },
+      "z": {
+        "ppIntent": 0.83,
+        "ppPreservation": 0.311,
+        "deathIntent": 1.407,
+        "lowerOrderShare": 0.84,
+        "wicketsAt15": 0.581,
+        "bowlersUsed": -0.135,
+        "bowlFirst": 0.823
+      },
+      "tags": [
+        "Powerplay aggressor",
+        "Death hitter",
+        "Deep batting",
+        "Bowl first"
+      ],
+      "intent": {
+        "pp": 0.83,
+        "mid": 0.581,
+        "death": 1.407
+      }
+    },
+    {
+      "team": "Zimbabwe",
+      "coachName": "Justin Sammons",
+      "role": "head coach",
+      "from": "",
+      "to": "",
+      "worldCups": [
+        "2026"
+      ],
+      "months": 57,
+      "innings": 174,
+      "indices": {
+        "ppIntent": 0.0028,
+        "ppPreservation": -0.0556,
+        "deathIntent": 0.0728,
+        "lowerOrderShare": 0.0313,
+        "wicketsAt15": 0.0647,
+        "bowlersUsed": -0.0315,
+        "bowlFirst": -0.0067
+      },
+      "z": {
+        "ppIntent": -0.465,
+        "ppPreservation": -0.486,
+        "deathIntent": 0.115,
+        "lowerOrderShare": 0.834,
+        "wicketsAt15": 0.899,
+        "bowlersUsed": 0.651,
+        "bowlFirst": -0.181
+      },
+      "tags": [
+        "Deep batting",
+        "Six-bowler rotation"
+      ],
+      "intent": {
+        "pp": -0.465,
+        "mid": 0.899,
+        "death": 0.115
+      }
+    },
+    {
+      "team": "Zimbabwe",
+      "coachName": "Alan Butcher",
+      "role": "head coach",
+      "from": "2010-03-04",
+      "to": "2013",
+      "worldCups": [
+        "2010",
+        "2012"
+      ],
+      "months": 10,
+      "innings": 18,
+      "indices": {
+        "ppIntent": -0.0575,
+        "ppPreservation": 0.0291,
+        "deathIntent": -0.0361,
+        "lowerOrderShare": 0.0341,
+        "wicketsAt15": 0.1874,
+        "bowlersUsed": -1.0267,
+        "bowlFirst": 0.0867
+      },
+      "z": {
+        "ppIntent": -0.612,
+        "ppPreservation": 0.029,
+        "deathIntent": -0.543,
+        "lowerOrderShare": 0.479,
+        "wicketsAt15": 1.021,
+        "bowlersUsed": -0.826,
+        "bowlFirst": 0.246
+      },
+      "tags": [],
+      "intent": {
+        "pp": -0.612,
+        "mid": 1.021,
+        "death": -0.543
+      }
+    },
+    {
+      "team": "Zimbabwe",
+      "coachName": "Andy Waller",
+      "role": "head coach",
+      "from": "2013",
+      "to": "2014",
+      "worldCups": [
+        "2014"
+      ],
+      "months": 4,
+      "innings": 9,
+      "indices": {
+        "ppIntent": -0.098,
+        "ppPreservation": 0.1108,
+        "deathIntent": -0.0315,
+        "lowerOrderShare": -0.0121,
+        "wicketsAt15": -0.0521,
+        "bowlersUsed": -0.3011,
+        "bowlFirst": 0.1411
+      },
+      "z": {
+        "ppIntent": -0.563,
+        "ppPreservation": 0.2,
+        "deathIntent": -0.339,
+        "lowerOrderShare": -0.104,
+        "wicketsAt15": -0.03,
+        "bowlersUsed": 0.018,
+        "bowlFirst": 0.291
+      },
+      "tags": [],
+      "intent": {
+        "pp": -0.563,
+        "mid": -0.03,
+        "death": -0.339
+      }
+    },
+    {
+      "team": "Zimbabwe",
+      "coachName": "Dav Whatmore",
+      "role": "head coach",
+      "from": "2014-12-30",
+      "to": "2016",
+      "worldCups": [
+        "2016"
+      ],
+      "months": 8,
+      "innings": 18,
+      "indices": {
+        "ppIntent": -0.0688,
+        "ppPreservation": 0.1282,
+        "deathIntent": -0.1012,
+        "lowerOrderShare": 0.0297,
+        "wicketsAt15": -0.042,
+        "bowlersUsed": 0.1267,
+        "bowlFirst": -0.2572
+      },
+      "z": {
+        "ppIntent": -0.682,
+        "ppPreservation": 0.363,
+        "deathIntent": -0.903,
+        "lowerOrderShare": 0.419,
+        "wicketsAt15": 0,
+        "bowlersUsed": 0.53,
+        "bowlFirst": -1.011
+      },
+      "tags": [],
+      "intent": {
+        "pp": -0.682,
+        "mid": 0,
+        "death": -0.903
+      }
+    },
+    {
+      "team": "Zimbabwe",
+      "coachName": "Makhaya Ntini",
+      "role": "interim",
+      "from": "2016",
+      "to": "2016",
+      "worldCups": [],
+      "months": 3,
+      "innings": 9,
+      "indices": {
+        "ppIntent": 0.0046,
+        "ppPreservation": 0.1746,
+        "deathIntent": -0.1322,
+        "lowerOrderShare": 0.0208,
+        "wicketsAt15": -0.0754,
+        "bowlersUsed": 0.1,
+        "bowlFirst": -0.4411
+      },
+      "z": {
+        "ppIntent": -0.154,
+        "ppPreservation": 0.34,
+        "deathIntent": -0.704,
+        "lowerOrderShare": 0.194,
+        "wicketsAt15": -0.098,
+        "bowlersUsed": 0.327,
+        "bowlFirst": -1.103
+      },
+      "tags": [],
+      "intent": {
+        "pp": -0.154,
+        "mid": -0.098,
+        "death": -0.704
+      }
+    },
+    {
+      "team": "Zimbabwe",
+      "coachName": "Lalchand Rajput",
+      "role": "head coach",
+      "from": "2018-05",
+      "to": "2022-06",
+      "worldCups": [],
+      "months": 12,
+      "innings": 37,
+      "indices": {
+        "ppIntent": -0.0725,
+        "ppPreservation": -0.1982,
+        "deathIntent": -0.0234,
+        "lowerOrderShare": 0.0633,
+        "wicketsAt15": 0.1808,
+        "bowlersUsed": -0.2162,
+        "bowlFirst": 0.0443
+      },
+      "z": {
+        "ppIntent": -0.965,
+        "ppPreservation": -1.01,
+        "deathIntent": -0.648,
+        "lowerOrderShare": 1.209,
+        "wicketsAt15": 1.359,
+        "bowlersUsed": 0.174,
+        "bowlFirst": 0.125
+      },
+      "tags": [
+        "Powerplay anchor",
+        "Risk taker",
+        "Death conservative",
+        "Deep batting"
+      ],
+      "intent": {
+        "pp": -0.965,
+        "mid": 1.359,
+        "death": -0.648
+      }
+    },
+    {
+      "team": "Zimbabwe",
+      "coachName": "Dave Houghton",
+      "role": "head coach",
+      "from": "2022-06",
+      "to": "",
+      "worldCups": [
+        "2022"
+      ],
+      "months": 24,
+      "innings": 95,
+      "indices": {
+        "ppIntent": 0.0634,
+        "ppPreservation": -0.0531,
+        "deathIntent": 0.1662,
+        "lowerOrderShare": 0.019,
+        "wicketsAt15": 0.0243,
+        "bowlersUsed": 0.1648,
+        "bowlFirst": -0.0036
+      },
+      "z": {
+        "ppIntent": 0.214,
+        "ppPreservation": -0.433,
+        "deathIntent": 1.008,
+        "lowerOrderShare": 0.473,
+        "wicketsAt15": 0.514,
+        "bowlersUsed": 1.003,
+        "bowlFirst": -0.147
+      },
+      "tags": [
+        "Death hitter",
+        "Six-bowler rotation"
+      ],
+      "intent": {
+        "pp": 0.214,
+        "mid": 0.514,
+        "death": 1.008
+      }
+    }
+  ],
+  "unmatched": [
+    {
+      "team": "Bangladesh",
+      "coachName": "Dav Whatmore",
+      "reason": "no-style-data"
+    },
+    {
+      "team": "Bangladesh",
+      "coachName": "Shaun Williams",
+      "reason": "no-style-data"
+    },
+    {
+      "team": "Bangladesh",
+      "coachName": "Stuart Law",
+      "reason": "no-style-data"
+    },
+    {
+      "team": "Bangladesh",
+      "coachName": "Khaled Mahmud",
+      "reason": "no-style-data"
+    },
+    {
+      "team": "Canada",
+      "coachName": "Andy Pick",
+      "reason": "no-style-data"
+    },
+    {
+      "team": "Canada",
+      "coachName": "Pubudu Dassanayake",
+      "reason": "no-style-data"
+    },
+    {
+      "team": "Hong Kong",
+      "coachName": "Robin Singh",
+      "reason": "no-style-data"
+    },
+    {
+      "team": "Hong Kong",
+      "coachName": "Sameer Dighe",
+      "reason": "no-style-data"
+    },
+    {
+      "team": "Hong Kong",
+      "coachName": "Aftab Habib",
+      "reason": "no-style-data"
+    },
+    {
+      "team": "Hong Kong",
+      "coachName": "Afzaal Haider",
+      "reason": "no-style-data"
+    },
+    {
+      "team": "India",
+      "coachName": "Ravi Shastri",
+      "reason": "no-style-data"
+    },
+    {
+      "team": "Ireland",
+      "coachName": "Adrian Birrell",
+      "reason": "no-style-data"
+    },
+    {
+      "team": "Kenya",
+      "coachName": "Mudassar Nazar",
+      "reason": "no-style-data"
+    },
+    {
+      "team": "Kenya",
+      "coachName": "Alfred Njuguna",
+      "reason": "no-style-data"
+    },
+    {
+      "team": "Kenya",
+      "coachName": "Roger Harper",
+      "reason": "no-style-data"
+    },
+    {
+      "team": "Kenya",
+      "coachName": "Alfred Njuguna",
+      "reason": "no-style-data"
+    },
+    {
+      "team": "Kenya",
+      "coachName": "Andy Kirsten",
+      "reason": "no-style-data"
+    },
+    {
+      "team": "Kenya",
+      "coachName": "Eldine Baptiste",
+      "reason": "no-style-data"
+    },
+    {
+      "team": "Kenya",
+      "coachName": "Mike Hesson",
+      "reason": "no-style-data"
+    },
+    {
+      "team": "Kenya",
+      "coachName": "Steve Tikolo",
+      "reason": "no-style-data"
+    },
+    {
+      "team": "Kenya",
+      "coachName": "Thomas Odoyo",
+      "reason": "no-style-data"
+    },
+    {
+      "team": "Namibia",
+      "coachName": "Dee Thakur",
+      "reason": "no-style-data"
+    },
+    {
+      "team": "Nepal",
+      "coachName": "Roy Dias",
+      "reason": "no-style-data"
+    },
+    {
+      "team": "Nepal",
+      "coachName": "Dav Whatmore",
+      "reason": "no-style-data"
+    },
+    {
+      "team": "Netherlands",
+      "coachName": "Bob Simpson",
+      "reason": "no-style-data"
+    },
+    {
+      "team": "Netherlands",
+      "coachName": "Peter Cantrell",
+      "reason": "no-style-data"
+    },
+    {
+      "team": "Netherlands",
+      "coachName": "Paul-Jan Bakker",
+      "reason": "no-style-data"
+    },
+    {
+      "team": "Pakistan",
+      "coachName": "Moin Khan",
+      "reason": "no-style-data"
+    },
+    {
+      "team": "Pakistan",
+      "coachName": "Abdul Rehman",
+      "reason": "no-style-data"
+    },
+    {
+      "team": "Pakistan",
+      "coachName": "Grant Bradburn",
+      "reason": "no-style-data"
+    },
+    {
+      "team": "Pakistan",
+      "coachName": "Jason Gillespie",
+      "reason": "no-style-data"
+    },
+    {
+      "team": "Papua New Guinea",
+      "coachName": "Martin Gleeson",
+      "reason": "no-style-data"
+    },
+    {
+      "team": "Papua New Guinea",
+      "coachName": "Andy Bichel",
+      "reason": "no-style-data"
+    },
+    {
+      "team": "Papua New Guinea",
+      "coachName": "Rarua Dikana",
+      "reason": "no-style-data"
+    },
+    {
+      "team": "Papua New Guinea",
+      "coachName": "Brad Hogg",
+      "reason": "no-style-data"
+    },
+    {
+      "team": "Papua New Guinea",
+      "coachName": "Peter Anderson",
+      "reason": "no-style-data"
+    },
+    {
+      "team": "Papua New Guinea",
+      "coachName": "Rarua Dikana",
+      "reason": "no-style-data"
+    },
+    {
+      "team": "Papua New Guinea",
+      "coachName": "Dipak Patel",
+      "reason": "no-style-data"
+    },
+    {
+      "team": "Papua New Guinea",
+      "coachName": "Jason Gillespie",
+      "reason": "no-style-data"
+    },
+    {
+      "team": "Scotland",
+      "coachName": "Peter Drinnen",
+      "reason": "no-style-data"
+    },
+    {
+      "team": "Scotland",
+      "coachName": "Craig Wright",
+      "reason": "no-style-data"
+    },
+    {
+      "team": "Scotland",
+      "coachName": "Paul Collingwood",
+      "reason": "no-style-data"
+    },
+    {
+      "team": "Scotland",
+      "coachName": "Owen Dawkins",
+      "reason": "no-style-data"
+    },
+    {
+      "team": "Scotland",
+      "coachName": "Andy Moles",
+      "reason": "no-style-data"
+    },
+    {
+      "team": "South Africa",
+      "coachName": "Ray Jennings",
+      "reason": "no-style-data"
+    },
+    {
+      "team": "Sri Lanka",
+      "coachName": "Tom Moody",
+      "reason": "no-style-data"
+    },
+    {
+      "team": "Sri Lanka",
+      "coachName": "Stuart Law",
+      "reason": "no-style-data"
+    },
+    {
+      "team": "Sri Lanka",
+      "coachName": "Rumesh Ratnayake",
+      "reason": "no-style-data"
+    },
+    {
+      "team": "Uganda",
+      "coachName": "Henry Okecho",
+      "reason": "no-style-data"
+    },
+    {
+      "team": "Uganda",
+      "coachName": "Sam Walusimbi",
+      "reason": "no-style-data"
+    },
+    {
+      "team": "Uganda",
+      "coachName": "Francis Otieno",
+      "reason": "no-style-data"
+    },
+    {
+      "team": "Uganda",
+      "coachName": "Barney Mohamed",
+      "reason": "no-style-data"
+    },
+    {
+      "team": "Uganda",
+      "coachName": "Shukri Conrad",
+      "reason": "no-style-data"
+    },
+    {
+      "team": "Uganda",
+      "coachName": "Martin Suji",
+      "reason": "no-style-data"
+    },
+    {
+      "team": "Uganda",
+      "coachName": "Henry Okecho",
+      "reason": "no-style-data"
+    },
+    {
+      "team": "Uganda",
+      "coachName": "Johan Rudolph",
+      "reason": "no-style-data"
+    },
+    {
+      "team": "Uganda",
+      "coachName": "Davis Turinawe",
+      "reason": "no-style-data"
+    },
+    {
+      "team": "Uganda",
+      "coachName": "Peter Kirsten",
+      "reason": "no-style-data"
+    },
+    {
+      "team": "Uganda",
+      "coachName": "Steve Tikolo",
+      "reason": "no-style-data"
+    },
+    {
+      "team": "United Arab Emirates",
+      "coachName": "Kabir Khan",
+      "reason": "no-style-data"
+    },
+    {
+      "team": "United Arab Emirates",
+      "coachName": "Owais Shah",
+      "reason": "no-style-data"
+    },
+    {
+      "team": "United States of America",
+      "coachName": "Robin Singh",
+      "reason": "no-style-data"
+    },
+    {
+      "team": "United States of America",
+      "coachName": "Nasir Javed",
+      "reason": "no-style-data"
+    },
+    {
+      "team": "United States of America",
+      "coachName": "Pubudu Dassanayake",
+      "reason": "no-style-data"
+    },
+    {
+      "team": "United States of America",
+      "coachName": "James Pamment",
+      "reason": "no-style-data"
+    },
+    {
+      "team": "West Indies",
+      "coachName": "Bennett King",
+      "reason": "no-style-data"
+    },
+    {
+      "team": "West Indies",
+      "coachName": "David Moore",
+      "reason": "no-style-data"
+    },
+    {
+      "team": "Zimbabwe",
+      "coachName": "Kevin Curran",
+      "reason": "no-style-data"
+    },
+    {
+      "team": "Zimbabwe",
+      "coachName": "Robin Brown",
+      "reason": "no-style-data"
+    },
+    {
+      "team": "Zimbabwe",
+      "coachName": "Walter Chawaguta",
+      "reason": "no-style-data"
+    },
+    {
+      "team": "Zimbabwe",
+      "coachName": "Stephen Mangongo",
+      "reason": "no-style-data"
+    },
+    {
+      "team": "Zimbabwe",
+      "coachName": "Heath Streak",
+      "reason": "no-style-data"
+    }
+  ]
+}

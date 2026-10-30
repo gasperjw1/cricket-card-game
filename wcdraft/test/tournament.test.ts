@@ -5,7 +5,10 @@
  */
 
 import assert from "node:assert/strict";
+import { readFileSync } from "node:fs";
+import { resolve } from "node:path";
 import { describe, it } from "node:test";
+import { paths } from "../src/util/io.js";
 import { engineReady, loadEdition, teamFromDefault } from "../src/engine/load.js";
 import { draftPool, measureRarity, randomDraft } from "../src/engine/rarity.js";
 import { Rng } from "../src/engine/rng.js";
@@ -80,6 +83,22 @@ describe("tournament", { skip: !engineReady() && "engine data not built" }, () =
       const fixtures = r.stages.flatMap((s) => s.fixtures);
       for (const f of fixtures) assert.ok(f.teams[0] !== f.teams[1] && !/^[A-Z]\d$|^W\d$|#/.test(f.teams[0]) && !/^[A-Z]\d$|^W\d$|#/.test(f.teams[1]), `${ed}: unresolved fixture ${f.teams.join(" v ")}`);
     }
+  });
+
+  it("derives coach philosophy and captaincy tables that cover the World Cup field", () => {
+    const coaches = JSON.parse(readFileSync(resolve(paths.out, "coaches.json"), "utf8")) as { coaches: { team: string; worldCups: string[]; tags: string[]; intent: Record<string, number> }[] };
+    assert.ok(coaches.coaches.length >= 80, `${coaches.coaches.length} coaches with style data`);
+    for (const c of coaches.coaches) for (const v of Object.values(c.intent)) assert.ok(Math.abs(v) <= 1.5);
+    const withCups = coaches.coaches.filter((c) => c.worldCups.length);
+    assert.ok(withCups.length >= 60, `${withCups.length} coaches tied to World Cups`);
+    const captaincy = JSON.parse(readFileSync(resolve(paths.out, "captaincy.json"), "utf8")) as { captains: { name: string; z: number; matches: number }[]; unmatched: { reason: string }[] };
+    assert.ok(captaincy.captains.length >= 100);
+    assert.ok(captaincy.captains.some((c) => c.name === "MS Dhoni") && captaincy.captains.some((c) => c.name === "EJG Morgan"));
+    assert.equal(captaincy.unmatched.filter((u) => u.reason === "excluded-source").length, 80, "Cricinfo-sourced rows stay excluded until decided");
+    // Every 2024 full-member side has a coach profile; most have a captain in the squad.
+    const data = loadEdition("2024");
+    for (const team of ["India", "Australia", "England", "South Africa", "Pakistan", "New Zealand", "West Indies"]) assert.ok(data.profiles.get(team)?.coach, `${team} 2024 coach`);
+    assert.ok([...data.profiles.values()].filter((p) => p.captain).length >= 10);
   });
 
   it("drafts legal random elevens and measures rarity", () => {

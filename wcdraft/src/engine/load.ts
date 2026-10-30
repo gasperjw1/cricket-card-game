@@ -95,6 +95,13 @@ export interface EditionData {
   situation: SituationModel;
   progression: Progression;
   afghanistanFixtures: AfghanistanFixture[];
+  /** Coach intent and captaincy rating per team at this edition (CPU sides); null entries when unknown. */
+  profiles: Map<string, TeamProfile>;
+}
+
+export interface TeamProfile {
+  coach: { name: string; tags: string[]; intent: Record<Phase, number> } | null;
+  captain: { personId: string; name: string; z: number } | null;
 }
 
 const VENUE_PRIOR_BALLS = 1200;
@@ -150,7 +157,29 @@ export function loadEdition(editionId: string): EditionData {
   if (!formats) throw new Error(`no format for ${editionId} in formats.json`);
   const progression = buildProgression(formats, { standIn: edition.standIn, slotChanges: edition.slotChanges ?? [] });
   const afghanistanFixtures = readJson<{ fixtures: AfghanistanFixture[] }>(resolve(paths.config, "afghanistan-fixtures.json")).fixtures.filter((f) => f.editionId === editionId);
-  return { edition, venues, squads, players, populations, situation: new SituationModel(situationCache, matchupCache), progression, afghanistanFixtures };
+  const profiles = teamProfiles(edition, squads);
+  return { edition, venues, squads, players, populations, situation: new SituationModel(situationCache, matchupCache), progression, afghanistanFixtures, profiles };
+}
+
+interface CoachOut { team: string; coachName: string; worldCups: string[]; tags: string[]; intent: Record<Phase, number>; innings: number }
+interface CaptainOut { personId: string; name: string; team: string; firstYear: number; lastYear: number; matches: number; z: number }
+
+/** The coach who took the team to this World Cup and the captain whose tenure covers it (most matches wins a tie). */
+function teamProfiles(edition: EditionOut, squads: Map<string, SquadOut>): Map<string, TeamProfile> {
+  const out = new Map<string, TeamProfile>();
+  const coachFile = resolve(paths.out, "coaches.json"), captainFile = resolve(paths.out, "captaincy.json");
+  const coaches = existsSync(coachFile) ? readJson<{ coaches: CoachOut[] }>(coachFile).coaches : [];
+  const captains = existsSync(captainFile) ? readJson<{ captains: CaptainOut[] }>(captainFile).captains : [];
+  for (const team of squads.keys()) {
+    const coach = coaches.filter((c) => c.team === team && c.worldCups.includes(edition.id)).sort((a, b) => b.innings - a.innings)[0];
+    const squadIds = new Set(squads.get(team)?.players.map((p) => p.id) ?? []);
+    const captain = captains.filter((c) => c.team === team && c.firstYear <= edition.year && c.lastYear >= edition.year && squadIds.has(c.personId)).sort((a, b) => b.matches - a.matches)[0];
+    out.set(team, {
+      coach: coach ? { name: coach.coachName, tags: coach.tags, intent: coach.intent } : null,
+      captain: captain ? { personId: captain.personId, name: captain.name, z: captain.z } : null,
+    });
+  }
+  return out;
 }
 
 /**
@@ -225,13 +254,20 @@ export function matchEnvironment(data: EditionData, venueId: string | null, over
 }
 
 /** A team from a real match's eleven and batting order (unknown positions filled from the default XI order). */
+/** Coach intent and captaincy for a CPU side (the captain counts only if he is in this eleven). */
+function withProfile(data: EditionData, team: string, players: EnginePlayer[]): Pick<EngineTeam, "intent" | "captainZ"> {
+  const p = data.profiles.get(team);
+  const captainPlays = p?.captain && players.some((x) => x.id === p.captain!.personId);
+  return { intent: p?.coach?.intent, captainZ: captainPlays ? p!.captain!.z : undefined };
+}
+
 export function teamFromMatch(data: EditionData, team: string, match: SquadMatchOut): EngineTeam {
   const squad = data.squads.get(team);
   if (!squad) throw new Error(`no squad for ${team}`);
   const players = match.xi.map((id) => data.players.get(`${team}|${id}`)).filter((p): p is EnginePlayer => !!p);
   const known = match.battingOrder.filter((id) => players.some((p) => p.id === id));
   const rest = players.filter((p) => !known.includes(p.id)).sort((a, b) => (a.positionMedian ?? 11) - (b.positionMedian ?? 11) || b.battingDisplay - a.battingDisplay).map((p) => p.id);
-  return { name: team, players, battingOrder: [...known, ...rest] };
+  return { name: team, players, battingOrder: [...known, ...rest], ...withProfile(data, team, players) };
 }
 
 /** A team from its default eleven. */
@@ -239,5 +275,5 @@ export function teamFromDefault(data: EditionData, team: string): EngineTeam {
   const squad = data.squads.get(team);
   if (!squad) throw new Error(`no squad for ${team}`);
   const players = squad.defaultXI.map((x) => data.players.get(`${team}|${x.id}`)).filter((p): p is EnginePlayer => !!p);
-  return { name: team, players, battingOrder: players.map((p) => p.id) };
+  return { name: team, players, battingOrder: players.map((p) => p.id), ...withProfile(data, team, players) };
 }
