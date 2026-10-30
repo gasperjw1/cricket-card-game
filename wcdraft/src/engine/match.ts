@@ -3,6 +3,7 @@
  */
 
 import { phaseOf, type OutcomeKey, type Phase } from "../cricsheet/match.js";
+import { streakBand } from "../analysis/situation.js";
 import { OUTCOMES, RUNS } from "../ratings/model.js";
 import { chooseBowler, type BowlerState } from "./allocation.js";
 import { outcomeDistribution, type BallContext, type SituationModel } from "./ball.js";
@@ -38,6 +39,13 @@ export function simulateInnings(batting: EngineTeam, bowling: EngineTeam, env: M
   lineOf(striker, 1);
   lineOf(nonStriker, 2);
   const inningsEffect = Math.exp(ENGINE.inningsEffectSd * rng.normal());
+  // Good day / bad day: one log-normal scoring factor per batter and per bowler for this innings (mean 1).
+  const dayFactor = (sd: number) => Math.exp(sd * rng.normal() - (sd * sd) / 2);
+  const batDay = new Map(order.map((p) => [p.id, dayFactor(ENGINE.batterDaySd)]));
+  const bowlDay = new Map(bowling.players.map((p) => [p.id, dayFactor(ENGINE.bowlerDaySd)]));
+  const recent: number[] = [];
+  let consecutiveDots = 0;
+  const streakNow = () => streakBand(recent.length, recent.slice(-6).reduce((a, x) => a + x, 0));
   const chaseScale = opts.index === 2 ? 1 + env.chaseUplift / 2 : 1 - env.chaseUplift / 2;
   const scoringFactor = opts.matchEffect * inningsEffect * chaseScale;
   let previousBowler: string | null = null;
@@ -45,7 +53,7 @@ export function simulateInnings(batting: EngineTeam, bowling: EngineTeam, env: M
   const done = () => wickets >= 10 || (opts.target !== null && runs >= opts.target);
 
   for (let over = 0; over < opts.overs && !done(); over += 1) {
-    const ctxBase: BallContext = { innings: opts.index, over, wickets, strikerBalls: 0, requiredRpo: null, scoringFactor, freeHit: false };
+    const ctxBase: BallContext = { innings: opts.index, over, wickets, strikerBalls: 0, requiredRpo: null, scoringFactor, playerFactor: 1, streak: streakNow(), ballInOver: 1, consecutiveDots, freeHit: false };
     const b = chooseBowler({ over, oversInInnings: opts.overs, maxOvers, bowlers, previousBowler, batters: [striker, nonStriker], env, situation, ctx: ctxBase }, rng);
     b.overs.push(over);
     b.runsByOver.push(0);
@@ -62,7 +70,11 @@ export function simulateInnings(batting: EngineTeam, bowling: EngineTeam, env: M
       }
       const noBall = rng.chance(env.noBallsPerBall);
       const sLine = lineOf(striker, lines.get(striker.id)?.position ?? nextIn);
-      const ctx: BallContext = { innings: opts.index, over, wickets, strikerBalls: sLine.balls, requiredRpo, scoringFactor, freeHit: freeHit || noBall };
+      const ctx: BallContext = {
+        innings: opts.index, over, wickets, strikerBalls: sLine.balls, requiredRpo, scoringFactor,
+        playerFactor: (batDay.get(striker.id) ?? 1) * (bowlDay.get(b.player.id) ?? 1),
+        streak: streakNow(), ballInOver: ballsThisOver + 1, consecutiveDots, freeHit: freeHit || noBall,
+      };
       const dist = outcomeDistribution(striker, b.player, env, situation, ctx);
       const outcome = OUTCOMES[rng.pick(OUTCOMES.map((k) => dist[k]))]!;
       let runsBatter = RUNS[outcome];
@@ -85,6 +97,8 @@ export function simulateInnings(batting: EngineTeam, bowling: EngineTeam, env: M
       phaseRuns[ph].runs += runsBatter + extraRuns;
       log?.push({ innings: opts.index, over, ballInOver: ballsThisOver, striker: striker.id, nonStriker: nonStriker.id, bowler: b.player.id, outcome, runsBatter, extras: extraRuns, extraKind, wicket, legal: !noBall });
       freeHit = noBall;
+      if (!noBall || wicket) recent.push(runsBatter);
+      if (!noBall) consecutiveDots = runsBatter + extraRuns === 0 && !wicket ? consecutiveDots + 1 : 0;
       if (wicket) {
         sLine.out = true;
         wickets += 1;

@@ -883,19 +883,49 @@ at 99. Named errors become test cases.
   3–8%; every relative vector is now divided by the appearance-weighted mean over the edition's
   real squads (`centreOnCohort`). (2) The eye-in term must be centred (the base already contains
   new batters' hazard); uncentred it cost 2.7 balls per wicket.
-- Replay results, 40 sims per real match, real elevens and batting orders:
+- **State terms (added 2026-10-30 after Yash's momentum note).** Measured over 3,242 men's T20Is
+  since 2016 in `analysis/situation.ts`, each as a ratio to its own conditioning base (innings ×
+  phase × wickets band) and shrunk toward 1:
+  - *Streak* (runs off the previous six balls). The raw within-batter effect was ×1.14 scoring /
+    ×1.21 boundaries after 13+ runs, but a shuffled-innings null (same balls, outcome labels
+    permuted, the Miller–Sanjurjo correction) explains most of it; the residual the engine uses is
+    ×1.07 / ×1.10 after 13+ and ×0.96 / ×0.93 after 0–3, hazard flat. Genuine, but half the size of
+    the naive measurement. Off for the first six balls of an innings (that is the openers' setness).
+  - *Setness* (striker's own balls faced) replaces the eye-in hazard curve, which was a Test-cricket
+    result running the wrong way for T20: new batters score ×0.74 and are dismissed ×0.88 on balls
+    0–2, rising to ×1.16 and ×1.06 past 24 balls. Consistent with the 2026 within-batter hazard
+    study (hazard rising almost linearly with balls faced) and the intent reading of T20 hitting.
+  - *Ball in over*: ±2–3% by position (first-ball hazard ×0.93, balls 3–4 ×1.04).
+  - *Consecutive dots in a chase*: three or more cut scoring ×0.88 and raise hazard ×1.04; the
+    evidence in the literature was mixed, the archive is not.
+  - *Day effects*: a variance decomposition against each player's career mean gives per-innings
+    scoring effects of SD 0.21 (bowler-innings) and 0.19 (batter-innings). Those absorb opponent,
+    venue and era too, so the engine uses 0.10 / 0.08 with smaller global match (0.05) and innings
+    (0.03) effects; the dispersion sweep could not separate the settings (first-innings SD ratio
+    1.14–1.17 throughout, Brier 0.200–0.212).
+  - Feedback: a dynamic simulation regenerates the state frequencies (hot streaks breed hot
+    streaks, fewer wickets mean longer set periods), which lifted the mean by ≈4% with all terms on.
+    Two global calibration constants (scoring ×0.95, hazard ×1.04), fitted by the sweep, absorb it.
+    The required-rate chase term double counted the second-innings τ table (chase-win bias +4.6
+    points at exponent 0.5, +1.9 at 0); it runs at 0.15.
+- Replay results, 40 sims per real match, real elevens and batting orders (final constants):
 
-| Edition | Matches | RPO real → sim | Balls/wkt | Dot % | 1st-inn SD | Chase win % | Bowlers used (mean) | Favourite right | Brier (coin 0.25) |
-|---|---|---|---|---|---|---|---|---|---|
-| 2010 | 25 | 7.63 → 7.74 | 17.2 → 18.3 | 37.9 → 36.0 | 28.7 → 32.2 | 42 → 42 | 5.89 | 58% | 0.218 |
-| 2016 | 27 | 7.86 → 8.12 | 17.8 → 19.7 | 36.6 → 33.4 | 27.8 → 31.8 | 50 → 44 | 6.02 | 65% | 0.228 |
-| 2024 | 44 | 7.13 → 7.14 | 16.6 → 17.4 | 44.4 → 42.9 | 43.1 → 36.2 | 58 → 62 | 5.99 | 71% | 0.162 |
-| 2026 | 49 | 8.74 → 8.92 | 17.2 → 17.3 | 34.9 → 33.4 | 35.7 → 43.5 | 43 → 44 | 6.02 | 80% | 0.174 |
+| Edition | Matches | RPO real → sim | Balls/wkt | Dot % | 1st-inn avg | 1st-inn SD | Chase win % | Bowlers used (mean) | Favourite right | Brier (coin 0.25) |
+|---|---|---|---|---|---|---|---|---|---|---|
+| 2010 | 25 | 7.63 → 7.60 | 17.2 → 16.7 | 37.9 → 37.5 | 155.8 → 155.7 | 28.7 → 33.6 | 42 → 40 | 5.90 | 67% | 0.208 |
+| 2016 | 27 | 7.86 → 7.98 | 17.8 → 18.0 | 36.6 → 34.7 | 158.9 → 161.6 | 27.8 → 32.7 | 50 → 46 | 6.02 | 50% | 0.239 |
+| 2024 | 44 | 7.13 → 6.96 | 16.6 → 16.2 | 44.4 → 44.5 | 134.9 → 132.2 | 43.1 → 36.4 | 58 → 61 | 6.03 | 73% | 0.175 |
+| 2026 | 49 | 8.74 → 8.88 | 17.2 → 16.4 | 34.9 → 34.1 | 180.2 → 179.3 | 35.7 → 44.6 | 43 → 45 | 6.03 | 76% | 0.172 |
 
-  Bowlers used lands at 5: 23%, 6: 51%, 7: 20% against the measured 17 / 62 / 20. The exponent
-  sweep (0.5–1.0) moved run-rate bias between +1.5% and +3.4% and Brier between 0.196 and 0.209;
-  0.7 / 0.7 was kept. Tests: `test/engine.test.ts` (determinism, bookkeeping invariants, 2024
-  replay within tolerance).
+  Boundary shares match within 0.5 points everywhere. Bowlers used lands at 5: 22%, 6: 52%,
+  7: 20% against the measured 17 / 62 / 20. Still open: the first-innings spread is too wide in
+  2010/2016/2026 and too narrow in 2024 regardless of the dispersion settings, which points at
+  structure (the real spread is widened by rain-free all-outs and narrowed by par-score chasing
+  behaviour the engine does not yet have) rather than noise size. The 2016 result calibration
+  (26 decided matches) is within sampling noise of its earlier 65% / 0.228. Sweeps:
+  `npm run engine:calibrate -- 24 exponents|dispersion|terms|calibration|chase`. Tests:
+  `test/engine.test.ts` (determinism, bookkeeping invariants, state-term directions, 2024 replay
+  within tolerance).
 - Not yet built (Phase 2b): rain and DLS, intent profiles from coach philosophy, fielding Λ,
   captain-rating noise, matchup terms (handedness / bowling type), tournament simulation with
   standings, net run rate and brackets, and the unbeaten-run rarity measurement. Validation

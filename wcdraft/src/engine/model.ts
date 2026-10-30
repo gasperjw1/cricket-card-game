@@ -1,36 +1,65 @@
 /**
  * Engine constants (design spec §7.1). Every number here is either taken from the research
- * report or set by the replay harness (`npm run engine:replay`), and says which.
+ * report, measured from the archive (`data/out/situation.json`), or set by the replay harness
+ * (`npm run engine:replay`, `npm run engine:calibrate`), and says which.
  */
 
 export const ENGINE = {
   /**
    * How the batter's and bowler's relative vectors combine with the base distribution:
-   *   p ∝ base × batRel^batExponent × bowlRel^bowlExponent × τ[over][wickets] × chase
+   *   p ∝ base × batRel^batExponent × bowlRel^bowlExponent × τ[over][wickets] × …
    * The two relative vectors each already measure the player against average opponents, so
-   * multiplying both in full double counts the quality gap; the exponents are set by the replay
-   * harness so that real elevens reproduce their editions' run rates and wicket rates.
+   * multiplying both in full double counts the quality gap; the exponents were set by the replay
+   * sweep (0.5–1.0 moved run-rate bias between +1.5% and +3.4%; 0.7 kept the first-innings spread
+   * closest to real).
    */
   batExponent: 0.7 as number,
   bowlExponent: 0.7 as number,
-  /** Shrinkage (balls) of a situation cell toward its innings-and-phase distribution. */
+  /** Shrinkage (balls) of a situation cell toward its conditioning base. */
   situationPrior: 400 as number,
-  /** Exponent on the chase-pressure multiplier (the τ table for second innings already carries typical chase states). */
-  chaseExponent: 0.5 as number,
   /**
-   * Eye-in (Stevenson–Brewer form): a new batter's dismissal hazard is multiplied by
-   * 1 + eyeInHazard × exp(−ballsFaced / eyeInLength). Literature: batters start at 25–50% of set
-   * ability with L ≈ 2–6 runs; expressed here in balls.
+   * Exponent on the required-rate multiplier. The second-innings τ table already carries typical
+   * chase states, so the sweep found 0 best calibrated (chase-win bias +1.9 points, Brier 0.200)
+   * and 0.5 worst (+4.6, 0.211); 0.15 keeps a steep chase visibly different from an easy one.
    */
-  eyeInHazard: 0.8 as number,
-  eyeInLength: 8 as number,
-  /** Population mean balls faced per innings, used to centre the eye-in multiplier at 1. */
-  eyeInMeanBalls: 16 as number,
-  /** Log-normal scoring factors for the pitch/day (shared by both innings) and for each innings (Mishra 2026 under-dispersion warning). */
-  matchEffectSd: 0.07 as number,
-  inningsEffectSd: 0.04 as number,
+  chaseExponent: 0.15 as number,
+  /**
+   * State terms measured 2026-10-30 over 3,242 men's T20Is since 2016 (`analysis/situation.ts`):
+   *   streak     — runs off the previous six balls; the real multiplier divided by the shuffled-innings
+   *                null leaves ×1.07 scoring / ×1.10 boundaries after 13+ and ×0.96 / ×0.93 after 0–3
+   *   setness    — striker's balls faced: ×0.74 scoring and ×0.88 hazard on balls 0–2, rising to
+   *                ×1.16 and ×1.06 past 24 (replaces the Test-cricket eye-in hazard curve, which
+   *                runs the wrong way for T20: hazard rises with intent as the batter gets set)
+   *   ballInOver — ±2–3% by position; ball 1 hazard ×0.93, balls 3–4 ×1.04
+   *   chaseDots  — consecutive dots in a chase: three or more cut scoring ×0.88 and raise hazard ×1.04
+   * Exponents are 1 (as measured); 0 switches a term off.
+   */
+  streakExponent: 1 as number,
+  setnessExponent: 1 as number,
+  ballInOverExponent: 1 as number,
+  chaseDotsExponent: 1 as number,
+  /**
+   * Dispersion. The variance decomposition in `situation.json` gives per-innings scoring effects of
+   * SD 0.21 (bowler) and 0.19 (batter) against each player's career mean, which also absorb
+   * opponent, venue and era for that player; the engine already conditions on those, so the day
+   * effects used are smaller and the global match and innings effects shrink to make room. Set by
+   * the dispersion sweep against the editions' first-innings standard deviations.
+   */
+  bowlerDaySd: 0.1 as number,
+  batterDaySd: 0.08 as number,
+  matchEffectSd: 0.05 as number,
+  inningsEffectSd: 0.03 as number,
   /** Share of the venue's scoring factor applied (1 = full). */
   venueExponent: 1 as number,
+  /**
+   * Global calibration on the scoring cells and the dismissal cell, fitted by the replay sweep so
+   * that real elevens reproduce their editions' run rate and balls per wicket on average. The
+   * state terms are conditional means measured on real state frequencies; a dynamic simulation
+   * regenerates those frequencies with feedback (a hot streak breeds hot streaks, fewer wickets mean
+   * longer set periods), which lifts the mean by a few per cent. These two numbers absorb that.
+   */
+  scoringCalibration: 0.95 as number,
+  hazardCalibration: 1.04 as number,
   /** Runs a wicket is worth to the bowling side when choosing a bowler (design spec §5, wicket cost). */
   allocation: {
     wicketValue: 2.6,
@@ -51,7 +80,9 @@ export const ENGINE = {
   },
 };
 
+export type EngineOverrides = Partial<Record<"batExponent" | "bowlExponent" | "chaseExponent" | "streakExponent" | "setnessExponent" | "ballInOverExponent" | "chaseDotsExponent" | "bowlerDaySd" | "batterDaySd" | "matchEffectSd" | "inningsEffectSd" | "venueExponent" | "scoringCalibration" | "hazardCalibration", number>>;
+
 /** Calibration hook: override numeric constants for a sweep (`npm run engine:calibrate`). */
-export function setEngineOverrides(overrides: Partial<Record<"batExponent" | "bowlExponent" | "chaseExponent" | "eyeInHazard" | "matchEffectSd" | "inningsEffectSd" | "venueExponent", number>>): void {
+export function setEngineOverrides(overrides: EngineOverrides): void {
   Object.assign(ENGINE, overrides);
 }

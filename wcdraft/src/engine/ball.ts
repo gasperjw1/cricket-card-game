@@ -1,27 +1,21 @@
 /**
  * One delivery's outcome distribution (design spec §7.1):
- *   p ∝ base[phase] × batRel^a × bowlRel^b × τ[innings][over][wickets] × chase^c × eye-in × effects
+ *   p ∝ base[phase] × batRel^a × bowlRel^b × τ[innings][over][wickets] × chase^c
+ *       × streak (residual over the shuffled null) × setness (striker's balls faced)
+ *       × ballInOver × chaseDots × scoring effects (match, innings, player days, venue)
+ * Every multiplier is a measured ratio to its own conditioning base, shrunk toward 1.
  */
 
 import { phaseOf, type OutcomeKey, type Phase } from "../cricsheet/match.js";
 import { OUTCOMES } from "../ratings/model.js";
-import { chaseBand, type SituationCell, type SituationTables } from "../analysis/situation.js";
+import { chaseBand, dotsBand, setnessBand, type SituationCell, type SituationTables, type StateTable, type StreakBand, wicketsBand } from "../analysis/situation.js";
 import { ENGINE } from "./model.js";
 import type { EnginePlayer, MatchEnvironment, Vector } from "./types.js";
 
 const SCORING: OutcomeKey[] = ["1", "2", "3", "4", "6"];
+const UNIT: Vector = { "0": 1, "1": 1, "2": 1, "3": 1, "4": 1, "6": 1, W: 1 };
 
-/**
- * Mean of the eye-in multiplier over a batter's balls faced, taking balls faced as geometric with
- * mean `ENGINE.eyeInMeanBalls` (E[exp(−n/L)] = p / (1 − (1 − p) e^{−1/L})).
- */
-const EYE_IN_MEAN = (() => {
-  const p = 1 / ENGINE.eyeInMeanBalls;
-  const e = Math.exp(-1 / ENGINE.eyeInLength);
-  return 1 + (ENGINE.eyeInHazard * p) / (1 - (1 - p) * e);
-})();
-
-/** Shrunk multiplier table: cell distribution ÷ reference distribution, toward 1 with `prior` balls. */
+/** Shrunk multiplier tables: cell distribution ÷ reference distribution, toward 1 with `prior` balls. */
 export class SituationModel {
   private readonly cache = new Map<string, Vector>();
   constructor(private readonly tables: SituationTables, private readonly prior = ENGINE.situationPrior) {}
@@ -40,26 +34,65 @@ export class SituationModel {
     return out;
   }
 
+  private cached(key: string, make: () => Vector): Vector {
+    let v = this.cache.get(key);
+    if (!v) this.cache.set(key, (v = make()));
+    return v;
+  }
+
+  private state(table: StateTable, context: string, state: string): Vector {
+    return this.multiplier(table.cells[`${context}|${state}`], table.base[context]);
+  }
+
   /** τ for (innings, over, wickets down) relative to the innings-and-phase distribution. */
   tau(innings: 1 | 2, over: number, wickets: number): Vector {
     const key = `${innings}|${over}|${Math.min(9, wickets)}`;
-    let v = this.cache.get(key);
-    if (!v) {
-      v = this.multiplier(this.tables.cells[key], this.tables.phases[`${innings}|${phaseOf(over)}`]);
-      this.cache.set(key, v);
-    }
-    return v;
+    return this.cached(`tau:${key}`, () => this.multiplier(this.tables.cells[key], this.tables.phases[`${innings}|${phaseOf(over)}`]));
   }
 
   /** Chase pressure for a required rate, relative to the second-innings phase distribution. */
   chase(requiredRpo: number, phase: Phase): Vector {
     const key = `${chaseBand(requiredRpo)}|${phase}`;
-    let v = this.cache.get(`chase:${key}`);
-    if (!v) {
-      v = this.multiplier(this.tables.chase[key], this.tables.phases[`2|${phase}`]);
-      this.cache.set(`chase:${key}`, v);
-    }
-    return v;
+    return this.cached(`chase:${key}`, () => this.multiplier(this.tables.chase[key], this.tables.phases[`2|${phase}`]));
+  }
+
+  /**
+   * Streak: runs off the previous six legal balls, as the ratio of the real multiplier to the
+   * shuffled-innings null, so only serial dependence beyond the context counts. The first six
+   * balls of an innings return 1: that caution is the openers' setness, counted once.
+   */
+  streak(innings: 1 | 2, phase: Phase, wickets: number, band: StreakBand): Vector {
+    if (band === "n/a") return UNIT;
+    const ctx = `${innings}|${phase}|${wicketsBand(wickets)}`;
+    return this.cached(`streak:${ctx}|${band}`, () => {
+      const real = this.state(this.tables.streak, ctx, band);
+      const nil = this.state(this.tables.streakNull, ctx, band);
+      return Object.fromEntries(OUTCOMES.map((k) => [k, real[k] / Math.max(1e-6, nil[k])])) as Vector;
+    });
+  }
+
+  /** Setness: the striker's own balls faced this innings (new batters score less and are out less). */
+  setness(innings: 1 | 2, phase: Phase, wickets: number, ballsFaced: number): Vector {
+    const ctx = `${innings}|${phase}|${wicketsBand(wickets)}`;
+    const band = setnessBand(ballsFaced);
+    return this.cached(`set:${ctx}|${band}`, () => this.state(this.tables.setness, ctx, band));
+  }
+
+  ballInOver(innings: 1 | 2, phase: Phase, position: number): Vector {
+    const ctx = `${innings}|${phase}`;
+    const state = String(Math.min(6, Math.max(1, position)));
+    return this.cached(`bio:${ctx}|${state}`, () => this.state(this.tables.ballInOver, ctx, state));
+  }
+
+  /** Consecutive dot balls before this one, chases only. */
+  chaseDots(phase: Phase, wickets: number, consecutiveDots: number): Vector {
+    const ctx = `${phase}|${wicketsBand(wickets)}`;
+    const state = dotsBand(consecutiveDots);
+    return this.cached(`dots:${ctx}|${state}`, () => this.state(this.tables.chaseDots, ctx, state));
+  }
+
+  get dayEffects(): SituationTables["dayEffects"] {
+    return this.tables.dayEffects;
   }
 }
 
@@ -73,9 +106,17 @@ export interface BallContext {
   requiredRpo: number | null;
   /** Combined log-normal scoring factor for this innings (match × innings effects). */
   scoringFactor: number;
+  /** Striker's and bowler's day factors multiplied (1 = average day). */
+  playerFactor: number;
+  /** Runs off the previous six legal balls (band), position of this legal ball in the over, consecutive dots before it. */
+  streak: StreakBand;
+  ballInOver: number;
+  consecutiveDots: number;
   /** True on the delivery after a no-ball: the striker cannot be out other than run out. */
   freeHit: boolean;
 }
+
+const pow = (v: Vector, e: number): Vector => (e === 1 ? v : (Object.fromEntries(OUTCOMES.map((k) => [k, Math.pow(v[k], e)])) as Vector));
 
 /** Normalised outcome probabilities for one delivery. */
 export function outcomeDistribution(striker: EnginePlayer, bowler: EnginePlayer, env: MatchEnvironment, situation: SituationModel, ctx: BallContext): Vector {
@@ -84,17 +125,17 @@ export function outcomeDistribution(striker: EnginePlayer, bowler: EnginePlayer,
   const bat = striker.battingRel[phase];
   const bowl = bowler.bowlingRel[phase];
   const tau = situation.tau(ctx.innings, ctx.over, ctx.wickets);
-  const chase = ctx.requiredRpo !== null ? situation.chase(ctx.requiredRpo, phase) : null;
-  // Centred so the innings-average multiplier is 1: the base distribution already contains the
-  // population's share of new batters, so the eye-in term only redistributes hazard toward them.
-  const eyeIn = (1 + ENGINE.eyeInHazard * Math.exp(-ctx.strikerBalls / ENGINE.eyeInLength)) / EYE_IN_MEAN;
-  const scoring = ctx.scoringFactor * Math.pow(env.venueFactor, ENGINE.venueExponent);
+  const chase = ctx.requiredRpo !== null ? pow(situation.chase(ctx.requiredRpo, phase), ENGINE.chaseExponent) : UNIT;
+  const streak = pow(situation.streak(ctx.innings, phase, ctx.wickets, ctx.streak), ENGINE.streakExponent);
+  const setness = pow(situation.setness(ctx.innings, phase, ctx.wickets, ctx.strikerBalls), ENGINE.setnessExponent);
+  const bio = pow(situation.ballInOver(ctx.innings, phase, ctx.ballInOver), ENGINE.ballInOverExponent);
+  const dots = ctx.requiredRpo !== null ? pow(situation.chaseDots(phase, ctx.wickets, ctx.consecutiveDots), ENGINE.chaseDotsExponent) : UNIT;
+  const scoring = ctx.scoringFactor * ctx.playerFactor * Math.pow(env.venueFactor, ENGINE.venueExponent) * ENGINE.scoringCalibration;
   const out = {} as Vector;
   let total = 0;
   for (const k of OUTCOMES) {
-    let p = base[k] * Math.pow(bat[k], ENGINE.batExponent) * Math.pow(bowl[k], ENGINE.bowlExponent) * tau[k];
-    if (chase) p *= Math.pow(chase[k], ENGINE.chaseExponent);
-    if (k === "W") p *= ctx.freeHit ? 0.08 : eyeIn; // a run out is still possible off a free hit
+    let p = base[k] * Math.pow(bat[k], ENGINE.batExponent) * Math.pow(bowl[k], ENGINE.bowlExponent) * tau[k] * chase[k] * streak[k] * setness[k] * bio[k] * dots[k];
+    if (k === "W") p *= (ctx.freeHit ? 0.08 : 1) * ENGINE.hazardCalibration; // a run out is still possible off a free hit
     else if (SCORING.includes(k)) p *= scoring;
     out[k] = Math.max(0, p);
     total += out[k];

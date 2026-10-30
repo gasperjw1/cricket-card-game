@@ -155,15 +155,21 @@ npm run engine:calibrate -- 20         # sweep the combination exponents over fi
 It is pure given its inputs and a seed. Per delivery (`ball.ts`):
 
 ```
-p ∝ base[phase] × batRel^0.7 × bowlRel^0.7 × τ[innings][over][wickets] × chase[required rate]^0.5
-    × eye-in (centred) × match effect × innings effect × venue factor
+p ∝ base[phase] × batRel^0.7 × bowlRel^0.7 × τ[innings][over][wickets] × chase[required rate]^0.15
+    × streak (residual over a shuffled null) × setness (striker's balls faced) × ballInOver × chaseDots
+    × match, innings and player day effects × venue factor × calibration (scoring 0.95, hazard 1.04)
 ```
 
 - `base` is the edition's realised per-phase population; the player relative vectors come from
   the ratings and are divided by the appearance-weighted mean of the edition's real squads so
   real elevens reproduce their own edition rather than inflating it.
-- `τ` and the chase table are measured over every complete 20-over T20I innings
-  (`analysis/situation.ts` → `data/out/situation.json`), shrunk toward the phase distribution.
+- `τ`, the chase table and the state terms are measured over every complete 20-over T20I innings
+  (`analysis/situation.ts` → `data/out/situation.json`), each as a ratio to its own conditioning
+  base and shrunk toward 1. The streak term is the real multiplier divided by a shuffled-innings
+  null, so only serial dependence beyond the situation counts (×1.07 scoring after 13+ runs off
+  six balls). Setness replaces the Test-cricket eye-in curve: in T20 a new batter scores less and
+  is out less, and both rise as he gets set. Day effects (per bowler-innings and batter-innings)
+  come from a variance decomposition in the same file.
 - Extras (wides, no-balls with a free hit, byes) are drawn from the edition's rates; the toss
   follows the edition's field-first norm; ties go to a super over, bowl-out or coin per edition.
 - Bowling allocation (`allocation.ts`) scores eligible bowlers per over by expected runs, wicket
@@ -172,9 +178,11 @@ p ∝ base[phase] × batRel^0.7 × bowlRel^0.7 × τ[innings][over][wickets] × 
 - `load.ts` builds teams from a real match's eleven and batting order or from a squad's default
   eleven; `replay.ts` is the acceptance harness (environment, result calibration, bowler usage).
 
-Replay of 2024 (44 matches × 40): run rate 7.13 real vs 7.14 simulated, balls per wicket 16.6 vs
-17.4, chase win 58% vs 62%, favourite right in 71% of decided matches, Brier 0.16 against 0.25 for
-a coin. Other editions and the calibration notes are in the design spec's Phase 2 section.
+Replay of 2024 (44 matches × 40): run rate 7.13 real vs 6.96 simulated, balls per wicket 16.6 vs
+16.2, dot % 44.4 vs 44.5, chase win 58% vs 61%, favourite right in 73% of decided matches, Brier
+0.18 against 0.25 for a coin. Other editions, the sweeps (`npm run engine:calibrate -- 24
+exponents|dispersion|terms|calibration|chase`) and the calibration notes are in the design spec's
+Phase 2 section.
 
 ## Conventions
 

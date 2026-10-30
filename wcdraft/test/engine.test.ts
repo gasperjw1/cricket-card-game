@@ -10,7 +10,7 @@ import { engineReady, loadEdition, matchEnvironment, teamFromDefault } from "../
 import { simulateMatch } from "../src/engine/match.js";
 import { replayEdition } from "../src/engine/replay.js";
 import { Rng } from "../src/engine/rng.js";
-import { outcomeDistribution } from "../src/engine/ball.js";
+import { expectedRunsOf, outcomeDistribution } from "../src/engine/ball.js";
 
 describe("rng", () => {
   it("is deterministic per seed and picks by weight", () => {
@@ -34,14 +34,22 @@ describe("engine", { skip: !engineReady() && "engine data not built" }, () => {
   it("produces normalised ball distributions with sane hazards", () => {
     const striker = india.players.find((p) => p.name === "V Kohli")!;
     const bowler = southAfrica.players.find((p) => p.name === "K Rabada")!;
-    const d = outcomeDistribution(striker, bowler, env, data.situation, { innings: 1, over: 0, wickets: 0, strikerBalls: 0, requiredRpo: null, scoringFactor: 1, freeHit: false });
-    const sum = Object.values(d).reduce((a, b) => a + b, 0);
+    const base = { innings: 1 as const, over: 10, wickets: 2, requiredRpo: null, scoringFactor: 1, playerFactor: 1, streak: "4-7" as const, ballInOver: 3, consecutiveDots: 0, freeHit: false };
+    const fresh = outcomeDistribution(striker, bowler, env, data.situation, { ...base, strikerBalls: 0 });
+    const sum = Object.values(fresh).reduce((a, b) => a + b, 0);
     assert.ok(Math.abs(sum - 1) < 1e-9);
-    assert.ok(d.W > 0.02 && d.W < 0.12, `first-ball hazard ${d.W}`);
-    const set = outcomeDistribution(striker, bowler, env, data.situation, { innings: 1, over: 10, wickets: 2, strikerBalls: 30, requiredRpo: null, scoringFactor: 1, freeHit: false });
-    assert.ok(set.W < d.W, "a set batter is harder to dismiss than a new one");
-    const chase = outcomeDistribution(striker, bowler, env, data.situation, { innings: 2, over: 17, wickets: 4, strikerBalls: 20, requiredRpo: 13, scoringFactor: 1, freeHit: false });
+    assert.ok(fresh.W > 0.02 && fresh.W < 0.12, `first-ball hazard ${fresh.W}`);
+    const set = outcomeDistribution(striker, bowler, env, data.situation, { ...base, strikerBalls: 30 });
+    // T20 setness (measured): a new batter scores less and is dismissed less; both rise as he gets set.
+    assert.ok(expectedRunsOf(set) > expectedRunsOf(fresh), "a set batter scores faster");
+    assert.ok(set.W > fresh.W, "a set batter takes more risk");
+    const hot = outcomeDistribution(striker, bowler, env, data.situation, { ...base, strikerBalls: 30, streak: "13+" });
+    const cold = outcomeDistribution(striker, bowler, env, data.situation, { ...base, strikerBalls: 30, streak: "0-3" });
+    assert.ok(hot["4"] + hot["6"] > cold["4"] + cold["6"], "a hot streak raises the boundary rate");
+    const chase = outcomeDistribution(striker, bowler, env, data.situation, { ...base, innings: 2, over: 17, wickets: 4, strikerBalls: 20, requiredRpo: 13 });
     assert.ok(chase["4"] + chase["6"] > set["4"] + set["6"], "a steep chase raises the boundary rate");
+    const stuck = outcomeDistribution(striker, bowler, env, data.situation, { ...base, innings: 2, over: 17, wickets: 4, strikerBalls: 20, requiredRpo: 13, consecutiveDots: 3 });
+    assert.ok(expectedRunsOf(stuck) < expectedRunsOf(chase), "three dots in a chase lower expected runs");
   });
 
   it("is deterministic given a seed and keeps the books straight", () => {
