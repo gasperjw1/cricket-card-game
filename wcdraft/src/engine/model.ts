@@ -92,8 +92,15 @@ export const ENGINE = {
    * regenerates those frequencies with feedback (a hot streak breeds hot streaks, fewer wickets mean
    * longer set periods), which lifts the mean by a few per cent. These two numbers absorb that.
    */
-  scoringCalibration: 0.95 as number,
+  scoringCalibration: 0.94 as number,
   hazardCalibration: 1.04 as number,
+  /**
+   * Death-overs scoring calibration. Once opening bowlers are trusted at the death (as captains
+   * really do), the engine's death overs came out 8–10% cheaper than every edition's, because its
+   * best bowlers bowl them while the situation table was measured over the archive's average death
+   * bowler. Real batters attack those bowlers anyway; this restores the measured phase shape.
+   */
+  deathCalibration: 1.15 as number,
   /** Runs a wicket is worth to the bowling side when choosing a bowler (design spec §5, wicket cost). */
   allocation: {
     wicketValue: 2.6,
@@ -111,10 +118,17 @@ export const ENGINE = {
     continuityBonus: 0.3,
     /** Penalty (runs) for a bowler who has not bowled yet once five bowlers have been used (the sixth option costs a decision). */
     extraBowlerPenalty: 0.8,
+    /**
+     * Death trust is sticky (measured: a new-ball bowler bowls at the death in 62–68% of innings and
+     * 43% of overs 19–20 go to an opening bowler): opening bowlers get this bonus at the death and
+     * are held back in the middle overs once their quota is down to two.
+     */
+    openerDeathBonus: 2.0,
+    openerHoldPenalty: 2.0,
   },
 };
 
-export type EngineOverrides = Partial<Record<"batExponent" | "bowlExponent" | "chaseExponent" | "streakExponent" | "setnessExponent" | "ballInOverExponent" | "chaseDotsExponent" | "matchupExponent" | "bowlerDaySd" | "batterDaySd" | "matchEffectSd" | "inningsEffectSd" | "venueExponent" | "scoringCalibration" | "hazardCalibration", number>>;
+export type EngineOverrides = Partial<Record<"batExponent" | "bowlExponent" | "chaseExponent" | "streakExponent" | "setnessExponent" | "ballInOverExponent" | "chaseDotsExponent" | "matchupExponent" | "bowlerDaySd" | "batterDaySd" | "matchEffectSd" | "inningsEffectSd" | "venueExponent" | "scoringCalibration" | "hazardCalibration" | "deathCalibration", number>>;
 
 /** Calibration hook: override numeric constants for a sweep (`npm run engine:calibrate`). */
 export function setEngineOverrides(overrides: EngineOverrides): void {

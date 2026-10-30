@@ -63,6 +63,10 @@ export function chooseBowler(input: AllocationInput, rng: Rng): BowlerState {
     const arch = b.player.archetype.bowling;
     if (phase === "pp" && arch === "new ball") score += A.specialistBonus;
     if (phase === "death" && arch === "death") score += A.specialistBonus;
+    // Death trust: whoever opened the bowling is trusted at the death and held back for it.
+    const opened = b.overs.includes(0) || b.overs.includes(1);
+    if (opened && phase === "death") score += A.openerDeathBonus;
+    if (opened && phase === "mid" && maxOvers - b.overs.length <= 2 && deathOversLeft >= 2) score -= A.openerHoldPenalty;
     if (over < deathStart && deathRank.includes(b.player.id) && maxOvers - b.overs.length <= Math.min(2, deathOversLeft)) score -= A.reservationPenalty;
     const last = b.overs[b.overs.length - 1];
     if (last !== undefined && last === over - 2) score += A.spellBonus;

@@ -1035,8 +1035,24 @@ fielding. The simulation is not required to reproduce real results (§11).
   is where fielding will show up first. Trigger to revisit: a data source with fielding chances.
 - Replay metrics with intent and captaincy active are unchanged (2024: run rate 7.03 vs 7.13,
   dot 44.5 vs 44.4, chase win 59 vs 58, Brier 0.168).
-- Not yet built: the validation tests 1–6, 8 of §9 against the tournament layer (see the Phase 2b
-  acceptance note below).
+- **§9 acceptance tests — RUN 2026-10-30** (`npm run engine:replay -- <edition> 40`; the 2024 run
+  is a unit test). Status per test, five editions (2010, 2016, 2021, 2024, 2026), real elevens:
+
+| § 9 test | Measure | Result | Status |
+|---|---|---|---|
+| 1 Innings totals | first-innings p10 / p50 / p90, real vs sim | medians within 6 runs everywhere; tails narrower than real in 2024 (87/134/184 vs 77/128/194) and wider in 2026 (124/179/248 vs 133/176/225); SD ratio 0.88–1.38 | Pass on level, **open on spread** (structural, not noise size: dispersion sweep could not move it) |
+| 2 Wickets by over | mean wickets down entering overs 7 / 11 / 16 and at the close vs the all-T20I reference 1.79 / 2.85 / 4.39 / 6.14 | within 0.3 through over 15 in four editions (2024 runs 0.4–0.7 high, its real balls-per-wicket is the lowest of any edition); at the close the sim loses 0.2–1.3 more wickets | Pass through the middle overs; death-overs hazard slightly high |
+| 3 Per-ball marginals | total-variation distance to the edition's phase-weighted population vector | 0.005 (2016), 0.007 (2021), 0.013 (2010), 0.021 (2024), target ≤ 0.02 | Pass (2024 at the line) |
+| 4 Remaining runs vs par | mean first-innings runs after the 10-over mark, sim vs resource table | within 0–7 runs (2016 86.5 vs 86.5; 2021 80.5 vs 73.9) | Pass (target ≈ 5) |
+| 5 Bowler usage | bowlers used 5 / 6 / 7 vs 17 / 62 / 20; overs 19–20 by an opening bowler vs 43% | 21–31 / 52–55 / 11–21; openers 21–30% | Pass on count; death trust still under the norm (raising it further makes the death overs too cheap, see `deathCalibration`) |
+| 6 Venue effects | chase-win share per ground (≥ 4 real matches), with the ground's own second-innings uplift | Dubai 2021 real 92 → sim 72 (uplift +18%), Abu Dhabi 75 → 62, SCG 2022 29 → 31 (−15%), Nassau 63 → 67; small-sample grounds scatter ±20 points | Pass in direction and order; magnitudes shrunk by the ten-match prior |
+| 7 Rating stability | ratings harness | 0.75 / 0.57 vs 0.45 / 0.44 raw | Pass (Phase 1.5) |
+| 8 Win-probability calibration | Brier on decided real matches (coin 0.25) | 0.164 (2024), 0.178 (2021), 0.181 (2026), 0.214 (2016), 0.225 (2010); favourite right 58–76% | Pass; 2010 and 2016 are the thin-data editions |
+
+  Scoring calibration constants after this pass: scoring ×0.94, hazard ×1.04, death overs ×1.15
+  (the death term was added when trusting openers at the death made those overs 8–10% cheaper than
+  every edition's; real batters attack the best bowlers anyway). Phase run rates now sit within 3–5%
+  of real in every phase and edition except the 2024 middle overs (6.44 vs 6.88).
 
 ### Phase 3 — Draft client (thin)
 - Identity spin, coach panel, player spins, lineup slots, overs meter, simulate, result,

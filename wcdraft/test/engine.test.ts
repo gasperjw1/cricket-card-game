@@ -150,5 +150,10 @@ describe("engine", { skip: !engineReady() && "engine data not built" }, () => {
     assert.ok(s.sim.bowlersUsedMean > 5.4 && s.sim.bowlersUsedMean < 6.6, `bowlers used ${s.sim.bowlersUsedMean}`);
     assert.ok(s.results.brier < 0.24, `Brier ${s.results.brier}`);
     assert.ok(s.results.accuracy > 0.55, `favourite right ${s.results.accuracy}`);
+    // Design spec §9: per-ball marginals (3), par (4), wickets-by-over shape (2), death trust (5).
+    assert.ok(s.marginals.totalVariation < 0.03, `marginals TV ${s.marginals.totalVariation}`);
+    assert.ok(Math.abs(s.par.simRemaining - s.par.tableRemaining) < 8, `par: sim ${s.par.simRemaining} vs table ${s.par.tableRemaining}`);
+    assert.ok(Math.abs(s.wicketsByOver.sim["10"]! - s.wicketsByOver.reference["10"]!) < 0.7, `wickets at over 10: ${s.wicketsByOver.sim["10"]} vs ${s.wicketsByOver.reference["10"]}`);
+    assert.ok(s.sim.deathOversByNewBallPct > 22, `overs 19–20 by an opening bowler ${s.sim.deathOversByNewBallPct}%`);
   });
 });

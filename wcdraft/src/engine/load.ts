@@ -220,10 +220,16 @@ export function matchEnvironment(data: EditionData, venueId: string | null, over
   const env = data.edition.environment;
   const venue = venueId ? data.venues.get(venueId) : undefined;
   let venueFactor = 1;
+  // Second-innings uplift (dew and target knowledge): the ground's own figure shrunk toward the
+  // edition's with a ten-match prior, so Dubai's chase advantage and the SCG's bat-first edge show.
+  let chaseUplift = env.chaseUplift / Math.max(1, env.runsPerOver);
   if (venue) {
     const v = venue.byEdition[data.edition.id] ?? venue.overall;
     const ratio = v.runsPerOver / Math.max(1, env.runsPerOver);
     venueFactor = (v.legalBalls * ratio + VENUE_PRIOR_BALLS) / (v.legalBalls + VENUE_PRIOR_BALLS);
+    const venueUplift = (v.chaseUplift ?? env.chaseUplift) / Math.max(1, v.runsPerOver || env.runsPerOver);
+    const n = v.matches ?? 0;
+    chaseUplift = (n * venueUplift + ENGINE.rain.venuePriorMatches * chaseUplift) / (n + ENGINE.rain.venuePriorMatches);
   }
   const base = Object.fromEntries(PHASE_LIST.map((p) => [p, Object.fromEntries(OUTCOMES.map((k) => [k, env.populationVectors[p]?.[k] ?? 1 / 7])) as Vector])) as PhaseVectors;
   const tieBreak = data.edition.rules.tieBreak === "super-over" ? "super-over" : data.edition.rules.tieBreak === "bowl-out" ? "bowl-out" : "none";
@@ -242,7 +248,7 @@ export function matchEnvironment(data: EditionData, venueId: string | null, over
     editionId: data.edition.id,
     base,
     venueFactor,
-    chaseUplift: env.chaseUplift / Math.max(1, env.runsPerOver),
+    chaseUplift: +chaseUplift.toFixed(4),
     tossFieldPct: env.tossFieldPct,
     widesPerBall: env.widesPerOver / 6,
     noBallsPerBall: env.noBallsPerOver / 6,

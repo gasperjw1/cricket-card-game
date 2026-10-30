@@ -163,7 +163,7 @@ It is pure given its inputs and a seed. Per delivery (`ball.ts`):
 p ∝ base[phase] × batRel^0.7 × bowlRel^0.7 × τ[innings][over][wickets] × chase[required rate]^0.15
     × streak (residual over a shuffled null) × setness (striker's balls faced) × ballInOver × chaseDots
     × matchup (batting hand × bowler class) × match, innings and player day effects × venue factor
-    × calibration (scoring 0.95, hazard 1.04), then coach intent on the boundary and dismissal cells
+    × calibration (scoring 0.94, hazard 1.04, death overs 1.15), then coach intent on the boundary and dismissal cells
 ```
 
 - Coach intent (`coaches.json`) and captaincy (`captaincy.json`) attach to CPU sides from the
@@ -202,11 +202,13 @@ p ∝ base[phase] × batRel^0.7 × bowlRel^0.7 × τ[innings][over][wickets] × 
   seed-slot inheritance, knockouts, and an identity team fielding a drafted eleven; `rarity.ts`
   measures how often random slot-constrained drafts go unbeaten.
 
-Replay of 2024 (44 matches × 40): run rate 7.13 real vs 6.96 simulated, balls per wicket 16.6 vs
-16.2, dot % 44.4 vs 44.5, chase win 58% vs 61%, favourite right in 73% of decided matches, Brier
-0.18 against 0.25 for a coin. Other editions, the sweeps (`npm run engine:calibrate -- 24
-exponents|dispersion|terms|calibration|chase`) and the calibration notes are in the design spec's
-Phase 2 section.
+Replay of 2024 (44 matches × 40): run rate 7.13 real vs 7.09 simulated, balls per wicket 16.6 vs
+16.4, dot % 44.4 vs 44.2, first-innings average 134.9 vs 134.2, chase win 58% vs 60%, favourite
+right in 73% of decided matches, Brier 0.16 against 0.25 for a coin. The replay also reports the
+design spec's §9 acceptance tests: first-innings quantiles, wickets by over, per-ball marginal
+distance, par after ten overs, death-overs trust and chase-win share per ground. Other editions,
+the sweeps (`npm run engine:calibrate -- 24 exponents|dispersion|terms|calibration|chase|matchups`)
+and the calibration notes are in the design spec's Phase 2 and 2b sections.
 
 ## Conventions
 

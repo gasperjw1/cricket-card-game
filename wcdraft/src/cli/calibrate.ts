@@ -25,11 +25,11 @@ const grids: Record<string, EngineOverrides[]> = {
     { bowlerDaySd: 0.21, batterDaySd: 0.19, matchEffectSd: 0, inningsEffectSd: 0 },
   ],
   calibration: [
-    { scoringCalibration: 1, hazardCalibration: 1 },
-    { scoringCalibration: 0.97, hazardCalibration: 1 },
-    { scoringCalibration: 0.96, hazardCalibration: 1.03 },
-    { scoringCalibration: 0.95, hazardCalibration: 1.05 },
-    { scoringCalibration: 0.96, hazardCalibration: 1.06 },
+    { scoringCalibration: 0.95, hazardCalibration: 1.04, deathCalibration: 1 },
+    { scoringCalibration: 0.95, hazardCalibration: 1.04, deathCalibration: 1.09 },
+    { scoringCalibration: 0.94, hazardCalibration: 1.04, deathCalibration: 1.09 },
+    { scoringCalibration: 0.93, hazardCalibration: 1.04, deathCalibration: 1.09 },
+    { scoringCalibration: 0.94, hazardCalibration: 1.02, deathCalibration: 1.09 },
   ],
   chase: [
     { chaseExponent: 0.5, chaseDotsExponent: 1 },
@@ -49,13 +49,14 @@ const grids: Record<string, EngineOverrides[]> = {
 };
 const grid = grids[mode];
 if (!grid) throw new Error(`unknown mode ${mode}; use ${Object.keys(grids).join(" | ")}`);
-console.log(`| ${mode} | RPO bias % | dot bias pts | balls/wkt bias | 1st-inn SD ratio | chase win bias pts | bowlers used | Brier | favourite right |`, "\n|---|---|---|---|---|---|---|---|---|");
+console.log(`| ${mode} | RPO bias % | death RPO bias % | dot bias pts | balls/wkt bias | 1st-inn SD ratio | chase win bias pts | bowlers used | Brier | favourite right |`, "\n|---|---|---|---|---|---|---|---|---|---|");
 for (const g of grid) {
   setEngineOverrides(g);
-  let rpo = 0, dot = 0, bpw = 0, sd = 0, chase = 0, used = 0, brier = 0, acc = 0, n = 0, decided = 0;
+  let rpo = 0, death = 0, dot = 0, bpw = 0, sd = 0, chase = 0, used = 0, brier = 0, acc = 0, n = 0, decided = 0;
   for (const ed of editions) {
     const s = replayEdition(ed, sims);
     rpo += (100 * (s.sim.runsPerOver - s.real.runsPerOver)) / s.real.runsPerOver;
+    death += (100 * (s.sim.deathRpo - s.real.deathRpo)) / s.real.deathRpo;
     dot += s.sim.dotPct - s.real.dotPct;
     bpw += s.sim.ballsPerWicket - s.real.ballsPerWicket;
     sd += s.sim.firstInningsSd / s.real.firstInningsSd;
@@ -67,5 +68,5 @@ for (const g of grid) {
     n += 1;
   }
   const f = (x: number, d = 2) => (x / n).toFixed(d);
-  console.log(`| ${JSON.stringify(g)} | ${f(rpo, 1)} | ${f(dot, 1)} | ${f(bpw, 1)} | ${f(sd)} | ${f(chase, 1)} | ${f(used)} | ${(brier / decided).toFixed(3)} | ${(acc / decided).toFixed(2)} |`);
+  console.log(`| ${JSON.stringify(g)} | ${f(rpo, 1)} | ${f(death, 1)} | ${f(dot, 1)} | ${f(bpw, 1)} | ${f(sd)} | ${f(chase, 1)} | ${f(used)} | ${(brier / decided).toFixed(3)} | ${(acc / decided).toFixed(2)} |`);
 }

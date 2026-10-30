@@ -130,6 +130,18 @@ export class SituationModel {
   get reducedOvers(): Record<string, number> {
     return this.tables.reducedOvers ?? {};
   }
+
+  /** Mean wickets down when `over` (1-based count of completed overs) is reached, balls-weighted over the archive's innings of that number. */
+  meanWicketsDown(innings: 1 | 2, over: number): number {
+    const o = Math.min(19, over);
+    let n = 0, sum = 0;
+    for (let w = 0; w <= 9; w += 1) {
+      const cell = this.tables.cells[`${innings}|${o}|${w}`];
+      if (!cell) continue;
+      n += cell.balls; sum += cell.balls * w;
+    }
+    return n ? sum / n : 0;
+  }
 }
 
 export interface BallContext {
@@ -169,7 +181,7 @@ export function outcomeDistribution(striker: EnginePlayer, bowler: EnginePlayer,
   const bio = pow(situation.ballInOver(ctx.innings, phase, ctx.ballInOver), ENGINE.ballInOverExponent);
   const dots = ctx.requiredRpo !== null ? pow(situation.chaseDots(phase, ctx.wickets, ctx.consecutiveDots), ENGINE.chaseDotsExponent) : UNIT;
   const matchup = pow(situation.matchup(striker.hand, bowler.bowlClass, phase), ENGINE.matchupExponent);
-  const scoring = ctx.scoringFactor * ctx.playerFactor * Math.pow(env.venueFactor, ENGINE.venueExponent) * ENGINE.scoringCalibration;
+  const scoring = ctx.scoringFactor * ctx.playerFactor * Math.pow(env.venueFactor, ENGINE.venueExponent) * ENGINE.scoringCalibration * (phase === "death" ? ENGINE.deathCalibration : 1);
   const out = {} as Vector;
   let total = 0;
   for (const k of OUTCOMES) {

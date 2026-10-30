@@ -1,0 +1,828 @@
+{
+  "editionId": "2022",
+  "sims": 40,
+  "matchCount": 38,
+  "real": {
+    "runsPerOver": 7.52,
+    "ballsPerWicket": 17.2,
+    "dotPct": 38,
+    "fourPct": 9.6,
+    "sixPct": 3.5,
+    "powerplayRpo": 6.91,
+    "middleRpo": 7.34,
+    "deathRpo": 8.79,
+    "firstInningsAvg": 155.2,
+    "firstInningsSd": 25.3,
+    "chaseWinPct": 42
+  },
+  "sim": {
+    "runsPerOver": 7.48,
+    "ballsPerWicket": 17.1,
+    "dotPct": 36.7,
+    "fourPct": 9.6,
+    "sixPct": 3.4,
+    "powerplayRpo": 6.81,
+    "middleRpo": 7.23,
+    "deathRpo": 8.15,
+    "firstInningsAvg": 149.2,
+    "firstInningsSd": 33.4,
+    "chaseWinPct": 47,
+    "bowlersUsed": {
+      "3": 0.1,
+      "4": 1.1,
+      "5": 18.8,
+      "6": 48.6,
+      "7": 24.2,
+      "8": 6.2,
+      "9": 0.9,
+      "10": 0.1
+    },
+    "bowlersUsedMean": 6.18,
+    "deathOversByNewBallPct": 16.4
+  },
+  "firstInnings": {
+    "real": {
+      "n": 38,
+      "p10": 121,
+      "p50": 157,
+      "p90": 185
+    },
+    "sim": {
+      "n": 1357,
+      "p10": 106,
+      "p50": 149,
+      "p90": 193
+    }
+  },
+  "wicketsByOver": {
+    "reference": {
+      "6": 1.79,
+      "10": 2.85,
+      "15": 4.39,
+      "20": 6.14
+    },
+    "sim": {
+      "6": 1.87,
+      "10": 2.84,
+      "15": 4.32,
+      "20": 6.93
+    }
+  },
+  "marginals": {
+    "real": {
+      "0": 0.3435,
+      "1": 0.3671,
+      "2": 0.0934,
+      "3": 0.0104,
+      "4": 0.0943,
+      "6": 0.0343,
+      "W": 0.057
+    },
+    "sim": {
+      "0": 0.3472,
+      "1": 0.3653,
+      "2": 0.0893,
+      "3": 0.0098,
+      "4": 0.0957,
+      "6": 0.0344,
+      "W": 0.0583
+    },
+    "totalVariation": 0.0065
+  },
+  "par": {
+    "n": 1356,
+    "simRemaining": 79,
+    "tableRemaining": 82.1
+  },
+  "venues": [
+    {
+      "venueId": "hobart",
+      "matches": 8,
+      "realChaseWinPct": 50,
+      "simChaseWinPct": 59,
+      "chaseUplift": -0.0299
+    },
+    {
+      "venueId": "scg",
+      "matches": 7,
+      "realChaseWinPct": 29,
+      "simChaseWinPct": 31,
+      "chaseUplift": -0.1535
+    },
+    {
+      "venueId": "geelong",
+      "matches": 6,
+      "realChaseWinPct": 33,
+      "simChaseWinPct": 39,
+      "chaseUplift": -0.1058
+    },
+    {
+      "venueId": "adelaide",
+      "matches": 6,
+      "realChaseWinPct": 50,
+      "simChaseWinPct": 50,
+      "chaseUplift": -0.0429
+    },
+    {
+      "venueId": "mcg",
+      "matches": 4,
+      "realChaseWinPct": 50,
+      "simChaseWinPct": 50,
+      "chaseUplift": -0.0797
+    }
+  ],
+  "results": {
+    "decided": 37,
+    "accuracy": 0.595,
+    "brier": 0.237,
+    "logLoss": 0.67,
+    "baselineBrier": 0.25,
+    "baselineLogLoss": 0.693
+  },
+  "matches": [
+    {
+      "id": "1298135",
+      "teams": [
+        "Namibia",
+        "Sri Lanka"
+      ],
+      "battedFirst": "Namibia",
+      "venueId": "geelong",
+      "real": {
+        "winner": "Namibia",
+        "firstInningsTotal": 163
+      },
+      "sim": {
+        "winProbA": 0.438,
+        "firstInningsMean": 124.2,
+        "firstInningsSd": 22.7
+      }
+    },
+    {
+      "id": "1298136",
+      "teams": [
+        "Netherlands",
+        "United Arab Emirates"
+      ],
+      "battedFirst": "United Arab Emirates",
+      "venueId": "geelong",
+      "real": {
+        "winner": "Netherlands",
+        "firstInningsTotal": 111
+      },
+      "sim": {
+        "winProbA": 0.45,
+        "firstInningsMean": 135.4,
+        "firstInningsSd": 24.6
+      }
+    },
+    {
+      "id": "1298137",
+      "teams": [
+        "Scotland",
+        "West Indies"
+      ],
+      "battedFirst": "Scotland",
+      "venueId": "hobart",
+      "real": {
+        "winner": "Scotland",
+        "firstInningsTotal": 160
+      },
+      "sim": {
+        "winProbA": 0.287,
+        "firstInningsMean": 124.3,
+        "firstInningsSd": 30.4
+      }
+    },
+    {
+      "id": "1298138",
+      "teams": [
+        "Ireland",
+        "Zimbabwe"
+      ],
+      "battedFirst": "Zimbabwe",
+      "venueId": "hobart",
+      "real": {
+        "winner": "Zimbabwe",
+        "firstInningsTotal": 174
+      },
+      "sim": {
+        "winProbA": 0.525,
+        "firstInningsMean": 138.3,
+        "firstInningsSd": 27.9
+      }
+    },
+    {
+      "id": "1298139",
+      "teams": [
+        "Namibia",
+        "Netherlands"
+      ],
+      "battedFirst": "Namibia",
+      "venueId": "geelong",
+      "real": {
+        "winner": "Netherlands",
+        "firstInningsTotal": 121
+      },
+      "sim": {
+        "winProbA": 0.7,
+        "firstInningsMean": 134.4,
+        "firstInningsSd": 24
+      }
+    },
+    {
+      "id": "1298140",
+      "teams": [
+        "Sri Lanka",
+        "United Arab Emirates"
+      ],
+      "battedFirst": "Sri Lanka",
+      "venueId": "geelong",
+      "real": {
+        "winner": "Sri Lanka",
+        "firstInningsTotal": 152
+      },
+      "sim": {
+        "winProbA": 0.775,
+        "firstInningsMean": 139.4,
+        "firstInningsSd": 29.1
+      }
+    },
+    {
+      "id": "1298141",
+      "teams": [
+        "Ireland",
+        "Scotland"
+      ],
+      "battedFirst": "Scotland",
+      "venueId": "hobart",
+      "real": {
+        "winner": "Ireland",
+        "firstInningsTotal": 176
+      },
+      "sim": {
+        "winProbA": 0.65,
+        "firstInningsMean": 137.2,
+        "firstInningsSd": 23.2
+      }
+    },
+    {
+      "id": "1298142",
+      "teams": [
+        "West Indies",
+        "Zimbabwe"
+      ],
+      "battedFirst": "West Indies",
+      "venueId": "hobart",
+      "real": {
+        "winner": "West Indies",
+        "firstInningsTotal": 153
+      },
+      "sim": {
+        "winProbA": 0.575,
+        "firstInningsMean": 145,
+        "firstInningsSd": 29
+      }
+    },
+    {
+      "id": "1298143",
+      "teams": [
+        "Netherlands",
+        "Sri Lanka"
+      ],
+      "battedFirst": "Sri Lanka",
+      "venueId": "geelong",
+      "real": {
+        "winner": "Sri Lanka",
+        "firstInningsTotal": 162
+      },
+      "sim": {
+        "winProbA": 0.475,
+        "firstInningsMean": 141.2,
+        "firstInningsSd": 28.7
+      }
+    },
+    {
+      "id": "1298144",
+      "teams": [
+        "Namibia",
+        "United Arab Emirates"
+      ],
+      "battedFirst": "United Arab Emirates",
+      "venueId": "geelong",
+      "real": {
+        "winner": "United Arab Emirates",
+        "firstInningsTotal": 148
+      },
+      "sim": {
+        "winProbA": 0.338,
+        "firstInningsMean": 136.6,
+        "firstInningsSd": 25.9
+      }
+    },
+    {
+      "id": "1298145",
+      "teams": [
+        "Ireland",
+        "West Indies"
+      ],
+      "battedFirst": "West Indies",
+      "venueId": "hobart",
+      "real": {
+        "winner": "Ireland",
+        "firstInningsTotal": 146
+      },
+      "sim": {
+        "winProbA": 0.4,
+        "firstInningsMean": 144.1,
+        "firstInningsSd": 31.4
+      }
+    },
+    {
+      "id": "1298146",
+      "teams": [
+        "Scotland",
+        "Zimbabwe"
+      ],
+      "battedFirst": "Scotland",
+      "venueId": "hobart",
+      "real": {
+        "winner": "Zimbabwe",
+        "firstInningsTotal": 132
+      },
+      "sim": {
+        "winProbA": 0.388,
+        "firstInningsMean": 136.5,
+        "firstInningsSd": 27.5
+      }
+    },
+    {
+      "id": "1298147",
+      "teams": [
+        "Australia",
+        "New Zealand"
+      ],
+      "battedFirst": "New Zealand",
+      "venueId": "scg",
+      "real": {
+        "winner": "New Zealand",
+        "firstInningsTotal": 200
+      },
+      "sim": {
+        "winProbA": 0.375,
+        "firstInningsMean": 180.5,
+        "firstInningsSd": 27.1
+      }
+    },
+    {
+      "id": "1298149",
+      "teams": [
+        "Ireland",
+        "Sri Lanka"
+      ],
+      "battedFirst": "Ireland",
+      "venueId": "hobart",
+      "real": {
+        "winner": "Sri Lanka",
+        "firstInningsTotal": 128
+      },
+      "sim": {
+        "winProbA": 0.338,
+        "firstInningsMean": 132.4,
+        "firstInningsSd": 32.6
+      }
+    },
+    {
+      "id": "1298150",
+      "teams": [
+        "India",
+        "Pakistan"
+      ],
+      "battedFirst": "Pakistan",
+      "venueId": "mcg",
+      "real": {
+        "winner": "India",
+        "firstInningsTotal": 159
+      },
+      "sim": {
+        "winProbA": 0.388,
+        "firstInningsMean": 162.9,
+        "firstInningsSd": 29.2
+      }
+    },
+    {
+      "id": "1298151",
+      "teams": [
+        "Bangladesh",
+        "Netherlands"
+      ],
+      "battedFirst": "Bangladesh",
+      "venueId": "hobart",
+      "real": {
+        "winner": "Bangladesh",
+        "firstInningsTotal": 144
+      },
+      "sim": {
+        "winProbA": 0.425,
+        "firstInningsMean": 129.6,
+        "firstInningsSd": 31.5
+      }
+    },
+    {
+      "id": "1298152",
+      "teams": [
+        "South Africa",
+        "Zimbabwe"
+      ],
+      "battedFirst": "Zimbabwe",
+      "venueId": "hobart",
+      "real": {
+        "winner": null,
+        "firstInningsTotal": 79
+      },
+      "sim": {
+        "winProbA": 0.713,
+        "firstInningsMean": 142.8,
+        "firstInningsSd": 30.9
+      }
+    },
+    {
+      "id": "1298153",
+      "teams": [
+        "Australia",
+        "Sri Lanka"
+      ],
+      "battedFirst": "Sri Lanka",
+      "venueId": "perth",
+      "real": {
+        "winner": "Australia",
+        "firstInningsTotal": 157
+      },
+      "sim": {
+        "winProbA": 0.75,
+        "firstInningsMean": 138.3,
+        "firstInningsSd": 30.3
+      }
+    },
+    {
+      "id": "1298154",
+      "teams": [
+        "England",
+        "Ireland"
+      ],
+      "battedFirst": "Ireland",
+      "venueId": "mcg",
+      "real": {
+        "winner": "Ireland",
+        "firstInningsTotal": 157
+      },
+      "sim": {
+        "winProbA": 0.863,
+        "firstInningsMean": 132.7,
+        "firstInningsSd": 26.3
+      }
+    },
+    {
+      "id": "1298156",
+      "teams": [
+        "Bangladesh",
+        "South Africa"
+      ],
+      "battedFirst": "South Africa",
+      "venueId": "scg",
+      "real": {
+        "winner": "South Africa",
+        "firstInningsTotal": 205
+      },
+      "sim": {
+        "winProbA": 0.125,
+        "firstInningsMean": 167.9,
+        "firstInningsSd": 33.2
+      }
+    },
+    {
+      "id": "1298157",
+      "teams": [
+        "India",
+        "Netherlands"
+      ],
+      "battedFirst": "India",
+      "venueId": "scg",
+      "real": {
+        "winner": "India",
+        "firstInningsTotal": 179
+      },
+      "sim": {
+        "winProbA": 0.838,
+        "firstInningsMean": 167.4,
+        "firstInningsSd": 43.2
+      }
+    },
+    {
+      "id": "1298158",
+      "teams": [
+        "Pakistan",
+        "Zimbabwe"
+      ],
+      "battedFirst": "Zimbabwe",
+      "venueId": "perth",
+      "real": {
+        "winner": "Zimbabwe",
+        "firstInningsTotal": 130
+      },
+      "sim": {
+        "winProbA": 0.575,
+        "firstInningsMean": 134.6,
+        "firstInningsSd": 29.6
+      }
+    },
+    {
+      "id": "1298161",
+      "teams": [
+        "New Zealand",
+        "Sri Lanka"
+      ],
+      "battedFirst": "New Zealand",
+      "venueId": "scg",
+      "real": {
+        "winner": "New Zealand",
+        "firstInningsTotal": 167
+      },
+      "sim": {
+        "winProbA": 0.8,
+        "firstInningsMean": 165.5,
+        "firstInningsSd": 24.3
+      }
+    },
+    {
+      "id": "1298162",
+      "teams": [
+        "Bangladesh",
+        "Zimbabwe"
+      ],
+      "battedFirst": "Bangladesh",
+      "venueId": "brisbane",
+      "real": {
+        "winner": "Bangladesh",
+        "firstInningsTotal": 150
+      },
+      "sim": {
+        "winProbA": 0.4,
+        "firstInningsMean": 140.3,
+        "firstInningsSd": 33.8
+      }
+    },
+    {
+      "id": "1298164",
+      "teams": [
+        "India",
+        "South Africa"
+      ],
+      "battedFirst": "India",
+      "venueId": "perth",
+      "real": {
+        "winner": "South Africa",
+        "firstInningsTotal": 133
+      },
+      "sim": {
+        "winProbA": 0.525,
+        "firstInningsMean": 166.3,
+        "firstInningsSd": 33
+      }
+    },
+    {
+      "id": "1298165",
+      "teams": [
+        "Australia",
+        "Ireland"
+      ],
+      "battedFirst": "Australia",
+      "venueId": "brisbane",
+      "real": {
+        "winner": "Australia",
+        "firstInningsTotal": 179
+      },
+      "sim": {
+        "winProbA": 0.725,
+        "firstInningsMean": 174,
+        "firstInningsSd": 30.5
+      }
+    },
+    {
+      "id": "1298167",
+      "teams": [
+        "England",
+        "New Zealand"
+      ],
+      "battedFirst": "England",
+      "venueId": "brisbane",
+      "real": {
+        "winner": "England",
+        "firstInningsTotal": 179
+      },
+      "sim": {
+        "winProbA": 0.537,
+        "firstInningsMean": 170.3,
+        "firstInningsSd": 36.5
+      }
+    },
+    {
+      "id": "1298168",
+      "teams": [
+        "Netherlands",
+        "Zimbabwe"
+      ],
+      "battedFirst": "Zimbabwe",
+      "venueId": "adelaide",
+      "real": {
+        "winner": "Netherlands",
+        "firstInningsTotal": 117
+      },
+      "sim": {
+        "winProbA": 0.362,
+        "firstInningsMean": 145.6,
+        "firstInningsSd": 27.7
+      }
+    },
+    {
+      "id": "1298169",
+      "teams": [
+        "Bangladesh",
+        "India"
+      ],
+      "battedFirst": "India",
+      "venueId": "adelaide",
+      "real": {
+        "winner": "India",
+        "firstInningsTotal": 184
+      },
+      "sim": {
+        "winProbA": 0.35,
+        "firstInningsMean": 160.9,
+        "firstInningsSd": 29.4
+      }
+    },
+    {
+      "id": "1298170",
+      "teams": [
+        "Pakistan",
+        "South Africa"
+      ],
+      "battedFirst": "Pakistan",
+      "venueId": "scg",
+      "real": {
+        "winner": "Pakistan",
+        "firstInningsTotal": 185
+      },
+      "sim": {
+        "winProbA": 0.525,
+        "firstInningsMean": 169.1,
+        "firstInningsSd": 32.5
+      }
+    },
+    {
+      "id": "1298171",
+      "teams": [
+        "Ireland",
+        "New Zealand"
+      ],
+      "battedFirst": "New Zealand",
+      "venueId": "adelaide",
+      "real": {
+        "winner": "New Zealand",
+        "firstInningsTotal": 185
+      },
+      "sim": {
+        "winProbA": 0.2,
+        "firstInningsMean": 174.5,
+        "firstInningsSd": 26.4
+      }
+    },
+    {
+      "id": "1298173",
+      "teams": [
+        "England",
+        "Sri Lanka"
+      ],
+      "battedFirst": "Sri Lanka",
+      "venueId": "scg",
+      "real": {
+        "winner": "England",
+        "firstInningsTotal": 141
+      },
+      "sim": {
+        "winProbA": 0.7,
+        "firstInningsMean": 145.1,
+        "firstInningsSd": 25.1
+      }
+    },
+    {
+      "id": "1298174",
+      "teams": [
+        "Netherlands",
+        "South Africa"
+      ],
+      "battedFirst": "Netherlands",
+      "venueId": "adelaide",
+      "real": {
+        "winner": "Netherlands",
+        "firstInningsTotal": 158
+      },
+      "sim": {
+        "winProbA": 0.25,
+        "firstInningsMean": 138.7,
+        "firstInningsSd": 26.4
+      }
+    },
+    {
+      "id": "1298175",
+      "teams": [
+        "Bangladesh",
+        "Pakistan"
+      ],
+      "battedFirst": "Bangladesh",
+      "venueId": "adelaide",
+      "real": {
+        "winner": "Pakistan",
+        "firstInningsTotal": 127
+      },
+      "sim": {
+        "winProbA": 0.3,
+        "firstInningsMean": 136.1,
+        "firstInningsSd": 28.3
+      }
+    },
+    {
+      "id": "1298176",
+      "teams": [
+        "India",
+        "Zimbabwe"
+      ],
+      "battedFirst": "India",
+      "venueId": "mcg",
+      "real": {
+        "winner": "India",
+        "firstInningsTotal": 186
+      },
+      "sim": {
+        "winProbA": 0.738,
+        "firstInningsMean": 160.9,
+        "firstInningsSd": 25.3
+      }
+    },
+    {
+      "id": "1298177",
+      "teams": [
+        "New Zealand",
+        "Pakistan"
+      ],
+      "battedFirst": "New Zealand",
+      "venueId": "scg",
+      "real": {
+        "winner": "Pakistan",
+        "firstInningsTotal": 152
+      },
+      "sim": {
+        "winProbA": 0.775,
+        "firstInningsMean": 172.6,
+        "firstInningsSd": 27.3
+      }
+    },
+    {
+      "id": "1298178",
+      "teams": [
+        "England",
+        "India"
+      ],
+      "battedFirst": "India",
+      "venueId": "adelaide",
+      "real": {
+        "winner": "England",
+        "firstInningsTotal": 168
+      },
+      "sim": {
+        "winProbA": 0.637,
+        "firstInningsMean": 160.9,
+        "firstInningsSd": 31
+      }
+    },
+    {
+      "id": "1298179",
+      "teams": [
+        "England",
+        "Pakistan"
+      ],
+      "battedFirst": "Pakistan",
+      "venueId": "mcg",
+      "real": {
+        "winner": "England",
+        "firstInningsTotal": 137
+      },
+      "sim": {
+        "winProbA": 0.525,
+        "firstInningsMean": 161.4,
+        "firstInningsSd": 24.1
+      }
+    }
+  ]
+}
