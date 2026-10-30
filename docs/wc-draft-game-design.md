@@ -854,7 +854,7 @@ at 99. Named errors become test cases.
 | Item | Why parked | Trigger to revisit |
 |---|---|---|
 | ~~Captaincy ratings and coach philosophy tags~~ **Done 2026-10-30** (`captaincy.json`, `coaches.json`; engine intent and allocation noise) | — | — |
-| Decision on the 80 Cricinfo-sourced captain rows | Excluded from `captaincy.json` (`includeCricinfoRows` flag); mostly associate stand-in captains, who therefore play with average captaincy | Yash's call |
+| ~~Decision on the 80 Cricinfo-sourced captain rows~~ **Decided 2026-10-30: dropped.** Those sides play with an average captain (`includeCricinfoRows` stays false; the rows remain in `captains.csv` for provenance only) | — | — |
 | Two-sided (batter × bowler × context) bowling model | Phase 1.5 lifted bowling prediction to 0.19 (within-edition); the Erasmus 2024 case remains | Yash's review confirms associate bowlers with no top-side exposure are still over-rated |
 | Selection prior (usage) weight > 0 | Harness neutral at w = 0.5 (shares < 0.5), negative beyond; Squad Player tag covers the UI need | Playtesters draft rarely-picked players on ratings alone |
 | Cohort standardisation by top-ten squads | Scalar fix for the drifting reference population; a two-way (own-team × opponent) context expectation would remove the cause | Per-edition spreads still look wrong after review (2026 has 8 batters at 95+, 2024 has 7) |
