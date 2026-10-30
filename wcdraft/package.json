@@ -10,6 +10,8 @@
     "data:labels": "tsx src/cli/labels.ts",
     "data:all": "npm run data:fetch && npm run data:build && npm run data:labels",
     "ratings:build": "tsx src/cli/ratings.ts",
+    "engine:replay": "tsx src/cli/replay.ts",
+    "engine:calibrate": "tsx src/cli/calibrate.ts",
     "typecheck": "tsc --noEmit",
     "test": "node --import tsx --test --test-reporter=spec test/*.test.ts"
   },

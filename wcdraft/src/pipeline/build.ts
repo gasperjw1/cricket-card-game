@@ -13,6 +13,7 @@
 
 import { BowlingUsageAnalysis } from "../analysis/bowling-usage.js";
 import { ContextPopulation } from "../analysis/context-population.js";
+import { SituationAnalysis, type SituationTables } from "../analysis/situation.js";
 import { EditionsAnalysis } from "../analysis/editions.js";
 import { LineupDeviationAnalysis } from "../analysis/lineup-deviation.js";
 import { PartnershipsAnalysis } from "../analysis/partnerships.js";
@@ -73,6 +74,8 @@ export interface BuildResult {
   odiPopulationByYear: Record<string, { balls: number; runs: number; outs: number }>;
   /** Per-edition form-window population vectors by opposition tier: shrinkage priors and normalisation targets. */
   windowPopulation: ReturnType<WindowPopulationAnalysis["summary"]>;
+  /** Engine situation tables (Phase 2): outcome counts by innings × over × wickets down, and by chase pressure. */
+  situation: SituationTables;
   coverage: Coverage;
 }
 
@@ -158,6 +161,7 @@ export function runBuild(log: (msg: string) => void = () => {}): BuildResult {
   const teamStyle = new TeamStyleAnalysis();
   const teamStrength = new TeamStrengthAnalysis(config.isFullMember);
   const windowPopulation = new WindowPopulationAnalysis(config);
+  const situation = new SituationAnalysis();
 
   // Phase 1.5 first pass: context populations (period × opponent strength × phase, venue factors)
   // over the whole archive, with their own Elo so pre-match strengths match the main pass.
@@ -198,6 +202,7 @@ export function runBuild(log: (msg: string) => void = () => {}): BuildResult {
     store.addMatch(m, { wcEdition, formEditions, standInFallback: fallbackByMatch.get(entry.id) ?? [], venueId: venue?.id ?? null, elo, context: contextPopulation, contextVenue: CONTEXT_VENUE });
     teamStyle.add(m);
     teamStrength.add(m);
+    situation.add(m);
     for (const ed of formEditions) windowPopulation.add(ed, m, elo, "window");
     if (wcEdition) windowPopulation.add(wcEdition, m, elo, "tournament");
 
@@ -269,6 +274,7 @@ export function runBuild(log: (msg: string) => void = () => {}): BuildResult {
     odiTeamStrength: odiStrength.summary(),
     odiPopulationByYear,
     windowPopulation: windowPopulation.summary(),
+    situation: situation.summary(),
     coverage: computeCoverage(playerEditions),
   };
   log(`Built ${result.playerEditions.length} player-editions, ${result.people.length} people, ${result.squads.length} squads in ${((Date.now() - t0) / 1000).toFixed(1)}s`);

@@ -23,6 +23,7 @@ const pretty: Record<string, unknown> = {
   "coverage.json": result.coverage,
   "window-population.json": result.windowPopulation,
   "odi-population.json": result.odiPopulationByYear,
+  "situation.json": result.situation,
 };
 for (const [name, value] of Object.entries(pretty)) writeJson(resolve(paths.out, name), value);
 

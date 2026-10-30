@@ -866,10 +866,40 @@ at 99. Named errors become test cases.
 | Hand-review conflicts: six 2026 debutants, Namibia 2012 blanks, SA 2012 / NED 2022 coach double credits | Cell-level edits with no downstream effect yet | Before Phase 3 UI |
 | Official 15-man squads (non-playing members) | Draft pool is "players who appeared" | If playtesting misses obvious names |
 
-### Phase 2 — Engine
-- New module beside `shared/src/engine/resolve-ball.ts` (do not modify the card-game engine).
-- τ estimation, env/venue scaling, intent, bowling policy, toss, rain/DLS, super over,
-  brackets. Validation tests 1–6, 8.
+### Phase 2 — Engine — **CORE BUILT 2026-10-30**
+- New module `wcdraft/src/engine/` (the card-game engine in `shared/` is untouched).
+- Built: per-ball multinomial (`ball.ts`: base[phase] × batRel^0.7 × bowlRel^0.7 ×
+  τ[innings][over][wickets] × chase^0.5 × centred eye-in × log-normal match and innings effects ×
+  venue scoring factor), situation tables from every complete 20-over T20I innings
+  (`analysis/situation.ts` → `data/out/situation.json`, 354 over × wickets cells per innings and
+  a chase table by required rate), extras (wides, no-balls with free hit, byes), utility-based
+  bowling allocation (`allocation.ts`: expected runs, wicket value, specialist bonuses, death
+  reservation, spell continuity, hit penalty, Gumbel noise), toss by edition norm, super over /
+  bowl-out / coin by edition rule, seeded RNG with forked streams (`rng.ts`), loaders for real
+  elevens and default elevens (`load.ts`), and the replay harness (`replay.ts`,
+  `npm run engine:replay -- 2024 100`) plus an exponent sweep (`npm run engine:calibrate`).
+- Two calibration findings. (1) The rating vectors are relative to the average T20I player while
+  the base is the edition's realised population, so real elevens inflated their own editions by
+  3–8%; every relative vector is now divided by the appearance-weighted mean over the edition's
+  real squads (`centreOnCohort`). (2) The eye-in term must be centred (the base already contains
+  new batters' hazard); uncentred it cost 2.7 balls per wicket.
+- Replay results, 40 sims per real match, real elevens and batting orders:
+
+| Edition | Matches | RPO real → sim | Balls/wkt | Dot % | 1st-inn SD | Chase win % | Bowlers used (mean) | Favourite right | Brier (coin 0.25) |
+|---|---|---|---|---|---|---|---|---|---|
+| 2010 | 25 | 7.63 → 7.74 | 17.2 → 18.3 | 37.9 → 36.0 | 28.7 → 32.2 | 42 → 42 | 5.89 | 58% | 0.218 |
+| 2016 | 27 | 7.86 → 8.12 | 17.8 → 19.7 | 36.6 → 33.4 | 27.8 → 31.8 | 50 → 44 | 6.02 | 65% | 0.228 |
+| 2024 | 44 | 7.13 → 7.14 | 16.6 → 17.4 | 44.4 → 42.9 | 43.1 → 36.2 | 58 → 62 | 5.99 | 71% | 0.162 |
+| 2026 | 49 | 8.74 → 8.92 | 17.2 → 17.3 | 34.9 → 33.4 | 35.7 → 43.5 | 43 → 44 | 6.02 | 80% | 0.174 |
+
+  Bowlers used lands at 5: 23%, 6: 51%, 7: 20% against the measured 17 / 62 / 20. The exponent
+  sweep (0.5–1.0) moved run-rate bias between +1.5% and +3.4% and Brier between 0.196 and 0.209;
+  0.7 / 0.7 was kept. Tests: `test/engine.test.ts` (determinism, bookkeeping invariants, 2024
+  replay within tolerance).
+- Not yet built (Phase 2b): rain and DLS, intent profiles from coach philosophy, fielding Λ,
+  captain-rating noise, matchup terms (handedness / bowling type), tournament simulation with
+  standings, net run rate and brackets, and the unbeaten-run rarity measurement. Validation
+  tests 1–6, 8 of §9 remain to be written against the tournament layer.
 
 ### Phase 3 — Draft client (thin)
 - Identity spin, coach panel, player spins, lineup slots, overs meter, simulate, result,

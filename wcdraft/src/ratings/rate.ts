@@ -817,6 +817,30 @@ export function rateAll(r: BuildResult, opts: RateOptions = {}): PlayerRating[] 
   });
 }
 
+/**
+ * The populations the engine needs per edition (Phase 2): the value populations the rating
+ * vectors live in (window population projected onto the edition's opponent mix, batting and
+ * bowling) and the edition's realised population.
+ */
+export interface EditionPopulations {
+  editionId: string;
+  valuePop: Record<Skill, PhaseVectors>;
+  editionPop: PhaseVectors;
+  editionBowlPop: PhaseVectors;
+}
+
+export function editionPopulations(r: BuildResult): EditionPopulations[] {
+  return [...buildContexts(r).values()].map((ctx) => ({
+    editionId: ctx.editionId,
+    valuePop: {
+      bat: mixtureByExposure(ctx.windowByElo.bat, ctx.editionOpponentMix.bat, ctx.window.bat.full),
+      bowl: mixtureByExposure(ctx.windowByElo.bowl, ctx.editionOpponentMix.bowl, ctx.window.bowl.full),
+    },
+    editionPop: ctx.editionPop,
+    editionBowlPop: ctx.editionBowlPop,
+  }));
+}
+
 /** Sanity helper used by tests and the report: the expected runs per ball of a vector. */
 export { expectedRuns, normalise, OUTCOMES };
 export type { OutcomeKey };

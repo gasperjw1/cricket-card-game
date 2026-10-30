@@ -69,6 +69,9 @@ wcdraft/
 | `partnerships.json` | Squad-mate pairs with ≥ 60 balls together (tournament + form window) |
 | `team-style.json` | Every team's batting/bowling style per calendar month over all T20Is (powerplay intent, wickets at 15, lower-order share, death RPO, bowlers used, bowl-first %), plus global per-month values for era-relative indices. Join coach/captain tenures on (team, month) |
 | `team-strength.json` | Elo timeline over all men's T20Is: rating per team per month and every match with its pre-match win expectation (for captaincy wins-above-expectation and opposition quality). Tiered starts: full members 1600, others 1400; see the known limitation in the source header |
+| `situation.json` | Engine situation tables: outcome counts by innings × over × wickets down, by innings × phase, and by chase required-rate band × phase |
+| `ratings/populations.json` | Per edition: the value populations the rating vectors live in and the realised edition population (engine inputs) |
+| `engine/replay-<edition>.json` | Replay harness output for an edition (written by `npm run engine:replay`) |
 | `coverage.json`, `COVERAGE.md` | Which teams and players each edition gives us and who lacks form data |
 | `meta.json` | Archive snapshot, licence, form window, thresholds |
 
@@ -140,6 +143,38 @@ stability 0.76 / 0.59 vs 0.45 / 0.44 raw. Known limits for Yash's review: Erasmu
 rates 99 at bowling after a 0.35 transfer share (the two-sided bowling model is the parked fix);
 anchors with low dismissal rates (Kohli 2022/2024 in the 70s) are undervalued because hazard is
 shrunk hard; ODI priors for 2007/2009 are crude; Sundar 2026 bowls 89 with the Squad Player tag.
+
+## Engine (Phase 2)
+
+```bash
+npm run engine:replay -- 2024 100      # replay an edition's real matches with real elevens, compare with reality
+npm run engine:calibrate -- 20         # sweep the combination exponents over five editions
+```
+
+`src/engine/` is the per-ball simulator the draft game and, later, the management sim run on.
+It is pure given its inputs and a seed. Per delivery (`ball.ts`):
+
+```
+p ∝ base[phase] × batRel^0.7 × bowlRel^0.7 × τ[innings][over][wickets] × chase[required rate]^0.5
+    × eye-in (centred) × match effect × innings effect × venue factor
+```
+
+- `base` is the edition's realised per-phase population; the player relative vectors come from
+  the ratings and are divided by the appearance-weighted mean of the edition's real squads so
+  real elevens reproduce their own edition rather than inflating it.
+- `τ` and the chase table are measured over every complete 20-over T20I innings
+  (`analysis/situation.ts` → `data/out/situation.json`), shrunk toward the phase distribution.
+- Extras (wides, no-balls with a free hit, byes) are drawn from the edition's rates; the toss
+  follows the edition's field-first norm; ties go to a super over, bowl-out or coin per edition.
+- Bowling allocation (`allocation.ts`) scores eligible bowlers per over by expected runs, wicket
+  value, specialist bonuses, death reservation, spell continuity and a hit penalty, with Gumbel
+  noise; it reproduces the measured bowlers-used norm within a few points.
+- `load.ts` builds teams from a real match's eleven and batting order or from a squad's default
+  eleven; `replay.ts` is the acceptance harness (environment, result calibration, bowler usage).
+
+Replay of 2024 (44 matches × 40): run rate 7.13 real vs 7.14 simulated, balls per wicket 16.6 vs
+17.4, chase win 58% vs 62%, favourite right in 71% of decided matches, Brier 0.16 against 0.25 for
+a coin. Other editions and the calibration notes are in the design spec's Phase 2 section.
 
 ## Conventions
 
