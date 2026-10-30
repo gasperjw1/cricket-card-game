@@ -29,6 +29,18 @@ describe("draft rules", () => {
     assert.equal(eligible(bat, picks(keeper, bowler, bowler, bowler, bowler)), true);
     assert.equal(eligible(bat, picks(keeper, bowler, bowler, bowler, bowler, bat, bat, bat, bat, bat)), false);
     assert.equal(eligible(bowler, picks(keeper, bowler, bowler, bowler, bowler, bat, bat, bat, bat, bat)), true);
+    // The keeper does not bowl: a lone keeper-bowler keeps, so he covers no overs and fills only the gloves.
+    const keeperBowler = player({ role: "all-rounder", bowlShown: true, keeper: true });
+    assert.equal(oversCovered(picks(keeperBowler, bowler, bowler, bowler, bowler)), 16);
+    assert.deepEqual(needs(picks(keeperBowler, bowler, bowler, bowler, bowler)), { bowlers: 1, keeper: 0, open: 6 });
+    // With one slot left and a bowler needed: a bowler fills it, a pure keeper takes the gloves and frees
+    // the keeper-bowler to bowl (so he counts too), a pure batter does nothing.
+    const tight = picks(keeperBowler, bowler, bowler, bowler, bowler, bat, bat, bat, bat, bat);
+    assert.equal(eligible(bowler, tight), true);
+    assert.equal(eligible(keeper, tight), true, "a second keeper frees the keeper-bowler to bowl");
+    assert.equal(eligible(bat, tight), false);
+    // A second keeper who does not bowl takes the gloves and frees the keeper-bowler to bowl.
+    assert.equal(oversCovered(picks(keeperBowler, keeper, bowler, bowler, bowler, bowler)), 20);
   });
 
   it("re-weights a batter's number to the overs a slot faces", () => {
@@ -56,7 +68,7 @@ describe("draft rules", () => {
 
   it("enforces the keeper, five bowlers and one instance per person", () => {
     const picks: (PoolPlayer | null)[] = Array.from({ length: 11 }, (_, i) => player({ id: `p${i}` }));
-    assert.deepEqual(lineupProblems(picks), ["No wicketkeeper: at least one player must have kept in a T20I", "Only 0 overs covered: you need five players who bowl"]);
+    assert.deepEqual(lineupProblems(picks), ["No wicketkeeper: at least one player must have kept in a T20I", "Only 0 overs covered: you need five players who bowl besides the keeper"]);
     picks[6] = player({ id: "wk", keeper: true });
     for (let i = 7; i < 11; i += 1) picks[i] = player({ id: `b${i}`, role: "bowler", bowlLow: false, bowlShown: true });
     picks[5] = player({ id: "ar", role: "all-rounder" });

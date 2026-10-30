@@ -135,7 +135,7 @@ export function App() {
     <main className="shell">
       <header className="top">
         <h1 onClick={() => dispatch({ type: "home" })}>World Cup Draft</h1>
-        {state.seed && <span className="seed">seed {state.seed}</span>}
+        <span className="seed">{state.seed ? `seed ${state.seed} · ` : ""}<a href="/" className="back-link">Swipe Sixer</a></span>
       </header>
       {state.error && <p className="error">{state.error}</p>}
       {state.step === "home" && <HomeScreen ready={!!universe} onStart={(seed) => dispatch({ type: "start", seed })} />}

@@ -2,7 +2,7 @@ import { useMemo, useState } from "react";
 import type { EditionOut, SquadOut, VenueOut } from "../../../wcdraft/src/engine/data.ts";
 import { PlayerCard } from "../components/PlayerCard.tsx";
 import { VenueBrief, venueCountsFor } from "../components/VenueBrief.tsx";
-import { SLOTS, eligible, keeperCovered, needs, oversCovered, slotsFor } from "../game/rules.ts";
+import { SLOTS, designatedKeeper, eligible, keeperCovered, needs, oversCovered, slotsFor } from "../game/rules.ts";
 import { batInSlot, describeWeights, slotWeights } from "../game/slots.ts";
 import type { PoolPlayer, RunState } from "../game/types.ts";
 
@@ -45,7 +45,7 @@ export function DraftScreen({ state, editions, venues, squads, onPlace, onReroll
         ) : <h2>Spinning…</h2>}
       </div>
       <aside className="card lineup">
-        <h3>Your XI <span className="small">{filled}/11 · keeper {keeperCovered(state.picks) ? "✓" : "–"} · overs {oversCovered(state.picks)}/20</span></h3>
+        <h3>Your XI <span className="small">{filled}/11 · keeper {keeperCovered(state.picks) ? designatedKeeper(state.picks)!.name : "–"} · overs {oversCovered(state.picks)}/20</span></h3>
         <ol className="slots">
           {SLOTS.map((s) => {
             const p = state.picks[s.index];

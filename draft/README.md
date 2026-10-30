@@ -89,7 +89,17 @@ knockouts). Classic mode only; Cricket-IQ, head-to-head, leaderboard and share l
 - **Draft guard** (`eligible` / `needs` in `rules.ts`, tested): once the open slots are down to what
   the side still needs (five players who bowl and a keeper), players who meet neither need are
   greyed out and a note says why; a spin always offers someone who can still be taken. The guard
-  first bites after five picks with no bowlers or keeper among them.
+  first bites after five picks with no bowlers or keeper among them. **The keeper does not bowl**
+  (`designatedKeeper`): with one keeper in the side he keeps and his bowling does not count toward
+  the five; with two, the gloves go to one who does not bowl so the other is free to bowl. The
+  engine honours it too: the designated keeper is marked unable to bowl when the eleven is assembled.
+
+## Deployment
+
+The client builds with Vite `base: "/draft/"` and the Swipe Sixer server serves `draft/dist` at
+`/draft` (same pattern as `/cottage` and `/play`); the homepage links to it. The Dockerfile copies
+`wcdraft/` (committed data tables) and `draft/` into the builder, and `.dockerignore` keeps the
+1.3 GB `wcdraft/.cache` out of the build context.
 
 ## Notes
 

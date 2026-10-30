@@ -11,6 +11,12 @@ dist
 *.tsbuildinfo
 */*.tsbuildinfo
 
+# World Cup Draft: the downloaded Cricsheet archives (1.3 GB) are never needed in the image —
+# the pipeline's outputs under wcdraft/data/out are committed; draft/public/data is re-synced
+# from them by the draft build.
+wcdraft/.cache
+draft/public/data
+
 # Local dev / version control
 .git
 .gitignore

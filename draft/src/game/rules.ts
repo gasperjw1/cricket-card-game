@@ -43,27 +43,45 @@ export function bowls(p: PoolPlayer): boolean {
   return p.role === "bowler" || p.role === "all-rounder" || p.bowlShown;
 }
 
-/** Overs the eleven can cover at four a bowler, capped at 20 (the overs meter). */
-export function oversCovered(picks: (PoolPlayer | null)[]): number {
-  return Math.min(20, 4 * picks.filter((p) => p && bowls(p)).length);
+/**
+ * Who keeps wicket (decided 2026-10-30): the keeper does not bowl, so when more than one keeper
+ * is in the side the gloves go to one who does not bowl, keeping the other free to bowl. With a
+ * single keeper who also bowls, he keeps and his bowling is lost.
+ */
+export function designatedKeeper(picks: (PoolPlayer | null)[]): PoolPlayer | null {
+  const keepers = (picks.filter(Boolean) as PoolPlayer[]).filter((p) => p.keeper);
+  return keepers.find((p) => !bowls(p)) ?? keepers[0] ?? null;
 }
 
-/** What the eleven still needs: bowlers short of five, a keeper if none, and the open slots left. */
+/** Players who can bowl in the eleven: everyone who bowls except the designated keeper. */
+export function bowlerCount(picks: (PoolPlayer | null)[]): number {
+  const keeper = designatedKeeper(picks);
+  return (picks.filter(Boolean) as PoolPlayer[]).filter((p) => bowls(p) && p !== keeper).length;
+}
+
+/** Overs the eleven can cover at four a bowler, capped at 20 (the overs meter). */
+export function oversCovered(picks: (PoolPlayer | null)[]): number {
+  return Math.min(20, 4 * bowlerCount(picks));
+}
+
+/** What the eleven still needs: bowlers short of five (the keeper not counting), a keeper if none, and the open slots left. */
 export function needs(picks: (PoolPlayer | null)[]): { bowlers: number; keeper: number; open: number } {
   const chosen = picks.filter(Boolean) as PoolPlayer[];
-  return { bowlers: Math.max(0, 5 - chosen.filter(bowls).length), keeper: chosen.some((p) => p.keeper) ? 0 : 1, open: 11 - chosen.length };
+  return { bowlers: Math.max(0, 5 - bowlerCount(picks)), keeper: designatedKeeper(picks) ? 0 : 1, open: 11 - chosen.length };
 }
 
 /**
  * Whether a player may still be taken (decided 2026-10-30): once the open slots are down to what
- * the side still needs (five bowlers and a keeper), only players who meet a need are selectable. A
- * keeper who bowls meets both; with one slot left and both still needed the eleven is already
- * invalid, so anyone who meets either need stays selectable rather than locking the draft.
+ * the side still needs (five who bowl plus a keeper who does not), only players who reduce that
+ * need are selectable. Tested by adding him: a lone keeper-bowler fills the gloves but not an over,
+ * a second keeper frees the first to bowl. With one slot left and two needs the eleven is already
+ * invalid, so anyone who reduces the shortfall stays selectable rather than locking the draft.
  */
 export function eligible(p: PoolPlayer, picks: (PoolPlayer | null)[]): boolean {
   const n = needs(picks);
   if (n.open > n.bowlers + n.keeper) return true;
-  return (n.bowlers > 0 && bowls(p)) || (n.keeper > 0 && p.keeper);
+  const after = needs([...picks.filter(Boolean), p]);
+  return after.bowlers + after.keeper < n.bowlers + n.keeper;
 }
 
 export function lineupProblems(picks: (PoolPlayer | null)[]): string[] {
@@ -71,7 +89,7 @@ export function lineupProblems(picks: (PoolPlayer | null)[]): string[] {
   const filled = picks.filter(Boolean).length;
   if (filled < 11) problems.push(`${11 - filled} slot${11 - filled === 1 ? "" : "s"} still open`);
   if (!keeperCovered(picks)) problems.push("No wicketkeeper: at least one player must have kept in a T20I");
-  if (oversCovered(picks) < 20) problems.push(`Only ${oversCovered(picks)} overs covered: you need five players who bowl`);
+  if (oversCovered(picks) < 20) problems.push(`Only ${oversCovered(picks)} overs covered: you need five players who bowl besides the keeper`);
   const ids = picks.filter(Boolean).map((p) => p!.id);
   if (new Set(ids).size !== ids.length) problems.push("The same person appears twice");
   return problems;
