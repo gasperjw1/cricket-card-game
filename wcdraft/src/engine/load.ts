@@ -7,6 +7,8 @@ import { existsSync } from "node:fs";
 import { resolve } from "node:path";
 import type { Phase } from "../cricsheet/match.js";
 import type { SituationTables } from "../analysis/situation.js";
+import { bowlClassOf, handOf, type MatchupTables } from "../analysis/matchups.js";
+import { readLabels } from "../pipeline/labels.js";
 import { OUTCOMES, PHASE_LIST, type PhaseVectors, type PlayerRating, type Vector } from "../ratings/model.js";
 import type { EditionPopulations } from "../ratings/rate.js";
 import { paths, readJson } from "../util/io.js";
@@ -97,10 +99,12 @@ function relative(v: Vector, pop: Vector): Vector {
   return Object.fromEntries(OUTCOMES.map((k) => [k, v[k] / Math.max(1e-4, pop[k])])) as Vector;
 }
 
-export function toEnginePlayer(r: PlayerRating, pops: EditionPopulations): EnginePlayer {
+export function toEnginePlayer(r: PlayerRating, pops: EditionPopulations, label?: { handedness: string; bowlingType: string }): EnginePlayer {
   const rel = (skill: "bat" | "bowl", vectors: PhaseVectors): PhaseVectors =>
     Object.fromEntries(PHASE_LIST.map((p) => [p, relative(vectors[p], pops.valuePop[skill][p])])) as PhaseVectors;
   return {
+    hand: handOf(label?.handedness),
+    bowlClass: bowlClassOf(label?.bowlingType),
     id: r.personId,
     name: r.name,
     batting: r.batting.vectors,
@@ -121,6 +125,8 @@ export function toEnginePlayer(r: PlayerRating, pops: EditionPopulations): Engin
 }
 
 let situationCache: SituationTables | null = null;
+let matchupCache: MatchupTables | null = null;
+let labelsCache: Map<string, { handedness: string; bowlingType: string }> | null = null;
 
 export function loadEdition(editionId: string): EditionData {
   const editions = readJson<EditionOut[]>(resolve(paths.out, "editions.json"));
@@ -131,14 +137,16 @@ export function loadEdition(editionId: string): EditionData {
   const populations = readJson<EditionPopulations[]>(resolve(paths.out, "ratings", "populations.json")).find((p) => p.editionId === editionId);
   if (!populations) throw new Error(`no populations for ${editionId}; run ratings:build`);
   const ratings = readJson<PlayerRating[]>(resolve(paths.out, "ratings", `${editionId}.json`));
-  const players = new Map(ratings.map((r) => [`${r.team}|${r.personId}`, toEnginePlayer(r, populations)]));
+  labelsCache ??= readLabels();
+  const players = new Map(ratings.map((r) => [`${r.team}|${r.personId}`, toEnginePlayer(r, populations, labelsCache!.get(r.personId))]));
   centreOnCohort(players, squads);
   situationCache ??= readJson<SituationTables>(resolve(paths.out, "situation.json"));
+  matchupCache ??= existsSync(resolve(paths.out, "matchups.json")) ? readJson<MatchupTables>(resolve(paths.out, "matchups.json")) : null;
   const formats = readJson<{ editions: FormatEdition[] }>(resolve(paths.config, "formats.json")).editions.find((f) => f.editionId === editionId);
   if (!formats) throw new Error(`no format for ${editionId} in formats.json`);
   const progression = buildProgression(formats, { standIn: edition.standIn, slotChanges: edition.slotChanges ?? [] });
   const afghanistanFixtures = readJson<{ fixtures: AfghanistanFixture[] }>(resolve(paths.config, "afghanistan-fixtures.json")).fixtures.filter((f) => f.editionId === editionId);
-  return { edition, venues, squads, players, populations, situation: new SituationModel(situationCache), progression, afghanistanFixtures };
+  return { edition, venues, squads, players, populations, situation: new SituationModel(situationCache, matchupCache), progression, afghanistanFixtures };
 }
 
 /**

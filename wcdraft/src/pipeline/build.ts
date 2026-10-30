@@ -14,6 +14,8 @@
 import { BowlingUsageAnalysis } from "../analysis/bowling-usage.js";
 import { ContextPopulation } from "../analysis/context-population.js";
 import { SituationAnalysis, type SituationTables } from "../analysis/situation.js";
+import { MatchupAnalysis, type MatchupTables } from "../analysis/matchups.js";
+import { readLabels } from "./labels.js";
 import { EditionsAnalysis } from "../analysis/editions.js";
 import { LineupDeviationAnalysis } from "../analysis/lineup-deviation.js";
 import { PartnershipsAnalysis } from "../analysis/partnerships.js";
@@ -76,6 +78,8 @@ export interface BuildResult {
   windowPopulation: ReturnType<WindowPopulationAnalysis["summary"]>;
   /** Engine situation tables (Phase 2): outcome counts by innings × over × wickets down, and by chase pressure. */
   situation: SituationTables;
+  /** Engine matchup tables (Phase 2b): observed vs expected outcomes by batting hand × bowler class × phase. */
+  matchups: MatchupTables;
   coverage: Coverage;
 }
 
@@ -166,16 +170,21 @@ export function runBuild(log: (msg: string) => void = () => {}): BuildResult {
   // Phase 1.5 first pass: context populations (period × opponent strength × phase, venue factors)
   // over the whole archive, with their own Elo so pre-match strengths match the main pass.
   const contextPopulation = new ContextPopulation();
+  // Phase 2b: matchups (batting hand × bowler type) need each player's own averages first.
+  const labels = readLabels();
+  const matchups = new MatchupAnalysis(labels);
   {
     const eloPass = new TeamStrengthAnalysis(config.isFullMember);
     for (const entry of index) {
       const m = normaliseMatch(readMatch(entry.file), entry.id);
       const elo = Object.fromEntries(m.teams.map((t) => [t, eloPass.ratingOf(t, m.date)]));
       contextPopulation.add(m, elo);
+      matchups.addFirstPass(m);
       eloPass.add(m);
     }
     contextPopulation.freeze();
-    log(`Context populations: ${JSON.stringify(contextPopulation.summary())}`);
+    matchups.freeze();
+    log(`Context populations: ${JSON.stringify(contextPopulation.summary())}; labels for ${labels.size} players`);
   }
 
   const pendingSnapshots = [...windows].sort((a, b) => a.start.localeCompare(b.start));
@@ -203,6 +212,7 @@ export function runBuild(log: (msg: string) => void = () => {}): BuildResult {
     teamStyle.add(m);
     teamStrength.add(m);
     situation.add(m);
+    matchups.add(m);
     for (const ed of formEditions) windowPopulation.add(ed, m, elo, "window");
     if (wcEdition) windowPopulation.add(wcEdition, m, elo, "tournament");
 
@@ -275,6 +285,7 @@ export function runBuild(log: (msg: string) => void = () => {}): BuildResult {
     odiPopulationByYear,
     windowPopulation: windowPopulation.summary(),
     situation: situation.summary(),
+    matchups: matchups.summary(),
     coverage: computeCoverage(playerEditions),
   };
   log(`Built ${result.playerEditions.length} player-editions, ${result.people.length} people, ${result.squads.length} squads in ${((Date.now() - t0) / 1000).toFixed(1)}s`);

@@ -4,6 +4,7 @@
  */
 
 import type { OutcomeKey, Phase } from "../cricsheet/match.js";
+import type { BowlClass } from "../analysis/matchups.js";
 import type { BattingArchetype, BowlingArchetype, PhaseVectors, Vector } from "../ratings/model.js";
 
 export type { OutcomeKey, Phase, PhaseVectors, Vector };
@@ -26,6 +27,9 @@ export interface EnginePlayer {
   bowlingShares: Record<Phase, number> | null;
   /** Whether the allocation policy may call on him at all. */
   canBowl: boolean;
+  /** Batting hand and bowler class from the hand labels (null when unlabelled); drive the matchup term. */
+  hand: "R" | "L" | null;
+  bowlClass: BowlClass | null;
   /** Display-only. */
   tier: string;
   battingDisplay: number;

@@ -39,6 +39,16 @@ export const ENGINE = {
   ballInOverExponent: 1 as number,
   chaseDotsExponent: 1 as number,
   /**
+   * Matchups (Phase 2b, `analysis/matchups.ts`): batting hand × bowler class, measured as observed ÷
+   * expected beyond both players' own averages. Left-handers score ×0.93 against off-spin and
+   * ×1.07 against left-arm orthodox; right-handers lose boundaries to leg-spin (×0.91) and left-arm
+   * spin (×0.90); pace shows no handedness effect. Phase cells shrink toward the pooled cell with
+   * `matchupPrior` balls. The allocation policy inherits the term through the ball model, which is
+   * the spec's λ_match.
+   */
+  matchupExponent: 1 as number,
+  matchupPrior: 2000 as number,
+  /**
    * Dispersion. The variance decomposition in `situation.json` gives per-innings scoring effects of
    * SD 0.21 (bowler) and 0.19 (batter) against each player's career mean, which also absorb
    * opponent, venue and era for that player; the engine already conditions on those, so the day
@@ -80,7 +90,7 @@ export const ENGINE = {
   },
 };
 
-export type EngineOverrides = Partial<Record<"batExponent" | "bowlExponent" | "chaseExponent" | "streakExponent" | "setnessExponent" | "ballInOverExponent" | "chaseDotsExponent" | "bowlerDaySd" | "batterDaySd" | "matchEffectSd" | "inningsEffectSd" | "venueExponent" | "scoringCalibration" | "hazardCalibration", number>>;
+export type EngineOverrides = Partial<Record<"batExponent" | "bowlExponent" | "chaseExponent" | "streakExponent" | "setnessExponent" | "ballInOverExponent" | "chaseDotsExponent" | "matchupExponent" | "bowlerDaySd" | "batterDaySd" | "matchEffectSd" | "inningsEffectSd" | "venueExponent" | "scoringCalibration" | "hazardCalibration", number>>;
 
 /** Calibration hook: override numeric constants for a sweep (`npm run engine:calibrate`). */
 export function setEngineOverrides(overrides: EngineOverrides): void {

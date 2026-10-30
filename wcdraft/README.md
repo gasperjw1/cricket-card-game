@@ -69,7 +69,8 @@ wcdraft/
 | `partnerships.json` | Squad-mate pairs with ≥ 60 balls together (tournament + form window) |
 | `team-style.json` | Every team's batting/bowling style per calendar month over all T20Is (powerplay intent, wickets at 15, lower-order share, death RPO, bowlers used, bowl-first %), plus global per-month values for era-relative indices. Join coach/captain tenures on (team, month) |
 | `team-strength.json` | Elo timeline over all men's T20Is: rating per team per month and every match with its pre-match win expectation (for captaincy wins-above-expectation and opposition quality). Tiered starts: full members 1600, others 1400; see the known limitation in the source header |
-| `situation.json` | Engine situation tables: outcome counts by innings × over × wickets down, by innings × phase, and by chase required-rate band × phase |
+| `situation.json` | Engine situation tables: outcome counts by innings × over × wickets down, by innings × phase, by chase required-rate band × phase, streak (with shuffled null), setness, ball-in-over, chase dots, day effects |
+| `matchups.json` | Engine matchup tables: observed vs expected outcomes by batting hand × bowler class × phase |
 | `ratings/populations.json` | Per edition: the value populations the rating vectors live in and the realised edition population (engine inputs) |
 | `engine/replay-<edition>.json`, `engine/rarity-<edition>.json` | Replay harness and rarity measurement outputs (written by `npm run engine:replay` / `engine:rarity`) |
 | `coverage.json`, `COVERAGE.md` | Which teams and players each edition gives us and who lacks form data |
@@ -159,7 +160,8 @@ It is pure given its inputs and a seed. Per delivery (`ball.ts`):
 ```
 p ∝ base[phase] × batRel^0.7 × bowlRel^0.7 × τ[innings][over][wickets] × chase[required rate]^0.15
     × streak (residual over a shuffled null) × setness (striker's balls faced) × ballInOver × chaseDots
-    × match, innings and player day effects × venue factor × calibration (scoring 0.95, hazard 1.04)
+    × matchup (batting hand × bowler class) × match, innings and player day effects × venue factor
+    × calibration (scoring 0.95, hazard 1.04)
 ```
 
 - `base` is the edition's realised per-phase population; the player relative vectors come from
@@ -171,7 +173,10 @@ p ∝ base[phase] × batRel^0.7 × bowlRel^0.7 × τ[innings][over][wickets] × 
   null, so only serial dependence beyond the situation counts (×1.07 scoring after 13+ runs off
   six balls). Setness replaces the Test-cricket eye-in curve: in T20 a new batter scores less and
   is out less, and both rise as he gets set. Day effects (per bowler-innings and batter-innings)
-  come from a variance decomposition in the same file.
+  come from a variance decomposition in the same file. Matchups (`analysis/matchups.ts` →
+  `matchups.json`) are observed ÷ expected by batting hand × bowler class beyond both players' own
+  averages: left-handers struggle against off-spin and feast on left-arm orthodox, right-handers
+  lose boundaries to leg-spin and left-arm spin, pace is hand-neutral.
 - Extras (wides, no-balls with a free hit, byes) are drawn from the edition's rates; the toss
   follows the edition's field-first norm; ties go to a super over, bowl-out or coin per edition.
 - Bowling allocation (`allocation.ts`) scores eligible bowlers per over by expected runs, wicket

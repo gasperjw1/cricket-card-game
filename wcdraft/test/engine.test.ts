@@ -50,6 +50,19 @@ describe("engine", { skip: !engineReady() && "engine data not built" }, () => {
     assert.ok(chase["4"] + chase["6"] > set["4"] + set["6"], "a steep chase raises the boundary rate");
     const stuck = outcomeDistribution(striker, bowler, env, data.situation, { ...base, innings: 2, over: 17, wickets: 4, strikerBalls: 20, requiredRpo: 13, consecutiveDots: 3 });
     assert.ok(expectedRunsOf(stuck) < expectedRunsOf(chase), "three dots in a chase lower expected runs");
+    // Matchups: a left-hander scores less against off-spin than a right-hander does, beyond the players' own averages.
+    const maharaj = southAfrica.players.find((p) => p.name === "KA Maharaj")!;
+    const markram = southAfrica.players.find((p) => p.name === "AK Markram")!;
+    assert.equal(striker.hand, "R");
+    assert.equal(maharaj.bowlClass, "left-arm-spin");
+    assert.equal(markram.bowlClass, "off-spin");
+    const left = { ...striker, hand: "L" as const };
+    const rOff = outcomeDistribution(striker, markram, env, data.situation, { ...base, strikerBalls: 20 });
+    const lOff = outcomeDistribution(left, markram, env, data.situation, { ...base, strikerBalls: 20 });
+    assert.ok(expectedRunsOf(lOff) < expectedRunsOf(rOff), "left-hander vs off-spin scores less");
+    const rSla = outcomeDistribution(striker, maharaj, env, data.situation, { ...base, strikerBalls: 20 });
+    const lSla = outcomeDistribution(left, maharaj, env, data.situation, { ...base, strikerBalls: 20 });
+    assert.ok(expectedRunsOf(lSla) > expectedRunsOf(rSla), "left-hander vs left-arm orthodox scores more");
   });
 
   it("is deterministic given a seed and keeps the books straight", () => {

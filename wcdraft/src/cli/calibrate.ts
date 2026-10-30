@@ -38,6 +38,7 @@ const grids: Record<string, EngineOverrides[]> = {
     { chaseExponent: 0, chaseDotsExponent: 1 },
     { chaseExponent: 0.3, chaseDotsExponent: 0 },
   ],
+  matchups: [{ matchupExponent: 0 }, { matchupExponent: 1 }],
   terms: [
     { streakExponent: 0, setnessExponent: 0, ballInOverExponent: 0, chaseDotsExponent: 0 },
     { streakExponent: 1, setnessExponent: 0, ballInOverExponent: 0, chaseDotsExponent: 0 },

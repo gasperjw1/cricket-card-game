@@ -961,9 +961,26 @@ at 99. Named errors become test cases.
   - Review case surfaced: Kohli 2016 now Gold at the 89th batting percentile (was Elite at the
     94th); his value is scoring-rate led while his dismissal rate is shrunk hard (parked hazard
     credit). The tier test treats Gold or Elite as acceptable for him.
-- Not yet built (Phase 2b): rain and DLS, intent profiles from coach philosophy, fielding Λ,
-  captain-rating noise, matchup terms (handedness / bowling type), and the validation tests 1–6, 8
-  of §9 against the tournament layer.
+### Phase 2b — Engine depth — **IN PROGRESS (started 2026-10-30)**
+
+Order agreed with Yash: matchups → rain and DLS → coach intent profiles and captain noise →
+fielding. The simulation is not required to reproduce real results (§11).
+
+- **Matchups — BUILT 2026-10-30** (`analysis/matchups.ts` → `data/out/matchups.json`;
+  `ENGINE.matchupExponent`). Batting hand × bowler class (right-arm pace, left-arm pace, off-spin,
+  leg-spin, left-arm spin) from the hand labels, measured as observed ÷ expected where expected is
+  the engine's own combination of both players' archive averages (base × batter^0.7 × bowler^0.7),
+  so the term is what the matchup adds beyond who the two players are. 270k labelled balls. The
+  pooled multipliers match cricket sense: left-handers ×0.93 runs / ×0.87 boundaries against
+  off-spin (turning away) and ×1.07 / ×1.10 against left-arm orthodox (turning in, hazard ×1.06);
+  right-handers ×0.95 / ×0.91 against leg-spin and ×0.95 / ×0.90 against left-arm spin; pace shows
+  no handedness effect (×0.98–1.01). Phase cells shrink toward the pooled cell (2,000-ball prior).
+  Replay metrics unchanged with the term on (run-rate bias +0.7% → −0.3%, Brier 0.204 either way),
+  which is what a realism term should do. The bowling-allocation policy inherits the matchup through
+  the ball model, so a captain now prefers the off-spinner to a left-hander on merit (the spec's
+  λ_match). Unlabelled players (111 without a bowling type, 4 without a hand) get a unit multiplier.
+- Not yet built: rain and DLS, intent profiles from coach philosophy, captain-rating noise,
+  fielding Λ, and the validation tests 1–6, 8 of §9 against the tournament layer.
 
 ### Phase 3 — Draft client (thin)
 - Identity spin, coach panel, player spins, lineup slots, overs meter, simulate, result,
@@ -994,8 +1011,14 @@ shown for batting and bowling**; platform is a **website or app**, not Messenger
 
 Still open: none blocking Phase 2. Tiers built 2026-10-30 (§5.6). **Ratings accepted by Yash
 2026-10-30 as evidence-based**, without a name-by-name review; the known cases (Erasmus 2024 and
-Sundar 2026 Elite, Kohli 2024 Silver) stay in the parked table with their triggers. Next: Phase 2
-engine.
+Sundar 2026 Elite, Kohli 2024 Silver) stay in the parked table with their triggers.
+
+Resolved 2026-10-30 (engine review): **the simulation is not required to reproduce real results**
+(who won which match, who reached the knockouts); the replay harness measures environment,
+calibration and usage, not agreement with history, because real elevens were often not the best
+eleven and the engine has its own momentum. **Anchor undervaluation (Kohli 2016 Gold, Kohli 2024
+Silver) is accepted as a reflection of how T20 rewards scoring rate**; the hazard-credit item stays
+parked without a trigger from Yash. Engine core and tournament layer accepted. Next: Phase 2b.
 
 ---
 

@@ -9,6 +9,7 @@
 import { phaseOf, type OutcomeKey, type Phase } from "../cricsheet/match.js";
 import { OUTCOMES } from "../ratings/model.js";
 import { chaseBand, dotsBand, setnessBand, type SituationCell, type SituationTables, type StateTable, type StreakBand, wicketsBand } from "../analysis/situation.js";
+import type { BowlClass, MatchupTables } from "../analysis/matchups.js";
 import { ENGINE } from "./model.js";
 import type { EnginePlayer, MatchEnvironment, Vector } from "./types.js";
 
@@ -18,7 +19,29 @@ const UNIT: Vector = { "0": 1, "1": 1, "2": 1, "3": 1, "4": 1, "6": 1, W: 1 };
 /** Shrunk multiplier tables: cell distribution ÷ reference distribution, toward 1 with `prior` balls. */
 export class SituationModel {
   private readonly cache = new Map<string, Vector>();
-  constructor(private readonly tables: SituationTables, private readonly prior = ENGINE.situationPrior) {}
+  constructor(private readonly tables: SituationTables, private readonly matchups: MatchupTables | null = null, private readonly prior = ENGINE.situationPrior) {}
+
+  /**
+   * Matchup: observed ÷ expected for the striker's hand against the bowler's class, beyond what
+   * both players' own averages explain (Phase 2b). Phase cell shrunk toward the pooled cell, which
+   * is shrunk toward 1; unit when either player is unlabelled.
+   */
+  matchup(hand: "R" | "L" | null, cls: BowlClass | null, phase: Phase): Vector {
+    if (!hand || !cls || !this.matchups) return UNIT;
+    return this.cached(`mu:${hand}|${cls}|${phase}`, () => {
+      const ratio = (cell: { balls: number; observed: Record<OutcomeKey, number>; expected: Record<OutcomeKey, number> } | undefined, centre: Vector, prior: number): Vector => {
+        const out = {} as Vector;
+        for (const k of OUTCOMES) {
+          if (!cell) { out[k] = centre[k]; continue; }
+          const e = cell.expected[k];
+          out[k] = e > 0 ? (cell.observed[k] + prior * centre[k] * (e / cell.balls)) / (e + prior * (e / cell.balls)) : centre[k];
+        }
+        return out;
+      };
+      const pooled = ratio(this.matchups!.cells[`${hand}|${cls}|all`], UNIT, ENGINE.matchupPrior);
+      return ratio(this.matchups!.cells[`${hand}|${cls}|${phase}`], pooled, ENGINE.matchupPrior);
+    });
+  }
 
   private multiplier(cell: SituationCell | undefined, ref: SituationCell | undefined): Vector {
     const out = {} as Vector;
@@ -130,11 +153,12 @@ export function outcomeDistribution(striker: EnginePlayer, bowler: EnginePlayer,
   const setness = pow(situation.setness(ctx.innings, phase, ctx.wickets, ctx.strikerBalls), ENGINE.setnessExponent);
   const bio = pow(situation.ballInOver(ctx.innings, phase, ctx.ballInOver), ENGINE.ballInOverExponent);
   const dots = ctx.requiredRpo !== null ? pow(situation.chaseDots(phase, ctx.wickets, ctx.consecutiveDots), ENGINE.chaseDotsExponent) : UNIT;
+  const matchup = pow(situation.matchup(striker.hand, bowler.bowlClass, phase), ENGINE.matchupExponent);
   const scoring = ctx.scoringFactor * ctx.playerFactor * Math.pow(env.venueFactor, ENGINE.venueExponent) * ENGINE.scoringCalibration;
   const out = {} as Vector;
   let total = 0;
   for (const k of OUTCOMES) {
-    let p = base[k] * Math.pow(bat[k], ENGINE.batExponent) * Math.pow(bowl[k], ENGINE.bowlExponent) * tau[k] * chase[k] * streak[k] * setness[k] * bio[k] * dots[k];
+    let p = base[k] * Math.pow(bat[k], ENGINE.batExponent) * Math.pow(bowl[k], ENGINE.bowlExponent) * tau[k] * chase[k] * streak[k] * setness[k] * bio[k] * dots[k] * matchup[k];
     if (k === "W") p *= (ctx.freeHit ? 0.08 : 1) * ENGINE.hazardCalibration; // a run out is still possible off a free hit
     else if (SCORING.includes(k)) p *= scoring;
     out[k] = Math.max(0, p);
