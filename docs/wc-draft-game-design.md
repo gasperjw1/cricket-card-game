@@ -33,8 +33,9 @@ An Era Ball–style draft-and-simulate game for men's T20 World Cups. The player
 - The draft game and the management sim share the same **data layer** and **engine**. The draft
   game is the thinnest possible client on top of a real simulation, so nothing built here is
   thrown away when the management sim follows.
-- It fits short sessions, a share card and head-to-head, which suits Messenger and social
-  distribution far better than a management sim does.
+- It fits short sessions, a share card and head-to-head, which suits social distribution far
+  better than a management sim does. (Platform decided 2026-10-30: website or app, not a Messenger
+  Instant Game.)
 - It needs no card art. The aesthetic is text, badges and a share card.
 
 ### 1.3 Design principle: true simulation, not a win curve (*DECIDED*)
@@ -281,7 +282,39 @@ For each (person, edition):
    2009 and a 2026 batter are comparable: `relative = player / editionAverage`.
 4. **Display scalar**: expected runs per ball and dismissal hazard combined into runs-above-
    average per 20 balls, mapped to an era-adjusted percentile, then anchored to 40–99 for
-   display (*DECIDED* range 40–99; 16-0 uses 55–97).
+   display (*DECIDED* range 40–99; 16-0 uses 55–97). **Superseded as the card face on
+   2026-10-30 by tiers (§5.6); the 40–99 numbers remain for phase values, card detail and the
+   ratings-visible mode.**
+
+### 5.6 Tiers, roles and per-phase ratings (*DECIDED 2026-10-30*)
+
+Prompted by the Sammy 2016 case (a death-overs finisher rated 95 at batting, above Kohli, because
+the scalar is a per-ball rate with fixed phase weights and the powerplay he never bats in inherited
+his death edge) and by Cricket Chairman's bowling display (overall grade plus a number per phase).
+
+- **Card face = tier, not a number.** Bronze / Silver / Gold / Elite, the Swipe Sixer colour scheme
+  and names, so the existing art language and the 222 hand-rated cards carry over and the card
+  audit becomes the sanity check.
+- **Tiers are role-relative.** A card's tier is how good the player is at what you would draft him
+  for: the better of a batting value weighted over the phases he actually bats in (from his
+  position band) and a bowling value weighted over his own phase shares, with an all-round bonus
+  when both clear a bar. A player's tier does **not** drop because his role faces few balls: an
+  elite finisher who is also a useful bowler is Elite or high Gold, the same as an elite anchor.
+- **Role is visible and binds the lineup.** Tier says how good, the role attribute and phase row
+  say where. The engine draws from the real phase vectors and dismissal hazard, so a Gold finisher
+  placed at No. 3 plays like a No. 7 asked to bat fifteen overs.
+- **Per-phase numbers are shown for both skills** (powerplay / middle / death, 40–99). Bowling
+  phases are a genuine role (81% of bowler-editions have ≥ 100 middle-overs balls, 63% powerplay,
+  55% death); batting phases are a consequence of position, so the batting row carries a dimmed
+  number or no number where evidence is thin. Every phase number carries its own evidence badge,
+  because the hierarchical prior makes a thin phase mostly the pooled number in disguise.
+- **Evidence gates the tier, not the role.** Thin samples (e.g. Munro 2016 on 99 form balls,
+  Stokes 2016 on 30) are capped at Silver or carry the low-sample badge, so Elite is not the tier
+  of small samples.
+- **Tier thresholds are the rarity dial** and live in config (percentile cut-offs across all
+  player-editions), to be tuned with unbeaten-run rarity once the engine exists.
+- **Platform**: the game will be a website or app, not a Messenger Instant Game, so the card face
+  has room for the full phase row and the share-card constraints no longer apply.
 
 ### 5.3 Tournament Form (*DECIDED*, parameters *PROPOSED*)
 
@@ -846,7 +879,13 @@ been absent (per-edition lookup in `wcdraft/data/config/editions.json`); associa
 coverage is assessed from the full team/player database in Phase 0 (which teams per edition,
 then how many players lack data).
 
-Still open: none blocking Phase 0.
+Resolved 2026-10-30: card face is a **tier** (Bronze / Silver / Gold / Elite, Swipe Sixer scheme),
+**role-relative** so a finisher's tier does not drop for facing few balls; **per-phase ratings
+shown for batting and bowling**; platform is a **website or app**, not Messenger. Details in §5.6.
+
+Still open: none blocking Phase 2. Next in sequence: role-relative tiers in `rate.ts` (role-weighted
+value, tier field, config thresholds, audit test against the hand-rated roster) → regenerate the
+2016 / 2024 / 2026 lists as tier lists → Yash review (named errors become tests) → Phase 2 engine.
 
 ---
 
