@@ -67,6 +67,14 @@ export const MODEL = {
   displayEvidenceStrength: 100 as number,
   /** Phase weights for the headline scalar: population share of balls by phase in a 20-over innings. */
   phaseWeights: { pp: 0.3, mid: 0.45, death: 0.25 } as Record<Phase, number>,
+  /**
+   * Headline phase weighting (spec §5.6, 2026-10-30). `own`: the player's own phase exposure
+   * (form + career balls, with the population weights as a `phaseWeightPrior`-ball prior), so a
+   * finisher is valued over the death overs he bats in and a new-ball bowler over the powerplay.
+   * `population`: the fixed weights above (the Phase 1 headline).
+   */
+  phaseWeighting: "own" as "own" | "population",
+  phaseWeightPrior: 60,
   /** Display scale (decided 2026-10-28). */
   display: { min: 40, max: 99 },
   /** Low-sample badge thresholds (decided 2026-10-28). */
@@ -103,6 +111,21 @@ export const MODEL = {
 
 export type Vector = Record<OutcomeKey, number>;
 export type PhaseVectors = Record<Phase, Vector>;
+
+export const TIERS = ["Bronze", "Silver", "Gold", "Elite"] as const;
+export type Tier = (typeof TIERS)[number];
+
+/** `data/config/tiers.json` (spec §5.6). */
+export interface TierConfig {
+  /** Percentile thresholds on the tier score (Elite = top 8% of the skill at 0.92): the rarity dial. */
+  thresholds: { elite: number; gold: number; silver: number };
+  allRoundBonus: number;
+  caps: { lowSample: Tier; thin: { batBalls: number; bowlBalls: number; tier: Tier } };
+  phaseBadge: { batBalls: number; bowlBalls: number };
+}
+
+export type BattingArchetype = "opener" | "top order" | "middle order" | "finisher" | "tail";
+export type BowlingArchetype = "new ball" | "middle overs" | "death" | "all phases";
 
 export interface PhaseCountsOut {
   balls: number;
@@ -183,11 +206,16 @@ export interface SkillRating {
      * the team's form-window matches while rating above the team's median (0 when not applied).
      */
     selectionShift: number;
+    /** Phase weights behind `value` (the player's own exposure by default; see MODEL.phaseWeighting). */
+    phaseWeights: Record<Phase, number>;
   };
   /** Percentile among rated player-editions (0–1) and the 40–99 display value. */
   percentile: number;
   display: number;
   lowSample: boolean;
+  /** Per-phase 40–99 display numbers (same map as the headline) and the evidence behind each. */
+  displayByPhase: Record<Phase, number>;
+  phaseEvidence: Record<Phase, { balls: number; thin: boolean }>;
 }
 
 export interface PlayerRating {
@@ -200,7 +228,15 @@ export interface PlayerRating {
   bowling: SkillRating;
   /** Headline display: the better of batting and bowling, with a small all-round bonus. */
   overall: number;
+  /**
+   * Card tier (spec §5.6): role-relative, from the better skill percentile plus an all-round bonus,
+   * capped for thin evidence. `tierScore` is the value the thresholds cut.
+   */
+  tier: Tier;
+  tierScore: number;
   role: "batter" | "bowler" | "all-rounder" | "unknown";
+  /** Where the player is used: batting from the position band, bowling from own phase shares. */
+  archetype: { batting: BattingArchetype | null; bowling: BowlingArchetype | null };
   position: { median: number | null; band: [number, number] | null; positionless: boolean; innings: number };
   /** Bowling phase shares in the form window + tournament (powerplay / middle / death). */
   bowlingPhases: Record<Phase, number> | null;

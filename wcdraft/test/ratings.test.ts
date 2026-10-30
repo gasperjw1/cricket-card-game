@@ -9,7 +9,7 @@ import { describe, it } from "node:test";
 import { archiveIsReady } from "../src/cricsheet/archive.js";
 import { runBuild, type BuildResult } from "../src/pipeline/build.js";
 import { auditCards, timelessCandidates, transferGaps, validate } from "../src/ratings/analysis.js";
-import { MODEL, OUTCOMES, PHASE_LIST, type PlayerEditionIn } from "../src/ratings/model.js";
+import { MODEL, OUTCOMES, PHASE_LIST, TIERS, type PlayerEditionIn } from "../src/ratings/model.js";
 import { rateAll } from "../src/ratings/rate.js";
 import { normalise, shrink, shrinkWithHazard, transport } from "../src/ratings/vectors.js";
 
@@ -135,6 +135,31 @@ describe("Phase 1 ratings", { skip: !ready && "archive not fetched" }, () => {
     }
   });
 
+  it("assigns role-relative tiers: finishers keep their grade, thin evidence is capped (spec §5.6)", () => {
+    const r = rateAll(build());
+    const get = (name: string, ed: string) => r.find((x) => x.name === name && x.editionId === ed)!;
+    for (const x of r) {
+      assert.ok(TIERS.includes(x.tier), `${x.name} tier ${x.tier}`);
+      for (const s of [x.batting, x.bowling]) {
+        const w = Object.values(s.evidence.phaseWeights).reduce((a, b) => a + b, 0);
+        assert.ok(Math.abs(w - 1) < 1e-3, `${x.name} phase weights sum ${w}`);
+        for (const p of PHASE_LIST) assert.ok(s.displayByPhase[p] >= MODEL.display.min && s.displayByPhase[p] <= MODEL.display.max);
+      }
+      const best = x.batting.percentile >= x.bowling.percentile ? x.batting : x.bowling;
+      if (best.lowSample) assert.ok(x.tier === "Bronze" || x.tier === "Silver", `${x.name} ${x.editionId}: low-sample best skill but ${x.tier}`);
+    }
+    const sammy = get("DJG Sammy", "2016");
+    assert.equal(sammy.archetype.batting, "finisher");
+    assert.ok(sammy.batting.evidence.phaseWeights.death > 0.5, `Sammy death weight ${sammy.batting.evidence.phaseWeights.death}`);
+    assert.ok(sammy.tier === "Gold" || sammy.tier === "Elite", `Sammy 2016 is ${sammy.tier}`);
+    assert.equal(get("V Kohli", "2016").tier, "Elite");
+    assert.equal(get("JJ Bumrah", "2026").tier, "Elite");
+    assert.equal(get("JJ Bumrah", "2026").archetype.bowling !== null, true);
+    assert.notEqual(get("C Munro", "2016").tier, "Elite", "Munro 2016 (99 form balls) is capped below Elite");
+    const elite = r.filter((x) => x.tier === "Elite").length / r.length;
+    assert.ok(elite > 0.03 && elite < 0.2, `Elite share ${elite}`);
+  });
+
   it("lists the expected Timeless candidates and agrees with the card tiers in direction", () => {
     const r = build();
     const ratings = rateAll(r);
@@ -147,5 +172,7 @@ describe("Phase 1 ratings", { skip: !ready && "archive not fetched" }, () => {
     assert.ok(audit.rows.length > 150);
     assert.ok((audit.byTier["Elite"]?.meanDisplay ?? 0) > (audit.byTier["Bronze"]?.meanDisplay ?? 99));
     assert.ok((audit.spearman ?? 0) > 0.2);
+    assert.ok((audit.tiers.withinOne ?? 0) > 0.6, `derived tier within one of the card tier: ${audit.tiers.withinOne}`);
+    assert.ok((audit.tiers.spearman ?? 0) > 0.2, `tier Spearman ${audit.tiers.spearman}`);
   });
 });

@@ -12,7 +12,7 @@ import type { Phase } from "../cricsheet/match.js";
 import { ELO_BINS, eloBin, type EloBin } from "../analysis/team-strength.js";
 import type { BuildResult } from "../pipeline/build.js";
 import { paths, readJson } from "../util/io.js";
-import { MODEL, OUTCOMES, PHASE_LIST, RUNS, type PhaseVectors, type PlayerEditionIn, type PlayerRating, type Vector } from "./model.js";
+import { MODEL, OUTCOMES, PHASE_LIST, RUNS, type PhaseVectors, type PlayerEditionIn, type PlayerRating, type Tier, type Vector } from "./model.js";
 import { buildContexts, DEFAULT_OPTIONS, mixtureByExposure, rateAll, type RateOptions } from "./rate.js";
 import { battingValue, bowlingValue, expectedRuns, normalise, toVector } from "./vectors.js";
 
@@ -188,6 +188,7 @@ export const VALIDATION_VARIANTS: { variant: string; options: Required<RateOptio
   { variant: "context-expected, per-phase (no pooling)", options: base({ phasePooling: "none" }) },
   { variant: "context-expected, no career prior", options: base({ careerPriorStrength: 0 }) },
   { variant: "context-expected, career prior 100", options: base({ careerPriorStrength: 100 }) },
+  { variant: "headline phase weights: population (fixed 0.30 / 0.45 / 0.25)", options: base({ phaseWeighting: "population" }) },
   // Cohort centring
   { variant: "cohort centre: none", options: base({ cohortCentre: "none" }) },
   { variant: "cohort centre: all squads", options: base({ cohortCentre: "all" }) },
@@ -411,23 +412,36 @@ export interface CardAuditRow {
   name: string;
   latestEdition: string;
   display: number;
+  /** The best data-derived card tier across the person's editions (the hand tiers rate whole careers). */
+  derivedTier: Tier;
 }
 
-/** Match card names to people by surname + initial (unique matches only) and compare tier with latest display. */
-export function auditCards(ratings: PlayerRating[]): { rows: CardAuditRow[]; byTier: Record<string, { n: number; meanDisplay: number }>; spearman: number | null } {
-  const empty = { rows: [], byTier: {}, spearman: null };
+export interface CardAudit {
+  rows: CardAuditRow[];
+  byTier: Record<string, { n: number; meanDisplay: number }>;
+  spearman: number | null;
+  /** Agreement between the hand-rated tier and the derived tier. */
+  tiers: { exact: number | null; withinOne: number | null; spearman: number | null; confusion: Record<string, Record<Tier, number>> };
+}
+
+/** Match card names to people by surname + initial (unique matches only) and compare tier with latest display and derived tier. */
+export function auditCards(ratings: PlayerRating[]): CardAudit {
+  const empty: CardAudit = { rows: [], byTier: {}, spearman: null, tiers: { exact: null, withinOne: null, spearman: null, confusion: {} } };
   if (!existsSync(paths.cardsJson)) return empty;
   const cards = readJson<{ batsmen: { name: string; tier: string }[]; bowlers: { name: string; tier: string }[] }>(paths.cardsJson);
   const norm = (s: string) => s.normalize("NFKD").replace(/[̀-ͯ]/g, "").toLowerCase();
+  const tierRank: Record<string, number> = { Elite: 4, Gold: 3, Silver: 2, Bronze: 1 };
   const latest = new Map<string, PlayerRating>();
+  const bestTier = new Map<string, Tier>();
   for (const x of ratings) {
     if (x.standIn) continue;
     const cur = latest.get(x.personId);
     if (!cur || x.editionId > cur.editionId) latest.set(x.personId, x);
+    const b = bestTier.get(x.personId);
+    if (!b || tierRank[x.tier]! > tierRank[b]!) bestTier.set(x.personId, x.tier);
   }
   const people = [...latest.values()];
   const rows: CardAuditRow[] = [];
-  const tierRank: Record<string, number> = { Elite: 4, Gold: 3, Silver: 2, Bronze: 1 };
   for (const kind of ["batsman", "bowler"] as const) {
     for (const card of kind === "batsman" ? cards.batsmen : cards.bowlers) {
       const parts = norm(card.name).split(/\s+/);
@@ -438,15 +452,43 @@ export function auditCards(ratings: PlayerRating[]): { rows: CardAuditRow[]; byT
       });
       if (hits.length !== 1) continue;
       const p = hits[0]!;
-      rows.push({ card: card.name, kind, tier: card.tier, personId: p.personId, name: p.name, latestEdition: p.editionId, display: kind === "batsman" ? p.batting.display : p.bowling.display });
+      rows.push({ card: card.name, kind, tier: card.tier, personId: p.personId, name: p.name, latestEdition: p.editionId, display: kind === "batsman" ? p.batting.display : p.bowling.display, derivedTier: bestTier.get(p.personId) ?? p.tier });
     }
   }
   const byTier: Record<string, { n: number; meanDisplay: number }> = {};
+  const confusion: Record<string, Record<Tier, number>> = {};
   for (const t of Object.keys(tierRank)) {
     const list = rows.filter((x) => x.tier === t);
-    if (list.length) byTier[t] = { n: list.length, meanDisplay: +(list.reduce((a, x) => a + x.display, 0) / list.length).toFixed(1) };
+    if (!list.length) continue;
+    byTier[t] = { n: list.length, meanDisplay: +(list.reduce((a, x) => a + x.display, 0) / list.length).toFixed(1) };
+    confusion[t] = { Bronze: 0, Silver: 0, Gold: 0, Elite: 0 };
+    for (const x of list) confusion[t]![x.derivedTier] += 1;
   }
-  return { rows, byTier, spearman: spearman(rows.map((x) => tierRank[x.tier] ?? 0), rows.map((x) => x.display)) };
+  const known = rows.filter((x) => tierRank[x.tier] !== undefined);
+  const gaps = known.map((x) => Math.abs(tierRank[x.tier]! - tierRank[x.derivedTier]!));
+  const share = (f: (g: number) => boolean) => (gaps.length ? +(gaps.filter(f).length / gaps.length).toFixed(3) : null);
+  return {
+    rows,
+    byTier,
+    spearman: spearman(rows.map((x) => tierRank[x.tier] ?? 0), rows.map((x) => x.display)),
+    tiers: {
+      exact: share((g) => g === 0),
+      withinOne: share((g) => g <= 1),
+      spearman: spearman(known.map((x) => tierRank[x.tier]!), known.map((x) => tierRank[x.derivedTier]!)),
+      confusion,
+    },
+  };
+}
+
+/** Tier counts per edition (non-stand-in rows), for the report and the rarity dial. */
+export function tierDistribution(ratings: PlayerRating[]): Record<string, Record<Tier, number> & { total: number }> {
+  const out: Record<string, Record<Tier, number> & { total: number }> = {};
+  for (const x of ratings) {
+    const row = (out[x.editionId] ??= { Bronze: 0, Silver: 0, Gold: 0, Elite: 0, total: 0 });
+    row[x.tier] += 1;
+    row.total += 1;
+  }
+  return out;
 }
 
 export type { Phase };

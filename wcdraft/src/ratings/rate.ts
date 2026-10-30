@@ -14,9 +14,11 @@
  *      player-editions → 40–99 display.
  */
 
+import { resolve } from "node:path";
 import type { OutcomeKey, Phase } from "../cricsheet/match.js";
 import type { BuildResult } from "../pipeline/build.js";
-import { MODEL, OUTCOMES, PHASE_LIST, type BlockIn, type PhaseVectors, type PlayerEditionIn, type PlayerRating, type SkillRating, type Vector } from "./model.js";
+import { paths, readJson } from "../util/io.js";
+import { MODEL, OUTCOMES, PHASE_LIST, type BattingArchetype, type BlockIn, type BowlingArchetype, type PhaseVectors, type PlayerEditionIn, type PlayerRating, type SkillRating, type Tier as CardTier, type TierConfig, type Vector } from "./model.js";
 import { rowMixtureInterp, smoothTwoWay, type TwoWayVectors } from "./two-way.js";
 import { battingValue, blend, bowlingValue, expectedRuns, normalise, relative, shrink, shrinkWithHazard, toVector, transport, UNIFORM } from "./vectors.js";
 
@@ -129,6 +131,28 @@ export function buildContexts(r: BuildResult): Map<string, EditionContext> {
 const phaseCounts = (block: BlockIn, skill: Skill, phase: Phase) => block[skill].phases[phase] ?? { balls: 0, runs: 0, outcomes: { "0": 0, "1": 0, "2": 0, "3": 0, "4": 0, "6": 0, W: 0 } };
 const totalBalls = (block: BlockIn, skill: Skill) => PHASE_LIST.reduce((a, p) => a + phaseCounts(block, skill, p).balls, 0);
 
+/** Balls per phase behind a rating: form window plus career-to-date. */
+function phaseBalls(pe: PlayerEditionIn, skill: Skill): Record<Phase, number> {
+  return Object.fromEntries(PHASE_LIST.map((p) => [p, phaseCounts(pe.form, skill, p).balls + phaseCounts(pe.careerToDate, skill, p).balls])) as Record<Phase, number>;
+}
+
+/**
+ * Headline phase weights from the player's own exposure (spec §5.6): a No. 7 is valued over the
+ * death overs he bats in, a new-ball bowler over the powerplay. The population weights act as a
+ * prior of `MODEL.phaseWeightPrior` balls so thin records lean on the standard innings shape.
+ */
+function ownPhaseWeights(pe: PlayerEditionIn, skill: Skill): Record<Phase, number> {
+  const balls = phaseBalls(pe, skill);
+  const total = PHASE_LIST.reduce((a, p) => a + balls[p], 0);
+  const k = MODEL.phaseWeightPrior;
+  return Object.fromEntries(PHASE_LIST.map((p) => [p, +((balls[p] + k * MODEL.phaseWeights[p]) / (total + k)).toFixed(4)])) as Record<Phase, number>;
+}
+
+let tierConfigCache: TierConfig | null = null;
+export function loadTierConfig(): TierConfig {
+  return (tierConfigCache ??= readJson<TierConfig>(resolve(paths.config, "tiers.json")));
+}
+
 /**
  * ODI-derived relative vector: scale scoring outcomes by the player's ODI strike rate relative
  * to the era, and the dismissal cell by the era's balls-per-dismissal relative to the player's.
@@ -216,7 +240,7 @@ function cellRelative(
 }
 
 /** A skill rating before display mapping, plus the working vectors cohort centring needs. */
-type PartialSkill = Omit<SkillRating, "percentile" | "display"> & {
+type PartialSkill = Omit<SkillRating, "percentile" | "display" | "displayByPhase" | "phaseEvidence"> & {
   /** Relative vector after edge transfer, before cohort centring. */
   carried: PhaseVectors;
   /** The population the value is measured against (window population on the edition's opponent mix). */
@@ -330,7 +354,8 @@ function rateSkill(pe: PlayerEditionIn, ctx: EditionContext, skill: Skill, optio
     valueByPhase[phase] = skill === "bat" ? battingValue(vectors[phase], valuePop[phase], opts.wicketCost) : bowlingValue(vectors[phase], valuePop[phase], opts.wicketCost);
   }
 
-  const value = PHASE_LIST.reduce((a, p) => a + MODEL.phaseWeights[p] * valueByPhase[p], 0);
+  const phaseWeights = opts.phaseWeighting === "own" ? ownPhaseWeights(pe, skill) : MODEL.phaseWeights;
+  const value = PHASE_LIST.reduce((a, p) => a + phaseWeights[p] * valueByPhase[p], 0);
   return {
     carried: carriedAll,
     valuePop,
@@ -348,6 +373,7 @@ function rateSkill(pe: PlayerEditionIn, ctx: EditionContext, skill: Skill, optio
       transfer: +transfer.toFixed(3),
       venueFactor: +venueFactor.toFixed(3),
       selectionShift: 0,
+      phaseWeights,
     },
     // The badge lifts when the form window is thin but a substantial ODI record stands in (2007/2009).
     lowSample: formBalls < (skill === "bat" ? MODEL.badge.batBalls : MODEL.badge.bowlBalls) && !(odi && odi.balls >= (skill === "bat" ? 600 : 900)),
@@ -471,6 +497,8 @@ export interface RateOptions {
    * (the sides an unbeaten run must beat).
    */
   transferDestination?: "mix" | "topThird";
+  /** Headline phase weighting: the player's own exposure or the fixed population weights (see MODEL). */
+  phaseWeighting?: "own" | "population";
 }
 
 /**
@@ -499,7 +527,53 @@ export const DEFAULT_OPTIONS: Required<RateOptions> = {
   cohortCentre: MODEL.cohort.centre,
   tierDestination: MODEL.tierDestination,
   transferDestination: MODEL.transferDestination,
+  phaseWeighting: MODEL.phaseWeighting,
 };
+
+const TIER_RANK: Record<CardTier, number> = { Bronze: 1, Silver: 2, Gold: 3, Elite: 4 };
+const capTier = (tier: CardTier, cap: CardTier): CardTier => (TIER_RANK[tier] > TIER_RANK[cap] ? cap : tier);
+
+/** Tier score (spec §5.6): the better skill percentile plus a bonus for a useful second skill. */
+function tierScoreOf(batting: SkillRating, bowling: SkillRating, cfg: TierConfig): number {
+  const pb = batting.percentile, pw = bowling.percentile;
+  return +(Math.max(pb, pw) + cfg.allRoundBonus * Math.max(0, Math.min(pb, pw) - 0.5)).toFixed(3);
+}
+
+/**
+ * Card tier: the role-relative score cut at percentile thresholds (so "Elite" reads as "top 8% of
+ * the skill", whichever skill it is), then capped for thin evidence on the best skill. Cutting at
+ * shares of the score distribution was tried and dropped: a specialist's score is one skill
+ * percentile while most players' best-of-two sits higher, so a 55th-percentile pure batter (Kohli
+ * 2024) fell into Bronze.
+ */
+function tierOf(batting: SkillRating, bowling: SkillRating, score: number, cfg: TierConfig): CardTier {
+  const bestIsBat = batting.percentile >= bowling.percentile;
+  const best = bestIsBat ? batting : bowling;
+  const t = cfg.thresholds;
+  let tier: CardTier = score >= t.elite ? "Elite" : score >= t.gold ? "Gold" : score >= t.silver ? "Silver" : "Bronze";
+  if (best.lowSample) tier = capTier(tier, cfg.caps.lowSample);
+  else if (best.evidence.formBalls < (bestIsBat ? cfg.caps.thin.batBalls : cfg.caps.thin.bowlBalls)) tier = capTier(tier, cfg.caps.thin.tier);
+  return tier;
+}
+
+function archetypeOf(pe: PlayerEditionIn, position: PlayerRating["position"], bowling: SkillRating): PlayerRating["archetype"] {
+  let batting: BattingArchetype | null = null;
+  if (position.median !== null && position.innings >= 5) {
+    const m = position.median;
+    batting = m <= 2 ? "opener" : m <= 4 ? "top order" : m <= 6 ? "middle order" : m <= 8 ? "finisher" : "tail";
+  }
+  let bowlingArchetype: BowlingArchetype | null = null;
+  if (!bowling.lowSample) {
+    const o = { pp: 0, mid: 0, death: 0 } as Record<Phase, number>;
+    for (const block of [pe.form, pe.careerToDate]) for (const p of PHASE_LIST) o[p] += block.bowl.oversByPhase[p] ?? 0;
+    const total = o.pp + o.mid + o.death;
+    if (total >= 10) {
+      const s = { pp: o.pp / total, mid: o.mid / total, death: o.death / total };
+      bowlingArchetype = s.pp >= 0.45 ? "new ball" : s.death >= 0.4 ? "death" : s.mid >= 0.55 ? "middle overs" : "all phases";
+    }
+  }
+  return { batting, bowling: bowlingArchetype };
+}
 
 /** Share of the team's matches the player was picked for; null when the team played too few. */
 export function usageShares(pe: PlayerEditionIn): PlayerRating["usage"] {
@@ -665,7 +739,7 @@ export function rateAll(r: BuildResult, opts: RateOptions = {}): PlayerRating[] 
   }
 
   // Display ranks a conservative value: shrunk toward 0 by the evidence behind it (winner's-curse guard).
-  const conservative = (s: Omit<SkillRating, "percentile" | "display">) => {
+  const conservative = (s: Pick<SkillRating, "value" | "evidence">) => {
     const n = s.evidence.formBalls + s.evidence.careerBalls + (s.evidence.source === "odi" ? MODEL.odiPriorStrength : 0);
     return s.value * (n / (n + MODEL.displayEvidenceStrength));
   };
@@ -692,12 +766,27 @@ export function rateAll(r: BuildResult, opts: RateOptions = {}): PlayerRating[] 
   const batDisplay = toDisplay("bat");
   const bowlDisplay = toDisplay("bowl");
 
-  const finish = ({ carried: _carried, valuePop: _valuePop, ...s }: PartialSkill, display: ReturnType<typeof toDisplay>): SkillRating => ({ ...s, ...display(conservative(s)) });
-  return partial.map(({ pe, ctx, usage, bat, bowl }) => {
-    const batting = finish(bat, batDisplay);
-    const bowling = finish(bowl, bowlDisplay);
-    const batBalls = bat.evidence.formBalls + bat.evidence.careerBalls;
-    const bowlBalls = bowl.evidence.formBalls + bowl.evidence.careerBalls;
+  const tierConfig = loadTierConfig();
+  const finish = ({ carried: _carried, valuePop: _valuePop, ...s }: PartialSkill, display: ReturnType<typeof toDisplay>, pe: PlayerEditionIn, skill: Skill): SkillRating => {
+    const n = s.evidence.formBalls + s.evidence.careerBalls + (s.evidence.source === "odi" ? MODEL.odiPriorStrength : 0);
+    const guard = n / (n + MODEL.displayEvidenceStrength);
+    const balls = phaseBalls(pe, skill);
+    const badge = skill === "bat" ? tierConfig.phaseBadge.batBalls : tierConfig.phaseBadge.bowlBalls;
+    return {
+      ...s,
+      ...display(conservative(s)),
+      displayByPhase: Object.fromEntries(PHASE_LIST.map((p) => [p, display(s.valueByPhase[p] * guard).display])) as Record<Phase, number>,
+      phaseEvidence: Object.fromEntries(PHASE_LIST.map((p) => [p, { balls: balls[p], thin: balls[p] < badge }])) as Record<Phase, { balls: number; thin: boolean }>,
+    };
+  };
+  const finished = partial.map(({ pe, ctx, usage, bat, bowl }) => {
+    const batting = finish(bat, batDisplay, pe, "bat");
+    const bowling = finish(bowl, bowlDisplay, pe, "bowl");
+    return { pe, ctx, usage, batting, bowling, tierScore: tierScoreOf(batting, bowling, tierConfig) };
+  });
+  return finished.map(({ pe, ctx, usage, batting, bowling, tierScore }) => {
+    const batBalls = batting.evidence.formBalls + batting.evidence.careerBalls;
+    const bowlBalls = bowling.evidence.formBalls + bowling.evidence.careerBalls;
     // A role needs real evidence: a few career overs do not make a batter an all-rounder.
     const bowls = bowlBalls >= 150 && bowling.display >= 60;
     const bats = batBalls >= 150 && batting.display >= 60;
@@ -705,6 +794,7 @@ export function rateAll(r: BuildResult, opts: RateOptions = {}): PlayerRating[] 
     const top = Math.max(batting.display, bowling.display);
     const second = Math.min(batting.display, bowling.display);
     const overall = Math.min(MODEL.display.max, Math.round(top + (role === "all-rounder" ? 0.1 * (second - MODEL.display.min) : 0)));
+    const position = positionBand(pe);
     return {
       personId: pe.personId,
       name: pe.name,
@@ -714,8 +804,11 @@ export function rateAll(r: BuildResult, opts: RateOptions = {}): PlayerRating[] 
       batting,
       bowling,
       overall,
+      tier: tierOf(batting, bowling, tierScore, tierConfig),
+      tierScore,
       role,
-      position: positionBand(pe),
+      archetype: archetypeOf(pe, position, bowling),
+      position,
       bowlingPhases: bowlingPhases(pe),
       tournamentForm: tournamentForm(pe, ctx, batting, bowling),
       usage,

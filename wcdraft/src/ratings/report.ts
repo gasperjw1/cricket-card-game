@@ -1,15 +1,15 @@
 /** Renders RATINGS.md: validation, top lists per edition, Timeless candidates, card audit. */
 
 import type { BuildResult } from "../pipeline/build.js";
-import type { CardAuditRow, TimelessCandidate, TransferGap, ValidationRow } from "./analysis.js";
-import { MODEL, type PlayerRating } from "./model.js";
+import { tierDistribution, type CardAudit, type TimelessCandidate, type TransferGap, type ValidationRow } from "./analysis.js";
+import { MODEL, TIERS, type PlayerRating } from "./model.js";
 
 export function renderRatings(
   r: BuildResult,
   ratings: PlayerRating[],
   validation: ValidationRow[],
   timeless: TimelessCandidate[],
-  audit: { rows: CardAuditRow[]; byTier: Record<string, { n: number; meanDisplay: number }>; spearman: number | null },
+  audit: CardAudit,
   transfer: TransferGap[] = [],
 ): string {
   const L: string[] = [];
@@ -50,6 +50,25 @@ export function renderRatings(
   for (const s of ["bat", "bowl"]) L.push(`| ${s} | ${bySource[`${s}:form`] ?? 0} | ${bySource[`${s}:career`] ?? 0} | ${bySource[`${s}:odi`] ?? 0} | ${bySource[`${s}:population`] ?? 0} |`);
   L.push("", `Roles: ${["batter", "bowler", "all-rounder", "unknown"].map((role) => `${role} ${ratings.filter((x) => x.role === role).length}`).join(", ")}. Positionless: ${ratings.filter((x) => x.position.positionless).length}. Low-sample batting: ${ratings.filter((x) => x.batting.lowSample).length}; bowling: ${ratings.filter((x) => x.bowling.lowSample).length}. Squad Player tag (picked for under ${Math.round(MODEL.usage.squadPlayerShare * 100)}% of the tournament): ${ratings.filter((x) => x.usage.squadPlayer).length}. Selection prior applied (batting / bowling): ${ratings.filter((x) => x.batting.evidence.selectionShift > 0).length} / ${ratings.filter((x) => x.bowling.evidence.selectionShift > 0).length}.`);
 
+  h("## Tiers (spec §5.6)");
+  L.push("Tier = the better of the batting and bowling percentiles plus an all-round bonus, cut at the percentile thresholds in `data/config/tiers.json` (the rarity dial; Elite = top 8% of a skill); a best skill on thin form evidence is capped. Role-relative: a finisher is valued over the death overs he bats in, a new-ball bowler over the powerplay (headline phase weights = own exposure).", "");
+  const dist = tierDistribution(ratings);
+  L.push("| Edition | Players | Elite | Gold | Silver | Bronze |", "|---|---|---|---|---|---|");
+  for (const [ed, d] of Object.entries(dist).sort()) L.push(`| ${ed} | ${d.total} | ${d.Elite} | ${d.Gold} | ${d.Silver} | ${d.Bronze} |`);
+  const all = ratings.length;
+  L.push(`| all | ${all} | ${TIERS.slice().reverse().map((t) => `${ratings.filter((x) => x.tier === t).length} (${Math.round((100 * ratings.filter((x) => x.tier === t).length) / all)}%)`).join(" | ")} |`);
+  const card = (x: PlayerRating) => {
+    const arch = [x.role === "bowler" ? null : x.archetype.batting, x.role === "batter" ? null : x.archetype.bowling ? `${x.archetype.bowling} bowler` : null].filter(Boolean).join(" / ");
+    const tag = x.usage.squadPlayer ? ", squad player" : "";
+    return `${x.name} (${x.team.slice(0, 3)}; ${x.role}${arch ? `, ${arch}` : ""}; bat ${x.batting.display}${x.batting.lowSample ? "*" : ""} / bowl ${x.bowling.display}${x.bowling.lowSample ? "*" : ""}${tag})`;
+  };
+  L.push("", "Elite and Gold cards per edition (`*` = low-sample skill). For review: a name in the wrong tier is a test case.", "");
+  for (const e of r.editions) {
+    const inEd = ratings.filter((x) => x.editionId === e.id).sort((a, b) => b.tierScore - a.tierScore);
+    L.push(`**${e.id}** — Elite: ${inEd.filter((x) => x.tier === "Elite").map(card).join("; ") || "—"}`);
+    L.push(`  Gold: ${inEd.filter((x) => x.tier === "Gold").map(card).join("; ") || "—"}`, "");
+  }
+
   h("## Top ten batters and bowlers per edition (display rating, not low-sample)");
   for (const e of r.editions) {
     const inEd = ratings.filter((x) => x.editionId === e.id);
@@ -66,14 +85,18 @@ export function renderRatings(
 
   h("## Audit against the hand-rated card roster");
   L.push(`${audit.rows.length} cards matched to people by surname + initial (unique matches only). Mean display rating of the person's latest edition by card tier; Spearman rank correlation between tier and display: **${audit.spearman ?? "n/a"}**.`, "");
-  L.push("| Tier | Cards matched | Mean display |", "|---|---|---|");
-  for (const [tier, v] of Object.entries(audit.byTier)) L.push(`| ${tier} | ${v.n} | ${v.meanDisplay} |`);
+  L.push("| Card tier | Cards matched | Mean display | Derived Elite | Gold | Silver | Bronze |", "|---|---|---|---|---|---|---|");
+  for (const [tier, v] of Object.entries(audit.byTier)) {
+    const c = audit.tiers.confusion[tier];
+    L.push(`| ${tier} | ${v.n} | ${v.meanDisplay} | ${c?.Elite ?? 0} | ${c?.Gold ?? 0} | ${c?.Silver ?? 0} | ${c?.Bronze ?? 0} |`);
+  }
+  L.push("", `Derived tier vs card tier: exact agreement **${audit.tiers.exact ?? "n/a"}**, within one tier **${audit.tiers.withinOne ?? "n/a"}**, Spearman **${audit.tiers.spearman ?? "n/a"}**. (The hand tiers rate whole careers; the derived tier is the person's best edition. Display is the latest edition.)`);
   const outliers = audit.rows
     .map((x) => ({ ...x, gap: x.display - ({ Elite: 90, Gold: 78, Silver: 66, Bronze: 54 }[x.tier] ?? 70) }))
     .sort((a, b) => Math.abs(b.gap) - Math.abs(a.gap))
     .slice(0, 15);
-  L.push("", "Largest disagreements (card tier vs data rating):", "", "| Card | Kind | Tier | Latest edition | Display |", "|---|---|---|---|---|");
-  for (const x of outliers) L.push(`| ${x.card} | ${x.kind} | ${x.tier} | ${x.latestEdition} | ${x.display} |`);
+  L.push("", "Largest disagreements (card tier vs data rating):", "", "| Card | Kind | Tier | Latest edition | Display | Derived tier |", "|---|---|---|---|---|---|");
+  for (const x of outliers) L.push(`| ${x.card} | ${x.kind} | ${x.tier} | ${x.latestEdition} | ${x.display} | ${x.derivedTier} |`);
   L.push("");
   return L.join("\n");
 }

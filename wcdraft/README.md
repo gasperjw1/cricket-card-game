@@ -116,6 +116,21 @@ npm run ratings:build --workspace wcdraft   # ≈16 s → data/out/ratings/<edit
    era-locked **Squad Player** tag (under 25% of the tournament; 76 player-editions). A within-team
    selection prior (rarely picked players rating above their team median lose value) is
    implemented but **off**: the sweep found it neutral to slightly negative.
+8. **Tiers, roles and phases** (spec §5.6). The headline value weights phases by the player's own
+   exposure (a finisher over the death overs he bats in, a new-ball bowler over the powerplay;
+   population weights as a 60-ball prior), so the card `tier` is role-relative: the better skill
+   percentile plus an all-round bonus, cut at the percentile thresholds in
+   `data/config/tiers.json` (Elite = top 8% of a skill; the rarity dial), capped at Gold when the
+   best skill has under 120 balls faced / 144 bowled in the window and at Silver when it is
+   low-sample. Each skill also carries `displayByPhase` (40–99 per phase, same map as the
+   headline) with `phaseEvidence` badges, and `archetype` names where the player is used (opener /
+   top order / middle order / finisher / tail; new ball / middle overs / death / all phases).
+   Current split: Elite 7%, Gold 21%, Silver 65%, Bronze 7%; against the 222 hand-rated Swipe
+   Sixer cards the best-edition tier agrees exactly 30% of the time, within one tier 78%
+   (Spearman 0.31).
+
+`RATINGS.md` lists every edition's Elite and Gold cards with role, archetype and both skill numbers;
+that list is the review surface.
 
 Validation, primary metric = within-edition correlation between the pre-tournament rating and
 the raw value in that World Cup (each edition demeaned, so field composition cannot masquerade as

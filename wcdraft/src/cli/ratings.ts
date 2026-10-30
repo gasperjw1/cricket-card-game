@@ -18,6 +18,6 @@ const transfer = [...transferGaps(result, 120), ...transferGaps(result, 60)];
 
 const editionIds = [...new Set(ratings.map((x) => x.editionId))].sort();
 for (const id of editionIds) writeJson(resolve(paths.out, "ratings", `${id}.json`), ratings.filter((x) => x.editionId === id), { compact: true });
-writeJson(resolve(paths.out, "ratings-summary.json"), { validation, transfer, timeless, audit: { byTier: audit.byTier, spearman: audit.spearman, matched: audit.rows.length } });
+writeJson(resolve(paths.out, "ratings-summary.json"), { validation, transfer, timeless, audit: { byTier: audit.byTier, spearman: audit.spearman, tiers: audit.tiers, matched: audit.rows.length } });
 writeText(resolve(paths.out, "RATINGS.md"), renderRatings(result, ratings, validation, timeless, audit, transfer));
 console.log(`Wrote ratings for ${editionIds.length} editions, RATINGS.md and ratings-summary.json in ${((Date.now() - t0) / 1000).toFixed(1)}s`);

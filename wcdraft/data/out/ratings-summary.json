@@ -21,18 +21,19 @@
         "selectionMaxShare": 1,
         "cohortCentre": "top10",
         "tierDestination": true,
-        "transferDestination": "topThird"
+        "transferDestination": "topThird",
+        "phaseWeighting": "own"
       },
       "predictive": {
         "batting": {
           "n": 392,
           "within": {
-            "model": 0.326,
+            "model": 0.327,
             "rawFormValue": 0.272,
             "rawFormRate": 0.268
           },
           "model": 0.305,
-          "modelTiered": 0.315,
+          "modelTiered": 0.316,
           "rawFormValue": 0.279,
           "rawFormRate": 0.268,
           "careerRate": 0.259,
@@ -48,12 +49,12 @@
         "bowling": {
           "n": 324,
           "within": {
-            "model": 0.19,
+            "model": 0.186,
             "rawFormValue": 0.087,
             "rawFormRate": 0.102
           },
-          "model": 0.18,
-          "modelTiered": 0.171,
+          "model": 0.175,
+          "modelTiered": 0.166,
           "rawFormValue": 0.044,
           "rawFormRate": 0.094,
           "careerRate": 0.114,
@@ -70,12 +71,12 @@
       "stability": {
         "batting": {
           "n": 499,
-          "model": 0.761,
+          "model": 0.753,
           "rawFormSR": 0.454
         },
         "bowling": {
           "n": 408,
-          "model": 0.586,
+          "model": 0.56,
           "rawFormEconomy": 0.44
         }
       }
@@ -101,18 +102,19 @@
         "selectionMaxShare": 1,
         "cohortCentre": "top10",
         "tierDestination": true,
-        "transferDestination": "topThird"
+        "transferDestination": "topThird",
+        "phaseWeighting": "own"
       },
       "predictive": {
         "batting": {
           "n": 392,
           "within": {
-            "model": 0.309,
+            "model": 0.316,
             "rawFormValue": 0.272,
             "rawFormRate": 0.268
           },
-          "model": 0.29,
-          "modelTiered": 0.302,
+          "model": 0.299,
+          "modelTiered": 0.309,
           "rawFormValue": 0.279,
           "rawFormRate": 0.268,
           "careerRate": 0.259,
@@ -128,12 +130,12 @@
         "bowling": {
           "n": 324,
           "within": {
-            "model": 0.166,
+            "model": 0.171,
             "rawFormValue": 0.087,
             "rawFormRate": 0.102
           },
-          "model": 0.154,
-          "modelTiered": 0.13,
+          "model": 0.161,
+          "modelTiered": 0.138,
           "rawFormValue": 0.044,
           "rawFormRate": 0.094,
           "careerRate": 0.114,
@@ -150,12 +152,12 @@
       "stability": {
         "batting": {
           "n": 499,
-          "model": 0.805,
+          "model": 0.802,
           "rawFormSR": 0.454
         },
         "bowling": {
           "n": 408,
-          "model": 0.65,
+          "model": 0.638,
           "rawFormEconomy": 0.44
         }
       }
@@ -181,18 +183,19 @@
         "selectionMaxShare": 1,
         "cohortCentre": "top10",
         "tierDestination": true,
-        "transferDestination": "topThird"
+        "transferDestination": "topThird",
+        "phaseWeighting": "own"
       },
       "predictive": {
         "batting": {
           "n": 392,
           "within": {
-            "model": 0.314,
+            "model": 0.322,
             "rawFormValue": 0.272,
             "rawFormRate": 0.268
           },
-          "model": 0.296,
-          "modelTiered": 0.307,
+          "model": 0.304,
+          "modelTiered": 0.314,
           "rawFormValue": 0.279,
           "rawFormRate": 0.268,
           "careerRate": 0.259,
@@ -208,12 +211,12 @@
         "bowling": {
           "n": 324,
           "within": {
-            "model": 0.167,
+            "model": 0.17,
             "rawFormValue": 0.087,
             "rawFormRate": 0.102
           },
-          "model": 0.156,
-          "modelTiered": 0.131,
+          "model": 0.16,
+          "modelTiered": 0.137,
           "rawFormValue": 0.044,
           "rawFormRate": 0.094,
           "careerRate": 0.114,
@@ -230,12 +233,12 @@
       "stability": {
         "batting": {
           "n": 499,
-          "model": 0.821,
+          "model": 0.818,
           "rawFormSR": 0.454
         },
         "bowling": {
           "n": 408,
-          "model": 0.696,
+          "model": 0.688,
           "rawFormEconomy": 0.44
         }
       }
@@ -261,18 +264,19 @@
         "selectionMaxShare": 1,
         "cohortCentre": "top10",
         "tierDestination": true,
-        "transferDestination": "topThird"
+        "transferDestination": "topThird",
+        "phaseWeighting": "own"
       },
       "predictive": {
         "batting": {
           "n": 392,
           "within": {
-            "model": 0.321,
+            "model": 0.322,
             "rawFormValue": 0.272,
             "rawFormRate": 0.268
           },
-          "model": 0.3,
-          "modelTiered": 0.31,
+          "model": 0.301,
+          "modelTiered": 0.311,
           "rawFormValue": 0.279,
           "rawFormRate": 0.268,
           "careerRate": 0.259,
@@ -288,12 +292,12 @@
         "bowling": {
           "n": 324,
           "within": {
-            "model": 0.183,
+            "model": 0.179,
             "rawFormValue": 0.087,
             "rawFormRate": 0.102
           },
-          "model": 0.172,
-          "modelTiered": 0.164,
+          "model": 0.168,
+          "modelTiered": 0.159,
           "rawFormValue": 0.044,
           "rawFormRate": 0.094,
           "careerRate": 0.114,
@@ -310,12 +314,12 @@
       "stability": {
         "batting": {
           "n": 499,
-          "model": 0.75,
+          "model": 0.739,
           "rawFormSR": 0.454
         },
         "bowling": {
           "n": 408,
-          "model": 0.551,
+          "model": 0.522,
           "rawFormEconomy": 0.44
         }
       }
@@ -341,18 +345,19 @@
         "selectionMaxShare": 1,
         "cohortCentre": "top10",
         "tierDestination": true,
-        "transferDestination": "topThird"
+        "transferDestination": "topThird",
+        "phaseWeighting": "own"
       },
       "predictive": {
         "batting": {
           "n": 392,
           "within": {
-            "model": 0.326,
+            "model": 0.325,
             "rawFormValue": 0.272,
             "rawFormRate": 0.268
           },
-          "model": 0.305,
-          "modelTiered": 0.316,
+          "model": 0.304,
+          "modelTiered": 0.314,
           "rawFormValue": 0.279,
           "rawFormRate": 0.268,
           "careerRate": 0.259,
@@ -368,12 +373,12 @@
         "bowling": {
           "n": 324,
           "within": {
-            "model": 0.194,
+            "model": 0.189,
             "rawFormValue": 0.087,
             "rawFormRate": 0.102
           },
-          "model": 0.185,
-          "modelTiered": 0.175,
+          "model": 0.179,
+          "modelTiered": 0.17,
           "rawFormValue": 0.044,
           "rawFormRate": 0.094,
           "careerRate": 0.114,
@@ -390,12 +395,12 @@
       "stability": {
         "batting": {
           "n": 499,
-          "model": 0.777,
+          "model": 0.773,
           "rawFormSR": 0.454
         },
         "bowling": {
           "n": 408,
-          "model": 0.615,
+          "model": 0.596,
           "rawFormEconomy": 0.44
         }
       }
@@ -421,18 +426,19 @@
         "selectionMaxShare": 1,
         "cohortCentre": "top10",
         "tierDestination": true,
-        "transferDestination": "topThird"
+        "transferDestination": "topThird",
+        "phaseWeighting": "own"
       },
       "predictive": {
         "batting": {
           "n": 392,
           "within": {
-            "model": 0.326,
+            "model": 0.327,
             "rawFormValue": 0.272,
             "rawFormRate": 0.268
           },
           "model": 0.305,
-          "modelTiered": 0.315,
+          "modelTiered": 0.316,
           "rawFormValue": 0.279,
           "rawFormRate": 0.268,
           "careerRate": 0.259,
@@ -448,12 +454,12 @@
         "bowling": {
           "n": 324,
           "within": {
-            "model": 0.19,
+            "model": 0.186,
             "rawFormValue": 0.087,
             "rawFormRate": 0.102
           },
-          "model": 0.18,
-          "modelTiered": 0.171,
+          "model": 0.175,
+          "modelTiered": 0.166,
           "rawFormValue": 0.044,
           "rawFormRate": 0.094,
           "careerRate": 0.114,
@@ -470,12 +476,12 @@
       "stability": {
         "batting": {
           "n": 499,
-          "model": 0.761,
+          "model": 0.753,
           "rawFormSR": 0.454
         },
         "bowling": {
           "n": 408,
-          "model": 0.586,
+          "model": 0.56,
           "rawFormEconomy": 0.44
         }
       }
@@ -501,18 +507,19 @@
         "selectionMaxShare": 1,
         "cohortCentre": "top10",
         "tierDestination": true,
-        "transferDestination": "topThird"
+        "transferDestination": "topThird",
+        "phaseWeighting": "own"
       },
       "predictive": {
         "batting": {
           "n": 392,
           "within": {
-            "model": 0.322,
+            "model": 0.323,
             "rawFormValue": 0.272,
             "rawFormRate": 0.268
           },
-          "model": 0.302,
-          "modelTiered": 0.313,
+          "model": 0.303,
+          "modelTiered": 0.314,
           "rawFormValue": 0.279,
           "rawFormRate": 0.268,
           "careerRate": 0.259,
@@ -528,12 +535,12 @@
         "bowling": {
           "n": 324,
           "within": {
-            "model": 0.18,
+            "model": 0.176,
             "rawFormValue": 0.087,
             "rawFormRate": 0.102
           },
-          "model": 0.171,
-          "modelTiered": 0.16,
+          "model": 0.166,
+          "modelTiered": 0.155,
           "rawFormValue": 0.044,
           "rawFormRate": 0.094,
           "careerRate": 0.114,
@@ -550,12 +557,12 @@
       "stability": {
         "batting": {
           "n": 499,
-          "model": 0.763,
+          "model": 0.755,
           "rawFormSR": 0.454
         },
         "bowling": {
           "n": 408,
-          "model": 0.58,
+          "model": 0.553,
           "rawFormEconomy": 0.44
         }
       }
@@ -581,13 +588,14 @@
         "selectionMaxShare": 1,
         "cohortCentre": "top10",
         "tierDestination": true,
-        "transferDestination": "topThird"
+        "transferDestination": "topThird",
+        "phaseWeighting": "own"
       },
       "predictive": {
         "batting": {
           "n": 392,
           "within": {
-            "model": 0.326,
+            "model": 0.327,
             "rawFormValue": 0.272,
             "rawFormRate": 0.268
           },
@@ -608,12 +616,12 @@
         "bowling": {
           "n": 324,
           "within": {
-            "model": 0.192,
+            "model": 0.187,
             "rawFormValue": 0.087,
             "rawFormRate": 0.102
           },
-          "model": 0.182,
-          "modelTiered": 0.173,
+          "model": 0.177,
+          "modelTiered": 0.168,
           "rawFormValue": 0.044,
           "rawFormRate": 0.094,
           "careerRate": 0.114,
@@ -630,12 +638,93 @@
       "stability": {
         "batting": {
           "n": 499,
-          "model": 0.759,
+          "model": 0.75,
           "rawFormSR": 0.454
         },
         "bowling": {
           "n": 408,
-          "model": 0.58,
+          "model": 0.554,
+          "rawFormEconomy": 0.44
+        }
+      }
+    },
+    {
+      "variant": "headline phase weights: population (fixed 0.30 / 0.45 / 0.25)",
+      "options": {
+        "priorStrength": 100,
+        "phasePooling": "hierarchical",
+        "tierMode": {
+          "bat": "twoWay",
+          "bowl": "elo"
+        },
+        "careerPriorStrength": 50,
+        "wicketCost": 2.6,
+        "hazardPriorStrength": 2000,
+        "phasePriorStrength": 300,
+        "transferScaleElo": 300,
+        "bowlPriorMultiplier": 2,
+        "venueNormalisation": 0,
+        "evidence": "expected",
+        "selectionWeight": 0,
+        "selectionMaxShare": 1,
+        "cohortCentre": "top10",
+        "tierDestination": true,
+        "transferDestination": "topThird",
+        "phaseWeighting": "population"
+      },
+      "predictive": {
+        "batting": {
+          "n": 392,
+          "within": {
+            "model": 0.326,
+            "rawFormValue": 0.272,
+            "rawFormRate": 0.268
+          },
+          "model": 0.305,
+          "modelTiered": 0.315,
+          "rawFormValue": 0.279,
+          "rawFormRate": 0.268,
+          "careerRate": 0.259,
+          "runs": {
+            "model": 0.382,
+            "rawForm": 0.328
+          },
+          "hazard": {
+            "model": 0.134,
+            "rawForm": 0.076
+          }
+        },
+        "bowling": {
+          "n": 324,
+          "within": {
+            "model": 0.19,
+            "rawFormValue": 0.087,
+            "rawFormRate": 0.102
+          },
+          "model": 0.18,
+          "modelTiered": 0.171,
+          "rawFormValue": 0.044,
+          "rawFormRate": 0.094,
+          "careerRate": 0.114,
+          "runs": {
+            "model": 0.218,
+            "rawForm": 0.083
+          },
+          "hazard": {
+            "model": 0.124,
+            "rawForm": 0.075
+          }
+        }
+      },
+      "stability": {
+        "batting": {
+          "n": 499,
+          "model": 0.761,
+          "rawFormSR": 0.454
+        },
+        "bowling": {
+          "n": 408,
+          "model": 0.586,
           "rawFormEconomy": 0.44
         }
       }
@@ -661,13 +750,14 @@
         "selectionMaxShare": 1,
         "cohortCentre": "none",
         "tierDestination": true,
-        "transferDestination": "topThird"
+        "transferDestination": "topThird",
+        "phaseWeighting": "own"
       },
       "predictive": {
         "batting": {
           "n": 392,
           "within": {
-            "model": 0.325,
+            "model": 0.327,
             "rawFormValue": 0.272,
             "rawFormRate": 0.268
           },
@@ -688,12 +778,12 @@
         "bowling": {
           "n": 324,
           "within": {
-            "model": 0.197,
+            "model": 0.194,
             "rawFormValue": 0.087,
             "rawFormRate": 0.102
           },
-          "model": 0.185,
-          "modelTiered": 0.175,
+          "model": 0.182,
+          "modelTiered": 0.172,
           "rawFormValue": 0.044,
           "rawFormRate": 0.094,
           "careerRate": 0.114,
@@ -710,12 +800,12 @@
       "stability": {
         "batting": {
           "n": 499,
-          "model": 0.76,
+          "model": 0.754,
           "rawFormSR": 0.454
         },
         "bowling": {
           "n": 408,
-          "model": 0.588,
+          "model": 0.561,
           "rawFormEconomy": 0.44
         }
       }
@@ -741,18 +831,19 @@
         "selectionMaxShare": 1,
         "cohortCentre": "all",
         "tierDestination": true,
-        "transferDestination": "topThird"
+        "transferDestination": "topThird",
+        "phaseWeighting": "own"
       },
       "predictive": {
         "batting": {
           "n": 392,
           "within": {
-            "model": 0.323,
+            "model": 0.324,
             "rawFormValue": 0.272,
             "rawFormRate": 0.268
           },
           "model": 0.318,
-          "modelTiered": 0.326,
+          "modelTiered": 0.327,
           "rawFormValue": 0.279,
           "rawFormRate": 0.268,
           "careerRate": 0.259,
@@ -768,12 +859,12 @@
         "bowling": {
           "n": 324,
           "within": {
-            "model": 0.189,
+            "model": 0.184,
             "rawFormValue": 0.087,
             "rawFormRate": 0.102
           },
-          "model": 0.178,
-          "modelTiered": 0.166,
+          "model": 0.173,
+          "modelTiered": 0.161,
           "rawFormValue": 0.044,
           "rawFormRate": 0.094,
           "careerRate": 0.114,
@@ -790,12 +881,12 @@
       "stability": {
         "batting": {
           "n": 499,
-          "model": 0.754,
+          "model": 0.745,
           "rawFormSR": 0.454
         },
         "bowling": {
           "n": 408,
-          "model": 0.585,
+          "model": 0.559,
           "rawFormEconomy": 0.44
         }
       }
@@ -821,18 +912,19 @@
         "selectionMaxShare": 1,
         "cohortCentre": "top10",
         "tierDestination": true,
-        "transferDestination": "topThird"
+        "transferDestination": "topThird",
+        "phaseWeighting": "own"
       },
       "predictive": {
         "batting": {
           "n": 392,
           "within": {
-            "model": 0.302,
+            "model": 0.304,
             "rawFormValue": 0.272,
             "rawFormRate": 0.268
           },
-          "model": 0.289,
-          "modelTiered": 0.297,
+          "model": 0.29,
+          "modelTiered": 0.298,
           "rawFormValue": 0.279,
           "rawFormRate": 0.268,
           "careerRate": 0.259,
@@ -848,12 +940,12 @@
         "bowling": {
           "n": 324,
           "within": {
-            "model": 0.157,
+            "model": 0.154,
             "rawFormValue": 0.087,
             "rawFormRate": 0.102
           },
-          "model": 0.146,
-          "modelTiered": 0.128,
+          "model": 0.142,
+          "modelTiered": 0.125,
           "rawFormValue": 0.044,
           "rawFormRate": 0.094,
           "careerRate": 0.114,
@@ -870,12 +962,12 @@
       "stability": {
         "batting": {
           "n": 499,
-          "model": 0.701,
+          "model": 0.685,
           "rawFormSR": 0.454
         },
         "bowling": {
           "n": 408,
-          "model": 0.558,
+          "model": 0.539,
           "rawFormEconomy": 0.44
         }
       }
@@ -901,18 +993,19 @@
         "selectionMaxShare": 1,
         "cohortCentre": "top10",
         "tierDestination": true,
-        "transferDestination": "topThird"
+        "transferDestination": "topThird",
+        "phaseWeighting": "own"
       },
       "predictive": {
         "batting": {
           "n": 392,
           "within": {
-            "model": 0.324,
+            "model": 0.325,
             "rawFormValue": 0.272,
             "rawFormRate": 0.268
           },
-          "model": 0.302,
-          "modelTiered": 0.312,
+          "model": 0.303,
+          "modelTiered": 0.313,
           "rawFormValue": 0.279,
           "rawFormRate": 0.268,
           "careerRate": 0.259,
@@ -928,12 +1021,12 @@
         "bowling": {
           "n": 324,
           "within": {
-            "model": 0.197,
+            "model": 0.193,
             "rawFormValue": 0.087,
             "rawFormRate": 0.102
           },
-          "model": 0.189,
-          "modelTiered": 0.184,
+          "model": 0.184,
+          "modelTiered": 0.178,
           "rawFormValue": 0.044,
           "rawFormRate": 0.094,
           "careerRate": 0.114,
@@ -950,12 +1043,12 @@
       "stability": {
         "batting": {
           "n": 499,
-          "model": 0.765,
+          "model": 0.757,
           "rawFormSR": 0.454
         },
         "bowling": {
           "n": 408,
-          "model": 0.554,
+          "model": 0.526,
           "rawFormEconomy": 0.44
         }
       }
@@ -981,7 +1074,8 @@
         "selectionMaxShare": 1,
         "cohortCentre": "top10",
         "tierDestination": true,
-        "transferDestination": "topThird"
+        "transferDestination": "topThird",
+        "phaseWeighting": "own"
       },
       "predictive": {
         "batting": {
@@ -991,8 +1085,8 @@
             "rawFormValue": 0.272,
             "rawFormRate": 0.268
           },
-          "model": 0.303,
-          "modelTiered": 0.313,
+          "model": 0.304,
+          "modelTiered": 0.314,
           "rawFormValue": 0.279,
           "rawFormRate": 0.268,
           "careerRate": 0.259,
@@ -1008,12 +1102,12 @@
         "bowling": {
           "n": 324,
           "within": {
-            "model": 0.178,
+            "model": 0.174,
             "rawFormValue": 0.087,
             "rawFormRate": 0.102
           },
-          "model": 0.167,
-          "modelTiered": 0.154,
+          "model": 0.163,
+          "modelTiered": 0.149,
           "rawFormValue": 0.044,
           "rawFormRate": 0.094,
           "careerRate": 0.114,
@@ -1030,12 +1124,12 @@
       "stability": {
         "batting": {
           "n": 499,
-          "model": 0.748,
+          "model": 0.737,
           "rawFormSR": 0.454
         },
         "bowling": {
           "n": 408,
-          "model": 0.589,
+          "model": 0.565,
           "rawFormEconomy": 0.44
         }
       }
@@ -1061,18 +1155,19 @@
         "selectionMaxShare": 1,
         "cohortCentre": "top10",
         "tierDestination": true,
-        "transferDestination": "topThird"
+        "transferDestination": "topThird",
+        "phaseWeighting": "own"
       },
       "predictive": {
         "batting": {
           "n": 392,
           "within": {
-            "model": 0.326,
+            "model": 0.327,
             "rawFormValue": 0.272,
             "rawFormRate": 0.268
           },
           "model": 0.305,
-          "modelTiered": 0.315,
+          "modelTiered": 0.316,
           "rawFormValue": 0.279,
           "rawFormRate": 0.268,
           "careerRate": 0.259,
@@ -1088,12 +1183,12 @@
         "bowling": {
           "n": 324,
           "within": {
-            "model": 0.19,
+            "model": 0.186,
             "rawFormValue": 0.087,
             "rawFormRate": 0.102
           },
-          "model": 0.18,
-          "modelTiered": 0.171,
+          "model": 0.175,
+          "modelTiered": 0.166,
           "rawFormValue": 0.044,
           "rawFormRate": 0.094,
           "careerRate": 0.114,
@@ -1110,12 +1205,12 @@
       "stability": {
         "batting": {
           "n": 499,
-          "model": 0.761,
+          "model": 0.753,
           "rawFormSR": 0.454
         },
         "bowling": {
           "n": 408,
-          "model": 0.586,
+          "model": 0.56,
           "rawFormEconomy": 0.44
         }
       }
@@ -1141,7 +1236,8 @@
         "selectionMaxShare": 1,
         "cohortCentre": "top10",
         "tierDestination": true,
-        "transferDestination": "topThird"
+        "transferDestination": "topThird",
+        "phaseWeighting": "own"
       },
       "predictive": {
         "batting": {
@@ -1151,8 +1247,8 @@
             "rawFormValue": 0.272,
             "rawFormRate": 0.268
           },
-          "model": 0.303,
-          "modelTiered": 0.313,
+          "model": 0.304,
+          "modelTiered": 0.314,
           "rawFormValue": 0.279,
           "rawFormRate": 0.268,
           "careerRate": 0.259,
@@ -1168,12 +1264,12 @@
         "bowling": {
           "n": 324,
           "within": {
-            "model": 0.178,
+            "model": 0.174,
             "rawFormValue": 0.087,
             "rawFormRate": 0.102
           },
-          "model": 0.167,
-          "modelTiered": 0.154,
+          "model": 0.163,
+          "modelTiered": 0.149,
           "rawFormValue": 0.044,
           "rawFormRate": 0.094,
           "careerRate": 0.114,
@@ -1190,12 +1286,12 @@
       "stability": {
         "batting": {
           "n": 499,
-          "model": 0.748,
+          "model": 0.737,
           "rawFormSR": 0.454
         },
         "bowling": {
           "n": 408,
-          "model": 0.589,
+          "model": 0.565,
           "rawFormEconomy": 0.44
         }
       }
@@ -1221,13 +1317,14 @@
         "selectionMaxShare": 1,
         "cohortCentre": "top10",
         "tierDestination": true,
-        "transferDestination": "topThird"
+        "transferDestination": "topThird",
+        "phaseWeighting": "own"
       },
       "predictive": {
         "batting": {
           "n": 392,
           "within": {
-            "model": 0.319,
+            "model": 0.32,
             "rawFormValue": 0.272,
             "rawFormRate": 0.268
           },
@@ -1248,12 +1345,12 @@
         "bowling": {
           "n": 324,
           "within": {
-            "model": 0.172,
+            "model": 0.168,
             "rawFormValue": 0.087,
             "rawFormRate": 0.102
           },
-          "model": 0.161,
-          "modelTiered": 0.146,
+          "model": 0.157,
+          "modelTiered": 0.142,
           "rawFormValue": 0.044,
           "rawFormRate": 0.094,
           "careerRate": 0.114,
@@ -1270,12 +1367,12 @@
       "stability": {
         "batting": {
           "n": 499,
-          "model": 0.738,
+          "model": 0.726,
           "rawFormSR": 0.454
         },
         "bowling": {
           "n": 408,
-          "model": 0.584,
+          "model": 0.561,
           "rawFormEconomy": 0.44
         }
       }
@@ -1301,18 +1398,19 @@
         "selectionMaxShare": 1,
         "cohortCentre": "top10",
         "tierDestination": true,
-        "transferDestination": "topThird"
+        "transferDestination": "topThird",
+        "phaseWeighting": "own"
       },
       "predictive": {
         "batting": {
           "n": 392,
           "within": {
-            "model": 0.326,
+            "model": 0.327,
             "rawFormValue": 0.272,
             "rawFormRate": 0.268
           },
           "model": 0.305,
-          "modelTiered": 0.315,
+          "modelTiered": 0.316,
           "rawFormValue": 0.279,
           "rawFormRate": 0.268,
           "careerRate": 0.259,
@@ -1328,12 +1426,12 @@
         "bowling": {
           "n": 324,
           "within": {
-            "model": 0.19,
+            "model": 0.186,
             "rawFormValue": 0.087,
             "rawFormRate": 0.102
           },
-          "model": 0.18,
-          "modelTiered": 0.171,
+          "model": 0.175,
+          "modelTiered": 0.166,
           "rawFormValue": 0.044,
           "rawFormRate": 0.094,
           "careerRate": 0.114,
@@ -1350,12 +1448,12 @@
       "stability": {
         "batting": {
           "n": 499,
-          "model": 0.761,
+          "model": 0.753,
           "rawFormSR": 0.454
         },
         "bowling": {
           "n": 408,
-          "model": 0.586,
+          "model": 0.56,
           "rawFormEconomy": 0.44
         }
       }
@@ -1381,18 +1479,19 @@
         "selectionMaxShare": 1,
         "cohortCentre": "top10",
         "tierDestination": true,
-        "transferDestination": "topThird"
+        "transferDestination": "topThird",
+        "phaseWeighting": "own"
       },
       "predictive": {
         "batting": {
           "n": 392,
           "within": {
-            "model": 0.326,
+            "model": 0.327,
             "rawFormValue": 0.272,
             "rawFormRate": 0.268
           },
           "model": 0.305,
-          "modelTiered": 0.315,
+          "modelTiered": 0.316,
           "rawFormValue": 0.279,
           "rawFormRate": 0.268,
           "careerRate": 0.259,
@@ -1408,12 +1507,12 @@
         "bowling": {
           "n": 324,
           "within": {
-            "model": 0.19,
+            "model": 0.186,
             "rawFormValue": 0.087,
             "rawFormRate": 0.102
           },
-          "model": 0.18,
-          "modelTiered": 0.171,
+          "model": 0.175,
+          "modelTiered": 0.166,
           "rawFormValue": 0.044,
           "rawFormRate": 0.094,
           "careerRate": 0.114,
@@ -1430,12 +1529,12 @@
       "stability": {
         "batting": {
           "n": 499,
-          "model": 0.761,
+          "model": 0.753,
           "rawFormSR": 0.454
         },
         "bowling": {
           "n": 408,
-          "model": 0.586,
+          "model": 0.56,
           "rawFormEconomy": 0.44
         }
       }
@@ -1461,13 +1560,14 @@
         "selectionMaxShare": 1,
         "cohortCentre": "none",
         "tierDestination": true,
-        "transferDestination": "topThird"
+        "transferDestination": "topThird",
+        "phaseWeighting": "own"
       },
       "predictive": {
         "batting": {
           "n": 392,
           "within": {
-            "model": 0.325,
+            "model": 0.327,
             "rawFormValue": 0.272,
             "rawFormRate": 0.268
           },
@@ -1488,12 +1588,12 @@
         "bowling": {
           "n": 324,
           "within": {
-            "model": 0.197,
+            "model": 0.194,
             "rawFormValue": 0.087,
             "rawFormRate": 0.102
           },
-          "model": 0.185,
-          "modelTiered": 0.175,
+          "model": 0.182,
+          "modelTiered": 0.172,
           "rawFormValue": 0.044,
           "rawFormRate": 0.094,
           "careerRate": 0.114,
@@ -1510,12 +1610,12 @@
       "stability": {
         "batting": {
           "n": 499,
-          "model": 0.76,
+          "model": 0.754,
           "rawFormSR": 0.454
         },
         "bowling": {
           "n": 408,
-          "model": 0.588,
+          "model": 0.561,
           "rawFormEconomy": 0.44
         }
       }
@@ -1541,7 +1641,8 @@
         "selectionMaxShare": 1,
         "cohortCentre": "top10",
         "tierDestination": true,
-        "transferDestination": "topThird"
+        "transferDestination": "topThird",
+        "phaseWeighting": "own"
       },
       "predictive": {
         "batting": {
@@ -1553,6 +1654,87 @@
           },
           "model": 0.302,
           "modelTiered": 0.312,
+          "rawFormValue": 0.279,
+          "rawFormRate": 0.268,
+          "careerRate": 0.259,
+          "runs": {
+            "model": 0.382,
+            "rawForm": 0.328
+          },
+          "hazard": {
+            "model": 0.134,
+            "rawForm": 0.076
+          }
+        },
+        "bowling": {
+          "n": 324,
+          "within": {
+            "model": 0.181,
+            "rawFormValue": 0.087,
+            "rawFormRate": 0.102
+          },
+          "model": 0.17,
+          "modelTiered": 0.159,
+          "rawFormValue": 0.044,
+          "rawFormRate": 0.094,
+          "careerRate": 0.114,
+          "runs": {
+            "model": 0.218,
+            "rawForm": 0.083
+          },
+          "hazard": {
+            "model": 0.124,
+            "rawForm": 0.075
+          }
+        }
+      },
+      "stability": {
+        "batting": {
+          "n": 499,
+          "model": 0.755,
+          "rawFormSR": 0.454
+        },
+        "bowling": {
+          "n": 408,
+          "model": 0.55,
+          "rawFormEconomy": 0.44
+        }
+      }
+    },
+    {
+      "variant": "selection prior 0.5, shares below 0.5 only",
+      "options": {
+        "priorStrength": 100,
+        "phasePooling": "hierarchical",
+        "tierMode": {
+          "bat": "twoWay",
+          "bowl": "elo"
+        },
+        "careerPriorStrength": 50,
+        "wicketCost": 2.6,
+        "hazardPriorStrength": 2000,
+        "phasePriorStrength": 300,
+        "transferScaleElo": 300,
+        "bowlPriorMultiplier": 2,
+        "venueNormalisation": 0,
+        "evidence": "expected",
+        "selectionWeight": 0.5,
+        "selectionMaxShare": 0.5,
+        "cohortCentre": "top10",
+        "tierDestination": true,
+        "transferDestination": "topThird",
+        "phaseWeighting": "own"
+      },
+      "predictive": {
+        "batting": {
+          "n": 392,
+          "within": {
+            "model": 0.322,
+            "rawFormValue": 0.272,
+            "rawFormRate": 0.268
+          },
+          "model": 0.3,
+          "modelTiered": 0.31,
           "rawFormValue": 0.279,
           "rawFormRate": 0.268,
           "careerRate": 0.259,
@@ -1590,92 +1772,12 @@
       "stability": {
         "batting": {
           "n": 499,
-          "model": 0.761,
+          "model": 0.754,
           "rawFormSR": 0.454
         },
         "bowling": {
           "n": 408,
-          "model": 0.576,
-          "rawFormEconomy": 0.44
-        }
-      }
-    },
-    {
-      "variant": "selection prior 0.5, shares below 0.5 only",
-      "options": {
-        "priorStrength": 100,
-        "phasePooling": "hierarchical",
-        "tierMode": {
-          "bat": "twoWay",
-          "bowl": "elo"
-        },
-        "careerPriorStrength": 50,
-        "wicketCost": 2.6,
-        "hazardPriorStrength": 2000,
-        "phasePriorStrength": 300,
-        "transferScaleElo": 300,
-        "bowlPriorMultiplier": 2,
-        "venueNormalisation": 0,
-        "evidence": "expected",
-        "selectionWeight": 0.5,
-        "selectionMaxShare": 0.5,
-        "cohortCentre": "top10",
-        "tierDestination": true,
-        "transferDestination": "topThird"
-      },
-      "predictive": {
-        "batting": {
-          "n": 392,
-          "within": {
-            "model": 0.321,
-            "rawFormValue": 0.272,
-            "rawFormRate": 0.268
-          },
-          "model": 0.3,
-          "modelTiered": 0.31,
-          "rawFormValue": 0.279,
-          "rawFormRate": 0.268,
-          "careerRate": 0.259,
-          "runs": {
-            "model": 0.382,
-            "rawForm": 0.328
-          },
-          "hazard": {
-            "model": 0.134,
-            "rawForm": 0.076
-          }
-        },
-        "bowling": {
-          "n": 324,
-          "within": {
-            "model": 0.191,
-            "rawFormValue": 0.087,
-            "rawFormRate": 0.102
-          },
-          "model": 0.18,
-          "modelTiered": 0.17,
-          "rawFormValue": 0.044,
-          "rawFormRate": 0.094,
-          "careerRate": 0.114,
-          "runs": {
-            "model": 0.218,
-            "rawForm": 0.083
-          },
-          "hazard": {
-            "model": 0.124,
-            "rawForm": 0.075
-          }
-        }
-      },
-      "stability": {
-        "batting": {
-          "n": 499,
-          "model": 0.762,
-          "rawFormSR": 0.454
-        },
-        "bowling": {
-          "n": 408,
-          "model": 0.584,
+          "model": 0.558,
           "rawFormEconomy": 0.44
         }
       }
@@ -1701,13 +1803,14 @@
         "selectionMaxShare": 0.5,
         "cohortCentre": "top10",
         "tierDestination": true,
-        "transferDestination": "topThird"
+        "transferDestination": "topThird",
+        "phaseWeighting": "own"
       },
       "predictive": {
         "batting": {
           "n": 392,
           "within": {
-            "model": 0.315,
+            "model": 0.316,
             "rawFormValue": 0.272,
             "rawFormRate": 0.268
           },
@@ -1728,12 +1831,12 @@
         "bowling": {
           "n": 324,
           "within": {
-            "model": 0.189,
+            "model": 0.185,
             "rawFormValue": 0.087,
             "rawFormRate": 0.102
           },
-          "model": 0.178,
-          "modelTiered": 0.166,
+          "model": 0.173,
+          "modelTiered": 0.161,
           "rawFormValue": 0.044,
           "rawFormRate": 0.094,
           "careerRate": 0.114,
@@ -1750,12 +1853,12 @@
       "stability": {
         "batting": {
           "n": 499,
-          "model": 0.759,
+          "model": 0.752,
           "rawFormSR": 0.454
         },
         "bowling": {
           "n": 408,
-          "model": 0.575,
+          "model": 0.549,
           "rawFormEconomy": 0.44
         }
       }
@@ -1781,17 +1884,18 @@
         "selectionMaxShare": 1,
         "cohortCentre": "top10",
         "tierDestination": true,
-        "transferDestination": "topThird"
+        "transferDestination": "topThird",
+        "phaseWeighting": "own"
       },
       "predictive": {
         "batting": {
           "n": 392,
           "within": {
-            "model": 0.325,
+            "model": 0.326,
             "rawFormValue": 0.272,
             "rawFormRate": 0.268
           },
-          "model": 0.304,
+          "model": 0.305,
           "modelTiered": 0.315,
           "rawFormValue": 0.279,
           "rawFormRate": 0.268,
@@ -1808,12 +1912,12 @@
         "bowling": {
           "n": 324,
           "within": {
-            "model": 0.188,
+            "model": 0.183,
             "rawFormValue": 0.087,
             "rawFormRate": 0.102
           },
-          "model": 0.177,
-          "modelTiered": 0.168,
+          "model": 0.172,
+          "modelTiered": 0.163,
           "rawFormValue": 0.044,
           "rawFormRate": 0.094,
           "careerRate": 0.114,
@@ -1830,12 +1934,12 @@
       "stability": {
         "batting": {
           "n": 499,
-          "model": 0.761,
+          "model": 0.753,
           "rawFormSR": 0.454
         },
         "bowling": {
           "n": 408,
-          "model": 0.569,
+          "model": 0.544,
           "rawFormEconomy": 0.44
         }
       }
@@ -1861,13 +1965,14 @@
         "selectionMaxShare": 1,
         "cohortCentre": "top10",
         "tierDestination": true,
-        "transferDestination": "topThird"
+        "transferDestination": "topThird",
+        "phaseWeighting": "own"
       },
       "predictive": {
         "batting": {
           "n": 392,
           "within": {
-            "model": 0.328,
+            "model": 0.329,
             "rawFormValue": 0.272,
             "rawFormRate": 0.268
           },
@@ -1888,12 +1993,12 @@
         "bowling": {
           "n": 324,
           "within": {
-            "model": 0.192,
+            "model": 0.188,
             "rawFormValue": 0.087,
             "rawFormRate": 0.102
           },
-          "model": 0.183,
-          "modelTiered": 0.174,
+          "model": 0.178,
+          "modelTiered": 0.169,
           "rawFormValue": 0.044,
           "rawFormRate": 0.094,
           "careerRate": 0.114,
@@ -1910,12 +2015,12 @@
       "stability": {
         "batting": {
           "n": 499,
-          "model": 0.763,
+          "model": 0.755,
           "rawFormSR": 0.454
         },
         "bowling": {
           "n": 408,
-          "model": 0.601,
+          "model": 0.575,
           "rawFormEconomy": 0.44
         }
       }
@@ -1941,18 +2046,19 @@
         "selectionMaxShare": 1,
         "cohortCentre": "top10",
         "tierDestination": true,
-        "transferDestination": "topThird"
+        "transferDestination": "topThird",
+        "phaseWeighting": "own"
       },
       "predictive": {
         "batting": {
           "n": 392,
           "within": {
-            "model": 0.326,
+            "model": 0.327,
             "rawFormValue": 0.272,
             "rawFormRate": 0.268
           },
-          "model": 0.305,
-          "modelTiered": 0.315,
+          "model": 0.306,
+          "modelTiered": 0.316,
           "rawFormValue": 0.279,
           "rawFormRate": 0.268,
           "careerRate": 0.259,
@@ -1968,12 +2074,12 @@
         "bowling": {
           "n": 324,
           "within": {
-            "model": 0.187,
+            "model": 0.183,
             "rawFormValue": 0.087,
             "rawFormRate": 0.102
           },
-          "model": 0.177,
-          "modelTiered": 0.168,
+          "model": 0.172,
+          "modelTiered": 0.163,
           "rawFormValue": 0.044,
           "rawFormRate": 0.094,
           "careerRate": 0.114,
@@ -1990,12 +2096,12 @@
       "stability": {
         "batting": {
           "n": 499,
-          "model": 0.752,
+          "model": 0.741,
           "rawFormSR": 0.454
         },
         "bowling": {
           "n": 408,
-          "model": 0.566,
+          "model": 0.537,
           "rawFormEconomy": 0.44
         }
       }
@@ -2021,7 +2127,8 @@
         "selectionMaxShare": 1,
         "cohortCentre": "top10",
         "tierDestination": true,
-        "transferDestination": "topThird"
+        "transferDestination": "topThird",
+        "phaseWeighting": "own"
       },
       "predictive": {
         "batting": {
@@ -2031,7 +2138,7 @@
             "rawFormValue": 0.272,
             "rawFormRate": 0.268
           },
-          "model": 0.305,
+          "model": 0.304,
           "modelTiered": 0.315,
           "rawFormValue": 0.279,
           "rawFormRate": 0.268,
@@ -2048,12 +2155,12 @@
         "bowling": {
           "n": 324,
           "within": {
-            "model": 0.192,
+            "model": 0.187,
             "rawFormValue": 0.087,
             "rawFormRate": 0.102
           },
-          "model": 0.182,
-          "modelTiered": 0.173,
+          "model": 0.177,
+          "modelTiered": 0.167,
           "rawFormValue": 0.044,
           "rawFormRate": 0.094,
           "careerRate": 0.114,
@@ -2070,12 +2177,12 @@
       "stability": {
         "batting": {
           "n": 499,
-          "model": 0.767,
+          "model": 0.761,
           "rawFormSR": 0.454
         },
         "bowling": {
           "n": 408,
-          "model": 0.598,
+          "model": 0.575,
           "rawFormEconomy": 0.44
         }
       }
@@ -2101,7 +2208,8 @@
         "selectionMaxShare": 1,
         "cohortCentre": "top10",
         "tierDestination": true,
-        "transferDestination": "topThird"
+        "transferDestination": "topThird",
+        "phaseWeighting": "own"
       },
       "predictive": {
         "batting": {
@@ -2128,12 +2236,12 @@
         "bowling": {
           "n": 324,
           "within": {
-            "model": 0.188,
+            "model": 0.183,
             "rawFormValue": 0.087,
             "rawFormRate": 0.102
           },
-          "model": 0.178,
-          "modelTiered": 0.17,
+          "model": 0.173,
+          "modelTiered": 0.164,
           "rawFormValue": 0.044,
           "rawFormRate": 0.094,
           "careerRate": 0.114,
@@ -2150,12 +2258,12 @@
       "stability": {
         "batting": {
           "n": 499,
-          "model": 0.759,
+          "model": 0.75,
           "rawFormSR": 0.454
         },
         "bowling": {
           "n": 408,
-          "model": 0.586,
+          "model": 0.56,
           "rawFormEconomy": 0.44
         }
       }
@@ -2181,18 +2289,19 @@
         "selectionMaxShare": 1,
         "cohortCentre": "top10",
         "tierDestination": true,
-        "transferDestination": "topThird"
+        "transferDestination": "topThird",
+        "phaseWeighting": "own"
       },
       "predictive": {
         "batting": {
           "n": 392,
           "within": {
-            "model": 0.329,
+            "model": 0.33,
             "rawFormValue": 0.272,
             "rawFormRate": 0.268
           },
-          "model": 0.308,
-          "modelTiered": 0.318,
+          "model": 0.309,
+          "modelTiered": 0.319,
           "rawFormValue": 0.279,
           "rawFormRate": 0.268,
           "careerRate": 0.259,
@@ -2208,12 +2317,12 @@
         "bowling": {
           "n": 324,
           "within": {
-            "model": 0.191,
+            "model": 0.186,
             "rawFormValue": 0.087,
             "rawFormRate": 0.102
           },
-          "model": 0.181,
-          "modelTiered": 0.171,
+          "model": 0.176,
+          "modelTiered": 0.166,
           "rawFormValue": 0.044,
           "rawFormRate": 0.094,
           "careerRate": 0.114,
@@ -2230,12 +2339,12 @@
       "stability": {
         "batting": {
           "n": 499,
-          "model": 0.761,
+          "model": 0.753,
           "rawFormSR": 0.454
         },
         "bowling": {
           "n": 408,
-          "model": 0.584,
+          "model": 0.558,
           "rawFormEconomy": 0.44
         }
       }
@@ -2261,18 +2370,19 @@
         "selectionMaxShare": 1,
         "cohortCentre": "top10",
         "tierDestination": true,
-        "transferDestination": "topThird"
+        "transferDestination": "topThird",
+        "phaseWeighting": "own"
       },
       "predictive": {
         "batting": {
           "n": 392,
           "within": {
-            "model": 0.326,
+            "model": 0.327,
             "rawFormValue": 0.272,
             "rawFormRate": 0.268
           },
           "model": 0.305,
-          "modelTiered": 0.315,
+          "modelTiered": 0.316,
           "rawFormValue": 0.279,
           "rawFormRate": 0.268,
           "careerRate": 0.259,
@@ -2288,12 +2398,12 @@
         "bowling": {
           "n": 324,
           "within": {
-            "model": 0.182,
+            "model": 0.179,
             "rawFormValue": 0.087,
             "rawFormRate": 0.102
           },
-          "model": 0.172,
-          "modelTiered": 0.163,
+          "model": 0.168,
+          "modelTiered": 0.158,
           "rawFormValue": 0.044,
           "rawFormRate": 0.094,
           "careerRate": 0.114,
@@ -2310,12 +2420,12 @@
       "stability": {
         "batting": {
           "n": 499,
-          "model": 0.761,
+          "model": 0.753,
           "rawFormSR": 0.454
         },
         "bowling": {
           "n": 408,
-          "model": 0.553,
+          "model": 0.524,
           "rawFormEconomy": 0.44
         }
       }
@@ -2341,18 +2451,19 @@
         "selectionMaxShare": 1,
         "cohortCentre": "top10",
         "tierDestination": true,
-        "transferDestination": "topThird"
+        "transferDestination": "topThird",
+        "phaseWeighting": "own"
       },
       "predictive": {
         "batting": {
           "n": 392,
           "within": {
-            "model": 0.326,
+            "model": 0.327,
             "rawFormValue": 0.272,
             "rawFormRate": 0.268
           },
           "model": 0.305,
-          "modelTiered": 0.315,
+          "modelTiered": 0.316,
           "rawFormValue": 0.279,
           "rawFormRate": 0.268,
           "careerRate": 0.259,
@@ -2368,12 +2479,12 @@
         "bowling": {
           "n": 324,
           "within": {
-            "model": 0.198,
+            "model": 0.194,
             "rawFormValue": 0.087,
             "rawFormRate": 0.102
           },
-          "model": 0.189,
-          "modelTiered": 0.181,
+          "model": 0.184,
+          "modelTiered": 0.175,
           "rawFormValue": 0.044,
           "rawFormRate": 0.094,
           "careerRate": 0.114,
@@ -2390,12 +2501,12 @@
       "stability": {
         "batting": {
           "n": 499,
-          "model": 0.761,
+          "model": 0.753,
           "rawFormSR": 0.454
         },
         "bowling": {
           "n": 408,
-          "model": 0.637,
+          "model": 0.615,
           "rawFormEconomy": 0.44
         }
       }
@@ -2421,18 +2532,19 @@
         "selectionMaxShare": 1,
         "cohortCentre": "top10",
         "tierDestination": true,
-        "transferDestination": "topThird"
+        "transferDestination": "topThird",
+        "phaseWeighting": "own"
       },
       "predictive": {
         "batting": {
           "n": 392,
           "within": {
-            "model": 0.33,
+            "model": 0.332,
             "rawFormValue": 0.272,
             "rawFormRate": 0.268
           },
-          "model": 0.31,
-          "modelTiered": 0.321,
+          "model": 0.312,
+          "modelTiered": 0.322,
           "rawFormValue": 0.279,
           "rawFormRate": 0.268,
           "careerRate": 0.259,
@@ -2448,12 +2560,12 @@
         "bowling": {
           "n": 324,
           "within": {
-            "model": 0.19,
+            "model": 0.186,
             "rawFormValue": 0.087,
             "rawFormRate": 0.102
           },
-          "model": 0.18,
-          "modelTiered": 0.17,
+          "model": 0.176,
+          "modelTiered": 0.165,
           "rawFormValue": 0.044,
           "rawFormRate": 0.094,
           "careerRate": 0.114,
@@ -2470,12 +2582,12 @@
       "stability": {
         "batting": {
           "n": 499,
-          "model": 0.756,
+          "model": 0.748,
           "rawFormSR": 0.454
         },
         "bowling": {
           "n": 408,
-          "model": 0.579,
+          "model": 0.554,
           "rawFormEconomy": 0.44
         }
       }
@@ -2501,18 +2613,19 @@
         "selectionMaxShare": 1,
         "cohortCentre": "top10",
         "tierDestination": true,
-        "transferDestination": "topThird"
+        "transferDestination": "topThird",
+        "phaseWeighting": "own"
       },
       "predictive": {
         "batting": {
           "n": 392,
           "within": {
-            "model": 0.303,
+            "model": 0.312,
             "rawFormValue": 0.272,
             "rawFormRate": 0.268
           },
-          "model": 0.297,
-          "modelTiered": 0.305,
+          "model": 0.307,
+          "modelTiered": 0.314,
           "rawFormValue": 0.279,
           "rawFormRate": 0.268,
           "careerRate": 0.259,
@@ -2528,12 +2641,12 @@
         "bowling": {
           "n": 324,
           "within": {
-            "model": 0.156,
+            "model": 0.161,
             "rawFormValue": 0.087,
             "rawFormRate": 0.102
           },
-          "model": 0.146,
-          "modelTiered": 0.12,
+          "model": 0.151,
+          "modelTiered": 0.127,
           "rawFormValue": 0.044,
           "rawFormRate": 0.094,
           "careerRate": 0.114,
@@ -2550,12 +2663,12 @@
       "stability": {
         "batting": {
           "n": 499,
-          "model": 0.757,
+          "model": 0.748,
           "rawFormSR": 0.454
         },
         "bowling": {
           "n": 408,
-          "model": 0.66,
+          "model": 0.651,
           "rawFormEconomy": 0.44
         }
       }
@@ -2581,18 +2694,19 @@
         "selectionMaxShare": 1,
         "cohortCentre": "top10",
         "tierDestination": true,
-        "transferDestination": "topThird"
+        "transferDestination": "topThird",
+        "phaseWeighting": "own"
       },
       "predictive": {
         "batting": {
           "n": 392,
           "within": {
-            "model": 0.302,
+            "model": 0.309,
             "rawFormValue": 0.272,
             "rawFormRate": 0.268
           },
-          "model": 0.284,
-          "modelTiered": 0.295,
+          "model": 0.293,
+          "modelTiered": 0.302,
           "rawFormValue": 0.279,
           "rawFormRate": 0.268,
           "careerRate": 0.259,
@@ -2608,12 +2722,12 @@
         "bowling": {
           "n": 324,
           "within": {
-            "model": 0.178,
+            "model": 0.184,
             "rawFormValue": 0.087,
             "rawFormRate": 0.102
           },
-          "model": 0.166,
-          "modelTiered": 0.146,
+          "model": 0.173,
+          "modelTiered": 0.155,
           "rawFormValue": 0.044,
           "rawFormRate": 0.094,
           "careerRate": 0.114,
@@ -2630,12 +2744,12 @@
       "stability": {
         "batting": {
           "n": 499,
-          "model": 0.805,
+          "model": 0.801,
           "rawFormSR": 0.454
         },
         "bowling": {
           "n": 408,
-          "model": 0.646,
+          "model": 0.634,
           "rawFormEconomy": 0.44
         }
       }
@@ -2693,7 +2807,7 @@
         "2024"
       ],
       "spanYears": 15,
-      "bestDisplay": 98
+      "bestDisplay": 99
     },
     {
       "personId": "0dc00542",
@@ -2746,29 +2860,60 @@
         "2024"
       ],
       "spanYears": 8,
-      "bestDisplay": 96
+      "bestDisplay": 95
     }
   ],
   "audit": {
     "byTier": {
       "Elite": {
         "n": 35,
-        "meanDisplay": 79.4
+        "meanDisplay": 79
       },
       "Gold": {
         "n": 63,
-        "meanDisplay": 73.7
+        "meanDisplay": 73.6
       },
       "Silver": {
         "n": 65,
-        "meanDisplay": 68.4
+        "meanDisplay": 68.7
       },
       "Bronze": {
         "n": 59,
-        "meanDisplay": 66.7
+        "meanDisplay": 67
       }
     },
-    "spearman": 0.294,
+    "spearman": 0.279,
+    "tiers": {
+      "exact": 0.302,
+      "withinOne": 0.779,
+      "spearman": 0.313,
+      "confusion": {
+        "Elite": {
+          "Bronze": 0,
+          "Silver": 5,
+          "Gold": 12,
+          "Elite": 18
+        },
+        "Gold": {
+          "Bronze": 0,
+          "Silver": 19,
+          "Gold": 22,
+          "Elite": 22
+        },
+        "Silver": {
+          "Bronze": 7,
+          "Silver": 21,
+          "Gold": 22,
+          "Elite": 15
+        },
+        "Bronze": {
+          "Bronze": 6,
+          "Silver": 24,
+          "Gold": 20,
+          "Elite": 9
+        }
+      }
+    },
     "matched": 222
   }
 }

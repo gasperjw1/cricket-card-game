@@ -316,6 +316,21 @@ his death edge) and by Cricket Chairman's bowling display (overall grade plus a 
 - **Platform**: the game will be a website or app, not a Messenger Instant Game, so the card face
   has room for the full phase row and the share-card constraints no longer apply.
 
+**Built 2026-10-30** (`rate.ts`, `data/config/tiers.json`, 29 tests). Headline phase weights =
+own exposure with a 60-ball population prior (harness: a tie with the fixed weights on prediction,
+batting 0.327 vs 0.326 and bowling 0.186 vs 0.190 within-edition, so the design reason decides).
+Tier score = best skill percentile + 0.1 × max(0, second − 0.5), thresholds 0.92 / 0.72 / 0.40,
+caps Gold below 120 faced / 144 bowled and Silver when low-sample. Cutting at *shares* of the score
+distribution was tried and dropped: it put Kohli 2024 (55th batting percentile) in Bronze because a
+specialist's score is one percentile while most players' best-of-two sits higher. Result: Elite 7%,
+Gold 21%, Silver 65%, Bronze 7% (2007 has no Elite: every 2007 card is thin-capped). Card audit
+against the 222 hand-rated Swipe Sixer cards, best-edition tier vs card tier: exact 30%, within one
+78%, Spearman 0.31. Outcomes on the review cases: Sammy 2016 Gold (death weight 0.75, capped from
+Elite by the 120-ball rule), Kohli 2016 Elite, Kohli 2024 Silver (hazard credit still parked),
+Munro 2016 Gold (capped), Bumrah 2024 Gold (capped: injury-thin window), Erasmus 2024 Elite and
+Sundar 2026 Elite (both for Yash's review). `RATINGS.md` now lists Elite and Gold cards per edition
+with role, archetype and both skill numbers.
+
 ### 5.3 Tournament Form (*DECIDED*, parameters *PROPOSED*)
 
 - The player's World Cup performance in the drafted edition is **not** the base rating; it is
@@ -883,9 +898,9 @@ Resolved 2026-10-30: card face is a **tier** (Bronze / Silver / Gold / Elite, Sw
 **role-relative** so a finisher's tier does not drop for facing few balls; **per-phase ratings
 shown for batting and bowling**; platform is a **website or app**, not Messenger. Details in §5.6.
 
-Still open: none blocking Phase 2. Next in sequence: role-relative tiers in `rate.ts` (role-weighted
-value, tier field, config thresholds, audit test against the hand-rated roster) → regenerate the
-2016 / 2024 / 2026 lists as tier lists → Yash review (named errors become tests) → Phase 2 engine.
+Still open: none blocking Phase 2. Tiers built 2026-10-30 (§5.6). Next in sequence: Yash reviews the
+Elite / Gold lists per edition in `wcdraft/data/out/RATINGS.md` (named errors become tests) → Phase 2
+engine.
 
 ---
 

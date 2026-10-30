@@ -1,0 +1,10 @@
+{
+  "_comment": "Card tiers (spec §5.6). tierScore = best of the batting and bowling percentiles (each among rated player-editions of that skill) + allRoundBonus × max(0, second − 0.5). `thresholds` are percentile cut-offs on that score (Elite = top 8% of a skill) and are the rarity dial: tune with unbeaten-run rarity once the engine exists. Caps: a best skill on a thin form sample cannot exceed `thin.tier`; a low-sample best skill cannot exceed `lowSample`. phaseBadge marks a per-phase number as thin below these form+career balls.",
+  "thresholds": { "elite": 0.92, "gold": 0.72, "silver": 0.4 },
+  "allRoundBonus": 0.1,
+  "caps": {
+    "lowSample": "Silver",
+    "thin": { "batBalls": 120, "bowlBalls": 144, "tier": "Gold" }
+  },
+  "phaseBadge": { "batBalls": 60, "bowlBalls": 72 }
+}
