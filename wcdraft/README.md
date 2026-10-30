@@ -149,6 +149,18 @@ npm run ratings:build --workspace wcdraft   # ≈16 s → data/out/ratings/<edit
    draft client's sync script lists squads whose cards are mostly blank (`blankSquads` in
    `index.json`: only Namibia standing in for Afghanistan 2012) and the spin skips them; they still
    play in the simulated tournament. Phase numbers shrink toward the median exactly like the headline.
+   **Position prior** (2026-10-30, after Bumrah made 60 in a playtest): the bottom of the batting
+   shrinkage chain is no longer the all-batters population but the pooled relative vector of the
+   edition's batters in the player's own position band (openers, 3–4, 5–7, 8–11; pre-tournament
+   positions only; `MODEL.positionPrior`). A No. 10 with no record is an average No. 10: 2024
+   tail-enders' mid-overs hazard moved from the population's 5.1% to 5.7% per ball (death overs
+   ≈ 11%), scoring from 1.04 to 0.99 runs a ball. Bowling still rests on neutral.
+   **Pace/spin split** (same day): each batter's form + career balls are also kept by the bowler's
+   class (labels file), and `batting.byBowlClass` holds his relative vector against pace and against
+   spin divided by his overall one, shrunk (200 balls, hazard 600) and clipped to 0.6–1.6. The
+   engine multiplies the striker's vector by it for the bowler's class, on top of the population
+   hand × class matchup term; the card shows "v pace / v spin" as the headline shifted by that edge
+   once he has faced 60 balls of the class (157 of 284 2024 player-editions carry both).
 9. **Tiers, roles and phases** (spec §5.6). The headline value weights phases by the player's own
    exposure (a finisher over the death overs he bats in, a new-ball bowler over the powerplay;
    population weights as a 60-ball prior), so the card `tier` is role-relative: the better skill

@@ -181,11 +181,13 @@ export function outcomeDistribution(striker: EnginePlayer, bowler: EnginePlayer,
   const bio = pow(situation.ballInOver(ctx.innings, phase, ctx.ballInOver), ENGINE.ballInOverExponent);
   const dots = ctx.requiredRpo !== null ? pow(situation.chaseDots(phase, ctx.wickets, ctx.consecutiveDots), ENGINE.chaseDotsExponent) : UNIT;
   const matchup = pow(situation.matchup(striker.hand, bowler.bowlClass, phase), ENGINE.matchupExponent);
+  // The striker's own pace/spin residual (within-player, on top of the population hand × class term).
+  const vsClass = bowler.bowlClass ? striker.batVsClass[bowler.bowlClass.startsWith("pace") ? "pace" : "spin"] : UNIT;
   const scoring = ctx.scoringFactor * ctx.playerFactor * Math.pow(env.venueFactor, ENGINE.venueExponent) * ENGINE.scoringCalibration * (phase === "death" ? ENGINE.deathCalibration : 1);
   const out = {} as Vector;
   let total = 0;
   for (const k of OUTCOMES) {
-    let p = base[k] * Math.pow(bat[k], ENGINE.batExponent) * Math.pow(bowl[k], ENGINE.bowlExponent) * tau[k] * chase[k] * streak[k] * setness[k] * bio[k] * dots[k] * matchup[k];
+    let p = base[k] * Math.pow(bat[k] * vsClass[k], ENGINE.batExponent) * Math.pow(bowl[k], ENGINE.bowlExponent) * tau[k] * chase[k] * streak[k] * setness[k] * bio[k] * dots[k] * matchup[k];
     if (k === "W") p *= (ctx.freeHit ? 0.08 : 1) * ENGINE.hazardCalibration; // a run out is still possible off a free hit
     else if (SCORING.includes(k)) p *= scoring;
     out[k] = Math.max(0, p);

@@ -14,7 +14,7 @@
 import { BowlingUsageAnalysis } from "../analysis/bowling-usage.js";
 import { ContextPopulation } from "../analysis/context-population.js";
 import { SituationAnalysis, type SituationTables } from "../analysis/situation.js";
-import { MatchupAnalysis, type MatchupTables } from "../analysis/matchups.js";
+import { MatchupAnalysis, bowlClassOf, type MatchupTables } from "../analysis/matchups.js";
 import { setBowlingTypeLookup } from "../analysis/environment.js";
 import { buildCaptaincy, type CaptaincyTables } from "../analysis/captaincy.js";
 import { DomesticAnalysis, type DomesticOut } from "../analysis/domestic.js";
@@ -181,6 +181,10 @@ export function runBuild(log: (msg: string) => void = () => {}): BuildResult {
   const labels = readLabels();
   const matchups = new MatchupAnalysis(labels);
   setBowlingTypeLookup((id) => labels.get(id)?.bowlingType);
+  store.setBowlGroupLookup((id) => {
+    const cls = bowlClassOf(labels.get(id)?.bowlingType);
+    return cls === null ? null : cls.startsWith("pace") ? "pace" : "spin";
+  });
   {
     const eloPass = new TeamStrengthAnalysis(config.isFullMember);
     for (const entry of index) {

@@ -49,6 +49,10 @@ knockouts). Classic mode only; Cricket-IQ, head-to-head, leaderboard and share l
   (T20Is, the last four league seasons, or ODIs; see `wcdraft/README.md` ratings item 8); otherwise
   "rarely bats" / "rarely bowls". Every card carries the batting hand (RHB/LHB) and, for anyone
   who bowls, the Cricinfo bowling code (RFM, OB, SLA …, spelled out on hover).
+- **Against pace, against spin.** A card's "v pace / v spin" line is the batting number shifted by
+  the player's own split by bowler type (`batting.byBowlClass`, see `wcdraft/README.md` item 8),
+  shown once he has faced 60 balls of that class; the stronger side is tinted when the gap is five
+  points or more. The engine applies the same split ball by ball.
 - **Batting out of position** (`src/game/slots.ts`, tested). The engine applies a batter's
   per-phase vectors ball by ball, so a No. 3 at No. 7 is judged on his death-overs numbers. Each
   slot carries the phase mix that position actually faces in the identity's edition

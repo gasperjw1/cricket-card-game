@@ -26,6 +26,9 @@ export interface PoolPlayer {
   domesticBalls: { bat: number; bowl: number };
   /** Phase weights behind the headline batting number (the overs he actually batted in); see game/slots.ts. */
   batWeights: Record<Phase, number>;
+  /** Batting number against pace and against spin (headline shifted by his own split); null until 60 balls faced against that class. */
+  vsPace: number | null;
+  vsSpin: number | null;
   squadPlayer: boolean;
   position: number | null;
   positionless: boolean;

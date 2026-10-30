@@ -1096,6 +1096,11 @@ fielding. The simulation is not required to reproduce real results (§11).
   **the keeper does not bowl**: a lone keeper-bowler keeps and loses his overs, a second keeper who
   does not bowl takes the gloves and frees him; the engine marks the designated keeper unable to
   bowl. The draft client is served at `/draft` by the Swipe Sixer server with a homepage button.
+  Playtest follow-ups the same day: **position prior** for batting (a thin record rests on its
+  position band's pooled vector, not the all-batters population; Bumrah's 60 came from a tail-ender
+  carrying a middle-order survival rate in the mid overs), **pace/spin split** per batter (shown on
+  the card, applied by the engine on top of the hand × class term), and the standings tables redrawn
+  as proper tables (position, P W L NR Pts NRR, tabular figures, content-sized columns).
 - Not yet built: Cricket-IQ mode (names only), head-to-head, leaderboard (performance score beside
   squad rating), share links, Timeless and Tournament Form tags on cards, ratings-visible career
   stats, coach build bonuses and Dynamic Duos (§5.10–5.11), Positionless slot bonus, rarity tuning

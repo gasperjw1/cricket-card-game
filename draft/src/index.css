@@ -72,6 +72,9 @@ h3 { font-size: 16px; margin: 0 0 8px; }
 .phases .k { color: var(--muted); }
 .phases small { color: var(--muted); margin-left: 4px; }
 .phases small.muted { font-style: italic; }
+.vs-line { display: flex; gap: 6px; align-items: baseline; margin-top: 4px; font-size: 13px; }
+.vs-line .k { color: var(--muted); font-size: 12px; }
+.vs-line .k + b { margin-right: 10px; }
 
 .draft { display: grid; grid-template-columns: 1fr; gap: 14px; }
 @media (min-width: 900px) { .draft { grid-template-columns: 1.4fr 1fr; align-items: start; } .lineup { position: sticky; top: 12px; } }
@@ -135,6 +138,21 @@ h3 { font-size: 16px; margin: 0 0 8px; }
 .leaders-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(360px, 1fr)); gap: 12px 20px; margin-top: 10px; }
 .leaders td:first-child { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 220px; }
 .leaders .rank { display: inline-block; min-width: 18px; color: var(--muted); font-size: 12px; }
+
+/* Group standings: content-sized numeric columns, a flexible team column, tabular figures */
+.standings-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(420px, 1fr)); gap: 16px 28px; }
+.standings { border-collapse: collapse; width: 100%; max-width: 560px; font-size: 14px; font-variant-numeric: tabular-nums; }
+.standings caption { text-align: left; font-weight: 700; padding: 0 0 6px 4px; caption-side: top; }
+.standings th { font-weight: 600; color: var(--muted); font-size: 12px; text-transform: uppercase; letter-spacing: 0.04em; padding: 6px 8px; border-bottom: 2px solid var(--line); text-align: right; }
+.standings td { padding: 7px 8px; border-bottom: 1px solid var(--line); text-align: right; width: 44px; white-space: nowrap; }
+.standings th.team, .standings td.team { text-align: left; width: auto; }
+.standings th.pos, .standings td.pos { width: 28px; text-align: right; color: var(--muted); padding-right: 2px; }
+.standings th.nrr, .standings td.nrr { width: 68px; }
+.standings td.pts { font-weight: 700; }
+.standings tbody tr:nth-child(even) td { background: rgba(255, 255, 255, 0.02); }
+.standings tr.me td { background: rgba(61, 214, 140, 0.1); font-weight: 700; }
+.standings tr.me td.pos { color: var(--accent); }
+@media (max-width: 480px) { .standings-grid { grid-template-columns: 1fr; } .standings { font-size: 13px; } .standings td, .standings th { padding: 6px 5px; } }
 
 /* Draft guard */
 .player.ineligible { opacity: 0.38; filter: grayscale(0.6); cursor: not-allowed; }

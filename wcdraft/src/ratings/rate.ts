@@ -19,7 +19,7 @@ import type { OutcomeKey, Phase } from "../cricsheet/match.js";
 import type { BuildResult } from "../pipeline/build.js";
 import { ELO_BINS, eloBin, type EloBin } from "../analysis/team-strength.js";
 import { paths, readJson } from "../util/io.js";
-import { MODEL, OUTCOMES, PHASE_LIST, type BattingArchetype, type BlockIn, type BowlingArchetype, type EditionPopulations, type PhaseVectors, type PlayerEditionIn, type PlayerRating, type SkillRating, type Tier as CardTier, type TierConfig, type Vector } from "./model.js";
+import { MODEL, OUTCOMES, PHASE_LIST, RUNS, type BattingArchetype, type BlockIn, type BowlingArchetype, type EditionPopulations, type PhaseVectors, type PlayerEditionIn, type PlayerRating, type SkillRating, type Tier as CardTier, type TierConfig, type Vector } from "./model.js";
 import { rowMixtureInterp, smoothTwoWay, type TwoWayVectors } from "./two-way.js";
 import { battingValue, blend, bowlingValue, expectedRuns, normalise, relative, shrink, shrinkWithHazard, toVector, transport, UNIFORM } from "./vectors.js";
 
@@ -41,6 +41,8 @@ export interface EditionContext {
   tournamentByElo: Record<Skill, Record<string, PhaseVectors>>;
   /** Smoothed two-way tables (team bin × opponent bin), pooled over phases, from the form window. */
   twoWay: Record<Skill, TwoWayVectors>;
+  /** Pooled batting relative vector of the edition's batters by position band (the prior centre for thin records); "all" is neutral. */
+  bandCentre: Record<PriorBand | "all", Vector>;
   /** The edition's opponent mix: balls per opponent-Elo bin faced in the tournament (all teams). */
   editionOpponentMix: Record<Skill, Record<string, number>>;
   /** Scoring factor per venue string in the form window (1 = window average), shrunk toward 1. */
@@ -110,9 +112,26 @@ export function buildContexts(r: BuildResult): Map<string, EditionContext> {
     ) as PhaseVectors;
     const mix = (src: typeof w, skill: "battingByOppElo" | "bowlingByOppElo"): Record<string, number> =>
       Object.fromEntries(Object.entries(src?.[skill] ?? {}).map(([bin, phases]) => [bin, PHASE_LIST.reduce((s, p) => s + (phases[p]?.balls ?? 0), 0)]));
+    // Position-band prior centres: every batter in the edition pooled by where he bats (form window
+    // and career to date, pre-tournament), observed ÷ context-expected, shrunk toward neutral.
+    const bandCounts = Object.fromEntries(PRIOR_BANDS.map((b) => [b, { o: zeroCounts(), e: zeroCounts(), n: 0 }])) as Record<PriorBand, { o: Record<OutcomeKey, number>; e: Record<OutcomeKey, number>; n: number }>;
+    for (const pe of r.playerEditions as unknown as PlayerEditionIn[]) {
+      if (pe.editionId !== e.id) continue;
+      const band = priorBand(pe);
+      if (!band) continue;
+      for (const block of [pe.form, pe.careerToDate]) for (const p of PHASE_LIST) {
+        const pc = block.bat.phases[p];
+        if (!pc) continue;
+        bandCounts[band].n += pc.balls;
+        for (const k of OUTCOMES) { bandCounts[band].o[k] += pc.outcomes[k]; bandCounts[band].e[k] += pc.expected?.[k] ?? 0; }
+      }
+    }
+    const bandCentre = Object.fromEntries(PRIOR_BANDS.map((b) => [b, expectedRelative(bandCounts[b].o, bandCounts[b].e, bandCounts[b].n, UNIT, MODEL.positionPrior.strength, MODEL.positionPrior.strength)])) as Record<PriorBand | "all", Vector>;
+    bandCentre.all = UNIT;
     out.set(e.id, {
       editionId: e.id,
       year: e.year,
+      bandCentre,
       editionPop,
       editionBowlPop,
       window,
@@ -260,6 +279,8 @@ function rateSkill(pe: PlayerEditionIn, ctx: EditionContext, skill: Skill, optio
   const odi = odiRelative(pe, ctx, skill);
   // The ODI prior carries full weight from `odiFullBalls`; below that, in proportion.
   const odiWeight = odi ? MODEL.odiPriorStrength * Math.min(1, odi.balls / MODEL.odiFullBalls) : 0;
+  // Where a thin record rests: the position band's pooled vector for batting, neutral for bowling.
+  const base0 = baseCentre(pe, ctx, skill);
   const vectors = {} as PhaseVectors;
   const rel = {} as PhaseVectors;
   const carriedAll = {} as PhaseVectors;
@@ -357,10 +378,10 @@ function rateSkill(pe: PlayerEditionIn, ctx: EditionContext, skill: Skill, optio
       if (cell.source === "form") source = "form";
       else if (source === "population") source = cell.source;
     } else if (odi) {
-      phaseRel = blend([{ rel: odi.rel, weight: odiWeight }, { rel: UNIT, weight: c }]);
+      phaseRel = blend([{ rel: odi.rel, weight: odiWeight }, { rel: base0, weight: c }]);
       if (source === "population") source = "odi";
     } else {
-      phaseRel = UNIT;
+      phaseRel = base0;
     }
     // Thin form + usable ODI prior: let the ODI evidence pull the relative vector toward itself.
     if (odi && formBalls + careerBalls < c) {
@@ -384,6 +405,7 @@ function rateSkill(pe: PlayerEditionIn, ctx: EditionContext, skill: Skill, optio
     valuePop,
     vectors,
     relative: rel,
+    byBowlClass: skill === "bat" ? bowlClassSplit(pe) : null,
     value: +value.toFixed(2),
     valueByPhase: Object.fromEntries(PHASE_LIST.map((p) => [p, +valueByPhase[p].toFixed(2)])) as Record<Phase, number>,
     evidence: {
@@ -407,6 +429,70 @@ function rateSkill(pe: PlayerEditionIn, ctx: EditionContext, skill: Skill, optio
 }
 
 const UNIT: Vector = { "0": 1, "1": 1, "2": 1, "3": 1, "4": 1, "6": 1, W: 1 };
+
+/** Position bands for the batting prior (decided 2026-10-30): openers, 3–4, 5–7, 8–11. */
+export type PriorBand = "1-2" | "3-4" | "5-7" | "8-11";
+export const PRIOR_BANDS: PriorBand[] = ["1-2", "3-4", "5-7", "8-11"];
+const zeroCounts = (): Record<OutcomeKey, number> => ({ "0": 0, "1": 0, "2": 0, "3": 0, "4": 0, "6": 0, W: 0 });
+
+/** The band a player's pre-tournament batting positions put him in (form window first, then career); null with no innings. */
+export function priorBand(pe: PlayerEditionIn): PriorBand | null {
+  const src = Object.keys(pe.form.bat.positions).length ? pe.form.bat.positions : pe.careerToDate.bat.positions;
+  const weighted = Object.entries(src).map(([pos, n]) => [Number(pos), n] as [number, number]).sort((a, b) => a[0] - b[0]);
+  const total = weighted.reduce((a, [, n]) => a + n, 0);
+  if (total === 0) return null;
+  let acc = 0, median = weighted[weighted.length - 1]![0];
+  for (const [pos, n] of weighted) { acc += n; if (acc >= total / 2) { median = pos; break; } }
+  return median <= 2 ? "1-2" : median <= 4 ? "3-4" : median <= 7 ? "5-7" : "8-11";
+}
+
+/** The prior centre at the bottom of the shrinkage chain: the position band's pooled vector for batting, neutral for bowling. */
+function baseCentre(pe: PlayerEditionIn, ctx: EditionContext, skill: Skill): Vector {
+  if (skill !== "bat") return UNIT;
+  return ctx.bandCentre[priorBand(pe) ?? "all"];
+}
+
+/**
+ * Batting against pace and against spin: the player's pooled (form + career) relative vector by
+ * bowler class, divided by his pooled overall vector over the same balls, each shrunk toward
+ * neutral first, so a thin split sits at 1 and a real one shows. Clipped. Display is filled later.
+ */
+function bowlClassSplit(pe: PlayerEditionIn): NonNullable<SkillRating["byBowlClass"]> | null {
+  const cfg = MODEL.bowlClassSplit;
+  const sum = (pick: (b: BlockIn) => { balls: number; outcomes: Record<OutcomeKey, number>; expected?: Record<OutcomeKey, number> } | undefined) => {
+    const o = zeroCounts(), e = zeroCounts();
+    let n = 0;
+    for (const block of [pe.form, pe.careerToDate]) {
+      const pc = pick(block);
+      if (!pc) continue;
+      n += pc.balls;
+      for (const k of OUTCOMES) { o[k] += pc.outcomes[k]; e[k] += pc.expected?.[k] ?? 0; }
+    }
+    return { o, e, n };
+  };
+  const classes = (["pace", "spin"] as const).map((cls) => ({ cls, counts: sum((b) => b.bat.byBowlClass?.[cls]) }));
+  if (classes.every((c) => c.counts.n === 0)) return null;
+  // The overall vector over the same (labelled) balls, so the residual is a within-player contrast.
+  const all = { o: zeroCounts(), e: zeroCounts(), n: 0 };
+  for (const c of classes) { all.n += c.counts.n; for (const k of OUTCOMES) { all.o[k] += c.counts.o[k]; all.e[k] += c.counts.e[k]; } }
+  const allRel = expectedRelative(all.o, all.e, all.n, UNIT, cfg.priorStrength, cfg.hazardPriorStrength);
+  const out = {} as NonNullable<SkillRating["byBowlClass"]>;
+  for (const c of classes) {
+    const rel = expectedRelative(c.counts.o, c.counts.e, c.counts.n, UNIT, cfg.priorStrength, cfg.hazardPriorStrength);
+    out[c.cls] = {
+      rel: Object.fromEntries(OUTCOMES.map((k) => [k, +Math.min(cfg.clip[1], Math.max(cfg.clip[0], allRel[k] > 0 ? rel[k] / allRel[k] : 1)).toFixed(4)])) as Vector,
+      balls: c.counts.n,
+      display: null,
+    };
+  }
+  return out;
+}
+
+/** Log-edge of a class residual: scoring per ball up, hazard down (half weight), the number the card display shifts by. */
+export function splitEdge(rel: Vector, pop: Vector): number {
+  const runs = (v: Vector) => OUTCOMES.reduce((a, k) => a + RUNS[k] * v[k] * pop[k], 0);
+  return Math.log(Math.max(0.2, runs(rel) / Math.max(1e-6, runs(UNIT)))) - 0.5 * Math.log(Math.max(0.2, rel.W));
+}
 
 function positionBand(pe: PlayerEditionIn): PlayerRating["position"] {
   // Tournament positions count double: they are the edition's own evidence.
@@ -679,9 +765,16 @@ function rateSkillExpected(pe: PlayerEditionIn, ctx: EditionContext, skill: Skil
   // Level 0: the domestic T20 career (competition-relative), partially transferred, is the centre
   // the T20I career shrinks toward; neutral when the player has no domestic record.
   const dom = domesticCounts(pe, skill);
+  // The bottom of the chain is the position-band centre for batting (a No. 10 with no record is
+  // an average No. 10, not an average batter); neutral for bowling.
+  const base = baseCentre(pe, ctx, skill);
   const domesticCentre = dom
-    ? (Object.fromEntries(OUTCOMES.map((k) => [k, Math.pow(expectedRelative(dom.o, dom.e, dom.n, UNIT, MODEL.domestic.priorStrength, opts.hazardPriorStrength)[k], MODEL.domestic.transfer)])) as Vector)
-    : UNIT;
+    ? (() => {
+        // The domestic record shrinks toward the band centre; only part of its edge over that centre carries.
+        const d = expectedRelative(dom.o, dom.e, dom.n, base, MODEL.domestic.priorStrength, opts.hazardPriorStrength);
+        return Object.fromEntries(OUTCOMES.map((k) => [k, base[k] * Math.pow(d[k] / base[k], MODEL.domestic.transfer)])) as Vector;
+      })()
+    : base;
   const careerAll = get(pe.careerToDate, "all");
   const careerRel = expectedRelative(careerAll.o, careerAll.e, careerAll.n, domesticCentre, opts.careerPriorStrength, opts.hazardPriorStrength);
   const priorStrength = Math.max(c, Math.min(MODEL.careerPriorCap, 0.5 * careerAll.n));
@@ -853,9 +946,19 @@ export function rateAll(r: BuildResult, opts: RateOptions = {}): PlayerRating[] 
     const ev = s.evidence;
     const formBar = ev.source === "tournament" ? MODEL.shown.tournamentBalls[skill] : MODEL.shown.formBalls[skill];
     const shown = ev.formBalls >= formBar || ev.careerBalls >= MODEL.shown.careerBalls[skill] || backupVouches(ev, skill, pe.editionId);
+    const shownDisplay = display(conservative(s, skill));
+    // Pace/spin numbers: the headline shifted by the class edge, once the player has faced enough of that class.
+    const byBowlClass = s.byBowlClass && shown
+      ? (Object.fromEntries((["pace", "spin"] as const).map((cls) => {
+          const part = s.byBowlClass![cls];
+          const shift = part.balls >= MODEL.bowlClassSplit.minBalls ? Math.round(MODEL.bowlClassSplit.displayScale * splitEdge(part.rel, _valuePop.mid)) : null;
+          return [cls, { ...part, display: shift === null ? null : Math.max(MODEL.display.min, Math.min(MODEL.display.max, shownDisplay.display + shift)) }];
+        })) as NonNullable<SkillRating["byBowlClass"]>)
+      : s.byBowlClass;
     return {
       ...s,
-      ...display(conservative(s, skill)),
+      ...shownDisplay,
+      byBowlClass,
       shown,
       // Phase numbers shrink toward the median exactly like the headline, so they agree.
       displayByPhase: Object.fromEntries(PHASE_LIST.map((p) => [p, display(medians[skill] + (s.valueByPhase[p] - medians[skill]) * guard).display])) as Record<Phase, number>,

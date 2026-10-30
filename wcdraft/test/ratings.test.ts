@@ -188,6 +188,17 @@ describe("Phase 1 ratings", { skip: !ready && "archive not fetched" }, () => {
     assert.ok(rohit.batting.shown, "Rohit 2007 batting shown from the tournament");
     const mathews = get("AD Mathews", "2009");
     assert.ok(mathews.batting.shown || mathews.bowling.shown, "Mathews 2009 (debutant with a thin IPL record) has a card");
+    // Position prior: tail-enders rest on the tail's own pooled vector, so their mid-overs hazard sits
+    // above the all-batters population and their scoring below it, even with thin records.
+    const tail = r.filter((x) => x.editionId === "2024" && (x.position.median ?? 0) >= 9);
+    const top = r.filter((x) => x.editionId === "2024" && (x.position.median ?? 11) <= 3);
+    const meanW = (xs: typeof r) => xs.reduce((a, x) => a + x.batting.vectors.mid.W, 0) / xs.length;
+    assert.ok(meanW(tail) > 1.08 * meanW(top), `tail hazard ${meanW(tail).toFixed(4)} vs top ${meanW(top).toFixed(4)}`);
+    // Pace/spin split: a regular batter carries both numbers, a bowler who barely bats carries neither.
+    const kohliSplit = get("V Kohli", "2024").batting.byBowlClass!;
+    assert.ok(kohliSplit.pace.balls > 1000 && kohliSplit.spin.balls > 500 && kohliSplit.pace.display !== null && kohliSplit.spin.display !== null, "Kohli has a pace/spin split");
+    assert.equal(get("JJ Bumrah", "2024").batting.byBowlClass?.pace.display ?? null, null, "Bumrah's split is not shown");
+    for (const x of r) if (x.batting.byBowlClass) for (const cls of ["pace", "spin"] as const) for (const v of Object.values(x.batting.byBowlClass[cls].rel)) assert.ok(v >= 0.6 && v <= 1.6, `${x.name} split residual ${v}`);
     const blank = r.filter((x) => !x.batting.shown && !x.bowling.shown);
     assert.ok(blank.length < 30, `${blank.length} player-editions with nothing shown`);
     for (const x of blank) assert.equal(x.tier, "Bronze", `${x.name} ${x.editionId} has no record but is ${x.tier}`);

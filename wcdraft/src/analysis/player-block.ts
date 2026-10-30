@@ -39,7 +39,11 @@ export interface BatBlock {
   /** run-outs while at the non-striker's end (not charged to the batting vector) */
   nonStrikerRunOuts: number;
   phases: Record<Phase, PhaseCounts>;
+  /** Pooled over phases, by the bowler's class (added 2026-10-30 for the pace/spin split); balls with an unlabelled bowler are left out. */
+  byBowlClass: Record<BowlGroup, PhaseCounts>;
 }
+
+export type BowlGroup = "pace" | "spin";
 
 export interface BowlBlock {
   innings: number;
@@ -89,6 +93,7 @@ export function emptyBlock(): PlayerBlock {
       innings: 0, notOuts: 0, runs: 0, balls: 0, fours: 0, sixes: 0,
       highScore: 0, highScoreNotOut: false, fifties: 0, hundreds: 0, ducks: 0,
       positions: {}, dismissals: {}, nonStrikerRunOuts: 0, phases: emptyPhases(),
+      byBowlClass: { pace: emptyPhases().pp, spin: emptyPhases().pp },
     },
     bowl: {
       innings: 0, balls: 0, runs: 0, wickets: 0, wides: 0, noBalls: 0, dots: 0, fours: 0, sixes: 0,
@@ -121,7 +126,7 @@ export function addInnings(
   innings: Innings,
   blocks: (id: string) => PlayerBlock,
   touched: Set<string>,
-  opts: { phaseVectors?: boolean; context?: BallContext } = {},
+  opts: { phaseVectors?: boolean; context?: BallContext; bowlGroup?: (bowlerId: string) => BowlGroup | null } = {},
 ): void {
   // ODI innings pass phaseVectors: false — T20 phase boundaries mean nothing over 50 overs.
   const phaseVectors = (opts.phaseVectors ?? true) && !innings.reduced;
@@ -140,9 +145,15 @@ export function addInnings(
       pc.balls += 1;
       pc.runs += ball.runsBatter;
       pc.outcomes[outcomeKey(ball.runsBatter, strikerOut)] += 1;
-      if (opts.context) {
-        const e = opts.context.bat(ball);
-        for (const k of OUTCOME_KEYS) pc.expected[k] += e[k];
+      const e = opts.context ? opts.context.bat(ball) : null;
+      if (e) for (const k of OUTCOME_KEYS) pc.expected[k] += e[k];
+      const group = opts.bowlGroup?.(ball.bowler) ?? null;
+      if (group) {
+        const bc = bat.byBowlClass[group];
+        bc.balls += 1;
+        bc.runs += ball.runsBatter;
+        bc.outcomes[outcomeKey(ball.runsBatter, strikerOut)] += 1;
+        if (e) for (const k of OUTCOME_KEYS) bc.expected[k] += e[k];
       }
       touched.add(ball.batter);
     }

@@ -13,6 +13,12 @@ export function bowlingTypeName(code: string): string {
   return names[code] ?? code;
 }
 
+/** Colour the stronger side of a pace/spin split when the gap is worth noticing (5 points or more). */
+export function splitClass(mine: number | null, other: number | null): string {
+  if (mine === null || other === null) return "";
+  return mine - other >= 5 ? "num-good" : other - mine >= 5 ? "num-bad" : "";
+}
+
 export function archetypeLabel(p: PoolPlayer): string {
   const parts: string[] = [];
   if (p.role !== "bowler" && p.archetype.batting) parts.push(p.archetype.batting);
@@ -45,6 +51,12 @@ export function PlayerCard({ player, selected, compact, ineligible, onClick }: {
           {p.bowlShown ? (
             <div><span className="k">Bowl</span> <b>{p.bowl}{p.bowlLow ? "*" : ""}</b> <small>{p.bowlPhases.pp} / {p.bowlPhases.mid} / {p.bowlPhases.death}</small></div>
           ) : <div><span className="k">Bowl</span> <small className="muted">rarely bowls</small></div>}
+        </div>
+      )}
+      {!compact && p.batShown && (p.vsPace !== null || p.vsSpin !== null) && (
+        <div className="vs-line" title="His batting number against pace and against spin, from his own record by bowler type (60+ balls against each)">
+          <span className="k">v pace</span> <b className={splitClass(p.vsPace, p.vsSpin)}>{p.vsPace ?? "–"}</b>
+          <span className="k">v spin</span> <b className={splitClass(p.vsSpin, p.vsPace)}>{p.vsSpin ?? "–"}</b>
         </div>
       )}
     </button>

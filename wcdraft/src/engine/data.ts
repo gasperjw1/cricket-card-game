@@ -190,6 +190,7 @@ export function toEnginePlayer(r: PlayerRating, pops: EditionPopulations, label?
     hand: handOf(label?.handedness),
     bowlClass: bowlClassOf(label?.bowlingType),
     keeper: !!label && (label.keeper === "Y" || label.keeperCareer === "Y" || Number(label.keeperAnyT20I ?? 0) > 0),
+    batVsClass: { pace: r.batting.byBowlClass?.pace.rel ?? UNIT_VECTOR, spin: r.batting.byBowlClass?.spin.rel ?? UNIT_VECTOR },
     id: r.personId,
     name: r.name,
     batting: r.batting.vectors,
@@ -272,6 +273,8 @@ export function centreOnCohort(players: Map<string, EnginePlayer>, squads: Map<s
 }
 
 /** The match environment for an edition at a venue (venue scoring factor shrunk toward the edition). */
+const UNIT_VECTOR: Vector = { "0": 1, "1": 1, "2": 1, "3": 1, "4": 1, "6": 1, W: 1 };
+
 /** Archive-wide dismissal shares, the fallback when a profile has no fingerprint. */
 const DISMISSAL_NORM: Record<DismissalKind, number> = { caught: 0.6, bowled: 0.19, lbw: 0.08, "run out": 0.07, stumped: 0.04, "caught and bowled": 0.015, "hit wicket": 0.005 };
 

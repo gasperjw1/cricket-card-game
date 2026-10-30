@@ -71,6 +71,16 @@ export const MODEL = {
    * scoring outcomes. Baseball's BABIP needs ~800 balls in play to reach r = 0.7.
    */
   hazardPriorStrength: 2000 as number,
+  /**
+   * Position prior (decided 2026-10-30, after Bumrah made 60): a batter with little record is
+   * shrunk toward the pooled relative vector of batters who bat where he bats (openers, 3–4, 5–7,
+   * 8–11 in the edition's window), not toward the all-batters population, which is top-order
+   * heavy and gave every tail-ender a No. 5's survival rate. `strength` is the band pool's own
+   * shrink toward neutral (balls); bands are measured from pre-tournament positions only.
+   */
+  positionPrior: { strength: 500 },
+  /** Pace/spin batting split: shrink (balls; hazard separately), balls before a number is shown, clip on the residual, display points per log-unit of edge. */
+  bowlClassSplit: { priorStrength: 200, hazardPriorStrength: 600, minBalls: 60, clip: [0.6, 1.6] as [number, number], displayScale: 60 },
   /** Hierarchical phase model: how strongly each phase is held to the player's pooled vector. */
   phasePriorStrength: 300 as number,
   /**
@@ -178,7 +188,7 @@ export interface BlockIn {
     bowl: { innings: number; balls: number; runs: number; wickets: number; economy: number | null };
     field: { catches: number; stumpings: number; runOuts: number };
   };
-  bat: { positions: Record<string, number>; phases: Record<string, PhaseCountsOut> };
+  bat: { positions: Record<string, number>; phases: Record<string, PhaseCountsOut>; byBowlClass?: Record<"pace" | "spin", PhaseCountsOut> };
   bowl: { oversByPhase: Record<Phase, number>; phases: Record<string, PhaseCountsOut> };
 }
 
@@ -261,6 +271,13 @@ export interface SkillRating {
    * the vectors, which are then almost pure prior.
    */
   shown: boolean;
+  /**
+   * Batting against pace and against spin (added 2026-10-30): the player's own relative vector by
+   * bowler class divided by his overall one (so the population hand × class effect the engine
+   * already applies is not counted twice), shrunk and clipped; `display` is the headline shifted by
+   * that edge, null until 60 balls against the class. Null for bowling.
+   */
+  byBowlClass: Record<"pace" | "spin", { rel: Vector; balls: number; display: number | null }> | null;
   /** Per-phase 40–99 display numbers (same map as the headline) and the evidence behind each. */
   displayByPhase: Record<Phase, number>;
   phaseEvidence: Record<Phase, { balls: number; thin: boolean }>;

@@ -32,6 +32,8 @@ export interface EnginePlayer {
   bowlClass: BowlClass | null;
   /** Has kept wicket (labels); takes the stumpings and most catches behind. */
   keeper: boolean;
+  /** Within-player batting residual against pace and against spin (1 = his overall level); multiplies his relative vector by the bowler's class. */
+  batVsClass: Record<"pace" | "spin", Vector>;
   /** Display-only. */
   tier: string;
   battingDisplay: number;

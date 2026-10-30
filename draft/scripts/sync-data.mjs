@@ -62,6 +62,7 @@ for (const ed of editions) {
     batLow: r.batting.lowSample, bowlLow: r.bowling.lowSample, batShown: r.batting.shown !== false, bowlShown: r.bowling.shown !== false, squadPlayer: r.usage.squadPlayer,
     domesticBalls: { bat: r.batting.evidence.domesticBalls ?? 0, bowl: r.bowling.evidence.domesticBalls ?? 0 },
     batWeights: r.batting.evidence.phaseWeights,
+    vsPace: r.batting.byBowlClass?.pace.display ?? null, vsSpin: r.batting.byBowlClass?.spin.display ?? null,
     position: r.position.median, positionless: r.position.positionless,
     hand: labels.get(r.personId)?.handedness || null, bowlingType: labels.get(r.personId)?.bowlingType || null,
     keeper: keeperEligible(labels.get(r.personId)),

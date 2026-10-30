@@ -144,12 +144,25 @@ export function ResultScreen({ state, result, editions, venues, onAgain }: { sta
       {tab === "tables" && result.stages.filter((s) => s.groups).map((s) => (
         <div className="card" key={s.id}>
           <h3>{s.label}</h3>
-          {Object.entries(s.groups!).map(([g, rows]) => (
-            <table className="table" key={g}>
-              <thead><tr><th>Group {g}</th><th>P</th><th>W</th><th>L</th><th>Pts</th><th>NRR</th></tr></thead>
-              <tbody>{rows.map((r) => <tr key={r.team} className={r.team === me ? "me" : ""}><td>{r.team}</td><td>{r.played}</td><td>{r.won}</td><td>{r.lost}</td><td>{r.points}</td><td>{r.nrr > 0 ? "+" : ""}{r.nrr.toFixed(2)}</td></tr>)}</tbody>
-            </table>
-          ))}
+          <div className="standings-grid">
+            {Object.entries(s.groups!).map(([g, rows]) => (
+              <table className="standings" key={g}>
+                <caption>Group {g}</caption>
+                <thead><tr><th className="pos">#</th><th className="team">Team</th><th>P</th><th>W</th><th>L</th><th>NR</th><th>Pts</th><th className="nrr">NRR</th></tr></thead>
+                <tbody>
+                  {rows.map((r, i) => (
+                    <tr key={r.team} className={r.team === me ? "me" : ""}>
+                      <td className="pos">{i + 1}</td>
+                      <td className="team">{r.team}</td>
+                      <td>{r.played}</td><td>{r.won}</td><td>{r.lost}</td><td>{r.noResult}</td>
+                      <td className="pts">{r.points}</td>
+                      <td className="nrr">{r.nrr > 0 ? "+" : ""}{r.nrr.toFixed(3)}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            ))}
+          </div>
         </div>
       ))}
       {tab === "knockouts" && (
