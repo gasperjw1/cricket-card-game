@@ -1101,6 +1101,20 @@ Resolved 2026-10-30: card face is a **tier** (Bronze / Silver / Gold / Elite, Sw
 **role-relative** so a finisher's tier does not drop for facing few balls; **per-phase ratings
 shown for batting and bowling**; platform is a **website or app**, not Messenger. Details in §5.6.
 
+Resolved 2026-10-30 (client review): **a skill is shown only with evidence** — no bowling number
+for batters who rarely bowl and no batting number for bowlers who rarely bat, unless the record
+exists somewhere; **domestic and franchise T20 records are the backup** for a skill thin in T20Is
+(Cricsheet league archives, same person ids), and **ODI records back 2007 and 2009** (List A is
+not on Cricsheet). Built the same day (`wcdraft/README.md` ratings item 8): the domestic test is
+**recency-aware** (balls in the edition year and the three seasons before it, so Kohli's early IPL
+overs do not make him a bowler in 2024), the ODI record vouches for bowling only in 2007 and 2009,
+the role's own skill is always shown with the low-sample badge carrying the warning, and a hidden
+skill cannot earn an all-rounder role. 889 of 2,074 bowling numbers and 488 batting numbers are
+hidden; 18% of specialist batters show a bowling number. Pool note: a squad holds the players who
+appeared, so West Indies 2007 (two matches, one eleven) has 11 cards; official 15-man squads
+remain a parked item. Open: whether the Elite thin-evidence cap should count career balls as well as
+window balls (Livingstone 2021 sits first among 2021 batters but is capped at Gold on 78 window balls).
+
 Still open: none blocking Phase 2. Tiers built 2026-10-30 (§5.6). **Ratings accepted by Yash
 2026-10-30 as evidence-based**, without a name-by-name review; the known cases (Erasmus 2024 and
 Sundar 2026 Elite, Kohli 2024 Silver) stay in the parked table with their triggers.

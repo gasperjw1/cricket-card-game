@@ -163,14 +163,14 @@ function odiRelative(pe: PlayerEditionIn, ctx: EditionContext, skill: Skill): { 
   const s = pe.odiCareerToDate.summary;
   if (!ctx.odiPop) return null;
   if (skill === "bat") {
-    if (s.bat.balls < 300 || s.bat.strikeRate === null) return null;
+    if (s.bat.balls < MODEL.odiMinBalls || s.bat.strikeRate === null) return null;
     const outs = s.bat.innings > 0 && s.bat.average ? s.bat.runs / s.bat.average : 0;
     const bpo = outs > 0 ? s.bat.balls / outs : ctx.odiPop.ballsPerOut;
     const srRatio = s.bat.strikeRate / ctx.odiPop.strikeRate;
     const hazardRatio = ctx.odiPop.ballsPerOut / bpo;
     return { rel: { "0": 1 / Math.sqrt(srRatio), "1": 1, "2": srRatio, "3": srRatio, "4": srRatio, "6": srRatio, W: hazardRatio }, balls: s.bat.balls };
   }
-  if (s.bowl.balls < 600 || s.bowl.economy === null) return null;
+  if (s.bowl.balls < 2 * MODEL.odiMinBalls || s.bowl.economy === null) return null;
   // ODI economy relative to a typical 5.0 and wickets per ball relative to a typical 1/36.
   const econRatio = s.bowl.economy / 5.0;
   const wpbRatio = s.bowl.wickets / s.bowl.balls / (1 / 36);
@@ -241,7 +241,7 @@ function cellRelative(
 }
 
 /** A skill rating before display mapping, plus the working vectors cohort centring needs. */
-type PartialSkill = Omit<SkillRating, "percentile" | "display" | "displayByPhase" | "phaseEvidence"> & {
+type PartialSkill = Omit<SkillRating, "percentile" | "display" | "displayByPhase" | "phaseEvidence" | "shown"> & {
   /** Relative vector after edge transfer, before cohort centring. */
   carried: PhaseVectors;
   /** The population the value is measured against (window population on the edition's opponent mix). */
@@ -256,7 +256,10 @@ function rateSkill(pe: PlayerEditionIn, ctx: EditionContext, skill: Skill, optio
   const windowPop = ctx.window[skill];
   const formBalls = totalBalls(pe.form, skill);
   const careerBalls = totalBalls(pe.careerToDate, skill);
+  const domesticBalls = domesticCounts(pe, skill)?.n ?? 0;
   const odi = odiRelative(pe, ctx, skill);
+  // The ODI prior carries full weight from `odiFullBalls`; below that, in proportion.
+  const odiWeight = odi ? MODEL.odiPriorStrength * Math.min(1, odi.balls / MODEL.odiFullBalls) : 0;
   const vectors = {} as PhaseVectors;
   const rel = {} as PhaseVectors;
   const carriedAll = {} as PhaseVectors;
@@ -338,7 +341,7 @@ function rateSkill(pe: PlayerEditionIn, ctx: EditionContext, skill: Skill, optio
   const expectedPath = opts.evidence === "expected" ? rateSkillExpected(pe, ctx, skill, opts) : null;
 
   for (const phase of PHASE_LIST) {
-    let cell: { rel: Vector; source: "form" | "career" } | null;
+    let cell: { rel: Vector; source: "form" | "career" | "domestic" } | null;
     if (expectedPath) cell = expectedPath.source === "population" ? null : { rel: expectedPath.rel[phase], source: expectedPath.source };
     else if (opts.phasePooling === "pooled") cell = pooled;
     else cell = cellRelative(
@@ -352,16 +355,16 @@ function rateSkill(pe: PlayerEditionIn, ctx: EditionContext, skill: Skill, optio
     if (cell) {
       phaseRel = cell.rel;
       if (cell.source === "form") source = "form";
-      else if (source === "population") source = "career";
+      else if (source === "population") source = cell.source;
     } else if (odi) {
-      phaseRel = blend([{ rel: odi.rel, weight: MODEL.odiPriorStrength }, { rel: UNIT, weight: c }]);
+      phaseRel = blend([{ rel: odi.rel, weight: odiWeight }, { rel: UNIT, weight: c }]);
       if (source === "population") source = "odi";
     } else {
       phaseRel = UNIT;
     }
     // Thin form + usable ODI prior: let the ODI evidence pull the relative vector toward itself.
     if (odi && formBalls + careerBalls < c) {
-      phaseRel = blend([{ rel: phaseRel, weight: formBalls + careerBalls + c }, { rel: odi.rel, weight: MODEL.odiPriorStrength }]);
+      phaseRel = blend([{ rel: phaseRel, weight: formBalls + careerBalls + c }, { rel: odi.rel, weight: odiWeight }]);
       if (source !== "form") source = "odi";
     }
     // Venue normalisation: scoring cells earned on flatter grounds are deflated (and vice versa);
@@ -389,6 +392,8 @@ function rateSkill(pe: PlayerEditionIn, ctx: EditionContext, skill: Skill, optio
       formBallsVsAssociate: totalBalls(pe.formByOpposition.associate, skill),
       careerBalls,
       odiBalls: skill === "bat" ? pe.odiCareerToDate.summary.bat.balls : pe.odiCareerToDate.summary.bowl.balls,
+      domesticBalls,
+      domesticRecentBalls: pe.domesticToDate?.recent[skill] ?? 0,
       source,
       transfer: +transfer.toFixed(3),
       venueFactor: +venueFactor.toFixed(3),
@@ -396,7 +401,8 @@ function rateSkill(pe: PlayerEditionIn, ctx: EditionContext, skill: Skill, optio
       phaseWeights,
     },
     // The badge lifts when the form window is thin but a substantial ODI record stands in (2007/2009).
-    lowSample: formBalls < (skill === "bat" ? MODEL.badge.batBalls : MODEL.badge.bowlBalls) && !(odi && odi.balls >= (skill === "bat" ? 600 : 900)),
+    // The badge lifts when the form window is thin but a substantial ODI or domestic T20 record stands in.
+    lowSample: formBalls < (skill === "bat" ? MODEL.badge.batBalls : MODEL.badge.bowlBalls) && !(odi && odi.balls >= (skill === "bat" ? 600 : 900)) && domesticBalls < MODEL.domestic.liftBalls[skill],
   };
 }
 
@@ -627,7 +633,23 @@ function expectedRelative(
   return out;
 }
 
-function rateSkillExpected(pe: PlayerEditionIn, ctx: EditionContext, skill: Skill, opts: Required<RateOptions>): { rel: PhaseVectors; source: "form" | "career" | "population" } {
+/** Domestic T20 career counts for a skill, pooled over phases (null when the player has none). */
+function domesticCounts(pe: PlayerEditionIn, skill: Skill): { o: Record<OutcomeKey, number>; e: Record<OutcomeKey, number>; n: number } | null {
+  const d = pe.domesticToDate?.[skill];
+  if (!d) return null;
+  const o = { "0": 0, "1": 0, "2": 0, "3": 0, "4": 0, "6": 0, W: 0 } as Record<OutcomeKey, number>;
+  const e = { "0": 0, "1": 0, "2": 0, "3": 0, "4": 0, "6": 0, W: 0 } as Record<OutcomeKey, number>;
+  let n = 0;
+  for (const p of PHASE_LIST) {
+    const pc = d[p];
+    if (!pc) continue;
+    n += pc.balls;
+    for (const k of OUTCOMES) { o[k] += pc.outcomes[k]; e[k] += pc.expected[k]; }
+  }
+  return n > 0 ? { o, e, n } : null;
+}
+
+function rateSkillExpected(pe: PlayerEditionIn, ctx: EditionContext, skill: Skill, opts: Required<RateOptions>): { rel: PhaseVectors; source: "form" | "career" | "domestic" | "population" } {
   const c = opts.priorStrength;
   const zero = (): Record<OutcomeKey, number> => ({ "0": 0, "1": 0, "2": 0, "3": 0, "4": 0, "6": 0, W: 0 });
   const get = (block: BlockIn, phase: Phase | "all") => {
@@ -645,8 +667,14 @@ function rateSkillExpected(pe: PlayerEditionIn, ctx: EditionContext, skill: Skil
     return { o, e, n };
   };
   // Level 1: career-to-date relative to context, shrunk toward neutral (1).
+  // Level 0: the domestic T20 career (competition-relative), partially transferred, is the centre
+  // the T20I career shrinks toward; neutral when the player has no domestic record.
+  const dom = domesticCounts(pe, skill);
+  const domesticCentre = dom
+    ? (Object.fromEntries(OUTCOMES.map((k) => [k, Math.pow(expectedRelative(dom.o, dom.e, dom.n, UNIT, MODEL.domestic.priorStrength, opts.hazardPriorStrength)[k], MODEL.domestic.transfer)])) as Vector)
+    : UNIT;
   const careerAll = get(pe.careerToDate, "all");
-  const careerRel = expectedRelative(careerAll.o, careerAll.e, careerAll.n, UNIT, opts.careerPriorStrength, opts.hazardPriorStrength);
+  const careerRel = expectedRelative(careerAll.o, careerAll.e, careerAll.n, domesticCentre, opts.careerPriorStrength, opts.hazardPriorStrength);
   const priorStrength = Math.max(c, Math.min(MODEL.careerPriorCap, 0.5 * careerAll.n));
   // Level 2: pooled form, shrunk toward the career centre.
   const formAll = get(pe.form, "all");
@@ -657,7 +685,7 @@ function rateSkillExpected(pe: PlayerEditionIn, ctx: EditionContext, skill: Skil
     const f = get(pe.form, p);
     rel[p] = opts.phasePooling === "pooled" ? pooled : expectedRelative(f.o, f.e, f.n, pooled, opts.phasePriorStrength, opts.hazardPriorStrength);
   }
-  const source = formAll.n > 0 ? "form" : careerAll.n > 0 ? "career" : "population";
+  const source = formAll.n > 0 ? "form" : careerAll.n > 0 ? "career" : dom ? "domestic" : "population";
   return { rel, source };
 }
 
@@ -802,10 +830,15 @@ export function rateAll(r: BuildResult, opts: RateOptions = {}): PlayerRating[] 
     const guard = n / (n + MODEL.displayEvidenceStrength);
     const balls = phaseBalls(pe, skill);
     const badge = skill === "bat" ? tierConfig.phaseBadge.batBalls : tierConfig.phaseBadge.bowlBalls;
+    const ev = s.evidence;
+    const odiVouches = ev.odiBalls >= MODEL.shown.odiBalls[skill] && (skill === "bat" || MODEL.shown.odiBowlEditions.includes(pe.editionId));
+    const shown = ev.formBalls >= MODEL.shown.formBalls[skill] || ev.careerBalls >= MODEL.shown.careerBalls[skill] || ev.domesticRecentBalls >= MODEL.domestic.shownBalls[skill] || odiVouches;
     return {
       ...s,
       ...display(conservative(s, skill)),
-      displayByPhase: Object.fromEntries(PHASE_LIST.map((p) => [p, display(s.valueByPhase[p] * guard).display])) as Record<Phase, number>,
+      shown,
+      // Phase numbers shrink toward the median exactly like the headline, so they agree.
+      displayByPhase: Object.fromEntries(PHASE_LIST.map((p) => [p, display(medians[skill] + (s.valueByPhase[p] - medians[skill]) * guard).display])) as Record<Phase, number>,
       phaseEvidence: Object.fromEntries(PHASE_LIST.map((p) => [p, { balls: balls[p], thin: balls[p] < badge }])) as Record<Phase, { balls: number; thin: boolean }>,
     };
   };
@@ -814,21 +847,26 @@ export function rateAll(r: BuildResult, opts: RateOptions = {}): PlayerRating[] 
     const bowling = finish(bowl, bowlDisplay, pe, "bowl");
     return { pe, ctx, usage, batting, bowling, tierScore: tierScoreOf(batting, bowling, tierConfig) };
   });
-  return finished.map(({ pe, ctx, usage, batting, bowling, tierScore }) => {
-    const batBalls = batting.evidence.formBalls + batting.evidence.careerBalls;
-    const bowlBalls = bowling.evidence.formBalls + bowling.evidence.careerBalls;
-    // A role needs real evidence: a few career overs do not make a batter an all-rounder.
-    const bowls = bowlBalls >= 150 && bowling.display >= 60;
-    const bats = batBalls >= 150 && batting.display >= 60;
+  return finished.map(({ pe, ctx, usage, batting: batting0, bowling: bowling0, tierScore }) => {
+    const batBalls = batting0.evidence.formBalls + batting0.evidence.careerBalls;
+    const bowlBalls = bowling0.evidence.formBalls + bowling0.evidence.careerBalls;
+    // A role needs real evidence: a few career overs do not make a batter an all-rounder, and a
+    // skill the player no longer shows (Kohli's 152 T20I bowling balls, none recent) does not count.
+    const bowls = bowling0.shown && bowlBalls >= 150 && bowling0.display >= 60;
+    const bats = batting0.shown && batBalls >= 150 && batting0.display >= 60;
     // Fallback when neither skill clears the evidence bar: the skill with evidence wins over a
     // prior-shaped number (a keeper with 49 batting is not a "bowler" because his unmeasured bowling
     // prints 73), then the skill with more balls, then the higher display.
     const fallback: PlayerRating["role"] =
       batBalls + bowlBalls === 0 ? "unknown"
-      : batting.lowSample !== bowling.lowSample ? (batting.lowSample ? "bowler" : "batter")
+      : batting0.lowSample !== bowling0.lowSample ? (batting0.lowSample ? "bowler" : "batter")
       : batBalls !== bowlBalls ? (batBalls > bowlBalls ? "batter" : "bowler")
-      : batting.display >= bowling.display ? "batter" : "bowler";
+      : batting0.display >= bowling0.display ? "batter" : "bowler";
     const role: PlayerRating["role"] = bats && bowls ? "all-rounder" : bowls ? "bowler" : bats ? "batter" : fallback;
+    // The role's own skill is always shown (a bowler with eleven T20Is is still a bowler; the
+    // low-sample badge says how thin the number is). The other skill needs the evidence bar.
+    const batting = role === "batter" || role === "all-rounder" ? { ...batting0, shown: true } : batting0;
+    const bowling = role === "bowler" || role === "all-rounder" ? { ...bowling0, shown: true } : bowling0;
     const top = Math.max(batting.display, bowling.display);
     const second = Math.min(batting.display, bowling.display);
     const overall = Math.min(MODEL.display.max, Math.round(top + (role === "all-rounder" ? 0.1 * (second - MODEL.display.min) : 0)));

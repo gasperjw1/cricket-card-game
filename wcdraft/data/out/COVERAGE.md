@@ -1,6 +1,6 @@
 # World Cup Draft — data coverage (Phase 0)
 
-Generated 2026-10-30T10:38Z from Cricsheet `t20s_male_json` (snapshot 2026-10-28, 3646 matches). Licence: Open Data Commons Attribution License v1.0 (ODC-By) — https://cricsheet.org/licensing/.
+Generated 2026-10-30T11:48Z from Cricsheet `t20s_male_json` (snapshot 2026-10-28, 3646 matches). Licence: Open Data Commons Attribution License v1.0 (ODC-By) — https://cricsheet.org/licensing/.
 
 Form window: 24 months before each edition. "Has form data" means ≥ 30 balls faced or ≥ 48 balls bowled in that window. Afghanistan is withheld by Cricsheet and absent throughout.
 

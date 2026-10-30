@@ -28,42 +28,42 @@
         "batting": {
           "n": 392,
           "within": {
-            "model": 0.341,
+            "model": 0.346,
             "rawFormValue": 0.272,
             "rawFormRate": 0.268
           },
-          "model": 0.325,
-          "modelTiered": 0.339,
+          "model": 0.33,
+          "modelTiered": 0.344,
           "rawFormValue": 0.279,
           "rawFormRate": 0.268,
           "careerRate": 0.259,
           "runs": {
-            "model": 0.377,
+            "model": 0.379,
             "rawForm": 0.328
           },
           "hazard": {
-            "model": 0.129,
+            "model": 0.162,
             "rawForm": 0.076
           }
         },
         "bowling": {
           "n": 324,
           "within": {
-            "model": 0.185,
+            "model": 0.191,
             "rawFormValue": 0.087,
             "rawFormRate": 0.102
           },
-          "model": 0.175,
-          "modelTiered": 0.173,
+          "model": 0.18,
+          "modelTiered": 0.178,
           "rawFormValue": 0.044,
           "rawFormRate": 0.094,
           "careerRate": 0.114,
           "runs": {
-            "model": 0.218,
+            "model": 0.222,
             "rawForm": 0.083
           },
           "hazard": {
-            "model": 0.125,
+            "model": 0.153,
             "rawForm": 0.075
           }
         }
@@ -71,12 +71,12 @@
       "stability": {
         "batting": {
           "n": 499,
-          "model": 0.746,
+          "model": 0.752,
           "rawFormSR": 0.454
         },
         "bowling": {
           "n": 408,
-          "model": 0.571,
+          "model": 0.585,
           "rawFormEconomy": 0.44
         }
       }
@@ -123,7 +123,7 @@
             "rawForm": 0.328
           },
           "hazard": {
-            "model": 0.128,
+            "model": 0.127,
             "rawForm": 0.076
           }
         },
@@ -144,7 +144,7 @@
             "rawForm": 0.083
           },
           "hazard": {
-            "model": 0.118,
+            "model": 0.119,
             "rawForm": 0.075
           }
         }
@@ -157,7 +157,7 @@
         },
         "bowling": {
           "n": 408,
-          "model": 0.647,
+          "model": 0.648,
           "rawFormEconomy": 0.44
         }
       }
@@ -221,11 +221,11 @@
           "rawFormRate": 0.094,
           "careerRate": 0.114,
           "runs": {
-            "model": 0.194,
+            "model": 0.195,
             "rawForm": 0.083
           },
           "hazard": {
-            "model": 0.13,
+            "model": 0.132,
             "rawForm": 0.075
           }
         }
@@ -233,12 +233,12 @@
       "stability": {
         "batting": {
           "n": 499,
-          "model": 0.81,
+          "model": 0.809,
           "rawFormSR": 0.454
         },
         "bowling": {
           "n": 408,
-          "model": 0.696,
+          "model": 0.698,
           "rawFormEconomy": 0.44
         }
       }
@@ -271,42 +271,42 @@
         "batting": {
           "n": 392,
           "within": {
-            "model": 0.336,
+            "model": 0.34,
             "rawFormValue": 0.272,
             "rawFormRate": 0.268
           },
-          "model": 0.32,
-          "modelTiered": 0.334,
+          "model": 0.324,
+          "modelTiered": 0.339,
           "rawFormValue": 0.279,
           "rawFormRate": 0.268,
           "careerRate": 0.259,
           "runs": {
-            "model": 0.372,
+            "model": 0.374,
             "rawForm": 0.328
           },
           "hazard": {
-            "model": 0.134,
+            "model": 0.165,
             "rawForm": 0.076
           }
         },
         "bowling": {
           "n": 324,
           "within": {
-            "model": 0.178,
+            "model": 0.183,
             "rawFormValue": 0.087,
             "rawFormRate": 0.102
           },
-          "model": 0.167,
-          "modelTiered": 0.167,
+          "model": 0.172,
+          "modelTiered": 0.171,
           "rawFormValue": 0.044,
           "rawFormRate": 0.094,
           "careerRate": 0.114,
           "runs": {
-            "model": 0.207,
+            "model": 0.21,
             "rawForm": 0.083
           },
           "hazard": {
-            "model": 0.111,
+            "model": 0.131,
             "rawForm": 0.075
           }
         }
@@ -314,12 +314,12 @@
       "stability": {
         "batting": {
           "n": 499,
-          "model": 0.731,
+          "model": 0.737,
           "rawFormSR": 0.454
         },
         "bowling": {
           "n": 408,
-          "model": 0.533,
+          "model": 0.544,
           "rawFormEconomy": 0.44
         }
       }
@@ -352,42 +352,42 @@
         "batting": {
           "n": 392,
           "within": {
-            "model": 0.34,
+            "model": 0.346,
             "rawFormValue": 0.272,
             "rawFormRate": 0.268
           },
-          "model": 0.324,
-          "modelTiered": 0.338,
+          "model": 0.33,
+          "modelTiered": 0.344,
           "rawFormValue": 0.279,
           "rawFormRate": 0.268,
           "careerRate": 0.259,
           "runs": {
-            "model": 0.379,
+            "model": 0.382,
             "rawForm": 0.328
           },
           "hazard": {
-            "model": 0.126,
+            "model": 0.162,
             "rawForm": 0.076
           }
         },
         "bowling": {
           "n": 324,
           "within": {
-            "model": 0.189,
+            "model": 0.195,
             "rawFormValue": 0.087,
             "rawFormRate": 0.102
           },
-          "model": 0.179,
-          "modelTiered": 0.176,
+          "model": 0.185,
+          "modelTiered": 0.182,
           "rawFormValue": 0.044,
           "rawFormRate": 0.094,
           "careerRate": 0.114,
           "runs": {
-            "model": 0.222,
+            "model": 0.227,
             "rawForm": 0.083
           },
           "hazard": {
-            "model": 0.124,
+            "model": 0.155,
             "rawForm": 0.075
           }
         }
@@ -395,12 +395,12 @@
       "stability": {
         "batting": {
           "n": 499,
-          "model": 0.769,
+          "model": 0.777,
           "rawFormSR": 0.454
         },
         "bowling": {
           "n": 408,
-          "model": 0.605,
+          "model": 0.621,
           "rawFormEconomy": 0.44
         }
       }
@@ -433,42 +433,42 @@
         "batting": {
           "n": 392,
           "within": {
-            "model": 0.341,
+            "model": 0.346,
             "rawFormValue": 0.272,
             "rawFormRate": 0.268
           },
-          "model": 0.325,
-          "modelTiered": 0.339,
+          "model": 0.33,
+          "modelTiered": 0.344,
           "rawFormValue": 0.279,
           "rawFormRate": 0.268,
           "careerRate": 0.259,
           "runs": {
-            "model": 0.377,
+            "model": 0.379,
             "rawForm": 0.328
           },
           "hazard": {
-            "model": 0.129,
+            "model": 0.162,
             "rawForm": 0.076
           }
         },
         "bowling": {
           "n": 324,
           "within": {
-            "model": 0.185,
+            "model": 0.191,
             "rawFormValue": 0.087,
             "rawFormRate": 0.102
           },
-          "model": 0.175,
-          "modelTiered": 0.173,
+          "model": 0.18,
+          "modelTiered": 0.178,
           "rawFormValue": 0.044,
           "rawFormRate": 0.094,
           "careerRate": 0.114,
           "runs": {
-            "model": 0.218,
+            "model": 0.222,
             "rawForm": 0.083
           },
           "hazard": {
-            "model": 0.125,
+            "model": 0.153,
             "rawForm": 0.075
           }
         }
@@ -476,12 +476,12 @@
       "stability": {
         "batting": {
           "n": 499,
-          "model": 0.746,
+          "model": 0.752,
           "rawFormSR": 0.454
         },
         "bowling": {
           "n": 408,
-          "model": 0.571,
+          "model": 0.585,
           "rawFormEconomy": 0.44
         }
       }
@@ -514,12 +514,12 @@
         "batting": {
           "n": 392,
           "within": {
-            "model": 0.338,
+            "model": 0.339,
             "rawFormValue": 0.272,
             "rawFormRate": 0.268
           },
-          "model": 0.323,
-          "modelTiered": 0.337,
+          "model": 0.324,
+          "modelTiered": 0.339,
           "rawFormValue": 0.279,
           "rawFormRate": 0.268,
           "careerRate": 0.259,
@@ -528,7 +528,7 @@
             "rawForm": 0.328
           },
           "hazard": {
-            "model": 0.128,
+            "model": 0.161,
             "rawForm": 0.076
           }
         },
@@ -549,7 +549,7 @@
             "rawForm": 0.083
           },
           "hazard": {
-            "model": 0.122,
+            "model": 0.149,
             "rawForm": 0.075
           }
         }
@@ -557,7 +557,7 @@
       "stability": {
         "batting": {
           "n": 499,
-          "model": 0.75,
+          "model": 0.752,
           "rawFormSR": 0.454
         },
         "bowling": {
@@ -595,42 +595,42 @@
         "batting": {
           "n": 392,
           "within": {
-            "model": 0.342,
+            "model": 0.349,
             "rawFormValue": 0.272,
             "rawFormRate": 0.268
           },
-          "model": 0.325,
-          "modelTiered": 0.339,
+          "model": 0.332,
+          "modelTiered": 0.346,
           "rawFormValue": 0.279,
           "rawFormRate": 0.268,
           "careerRate": 0.259,
           "runs": {
-            "model": 0.378,
+            "model": 0.383,
             "rawForm": 0.328
           },
           "hazard": {
-            "model": 0.129,
+            "model": 0.162,
             "rawForm": 0.076
           }
         },
         "bowling": {
           "n": 324,
           "within": {
-            "model": 0.186,
+            "model": 0.195,
             "rawFormValue": 0.087,
             "rawFormRate": 0.102
           },
-          "model": 0.176,
-          "modelTiered": 0.174,
+          "model": 0.184,
+          "modelTiered": 0.182,
           "rawFormValue": 0.044,
           "rawFormRate": 0.094,
           "careerRate": 0.114,
           "runs": {
-            "model": 0.224,
+            "model": 0.23,
             "rawForm": 0.083
           },
           "hazard": {
-            "model": 0.126,
+            "model": 0.154,
             "rawForm": 0.075
           }
         }
@@ -638,12 +638,12 @@
       "stability": {
         "batting": {
           "n": 499,
-          "model": 0.743,
+          "model": 0.753,
           "rawFormSR": 0.454
         },
         "bowling": {
           "n": 408,
-          "model": 0.563,
+          "model": 0.587,
           "rawFormEconomy": 0.44
         }
       }
@@ -676,42 +676,42 @@
         "batting": {
           "n": 392,
           "within": {
-            "model": 0.34,
+            "model": 0.345,
             "rawFormValue": 0.272,
             "rawFormRate": 0.268
           },
-          "model": 0.324,
-          "modelTiered": 0.339,
+          "model": 0.329,
+          "modelTiered": 0.344,
           "rawFormValue": 0.279,
           "rawFormRate": 0.268,
           "careerRate": 0.259,
           "runs": {
-            "model": 0.377,
+            "model": 0.379,
             "rawForm": 0.328
           },
           "hazard": {
-            "model": 0.129,
+            "model": 0.162,
             "rawForm": 0.076
           }
         },
         "bowling": {
           "n": 324,
           "within": {
-            "model": 0.19,
+            "model": 0.195,
             "rawFormValue": 0.087,
             "rawFormRate": 0.102
           },
-          "model": 0.18,
-          "modelTiered": 0.179,
+          "model": 0.186,
+          "modelTiered": 0.184,
           "rawFormValue": 0.044,
           "rawFormRate": 0.094,
           "careerRate": 0.114,
           "runs": {
-            "model": 0.218,
+            "model": 0.222,
             "rawForm": 0.083
           },
           "hazard": {
-            "model": 0.125,
+            "model": 0.153,
             "rawForm": 0.075
           }
         }
@@ -719,12 +719,12 @@
       "stability": {
         "batting": {
           "n": 499,
-          "model": 0.755,
+          "model": 0.762,
           "rawFormSR": 0.454
         },
         "bowling": {
           "n": 408,
-          "model": 0.595,
+          "model": 0.609,
           "rawFormEconomy": 0.44
         }
       }
@@ -757,42 +757,42 @@
         "batting": {
           "n": 392,
           "within": {
-            "model": 0.341,
+            "model": 0.346,
             "rawFormValue": 0.272,
             "rawFormRate": 0.268
           },
-          "model": 0.336,
-          "modelTiered": 0.345,
+          "model": 0.341,
+          "modelTiered": 0.35,
           "rawFormValue": 0.279,
           "rawFormRate": 0.268,
           "careerRate": 0.259,
           "runs": {
-            "model": 0.377,
+            "model": 0.379,
             "rawForm": 0.328
           },
           "hazard": {
-            "model": 0.129,
+            "model": 0.162,
             "rawForm": 0.076
           }
         },
         "bowling": {
           "n": 324,
           "within": {
-            "model": 0.196,
+            "model": 0.202,
             "rawFormValue": 0.087,
             "rawFormRate": 0.102
           },
-          "model": 0.185,
-          "modelTiered": 0.182,
+          "model": 0.191,
+          "modelTiered": 0.188,
           "rawFormValue": 0.044,
           "rawFormRate": 0.094,
           "careerRate": 0.114,
           "runs": {
-            "model": 0.218,
+            "model": 0.222,
             "rawForm": 0.083
           },
           "hazard": {
-            "model": 0.125,
+            "model": 0.153,
             "rawForm": 0.075
           }
         }
@@ -800,12 +800,12 @@
       "stability": {
         "batting": {
           "n": 499,
-          "model": 0.745,
+          "model": 0.751,
           "rawFormSR": 0.454
         },
         "bowling": {
           "n": 408,
-          "model": 0.571,
+          "model": 0.587,
           "rawFormEconomy": 0.44
         }
       }
@@ -838,42 +838,42 @@
         "batting": {
           "n": 392,
           "within": {
-            "model": 0.339,
+            "model": 0.344,
             "rawFormValue": 0.272,
             "rawFormRate": 0.268
           },
-          "model": 0.335,
-          "modelTiered": 0.347,
+          "model": 0.34,
+          "modelTiered": 0.352,
           "rawFormValue": 0.279,
           "rawFormRate": 0.268,
           "careerRate": 0.259,
           "runs": {
-            "model": 0.377,
+            "model": 0.379,
             "rawForm": 0.328
           },
           "hazard": {
-            "model": 0.129,
+            "model": 0.162,
             "rawForm": 0.076
           }
         },
         "bowling": {
           "n": 324,
           "within": {
-            "model": 0.183,
+            "model": 0.189,
             "rawFormValue": 0.087,
             "rawFormRate": 0.102
           },
-          "model": 0.172,
-          "modelTiered": 0.167,
+          "model": 0.177,
+          "modelTiered": 0.171,
           "rawFormValue": 0.044,
           "rawFormRate": 0.094,
           "careerRate": 0.114,
           "runs": {
-            "model": 0.218,
+            "model": 0.222,
             "rawForm": 0.083
           },
           "hazard": {
-            "model": 0.125,
+            "model": 0.153,
             "rawForm": 0.075
           }
         }
@@ -881,12 +881,12 @@
       "stability": {
         "batting": {
           "n": 499,
-          "model": 0.735,
+          "model": 0.742,
           "rawFormSR": 0.454
         },
         "bowling": {
           "n": 408,
-          "model": 0.574,
+          "model": 0.588,
           "rawFormEconomy": 0.44
         }
       }
@@ -919,42 +919,42 @@
         "batting": {
           "n": 392,
           "within": {
-            "model": 0.318,
+            "model": 0.323,
             "rawFormValue": 0.272,
             "rawFormRate": 0.268
           },
-          "model": 0.31,
-          "modelTiered": 0.319,
+          "model": 0.315,
+          "modelTiered": 0.325,
           "rawFormValue": 0.279,
           "rawFormRate": 0.268,
           "careerRate": 0.259,
           "runs": {
-            "model": 0.363,
+            "model": 0.366,
             "rawForm": 0.328
           },
           "hazard": {
-            "model": 0.141,
+            "model": 0.176,
             "rawForm": 0.076
           }
         },
         "bowling": {
           "n": 324,
           "within": {
-            "model": 0.157,
+            "model": 0.162,
             "rawFormValue": 0.087,
             "rawFormRate": 0.102
           },
-          "model": 0.145,
-          "modelTiered": 0.136,
+          "model": 0.15,
+          "modelTiered": 0.141,
           "rawFormValue": 0.044,
           "rawFormRate": 0.094,
           "careerRate": 0.114,
           "runs": {
-            "model": 0.164,
+            "model": 0.169,
             "rawForm": 0.083
           },
           "hazard": {
-            "model": 0.085,
+            "model": 0.113,
             "rawForm": 0.075
           }
         }
@@ -962,12 +962,12 @@
       "stability": {
         "batting": {
           "n": 499,
-          "model": 0.679,
+          "model": 0.686,
           "rawFormSR": 0.454
         },
         "bowling": {
           "n": 408,
-          "model": 0.54,
+          "model": 0.55,
           "rawFormEconomy": 0.44
         }
       }
@@ -1000,42 +1000,42 @@
         "batting": {
           "n": 392,
           "within": {
-            "model": 0.341,
+            "model": 0.346,
             "rawFormValue": 0.272,
             "rawFormRate": 0.268
           },
-          "model": 0.325,
-          "modelTiered": 0.339,
+          "model": 0.33,
+          "modelTiered": 0.344,
           "rawFormValue": 0.279,
           "rawFormRate": 0.268,
           "careerRate": 0.259,
           "runs": {
-            "model": 0.368,
+            "model": 0.37,
             "rawForm": 0.328
           },
           "hazard": {
-            "model": 0.127,
+            "model": 0.159,
             "rawForm": 0.076
           }
         },
         "bowling": {
           "n": 324,
           "within": {
-            "model": 0.189,
+            "model": 0.194,
             "rawFormValue": 0.087,
             "rawFormRate": 0.102
           },
-          "model": 0.179,
-          "modelTiered": 0.18,
+          "model": 0.185,
+          "modelTiered": 0.184,
           "rawFormValue": 0.044,
           "rawFormRate": 0.094,
           "careerRate": 0.114,
           "runs": {
-            "model": 0.235,
+            "model": 0.239,
             "rawForm": 0.083
           },
           "hazard": {
-            "model": 0.134,
+            "model": 0.162,
             "rawForm": 0.075
           }
         }
@@ -1043,12 +1043,12 @@
       "stability": {
         "batting": {
           "n": 499,
-          "model": 0.746,
+          "model": 0.753,
           "rawFormSR": 0.454
         },
         "bowling": {
           "n": 408,
-          "model": 0.555,
+          "model": 0.57,
           "rawFormEconomy": 0.44
         }
       }
@@ -1081,42 +1081,42 @@
         "batting": {
           "n": 392,
           "within": {
-            "model": 0.338,
+            "model": 0.342,
             "rawFormValue": 0.272,
             "rawFormRate": 0.268
           },
-          "model": 0.324,
-          "modelTiered": 0.337,
+          "model": 0.329,
+          "modelTiered": 0.342,
           "rawFormValue": 0.279,
           "rawFormRate": 0.268,
           "careerRate": 0.259,
           "runs": {
-            "model": 0.378,
+            "model": 0.381,
             "rawForm": 0.328
           },
           "hazard": {
-            "model": 0.134,
+            "model": 0.167,
             "rawForm": 0.076
           }
         },
         "bowling": {
           "n": 324,
           "within": {
-            "model": 0.175,
+            "model": 0.181,
             "rawFormValue": 0.087,
             "rawFormRate": 0.102
           },
-          "model": 0.164,
-          "modelTiered": 0.159,
+          "model": 0.169,
+          "modelTiered": 0.164,
           "rawFormValue": 0.044,
           "rawFormRate": 0.094,
           "careerRate": 0.114,
           "runs": {
-            "model": 0.2,
+            "model": 0.204,
             "rawForm": 0.083
           },
           "hazard": {
-            "model": 0.111,
+            "model": 0.139,
             "rawForm": 0.075
           }
         }
@@ -1124,12 +1124,12 @@
       "stability": {
         "batting": {
           "n": 499,
-          "model": 0.731,
+          "model": 0.738,
           "rawFormSR": 0.454
         },
         "bowling": {
           "n": 408,
-          "model": 0.569,
+          "model": 0.582,
           "rawFormEconomy": 0.44
         }
       }
@@ -1162,42 +1162,42 @@
         "batting": {
           "n": 392,
           "within": {
-            "model": 0.341,
+            "model": 0.346,
             "rawFormValue": 0.272,
             "rawFormRate": 0.268
           },
-          "model": 0.325,
-          "modelTiered": 0.339,
+          "model": 0.33,
+          "modelTiered": 0.344,
           "rawFormValue": 0.279,
           "rawFormRate": 0.268,
           "careerRate": 0.259,
           "runs": {
-            "model": 0.377,
+            "model": 0.379,
             "rawForm": 0.328
           },
           "hazard": {
-            "model": 0.129,
+            "model": 0.162,
             "rawForm": 0.076
           }
         },
         "bowling": {
           "n": 324,
           "within": {
-            "model": 0.185,
+            "model": 0.191,
             "rawFormValue": 0.087,
             "rawFormRate": 0.102
           },
-          "model": 0.175,
-          "modelTiered": 0.173,
+          "model": 0.18,
+          "modelTiered": 0.178,
           "rawFormValue": 0.044,
           "rawFormRate": 0.094,
           "careerRate": 0.114,
           "runs": {
-            "model": 0.218,
+            "model": 0.222,
             "rawForm": 0.083
           },
           "hazard": {
-            "model": 0.125,
+            "model": 0.153,
             "rawForm": 0.075
           }
         }
@@ -1205,12 +1205,12 @@
       "stability": {
         "batting": {
           "n": 499,
-          "model": 0.746,
+          "model": 0.752,
           "rawFormSR": 0.454
         },
         "bowling": {
           "n": 408,
-          "model": 0.571,
+          "model": 0.585,
           "rawFormEconomy": 0.44
         }
       }
@@ -1243,42 +1243,42 @@
         "batting": {
           "n": 392,
           "within": {
-            "model": 0.338,
+            "model": 0.342,
             "rawFormValue": 0.272,
             "rawFormRate": 0.268
           },
-          "model": 0.324,
-          "modelTiered": 0.337,
+          "model": 0.329,
+          "modelTiered": 0.342,
           "rawFormValue": 0.279,
           "rawFormRate": 0.268,
           "careerRate": 0.259,
           "runs": {
-            "model": 0.378,
+            "model": 0.381,
             "rawForm": 0.328
           },
           "hazard": {
-            "model": 0.134,
+            "model": 0.167,
             "rawForm": 0.076
           }
         },
         "bowling": {
           "n": 324,
           "within": {
-            "model": 0.175,
+            "model": 0.181,
             "rawFormValue": 0.087,
             "rawFormRate": 0.102
           },
-          "model": 0.164,
-          "modelTiered": 0.159,
+          "model": 0.169,
+          "modelTiered": 0.164,
           "rawFormValue": 0.044,
           "rawFormRate": 0.094,
           "careerRate": 0.114,
           "runs": {
-            "model": 0.2,
+            "model": 0.204,
             "rawForm": 0.083
           },
           "hazard": {
-            "model": 0.111,
+            "model": 0.139,
             "rawForm": 0.075
           }
         }
@@ -1286,12 +1286,12 @@
       "stability": {
         "batting": {
           "n": 499,
-          "model": 0.731,
+          "model": 0.738,
           "rawFormSR": 0.454
         },
         "bowling": {
           "n": 408,
-          "model": 0.569,
+          "model": 0.582,
           "rawFormEconomy": 0.44
         }
       }
@@ -1324,42 +1324,42 @@
         "batting": {
           "n": 392,
           "within": {
-            "model": 0.334,
+            "model": 0.339,
             "rawFormValue": 0.272,
             "rawFormRate": 0.268
           },
-          "model": 0.322,
-          "modelTiered": 0.334,
+          "model": 0.327,
+          "modelTiered": 0.339,
           "rawFormValue": 0.279,
           "rawFormRate": 0.268,
           "careerRate": 0.259,
           "runs": {
-            "model": 0.377,
+            "model": 0.379,
             "rawForm": 0.328
           },
           "hazard": {
-            "model": 0.136,
+            "model": 0.17,
             "rawForm": 0.076
           }
         },
         "bowling": {
           "n": 324,
           "within": {
-            "model": 0.17,
+            "model": 0.176,
             "rawFormValue": 0.087,
             "rawFormRate": 0.102
           },
-          "model": 0.159,
-          "modelTiered": 0.152,
+          "model": 0.164,
+          "modelTiered": 0.157,
           "rawFormValue": 0.044,
           "rawFormRate": 0.094,
           "careerRate": 0.114,
           "runs": {
-            "model": 0.191,
+            "model": 0.195,
             "rawForm": 0.083
           },
           "hazard": {
-            "model": 0.104,
+            "model": 0.132,
             "rawForm": 0.075
           }
         }
@@ -1367,12 +1367,12 @@
       "stability": {
         "batting": {
           "n": 499,
-          "model": 0.72,
+          "model": 0.728,
           "rawFormSR": 0.454
         },
         "bowling": {
           "n": 408,
-          "model": 0.564,
+          "model": 0.576,
           "rawFormEconomy": 0.44
         }
       }
@@ -1405,42 +1405,42 @@
         "batting": {
           "n": 392,
           "within": {
-            "model": 0.341,
+            "model": 0.346,
             "rawFormValue": 0.272,
             "rawFormRate": 0.268
           },
-          "model": 0.325,
-          "modelTiered": 0.339,
+          "model": 0.33,
+          "modelTiered": 0.344,
           "rawFormValue": 0.279,
           "rawFormRate": 0.268,
           "careerRate": 0.259,
           "runs": {
-            "model": 0.377,
+            "model": 0.379,
             "rawForm": 0.328
           },
           "hazard": {
-            "model": 0.129,
+            "model": 0.162,
             "rawForm": 0.076
           }
         },
         "bowling": {
           "n": 324,
           "within": {
-            "model": 0.185,
+            "model": 0.191,
             "rawFormValue": 0.087,
             "rawFormRate": 0.102
           },
-          "model": 0.175,
-          "modelTiered": 0.173,
+          "model": 0.18,
+          "modelTiered": 0.178,
           "rawFormValue": 0.044,
           "rawFormRate": 0.094,
           "careerRate": 0.114,
           "runs": {
-            "model": 0.218,
+            "model": 0.222,
             "rawForm": 0.083
           },
           "hazard": {
-            "model": 0.125,
+            "model": 0.153,
             "rawForm": 0.075
           }
         }
@@ -1448,12 +1448,12 @@
       "stability": {
         "batting": {
           "n": 499,
-          "model": 0.746,
+          "model": 0.752,
           "rawFormSR": 0.454
         },
         "bowling": {
           "n": 408,
-          "model": 0.571,
+          "model": 0.585,
           "rawFormEconomy": 0.44
         }
       }
@@ -1486,42 +1486,42 @@
         "batting": {
           "n": 392,
           "within": {
-            "model": 0.341,
+            "model": 0.346,
             "rawFormValue": 0.272,
             "rawFormRate": 0.268
           },
-          "model": 0.325,
-          "modelTiered": 0.339,
+          "model": 0.33,
+          "modelTiered": 0.344,
           "rawFormValue": 0.279,
           "rawFormRate": 0.268,
           "careerRate": 0.259,
           "runs": {
-            "model": 0.377,
+            "model": 0.379,
             "rawForm": 0.328
           },
           "hazard": {
-            "model": 0.129,
+            "model": 0.162,
             "rawForm": 0.076
           }
         },
         "bowling": {
           "n": 324,
           "within": {
-            "model": 0.185,
+            "model": 0.191,
             "rawFormValue": 0.087,
             "rawFormRate": 0.102
           },
-          "model": 0.175,
-          "modelTiered": 0.173,
+          "model": 0.18,
+          "modelTiered": 0.178,
           "rawFormValue": 0.044,
           "rawFormRate": 0.094,
           "careerRate": 0.114,
           "runs": {
-            "model": 0.218,
+            "model": 0.222,
             "rawForm": 0.083
           },
           "hazard": {
-            "model": 0.125,
+            "model": 0.153,
             "rawForm": 0.075
           }
         }
@@ -1529,12 +1529,12 @@
       "stability": {
         "batting": {
           "n": 499,
-          "model": 0.746,
+          "model": 0.752,
           "rawFormSR": 0.454
         },
         "bowling": {
           "n": 408,
-          "model": 0.571,
+          "model": 0.585,
           "rawFormEconomy": 0.44
         }
       }
@@ -1567,42 +1567,42 @@
         "batting": {
           "n": 392,
           "within": {
-            "model": 0.341,
+            "model": 0.346,
             "rawFormValue": 0.272,
             "rawFormRate": 0.268
           },
-          "model": 0.336,
-          "modelTiered": 0.345,
+          "model": 0.341,
+          "modelTiered": 0.35,
           "rawFormValue": 0.279,
           "rawFormRate": 0.268,
           "careerRate": 0.259,
           "runs": {
-            "model": 0.377,
+            "model": 0.379,
             "rawForm": 0.328
           },
           "hazard": {
-            "model": 0.129,
+            "model": 0.162,
             "rawForm": 0.076
           }
         },
         "bowling": {
           "n": 324,
           "within": {
-            "model": 0.196,
+            "model": 0.202,
             "rawFormValue": 0.087,
             "rawFormRate": 0.102
           },
-          "model": 0.185,
-          "modelTiered": 0.182,
+          "model": 0.191,
+          "modelTiered": 0.188,
           "rawFormValue": 0.044,
           "rawFormRate": 0.094,
           "careerRate": 0.114,
           "runs": {
-            "model": 0.218,
+            "model": 0.222,
             "rawForm": 0.083
           },
           "hazard": {
-            "model": 0.125,
+            "model": 0.153,
             "rawForm": 0.075
           }
         }
@@ -1610,12 +1610,12 @@
       "stability": {
         "batting": {
           "n": 499,
-          "model": 0.745,
+          "model": 0.751,
           "rawFormSR": 0.454
         },
         "bowling": {
           "n": 408,
-          "model": 0.571,
+          "model": 0.587,
           "rawFormEconomy": 0.44
         }
       }
@@ -1648,42 +1648,42 @@
         "batting": {
           "n": 392,
           "within": {
-            "model": 0.34,
+            "model": 0.345,
             "rawFormValue": 0.272,
             "rawFormRate": 0.268
           },
-          "model": 0.323,
-          "modelTiered": 0.337,
+          "model": 0.329,
+          "modelTiered": 0.343,
           "rawFormValue": 0.279,
           "rawFormRate": 0.268,
           "careerRate": 0.259,
           "runs": {
-            "model": 0.377,
+            "model": 0.379,
             "rawForm": 0.328
           },
           "hazard": {
-            "model": 0.129,
+            "model": 0.162,
             "rawForm": 0.076
           }
         },
         "bowling": {
           "n": 324,
           "within": {
-            "model": 0.182,
+            "model": 0.191,
             "rawFormValue": 0.087,
             "rawFormRate": 0.102
           },
-          "model": 0.171,
-          "modelTiered": 0.166,
+          "model": 0.179,
+          "modelTiered": 0.173,
           "rawFormValue": 0.044,
           "rawFormRate": 0.094,
           "careerRate": 0.114,
           "runs": {
-            "model": 0.218,
+            "model": 0.222,
             "rawForm": 0.083
           },
           "hazard": {
-            "model": 0.125,
+            "model": 0.153,
             "rawForm": 0.075
           }
         }
@@ -1691,12 +1691,12 @@
       "stability": {
         "batting": {
           "n": 499,
-          "model": 0.748,
+          "model": 0.755,
           "rawFormSR": 0.454
         },
         "bowling": {
           "n": 408,
-          "model": 0.562,
+          "model": 0.579,
           "rawFormEconomy": 0.44
         }
       }
@@ -1729,42 +1729,42 @@
         "batting": {
           "n": 392,
           "within": {
-            "model": 0.337,
+            "model": 0.341,
             "rawFormValue": 0.272,
             "rawFormRate": 0.268
           },
-          "model": 0.321,
-          "modelTiered": 0.335,
+          "model": 0.326,
+          "modelTiered": 0.34,
           "rawFormValue": 0.279,
           "rawFormRate": 0.268,
           "careerRate": 0.259,
           "runs": {
-            "model": 0.377,
+            "model": 0.379,
             "rawForm": 0.328
           },
           "hazard": {
-            "model": 0.129,
+            "model": 0.162,
             "rawForm": 0.076
           }
         },
         "bowling": {
           "n": 324,
           "within": {
-            "model": 0.186,
+            "model": 0.192,
             "rawFormValue": 0.087,
             "rawFormRate": 0.102
           },
-          "model": 0.175,
-          "modelTiered": 0.171,
+          "model": 0.18,
+          "modelTiered": 0.176,
           "rawFormValue": 0.044,
           "rawFormRate": 0.094,
           "careerRate": 0.114,
           "runs": {
-            "model": 0.218,
+            "model": 0.222,
             "rawForm": 0.083
           },
           "hazard": {
-            "model": 0.125,
+            "model": 0.153,
             "rawForm": 0.075
           }
         }
@@ -1772,12 +1772,12 @@
       "stability": {
         "batting": {
           "n": 499,
-          "model": 0.745,
+          "model": 0.752,
           "rawFormSR": 0.454
         },
         "bowling": {
           "n": 408,
-          "model": 0.569,
+          "model": 0.584,
           "rawFormEconomy": 0.44
         }
       }
@@ -1810,42 +1810,42 @@
         "batting": {
           "n": 392,
           "within": {
-            "model": 0.332,
+            "model": 0.337,
             "rawFormValue": 0.272,
             "rawFormRate": 0.268
           },
-          "model": 0.316,
-          "modelTiered": 0.329,
+          "model": 0.32,
+          "modelTiered": 0.334,
           "rawFormValue": 0.279,
           "rawFormRate": 0.268,
           "careerRate": 0.259,
           "runs": {
-            "model": 0.377,
+            "model": 0.379,
             "rawForm": 0.328
           },
           "hazard": {
-            "model": 0.129,
+            "model": 0.162,
             "rawForm": 0.076
           }
         },
         "bowling": {
           "n": 324,
           "within": {
-            "model": 0.185,
+            "model": 0.19,
             "rawFormValue": 0.087,
             "rawFormRate": 0.102
           },
-          "model": 0.173,
-          "modelTiered": 0.166,
+          "model": 0.178,
+          "modelTiered": 0.171,
           "rawFormValue": 0.044,
           "rawFormRate": 0.094,
           "careerRate": 0.114,
           "runs": {
-            "model": 0.218,
+            "model": 0.222,
             "rawForm": 0.083
           },
           "hazard": {
-            "model": 0.125,
+            "model": 0.153,
             "rawForm": 0.075
           }
         }
@@ -1853,12 +1853,12 @@
       "stability": {
         "batting": {
           "n": 499,
-          "model": 0.742,
+          "model": 0.749,
           "rawFormSR": 0.454
         },
         "bowling": {
           "n": 408,
-          "model": 0.56,
+          "model": 0.574,
           "rawFormEconomy": 0.44
         }
       }
@@ -1891,42 +1891,42 @@
         "batting": {
           "n": 392,
           "within": {
-            "model": 0.341,
+            "model": 0.344,
             "rawFormValue": 0.272,
             "rawFormRate": 0.268
           },
-          "model": 0.325,
-          "modelTiered": 0.339,
+          "model": 0.329,
+          "modelTiered": 0.343,
           "rawFormValue": 0.279,
           "rawFormRate": 0.268,
           "careerRate": 0.259,
           "runs": {
-            "model": 0.376,
+            "model": 0.378,
             "rawForm": 0.328
           },
           "hazard": {
-            "model": 0.129,
+            "model": 0.162,
             "rawForm": 0.076
           }
         },
         "bowling": {
           "n": 324,
           "within": {
-            "model": 0.183,
+            "model": 0.188,
             "rawFormValue": 0.087,
             "rawFormRate": 0.102
           },
-          "model": 0.172,
-          "modelTiered": 0.17,
+          "model": 0.177,
+          "modelTiered": 0.175,
           "rawFormValue": 0.044,
           "rawFormRate": 0.094,
           "careerRate": 0.114,
           "runs": {
-            "model": 0.211,
+            "model": 0.215,
             "rawForm": 0.083
           },
           "hazard": {
-            "model": 0.121,
+            "model": 0.147,
             "rawForm": 0.075
           }
         }
@@ -1934,12 +1934,12 @@
       "stability": {
         "batting": {
           "n": 499,
-          "model": 0.747,
+          "model": 0.752,
           "rawFormSR": 0.454
         },
         "bowling": {
           "n": 408,
-          "model": 0.556,
+          "model": 0.568,
           "rawFormEconomy": 0.44
         }
       }
@@ -1972,42 +1972,42 @@
         "batting": {
           "n": 392,
           "within": {
-            "model": 0.343,
+            "model": 0.348,
             "rawFormValue": 0.272,
             "rawFormRate": 0.268
           },
-          "model": 0.327,
-          "modelTiered": 0.341,
+          "model": 0.332,
+          "modelTiered": 0.346,
           "rawFormValue": 0.279,
           "rawFormRate": 0.268,
           "careerRate": 0.259,
           "runs": {
-            "model": 0.378,
+            "model": 0.381,
             "rawForm": 0.328
           },
           "hazard": {
-            "model": 0.129,
+            "model": 0.161,
             "rawForm": 0.076
           }
         },
         "bowling": {
           "n": 324,
           "within": {
-            "model": 0.188,
+            "model": 0.195,
             "rawFormValue": 0.087,
             "rawFormRate": 0.102
           },
-          "model": 0.178,
-          "modelTiered": 0.176,
+          "model": 0.184,
+          "modelTiered": 0.182,
           "rawFormValue": 0.044,
           "rawFormRate": 0.094,
           "careerRate": 0.114,
           "runs": {
-            "model": 0.222,
+            "model": 0.227,
             "rawForm": 0.083
           },
           "hazard": {
-            "model": 0.127,
+            "model": 0.155,
             "rawForm": 0.075
           }
         }
@@ -2015,12 +2015,12 @@
       "stability": {
         "batting": {
           "n": 499,
-          "model": 0.748,
+          "model": 0.755,
           "rawFormSR": 0.454
         },
         "bowling": {
           "n": 408,
-          "model": 0.585,
+          "model": 0.601,
           "rawFormEconomy": 0.44
         }
       }
@@ -2053,42 +2053,42 @@
         "batting": {
           "n": 392,
           "within": {
-            "model": 0.342,
+            "model": 0.346,
             "rawFormValue": 0.272,
             "rawFormRate": 0.268
           },
-          "model": 0.326,
-          "modelTiered": 0.34,
+          "model": 0.33,
+          "modelTiered": 0.344,
           "rawFormValue": 0.279,
           "rawFormRate": 0.268,
           "careerRate": 0.259,
           "runs": {
-            "model": 0.374,
+            "model": 0.377,
             "rawForm": 0.328
           },
           "hazard": {
-            "model": 0.128,
+            "model": 0.161,
             "rawForm": 0.076
           }
         },
         "bowling": {
           "n": 324,
           "within": {
-            "model": 0.183,
+            "model": 0.188,
             "rawFormValue": 0.087,
             "rawFormRate": 0.102
           },
-          "model": 0.172,
-          "modelTiered": 0.17,
+          "model": 0.177,
+          "modelTiered": 0.175,
           "rawFormValue": 0.044,
           "rawFormRate": 0.094,
           "careerRate": 0.114,
           "runs": {
-            "model": 0.214,
+            "model": 0.218,
             "rawForm": 0.083
           },
           "hazard": {
-            "model": 0.125,
+            "model": 0.152,
             "rawForm": 0.075
           }
         }
@@ -2096,12 +2096,12 @@
       "stability": {
         "batting": {
           "n": 499,
-          "model": 0.733,
+          "model": 0.739,
           "rawFormSR": 0.454
         },
         "bowling": {
           "n": 408,
-          "model": 0.549,
+          "model": 0.562,
           "rawFormEconomy": 0.44
         }
       }
@@ -2134,42 +2134,42 @@
         "batting": {
           "n": 392,
           "within": {
-            "model": 0.341,
+            "model": 0.345,
             "rawFormValue": 0.272,
             "rawFormRate": 0.268
           },
-          "model": 0.325,
-          "modelTiered": 0.339,
+          "model": 0.33,
+          "modelTiered": 0.344,
           "rawFormValue": 0.279,
           "rawFormRate": 0.268,
           "careerRate": 0.259,
           "runs": {
-            "model": 0.378,
+            "model": 0.381,
             "rawForm": 0.328
           },
           "hazard": {
-            "model": 0.129,
+            "model": 0.162,
             "rawForm": 0.076
           }
         },
         "bowling": {
           "n": 324,
           "within": {
-            "model": 0.186,
+            "model": 0.192,
             "rawFormValue": 0.087,
             "rawFormRate": 0.102
           },
-          "model": 0.177,
-          "modelTiered": 0.175,
+          "model": 0.182,
+          "modelTiered": 0.18,
           "rawFormValue": 0.044,
           "rawFormRate": 0.094,
           "careerRate": 0.114,
           "runs": {
-            "model": 0.22,
+            "model": 0.224,
             "rawForm": 0.083
           },
           "hazard": {
-            "model": 0.125,
+            "model": 0.153,
             "rawForm": 0.075
           }
         }
@@ -2177,12 +2177,12 @@
       "stability": {
         "batting": {
           "n": 499,
-          "model": 0.755,
+          "model": 0.762,
           "rawFormSR": 0.454
         },
         "bowling": {
           "n": 408,
-          "model": 0.585,
+          "model": 0.6,
           "rawFormEconomy": 0.44
         }
       }
@@ -2215,42 +2215,42 @@
         "batting": {
           "n": 392,
           "within": {
-            "model": 0.336,
+            "model": 0.341,
             "rawFormValue": 0.272,
             "rawFormRate": 0.268
           },
-          "model": 0.32,
-          "modelTiered": 0.334,
+          "model": 0.326,
+          "modelTiered": 0.34,
           "rawFormValue": 0.279,
           "rawFormRate": 0.268,
           "careerRate": 0.259,
           "runs": {
-            "model": 0.375,
+            "model": 0.378,
             "rawForm": 0.328
           },
           "hazard": {
-            "model": 0.134,
+            "model": 0.165,
             "rawForm": 0.076
           }
         },
         "bowling": {
           "n": 324,
           "within": {
-            "model": 0.182,
+            "model": 0.188,
             "rawFormValue": 0.087,
             "rawFormRate": 0.102
           },
-          "model": 0.172,
-          "modelTiered": 0.172,
+          "model": 0.178,
+          "modelTiered": 0.177,
           "rawFormValue": 0.044,
           "rawFormRate": 0.094,
           "careerRate": 0.114,
           "runs": {
-            "model": 0.217,
+            "model": 0.221,
             "rawForm": 0.083
           },
           "hazard": {
-            "model": 0.115,
+            "model": 0.136,
             "rawForm": 0.075
           }
         }
@@ -2258,12 +2258,12 @@
       "stability": {
         "batting": {
           "n": 499,
-          "model": 0.743,
+          "model": 0.749,
           "rawFormSR": 0.454
         },
         "bowling": {
           "n": 408,
-          "model": 0.568,
+          "model": 0.582,
           "rawFormEconomy": 0.44
         }
       }
@@ -2296,42 +2296,42 @@
         "batting": {
           "n": 392,
           "within": {
-            "model": 0.345,
+            "model": 0.349,
             "rawFormValue": 0.272,
             "rawFormRate": 0.268
           },
-          "model": 0.329,
-          "modelTiered": 0.343,
+          "model": 0.333,
+          "modelTiered": 0.347,
           "rawFormValue": 0.279,
           "rawFormRate": 0.268,
           "careerRate": 0.259,
           "runs": {
-            "model": 0.378,
+            "model": 0.38,
             "rawForm": 0.328
           },
           "hazard": {
-            "model": 0.119,
+            "model": 0.148,
             "rawForm": 0.076
           }
         },
         "bowling": {
           "n": 324,
           "within": {
-            "model": 0.186,
+            "model": 0.192,
             "rawFormValue": 0.087,
             "rawFormRate": 0.102
           },
-          "model": 0.176,
-          "modelTiered": 0.173,
+          "model": 0.181,
+          "modelTiered": 0.178,
           "rawFormValue": 0.044,
           "rawFormRate": 0.094,
           "careerRate": 0.114,
           "runs": {
-            "model": 0.219,
+            "model": 0.223,
             "rawForm": 0.083
           },
           "hazard": {
-            "model": 0.136,
+            "model": 0.165,
             "rawForm": 0.075
           }
         }
@@ -2339,12 +2339,12 @@
       "stability": {
         "batting": {
           "n": 499,
-          "model": 0.746,
+          "model": 0.753,
           "rawFormSR": 0.454
         },
         "bowling": {
           "n": 408,
-          "model": 0.57,
+          "model": 0.585,
           "rawFormEconomy": 0.44
         }
       }
@@ -2377,42 +2377,42 @@
         "batting": {
           "n": 392,
           "within": {
-            "model": 0.341,
+            "model": 0.346,
             "rawFormValue": 0.272,
             "rawFormRate": 0.268
           },
-          "model": 0.325,
-          "modelTiered": 0.339,
+          "model": 0.33,
+          "modelTiered": 0.344,
           "rawFormValue": 0.279,
           "rawFormRate": 0.268,
           "careerRate": 0.259,
           "runs": {
-            "model": 0.377,
+            "model": 0.379,
             "rawForm": 0.328
           },
           "hazard": {
-            "model": 0.129,
+            "model": 0.162,
             "rawForm": 0.076
           }
         },
         "bowling": {
           "n": 324,
           "within": {
-            "model": 0.179,
+            "model": 0.182,
             "rawFormValue": 0.087,
             "rawFormRate": 0.102
           },
-          "model": 0.168,
-          "modelTiered": 0.166,
+          "model": 0.171,
+          "modelTiered": 0.169,
           "rawFormValue": 0.044,
           "rawFormRate": 0.094,
           "careerRate": 0.114,
           "runs": {
-            "model": 0.203,
+            "model": 0.205,
             "rawForm": 0.083
           },
           "hazard": {
-            "model": 0.12,
+            "model": 0.145,
             "rawForm": 0.075
           }
         }
@@ -2420,12 +2420,12 @@
       "stability": {
         "batting": {
           "n": 499,
-          "model": 0.746,
+          "model": 0.752,
           "rawFormSR": 0.454
         },
         "bowling": {
           "n": 408,
-          "model": 0.539,
+          "model": 0.545,
           "rawFormEconomy": 0.44
         }
       }
@@ -2458,42 +2458,42 @@
         "batting": {
           "n": 392,
           "within": {
-            "model": 0.341,
+            "model": 0.346,
             "rawFormValue": 0.272,
             "rawFormRate": 0.268
           },
-          "model": 0.325,
-          "modelTiered": 0.339,
+          "model": 0.33,
+          "modelTiered": 0.344,
           "rawFormValue": 0.279,
           "rawFormRate": 0.268,
           "careerRate": 0.259,
           "runs": {
-            "model": 0.377,
+            "model": 0.379,
             "rawForm": 0.328
           },
           "hazard": {
-            "model": 0.129,
+            "model": 0.162,
             "rawForm": 0.076
           }
         },
         "bowling": {
           "n": 324,
           "within": {
-            "model": 0.193,
+            "model": 0.205,
             "rawFormValue": 0.087,
             "rawFormRate": 0.102
           },
-          "model": 0.183,
-          "modelTiered": 0.181,
+          "model": 0.195,
+          "modelTiered": 0.193,
           "rawFormValue": 0.044,
           "rawFormRate": 0.094,
           "careerRate": 0.114,
           "runs": {
-            "model": 0.236,
+            "model": 0.244,
             "rawForm": 0.083
           },
           "hazard": {
-            "model": 0.128,
+            "model": 0.157,
             "rawForm": 0.075
           }
         }
@@ -2501,12 +2501,12 @@
       "stability": {
         "batting": {
           "n": 499,
-          "model": 0.746,
+          "model": 0.752,
           "rawFormSR": 0.454
         },
         "bowling": {
           "n": 408,
-          "model": 0.62,
+          "model": 0.65,
           "rawFormEconomy": 0.44
         }
       }
@@ -2539,42 +2539,42 @@
         "batting": {
           "n": 392,
           "within": {
-            "model": 0.346,
+            "model": 0.35,
             "rawFormValue": 0.272,
             "rawFormRate": 0.268
           },
-          "model": 0.331,
-          "modelTiered": 0.345,
+          "model": 0.335,
+          "modelTiered": 0.349,
           "rawFormValue": 0.279,
           "rawFormRate": 0.268,
           "careerRate": 0.259,
           "runs": {
-            "model": 0.377,
+            "model": 0.379,
             "rawForm": 0.328
           },
           "hazard": {
-            "model": 0.129,
+            "model": 0.162,
             "rawForm": 0.076
           }
         },
         "bowling": {
           "n": 324,
           "within": {
-            "model": 0.186,
+            "model": 0.192,
             "rawFormValue": 0.087,
             "rawFormRate": 0.102
           },
-          "model": 0.176,
-          "modelTiered": 0.172,
+          "model": 0.18,
+          "modelTiered": 0.176,
           "rawFormValue": 0.044,
           "rawFormRate": 0.094,
           "careerRate": 0.114,
           "runs": {
-            "model": 0.218,
+            "model": 0.222,
             "rawForm": 0.083
           },
           "hazard": {
-            "model": 0.125,
+            "model": 0.153,
             "rawForm": 0.075
           }
         }
@@ -2582,12 +2582,12 @@
       "stability": {
         "batting": {
           "n": 499,
-          "model": 0.741,
+          "model": 0.746,
           "rawFormSR": 0.454
         },
         "bowling": {
           "n": 408,
-          "model": 0.568,
+          "model": 0.583,
           "rawFormEconomy": 0.44
         }
       }
@@ -2620,12 +2620,12 @@
         "batting": {
           "n": 392,
           "within": {
-            "model": 0.317,
+            "model": 0.316,
             "rawFormValue": 0.272,
             "rawFormRate": 0.268
           },
           "model": 0.31,
-          "modelTiered": 0.32,
+          "modelTiered": 0.319,
           "rawFormValue": 0.279,
           "rawFormRate": 0.268,
           "careerRate": 0.259,
@@ -2634,14 +2634,14 @@
             "rawForm": 0.328
           },
           "hazard": {
-            "model": 0.113,
+            "model": 0.112,
             "rawForm": 0.076
           }
         },
         "bowling": {
           "n": 324,
           "within": {
-            "model": 0.152,
+            "model": 0.153,
             "rawFormValue": 0.087,
             "rawFormRate": 0.102
           },
@@ -2655,7 +2655,7 @@
             "rawForm": 0.083
           },
           "hazard": {
-            "model": 0.117,
+            "model": 0.118,
             "rawForm": 0.075
           }
         }
@@ -2663,7 +2663,7 @@
       "stability": {
         "batting": {
           "n": 499,
-          "model": 0.745,
+          "model": 0.744,
           "rawFormSR": 0.454
         },
         "bowling": {
@@ -2726,8 +2726,8 @@
             "rawFormValue": 0.087,
             "rawFormRate": 0.102
           },
-          "model": 0.168,
-          "modelTiered": 0.158,
+          "model": 0.167,
+          "modelTiered": 0.157,
           "rawFormValue": 0.044,
           "rawFormRate": 0.094,
           "careerRate": 0.114,
@@ -2736,7 +2736,7 @@
             "rawForm": 0.083
           },
           "hazard": {
-            "model": 0.131,
+            "model": 0.132,
             "rawForm": 0.075
           }
         }
@@ -2744,7 +2744,7 @@
       "stability": {
         "batting": {
           "n": 499,
-          "model": 0.789,
+          "model": 0.788,
           "rawFormSR": 0.454
         },
         "bowling": {
@@ -2846,44 +2846,32 @@
       ],
       "spanYears": 9,
       "bestDisplay": 97
-    },
-    {
-      "personId": "9ab63e7b",
-      "name": "Mohammad Hafeez",
-      "skill": "bowling",
-      "editions": [
-        "2012",
-        "2014",
-        "2021"
-      ],
-      "spanYears": 9,
-      "bestDisplay": 85
     }
   ],
   "audit": {
     "byTier": {
       "Elite": {
         "n": 35,
-        "meanDisplay": 79.9
+        "meanDisplay": 80.3
       },
       "Gold": {
         "n": 63,
-        "meanDisplay": 74.5
+        "meanDisplay": 75
       },
       "Silver": {
         "n": 65,
-        "meanDisplay": 69.9
+        "meanDisplay": 70.4
       },
       "Bronze": {
         "n": 59,
-        "meanDisplay": 66.4
+        "meanDisplay": 67.1
       }
     },
     "spearman": 0.314,
     "tiers": {
-      "exact": 0.311,
-      "withinOne": 0.797,
-      "spearman": 0.324,
+      "exact": 0.302,
+      "withinOne": 0.784,
+      "spearman": 0.326,
       "confusion": {
         "Elite": {
           "Bronze": 0,
@@ -2893,20 +2881,20 @@
         },
         "Gold": {
           "Bronze": 1,
-          "Silver": 17,
-          "Gold": 25,
-          "Elite": 20
+          "Silver": 15,
+          "Gold": 24,
+          "Elite": 23
         },
         "Silver": {
-          "Bronze": 6,
-          "Silver": 22,
+          "Bronze": 5,
+          "Silver": 21,
           "Gold": 24,
-          "Elite": 13
+          "Elite": 15
         },
         "Bronze": {
           "Bronze": 6,
-          "Silver": 26,
-          "Gold": 18,
+          "Silver": 25,
+          "Gold": 19,
           "Elite": 9
         }
       }

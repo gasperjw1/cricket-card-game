@@ -20,6 +20,10 @@ export interface PoolPlayer {
   bowlPhases: Record<Phase, number>;
   batLow: boolean;
   bowlLow: boolean;
+  /** Whether the card shows the skill at all (false for a batter who rarely bowls, and vice versa). */
+  batShown: boolean;
+  bowlShown: boolean;
+  domesticBalls: { bat: number; bowl: number };
   squadPlayer: boolean;
   position: number | null;
   positionless: boolean;

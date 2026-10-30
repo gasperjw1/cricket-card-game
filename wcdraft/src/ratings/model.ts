@@ -39,8 +39,30 @@ export const MODEL = {
    * it raised bowling prediction (0.167 → 0.175) and lowered batting (0.311 → 0.306).
    */
   venueNormalisation: 0 as number,
-  /** Pseudo-balls of weight given to the ODI-derived prior when T20 evidence is thin (2007/2009). */
+  /** Pseudo-balls of weight given to the ODI-derived prior when T20 evidence is thin (2007/2009); scaled by ODI balls ÷ odiFullBalls. */
   odiPriorStrength: 30,
+  /** ODI balls at which the ODI prior carries its full weight; it is usable from odiMinBalls (decided 2026-10-30: 2007/2009 bowlers' batting). */
+  odiFullBalls: 300,
+  odiMinBalls: 120,
+  /**
+   * Domestic T20 backup (decided 2026-10-30): the career-to-date relative vector from the league
+   * archives, shrunk toward neutral with `priorStrength` balls and raised to `transfer` (only part
+   * of a domestic edge carries to internationals), is the prior centre under the T20I career. Plenty
+   * of T20I evidence swamps it; a bowler who has faced 30 T20I balls but 800 in the IPL gets his IPL
+   * batting. `shownBalls` is the evidence at which a skill is displayed at all, counted over the
+   * last RECENT_SEASONS league seasons only (Kohli's 2008–13 IPL overs do not make him a bowler in
+   * 2024); `liftBalls` lifts the low-sample badge like the ODI prior does.
+   */
+  domestic: { priorStrength: 100, transfer: 0.7, shownBalls: { bat: 150, bowl: 180 }, liftBalls: { bat: 300, bowl: 360 } },
+  /**
+   * A skill is shown on a card when the window, the career, the recent domestic record or the ODI
+   * record clears these (decided 2026-10-30: no bowling numbers for batters who rarely bowl, and
+   * vice versa). The ODI record vouches for batting in every edition (a bowler's batting does not
+   * go away) but for bowling only in `odiBowlEditions`, the editions before the league archives
+   * are deep enough; later, a lifetime of occasional ODI overs (Kohli's 662 balls) does not make a
+   * bowler.
+   */
+  shown: { formBalls: { bat: 60, bowl: 96 }, careerBalls: { bat: 120, bowl: 180 }, odiBalls: { bat: 120, bowl: 240 }, odiBowlEditions: ["2007", "2009"] as readonly string[] },
   /** Runs a wicket costs a batting side in T20, from the expected-runs literature (≈2.4–3.1 by over band). */
   wicketCost: 2.6 as number,
   /**
@@ -181,6 +203,8 @@ export interface PlayerEditionIn {
   formByOppBin: Record<string, Record<"bat" | "bowl", PooledCountsIn>>;
   usage: { formMatches: number; formTeamMatches: number; tournamentMatches: number; tournamentTeamMatches: number };
   odiCareerToDate: { summary: BlockIn["summary"] };
+  /** Domestic T20 career to the edition's start (observed and competition-expected counts per phase), or null. */
+  domesticToDate: { matches: number; bat: Record<Phase, PooledCountsIn>; bowl: Record<Phase, PooledCountsIn>; competitions: Record<string, number>; recent: { bat: number; bowl: number } } | null;
 }
 
 export interface PooledCountsIn {
@@ -209,7 +233,11 @@ export interface SkillRating {
     formBallsVsAssociate: number;
     careerBalls: number;
     odiBalls: number;
-    source: "form" | "career" | "odi" | "population";
+    /** Domestic T20 balls behind the prior centre (0 when none). */
+    domesticBalls: number;
+    /** Domestic T20 balls in the last RECENT_SEASONS seasons (the recency test behind `shown`). */
+    domesticRecentBalls: number;
+    source: "form" | "career" | "domestic" | "odi" | "population";
     /** Share of the player's edge carried into the edition's opposition (1 = all of it). */
     transfer: number;
     /** Exposure-weighted scoring factor of the grounds the form was earned on (1 = window average). */
@@ -226,6 +254,12 @@ export interface SkillRating {
   percentile: number;
   display: number;
   lowSample: boolean;
+  /**
+   * Whether the card shows this skill at all: false for a skill the player has barely shown in
+   * T20Is, his domestic career or ODIs (a specialist batter's bowling). The engine still carries
+   * the vectors, which are then almost pure prior.
+   */
+  shown: boolean;
   /** Per-phase 40–99 display numbers (same map as the headline) and the evidence behind each. */
   displayByPhase: Record<Phase, number>;
   phaseEvidence: Record<Phase, { balls: number; thin: boolean }>;

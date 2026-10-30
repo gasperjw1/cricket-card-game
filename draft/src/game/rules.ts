@@ -38,8 +38,9 @@ export function keeperCovered(picks: (PoolPlayer | null)[]): boolean {
   return picks.some((p) => p?.keeper);
 }
 
+/** Counts toward the overs meter: a bowler, an all-rounder, or anyone whose bowling record is shown. */
 export function bowls(p: PoolPlayer): boolean {
-  return p.role === "bowler" || p.role === "all-rounder" || !p.bowlLow;
+  return p.role === "bowler" || p.role === "all-rounder" || p.bowlShown;
 }
 
 /** Overs the eleven can cover at four a bowler, capped at 20 (the overs meter). */

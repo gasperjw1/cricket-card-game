@@ -29,8 +29,12 @@ export function PlayerCard({ player, selected, compact, onClick }: { player: Poo
       </div>
       {!compact && (
         <div className="phases">
-          <div><span className="k">Bat</span> <b>{p.bat}{p.batLow ? "*" : ""}</b> <small>{p.batPhases.pp} / {p.batPhases.mid} / {p.batPhases.death}</small></div>
-          <div><span className="k">Bowl</span> <b>{p.bowl}{p.bowlLow ? "*" : ""}</b> <small>{p.bowlPhases.pp} / {p.bowlPhases.mid} / {p.bowlPhases.death}</small></div>
+          {p.batShown ? (
+            <div><span className="k">Bat</span> <b>{p.bat}{p.batLow ? "*" : ""}</b> <small>{p.batPhases.pp} / {p.batPhases.mid} / {p.batPhases.death}</small></div>
+          ) : <div><span className="k">Bat</span> <small className="muted">rarely bats</small></div>}
+          {p.bowlShown ? (
+            <div><span className="k">Bowl</span> <b>{p.bowl}{p.bowlLow ? "*" : ""}</b> <small>{p.bowlPhases.pp} / {p.bowlPhases.mid} / {p.bowlPhases.death}</small></div>
+          ) : <div><span className="k">Bowl</span> <small className="muted">rarely bowls</small></div>}
         </div>
       )}
     </button>

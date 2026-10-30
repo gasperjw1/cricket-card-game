@@ -15,16 +15,29 @@ import { paths, readJson } from "../util/io.js";
 import type { RawMatch } from "./types.js";
 
 export interface ArchiveSpec {
-  key: "t20" | "odi";
+  key: string;
   name: string;
   url: string;
+  /** Domestic T20 leagues are optional: a missing or renamed zip is skipped, never fatal. */
+  optional?: boolean;
 }
 
-export const ARCHIVES: Record<ArchiveSpec["key"], ArchiveSpec> = {
+export const ARCHIVES: Record<"t20" | "odi", ArchiveSpec> = {
   t20: { key: "t20", name: "t20s_male_json", url: "https://cricsheet.org/downloads/t20s_male_json.zip" },
   /** Men's ODIs: the weak prior for 2007/2009 ratings and the ODI captaincy/strength timelines. */
   odi: { key: "odi", name: "odis_male_json", url: "https://cricsheet.org/downloads/odis_male_json.zip" },
 };
+
+/**
+ * Men's domestic and franchise T20 leagues on Cricsheet (same person ids as the internationals).
+ * Used as backup evidence for skills a player rarely shows in T20Is (a bowler's batting, a
+ * batter's bowling), decided 2026-10-30.
+ */
+export const LEAGUE_ARCHIVES: ArchiveSpec[] = [
+  ["ipl", "Indian Premier League"], ["bbl", "Big Bash League"], ["psl", "Pakistan Super League"], ["cpl", "Caribbean Premier League"],
+  ["ntb", "T20 Blast"], ["sat", "SA20"], ["ilt", "International League T20"], ["mlc", "Major League Cricket"], ["lpl", "Lanka Premier League"],
+  ["bpl", "Bangladesh Premier League"], ["ssm", "Super Smash"], ["sma", "Syed Mushtaq Ali Trophy"], ["msl", "Mzansi Super League"], ["apl", "Afghanistan Premier League"],
+].map(([code]) => ({ key: code!, name: `${code}_male_json`, url: `https://cricsheet.org/downloads/${code}_male_json.zip`, optional: true }));
 
 export const ARCHIVE = {
   ...ARCHIVES.t20,

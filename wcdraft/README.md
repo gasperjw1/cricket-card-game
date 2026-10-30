@@ -122,7 +122,27 @@ npm run ratings:build --workspace wcdraft   # ≈16 s → data/out/ratings/<edit
    era-locked **Squad Player** tag (under 25% of the tournament; 76 player-editions). A within-team
    selection prior (rarely picked players rating above their team median lose value) is
    implemented but **off**: the sweep found it neutral to slightly negative.
-8. **Tiers, roles and phases** (spec §5.6). The headline value weights phases by the player's own
+8. **Backup evidence and shown skills** (decided 2026-10-30). `npm run data:fetch` also pulls the
+   men's domestic and franchise T20 league archives from Cricsheet (IPL, BBL, PSL, CPL, T20 Blast,
+   SA20, ILT20, MLC, LPL, BPL, Super Smash, Syed Mushtaq Ali, MSL; `--no-leagues` skips them). Each
+   player-edition carries `domesticToDate`: career-to-date league outcomes per phase with the
+   competition × season expectation over the same balls. The ratings use the domestic relative
+   vector, shrunk (100 balls) and partially transferred (exponent 0.7), as the centre the T20I
+   career shrinks toward, so a bowler who has faced 30 T20I balls but 800 in the IPL gets his IPL
+   batting while a regular T20I batter is untouched. The ODI prior is usable from 120 balls (was
+   300) with weight in proportion, which is what backs 2007 and 2009 bowlers' batting. Every skill
+   carries `shown`: false when the window, the T20I career, the **recent** domestic record (balls
+   in the edition year and the three seasons before it: Kohli's 2008–13 IPL overs do not make him a
+   bowler in 2024) and the ODI record are all thin. The ODI record vouches for batting in every
+   edition but for bowling only in 2007 and 2009, before the league archives are deep enough. The
+   role's own skill is always shown (a bowler with eleven T20Is is still a bowler; the low-sample
+   badge says how thin the number is), and a skill that is not shown cannot earn the player an
+   all-rounder role. The client prints "rarely bowls" / "rarely bats" instead of a prior-shaped
+   number. Result over 2,074 player-editions: 889 bowling numbers hidden (735 specialist batters),
+   488 batting numbers hidden (356 specialist bowlers), 18% of specialist batters show a bowling
+   number, 52% of player-editions carry domestic batting evidence. Phase numbers shrink toward the
+   median exactly like the headline.
+9. **Tiers, roles and phases** (spec §5.6). The headline value weights phases by the player's own
    exposure (a finisher over the death overs he bats in, a new-ball bowler over the powerplay;
    population weights as a 60-ball prior), so the card `tier` is role-relative: the better skill
    percentile plus an all-round bonus, cut at the percentile thresholds in

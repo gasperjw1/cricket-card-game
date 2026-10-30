@@ -162,6 +162,33 @@ describe("Phase 1 ratings", { skip: !ready && "archive not fetched" }, () => {
     assert.ok(elite > 0.03 && elite < 0.2, `Elite share ${elite}`);
   });
 
+  it("hides skills a player rarely shows and backs thin T20I records with domestic T20 and ODI evidence", () => {
+    const r = rateAll(build());
+    const get = (name: string, ed: string) => r.find((x) => x.name === name && x.editionId === ed)!;
+    assert.equal(get("V Kohli", "2024").bowling.shown, false, "Kohli does not bowl");
+    assert.equal(get("V Kohli", "2024").batting.shown, true);
+    const batters = r.filter((x) => x.role === "batter" && !x.batting.lowSample);
+    const shownBowling = batters.filter((x) => x.bowling.shown).length / Math.max(1, batters.length);
+    assert.ok(shownBowling < 0.35, `${(100 * shownBowling).toFixed(0)}% of specialist batters show a bowling number`);
+    // A bowler with a franchise career gets a batting record from it even when his T20I batting is thin
+    // (Dube had faced 112 T20I balls by June 2024 and over a thousand in the IPL); Bumrah's bowling
+    // carries thousands of league balls, and a specialist's own skill is always shown.
+    const dube = get("S Dube", "2024");
+    assert.ok(dube.batting.evidence.domesticBalls > 1000 && dube.batting.shown, `Dube domestic balls faced ${dube.batting.evidence.domesticBalls}`);
+    const bumrah = get("JJ Bumrah", "2024");
+    assert.ok(bumrah.bowling.evidence.domesticBalls > 1000 && bumrah.bowling.shown, `Bumrah domestic balls bowled ${bumrah.bowling.evidence.domesticBalls}`);
+    for (const x of r) {
+      if (x.role === "bowler" || x.role === "all-rounder") assert.ok(x.bowling.shown, `${x.name} ${x.editionId} is a ${x.role} with hidden bowling`);
+      if (x.role === "batter" || x.role === "all-rounder") assert.ok(x.batting.shown, `${x.name} ${x.editionId} is a ${x.role} with hidden batting`);
+    }
+    const withDomestic = r.filter((x) => x.batting.evidence.domesticBalls > 0).length / r.length;
+    assert.ok(withDomestic > 0.4, `${(100 * withDomestic).toFixed(0)}% of player-editions carry domestic batting evidence`);
+    // Phase numbers agree with the headline for an unmeasured skill (both at the median).
+    for (const x of r) if (!x.bowling.shown && x.bowling.evidence.source === "population") {
+      for (const p of PHASE_LIST) assert.ok(Math.abs(x.bowling.displayByPhase[p] - x.bowling.display) <= 1, `${x.name} bowling ${x.bowling.display} vs phase ${x.bowling.displayByPhase[p]}`);
+    }
+  });
+
   it("lists the expected Timeless candidates and agrees with the card tiers in direction", () => {
     const r = build();
     const ratings = rateAll(r);

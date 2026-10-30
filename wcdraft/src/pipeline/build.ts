@@ -16,6 +16,7 @@ import { ContextPopulation } from "../analysis/context-population.js";
 import { SituationAnalysis, type SituationTables } from "../analysis/situation.js";
 import { MatchupAnalysis, type MatchupTables } from "../analysis/matchups.js";
 import { buildCaptaincy, type CaptaincyTables } from "../analysis/captaincy.js";
+import { DomesticAnalysis, type DomesticOut } from "../analysis/domestic.js";
 import { buildCoaches, type CoachTables } from "../analysis/coaches.js";
 import { readLabels } from "./labels.js";
 import { EditionsAnalysis } from "../analysis/editions.js";
@@ -27,7 +28,7 @@ import { TeamStyleAnalysis } from "../analysis/team-style.js";
 import { VenuesAnalysis } from "../analysis/venues.js";
 import { WindowPopulationAnalysis } from "../analysis/window-population.js";
 import { loadConfig, type Config } from "../config.js";
-import { ARCHIVE, ARCHIVES, archiveIsReady, loadIndex, readMatch, readSnapshot, type MatchIndexEntry } from "../cricsheet/archive.js";
+import { ARCHIVE, ARCHIVES, LEAGUE_ARCHIVES, archiveIsReady, loadIndex, readMatch, readSnapshot, type MatchIndexEntry } from "../cricsheet/archive.js";
 import { isCompleteInnings, mainInnings, normaliseMatch } from "../cricsheet/match.js";
 import { addMonths, getOrCreate } from "../util/stats.js";
 
@@ -64,7 +65,7 @@ export interface BuildResult {
   };
   editions: ReturnType<EditionsAnalysis["summary"]>;
   venues: ReturnType<VenuesAnalysis["summary"]>;
-  playerEditions: ReturnType<PlayerStore["playerEditions"]>;
+  playerEditions: (ReturnType<PlayerStore["playerEditions"]>[number] & { domesticToDate: DomesticOut | null })[];
   people: ReturnType<PlayerStore["people"]>;
   squads: ReturnType<PlayerStore["squadsOut"]>;
   bowlingUsage: ReturnType<BowlingUsageAnalysis["summary"]>;
@@ -267,7 +268,30 @@ export function runBuild(log: (msg: string) => void = () => {}): BuildResult {
     log("ODI archive not fetched: odiCareerToDate will be empty (run `npm run data:fetch`)");
   }
 
-  const playerEditions = store.playerEditions();
+  // Domestic T20 pass (optional archives): career-to-date backup evidence per person at each
+  // edition's start, against competition × season populations. Two passes over every league file.
+  const domestic = new DomesticAnalysis();
+  const leagueIndex: { entry: MatchIndexEntry; competition: string }[] = [];
+  for (const a of LEAGUE_ARCHIVES) {
+    if (!archiveIsReady(a)) continue;
+    for (const entry of loadIndex(a)) if (entry.gender === "male") leagueIndex.push({ entry, competition: a.key });
+  }
+  leagueIndex.sort((x, y) => x.entry.date.localeCompare(y.entry.date) || x.entry.id.localeCompare(y.entry.id));
+  if (leagueIndex.length) {
+    for (const { entry, competition } of leagueIndex) domestic.addPopulation(normaliseMatch(readMatch(entry.file), entry.id), competition);
+    domestic.freeze();
+    const pending = [...windows].sort((a, b) => a.start.localeCompare(b.start));
+    for (const { entry, competition } of leagueIndex) {
+      while (pending.length && pending[0]!.start <= entry.date) { const w = pending.shift()!; domestic.snapshot(w.id, store.squadMembers.get(w.id) ?? []); }
+      domestic.add(normaliseMatch(readMatch(entry.file), entry.id), competition);
+    }
+    while (pending.length) { const w = pending.shift()!; domestic.snapshot(w.id, store.squadMembers.get(w.id) ?? []); }
+    log(`Read ${leagueIndex.length} domestic T20 files across ${new Set(leagueIndex.map((x) => x.competition)).size} leagues; ${domestic.playerCount} people with domestic balls`);
+  } else {
+    log("No domestic T20 archives fetched: domesticToDate will be empty (run `npm run data:fetch`)");
+  }
+
+  const playerEditions = store.playerEditions().map((row) => ({ ...row, domesticToDate: domestic.blockFor(row.editionId, row.personId) }));
   const people = store.people();
   const teamStrengthOut = teamStrength.summary();
   const teamStyleOut = teamStyle.summary();

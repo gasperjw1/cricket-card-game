@@ -62,6 +62,7 @@ h3 { font-size: 16px; margin: 0 0 8px; }
 .phases { display: flex; gap: 16px; margin-top: 6px; font-size: 13px; }
 .phases .k { color: var(--muted); }
 .phases small { color: var(--muted); margin-left: 4px; }
+.phases small.muted { font-style: italic; }
 
 .draft { display: grid; grid-template-columns: 1fr; gap: 14px; }
 @media (min-width: 900px) { .draft { grid-template-columns: 1.4fr 1fr; align-items: start; } .lineup { position: sticky; top: 12px; } }

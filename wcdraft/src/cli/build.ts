@@ -1,5 +1,5 @@
 /** `npm run data:build` — run the Phase 0 pipeline and (re)write data/out/ from scratch. */
-import { rmSync } from "node:fs";
+import { existsSync, readdirSync, rmSync } from "node:fs";
 import { resolve } from "node:path";
 import { runBuild } from "../pipeline/build.js";
 import { renderCoverage } from "../pipeline/report.js";
@@ -7,8 +7,14 @@ import { paths, writeJson, writeText } from "../util/io.js";
 
 const result = runBuild((msg) => console.log(msg));
 
-// data/out is fully generated; clear it so renamed or removed outputs never linger.
-rmSync(paths.out, { recursive: true, force: true });
+// data/out is fully generated; clear it so renamed or removed outputs never linger. The
+// `engine/` folder is the exception: it holds the replay and rarity harness outputs committed as
+// the §9 evidence, which `npm run engine:replay` / `engine:rarity` rewrite, not this build.
+if (existsSync(paths.out)) {
+  for (const entry of readdirSync(paths.out)) {
+    if (entry !== "engine") rmSync(resolve(paths.out, entry), { recursive: true, force: true });
+  }
+}
 
 // Human-readable tables stay pretty-printed; the bulky per-player tables are written compact
 // and split per edition so diffs stay reviewable.

@@ -7,7 +7,7 @@ import type { PoolPlayer } from "../src/game/types.ts";
 const player = (over: Partial<PoolPlayer>): PoolPlayer => ({
   id: over.id ?? Math.random().toString(36).slice(2), name: "X", team: "T", editionId: "2024", standIn: false, tier: "Silver", tierScore: 0.5, role: "batter",
   archetype: { batting: "top order", bowling: null }, bat: 70, bowl: 50, batPhases: { pp: 70, mid: 70, death: 70 }, bowlPhases: { pp: 50, mid: 50, death: 50 },
-  batLow: false, bowlLow: true, squadPlayer: false, position: 3, positionless: false, hand: "R", bowlingType: null, keeper: false, ...over,
+  batLow: false, bowlLow: true, batShown: true, bowlShown: false, domesticBalls: { bat: 0, bowl: 0 }, squadPlayer: false, position: 3, positionless: false, hand: "R", bowlingType: null, keeper: false, ...over,
 });
 
 describe("draft rules", () => {
@@ -26,7 +26,7 @@ describe("draft rules", () => {
     const picks: (PoolPlayer | null)[] = Array.from({ length: 11 }, (_, i) => player({ id: `p${i}` }));
     assert.deepEqual(lineupProblems(picks), ["No wicketkeeper: at least one player must have kept in a T20I", "Only 0 overs covered: you need five players who bowl"]);
     picks[6] = player({ id: "wk", keeper: true });
-    for (let i = 7; i < 11; i += 1) picks[i] = player({ id: `b${i}`, role: "bowler", bowlLow: false });
+    for (let i = 7; i < 11; i += 1) picks[i] = player({ id: `b${i}`, role: "bowler", bowlLow: false, bowlShown: true });
     picks[5] = player({ id: "ar", role: "all-rounder" });
     assert.equal(oversCovered(picks), 20);
     assert.deepEqual(lineupProblems(picks), []);
