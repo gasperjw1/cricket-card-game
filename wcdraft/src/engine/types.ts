@@ -30,6 +30,8 @@ export interface EnginePlayer {
   /** Batting hand and bowler class from the hand labels (null when unlabelled); drive the matchup term. */
   hand: "R" | "L" | null;
   bowlClass: BowlClass | null;
+  /** Has kept wicket (labels); takes the stumpings and most catches behind. */
+  keeper: boolean;
   /** Display-only. */
   tier: string;
   battingDisplay: number;
@@ -66,6 +68,8 @@ export interface MatchEnvironment {
   tieBreak: "super-over" | "bowl-out" | "none";
   /** Rain: probability the match is affected at this ground in this edition, and how affected matches split. */
   rain: { pAffected: number; noResultShare: number };
+  /** Shares of dismissal kinds at this ground (sum 1), from the venue or edition dismissal fingerprint. */
+  dismissalMix: Record<DismissalKind, number>;
 }
 
 export interface RainEvent {
@@ -75,6 +79,16 @@ export interface RainEvent {
   /** For a chase cut short: the legal balls bowled when play stopped and the par score at that point. */
   cutAtBalls: number | null;
   parScore: number | null;
+}
+
+export type DismissalKind = "caught" | "bowled" | "lbw" | "run out" | "stumped" | "caught and bowled" | "hit wicket";
+export const DISMISSAL_KINDS: DismissalKind[] = ["caught", "bowled", "lbw", "run out", "stumped", "caught and bowled", "hit wicket"];
+
+/** How a batter went: the kind drawn from the ground's dismissal fingerprint, the bowler (credited unless run out) and the fielder. */
+export interface Dismissal {
+  kind: DismissalKind;
+  bowler: { id: string; name: string } | null;
+  fielder: { id: string; name: string } | null;
 }
 
 export interface BallRecord {
@@ -89,7 +103,11 @@ export interface BallRecord {
   extras: number;
   extraKind: "wide" | "no-ball" | "bye" | null;
   wicket: boolean;
+  dismissal: Dismissal | null;
   legal: boolean;
+  /** Score after this delivery, for the live feed. */
+  runsAfter: number;
+  wicketsAfter: number;
 }
 
 export interface BatterLine {
@@ -100,6 +118,7 @@ export interface BatterLine {
   fours: number;
   sixes: number;
   out: boolean;
+  dismissal: Dismissal | null;
   position: number;
 }
 
@@ -110,6 +129,18 @@ export interface BowlerLine {
   runs: number;
   wickets: number;
   overs: number[];
+  maidens: number;
+  dots: number;
+  wides: number;
+  noBalls: number;
+}
+
+export interface Partnership {
+  batters: [string, string];
+  runs: number;
+  balls: number;
+  /** Which wicket ended it (1-based), or null for the unbroken stand. */
+  wicket: number | null;
 }
 
 export interface InningsResult {
@@ -124,6 +155,8 @@ export interface InningsResult {
   batting: BatterLine[];
   bowling: BowlerLine[];
   fallOfWickets: { runs: number; over: number; ball: number; batter: string }[];
+  partnerships: Partnership[];
+  extrasDetail: { wides: number; noBalls: number; byes: number };
   phaseRuns: Record<Phase, { runs: number; balls: number; wickets: number }>;
   /** Legal-ball outcome counts (batter's runs; W = striker dismissed). */
   outcomes: Record<OutcomeKey, number>;

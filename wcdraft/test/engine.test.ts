@@ -8,6 +8,7 @@ import assert from "node:assert/strict";
 import { describe, it } from "node:test";
 import { engineReady, loadEdition, matchEnvironment, teamFromDefault } from "../src/engine/load.js";
 import { simulateMatch } from "../src/engine/match.js";
+import { playerOfTheMatch } from "../src/engine/awards.js";
 import { replayEdition } from "../src/engine/replay.js";
 import { Rng } from "../src/engine/rng.js";
 import { expectedRunsOf, outcomeDistribution } from "../src/engine/ball.js";
@@ -84,6 +85,21 @@ describe("engine", { skip: !engineReady() && "engine data not built" }, () => {
     else if (a.winner === i1.team) assert.ok(i1.runs > i2.runs);
     else assert.ok(a.tieBreak);
     assert.ok(a.balls.length > 200);
+    // Scorecard detail: every out batter has a dismissal, bowler wickets exclude run-outs, partnerships
+    // add up to the total, extras split adds up, and the ball log tracks the score.
+    for (const inn of a.innings) {
+      for (const bt of inn.batting) assert.equal(!!bt.dismissal, bt.out, `${bt.name} dismissal`);
+      const credited = inn.batting.filter((bt) => bt.dismissal && bt.dismissal.kind !== "run out").length;
+      assert.equal(inn.bowling.reduce((s, x) => s + x.wickets, 0), credited, "bowler wickets = credited dismissals");
+      assert.equal(inn.partnerships.reduce((s, p) => s + p.runs, 0), inn.runs, "partnerships sum to the total");
+      assert.equal(inn.extrasDetail.wides + inn.extrasDetail.noBalls + inn.extrasDetail.byes, inn.extras, "extras split");
+      for (const bt of inn.batting) if (bt.dismissal?.kind === "stumped") assert.ok(bt.dismissal.fielder, "stumpings have a keeper");
+      const last = a.balls.filter((x) => x.innings === inn.index).at(-1)!;
+      assert.equal(last.runsAfter, inn.runs);
+      assert.equal(last.wicketsAfter, inn.wickets);
+    }
+    const potm = playerOfTheMatch(a);
+    assert.ok(potm && potm.summary.length > 0, "player of the match named");
   });
 
   it("plays rain-affected matches by the rules: no-results, equal reductions and resource-table chase cuts", () => {

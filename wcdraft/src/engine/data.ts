@@ -11,7 +11,7 @@ import { OUTCOMES, PHASE_LIST, type EditionPopulations, type PhaseVectors, type 
 import { SituationModel } from "./ball.js";
 import { ENGINE } from "./model.js";
 import { buildProgression, type FormatEdition, type Progression, type StandInRules } from "./progression.js";
-import type { EnginePlayer, EngineTeam, MatchEnvironment } from "./types.js";
+import { DISMISSAL_KINDS, type DismissalKind, type EnginePlayer, type EngineTeam, type MatchEnvironment } from "./types.js";
 
 export interface SquadMatchOut {
   id: string;
@@ -62,6 +62,7 @@ export interface EnvironmentOut {
   firstInningsAvg?: number;
   dotPct?: number;
   sixPct?: number;
+  dismissalFingerprintPct?: Record<string, number>;
   /** Legal balls faced by batting position ("1" … "11") and phase. */
   positionPhaseBalls?: Record<string, Record<Phase, number>>;
   paceSpin?: { pace: PaceSpinOut; spin: PaceSpinOut; unknownPct: number };
@@ -188,6 +189,7 @@ export function toEnginePlayer(r: PlayerRating, pops: EditionPopulations, label?
   return {
     hand: handOf(label?.handedness),
     bowlClass: bowlClassOf(label?.bowlingType),
+    keeper: !!label && (label.keeper === "Y" || label.keeperCareer === "Y" || Number(label.keeperAnyT20I ?? 0) > 0),
     id: r.personId,
     name: r.name,
     batting: r.batting.vectors,
@@ -270,6 +272,17 @@ export function centreOnCohort(players: Map<string, EnginePlayer>, squads: Map<s
 }
 
 /** The match environment for an edition at a venue (venue scoring factor shrunk toward the edition). */
+/** Archive-wide dismissal shares, the fallback when a profile has no fingerprint. */
+const DISMISSAL_NORM: Record<DismissalKind, number> = { caught: 0.6, bowled: 0.19, lbw: 0.08, "run out": 0.07, stumped: 0.04, "caught and bowled": 0.015, "hit wicket": 0.005 };
+
+/** Normalised dismissal shares from a profile's fingerprint (percentages by kind; unknown kinds dropped). */
+export function dismissalMixOf(fingerprint: Record<string, number> | undefined): Record<DismissalKind, number> {
+  const raw = Object.fromEntries(DISMISSAL_KINDS.map((k) => [k, fingerprint?.[k] ?? 0])) as Record<DismissalKind, number>;
+  const total = DISMISSAL_KINDS.reduce((a, k) => a + raw[k], 0);
+  if (total <= 0) return { ...DISMISSAL_NORM };
+  return Object.fromEntries(DISMISSAL_KINDS.map((k) => [k, raw[k] / total])) as Record<DismissalKind, number>;
+}
+
 export function matchEnvironment(data: EditionData, venueId: string | null, overs = 20): MatchEnvironment {
   const env = data.edition.environment;
   const venue = venueId ? data.venues.get(venueId) : undefined;
@@ -297,7 +310,11 @@ export function matchEnvironment(data: EditionData, venueId: string | null, over
     pAffected = (affected(v) + ENGINE.rain.venuePriorMatches * editionRate) / ((v.matches ?? 0) + ENGINE.rain.venuePriorMatches);
   }
   const noResultShare = affected(env) > 0 ? (env.rain?.noResults ?? 0) / affected(env) : 0.2;
+  // Dismissal kinds: the ground's fingerprint when it has a few matches, else the edition's, else the archive norm.
+  const venueFp = venue ? (venue.byEdition[data.edition.id]?.matches ?? 0) >= 3 ? venue.byEdition[data.edition.id] : venue.overall : undefined;
+  const dismissalMix = dismissalMixOf(venueFp?.dismissalFingerprintPct ?? env.dismissalFingerprintPct);
   return {
+    dismissalMix,
     rain: { pAffected: +Math.min(0.5, pAffected).toFixed(3), noResultShare: +noResultShare.toFixed(3) },
     editionId: data.edition.id,
     base,

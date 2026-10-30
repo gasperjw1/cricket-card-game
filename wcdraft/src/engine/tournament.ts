@@ -10,7 +10,8 @@ import { simulateMatch } from "./match.js";
 import { matchEnvironment, teamFromDefault, teamFromMatch, type EditionData, type SquadMatchOut } from "./data.js";
 import type { GroupsStage, KnockoutStage, Progression } from "./progression.js";
 import { Rng } from "./rng.js";
-import type { EngineTeam, MatchResult } from "./types.js";
+import type { BallRecord, EngineTeam, MatchResult } from "./types.js";
+import { playerOfTheMatch, type Award } from "./awards.js";
 
 export interface Fixture {
   stageId: string;
@@ -29,8 +30,10 @@ export interface FixtureResult extends Fixture {
   margin: MatchResult["margin"];
   tieBreak: MatchResult["tieBreak"];
   rain: MatchResult["rain"];
-  /** Full innings (scorecards) when kept; see `TournamentOptions.keepIdentityDetails`. */
+  /** Full innings (scorecards), ball log and player of the match when kept; see `TournamentOptions.keepIdentityDetails`. */
   innings?: MatchResult["innings"];
+  balls?: BallRecord[];
+  potm?: Award | null;
   tossWinner?: string;
   tossDecision?: "bat" | "field";
 }
@@ -156,7 +159,8 @@ export function simulateTournament(data: EditionData, progression: Progression, 
     const r = real.byPair.get(`${label}|${pairKey(a, b)}`);
     const battingFirst = r ? (r.match.battedFirst ? r.team : r.otherTeam) : undefined;
     const env = matchEnvironment(data, fixture.venueId);
-    const result = simulateMatch(teamA, teamB, env, data.situation, { seed: `${opts.seed}:${fixture.stageId}:${a}:${b}`, battingFirst, keepBallLog: opts.keepBallLogs });
+    const keep = !!(opts.keepIdentityDetails && identity && (a === identity.team || b === identity.team));
+    const result = simulateMatch(teamA, teamB, env, data.situation, { seed: `${opts.seed}:${fixture.stageId}:${a}:${b}`, battingFirst, keepBallLog: opts.keepBallLogs || keep });
     if (identityRecord && (a === identityRecord.team || b === identityRecord.team)) {
       identityRecord.played += 1;
       if (result.winner === identityRecord.team) identityRecord.won += 1;
@@ -165,10 +169,9 @@ export function simulateTournament(data: EditionData, progression: Progression, 
     }
     const score = (i: 0 | 1) => `${result.innings[i].runs}/${result.innings[i].wickets} (${Math.floor(result.innings[i].legalBalls / 6)}.${result.innings[i].legalBalls % 6})`;
     const first = result.innings[0].team;
-    const keep = opts.keepIdentityDetails && identity && (a === identity.team || b === identity.team);
     return {
       ...fixture, winner: result.winner, scores: first === a ? [score(0), score(1)] : [score(1), score(0)], margin: result.margin, tieBreak: result.tieBreak, rain: result.rain,
-      ...(keep ? { innings: result.innings, tossWinner: result.tossWinner, tossDecision: result.tossDecision } : {}),
+      ...(keep ? { innings: result.innings, balls: result.balls, potm: playerOfTheMatch(result), tossWinner: result.tossWinner, tossDecision: result.tossDecision } : {}),
       _result: result,
     } as FixtureResult & { _result: MatchResult };
   };

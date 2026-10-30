@@ -65,6 +65,22 @@ knockouts). Classic mode only; Cricket-IQ, head-to-head, leaderboard and share l
   sync script): Namibia standing in for Afghanistan 2012 has no record in that era. The tournament
   still simulates them.
 
+## Match summary and scorecard (added 2026-10-30, after the Cricket Chairman review)
+
+- **Engine log** (`wcdraft/src/engine/match.ts`): every wicket now has a dismissal (kind drawn
+  from the ground's dismissal fingerprint, bowler credited unless run out, fielder from the bowling
+  side with the keeper taking stumpings and a share of catches), on a forked random stream so the
+  match itself is unchanged. Innings carry partnerships and the extras split; bowlers carry maidens,
+  dots, wides and no-balls; each ball in the log carries the score after it, for the live feed to
+  come. `engine/awards.ts` names a player of the match by a points rule (runs scaled by strike
+  rate, wickets with an economy adjustment, a little for catches, a tilt to the winner).
+- **Result screen**: each of your matches is a summary card (`components/MatchCard.tsx`: both
+  scores and overs, leading batters and bowlers, result line, toss, ground and date, player of the
+  match) with the full scorecard underneath (`components/Scorecard.tsx`: batter with how he went,
+  R B 4s 6s SR, extras and total, fall of wickets, stands, O M R W Econ). Your own players are
+  highlighted. A "your squad in the tournament" table aggregates the kept scorecards. Still to
+  come: match-by-match pacing and live playback (steps 3 and 4 of the review plan).
+
 ## Notes
 
 - `tsconfig.app.json` is a leftover stub; `tsconfig.json` (app) and `tsconfig.node.json` (config

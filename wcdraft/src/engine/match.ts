@@ -14,7 +14,7 @@ import { chooseBowler, type BowlerState } from "./allocation.js";
 import { outcomeDistribution, type BallContext, type SituationModel } from "./ball.js";
 import { ENGINE } from "./model.js";
 import { Rng } from "./rng.js";
-import type { BallRecord, BatterLine, EnginePlayer, EngineTeam, InningsResult, MatchEnvironment, MatchResult, RainEvent } from "./types.js";
+import { DISMISSAL_KINDS, type BallRecord, type BatterLine, type Dismissal, type EnginePlayer, type EngineTeam, type InningsResult, type MatchEnvironment, type MatchResult, type Partnership, type RainEvent } from "./types.js";
 
 interface InningsOptions {
   index: 1 | 2;
@@ -35,15 +35,41 @@ export function simulateInnings(batting: EngineTeam, bowling: EngineTeam, env: M
   const lines = new Map<string, BatterLine>();
   const lineOf = (p: EnginePlayer, position: number) => {
     let l = lines.get(p.id);
-    if (!l) lines.set(p.id, (l = { id: p.id, name: p.name, runs: 0, balls: 0, fours: 0, sixes: 0, out: false, position }));
+    if (!l) lines.set(p.id, (l = { id: p.id, name: p.name, runs: 0, balls: 0, fours: 0, sixes: 0, out: false, dismissal: null, position }));
     return l;
   };
   const bowlers: BowlerState[] = bowling.players.map((p) => ({ player: p, overs: [], runsByOver: [] }));
+  // Scorecard detail that does not feed back into play: bowler dots and extras, partnerships, and
+  // how each wicket fell. Dismissal kinds come from the ground's fingerprint and fielders from the
+  // bowling side (keeper for stumpings and a share of catches), on a forked stream so the match
+  // itself is unchanged by them.
+  const bowlStats = new Map<string, { dots: number; wides: number; noBalls: number }>();
+  const statOf = (id: string) => bowlStats.get(id) ?? bowlStats.set(id, { dots: 0, wides: 0, noBalls: 0 }).get(id)!;
+  const partnerships: Partnership[] = [];
+  let stand = { batters: [order[0]!.id, order[1]!.id] as [string, string], runs: 0, balls: 0 };
+  const dRng = rng.fork("dismissals");
+  const keeper = bowling.players.find((p) => p.keeper) ?? null;
+  const drawDismissal = (bowler: EnginePlayer): Dismissal => {
+    const kind = DISMISSAL_KINDS[dRng.pick(DISMISSAL_KINDS.map((k) => env.dismissalMix[k]))]!;
+    const ref = (p: EnginePlayer | null) => (p ? { id: p.id, name: p.name } : null);
+    const pickFielder = (keeperShare: number): EnginePlayer => {
+      if (keeper && keeper.id !== bowler.id && dRng.chance(keeperShare)) return keeper;
+      const pool = bowling.players.filter((p) => p.id !== bowler.id && p.id !== keeper?.id);
+      return pool.length ? pool[Math.floor(dRng.next() * pool.length)]! : bowler;
+    };
+    switch (kind) {
+      case "caught": return { kind, bowler: ref(bowler), fielder: ref(pickFielder(0.3)) };
+      case "caught and bowled": return { kind, bowler: ref(bowler), fielder: ref(bowler) };
+      case "stumped": return { kind, bowler: ref(bowler), fielder: ref(keeper && keeper.id !== bowler.id ? keeper : pickFielder(0)) };
+      case "run out": return { kind, bowler: null, fielder: ref(pickFielder(0.15)) };
+      default: return { kind, bowler: ref(bowler), fielder: null };
+    }
+  };
   const phaseRuns = { pp: { runs: 0, balls: 0, wickets: 0 }, mid: { runs: 0, balls: 0, wickets: 0 }, death: { runs: 0, balls: 0, wickets: 0 } } as Record<Phase, { runs: number; balls: number; wickets: number }>;
   const fall: InningsResult["fallOfWickets"] = [];
   const outcomes: Record<OutcomeKey, number> = { "0": 0, "1": 0, "2": 0, "3": 0, "4": 0, "6": 0, W: 0 };
 
-  let runs = 0, wickets = 0, legalBalls = 0, extras = 0, byeBalls = 0;
+  let runs = 0, wickets = 0, legalBalls = 0, extras = 0, byeBalls = 0, wides = 0, noBalls = 0, byes = 0;
   let nextIn = 2;
   let striker = order[0]!, nonStriker = order[1]!;
   lineOf(striker, 1);
@@ -77,8 +103,8 @@ export function simulateInnings(batting: EngineTeam, bowling: EngineTeam, env: M
       const requiredRpo = opts.target !== null ? ((opts.target - runs) * 6) / Math.max(1, ballsLeft) : null;
       // Extras first: a wide or no-ball does not count as a legal ball.
       if (rng.chance(env.widesPerBall)) {
-        runs += 1; extras += 1; b.runsByOver[b.runsByOver.length - 1]! += 1;
-        log?.push({ innings: opts.index, over, ballInOver: ballsThisOver, striker: striker.id, nonStriker: nonStriker.id, bowler: b.player.id, outcome: "0", runsBatter: 0, extras: 1, extraKind: "wide", wicket: false, legal: false });
+        runs += 1; extras += 1; wides += 1; stand.runs += 1; b.runsByOver[b.runsByOver.length - 1]! += 1; statOf(b.player.id).wides += 1;
+        log?.push({ innings: opts.index, over, ballInOver: ballsThisOver, striker: striker.id, nonStriker: nonStriker.id, bowler: b.player.id, outcome: "0", runsBatter: 0, extras: 1, extraKind: "wide", wicket: false, dismissal: null, legal: false, runsAfter: runs, wicketsAfter: wickets });
         continue;
       }
       const noBall = rng.chance(env.noBallsPerBall);
@@ -108,19 +134,29 @@ export function simulateInnings(batting: EngineTeam, bowling: EngineTeam, env: M
       const ph = phaseOf(eq);
       if (!noBall) { phaseRuns[ph].balls += 1; legalBalls += 1; ballsThisOver += 1; outcomes[outcome] += 1; }
       phaseRuns[ph].runs += runsBatter + extraRuns;
-      log?.push({ innings: opts.index, over, ballInOver: ballsThisOver, striker: striker.id, nonStriker: nonStriker.id, bowler: b.player.id, outcome, runsBatter, extras: extraRuns, extraKind, wicket, legal: !noBall });
+      const dismissal = wicket ? drawDismissal(b.player) : null;
+      const bs = statOf(b.player.id);
+      if (noBall) { bs.noBalls += 1; noBalls += 1; }
+      if (extraKind === "bye") byes += 1;
+      if (!noBall && runsBatter === 0) bs.dots += 1;
+      stand.runs += runsBatter + extraRuns;
+      if (!noBall) stand.balls += 1;
+      log?.push({ innings: opts.index, over, ballInOver: ballsThisOver, striker: striker.id, nonStriker: nonStriker.id, bowler: b.player.id, outcome, runsBatter, extras: extraRuns, extraKind, wicket, dismissal, legal: !noBall, runsAfter: runs, wicketsAfter: wickets + (wicket ? 1 : 0) });
       freeHit = noBall;
       if (!noBall || wicket) recent.push(runsBatter);
       if (!noBall) consecutiveDots = runsBatter + extraRuns === 0 && !wicket ? consecutiveDots + 1 : 0;
       if (wicket) {
         sLine.out = true;
+        sLine.dismissal = dismissal;
         wickets += 1;
         phaseRuns[ph].wickets += 1;
         fall.push({ runs, over, ball: ballsThisOver, batter: striker.id });
+        partnerships.push({ ...stand, wicket: wickets });
         if (wickets >= 10 || nextIn >= order.length) break;
         striker = order[nextIn]!;
         lineOf(striker, nextIn + 1);
         nextIn += 1;
+        stand = { batters: [striker.id, nonStriker.id], runs: 0, balls: 0 };
         continue;
       }
       const swap = (runsBatter + (extraKind === "bye" ? 1 : 0)) % 2 === 1;
@@ -138,8 +174,13 @@ export function simulateInnings(batting: EngineTeam, bowling: EngineTeam, env: M
     legalBalls,
     extras,
     batting: [...lines.values()].sort((a, b) => a.position - b.position),
-    bowling: bowlers.filter((x) => x.overs.length).map((x) => ({ id: x.player.id, name: x.player.name, balls: x.overs.length * 6, runs: x.runsByOver.reduce((a, r) => a + r, 0), wickets: countWickets(log, x.player.id, opts.index), overs: x.overs })),
+    bowling: bowlers.filter((x) => x.overs.length).map((x) => {
+      const s = statOf(x.player.id);
+      return { id: x.player.id, name: x.player.name, balls: x.overs.length * 6, runs: x.runsByOver.reduce((a, r) => a + r, 0), wickets: countWickets(log, x.player.id, opts.index), overs: x.overs, maidens: countMaidens(log, x.player.id, opts.index), dots: s.dots, wides: s.wides, noBalls: s.noBalls };
+    }),
     fallOfWickets: fall,
+    partnerships: stand.balls > 0 || stand.runs > 0 ? [...partnerships, { ...stand, wicket: null }] : partnerships,
+    extrasDetail: { wides, noBalls, byes },
     phaseRuns,
     outcomes,
     byeBalls,
@@ -147,15 +188,29 @@ export function simulateInnings(batting: EngineTeam, bowling: EngineTeam, env: M
   };
 }
 
+/** Wickets credited to the bowler (run outs are not). */
 function countWickets(log: BallRecord[] | undefined, bowler: string, innings: 1 | 2): number {
   if (!log) return 0;
   let n = 0;
-  for (const b of log) if (b.innings === innings && b.bowler === bowler && b.wicket) n += 1;
+  for (const b of log) if (b.innings === innings && b.bowler === bowler && b.wicket && b.dismissal?.kind !== "run out") n += 1;
   return n;
 }
 
+/** Completed overs by the bowler with nothing charged to him (byes and leg-byes do not count). */
+function countMaidens(log: BallRecord[] | undefined, bowler: string, innings: 1 | 2): number {
+  if (!log) return 0;
+  const overs = new Map<number, { legal: number; charged: number }>();
+  for (const b of log) {
+    if (b.innings !== innings || b.bowler !== bowler) continue;
+    const o = overs.get(b.over) ?? overs.set(b.over, { legal: 0, charged: 0 }).get(b.over)!;
+    if (b.legal) o.legal += 1;
+    o.charged += b.runsBatter + (b.extraKind === "wide" || b.extraKind === "no-ball" ? b.extras : 0);
+  }
+  return [...overs.values()].filter((o) => o.legal >= 6 && o.charged === 0).length;
+}
+
 function emptyInnings(team: string, index: 1 | 2, overs: number, target: number | null): InningsResult {
-  return { index, team, scheduledOvers: overs, runs: 0, wickets: 0, legalBalls: 0, extras: 0, batting: [], bowling: [], fallOfWickets: [], phaseRuns: { pp: { runs: 0, balls: 0, wickets: 0 }, mid: { runs: 0, balls: 0, wickets: 0 }, death: { runs: 0, balls: 0, wickets: 0 } }, outcomes: { "0": 0, "1": 0, "2": 0, "3": 0, "4": 0, "6": 0, W: 0 }, byeBalls: 0, target };
+  return { index, team, scheduledOvers: overs, runs: 0, wickets: 0, legalBalls: 0, extras: 0, batting: [], bowling: [], fallOfWickets: [], partnerships: [], extrasDetail: { wides: 0, noBalls: 0, byes: 0 }, phaseRuns: { pp: { runs: 0, balls: 0, wickets: 0 }, mid: { runs: 0, balls: 0, wickets: 0 }, death: { runs: 0, balls: 0, wickets: 0 } }, outcomes: { "0": 0, "1": 0, "2": 0, "3": 0, "4": 0, "6": 0, W: 0 }, byeBalls: 0, target };
 }
 
 export interface MatchOptions {

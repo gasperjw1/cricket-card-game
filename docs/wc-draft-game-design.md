@@ -1081,6 +1081,13 @@ fielding. The simulation is not required to reproduce real results (§11).
   lineup; a **grounds and conditions brief** (edition against the archive, the side's own grounds
   with spin-against-pace from the new `paceSpin` split, plain-words chips and what they ask of the
   eleven) sits on the identity screen and the draft header. Measured, not hand-written.
+- **Presentation plan (2026-10-30, after Yash's Cricket Chairman screenshots):** (1) engine log
+  with dismissals, fielders, partnerships, extras split, bowler maidens/dots and a player-of-the-match
+  rule, **built**; (2) match summary card and modern scorecard with your players highlighted,
+  **built**; (3) match-by-match pacing (simulate once, reveal fixture by fixture with play next /
+  sim to my next / sim the rest, hub tabs for fixtures, standings, bracket, squad stats); (4) live
+  playback of the ball log with templated commentary and speed control; (5) headlines. The engine's
+  own play is untouched by (1): dismissal detail is drawn on a forked stream.
 - Not yet built: Cricket-IQ mode (names only), head-to-head, leaderboard (performance score beside
   squad rating), share links, Timeless and Tournament Form tags on cards, ratings-visible career
   stats, coach build bonuses and Dynamic Duos (§5.10–5.11), Positionless slot bonus, rarity tuning
