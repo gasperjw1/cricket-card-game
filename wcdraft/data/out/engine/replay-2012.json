@@ -19,24 +19,24 @@
     "runsPerOver": 7.96,
     "ballsPerWicket": 19.9,
     "dotPct": 34.9,
-    "fourPct": 11.4,
+    "fourPct": 11.5,
     "sixPct": 4.1,
-    "powerplayRpo": 6.88,
-    "middleRpo": 7.75,
-    "deathRpo": 9.21,
-    "firstInningsAvg": 159.6,
+    "powerplayRpo": 6.87,
+    "middleRpo": 7.76,
+    "deathRpo": 9.22,
+    "firstInningsAvg": 159.7,
     "firstInningsSd": 33,
-    "chaseWinPct": 50.6,
+    "chaseWinPct": 50.1,
     "bowlersUsed": {
       "3": 0.1,
       "4": 0.7,
-      "5": 26.3,
+      "5": 26.1,
       "6": 59.2,
-      "7": 12.2,
+      "7": 12.4,
       "8": 1.4
     },
     "bowlersUsedMean": 5.87,
-    "deathOversByNewBallPct": 23.5
+    "deathOversByNewBallPct": 23.4
   },
   "firstInnings": {
     "real": {
@@ -48,7 +48,7 @@
     "sim": {
       "n": 898,
       "p10": 116,
-      "p50": 160,
+      "p50": 161,
       "p90": 199
     }
   },
@@ -77,19 +77,19 @@
       "W": 0.0528
     },
     "sim": {
-      "0": 0.3398,
+      "0": 0.3396,
       "1": 0.3716,
-      "2": 0.0792,
-      "3": 0.0034,
-      "4": 0.1144,
+      "2": 0.0791,
+      "3": 0.0035,
+      "4": 0.1146,
       "6": 0.0414,
       "W": 0.0502
     },
-    "totalVariation": 0.014
+    "totalVariation": 0.0141
   },
   "par": {
     "n": 898,
-    "simRemaining": 87.9,
+    "simRemaining": 88,
     "tableRemaining": 85
   },
   "venues": [
@@ -104,15 +104,15 @@
       "venueId": "pallekele",
       "matches": 7,
       "realChaseWinPct": 43,
-      "simChaseWinPct": 44,
+      "simChaseWinPct": 43,
       "chaseUplift": -0.035
     }
   ],
   "results": {
     "decided": 22,
-    "accuracy": 0.682,
-    "brier": 0.211,
-    "logLoss": 0.607,
+    "accuracy": 0.636,
+    "brier": 0.213,
+    "logLoss": 0.614,
     "baselineBrier": 0.25,
     "baselineLogLoss": 0.693
   },
@@ -130,9 +130,9 @@
         "firstInningsTotal": 182
       },
       "sim": {
-        "winProbA": 0.75,
-        "firstInningsMean": 179.5,
-        "firstInningsSd": 29.1
+        "winProbA": 0.775,
+        "firstInningsMean": 180.7,
+        "firstInningsSd": 29.3
       }
     },
     {
@@ -149,8 +149,8 @@
       },
       "sim": {
         "winProbA": 0.838,
-        "firstInningsMean": 136.5,
-        "firstInningsSd": 26.2
+        "firstInningsMean": 136.6,
+        "firstInningsSd": 26.3
       }
     },
     {
@@ -202,9 +202,9 @@
         "firstInningsTotal": 78
       },
       "sim": {
-        "winProbA": 0.425,
-        "firstInningsMean": 167.1,
-        "firstInningsSd": 26.9
+        "winProbA": 0.45,
+        "firstInningsMean": 167.8,
+        "firstInningsSd": 27
       }
     },
     {
@@ -220,8 +220,8 @@
         "firstInningsTotal": 191
       },
       "sim": {
-        "winProbA": 0.575,
-        "firstInningsMean": 158.7,
+        "winProbA": 0.55,
+        "firstInningsMean": 158.8,
         "firstInningsSd": 37.3
       }
     },
@@ -257,7 +257,7 @@
       },
       "sim": {
         "winProbA": 0.537,
-        "firstInningsMean": 159.6,
+        "firstInningsMean": 159.7,
         "firstInningsSd": 21.7
       }
     },
@@ -275,8 +275,8 @@
       },
       "sim": {
         "winProbA": 0.237,
-        "firstInningsMean": 140.1,
-        "firstInningsSd": 26.2
+        "firstInningsMean": 139.9,
+        "firstInningsSd": 26.1
       }
     },
     {
@@ -293,7 +293,7 @@
       },
       "sim": {
         "winProbA": 0.362,
-        "firstInningsMean": 146.1,
+        "firstInningsMean": 146,
         "firstInningsSd": 26.3
       }
     },
@@ -311,8 +311,8 @@
       },
       "sim": {
         "winProbA": 0.45,
-        "firstInningsMean": 159.7,
-        "firstInningsSd": 37.4
+        "firstInningsMean": 158.9,
+        "firstInningsSd": 37.6
       }
     },
     {
@@ -328,9 +328,9 @@
         "firstInningsTotal": 179
       },
       "sim": {
-        "winProbA": 0.362,
-        "firstInningsMean": 160.3,
-        "firstInningsSd": 37.2
+        "winProbA": 0.338,
+        "firstInningsMean": 161.9,
+        "firstInningsSd": 37.5
       }
     },
     {
@@ -365,8 +365,8 @@
       },
       "sim": {
         "winProbA": 0.525,
-        "firstInningsMean": 156,
-        "firstInningsSd": 30.7
+        "firstInningsMean": 156.9,
+        "firstInningsSd": 29.9
       }
     },
     {
@@ -382,9 +382,9 @@
         "firstInningsTotal": 148
       },
       "sim": {
-        "winProbA": 0.3,
-        "firstInningsMean": 180.6,
-        "firstInningsSd": 27.3
+        "winProbA": 0.25,
+        "firstInningsMean": 181.8,
+        "firstInningsSd": 27
       }
     },
     {
@@ -401,8 +401,8 @@
       },
       "sim": {
         "winProbA": 0.512,
-        "firstInningsMean": 166.3,
-        "firstInningsSd": 33
+        "firstInningsMean": 167,
+        "firstInningsSd": 32.4
       }
     },
     {
@@ -419,8 +419,8 @@
       },
       "sim": {
         "winProbA": 0.637,
-        "firstInningsMean": 149.2,
-        "firstInningsSd": 32.6
+        "firstInningsMean": 149.1,
+        "firstInningsSd": 32.7
       }
     },
     {
@@ -437,7 +437,7 @@
       },
       "sim": {
         "winProbA": 0.35,
-        "firstInningsMean": 170.4,
+        "firstInningsMean": 170.5,
         "firstInningsSd": 33.5
       }
     },
@@ -454,9 +454,9 @@
         "firstInningsTotal": 139
       },
       "sim": {
-        "winProbA": 0.375,
-        "firstInningsMean": 178.3,
-        "firstInningsSd": 29
+        "winProbA": 0.4,
+        "firstInningsMean": 176.7,
+        "firstInningsSd": 29.5
       }
     },
     {
@@ -473,8 +473,8 @@
       },
       "sim": {
         "winProbA": 0.4,
-        "firstInningsMean": 173.2,
-        "firstInningsSd": 32.4
+        "firstInningsMean": 172.6,
+        "firstInningsSd": 31.6
       }
     },
     {
@@ -490,9 +490,9 @@
         "firstInningsTotal": 149
       },
       "sim": {
-        "winProbA": 0.487,
+        "winProbA": 0.512,
         "firstInningsMean": 152.3,
-        "firstInningsSd": 31.2
+        "firstInningsSd": 31.3
       }
     },
     {
@@ -509,8 +509,8 @@
       },
       "sim": {
         "winProbA": 0.463,
-        "firstInningsMean": 151,
-        "firstInningsSd": 37
+        "firstInningsMean": 150.2,
+        "firstInningsSd": 38
       }
     },
     {
@@ -563,7 +563,7 @@
       },
       "sim": {
         "winProbA": 0.313,
-        "firstInningsMean": 163.2,
+        "firstInningsMean": 163.4,
         "firstInningsSd": 31
       }
     }

@@ -16,9 +16,12 @@ export interface Award {
 }
 
 export function playerOfTheMatch(m: MatchResult): Award | null {
+  if (!m.winner) return null;
   const tally = new Map<string, Award & { parts: string[] }>();
+  // By team and person: a drafted player can face his own real side, and those are two different lines.
   const add = (id: string, name: string, team: string, points: number, part: string | null) => {
-    const a = tally.get(id) ?? tally.set(id, { id, name, team, points: 0, summary: "", parts: [] }).get(id)!;
+    const key = `${team}|${id}`;
+    const a = tally.get(key) ?? tally.set(key, { id, name, team, points: 0, summary: "", parts: [] }).get(key)!;
     a.points += points;
     if (part) a.parts.push(part);
   };

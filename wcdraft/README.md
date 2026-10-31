@@ -220,6 +220,17 @@ stay out of the split.
 To add a bowler, add a row to `bowler-entries.csv` with `personId,name,bowlingType,handedness,sourceUrl,notes`
 and rerun `data:bowlers`, `data:build` and `ratings:build`. Sources are never scraped from Cricinfo.
 
+## Display names
+
+Cricsheet stores "RG Sharma" and the snapshot the legal "Rohit Gurunath Sharma"; neither is what a
+fan says. `npm run data:names` writes `data/labels/display-names.csv` from the committed snapshot
+subset: the first given name plus Cricsheet's surname, unless
+`data/labels/display-name-overrides.csv` says otherwise (keyed by Cricsheet name, and a typo there
+fails the run). Overrides cover people known by initials (MS Dhoni), a short form (Chris Gayle) or
+a middle name (Lasith Malinga). The Test nations, Ireland, the Netherlands and Scotland were read
+through by hand; other associates rely on the rule, and about 20 players with no legal name on
+record keep Cricsheet's initials. The engine never sees these names.
+
 ## Engine (Phase 2)
 
 ```bash

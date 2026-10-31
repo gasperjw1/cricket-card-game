@@ -78,6 +78,8 @@ export interface PaceSpinOut {
 export interface EditionOut {
   id: string;
   year: number;
+  firstMatch?: string;
+  lastMatch?: string;
   hosts?: string[];
   hostTeams?: string[];
   format?: string;

@@ -3,6 +3,7 @@ import type { EditionOut } from "../../../wcdraft/src/engine/data.ts";
 import type { ClassSplitPart } from "../../../wcdraft/src/ratings/model.ts";
 import type { FinalSkill, PlayerFinal, Skill } from "../game/final-ratings.ts";
 import { finalRatings, type SimulateInput } from "../game/simulate.ts";
+import { totalsKey } from "../game/stats.ts";
 import { TierBadge } from "./PlayerCard.tsx";
 
 /** A player's figures in this run, from the kept scorecards. */
@@ -112,7 +113,7 @@ export function PlayerRatings({ input, editions, lines }: { input: SimulateInput
       <div className="fr-list">
         {finals.map((f) => {
           const p = f.player;
-          const run = lines.get(p.id);
+          const run = lines.get(totalsKey(input.identity.team, p.id));
           const split = vsClassLine(f);
           return (
             <details className="fr-player" key={p.id}>

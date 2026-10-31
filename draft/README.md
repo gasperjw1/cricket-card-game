@@ -100,6 +100,28 @@ knockouts). Classic mode only; Cricket-IQ, head-to-head, leaderboard and share l
   the five; with two, the gloves go to one who does not bowl so the other is free to bowl. The
   engine honours it too: the designated keeper is marked unable to bowl when the eleven is assembled.
 
+## The Gazette and the scoreboard (added 2026-10-31)
+
+A finished draft now opens as a newspaper, one page at a time. The tournament is already simulated
+when it opens; this only reveals it, and the stats tabs stay hidden until the last page so they
+cannot spoil a result.
+
+- **Pages** (`components/Gazette.tsx`): a squad announcement, one page per match, a final edition
+  with the record, finish and grade. Previous, Turn the page, Auto-sim (6.5 s a page), Fast (2.4 s)
+  and Skip to the end. Pages turn with a CSS 3D fold, off under `prefers-reduced-motion`.
+- **Copy** (`game/gazette.ts`, tested): written from the scorecard alone, with the template chosen
+  from the seed, so a seed reprints the same paper and nothing is claimed that did not happen.
+- **Each page knows only its own day** (`game/stats.ts`): the group table, tournament leaders and
+  "Around the grounds" stop at that match. Fixtures are stored by group, so `inPlayOrder` sorts them
+  by date within a stage first. Generated pairings with no date sort last in their stage.
+- **Scoreboard** (`components/MatchView.tsx`): "Watch next match" replays that match's ball log,
+  with Next ball, Next over, Auto, Fast and Skip to report.
+- **Same person, two sides.** A drafted player can face his own real side, which still fields him.
+  Totals, awards and highlights are keyed by team and person so those stay two separate lines.
+- **Names** (`lib/names.ts`): the client shows `data/names.json`; the engine keeps Cricsheet's names.
+  Scorecards keep the convention "c Kohli b Bumrah". See "Display names" in `wcdraft/README.md`.
+- **Fonts**: Oswald and Source Serif 4, from Google Fonts in `index.html`, with system fallbacks.
+
 ## Player ratings tab (added 2026-10-30)
 
 The result screen's **Player ratings** tab shows what each drafted player was worth in the World

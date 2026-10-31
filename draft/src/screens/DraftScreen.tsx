@@ -35,6 +35,7 @@ export function DraftScreen({ state, editions, venues, squads, onPlace, onReroll
             <h2>{state.spin.team} · {state.spin.editionId}</h2>
             {locked && <p className="small lock-note">Your side still needs {needText} with {need.open} slot{need.open === 1 ? "" : "s"} left, so only players who bowl{need.keeper ? " or keep" : ""} can be taken now.</p>}
             <p className="small">Take one player into a slot. {selected ? (open.natural ? "Highlighted slots fit him; each shows his batting number in that slot." : "No natural slot left; he can fill any open one, at the batting number shown.") : "Tap a player first."}</p>
+            <p className="small card-key">Bat and Bowl: overall, then powerplay / middle / death. * means a thin record or an estimate. ODI means ODI balls filled a gap in the T20 record.</p>
             <div className="spin-grid">
               {state.spin.players.map((p) => <PlayerCard key={p.id} player={p} selected={selected?.id === p.id} ineligible={!eligible(p, state.picks)} onClick={() => setSelected(selected?.id === p.id ? null : p)} />)}
             </div>
@@ -67,6 +68,18 @@ export function DraftScreen({ state, editions, venues, squads, onPlace, onReroll
         </ol>
         {filled === 11 && <button type="button" className="primary" onClick={onLineup}>Review lineup</button>}
       </aside>
+      {selected && (
+        <div className="place-sheet" role="group" aria-label={`Place ${selected.name}`}>
+          <div className="place-head"><b>Place {selected.name}</b><button type="button" onClick={() => setSelected(null)}>Cancel</button></div>
+          <div className="place-slots">
+            {SLOTS.filter((s) => openIds.has(s.index)).map((s) => (
+              <button key={s.index} type="button" onClick={() => { onPlace(selected, s.index); setSelected(null); }}>
+                {s.label}{selected.batShown ? <small> bat {batInSlot(selected, weights[s.index]!)}</small> : null}
+              </button>
+            ))}
+          </div>
+        </div>
+      )}
     </section>
   );
 }

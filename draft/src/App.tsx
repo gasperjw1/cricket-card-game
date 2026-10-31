@@ -82,6 +82,18 @@ export function App() {
       .catch((e: Error) => setLoadError(e.message));
   }, []);
 
+  // Nothing is saved yet, so warn before a refresh or a closed tab loses the run.
+  useEffect(() => {
+    if (state.step === "home") return;
+    const warn = (e: BeforeUnloadEvent) => { e.preventDefault(); e.returnValue = ""; };
+    window.addEventListener("beforeunload", warn);
+    return () => window.removeEventListener("beforeunload", warn);
+  }, [state.step]);
+
+  // Every new screen, and every new squad to pick from, starts at the top: on a phone the last tap
+  // is often far down a long page.
+  useEffect(() => { window.scrollTo(0, 0); }, [state.step, state.spin]);
+
   // One deterministic stream per action, so a seed replays a run exactly.
   const rng = useMemo(() => (state.seed ? new Rng(state.seed) : null), [state.seed]);
   const stream = (label: string) => new Rng(`${state.seed}:${label}`);
@@ -134,7 +146,7 @@ export function App() {
   return (
     <main className="shell">
       <header className="top">
-        <h1 onClick={() => dispatch({ type: "home" })}>World Cup Draft</h1>
+        <h1 onClick={() => { if (state.step === "home" || window.confirm("Leave this run and start again? It can't be recovered.")) dispatch({ type: "home" }); }}>World Cup Draft</h1>
         <span className="seed">{state.seed ? `seed ${state.seed} · ` : ""}<a href="/" className="back-link">Swipe Sixer</a></span>
       </header>
       {state.error && <p className="error">{state.error}</p>}

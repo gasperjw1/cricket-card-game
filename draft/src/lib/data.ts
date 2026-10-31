@@ -11,6 +11,7 @@ import { SituationModel } from "../../../wcdraft/src/engine/ball.ts";
 import { buildEditionData, type AfghanistanFixture, type CaptainOut, type CoachOut, type EditionData, type EditionOut, type PlayerLabel, type SquadOut, type VenueOut } from "../../../wcdraft/src/engine/data.ts";
 import type { FormatEdition } from "../../../wcdraft/src/engine/progression.ts";
 import type { PoolPlayer } from "../game/types.ts";
+import { setNames } from "./names.ts";
 
 export interface SharedData {
   editions: EditionOut[];
@@ -47,7 +48,8 @@ let sharedPromise: Promise<SharedData> | null = null;
 
 export function loadShared(): Promise<SharedData> {
   sharedPromise ??= (async () => {
-    const [index, editions, venues, populations, situationTables, matchups, formats, afghanistan, coaches, captains, labelsCsv] = await Promise.all([
+    const [names, index, editions, venues, populations, situationTables, matchups, formats, afghanistan, coaches, captains, labelsCsv] = await Promise.all([
+      json<Record<string, string>>("names.json"),
       json<{ editions: string[]; blankSquads?: { editionId: string; team: string }[] }>("index.json"),
       json<EditionOut[]>("editions.json"),
       json<VenueOut[]>("venues.json"),
@@ -60,6 +62,7 @@ export function loadShared(): Promise<SharedData> {
       json<{ captains: CaptainOut[] }>("captaincy.json").catch(() => ({ captains: [] as CaptainOut[] })),
       text("players.csv"),
     ]);
+    setNames(names);
     const labels = new Map<string, PlayerLabel>();
     for (const row of readCsv(labelsCsv)) if (row.personId) labels.set(row.personId, { handedness: row.handedness ?? "", bowlingType: row.bowlingType ?? "", keeper: row.keeper, keeperCareer: row.keeperCareer, keeperAnyT20I: row.keeperAnyT20I });
     return {

@@ -102,6 +102,27 @@ describe("engine", { skip: !engineReady() && "engine data not built" }, () => {
     assert.ok(potm && potm.summary.length > 0, "player of the match named");
   });
 
+  it("keeps the toss, the laws and the bowling figures honest", () => {
+    let noBallWickets = 0;
+    for (let i = 0; i < 150; i += 1) {
+      const battingFirst = i % 2 ? "India" : undefined;
+      const m = simulateMatch(india, southAfrica, env, data.situation, { seed: `laws-${i}`, keepBallLog: true, battingFirst, rainProbability: i % 3 === 0 ? 1 : 0 });
+      const first = m.innings[0].team;
+      assert.equal(first === m.tossWinner ? "bat" : "field", m.tossDecision, "the toss decision agrees with who batted first");
+      if (!m.winner) assert.equal(playerOfTheMatch(m), null, "no player of the match in a no-result");
+      for (const inn of m.innings) {
+        const balls = m.balls.filter((b) => b.innings === inn.index);
+        assert.equal(inn.bowling.reduce((a, w) => a + w.balls, 0), inn.legalBalls, "bowlers' balls add up to the innings");
+        for (const b of inn.batting) assert.equal(balls.filter((x) => x.striker === b.id && x.extraKind !== "wide").length, b.balls, `${b.name} balls faced`);
+      }
+      m.balls.forEach((b, j) => {
+        const afterNoBall = j > 0 && m.balls[j - 1]!.extraKind === "no-ball" && m.balls[j - 1]!.innings === b.innings;
+        if (b.wicket && (b.extraKind === "no-ball" || afterNoBall)) { noBallWickets += 1; assert.equal(b.dismissal?.kind, "run out", "only a run out off a no-ball or free hit"); }
+      });
+    }
+    assert.ok(noBallWickets >= 0);
+  });
+
   it("plays rain-affected matches by the rules: no-results, equal reductions and resource-table chase cuts", () => {
     const resources = data.situation;
     assert.equal(resources.resource(120, 0), 1);

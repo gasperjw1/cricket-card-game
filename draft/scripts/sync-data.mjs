@@ -47,6 +47,14 @@ for (const line of labelLines.slice(1)) {
   const row = Object.fromEntries(header.map((h, i) => [h, cells[i] ?? ""]));
   labels.set(row.personId, row);
 }
+// Names the game shows: person id → "Rohit Sharma" (wcdraft/data/labels/display-names.csv, `npm run data:names`).
+const nameLines = readFileSync(resolve(wcdraft, "labels/display-names.csv"), "utf8").split(/\r?\n/).filter(Boolean);
+const nameHeader = parseCsvLine(nameLines[0]);
+const names = Object.fromEntries(nameLines.slice(1).map((line) => {
+  const cells = parseCsvLine(line);
+  return [cells[nameHeader.indexOf("personId")], cells[nameHeader.indexOf("displayName")]];
+}));
+writeFileSync(resolve(out, "names.json"), JSON.stringify(names));
 const keeperEligible = (row) => !!row && (row.keeper === "Y" || row.keeperCareer === "Y" || Number(row.keeperAnyT20I) > 0);
 const vsClass = (part) => (part && part.display !== null ? { n: part.display, balls: part.balls, estimated: part.estimated, odi: part.fromOdi } : null);
 
@@ -57,7 +65,7 @@ for (const ed of editions) {
   copy(resolve(outDir, "squads", `${ed}.json`), `squads/${ed}.json`);
   const ratings = JSON.parse(readFileSync(resolve(outDir, "ratings", `${ed}.json`), "utf8"));
   const pool = ratings.map((r) => ({
-    id: r.personId, name: r.name, team: r.team, editionId: r.editionId, standIn: r.standIn,
+    id: r.personId, name: names[r.personId] ?? r.name, team: r.team, editionId: r.editionId, standIn: r.standIn,
     tier: r.tier, tierScore: r.tierScore, role: r.role, archetype: r.archetype,
     bat: r.batting.display, bowl: r.bowling.display, batPhases: r.batting.displayByPhase, bowlPhases: r.bowling.displayByPhase,
     batLow: r.batting.lowSample, bowlLow: r.bowling.lowSample, batShown: r.batting.shown !== false, bowlShown: r.bowling.shown !== false, squadPlayer: r.usage.squadPlayer,

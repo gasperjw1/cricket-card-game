@@ -5,6 +5,7 @@
  */
 
 import type { Dismissal, InningsResult } from "../../../wcdraft/src/engine/types.ts";
+import { familiar, fullName } from "../lib/names.ts";
 
 export function oversText(balls: number): string {
   return `${Math.floor(balls / 6)}${balls % 6 ? `.${balls % 6}` : ""}`;
@@ -13,8 +14,8 @@ export function oversText(balls: number): string {
 /** "c Dhoni b Bumrah", "lbw b Rashid", "run out (Jadeja)", "not out". */
 export function dismissalText(d: Dismissal | null, out: boolean): string {
   if (!out || !d) return "not out";
-  const b = d.bowler?.name ?? "";
-  const f = d.fielder?.name ?? "";
+  const b = d.bowler ? familiar(d.bowler.id, d.bowler.name) : "";
+  const f = d.fielder ? familiar(d.fielder.id, d.fielder.name) : "";
   switch (d.kind) {
     case "caught": return `c ${f} b ${b}`;
     case "caught and bowled": return `c & b ${b}`;
@@ -29,8 +30,8 @@ export function dismissalText(d: Dismissal | null, out: boolean): string {
 const srClass = (sr: number, balls: number) => (balls < 6 ? "" : sr >= 150 ? "num-good" : sr < 100 ? "num-bad" : "");
 const econClass = (econ: number, balls: number) => (balls < 12 ? "" : econ <= 6.5 ? "num-good" : econ >= 9.5 ? "num-bad" : "");
 
-export function Scorecard({ inn, fielding, highlight }: { inn: InningsResult; fielding: string; highlight: Set<string> }) {
-  const names = new Map(inn.batting.map((b) => [b.id, b.name]));
+export function Scorecard({ inn, fielding, highlight, me }: { inn: InningsResult; fielding: string; highlight: Set<string>; me: string }) {
+  const names = new Map(inn.batting.map((b) => [b.id, familiar(b.id, b.name)]));
   const batted = inn.batting.filter((b) => b.balls > 0 || b.out);
   const runRate = inn.legalBalls ? ((6 * inn.runs) / inn.legalBalls).toFixed(2) : "–";
   const ex = inn.extrasDetail;
@@ -43,8 +44,8 @@ export function Scorecard({ inn, fielding, highlight }: { inn: InningsResult; fi
           {batted.map((b) => {
             const sr = b.balls ? (100 * b.runs) / b.balls : 0;
             return (
-              <tr key={b.id} className={highlight.has(b.id) ? "hl" : ""}>
-                <td><div className="sc-name">{b.name}</div><div className="sc-how">{dismissalText(b.dismissal, b.out)}</div></td>
+              <tr key={b.id} className={inn.team === me && highlight.has(b.id) ? "hl" : ""}>
+                <td><div className="sc-name">{fullName(b.id, b.name)}</div><div className="sc-how">{dismissalText(b.dismissal, b.out)}</div></td>
                 <td><b>{b.runs}</b></td><td>{b.balls}</td><td>{b.fours}</td><td>{b.sixes}</td>
                 <td className={srClass(sr, b.balls)}>{b.balls ? sr.toFixed(1) : "–"}</td>
               </tr>
@@ -66,9 +67,9 @@ export function Scorecard({ inn, fielding, highlight }: { inn: InningsResult; fi
           {inn.bowling.map((w) => {
             const econ = w.balls ? (6 * w.runs) / w.balls : 0;
             return (
-              <tr key={w.id} className={highlight.has(w.id) ? "hl" : ""}>
-                <td><div className="sc-name">{w.name}</div>{w.wides + w.noBalls > 0 && <div className="sc-how">{w.wides ? `${w.wides} wd` : ""}{w.wides && w.noBalls ? ", " : ""}{w.noBalls ? `${w.noBalls} nb` : ""}</div>}</td>
-                <td>{w.overs.length}</td><td>{w.maidens}</td><td>{w.runs}</td><td><b>{w.wickets}</b></td>
+              <tr key={w.id} className={fielding === me && highlight.has(w.id) ? "hl" : ""}>
+                <td><div className="sc-name">{fullName(w.id, w.name)}</div>{w.wides + w.noBalls > 0 && <div className="sc-how">{w.wides ? `${w.wides} wd` : ""}{w.wides && w.noBalls ? ", " : ""}{w.noBalls ? `${w.noBalls} nb` : ""}</div>}</td>
+                <td>{oversText(w.balls)}</td><td>{w.maidens}</td><td>{w.runs}</td><td><b>{w.wickets}</b></td>
                 <td className={econClass(econ, w.balls)}>{econ.toFixed(1)}</td>
               </tr>
             );

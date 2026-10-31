@@ -9,6 +9,7 @@
     "data:build": "tsx src/cli/build.ts",
     "data:labels": "tsx src/cli/labels.ts",
     "data:bowlers": "tsx src/cli/bowlers.ts",
+    "data:names": "tsx src/cli/names.ts",
     "data:all": "npm run data:fetch && npm run data:bowlers && npm run data:build && npm run data:labels",
     "ratings:build": "tsx src/cli/ratings.ts",
     "engine:replay": "tsx src/cli/replay.ts",
