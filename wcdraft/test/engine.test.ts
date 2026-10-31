@@ -164,7 +164,7 @@ describe("engine", { skip: !engineReady() && "engine data not built" }, () => {
     const profile = data.profiles.get("India")!;
     assert.ok(profile.coach && profile.coach.name === "Rahul Dravid", `India 2024 coach ${profile.coach?.name}`);
     assert.ok(profile.coach!.tags.includes("Powerplay aggressor"));
-    assert.ok(profile.captain && profile.captain.name === "RG Sharma", `India 2024 captain ${profile.captain?.name}`);
+    assert.equal(profile.captains[0]?.name, "RG Sharma");
     assert.ok(india.intent && india.intent.pp > 0.5, `India powerplay intent ${india.intent?.pp}`);
     assert.ok(typeof india.captainZ === "number");
     const striker = india.players.find((p) => p.name === "V Kohli")!;
@@ -174,6 +174,58 @@ describe("engine", { skip: !engineReady() && "engine data not built" }, () => {
     const cold = outcomeDistribution(striker, bowler, env, data.situation, { ...base, intent: -1.5 });
     assert.ok(hot["4"] + hot["6"] > cold["4"] + cold["6"] && hot.W > cold.W, "aggressive intent buys boundaries with risk");
     assert.ok(expectedRunsOf(hot) > expectedRunsOf(cold));
+  });
+
+  it("names one keeper and one captain per side; the keeper never bowls and takes the stumpings", () => {
+    for (const team of [india, southAfrica]) {
+      assert.equal(team.players.filter((p) => p.keeper).length, 1);
+      assert.ok(team.players.some((p) => p.id === team.captainId));
+    }
+    assert.equal(india.players.find((p) => p.keeper)?.name, "RR Pant");
+    const keepers = new Set([india, southAfrica].map((t) => t.players.find((p) => p.keeper)!.id));
+    for (let s = 0; s < 40; s += 1) {
+      const r = simulateMatch(india, southAfrica, env, data.situation, { seed: `gloves${s}`, keepBallLog: true, rainProbability: 0 });
+      for (const inn of r.innings) {
+        assert.ok(inn.keeperId && inn.captainId);
+        for (const w of inn.bowling) assert.ok(!keepers.has(w.id), `${w.name} kept and bowled`);
+        for (const b of inn.batting) {
+          if (b.dismissal?.kind === "stumped") assert.ok(b.dismissal.byKeeper && keepers.has(b.dismissal.fielder!.id));
+          if (b.dismissal?.kind === "caught and bowled") assert.equal(b.dismissal.fielder?.id, b.dismissal.bowler?.id);
+        }
+      }
+    }
+  });
+
+  it("names the man who led at the World Cup, not the longest tenure that year", () => {
+    const captainOf = (edition: string, team: string) => {
+      const d = loadEdition(edition);
+      const t = teamFromDefault(d, team);
+      return t.players.find((p) => p.id === t.captainId)?.name;
+    };
+    assert.equal(captainOf("2021", "India"), "V Kohli");
+    assert.equal(captainOf("2022", "India"), "RG Sharma");
+    assert.equal(captainOf("2024", "Scotland"), "RD Berrington");
+    assert.equal(captainOf("2012", "Sri Lanka"), "DPMD Jayawardene");
+  });
+
+  it("keeps a side's spare bowling spare: a weak sixth comes on less than a strong one", () => {
+    const options = india.players.filter((p) => p.canBowl);
+    assert.ok(options.length >= 6);
+    const overs = (players: typeof india.players) => {
+      const weak = players[players.length - 1]!.id;
+      let n = 0;
+      for (let s = 0; s < 60; s += 1) {
+        const r = simulateMatch({ ...india, players }, southAfrica, env, data.situation, { seed: `depth${s}`, keepBallLog: true, rainProbability: 0, battingFirst: southAfrica.name });
+        n += r.innings[0].bowling.find((w) => w.id === weak)?.overs.length ?? 0;
+      }
+      return n;
+    };
+    const dreadful = (p: typeof india.players[number]) => ({ ...p, bowlingRel: Object.fromEntries(Object.entries(p.bowlingRel).map(([ph, v]) => [ph, { ...v, "4": v["4"] * 1.5, "6": v["6"] * 1.5, W: v.W * 0.7 }])) as typeof p.bowlingRel });
+    const sorted = [...india.players].sort((a, b) => Number(b.canBowl) - Number(a.canBowl));
+    const last = options.length - 1;
+    const worse = sorted.map((p, i) => (i === last ? dreadful(p) : p));
+    const rest = [...worse.slice(0, last), ...worse.slice(last + 1), worse[last]!];
+    assert.ok(overs(rest) < overs([...sorted.slice(0, last), ...sorted.slice(last + 1), sorted[last]!]));
   });
 
   it("reproduces the 2024 edition's environment, results and bowler usage within tolerance (acceptance)", () => {

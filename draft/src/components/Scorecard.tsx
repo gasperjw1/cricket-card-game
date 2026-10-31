@@ -11,11 +11,18 @@ export function oversText(balls: number): string {
   return `${Math.floor(balls / 6)}${balls % 6 ? `.${balls % 6}` : ""}`;
 }
 
-/** "c Dhoni b Bumrah", "lbw b Rashid", "run out (Jadeja)", "not out". */
+/** A total's overs and run rate on one line: "20 ov, RR 12.70"; a rain-shortened side bowled out early shows its allotment, "9.3/12 ov". */
+export function inningsLine(inn: InningsResult): string {
+  const rate = inn.legalBalls ? ((6 * inn.runs) / inn.legalBalls).toFixed(2) : "–";
+  const short = inn.scheduledOvers < 20 && inn.legalBalls < inn.scheduledOvers * 6;
+  return `${oversText(inn.legalBalls)}${short ? `/${inn.scheduledOvers}` : ""} ov, RR ${rate}`;
+}
+
+/** "c †Dhoni b Bumrah", "c & b Bumrah", "lbw b Rashid", "run out (Jadeja)", "not out"; † marks the keeper. */
 export function dismissalText(d: Dismissal | null, out: boolean): string {
   if (!out || !d) return "not out";
   const b = d.bowler ? familiar(d.bowler.id, d.bowler.name) : "";
-  const f = d.fielder ? familiar(d.fielder.id, d.fielder.name) : "";
+  const f = d.fielder ? `${d.byKeeper ? "†" : ""}${familiar(d.fielder.id, d.fielder.name)}` : "";
   switch (d.kind) {
     case "caught": return `c ${f} b ${b}`;
     case "caught and bowled": return `c & b ${b}`;
@@ -33,8 +40,8 @@ const econClass = (econ: number, balls: number) => (balls < 12 ? "" : econ <= 6.
 export function Scorecard({ inn, fielding, highlight, me }: { inn: InningsResult; fielding: string; highlight: Set<string>; me: string }) {
   const names = new Map(inn.batting.map((b) => [b.id, familiar(b.id, b.name)]));
   const batted = inn.batting.filter((b) => b.balls > 0 || b.out);
-  const runRate = inn.legalBalls ? ((6 * inn.runs) / inn.legalBalls).toFixed(2) : "–";
   const ex = inn.extrasDetail;
+  const role = (id: string) => (id === inn.captainId && id === inn.keeperId ? " (c & wk)" : id === inn.captainId ? " (c)" : id === inn.keeperId ? " (wk)" : "");
   const stands = inn.partnerships.filter((p) => p.runs >= 20 || p.wicket === null).slice(0, 4);
   return (
     <div className="sc">
@@ -45,14 +52,14 @@ export function Scorecard({ inn, fielding, highlight, me }: { inn: InningsResult
             const sr = b.balls ? (100 * b.runs) / b.balls : 0;
             return (
               <tr key={b.id} className={inn.team === me && highlight.has(b.id) ? "hl" : ""}>
-                <td><div className="sc-name">{fullName(b.id, b.name)}</div><div className="sc-how">{dismissalText(b.dismissal, b.out)}</div></td>
+                <td><div className="sc-name">{fullName(b.id, b.name)}{role(b.id)}</div><div className="sc-how">{dismissalText(b.dismissal, b.out)}</div></td>
                 <td><b>{b.runs}</b></td><td>{b.balls}</td><td>{b.fours}</td><td>{b.sixes}</td>
                 <td className={srClass(sr, b.balls)}>{b.balls ? sr.toFixed(1) : "–"}</td>
               </tr>
             );
           })}
           <tr className="sc-extras"><td>Extras</td><td colSpan={5}>{inn.extras} (w {ex.wides}, nb {ex.noBalls}, b {ex.byes})</td></tr>
-          <tr className="sc-total"><td>Total</td><td colSpan={5}><b>{inn.runs}/{inn.wickets}</b> ({oversText(inn.legalBalls)} ov, {runRate} an over{inn.scheduledOvers < 20 ? `, ${inn.scheduledOvers}-over innings` : ""})</td></tr>
+          <tr className="sc-total"><td>Total</td><td colSpan={5}><b>{inn.runs}/{inn.wickets}</b> ({inningsLine(inn)})</td></tr>
         </tbody>
       </table>
       {inn.fallOfWickets.length > 0 && (

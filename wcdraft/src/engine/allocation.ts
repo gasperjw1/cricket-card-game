@@ -37,10 +37,12 @@ export function chooseBowler(input: AllocationInput, rng: Rng): BowlerState {
   const { over, eqOver, oversInInnings, maxOvers, bowlers, previousBowler } = input;
   const phase = phaseOf(eqOver);
   const deathStart = Math.max(0, oversInInnings - Math.ceil(oversInInnings / 4));
-  let eligible = bowlers.filter((b) => b.overs.length < maxOvers && b.player.id !== previousBowler && b.player.canBowl);
-  if (!eligible.length) eligible = bowlers.filter((b) => b.overs.length < maxOvers && b.player.id !== previousBowler);
-  if (!eligible.length) eligible = bowlers.filter((b) => b.overs.length < maxOvers);
-  if (!eligible.length) eligible = bowlers;
+  // The keeper has the gloves on, so even a side out of bowlers finds overs elsewhere.
+  const available = bowlers.filter((b) => !b.player.keeper);
+  let eligible = available.filter((b) => b.overs.length < maxOvers && b.player.id !== previousBowler && b.player.canBowl);
+  if (!eligible.length) eligible = available.filter((b) => b.overs.length < maxOvers && b.player.id !== previousBowler);
+  if (!eligible.length) eligible = available.filter((b) => b.overs.length < maxOvers);
+  if (!eligible.length) eligible = available;
 
   // Death reservation: the two best death options (by expected runs at the death) keep enough
   // quota for the last overs.
@@ -54,12 +56,19 @@ export function chooseBowler(input: AllocationInput, rng: Rng): BowlerState {
 
   const A = ENGINE.allocation;
   const used = bowlers.filter((b) => b.overs.length > 0).length;
-  const scores = eligible.map((b) => {
+  const worth = (b: BowlerState) => {
     const dist = (striker: EnginePlayer) => outcomeDistribution(striker, b.player, input.env, input.situation, input.ctx);
     const d0 = dist(input.batters[0]), d1 = dist(input.batters[1]);
-    const expRuns = 3 * (expectedRunsOf(d0) + expectedRunsOf(d1));
-    const expWickets = 3 * (d0.W + d1.W);
-    let score = -expRuns + A.wicketValue * expWickets;
+    return -3 * (expectedRunsOf(d0) + expectedRunsOf(d1)) + 3 * A.wicketValue * (d0.W + d1.W);
+  };
+  // A side with spare bowling keeps it spare: the fifth-best option right now, quota or not, is the
+  // line, and anyone below it pays for the gap again, so a weak sixth or seventh comes on when he is
+  // needed and not by chance. With five bowlers or fewer nobody is below it.
+  const worths = new Map(bowlers.filter((b) => b.player.canBowl || eligible.includes(b)).map((b) => [b, worth(b)]));
+  const frontline = worths.size > 5 ? [...worths.values()].sort((x, y) => y - x)[4]! : -Infinity;
+  const scores = eligible.map((b) => {
+    const base = worths.get(b)!;
+    let score = base - A.depthPenalty * Math.max(0, frontline - base);
     const arch = b.player.archetype.bowling;
     if (phase === "pp" && arch === "new ball") score += A.specialistBonus;
     if (phase === "death" && arch === "death") score += A.specialistBonus;

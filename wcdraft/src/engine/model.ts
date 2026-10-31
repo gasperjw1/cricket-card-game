@@ -119,6 +119,14 @@ export const ENGINE = {
     /** Penalty (runs) for a bowler who has not bowled yet once five bowlers have been used (the sixth option costs a decision). */
     extraBowlerPenalty: 0.8,
     /**
+     * Extra weight on the gap (runs an over) between a bowler and the side's fifth-best option. Real
+     * elevens rarely have spare bowling, so the replays barely notice it; a drafted eleven with seven
+     * or eight options would otherwise spread overs to its weakest by Gumbel noise alone. At 2 the
+     * sub-60 bowlers' overs in such sides fall by 40% and real elevens' usage by rank stays within
+     * 0.3 of an over of what real captains did.
+     */
+    depthPenalty: 2,
+    /**
      * Death trust is sticky (measured: a new-ball bowler bowls at the death in 62–68% of innings and
      * 43% of overs 19–20 go to an opening bowler): opening bowlers get this bonus at the death and
      * are held back in the middle overs once their quota is down to two.

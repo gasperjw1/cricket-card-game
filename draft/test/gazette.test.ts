@@ -1,8 +1,9 @@
 import assert from "node:assert/strict";
 import { describe, it } from "node:test";
 import type { FixtureResult, StageResult } from "../../wcdraft/src/engine/tournament.ts";
-import type { InningsResult } from "../../wcdraft/src/engine/types.ts";
+import type { Dismissal, InningsResult } from "../../wcdraft/src/engine/types.ts";
 import { deriveDisplayName, splitShortName } from "../../wcdraft/src/util/names.ts";
+import { dismissalText, inningsLine } from "../src/components/Scorecard.tsx";
 import { storyFor, verdictFor } from "../src/game/gazette.ts";
 import { familiar, fullName, setNames, surnameOf } from "../src/lib/names.ts";
 import { datedStages, exitStageOf, inPlayOrder, sideProfile, tableTo, totalsKey, tournamentTotals } from "../src/game/stats.ts";
@@ -26,6 +27,24 @@ const fixture = (over: Partial<FixtureResult>): FixtureResult => ({
 } as FixtureResult);
 
 const ctx = { me: "India", seed: "s", stageLabel: "Group stage", city: "Mumbai", last: false, final: false, knockout: false, record: { won: 1, lost: 0 } };
+
+describe("scorecard lines", () => {
+  const taken = (kind: Dismissal["kind"], byKeeper: boolean): Dismissal => ({ kind, bowler: kind === "run out" ? null : { id: "b", name: "JJ Bumrah" }, fielder: { id: "f", name: "MS Dhoni" }, byKeeper });
+
+  it("daggers the keeper and prints caught and bowled", () => {
+    assert.equal(dismissalText(taken("caught", true), true), "c †Dhoni b Bumrah");
+    assert.equal(dismissalText(taken("caught", false), true), "c Dhoni b Bumrah");
+    assert.equal(dismissalText(taken("stumped", true), true), "st †Dhoni b Bumrah");
+    assert.equal(dismissalText(taken("run out", true), true), "run out (†Dhoni)");
+    assert.equal(dismissalText({ kind: "caught and bowled", bowler: { id: "b", name: "JJ Bumrah" }, fielder: { id: "b", name: "JJ Bumrah" }, byKeeper: false }, true), "c & b Bumrah");
+  });
+
+  it("keeps the total to one short line", () => {
+    assert.equal(inningsLine(innings("India", 1, 254, 4)), "20 ov, RR 12.70");
+    assert.equal(inningsLine(innings("India", 1, 98, 10, { scheduledOvers: 12, legalBalls: 57 })), "9.3/12 ov, RR 10.32");
+    assert.equal(inningsLine(innings("India", 1, 110, 4, { scheduledOvers: 12, legalBalls: 72 })), "12 ov, RR 9.17");
+  });
+});
 
 describe("display names", () => {
   it("uses the first given name and Cricsheet's surname", () => {

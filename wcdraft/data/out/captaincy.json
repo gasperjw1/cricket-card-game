@@ -66,6 +66,22 @@
       "source": "wikipedia"
     },
     {
+      "personId": "3ff033bb",
+      "name": "MD Shanaka",
+      "captainName": "Dasun Shanaka",
+      "team": "Sri Lanka",
+      "firstYear": 2019,
+      "lastYear": 2023,
+      "matches": 48,
+      "won": 22,
+      "lost": 24,
+      "expectedWins": 15.88,
+      "winsAboveExpectation": 6.12,
+      "rating": 0.09,
+      "z": 1.844,
+      "source": "wikipedia"
+    },
+    {
       "personId": "4ae1755b",
       "name": "HC Brook",
       "captainName": "Harry Brook",
@@ -78,7 +94,7 @@
       "expectedWins": 14.34,
       "winsAboveExpectation": 3.66,
       "rating": 0.0832,
-      "z": 1.729,
+      "z": 1.71,
       "source": "wikipedia"
     },
     {
@@ -94,7 +110,7 @@
       "expectedWins": 42.78,
       "winsAboveExpectation": 6.22,
       "rating": 0.0759,
-      "z": 1.579,
+      "z": 1.566,
       "source": "wikipedia"
     },
     {
@@ -110,7 +126,7 @@
       "expectedWins": 13.4,
       "winsAboveExpectation": 3.6,
       "rating": 0.072,
-      "z": 1.499,
+      "z": 1.489,
       "source": "wikipedia"
     },
     {
@@ -126,7 +142,7 @@
       "expectedWins": 9.27,
       "winsAboveExpectation": 2.73,
       "rating": 0.0718,
-      "z": 1.495,
+      "z": 1.485,
       "source": "wikipedia"
     },
     {
@@ -142,7 +158,7 @@
       "expectedWins": 22.24,
       "winsAboveExpectation": 3.76,
       "rating": 0.0684,
-      "z": 1.425,
+      "z": 1.418,
       "source": "wikipedia"
     },
     {
@@ -158,7 +174,7 @@
       "expectedWins": 14.87,
       "winsAboveExpectation": 3.13,
       "rating": 0.0666,
-      "z": 1.388,
+      "z": 1.383,
       "source": "wikipedia"
     },
     {
@@ -174,7 +190,7 @@
       "expectedWins": 1.47,
       "winsAboveExpectation": 1.53,
       "rating": 0.0665,
-      "z": 1.386,
+      "z": 1.381,
       "source": "wikipedia"
     },
     {
@@ -190,7 +206,7 @@
       "expectedWins": 15.33,
       "winsAboveExpectation": 3.67,
       "rating": 0.0644,
-      "z": 1.343,
+      "z": 1.34,
       "source": "wikipedia"
     },
     {
@@ -206,7 +222,7 @@
       "expectedWins": 3.37,
       "winsAboveExpectation": 1.63,
       "rating": 0.0627,
-      "z": 1.308,
+      "z": 1.306,
       "source": "wikipedia"
     },
     {
@@ -226,6 +242,22 @@
       "source": "wikipedia"
     },
     {
+      "personId": "7eae4418",
+      "name": "Misbah-ul-Haq",
+      "captainName": "Misbah-ul-Haq",
+      "team": "Pakistan",
+      "firstYear": 2011,
+      "lastYear": 2012,
+      "matches": 8,
+      "won": 6,
+      "lost": 2,
+      "expectedWins": 4.3,
+      "winsAboveExpectation": 1.7,
+      "rating": 0.0607,
+      "z": 1.267,
+      "source": "wikipedia"
+    },
+    {
       "personId": "0b60eb09",
       "name": "KA Maharaj",
       "captainName": "Keshav Maharaj",
@@ -236,6 +268,22 @@
       "won": 7,
       "lost": 2,
       "expectedWins": 5.19,
+      "winsAboveExpectation": 1.81,
+      "rating": 0.0603,
+      "z": 1.259,
+      "source": "wikipedia"
+    },
+    {
+      "personId": "a97c8ec2",
+      "name": "PWH de Silva",
+      "captainName": "Wanindu Hasaranga",
+      "team": "Sri Lanka",
+      "firstYear": 2024,
+      "lastYear": 2024,
+      "matches": 10,
+      "won": 6,
+      "lost": 4,
+      "expectedWins": 4.19,
       "winsAboveExpectation": 1.81,
       "rating": 0.0603,
       "z": 1.259,
@@ -254,7 +302,7 @@
       "expectedWins": 9.75,
       "winsAboveExpectation": 2.25,
       "rating": 0.0577,
-      "z": 1.205,
+      "z": 1.207,
       "source": "wikipedia"
     },
     {
@@ -270,7 +318,7 @@
       "expectedWins": 23.21,
       "winsAboveExpectation": 3.79,
       "rating": 0.0566,
-      "z": 1.183,
+      "z": 1.186,
       "source": "wikipedia"
     },
     {
@@ -286,7 +334,7 @@
       "expectedWins": 6.35,
       "winsAboveExpectation": 1.65,
       "rating": 0.0532,
-      "z": 1.113,
+      "z": 1.119,
       "source": "wikipedia"
     },
     {
@@ -302,7 +350,23 @@
       "expectedWins": 13.32,
       "winsAboveExpectation": 2.68,
       "rating": 0.0525,
-      "z": 1.099,
+      "z": 1.105,
+      "source": "wikipedia"
+    },
+    {
+      "personId": "d18f9182",
+      "name": "DPMD Jayawardene",
+      "captainName": "Mahela Jayawardene",
+      "team": "Sri Lanka",
+      "firstYear": 2006,
+      "lastYear": 2012,
+      "matches": 19,
+      "won": 12,
+      "lost": 6,
+      "expectedWins": 10.08,
+      "winsAboveExpectation": 1.92,
+      "rating": 0.0492,
+      "z": 1.04,
       "source": "wikipedia"
     },
     {
@@ -318,7 +382,7 @@
       "expectedWins": 2.72,
       "winsAboveExpectation": 1.28,
       "rating": 0.0492,
-      "z": 1.031,
+      "z": 1.04,
       "source": "wikipedia"
     },
     {
@@ -334,7 +398,7 @@
       "expectedWins": 18.38,
       "winsAboveExpectation": 2.62,
       "rating": 0.046,
-      "z": 0.965,
+      "z": 0.977,
       "source": "wikipedia"
     },
     {
@@ -350,7 +414,7 @@
       "expectedWins": 38.71,
       "winsAboveExpectation": 3.29,
       "rating": 0.0457,
-      "z": 0.959,
+      "z": 0.971,
       "source": "wikipedia"
     },
     {
@@ -366,7 +430,7 @@
       "expectedWins": 1.96,
       "winsAboveExpectation": 1.04,
       "rating": 0.0452,
-      "z": 0.949,
+      "z": 0.961,
       "source": "wikipedia"
     },
     {
@@ -382,7 +446,7 @@
       "expectedWins": 37.91,
       "winsAboveExpectation": 4.09,
       "rating": 0.0445,
-      "z": 0.934,
+      "z": 0.947,
       "source": "wikipedia"
     },
     {
@@ -398,7 +462,7 @@
       "expectedWins": 1.04,
       "winsAboveExpectation": 0.96,
       "rating": 0.0436,
-      "z": 0.916,
+      "z": 0.929,
       "source": "wikipedia"
     },
     {
@@ -414,7 +478,7 @@
       "expectedWins": 17.54,
       "winsAboveExpectation": 2.46,
       "rating": 0.0424,
-      "z": 0.891,
+      "z": 0.906,
       "source": "wikipedia"
     },
     {
@@ -430,7 +494,7 @@
       "expectedWins": 20.75,
       "winsAboveExpectation": 2.25,
       "rating": 0.0395,
-      "z": 0.832,
+      "z": 0.848,
       "source": "wikipedia"
     },
     {
@@ -446,7 +510,7 @@
       "expectedWins": 1.98,
       "winsAboveExpectation": 1.02,
       "rating": 0.0392,
-      "z": 0.826,
+      "z": 0.843,
       "source": "wikipedia"
     },
     {
@@ -462,7 +526,7 @@
       "expectedWins": 3.21,
       "winsAboveExpectation": 0.79,
       "rating": 0.0304,
-      "z": 0.645,
+      "z": 0.669,
       "source": "wikipedia"
     },
     {
@@ -478,7 +542,7 @@
       "expectedWins": 11.73,
       "winsAboveExpectation": 1.27,
       "rating": 0.0302,
-      "z": 0.641,
+      "z": 0.665,
       "source": "wikipedia"
     },
     {
@@ -494,7 +558,7 @@
       "expectedWins": 11.81,
       "winsAboveExpectation": 1.19,
       "rating": 0.0297,
-      "z": 0.63,
+      "z": 0.655,
       "source": "wikipedia"
     },
     {
@@ -510,7 +574,7 @@
       "expectedWins": 9.85,
       "winsAboveExpectation": 1.15,
       "rating": 0.0295,
-      "z": 0.626,
+      "z": 0.651,
       "source": "wikipedia"
     },
     {
@@ -526,7 +590,7 @@
       "expectedWins": 1.38,
       "winsAboveExpectation": 0.62,
       "rating": 0.0282,
-      "z": 0.6,
+      "z": 0.626,
       "source": "wikipedia"
     },
     {
@@ -542,7 +606,7 @@
       "expectedWins": 1.36,
       "winsAboveExpectation": 0.64,
       "rating": 0.0278,
-      "z": 0.591,
+      "z": 0.618,
       "source": "wikipedia"
     },
     {
@@ -558,7 +622,7 @@
       "expectedWins": 15.66,
       "winsAboveExpectation": 1.34,
       "rating": 0.0273,
-      "z": 0.581,
+      "z": 0.608,
       "source": "wikipedia"
     },
     {
@@ -574,7 +638,7 @@
       "expectedWins": 14.42,
       "winsAboveExpectation": 1.58,
       "rating": 0.0268,
-      "z": 0.571,
+      "z": 0.598,
       "source": "wikipedia"
     },
     {
@@ -590,7 +654,7 @@
       "expectedWins": 0.47,
       "winsAboveExpectation": 0.53,
       "rating": 0.0252,
-      "z": 0.538,
+      "z": 0.566,
       "source": "wikipedia"
     },
     {
@@ -606,7 +670,7 @@
       "expectedWins": 13.92,
       "winsAboveExpectation": 1.08,
       "rating": 0.024,
-      "z": 0.513,
+      "z": 0.543,
       "source": "wikipedia"
     },
     {
@@ -622,7 +686,23 @@
       "expectedWins": 0.52,
       "winsAboveExpectation": 0.48,
       "rating": 0.0229,
-      "z": 0.491,
+      "z": 0.521,
+      "source": "wikipedia"
+    },
+    {
+      "personId": "7ed9fd56",
+      "name": "WU Tharanga",
+      "captainName": "Upul Tharanga",
+      "team": "Sri Lanka",
+      "firstYear": 2017,
+      "lastYear": 2017,
+      "matches": 6,
+      "won": 3,
+      "lost": 3,
+      "expectedWins": 2.44,
+      "winsAboveExpectation": 0.56,
+      "rating": 0.0215,
+      "z": 0.493,
       "source": "wikipedia"
     },
     {
@@ -638,7 +718,7 @@
       "expectedWins": 15.95,
       "winsAboveExpectation": 1.05,
       "rating": 0.0214,
-      "z": 0.46,
+      "z": 0.491,
       "source": "wikipedia"
     },
     {
@@ -654,7 +734,7 @@
       "expectedWins": 2.55,
       "winsAboveExpectation": 0.45,
       "rating": 0.018,
-      "z": 0.39,
+      "z": 0.424,
       "source": "wikipedia"
     },
     {
@@ -670,7 +750,7 @@
       "expectedWins": 0.7,
       "winsAboveExpectation": 0.3,
       "rating": 0.0143,
-      "z": 0.314,
+      "z": 0.351,
       "source": "wikipedia"
     },
     {
@@ -686,7 +766,7 @@
       "expectedWins": 9.32,
       "winsAboveExpectation": 0.68,
       "rating": 0.0142,
-      "z": 0.312,
+      "z": 0.349,
       "source": "wikipedia"
     },
     {
@@ -702,7 +782,7 @@
       "expectedWins": 0.72,
       "winsAboveExpectation": 0.28,
       "rating": 0.0127,
-      "z": 0.281,
+      "z": 0.32,
       "source": "wikipedia"
     },
     {
@@ -718,7 +798,7 @@
       "expectedWins": 1.71,
       "winsAboveExpectation": 0.29,
       "rating": 0.0126,
-      "z": 0.279,
+      "z": 0.318,
       "source": "wikipedia"
     },
     {
@@ -734,7 +814,7 @@
       "expectedWins": 22.15,
       "winsAboveExpectation": 0.85,
       "rating": 0.0121,
-      "z": 0.269,
+      "z": 0.308,
       "source": "wikipedia"
     },
     {
@@ -750,7 +830,7 @@
       "expectedWins": 14.52,
       "winsAboveExpectation": 0.48,
       "rating": 0.0086,
-      "z": 0.197,
+      "z": 0.239,
       "source": "wikipedia"
     },
     {
@@ -766,7 +846,7 @@
       "expectedWins": 40.23,
       "winsAboveExpectation": 0.77,
       "rating": 0.0084,
-      "z": 0.193,
+      "z": 0.235,
       "source": "wikipedia"
     },
     {
@@ -782,7 +862,7 @@
       "expectedWins": 13.65,
       "winsAboveExpectation": 0.35,
       "rating": 0.0073,
-      "z": 0.171,
+      "z": 0.213,
       "source": "wikipedia"
     },
     {
@@ -798,7 +878,7 @@
       "expectedWins": 19.55,
       "winsAboveExpectation": 0.45,
       "rating": 0.0066,
-      "z": 0.156,
+      "z": 0.2,
       "source": "wikipedia"
     },
     {
@@ -814,7 +894,7 @@
       "expectedWins": 4.83,
       "winsAboveExpectation": 0.17,
       "rating": 0.0061,
-      "z": 0.146,
+      "z": 0.19,
       "source": "wikipedia"
     },
     {
@@ -830,7 +910,7 @@
       "expectedWins": 0.87,
       "winsAboveExpectation": 0.13,
       "rating": 0.0059,
-      "z": 0.142,
+      "z": 0.186,
       "source": "wikipedia"
     },
     {
@@ -846,7 +926,23 @@
       "expectedWins": 3.88,
       "winsAboveExpectation": 0.12,
       "rating": 0.0043,
-      "z": 0.109,
+      "z": 0.154,
+      "source": "wikipedia"
+    },
+    {
+      "personId": "87e562a9",
+      "name": "DJ Bravo",
+      "captainName": "Dwayne Bravo",
+      "team": "West Indies",
+      "firstYear": 2007,
+      "lastYear": 2014,
+      "matches": 6,
+      "won": 3,
+      "lost": 3,
+      "expectedWins": 2.92,
+      "winsAboveExpectation": 0.08,
+      "rating": 0.0031,
+      "z": 0.131,
       "source": "wikipedia"
     },
     {
@@ -862,7 +958,7 @@
       "expectedWins": 22.93,
       "winsAboveExpectation": 0.07,
       "rating": 0.0011,
-      "z": 0.043,
+      "z": 0.091,
       "source": "wikipedia"
     },
     {
@@ -878,7 +974,7 @@
       "expectedWins": 17.93,
       "winsAboveExpectation": 0.07,
       "rating": 0.0011,
-      "z": 0.043,
+      "z": 0.091,
       "source": "wikipedia"
     },
     {
@@ -894,7 +990,7 @@
       "expectedWins": 0.99,
       "winsAboveExpectation": 0.01,
       "rating": 0.0005,
-      "z": 0.031,
+      "z": 0.079,
       "source": "wikipedia"
     },
     {
@@ -910,7 +1006,7 @@
       "expectedWins": 0,
       "winsAboveExpectation": 0,
       "rating": 0,
-      "z": 0.021,
+      "z": 0.069,
       "source": "wikipedia"
     },
     {
@@ -926,7 +1022,7 @@
       "expectedWins": 16.07,
       "winsAboveExpectation": -0.07,
       "rating": -0.0011,
-      "z": -0.002,
+      "z": 0.048,
       "source": "wikipedia"
     },
     {
@@ -942,7 +1038,7 @@
       "expectedWins": 1.03,
       "winsAboveExpectation": -0.03,
       "rating": -0.0014,
-      "z": -0.008,
+      "z": 0.042,
       "source": "wikipedia"
     },
     {
@@ -958,7 +1054,7 @@
       "expectedWins": 33.17,
       "winsAboveExpectation": -0.17,
       "rating": -0.0022,
-      "z": -0.025,
+      "z": 0.026,
       "source": "wikipedia"
     },
     {
@@ -974,7 +1070,7 @@
       "expectedWins": 1.09,
       "winsAboveExpectation": -0.09,
       "rating": -0.0041,
-      "z": -0.064,
+      "z": -0.011,
       "source": "wikipedia"
     },
     {
@@ -990,7 +1086,7 @@
       "expectedWins": 40.42,
       "winsAboveExpectation": -0.42,
       "rating": -0.0044,
-      "z": -0.07,
+      "z": -0.017,
       "source": "wikipedia"
     },
     {
@@ -1006,7 +1102,7 @@
       "expectedWins": 30.43,
       "winsAboveExpectation": -0.43,
       "rating": -0.0057,
-      "z": -0.096,
+      "z": -0.043,
       "source": "wikipedia"
     },
     {
@@ -1022,7 +1118,7 @@
       "expectedWins": 6.2,
       "winsAboveExpectation": -0.2,
       "rating": -0.0065,
-      "z": -0.113,
+      "z": -0.059,
       "source": "wikipedia"
     },
     {
@@ -1038,7 +1134,7 @@
       "expectedWins": 13.33,
       "winsAboveExpectation": -0.33,
       "rating": -0.0069,
-      "z": -0.121,
+      "z": -0.067,
       "source": "wikipedia"
     },
     {
@@ -1054,7 +1150,7 @@
       "expectedWins": 1.16,
       "winsAboveExpectation": -0.16,
       "rating": -0.0073,
-      "z": -0.129,
+      "z": -0.075,
       "source": "wikipedia"
     },
     {
@@ -1070,7 +1166,7 @@
       "expectedWins": 39.76,
       "winsAboveExpectation": -0.76,
       "rating": -0.008,
-      "z": -0.144,
+      "z": -0.088,
       "source": "wikipedia"
     },
     {
@@ -1086,7 +1182,7 @@
       "expectedWins": 1.19,
       "winsAboveExpectation": -0.19,
       "rating": -0.0083,
-      "z": -0.15,
+      "z": -0.094,
       "source": "wikipedia"
     },
     {
@@ -1102,7 +1198,7 @@
       "expectedWins": 13.52,
       "winsAboveExpectation": -0.52,
       "rating": -0.0108,
-      "z": -0.201,
+      "z": -0.144,
       "source": "wikipedia"
     },
     {
@@ -1118,7 +1214,7 @@
       "expectedWins": 10.54,
       "winsAboveExpectation": -0.54,
       "rating": -0.0123,
-      "z": -0.232,
+      "z": -0.173,
       "source": "wikipedia"
     },
     {
@@ -1134,7 +1230,23 @@
       "expectedWins": 1.28,
       "winsAboveExpectation": -0.28,
       "rating": -0.0127,
-      "z": -0.24,
+      "z": -0.181,
+      "source": "wikipedia"
+    },
+    {
+      "personId": "8dd02a98",
+      "name": "LD Chandimal",
+      "captainName": "Dinesh Chandimal",
+      "team": "Sri Lanka",
+      "firstYear": 2013,
+      "lastYear": 2018,
+      "matches": 26,
+      "won": 13,
+      "lost": 13,
+      "expectedWins": 13.61,
+      "winsAboveExpectation": -0.61,
+      "rating": -0.0133,
+      "z": -0.193,
       "source": "wikipedia"
     },
     {
@@ -1150,7 +1262,7 @@
       "expectedWins": 8.58,
       "winsAboveExpectation": -0.58,
       "rating": -0.0135,
-      "z": -0.257,
+      "z": -0.197,
       "source": "wikipedia"
     },
     {
@@ -1166,7 +1278,7 @@
       "expectedWins": 8.62,
       "winsAboveExpectation": -0.62,
       "rating": -0.0144,
-      "z": -0.275,
+      "z": -0.215,
       "source": "wikipedia"
     },
     {
@@ -1182,7 +1294,23 @@
       "expectedWins": 0.36,
       "winsAboveExpectation": -0.36,
       "rating": -0.0171,
-      "z": -0.33,
+      "z": -0.268,
+      "source": "wikipedia"
+    },
+    {
+      "personId": "b61a3e1a",
+      "name": "LRPL Taylor",
+      "captainName": "Ross Taylor",
+      "team": "New Zealand",
+      "firstYear": 2010,
+      "lastYear": 2012,
+      "matches": 13,
+      "won": 6,
+      "lost": 4,
+      "expectedWins": 6.57,
+      "winsAboveExpectation": -0.57,
+      "rating": -0.0173,
+      "z": -0.272,
       "source": "wikipedia"
     },
     {
@@ -1198,7 +1326,7 @@
       "expectedWins": 1.44,
       "winsAboveExpectation": -0.44,
       "rating": -0.0191,
-      "z": -0.372,
+      "z": -0.307,
       "source": "wikipedia"
     },
     {
@@ -1214,7 +1342,7 @@
       "expectedWins": 20.38,
       "winsAboveExpectation": -1.38,
       "rating": -0.0192,
-      "z": -0.374,
+      "z": -0.309,
       "source": "wikipedia"
     },
     {
@@ -1230,7 +1358,7 @@
       "expectedWins": 12.93,
       "winsAboveExpectation": -0.93,
       "rating": -0.0202,
-      "z": -0.394,
+      "z": -0.329,
       "source": "wikipedia"
     },
     {
@@ -1246,7 +1374,7 @@
       "expectedWins": 27.5,
       "winsAboveExpectation": -1.5,
       "rating": -0.0211,
-      "z": -0.413,
+      "z": -0.347,
       "source": "wikipedia"
     },
     {
@@ -1262,7 +1390,7 @@
       "expectedWins": 0.48,
       "winsAboveExpectation": -0.48,
       "rating": -0.0229,
-      "z": -0.45,
+      "z": -0.382,
       "source": "wikipedia"
     },
     {
@@ -1278,7 +1406,7 @@
       "expectedWins": 0.5,
       "winsAboveExpectation": -0.5,
       "rating": -0.0238,
-      "z": -0.468,
+      "z": -0.4,
       "source": "wikipedia"
     },
     {
@@ -1294,7 +1422,7 @@
       "expectedWins": 2.6,
       "winsAboveExpectation": -0.6,
       "rating": -0.024,
-      "z": -0.472,
+      "z": -0.404,
       "source": "wikipedia"
     },
     {
@@ -1310,7 +1438,7 @@
       "expectedWins": 0.51,
       "winsAboveExpectation": -0.51,
       "rating": -0.0243,
-      "z": -0.478,
+      "z": -0.41,
       "source": "wikipedia"
     },
     {
@@ -1326,7 +1454,7 @@
       "expectedWins": 0.53,
       "winsAboveExpectation": -0.53,
       "rating": -0.0252,
-      "z": -0.497,
+      "z": -0.428,
       "source": "wikipedia"
     },
     {
@@ -1342,7 +1470,7 @@
       "expectedWins": 12.24,
       "winsAboveExpectation": -1.24,
       "rating": -0.0264,
-      "z": -0.521,
+      "z": -0.451,
       "source": "wikipedia"
     },
     {
@@ -1358,7 +1486,7 @@
       "expectedWins": 2.71,
       "winsAboveExpectation": -0.71,
       "rating": -0.0273,
-      "z": -0.54,
+      "z": -0.469,
       "source": "wikipedia"
     },
     {
@@ -1374,7 +1502,23 @@
       "expectedWins": 0.59,
       "winsAboveExpectation": -0.59,
       "rating": -0.0281,
-      "z": -0.556,
+      "z": -0.485,
+      "source": "wikipedia"
+    },
+    {
+      "personId": "9f0270e0",
+      "name": "AG Cremer",
+      "captainName": "Graeme Cremer",
+      "team": "Zimbabwe",
+      "firstYear": 2016,
+      "lastYear": 2018,
+      "matches": 5,
+      "won": 1,
+      "lost": 4,
+      "expectedWins": 1.71,
+      "winsAboveExpectation": -0.71,
+      "rating": -0.0284,
+      "z": -0.491,
       "source": "wikipedia"
     },
     {
@@ -1390,7 +1534,7 @@
       "expectedWins": 18.66,
       "winsAboveExpectation": -1.66,
       "rating": -0.0286,
-      "z": -0.567,
+      "z": -0.495,
       "source": "wikipedia"
     },
     {
@@ -1406,7 +1550,7 @@
       "expectedWins": 4.84,
       "winsAboveExpectation": -0.84,
       "rating": -0.029,
-      "z": -0.575,
+      "z": -0.503,
       "source": "wikipedia"
     },
     {
@@ -1422,7 +1566,7 @@
       "expectedWins": 28.22,
       "winsAboveExpectation": -2.22,
       "rating": -0.0292,
-      "z": -0.579,
+      "z": -0.506,
       "source": "wikipedia"
     },
     {
@@ -1438,7 +1582,7 @@
       "expectedWins": 14.72,
       "winsAboveExpectation": -1.72,
       "rating": -0.0292,
-      "z": -0.579,
+      "z": -0.506,
       "source": "wikipedia"
     },
     {
@@ -1454,7 +1598,7 @@
       "expectedWins": 0.65,
       "winsAboveExpectation": -0.65,
       "rating": -0.031,
-      "z": -0.616,
+      "z": -0.542,
       "source": "wikipedia"
     },
     {
@@ -1470,7 +1614,7 @@
       "expectedWins": 51.25,
       "winsAboveExpectation": -3.25,
       "rating": -0.031,
-      "z": -0.616,
+      "z": -0.542,
       "source": "wikipedia"
     },
     {
@@ -1486,7 +1630,7 @@
       "expectedWins": 11.12,
       "winsAboveExpectation": -1.12,
       "rating": -0.0311,
-      "z": -0.618,
+      "z": -0.544,
       "source": "wikipedia"
     },
     {
@@ -1502,7 +1646,7 @@
       "expectedWins": 1.78,
       "winsAboveExpectation": -0.78,
       "rating": -0.0339,
-      "z": -0.675,
+      "z": -0.599,
       "source": "wikipedia"
     },
     {
@@ -1518,7 +1662,7 @@
       "expectedWins": 0.81,
       "winsAboveExpectation": -0.81,
       "rating": -0.0352,
-      "z": -0.702,
+      "z": -0.625,
       "source": "wikipedia"
     },
     {
@@ -1534,7 +1678,7 @@
       "expectedWins": 7.31,
       "winsAboveExpectation": -1.31,
       "rating": -0.0364,
-      "z": -0.727,
+      "z": -0.648,
       "source": "wikipedia"
     },
     {
@@ -1550,7 +1694,7 @@
       "expectedWins": 1.92,
       "winsAboveExpectation": -0.92,
       "rating": -0.04,
-      "z": -0.801,
+      "z": -0.719,
       "source": "wikipedia"
     },
     {
@@ -1566,7 +1710,7 @@
       "expectedWins": 0.94,
       "winsAboveExpectation": -0.94,
       "rating": -0.0409,
-      "z": -0.819,
+      "z": -0.737,
       "source": "wikipedia"
     },
     {
@@ -1582,7 +1726,7 @@
       "expectedWins": 0.93,
       "winsAboveExpectation": -0.93,
       "rating": -0.0423,
-      "z": -0.848,
+      "z": -0.765,
       "source": "wikipedia"
     },
     {
@@ -1598,7 +1742,7 @@
       "expectedWins": 0.93,
       "winsAboveExpectation": -0.93,
       "rating": -0.0423,
-      "z": -0.848,
+      "z": -0.765,
       "source": "wikipedia"
     },
     {
@@ -1614,7 +1758,7 @@
       "expectedWins": 33,
       "winsAboveExpectation": -3,
       "rating": -0.0429,
-      "z": -0.86,
+      "z": -0.777,
       "source": "wikipedia"
     },
     {
@@ -1630,7 +1774,39 @@
       "expectedWins": 8.61,
       "winsAboveExpectation": -1.61,
       "rating": -0.0435,
-      "z": -0.873,
+      "z": -0.788,
+      "source": "wikipedia"
+    },
+    {
+      "personId": "732c038e",
+      "name": "KIC Asalanka",
+      "captainName": "Charith Asalanka",
+      "team": "Sri Lanka",
+      "firstYear": 2024,
+      "lastYear": 2024,
+      "matches": 5,
+      "won": 1,
+      "lost": 3,
+      "expectedWins": 2.1,
+      "winsAboveExpectation": -1.1,
+      "rating": -0.044,
+      "z": -0.798,
+      "source": "wikipedia"
+    },
+    {
+      "personId": "f21043a5",
+      "name": "MDKJ Perera",
+      "captainName": "Kusal Perera",
+      "team": "Sri Lanka",
+      "firstYear": 2021,
+      "lastYear": 2021,
+      "matches": 3,
+      "won": 0,
+      "lost": 3,
+      "expectedWins": 1.02,
+      "winsAboveExpectation": -1.02,
+      "rating": -0.0443,
+      "z": -0.804,
       "source": "wikipedia"
     },
     {
@@ -1646,7 +1822,7 @@
       "expectedWins": 0.98,
       "winsAboveExpectation": -0.98,
       "rating": -0.0445,
-      "z": -0.893,
+      "z": -0.808,
       "source": "wikipedia"
     },
     {
@@ -1662,7 +1838,7 @@
       "expectedWins": 1.12,
       "winsAboveExpectation": -1.12,
       "rating": -0.0509,
-      "z": -1.024,
+      "z": -0.934,
       "source": "wikipedia"
     },
     {
@@ -1678,7 +1854,7 @@
       "expectedWins": 4.74,
       "winsAboveExpectation": -1.74,
       "rating": -0.058,
-      "z": -1.17,
+      "z": -1.074,
       "source": "wikipedia"
     },
     {
@@ -1694,7 +1870,7 @@
       "expectedWins": 10.26,
       "winsAboveExpectation": -2.26,
       "rating": -0.0595,
-      "z": -1.201,
+      "z": -1.104,
       "source": "wikipedia"
     },
     {
@@ -1710,7 +1886,23 @@
       "expectedWins": 3.49,
       "winsAboveExpectation": -1.49,
       "rating": -0.0596,
-      "z": -1.203,
+      "z": -1.106,
+      "source": "wikipedia"
+    },
+    {
+      "personId": "9948e262",
+      "name": "HE van der Dussen",
+      "captainName": "Rassie van der Dussen",
+      "team": "South Africa",
+      "firstYear": 2024,
+      "lastYear": 2025,
+      "matches": 8,
+      "won": 2,
+      "lost": 6,
+      "expectedWins": 3.69,
+      "winsAboveExpectation": -1.69,
+      "rating": -0.0604,
+      "z": -1.122,
       "source": "wikipedia"
     },
     {
@@ -1726,7 +1918,7 @@
       "expectedWins": 8.24,
       "winsAboveExpectation": -2.24,
       "rating": -0.0605,
-      "z": -1.222,
+      "z": -1.124,
       "source": "wikipedia"
     },
     {
@@ -1742,7 +1934,7 @@
       "expectedWins": 1.47,
       "winsAboveExpectation": -1.47,
       "rating": -0.0612,
-      "z": -1.236,
+      "z": -1.138,
       "source": "wikipedia"
     },
     {
@@ -1758,7 +1950,23 @@
       "expectedWins": 6.97,
       "winsAboveExpectation": -1.97,
       "rating": -0.0616,
-      "z": -1.244,
+      "z": -1.145,
+      "source": "wikipedia"
+    },
+    {
+      "personId": "45a7e761",
+      "name": "Shaheen Shah Afridi",
+      "captainName": "Shaheen Afridi",
+      "team": "Pakistan",
+      "firstYear": 2024,
+      "lastYear": 2024,
+      "matches": 5,
+      "won": 1,
+      "lost": 4,
+      "expectedWins": 2.55,
+      "winsAboveExpectation": -1.55,
+      "rating": -0.062,
+      "z": -1.153,
       "source": "wikipedia"
     },
     {
@@ -1774,7 +1982,7 @@
       "expectedWins": 14.16,
       "winsAboveExpectation": -3.16,
       "rating": -0.0632,
-      "z": -1.277,
+      "z": -1.177,
       "source": "wikipedia"
     },
     {
@@ -1790,7 +1998,23 @@
       "expectedWins": 7.68,
       "winsAboveExpectation": -2.68,
       "rating": -0.0687,
-      "z": -1.39,
+      "z": -1.285,
+      "source": "wikipedia"
+    },
+    {
+      "personId": "9de62878",
+      "name": "Shadab Khan",
+      "captainName": "Shadab Khan",
+      "team": "Pakistan",
+      "firstYear": 2020,
+      "lastYear": 2023,
+      "matches": 6,
+      "won": 2,
+      "lost": 4,
+      "expectedWins": 3.79,
+      "winsAboveExpectation": -1.79,
+      "rating": -0.0688,
+      "z": -1.287,
       "source": "wikipedia"
     },
     {
@@ -1806,7 +2030,7 @@
       "expectedWins": 6.63,
       "winsAboveExpectation": -2.63,
       "rating": -0.0692,
-      "z": -1.4,
+      "z": -1.295,
       "source": "wikipedia"
     },
     {
@@ -1822,7 +2046,7 @@
       "expectedWins": 14.27,
       "winsAboveExpectation": -3.27,
       "rating": -0.0696,
-      "z": -1.408,
+      "z": -1.303,
       "source": "wikipedia"
     },
     {
@@ -1838,7 +2062,7 @@
       "expectedWins": 5.32,
       "winsAboveExpectation": -2.32,
       "rating": -0.0748,
-      "z": -1.515,
+      "z": -1.406,
       "source": "wikipedia"
     },
     {
@@ -1854,7 +2078,39 @@
       "expectedWins": 5.43,
       "winsAboveExpectation": -2.43,
       "rating": -0.0759,
-      "z": -1.538,
+      "z": -1.427,
+      "source": "wikipedia"
+    },
+    {
+      "personId": "0dc00542",
+      "name": "Shahid Afridi",
+      "captainName": "Shahid Afridi",
+      "team": "Pakistan",
+      "firstYear": 2009,
+      "lastYear": 2016,
+      "matches": 43,
+      "won": 19,
+      "lost": 23,
+      "expectedWins": 24.15,
+      "winsAboveExpectation": -5.15,
+      "rating": -0.0817,
+      "z": -1.542,
+      "source": "wikipedia"
+    },
+    {
+      "personId": "a12e1d51",
+      "name": "SL Malinga",
+      "captainName": "Lasith Malinga",
+      "team": "Sri Lanka",
+      "firstYear": 2014,
+      "lastYear": 2020,
+      "matches": 24,
+      "won": 7,
+      "lost": 15,
+      "expectedWins": 11.15,
+      "winsAboveExpectation": -4.15,
+      "rating": -0.0943,
+      "z": -1.79,
       "source": "wikipedia"
     },
     {
@@ -1870,23 +2126,7 @@
       "expectedWins": 7.15,
       "winsAboveExpectation": -3.15,
       "rating": -0.0955,
-      "z": -1.94,
-      "source": "wikipedia"
-    },
-    {
-      "personId": "2bb09eb2",
-      "name": "Mohammad Ashraful",
-      "captainName": "Mohammad Ashraful",
-      "team": "Bangladesh",
-      "firstYear": 2007,
-      "lastYear": 2009,
-      "matches": 11,
-      "won": 2,
-      "lost": 9,
-      "expectedWins": 5.34,
-      "winsAboveExpectation": -3.34,
-      "rating": -0.1077,
-      "z": -2,
+      "z": -1.814,
       "source": "wikipedia"
     },
     {
@@ -1902,6 +2142,22 @@
       "expectedWins": 2.37,
       "winsAboveExpectation": -2.37,
       "rating": -0.0988,
+      "z": -1.879,
+      "source": "wikipedia"
+    },
+    {
+      "personId": "2bb09eb2",
+      "name": "Mohammad Ashraful",
+      "captainName": "Mohammad Ashraful",
+      "team": "Bangladesh",
+      "firstYear": 2007,
+      "lastYear": 2009,
+      "matches": 11,
+      "won": 2,
+      "lost": 9,
+      "expectedWins": 5.34,
+      "winsAboveExpectation": -3.34,
+      "rating": -0.1077,
       "z": -2,
       "source": "wikipedia"
     },
@@ -1922,6 +2178,22 @@
       "source": "wikipedia"
     },
     {
+      "personId": "0f12f9df",
+      "name": "NLTC Perera",
+      "captainName": "Thisara Perera",
+      "team": "Sri Lanka",
+      "firstYear": 2017,
+      "lastYear": 2018,
+      "matches": 9,
+      "won": 0,
+      "lost": 9,
+      "expectedWins": 3.9,
+      "winsAboveExpectation": -3.9,
+      "rating": -0.1345,
+      "z": -2,
+      "source": "wikipedia"
+    },
+    {
       "personId": "d2babdd5",
       "name": "E Chigumbura",
       "captainName": "Elton Chigumbura",
@@ -1936,6 +2208,2587 @@
       "rating": -0.1292,
       "z": -2,
       "source": "wikipedia"
+    }
+  ],
+  "leaders": [
+    {
+      "personId": "7d415ea5",
+      "team": "Australia",
+      "firstYear": 2005,
+      "lastYear": 2009,
+      "matches": 17
+    },
+    {
+      "personId": "2b6e6dec",
+      "team": "Australia",
+      "firstYear": 2007,
+      "lastYear": 2007,
+      "matches": 2
+    },
+    {
+      "personId": "f842c2cf",
+      "team": "Australia",
+      "firstYear": 2007,
+      "lastYear": 2010,
+      "matches": 18
+    },
+    {
+      "personId": "b0c772ee",
+      "team": "Australia",
+      "firstYear": 2009,
+      "lastYear": 2009,
+      "matches": 2
+    },
+    {
+      "personId": "d0513f63",
+      "team": "Australia",
+      "firstYear": 2011,
+      "lastYear": 2011,
+      "matches": 6
+    },
+    {
+      "personId": "5056011d",
+      "team": "Australia",
+      "firstYear": 2012,
+      "lastYear": 2014,
+      "matches": 28
+    },
+    {
+      "personId": "b8d490fd",
+      "team": "Australia",
+      "firstYear": 2014,
+      "lastYear": 2022,
+      "matches": 76
+    },
+    {
+      "personId": "30a45b23",
+      "team": "Australia",
+      "firstYear": 2015,
+      "lastYear": 2016,
+      "matches": 8
+    },
+    {
+      "personId": "dcce6f09",
+      "team": "Australia",
+      "firstYear": 2016,
+      "lastYear": 2018,
+      "matches": 9
+    },
+    {
+      "personId": "4329fbb5",
+      "team": "Australia",
+      "firstYear": 2016,
+      "lastYear": 2016,
+      "matches": 1
+    },
+    {
+      "personId": "afa7e784",
+      "team": "Australia",
+      "firstYear": 2020,
+      "lastYear": 2023,
+      "matches": 13
+    },
+    {
+      "personId": "3d8feaf8",
+      "team": "Australia",
+      "firstYear": 2023,
+      "lastYear": 2026,
+      "matches": 35
+    },
+    {
+      "personId": "989889ff",
+      "team": "Australia",
+      "firstYear": 2024,
+      "lastYear": 2024,
+      "matches": 3
+    },
+    {
+      "personId": "12b610c2",
+      "team": "Australia",
+      "firstYear": 2024,
+      "lastYear": 2024,
+      "matches": 1
+    },
+    {
+      "personId": "2bb09eb2",
+      "team": "Bangladesh",
+      "firstYear": 2007,
+      "lastYear": 2009,
+      "matches": 11
+    },
+    {
+      "personId": "7dc35884",
+      "team": "Bangladesh",
+      "firstYear": 2009,
+      "lastYear": 2023,
+      "matches": 39
+    },
+    {
+      "personId": "a94e08ea",
+      "team": "Bangladesh",
+      "firstYear": 2011,
+      "lastYear": 2014,
+      "matches": 23
+    },
+    {
+      "personId": "e186f49c",
+      "team": "Bangladesh",
+      "firstYear": 2014,
+      "lastYear": 2017,
+      "matches": 28
+    },
+    {
+      "personId": "bf1d7d3e",
+      "team": "Bangladesh",
+      "firstYear": 2018,
+      "lastYear": 2022,
+      "matches": 43
+    },
+    {
+      "personId": "0404d43c",
+      "team": "Bangladesh",
+      "firstYear": 2021,
+      "lastYear": 2026,
+      "matches": 31
+    },
+    {
+      "personId": "8919756f",
+      "team": "Bangladesh",
+      "firstYear": 2022,
+      "lastYear": 2022,
+      "matches": 1
+    },
+    {
+      "personId": "1274d7ab",
+      "team": "Bangladesh",
+      "firstYear": 2023,
+      "lastYear": 2024,
+      "matches": 24
+    },
+    {
+      "personId": "cd56a813",
+      "team": "Bangladesh",
+      "firstYear": 2025,
+      "lastYear": 2025,
+      "matches": 5
+    },
+    {
+      "personId": "9e52a414",
+      "team": "Bangladesh",
+      "firstYear": 2026,
+      "lastYear": 2026,
+      "matches": 6
+    },
+    {
+      "personId": "cbabd6ad",
+      "team": "Canada",
+      "firstYear": 2019,
+      "lastYear": 2025,
+      "matches": 29
+    },
+    {
+      "personId": "f28a60e0",
+      "team": "Canada",
+      "firstYear": 2022,
+      "lastYear": 2026,
+      "matches": 19
+    },
+    {
+      "personId": "6b75c2b1",
+      "team": "Canada",
+      "firstYear": 2024,
+      "lastYear": 2025,
+      "matches": 19
+    },
+    {
+      "personId": "e3540b8c",
+      "team": "Canada",
+      "firstYear": 2026,
+      "lastYear": 2026,
+      "matches": 4
+    },
+    {
+      "personId": "a386e91b",
+      "team": "England",
+      "firstYear": 2007,
+      "lastYear": 2010,
+      "matches": 30
+    },
+    {
+      "personId": "221ad9d9",
+      "team": "England",
+      "firstYear": 2011,
+      "lastYear": 2011,
+      "matches": 3
+    },
+    {
+      "personId": "eba6a852",
+      "team": "England",
+      "firstYear": 2011,
+      "lastYear": 2014,
+      "matches": 27
+    },
+    {
+      "personId": "d2a6c0e6",
+      "team": "England",
+      "firstYear": 2012,
+      "lastYear": 2022,
+      "matches": 72
+    },
+    {
+      "personId": "49b6c09f",
+      "team": "England",
+      "firstYear": 2013,
+      "lastYear": 2013,
+      "matches": 1
+    },
+    {
+      "personId": "99b75528",
+      "team": "England",
+      "firstYear": 2015,
+      "lastYear": 2025,
+      "matches": 51
+    },
+    {
+      "personId": "bb351c23",
+      "team": "England",
+      "firstYear": 2020,
+      "lastYear": 2023,
+      "matches": 12
+    },
+    {
+      "personId": "3d284ca3",
+      "team": "England",
+      "firstYear": 2024,
+      "lastYear": 2024,
+      "matches": 2
+    },
+    {
+      "personId": "4ae1755b",
+      "team": "England",
+      "firstYear": 2025,
+      "lastYear": 2026,
+      "matches": 24
+    },
+    {
+      "personId": "3c55c703",
+      "team": "England",
+      "firstYear": 2025,
+      "lastYear": 2025,
+      "matches": 2
+    },
+    {
+      "personId": "bf2d865c",
+      "team": "Hong Kong",
+      "firstYear": 2014,
+      "lastYear": 2014,
+      "matches": 4
+    },
+    {
+      "personId": "5f5ca1a7",
+      "team": "Hong Kong",
+      "firstYear": 2015,
+      "lastYear": 2016,
+      "matches": 16
+    },
+    {
+      "personId": "fbb657bb",
+      "team": "Hong Kong",
+      "firstYear": 2016,
+      "lastYear": 2026,
+      "matches": 5
+    },
+    {
+      "personId": "f6c2659d",
+      "team": "Hong Kong",
+      "firstYear": 2019,
+      "lastYear": 2020,
+      "matches": 16
+    },
+    {
+      "personId": "d5ae21a2",
+      "team": "Hong Kong",
+      "firstYear": 2019,
+      "lastYear": 2019,
+      "matches": 4
+    },
+    {
+      "personId": "e3eb9e46",
+      "team": "Hong Kong",
+      "firstYear": 2022,
+      "lastYear": 2024,
+      "matches": 56
+    },
+    {
+      "personId": "8ba8195d",
+      "team": "India",
+      "firstYear": 2006,
+      "lastYear": 2006,
+      "matches": 1
+    },
+    {
+      "personId": "4a8a2e3b",
+      "team": "India",
+      "firstYear": 2007,
+      "lastYear": 2016,
+      "matches": 72
+    },
+    {
+      "personId": "1dc12ab9",
+      "team": "India",
+      "firstYear": 2010,
+      "lastYear": 2011,
+      "matches": 3
+    },
+    {
+      "personId": "29e95537",
+      "team": "India",
+      "firstYear": 2015,
+      "lastYear": 2015,
+      "matches": 2
+    },
+    {
+      "personId": "740742ef",
+      "team": "India",
+      "firstYear": 2017,
+      "lastYear": 2024,
+      "matches": 62
+    },
+    {
+      "personId": "ba607b88",
+      "team": "India",
+      "firstYear": 2017,
+      "lastYear": 2021,
+      "matches": 50
+    },
+    {
+      "personId": "0a476045",
+      "team": "India",
+      "firstYear": 2021,
+      "lastYear": 2021,
+      "matches": 3
+    },
+    {
+      "personId": "dbe50b21",
+      "team": "India",
+      "firstYear": 2022,
+      "lastYear": 2023,
+      "matches": 16
+    },
+    {
+      "personId": "b17e2f24",
+      "team": "India",
+      "firstYear": 2022,
+      "lastYear": 2022,
+      "matches": 1
+    },
+    {
+      "personId": "919a3be2",
+      "team": "India",
+      "firstYear": 2022,
+      "lastYear": 2022,
+      "matches": 5
+    },
+    {
+      "personId": "462411b3",
+      "team": "India",
+      "firstYear": 2023,
+      "lastYear": 2023,
+      "matches": 2
+    },
+    {
+      "personId": "271f83cd",
+      "team": "India",
+      "firstYear": 2023,
+      "lastYear": 2026,
+      "matches": 52
+    },
+    {
+      "personId": "ec02b798",
+      "team": "Ireland",
+      "firstYear": 2008,
+      "lastYear": 2017,
+      "matches": 56
+    },
+    {
+      "personId": "243431b5",
+      "team": "Ireland",
+      "firstYear": 2015,
+      "lastYear": 2015,
+      "matches": 4
+    },
+    {
+      "personId": "05de1a5a",
+      "team": "Ireland",
+      "firstYear": 2016,
+      "lastYear": 2019,
+      "matches": 26
+    },
+    {
+      "personId": "cf494ffe",
+      "team": "Ireland",
+      "firstYear": 2019,
+      "lastYear": 2026,
+      "matches": 48
+    },
+    {
+      "personId": "6ef13460",
+      "team": "Ireland",
+      "firstYear": 2020,
+      "lastYear": 2023,
+      "matches": 52
+    },
+    {
+      "personId": "3979b5e0",
+      "team": "Ireland",
+      "firstYear": 2024,
+      "lastYear": 2026,
+      "matches": 2
+    },
+    {
+      "personId": "3957a70a",
+      "team": "Italy",
+      "firstYear": 2022,
+      "lastYear": 2022,
+      "matches": 4
+    },
+    {
+      "personId": "0e56c514",
+      "team": "Italy",
+      "firstYear": 2022,
+      "lastYear": 2026,
+      "matches": 4
+    },
+    {
+      "personId": "26d80a9d",
+      "team": "Italy",
+      "firstYear": 2022,
+      "lastYear": 2024,
+      "matches": 2
+    },
+    {
+      "personId": "42172c3c",
+      "team": "Italy",
+      "firstYear": 2026,
+      "lastYear": 2026,
+      "matches": 2
+    },
+    {
+      "personId": "86e0f3f0",
+      "team": "Italy",
+      "firstYear": 2026,
+      "lastYear": 2026,
+      "matches": 2
+    },
+    {
+      "personId": "00d69fa4",
+      "team": "Kenya",
+      "firstYear": 2007,
+      "lastYear": 2008,
+      "matches": 7
+    },
+    {
+      "personId": "2c13defe",
+      "team": "Kenya",
+      "firstYear": 2007,
+      "lastYear": 2007,
+      "matches": 1
+    },
+    {
+      "personId": "0939c670",
+      "team": "Kenya",
+      "firstYear": 2010,
+      "lastYear": 2010,
+      "matches": 4
+    },
+    {
+      "personId": "5680f1ad",
+      "team": "Kenya",
+      "firstYear": 2012,
+      "lastYear": 2013,
+      "matches": 17
+    },
+    {
+      "personId": "49118dc7",
+      "team": "Kenya",
+      "firstYear": 2019,
+      "lastYear": 2024,
+      "matches": 36
+    },
+    {
+      "personId": "eb4f9c61",
+      "team": "Kenya",
+      "firstYear": 2022,
+      "lastYear": 2026,
+      "matches": 17
+    },
+    {
+      "personId": "e9173fb0",
+      "team": "Kenya",
+      "firstYear": 2022,
+      "lastYear": 2022,
+      "matches": 6
+    },
+    {
+      "personId": "7fa6bd8e",
+      "team": "Kenya",
+      "firstYear": 2023,
+      "lastYear": 2025,
+      "matches": 24
+    },
+    {
+      "personId": "ca92a578",
+      "team": "Kenya",
+      "firstYear": 2024,
+      "lastYear": 2024,
+      "matches": 1
+    },
+    {
+      "personId": "9048c17e",
+      "team": "Kenya",
+      "firstYear": 2025,
+      "lastYear": 2026,
+      "matches": 24
+    },
+    {
+      "personId": "612a395c",
+      "team": "Kenya",
+      "firstYear": 2026,
+      "lastYear": 2026,
+      "matches": 1
+    },
+    {
+      "personId": "95a5e066",
+      "team": "Namibia",
+      "firstYear": 2019,
+      "lastYear": 2026,
+      "matches": 91
+    },
+    {
+      "personId": "e8511411",
+      "team": "Namibia",
+      "firstYear": 2019,
+      "lastYear": 2019,
+      "matches": 1
+    },
+    {
+      "personId": "bb134e5c",
+      "team": "Namibia",
+      "firstYear": 2024,
+      "lastYear": 2024,
+      "matches": 4
+    },
+    {
+      "personId": "f468293b",
+      "team": "Namibia",
+      "firstYear": 2024,
+      "lastYear": 2024,
+      "matches": 1
+    },
+    {
+      "personId": "c51add25",
+      "team": "Namibia",
+      "firstYear": 2024,
+      "lastYear": 2024,
+      "matches": 2
+    },
+    {
+      "personId": "12c3ba4d",
+      "team": "Nepal",
+      "firstYear": 2014,
+      "lastYear": 2019,
+      "matches": 27
+    },
+    {
+      "personId": "b2e1d224",
+      "team": "Nepal",
+      "firstYear": 2019,
+      "lastYear": 2021,
+      "matches": 12
+    },
+    {
+      "personId": "b410bd3d",
+      "team": "Nepal",
+      "firstYear": 2022,
+      "lastYear": 2022,
+      "matches": 18
+    },
+    {
+      "personId": "1a3cc554",
+      "team": "Nepal",
+      "firstYear": 2023,
+      "lastYear": 2026,
+      "matches": 59
+    },
+    {
+      "personId": "1747ea18",
+      "team": "Nepal",
+      "firstYear": 2026,
+      "lastYear": 2026,
+      "matches": 6
+    },
+    {
+      "personId": "7c681ee9",
+      "team": "Netherlands",
+      "firstYear": 2008,
+      "lastYear": 2009,
+      "matches": 6
+    },
+    {
+      "personId": "91052c96",
+      "team": "Netherlands",
+      "firstYear": 2010,
+      "lastYear": 2017,
+      "matches": 37
+    },
+    {
+      "personId": "a75a78eb",
+      "team": "Netherlands",
+      "firstYear": 2013,
+      "lastYear": 2013,
+      "matches": 2
+    },
+    {
+      "personId": "abbdca1a",
+      "team": "Netherlands",
+      "firstYear": 2018,
+      "lastYear": 2022,
+      "matches": 38
+    },
+    {
+      "personId": "b59db04f",
+      "team": "Netherlands",
+      "firstYear": 2022,
+      "lastYear": 2026,
+      "matches": 50
+    },
+    {
+      "personId": "d7c6af50",
+      "team": "New Zealand",
+      "firstYear": 2007,
+      "lastYear": 2010,
+      "matches": 28
+    },
+    {
+      "personId": "b8a55852",
+      "team": "New Zealand",
+      "firstYear": 2008,
+      "lastYear": 2015,
+      "matches": 28
+    },
+    {
+      "personId": "b61a3e1a",
+      "team": "New Zealand",
+      "firstYear": 2010,
+      "lastYear": 2012,
+      "matches": 13
+    },
+    {
+      "personId": "d027ba9f",
+      "team": "New Zealand",
+      "firstYear": 2012,
+      "lastYear": 2024,
+      "matches": 75
+    },
+    {
+      "personId": "7fb32e5b",
+      "team": "New Zealand",
+      "firstYear": 2013,
+      "lastYear": 2013,
+      "matches": 2
+    },
+    {
+      "personId": "13c35c9e",
+      "team": "New Zealand",
+      "firstYear": 2017,
+      "lastYear": 2023,
+      "matches": 29
+    },
+    {
+      "personId": "e4a0deae",
+      "team": "New Zealand",
+      "firstYear": 2020,
+      "lastYear": 2026,
+      "matches": 56
+    },
+    {
+      "personId": "eade4650",
+      "team": "New Zealand",
+      "firstYear": 2026,
+      "lastYear": 2026,
+      "matches": 1
+    },
+    {
+      "personId": "9219eff0",
+      "team": "New Zealand",
+      "firstYear": 2026,
+      "lastYear": 2026,
+      "matches": 2
+    },
+    {
+      "personId": "3bf7c034",
+      "team": "Oman",
+      "firstYear": 2015,
+      "lastYear": 2017,
+      "matches": 17
+    },
+    {
+      "personId": "b858be20",
+      "team": "Oman",
+      "firstYear": 2019,
+      "lastYear": 2019,
+      "matches": 3
+    },
+    {
+      "personId": "34464143",
+      "team": "Oman",
+      "firstYear": 2019,
+      "lastYear": 2024,
+      "matches": 49
+    },
+    {
+      "personId": "934b36a6",
+      "team": "Oman",
+      "firstYear": 2020,
+      "lastYear": 2022,
+      "matches": 2
+    },
+    {
+      "personId": "b3b39bed",
+      "team": "Oman",
+      "firstYear": 2023,
+      "lastYear": 2024,
+      "matches": 15
+    },
+    {
+      "personId": "44d6a8b8",
+      "team": "Oman",
+      "firstYear": 2023,
+      "lastYear": 2023,
+      "matches": 1
+    },
+    {
+      "personId": "b80dd12c",
+      "team": "Oman",
+      "firstYear": 2024,
+      "lastYear": 2026,
+      "matches": 23
+    },
+    {
+      "personId": "7ecb9a14",
+      "team": "Oman",
+      "firstYear": 2025,
+      "lastYear": 2025,
+      "matches": 2
+    },
+    {
+      "personId": "0b7b78c6",
+      "team": "Oman",
+      "firstYear": 2025,
+      "lastYear": 2025,
+      "matches": 1
+    },
+    {
+      "personId": "c5d7b244",
+      "team": "Oman",
+      "firstYear": 2025,
+      "lastYear": 2025,
+      "matches": 1
+    },
+    {
+      "personId": "bf172ae6",
+      "team": "Oman",
+      "firstYear": 2026,
+      "lastYear": 2026,
+      "matches": 6
+    },
+    {
+      "personId": "64c34cd0",
+      "team": "Pakistan",
+      "firstYear": 2007,
+      "lastYear": 2007,
+      "matches": 20
+    },
+    {
+      "personId": "33cb3411",
+      "team": "Pakistan",
+      "firstYear": 2007,
+      "lastYear": 2009,
+      "matches": 8
+    },
+    {
+      "personId": "0dc00542",
+      "team": "Pakistan",
+      "firstYear": 2009,
+      "lastYear": 2016,
+      "matches": 43
+    },
+    {
+      "personId": "7eae4418",
+      "team": "Pakistan",
+      "firstYear": 2011,
+      "lastYear": 2012,
+      "matches": 8
+    },
+    {
+      "personId": "9ab63e7b",
+      "team": "Pakistan",
+      "firstYear": 2012,
+      "lastYear": 2014,
+      "matches": 29
+    },
+    {
+      "personId": "2254ab79",
+      "team": "Pakistan",
+      "firstYear": 2016,
+      "lastYear": 2020,
+      "matches": 37
+    },
+    {
+      "personId": "8a75e999",
+      "team": "Pakistan",
+      "firstYear": 2019,
+      "lastYear": 2024,
+      "matches": 85
+    },
+    {
+      "personId": "9de62878",
+      "team": "Pakistan",
+      "firstYear": 2020,
+      "lastYear": 2023,
+      "matches": 6
+    },
+    {
+      "personId": "2f26ac1a",
+      "team": "Pakistan",
+      "firstYear": 2023,
+      "lastYear": 2023,
+      "matches": 4
+    },
+    {
+      "personId": "45a7e761",
+      "team": "Pakistan",
+      "firstYear": 2024,
+      "lastYear": 2024,
+      "matches": 5
+    },
+    {
+      "personId": "1aba45cd",
+      "team": "Pakistan",
+      "firstYear": 2026,
+      "lastYear": 2026,
+      "matches": 0
+    },
+    {
+      "personId": "72e60730",
+      "team": "Papua New Guinea",
+      "firstYear": 2016,
+      "lastYear": 2026,
+      "matches": 67
+    },
+    {
+      "personId": "a36915ce",
+      "team": "Papua New Guinea",
+      "firstYear": 2024,
+      "lastYear": 2024,
+      "matches": 1
+    },
+    {
+      "personId": "a82eb3fb",
+      "team": "Papua New Guinea",
+      "firstYear": 2024,
+      "lastYear": 2024,
+      "matches": 1
+    },
+    {
+      "personId": "a670d624",
+      "team": "Scotland",
+      "firstYear": 2007,
+      "lastYear": 2008,
+      "matches": 6
+    },
+    {
+      "personId": "8187519b",
+      "team": "Scotland",
+      "firstYear": 2009,
+      "lastYear": 2010,
+      "matches": 6
+    },
+    {
+      "personId": "5b8fffb4",
+      "team": "Scotland",
+      "firstYear": 2012,
+      "lastYear": 2013,
+      "matches": 5
+    },
+    {
+      "personId": "85d8110a",
+      "team": "Scotland",
+      "firstYear": 2012,
+      "lastYear": 2021,
+      "matches": 41
+    },
+    {
+      "personId": "a56f4b65",
+      "team": "Scotland",
+      "firstYear": 2013,
+      "lastYear": 2016,
+      "matches": 17
+    },
+    {
+      "personId": "e21bc7f3",
+      "team": "Scotland",
+      "firstYear": 2019,
+      "lastYear": 2026,
+      "matches": 37
+    },
+    {
+      "personId": "8b261d84",
+      "team": "Scotland",
+      "firstYear": 2024,
+      "lastYear": 2026,
+      "matches": 4
+    },
+    {
+      "personId": "72861603",
+      "team": "South Africa",
+      "firstYear": 2005,
+      "lastYear": 2010,
+      "matches": 27
+    },
+    {
+      "personId": "88fccd6c",
+      "team": "South Africa",
+      "firstYear": 2007,
+      "lastYear": 2007,
+      "matches": 1
+    },
+    {
+      "personId": "7c503806",
+      "team": "South Africa",
+      "firstYear": 2008,
+      "lastYear": 2012,
+      "matches": 11
+    },
+    {
+      "personId": "e798611a",
+      "team": "South Africa",
+      "firstYear": 2011,
+      "lastYear": 2011,
+      "matches": 2
+    },
+    {
+      "personId": "c4487b84",
+      "team": "South Africa",
+      "firstYear": 2012,
+      "lastYear": 2017,
+      "matches": 18
+    },
+    {
+      "personId": "3355b542",
+      "team": "South Africa",
+      "firstYear": 2012,
+      "lastYear": 2019,
+      "matches": 37
+    },
+    {
+      "personId": "2e8994e7",
+      "team": "South Africa",
+      "firstYear": 2014,
+      "lastYear": 2019,
+      "matches": 11
+    },
+    {
+      "personId": "dce2019b",
+      "team": "South Africa",
+      "firstYear": 2017,
+      "lastYear": 2017,
+      "matches": 3
+    },
+    {
+      "personId": "d67d5f00",
+      "team": "South Africa",
+      "firstYear": 2019,
+      "lastYear": 2022,
+      "matches": 6
+    },
+    {
+      "personId": "372455c4",
+      "team": "South Africa",
+      "firstYear": 2019,
+      "lastYear": 2020,
+      "matches": 11
+    },
+    {
+      "personId": "235c2bb6",
+      "team": "South Africa",
+      "firstYear": 2021,
+      "lastYear": 2024,
+      "matches": 9
+    },
+    {
+      "personId": "0b60eb09",
+      "team": "South Africa",
+      "firstYear": 2021,
+      "lastYear": 2026,
+      "matches": 10
+    },
+    {
+      "personId": "9ffd1ac1",
+      "team": "South Africa",
+      "firstYear": 2021,
+      "lastYear": 2022,
+      "matches": 25
+    },
+    {
+      "personId": "6a26221c",
+      "team": "South Africa",
+      "firstYear": 2023,
+      "lastYear": 2026,
+      "matches": 46
+    },
+    {
+      "personId": "9948e262",
+      "team": "South Africa",
+      "firstYear": 2024,
+      "lastYear": 2025,
+      "matches": 8
+    },
+    {
+      "personId": "d18f9182",
+      "team": "Sri Lanka",
+      "firstYear": 2006,
+      "lastYear": 2012,
+      "matches": 19
+    },
+    {
+      "personId": "5bdcdb72",
+      "team": "Sri Lanka",
+      "firstYear": 2008,
+      "lastYear": 2011,
+      "matches": 5
+    },
+    {
+      "personId": "6b71e6cf",
+      "team": "Sri Lanka",
+      "firstYear": 2009,
+      "lastYear": 2012,
+      "matches": 22
+    },
+    {
+      "personId": "896d78ad",
+      "team": "Sri Lanka",
+      "firstYear": 2012,
+      "lastYear": 2021,
+      "matches": 16
+    },
+    {
+      "personId": "8dd02a98",
+      "team": "Sri Lanka",
+      "firstYear": 2013,
+      "lastYear": 2018,
+      "matches": 26
+    },
+    {
+      "personId": "a12e1d51",
+      "team": "Sri Lanka",
+      "firstYear": 2014,
+      "lastYear": 2020,
+      "matches": 24
+    },
+    {
+      "personId": "0f12f9df",
+      "team": "Sri Lanka",
+      "firstYear": 2017,
+      "lastYear": 2018,
+      "matches": 9
+    },
+    {
+      "personId": "7ed9fd56",
+      "team": "Sri Lanka",
+      "firstYear": 2017,
+      "lastYear": 2017,
+      "matches": 6
+    },
+    {
+      "personId": "3ff033bb",
+      "team": "Sri Lanka",
+      "firstYear": 2019,
+      "lastYear": 2023,
+      "matches": 48
+    },
+    {
+      "personId": "f21043a5",
+      "team": "Sri Lanka",
+      "firstYear": 2021,
+      "lastYear": 2021,
+      "matches": 3
+    },
+    {
+      "personId": "732c038e",
+      "team": "Sri Lanka",
+      "firstYear": 2024,
+      "lastYear": 2024,
+      "matches": 5
+    },
+    {
+      "personId": "a97c8ec2",
+      "team": "Sri Lanka",
+      "firstYear": 2024,
+      "lastYear": 2024,
+      "matches": 10
+    },
+    {
+      "personId": "5d1e7582",
+      "team": "Sri Lanka",
+      "firstYear": 2026,
+      "lastYear": 2026,
+      "matches": 6
+    },
+    {
+      "personId": "011f6b42",
+      "team": "Uganda",
+      "firstYear": 2019,
+      "lastYear": 2023,
+      "matches": 5
+    },
+    {
+      "personId": "f33cfd25",
+      "team": "Uganda",
+      "firstYear": 2021,
+      "lastYear": 2024,
+      "matches": 60
+    },
+    {
+      "personId": "a3a275ec",
+      "team": "Uganda",
+      "firstYear": 2022,
+      "lastYear": 2024,
+      "matches": 11
+    },
+    {
+      "personId": "269cc4ff",
+      "team": "Uganda",
+      "firstYear": 2023,
+      "lastYear": 2026,
+      "matches": 32
+    },
+    {
+      "personId": "30d8136b",
+      "team": "Uganda",
+      "firstYear": 2024,
+      "lastYear": 2024,
+      "matches": 1
+    },
+    {
+      "personId": "b6b3ee6e",
+      "team": "Uganda",
+      "firstYear": 2024,
+      "lastYear": 2024,
+      "matches": 1
+    },
+    {
+      "personId": "ae6746e0",
+      "team": "United Arab Emirates",
+      "firstYear": 2014,
+      "lastYear": 2014,
+      "matches": 3
+    },
+    {
+      "personId": "79b4839e",
+      "team": "United Arab Emirates",
+      "firstYear": 2015,
+      "lastYear": 2022,
+      "matches": 27
+    },
+    {
+      "personId": "18eaf2fa",
+      "team": "United Arab Emirates",
+      "firstYear": 2016,
+      "lastYear": 2017,
+      "matches": 14
+    },
+    {
+      "personId": "d1988788",
+      "team": "United Arab Emirates",
+      "firstYear": 2016,
+      "lastYear": 2018,
+      "matches": 5
+    },
+    {
+      "personId": "e045c165",
+      "team": "United Arab Emirates",
+      "firstYear": 2019,
+      "lastYear": 2019,
+      "matches": 1
+    },
+    {
+      "personId": "e5309baa",
+      "team": "United Arab Emirates",
+      "firstYear": 2022,
+      "lastYear": 2023,
+      "matches": 11
+    },
+    {
+      "personId": "06cad4f0",
+      "team": "United Arab Emirates",
+      "firstYear": 2024,
+      "lastYear": 2025,
+      "matches": 4
+    },
+    {
+      "personId": "c8a3f688",
+      "team": "United States of America",
+      "firstYear": 2019,
+      "lastYear": 2019,
+      "matches": 8
+    },
+    {
+      "personId": "25d7f1ac",
+      "team": "United States of America",
+      "firstYear": 2021,
+      "lastYear": 2026,
+      "matches": 39
+    },
+    {
+      "personId": "17aa4f1d",
+      "team": "United States of America",
+      "firstYear": 2022,
+      "lastYear": 2024,
+      "matches": 7
+    },
+    {
+      "personId": "5ec41cd7",
+      "team": "United States of America",
+      "firstYear": 2024,
+      "lastYear": 2024,
+      "matches": 4
+    },
+    {
+      "personId": "881a9bdd",
+      "team": "West Indies",
+      "firstYear": 2006,
+      "lastYear": 2006,
+      "matches": 1
+    },
+    {
+      "personId": "db584dad",
+      "team": "West Indies",
+      "firstYear": 2007,
+      "lastYear": 2010,
+      "matches": 17
+    },
+    {
+      "personId": "87e562a9",
+      "team": "West Indies",
+      "firstYear": 2007,
+      "lastYear": 2014,
+      "matches": 6
+    },
+    {
+      "personId": "36d33dd0",
+      "team": "West Indies",
+      "firstYear": 2007,
+      "lastYear": 2007,
+      "matches": 2
+    },
+    {
+      "personId": "d1523761",
+      "team": "West Indies",
+      "firstYear": 2009,
+      "lastYear": 2010,
+      "matches": 3
+    },
+    {
+      "personId": "c03c6200",
+      "team": "West Indies",
+      "firstYear": 2011,
+      "lastYear": 2016,
+      "matches": 47
+    },
+    {
+      "personId": "e342e5fb",
+      "team": "West Indies",
+      "firstYear": 2016,
+      "lastYear": 2019,
+      "matches": 30
+    },
+    {
+      "personId": "0f721006",
+      "team": "West Indies",
+      "firstYear": 2019,
+      "lastYear": 2019,
+      "matches": 3
+    },
+    {
+      "personId": "a757b0d8",
+      "team": "West Indies",
+      "firstYear": 2019,
+      "lastYear": 2022,
+      "matches": 39
+    },
+    {
+      "personId": "3241e3fd",
+      "team": "West Indies",
+      "firstYear": 2021,
+      "lastYear": 2022,
+      "matches": 23
+    },
+    {
+      "personId": "650d5e49",
+      "team": "West Indies",
+      "firstYear": 2022,
+      "lastYear": 2025,
+      "matches": 37
+    },
+    {
+      "personId": "7fca84b7",
+      "team": "West Indies",
+      "firstYear": 2024,
+      "lastYear": 2026,
+      "matches": 6
+    },
+    {
+      "personId": "3feda4fa",
+      "team": "West Indies",
+      "firstYear": 2024,
+      "lastYear": 2026,
+      "matches": 3
+    },
+    {
+      "personId": "4d7f517e",
+      "team": "West Indies",
+      "firstYear": 2025,
+      "lastYear": 2025,
+      "matches": 3
+    },
+    {
+      "personId": "1fc6ef83",
+      "team": "West Indies",
+      "firstYear": 2025,
+      "lastYear": 2026,
+      "matches": 36
+    },
+    {
+      "personId": "9de271ef",
+      "team": "Zimbabwe",
+      "firstYear": 2006,
+      "lastYear": 2010,
+      "matches": 10
+    },
+    {
+      "personId": "d2babdd5",
+      "team": "Zimbabwe",
+      "firstYear": 2010,
+      "lastYear": 2016,
+      "matches": 18
+    },
+    {
+      "personId": "53597be1",
+      "team": "Zimbabwe",
+      "firstYear": 2011,
+      "lastYear": 2021,
+      "matches": 18
+    },
+    {
+      "personId": "26d041c4",
+      "team": "Zimbabwe",
+      "firstYear": 2015,
+      "lastYear": 2026,
+      "matches": 42
+    },
+    {
+      "personId": "9f0270e0",
+      "team": "Zimbabwe",
+      "firstYear": 2016,
+      "lastYear": 2018,
+      "matches": 5
+    },
+    {
+      "personId": "31fbf891",
+      "team": "Zimbabwe",
+      "firstYear": 2016,
+      "lastYear": 2019,
+      "matches": 19
+    },
+    {
+      "personId": "afe57f7a",
+      "team": "Zimbabwe",
+      "firstYear": 2019,
+      "lastYear": 2023,
+      "matches": 12
+    },
+    {
+      "personId": "f32dbc84",
+      "team": "Zimbabwe",
+      "firstYear": 2020,
+      "lastYear": 2020,
+      "matches": 3
+    },
+    {
+      "personId": "c96311d4",
+      "team": "Zimbabwe",
+      "firstYear": 2021,
+      "lastYear": 2023,
+      "matches": 38
+    },
+    {
+      "personId": "2f0d7e4a",
+      "team": "Zimbabwe",
+      "firstYear": 2022,
+      "lastYear": 2022,
+      "matches": 2
+    },
+    {
+      "personId": "b08252b8",
+      "team": "Zimbabwe",
+      "firstYear": 2023,
+      "lastYear": 2023,
+      "matches": 1
+    },
+    {
+      "personId": "2bb09eb2",
+      "team": "Bangladesh",
+      "firstYear": 2007,
+      "lastYear": 2007,
+      "matches": 0,
+      "worldCup": true
+    },
+    {
+      "personId": "72861603",
+      "team": "South Africa",
+      "firstYear": 2007,
+      "lastYear": 2007,
+      "matches": 0,
+      "worldCup": true
+    },
+    {
+      "personId": "7d415ea5",
+      "team": "Australia",
+      "firstYear": 2007,
+      "lastYear": 2007,
+      "matches": 0,
+      "worldCup": true
+    },
+    {
+      "personId": "a386e91b",
+      "team": "England",
+      "firstYear": 2007,
+      "lastYear": 2007,
+      "matches": 0,
+      "worldCup": true
+    },
+    {
+      "personId": "9de271ef",
+      "team": "Zimbabwe",
+      "firstYear": 2007,
+      "lastYear": 2007,
+      "matches": 0,
+      "worldCup": true
+    },
+    {
+      "personId": "00d69fa4",
+      "team": "Kenya",
+      "firstYear": 2007,
+      "lastYear": 2007,
+      "matches": 0,
+      "worldCup": true
+    },
+    {
+      "personId": "d7c6af50",
+      "team": "New Zealand",
+      "firstYear": 2007,
+      "lastYear": 2007,
+      "matches": 0,
+      "worldCup": true
+    },
+    {
+      "personId": "d18f9182",
+      "team": "Sri Lanka",
+      "firstYear": 2007,
+      "lastYear": 2007,
+      "matches": 0,
+      "worldCup": true
+    },
+    {
+      "personId": "4a8a2e3b",
+      "team": "India",
+      "firstYear": 2007,
+      "lastYear": 2007,
+      "matches": 0,
+      "worldCup": true
+    },
+    {
+      "personId": "64c34cd0",
+      "team": "Pakistan",
+      "firstYear": 2007,
+      "lastYear": 2007,
+      "matches": 0,
+      "worldCup": true
+    },
+    {
+      "personId": "a670d624",
+      "team": "Scotland",
+      "firstYear": 2007,
+      "lastYear": 2007,
+      "matches": 0,
+      "worldCup": true
+    },
+    {
+      "personId": "7d415ea5",
+      "team": "Australia",
+      "firstYear": 2009,
+      "lastYear": 2009,
+      "matches": 0,
+      "worldCup": true
+    },
+    {
+      "personId": "2bb09eb2",
+      "team": "Bangladesh",
+      "firstYear": 2009,
+      "lastYear": 2009,
+      "matches": 0,
+      "worldCup": true
+    },
+    {
+      "personId": "a386e91b",
+      "team": "England",
+      "firstYear": 2009,
+      "lastYear": 2009,
+      "matches": 0,
+      "worldCup": true
+    },
+    {
+      "personId": "4a8a2e3b",
+      "team": "India",
+      "firstYear": 2009,
+      "lastYear": 2009,
+      "matches": 0,
+      "worldCup": true
+    },
+    {
+      "personId": "ec02b798",
+      "team": "Ireland",
+      "firstYear": 2009,
+      "lastYear": 2009,
+      "matches": 0,
+      "worldCup": true
+    },
+    {
+      "personId": "7c681ee9",
+      "team": "Netherlands",
+      "firstYear": 2009,
+      "lastYear": 2009,
+      "matches": 0,
+      "worldCup": true
+    },
+    {
+      "personId": "d7c6af50",
+      "team": "New Zealand",
+      "firstYear": 2009,
+      "lastYear": 2009,
+      "matches": 0,
+      "worldCup": true
+    },
+    {
+      "personId": "33cb3411",
+      "team": "Pakistan",
+      "firstYear": 2009,
+      "lastYear": 2009,
+      "matches": 0,
+      "worldCup": true
+    },
+    {
+      "personId": "72861603",
+      "team": "South Africa",
+      "firstYear": 2009,
+      "lastYear": 2009,
+      "matches": 0,
+      "worldCup": true
+    },
+    {
+      "personId": "6b71e6cf",
+      "team": "Sri Lanka",
+      "firstYear": 2009,
+      "lastYear": 2009,
+      "matches": 0,
+      "worldCup": true
+    },
+    {
+      "personId": "db584dad",
+      "team": "West Indies",
+      "firstYear": 2009,
+      "lastYear": 2009,
+      "matches": 0,
+      "worldCup": true
+    },
+    {
+      "personId": "8187519b",
+      "team": "Scotland",
+      "firstYear": 2009,
+      "lastYear": 2009,
+      "matches": 0,
+      "worldCup": true
+    },
+    {
+      "personId": "f842c2cf",
+      "team": "Australia",
+      "firstYear": 2010,
+      "lastYear": 2010,
+      "matches": 0,
+      "worldCup": true
+    },
+    {
+      "personId": "7dc35884",
+      "team": "Bangladesh",
+      "firstYear": 2010,
+      "lastYear": 2010,
+      "matches": 0,
+      "worldCup": true
+    },
+    {
+      "personId": "a386e91b",
+      "team": "England",
+      "firstYear": 2010,
+      "lastYear": 2010,
+      "matches": 0,
+      "worldCup": true
+    },
+    {
+      "personId": "4a8a2e3b",
+      "team": "India",
+      "firstYear": 2010,
+      "lastYear": 2010,
+      "matches": 0,
+      "worldCup": true
+    },
+    {
+      "personId": "ec02b798",
+      "team": "Ireland",
+      "firstYear": 2010,
+      "lastYear": 2010,
+      "matches": 0,
+      "worldCup": true
+    },
+    {
+      "personId": "d7c6af50",
+      "team": "New Zealand",
+      "firstYear": 2010,
+      "lastYear": 2010,
+      "matches": 0,
+      "worldCup": true
+    },
+    {
+      "personId": "0dc00542",
+      "team": "Pakistan",
+      "firstYear": 2010,
+      "lastYear": 2010,
+      "matches": 0,
+      "worldCup": true
+    },
+    {
+      "personId": "72861603",
+      "team": "South Africa",
+      "firstYear": 2010,
+      "lastYear": 2010,
+      "matches": 0,
+      "worldCup": true
+    },
+    {
+      "personId": "6b71e6cf",
+      "team": "Sri Lanka",
+      "firstYear": 2010,
+      "lastYear": 2010,
+      "matches": 0,
+      "worldCup": true
+    },
+    {
+      "personId": "db584dad",
+      "team": "West Indies",
+      "firstYear": 2010,
+      "lastYear": 2010,
+      "matches": 0,
+      "worldCup": true
+    },
+    {
+      "personId": "9de271ef",
+      "team": "Zimbabwe",
+      "firstYear": 2010,
+      "lastYear": 2010,
+      "matches": 0,
+      "worldCup": true
+    },
+    {
+      "personId": "eba6a852",
+      "team": "England",
+      "firstYear": 2012,
+      "lastYear": 2012,
+      "matches": 0,
+      "worldCup": true
+    },
+    {
+      "personId": "4a8a2e3b",
+      "team": "India",
+      "firstYear": 2012,
+      "lastYear": 2012,
+      "matches": 0,
+      "worldCup": true
+    },
+    {
+      "personId": "5056011d",
+      "team": "Australia",
+      "firstYear": 2012,
+      "lastYear": 2012,
+      "matches": 0,
+      "worldCup": true
+    },
+    {
+      "personId": "ec02b798",
+      "team": "Ireland",
+      "firstYear": 2012,
+      "lastYear": 2012,
+      "matches": 0,
+      "worldCup": true
+    },
+    {
+      "personId": "c03c6200",
+      "team": "West Indies",
+      "firstYear": 2012,
+      "lastYear": 2012,
+      "matches": 0,
+      "worldCup": true
+    },
+    {
+      "personId": "c4487b84",
+      "team": "South Africa",
+      "firstYear": 2012,
+      "lastYear": 2012,
+      "matches": 0,
+      "worldCup": true
+    },
+    {
+      "personId": "d18f9182",
+      "team": "Sri Lanka",
+      "firstYear": 2012,
+      "lastYear": 2012,
+      "matches": 0,
+      "worldCup": true
+    },
+    {
+      "personId": "53597be1",
+      "team": "Zimbabwe",
+      "firstYear": 2012,
+      "lastYear": 2012,
+      "matches": 0,
+      "worldCup": true
+    },
+    {
+      "personId": "a94e08ea",
+      "team": "Bangladesh",
+      "firstYear": 2012,
+      "lastYear": 2012,
+      "matches": 0,
+      "worldCup": true
+    },
+    {
+      "personId": "b61a3e1a",
+      "team": "New Zealand",
+      "firstYear": 2012,
+      "lastYear": 2012,
+      "matches": 0,
+      "worldCup": true
+    },
+    {
+      "personId": "9ab63e7b",
+      "team": "Pakistan",
+      "firstYear": 2012,
+      "lastYear": 2012,
+      "matches": 0,
+      "worldCup": true
+    },
+    {
+      "personId": "a94e08ea",
+      "team": "Bangladesh",
+      "firstYear": 2014,
+      "lastYear": 2014,
+      "matches": 0,
+      "worldCup": true
+    },
+    {
+      "personId": "bf2d865c",
+      "team": "Hong Kong",
+      "firstYear": 2014,
+      "lastYear": 2014,
+      "matches": 0,
+      "worldCup": true
+    },
+    {
+      "personId": "12c3ba4d",
+      "team": "Nepal",
+      "firstYear": 2014,
+      "lastYear": 2014,
+      "matches": 0,
+      "worldCup": true
+    },
+    {
+      "personId": "ec02b798",
+      "team": "Ireland",
+      "firstYear": 2014,
+      "lastYear": 2014,
+      "matches": 0,
+      "worldCup": true
+    },
+    {
+      "personId": "91052c96",
+      "team": "Netherlands",
+      "firstYear": 2014,
+      "lastYear": 2014,
+      "matches": 0,
+      "worldCup": true
+    },
+    {
+      "personId": "ae6746e0",
+      "team": "United Arab Emirates",
+      "firstYear": 2014,
+      "lastYear": 2014,
+      "matches": 0,
+      "worldCup": true
+    },
+    {
+      "personId": "53597be1",
+      "team": "Zimbabwe",
+      "firstYear": 2014,
+      "lastYear": 2014,
+      "matches": 0,
+      "worldCup": true
+    },
+    {
+      "personId": "eba6a852",
+      "team": "England",
+      "firstYear": 2014,
+      "lastYear": 2014,
+      "matches": 0,
+      "worldCup": true
+    },
+    {
+      "personId": "b8a55852",
+      "team": "New Zealand",
+      "firstYear": 2014,
+      "lastYear": 2014,
+      "matches": 0,
+      "worldCup": true
+    },
+    {
+      "personId": "3355b542",
+      "team": "South Africa",
+      "firstYear": 2014,
+      "lastYear": 2014,
+      "matches": 0,
+      "worldCup": true
+    },
+    {
+      "personId": "a12e1d51",
+      "team": "Sri Lanka",
+      "firstYear": 2014,
+      "lastYear": 2014,
+      "matches": 0,
+      "worldCup": true
+    },
+    {
+      "personId": "5056011d",
+      "team": "Australia",
+      "firstYear": 2014,
+      "lastYear": 2014,
+      "matches": 0,
+      "worldCup": true
+    },
+    {
+      "personId": "4a8a2e3b",
+      "team": "India",
+      "firstYear": 2014,
+      "lastYear": 2014,
+      "matches": 0,
+      "worldCup": true
+    },
+    {
+      "personId": "9ab63e7b",
+      "team": "Pakistan",
+      "firstYear": 2014,
+      "lastYear": 2014,
+      "matches": 0,
+      "worldCup": true
+    },
+    {
+      "personId": "c03c6200",
+      "team": "West Indies",
+      "firstYear": 2014,
+      "lastYear": 2014,
+      "matches": 0,
+      "worldCup": true
+    },
+    {
+      "personId": "30a45b23",
+      "team": "Australia",
+      "firstYear": 2016,
+      "lastYear": 2016,
+      "matches": 0,
+      "worldCup": true
+    },
+    {
+      "personId": "e186f49c",
+      "team": "Bangladesh",
+      "firstYear": 2016,
+      "lastYear": 2016,
+      "matches": 0,
+      "worldCup": true
+    },
+    {
+      "personId": "d2a6c0e6",
+      "team": "England",
+      "firstYear": 2016,
+      "lastYear": 2016,
+      "matches": 0,
+      "worldCup": true
+    },
+    {
+      "personId": "5f5ca1a7",
+      "team": "Hong Kong",
+      "firstYear": 2016,
+      "lastYear": 2016,
+      "matches": 0,
+      "worldCup": true
+    },
+    {
+      "personId": "4a8a2e3b",
+      "team": "India",
+      "firstYear": 2016,
+      "lastYear": 2016,
+      "matches": 0,
+      "worldCup": true
+    },
+    {
+      "personId": "ec02b798",
+      "team": "Ireland",
+      "firstYear": 2016,
+      "lastYear": 2016,
+      "matches": 0,
+      "worldCup": true
+    },
+    {
+      "personId": "91052c96",
+      "team": "Netherlands",
+      "firstYear": 2016,
+      "lastYear": 2016,
+      "matches": 0,
+      "worldCup": true
+    },
+    {
+      "personId": "d027ba9f",
+      "team": "New Zealand",
+      "firstYear": 2016,
+      "lastYear": 2016,
+      "matches": 0,
+      "worldCup": true
+    },
+    {
+      "personId": "3bf7c034",
+      "team": "Oman",
+      "firstYear": 2016,
+      "lastYear": 2016,
+      "matches": 0,
+      "worldCup": true
+    },
+    {
+      "personId": "0dc00542",
+      "team": "Pakistan",
+      "firstYear": 2016,
+      "lastYear": 2016,
+      "matches": 0,
+      "worldCup": true
+    },
+    {
+      "personId": "a56f4b65",
+      "team": "Scotland",
+      "firstYear": 2016,
+      "lastYear": 2016,
+      "matches": 0,
+      "worldCup": true
+    },
+    {
+      "personId": "3355b542",
+      "team": "South Africa",
+      "firstYear": 2016,
+      "lastYear": 2016,
+      "matches": 0,
+      "worldCup": true
+    },
+    {
+      "personId": "896d78ad",
+      "team": "Sri Lanka",
+      "firstYear": 2016,
+      "lastYear": 2016,
+      "matches": 0,
+      "worldCup": true
+    },
+    {
+      "personId": "c03c6200",
+      "team": "West Indies",
+      "firstYear": 2016,
+      "lastYear": 2016,
+      "matches": 0,
+      "worldCup": true
+    },
+    {
+      "personId": "31fbf891",
+      "team": "Zimbabwe",
+      "firstYear": 2016,
+      "lastYear": 2016,
+      "matches": 0,
+      "worldCup": true
+    },
+    {
+      "personId": "b8d490fd",
+      "team": "Australia",
+      "firstYear": 2021,
+      "lastYear": 2021,
+      "matches": 0,
+      "worldCup": true
+    },
+    {
+      "personId": "bf1d7d3e",
+      "team": "Bangladesh",
+      "firstYear": 2021,
+      "lastYear": 2021,
+      "matches": 0,
+      "worldCup": true
+    },
+    {
+      "personId": "d2a6c0e6",
+      "team": "England",
+      "firstYear": 2021,
+      "lastYear": 2021,
+      "matches": 0,
+      "worldCup": true
+    },
+    {
+      "personId": "ba607b88",
+      "team": "India",
+      "firstYear": 2021,
+      "lastYear": 2021,
+      "matches": 0,
+      "worldCup": true
+    },
+    {
+      "personId": "6ef13460",
+      "team": "Ireland",
+      "firstYear": 2021,
+      "lastYear": 2021,
+      "matches": 0,
+      "worldCup": true
+    },
+    {
+      "personId": "95a5e066",
+      "team": "Namibia",
+      "firstYear": 2021,
+      "lastYear": 2021,
+      "matches": 0,
+      "worldCup": true
+    },
+    {
+      "personId": "abbdca1a",
+      "team": "Netherlands",
+      "firstYear": 2021,
+      "lastYear": 2021,
+      "matches": 0,
+      "worldCup": true
+    },
+    {
+      "personId": "d027ba9f",
+      "team": "New Zealand",
+      "firstYear": 2021,
+      "lastYear": 2021,
+      "matches": 0,
+      "worldCup": true
+    },
+    {
+      "personId": "34464143",
+      "team": "Oman",
+      "firstYear": 2021,
+      "lastYear": 2021,
+      "matches": 0,
+      "worldCup": true
+    },
+    {
+      "personId": "8a75e999",
+      "team": "Pakistan",
+      "firstYear": 2021,
+      "lastYear": 2021,
+      "matches": 0,
+      "worldCup": true
+    },
+    {
+      "personId": "72e60730",
+      "team": "Papua New Guinea",
+      "firstYear": 2021,
+      "lastYear": 2021,
+      "matches": 0,
+      "worldCup": true
+    },
+    {
+      "personId": "85d8110a",
+      "team": "Scotland",
+      "firstYear": 2021,
+      "lastYear": 2021,
+      "matches": 0,
+      "worldCup": true
+    },
+    {
+      "personId": "9ffd1ac1",
+      "team": "South Africa",
+      "firstYear": 2021,
+      "lastYear": 2021,
+      "matches": 0,
+      "worldCup": true
+    },
+    {
+      "personId": "3ff033bb",
+      "team": "Sri Lanka",
+      "firstYear": 2021,
+      "lastYear": 2021,
+      "matches": 0,
+      "worldCup": true
+    },
+    {
+      "personId": "a757b0d8",
+      "team": "West Indies",
+      "firstYear": 2021,
+      "lastYear": 2021,
+      "matches": 0,
+      "worldCup": true
+    },
+    {
+      "personId": "b8d490fd",
+      "team": "Australia",
+      "firstYear": 2022,
+      "lastYear": 2022,
+      "matches": 0,
+      "worldCup": true
+    },
+    {
+      "personId": "7dc35884",
+      "team": "Bangladesh",
+      "firstYear": 2022,
+      "lastYear": 2022,
+      "matches": 0,
+      "worldCup": true
+    },
+    {
+      "personId": "99b75528",
+      "team": "England",
+      "firstYear": 2022,
+      "lastYear": 2022,
+      "matches": 0,
+      "worldCup": true
+    },
+    {
+      "personId": "740742ef",
+      "team": "India",
+      "firstYear": 2022,
+      "lastYear": 2022,
+      "matches": 0,
+      "worldCup": true
+    },
+    {
+      "personId": "6ef13460",
+      "team": "Ireland",
+      "firstYear": 2022,
+      "lastYear": 2022,
+      "matches": 0,
+      "worldCup": true
+    },
+    {
+      "personId": "95a5e066",
+      "team": "Namibia",
+      "firstYear": 2022,
+      "lastYear": 2022,
+      "matches": 0,
+      "worldCup": true
+    },
+    {
+      "personId": "b59db04f",
+      "team": "Netherlands",
+      "firstYear": 2022,
+      "lastYear": 2022,
+      "matches": 0,
+      "worldCup": true
+    },
+    {
+      "personId": "d027ba9f",
+      "team": "New Zealand",
+      "firstYear": 2022,
+      "lastYear": 2022,
+      "matches": 0,
+      "worldCup": true
+    },
+    {
+      "personId": "8a75e999",
+      "team": "Pakistan",
+      "firstYear": 2022,
+      "lastYear": 2022,
+      "matches": 0,
+      "worldCup": true
+    },
+    {
+      "personId": "e21bc7f3",
+      "team": "Scotland",
+      "firstYear": 2022,
+      "lastYear": 2022,
+      "matches": 0,
+      "worldCup": true
+    },
+    {
+      "personId": "9ffd1ac1",
+      "team": "South Africa",
+      "firstYear": 2022,
+      "lastYear": 2022,
+      "matches": 0,
+      "worldCup": true
+    },
+    {
+      "personId": "3ff033bb",
+      "team": "Sri Lanka",
+      "firstYear": 2022,
+      "lastYear": 2022,
+      "matches": 0,
+      "worldCup": true
+    },
+    {
+      "personId": "e5309baa",
+      "team": "United Arab Emirates",
+      "firstYear": 2022,
+      "lastYear": 2022,
+      "matches": 0,
+      "worldCup": true
+    },
+    {
+      "personId": "3241e3fd",
+      "team": "West Indies",
+      "firstYear": 2022,
+      "lastYear": 2022,
+      "matches": 0,
+      "worldCup": true
+    },
+    {
+      "personId": "c96311d4",
+      "team": "Zimbabwe",
+      "firstYear": 2022,
+      "lastYear": 2022,
+      "matches": 0,
+      "worldCup": true
+    },
+    {
+      "personId": "f28a60e0",
+      "team": "Canada",
+      "firstYear": 2024,
+      "lastYear": 2024,
+      "matches": 0,
+      "worldCup": true
+    },
+    {
+      "personId": "740742ef",
+      "team": "India",
+      "firstYear": 2024,
+      "lastYear": 2024,
+      "matches": 0,
+      "worldCup": true
+    },
+    {
+      "personId": "cf494ffe",
+      "team": "Ireland",
+      "firstYear": 2024,
+      "lastYear": 2024,
+      "matches": 0,
+      "worldCup": true
+    },
+    {
+      "personId": "8a75e999",
+      "team": "Pakistan",
+      "firstYear": 2024,
+      "lastYear": 2024,
+      "matches": 0,
+      "worldCup": true
+    },
+    {
+      "personId": "25d7f1ac",
+      "team": "United States of America",
+      "firstYear": 2024,
+      "lastYear": 2024,
+      "matches": 0,
+      "worldCup": true
+    },
+    {
+      "personId": "3d8feaf8",
+      "team": "Australia",
+      "firstYear": 2024,
+      "lastYear": 2024,
+      "matches": 0,
+      "worldCup": true
+    },
+    {
+      "personId": "99b75528",
+      "team": "England",
+      "firstYear": 2024,
+      "lastYear": 2024,
+      "matches": 0,
+      "worldCup": true
+    },
+    {
+      "personId": "95a5e066",
+      "team": "Namibia",
+      "firstYear": 2024,
+      "lastYear": 2024,
+      "matches": 0,
+      "worldCup": true
+    },
+    {
+      "personId": "b3b39bed",
+      "team": "Oman",
+      "firstYear": 2024,
+      "lastYear": 2024,
+      "matches": 0,
+      "worldCup": true
+    },
+    {
+      "personId": "e21bc7f3",
+      "team": "Scotland",
+      "firstYear": 2024,
+      "lastYear": 2024,
+      "matches": 0,
+      "worldCup": true
+    },
+    {
+      "personId": "d027ba9f",
+      "team": "New Zealand",
+      "firstYear": 2024,
+      "lastYear": 2024,
+      "matches": 0,
+      "worldCup": true
+    },
+    {
+      "personId": "72e60730",
+      "team": "Papua New Guinea",
+      "firstYear": 2024,
+      "lastYear": 2024,
+      "matches": 0,
+      "worldCup": true
+    },
+    {
+      "personId": "f33cfd25",
+      "team": "Uganda",
+      "firstYear": 2024,
+      "lastYear": 2024,
+      "matches": 0,
+      "worldCup": true
+    },
+    {
+      "personId": "650d5e49",
+      "team": "West Indies",
+      "firstYear": 2024,
+      "lastYear": 2024,
+      "matches": 0,
+      "worldCup": true
+    },
+    {
+      "personId": "1274d7ab",
+      "team": "Bangladesh",
+      "firstYear": 2024,
+      "lastYear": 2024,
+      "matches": 0,
+      "worldCup": true
+    },
+    {
+      "personId": "1a3cc554",
+      "team": "Nepal",
+      "firstYear": 2024,
+      "lastYear": 2024,
+      "matches": 0,
+      "worldCup": true
+    },
+    {
+      "personId": "b59db04f",
+      "team": "Netherlands",
+      "firstYear": 2024,
+      "lastYear": 2024,
+      "matches": 0,
+      "worldCup": true
+    },
+    {
+      "personId": "6a26221c",
+      "team": "South Africa",
+      "firstYear": 2024,
+      "lastYear": 2024,
+      "matches": 0,
+      "worldCup": true
+    },
+    {
+      "personId": "a97c8ec2",
+      "team": "Sri Lanka",
+      "firstYear": 2024,
+      "lastYear": 2024,
+      "matches": 0,
+      "worldCup": true
+    },
+    {
+      "personId": "271f83cd",
+      "team": "India",
+      "firstYear": 2026,
+      "lastYear": 2026,
+      "matches": 0,
+      "worldCup": true
+    },
+    {
+      "personId": "95a5e066",
+      "team": "Namibia",
+      "firstYear": 2026,
+      "lastYear": 2026,
+      "matches": 0,
+      "worldCup": true
+    },
+    {
+      "personId": "b59db04f",
+      "team": "Netherlands",
+      "firstYear": 2026,
+      "lastYear": 2026,
+      "matches": 0,
+      "worldCup": true
+    },
+    {
+      "personId": "89c16049",
+      "team": "Pakistan",
+      "firstYear": 2026,
+      "lastYear": 2026,
+      "matches": 0,
+      "worldCup": true
+    },
+    {
+      "personId": "25d7f1ac",
+      "team": "United States of America",
+      "firstYear": 2026,
+      "lastYear": 2026,
+      "matches": 0,
+      "worldCup": true
+    },
+    {
+      "personId": "3d8feaf8",
+      "team": "Australia",
+      "firstYear": 2026,
+      "lastYear": 2026,
+      "matches": 0,
+      "worldCup": true
+    },
+    {
+      "personId": "cf494ffe",
+      "team": "Ireland",
+      "firstYear": 2026,
+      "lastYear": 2026,
+      "matches": 0,
+      "worldCup": true
+    },
+    {
+      "personId": "b80dd12c",
+      "team": "Oman",
+      "firstYear": 2026,
+      "lastYear": 2026,
+      "matches": 0,
+      "worldCup": true
+    },
+    {
+      "personId": "3ff033bb",
+      "team": "Sri Lanka",
+      "firstYear": 2026,
+      "lastYear": 2026,
+      "matches": 0,
+      "worldCup": true
+    },
+    {
+      "personId": "26d041c4",
+      "team": "Zimbabwe",
+      "firstYear": 2026,
+      "lastYear": 2026,
+      "matches": 0,
+      "worldCup": true
+    },
+    {
+      "personId": "4ae1755b",
+      "team": "England",
+      "firstYear": 2026,
+      "lastYear": 2026,
+      "matches": 0,
+      "worldCup": true
+    },
+    {
+      "personId": "86e0f3f0",
+      "team": "Italy",
+      "firstYear": 2026,
+      "lastYear": 2026,
+      "matches": 0,
+      "worldCup": true
+    },
+    {
+      "personId": "1a3cc554",
+      "team": "Nepal",
+      "firstYear": 2026,
+      "lastYear": 2026,
+      "matches": 0,
+      "worldCup": true
+    },
+    {
+      "personId": "e21bc7f3",
+      "team": "Scotland",
+      "firstYear": 2026,
+      "lastYear": 2026,
+      "matches": 0,
+      "worldCup": true
+    },
+    {
+      "personId": "1fc6ef83",
+      "team": "West Indies",
+      "firstYear": 2026,
+      "lastYear": 2026,
+      "matches": 0,
+      "worldCup": true
+    },
+    {
+      "personId": "e3540b8c",
+      "team": "Canada",
+      "firstYear": 2026,
+      "lastYear": 2026,
+      "matches": 0,
+      "worldCup": true
+    },
+    {
+      "personId": "e4a0deae",
+      "team": "New Zealand",
+      "firstYear": 2026,
+      "lastYear": 2026,
+      "matches": 0,
+      "worldCup": true
+    },
+    {
+      "personId": "6a26221c",
+      "team": "South Africa",
+      "firstYear": 2026,
+      "lastYear": 2026,
+      "matches": 0,
+      "worldCup": true
+    },
+    {
+      "personId": "6f02fe2a",
+      "team": "United Arab Emirates",
+      "firstYear": 2026,
+      "lastYear": 2026,
+      "matches": 0,
+      "worldCup": true
     }
   ],
   "unmatched": [
@@ -2171,11 +5024,6 @@
     },
     {
       "team": "New Zealand",
-      "captainName": "Ross Taylor",
-      "reason": "no-person"
-    },
-    {
-      "team": "New Zealand",
       "captainName": "Tom Latham",
       "reason": "no-person"
     },
@@ -2251,21 +5099,6 @@
     },
     {
       "team": "Pakistan",
-      "captainName": "Shahid Afridi",
-      "reason": "ambiguous"
-    },
-    {
-      "team": "Pakistan",
-      "captainName": "Misbah-ul-Haq",
-      "reason": "no-person"
-    },
-    {
-      "team": "Pakistan",
-      "captainName": "Shadab Khan",
-      "reason": "ambiguous"
-    },
-    {
-      "team": "Pakistan",
       "captainName": "Qasim Akram",
       "reason": "excluded-source"
     },
@@ -2273,11 +5106,6 @@
       "team": "Pakistan",
       "captainName": "Salman Ali Agha",
       "reason": "no-person"
-    },
-    {
-      "team": "Pakistan",
-      "captainName": "Shaheen Afridi",
-      "reason": "ambiguous"
     },
     {
       "team": "Papua New Guinea",
@@ -2341,11 +5169,6 @@
     },
     {
       "team": "South Africa",
-      "captainName": "Rassie van der Dussen",
-      "reason": "no-person"
-    },
-    {
-      "team": "South Africa",
       "captainName": "Donovan Ferreira",
       "reason": "no-person"
     },
@@ -2356,57 +5179,12 @@
     },
     {
       "team": "Sri Lanka",
-      "captainName": "Mahela Jayawardene",
-      "reason": "no-person"
-    },
-    {
-      "team": "Sri Lanka",
       "captainName": "Thilina Kandamby",
       "reason": "no-person"
     },
     {
       "team": "Sri Lanka",
-      "captainName": "Dinesh Chandimal",
-      "reason": "no-person"
-    },
-    {
-      "team": "Sri Lanka",
-      "captainName": "Lasith Malinga",
-      "reason": "no-person"
-    },
-    {
-      "team": "Sri Lanka",
-      "captainName": "Thisara Perera",
-      "reason": "no-person"
-    },
-    {
-      "team": "Sri Lanka",
-      "captainName": "Upul Tharanga",
-      "reason": "no-person"
-    },
-    {
-      "team": "Sri Lanka",
-      "captainName": "Dasun Shanaka",
-      "reason": "no-person"
-    },
-    {
-      "team": "Sri Lanka",
-      "captainName": "Kusal Perera",
-      "reason": "no-person"
-    },
-    {
-      "team": "Sri Lanka",
       "captainName": "Sahan Arachchige",
-      "reason": "no-person"
-    },
-    {
-      "team": "Sri Lanka",
-      "captainName": "Charith Asalanka",
-      "reason": "no-person"
-    },
-    {
-      "team": "Sri Lanka",
-      "captainName": "Wanindu Hasaranga",
       "reason": "no-person"
     },
     {
@@ -2536,22 +5314,12 @@
     },
     {
       "team": "West Indies",
-      "captainName": "Dwayne Bravo",
-      "reason": "ambiguous"
-    },
-    {
-      "team": "West Indies",
       "captainName": "Floyd Reifer",
       "reason": "no-person"
     },
     {
       "team": "West Indies",
       "captainName": "Jason Mohammed",
-      "reason": "no-person"
-    },
-    {
-      "team": "Zimbabwe",
-      "captainName": "Graeme Cremer",
       "reason": "no-person"
     }
   ]

@@ -30,8 +30,10 @@ export interface EnginePlayer {
   /** Batting hand and bowler class from the hand labels (null when unlabelled); drive the matchup term. */
   hand: "R" | "L" | null;
   bowlClass: BowlClass | null;
-  /** Has kept wicket (labels); takes the stumpings and most catches behind. */
+  /** Has kept wicket (labels). In a team sheet: he keeps in this eleven, takes the stumpings and most catches behind, and never bowls. */
   keeper: boolean;
+  /** Stumpings credited in the men's T20I archive, how a side's first-choice keeper is told from a part-timer. */
+  stumpings: number;
   /** Within-player batting residual against pace and against spin (1 = his overall level); multiplies his relative vector by the bowler's class. */
   batVsClass: Record<"pace" | "spin", Vector>;
   /** Display-only. */
@@ -49,6 +51,8 @@ export interface EngineTeam {
   intent?: Record<Phase, number>;
   /** Captaincy rating in SD units (0 = average); scales the bowling-allocation noise. */
   captainZ?: number;
+  /** Who leads the side on the scorecard. */
+  captainId?: string;
 }
 
 /** Scoring environment for one match. */
@@ -91,6 +95,8 @@ export interface Dismissal {
   kind: DismissalKind;
   bowler: { id: string; name: string } | null;
   fielder: { id: string; name: string } | null;
+  /** The fielder is the side's keeper (the scorecard's dagger). */
+  byKeeper: boolean;
 }
 
 export interface BallRecord {
@@ -148,6 +154,9 @@ export interface Partnership {
 export interface InningsResult {
   index: 1 | 2;
   team: string;
+  /** The batting side's captain and keeper, for the (c) and (wk) on the batting card. */
+  captainId: string | null;
+  keeperId: string | null;
   /** Overs the side was scheduled to face (20 unless rain reduced the match). */
   scheduledOvers: number;
   runs: number;

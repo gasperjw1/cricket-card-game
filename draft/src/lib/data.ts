@@ -8,7 +8,7 @@ import type { MatchupTables } from "../../../wcdraft/src/analysis/matchups.ts";
 import type { EditionPopulations, PlayerRating } from "../../../wcdraft/src/ratings/model.ts";
 import { readCsv } from "../../../wcdraft/src/util/csv.ts";
 import { SituationModel } from "../../../wcdraft/src/engine/ball.ts";
-import { buildEditionData, type AfghanistanFixture, type CaptainOut, type CoachOut, type EditionData, type EditionOut, type PlayerLabel, type SquadOut, type VenueOut } from "../../../wcdraft/src/engine/data.ts";
+import { buildEditionData, type AfghanistanFixture, type CaptainOut, type CoachOut, type EditionData, type EditionOut, type LeaderOut, type PlayerLabel, type SquadOut, type VenueOut } from "../../../wcdraft/src/engine/data.ts";
 import type { FormatEdition } from "../../../wcdraft/src/engine/progression.ts";
 import type { PoolPlayer } from "../game/types.ts";
 import { setNames } from "./names.ts";
@@ -24,6 +24,7 @@ export interface SharedData {
   afghanistanFixtures: AfghanistanFixture[];
   coaches: CoachOut[];
   captains: CaptainOut[];
+  leaders: LeaderOut[];
   labels: Map<string, PlayerLabel>;
   editionIds: string[];
   /** Squads the sync script found mostly blank (no record in that era); simulated, never spun. */
@@ -59,7 +60,7 @@ export function loadShared(): Promise<SharedData> {
       json<{ editions: FormatEdition[] }>("config/formats.json"),
       json<{ fixtures: AfghanistanFixture[] }>("config/afghanistan-fixtures.json"),
       json<{ coaches: CoachOut[] }>("coaches.json").catch(() => ({ coaches: [] as CoachOut[] })),
-      json<{ captains: CaptainOut[] }>("captaincy.json").catch(() => ({ captains: [] as CaptainOut[] })),
+      json<{ captains: CaptainOut[]; leaders: LeaderOut[] }>("captaincy.json").catch(() => ({ captains: [] as CaptainOut[], leaders: [] as LeaderOut[] })),
       text("players.csv"),
     ]);
     setNames(names);
@@ -67,7 +68,7 @@ export function loadShared(): Promise<SharedData> {
     for (const row of readCsv(labelsCsv)) if (row.personId) labels.set(row.personId, { handedness: row.handedness ?? "", bowlingType: row.bowlingType ?? "", keeper: row.keeper, keeperCareer: row.keeperCareer, keeperAnyT20I: row.keeperAnyT20I });
     return {
       editions, venues, populations, situationTables, matchups, situation: new SituationModel(situationTables, matchups),
-      formats: formats.editions, afghanistanFixtures: afghanistan.fixtures, coaches: coaches.coaches, captains: captains.captains, labels, editionIds: index.editions,
+      formats: formats.editions, afghanistanFixtures: afghanistan.fixtures, coaches: coaches.coaches, captains: captains.captains, leaders: captains.leaders, labels, editionIds: index.editions,
       blankSquads: index.blankSquads ?? [],
     };
   })();
@@ -103,7 +104,7 @@ export function loadEditionData(editionId: string): Promise<EditionData> {
   if (!p) {
     p = (async () => {
       const [s, squads, ratings] = await Promise.all([loadShared(), loadSquads(editionId), loadRatings(editionId)]);
-      return buildEditionData({ editionId, editions: s.editions, venues: s.venues, squads, populations: s.populations, ratings, situation: s.situationTables, matchups: s.matchups, formats: s.formats, afghanistanFixtures: s.afghanistanFixtures, coaches: s.coaches, captains: s.captains, labels: s.labels }, s.situation);
+      return buildEditionData({ editionId, editions: s.editions, venues: s.venues, squads, populations: s.populations, ratings, situation: s.situationTables, matchups: s.matchups, formats: s.formats, afghanistanFixtures: s.afghanistanFixtures, coaches: s.coaches, captains: s.captains, leaders: s.leaders, labels: s.labels }, s.situation);
     })();
     editionCache.set(editionId, p);
   }

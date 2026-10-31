@@ -14,7 +14,7 @@ import { chooseBowler, type BowlerState } from "./allocation.js";
 import { outcomeDistribution, type BallContext, type SituationModel } from "./ball.js";
 import { ENGINE } from "./model.js";
 import { Rng } from "./rng.js";
-import { DISMISSAL_KINDS, type BallRecord, type BatterLine, type Dismissal, type EnginePlayer, type EngineTeam, type InningsResult, type MatchEnvironment, type MatchResult, type Partnership, type RainEvent } from "./types.js";
+import { DISMISSAL_KINDS, type BallRecord, type BatterLine, type Dismissal, type DismissalKind, type EnginePlayer, type EngineTeam, type InningsResult, type MatchEnvironment, type MatchResult, type Partnership, type RainEvent } from "./types.js";
 
 interface InningsOptions {
   index: 1 | 2;
@@ -54,16 +54,17 @@ export function simulateInnings(batting: EngineTeam, bowling: EngineTeam, env: M
     const kind = runOutOnly ? "run out" : DISMISSAL_KINDS[dRng.pick(DISMISSAL_KINDS.map((k) => env.dismissalMix[k]))]!;
     const ref = (p: EnginePlayer | null) => (p ? { id: p.id, name: p.name } : null);
     const pickFielder = (keeperShare: number): EnginePlayer => {
-      if (keeper && keeper.id !== bowler.id && dRng.chance(keeperShare)) return keeper;
+      if (keeper && dRng.chance(keeperShare)) return keeper;
       const pool = bowling.players.filter((p) => p.id !== bowler.id && p.id !== keeper?.id);
       return pool.length ? pool[Math.floor(dRng.next() * pool.length)]! : bowler;
     };
+    const taken = (kind: DismissalKind, by: EnginePlayer | null, credited: EnginePlayer | null): Dismissal => ({ kind, bowler: ref(credited), fielder: ref(by), byKeeper: !!by && by.id === keeper?.id });
     switch (kind) {
-      case "caught": return { kind, bowler: ref(bowler), fielder: ref(pickFielder(0.3)) };
-      case "caught and bowled": return { kind, bowler: ref(bowler), fielder: ref(bowler) };
-      case "stumped": return { kind, bowler: ref(bowler), fielder: ref(keeper && keeper.id !== bowler.id ? keeper : pickFielder(0)) };
-      case "run out": return { kind, bowler: null, fielder: ref(pickFielder(0.15)) };
-      default: return { kind, bowler: ref(bowler), fielder: null };
+      case "caught": return taken(kind, pickFielder(0.3), bowler);
+      case "caught and bowled": return taken(kind, bowler, bowler);
+      case "stumped": return taken(kind, keeper ?? pickFielder(0), bowler);
+      case "run out": return taken(kind, pickFielder(0.15), null);
+      default: return taken(kind, null, bowler);
     }
   };
   const phaseRuns = { pp: { runs: 0, balls: 0, wickets: 0 }, mid: { runs: 0, balls: 0, wickets: 0 }, death: { runs: 0, balls: 0, wickets: 0 } } as Record<Phase, { runs: number; balls: number; wickets: number }>;
@@ -169,6 +170,8 @@ export function simulateInnings(batting: EngineTeam, bowling: EngineTeam, env: M
   return {
     index: opts.index,
     team: batting.name,
+    captainId: batting.captainId ?? null,
+    keeperId: batting.players.find((p) => p.keeper)?.id ?? null,
     scheduledOvers: opts.overs,
     runs,
     wickets,
@@ -219,7 +222,7 @@ function countMaidens(log: BallRecord[] | undefined, bowler: string, innings: 1 
 }
 
 function emptyInnings(team: string, index: 1 | 2, overs: number, target: number | null): InningsResult {
-  return { index, team, scheduledOvers: overs, runs: 0, wickets: 0, legalBalls: 0, extras: 0, batting: [], bowling: [], fallOfWickets: [], partnerships: [], extrasDetail: { wides: 0, noBalls: 0, byes: 0 }, phaseRuns: { pp: { runs: 0, balls: 0, wickets: 0 }, mid: { runs: 0, balls: 0, wickets: 0 }, death: { runs: 0, balls: 0, wickets: 0 } }, outcomes: { "0": 0, "1": 0, "2": 0, "3": 0, "4": 0, "6": 0, W: 0 }, byeBalls: 0, target };
+  return { index, team, captainId: null, keeperId: null, scheduledOvers: overs, runs: 0, wickets: 0, legalBalls: 0, extras: 0, batting: [], bowling: [], fallOfWickets: [], partnerships: [], extrasDetail: { wides: 0, noBalls: 0, byes: 0 }, phaseRuns: { pp: { runs: 0, balls: 0, wickets: 0 }, mid: { runs: 0, balls: 0, wickets: 0 }, death: { runs: 0, balls: 0, wickets: 0 } }, outcomes: { "0": 0, "1": 0, "2": 0, "3": 0, "4": 0, "6": 0, W: 0 }, byeBalls: 0, target };
 }
 
 export interface MatchOptions {
@@ -309,8 +312,8 @@ export function simulateMatch(a: EngineTeam, b: EngineTeam, env: MatchEnvironmen
 function superOver(first: EngineTeam, second: EngineTeam, env: MatchEnvironment, situation: SituationModel, rng: Rng): NonNullable<MatchResult["tieBreak"]> {
   const pick = (t: EngineTeam): EngineTeam => {
     const top = [...t.players].sort((x, y) => y.battingDisplay - x.battingDisplay).slice(0, 3).map((p) => p.id);
-    const bowler = [...t.players].filter((p) => p.canBowl).sort((x, y) => y.bowlingDisplay - x.bowlingDisplay)[0] ?? t.players[0]!;
-    return { name: t.name, players: t.players.filter((p) => p.id === bowler.id || top.includes(p.id)), battingOrder: top };
+    const bowler = [...t.players].filter((p) => p.canBowl).sort((x, y) => y.bowlingDisplay - x.bowlingDisplay)[0] ?? t.players.find((p) => !p.keeper)!;
+    return { name: t.name, players: t.players.filter((p) => p.id === bowler.id || p.keeper || top.includes(p.id)), battingOrder: top };
   };
   const soEnv: MatchEnvironment = { ...env, overs: 1, maxOversPerBowler: 1 };
   for (let attempt = 0; attempt < 3; attempt += 1) {

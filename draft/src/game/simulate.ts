@@ -34,7 +34,9 @@ export async function assembleTeam(input: SimulateInput): Promise<EngineTeam> {
     return p === keeper ? { ...player, canBowl: false, keeper: true } : { ...player, keeper: false };
   });
   const captain = input.captainId ? shared.captains.filter((c) => c.personId === input.captainId).sort((a, b) => b.matches - a.matches)[0] : undefined;
-  return { name: input.identity.team, players, battingOrder: players.map((p) => p.id), intent: input.coach?.intent, captainZ: captain?.z };
+  // Nobody rated in the eleven still leaves somebody tossing the coin: the side's best player.
+  const leader = input.captainId ?? [...input.picks].sort((a, b) => Math.max(b.bat, b.bowl) - Math.max(a.bat, a.bowl))[0]?.id;
+  return { name: input.identity.team, players, battingOrder: players.map((p) => p.id), intent: input.coach?.intent, captainZ: captain?.z, captainId: leader };
 }
 
 export async function runTournament(input: SimulateInput): Promise<TournamentResult> {

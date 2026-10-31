@@ -107,7 +107,7 @@ describe("tournament", { skip: !engineReady() && "engine data not built" }, () =
     // Every 2024 full-member side has a coach profile; most have a captain in the squad.
     const data = loadEdition("2024");
     for (const team of ["India", "Australia", "England", "South Africa", "Pakistan", "New Zealand", "West Indies"]) assert.ok(data.profiles.get(team)?.coach, `${team} 2024 coach`);
-    assert.ok([...data.profiles.values()].filter((p) => p.captain).length >= 10);
+    assert.ok([...data.profiles.values()].filter((p) => p.captains.length).length >= 10);
   });
 
   it("drafts legal random elevens and measures rarity", () => {

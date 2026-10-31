@@ -12,13 +12,13 @@ import type { EditionPopulations, PlayerRating } from "../ratings/model.js";
 import { readCsv } from "../util/csv.js";
 import { paths, readJson } from "../util/io.js";
 import { SituationModel } from "./ball.js";
-import { buildEditionData, type AfghanistanFixture, type CaptainOut, type CoachOut, type EditionData, type EditionOut, type PlayerLabel, type SquadOut, type VenueOut } from "./data.js";
+import { buildEditionData, type AfghanistanFixture, type CaptainOut, type CoachOut, type EditionData, type EditionOut, type LeaderOut, type PlayerLabel, type SquadOut, type VenueOut } from "./data.js";
 import type { FormatEdition } from "./progression.js";
 
 export { matchEnvironment, teamFromDefault, teamFromMatch, toEnginePlayer, buildEditionData } from "./data.js";
-export type { AfghanistanFixture, CaptainOut, CoachOut, EditionData, EditionOut, PlayerLabel, SquadMatchOut, SquadOut, TeamProfile, VenueOut } from "./data.js";
+export type { AfghanistanFixture, CaptainOut, CoachOut, EditionData, EditionOut, LeaderOut, PlayerLabel, SquadMatchOut, SquadOut, TeamProfile, VenueOut } from "./data.js";
 
-let shared: { situation: SituationModel; editions: EditionOut[]; venues: VenueOut[]; populations: EditionPopulations[]; formats: FormatEdition[]; afghanistanFixtures: AfghanistanFixture[]; coaches: CoachOut[]; captains: CaptainOut[]; labels: Map<string, PlayerLabel>; situationTables: SituationTables; matchups: MatchupTables | null } | null = null;
+let shared: { situation: SituationModel; editions: EditionOut[]; venues: VenueOut[]; populations: EditionPopulations[]; formats: FormatEdition[]; afghanistanFixtures: AfghanistanFixture[]; coaches: CoachOut[]; captains: CaptainOut[]; leaders: LeaderOut[]; labels: Map<string, PlayerLabel>; situationTables: SituationTables; matchups: MatchupTables | null } | null = null;
 
 function readShared() {
   if (shared) return shared;
@@ -28,6 +28,7 @@ function readShared() {
   if (existsSync(labelsFile)) for (const row of readCsv(readFileSync(labelsFile, "utf8"))) if (row.personId) labels.set(row.personId, { handedness: row.handedness ?? "", bowlingType: row.bowlingType ?? "", keeper: row.keeper, keeperCareer: row.keeperCareer, keeperAnyT20I: row.keeperAnyT20I });
   const situationTables = readJson<SituationTables>(resolve(paths.out, "situation.json"));
   const matchups = optional<MatchupTables | null>(resolve(paths.out, "matchups.json"), null);
+  const captaincy = optional<{ captains: CaptainOut[]; leaders: LeaderOut[] }>(resolve(paths.out, "captaincy.json"), { captains: [], leaders: [] });
   shared = {
     situationTables,
     matchups,
@@ -38,7 +39,8 @@ function readShared() {
     formats: readJson<{ editions: FormatEdition[] }>(resolve(paths.config, "formats.json")).editions,
     afghanistanFixtures: readJson<{ fixtures: AfghanistanFixture[] }>(resolve(paths.config, "afghanistan-fixtures.json")).fixtures,
     coaches: optional<{ coaches: CoachOut[] }>(resolve(paths.out, "coaches.json"), { coaches: [] }).coaches,
-    captains: optional<{ captains: CaptainOut[] }>(resolve(paths.out, "captaincy.json"), { captains: [] }).captains,
+    captains: captaincy.captains,
+    leaders: captaincy.leaders,
     labels,
   };
   return shared;
@@ -48,7 +50,7 @@ export function loadEdition(editionId: string): EditionData {
   const s = readShared();
   const squads = readJson<SquadOut[]>(resolve(paths.out, "squads", `${editionId}.json`));
   const ratings = readJson<PlayerRating[]>(resolve(paths.out, "ratings", `${editionId}.json`));
-  return buildEditionData({ editionId, editions: s.editions, venues: s.venues, squads, populations: s.populations, ratings, situation: s.situationTables, matchups: s.matchups, formats: s.formats, afghanistanFixtures: s.afghanistanFixtures, coaches: s.coaches, captains: s.captains, labels: s.labels }, s.situation);
+  return buildEditionData({ editionId, editions: s.editions, venues: s.venues, squads, populations: s.populations, ratings, situation: s.situationTables, matchups: s.matchups, formats: s.formats, afghanistanFixtures: s.afghanistanFixtures, coaches: s.coaches, captains: s.captains, leaders: s.leaders, labels: s.labels }, s.situation);
 }
 
 export function engineReady(): boolean {

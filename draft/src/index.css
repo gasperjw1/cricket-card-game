@@ -135,6 +135,7 @@ h3 { font-size: 16px; margin: 0 0 8px; }
 .sc-how { color: var(--muted); font-size: 12px; }
 .sc-extras td, .sc-total td { text-align: left; }
 .sc-total td { border-bottom: none; }
+.sc-total td:last-child { white-space: nowrap; }
 .sc-fow { color: var(--muted); font-size: 12px; margin: 4px 0 8px; }
 .sc-fow .k { color: var(--ink); font-weight: 600; margin-right: 6px; }
 .num-good { color: var(--accent); }
