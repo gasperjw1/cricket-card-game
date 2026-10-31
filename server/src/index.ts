@@ -4,6 +4,13 @@ import { fileURLToPath } from "node:url";
 import cors from "cors";
 import express from "express";
 import { Server } from "socket.io";
+import cottageRouter from "./cottage-routes.js";
+import wildReignRouter from "./wildreign-routes.js";
+import playAuthRouter from "./play-auth-routes.js";
+import playFriendsRouter from "./play-friends-routes.js";
+import playStatsRouter from "./play-stats-routes.js";
+import playGifsRouter from "./play-gifs-routes.js";
+import { registerPlayNamespace } from "./play/index.js";
 import type {
   BallResult,
   ClientToServerEvents,
@@ -36,6 +43,17 @@ const app = express();
 app.use(cors({ origin: CLIENT_ORIGIN }));
 app.use(express.json());
 
+// Cottage REST API — mounted before static files so /cottage/api/* is never
+// caught by the SPA fallback below.
+app.use("/cottage/api", cottageRouter);
+app.use("/cottage/api/wildreign", wildReignRouter);
+
+// /play platform REST API — same "mount before static" rule as cottage above.
+app.use("/play/api/auth", playAuthRouter);
+app.use("/play/api/friends", playFriendsRouter);
+app.use("/play/api/stats", playStatsRouter);
+app.use("/play/api/gifs", playGifsRouter);
+
 app.get("/health", (_req, res) => {
   res.json({
     ok: true,
@@ -55,19 +73,44 @@ if (isProduction) {
   const STATIC_DIR = process.env.STATIC_DIR
     ? resolve(process.env.STATIC_DIR)
     : resolve(__dirname, "../../client/dist");
+  const COTTAGE_DIR = resolve(__dirname, "../../cottage/dist");
+  const PLAY_DIR = resolve(__dirname, "../../play/dist");
+  const DRAFT_DIR = resolve(__dirname, "../../draft/dist");
+
+  // World Cup Draft SPA (Vite base "/draft/") — must come before the cricket catch-all below.
+  app.use("/draft", express.static(DRAFT_DIR));
+  app.get("/draft", (_req, res) => res.sendFile(join(DRAFT_DIR, "index.html")));
+  app.get("/draft/*", (_req, res) => res.sendFile(join(DRAFT_DIR, "index.html")));
+
+  // Cottage SPA — must come before the cricket catch-all below.
+  app.use("/cottage", express.static(COTTAGE_DIR));
+  app.get("/cottage", (_req, res) => res.sendFile(join(COTTAGE_DIR, "index.html")));
+  app.get("/cottage/*", (_req, res) => res.sendFile(join(COTTAGE_DIR, "index.html")));
+
+  // Play SPA — must come before the cricket catch-all below.
+  app.use("/play", express.static(PLAY_DIR));
+  app.get("/play", (_req, res) => res.sendFile(join(PLAY_DIR, "index.html")));
+  app.get("/play/*", (_req, res) => res.sendFile(join(PLAY_DIR, "index.html")));
+
+  // Cricket SPA — catch-all, must be last.
   app.use(express.static(STATIC_DIR));
-  // SPA fallback — any unrecognised GET returns index.html so the React app
-  // boots and renders. Keep this AFTER /health and any future REST routes.
   app.get("*", (_req, res) => {
     res.sendFile(join(STATIC_DIR, "index.html"));
   });
-  console.log(`[server] serving static client from ${STATIC_DIR}`);
+  console.log(`[server] serving cricket from ${STATIC_DIR}`);
+  console.log(`[server] serving cottage from ${COTTAGE_DIR}`);
+  console.log(`[server] serving play from ${PLAY_DIR}`);
+  console.log(`[server] serving draft from ${DRAFT_DIR}`);
 }
 
 const httpServer = createServer(app);
 const io = new Server<ClientToServerEvents, ServerToClientEvents>(httpServer, {
   cors: { origin: CLIENT_ORIGIN },
 });
+
+// /play platform namespace — additive, doesn't touch the default-namespace
+// cricket handlers registered below.
+registerPlayNamespace(io);
 
 const registry = new MatchRegistry();
 

@@ -170,6 +170,23 @@ export function HomeScreen({ client }: Props) {
               </button>
             </div>
           </div>
+          <div style={{ borderTop: "1px solid rgba(255,255,255,0.1)", paddingTop: "0.75rem", marginTop: "0.25rem", display: "grid", gap: "0.5rem" }}>
+            <a
+              href="/draft/"
+              className="btn ghost small"
+              style={{ display: "block", textAlign: "center", textDecoration: "none" }}
+            >
+              🏏 World Cup Draft — draft an XI, play a real T20 World Cup
+            </a>
+            <a
+              href="/play"
+              className="btn ghost small"
+              style={{ display: "block", textAlign: "center", textDecoration: "none" }}
+            >
+              🎲 Game Night — card games with friends
+            </a>
+          </div>
+
           <div className="menu-secondary">
             <button
               className="btn ghost small"

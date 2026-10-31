@@ -1,0 +1,250 @@
+generator client {
+  provider      = "prisma-client-js"
+  binaryTargets = ["native", "debian-openssl-3.0.x"]
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model CottagePlayer {
+  id             String    @id @default(cuid())
+  sessionToken   String    @unique @default(cuid())
+  house          String    @unique // "left" | "right"
+  name           String
+  avatar         String    @default("girl")
+  coins          Int       @default(30)
+  lastLetterSent DateTime?
+  lastSeen       DateTime?
+  currentView    String?   @default("exterior")
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+
+  mailbox   CottageMailItem[]
+  scrapbook CottageScrapEntry[]
+  inventory CottageInventoryItem[]
+  vase      CottageVase?
+}
+
+model CottageVase {
+  id       String        @id @default(cuid())
+  playerId String        @unique
+  player   CottagePlayer @relation(fields: [playerId], references: [id])
+
+  letterText   String?
+  letterFrom   String?
+  letterSentAt DateTime?
+
+  flowerName  String?
+  flowerEmoji String?
+  flowerFrom  String?
+  flowerSentAt DateTime?
+  lastWatered DateTime?
+  streak      Int       @default(0)
+  flowerPhase String    @default("unbloomed") // "unbloomed" | "bloomed" | "withered"
+
+  updatedAt DateTime @updatedAt
+}
+
+model CottageMailItem {
+  id         String        @id @default(cuid())
+  toPlayerId String
+  toPlayer   CottagePlayer @relation(fields: [toPlayerId], references: [id])
+
+  letterText  String
+  flowerName  String?
+  flowerEmoji String?
+  fromHouse   String
+  sentAt      DateTime @default(now())
+}
+
+model CottageScrapEntry {
+  id       String        @id @default(cuid())
+  playerId String
+  player   CottagePlayer @relation(fields: [playerId], references: [id])
+
+  letterText   String?
+  letterFrom   String?
+  letterSentAt DateTime?
+  flowerName   String?
+  flowerEmoji  String?
+  flowerPhase  String?  // "unbloomed" | "bloomed" — null if no flower
+  archivedAt   DateTime @default(now())
+
+  @@index([playerId])
+}
+
+model CottageInventoryItem {
+  id       String        @id @default(cuid())
+  playerId String
+  player   CottagePlayer @relation(fields: [playerId], references: [id])
+
+  flowerName  String
+  flowerEmoji String
+  boughtAt    DateTime @default(now())
+}
+
+model CottageWildReignGame {
+  id             String   @id @default("wildreign-singleton")
+  status         String   @default("waiting") // "waiting" | "active" | "roundEnd" | "gameEnd" | "abandoned"
+  readyLeft      Boolean  @default(false)
+  readyRight     Boolean  @default(false)
+  round          Int      @default(1) // 1–11
+  deck           Json     @default("[]")
+  discard        Json     @default("[]")
+  leftHand       Json     @default("[]")
+  rightHand      Json     @default("[]")
+  leftScore      Int      @default(0)
+  rightScore     Int      @default(0)
+  roundScores    Json     @default("[]") // [{round,left,right}]
+  phase          String   @default("draw") // "draw" | "discard" | "goOutDecision" | "roundEnd" | "gameEnd"
+  turnHouse      String   @default("left") // "left" | "right"
+  wentOut        String? // null | "left" | "right"
+  moveLog        Json     @default("[]") // recent moves for the optional in-game log, newest last, truncated to a small rolling window
+  readyNextLeft  Boolean  @default(false)
+  readyNextRight Boolean  @default(false)
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+}
+
+// ─────────────────────────────────────────────────────────────────────────
+// /play — general-purpose multiplayer platform for friends & family.
+// Real accounts (email/username/password), friends, N-player rooms with a
+// Kahoot/Jackbox-style lobby, and cross-game statistics.
+// ─────────────────────────────────────────────────────────────────────────
+
+model PlatformUser {
+  id            String   @id @default(cuid())
+  email         String   @unique // stored lowercase-normalized; login identifier, not shown publicly
+  username      String // display casing preserved
+  usernameLower String   @unique // case-insensitive uniqueness guard
+  passwordHash  String
+  avatarEmoji   String   @default("🎲")
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  sessions         PlatformSession[]
+  roomPlayers      PlatformRoomPlayer[]
+  hostedRooms      PlatformRoom[]             @relation("RoomHost")
+  gameResults      PlatformGameResultPlayer[]
+  gameStats        PlatformUserGameStats[]
+  sentRequests     PlatformFriendship[]       @relation("SentFriendRequests")
+  receivedRequests PlatformFriendship[]       @relation("ReceivedFriendRequests")
+}
+
+model PlatformSession {
+  token      String   @id @default(cuid())
+  userId     String
+  user       PlatformUser @relation(fields: [userId], references: [id])
+  createdAt  DateTime @default(now())
+  lastSeenAt DateTime @updatedAt
+
+  @@index([userId])
+}
+
+model PlatformFriendship {
+  id          String   @id @default(cuid())
+  requesterId String
+  requester   PlatformUser @relation("SentFriendRequests", fields: [requesterId], references: [id])
+  addresseeId String
+  addressee   PlatformUser @relation("ReceivedFriendRequests", fields: [addresseeId], references: [id])
+  status      String   @default("pending") // "pending" | "accepted" | "declined"
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@unique([requesterId, addresseeId])
+}
+
+model PlatformRoom {
+  id         String   @id @default(cuid())
+  code       String   @unique // 6-char invite code, same format as the cricket game's
+  gameType   String // "wildreign" (more later)
+  hostUserId String
+  host       PlatformUser @relation("RoomHost", fields: [hostUserId], references: [id])
+  status     String   @default("lobby") // "lobby" | "active" | "completed" | "abandoned"
+  minPlayers Int
+  maxPlayers Int
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  players       PlatformRoomPlayer[]
+  wildReignGame PlatformWildReignGame?
+  result        PlatformGameResult?
+}
+
+model PlatformRoomPlayer {
+  id        String   @id @default(cuid())
+  roomId    String
+  room      PlatformRoom @relation(fields: [roomId], references: [id])
+  userId    String
+  user      PlatformUser @relation(fields: [userId], references: [id])
+  seat      Int // join order; also base turn order
+  ready     Boolean  @default(false)
+  connected Boolean  @default(false)
+  joinedAt  DateTime @default(now())
+
+  @@unique([roomId, userId])
+  @@unique([roomId, seat])
+  @@index([userId])
+}
+
+model PlatformGameResult {
+  id          String   @id @default(cuid())
+  roomId      String   @unique
+  room        PlatformRoom @relation(fields: [roomId], references: [id])
+  gameType    String
+  completedAt DateTime @default(now())
+
+  players PlatformGameResultPlayer[]
+}
+
+model PlatformGameResultPlayer {
+  id       String   @id @default(cuid())
+  resultId String
+  result   PlatformGameResult @relation(fields: [resultId], references: [id])
+  userId   String
+  user     PlatformUser @relation(fields: [userId], references: [id])
+  won      Boolean @default(false)
+  score    Float? // game-specific meaning (Wild Reign: cumulative deadwood, lower is better)
+  rank     Int? // 1 = winner, 2 = runner-up, ... — supports N-way placement, not just win/lose
+
+  @@unique([resultId, userId])
+  @@index([userId])
+}
+
+model PlatformUserGameStats {
+  id          String   @id @default(cuid())
+  userId      String
+  user        PlatformUser @relation(fields: [userId], references: [id])
+  gameType    String
+  gamesPlayed Int      @default(0)
+  wins        Int      @default(0)
+  losses      Int      @default(0)
+  bestScore   Float? // "best" direction is game-specific; Wild Reign = lowest
+  updatedAt   DateTime @updatedAt
+
+  @@unique([userId, gameType])
+}
+
+model PlatformWildReignGame {
+  id            String   @id @default(cuid())
+  roomId        String   @unique
+  room          PlatformRoom @relation(fields: [roomId], references: [id])
+
+  round         Int      @default(1)
+  deck          Json     @default("[]")
+  discard       Json     @default("[]")
+  hands         Json     @default("{}") // Record<userId, Card[]>
+  scores        Json     @default("{}") // Record<userId, number>
+  roundScores   Json     @default("[]") // [{ round, scores: Record<userId, number> }]
+  turnOrder     Json     @default("[]") // string[] userId, fixed for the whole game
+  turnIndex     Int      @default(0)
+  phase         String   @default("draw") // "draw" | "discard" | "goOutDecision" | "roundEnd" | "gameEnd"
+  wentOutUserId String?
+  owesFinalTurn Json     @default("[]") // string[] userId — drains to [] to end the round
+  readyNext     Json     @default("[]") // string[] userId ready for next round
+  moveLog       Json     @default("[]") // recent moves for the optional in-game log, newest last, truncated to a small rolling window
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+}

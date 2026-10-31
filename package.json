@@ -2,12 +2,15 @@
   "name": "swipe-sixer",
   "version": "0.0.0",
   "private": true,
-  "description": "Swipe Sixer — turn-based cricket card game (FB Messenger Instant Game).",
+  "description": "Swipe Sixer \u2014 turn-based cricket card game (FB Messenger Instant Game).",
   "workspaces": [
     "shared",
     "server",
     "client",
-    "wcdraft"
+    "cottage",
+    "play",
+    "wcdraft",
+    "draft"
   ],
   "engines": {
     "node": ">=20"

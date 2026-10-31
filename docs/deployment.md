@@ -195,6 +195,11 @@ fly secrets set SOME_KEY=value
 fly secrets unset SOME_KEY
 fly secrets list
 
+# /play GIF reactions use Tenor (free; Google Cloud Console → enable "Tenor API"
+# → create an API key). Without this secret the GIF button simply stays hidden
+# and emoji reactions still work.
+fly secrets set TENOR_API_KEY=your-tenor-key
+
 # Scale up (costs more — see section 9)
 fly scale vm shared-cpu-2x --memory 512    # bigger VM
 fly scale count 2                          # more VMs

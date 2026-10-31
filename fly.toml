@@ -18,6 +18,10 @@ primary_region = "iad"          # iad = US East. See link above for others.
 [build]
   # Default: Fly looks for ./Dockerfile. No override needed.
 
+[deploy]
+  # Sync the Prisma schema to Fly Postgres before each deploy goes live.
+  release_command = "node_modules/.bin/prisma db push --schema=server/prisma/schema.prisma --skip-generate --accept-data-loss"
+
 [env]
   # NODE_ENV=production is also set in the Dockerfile but stating it here
   # makes the intent visible from the Fly side too.
@@ -38,15 +42,14 @@ primary_region = "iad"          # iad = US East. See link above for others.
 
   [[http_service.checks]]
     # Healthcheck hits /health (already implemented in server/src/index.ts).
-    grace_period = "10s"
+    grace_period = "30s"
     interval = "30s"
     method = "GET"
-    timeout = "5s"
+    timeout = "10s"
     path = "/health"
 
 [[vm]]
-  # Cheapest size (~$2/month). Bump to shared-cpu-2x or 1gb if traffic grows.
   size = "shared-cpu-1x"
-  memory = "256mb"
+  memory = "512mb"
   cpu_kind = "shared"
   cpus = 1

@@ -24,8 +24,12 @@ COPY package.json package-lock.json ./
 COPY shared/package.json ./shared/
 COPY server/package.json ./server/
 COPY client/package.json ./client/
+COPY cottage/package.json ./cottage/
+COPY play/package.json ./play/
+COPY wcdraft/package.json ./wcdraft/
+COPY draft/package.json ./draft/
 
-# Install all deps (including dev) — needed for tsc, vite, tsx.
+# Install all deps (including dev) — needed for tsc, vite, tsx, prisma.
 RUN npm ci
 
 # Copy source files
@@ -33,21 +37,29 @@ COPY tsconfig.base.json ./
 COPY shared/ ./shared/
 COPY server/ ./server/
 COPY client/ ./client/
+COPY cottage/ ./cottage/
+COPY play/ ./play/
+# World Cup Draft: the client imports the engine as TypeScript source from wcdraft/src and its
+# build syncs the committed wcdraft/data/out tables into public/data.
+COPY wcdraft/ ./wcdraft/
+COPY draft/ ./draft/
 COPY docs/ ./docs/
 
-# Regenerate cards.json from the markdown source of truth, so the deploy
-# always reflects whatever's in docs/card-roster.md (committed JSON is just
-# a convenience artifact for local dev).
+# Generate Prisma client before building.
+RUN npx prisma generate --schema=server/prisma/schema.prisma
+
+# Regenerate cards.json from the markdown source of truth.
 RUN npm run parse-cards
 
-# Build all 3 workspaces:
-#   - shared/  → dist/ (TypeScript + cards.json copied via resolveJsonModule)
-#   - server/  → dist/ (TypeScript)
-#   - client/  → dist/ (Vite production bundle)
-RUN npm run build --workspaces
+# Build every workspace with a build script (shared, server, client, cottage, play, draft;
+# wcdraft has none, its data tables are committed).
+RUN npm run build --workspaces --if-present
 
 # ───── Stage 2: slim runtime image ─────
 FROM node:20-slim AS runtime
+
+# Prisma's query engine binary requires OpenSSL at runtime.
+RUN apt-get update -y && apt-get install -y openssl && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /app
 
@@ -61,17 +73,27 @@ COPY package.json package-lock.json ./
 COPY shared/package.json ./shared/
 COPY server/package.json ./server/
 COPY client/package.json ./client/
+COPY cottage/package.json ./cottage/
+COPY play/package.json ./play/
+COPY wcdraft/package.json ./wcdraft/
+COPY draft/package.json ./draft/
 
-# Install only the server's production deps. Shared is symlinked as a
-# workspace dep automatically. Client deps are dev-time only (Vite, React
-# are bundled into client/dist by the builder stage).
+# Install server production deps (includes prisma + @prisma/client).
 RUN npm ci --omit=dev --workspace=server --include-workspace-root
 
-# Copy built artifacts from the builder stage. We don't ship src/, docs/,
-# or client node_modules — keeps the runtime image small.
+# Copy Prisma schema so the release command can run db push.
+COPY server/prisma ./server/prisma
+
+# Copy the generated Prisma client binary from the builder stage.
+COPY --from=builder /app/node_modules/.prisma ./node_modules/.prisma
+
+# Copy built artifacts from the builder stage.
 COPY --from=builder /app/shared/dist ./shared/dist
 COPY --from=builder /app/server/dist ./server/dist
 COPY --from=builder /app/client/dist ./client/dist
+COPY --from=builder /app/cottage/dist ./cottage/dist
+COPY --from=builder /app/play/dist ./play/dist
+COPY --from=builder /app/draft/dist ./draft/dist
 
 # Document the port (Fly reads fly.toml, not this — it's purely informational)
 EXPOSE 8080

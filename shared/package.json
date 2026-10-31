@@ -7,7 +7,9 @@
   "types": "./dist/index.d.ts",
   "exports": {
     ".": "./dist/index.js",
-    "./data": "./dist/data/index.js"
+    "./data": "./dist/data/index.js",
+    "./games/wildreign": "./dist/games/wildreign-logic.js",
+    "./play/reactions": "./dist/play/reactions.js"
   },
   "scripts": {
     "build": "tsc",
