@@ -194,11 +194,32 @@ describe("Phase 1 ratings", { skip: !ready && "archive not fetched" }, () => {
     const top = r.filter((x) => x.editionId === "2024" && (x.position.median ?? 11) <= 3);
     const meanW = (xs: typeof r) => xs.reduce((a, x) => a + x.batting.vectors.mid.W, 0) / xs.length;
     assert.ok(meanW(tail) > 1.08 * meanW(top), `tail hazard ${meanW(tail).toFixed(4)} vs top ${meanW(top).toFixed(4)}`);
-    // Pace/spin split: a regular batter carries both numbers, a bowler who barely bats carries neither.
+    // Pace/spin split: a regular batter carries both numbers, a batter the card hides carries neither.
     const kohliSplit = get("V Kohli", "2024").batting.byBowlClass!;
     assert.ok(kohliSplit.pace.balls > 1000 && kohliSplit.spin.balls > 500 && kohliSplit.pace.display !== null && kohliSplit.spin.display !== null, "Kohli has a pace/spin split");
-    assert.equal(get("JJ Bumrah", "2024").batting.byBowlClass?.pace.display ?? null, null, "Bumrah's split is not shown");
+    for (const x of r.filter((y) => !y.batting.shown)) assert.equal(x.batting.byBowlClass?.pace.display ?? null, null, `${x.name} ${x.editionId} rarely bats, so prints no split`);
     for (const x of r) if (x.batting.byBowlClass) for (const cls of ["pace", "spin"] as const) for (const v of Object.values(x.batting.byBowlClass[cls].rel)) assert.ok(v >= 0.6 && v <= 1.6, `${x.name} split residual ${v}`);
+    // Every batter the card shows has both numbers; league balls fill Sehwag's spin gap, so ODIs stay out.
+    for (const x of r.filter((y) => y.batting.shown)) for (const cls of ["pace", "spin"] as const) assert.notEqual(x.batting.byBowlClass![cls].display, null, `${x.name} ${x.editionId} has no ${cls} number`);
+    const sehwag = get("V Sehwag", "2012").batting.byBowlClass!;
+    assert.ok(sehwag.spin.t20Balls >= 60 && !sehwag.spin.estimated && !sehwag.spin.fromOdi, `Sehwag's spin number comes from T20s (${sehwag.spin.t20Balls} balls)`);
+    // ODIs stand in only below the bar, and an estimate means the bar was missed even with them.
+    for (const x of r) {
+      const split = x.batting.byBowlClass!;
+      for (const cls of ["pace", "spin"] as const) {
+        const p = split[cls];
+        if (p.t20Balls >= 60) assert.ok(!p.fromOdi && !p.estimated, `${x.name} ${x.editionId} ${cls}: enough T20 balls`);
+        assert.equal(p.estimated, p.balls < 60, `${x.name} ${x.editionId} ${cls} estimate flag`);
+      }
+      // The split moves a batter between classes, not up or down overall. Batters using ODIs are left
+      // out: their mean of 1 holds over the weighted pool, which the printed balls do not show.
+      const total = split.pace.balls + split.spin.balls;
+      if (total >= 120 && split.pace.t20Balls >= 60 && split.spin.t20Balls >= 60) {
+        const share = split.pace.balls / total;
+        const six = share * split.pace.rel["6"] + (1 - share) * split.spin.rel["6"];
+        assert.ok(six > 0.93 && six < 1.07, `${x.name} ${x.editionId} mean six residual ${six.toFixed(3)}`);
+      }
+    }
     const blank = r.filter((x) => !x.batting.shown && !x.bowling.shown);
     assert.ok(blank.length < 30, `${blank.length} player-editions with nothing shown`);
     for (const x of blank) assert.equal(x.tier, "Bronze", `${x.name} ${x.editionId} has no record but is ${x.tier}`);

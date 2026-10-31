@@ -221,10 +221,10 @@
       },
       "paceSpin": {
         "pace": {
-          "balls": 4494,
-          "rpo": 7.81,
-          "ballsPerWicket": 19.7,
-          "sharePct": 76
+          "balls": 4423,
+          "rpo": 7.78,
+          "ballsPerWicket": 19.5,
+          "sharePct": 75
         },
         "spin": {
           "balls": 1424,
@@ -232,7 +232,7 @@
           "ballsPerWicket": 18.5,
           "sharePct": 24
         },
-        "unknownPct": 0
+        "unknownPct": 1
       }
     }
   },
@@ -457,10 +457,10 @@
       },
       "paceSpin": {
         "pace": {
-          "balls": 3696,
+          "balls": 3558,
           "rpo": 7.97,
-          "ballsPerWicket": 19.6,
-          "sharePct": 62
+          "ballsPerWicket": 19.3,
+          "sharePct": 59
         },
         "spin": {
           "balls": 2302,
@@ -468,7 +468,7 @@
           "ballsPerWicket": 18.6,
           "sharePct": 38
         },
-        "unknownPct": 0
+        "unknownPct": 2
       }
     }
   },
@@ -961,9 +961,9 @@
       },
       "paceSpin": {
         "pace": {
-          "balls": 2931,
-          "rpo": 7.95,
-          "ballsPerWicket": 19.5,
+          "balls": 2913,
+          "rpo": 7.94,
+          "ballsPerWicket": 19.4,
           "sharePct": 54
         },
         "spin": {
@@ -1210,10 +1210,10 @@
       },
       "paceSpin": {
         "pace": {
-          "balls": 4007,
-          "rpo": 7.79,
+          "balls": 3977,
+          "rpo": 7.81,
           "ballsPerWicket": 20,
-          "sharePct": 57
+          "sharePct": 56
         },
         "spin": {
           "balls": 3058,
@@ -1728,16 +1728,16 @@
       },
       "paceSpin": {
         "pace": {
-          "balls": 5341,
+          "balls": 5323,
           "rpo": 7.61,
-          "ballsPerWicket": 20.2,
+          "ballsPerWicket": 20.1,
           "sharePct": 61
         },
         "spin": {
-          "balls": 3318,
+          "balls": 3348,
           "rpo": 6.68,
-          "ballsPerWicket": 20,
-          "sharePct": 38
+          "ballsPerWicket": 19.9,
+          "sharePct": 39
         },
         "unknownPct": 0
       }
@@ -2275,16 +2275,16 @@
       },
       "paceSpin": {
         "pace": {
-          "balls": 5975,
-          "rpo": 6.91,
-          "ballsPerWicket": 16.7,
+          "balls": 5926,
+          "rpo": 6.93,
+          "ballsPerWicket": 16.9,
           "sharePct": 64
         },
         "spin": {
-          "balls": 3233,
-          "rpo": 7.18,
-          "ballsPerWicket": 19.1,
-          "sharePct": 35
+          "balls": 3338,
+          "rpo": 7.11,
+          "ballsPerWicket": 19,
+          "sharePct": 36
         },
         "unknownPct": 1
       }
@@ -2554,16 +2554,16 @@
       },
       "paceSpin": {
         "pace": {
-          "balls": 5961,
-          "rpo": 9.03,
-          "ballsPerWicket": 17.5,
-          "sharePct": 54
+          "balls": 5883,
+          "rpo": 9.06,
+          "ballsPerWicket": 17.4,
+          "sharePct": 53
         },
         "spin": {
-          "balls": 5157,
-          "rpo": 8.19,
-          "ballsPerWicket": 18.9,
-          "sharePct": 46
+          "balls": 5235,
+          "rpo": 8.17,
+          "ballsPerWicket": 19,
+          "sharePct": 47
         },
         "unknownPct": 0
       }

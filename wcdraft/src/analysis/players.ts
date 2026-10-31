@@ -12,7 +12,7 @@ import type { Config } from "../config.js";
 import { mainInnings, phaseOf, type Match } from "../cricsheet/match.js";
 import type { ContextPopulation } from "./context-population.js";
 import { getOrCreate } from "../util/stats.js";
-import { addInnings, cloneBlock, emptyBlock, summariseBlock, type BowlGroup, type PlayerBlock } from "./player-block.js";
+import { addInnings, cloneBlock, emptyBlock, summariseBlock, type PlayerBlock } from "./player-block.js";
 import { ELO_BINS, eloBin, type EloBin } from "./team-strength.js";
 import type { MatchElo } from "./window-population.js";
 
@@ -63,11 +63,6 @@ export class PlayerStore {
 
   private readonly tournament = new Map<string, BlockMap>();
   private readonly form = new Map<string, BlockMap>();
-  /** Bowler id → pace or spin (from the labels file), for the batting split by bowler class; null when unlabelled. */
-  private bowlGroup: (bowlerId: string) => BowlGroup | null = () => null;
-  setBowlGroupLookup(fn: (bowlerId: string) => BowlGroup | null): void {
-    this.bowlGroup = fn;
-  }
   /** Form and tournament split by the opposition's tier at the time (full member vs associate), for opposition adjustment. */
   private readonly formVsFull = new Map<string, BlockMap>();
   private readonly formVsAssociate = new Map<string, BlockMap>();
@@ -239,7 +234,7 @@ export class PlayerStore {
             return blocks(id);
           },
           touched,
-          { context, bowlGroup: this.bowlGroup },
+          { context },
         );
       }
       if (t.binned) continue;
@@ -517,7 +512,6 @@ function blockOut(b: PlayerBlock) {
       ducks: b.bat.ducks,
       nonStrikerRunOuts: b.bat.nonStrikerRunOuts,
       phases: phases(b.bat.phases),
-      byBowlClass: phases(b.bat.byBowlClass),
     },
     bowl: {
       wides: b.bowl.wides,

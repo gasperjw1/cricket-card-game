@@ -14,11 +14,13 @@
 import { BowlingUsageAnalysis } from "../analysis/bowling-usage.js";
 import { ContextPopulation } from "../analysis/context-population.js";
 import { SituationAnalysis, type SituationTables } from "../analysis/situation.js";
-import { MatchupAnalysis, bowlClassOf, type MatchupTables } from "../analysis/matchups.js";
+import { ClassSplitAnalysis, type ClassSource, type ClassSplitOut } from "../analysis/class-split.js";
+import { MatchupAnalysis, bowlGroupOf, handOf, type MatchupTables } from "../analysis/matchups.js";
 import { setBowlingTypeLookup } from "../analysis/environment.js";
 import { buildCaptaincy, type CaptaincyTables } from "../analysis/captaincy.js";
 import { DomesticAnalysis, type DomesticOut } from "../analysis/domestic.js";
 import { buildCoaches, type CoachTables } from "../analysis/coaches.js";
+import { readBowlerTypes } from "./bowler-types.js";
 import { readLabels } from "./labels.js";
 import { EditionsAnalysis } from "../analysis/editions.js";
 import { LineupDeviationAnalysis } from "../analysis/lineup-deviation.js";
@@ -66,7 +68,7 @@ export interface BuildResult {
   };
   editions: ReturnType<EditionsAnalysis["summary"]>;
   venues: ReturnType<VenuesAnalysis["summary"]>;
-  playerEditions: (ReturnType<PlayerStore["playerEditions"]>[number] & { domesticToDate: DomesticOut | null })[];
+  playerEditions: (ReturnType<PlayerStore["playerEditions"]>[number] & { domesticToDate: DomesticOut | null; classSplit: ClassSplitOut })[];
   people: ReturnType<PlayerStore["people"]>;
   squads: ReturnType<PlayerStore["squadsOut"]>;
   bowlingUsage: ReturnType<BowlingUsageAnalysis["summary"]>;
@@ -180,11 +182,10 @@ export function runBuild(log: (msg: string) => void = () => {}): BuildResult {
   // Phase 2b: matchups (batting hand × bowler type) need each player's own averages first.
   const labels = readLabels();
   const matchups = new MatchupAnalysis(labels);
-  setBowlingTypeLookup((id) => labels.get(id)?.bowlingType);
-  store.setBowlGroupLookup((id) => {
-    const cls = bowlClassOf(labels.get(id)?.bowlingType);
-    return cls === null ? null : cls.startsWith("pace") ? "pace" : "spin";
-  });
+  // Everyone in the archives, not only World Cup players; the matchup term stays on the sheet above.
+  const personTypes = readBowlerTypes();
+  log(`Bowler types for ${personTypes.size} people`);
+  setBowlingTypeLookup((id) => personTypes.get(id)?.bowlingType ?? labels.get(id)?.bowlingType);
   {
     const eloPass = new TeamStrengthAnalysis(config.isFullMember);
     for (const entry of index) {
@@ -297,7 +298,22 @@ export function runBuild(log: (msg: string) => void = () => {}): BuildResult {
     log("No domestic T20 archives fetched: domesticToDate will be empty (run `npm run data:fetch`)");
   }
 
-  const playerEditions = store.playerEditions().map((row) => ({ ...row, domesticToDate: domestic.blockFor(row.editionId, row.personId) }));
+  // Pace/spin split: every T20I, league and ODI ball by the bowler's class, each ball counted once.
+  const classSources: { source: ClassSource; entries: MatchIndexEntry[] }[] = [
+    { source: "t20i", entries: index },
+    { source: "league", entries: leagueIndex.map((x) => x.entry) },
+    { source: "odi", entries: archiveIsReady(ARCHIVES.odi) ? loadIndex(ARCHIVES.odi).filter((e) => e.gender === "male") : [] },
+  ];
+  const classSplit = new ClassSplitAnalysis(
+    { group: (id) => bowlGroupOf(personTypes.get(id)?.bowlingType), hand: (id) => handOf(personTypes.get(id)?.handedness) },
+    [...windows].sort((a, b) => a.start.localeCompare(b.start)).map((w) => ({ id: w.id, start: w.start })),
+    new Set([...store.squadMembers.values()].flatMap((s) => [...s])),
+  );
+  for (const { source, entries } of classSources) for (const entry of entries) classSplit.addPopulation(normaliseMatch(readMatch(entry.file), entry.id), source);
+  classSplit.freeze();
+  for (const { source, entries } of classSources) for (const entry of entries) classSplit.add(normaliseMatch(readMatch(entry.file), entry.id), source, source === "t20i" ? wcEditionOf(entry) : null);
+
+  const playerEditions = store.playerEditions().map((row) => ({ ...row, domesticToDate: domestic.blockFor(row.editionId, row.personId), classSplit: classSplit.blockFor(row.editionId, row.personId) }));
   const people = store.people();
   const teamStrengthOut = teamStrength.summary();
   const teamStyleOut = teamStyle.summary();

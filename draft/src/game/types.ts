@@ -3,6 +3,16 @@ import type { BattingArchetype, BowlingArchetype, Tier } from "../../../wcdraft/
 import type { CoachOut } from "../../../wcdraft/src/engine/data.ts";
 import type { TournamentResult } from "../../../wcdraft/src/engine/tournament.ts";
 
+/** A batter's number against one bowling class. */
+export interface VsClass {
+  n: number;
+  balls: number;
+  /** Under 60 balls even with ODIs: the batter's level and hand, not his own record against the class. */
+  estimated: boolean;
+  /** T20 balls fell short, so ODIs were used. */
+  odi: boolean;
+}
+
 /** One line of a slim per-edition pool file (written by scripts/sync-data.mjs). */
 export interface PoolPlayer {
   id: string;
@@ -26,9 +36,9 @@ export interface PoolPlayer {
   domesticBalls: { bat: number; bowl: number };
   /** Phase weights behind the headline batting number (the overs he actually batted in); see game/slots.ts. */
   batWeights: Record<Phase, number>;
-  /** Batting number against pace and against spin (headline shifted by his own split); null until 60 balls faced against that class. */
-  vsPace: number | null;
-  vsSpin: number | null;
+  /** Batting number against pace and against spin; null only when the card hides his batting. */
+  vsPace: VsClass | null;
+  vsSpin: VsClass | null;
   squadPlayer: boolean;
   position: number | null;
   positionless: boolean;

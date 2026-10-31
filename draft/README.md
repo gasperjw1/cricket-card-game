@@ -49,10 +49,12 @@ knockouts). Classic mode only; Cricket-IQ, head-to-head, leaderboard and share l
   (T20Is, the last four league seasons, or ODIs; see `wcdraft/README.md` ratings item 8); otherwise
   "rarely bats" / "rarely bowls". Every card carries the batting hand (RHB/LHB) and, for anyone
   who bowls, the Cricinfo bowling code (RFM, OB, SLA …, spelled out on hover).
-- **Against pace, against spin.** A card's "v pace / v spin" line is the batting number shifted by
-  the player's own split by bowler type (`batting.byBowlClass`, see `wcdraft/README.md` item 8),
-  shown once he has faced 60 balls of that class; the stronger side is tinted when the gap is five
-  points or more. The engine applies the same split ball by ball.
+- **Against pace, against spin.** Every card with a batting number has a "v pace / v spin" line:
+  the batting number shifted by the player's own split by bowler type and the population hand ×
+  class term (`batting.byBowlClass`, see `wcdraft/README.md` item 8), both of which the engine
+  applies ball by ball. `*` marks an estimate (under 60 balls even with ODIs); a small ODI tag marks
+  a number that needed ODIs because T20 balls fell short. The stronger side is tinted when the gap
+  is five points or more and neither number is an estimate.
 - **Batting out of position** (`src/game/slots.ts`, tested). The engine applies a batter's
   per-phase vectors ball by ball, so a No. 3 at No. 7 is judged on his death-overs numbers. Each
   slot carries the phase mix that position actually faces in the identity's edition
@@ -97,6 +99,31 @@ knockouts). Classic mode only; Cricket-IQ, head-to-head, leaderboard and share l
   (`designatedKeeper`): with one keeper in the side he keeps and his bowling does not count toward
   the five; with two, the gloves go to one who does not bowl so the other is free to bowl. The
   engine honours it too: the designated keeper is marked unable to bowl when the eleven is assembled.
+
+## Player ratings tab (added 2026-10-30)
+
+The result screen's **Player ratings** tab shows what each drafted player was worth in the World
+Cup actually played (`src/game/final-ratings.ts`, tested; `components/PlayerRatings.tsx`). It does
+not invent a second rating model: it runs the vectors the engine used through the engine's own
+combination (base × rel^0.7 against average opposition, before match situation, with
+`applyIntent` from `engine/ball.ts`) on both editions' base rates, and reads each value off that
+edition's field on the card scale (median 70, 99th percentile 99, 5th percentile 45).
+
+Each step is a difference on that scale, anchored on the card, so a number the card has already
+held back for a thin record stays held back:
+
+- **Era**: the same edge in the identity edition against its field, compared with the player's own
+  edition against that field. Reflects both the scoring environment and where the player would
+  stand among that field.
+- **Batting at No. n**: the slot's phase mix (`slotWeights`) instead of the player's own.
+- **Pace and spin mix**: the player's `batVsClass` residual against the edition's share of pace and
+  spin. Measured as the engine applies it, so it carries any bias in the residual.
+- **Coach intent**: the drafted coach's intent per phase.
+
+Under the steps: strike rate or economy and balls per dismissal by phase, then and now; the
+evidence behind the rating (balls by source, how much of the edge carries to the strongest sides);
+and the player's figures in this run. Tournament Form points are not shown because the engine does
+not apply them. A skill the card hides prints no rating, only an estimate of its rates.
 
 ## Deployment
 

@@ -79,8 +79,28 @@ export const MODEL = {
    * shrink toward neutral (balls); bands are measured from pre-tournament positions only.
    */
   positionPrior: { strength: 500 },
-  /** Pace/spin batting split: shrink (balls; hazard separately), balls before a number is shown, clip on the residual, display points per log-unit of edge. */
-  bowlClassSplit: { priorStrength: 200, hazardPriorStrength: 600, minBalls: 60, clip: [0.6, 1.6] as [number, number], displayScale: 60 },
+  /**
+   * Pace/spin batting split (rebuilt 2026-10-30, see `bowlClassSplit` in rate.ts). Each class is
+   * measured against the batter's own level inside one source, and the sources are then pooled
+   * with these weights. `minBalls` is both the bar for a measured number and the rule for ODIs
+   * (decided 2026-10-30): ODI balls count only when the T20 balls against a class fall short of it.
+   * `levelPrior` steadies the level itself; `priorStrength` shrinks a class toward that level
+   * (hazard separately); `clip` bounds the residual; `displayScale` is card points per log-unit.
+   *
+   * Measured 2026-10-30 on 698 player-editions with 12+ tournament balls of each class, using only
+   * balls before the tournament. Sources agree in part: contrast r 0.43 T20I to league, 0.23 T20I
+   * to ODI, 0.39 league to ODI, on batters with 100+ balls of each class in both. Against the
+   * tournament's own contrast r was 0.05 on T20Is alone, 0.09 with leagues, and ODI ×0.25 scored best
+   * on the 139 batters short of T20 balls (0.049, against 0.036 without and 0.040 at full weight).
+   * The slope of tournament contrast on predicted was 0.23 at the old priorStrength of 200, so
+   * those splits were about four times too wide; it reaches 1 near 4000. 2000 is the lightest
+   * strength whose interval still holds 1 (slope 0.64, 95% 0.09 to 1.28). All of these are thin:
+   * pace/spin splits are a small effect at World Cup sample sizes.
+   */
+  bowlClassSplit: {
+    priorStrength: 2000, hazardPriorStrength: 6000, levelPrior: 20, minBalls: 60, clip: [0.6, 1.6] as [number, number], displayScale: 60,
+    weights: { t20i: 1, league: 1, tournament: 1, odi: 0.25 } as Record<"t20i" | "league" | "tournament" | "odi", number>,
+  },
   /** Hierarchical phase model: how strongly each phase is held to the player's pooled vector. */
   phasePriorStrength: 300 as number,
   /**
@@ -188,7 +208,7 @@ export interface BlockIn {
     bowl: { innings: number; balls: number; runs: number; wickets: number; economy: number | null };
     field: { catches: number; stumpings: number; runOuts: number };
   };
-  bat: { positions: Record<string, number>; phases: Record<string, PhaseCountsOut>; byBowlClass?: Record<"pace" | "spin", PhaseCountsOut> };
+  bat: { positions: Record<string, number>; phases: Record<string, PhaseCountsOut> };
   bowl: { oversByPhase: Record<Phase, number>; phases: Record<string, PhaseCountsOut> };
 }
 
@@ -215,6 +235,35 @@ export interface PlayerEditionIn {
   odiCareerToDate: { summary: BlockIn["summary"] };
   /** Domestic T20 career to the edition's start (observed and competition-expected counts per phase), or null. */
   domesticToDate: { matches: number; bat: Record<Phase, PooledCountsIn>; bowl: Record<Phase, PooledCountsIn>; competitions: Record<string, number>; recent: { bat: number; bowl: number } } | null;
+  /** Balls faced by the bowler's class, by source, each ball once (analysis/class-split.ts). */
+  classSplit?: ClassSplitIn;
+}
+
+export interface ClassCountsIn {
+  balls: number;
+  outcomes: Record<OutcomeKey, number>;
+  expected: Record<OutcomeKey, number>;
+}
+
+export interface ClassSplitIn {
+  hand: "R" | "L" | null;
+  sources: Partial<Record<"t20i" | "league" | "odi" | "tournament", Record<"pace" | "spin", ClassCountsIn>>>;
+}
+
+/** One side of the pace/spin split on a rating. */
+export interface ClassSplitPart {
+  /** Multiplies the batter's vector against this class in the engine (1 = his own level). */
+  rel: Vector;
+  /** Balls behind the number: the T20 balls, plus ODI balls when ODIs were needed. */
+  balls: number;
+  /** `balls` without the ODIs. */
+  t20Balls: number;
+  /** The card number; null only for a batter whose batting the card hides. */
+  display: number | null;
+  /** Fewer than `minBalls` even with ODIs: the number is an estimate. */
+  estimated: boolean;
+  /** T20 balls fell short and ODIs were used. */
+  fromOdi: boolean;
 }
 
 export interface PooledCountsIn {
@@ -272,12 +321,12 @@ export interface SkillRating {
    */
   shown: boolean;
   /**
-   * Batting against pace and against spin (added 2026-10-30): the player's own relative vector by
-   * bowler class divided by his overall one (so the population hand × class effect the engine
-   * already applies is not counted twice), shrunk and clipped; `display` is the headline shifted by
-   * that edge, null until 60 balls against the class. Null for bowling.
+   * Batting against pace and against spin: the batter's residual by bowler class around his own
+   * level, shrunk and clipped, with a mean of 1 over the balls he faced, so it moves him between
+   * classes and never up or down overall. `display` is the headline shifted by that residual and
+   * the population hand × class term. Null for bowling.
    */
-  byBowlClass: Record<"pace" | "spin", { rel: Vector; balls: number; display: number | null }> | null;
+  byBowlClass: Record<"pace" | "spin", ClassSplitPart> | null;
   /** Per-phase 40–99 display numbers (same map as the headline) and the evidence behind each. */
   displayByPhase: Record<Phase, number>;
   phaseEvidence: Record<Phase, { balls: number; thin: boolean }>;

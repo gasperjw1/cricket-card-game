@@ -2,11 +2,13 @@ import { useMemo, useState } from "react";
 import type { EditionOut, VenueOut } from "../../../wcdraft/src/engine/data.ts";
 import type { FixtureResult, TournamentResult } from "../../../wcdraft/src/engine/tournament.ts";
 import { MatchCard } from "../components/MatchCard.tsx";
+import { PlayerRatings } from "../components/PlayerRatings.tsx";
 import { Scorecard } from "../components/Scorecard.tsx";
 import { squadRating } from "../game/rules.ts";
-import type { RunState } from "../game/types.ts";
+import type { SimulateInput } from "../game/simulate.ts";
+import type { PoolPlayer, RunState } from "../game/types.ts";
 
-type Tab = "matches" | "stats" | "tables" | "knockouts";
+type Tab = "matches" | "ratings" | "stats" | "tables" | "knockouts";
 
 interface PlayerTotals {
   id: string;
@@ -86,7 +88,11 @@ export function ResultScreen({ state, result, editions, venues, onAgain }: { sta
   const overs = (t: PlayerTotals) => `${Math.floor(t.bowlBalls / 6)}${t.bowlBalls % 6 ? `.${t.bowlBalls % 6}` : ""}`;
   const best = (t: PlayerTotals) => (t.best ? `${t.best.w}/${t.best.r}` : "–");
   const squad = ranked.filter((t) => t.me);
-  const tabs: [Tab, string][] = [["matches", "Your matches"], ["stats", "Stats"], ["tables", "Tables"], ["knockouts", "Knockouts"]];
+  const tabs: [Tab, string][] = [["matches", "Your matches"], ["ratings", "Player ratings"], ["stats", "Stats"], ["tables", "Tables"], ["knockouts", "Knockouts"]];
+  const ratingsInput = useMemo<SimulateInput>(
+    () => ({ seed: state.seed, identity: state.identity!, picks: state.picks.filter(Boolean) as PoolPlayer[], coach: state.coach, captainId: state.captainId }),
+    [state.seed, state.identity, state.picks, state.coach, state.captainId],
+  );
   return (
     <section className="result">
       <div className="card">
@@ -116,6 +122,7 @@ export function ResultScreen({ state, result, editions, venues, onAgain }: { sta
           ))}
         </div>
       )}
+      {tab === "ratings" && <PlayerRatings input={ratingsInput} editions={editions} lines={totals} />}
       {tab === "stats" && (
         <>
           <div className="card">

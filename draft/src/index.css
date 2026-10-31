@@ -162,3 +162,24 @@ h3 { font-size: 16px; margin: 0 0 8px; }
 .table th, .table td { text-align: left; padding: 4px 6px; border-bottom: 1px solid var(--line); }
 .table th:not(:first-child), .table td:not(:first-child) { text-align: right; }
 .table tr.me { background: rgba(61, 214, 140, 0.1); font-weight: 700; }
+
+.vs-odi { color: var(--muted); font-size: 10px; letter-spacing: 0.03em; margin-left: 3px; }
+
+/* Player ratings tab */
+.fr-list { display: grid; gap: 8px; margin-top: 12px; }
+.fr-player { border: 1px solid var(--line); border-radius: 10px; }
+.fr-player summary { display: grid; grid-template-columns: 22px minmax(0, 1fr) auto; gap: 8px; align-items: center; padding: 9px 10px; cursor: pointer; list-style: none; }
+.fr-player summary::-webkit-details-marker { display: none; }
+.fr-pos { color: var(--muted); font-size: 13px; text-align: right; font-variant-numeric: tabular-nums; }
+.fr-who { display: grid; min-width: 0; }
+.fr-name { font-weight: 700; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.fr-ratings { display: grid; gap: 2px; justify-items: end; font-size: 13px; font-variant-numeric: tabular-nums; }
+.fr-pair .k { color: var(--muted); font-size: 12px; }
+.fr-num .muted, .fr-num.muted { color: var(--muted); font-size: 12px; }
+.fr-body { padding: 0 10px 10px; border-top: 1px solid var(--line); }
+.fr-tags { display: flex; gap: 8px; align-items: center; margin: 10px 0 4px; }
+.fr-skill { margin-top: 12px; }
+.fr-skill h4 { margin: 0 0 6px; }
+.fr-steps, .fr-rates { font-variant-numeric: tabular-nums; }
+.fr-rates th { color: var(--muted); font-size: 11px; font-weight: 600; vertical-align: bottom; }
+.fr-total td { font-weight: 700; border-bottom: none; }

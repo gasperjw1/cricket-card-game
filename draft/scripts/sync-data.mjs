@@ -48,6 +48,7 @@ for (const line of labelLines.slice(1)) {
   labels.set(row.personId, row);
 }
 const keeperEligible = (row) => !!row && (row.keeper === "Y" || row.keeperCareer === "Y" || Number(row.keeperAnyT20I) > 0);
+const vsClass = (part) => (part && part.display !== null ? { n: part.display, balls: part.balls, estimated: part.estimated, odi: part.fromOdi } : null);
 
 const editions = readdirSync(resolve(outDir, "ratings")).filter((f) => /^\d{4}\.json$/.test(f)).map((f) => f.slice(0, 4)).sort();
 const blankSquads = [];
@@ -62,7 +63,7 @@ for (const ed of editions) {
     batLow: r.batting.lowSample, bowlLow: r.bowling.lowSample, batShown: r.batting.shown !== false, bowlShown: r.bowling.shown !== false, squadPlayer: r.usage.squadPlayer,
     domesticBalls: { bat: r.batting.evidence.domesticBalls ?? 0, bowl: r.bowling.evidence.domesticBalls ?? 0 },
     batWeights: r.batting.evidence.phaseWeights,
-    vsPace: r.batting.byBowlClass?.pace.display ?? null, vsSpin: r.batting.byBowlClass?.spin.display ?? null,
+    vsPace: vsClass(r.batting.byBowlClass?.pace), vsSpin: vsClass(r.batting.byBowlClass?.spin),
     position: r.position.median, positionless: r.position.positionless,
     hand: labels.get(r.personId)?.handedness || null, bowlingType: labels.get(r.personId)?.bowlingType || null,
     keeper: keeperEligible(labels.get(r.personId)),

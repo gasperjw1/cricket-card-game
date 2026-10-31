@@ -1011,10 +1011,10 @@
       },
       "paceSpin": {
         "pace": {
-          "balls": 1751,
-          "rpo": 8.66,
-          "ballsPerWicket": 18.4,
-          "sharePct": 51
+          "balls": 1733,
+          "rpo": 8.65,
+          "ballsPerWicket": 18.2,
+          "sharePct": 50
         },
         "spin": {
           "balls": 1682,
@@ -1022,7 +1022,7 @@
           "ballsPerWicket": 21.6,
           "sharePct": 49
         },
-        "unknownPct": 0
+        "unknownPct": 1
       }
     },
     "byEdition": {
@@ -1155,10 +1155,10 @@
         },
         "paceSpin": {
           "pace": {
-            "balls": 1158,
-            "rpo": 8.44,
-            "ballsPerWicket": 19.3,
-            "sharePct": 55
+            "balls": 1140,
+            "rpo": 8.42,
+            "ballsPerWicket": 19,
+            "sharePct": 54
           },
           "spin": {
             "balls": 956,
@@ -1166,7 +1166,7 @@
             "ballsPerWicket": 27.3,
             "sharePct": 45
           },
-          "unknownPct": 0
+          "unknownPct": 1
         }
       },
       "2026": {
@@ -2182,10 +2182,10 @@
       },
       "paceSpin": {
         "pace": {
-          "balls": 1856,
-          "rpo": 7.52,
-          "ballsPerWicket": 18.4,
-          "sharePct": 67
+          "balls": 1826,
+          "rpo": 7.54,
+          "ballsPerWicket": 18.3,
+          "sharePct": 66
         },
         "spin": {
           "balls": 898,
@@ -2193,7 +2193,7 @@
           "ballsPerWicket": 16.3,
           "sharePct": 33
         },
-        "unknownPct": 0
+        "unknownPct": 1
       }
     },
     "byEdition": {
@@ -2326,10 +2326,10 @@
         },
         "paceSpin": {
           "pace": {
-            "balls": 1856,
-            "rpo": 7.52,
-            "ballsPerWicket": 18.4,
-            "sharePct": 67
+            "balls": 1826,
+            "rpo": 7.54,
+            "ballsPerWicket": 18.3,
+            "sharePct": 66
           },
           "spin": {
             "balls": 898,
@@ -2337,7 +2337,7 @@
             "ballsPerWicket": 16.3,
             "sharePct": 33
           },
-          "unknownPct": 0
+          "unknownPct": 1
         }
       }
     }
@@ -3503,16 +3503,16 @@
       },
       "paceSpin": {
         "pace": {
-          "balls": 1518,
-          "rpo": 9.77,
-          "ballsPerWicket": 22.3,
-          "sharePct": 60
+          "balls": 1440,
+          "rpo": 9.93,
+          "ballsPerWicket": 21.8,
+          "sharePct": 57
         },
         "spin": {
-          "balls": 1008,
-          "rpo": 8.63,
-          "ballsPerWicket": 19,
-          "sharePct": 40
+          "balls": 1086,
+          "rpo": 8.5,
+          "ballsPerWicket": 19.7,
+          "sharePct": 43
         },
         "unknownPct": 0
       }
@@ -3789,16 +3789,16 @@
         },
         "paceSpin": {
           "pace": {
-            "balls": 1071,
-            "rpo": 9.33,
-            "ballsPerWicket": 20.6,
-            "sharePct": 59
+            "balls": 993,
+            "rpo": 9.53,
+            "ballsPerWicket": 19.9,
+            "sharePct": 55
           },
           "spin": {
-            "balls": 750,
-            "rpo": 8.5,
-            "ballsPerWicket": 17,
-            "sharePct": 41
+            "balls": 828,
+            "rpo": 8.35,
+            "ballsPerWicket": 18,
+            "sharePct": 45
           },
           "unknownPct": 0
         }
@@ -3940,10 +3940,10 @@
       },
       "paceSpin": {
         "pace": {
-          "balls": 1321,
-          "rpo": 8.04,
-          "ballsPerWicket": 22.4,
-          "sharePct": 58
+          "balls": 1255,
+          "rpo": 8.11,
+          "ballsPerWicket": 22,
+          "sharePct": 55
         },
         "spin": {
           "balls": 975,
@@ -3951,7 +3951,7 @@
           "ballsPerWicket": 18.1,
           "sharePct": 42
         },
-        "unknownPct": 0
+        "unknownPct": 3
       }
     },
     "byEdition": {
@@ -4084,10 +4084,10 @@
         },
         "paceSpin": {
           "pace": {
-            "balls": 1321,
-            "rpo": 8.04,
-            "ballsPerWicket": 22.4,
-            "sharePct": 58
+            "balls": 1255,
+            "rpo": 8.11,
+            "ballsPerWicket": 22,
+            "sharePct": 55
           },
           "spin": {
             "balls": 975,
@@ -4095,7 +4095,7 @@
             "ballsPerWicket": 18.1,
             "sharePct": 42
           },
-          "unknownPct": 0
+          "unknownPct": 3
         }
       }
     }
@@ -4235,18 +4235,18 @@
       },
       "paceSpin": {
         "pace": {
-          "balls": 1006,
-          "rpo": 6.97,
-          "ballsPerWicket": 14.8,
-          "sharePct": 53
+          "balls": 1000,
+          "rpo": 6.95,
+          "ballsPerWicket": 14.9,
+          "sharePct": 52
         },
         "spin": {
-          "balls": 820,
-          "rpo": 5.88,
-          "ballsPerWicket": 17.4,
-          "sharePct": 43
+          "balls": 868,
+          "rpo": 5.79,
+          "ballsPerWicket": 18.1,
+          "sharePct": 45
         },
-        "unknownPct": 5
+        "unknownPct": 3
       }
     },
     "byEdition": {
@@ -4522,18 +4522,18 @@
         },
         "paceSpin": {
           "pace": {
-            "balls": 431,
-            "rpo": 6.84,
-            "ballsPerWicket": 13.9,
+            "balls": 425,
+            "rpo": 6.8,
+            "ballsPerWicket": 14.2,
             "sharePct": 49
           },
           "spin": {
-            "balls": 350,
-            "rpo": 5.5,
-            "ballsPerWicket": 15.2,
-            "sharePct": 40
+            "balls": 398,
+            "rpo": 5.37,
+            "ballsPerWicket": 16.6,
+            "sharePct": 46
           },
-          "unknownPct": 10
+          "unknownPct": 6
         }
       }
     }
@@ -4966,10 +4966,10 @@
       },
       "paceSpin": {
         "pace": {
-          "balls": 1478,
-          "rpo": 8.47,
-          "ballsPerWicket": 21.4,
-          "sharePct": 71
+          "balls": 1465,
+          "rpo": 8.44,
+          "ballsPerWicket": 21.2,
+          "sharePct": 70
         },
         "spin": {
           "balls": 614,
@@ -4977,7 +4977,7 @@
           "ballsPerWicket": 16.6,
           "sharePct": 29
         },
-        "unknownPct": 0
+        "unknownPct": 1
       }
     },
     "byEdition": {
@@ -5110,10 +5110,10 @@
         },
         "paceSpin": {
           "pace": {
-            "balls": 1478,
-            "rpo": 8.47,
-            "ballsPerWicket": 21.4,
-            "sharePct": 71
+            "balls": 1465,
+            "rpo": 8.44,
+            "ballsPerWicket": 21.2,
+            "sharePct": 70
           },
           "spin": {
             "balls": 614,
@@ -5121,7 +5121,7 @@
             "ballsPerWicket": 16.6,
             "sharePct": 29
           },
-          "unknownPct": 0
+          "unknownPct": 1
         }
       }
     }
@@ -5261,10 +5261,10 @@
       },
       "paceSpin": {
         "pace": {
-          "balls": 1483,
-          "rpo": 7.21,
-          "ballsPerWicket": 18.5,
-          "sharePct": 74
+          "balls": 1443,
+          "rpo": 7.19,
+          "ballsPerWicket": 18.3,
+          "sharePct": 72
         },
         "spin": {
           "balls": 522,
@@ -5272,7 +5272,7 @@
           "ballsPerWicket": 23.7,
           "sharePct": 26
         },
-        "unknownPct": 0
+        "unknownPct": 2
       }
     },
     "byEdition": {
@@ -5405,10 +5405,10 @@
         },
         "paceSpin": {
           "pace": {
-            "balls": 1483,
-            "rpo": 7.21,
-            "ballsPerWicket": 18.5,
-            "sharePct": 74
+            "balls": 1443,
+            "rpo": 7.19,
+            "ballsPerWicket": 18.3,
+            "sharePct": 72
           },
           "spin": {
             "balls": 522,
@@ -5416,7 +5416,7 @@
             "ballsPerWicket": 23.7,
             "sharePct": 26
           },
-          "unknownPct": 0
+          "unknownPct": 2
         }
       }
     }
@@ -5556,10 +5556,10 @@
       },
       "paceSpin": {
         "pace": {
-          "balls": 1170,
-          "rpo": 8.44,
+          "balls": 1122,
+          "rpo": 8.41,
           "ballsPerWicket": 15.6,
-          "sharePct": 65
+          "sharePct": 62
         },
         "spin": {
           "balls": 643,
@@ -5567,7 +5567,7 @@
           "ballsPerWicket": 20.1,
           "sharePct": 35
         },
-        "unknownPct": 0
+        "unknownPct": 3
       }
     },
     "byEdition": {
@@ -5700,10 +5700,10 @@
         },
         "paceSpin": {
           "pace": {
-            "balls": 1170,
-            "rpo": 8.44,
+            "balls": 1122,
+            "rpo": 8.41,
             "ballsPerWicket": 15.6,
-            "sharePct": 65
+            "sharePct": 62
           },
           "spin": {
             "balls": 643,
@@ -5711,7 +5711,7 @@
             "ballsPerWicket": 20.1,
             "sharePct": 35
           },
-          "unknownPct": 0
+          "unknownPct": 3
         }
       }
     }
@@ -6147,10 +6147,10 @@
       },
       "paceSpin": {
         "pace": {
-          "balls": 1533,
-          "rpo": 7.76,
-          "ballsPerWicket": 19.4,
-          "sharePct": 84
+          "balls": 1515,
+          "rpo": 7.7,
+          "ballsPerWicket": 19.2,
+          "sharePct": 83
         },
         "spin": {
           "balls": 288,
@@ -6158,7 +6158,7 @@
           "ballsPerWicket": 16,
           "sharePct": 16
         },
-        "unknownPct": 0
+        "unknownPct": 1
       }
     },
     "byEdition": {
@@ -6292,10 +6292,10 @@
         },
         "paceSpin": {
           "pace": {
-            "balls": 1533,
-            "rpo": 7.76,
-            "ballsPerWicket": 19.4,
-            "sharePct": 84
+            "balls": 1515,
+            "rpo": 7.7,
+            "ballsPerWicket": 19.2,
+            "sharePct": 83
           },
           "spin": {
             "balls": 288,
@@ -6303,7 +6303,7 @@
             "ballsPerWicket": 16,
             "sharePct": 16
           },
-          "unknownPct": 0
+          "unknownPct": 1
         }
       }
     }
@@ -6443,10 +6443,10 @@
       },
       "paceSpin": {
         "pace": {
-          "balls": 1205,
-          "rpo": 7.42,
-          "ballsPerWicket": 21.9,
-          "sharePct": 64
+          "balls": 1181,
+          "rpo": 7.4,
+          "ballsPerWicket": 21.5,
+          "sharePct": 63
         },
         "spin": {
           "balls": 684,
@@ -6454,7 +6454,7 @@
           "ballsPerWicket": 18,
           "sharePct": 36
         },
-        "unknownPct": 0
+        "unknownPct": 1
       }
     },
     "byEdition": {
@@ -6587,10 +6587,10 @@
         },
         "paceSpin": {
           "pace": {
-            "balls": 1205,
-            "rpo": 7.42,
-            "ballsPerWicket": 21.9,
-            "sharePct": 64
+            "balls": 1181,
+            "rpo": 7.4,
+            "ballsPerWicket": 21.5,
+            "sharePct": 63
           },
           "spin": {
             "balls": 684,
@@ -6598,7 +6598,7 @@
             "ballsPerWicket": 18,
             "sharePct": 36
           },
-          "unknownPct": 0
+          "unknownPct": 1
         }
       }
     }
@@ -8942,18 +8942,18 @@
       },
       "paceSpin": {
         "pace": {
-          "balls": 810,
-          "rpo": 7.41,
-          "ballsPerWicket": 15.6,
-          "sharePct": 59
+          "balls": 792,
+          "rpo": 7.39,
+          "ballsPerWicket": 15.2,
+          "sharePct": 57
         },
         "spin": {
-          "balls": 538,
-          "rpo": 6.48,
-          "ballsPerWicket": 17.9,
-          "sharePct": 39
+          "balls": 568,
+          "rpo": 6.51,
+          "ballsPerWicket": 17.8,
+          "sharePct": 41
         },
-        "unknownPct": 2
+        "unknownPct": 1
       }
     },
     "byEdition": {
@@ -9086,18 +9086,18 @@
         },
         "paceSpin": {
           "pace": {
-            "balls": 810,
-            "rpo": 7.41,
-            "ballsPerWicket": 15.6,
-            "sharePct": 59
+            "balls": 792,
+            "rpo": 7.39,
+            "ballsPerWicket": 15.2,
+            "sharePct": 57
           },
           "spin": {
-            "balls": 538,
-            "rpo": 6.48,
-            "ballsPerWicket": 17.9,
-            "sharePct": 39
+            "balls": 568,
+            "rpo": 6.51,
+            "ballsPerWicket": 17.8,
+            "sharePct": 41
           },
-          "unknownPct": 2
+          "unknownPct": 1
         }
       }
     }
@@ -11300,16 +11300,16 @@
       },
       "paceSpin": {
         "pace": {
-          "balls": 624,
-          "rpo": 7.15,
-          "ballsPerWicket": 19.5,
-          "sharePct": 67
+          "balls": 612,
+          "rpo": 7.24,
+          "ballsPerWicket": 19.7,
+          "sharePct": 66
         },
         "spin": {
-          "balls": 304,
-          "rpo": 8.01,
-          "ballsPerWicket": 21.7,
-          "sharePct": 33
+          "balls": 316,
+          "rpo": 7.82,
+          "ballsPerWicket": 21.1,
+          "sharePct": 34
         },
         "unknownPct": 0
       }
@@ -11444,16 +11444,16 @@
         },
         "paceSpin": {
           "pace": {
-            "balls": 624,
-            "rpo": 7.15,
-            "ballsPerWicket": 19.5,
-            "sharePct": 67
+            "balls": 612,
+            "rpo": 7.24,
+            "ballsPerWicket": 19.7,
+            "sharePct": 66
           },
           "spin": {
-            "balls": 304,
-            "rpo": 8.01,
-            "ballsPerWicket": 21.7,
-            "sharePct": 33
+            "balls": 316,
+            "rpo": 7.82,
+            "ballsPerWicket": 21.1,
+            "sharePct": 34
           },
           "unknownPct": 0
         }
@@ -11595,16 +11595,16 @@
       },
       "paceSpin": {
         "pace": {
-          "balls": 477,
+          "balls": 432,
           "rpo": 5.72,
-          "ballsPerWicket": 17,
-          "sharePct": 67
+          "ballsPerWicket": 18.8,
+          "sharePct": 61
         },
         "spin": {
-          "balls": 236,
-          "rpo": 5.82,
-          "ballsPerWicket": 14.8,
-          "sharePct": 33
+          "balls": 281,
+          "rpo": 5.81,
+          "ballsPerWicket": 13.4,
+          "sharePct": 39
         },
         "unknownPct": 0
       }
@@ -11739,16 +11739,16 @@
         },
         "paceSpin": {
           "pace": {
-            "balls": 477,
+            "balls": 432,
             "rpo": 5.72,
-            "ballsPerWicket": 17,
-            "sharePct": 67
+            "ballsPerWicket": 18.8,
+            "sharePct": 61
           },
           "spin": {
-            "balls": 236,
-            "rpo": 5.82,
-            "ballsPerWicket": 14.8,
-            "sharePct": 33
+            "balls": 281,
+            "rpo": 5.81,
+            "ballsPerWicket": 13.4,
+            "sharePct": 39
           },
           "unknownPct": 0
         }
@@ -11889,10 +11889,10 @@
       },
       "paceSpin": {
         "pace": {
-          "balls": 392,
-          "rpo": 5.08,
-          "ballsPerWicket": 13.1,
-          "sharePct": 68
+          "balls": 406,
+          "rpo": 5.14,
+          "ballsPerWicket": 13.5,
+          "sharePct": 70
         },
         "spin": {
           "balls": 170,
@@ -11900,7 +11900,7 @@
           "ballsPerWicket": 14.2,
           "sharePct": 30
         },
-        "unknownPct": 2
+        "unknownPct": 0
       }
     },
     "byEdition": {
@@ -12032,10 +12032,10 @@
         },
         "paceSpin": {
           "pace": {
-            "balls": 392,
-            "rpo": 5.08,
-            "ballsPerWicket": 13.1,
-            "sharePct": 68
+            "balls": 406,
+            "rpo": 5.14,
+            "ballsPerWicket": 13.5,
+            "sharePct": 70
           },
           "spin": {
             "balls": 170,
@@ -12043,7 +12043,7 @@
             "ballsPerWicket": 14.2,
             "sharePct": 30
           },
-          "unknownPct": 2
+          "unknownPct": 0
         }
       }
     }

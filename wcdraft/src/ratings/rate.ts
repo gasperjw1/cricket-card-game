@@ -17,9 +17,10 @@
 import { resolve } from "node:path";
 import type { OutcomeKey, Phase } from "../cricsheet/match.js";
 import type { BuildResult } from "../pipeline/build.js";
+import type { MatchupTables } from "../analysis/matchups.js";
 import { ELO_BINS, eloBin, type EloBin } from "../analysis/team-strength.js";
 import { paths, readJson } from "../util/io.js";
-import { MODEL, OUTCOMES, PHASE_LIST, RUNS, type BattingArchetype, type BlockIn, type BowlingArchetype, type EditionPopulations, type PhaseVectors, type PlayerEditionIn, type PlayerRating, type SkillRating, type Tier as CardTier, type TierConfig, type Vector } from "./model.js";
+import { MODEL, OUTCOMES, PHASE_LIST, RUNS, type BattingArchetype, type BlockIn, type BowlingArchetype, type ClassSplitPart, type EditionPopulations, type PhaseVectors, type PlayerEditionIn, type PlayerRating, type SkillRating, type Tier as CardTier, type TierConfig, type Vector } from "./model.js";
 import { rowMixtureInterp, smoothTwoWay, type TwoWayVectors } from "./two-way.js";
 import { battingValue, blend, bowlingValue, expectedRuns, normalise, relative, shrink, shrinkWithHazard, toVector, transport, UNIFORM } from "./vectors.js";
 
@@ -430,6 +431,12 @@ function rateSkill(pe: PlayerEditionIn, ctx: EditionContext, skill: Skill, optio
 
 const UNIT: Vector = { "0": 1, "1": 1, "2": 1, "3": 1, "4": 1, "6": 1, W: 1 };
 
+type BowlClassName = "pace" | "spin";
+type ClassSourceName = "t20i" | "league" | "odi" | "tournament";
+const BOWL_CLASS_NAMES: BowlClassName[] = ["pace", "spin"];
+/** Same strength as the engine's `matchupPrior`. */
+const HAND_TERM_PRIOR = 2000;
+
 /** Position bands for the batting prior (decided 2026-10-30): openers, 3–4, 5–7, 8–11. */
 export type PriorBand = "1-2" | "3-4" | "5-7" | "8-11";
 export const PRIOR_BANDS: PriorBand[] = ["1-2", "3-4", "5-7", "8-11"];
@@ -453,39 +460,88 @@ function baseCentre(pe: PlayerEditionIn, ctx: EditionContext, skill: Skill): Vec
 }
 
 /**
- * Batting against pace and against spin: the player's pooled (form + career) relative vector by
- * bowler class, divided by his pooled overall vector over the same balls, each shrunk toward
- * neutral first, so a thin split sits at 1 and a real one shows. Clipped. Display is filled later.
+ * Batting against pace and against spin. Inside each source the expected counts are scaled to the
+ * batter's own level there, so a class is judged against him and never against another format: a
+ * batter who is simply better at ODIs does not look like a good player of spin. The sources are
+ * pooled, each class shrinks toward his level (1), and the two are held to a mean of 1 over the
+ * balls he faced, so the split moves him between classes without moving him overall. ODIs join
+ * only when the T20 balls against a class fall short (decided 2026-10-30); a batter's tournament
+ * balls count only when the rest of his rating comes from them too (`pe.form === pe.tournament`).
+ * A class with no balls sits at 1: the engine then plays him at his level, which is what the card
+ * marks as an estimate. Display is filled once the role is known.
  */
-function bowlClassSplit(pe: PlayerEditionIn): NonNullable<SkillRating["byBowlClass"]> | null {
+export function bowlClassSplit(pe: PlayerEditionIn, weights: Record<ClassSourceName, number> = MODEL.bowlClassSplit.weights): NonNullable<SkillRating["byBowlClass"]> {
   const cfg = MODEL.bowlClassSplit;
-  const sum = (pick: (b: BlockIn) => { balls: number; outcomes: Record<OutcomeKey, number>; expected?: Record<OutcomeKey, number> } | undefined) => {
-    const o = zeroCounts(), e = zeroCounts();
-    let n = 0;
-    for (const block of [pe.form, pe.careerToDate]) {
-      const pc = pick(block);
-      if (!pc) continue;
-      n += pc.balls;
-      for (const k of OUTCOMES) { o[k] += pc.outcomes[k]; e[k] += pc.expected?.[k] ?? 0; }
+  const sources = pe.classSplit?.sources ?? {};
+  const t20Sources: ClassSourceName[] = pe.form === pe.tournament ? ["t20i", "league", "tournament"] : ["t20i", "league"];
+  const ballsOf = (list: ClassSourceName[], cls: BowlClassName) => list.reduce((a, s) => a + (sources[s]?.[cls].balls ?? 0), 0);
+  const t20 = { pace: ballsOf(t20Sources, "pace"), spin: ballsOf(t20Sources, "spin") };
+  const needsOdi = (t20.pace < cfg.minBalls || t20.spin < cfg.minBalls) && !!sources.odi;
+  const used = needsOdi ? [...t20Sources, "odi" as const] : t20Sources;
+
+  const pool = { pace: { o: zeroCounts(), e: zeroCounts(), n: 0 }, spin: { o: zeroCounts(), e: zeroCounts(), n: 0 } };
+  for (const s of used) {
+    const pair = sources[s];
+    if (!pair) continue;
+    const w = weights[s];
+    const balls = pair.pace.balls + pair.spin.balls;
+    for (const k of OUTCOMES) {
+      const observed = pair.pace.outcomes[k] + pair.spin.outcomes[k], expected = pair.pace.expected[k] + pair.spin.expected[k];
+      const prior = balls > 0 ? (cfg.levelPrior * expected) / balls : 0;
+      const level = expected + prior > 0 ? (observed + prior) / (expected + prior) : 1;
+      for (const cls of BOWL_CLASS_NAMES) { pool[cls].o[k] += w * pair[cls].outcomes[k]; pool[cls].e[k] += w * pair[cls].expected[k] * level; }
     }
-    return { o, e, n };
-  };
-  const classes = (["pace", "spin"] as const).map((cls) => ({ cls, counts: sum((b) => b.bat.byBowlClass?.[cls]) }));
-  if (classes.every((c) => c.counts.n === 0)) return null;
-  // The overall vector over the same (labelled) balls, so the residual is a within-player contrast.
-  const all = { o: zeroCounts(), e: zeroCounts(), n: 0 };
-  for (const c of classes) { all.n += c.counts.n; for (const k of OUTCOMES) { all.o[k] += c.counts.o[k]; all.e[k] += c.counts.e[k]; } }
-  const allRel = expectedRelative(all.o, all.e, all.n, UNIT, cfg.priorStrength, cfg.hazardPriorStrength);
+    for (const cls of BOWL_CLASS_NAMES) pool[cls].n += w * pair[cls].balls;
+  }
+
+  const rel = { pace: expectedRelative(pool.pace.o, pool.pace.e, pool.pace.n, UNIT, cfg.priorStrength, cfg.hazardPriorStrength), spin: expectedRelative(pool.spin.o, pool.spin.e, pool.spin.n, UNIT, cfg.priorStrength, cfg.hazardPriorStrength) };
   const out = {} as NonNullable<SkillRating["byBowlClass"]>;
-  for (const c of classes) {
-    const rel = expectedRelative(c.counts.o, c.counts.e, c.counts.n, UNIT, cfg.priorStrength, cfg.hazardPriorStrength);
-    out[c.cls] = {
-      rel: Object.fromEntries(OUTCOMES.map((k) => [k, +Math.min(cfg.clip[1], Math.max(cfg.clip[0], allRel[k] > 0 ? rel[k] / allRel[k] : 1)).toFixed(4)])) as Vector,
-      balls: c.counts.n,
-      display: null,
-    };
+  for (const cls of BOWL_CLASS_NAMES) {
+    const vector = Object.fromEntries(OUTCOMES.map((k) => {
+      const total = pool.pace.e[k] + pool.spin.e[k];
+      const mean = total > 0 ? (pool.pace.e[k] * rel.pace[k] + pool.spin.e[k] * rel.spin[k]) / total : 1;
+      return [k, +Math.min(cfg.clip[1], Math.max(cfg.clip[0], mean > 0 ? rel[cls][k] / mean : 1)).toFixed(4)];
+    })) as Vector;
+    const odiBalls = needsOdi ? sources.odi![cls].balls : 0;
+    const balls = t20[cls] + (t20[cls] < cfg.minBalls ? odiBalls : 0);
+    out[cls] = { rel: vector, balls, t20Balls: t20[cls], display: null, estimated: balls < cfg.minBalls, fromOdi: t20[cls] < cfg.minBalls && balls >= cfg.minBalls };
   }
   return out;
+}
+
+/** The population hand × class term per bowling group: what the engine's matchup applies, pooled over classes and phases. */
+function handTerms(tables: MatchupTables | undefined): Map<string, Vector> {
+  const out = new Map<string, Vector>();
+  if (!tables) return out;
+  const groups: Record<BowlClassName, string[]> = { pace: ["pace-right", "pace-left"], spin: ["off-spin", "leg-spin", "left-arm-spin"] };
+  for (const hand of ["R", "L"]) {
+    for (const cls of BOWL_CLASS_NAMES) {
+      const o = zeroCounts(), e = zeroCounts();
+      let balls = 0;
+      for (const c of groups[cls]) {
+        const cell = tables.cells[`${hand}|${c}|all`];
+        if (!cell) continue;
+        balls += cell.balls;
+        for (const k of OUTCOMES) { o[k] += cell.observed[k]; e[k] += cell.expected[k]; }
+      }
+      out.set(`${hand}|${cls}`, expectedRelative(o, e, balls, UNIT, HAND_TERM_PRIOR, HAND_TERM_PRIOR));
+    }
+  }
+  return out;
+}
+
+/** The card's pace and spin numbers: the headline shifted by the residual and the hand term. A hidden skill prints neither. */
+function withClassDisplay(s: SkillRating, pe: PlayerEditionIn, ctx: EditionContext, terms: Map<string, Vector>): SkillRating {
+  if (!s.byBowlClass || !s.shown) return s;
+  const cfg = MODEL.bowlClassSplit;
+  const part = (cls: BowlClassName): ClassSplitPart => {
+    const p = s.byBowlClass![cls];
+    const term = terms.get(`${pe.classSplit?.hand}|${cls}`) ?? UNIT;
+    const moved = Object.fromEntries(OUTCOMES.map((k) => [k, p.rel[k] * term[k]])) as Vector;
+    const shifted = s.display + Math.round(cfg.displayScale * splitEdge(moved, ctx.editionPop.mid));
+    return { ...p, display: Math.max(MODEL.display.min, Math.min(MODEL.display.max, shifted)) };
+  };
+  return { ...s, byBowlClass: { pace: part("pace"), spin: part("spin") } };
 }
 
 /** Log-edge of a class residual: scoring per ball up, hazard down (half weight), the number the card display shifts by. */
@@ -938,6 +994,7 @@ export function rateAll(r: BuildResult, opts: RateOptions = {}): PlayerRating[] 
   const bowlDisplay = toDisplay("bowl");
 
   const tierConfig = loadTierConfig();
+  const terms = handTerms(r.matchups);
   const finish = ({ carried: _carried, valuePop: _valuePop, ...s }: PartialSkill, display: ReturnType<typeof toDisplay>, pe: PlayerEditionIn, skill: Skill): SkillRating => {
     const n = s.evidence.formBalls + s.evidence.careerBalls + (s.evidence.source === "odi" ? MODEL.odiPriorStrength : 0);
     const guard = n / (n + MODEL.displayEvidenceStrength);
@@ -946,19 +1003,9 @@ export function rateAll(r: BuildResult, opts: RateOptions = {}): PlayerRating[] 
     const ev = s.evidence;
     const formBar = ev.source === "tournament" ? MODEL.shown.tournamentBalls[skill] : MODEL.shown.formBalls[skill];
     const shown = ev.formBalls >= formBar || ev.careerBalls >= MODEL.shown.careerBalls[skill] || backupVouches(ev, skill, pe.editionId);
-    const shownDisplay = display(conservative(s, skill));
-    // Pace/spin numbers: the headline shifted by the class edge, once the player has faced enough of that class.
-    const byBowlClass = s.byBowlClass && shown
-      ? (Object.fromEntries((["pace", "spin"] as const).map((cls) => {
-          const part = s.byBowlClass![cls];
-          const shift = part.balls >= MODEL.bowlClassSplit.minBalls ? Math.round(MODEL.bowlClassSplit.displayScale * splitEdge(part.rel, _valuePop.mid)) : null;
-          return [cls, { ...part, display: shift === null ? null : Math.max(MODEL.display.min, Math.min(MODEL.display.max, shownDisplay.display + shift)) }];
-        })) as NonNullable<SkillRating["byBowlClass"]>)
-      : s.byBowlClass;
     return {
       ...s,
-      ...shownDisplay,
-      byBowlClass,
+      ...display(conservative(s, skill)),
       shown,
       // Phase numbers shrink toward the median exactly like the headline, so they agree.
       displayByPhase: Object.fromEntries(PHASE_LIST.map((p) => [p, display(medians[skill] + (s.valueByPhase[p] - medians[skill]) * guard).display])) as Record<Phase, number>,
@@ -988,7 +1035,7 @@ export function rateAll(r: BuildResult, opts: RateOptions = {}): PlayerRating[] 
     const role: PlayerRating["role"] = bats && bowls ? "all-rounder" : bowls ? "bowler" : bats ? "batter" : fallback;
     // The role's own skill is always shown (a bowler with eleven T20Is is still a bowler; the
     // low-sample badge says how thin the number is). The other skill needs the evidence bar.
-    const batting = role === "batter" || role === "all-rounder" ? { ...batting0, shown: true } : batting0;
+    const batting = withClassDisplay(role === "batter" || role === "all-rounder" ? { ...batting0, shown: true } : batting0, pe, ctx, terms);
     const bowling = role === "bowler" || role === "all-rounder" ? { ...bowling0, shown: true } : bowling0;
     const top = Math.max(batting.display, bowling.display);
     const second = Math.min(batting.display, bowling.display);

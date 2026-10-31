@@ -1,4 +1,4 @@
-import type { PoolPlayer } from "../game/types.ts";
+import type { PoolPlayer, VsClass } from "../game/types.ts";
 
 export function TierBadge({ tier }: { tier: string }) {
   return <span className={`tier tier-${tier.toLowerCase()}`}>{tier}</span>;
@@ -14,10 +14,22 @@ export function bowlingTypeName(code: string): string {
 }
 
 /** Colour the stronger side of a pace/spin split when the gap is worth noticing (5 points or more). */
-export function splitClass(mine: number | null, other: number | null): string {
-  if (mine === null || other === null) return "";
-  return mine - other >= 5 ? "num-good" : other - mine >= 5 ? "num-bad" : "";
+export function splitClass(mine: VsClass | null, other: VsClass | null): string {
+  if (!mine || !other || mine.estimated || other.estimated) return "";
+  return mine.n - other.n >= 5 ? "num-good" : other.n - mine.n >= 5 ? "num-bad" : "";
 }
+
+/** The number with its marks: * for an estimate, a small ODI tag when ODIs stood in for T20 balls. */
+export function VsNumber({ value, other }: { value: VsClass | null; other: VsClass | null }) {
+  if (!value) return <b>–</b>;
+  return <><b className={splitClass(value, other)}>{value.n}{value.estimated ? "*" : ""}</b>{value.odi && <span className="vs-odi">ODI</span>}</>;
+}
+
+const vsTitle = (label: string, v: VsClass | null) => {
+  if (!v) return "";
+  if (v.estimated) return `${label}: estimate from the batting level and hand; only ${v.balls} balls faced`;
+  return `${label}: from ${v.balls} balls faced${v.odi ? ", ODIs included because there were too few in T20" : ""}`;
+};
 
 export function archetypeLabel(p: PoolPlayer): string {
   const parts: string[] = [];
@@ -53,10 +65,10 @@ export function PlayerCard({ player, selected, compact, ineligible, onClick }: {
           ) : <div><span className="k">Bowl</span> <small className="muted">rarely bowls</small></div>}
         </div>
       )}
-      {!compact && p.batShown && (p.vsPace !== null || p.vsSpin !== null) && (
-        <div className="vs-line" title="His batting number against pace and against spin, from his own record by bowler type (60+ balls against each)">
-          <span className="k">v pace</span> <b className={splitClass(p.vsPace, p.vsSpin)}>{p.vsPace ?? "–"}</b>
-          <span className="k">v spin</span> <b className={splitClass(p.vsSpin, p.vsPace)}>{p.vsSpin ?? "–"}</b>
+      {!compact && p.batShown && (
+        <div className="vs-line" title={`${vsTitle("Against pace", p.vsPace)}. ${vsTitle("Against spin", p.vsSpin)}.`}>
+          <span className="k">v pace</span> <VsNumber value={p.vsPace} other={p.vsSpin} />
+          <span className="k">v spin</span> <VsNumber value={p.vsSpin} other={p.vsPace} />
         </div>
       )}
     </button>

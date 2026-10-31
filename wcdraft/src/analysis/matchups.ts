@@ -27,6 +27,13 @@ export function bowlClassOf(code: string | undefined | null): BowlClass | null {
   }
 }
 
+/** Pace or spin, from the Cricinfo-derived bowling code; null when unknown, mixed or a non-bowler. */
+export type BowlGroup = "pace" | "spin";
+export function bowlGroupOf(code: string | undefined | null): BowlGroup | null {
+  const cls = bowlClassOf(code);
+  return cls === null ? null : cls.startsWith("pace") ? "pace" : "spin";
+}
+
 export function handOf(code: string | undefined | null): "R" | "L" | null {
   const c = (code ?? "").trim().toUpperCase();
   return c === "R" || c === "L" ? c : null;

@@ -9,7 +9,8 @@ Cricsheet men's T20I archive. Design spec: [`docs/wc-draft-game-design.md`](../d
 # from the repo root, Node 20 via fnm (see memory: reference_node_environment)
 npm install
 npm run data:fetch  --workspace wcdraft   # downloads the men's T20I (≈15 MB) and ODI (≈18 MB) zips into wcdraft/.cache and extracts them (≈790 MB total)
-npm run data:build  --workspace wcdraft   # ≈7 s, ≈230 MB peak RAM → data/out/
+npm run data:bowlers --workspace wcdraft  # bowler types for everyone in the archives → data/labels/bowler-types.csv
+npm run data:build  --workspace wcdraft   # ≈40 s → data/out/
 npm run data:labels --workspace wcdraft   # (re)generates data/labels/players.csv, preserving hand edits
 npm test            --workspace wcdraft   # acceptance baselines against the spec's measured numbers
 ```
@@ -155,12 +156,23 @@ npm run ratings:build --workspace wcdraft   # ≈16 s → data/out/ratings/<edit
    positions only; `MODEL.positionPrior`). A No. 10 with no record is an average No. 10: 2024
    tail-enders' mid-overs hazard moved from the population's 5.1% to 5.7% per ball (death overs
    ≈ 11%), scoring from 1.04 to 0.99 runs a ball. Bowling still rests on neutral.
-   **Pace/spin split** (same day): each batter's form + career balls are also kept by the bowler's
-   class (labels file), and `batting.byBowlClass` holds his relative vector against pace and against
-   spin divided by his overall one, shrunk (200 balls, hazard 600) and clipped to 0.6–1.6. The
-   engine multiplies the striker's vector by it for the bowler's class, on top of the population
-   hand × class matchup term; the card shows "v pace / v spin" as the headline shifted by that edge
-   once he has faced 60 balls of the class (157 of 284 2024 player-editions carry both).
+   **Pace/spin split** (rebuilt the same day; `analysis/class-split.ts`, `bowlClassSplit` in
+   `rate.ts`). `data/labels/bowler-types.csv` (`npm run data:bowlers`) gives the type of every
+   bowler in the T20I, league and ODI archives, not only World Cup players; see "Bowler types"
+   below. Each ball a World Cup player faced is filed by source and class against an average
+   batter of the same hand, against that class, in that source, year and phase, each ball once.
+   Inside each source the expected counts are scaled to the batter's own level, so a class is
+   judged against him and a format gap cannot pass for a pace/spin gap. The sources pool (league
+   ×1; ODI ×0.25 and only when T20 balls against a class are under 60, decided 2026-10-30), each
+   class shrinks toward his level (2,000 balls, hazard 6,000), the two are held to a mean of 1 over
+   the balls he faced and clipped to 0.6–1.6. The engine multiplies the striker's vector by it for
+   the bowler's class, on top of the population hand × class matchup term; the card shows the
+   headline shifted by both. Every batter the card shows has both numbers: `estimated` (printed
+   with `*`) under 60 balls even with ODIs, where the residual is close to 1 and hand does the
+   work; `fromOdi` (a small ODI tag) when ODIs were needed. 1,421 of 1,638 shown batters have 60+
+   real balls of both. The evidence and the strengths are in the `MODEL.bowlClassSplit` comment.
+   Expect small gaps: the old split (prior 200) was about four times wider than batters' actual
+   splits in World Cups, so most cards now differ by 2 or 3 points.
 9. **Tiers, roles and phases** (spec §5.6). The headline value weights phases by the player's own
    exposure (a finisher over the death overs he bats in, a new-ball bowler over the powerplay;
    population weights as a 60-ball prior), so the card `tier` is role-relative: the better skill
@@ -185,6 +197,28 @@ stability 0.76 / 0.59 vs 0.45 / 0.44 raw. Known limits for Yash's review: Erasmu
 rates 99 at bowling after a 0.35 transfer share (the two-sided bowling model is the parked fix);
 anchors with low dismissal rates (Kohli 2022/2024 in the 70s) are undervalued because hazard is
 shrunk hard; ODI priors for 2007/2009 are crude; Sundar 2026 bowls 89 with the Squad Player tag.
+
+## Bowler types
+
+`npm run data:bowlers` writes `data/labels/bowler-types.csv`: bowling type and batting hand for
+everyone who bowled or faced a ball in the archives (run it before `data:build`). The matchup term
+stays on the World Cup sheet `players.csv`; this sheet drives the pace/spin split and the pace and
+spin shares in the grounds brief. First non-empty wins, matched by person id, never by name:
+
+1. `data/labels/bowler-entries*.csv`: reviewed rows, each with a source link
+2. rows entered by hand in `players.csv`
+3. `mixed` when the snapshot lists both a pace and a spin style. Cricsheet has no type per ball, so
+   those balls stay out of the split unless an entry settles the bowler's main style
+4. the rest of `players.csv`, then the `player_meta` snapshot by Cricsheet id, then by Cricinfo key
+
+98.3% of balls bowled have a label. `bowler-entries.csv` holds 143 researched rows (associate
+bowlers and post-March-2025 debutants the snapshot lacks, plus the main style of dual-style
+bowlers; single-source rows say so in `notes`). 106 bowlers with 120+ balls are still unlabelled:
+sources conflicted, no source was found, or the research hit its search limit first. Their balls
+stay out of the split.
+
+To add a bowler, add a row to `bowler-entries.csv` with `personId,name,bowlingType,handedness,sourceUrl,notes`
+and rerun `data:bowlers`, `data:build` and `ratings:build`. Sources are never scraped from Cricinfo.
 
 ## Engine (Phase 2)
 

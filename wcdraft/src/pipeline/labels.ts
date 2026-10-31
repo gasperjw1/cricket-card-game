@@ -196,12 +196,12 @@ function readExisting(): Map<string, LabelRow> {
   return out;
 }
 
-function toCsv<C extends readonly string[]>(columns: C, rows: Record<C[number], string>[]): string {
+export function toCsv<C extends readonly string[]>(columns: C, rows: Record<C[number], string>[]): string {
   const esc = (v: string) => (/[",\n]/.test(v) ? `"${v.replace(/"/g, '""')}"` : v);
   return [columns.join(","), ...rows.map((r) => columns.map((c) => esc(r[c as C[number]] ?? "")).join(","))].join("\n") + "\n";
 }
 
-function parseCsvLine(line: string): string[] {
+export function parseCsvLine(line: string): string[] {
   const out: string[] = [];
   let cur = "";
   let quoted = false;
