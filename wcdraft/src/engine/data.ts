@@ -35,7 +35,8 @@ export interface SquadOut {
   team: string;
   standIn: boolean;
   source: string;
-  players: { id: string; name: string; matches: number }[];
+  /** `exposure`: legal balls faced and bowled per phase in the edition itself (missing in older outputs). */
+  players: { id: string; name: string; matches: number; exposure?: { bat: Record<Phase, number>; bowl: Record<Phase, number> } }[];
   defaultXI: { id: string; name: string }[];
   defaultBowlingOrder: { id: string; name: string }[];
   /** Stumpings in the edition's tournament and form window, most first. */
@@ -48,9 +49,7 @@ export interface EnvironmentOut {
   runsPerOver: number;
   chaseUplift: number;
   tossFieldPct: number;
-  widesPerOver: number;
-  noBallsPerOver: number;
-  extrasPerOver: number;
+  extrasByPhase: Record<Phase, { wides: number; noBalls: number; extras: number; byes?: number; runsPerWide?: number }>;
   legalBalls: number;
   reducedInnings: number;
   rain: { dlFinishes: number; noResults: number };
@@ -211,6 +210,9 @@ export function toEnginePlayer(r: PlayerRating, pops: EditionPopulations, label?
     keeper: !!label && (label.keeper === "Y" || label.keeperCareer === "Y" || Number(label.keeperAnyT20I ?? 0) > 0),
     stumpings: Number(label?.keeperAnyT20I ?? 0),
     batVsClass: { pace: r.batting.byBowlClass?.pace.rel ?? UNIT_VECTOR, spin: r.batting.byBowlClass?.spin.rel ?? UNIT_VECTOR },
+    style: r.style?.tag ?? null,
+    shape: r.shape ?? null,
+    squeezer: null,
     id: r.personId,
     name: r.name,
     batting: r.batting.vectors,
@@ -240,7 +242,8 @@ export function buildEditionData(input: EditionInputs, situation?: SituationMode
   if (!populations) throw new Error(`no populations for ${input.editionId}; run ratings:build`);
   const players = new Map(input.ratings.filter((r) => r.editionId === input.editionId).map((r) => [`${r.team}|${r.personId}`, toEnginePlayer(r, populations, input.labels.get(r.personId))]));
   centreOnCohort(players, squads);
-  const format = input.formats.find((f) => f.editionId === input.editionId);
+  markSqueezers(players);
+  const format =input.formats.find((f) => f.editionId === input.editionId);
   if (!format) throw new Error(`no format for ${input.editionId} in formats.json`);
   const progression = buildProgression(format, { standIn: edition.standIn, slotChanges: edition.slotChanges ?? [] });
   const afghanistanFixtures = input.afghanistanFixtures.filter((f) => f.editionId === input.editionId);
@@ -273,24 +276,42 @@ export function teamProfiles(edition: EditionOut, squads: Map<string, SquadOut>,
  */
 export function centreOnCohort(players: Map<string, EnginePlayer>, squads: Map<string, SquadOut>): void {
   for (const skill of ["battingRel", "bowlingRel"] as const) {
+    const exposureKey = skill === "battingRel" ? "bat" : "bowl";
+    // Weight each player by the balls he actually faced or bowled in that phase of the edition, so
+    // the cohort mean is the mean the base rates were measured over (2026-11-01 audit: weighting by
+    // matches let a No. 10 count like an opener in the powerplay and put the batters who face the
+    // balls 7–11% above "neutral"). Editions without exposure data fall back to matches.
+    const hasExposure = [...squads.values()].some((s) => s.players.some((m) => m.exposure));
     const sums = Object.fromEntries(PHASE_LIST.map((p) => [p, Object.fromEntries(OUTCOMES.map((k) => [k, 0])) as Vector])) as PhaseVectors;
-    let weight = 0;
+    const weight: Record<Phase, number> = { pp: 0, mid: 0, death: 0 };
     for (const squad of squads.values()) {
       if (squad.standIn) continue;
       for (const member of squad.players) {
         const p = players.get(`${squad.team}|${member.id}`);
         if (!p || member.matches <= 0) continue;
-        const w = member.matches * (skill === "bowlingRel" ? (p.canBowl ? 1 : 0) : 1);
-        if (w <= 0) continue;
-        weight += w;
-        for (const ph of PHASE_LIST) for (const k of OUTCOMES) sums[ph][k] += w * p[skill][ph][k];
+        for (const ph of PHASE_LIST) {
+          const w = hasExposure ? member.exposure?.[exposureKey][ph] ?? 0 : member.matches * (skill === "bowlingRel" ? (p.canBowl ? 1 : 0) : 1);
+          if (w <= 0) continue;
+          weight[ph] += w;
+          for (const k of OUTCOMES) sums[ph][k] += w * p[skill][ph][k];
+        }
       }
     }
-    if (weight <= 0) continue;
     for (const p of players.values()) {
-      for (const ph of PHASE_LIST) for (const k of OUTCOMES) p[skill][ph][k] = p[skill][ph][k] / Math.max(1e-4, sums[ph][k] / weight);
+      for (const ph of PHASE_LIST) {
+        if (weight[ph] <= 0) continue;
+        for (const k of OUTCOMES) p[skill][ph][k] = p[skill][ph][k] / Math.max(1e-4, sums[ph][k] / weight[ph]);
+      }
     }
   }
+}
+
+/** The edition's top third of death pacers by dot rate are its Squeezers; every other pacer is marked false. */
+export function markSqueezers(players: Map<string, EnginePlayer>): void {
+  const pacers = [...players.values()].filter((p) => p.canBowl && p.bowlClass?.startsWith("pace"));
+  const ranked = pacers.filter((p) => !p.bowlLowSample && (p.bowlingShares?.death ?? 0) >= ENGINE.squeezer.minDeathShare).sort((a, b) => b.bowlingRel.death["0"] - a.bowlingRel.death["0"]);
+  const top = new Set(ranked.slice(0, Math.round(ranked.length * ENGINE.squeezer.share)));
+  for (const p of pacers) p.squeezer = top.has(p);
 }
 
 /** The match environment for an edition at a venue (venue scoring factor shrunk toward the edition). */
@@ -301,13 +322,25 @@ const DISMISSAL_NORM: Record<DismissalKind, number> = { caught: 0.6, bowled: 0.1
 
 /** Normalised dismissal shares from a profile's fingerprint (percentages by kind; unknown kinds dropped). */
 export function dismissalMixOf(fingerprint: Record<string, number> | undefined): Record<DismissalKind, number> {
-  const raw = Object.fromEntries(DISMISSAL_KINDS.map((k) => [k, fingerprint?.[k] ?? 0])) as Record<DismissalKind, number>;
+  // The fingerprint counts every wicket; the striker's W cell only dismisses the striker, so the
+  // run-out share is scaled to the striker's (the rest is drawn separately as non-striker run outs).
+  const raw = Object.fromEntries(DISMISSAL_KINDS.map((k) => [k, (fingerprint?.[k] ?? 0) * (k === "run out" ? ENGINE.strikerRunOutShare : 1)])) as Record<DismissalKind, number>;
   const total = DISMISSAL_KINDS.reduce((a, k) => a + raw[k], 0);
   if (total <= 0) return { ...DISMISSAL_NORM };
   return Object.fromEntries(DISMISSAL_KINDS.map((k) => [k, raw[k] / total])) as Record<DismissalKind, number>;
 }
 
-export function matchEnvironment(data: EditionData, venueId: string | null, overs = 20): MatchEnvironment {
+export interface EnvironmentOptions {
+  /**
+   * Where the base outcome rates come from: the edition's own tournament balls ("edition", the
+   * default, what the game plays), or the form-window population on the edition's opponent mix
+   * ("window"), which has not seen the tournament. The out-of-sample replay uses "window"; extras,
+   * dismissal mix, rain, venue factors and chase uplift still come from the edition's profile.
+   */
+  base?: "edition" | "window";
+}
+
+export function matchEnvironment(data: EditionData, venueId: string | null, overs = 20, options: EnvironmentOptions = {}): MatchEnvironment {
   const env = data.edition.environment;
   const venue = venueId ? data.venues.get(venueId) : undefined;
   let venueFactor = 1;
@@ -322,7 +355,9 @@ export function matchEnvironment(data: EditionData, venueId: string | null, over
     const n = v.matches ?? 0;
     chaseUplift = (n * venueUplift + ENGINE.rain.venuePriorMatches * chaseUplift) / (n + ENGINE.rain.venuePriorMatches);
   }
-  const base = Object.fromEntries(PHASE_LIST.map((p) => [p, Object.fromEntries(OUTCOMES.map((k) => [k, env.populationVectors[p]?.[k] ?? 1 / 7])) as Vector])) as PhaseVectors;
+  const base = options.base === "window"
+    ? (Object.fromEntries(PHASE_LIST.map((p) => [p, { ...data.populations.valuePop.bat[p] }])) as PhaseVectors)
+    : (Object.fromEntries(PHASE_LIST.map((p) => [p, Object.fromEntries(OUTCOMES.map((k) => [k, env.populationVectors[p]?.[k] ?? 1 / 7])) as Vector])) as PhaseVectors);
   const tieBreak = data.edition.rules.tieBreak === "super-over" ? "super-over" : data.edition.rules.tieBreak === "bowl-out" ? "bowl-out" : "none";
   // Rain: affected matches ≈ DL finishes + no-results + half of the reduced innings not already counted;
   // the venue's rate shrunk toward the edition's with a prior of a few matches.
@@ -345,9 +380,13 @@ export function matchEnvironment(data: EditionData, venueId: string | null, over
     venueFactor,
     chaseUplift: +chaseUplift.toFixed(4),
     tossFieldPct: env.tossFieldPct,
-    widesPerBall: env.widesPerOver / 6,
-    noBallsPerBall: env.noBallsPerOver / 6,
-    byesPerBall: Math.max(0, env.extrasPerOver - env.widesPerOver - env.noBallsPerOver) / 6,
+    extras: Object.fromEntries(PHASE_LIST.map((p) => {
+      const e = env.extrasByPhase[p];
+      // Real byes and leg-byes when the profile has them; older profiles fall back to "everything
+      // that is not a wide or a no-ball", which over-counts (extra runs on wides land there).
+      const byes = e.byes !== undefined ? e.byes : Math.max(0, e.extras - e.wides - e.noBalls);
+      return [p, { wides: e.wides / 6, noBalls: e.noBalls / 6, byes: byes / 6, runsPerWide: e.runsPerWide ?? 1 }];
+    })) as MatchEnvironment["extras"],
     overs,
     maxOversPerBowler: Math.round(overs / 5),
     tieBreak,

@@ -1,5 +1,5 @@
 import type { Phase } from "../../../wcdraft/src/cricsheet/match.ts";
-import type { BattingArchetype, BowlingArchetype, Tier } from "../../../wcdraft/src/ratings/model.ts";
+import type { BattingArchetype, BowlingArchetype, StyleOut, Tier } from "../../../wcdraft/src/ratings/model.ts";
 import type { CoachOut } from "../../../wcdraft/src/engine/data.ts";
 import type { TournamentResult } from "../../../wcdraft/src/engine/tournament.ts";
 
@@ -24,6 +24,11 @@ export interface PoolPlayer {
   tierScore: number;
   role: "batter" | "bowler" | "all-rounder" | "unknown";
   archetype: { batting: BattingArchetype | null; bowling: BowlingArchetype | null };
+  /** How the player bats: tempo against peers, null with too few balls anywhere. */
+  style: StyleOut | null;
+  /** Balls from after this World Cup behind a projected number; 0 when the number is not projected. */
+  batProjected: number;
+  bowlProjected: number;
   bat: number;
   bowl: number;
   batPhases: Record<Phase, number>;

@@ -7,7 +7,7 @@ import type { PoolPlayer } from "../src/game/types.ts";
 
 const player = (over: Partial<PoolPlayer>): PoolPlayer => ({
   id: over.id ?? Math.random().toString(36).slice(2), name: "X", team: "T", editionId: "2024", standIn: false, tier: "Silver", tierScore: 0.5, role: "batter",
-  archetype: { batting: "top order", bowling: null }, bat: 70, bowl: 50, batPhases: { pp: 70, mid: 70, death: 70 }, bowlPhases: { pp: 50, mid: 50, death: 50 },
+  archetype: { batting: "top order", bowling: null }, style: null, batProjected: 0, bowlProjected: 0, bat: 70, bowl: 50, batPhases: { pp: 70, mid: 70, death: 70 }, bowlPhases: { pp: 50, mid: 50, death: 50 },
   batLow: false, bowlLow: true, batShown: true, bowlShown: false, domesticBalls: { bat: 0, bowl: 0 }, batWeights: { pp: 0.3, mid: 0.45, death: 0.25 }, vsPace: null, vsSpin: null, squadPlayer: false, position: 3, positionless: false, hand: "R", bowlingType: null, keeper: false, ...over,
 });
 

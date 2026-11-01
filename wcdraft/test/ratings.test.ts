@@ -10,6 +10,7 @@ import { archiveIsReady } from "../src/cricsheet/archive.js";
 import { runBuild, type BuildResult } from "../src/pipeline/build.js";
 import { auditCards, timelessCandidates, transferGaps, validate } from "../src/ratings/analysis.js";
 import { MODEL, OUTCOMES, PHASE_LIST, TIERS, type PlayerEditionIn } from "../src/ratings/model.js";
+import { styleOf } from "../src/analysis/tempo.js";
 import { rateAll } from "../src/ratings/rate.js";
 import { normalise, shrink, shrinkWithHazard, transport } from "../src/ratings/vectors.js";
 
@@ -36,6 +37,21 @@ describe("vector arithmetic", () => {
 const ready = archiveIsReady();
 let result: BuildResult | null = null;
 const build = (): BuildResult => (result ??= runBuild());
+
+describe("batting styles", () => {
+  const cuts = { fastBoundary: 0.02, fastRuns: 0.1, lowDot: -0.03, big: 0.07 };
+  it("reads the six styles from how an innings starts and grows", () => {
+    assert.equal(styleOf({ startBoundary: 0.09, startDot: -0.08, startRuns: 0.4, laterRuns: 0.4 }, cuts), "Aggressor");
+    assert.equal(styleOf({ startBoundary: 0, startDot: -0.05, startRuns: 0, laterRuns: 0.2 }, cuts), "Complete");
+    assert.equal(styleOf({ startBoundary: 0, startDot: 0.05, startRuns: 0, laterRuns: 0.2 }, cuts), "Builder");
+    assert.equal(styleOf({ startBoundary: 0.05, startDot: 0, startRuns: 0.2, laterRuns: 0 }, cuts), "Starter");
+    assert.equal(styleOf({ startBoundary: 0, startDot: -0.05, startRuns: 0, laterRuns: 0 }, cuts), "Rotator");
+    assert.equal(styleOf({ startBoundary: 0, startDot: 0.05, startRuns: 0, laterRuns: 0 }, cuts), "Anchor");
+  });
+  it("keeps boundaries without a quick start out of Aggressor", () => {
+    assert.equal(styleOf({ startBoundary: 0.03, startDot: 0.07, startRuns: 0.02, laterRuns: 0.26 }, cuts), "Builder");
+  });
+});
 
 describe("Phase 1 ratings", { skip: !ready && "archive not fetched" }, () => {
   it("rates every player-edition within the display range with normalised vectors", () => {
@@ -181,11 +197,25 @@ describe("Phase 1 ratings", { skip: !ready && "archive not fetched" }, () => {
       if (x.role === "bowler" || x.role === "all-rounder") assert.ok(x.bowling.shown, `${x.name} ${x.editionId} is a ${x.role} with hidden bowling`);
       if (x.role === "batter" || x.role === "all-rounder") assert.ok(x.batting.shown, `${x.name} ${x.editionId} is a ${x.role} with hidden batting`);
     }
-    // Debutants with no earlier record are rated from the tournament itself; a player with no record
-    // anywhere (appeared, neither batted nor bowled) is a Bronze card with both skills hidden.
+    // Projection is off by default (2026-11-01 audit: its window starts at the edition itself, so it
+    // leaked the tournament into replays). A debutant is rated from the tournament's own balls and
+    // no card is projected.
     const rohit = get("RG Sharma", "2007");
     assert.equal(rohit.batting.evidence.source, "tournament");
-    assert.ok(rohit.batting.shown, "Rohit 2007 batting shown from the tournament");
+    assert.ok(rohit.batting.shown && !rohit.batting.projected, "Rohit 2007 batting from the tournament, not projected");
+    assert.ok(r.every((x) => !x.batting.projected && !x.bowling.projected), "nothing is projected by default");
+    // Opted in, projected cards borrow later balls, fix a thin record's role and stop short of Elite.
+    const projected = rateAll(build(), { projection: true });
+    const getP = (name: string, ed: string) => projected.find((x) => x.name === name && x.editionId === ed)!;
+    assert.equal(getP("RG Sharma", "2007").batting.evidence.source, "later");
+    assert.equal(getP("GJ Maxwell", "2012").role, "all-rounder");
+    assert.equal(getP("Shakib Al Hasan", "2007").role, "all-rounder");
+    for (const x of projected) {
+      const best = x.batting.percentile >= x.bowling.percentile ? x.batting : x.bowling;
+      if (best.projected) assert.notEqual(x.tier, "Elite", `${x.name} ${x.editionId} is Elite on a projected number`);
+      if (x.batting.projected) assert.ok(x.batting.evidence.laterBalls >= MODEL.projection.minBalls.bat);
+    }
+    assert.equal(getP("V Kohli", "2024").batting.projected, false);
     const mathews = get("AD Mathews", "2009");
     assert.ok(mathews.batting.shown || mathews.bowling.shown, "Mathews 2009 (debutant with a thin IPL record) has a card");
     // Position prior: tail-enders rest on the tail's own pooled vector, so their mid-overs hazard sits

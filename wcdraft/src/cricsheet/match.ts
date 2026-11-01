@@ -51,6 +51,8 @@ export interface Ball {
   bowler: string;
   runsBatter: number;
   runsExtras: number;
+  /** Byes and leg-byes on this delivery (runs that are neither the batter's nor the bowler's fault). */
+  runsByes: number;
   runsTotal: number;
   /** Runs charged to the bowler: total minus byes/leg-byes/penalty. */
   runsConceded: number;
@@ -261,7 +263,7 @@ function normaliseInnings(
 
       balls.push({
         over: overIdx, batter: batterId, nonStriker: nonStrikerId, bowler: bowlerId,
-        runsBatter: d.runs.batter, runsExtras: d.runs.extras, runsTotal: d.runs.total, runsConceded,
+        runsBatter: d.runs.batter, runsExtras: d.runs.extras, runsByes: (ex.byes ?? 0) + (ex.legbyes ?? 0), runsTotal: d.runs.total, runsConceded,
         legal, wide, noBall, isFour, isSix, wickets: wk, review,
       });
 

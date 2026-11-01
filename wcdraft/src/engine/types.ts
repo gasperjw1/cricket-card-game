@@ -5,7 +5,7 @@
 
 import type { OutcomeKey, Phase } from "../cricsheet/match.js";
 import type { BowlClass } from "../analysis/matchups.js";
-import type { BattingArchetype, BowlingArchetype, PhaseVectors, Vector } from "../ratings/model.js";
+import type { BattingArchetype, BattingStyle, BowlingArchetype, PhaseVectors, StartShape, Vector } from "../ratings/model.js";
 
 export type { OutcomeKey, Phase, PhaseVectors, Vector };
 
@@ -36,6 +36,11 @@ export interface EnginePlayer {
   stumpings: number;
   /** Within-player batting residual against pace and against spin (1 = his overall level); multiplies his relative vector by the bowler's class. */
   batVsClass: Record<"pace" | "spin", Vector>;
+  /** How he starts an innings and how he answers a chase; null with too few balls anywhere. */
+  style: BattingStyle | null;
+  shape: StartShape | null;
+  /** Pacers only: he is in the edition's top third for death dots (true) or not (false). Null for everyone else. */
+  squeezer: boolean | null;
   /** Display-only. */
   tier: string;
   battingDisplay: number;
@@ -66,9 +71,9 @@ export interface MatchEnvironment {
   chaseUplift: number;
   /** Probability the toss winner fields. */
   tossFieldPct: number;
-  widesPerBall: number;
-  noBallsPerBall: number;
-  byesPerBall: number;
+  /** Chance per delivery by phase. `byes` also carries the wide and no-ball runs beyond the first. */
+  /** Per legal ball by phase; `byes` are byes and leg-byes, `runsPerWide` the mean runs a wide costs (≥ 1). */
+  extras: Record<Phase, { wides: number; noBalls: number; byes: number; runsPerWide?: number }>;
   overs: number;
   maxOversPerBowler: number;
   tieBreak: "super-over" | "bowl-out" | "none";
@@ -97,6 +102,8 @@ export interface Dismissal {
   fielder: { id: string; name: string } | null;
   /** The fielder is the side's keeper (the scorecard's dagger). */
   byKeeper: boolean;
+  /** A run out at the non-striker's end: the ball's `nonStriker` went, not the striker. */
+  nonStriker?: boolean;
 }
 
 export interface BallRecord {

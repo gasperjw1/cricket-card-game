@@ -5,7 +5,7 @@
 
 import type { SituationTables } from "../../../wcdraft/src/analysis/situation.ts";
 import type { MatchupTables } from "../../../wcdraft/src/analysis/matchups.ts";
-import type { EditionPopulations, PlayerRating } from "../../../wcdraft/src/ratings/model.ts";
+import type { EditionPopulations, PlayerRating, StyleResults } from "../../../wcdraft/src/ratings/model.ts";
 import { readCsv } from "../../../wcdraft/src/util/csv.ts";
 import { SituationModel } from "../../../wcdraft/src/engine/ball.ts";
 import { buildEditionData, type AfghanistanFixture, type CaptainOut, type CoachOut, type EditionData, type EditionOut, type LeaderOut, type PlayerLabel, type SquadOut, type VenueOut } from "../../../wcdraft/src/engine/data.ts";
@@ -73,6 +73,13 @@ export function loadShared(): Promise<SharedData> {
     };
   })();
   return sharedPromise;
+}
+
+let styleResults: Promise<StyleResults | null> | null = null;
+
+/** Runs added by batting style at each World Cup; null when the build has not written them. */
+export function loadStyleResults(): Promise<StyleResults | null> {
+  return (styleResults ??= json<StyleResults>("style-results.json").catch(() => null));
 }
 
 const squadCache = new Map<string, Promise<SquadOut[]>>();

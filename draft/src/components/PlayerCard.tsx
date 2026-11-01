@@ -1,3 +1,4 @@
+import type { BattingStyle, StyleOut } from "../../../wcdraft/src/ratings/model.ts";
 import type { PoolPlayer, VsClass } from "../game/types.ts";
 
 export function TierBadge({ tier }: { tier: string }) {
@@ -31,6 +32,28 @@ const vsTitle = (label: string, v: VsClass | null) => {
   return `${label}: from ${v.balls} balls faced${v.odi ? ", ODIs included because there were too few in T20" : ""}`;
 };
 
+/** What each batting style means, for tooltips and the who-won panel. */
+export const STYLE_NOTES: Record<BattingStyle, string> = {
+  Aggressor: "fast from ball one and keeps going",
+  Complete: "rotates early, then scores big",
+  Builder: "starts slowly, then scores big",
+  Starter: "fast start, ordinary after it",
+  Rotator: "few dots, few boundaries",
+  Anchor: "steady start, few boundaries",
+};
+
+const signedPoints = (n: number) => `${n >= 0 ? "+" : "−"}${Math.abs(n).toFixed(1)}`;
+
+function styleTitle(s: StyleOut): string {
+  return `${s.tag}: ${STYLE_NOTES[s.tag]}. Against peers, first 10 balls: boundary % ${signedPoints(s.startBoundary)}, dot % ${signedPoints(s.startDot)}, strike rate ${signedPoints(s.startSR)}. Ball 11 on: strike rate ${signedPoints(s.laterSR)}.`;
+}
+
+/** The card's projected tag, or null when both numbers rest on the record before the World Cup. */
+function projectedTitle(p: PoolPlayer): string | null {
+  const skills = [p.batProjected && p.batShown ? `Batting (${p.batProjected} balls)` : "", p.bowlProjected && p.bowlShown ? `Bowling (${p.bowlProjected} balls)` : ""].filter(Boolean);
+  return skills.length ? `${skills.join(" and ")} leans on the balls after this World Cup began, because the record before it was too thin.` : null;
+}
+
 export function archetypeLabel(p: PoolPlayer): string {
   const parts: string[] = [];
   if (p.role !== "bowler" && p.archetype.batting) parts.push(p.archetype.batting);
@@ -41,6 +64,7 @@ export function archetypeLabel(p: PoolPlayer): string {
 
 export function PlayerCard({ player, selected, compact, ineligible, onClick }: { player: PoolPlayer; selected?: boolean; compact?: boolean; ineligible?: boolean; onClick?: () => void }) {
   const p = player;
+  const projected = projectedTitle(p);
   return (
     <button type="button" className={`player ${selected ? "selected" : ""} ${compact ? "compact" : ""} ${ineligible ? "ineligible" : ""}`} onClick={onClick} disabled={!onClick || ineligible} title={ineligible ? "Your side still needs bowlers or a keeper; only they can be taken now" : undefined}>
       <div className="player-head">
@@ -50,10 +74,12 @@ export function PlayerCard({ player, selected, compact, ineligible, onClick }: {
       </div>
       <div className="player-line">
         <span className="arch">{archetypeLabel(p)}</span>
+        {p.style && p.batShown && p.role !== "bowler" && <span className={`tag style style-${p.style.tag.toLowerCase()}`} title={styleTitle(p.style)}>{p.style.tag}</span>}
         {p.keeper && <span className="tag">WK</span>}
         {p.hand && <span className="tag muted">{p.hand === "L" ? "LHB" : "RHB"}</span>}
         {p.bowlingType && p.bowlingType !== "none" && (p.bowlShown || p.role === "bowler" || p.role === "all-rounder") && <span className="tag muted" title={bowlingTypeName(p.bowlingType)}>{p.bowlingType}</span>}
         {p.squadPlayer && <span className="tag muted">squad player</span>}
+        {projected && <span className="tag muted" title={projected}>projected</span>}
       </div>
       {!compact && (
         <div className="phases">

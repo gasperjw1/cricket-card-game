@@ -16,6 +16,8 @@ import { ContextPopulation } from "../analysis/context-population.js";
 import { SituationAnalysis, type SituationTables } from "../analysis/situation.js";
 import { ClassSplitAnalysis, type ClassSource, type ClassSplitOut } from "../analysis/class-split.js";
 import { MatchupAnalysis, bowlGroupOf, handOf, type MatchupTables } from "../analysis/matchups.js";
+import { PressureAnalysis } from "../analysis/pressure.js";
+import { TempoAnalysis } from "../analysis/tempo.js";
 import { setBowlingTypeLookup } from "../analysis/environment.js";
 import { buildCaptaincy, type CaptaincyTables } from "../analysis/captaincy.js";
 import { DomesticAnalysis, type DomesticOut } from "../analysis/domestic.js";
@@ -32,7 +34,8 @@ import { VenuesAnalysis } from "../analysis/venues.js";
 import { WindowPopulationAnalysis } from "../analysis/window-population.js";
 import { loadConfig, type Config } from "../config.js";
 import { ARCHIVE, ARCHIVES, LEAGUE_ARCHIVES, archiveIsReady, loadIndex, readMatch, readSnapshot, type MatchIndexEntry } from "../cricsheet/archive.js";
-import { isCompleteInnings, mainInnings, normaliseMatch } from "../cricsheet/match.js";
+import { PHASES, isCompleteInnings, mainInnings, normaliseMatch } from "../cricsheet/match.js";
+import { MODEL, type StyleOut, type StyleResults } from "../ratings/model.js";
 import { addMonths, getOrCreate } from "../util/stats.js";
 
 /** "Has form data" for coverage reporting. */
@@ -68,7 +71,7 @@ export interface BuildResult {
   };
   editions: ReturnType<EditionsAnalysis["summary"]>;
   venues: ReturnType<VenuesAnalysis["summary"]>;
-  playerEditions: (ReturnType<PlayerStore["playerEditions"]>[number] & { domesticToDate: DomesticOut | null; classSplit: ClassSplitOut })[];
+  playerEditions: (Omit<ReturnType<PlayerStore["playerEditions"]>[number], "later"> & { domesticToDate: DomesticOut | null; classSplit: ClassSplitOut; later: (ReturnType<PlayerStore["playerEditions"]>[number]["later"] & { league: ReturnType<DomesticAnalysis["laterFor"]> }) | null; style: StyleOut | null })[];
   people: ReturnType<PlayerStore["people"]>;
   squads: ReturnType<PlayerStore["squadsOut"]>;
   bowlingUsage: ReturnType<BowlingUsageAnalysis["summary"]>;
@@ -86,6 +89,8 @@ export interface BuildResult {
   situation: SituationTables;
   /** Engine matchup tables (Phase 2b): observed vs expected outcomes by batting hand × bowler class × phase. */
   matchups: MatchupTables;
+  /** Runs added by batting style at each World Cup (analysis/tempo.ts). */
+  styleResults: StyleResults;
   /** Captaincy ratings (wins above Elo expectation, shrunk) joined to people; coach philosophy tags and intent profiles. */
   captaincy: CaptaincyTables;
   coaches: CoachTables;
@@ -122,7 +127,7 @@ export function runBuild(log: (msg: string) => void = () => {}): BuildResult {
   const windows = editionWindows(index, config, wcEditionOf);
   log(`World Cup editions found: ${windows.map((w) => `${w.id} (${w.start}…${w.end})`).join(", ")}`);
 
-  const store = new PlayerStore(config);
+  const store = new PlayerStore(config, MODEL.projection.targetBalls);
   for (const e of index) {
     const ed = wcEditionOf(e);
     if (!ed) continue;
@@ -214,6 +219,7 @@ export function runBuild(log: (msg: string) => void = () => {}): BuildResult {
     }
     const wcEdition = wcEditionOf(entry);
     const formEditions = windows.filter((w) => w.windowStart <= entry.date && entry.date < w.start).map((w) => w.id);
+    const laterEditions = windows.filter((w) => w.start <= entry.date && entry.date < addMonths(w.start, MODEL.projection.months)).map((w) => w.id);
     // Every match is read: matches after the last edition still feed all-time signals (e.g. stumpings).
 
     const m = normaliseMatch(readMatch(entry.file), entry.id);
@@ -221,7 +227,7 @@ export function runBuild(log: (msg: string) => void = () => {}): BuildResult {
     const venue = wcEdition ? venues.resolve(m) : null;
     // Pre-match Elo of both sides, read before this match updates the ratings.
     const elo = Object.fromEntries(m.teams.map((t) => [t, teamStrength.ratingOf(t, m.date)]));
-    store.addMatch(m, { wcEdition, formEditions, standInFallback: fallbackByMatch.get(entry.id) ?? [], venueId: venue?.id ?? null, elo, context: contextPopulation, contextVenue: CONTEXT_VENUE });
+    store.addMatch(m, { wcEdition, formEditions, standInFallback: fallbackByMatch.get(entry.id) ?? [], laterEditions, venueId: venue?.id ?? null, elo, context: contextPopulation, contextVenue: CONTEXT_VENUE });
     teamStyle.add(m);
     teamStrength.add(m);
     situation.add(m);
@@ -288,11 +294,16 @@ export function runBuild(log: (msg: string) => void = () => {}): BuildResult {
     for (const { entry, competition } of leagueIndex) domestic.addPopulation(normaliseMatch(readMatch(entry.file), entry.id), competition);
     domestic.freeze();
     const pending = [...windows].sort((a, b) => a.start.localeCompare(b.start));
+    const atEdition = (w: EditionWindow) => {
+      const members = store.squadMembers.get(w.id) ?? [];
+      domestic.snapshot(w.id, members);
+      domestic.watchLater(w.id, members, addMonths(w.start, MODEL.projection.months), MODEL.projection.targetBalls);
+    };
     for (const { entry, competition } of leagueIndex) {
-      while (pending.length && pending[0]!.start <= entry.date) { const w = pending.shift()!; domestic.snapshot(w.id, store.squadMembers.get(w.id) ?? []); }
+      while (pending.length && pending[0]!.start <= entry.date) atEdition(pending.shift()!);
       domestic.add(normaliseMatch(readMatch(entry.file), entry.id), competition);
     }
-    while (pending.length) { const w = pending.shift()!; domestic.snapshot(w.id, store.squadMembers.get(w.id) ?? []); }
+    while (pending.length) atEdition(pending.shift()!);
     log(`Read ${leagueIndex.length} domestic T20 files across ${new Set(leagueIndex.map((x) => x.competition)).size} leagues; ${domestic.playerCount} people with domestic balls`);
   } else {
     log("No domestic T20 archives fetched: domesticToDate will be empty (run `npm run data:fetch`)");
@@ -309,12 +320,42 @@ export function runBuild(log: (msg: string) => void = () => {}): BuildResult {
     [...windows].sort((a, b) => a.start.localeCompare(b.start)).map((w) => ({ id: w.id, start: w.start })),
     new Set([...store.squadMembers.values()].flatMap((s) => [...s])),
   );
-  for (const { source, entries } of classSources) for (const entry of entries) classSplit.addPopulation(normaliseMatch(readMatch(entry.file), entry.id), source);
+  // Batting tempo shares these two passes: peers first, then every T20 ball against them.
+  const tempo = new TempoAnalysis();
+  const pressure = new PressureAnalysis();
+  for (const { source, entries } of classSources) {
+    for (const entry of entries) {
+      const m = normaliseMatch(readMatch(entry.file), entry.id);
+      classSplit.addPopulation(m, source);
+      if (source !== "odi") tempo.addPopulation(m);
+    }
+  }
   classSplit.freeze();
-  for (const { source, entries } of classSources) for (const entry of entries) classSplit.add(normaliseMatch(readMatch(entry.file), entry.id), source, source === "t20i" ? wcEditionOf(entry) : null);
+  for (const { source, entries } of classSources) {
+    for (const entry of entries) {
+      const m = normaliseMatch(readMatch(entry.file), entry.id);
+      const wcEdition = source === "t20i" ? wcEditionOf(entry) : null;
+      classSplit.add(m, source, wcEdition);
+      if (source !== "odi") { tempo.add(m, wcEdition); pressure.add(m); }
+    }
+  }
+  tempo.freeze();
+  log(`Batting styles over long records: ${JSON.stringify(tempo.mix())}`);
 
-  const playerEditions = store.playerEditions().map((row) => ({ ...row, domesticToDate: domestic.blockFor(row.editionId, row.personId), classSplit: classSplit.blockFor(row.editionId, row.personId) }));
+  const playerEditions = store.playerEditions().map((row) => {
+    const league = domestic.laterFor(row.editionId, row.personId);
+    const t20iBalls = PHASES.reduce((a, p) => a + (row.later.bat.bat.phases[p]?.balls ?? 0) + (row.later.bowl.bowl.phases[p]?.balls ?? 0), 0);
+    return {
+      ...row,
+      domesticToDate: domestic.blockFor(row.editionId, row.personId),
+      classSplit: classSplit.blockFor(row.editionId, row.personId),
+      later: t20iBalls > 0 || league ? { ...row.later, league } : null,
+      style: tempo.styleAt(row.personId, Number(row.editionId)),
+      shape: tempo.shapeAt(row.personId, Number(row.editionId)),
+    };
+  });
   const people = store.people();
+  const situationOut = { ...situation.summary(), states: pressure.tables((id, year) => tempo.styleAt(id, year)?.tag ?? null) };
   const teamStrengthOut = teamStrength.summary();
   const teamStyleOut = teamStyle.summary();
   const result: BuildResult = {
@@ -340,8 +381,9 @@ export function runBuild(log: (msg: string) => void = () => {}): BuildResult {
     odiTeamStrength: odiStrength.summary(),
     odiPopulationByYear,
     windowPopulation: windowPopulation.summary(),
-    situation: situation.summary(),
+    situation: situationOut,
     matchups: matchups.summary(),
+    styleResults: tempo.results(situationOut.resources),
     coverage: computeCoverage(playerEditions),
   };
   log(`Built ${result.playerEditions.length} player-editions, ${result.people.length} people, ${result.squads.length} squads in ${((Date.now() - t0) / 1000).toFixed(1)}s`);

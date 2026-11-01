@@ -1101,6 +1101,16 @@ fielding. The simulation is not required to reproduce real results (§11).
   carrying a middle-order survival rate in the mid overs), **pace/spin split** per batter (shown on
   the card, applied by the engine on top of the hand × class term), and the standings tables redrawn
   as proper tables (position, P W L NR Pts NRR, tabular figures, content-sized columns).
+- **Engine refit 2026-11-01** (`docs/wc-draft-engine-refit-2026-11-01.md`, after the two audits of
+  that day): calibrations to 1 / 1 / 1 with the structural causes fixed (ball-weighted centring,
+  non-striker run outs, within-phase streak null, real byes and wide runs, powerplay bowler share),
+  projection off by default, the other agent's innings-phase / shape / found / gear / Squeezer
+  terms parked at 0 after a term-by-term A/B, pressure re-measured at engine strength. Nine
+  editions, 60 sims × 2 seeds: every phase within 0.05 RPO, chase share on real, Brier 0.2013
+  (0.1958 before, but that build was leaking the tournament into its ratings). Players matter:
+  India 2024's real eleven wins 66% and the title 15%, the best eleven by card 78% / 55%, the worst
+  valid eleven 38% / 0%. Exponents stay 0.7 / 0.7 (0.9 is 0.004 better on Brier but widens the
+  first-innings spread 10% beyond real).
 - Not yet built: Cricket-IQ mode (names only), head-to-head, leaderboard (performance score beside
   squad rating), share links, Timeless and Tournament Form tags on cards, ratings-visible career
   stats, coach build bonuses and Dynamic Duos (§5.10–5.11), Positionless slot bonus, rarity tuning

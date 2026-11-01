@@ -35,7 +35,7 @@ export function DraftScreen({ state, editions, venues, squads, onPlace, onReroll
             <h2>{state.spin.team} · {state.spin.editionId}</h2>
             {locked && <p className="small lock-note">Your side still needs {needText} with {need.open} slot{need.open === 1 ? "" : "s"} left, so only players who bowl{need.keeper ? " or keep" : ""} can be taken now.</p>}
             <p className="small">Take one player into a slot. {selected ? (open.natural ? "Highlighted slots fit him; each shows his batting number in that slot." : "No natural slot left; he can fill any open one, at the batting number shown.") : "Tap a player first."}</p>
-            <p className="small card-key">Bat and Bowl: overall, then powerplay / middle / death. * means a thin record or an estimate. ODI means ODI balls filled a gap in the T20 record.</p>
+            <p className="small card-key">Bat and Bowl: overall, then powerplay / middle / death. * means a thin record or an estimate. ODI means ODI balls filled a gap in the T20 record. Projected means the number leans on balls after this World Cup began. The styles are explained under "Which batting styles won".</p>
             <div className="spin-grid">
               {state.spin.players.map((p) => <PlayerCard key={p.id} player={p} selected={selected?.id === p.id} ineligible={!eligible(p, state.picks)} onClick={() => setSelected(selected?.id === p.id ? null : p)} />)}
             </div>

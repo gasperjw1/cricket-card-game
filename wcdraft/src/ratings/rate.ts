@@ -20,7 +20,7 @@ import type { BuildResult } from "../pipeline/build.js";
 import type { MatchupTables } from "../analysis/matchups.js";
 import { ELO_BINS, eloBin, type EloBin } from "../analysis/team-strength.js";
 import { paths, readJson } from "../util/io.js";
-import { MODEL, OUTCOMES, PHASE_LIST, RUNS, type BattingArchetype, type BlockIn, type BowlingArchetype, type ClassSplitPart, type EditionPopulations, type PhaseVectors, type PlayerEditionIn, type PlayerRating, type SkillRating, type Tier as CardTier, type TierConfig, type Vector } from "./model.js";
+import { MODEL, OUTCOMES, PHASE_LIST, RUNS, type BattingArchetype, type BlockIn, type BowlingArchetype, type ClassSplitPart, type EditionPopulations, type PhaseCountsOut, type PhaseVectors, type PlayerEditionIn, type PlayerRating, type PooledCountsIn, type SkillRating, type Tier as CardTier, type TierConfig, type Vector } from "./model.js";
 import { rowMixtureInterp, smoothTwoWay, type TwoWayVectors } from "./two-way.js";
 import { battingValue, blend, bowlingValue, expectedRuns, normalise, relative, shrink, shrinkWithHazard, toVector, transport, UNIFORM } from "./vectors.js";
 
@@ -266,7 +266,12 @@ type PartialSkill = Omit<SkillRating, "percentile" | "display" | "displayByPhase
   carried: PhaseVectors;
   /** The population the value is measured against (window population on the edition's opponent mix). */
   valuePop: PhaseVectors;
+  /** A projected skill's rating without the later balls: it, not the projection, helps set the value scale. */
+  before?: PartialSkill;
 };
+
+/** What a skill counts as on the shared value scale, so projecting one card moves no other. */
+const onScale = (s: PartialSkill): PartialSkill => s.before ?? s;
 
 function rateSkill(pe: PlayerEditionIn, ctx: EditionContext, skill: Skill, options: RateOptions = {}): PartialSkill {
   const merged: Required<RateOptions> = { ...DEFAULT_OPTIONS, ...options };
@@ -401,6 +406,8 @@ function rateSkill(pe: PlayerEditionIn, ctx: EditionContext, skill: Skill, optio
 
   const phaseWeights = opts.phaseWeighting === "own" ? ownPhaseWeights(pe, skill) : MODEL.phaseWeights;
   const value = PHASE_LIST.reduce((a, p) => a + phaseWeights[p] * valueByPhase[p], 0);
+  // The badge lifts when the form window is thin but a substantial ODI or domestic T20 record stands in.
+  const lowSample = formBalls < (skill === "bat" ? MODEL.badge.batBalls : MODEL.badge.bowlBalls) && !(odi && odi.balls >= (skill === "bat" ? 600 : 900)) && domesticBalls < MODEL.domestic.liftBalls[skill];
   return {
     carried: carriedAll,
     valuePop,
@@ -418,14 +425,14 @@ function rateSkill(pe: PlayerEditionIn, ctx: EditionContext, skill: Skill, optio
       domesticBalls,
       domesticRecentBalls: pe.domesticToDate?.recent[skill] ?? 0,
       source,
+      laterBalls: 0,
       transfer: +transfer.toFixed(3),
       venueFactor: +venueFactor.toFixed(3),
       selectionShift: 0,
       phaseWeights,
     },
-    // The badge lifts when the form window is thin but a substantial ODI record stands in (2007/2009).
-    // The badge lifts when the form window is thin but a substantial ODI or domestic T20 record stands in.
-    lowSample: formBalls < (skill === "bat" ? MODEL.badge.batBalls : MODEL.badge.bowlBalls) && !(odi && odi.balls >= (skill === "bat" ? 600 : 900)) && domesticBalls < MODEL.domestic.liftBalls[skill],
+    lowSample,
+    projected: false,
   };
 }
 
@@ -441,6 +448,53 @@ const HAND_TERM_PRIOR = 2000;
 export type PriorBand = "1-2" | "3-4" | "5-7" | "8-11";
 export const PRIOR_BANDS: PriorBand[] = ["1-2", "3-4", "5-7", "8-11"];
 const zeroCounts = (): Record<OutcomeKey, number> => ({ "0": 0, "1": 0, "2": 0, "3": 0, "4": 0, "6": 0, W: 0 });
+
+/** Balls available from after the edition's start for a skill, T20Is and leagues together. */
+export function laterBalls(pe: PlayerEditionIn, skill: Skill): number {
+  const l = pe.later;
+  if (!l) return 0;
+  return PHASE_LIST.reduce((a, p) => a + (l[skill][skill].phases[p]?.balls ?? 0) + (l.league?.[skill][p]?.balls ?? 0), 0);
+}
+
+/** Phase counts a + w·b. */
+function addPhase<T extends { balls: number; runs: number; outcomes: Record<OutcomeKey, number>; expected?: Record<OutcomeKey, number> }>(a: T | undefined, b: T | undefined, w = 1): T {
+  const out = { balls: (a?.balls ?? 0) + w * (b?.balls ?? 0), runs: (a?.runs ?? 0) + w * (b?.runs ?? 0), outcomes: zeroCounts(), expected: zeroCounts() };
+  for (const k of OUTCOMES) {
+    out.outcomes[k] = (a?.outcomes[k] ?? 0) + w * (b?.outcomes[k] ?? 0);
+    out.expected[k] = (a?.expected?.[k] ?? 0) + w * (b?.expected?.[k] ?? 0);
+  }
+  return out as T;
+}
+
+/**
+ * The player-edition with a skill's later balls added: T20Is to the form window, so positions and
+ * phases carry too, and leagues to the domestic record, which only partly transfers.
+ */
+export function withLater(pe: PlayerEditionIn, skill: Skill): PlayerEditionIn {
+  const l = pe.later;
+  if (!l) return pe;
+  const weight = MODEL.projection.weight[skill];
+  const phases = (a: Record<string, PhaseCountsOut>, b: Record<string, PhaseCountsOut>) => Object.fromEntries(PHASE_LIST.map((p) => [p, addPhase(a[p], b[p], weight)]));
+  const form: BlockIn = skill === "bat"
+    ? { ...pe.form, bat: { positions: Object.fromEntries([...new Set([...Object.keys(pe.form.bat.positions), ...Object.keys(l.bat.bat.positions)])].map((k) => [k, (pe.form.bat.positions[k] ?? 0) + (l.bat.bat.positions[k] ?? 0)])), phases: phases(pe.form.bat.phases, l.bat.bat.phases) } }
+    : { ...pe.form, bowl: { oversByPhase: Object.fromEntries(PHASE_LIST.map((p) => [p, pe.form.bowl.oversByPhase[p] + l.bowl.bowl.oversByPhase[p]])) as Record<Phase, number>, phases: phases(pe.form.bowl.phases, l.bowl.bowl.phases) } };
+  const exposure = { ...pe.formExposure[skill] };
+  for (const [bin, balls] of Object.entries(l.exposure[skill])) exposure[bin] = (exposure[bin] ?? 0) + balls;
+  const league = l.league?.[skill];
+  const d = pe.domesticToDate;
+  const empty = Object.fromEntries(PHASE_LIST.map((p) => [p, addPhase<PooledCountsIn>(undefined, undefined)])) as Record<Phase, PooledCountsIn>;
+  const domestic: PlayerEditionIn["domesticToDate"] = league
+    ? {
+        matches: d?.matches ?? 0,
+        competitions: d?.competitions ?? {},
+        bat: d?.bat ?? empty,
+        bowl: d?.bowl ?? empty,
+        [skill]: Object.fromEntries(PHASE_LIST.map((p) => [p, addPhase(d?.[skill][p], league[p], weight)])),
+        recent: { bat: d?.recent.bat ?? 0, bowl: d?.recent.bowl ?? 0, [skill]: (d?.recent[skill] ?? 0) + PHASE_LIST.reduce((a, p) => a + weight * league[p].balls, 0) },
+      }
+    : d;
+  return { ...pe, form, formExposure: { ...pe.formExposure, [skill]: exposure }, domesticToDate: domestic };
+}
 
 /** The band a player's pre-tournament batting positions put him in (form window first, then career); null with no innings. */
 export function priorBand(pe: PlayerEditionIn): PriorBand | null {
@@ -667,6 +721,8 @@ export interface RateOptions {
   transferDestination?: "mix" | "topThird";
   /** Headline phase weighting: the player's own exposure or the fixed population weights (see MODEL). */
   phaseWeighting?: "own" | "population";
+  /** Let thin cards borrow later balls (see MODEL.projection). Off for validation, which judges pre-tournament evidence. */
+  projection?: boolean;
 }
 
 /**
@@ -696,6 +752,10 @@ export const DEFAULT_OPTIONS: Required<RateOptions> = {
   tierDestination: MODEL.tierDestination,
   transferDestination: MODEL.transferDestination,
   phaseWeighting: MODEL.phaseWeighting,
+  // Off (2026-11-01 audit): the later-balls window starts at the edition itself, so projected cards
+  // leaked the tournament into replays and calibration, and an edition-locked card should not borrow
+  // the five years after it. Pass `projection: true` to opt in.
+  projection: false,
 };
 
 const TIER_RANK: Record<CardTier, number> = { Bronze: 1, Silver: 2, Gold: 3, Elite: 4 };
@@ -720,7 +780,7 @@ function tierOf(batting: SkillRating, bowling: SkillRating, score: number, cfg: 
   const t = cfg.thresholds;
   let tier: CardTier = score >= t.elite ? "Elite" : score >= t.gold ? "Gold" : score >= t.silver ? "Silver" : "Bronze";
   if (best.lowSample) tier = capTier(tier, cfg.caps.lowSample);
-  else if (best.evidence.formBalls < (bestIsBat ? cfg.caps.thin.batBalls : cfg.caps.thin.bowlBalls)) tier = capTier(tier, cfg.caps.thin.tier);
+  else if (best.projected || best.evidence.formBalls < (bestIsBat ? cfg.caps.thin.batBalls : cfg.caps.thin.bowlBalls)) tier = capTier(tier, cfg.caps.thin.tier);
   return tier;
 }
 
@@ -871,12 +931,24 @@ export function rateAll(r: BuildResult, opts: RateOptions = {}): PlayerRating[] 
     const rated = (skill: Skill): PartialSkill => {
       const s = rateSkill(pe, ctx, skill, opts);
       const noT20I = s.evidence.formBalls + s.evidence.careerBalls === 0;
-      if (!noT20I || backupVouches(s.evidence, skill, pe.editionId) || totalBalls(pe.tournament, skill) === 0) return s;
-      const debut: PlayerEditionIn = { ...pe, form: pe.tournament, formByOpposition: pe.tournamentByOpposition, formExposure: pe.tournamentExposure, formVenueBalls: { bat: {}, bowl: {} }, formByOppBin: {} };
-      const t = rateSkill(debut, ctx, skill, opts);
-      return { ...t, evidence: { ...t.evidence, source: "tournament" } };
+      let plain = s;
+      if (noT20I && !backupVouches(s.evidence, skill, pe.editionId) && totalBalls(pe.tournament, skill) > 0) {
+        const debut: PlayerEditionIn = { ...pe, form: pe.tournament, formByOpposition: pe.tournamentByOpposition, formExposure: pe.tournamentExposure, formVenueBalls: { bat: {}, bowl: {} }, formByOppBin: {} };
+        const t = rateSkill(debut, ctx, skill, opts);
+        plain = { ...t, evidence: { ...t.evidence, source: "tournament" } };
+      }
+      // A skill with next to no T20I record borrows the balls after the edition's start. Backup
+      // records can lift the low-sample badge (Shakib 2007, 0 T20I balls), so T20I balls are tested too.
+      const noRecord = s.evidence.formBalls + s.evidence.careerBalls < (skill === "bat" ? MODEL.badge.batBalls : MODEL.badge.bowlBalls);
+      const later = laterBalls(pe, skill);
+      if (!(opts.projection ?? DEFAULT_OPTIONS.projection) || !(s.lowSample || noRecord) || later < MODEL.projection.minBalls[skill]) return plain;
+      const p = rateSkill(withLater(pe, skill), ctx, skill, opts);
+      return { ...p, before: plain, projected: true, evidence: { ...p.evidence, source: "later", laterBalls: later } };
     };
-    return { pe, ctx, usage: usageShares(pe), bat: rated("bat"), bowl: rated("bowl") };
+    const bat = rated("bat"), bowl = rated("bowl");
+    // Position, phase balls and bowling shape read the same evidence as the numbers.
+    const seen = bowl.projected ? withLater(bat.projected ? withLater(pe, "bat") : pe, "bowl") : bat.projected ? withLater(pe, "bat") : pe;
+    return { pe, seen, ctx, usage: usageShares(pe), bat, bowl };
   });
 
   // Cohort centring (Phase 1.5): see RateOptions.cohortCentre. Vectors and values are re-expressed
@@ -903,7 +975,7 @@ export function rateAll(r: BuildResult, opts: RateOptions = {}): PlayerRating[] 
       const moments = stats.get(skill)!.map(({ group, reference }) => {
         let w = 0, s1 = 0, s2 = 0;
         for (const x of group) {
-          const s = x[skill];
+          const s = onScale(x[skill]);
           const weight = s.evidence.formBalls + s.evidence.careerBalls;
           if (s.lowSample || weight <= 0 || !reference.has(x.pe.team)) continue;
           w += weight; s1 += weight * s.value; s2 += weight * s.value * s.value;
@@ -918,9 +990,11 @@ export function rateAll(r: BuildResult, opts: RateOptions = {}): PlayerRating[] 
         if (w <= 0) continue;
         const scale = sd > 0 && targetSd > 0 ? targetSd / sd : 1;
         for (const x of group) {
-          const s = x[skill];
-          s.value = +((s.value - mean) * scale).toFixed(2);
-          for (const p of PHASE_LIST) s.valueByPhase[p] = +((s.valueByPhase[p] - mean) * scale).toFixed(2);
+          for (const s of [x[skill], x[skill].before]) {
+            if (!s) continue;
+            s.value = +((s.value - mean) * scale).toFixed(2);
+            for (const p of PHASE_LIST) s.valueByPhase[p] = +((s.valueByPhase[p] - mean) * scale).toFixed(2);
+          }
         }
       }
     }
@@ -961,7 +1035,7 @@ export function rateAll(r: BuildResult, opts: RateOptions = {}): PlayerRating[] 
   // standardisation the median rated player sits below zero, so shrinking toward zero printed an
   // unmeasured player at 76–78 (above the median) instead of at the middle.
   const medianValue = (skill: Skill) => {
-    const xs = partial.filter((x) => !x[skill].lowSample).map((x) => x[skill].value).sort((a, b) => a - b);
+    const xs = partial.map((x) => onScale(x[skill])).filter((s) => !s.lowSample).map((s) => s.value).sort((a, b) => a - b);
     return xs.length ? xs[Math.floor(xs.length / 2)]! : 0;
   };
   const medians = { bat: medianValue("bat"), bowl: medianValue("bowl") };
@@ -974,7 +1048,7 @@ export function rateAll(r: BuildResult, opts: RateOptions = {}): PlayerRating[] 
   // maps to 70, the 99th percentile to 99 and the 5th percentile to 45; values beyond those
   // anchors extrapolate linearly and clip to the display range.
   const toDisplay = (skill: Skill) => {
-    const eligible = partial.filter((x) => !x[skill].lowSample).map((x) => conservative(x[skill], skill)).sort((a, b) => a - b);
+    const eligible = partial.map((x) => onScale(x[skill])).filter((s) => !s.lowSample).map((s) => conservative(s, skill)).sort((a, b) => a - b);
     const q = (f: number) => eligible[Math.min(eligible.length - 1, Math.max(0, Math.floor(f * (eligible.length - 1))))] ?? 0;
     const median = q(0.5), top = q(0.99), low = q(0.05);
     return (value: number) => {
@@ -995,14 +1069,14 @@ export function rateAll(r: BuildResult, opts: RateOptions = {}): PlayerRating[] 
 
   const tierConfig = loadTierConfig();
   const terms = handTerms(r.matchups);
-  const finish = ({ carried: _carried, valuePop: _valuePop, ...s }: PartialSkill, display: ReturnType<typeof toDisplay>, pe: PlayerEditionIn, skill: Skill): SkillRating => {
+  const finish = ({ carried: _carried, valuePop: _valuePop, before: _before, ...s }: PartialSkill, display: ReturnType<typeof toDisplay>, pe: PlayerEditionIn, skill: Skill): SkillRating => {
     const n = s.evidence.formBalls + s.evidence.careerBalls + (s.evidence.source === "odi" ? MODEL.odiPriorStrength : 0);
     const guard = n / (n + MODEL.displayEvidenceStrength);
     const balls = phaseBalls(pe, skill);
     const badge = skill === "bat" ? tierConfig.phaseBadge.batBalls : tierConfig.phaseBadge.bowlBalls;
     const ev = s.evidence;
     const formBar = ev.source === "tournament" ? MODEL.shown.tournamentBalls[skill] : MODEL.shown.formBalls[skill];
-    const shown = ev.formBalls >= formBar || ev.careerBalls >= MODEL.shown.careerBalls[skill] || backupVouches(ev, skill, pe.editionId);
+    const shown = s.projected || ev.formBalls >= formBar || ev.careerBalls >= MODEL.shown.careerBalls[skill] || backupVouches(ev, skill, pe.editionId);
     return {
       ...s,
       ...display(conservative(s, skill)),
@@ -1012,14 +1086,15 @@ export function rateAll(r: BuildResult, opts: RateOptions = {}): PlayerRating[] 
       phaseEvidence: Object.fromEntries(PHASE_LIST.map((p) => [p, { balls: balls[p], thin: balls[p] < badge }])) as Record<Phase, { balls: number; thin: boolean }>,
     };
   };
-  const finished = partial.map(({ pe, ctx, usage, bat, bowl }) => {
-    const batting = finish(bat, batDisplay, pe, "bat");
-    const bowling = finish(bowl, bowlDisplay, pe, "bowl");
-    return { pe, ctx, usage, batting, bowling, tierScore: tierScoreOf(batting, bowling, tierConfig) };
+  const finished = partial.map(({ pe, seen, ctx, usage, bat, bowl }) => {
+    const batting = finish(bat, batDisplay, seen, "bat");
+    const bowling = finish(bowl, bowlDisplay, seen, "bowl");
+    return { pe, seen, ctx, usage, batting, bowling, tierScore: tierScoreOf(batting, bowling, tierConfig) };
   });
-  return finished.map(({ pe, ctx, usage, batting: batting0, bowling: bowling0, tierScore }) => {
-    const batBalls = batting0.evidence.formBalls + batting0.evidence.careerBalls;
-    const bowlBalls = bowling0.evidence.formBalls + bowling0.evidence.careerBalls;
+  return finished.map(({ pe, seen, ctx, usage, batting: batting0, bowling: bowling0, tierScore }) => {
+    // Real balls for the role: later balls may count for less in the rating, but they were bowled.
+    const batBalls = Math.max(batting0.evidence.formBalls + batting0.evidence.careerBalls, batting0.evidence.laterBalls);
+    const bowlBalls = Math.max(bowling0.evidence.formBalls + bowling0.evidence.careerBalls, bowling0.evidence.laterBalls);
     // A role needs real evidence: a few career overs do not make a batter an all-rounder, and a
     // skill the player no longer shows (Kohli's 152 T20I bowling balls, none recent) does not count.
     const bowls = bowling0.shown && bowlBalls >= 150 && bowling0.display >= 60;
@@ -1040,7 +1115,7 @@ export function rateAll(r: BuildResult, opts: RateOptions = {}): PlayerRating[] 
     const top = Math.max(batting.display, bowling.display);
     const second = Math.min(batting.display, bowling.display);
     const overall = Math.min(MODEL.display.max, Math.round(top + (role === "all-rounder" ? 0.1 * (second - MODEL.display.min) : 0)));
-    const position = positionBand(pe);
+    const position = positionBand(seen);
     return {
       personId: pe.personId,
       name: pe.name,
@@ -1054,9 +1129,11 @@ export function rateAll(r: BuildResult, opts: RateOptions = {}): PlayerRating[] 
       tier: batting.shown || bowling.shown ? tierOf(batting, bowling, tierScore, tierConfig) : "Bronze",
       tierScore,
       role,
-      archetype: archetypeOf(pe, position, bowling),
+      archetype: archetypeOf(seen, position, bowling),
+      style: pe.style ?? null,
+      shape: pe.shape ?? null,
       position,
-      bowlingPhases: bowlingPhases(pe),
+      bowlingPhases: bowlingPhases(seen),
       tournamentForm: tournamentForm(pe, ctx, batting, bowling),
       usage,
       conditions: { editionConditionFactor: ctx.editionConditionFactor },

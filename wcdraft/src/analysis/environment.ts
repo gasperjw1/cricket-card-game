@@ -11,6 +11,12 @@ import { bowlClassOf } from "./matchups.js";
 interface PhaseTotals {
   balls: number;
   runs: number;
+  wides: number;
+  noBalls: number;
+  extras: number;
+  /** Byes and leg-byes, and the total runs conceded off wides (for runs per wide). */
+  byeRuns: number;
+  wideRuns: number;
   outcomes: Record<OutcomeKey, number>;
 }
 
@@ -39,7 +45,7 @@ export class EnvironmentAccumulator {
   noBalls = 0;
   extras = 0;
   byPhase: Record<Phase, PhaseTotals> = Object.fromEntries(
-    PHASES.map((p) => [p, { balls: 0, runs: 0, outcomes: { "0": 0, "1": 0, "2": 0, "3": 0, "4": 0, "6": 0, W: 0 } }]),
+    PHASES.map((p) => [p, { balls: 0, runs: 0, wides: 0, noBalls: 0, extras: 0, byeRuns: 0, wideRuns: 0, outcomes: { "0": 0, "1": 0, "2": 0, "3": 0, "4": 0, "6": 0, W: 0 } }]),
   ) as Record<Phase, PhaseTotals>;
   /** Legal balls per phase from full innings only, the denominator for `populationVectors`. */
   vectorBalls: Record<Phase, number> = { pp: 0, mid: 0, death: 0 };
@@ -119,6 +125,10 @@ export class EnvironmentAccumulator {
         side.runs += b.runsTotal;
         const ph = this.byPhase[phaseOf(b.over)];
         ph.runs += b.runsTotal;
+        ph.extras += b.runsExtras;
+        ph.byeRuns += b.runsByes;
+        if (b.wide) { ph.wides += 1; ph.wideRuns += b.runsExtras; }
+        if (b.noBall) ph.noBalls += 1;
         if (!b.legal) continue;
         this.legalBalls += 1;
         side.balls += 1;
@@ -170,6 +180,14 @@ export class EnvironmentAccumulator {
       widesPerOver: ratio(6 * this.wides, this.legalBalls, 2),
       noBallsPerOver: ratio(6 * this.noBalls, this.legalBalls, 3),
       extrasPerOver: ratio(6 * this.extras, this.legalBalls, 2),
+      /** Per over by phase: wides and no-balls bunch at the new ball and the death, and the middle overs concede least. */
+      extrasByPhase: Object.fromEntries(PHASES.map((p) => {
+        const ph = this.byPhase[p];
+        // `byes` are byes and leg-byes per over (what a dot ball can turn into); `runsPerWide` is the
+        // average runs a wide costs (five-run wides and all). Before 2026-11-01 the engine booked all
+        // non-wide, non-no-ball extras as byes, which took about 0.8 dots per 100 balls out of the sim.
+        return [p, { wides: ratio(6 * ph.wides, ph.balls, 3), noBalls: ratio(6 * ph.noBalls, ph.balls, 3), extras: ratio(6 * ph.extras, ph.balls, 3), byes: ratio(6 * ph.byeRuns, ph.balls, 3), runsPerWide: ratio(ph.wideRuns, ph.wides, 3, 1) }];
+      })) as Record<Phase, { wides: number; noBalls: number; extras: number; byes: number; runsPerWide: number }>,
       dismissalFingerprintPct: fingerprint,
       reviews: {
         total: this.reviews.total,

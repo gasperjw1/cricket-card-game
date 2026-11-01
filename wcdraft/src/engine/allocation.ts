@@ -75,6 +75,9 @@ export function chooseBowler(input: AllocationInput, rng: Rng): BowlerState {
     // Death trust: whoever opened the bowling is trusted at the death and held back for it.
     const opened = b.overs.includes(0) || b.overs.includes(1);
     if (opened && phase === "death") score += A.openerDeathBonus;
+    // Powerplay spread: every further powerplay over from the same bowler costs a little more, so the
+    // new ball is shared the way captains share it (a third is rare, a second is not automatic).
+    if (phase === "pp") score -= A.powerplayHoldPenalty * b.overs.filter((o) => o < 6).length;
     if (opened && phase === "mid" && maxOvers - b.overs.length <= 2 && deathOversLeft >= 2) score -= A.openerHoldPenalty;
     if (over < deathStart && deathRank.includes(b.player.id) && maxOvers - b.overs.length <= Math.min(2, deathOversLeft)) score -= A.reservationPenalty;
     const last = b.overs[b.overs.length - 1];

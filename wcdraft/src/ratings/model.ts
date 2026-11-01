@@ -101,6 +101,18 @@ export const MODEL = {
     priorStrength: 2000, hazardPriorStrength: 6000, levelPrior: 20, minBalls: 60, clip: [0.6, 1.6] as [number, number], displayScale: 60,
     weights: { t20i: 1, league: 1, tournament: 1, odi: 0.25 } as Record<"t20i" | "league" | "tournament" | "odi", number>,
   },
+  /**
+   * Projected cards (decided 2026-10-31): a skill with almost no record before an edition borrows
+   * the balls after it. The nearest `targetBalls` T20I balls and `targetBalls` league balls from the
+   * edition's first match on, within `months`, join the form window and the domestic record, and
+   * need `minBalls` between them. A projected best skill is capped like a thin one (tiers.json).
+   *
+   * `weight` is what a later ball counts for. Measured 2026-10-31 by hiding the record of 328 batting
+   * and 320 bowling cards with 200+ form balls and rating them from later balls alone. Batting comes
+   * back true at full weight (r 0.75, real-on-projected slope 1.04, 1.1 display points low). Bowling
+   * is about twice too wide at full weight (r 0.37, slope 0.48); the slope reaches 1 near 0.4.
+   */
+  projection: { months: 60, targetBalls: 300, minBalls: { bat: 120, bowl: 120 }, weight: { bat: 1, bowl: 0.4 } },
   /** Hierarchical phase model: how strongly each phase is held to the player's pooled vector. */
   phasePriorStrength: 300 as number,
   /**
@@ -192,6 +204,53 @@ export interface TierConfig {
 export type BattingArchetype = "opener" | "top order" | "middle order" | "finisher" | "tail";
 export type BowlingArchetype = "new ball" | "middle overs" | "death" | "all phases";
 
+export const BATTING_STYLES = ["Aggressor", "Complete", "Builder", "Starter", "Rotator", "Anchor"] as const;
+/** How an innings starts and grows, measured against peers (analysis/tempo.ts). */
+export type BattingStyle = (typeof BATTING_STYLES)[number];
+
+/** A batter's tempo at an edition. Numbers are points against peers at the same over, stage of innings and year. */
+export interface StyleOut {
+  tag: BattingStyle;
+  /** First 10 balls faced: boundary % (fours and sixes), dot % and strike rate against peers. */
+  startBoundary: number;
+  startDot: number;
+  startSR: number;
+  /** Ball 11 onward: strike rate against peers. */
+  laterSR: number;
+  /** Career balls behind the numbers, T20Is and leagues together. */
+  balls: number;
+}
+
+/**
+ * How a batter's scoring moves through his innings: outcome multipliers for his first 10 balls and
+ * for the rest, each against his own level at those points, so together they leave that level alone.
+ */
+export interface StartShape {
+  start: Vector;
+  later: Vector;
+}
+
+/** What each batting style added at one World Cup, or across all of them. */
+export interface StyleRow {
+  /** Null for batters with too few balls anywhere to carry a style. */
+  style: BattingStyle | null;
+  ballsPct: number;
+  /** Runs added per 100 balls against the edition's average ball; wickets cost what the resource table says. */
+  addedPer100: number;
+  best: { id: string; name: string; added: number; balls: number } | null;
+}
+
+export interface StyleEdition {
+  editionId: string;
+  rows: StyleRow[];
+  champion: { team: string; topSix: { id: string; name: string; style: BattingStyle | null }[] } | null;
+}
+
+export interface StyleResults {
+  overall: StyleRow[];
+  editions: StyleEdition[];
+}
+
 export interface PhaseCountsOut {
   balls: number;
   runs: number;
@@ -237,6 +296,21 @@ export interface PlayerEditionIn {
   domesticToDate: { matches: number; bat: Record<Phase, PooledCountsIn>; bowl: Record<Phase, PooledCountsIn>; competitions: Record<string, number>; recent: { bat: number; bowl: number } } | null;
   /** Balls faced by the bowler's class, by source, each ball once (analysis/class-split.ts). */
   classSplit?: ClassSplitIn;
+  /** The nearest balls from the edition's first match on (`MODEL.projection`); null when there are none. */
+  later?: LaterIn | null;
+  /** Tempo at this edition; null with too few balls anywhere. */
+  style?: StyleOut | null;
+  /** The engine's version of that tempo; null with the style. */
+  shape?: StartShape | null;
+}
+
+/** Evidence from after an edition's start: only ever read for a projected card. */
+export interface LaterIn {
+  /** T20I blocks, one per skill so each stops at its own target. */
+  bat: BlockIn;
+  bowl: BlockIn;
+  exposure: { bat: Record<string, number>; bowl: Record<string, number> };
+  league: Record<"bat" | "bowl", Record<Phase, PooledCountsIn>> | null;
 }
 
 export interface ClassCountsIn {
@@ -296,8 +370,13 @@ export interface SkillRating {
     domesticBalls: number;
     /** Domestic T20 balls in the last RECENT_SEASONS seasons (the recency test behind `shown`). */
     domesticRecentBalls: number;
-    /** "tournament": a debutant with no pre-tournament record anywhere, rated from the tournament's own balls. */
-    source: "form" | "career" | "domestic" | "odi" | "tournament" | "population";
+    /**
+     * "tournament": a debutant with no pre-tournament record anywhere, rated from the tournament's
+     * own balls. "later": a projected card, rated mainly from the balls after the edition's start.
+     */
+    source: "form" | "career" | "domestic" | "odi" | "tournament" | "later" | "population";
+    /** Balls borrowed from after the edition's start, T20Is and leagues together (0 unless projected). */
+    laterBalls: number;
     /** Share of the player's edge carried into the edition's opposition (1 = all of it). */
     transfer: number;
     /** Exposure-weighted scoring factor of the grounds the form was earned on (1 = window average). */
@@ -314,6 +393,8 @@ export interface SkillRating {
   percentile: number;
   display: number;
   lowSample: boolean;
+  /** Rated from later balls because the record before the edition was too thin (`MODEL.projection`). */
+  projected: boolean;
   /**
    * Whether the card shows this skill at all: false for a skill the player has barely shown in
    * T20Is, his domestic career or ODIs (a specialist batter's bowling). The engine still carries
@@ -351,6 +432,10 @@ export interface PlayerRating {
   role: "batter" | "bowler" | "all-rounder" | "unknown";
   /** Where the player is used: batting from the position band, bowling from own phase shares. */
   archetype: { batting: BattingArchetype | null; bowling: BowlingArchetype | null };
+  /** How the player bats at this edition: tempo, separate from where in the order (`archetype.batting`). */
+  style: StyleOut | null;
+  /** How his scoring moves through an innings, for the engine (not on the card). */
+  shape: StartShape | null;
   position: { median: number | null; band: [number, number] | null; positionless: boolean; innings: number };
   /** Bowling phase shares in the form window + tournament (powerplay / middle / death). */
   bowlingPhases: Record<Phase, number> | null;

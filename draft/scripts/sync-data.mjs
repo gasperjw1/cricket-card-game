@@ -23,7 +23,7 @@ rmSync(out, { recursive: true, force: true });
 for (const d of ["", "ratings", "squads", "pool", "config"]) mkdirSync(resolve(out, d), { recursive: true });
 
 const copy = (from, to) => copyFileSync(resolve(from), resolve(out, to));
-for (const f of ["editions.json", "venues.json", "situation.json", "matchups.json", "coaches.json", "captaincy.json", "people.json"]) if (existsSync(resolve(outDir, f))) copy(resolve(outDir, f), f);
+for (const f of ["editions.json", "venues.json", "situation.json", "matchups.json", "coaches.json", "captaincy.json", "people.json", "style-results.json"]) if (existsSync(resolve(outDir, f))) copy(resolve(outDir, f), f);
 copy(resolve(outDir, "ratings/populations.json"), "ratings/populations.json");
 for (const f of ["formats.json", "afghanistan-fixtures.json", "tiers.json"]) copy(resolve(wcdraft, "config", f), `config/${f}`);
 copy(resolve(wcdraft, "labels/players.csv"), "players.csv");
@@ -66,7 +66,8 @@ for (const ed of editions) {
   const ratings = JSON.parse(readFileSync(resolve(outDir, "ratings", `${ed}.json`), "utf8"));
   const pool = ratings.map((r) => ({
     id: r.personId, name: names[r.personId] ?? r.name, team: r.team, editionId: r.editionId, standIn: r.standIn,
-    tier: r.tier, tierScore: r.tierScore, role: r.role, archetype: r.archetype,
+    tier: r.tier, tierScore: r.tierScore, role: r.role, archetype: r.archetype, style: r.style ?? null,
+    batProjected: r.batting.projected ? r.batting.evidence.laterBalls : 0, bowlProjected: r.bowling.projected ? r.bowling.evidence.laterBalls : 0,
     bat: r.batting.display, bowl: r.bowling.display, batPhases: r.batting.displayByPhase, bowlPhases: r.bowling.displayByPhase,
     batLow: r.batting.lowSample, bowlLow: r.bowling.lowSample, batShown: r.batting.shown !== false, bowlShown: r.bowling.shown !== false, squadPlayer: r.usage.squadPlayer,
     domesticBalls: { bat: r.batting.evidence.domesticBalls ?? 0, bowl: r.bowling.evidence.domesticBalls ?? 0 },

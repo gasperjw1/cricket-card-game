@@ -1,14 +1,16 @@
 /**
  * One delivery's outcome distribution (design spec §7.1):
- *   p ∝ base[phase] × batRel^a × bowlRel^b × τ[innings][over][wickets] × chase^c
- *       × streak (residual over the shuffled null) × setness (striker's balls faced)
- *       × ballInOver × chaseDots × scoring effects (match, innings, player days, venue)
+ *   p ∝ base[phase] × batRel^a × bowlRel^b × τ[innings][over][wickets] × pressure × gear
+ *       × streak (residual over the shuffled null) × setness (striker's balls faced) × found
+ *       × shape (striker's start) × ballInOver × chaseDots
+ *       × scoring effects (match, innings, player days, venue)
  * Every multiplier is a measured ratio to its own conditioning base, shrunk toward 1.
  */
 
 import { phaseOf, type OutcomeKey, type Phase } from "../cricsheet/match.js";
-import { OUTCOMES } from "../ratings/model.js";
-import { chaseBand, dotsBand, setnessBand, type SituationCell, type SituationTables, type StateTable, type StreakBand, wicketsBand } from "../analysis/situation.js";
+import { OUTCOMES, PHASE_LIST, type BattingStyle } from "../ratings/model.js";
+import { PRESSURE } from "../analysis/pressure.js";
+import { dotsBand, pressureBand, setnessBand, type SituationCell, type SituationTables, type StateTable, type StreakBand, wicketsBand } from "../analysis/situation.js";
 import type { BowlClass, MatchupTables } from "../analysis/matchups.js";
 import { ENGINE } from "./model.js";
 import type { EnginePlayer, MatchEnvironment, Vector } from "./types.js";
@@ -73,10 +75,34 @@ export class SituationModel {
     return this.cached(`tau:${key}`, () => this.multiplier(this.tables.cells[key], this.tables.phases[`${innings}|${phaseOf(over)}`]));
   }
 
-  /** Chase pressure for a required rate, relative to the second-innings phase distribution. */
-  chase(requiredRpo: number, phase: Phase): Vector {
-    const key = `${chaseBand(requiredRpo)}|${phase}`;
-    return this.cached(`chase:${key}`, () => this.multiplier(this.tables.chase[key], this.tables.phases[`2|${phase}`]));
+  /**
+   * How this innings' phase differs from the same phase of the other innings. `tau` is relative to
+   * the innings-and-phase and the base pools both innings, so nothing else carries it. The innings'
+   * overall level is taken out, since the match's `chaseUplift` sets that.
+   */
+  inningsPhase(innings: 1 | 2, phase: Phase): Vector {
+    return this.cached(`ip:${innings}|${phase}`, () => {
+      const cells = (is: number[], ps: readonly Phase[]) => is.flatMap((i) => ps.flatMap((p) => this.tables.phases[`${i}|${p}`] ?? []));
+      const rate = (cs: SituationCell[], k: OutcomeKey) => cs.reduce((a, c) => a + c.outcomes[k], 0) / Math.max(1, cs.reduce((a, c) => a + c.balls, 0));
+      const out = {} as Vector;
+      for (const k of OUTCOMES) out[k] = ((rate(cells([innings], [phase]), k) / rate(cells([1, 2], [phase]), k)) * rate(cells([1, 2], PHASE_LIST), k)) / rate(cells([innings], PHASE_LIST), k);
+      return out;
+    });
+  }
+
+  /** Chase pressure for a required rate, relative to second innings at this over and wickets. */
+  pressure(requiredRpo: number, phase: Phase): Vector {
+    return this.tables.states.pressure[`${phase}|${pressureBand(requiredRpo)}`] ?? UNIT;
+  }
+
+  /** How a batting style answers that pressure, beyond the population. */
+  gear(style: BattingStyle | null, phase: Phase): Vector {
+    return (style && this.tables.states.gears[`${style}|${phase}`]) || UNIT;
+  }
+
+  /** Whether the striker has found a boundary yet, within his balls-faced band. */
+  found(ballsFaced: number, found: boolean): Vector {
+    return this.tables.states.found[`${setnessBand(ballsFaced)}|${found ? 1 : 0}`] ?? UNIT;
   }
 
   /**
@@ -98,7 +124,9 @@ export class SituationModel {
   setness(innings: 1 | 2, phase: Phase, wickets: number, ballsFaced: number): Vector {
     const ctx = `${innings}|${phase}|${wicketsBand(wickets)}`;
     const band = setnessBand(ballsFaced);
-    return this.cached(`set:${ctx}|${band}`, () => this.state(this.tables.setness, ctx, band));
+    // The player-adjusted table (batter and bowler levels removed, `analysis/pressure.ts`) when the
+    // build has it; the raw table otherwise.
+    return this.cached(`set:${ctx}|${band}|${ENGINE.adjustedSetness}`, () => (ENGINE.adjustedSetness ? this.tables.states?.setness?.[`${ctx}|${band}`] : undefined) ?? this.state(this.tables.setness, ctx, band));
   }
 
   ballInOver(innings: 1 | 2, phase: Phase, position: number): Vector {
@@ -150,6 +178,8 @@ export interface BallContext {
   wickets: number;
   /** Striker's balls faced so far this innings. */
   strikerBalls: number;
+  /** The striker has hit a four or a six this innings. */
+  strikerFound?: boolean;
   /** Required runs per over when chasing, else null. */
   requiredRpo: number | null;
   /** Combined log-normal scoring factor for this innings (match × innings effects). */
@@ -175,7 +205,14 @@ export function outcomeDistribution(striker: EnginePlayer, bowler: EnginePlayer,
   const bat = striker.battingRel[phase];
   const bowl = bowler.bowlingRel[phase];
   const tau = situation.tau(ctx.innings, ctx.over, ctx.wickets);
-  const chase = ctx.requiredRpo !== null ? pow(situation.chase(ctx.requiredRpo, phase), ENGINE.chaseExponent) : UNIT;
+  const innings = pow(situation.inningsPhase(ctx.innings, phase), ENGINE.inningsPhaseExponent);
+  const chasing = ctx.requiredRpo !== null && ctx.wickets <= PRESSURE.maxWickets;
+  const forced = chasing && ctx.requiredRpo! >= PRESSURE.gear[0] && ctx.requiredRpo! < PRESSURE.gear[1];
+  const pressure = chasing ? pow(situation.pressure(ctx.requiredRpo!, phase), ENGINE.pressureExponent) : UNIT;
+  const gear = forced ? pow(situation.gear(striker.style, phase), ENGINE.gearExponent) : UNIT;
+  const found = pow(situation.found(ctx.strikerBalls, !!ctx.strikerFound), ENGINE.foundExponent);
+  const shape = striker.shape ? pow(ctx.strikerBalls < ENGINE.startBalls ? striker.shape.start : striker.shape.later, ENGINE.shapeExponent) : UNIT;
+  const squeeze = forced && phase === "death" && bowler.squeezer !== null ? (bowler.squeezer ? ENGINE.squeezer.top : ENGINE.squeezer.rest) : 1;
   const streak = pow(situation.streak(ctx.innings, phase, ctx.wickets, ctx.streak), ENGINE.streakExponent);
   const setness = pow(situation.setness(ctx.innings, phase, ctx.wickets, ctx.strikerBalls), ENGINE.setnessExponent);
   const bio = pow(situation.ballInOver(ctx.innings, phase, ctx.ballInOver), ENGINE.ballInOverExponent);
@@ -187,8 +224,8 @@ export function outcomeDistribution(striker: EnginePlayer, bowler: EnginePlayer,
   const out = {} as Vector;
   let total = 0;
   for (const k of OUTCOMES) {
-    let p = base[k] * Math.pow(bat[k] * vsClass[k], ENGINE.batExponent) * Math.pow(bowl[k], ENGINE.bowlExponent) * tau[k] * chase[k] * streak[k] * setness[k] * bio[k] * dots[k] * matchup[k];
-    if (k === "W") p *= (ctx.freeHit ? 0.08 : 1) * ENGINE.hazardCalibration; // a run out is still possible off a free hit
+    let p = base[k] * Math.pow(bat[k] * vsClass[k], ENGINE.batExponent) * Math.pow(bowl[k], ENGINE.bowlExponent) * tau[k] * innings[k] * pressure[k] * gear[k] * streak[k] * setness[k] * found[k] * shape[k] * bio[k] * dots[k] * matchup[k];
+    if (k === "W") p *= (ctx.freeHit ? 0.08 : 1) * ENGINE.hazardCalibration * squeeze; // a run out is still possible off a free hit
     else if (SCORING.includes(k)) p *= scoring;
     out[k] = Math.max(0, p);
     total += out[k];

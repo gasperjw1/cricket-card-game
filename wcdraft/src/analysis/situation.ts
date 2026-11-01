@@ -3,7 +3,6 @@
  * innings in the archive:
  *
  *   - τ[innings][over][wickets]: outcome distribution by over and wickets down (per innings number)
- *   - chase: by required run rate band (second innings)
  *   - streak: by runs off the previous six legal balls, conditioned on innings × phase × wickets band,
  *     with a shuffled-innings null (same balls, outcome labels permuted) so only serial dependence
  *     beyond the context counts (the Miller–Sanjurjo correction for streak measurements)
@@ -17,7 +16,8 @@
  * multiplier, so era level and player quality are not double counted.
  */
 
-import { mainInnings, OUTCOME_KEYS, phaseOf, type Match, type OutcomeKey } from "../cricsheet/match.js";
+import { mainInnings, OUTCOME_KEYS, PHASES, phaseOf, type Match, type OutcomeKey } from "../cricsheet/match.js";
+import type { PressureTables } from "./pressure.js";
 
 export interface SituationCell {
   balls: number;
@@ -43,7 +43,6 @@ export interface DayEffect {
 export interface SituationTables {
   cells: Record<string, SituationCell>;
   phases: Record<string, SituationCell>;
-  chase: Record<string, SituationCell>;
   streak: StateTable;
   streakNull: StateTable;
   setness: StateTable;
@@ -58,12 +57,15 @@ export interface SituationTables {
   resources: number[][];
   /** Scheduled overs of first innings reduced before the start (rain): overs → count. */
   reducedOvers: Record<string, number>;
+  /** Required-rate pressure, style gears and found-a-boundary (`analysis/pressure.ts`). */
+  states: PressureTables;
 }
 
-export const CHASE_BANDS = ["<6", "6-8", "8-10", "10-12", "12+"] as const;
-export type ChaseBand = (typeof CHASE_BANDS)[number];
-export function chaseBand(requiredRpo: number): ChaseBand {
-  return requiredRpo < 6 ? "<6" : requiredRpo < 8 ? "6-8" : requiredRpo < 10 ? "8-10" : requiredRpo < 12 ? "10-12" : "12+";
+export const PRESSURE_BANDS = ["<6", "6-8", "8-10", "10-12", "12-14", "14-16", "16-18", "18+"] as const;
+export type PressureBand = (typeof PRESSURE_BANDS)[number];
+export function pressureBand(requiredRpo: number): PressureBand {
+  const i = requiredRpo < 6 ? 0 : Math.min(7, 1 + Math.floor((requiredRpo - 6) / 2));
+  return PRESSURE_BANDS[i]!;
 }
 
 export const STREAK_BANDS = ["n/a", "0-3", "4-7", "8-12", "13+"] as const;
@@ -89,7 +91,7 @@ export function dotsBand(consecutiveDots: number): string {
 
 const emptyCell = (): SituationCell => ({ balls: 0, outcomes: { "0": 0, "1": 0, "2": 0, "3": 0, "4": 0, "6": 0, W: 0 } });
 
-function outcomeKey(runs: number, wicket: boolean): OutcomeKey {
+export function outcomeKey(runs: number, wicket: boolean): OutcomeKey {
   if (wicket) return "W";
   if (runs >= 6) return "6";
   if (runs === 5) return "4";
@@ -113,9 +115,10 @@ function rngFor(seed: string): () => number {
 class Table {
   readonly cells = new Map<string, SituationCell>();
   readonly base = new Map<string, SituationCell>();
-  add(context: string, state: string, outcome: OutcomeKey): void {
+  /** `inBase: false` files the ball under its state but leaves it out of the context base (a state the engine plays as 1). */
+  add(context: string, state: string, outcome: OutcomeKey, inBase = true): void {
     bump(this.cells, `${context}|${state}`, outcome);
-    bump(this.base, context, outcome);
+    if (inBase) bump(this.base, context, outcome);
   }
   out(): StateTable {
     return { cells: obj(this.cells), base: obj(this.base) };
@@ -140,7 +143,6 @@ interface PlayerTotals {
 export class SituationAnalysis {
   private readonly cells = new Map<string, SituationCell>();
   private readonly phases = new Map<string, SituationCell>();
-  private readonly chase = new Map<string, SituationCell>();
   private readonly streak = new Table();
   private readonly streakNull = new Table();
   private readonly setness = new Table();
@@ -182,10 +184,6 @@ export class SituationAnalysis {
           const ctxPhase = `${number}|${phaseOf(b.over)}`;
           bump(this.cells, `${number}|${b.over}|${Math.min(9, wickets)}`, key);
           bump(this.phases, ctxPhase, key);
-          if (target !== null) {
-            const ballsLeft = Math.max(1, 120 - legal);
-            bump(this.chase, `${chaseBand(((target - runs) * 6) / ballsLeft)}|${phaseOf(b.over)}`, key);
-          }
           const ctx = `${ctxPhase}|${wicketsBand(wickets)}`;
           this.setness.add(ctx, setnessBand(faced.get(b.batter) ?? 0), key);
           if (b.legal) this.ballInOver.add(ctxPhase, String(Math.min(6, legalInOver + 1)), key);
@@ -211,12 +209,19 @@ export class SituationAnalysis {
 
       // Streak (real sequence) and consecutive dots in chases.
       this.tabulateSequence(recs, number, recs.map((r) => r.runsBatter), this.streak, target !== null);
-      // Shuffled null: same positions and contexts, outcome labels permuted within the innings.
+      // Shuffled null: same positions and contexts, outcome labels permuted within the innings AND
+      // within the phase (2026-11-01 audit: a whole-innings shuffle let the phase difference ride
+      // inside the streak residual, +4–6% on every powerplay band).
       const next = rngFor(`${m.id}:${inn.index}`);
       const perm = recs.map((_, i) => i);
-      for (let i = perm.length - 1; i > 0; i -= 1) {
-        const j = Math.floor(next() * (i + 1));
-        [perm[i], perm[j]] = [perm[j]!, perm[i]!];
+      for (const ph of PHASES) {
+        const idx = perm.filter((i) => phaseOf(recs[i]!.over) === ph);
+        for (let a = idx.length - 1; a > 0; a -= 1) {
+          const b2 = Math.floor(next() * (a + 1));
+          [idx[a], idx[b2]] = [idx[b2]!, idx[a]!];
+        }
+        let n = 0;
+        for (let i = 0; i < perm.length; i += 1) if (phaseOf(recs[i]!.over) === ph) perm[i] = idx[n++]!;
       }
       const shuffled = recs.map((r, i) => ({ ...r, outcome: recs[perm[i]!]!.outcome, runsBatter: recs[perm[i]!]!.runsBatter }));
       this.tabulateSequence(shuffled, number, shuffled.map((r) => r.runsBatter), this.streakNull, false);
@@ -230,7 +235,11 @@ export class SituationAnalysis {
       const r = recs[i]!;
       const ctx = `${number}|${phaseOf(r.over)}|${wicketsBand(r.wickets)}`;
       const lastSix = recent.slice(-6).reduce((a, x) => a + x, 0);
-      table.add(ctx, streakBand(recent.length, lastSix), r.outcome);
+      // The first six balls ("n/a") are filed but kept out of the base: the engine plays them as 1
+      // (their caution is the openers' setness and τ), so the other bands are measured against the
+      // balls that actually carry a band. With them in, every band read above 1 in the powerplay.
+      const band = streakBand(recent.length, lastSix);
+      table.add(ctx, band, r.outcome, band !== "n/a");
       if (chase) this.chaseDots.add(`${phaseOf(r.over)}|${wicketsBand(r.wickets)}`, dotsBand(consecutiveDots), r.outcome);
       recent.push(runsSeq[i]!);
       if (r.legal) consecutiveDots = r.runsTotal === 0 && r.outcome !== "W" ? consecutiveDots + 1 : 0;
@@ -294,11 +303,10 @@ export class SituationAnalysis {
     return { innings: n, meanBalls: +(sumBalls / n).toFixed(1), excessVariance: +excess.toFixed(3), sd: +Math.sqrt(s2).toFixed(3) };
   }
 
-  summary(): SituationTables {
+  summary(): Omit<SituationTables, "states"> {
     return {
       cells: obj(this.cells),
       phases: obj(this.phases),
-      chase: obj(this.chase),
       streak: this.streak.out(),
       streakNull: this.streakNull.out(),
       setness: this.setness.out(),

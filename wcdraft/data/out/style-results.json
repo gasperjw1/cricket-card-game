@@ -1,0 +1,1188 @@
+{
+  "overall": [
+    {
+      "style": "Aggressor",
+      "ballsPct": 20.1,
+      "addedPer100": 15,
+      "best": null
+    },
+    {
+      "style": "Complete",
+      "ballsPct": 5.8,
+      "addedPer100": 8.5,
+      "best": null
+    },
+    {
+      "style": "Starter",
+      "ballsPct": 7.5,
+      "addedPer100": 6.9,
+      "best": null
+    },
+    {
+      "style": "Builder",
+      "ballsPct": 13.8,
+      "addedPer100": 2.7,
+      "best": null
+    },
+    {
+      "style": "Rotator",
+      "ballsPct": 11.2,
+      "addedPer100": -1.3,
+      "best": null
+    },
+    {
+      "style": "Anchor",
+      "ballsPct": 33.3,
+      "addedPer100": -4.9,
+      "best": null
+    },
+    {
+      "style": null,
+      "ballsPct": 8.4,
+      "addedPer100": -31.4,
+      "best": null
+    }
+  ],
+  "editions": [
+    {
+      "editionId": "2007",
+      "rows": [
+        {
+          "style": "Complete",
+          "ballsPct": 1.8,
+          "addedPer100": 50.7,
+          "best": {
+            "id": "39f01cdb",
+            "name": "KP Pietersen",
+            "added": 56.7,
+            "balls": 108
+          }
+        },
+        {
+          "style": "Starter",
+          "ballsPct": 4.8,
+          "addedPer100": 15.8,
+          "best": {
+            "id": "d18f9182",
+            "name": "DPMD Jayawardene",
+            "added": 31.9,
+            "balls": 104
+          }
+        },
+        {
+          "style": "Aggressor",
+          "ballsPct": 16.6,
+          "addedPer100": 13.9,
+          "best": {
+            "id": "d8699ab7",
+            "name": "ML Hayden",
+            "added": 56.8,
+            "balls": 181
+          }
+        },
+        {
+          "style": "Rotator",
+          "ballsPct": 5.7,
+          "addedPer100": 10.8,
+          "best": {
+            "id": "bb345e0b",
+            "name": "G Gambhir",
+            "added": 44,
+            "balls": 174
+          }
+        },
+        {
+          "style": "Builder",
+          "ballsPct": 14.3,
+          "addedPer100": 6.2,
+          "best": {
+            "id": "6581d753",
+            "name": "JM Kemp",
+            "added": 64.9,
+            "balls": 124
+          }
+        },
+        {
+          "style": "Anchor",
+          "ballsPct": 36.9,
+          "addedPer100": -6.3,
+          "best": {
+            "id": "7eae4418",
+            "name": "Misbah-ul-Haq",
+            "added": 65.1,
+            "balls": 156
+          }
+        },
+        {
+          "style": null,
+          "ballsPct": 19.8,
+          "addedPer100": -15.9,
+          "best": {
+            "id": "f5390243",
+            "name": "CD McMillan",
+            "added": 57.7,
+            "balls": 89
+          }
+        }
+      ],
+      "champion": {
+        "team": "India",
+        "topSix": [
+          {
+            "id": "bb345e0b",
+            "name": "G Gambhir",
+            "style": "Rotator"
+          },
+          {
+            "id": "3c6ffae8",
+            "name": "YK Pathan",
+            "style": "Aggressor"
+          },
+          {
+            "id": "1c17e270",
+            "name": "RV Uthappa",
+            "style": "Builder"
+          },
+          {
+            "id": "1c914163",
+            "name": "Yuvraj Singh",
+            "style": "Builder"
+          },
+          {
+            "id": "4a8a2e3b",
+            "name": "MS Dhoni",
+            "style": "Anchor"
+          },
+          {
+            "id": "740742ef",
+            "name": "RG Sharma",
+            "style": "Builder"
+          }
+        ]
+      }
+    },
+    {
+      "editionId": "2009",
+      "rows": [
+        {
+          "style": "Aggressor",
+          "ballsPct": 13.3,
+          "addedPer100": 15.6,
+          "best": {
+            "id": "39f01cdb",
+            "name": "KP Pietersen",
+            "added": 46.2,
+            "balls": 99
+          }
+        },
+        {
+          "style": "Complete",
+          "ballsPct": 4.8,
+          "addedPer100": 11.2,
+          "best": {
+            "id": "c4487b84",
+            "name": "AB de Villiers",
+            "added": 41.5,
+            "balls": 119
+          }
+        },
+        {
+          "style": "Builder",
+          "ballsPct": 12.6,
+          "addedPer100": 8.4,
+          "best": {
+            "id": "db584dad",
+            "name": "CH Gayle",
+            "added": 64.8,
+            "balls": 142
+          }
+        },
+        {
+          "style": "Anchor",
+          "ballsPct": 40.7,
+          "addedPer100": 3.6,
+          "best": {
+            "id": "5bdcdb72",
+            "name": "TM Dilshan",
+            "added": 78,
+            "balls": 215
+          }
+        },
+        {
+          "style": "Starter",
+          "ballsPct": 4.6,
+          "addedPer100": -10.6,
+          "best": {
+            "id": "d18f9182",
+            "name": "DPMD Jayawardene",
+            "added": -11.4,
+            "balls": 126
+          }
+        },
+        {
+          "style": "Rotator",
+          "ballsPct": 9.9,
+          "addedPer100": -12,
+          "best": {
+            "id": "bb345e0b",
+            "name": "G Gambhir",
+            "added": 11.1,
+            "balls": 135
+          }
+        },
+        {
+          "style": null,
+          "ballsPct": 14.1,
+          "addedPer100": -24.4,
+          "best": {
+            "id": "48f177f5",
+            "name": "AJ Redmond",
+            "added": 36.8,
+            "balls": 57
+          }
+        }
+      ],
+      "champion": {
+        "team": "Pakistan",
+        "topSix": [
+          {
+            "id": "ff077124",
+            "name": "Kamran Akmal",
+            "style": "Builder"
+          },
+          {
+            "id": "fd201eb4",
+            "name": "Shahzaib Hasan",
+            "style": "Starter"
+          },
+          {
+            "id": "0dc00542",
+            "name": "Shahid Afridi",
+            "style": "Aggressor"
+          },
+          {
+            "id": "64c34cd0",
+            "name": "Shoaib Malik",
+            "style": "Rotator"
+          }
+        ]
+      }
+    },
+    {
+      "editionId": "2010",
+      "rows": [
+        {
+          "style": "Complete",
+          "ballsPct": 6,
+          "addedPer100": 20.6,
+          "best": {
+            "id": "39f01cdb",
+            "name": "KP Pietersen",
+            "added": 74.5,
+            "balls": 162
+          }
+        },
+        {
+          "style": "Builder",
+          "ballsPct": 15.3,
+          "addedPer100": 16.2,
+          "best": {
+            "id": "48fd7349",
+            "name": "MEK Hussey",
+            "added": 75.4,
+            "balls": 107
+          }
+        },
+        {
+          "style": "Starter",
+          "ballsPct": 8.1,
+          "addedPer100": 14.7,
+          "best": {
+            "id": "d18f9182",
+            "name": "DPMD Jayawardene",
+            "added": 87.4,
+            "balls": 189
+          }
+        },
+        {
+          "style": "Anchor",
+          "ballsPct": 40.3,
+          "addedPer100": -0.6,
+          "best": {
+            "id": "d0513f63",
+            "name": "CL White",
+            "added": 68.7,
+            "balls": 120
+          }
+        },
+        {
+          "style": "Rotator",
+          "ballsPct": 6.8,
+          "addedPer100": -3.5,
+          "best": {
+            "id": "7dc35884",
+            "name": "Shakib Al Hasan",
+            "added": 23.2,
+            "balls": 59
+          }
+        },
+        {
+          "style": "Aggressor",
+          "ballsPct": 15.7,
+          "addedPer100": -6.1,
+          "best": {
+            "id": "1dc12ab9",
+            "name": "SK Raina",
+            "added": 53.3,
+            "balls": 135
+          }
+        },
+        {
+          "style": null,
+          "ballsPct": 7.7,
+          "addedPer100": -45.3,
+          "best": {
+            "id": "5673a3fc",
+            "name": "NL McCullum",
+            "added": 11.2,
+            "balls": 36
+          }
+        }
+      ],
+      "champion": {
+        "team": "England",
+        "topSix": [
+          {
+            "id": "11df3dc8",
+            "name": "MJ Lumb",
+            "style": "Aggressor"
+          },
+          {
+            "id": "1e960f2a",
+            "name": "C Kieswetter",
+            "style": "Anchor"
+          },
+          {
+            "id": "39f01cdb",
+            "name": "KP Pietersen",
+            "style": "Complete"
+          },
+          {
+            "id": "a386e91b",
+            "name": "PD Collingwood",
+            "style": "Complete"
+          },
+          {
+            "id": "d2a6c0e6",
+            "name": "EJG Morgan",
+            "style": "Builder"
+          }
+        ]
+      }
+    },
+    {
+      "editionId": "2012",
+      "rows": [
+        {
+          "style": "Complete",
+          "ballsPct": 5.3,
+          "addedPer100": 44,
+          "best": {
+            "id": "4329fbb5",
+            "name": "SR Watson",
+            "added": 83,
+            "balls": 165
+          }
+        },
+        {
+          "style": "Starter",
+          "ballsPct": 11.2,
+          "addedPer100": 4.1,
+          "best": {
+            "id": "fd2bf2a0",
+            "name": "Umar Akmal",
+            "added": 30.6,
+            "balls": 103
+          }
+        },
+        {
+          "style": "Anchor",
+          "ballsPct": 47,
+          "addedPer100": 2.9,
+          "best": {
+            "id": "f846de6a",
+            "name": "MN Samuels",
+            "added": 54.7,
+            "balls": 172
+          }
+        },
+        {
+          "style": "Aggressor",
+          "ballsPct": 15.4,
+          "addedPer100": -5.3,
+          "best": {
+            "id": "db584dad",
+            "name": "CH Gayle",
+            "added": 64,
+            "balls": 148
+          }
+        },
+        {
+          "style": "Builder",
+          "ballsPct": 7.7,
+          "addedPer100": -17.9,
+          "best": {
+            "id": "c03c6200",
+            "name": "DJG Sammy",
+            "added": 5.5,
+            "balls": 38
+          }
+        },
+        {
+          "style": "Rotator",
+          "ballsPct": 6.9,
+          "addedPer100": -18.6,
+          "best": {
+            "id": "7dc35884",
+            "name": "Shakib Al Hasan",
+            "added": 12.2,
+            "balls": 62
+          }
+        },
+        {
+          "style": null,
+          "ballsPct": 6.5,
+          "addedPer100": -11.1,
+          "best": {
+            "id": "16dfcc19",
+            "name": "Umar Gul",
+            "added": 15.6,
+            "balls": 32
+          }
+        }
+      ],
+      "champion": {
+        "team": "West Indies",
+        "topSix": [
+          {
+            "id": "09a9d073",
+            "name": "J Charles",
+            "style": "Starter"
+          },
+          {
+            "id": "db584dad",
+            "name": "CH Gayle",
+            "style": "Aggressor"
+          },
+          {
+            "id": "f846de6a",
+            "name": "MN Samuels",
+            "style": "Anchor"
+          },
+          {
+            "id": "87e562a9",
+            "name": "DJ Bravo",
+            "style": "Anchor"
+          },
+          {
+            "id": "a757b0d8",
+            "name": "KA Pollard",
+            "style": "Aggressor"
+          },
+          {
+            "id": "bbd41817",
+            "name": "AD Russell",
+            "style": "Aggressor"
+          }
+        ]
+      }
+    },
+    {
+      "editionId": "2014",
+      "rows": [
+        {
+          "style": "Aggressor",
+          "ballsPct": 13.2,
+          "addedPer100": 27.5,
+          "best": {
+            "id": "b681e71e",
+            "name": "GJ Maxwell",
+            "added": 70.9,
+            "balls": 69
+          }
+        },
+        {
+          "style": "Starter",
+          "ballsPct": 4.4,
+          "addedPer100": 22.2,
+          "best": {
+            "id": "e798611a",
+            "name": "HM Amla",
+            "added": 45.8,
+            "balls": 141
+          }
+        },
+        {
+          "style": "Rotator",
+          "ballsPct": 10.6,
+          "addedPer100": 10,
+          "best": {
+            "id": "ba607b88",
+            "name": "V Kohli",
+            "added": 64.7,
+            "balls": 246
+          }
+        },
+        {
+          "style": "Anchor",
+          "ballsPct": 43.1,
+          "addedPer100": 0.8,
+          "best": {
+            "id": "2318ba22",
+            "name": "TLW Cooper",
+            "added": 55.5,
+            "balls": 168
+          }
+        },
+        {
+          "style": "Complete",
+          "ballsPct": 2.5,
+          "addedPer100": -6.2,
+          "best": {
+            "id": "3355b542",
+            "name": "F du Plessis",
+            "added": 24.7,
+            "balls": 62
+          }
+        },
+        {
+          "style": "Builder",
+          "ballsPct": 17.2,
+          "addedPer100": -15.7,
+          "best": {
+            "id": "c03c6200",
+            "name": "DJG Sammy",
+            "added": 38.2,
+            "balls": 45
+          }
+        },
+        {
+          "style": null,
+          "ballsPct": 9,
+          "addedPer100": -34.7,
+          "best": {
+            "id": "ae6746e0",
+            "name": "Khurram Khan",
+            "added": 2.5,
+            "balls": 73
+          }
+        }
+      ],
+      "champion": {
+        "team": "Sri Lanka",
+        "topSix": [
+          {
+            "id": "f21043a5",
+            "name": "MDKJ Perera",
+            "style": "Starter"
+          },
+          {
+            "id": "5bdcdb72",
+            "name": "TM Dilshan",
+            "style": "Anchor"
+          },
+          {
+            "id": "d18f9182",
+            "name": "DPMD Jayawardene",
+            "style": "Anchor"
+          },
+          {
+            "id": "6b71e6cf",
+            "name": "KC Sangakkara",
+            "style": "Anchor"
+          },
+          {
+            "id": "c5928dec",
+            "name": "HDRL Thirimanne",
+            "style": "Anchor"
+          },
+          {
+            "id": "0f12f9df",
+            "name": "NLTC Perera",
+            "style": "Aggressor"
+          }
+        ]
+      }
+    },
+    {
+      "editionId": "2016",
+      "rows": [
+        {
+          "style": "Builder",
+          "ballsPct": 16.5,
+          "addedPer100": 10.7,
+          "best": {
+            "id": "ba607b88",
+            "name": "V Kohli",
+            "added": 89.7,
+            "balls": 184
+          }
+        },
+        {
+          "style": "Starter",
+          "ballsPct": 5.8,
+          "addedPer100": 4.1,
+          "best": {
+            "id": "331ea488",
+            "name": "UT Khawaja",
+            "added": 44.2,
+            "balls": 104
+          }
+        },
+        {
+          "style": "Anchor",
+          "ballsPct": 40.9,
+          "addedPer100": 2.1,
+          "best": {
+            "id": "3b041a12",
+            "name": "Tamim Iqbal",
+            "added": 71.1,
+            "balls": 181
+          }
+        },
+        {
+          "style": "Aggressor",
+          "ballsPct": 19.9,
+          "addedPer100": 0.7,
+          "best": {
+            "id": "99b75528",
+            "name": "JC Buttler",
+            "added": 49.6,
+            "balls": 109
+          }
+        },
+        {
+          "style": "Rotator",
+          "ballsPct": 10,
+          "addedPer100": -1.8,
+          "best": {
+            "id": "a343262c",
+            "name": "JE Root",
+            "added": 81.1,
+            "balls": 162
+          }
+        },
+        {
+          "style": "Complete",
+          "ballsPct": 1.9,
+          "addedPer100": -9,
+          "best": {
+            "id": "7dc35884",
+            "name": "Shakib Al Hasan",
+            "added": -1.9,
+            "balls": 102
+          }
+        },
+        {
+          "style": null,
+          "ballsPct": 4.9,
+          "addedPer100": -54.1,
+          "best": null
+        }
+      ],
+      "champion": {
+        "team": "West Indies",
+        "topSix": [
+          {
+            "id": "09a9d073",
+            "name": "J Charles",
+            "style": "Aggressor"
+          },
+          {
+            "id": "db584dad",
+            "name": "CH Gayle",
+            "style": "Builder"
+          },
+          {
+            "id": "f846de6a",
+            "name": "MN Samuels",
+            "style": "Anchor"
+          },
+          {
+            "id": "89f64c19",
+            "name": "LMP Simmons",
+            "style": "Anchor"
+          },
+          {
+            "id": "87e562a9",
+            "name": "DJ Bravo",
+            "style": "Anchor"
+          },
+          {
+            "id": "bbd41817",
+            "name": "AD Russell",
+            "style": "Aggressor"
+          }
+        ]
+      }
+    },
+    {
+      "editionId": "2021",
+      "rows": [
+        {
+          "style": "Rotator",
+          "ballsPct": 16.4,
+          "addedPer100": 11.4,
+          "best": {
+            "id": "dcce6f09",
+            "name": "DA Warner",
+            "added": 80.4,
+            "balls": 194
+          }
+        },
+        {
+          "style": "Aggressor",
+          "ballsPct": 17.2,
+          "addedPer100": 8.2,
+          "best": {
+            "id": "99b75528",
+            "name": "JC Buttler",
+            "added": 83.7,
+            "balls": 176
+          }
+        },
+        {
+          "style": "Starter",
+          "ballsPct": 8.4,
+          "addedPer100": 2.8,
+          "best": {
+            "id": "eade4650",
+            "name": "DJ Mitchell",
+            "added": 45.5,
+            "balls": 136
+          }
+        },
+        {
+          "style": "Complete",
+          "ballsPct": 4.1,
+          "addedPer100": -0.8,
+          "best": {
+            "id": "afa7e784",
+            "name": "MS Wade",
+            "added": 29.8,
+            "balls": 45
+          }
+        },
+        {
+          "style": "Builder",
+          "ballsPct": 19.3,
+          "addedPer100": -0.9,
+          "best": {
+            "id": "48a1d7b7",
+            "name": "SO Hetmyer",
+            "added": 35.3,
+            "balls": 100
+          }
+        },
+        {
+          "style": "Anchor",
+          "ballsPct": 30.8,
+          "addedPer100": -3.2,
+          "best": {
+            "id": "732c038e",
+            "name": "KIC Asalanka",
+            "added": 68.9,
+            "balls": 156
+          }
+        },
+        {
+          "style": null,
+          "ballsPct": 3.9,
+          "addedPer100": -60.1,
+          "best": {
+            "id": "1252f71a",
+            "name": "MRJ Watt",
+            "added": -5.2,
+            "balls": 40
+          }
+        }
+      ],
+      "champion": {
+        "team": "Australia",
+        "topSix": [
+          {
+            "id": "dcce6f09",
+            "name": "DA Warner",
+            "style": "Rotator"
+          },
+          {
+            "id": "b8d490fd",
+            "name": "AJ Finch",
+            "style": "Aggressor"
+          },
+          {
+            "id": "3d8feaf8",
+            "name": "MR Marsh",
+            "style": "Anchor"
+          },
+          {
+            "id": "b681e71e",
+            "name": "GJ Maxwell",
+            "style": "Complete"
+          }
+        ]
+      }
+    },
+    {
+      "editionId": "2022",
+      "rows": [
+        {
+          "style": "Aggressor",
+          "ballsPct": 18.2,
+          "addedPer100": 13.7,
+          "best": {
+            "id": "271f83cd",
+            "name": "SA Yadav",
+            "added": 84.3,
+            "balls": 126
+          }
+        },
+        {
+          "style": "Builder",
+          "ballsPct": 14.4,
+          "addedPer100": 6.2,
+          "best": {
+            "id": "9a46c4e5",
+            "name": "GD Phillips",
+            "added": 57.6,
+            "balls": 125
+          }
+        },
+        {
+          "style": "Starter",
+          "ballsPct": 8.4,
+          "addedPer100": 3.2,
+          "best": {
+            "id": "09a9d073",
+            "name": "J Charles",
+            "added": 15.9,
+            "balls": 54
+          }
+        },
+        {
+          "style": "Complete",
+          "ballsPct": 8.4,
+          "addedPer100": -0.7,
+          "best": {
+            "id": "6843a783",
+            "name": "Shan Masood",
+            "added": 18.4,
+            "balls": 147
+          }
+        },
+        {
+          "style": "Rotator",
+          "ballsPct": 18,
+          "addedPer100": -4.8,
+          "best": {
+            "id": "ba607b88",
+            "name": "V Kohli",
+            "added": 62.9,
+            "balls": 215
+          }
+        },
+        {
+          "style": "Anchor",
+          "ballsPct": 26.4,
+          "addedPer100": -6.2,
+          "best": {
+            "id": "3979b5e0",
+            "name": "L Tucker",
+            "added": 59.9,
+            "balls": 161
+          }
+        },
+        {
+          "style": null,
+          "ballsPct": 6.2,
+          "addedPer100": -17.8,
+          "best": {
+            "id": "3766056b",
+            "name": "BJ McCarthy",
+            "added": 11,
+            "balls": 32
+          }
+        }
+      ],
+      "champion": {
+        "team": "England",
+        "topSix": [
+          {
+            "id": "99b75528",
+            "name": "JC Buttler",
+            "style": "Aggressor"
+          },
+          {
+            "id": "92aeac25",
+            "name": "AD Hales",
+            "style": "Aggressor"
+          },
+          {
+            "id": "3d284ca3",
+            "name": "PD Salt",
+            "style": "Aggressor"
+          },
+          {
+            "id": "e087956b",
+            "name": "BA Stokes",
+            "style": "Builder"
+          },
+          {
+            "id": "4ae1755b",
+            "name": "HC Brook",
+            "style": "Aggressor"
+          },
+          {
+            "id": "bb351c23",
+            "name": "MM Ali",
+            "style": "Aggressor"
+          }
+        ]
+      }
+    },
+    {
+      "editionId": "2024",
+      "rows": [
+        {
+          "style": "Aggressor",
+          "ballsPct": 25.1,
+          "addedPer100": 22.9,
+          "best": {
+            "id": "12b610c2",
+            "name": "TM Head",
+            "added": 104.5,
+            "balls": 158
+          }
+        },
+        {
+          "style": "Starter",
+          "ballsPct": 7.6,
+          "addedPer100": 11.6,
+          "best": {
+            "id": "d1305df0",
+            "name": "AGS Gous",
+            "added": 66.1,
+            "balls": 141
+          }
+        },
+        {
+          "style": "Builder",
+          "ballsPct": 13.5,
+          "addedPer100": 5.6,
+          "best": {
+            "id": "740742ef",
+            "name": "RG Sharma",
+            "added": 78.4,
+            "balls": 151
+          }
+        },
+        {
+          "style": "Rotator",
+          "ballsPct": 11,
+          "addedPer100": -4.4,
+          "best": {
+            "id": "1fc6ef83",
+            "name": "SD Hope",
+            "added": 35.7,
+            "balls": 40
+          }
+        },
+        {
+          "style": "Complete",
+          "ballsPct": 6.7,
+          "addedPer100": -6.2,
+          "best": {
+            "id": "d67d5f00",
+            "name": "DA Miller",
+            "added": 4,
+            "balls": 164
+          }
+        },
+        {
+          "style": "Anchor",
+          "ballsPct": 28.5,
+          "addedPer100": -17.5,
+          "best": {
+            "id": "95a5e066",
+            "name": "MG Erasmus",
+            "added": 39.1,
+            "balls": 93
+          }
+        },
+        {
+          "style": null,
+          "ballsPct": 7.5,
+          "addedPer100": -20,
+          "best": {
+            "id": "9061a703",
+            "name": "J Little",
+            "added": 16.7,
+            "balls": 31
+          }
+        }
+      ],
+      "champion": {
+        "team": "India",
+        "topSix": [
+          {
+            "id": "740742ef",
+            "name": "RG Sharma",
+            "style": "Builder"
+          },
+          {
+            "id": "ba607b88",
+            "name": "V Kohli",
+            "style": "Rotator"
+          },
+          {
+            "id": "919a3be2",
+            "name": "RR Pant",
+            "style": "Aggressor"
+          },
+          {
+            "id": "271f83cd",
+            "name": "SA Yadav",
+            "style": "Aggressor"
+          },
+          {
+            "id": "2e171977",
+            "name": "AR Patel",
+            "style": "Starter"
+          },
+          {
+            "id": "a4e37e47",
+            "name": "S Dube",
+            "style": "Aggressor"
+          }
+        ]
+      }
+    },
+    {
+      "editionId": "2026",
+      "rows": [
+        {
+          "style": "Aggressor",
+          "ballsPct": 33.9,
+          "addedPer100": 19.1,
+          "best": {
+            "id": "a4cc73aa",
+            "name": "SV Samson",
+            "added": 156.9,
+            "balls": 161
+          }
+        },
+        {
+          "style": "Builder",
+          "ballsPct": 8.3,
+          "addedPer100": 17.7,
+          "best": {
+            "id": "ab21795b",
+            "name": "BAD Manenti",
+            "added": 69.2,
+            "balls": 76
+          }
+        },
+        {
+          "style": "Complete",
+          "ballsPct": 11.3,
+          "addedPer100": 6.9,
+          "best": {
+            "id": "6a26221c",
+            "name": "AK Markram",
+            "added": 90.2,
+            "balls": 165
+          }
+        },
+        {
+          "style": "Starter",
+          "ballsPct": 9.6,
+          "addedPer100": 3,
+          "best": {
+            "id": "4663bd23",
+            "name": "TL Seifert",
+            "added": 79.1,
+            "balls": 154
+          }
+        },
+        {
+          "style": "Rotator",
+          "ballsPct": 10.8,
+          "addedPer100": -2.8,
+          "best": {
+            "id": "3979b5e0",
+            "name": "L Tucker",
+            "added": 65.4,
+            "balls": 95
+          }
+        },
+        {
+          "style": "Anchor",
+          "ballsPct": 18.4,
+          "addedPer100": -21.8,
+          "best": {
+            "id": "1aba45cd",
+            "name": "Sahibzada Farhan",
+            "added": 132.7,
+            "balls": 237
+          }
+        },
+        {
+          "style": null,
+          "ballsPct": 7.7,
+          "addedPer100": -61.6,
+          "best": {
+            "id": "e7e86505",
+            "name": "B Evans",
+            "added": 25.3,
+            "balls": 32
+          }
+        }
+      ],
+      "champion": {
+        "team": "India",
+        "topSix": [
+          {
+            "id": "a4cc73aa",
+            "name": "SV Samson",
+            "style": "Aggressor"
+          },
+          {
+            "id": "f29185a1",
+            "name": "Abhishek Sharma",
+            "style": "Aggressor"
+          },
+          {
+            "id": "752f7486",
+            "name": "Ishan Kishan",
+            "style": "Aggressor"
+          },
+          {
+            "id": "dbe50b21",
+            "name": "HH Pandya",
+            "style": "Starter"
+          },
+          {
+            "id": "271f83cd",
+            "name": "SA Yadav",
+            "style": "Aggressor"
+          },
+          {
+            "id": "b0482a1d",
+            "name": "Tilak Varma",
+            "style": "Aggressor"
+          }
+        ]
+      }
+    }
+  ]
+}

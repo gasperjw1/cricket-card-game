@@ -233,7 +233,8 @@ export function validate(r: BuildResult, variants = VALIDATION_VARIANTS): Valida
   for (const pe of rows) (byPerson.get(pe.personId) ?? byPerson.set(pe.personId, []).get(pe.personId)!).push(pe);
 
   return variants.map(({ variant, options }) => {
-    const ratings = rateAll(r, options);
+    // Pre-tournament evidence only: a projected card has seen the tournament it would be judged on.
+    const ratings = rateAll(r, { ...options, projection: false });
     const byKey = new Map(ratings.map((x) => [`${x.personId}|${x.editionId}`, x]));
     const pe = new Map(rows.map((x) => [`${x.personId}|${x.editionId}`, x]));
 

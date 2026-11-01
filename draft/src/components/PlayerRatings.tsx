@@ -24,6 +24,7 @@ const SOURCE_NAMES: Record<FinalSkill["evidence"]["source"], string> = {
   domestic: "league T20s",
   odi: "ODIs",
   tournament: "the tournament itself, with no earlier record",
+  later: "the balls after this World Cup began, with too little before it",
   population: "the average for the batting position, with no record",
 };
 
@@ -64,7 +65,7 @@ function SkillDetail({ title, skill, kind, then, here, run }: { title: string; s
         </tbody>
       </table>
       <p className="small">
-        Rated mainly from {SOURCE_NAMES[e.source]}: {balls(e.formBalls)} balls in the two years before, {balls(e.careerBalls)} in all T20Is, {balls(e.domesticBalls)} in leagues, {balls(e.odiBalls)} in ODIs.
+        Rated mainly from {SOURCE_NAMES[e.source]}: {e.source === "later" ? `${balls(e.laterBalls)} later balls in T20Is and leagues, ${balls(e.careerBalls)} T20I balls before it` : `${balls(e.formBalls)} balls in the two years before, ${balls(e.careerBalls)} in all T20Is`}, {balls(e.domesticBalls)} in leagues, {balls(e.odiBalls)} in ODIs.
         {" "}{Math.round(100 * e.transfer)}% of the edge carries against the strongest sides.
       </p>
       {run && <p className="small">In this run: {run}.</p>}

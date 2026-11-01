@@ -27,6 +27,29 @@
       "widesPerOver": 0.16,
       "noBallsPerOver": 0.018,
       "extrasPerOver": 0.35,
+      "extrasByPhase": {
+        "pp": {
+          "wides": 0.201,
+          "noBalls": 0.009,
+          "extras": 0.453,
+          "byes": 0.205,
+          "runsPerWide": 1.191
+        },
+        "mid": {
+          "wides": 0.099,
+          "noBalls": 0.006,
+          "extras": 0.264,
+          "byes": 0.122,
+          "runsPerWide": 1.382
+        },
+        "death": {
+          "wides": 0.211,
+          "noBalls": 0.058,
+          "extras": 0.396,
+          "byes": 0.115,
+          "runsPerWide": 1.061
+        }
+      },
       "dismissalFingerprintPct": {
         "caught": 55.8,
         "bowled": 23.3,
@@ -171,6 +194,29 @@
         "widesPerOver": 0.15,
         "noBallsPerOver": 0.024,
         "extrasPerOver": 0.39,
+        "extrasByPhase": {
+          "pp": {
+            "wides": 0.24,
+            "noBalls": 0.013,
+            "extras": 0.52,
+            "byes": 0.207,
+            "runsPerWide": 1.25
+          },
+          "mid": {
+            "wides": 0.069,
+            "noBalls": 0.009,
+            "extras": 0.274,
+            "byes": 0.155,
+            "runsPerWide": 1.6
+          },
+          "death": {
+            "wides": 0.204,
+            "noBalls": 0.075,
+            "extras": 0.439,
+            "byes": 0.15,
+            "runsPerWide": 1.053
+          }
+        },
         "dismissalFingerprintPct": {
           "caught": 50.7,
           "bowled": 26,
@@ -314,6 +360,29 @@
         "widesPerOver": 0.16,
         "noBallsPerOver": 0.007,
         "extrasPerOver": 0.29,
+        "extrasByPhase": {
+          "pp": {
+            "wides": 0.131,
+            "noBalls": 0,
+            "extras": 0.333,
+            "byes": 0.202,
+            "runsPerWide": 1
+          },
+          "mid": {
+            "wides": 0.151,
+            "noBalls": 0,
+            "extras": 0.246,
+            "byes": 0.063,
+            "runsPerWide": 1.211
+          },
+          "death": {
+            "wides": 0.222,
+            "noBalls": 0.032,
+            "extras": 0.332,
+            "byes": 0.063,
+            "runsPerWide": 1.071
+          }
+        },
         "dismissalFingerprintPct": {
           "caught": 63.6,
           "bowled": 19.2,
@@ -465,6 +534,29 @@
       "widesPerOver": 0.24,
       "noBallsPerOver": 0.043,
       "extrasPerOver": 0.48,
+      "extrasByPhase": {
+        "pp": {
+          "wides": 0.257,
+          "noBalls": 0.052,
+          "extras": 0.581,
+          "byes": 0.162,
+          "runsPerWide": 1.426
+        },
+        "mid": {
+          "wides": 0.223,
+          "noBalls": 0.017,
+          "extras": 0.359,
+          "byes": 0.1,
+          "runsPerWide": 1.09
+        },
+        "death": {
+          "wides": 0.248,
+          "noBalls": 0.083,
+          "extras": 0.586,
+          "byes": 0.221,
+          "runsPerWide": 1.111
+        }
+      },
       "dismissalFingerprintPct": {
         "caught": 64.8,
         "bowled": 16.1,
@@ -609,6 +701,29 @@
         "widesPerOver": 0.26,
         "noBallsPerOver": 0.041,
         "extrasPerOver": 0.52,
+        "extrasByPhase": {
+          "pp": {
+            "wides": 0.317,
+            "noBalls": 0.058,
+            "extras": 0.7,
+            "byes": 0.208,
+            "runsPerWide": 1.368
+          },
+          "mid": {
+            "wides": 0.2,
+            "noBalls": 0.006,
+            "extras": 0.339,
+            "byes": 0.117,
+            "runsPerWide": 1.083
+          },
+          "death": {
+            "wides": 0.284,
+            "noBalls": 0.091,
+            "extras": 0.647,
+            "byes": 0.216,
+            "runsPerWide": 1.16
+          }
+        },
         "dismissalFingerprintPct": {
           "caught": 67.9,
           "bowled": 16.1,
@@ -752,6 +867,29 @@
         "widesPerOver": 0.22,
         "noBallsPerOver": 0.045,
         "extrasPerOver": 0.42,
+        "extrasByPhase": {
+          "pp": {
+            "wides": 0.178,
+            "noBalls": 0.044,
+            "extras": 0.422,
+            "byes": 0.1,
+            "runsPerWide": 1.563
+          },
+          "mid": {
+            "wides": 0.257,
+            "noBalls": 0.033,
+            "extras": 0.39,
+            "byes": 0.075,
+            "runsPerWide": 1.097
+          },
+          "death": {
+            "wides": 0.194,
+            "noBalls": 0.07,
+            "extras": 0.493,
+            "byes": 0.229,
+            "runsPerWide": 1
+          }
+        },
         "dismissalFingerprintPct": {
           "caught": 60.2,
           "bowled": 16.1,
@@ -903,6 +1041,29 @@
       "widesPerOver": 0.17,
       "noBallsPerOver": 0.019,
       "extrasPerOver": 0.39,
+      "extrasByPhase": {
+        "pp": {
+          "wides": 0.2,
+          "noBalls": 0.017,
+          "extras": 0.522,
+          "byes": 0.172,
+          "runsPerWide": 1.667
+        },
+        "mid": {
+          "wides": 0.132,
+          "noBalls": 0.019,
+          "extras": 0.306,
+          "byes": 0.117,
+          "runsPerWide": 1.286
+        },
+        "death": {
+          "wides": 0.196,
+          "noBalls": 0.024,
+          "extras": 0.384,
+          "byes": 0.165,
+          "runsPerWide": 1
+        }
+      },
       "dismissalFingerprintPct": {
         "caught": 53.9,
         "bowled": 22,
@@ -1048,6 +1209,29 @@
         "widesPerOver": 0.17,
         "noBallsPerOver": 0.017,
         "extrasPerOver": 0.44,
+        "extrasByPhase": {
+          "pp": {
+            "wides": 0.213,
+            "noBalls": 0.028,
+            "extras": 0.593,
+            "byes": 0.204,
+            "runsPerWide": 1.696
+          },
+          "mid": {
+            "wides": 0.142,
+            "noBalls": 0.006,
+            "extras": 0.352,
+            "byes": 0.173,
+            "runsPerWide": 1.217
+          },
+          "death": {
+            "wides": 0.17,
+            "noBalls": 0.024,
+            "extras": 0.401,
+            "byes": 0.206,
+            "runsPerWide": 1
+          }
+        },
         "dismissalFingerprintPct": {
           "caught": 58.7,
           "bowled": 22.1,
@@ -1191,6 +1375,29 @@
         "widesPerOver": 0.16,
         "noBallsPerOver": 0.023,
         "extrasPerOver": 0.32,
+        "extrasByPhase": {
+          "pp": {
+            "wides": 0.181,
+            "noBalls": 0,
+            "extras": 0.417,
+            "byes": 0.125,
+            "runsPerWide": 1.615
+          },
+          "mid": {
+            "wides": 0.117,
+            "noBalls": 0.039,
+            "extras": 0.234,
+            "byes": 0.029,
+            "runsPerWide": 1.417
+          },
+          "death": {
+            "wides": 0.244,
+            "noBalls": 0.022,
+            "extras": 0.354,
+            "byes": 0.089,
+            "runsPerWide": 1
+          }
+        },
         "dismissalFingerprintPct": {
           "caught": 48.3,
           "bowled": 21.8,
@@ -1343,6 +1550,29 @@
       "widesPerOver": 0.2,
       "noBallsPerOver": 0.022,
       "extrasPerOver": 0.39,
+      "extrasByPhase": {
+        "pp": {
+          "wides": 0.25,
+          "noBalls": 0.018,
+          "extras": 0.44,
+          "byes": 0.166,
+          "runsPerWide": 1.024
+        },
+        "mid": {
+          "wides": 0.147,
+          "noBalls": 0.02,
+          "extras": 0.246,
+          "byes": 0.067,
+          "runsPerWide": 1.081
+        },
+        "death": {
+          "wides": 0.258,
+          "noBalls": 0.032,
+          "extras": 0.612,
+          "byes": 0.242,
+          "runsPerWide": 1.313
+        }
+      },
       "dismissalFingerprintPct": {
         "caught": 69.8,
         "bowled": 13,
@@ -1487,6 +1717,29 @@
         "widesPerOver": 0.16,
         "noBallsPerOver": 0.029,
         "extrasPerOver": 0.36,
+        "extrasByPhase": {
+          "pp": {
+            "wides": 0.231,
+            "noBalls": 0.009,
+            "extras": 0.415,
+            "byes": 0.166,
+            "runsPerWide": 1.04
+          },
+          "mid": {
+            "wides": 0.093,
+            "noBalls": 0.031,
+            "extras": 0.21,
+            "byes": 0.074,
+            "runsPerWide": 1.133
+          },
+          "death": {
+            "wides": 0.212,
+            "noBalls": 0.05,
+            "extras": 0.598,
+            "byes": 0.224,
+            "runsPerWide": 1.529
+          }
+        },
         "dismissalFingerprintPct": {
           "caught": 66.4,
           "bowled": 13.3,
@@ -1630,6 +1883,29 @@
         "widesPerOver": 0.28,
         "noBallsPerOver": 0.01,
         "extrasPerOver": 0.44,
+        "extrasByPhase": {
+          "pp": {
+            "wides": 0.283,
+            "noBalls": 0.033,
+            "extras": 0.483,
+            "byes": 0.167,
+            "runsPerWide": 1
+          },
+          "mid": {
+            "wides": 0.244,
+            "noBalls": 0,
+            "extras": 0.311,
+            "byes": 0.056,
+            "runsPerWide": 1.045
+          },
+          "death": {
+            "wides": 0.342,
+            "noBalls": 0,
+            "extras": 0.639,
+            "byes": 0.274,
+            "runsPerWide": 1.067
+          }
+        },
         "dismissalFingerprintPct": {
           "caught": 76.8,
           "bowled": 12.5,
@@ -1780,6 +2056,29 @@
       "widesPerOver": 0.19,
       "noBallsPerOver": 0.026,
       "extrasPerOver": 0.45,
+      "extrasByPhase": {
+        "pp": {
+          "wides": 0.199,
+          "noBalls": 0.013,
+          "extras": 0.423,
+          "byes": 0.16,
+          "runsPerWide": 1.258
+        },
+        "mid": {
+          "wides": 0.15,
+          "noBalls": 0.021,
+          "extras": 0.395,
+          "byes": 0.137,
+          "runsPerWide": 1.343
+        },
+        "death": {
+          "wides": 0.266,
+          "noBalls": 0.055,
+          "extras": 0.595,
+          "byes": 0.229,
+          "runsPerWide": 1.172
+        }
+      },
       "dismissalFingerprintPct": {
         "caught": 54.6,
         "bowled": 22.4,
@@ -1924,6 +2223,29 @@
         "widesPerOver": 0.19,
         "noBallsPerOver": 0.026,
         "extrasPerOver": 0.45,
+        "extrasByPhase": {
+          "pp": {
+            "wides": 0.199,
+            "noBalls": 0.013,
+            "extras": 0.423,
+            "byes": 0.16,
+            "runsPerWide": 1.258
+          },
+          "mid": {
+            "wides": 0.15,
+            "noBalls": 0.021,
+            "extras": 0.395,
+            "byes": 0.137,
+            "runsPerWide": 1.343
+          },
+          "death": {
+            "wides": 0.266,
+            "noBalls": 0.055,
+            "extras": 0.595,
+            "byes": 0.229,
+            "runsPerWide": 1.172
+          }
+        },
         "dismissalFingerprintPct": {
           "caught": 54.6,
           "bowled": 22.4,
@@ -2075,6 +2397,29 @@
       "widesPerOver": 0.2,
       "noBallsPerOver": 0.017,
       "extrasPerOver": 0.4,
+      "extrasByPhase": {
+        "pp": {
+          "wides": 0.214,
+          "noBalls": 0.026,
+          "extras": 0.467,
+          "byes": 0.22,
+          "runsPerWide": 1.03
+        },
+        "mid": {
+          "wides": 0.17,
+          "noBalls": 0.005,
+          "extras": 0.34,
+          "byes": 0.151,
+          "runsPerWide": 1.083
+        },
+        "death": {
+          "wides": 0.247,
+          "noBalls": 0.032,
+          "extras": 0.408,
+          "byes": 0.129,
+          "runsPerWide": 1
+        }
+      },
       "dismissalFingerprintPct": {
         "caught": 59.1,
         "bowled": 19.9,
@@ -2219,6 +2564,29 @@
         "widesPerOver": 0.2,
         "noBallsPerOver": 0.017,
         "extrasPerOver": 0.4,
+        "extrasByPhase": {
+          "pp": {
+            "wides": 0.214,
+            "noBalls": 0.026,
+            "extras": 0.467,
+            "byes": 0.22,
+            "runsPerWide": 1.03
+          },
+          "mid": {
+            "wides": 0.17,
+            "noBalls": 0.005,
+            "extras": 0.34,
+            "byes": 0.151,
+            "runsPerWide": 1.083
+          },
+          "death": {
+            "wides": 0.247,
+            "noBalls": 0.032,
+            "extras": 0.408,
+            "byes": 0.129,
+            "runsPerWide": 1
+          }
+        },
         "dismissalFingerprintPct": {
           "caught": 59.1,
           "bowled": 19.9,
@@ -2370,6 +2738,29 @@
       "widesPerOver": 0.21,
       "noBallsPerOver": 0.037,
       "extrasPerOver": 0.46,
+      "extrasByPhase": {
+        "pp": {
+          "wides": 0.16,
+          "noBalls": 0.042,
+          "extras": 0.375,
+          "byes": 0.111,
+          "runsPerWide": 1.391
+        },
+        "mid": {
+          "wides": 0.192,
+          "noBalls": 0.027,
+          "extras": 0.362,
+          "byes": 0.107,
+          "runsPerWide": 1.194
+        },
+        "death": {
+          "wides": 0.391,
+          "noBalls": 0.058,
+          "extras": 0.899,
+          "byes": 0.406,
+          "runsPerWide": 1.111
+        }
+      },
       "dismissalFingerprintPct": {
         "caught": 63,
         "bowled": 19.3,
@@ -2514,6 +2905,29 @@
         "widesPerOver": 0.21,
         "noBallsPerOver": 0.037,
         "extrasPerOver": 0.46,
+        "extrasByPhase": {
+          "pp": {
+            "wides": 0.16,
+            "noBalls": 0.042,
+            "extras": 0.375,
+            "byes": 0.111,
+            "runsPerWide": 1.391
+          },
+          "mid": {
+            "wides": 0.192,
+            "noBalls": 0.027,
+            "extras": 0.362,
+            "byes": 0.107,
+            "runsPerWide": 1.194
+          },
+          "death": {
+            "wides": 0.391,
+            "noBalls": 0.058,
+            "extras": 0.899,
+            "byes": 0.406,
+            "runsPerWide": 1.111
+          }
+        },
         "dismissalFingerprintPct": {
           "caught": 63,
           "bowled": 19.3,
@@ -2665,6 +3079,29 @@
       "widesPerOver": 0.2,
       "noBallsPerOver": 0.018,
       "extrasPerOver": 0.45,
+      "extrasByPhase": {
+        "pp": {
+          "wides": 0.208,
+          "noBalls": 0.014,
+          "extras": 0.521,
+          "byes": 0.271,
+          "runsPerWide": 1.133
+        },
+        "mid": {
+          "wides": 0.146,
+          "noBalls": 0.024,
+          "extras": 0.335,
+          "byes": 0.16,
+          "runsPerWide": 1.032
+        },
+        "death": {
+          "wides": 0.312,
+          "noBalls": 0.011,
+          "extras": 0.613,
+          "byes": 0.268,
+          "runsPerWide": 1.071
+        }
+      },
       "dismissalFingerprintPct": {
         "caught": 55,
         "bowled": 22.9,
@@ -2810,6 +3247,29 @@
         "widesPerOver": 0.2,
         "noBallsPerOver": 0.018,
         "extrasPerOver": 0.45,
+        "extrasByPhase": {
+          "pp": {
+            "wides": 0.208,
+            "noBalls": 0.014,
+            "extras": 0.521,
+            "byes": 0.271,
+            "runsPerWide": 1.133
+          },
+          "mid": {
+            "wides": 0.146,
+            "noBalls": 0.024,
+            "extras": 0.335,
+            "byes": 0.16,
+            "runsPerWide": 1.032
+          },
+          "death": {
+            "wides": 0.312,
+            "noBalls": 0.011,
+            "extras": 0.613,
+            "byes": 0.268,
+            "runsPerWide": 1.071
+          }
+        },
         "dismissalFingerprintPct": {
           "caught": 55,
           "bowled": 22.9,
@@ -2962,6 +3422,29 @@
       "widesPerOver": 0.21,
       "noBallsPerOver": 0.015,
       "extrasPerOver": 0.4,
+      "extrasByPhase": {
+        "pp": {
+          "wides": 0.189,
+          "noBalls": 0.008,
+          "extras": 0.447,
+          "byes": 0.152,
+          "runsPerWide": 1.52
+        },
+        "mid": {
+          "wides": 0.158,
+          "noBalls": 0.026,
+          "extras": 0.306,
+          "byes": 0.117,
+          "runsPerWide": 1.032
+        },
+        "death": {
+          "wides": 0.365,
+          "noBalls": 0,
+          "extras": 0.541,
+          "byes": 0.129,
+          "runsPerWide": 1.129
+        }
+      },
       "dismissalFingerprintPct": {
         "caught": 76.2,
         "bowled": 19,
@@ -3105,6 +3588,29 @@
         "widesPerOver": 0.14,
         "noBallsPerOver": 0.02,
         "extrasPerOver": 0.37,
+        "extrasByPhase": {
+          "pp": {
+            "wides": 0.167,
+            "noBalls": 0.021,
+            "extras": 0.479,
+            "byes": 0.292,
+            "runsPerWide": 1
+          },
+          "mid": {
+            "wides": 0.139,
+            "noBalls": 0.028,
+            "extras": 0.292,
+            "byes": 0.111,
+            "runsPerWide": 1.1
+          },
+          "death": {
+            "wides": 0.103,
+            "noBalls": 0,
+            "extras": 0.377,
+            "byes": 0.274,
+            "runsPerWide": 1
+          }
+        },
         "dismissalFingerprintPct": {
           "caught": 62.3,
           "bowled": 30.2,
@@ -3247,6 +3753,29 @@
         "widesPerOver": 0.25,
         "noBallsPerOver": 0.011,
         "extrasPerOver": 0.42,
+        "extrasByPhase": {
+          "pp": {
+            "wides": 0.202,
+            "noBalls": 0,
+            "extras": 0.429,
+            "byes": 0.071,
+            "runsPerWide": 1.765
+          },
+          "mid": {
+            "wides": 0.17,
+            "noBalls": 0.024,
+            "extras": 0.315,
+            "byes": 0.121,
+            "runsPerWide": 1
+          },
+          "death": {
+            "wides": 0.501,
+            "noBalls": 0,
+            "extras": 0.627,
+            "byes": 0.054,
+            "runsPerWide": 1.143
+          }
+        },
         "dismissalFingerprintPct": {
           "caught": 84,
           "bowled": 12.8,
@@ -3396,6 +3925,29 @@
       "widesPerOver": 0.25,
       "noBallsPerOver": 0.021,
       "extrasPerOver": 0.48,
+      "extrasByPhase": {
+        "pp": {
+          "wides": 0.235,
+          "noBalls": 0.023,
+          "extras": 0.568,
+          "byes": 0.182,
+          "runsPerWide": 1.548
+        },
+        "mid": {
+          "wides": 0.256,
+          "noBalls": 0.015,
+          "extras": 0.434,
+          "byes": 0.143,
+          "runsPerWide": 1.08
+        },
+        "death": {
+          "wides": 0.268,
+          "noBalls": 0.032,
+          "extras": 0.429,
+          "byes": 0.129,
+          "runsPerWide": 1
+        }
+      },
       "dismissalFingerprintPct": {
         "caught": 64.4,
         "bowled": 14.4,
@@ -3540,6 +4092,29 @@
         "widesPerOver": 0.26,
         "noBallsPerOver": 0.051,
         "extrasPerOver": 0.59,
+        "extrasByPhase": {
+          "pp": {
+            "wides": 0.333,
+            "noBalls": 0.056,
+            "extras": 0.778,
+            "byes": 0.056,
+            "runsPerWide": 2
+          },
+          "mid": {
+            "wides": 0.259,
+            "noBalls": 0.056,
+            "extras": 0.574,
+            "byes": 0.222,
+            "runsPerWide": 1.143
+          },
+          "death": {
+            "wides": 0.145,
+            "noBalls": 0.036,
+            "extras": 0.364,
+            "byes": 0.182,
+            "runsPerWide": 1
+          }
+        },
         "dismissalFingerprintPct": {
           "caught": 63,
           "lbw": 14.8,
@@ -3682,6 +4257,29 @@
         "widesPerOver": 0.25,
         "noBallsPerOver": 0.01,
         "extrasPerOver": 0.43,
+        "extrasByPhase": {
+          "pp": {
+            "wides": 0.198,
+            "noBalls": 0.01,
+            "extras": 0.49,
+            "byes": 0.229,
+            "runsPerWide": 1.263
+          },
+          "mid": {
+            "wides": 0.254,
+            "noBalls": 0,
+            "extras": 0.381,
+            "byes": 0.113,
+            "runsPerWide": 1.056
+          },
+          "death": {
+            "wides": 0.319,
+            "noBalls": 0.03,
+            "extras": 0.456,
+            "byes": 0.106,
+            "runsPerWide": 1
+          }
+        },
         "dismissalFingerprintPct": {
           "caught": 64.8,
           "bowled": 15.2,
@@ -3833,6 +4431,29 @@
       "widesPerOver": 0.17,
       "noBallsPerOver": 0.013,
       "extrasPerOver": 0.4,
+      "extrasByPhase": {
+        "pp": {
+          "wides": 0.167,
+          "noBalls": 0.025,
+          "extras": 0.4,
+          "byes": 0.133,
+          "runsPerWide": 1.45
+        },
+        "mid": {
+          "wides": 0.139,
+          "noBalls": 0.006,
+          "extras": 0.294,
+          "byes": 0.122,
+          "runsPerWide": 1.2
+        },
+        "death": {
+          "wides": 0.242,
+          "noBalls": 0.012,
+          "extras": 0.629,
+          "byes": 0.327,
+          "runsPerWide": 1.2
+        }
+      },
       "dismissalFingerprintPct": {
         "caught": 57.7,
         "bowled": 22.8,
@@ -3977,6 +4598,29 @@
         "widesPerOver": 0.17,
         "noBallsPerOver": 0.013,
         "extrasPerOver": 0.4,
+        "extrasByPhase": {
+          "pp": {
+            "wides": 0.167,
+            "noBalls": 0.025,
+            "extras": 0.4,
+            "byes": 0.133,
+            "runsPerWide": 1.45
+          },
+          "mid": {
+            "wides": 0.139,
+            "noBalls": 0.006,
+            "extras": 0.294,
+            "byes": 0.122,
+            "runsPerWide": 1.2
+          },
+          "death": {
+            "wides": 0.242,
+            "noBalls": 0.012,
+            "extras": 0.629,
+            "byes": 0.327,
+            "runsPerWide": 1.2
+          }
+        },
         "dismissalFingerprintPct": {
           "caught": 57.7,
           "bowled": 22.8,
@@ -4128,6 +4772,29 @@
       "widesPerOver": 0.2,
       "noBallsPerOver": 0.028,
       "extrasPerOver": 0.47,
+      "extrasByPhase": {
+        "pp": {
+          "wides": 0.327,
+          "noBalls": 0.026,
+          "extras": 0.765,
+          "byes": 0.284,
+          "runsPerWide": 1.395
+        },
+        "mid": {
+          "wides": 0.112,
+          "noBalls": 0.007,
+          "extras": 0.224,
+          "byes": 0.084,
+          "runsPerWide": 1.188
+        },
+        "death": {
+          "wides": 0.184,
+          "noBalls": 0.084,
+          "extras": 0.468,
+          "byes": 0.184,
+          "runsPerWide": 1.091
+        }
+      },
       "dismissalFingerprintPct": {
         "caught": 50,
         "bowled": 23.1,
@@ -4272,6 +4939,29 @@
         "widesPerOver": 0.24,
         "noBallsPerOver": 0.023,
         "extrasPerOver": 0.49,
+        "extrasByPhase": {
+          "pp": {
+            "wides": 0.366,
+            "noBalls": 0.015,
+            "extras": 0.688,
+            "byes": 0.176,
+            "runsPerWide": 1.36
+          },
+          "mid": {
+            "wides": 0.189,
+            "noBalls": 0,
+            "extras": 0.337,
+            "byes": 0.108,
+            "runsPerWide": 1.214
+          },
+          "death": {
+            "wides": 0.095,
+            "noBalls": 0.095,
+            "extras": 0.442,
+            "byes": 0.253,
+            "runsPerWide": 1
+          }
+        },
         "dismissalFingerprintPct": {
           "caught": 61.8,
           "bowled": 17.6,
@@ -4415,6 +5105,29 @@
         "widesPerOver": 0.16,
         "noBallsPerOver": 0.034,
         "extrasPerOver": 0.43,
+        "extrasByPhase": {
+          "pp": {
+            "wides": 0.271,
+            "noBalls": 0.042,
+            "extras": 0.875,
+            "byes": 0.438,
+            "runsPerWide": 1.462
+          },
+          "mid": {
+            "wides": 0.029,
+            "noBalls": 0.014,
+            "extras": 0.101,
+            "byes": 0.058,
+            "runsPerWide": 1
+          },
+          "death": {
+            "wides": 0.284,
+            "noBalls": 0.071,
+            "extras": 0.497,
+            "byes": 0.107,
+            "runsPerWide": 1.125
+          }
+        },
         "dismissalFingerprintPct": {
           "caught": 37.1,
           "bowled": 29,
@@ -4566,6 +5279,29 @@
       "widesPerOver": 0.2,
       "noBallsPerOver": 0.03,
       "extrasPerOver": 0.4,
+      "extrasByPhase": {
+        "pp": {
+          "wides": 0.175,
+          "noBalls": 0.05,
+          "extras": 0.358,
+          "byes": 0.125,
+          "runsPerWide": 1.048
+        },
+        "mid": {
+          "wides": 0.215,
+          "noBalls": 0.012,
+          "extras": 0.407,
+          "byes": 0.15,
+          "runsPerWide": 1.139
+        },
+        "death": {
+          "wides": 0.189,
+          "noBalls": 0.035,
+          "extras": 0.46,
+          "byes": 0.224,
+          "runsPerWide": 1.063
+        }
+      },
       "dismissalFingerprintPct": {
         "caught": 47,
         "bowled": 26.5,
@@ -4709,6 +5445,29 @@
         "widesPerOver": 0.2,
         "noBallsPerOver": 0.03,
         "extrasPerOver": 0.4,
+        "extrasByPhase": {
+          "pp": {
+            "wides": 0.175,
+            "noBalls": 0.05,
+            "extras": 0.358,
+            "byes": 0.125,
+            "runsPerWide": 1.048
+          },
+          "mid": {
+            "wides": 0.215,
+            "noBalls": 0.012,
+            "extras": 0.407,
+            "byes": 0.15,
+            "runsPerWide": 1.139
+          },
+          "death": {
+            "wides": 0.189,
+            "noBalls": 0.035,
+            "extras": 0.46,
+            "byes": 0.224,
+            "runsPerWide": 1.063
+          }
+        },
         "dismissalFingerprintPct": {
           "caught": 47,
           "bowled": 26.5,
@@ -4859,6 +5618,29 @@
       "widesPerOver": 0.24,
       "noBallsPerOver": 0.037,
       "extrasPerOver": 0.57,
+      "extrasByPhase": {
+        "pp": {
+          "wides": 0.324,
+          "noBalls": 0.037,
+          "extras": 0.704,
+          "byes": 0.259,
+          "runsPerWide": 1.257
+        },
+        "mid": {
+          "wides": 0.228,
+          "noBalls": 0.043,
+          "extras": 0.561,
+          "byes": 0.129,
+          "runsPerWide": 1.676
+        },
+        "death": {
+          "wides": 0.166,
+          "noBalls": 0.025,
+          "extras": 0.395,
+          "byes": 0.204,
+          "runsPerWide": 1
+        }
+      },
       "dismissalFingerprintPct": {
         "caught": 53.3,
         "bowled": 21.7,
@@ -5003,6 +5785,29 @@
         "widesPerOver": 0.24,
         "noBallsPerOver": 0.037,
         "extrasPerOver": 0.57,
+        "extrasByPhase": {
+          "pp": {
+            "wides": 0.324,
+            "noBalls": 0.037,
+            "extras": 0.704,
+            "byes": 0.259,
+            "runsPerWide": 1.257
+          },
+          "mid": {
+            "wides": 0.228,
+            "noBalls": 0.043,
+            "extras": 0.561,
+            "byes": 0.129,
+            "runsPerWide": 1.676
+          },
+          "death": {
+            "wides": 0.166,
+            "noBalls": 0.025,
+            "extras": 0.395,
+            "byes": 0.204,
+            "runsPerWide": 1
+          }
+        },
         "dismissalFingerprintPct": {
           "caught": 53.3,
           "bowled": 21.7,
@@ -5154,6 +5959,29 @@
       "widesPerOver": 0.14,
       "noBallsPerOver": 0.06,
       "extrasPerOver": 0.38,
+      "extrasByPhase": {
+        "pp": {
+          "wides": 0.204,
+          "noBalls": 0.074,
+          "extras": 0.435,
+          "byes": 0.148,
+          "runsPerWide": 1.045
+        },
+        "mid": {
+          "wides": 0.135,
+          "noBalls": 0.051,
+          "extras": 0.365,
+          "byes": 0.115,
+          "runsPerWide": 1.476
+        },
+        "death": {
+          "wides": 0.071,
+          "noBalls": 0.057,
+          "extras": 0.328,
+          "byes": 0.185,
+          "runsPerWide": 1.2
+        }
+      },
       "dismissalFingerprintPct": {
         "caught": 59.8,
         "run out": 12,
@@ -5298,6 +6126,29 @@
         "widesPerOver": 0.14,
         "noBallsPerOver": 0.06,
         "extrasPerOver": 0.38,
+        "extrasByPhase": {
+          "pp": {
+            "wides": 0.204,
+            "noBalls": 0.074,
+            "extras": 0.435,
+            "byes": 0.148,
+            "runsPerWide": 1.045
+          },
+          "mid": {
+            "wides": 0.135,
+            "noBalls": 0.051,
+            "extras": 0.365,
+            "byes": 0.115,
+            "runsPerWide": 1.476
+          },
+          "death": {
+            "wides": 0.071,
+            "noBalls": 0.057,
+            "extras": 0.328,
+            "byes": 0.185,
+            "runsPerWide": 1.2
+          }
+        },
         "dismissalFingerprintPct": {
           "caught": 59.8,
           "run out": 12,
@@ -5449,6 +6300,29 @@
       "widesPerOver": 0.18,
       "noBallsPerOver": 0.06,
       "extrasPerOver": 0.44,
+      "extrasByPhase": {
+        "pp": {
+          "wides": 0.157,
+          "noBalls": 0.102,
+          "extras": 0.398,
+          "byes": 0.139,
+          "runsPerWide": 1
+        },
+        "mid": {
+          "wides": 0.176,
+          "noBalls": 0.022,
+          "extras": 0.388,
+          "byes": 0.19,
+          "runsPerWide": 1
+        },
+        "death": {
+          "wides": 0.243,
+          "noBalls": 0.069,
+          "extras": 0.659,
+          "byes": 0.243,
+          "runsPerWide": 1.357
+        }
+      },
       "dismissalFingerprintPct": {
         "caught": 57.9,
         "bowled": 23.7,
@@ -5593,6 +6467,29 @@
         "widesPerOver": 0.18,
         "noBallsPerOver": 0.06,
         "extrasPerOver": 0.44,
+        "extrasByPhase": {
+          "pp": {
+            "wides": 0.157,
+            "noBalls": 0.102,
+            "extras": 0.398,
+            "byes": 0.139,
+            "runsPerWide": 1
+          },
+          "mid": {
+            "wides": 0.176,
+            "noBalls": 0.022,
+            "extras": 0.388,
+            "byes": 0.19,
+            "runsPerWide": 1
+          },
+          "death": {
+            "wides": 0.243,
+            "noBalls": 0.069,
+            "extras": 0.659,
+            "byes": 0.243,
+            "runsPerWide": 1.357
+          }
+        },
         "dismissalFingerprintPct": {
           "caught": 57.9,
           "bowled": 23.7,
@@ -5744,6 +6641,29 @@
       "widesPerOver": 0.2,
       "noBallsPerOver": 0.047,
       "extrasPerOver": 0.53,
+      "extrasByPhase": {
+        "pp": {
+          "wides": 0.238,
+          "noBalls": 0.048,
+          "extras": 0.619,
+          "byes": 0.286,
+          "runsPerWide": 1.2
+        },
+        "mid": {
+          "wides": 0.129,
+          "noBalls": 0.027,
+          "extras": 0.36,
+          "byes": 0.149,
+          "runsPerWide": 1.158
+        },
+        "death": {
+          "wides": 0.299,
+          "noBalls": 0.09,
+          "extras": 0.763,
+          "byes": 0.344,
+          "runsPerWide": 1.1
+        }
+      },
       "dismissalFingerprintPct": {
         "caught": 67,
         "bowled": 20.8,
@@ -5888,6 +6808,29 @@
         "widesPerOver": 0.2,
         "noBallsPerOver": 0.047,
         "extrasPerOver": 0.53,
+        "extrasByPhase": {
+          "pp": {
+            "wides": 0.238,
+            "noBalls": 0.048,
+            "extras": 0.619,
+            "byes": 0.286,
+            "runsPerWide": 1.2
+          },
+          "mid": {
+            "wides": 0.129,
+            "noBalls": 0.027,
+            "extras": 0.36,
+            "byes": 0.149,
+            "runsPerWide": 1.158
+          },
+          "death": {
+            "wides": 0.299,
+            "noBalls": 0.09,
+            "extras": 0.763,
+            "byes": 0.344,
+            "runsPerWide": 1.1
+          }
+        },
         "dismissalFingerprintPct": {
           "caught": 67,
           "bowled": 20.8,
@@ -6039,6 +6982,29 @@
       "widesPerOver": 0.24,
       "noBallsPerOver": 0.04,
       "extrasPerOver": 0.53,
+      "extrasByPhase": {
+        "pp": {
+          "wides": 0.406,
+          "noBalls": 0.052,
+          "extras": 0.75,
+          "byes": 0.24,
+          "runsPerWide": 1.128
+        },
+        "mid": {
+          "wides": 0.146,
+          "noBalls": 0.029,
+          "extras": 0.388,
+          "byes": 0.176,
+          "runsPerWide": 1.25
+        },
+        "death": {
+          "wides": 0.212,
+          "noBalls": 0.042,
+          "extras": 0.494,
+          "byes": 0.155,
+          "runsPerWide": 1.4
+        }
+      },
       "dismissalFingerprintPct": {
         "caught": 48.6,
         "bowled": 28.8,
@@ -6184,6 +7150,29 @@
         "widesPerOver": 0.24,
         "noBallsPerOver": 0.04,
         "extrasPerOver": 0.53,
+        "extrasByPhase": {
+          "pp": {
+            "wides": 0.406,
+            "noBalls": 0.052,
+            "extras": 0.75,
+            "byes": 0.24,
+            "runsPerWide": 1.128
+          },
+          "mid": {
+            "wides": 0.146,
+            "noBalls": 0.029,
+            "extras": 0.388,
+            "byes": 0.176,
+            "runsPerWide": 1.25
+          },
+          "death": {
+            "wides": 0.212,
+            "noBalls": 0.042,
+            "extras": 0.494,
+            "byes": 0.155,
+            "runsPerWide": 1.4
+          }
+        },
         "dismissalFingerprintPct": {
           "caught": 48.6,
           "bowled": 28.8,
@@ -6336,6 +7325,29 @@
       "widesPerOver": 0.19,
       "noBallsPerOver": 0.019,
       "extrasPerOver": 0.44,
+      "extrasByPhase": {
+        "pp": {
+          "wides": 0.302,
+          "noBalls": 0.031,
+          "extras": 0.521,
+          "byes": 0.177,
+          "runsPerWide": 1.034
+        },
+        "mid": {
+          "wides": 0.132,
+          "noBalls": 0,
+          "extras": 0.313,
+          "byes": 0.153,
+          "runsPerWide": 1.211
+        },
+        "death": {
+          "wides": 0.174,
+          "noBalls": 0.04,
+          "extras": 0.561,
+          "byes": 0.241,
+          "runsPerWide": 1.615
+        }
+      },
       "dismissalFingerprintPct": {
         "caught": 54,
         "bowled": 19,
@@ -6480,6 +7492,29 @@
         "widesPerOver": 0.19,
         "noBallsPerOver": 0.019,
         "extrasPerOver": 0.44,
+        "extrasByPhase": {
+          "pp": {
+            "wides": 0.302,
+            "noBalls": 0.031,
+            "extras": 0.521,
+            "byes": 0.177,
+            "runsPerWide": 1.034
+          },
+          "mid": {
+            "wides": 0.132,
+            "noBalls": 0,
+            "extras": 0.313,
+            "byes": 0.153,
+            "runsPerWide": 1.211
+          },
+          "death": {
+            "wides": 0.174,
+            "noBalls": 0.04,
+            "extras": 0.561,
+            "byes": 0.241,
+            "runsPerWide": 1.615
+          }
+        },
         "dismissalFingerprintPct": {
           "caught": 54,
           "bowled": 19,
@@ -6631,6 +7666,29 @@
       "widesPerOver": 0.23,
       "noBallsPerOver": 0.025,
       "extrasPerOver": 0.42,
+      "extrasByPhase": {
+        "pp": {
+          "wides": 0.237,
+          "noBalls": 0.032,
+          "extras": 0.452,
+          "byes": 0.086,
+          "runsPerWide": 1.409
+        },
+        "mid": {
+          "wides": 0.193,
+          "noBalls": 0.009,
+          "extras": 0.377,
+          "byes": 0.138,
+          "runsPerWide": 1.19
+        },
+        "death": {
+          "wides": 0.288,
+          "noBalls": 0.052,
+          "extras": 0.472,
+          "byes": 0.131,
+          "runsPerWide": 1
+        }
+      },
       "dismissalFingerprintPct": {
         "caught": 62.9,
         "bowled": 16.9,
@@ -6776,6 +7834,29 @@
         "widesPerOver": 0.23,
         "noBallsPerOver": 0.025,
         "extrasPerOver": 0.42,
+        "extrasByPhase": {
+          "pp": {
+            "wides": 0.237,
+            "noBalls": 0.032,
+            "extras": 0.452,
+            "byes": 0.086,
+            "runsPerWide": 1.409
+          },
+          "mid": {
+            "wides": 0.193,
+            "noBalls": 0.009,
+            "extras": 0.377,
+            "byes": 0.138,
+            "runsPerWide": 1.19
+          },
+          "death": {
+            "wides": 0.288,
+            "noBalls": 0.052,
+            "extras": 0.472,
+            "byes": 0.131,
+            "runsPerWide": 1
+          }
+        },
         "dismissalFingerprintPct": {
           "caught": 62.9,
           "bowled": 16.9,
@@ -6928,6 +8009,29 @@
       "widesPerOver": 0.22,
       "noBallsPerOver": 0.033,
       "extrasPerOver": 0.41,
+      "extrasByPhase": {
+        "pp": {
+          "wides": 0.229,
+          "noBalls": 0.01,
+          "extras": 0.354,
+          "byes": 0.115,
+          "runsPerWide": 1
+        },
+        "mid": {
+          "wides": 0.19,
+          "noBalls": 0.021,
+          "extras": 0.407,
+          "byes": 0.141,
+          "runsPerWide": 1.296
+        },
+        "death": {
+          "wides": 0.253,
+          "noBalls": 0.095,
+          "extras": 0.491,
+          "byes": 0.142,
+          "runsPerWide": 1
+        }
+      },
       "dismissalFingerprintPct": {
         "caught": 60.6,
         "bowled": 16.2,
@@ -7073,6 +8177,29 @@
         "widesPerOver": 0.2,
         "noBallsPerOver": 0.026,
         "extrasPerOver": 0.42,
+        "extrasByPhase": {
+          "pp": {
+            "wides": 0.167,
+            "noBalls": 0.028,
+            "extras": 0.472,
+            "byes": 0.278,
+            "runsPerWide": 1
+          },
+          "mid": {
+            "wides": 0.204,
+            "noBalls": 0.019,
+            "extras": 0.352,
+            "byes": 0.13,
+            "runsPerWide": 1
+          },
+          "death": {
+            "wides": 0.247,
+            "noBalls": 0.041,
+            "extras": 0.493,
+            "byes": 0.205,
+            "runsPerWide": 1
+          }
+        },
         "dismissalFingerprintPct": {
           "caught": 48.6,
           "run out": 17.1,
@@ -7215,6 +8342,29 @@
         "widesPerOver": 0.22,
         "noBallsPerOver": 0.037,
         "extrasPerOver": 0.4,
+        "extrasByPhase": {
+          "pp": {
+            "wides": 0.267,
+            "noBalls": 0,
+            "extras": 0.283,
+            "byes": 0.017,
+            "runsPerWide": 1
+          },
+          "mid": {
+            "wides": 0.181,
+            "noBalls": 0.023,
+            "extras": 0.442,
+            "byes": 0.147,
+            "runsPerWide": 1.5
+          },
+          "death": {
+            "wides": 0.258,
+            "noBalls": 0.129,
+            "extras": 0.489,
+            "byes": 0.103,
+            "runsPerWide": 1
+          }
+        },
         "dismissalFingerprintPct": {
           "caught": 67.2,
           "bowled": 15.6,
@@ -7366,6 +8516,29 @@
       "widesPerOver": 0.22,
       "noBallsPerOver": 0.03,
       "extrasPerOver": 0.44,
+      "extrasByPhase": {
+        "pp": {
+          "wides": 0.333,
+          "noBalls": 0.031,
+          "extras": 0.542,
+          "byes": 0.073,
+          "runsPerWide": 1.313
+        },
+        "mid": {
+          "wides": 0.156,
+          "noBalls": 0.021,
+          "extras": 0.389,
+          "byes": 0.12,
+          "runsPerWide": 1.364
+        },
+        "death": {
+          "wides": 0.166,
+          "noBalls": 0.05,
+          "extras": 0.382,
+          "byes": 0.15,
+          "runsPerWide": 1.1
+        }
+      },
       "dismissalFingerprintPct": {
         "caught": 63.2,
         "bowled": 17.9,
@@ -7510,6 +8683,29 @@
         "widesPerOver": 0.22,
         "noBallsPerOver": 0.03,
         "extrasPerOver": 0.44,
+        "extrasByPhase": {
+          "pp": {
+            "wides": 0.333,
+            "noBalls": 0.031,
+            "extras": 0.542,
+            "byes": 0.073,
+            "runsPerWide": 1.313
+          },
+          "mid": {
+            "wides": 0.156,
+            "noBalls": 0.021,
+            "extras": 0.389,
+            "byes": 0.12,
+            "runsPerWide": 1.364
+          },
+          "death": {
+            "wides": 0.166,
+            "noBalls": 0.05,
+            "extras": 0.382,
+            "byes": 0.15,
+            "runsPerWide": 1.1
+          }
+        },
         "dismissalFingerprintPct": {
           "caught": 63.2,
           "bowled": 17.9,
@@ -7661,6 +8857,29 @@
       "widesPerOver": 0.17,
       "noBallsPerOver": 0.038,
       "extrasPerOver": 0.34,
+      "extrasByPhase": {
+        "pp": {
+          "wides": 0.131,
+          "noBalls": 0.036,
+          "extras": 0.274,
+          "byes": 0.107,
+          "runsPerWide": 1
+        },
+        "mid": {
+          "wides": 0.112,
+          "noBalls": 0.032,
+          "extras": 0.248,
+          "byes": 0.064,
+          "runsPerWide": 1
+        },
+        "death": {
+          "wides": 0.334,
+          "noBalls": 0.053,
+          "extras": 0.651,
+          "byes": 0.264,
+          "runsPerWide": 1
+        }
+      },
       "dismissalFingerprintPct": {
         "caught": 61.1,
         "bowled": 16.8,
@@ -7805,6 +9024,29 @@
         "widesPerOver": 0.17,
         "noBallsPerOver": 0.038,
         "extrasPerOver": 0.34,
+        "extrasByPhase": {
+          "pp": {
+            "wides": 0.131,
+            "noBalls": 0.036,
+            "extras": 0.274,
+            "byes": 0.107,
+            "runsPerWide": 1
+          },
+          "mid": {
+            "wides": 0.112,
+            "noBalls": 0.032,
+            "extras": 0.248,
+            "byes": 0.064,
+            "runsPerWide": 1
+          },
+          "death": {
+            "wides": 0.334,
+            "noBalls": 0.053,
+            "extras": 0.651,
+            "byes": 0.264,
+            "runsPerWide": 1
+          }
+        },
         "dismissalFingerprintPct": {
           "caught": 61.1,
           "bowled": 16.8,
@@ -7956,6 +9198,29 @@
       "widesPerOver": 0.14,
       "noBallsPerOver": 0.005,
       "extrasPerOver": 0.44,
+      "extrasByPhase": {
+        "pp": {
+          "wides": 0.167,
+          "noBalls": 0,
+          "extras": 0.653,
+          "byes": 0.306,
+          "runsPerWide": 1.667
+        },
+        "mid": {
+          "wides": 0.114,
+          "noBalls": 0,
+          "extras": 0.267,
+          "byes": 0.105,
+          "runsPerWide": 1.417
+        },
+        "death": {
+          "wides": 0.137,
+          "noBalls": 0.023,
+          "extras": 0.527,
+          "byes": 0.366,
+          "runsPerWide": 1
+        }
+      },
       "dismissalFingerprintPct": {
         "caught": 55.2,
         "bowled": 17.9,
@@ -8100,6 +9365,29 @@
         "widesPerOver": 0.14,
         "noBallsPerOver": 0.005,
         "extrasPerOver": 0.44,
+        "extrasByPhase": {
+          "pp": {
+            "wides": 0.167,
+            "noBalls": 0,
+            "extras": 0.653,
+            "byes": 0.306,
+            "runsPerWide": 1.667
+          },
+          "mid": {
+            "wides": 0.114,
+            "noBalls": 0,
+            "extras": 0.267,
+            "byes": 0.105,
+            "runsPerWide": 1.417
+          },
+          "death": {
+            "wides": 0.137,
+            "noBalls": 0.023,
+            "extras": 0.527,
+            "byes": 0.366,
+            "runsPerWide": 1
+          }
+        },
         "dismissalFingerprintPct": {
           "caught": 55.2,
           "bowled": 17.9,
@@ -8251,6 +9539,29 @@
       "widesPerOver": 0.16,
       "noBallsPerOver": 0.023,
       "extrasPerOver": 0.57,
+      "extrasByPhase": {
+        "pp": {
+          "wides": 0.152,
+          "noBalls": 0.015,
+          "extras": 0.591,
+          "byes": 0.379,
+          "runsPerWide": 1.3
+        },
+        "mid": {
+          "wides": 0.155,
+          "noBalls": 0,
+          "extras": 0.521,
+          "byes": 0.366,
+          "runsPerWide": 1
+        },
+        "death": {
+          "wides": 0.202,
+          "noBalls": 0.087,
+          "extras": 0.606,
+          "byes": 0.202,
+          "runsPerWide": 1
+        }
+      },
       "dismissalFingerprintPct": {
         "caught": 58,
         "bowled": 20.3,
@@ -8394,6 +9705,29 @@
         "widesPerOver": 0.16,
         "noBallsPerOver": 0.023,
         "extrasPerOver": 0.57,
+        "extrasByPhase": {
+          "pp": {
+            "wides": 0.152,
+            "noBalls": 0.015,
+            "extras": 0.591,
+            "byes": 0.379,
+            "runsPerWide": 1.3
+          },
+          "mid": {
+            "wides": 0.155,
+            "noBalls": 0,
+            "extras": 0.521,
+            "byes": 0.366,
+            "runsPerWide": 1
+          },
+          "death": {
+            "wides": 0.202,
+            "noBalls": 0.087,
+            "extras": 0.606,
+            "byes": 0.202,
+            "runsPerWide": 1
+          }
+        },
         "dismissalFingerprintPct": {
           "caught": 58,
           "bowled": 20.3,
@@ -8544,6 +9878,29 @@
       "widesPerOver": 0.27,
       "noBallsPerOver": 0.035,
       "extrasPerOver": 0.4,
+      "extrasByPhase": {
+        "pp": {
+          "wides": 0.292,
+          "noBalls": 0,
+          "extras": 0.458,
+          "byes": 0.111,
+          "runsPerWide": 1.19
+        },
+        "mid": {
+          "wides": 0.25,
+          "noBalls": 0.037,
+          "extras": 0.361,
+          "byes": 0.056,
+          "runsPerWide": 1.074
+        },
+        "death": {
+          "wides": 0.274,
+          "noBalls": 0.078,
+          "extras": 0.41,
+          "byes": 0.059,
+          "runsPerWide": 1
+        }
+      },
       "dismissalFingerprintPct": {
         "caught": 76.3,
         "bowled": 21.1,
@@ -8686,6 +10043,29 @@
         "widesPerOver": 0.27,
         "noBallsPerOver": 0.035,
         "extrasPerOver": 0.4,
+        "extrasByPhase": {
+          "pp": {
+            "wides": 0.292,
+            "noBalls": 0,
+            "extras": 0.458,
+            "byes": 0.111,
+            "runsPerWide": 1.19
+          },
+          "mid": {
+            "wides": 0.25,
+            "noBalls": 0.037,
+            "extras": 0.361,
+            "byes": 0.056,
+            "runsPerWide": 1.074
+          },
+          "death": {
+            "wides": 0.274,
+            "noBalls": 0.078,
+            "extras": 0.41,
+            "byes": 0.059,
+            "runsPerWide": 1
+          }
+        },
         "dismissalFingerprintPct": {
           "caught": 76.3,
           "bowled": 21.1,
@@ -8835,6 +10215,29 @@
       "widesPerOver": 0.18,
       "noBallsPerOver": 0.044,
       "extrasPerOver": 0.38,
+      "extrasByPhase": {
+        "pp": {
+          "wides": 0.278,
+          "noBalls": 0.042,
+          "extras": 0.5,
+          "byes": 0.167,
+          "runsPerWide": 1.05
+        },
+        "mid": {
+          "wides": 0.084,
+          "noBalls": 0.028,
+          "extras": 0.216,
+          "byes": 0.103,
+          "runsPerWide": 1
+        },
+        "death": {
+          "wides": 0.255,
+          "noBalls": 0.078,
+          "extras": 0.549,
+          "byes": 0.216,
+          "runsPerWide": 1
+        }
+      },
       "dismissalFingerprintPct": {
         "caught": 69.6,
         "bowled": 15.2,
@@ -8979,6 +10382,29 @@
         "widesPerOver": 0.18,
         "noBallsPerOver": 0.044,
         "extrasPerOver": 0.38,
+        "extrasByPhase": {
+          "pp": {
+            "wides": 0.278,
+            "noBalls": 0.042,
+            "extras": 0.5,
+            "byes": 0.167,
+            "runsPerWide": 1.05
+          },
+          "mid": {
+            "wides": 0.084,
+            "noBalls": 0.028,
+            "extras": 0.216,
+            "byes": 0.103,
+            "runsPerWide": 1
+          },
+          "death": {
+            "wides": 0.255,
+            "noBalls": 0.078,
+            "extras": 0.549,
+            "byes": 0.216,
+            "runsPerWide": 1
+          }
+        },
         "dismissalFingerprintPct": {
           "caught": 69.6,
           "bowled": 15.2,
@@ -9130,6 +10556,29 @@
       "widesPerOver": 0.16,
       "noBallsPerOver": 0.04,
       "extrasPerOver": 0.38,
+      "extrasByPhase": {
+        "pp": {
+          "wides": 0.111,
+          "noBalls": 0.028,
+          "extras": 0.333,
+          "byes": 0.139,
+          "runsPerWide": 1.5
+        },
+        "mid": {
+          "wides": 0.194,
+          "noBalls": 0.037,
+          "extras": 0.435,
+          "byes": 0.185,
+          "runsPerWide": 1.095
+        },
+        "death": {
+          "wides": 0.147,
+          "noBalls": 0.063,
+          "extras": 0.337,
+          "byes": 0.126,
+          "runsPerWide": 1
+        }
+      },
       "dismissalFingerprintPct": {
         "caught": 72.6,
         "bowled": 13.7,
@@ -9274,6 +10723,29 @@
         "widesPerOver": 0.16,
         "noBallsPerOver": 0.04,
         "extrasPerOver": 0.38,
+        "extrasByPhase": {
+          "pp": {
+            "wides": 0.111,
+            "noBalls": 0.028,
+            "extras": 0.333,
+            "byes": 0.139,
+            "runsPerWide": 1.5
+          },
+          "mid": {
+            "wides": 0.194,
+            "noBalls": 0.037,
+            "extras": 0.435,
+            "byes": 0.185,
+            "runsPerWide": 1.095
+          },
+          "death": {
+            "wides": 0.147,
+            "noBalls": 0.063,
+            "extras": 0.337,
+            "byes": 0.126,
+            "runsPerWide": 1
+          }
+        },
         "dismissalFingerprintPct": {
           "caught": 72.6,
           "bowled": 13.7,
@@ -9425,6 +10897,29 @@
       "widesPerOver": 0.17,
       "noBallsPerOver": 0.017,
       "extrasPerOver": 0.36,
+      "extrasByPhase": {
+        "pp": {
+          "wides": 0.264,
+          "noBalls": 0,
+          "extras": 0.5,
+          "byes": 0.167,
+          "runsPerWide": 1.263
+        },
+        "mid": {
+          "wides": 0.074,
+          "noBalls": 0.028,
+          "extras": 0.241,
+          "byes": 0.102,
+          "runsPerWide": 1.5
+        },
+        "death": {
+          "wides": 0.216,
+          "noBalls": 0.018,
+          "extras": 0.414,
+          "byes": 0.108,
+          "runsPerWide": 1.333
+        }
+      },
       "dismissalFingerprintPct": {
         "caught": 58.6,
         "bowled": 23,
@@ -9569,6 +11064,29 @@
         "widesPerOver": 0.17,
         "noBallsPerOver": 0.017,
         "extrasPerOver": 0.36,
+        "extrasByPhase": {
+          "pp": {
+            "wides": 0.264,
+            "noBalls": 0,
+            "extras": 0.5,
+            "byes": 0.167,
+            "runsPerWide": 1.263
+          },
+          "mid": {
+            "wides": 0.074,
+            "noBalls": 0.028,
+            "extras": 0.241,
+            "byes": 0.102,
+            "runsPerWide": 1.5
+          },
+          "death": {
+            "wides": 0.216,
+            "noBalls": 0.018,
+            "extras": 0.414,
+            "byes": 0.108,
+            "runsPerWide": 1.333
+          }
+        },
         "dismissalFingerprintPct": {
           "caught": 58.6,
           "bowled": 23,
@@ -9720,6 +11238,29 @@
       "widesPerOver": 0.14,
       "noBallsPerOver": 0.021,
       "extrasPerOver": 0.27,
+      "extrasByPhase": {
+        "pp": {
+          "wides": 0.1,
+          "noBalls": 0.017,
+          "extras": 0.3,
+          "byes": 0.183,
+          "runsPerWide": 1
+        },
+        "mid": {
+          "wides": 0.158,
+          "noBalls": 0.023,
+          "extras": 0.237,
+          "byes": 0.011,
+          "runsPerWide": 1.286
+        },
+        "death": {
+          "wides": 0.151,
+          "noBalls": 0.025,
+          "extras": 0.277,
+          "byes": 0.101,
+          "runsPerWide": 1
+        }
+      },
       "dismissalFingerprintPct": {
         "caught": 66.2,
         "bowled": 17.6,
@@ -9864,6 +11405,29 @@
         "widesPerOver": 0.14,
         "noBallsPerOver": 0.021,
         "extrasPerOver": 0.27,
+        "extrasByPhase": {
+          "pp": {
+            "wides": 0.1,
+            "noBalls": 0.017,
+            "extras": 0.3,
+            "byes": 0.183,
+            "runsPerWide": 1
+          },
+          "mid": {
+            "wides": 0.158,
+            "noBalls": 0.023,
+            "extras": 0.237,
+            "byes": 0.011,
+            "runsPerWide": 1.286
+          },
+          "death": {
+            "wides": 0.151,
+            "noBalls": 0.025,
+            "extras": 0.277,
+            "byes": 0.101,
+            "runsPerWide": 1
+          }
+        },
         "dismissalFingerprintPct": {
           "caught": 66.2,
           "bowled": 17.6,
@@ -10015,6 +11579,29 @@
       "widesPerOver": 0.17,
       "noBallsPerOver": 0.022,
       "extrasPerOver": 0.42,
+      "extrasByPhase": {
+        "pp": {
+          "wides": 0.133,
+          "noBalls": 0.017,
+          "extras": 0.267,
+          "byes": 0.117,
+          "runsPerWide": 1
+        },
+        "mid": {
+          "wides": 0.181,
+          "noBalls": 0.012,
+          "extras": 0.446,
+          "byes": 0.241,
+          "runsPerWide": 1.067
+        },
+        "death": {
+          "wides": 0.212,
+          "noBalls": 0.047,
+          "extras": 0.565,
+          "byes": 0.306,
+          "runsPerWide": 1
+        }
+      },
       "dismissalFingerprintPct": {
         "caught": 51.4,
         "run out": 13.9,
@@ -10159,6 +11746,29 @@
         "widesPerOver": 0.17,
         "noBallsPerOver": 0.022,
         "extrasPerOver": 0.42,
+        "extrasByPhase": {
+          "pp": {
+            "wides": 0.133,
+            "noBalls": 0.017,
+            "extras": 0.267,
+            "byes": 0.117,
+            "runsPerWide": 1
+          },
+          "mid": {
+            "wides": 0.181,
+            "noBalls": 0.012,
+            "extras": 0.446,
+            "byes": 0.241,
+            "runsPerWide": 1.067
+          },
+          "death": {
+            "wides": 0.212,
+            "noBalls": 0.047,
+            "extras": 0.565,
+            "byes": 0.306,
+            "runsPerWide": 1
+          }
+        },
         "dismissalFingerprintPct": {
           "caught": 51.4,
           "run out": 13.9,
@@ -10310,6 +11920,29 @@
       "widesPerOver": 0.25,
       "noBallsPerOver": 0.038,
       "extrasPerOver": 0.45,
+      "extrasByPhase": {
+        "pp": {
+          "wides": 0.3,
+          "noBalls": 0.05,
+          "extras": 0.733,
+          "byes": 0.25,
+          "runsPerWide": 1.444
+        },
+        "mid": {
+          "wides": 0.167,
+          "noBalls": 0.011,
+          "extras": 0.233,
+          "byes": 0.056,
+          "runsPerWide": 1
+        },
+        "death": {
+          "wides": 0.358,
+          "noBalls": 0.083,
+          "extras": 0.523,
+          "byes": 0.028,
+          "runsPerWide": 1.154
+        }
+      },
       "dismissalFingerprintPct": {
         "caught": 72.9,
         "bowled": 16.7,
@@ -10453,6 +12086,29 @@
         "widesPerOver": 0.25,
         "noBallsPerOver": 0.038,
         "extrasPerOver": 0.45,
+        "extrasByPhase": {
+          "pp": {
+            "wides": 0.3,
+            "noBalls": 0.05,
+            "extras": 0.733,
+            "byes": 0.25,
+            "runsPerWide": 1.444
+          },
+          "mid": {
+            "wides": 0.167,
+            "noBalls": 0.011,
+            "extras": 0.233,
+            "byes": 0.056,
+            "runsPerWide": 1
+          },
+          "death": {
+            "wides": 0.358,
+            "noBalls": 0.083,
+            "extras": 0.523,
+            "byes": 0.028,
+            "runsPerWide": 1.154
+          }
+        },
         "dismissalFingerprintPct": {
           "caught": 72.9,
           "bowled": 16.7,
@@ -10603,6 +12259,29 @@
       "widesPerOver": 0.3,
       "noBallsPerOver": 0.027,
       "extrasPerOver": 0.58,
+      "extrasByPhase": {
+        "pp": {
+          "wides": 0.354,
+          "noBalls": 0.021,
+          "extras": 0.667,
+          "byes": 0.125,
+          "runsPerWide": 1.471
+        },
+        "mid": {
+          "wides": 0.266,
+          "noBalls": 0.014,
+          "extras": 0.378,
+          "byes": 0.098,
+          "runsPerWide": 1
+        },
+        "death": {
+          "wides": 0.293,
+          "noBalls": 0.065,
+          "extras": 0.913,
+          "byes": 0.457,
+          "runsPerWide": 1.333
+        }
+      },
       "dismissalFingerprintPct": {
         "caught": 63.2,
         "bowled": 19.3,
@@ -10747,6 +12426,29 @@
         "widesPerOver": 0.3,
         "noBallsPerOver": 0.027,
         "extrasPerOver": 0.58,
+        "extrasByPhase": {
+          "pp": {
+            "wides": 0.354,
+            "noBalls": 0.021,
+            "extras": 0.667,
+            "byes": 0.125,
+            "runsPerWide": 1.471
+          },
+          "mid": {
+            "wides": 0.266,
+            "noBalls": 0.014,
+            "extras": 0.378,
+            "byes": 0.098,
+            "runsPerWide": 1
+          },
+          "death": {
+            "wides": 0.293,
+            "noBalls": 0.065,
+            "extras": 0.913,
+            "byes": 0.457,
+            "runsPerWide": 1.333
+          }
+        },
         "dismissalFingerprintPct": {
           "caught": 63.2,
           "bowled": 19.3,
@@ -10898,6 +12600,29 @@
       "widesPerOver": 0.19,
       "noBallsPerOver": 0,
       "extrasPerOver": 0.56,
+      "extrasByPhase": {
+        "pp": {
+          "wides": 0.208,
+          "noBalls": 0,
+          "extras": 0.75,
+          "byes": 0.458,
+          "runsPerWide": 1.4
+        },
+        "mid": {
+          "wides": 0.127,
+          "noBalls": 0,
+          "extras": 0.339,
+          "byes": 0.212,
+          "runsPerWide": 1
+        },
+        "death": {
+          "wides": 0.289,
+          "noBalls": 0,
+          "extras": 0.77,
+          "byes": 0.321,
+          "runsPerWide": 1.556
+        }
+      },
       "dismissalFingerprintPct": {
         "caught": 59.6,
         "bowled": 13.5,
@@ -11042,6 +12767,29 @@
         "widesPerOver": 0.19,
         "noBallsPerOver": 0,
         "extrasPerOver": 0.56,
+        "extrasByPhase": {
+          "pp": {
+            "wides": 0.208,
+            "noBalls": 0,
+            "extras": 0.75,
+            "byes": 0.458,
+            "runsPerWide": 1.4
+          },
+          "mid": {
+            "wides": 0.127,
+            "noBalls": 0,
+            "extras": 0.339,
+            "byes": 0.212,
+            "runsPerWide": 1
+          },
+          "death": {
+            "wides": 0.289,
+            "noBalls": 0,
+            "extras": 0.77,
+            "byes": 0.321,
+            "runsPerWide": 1.556
+          }
+        },
         "dismissalFingerprintPct": {
           "caught": 59.6,
           "bowled": 13.5,
@@ -11193,6 +12941,29 @@
       "widesPerOver": 0.28,
       "noBallsPerOver": 0.026,
       "extrasPerOver": 0.49,
+      "extrasByPhase": {
+        "pp": {
+          "wides": 0.271,
+          "noBalls": 0.021,
+          "extras": 0.563,
+          "byes": 0.25,
+          "runsPerWide": 1.077
+        },
+        "mid": {
+          "wides": 0.25,
+          "noBalls": 0.042,
+          "extras": 0.444,
+          "byes": 0.111,
+          "runsPerWide": 1.167
+        },
+        "death": {
+          "wides": 0.346,
+          "noBalls": 0,
+          "extras": 0.49,
+          "byes": 0.087,
+          "runsPerWide": 1.167
+        }
+      },
       "dismissalFingerprintPct": {
         "caught": 57.1,
         "lbw": 18.4,
@@ -11337,6 +13108,29 @@
         "widesPerOver": 0.28,
         "noBallsPerOver": 0.026,
         "extrasPerOver": 0.49,
+        "extrasByPhase": {
+          "pp": {
+            "wides": 0.271,
+            "noBalls": 0.021,
+            "extras": 0.563,
+            "byes": 0.25,
+            "runsPerWide": 1.077
+          },
+          "mid": {
+            "wides": 0.25,
+            "noBalls": 0.042,
+            "extras": 0.444,
+            "byes": 0.111,
+            "runsPerWide": 1.167
+          },
+          "death": {
+            "wides": 0.346,
+            "noBalls": 0,
+            "extras": 0.49,
+            "byes": 0.087,
+            "runsPerWide": 1.167
+          }
+        },
         "dismissalFingerprintPct": {
           "caught": 57.1,
           "lbw": 18.4,
@@ -11488,6 +13282,29 @@
       "widesPerOver": 0.16,
       "noBallsPerOver": 0,
       "extrasPerOver": 0.44,
+      "extrasByPhase": {
+        "pp": {
+          "wides": 0.167,
+          "noBalls": 0,
+          "extras": 0.556,
+          "byes": 0.389,
+          "runsPerWide": 1
+        },
+        "mid": {
+          "wides": 0.185,
+          "noBalls": 0,
+          "extras": 0.37,
+          "byes": 0.111,
+          "runsPerWide": 1.4
+        },
+        "death": {
+          "wides": 0.104,
+          "noBalls": 0,
+          "extras": 0.416,
+          "byes": 0.312,
+          "runsPerWide": 1
+        }
+      },
       "dismissalFingerprintPct": {
         "caught": 46.8,
         "bowled": 23.4,
@@ -11632,6 +13449,29 @@
         "widesPerOver": 0.16,
         "noBallsPerOver": 0,
         "extrasPerOver": 0.44,
+        "extrasByPhase": {
+          "pp": {
+            "wides": 0.167,
+            "noBalls": 0,
+            "extras": 0.556,
+            "byes": 0.389,
+            "runsPerWide": 1
+          },
+          "mid": {
+            "wides": 0.185,
+            "noBalls": 0,
+            "extras": 0.37,
+            "byes": 0.111,
+            "runsPerWide": 1.4
+          },
+          "death": {
+            "wides": 0.104,
+            "noBalls": 0,
+            "extras": 0.416,
+            "byes": 0.312,
+            "runsPerWide": 1
+          }
+        },
         "dismissalFingerprintPct": {
           "caught": 46.8,
           "bowled": 23.4,
@@ -11783,6 +13623,29 @@
       "widesPerOver": 0.22,
       "noBallsPerOver": 0.01,
       "extrasPerOver": 0.41,
+      "extrasByPhase": {
+        "pp": {
+          "wides": 0.255,
+          "noBalls": 0.028,
+          "extras": 0.481,
+          "byes": 0.198,
+          "runsPerWide": 1
+        },
+        "mid": {
+          "wides": 0.236,
+          "noBalls": 0,
+          "extras": 0.402,
+          "byes": 0.165,
+          "runsPerWide": 1
+        },
+        "death": {
+          "wides": 0.109,
+          "noBalls": 0,
+          "extras": 0.273,
+          "byes": 0.164,
+          "runsPerWide": 1
+        }
+      },
       "dismissalFingerprintPct": {
         "caught": 59.5,
         "bowled": 19,
@@ -11926,6 +13789,29 @@
         "widesPerOver": 0.22,
         "noBallsPerOver": 0.01,
         "extrasPerOver": 0.41,
+        "extrasByPhase": {
+          "pp": {
+            "wides": 0.255,
+            "noBalls": 0.028,
+            "extras": 0.481,
+            "byes": 0.198,
+            "runsPerWide": 1
+          },
+          "mid": {
+            "wides": 0.236,
+            "noBalls": 0,
+            "extras": 0.402,
+            "byes": 0.165,
+            "runsPerWide": 1
+          },
+          "death": {
+            "wides": 0.109,
+            "noBalls": 0,
+            "extras": 0.273,
+            "byes": 0.164,
+            "runsPerWide": 1
+          }
+        },
         "dismissalFingerprintPct": {
           "caught": 59.5,
           "bowled": 19,
@@ -12076,6 +13962,29 @@
       "widesPerOver": 0.29,
       "noBallsPerOver": 0.048,
       "extrasPerOver": 0.72,
+      "extrasByPhase": {
+        "pp": {
+          "wides": 0.333,
+          "noBalls": 0.028,
+          "extras": 0.861,
+          "byes": 0.5,
+          "runsPerWide": 1
+        },
+        "mid": {
+          "wides": 0.308,
+          "noBalls": 0.028,
+          "extras": 0.505,
+          "byes": 0.14,
+          "runsPerWide": 1.091
+        },
+        "death": {
+          "wides": 0.08,
+          "noBalls": 0.16,
+          "extras": 0.96,
+          "byes": 0.72,
+          "runsPerWide": 1
+        }
+      },
       "dismissalFingerprintPct": {
         "caught": 51.6,
         "bowled": 16.1,
@@ -12219,6 +14128,29 @@
         "widesPerOver": 0.29,
         "noBallsPerOver": 0.048,
         "extrasPerOver": 0.72,
+        "extrasByPhase": {
+          "pp": {
+            "wides": 0.333,
+            "noBalls": 0.028,
+            "extras": 0.861,
+            "byes": 0.5,
+            "runsPerWide": 1
+          },
+          "mid": {
+            "wides": 0.308,
+            "noBalls": 0.028,
+            "extras": 0.505,
+            "byes": 0.14,
+            "runsPerWide": 1.091
+          },
+          "death": {
+            "wides": 0.08,
+            "noBalls": 0.16,
+            "extras": 0.96,
+            "byes": 0.72,
+            "runsPerWide": 1
+          }
+        },
         "dismissalFingerprintPct": {
           "caught": 51.6,
           "bowled": 16.1,
@@ -12369,6 +14301,29 @@
       "widesPerOver": 0.14,
       "noBallsPerOver": 0.009,
       "extrasPerOver": 0.36,
+      "extrasByPhase": {
+        "pp": {
+          "wides": 0.139,
+          "noBalls": 0,
+          "extras": 0.444,
+          "byes": 0.306,
+          "runsPerWide": 1
+        },
+        "mid": {
+          "wides": 0.093,
+          "noBalls": 0,
+          "extras": 0.296,
+          "byes": 0.167,
+          "runsPerWide": 1.4
+        },
+        "death": {
+          "wides": 0.224,
+          "noBalls": 0.037,
+          "extras": 0.373,
+          "byes": 0.075,
+          "runsPerWide": 1.167
+        }
+      },
       "dismissalFingerprintPct": {
         "caught": 47.5,
         "bowled": 20,
@@ -12513,6 +14468,29 @@
         "widesPerOver": 0.14,
         "noBallsPerOver": 0.009,
         "extrasPerOver": 0.36,
+        "extrasByPhase": {
+          "pp": {
+            "wides": 0.139,
+            "noBalls": 0,
+            "extras": 0.444,
+            "byes": 0.306,
+            "runsPerWide": 1
+          },
+          "mid": {
+            "wides": 0.093,
+            "noBalls": 0,
+            "extras": 0.296,
+            "byes": 0.167,
+            "runsPerWide": 1.4
+          },
+          "death": {
+            "wides": 0.224,
+            "noBalls": 0.037,
+            "extras": 0.373,
+            "byes": 0.075,
+            "runsPerWide": 1.167
+          }
+        },
         "dismissalFingerprintPct": {
           "caught": 47.5,
           "bowled": 20,
@@ -12664,6 +14642,29 @@
       "widesPerOver": 0.18,
       "noBallsPerOver": 0.008,
       "extrasPerOver": 0.43,
+      "extrasByPhase": {
+        "pp": {
+          "wides": 0.25,
+          "noBalls": 0,
+          "extras": 0.75,
+          "byes": 0.389,
+          "runsPerWide": 1.444
+        },
+        "mid": {
+          "wides": 0.167,
+          "noBalls": 0.019,
+          "extras": 0.222,
+          "byes": 0.037,
+          "runsPerWide": 1
+        },
+        "death": {
+          "wides": 0.103,
+          "noBalls": 0,
+          "extras": 0.411,
+          "byes": 0.274,
+          "runsPerWide": 1.333
+        }
+      },
       "dismissalFingerprintPct": {
         "caught": 65.6,
         "bowled": 28.1,
@@ -12805,6 +14806,29 @@
         "widesPerOver": 0.18,
         "noBallsPerOver": 0.008,
         "extrasPerOver": 0.43,
+        "extrasByPhase": {
+          "pp": {
+            "wides": 0.25,
+            "noBalls": 0,
+            "extras": 0.75,
+            "byes": 0.389,
+            "runsPerWide": 1.444
+          },
+          "mid": {
+            "wides": 0.167,
+            "noBalls": 0.019,
+            "extras": 0.222,
+            "byes": 0.037,
+            "runsPerWide": 1
+          },
+          "death": {
+            "wides": 0.103,
+            "noBalls": 0,
+            "extras": 0.411,
+            "byes": 0.274,
+            "runsPerWide": 1.333
+          }
+        },
         "dismissalFingerprintPct": {
           "caught": 65.6,
           "bowled": 28.1,
@@ -12953,6 +14977,29 @@
       "widesPerOver": 0.24,
       "noBallsPerOver": 0.025,
       "extrasPerOver": 0.44,
+      "extrasByPhase": {
+        "pp": {
+          "wides": 0.139,
+          "noBalls": 0.028,
+          "extras": 0.361,
+          "byes": 0.194,
+          "runsPerWide": 1
+        },
+        "mid": {
+          "wides": 0.278,
+          "noBalls": 0,
+          "extras": 0.389,
+          "byes": 0.074,
+          "runsPerWide": 1.133
+        },
+        "death": {
+          "wides": 0.284,
+          "noBalls": 0.071,
+          "extras": 0.639,
+          "byes": 0.284,
+          "runsPerWide": 1
+        }
+      },
       "dismissalFingerprintPct": {
         "caught": 66.7,
         "bowled": 11.9,
@@ -13096,6 +15143,29 @@
         "widesPerOver": 0.24,
         "noBallsPerOver": 0.025,
         "extrasPerOver": 0.44,
+        "extrasByPhase": {
+          "pp": {
+            "wides": 0.139,
+            "noBalls": 0.028,
+            "extras": 0.361,
+            "byes": 0.194,
+            "runsPerWide": 1
+          },
+          "mid": {
+            "wides": 0.278,
+            "noBalls": 0,
+            "extras": 0.389,
+            "byes": 0.074,
+            "runsPerWide": 1.133
+          },
+          "death": {
+            "wides": 0.284,
+            "noBalls": 0.071,
+            "extras": 0.639,
+            "byes": 0.284,
+            "runsPerWide": 1
+          }
+        },
         "dismissalFingerprintPct": {
           "caught": 66.7,
           "bowled": 11.9,
@@ -13246,6 +15316,29 @@
       "widesPerOver": 0.15,
       "noBallsPerOver": 0,
       "extrasPerOver": 0.36,
+      "extrasByPhase": {
+        "pp": {
+          "wides": 0.25,
+          "noBalls": 0,
+          "extras": 0.833,
+          "byes": 0.5,
+          "runsPerWide": 1.333
+        },
+        "mid": {
+          "wides": 0.111,
+          "noBalls": 0,
+          "extras": 0.167,
+          "byes": 0.056,
+          "runsPerWide": 1
+        },
+        "death": {
+          "wides": 0.113,
+          "noBalls": 0,
+          "extras": 0.113,
+          "byes": 0,
+          "runsPerWide": 1
+        }
+      },
       "dismissalFingerprintPct": {
         "caught": 75,
         "bowled": 12.5,
@@ -13388,6 +15481,29 @@
         "widesPerOver": 0.15,
         "noBallsPerOver": 0,
         "extrasPerOver": 0.36,
+        "extrasByPhase": {
+          "pp": {
+            "wides": 0.25,
+            "noBalls": 0,
+            "extras": 0.833,
+            "byes": 0.5,
+            "runsPerWide": 1.333
+          },
+          "mid": {
+            "wides": 0.111,
+            "noBalls": 0,
+            "extras": 0.167,
+            "byes": 0.056,
+            "runsPerWide": 1
+          },
+          "death": {
+            "wides": 0.113,
+            "noBalls": 0,
+            "extras": 0.113,
+            "byes": 0,
+            "runsPerWide": 1
+          }
+        },
         "dismissalFingerprintPct": {
           "caught": 75,
           "bowled": 12.5,

@@ -240,6 +240,16 @@ npm run engine:tournament -- 2024 India 200    # full tournaments with India's d
 npm run engine:rarity -- 2024 300              # unbeaten-run rarity for random drafts in random identity slots
 ```
 
+**Refit 2026-11-01** (`docs/wc-draft-engine-refit-2026-11-01.md` has every step and number): all
+three calibration constants are 1; player vectors are centred by the balls each player faced and
+bowled per phase (`SquadOut.players[].exposure`); non-striker run outs are drawn at measured rates;
+the streak null is built within phase; byes and wide runs come from the real breakdown; the
+powerplay is shared the way captains share it (`allocation.powerplayHoldPenalty`); projection is
+off by default; innings-phase, shape, found, gear and the Squeezer gap are parked at exponent 0.
+Nine editions at 60 sims × 2 seeds: run rate −0.01, powerplay / middle / death −0.04 / +0.04 /
+−0.04, balls per wicket −0.07, chase win share 0.0, Brier 0.2013. `replayEdition(id, sims, seed,
+{ base: "window" })` is the out-of-sample variant (+0.003 Brier).
+
 `src/engine/` is the per-ball simulator the draft game and, later, the management sim run on.
 It is pure given its inputs and a seed. Per delivery (`ball.ts`):
 

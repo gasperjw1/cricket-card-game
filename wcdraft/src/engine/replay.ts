@@ -69,7 +69,7 @@ const quantiles = (xs: number[]) => {
 
 const WICKET_MARKS = [6, 10, 15, 20] as const;
 
-export function replayEdition(editionId: string, sims: number, seed = 1): ReplaySummary {
+export function replayEdition(editionId: string, sims: number, seed = 1, options: { base?: "edition" | "window" } = {}): ReplaySummary {
   const data = loadEdition(editionId);
   const games = realMatches(data);
   const env = data.edition.environment as unknown as EnvironmentFigures & { populationVectors: Record<string, Record<string, number>> };
@@ -90,7 +90,7 @@ export function replayEdition(editionId: string, sims: number, seed = 1): Replay
     const teamA = teamFromMatch(data, g.a, g.match);
     const teamB = teamFromMatch(data, g.b, g.other);
     if (teamA.players.length < 11 || teamB.players.length < 11) continue;
-    const matchEnv = matchEnvironment(data, g.match.venueId || null);
+    const matchEnv = matchEnvironment(data, g.match.venueId || null, 20, options);
     const battingFirst = g.match.battedFirst ? g.a : g.b;
     const realFirst = g.match.battedFirst ? g.match.total : g.other.total;
     if (realFirst !== null) realFirstTotals.push(realFirst);

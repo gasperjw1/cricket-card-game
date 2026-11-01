@@ -22,7 +22,8 @@
         "cohortCentre": "top10",
         "tierDestination": true,
         "transferDestination": "topThird",
-        "phaseWeighting": "own"
+        "phaseWeighting": "own",
+        "projection": false
       },
       "predictive": {
         "batting": {
@@ -103,7 +104,8 @@
         "cohortCentre": "top10",
         "tierDestination": true,
         "transferDestination": "topThird",
-        "phaseWeighting": "own"
+        "phaseWeighting": "own",
+        "projection": false
       },
       "predictive": {
         "batting": {
@@ -184,7 +186,8 @@
         "cohortCentre": "top10",
         "tierDestination": true,
         "transferDestination": "topThird",
-        "phaseWeighting": "own"
+        "phaseWeighting": "own",
+        "projection": false
       },
       "predictive": {
         "batting": {
@@ -265,7 +268,8 @@
         "cohortCentre": "top10",
         "tierDestination": true,
         "transferDestination": "topThird",
-        "phaseWeighting": "own"
+        "phaseWeighting": "own",
+        "projection": false
       },
       "predictive": {
         "batting": {
@@ -346,7 +350,8 @@
         "cohortCentre": "top10",
         "tierDestination": true,
         "transferDestination": "topThird",
-        "phaseWeighting": "own"
+        "phaseWeighting": "own",
+        "projection": false
       },
       "predictive": {
         "batting": {
@@ -427,7 +432,8 @@
         "cohortCentre": "top10",
         "tierDestination": true,
         "transferDestination": "topThird",
-        "phaseWeighting": "own"
+        "phaseWeighting": "own",
+        "projection": false
       },
       "predictive": {
         "batting": {
@@ -508,7 +514,8 @@
         "cohortCentre": "top10",
         "tierDestination": true,
         "transferDestination": "topThird",
-        "phaseWeighting": "own"
+        "phaseWeighting": "own",
+        "projection": false
       },
       "predictive": {
         "batting": {
@@ -589,7 +596,8 @@
         "cohortCentre": "top10",
         "tierDestination": true,
         "transferDestination": "topThird",
-        "phaseWeighting": "own"
+        "phaseWeighting": "own",
+        "projection": false
       },
       "predictive": {
         "batting": {
@@ -670,7 +678,8 @@
         "cohortCentre": "top10",
         "tierDestination": true,
         "transferDestination": "topThird",
-        "phaseWeighting": "population"
+        "phaseWeighting": "population",
+        "projection": false
       },
       "predictive": {
         "batting": {
@@ -751,7 +760,8 @@
         "cohortCentre": "none",
         "tierDestination": true,
         "transferDestination": "topThird",
-        "phaseWeighting": "own"
+        "phaseWeighting": "own",
+        "projection": false
       },
       "predictive": {
         "batting": {
@@ -832,7 +842,8 @@
         "cohortCentre": "all",
         "tierDestination": true,
         "transferDestination": "topThird",
-        "phaseWeighting": "own"
+        "phaseWeighting": "own",
+        "projection": false
       },
       "predictive": {
         "batting": {
@@ -913,7 +924,8 @@
         "cohortCentre": "top10",
         "tierDestination": true,
         "transferDestination": "topThird",
-        "phaseWeighting": "own"
+        "phaseWeighting": "own",
+        "projection": false
       },
       "predictive": {
         "batting": {
@@ -994,7 +1006,8 @@
         "cohortCentre": "top10",
         "tierDestination": true,
         "transferDestination": "topThird",
-        "phaseWeighting": "own"
+        "phaseWeighting": "own",
+        "projection": false
       },
       "predictive": {
         "batting": {
@@ -1075,7 +1088,8 @@
         "cohortCentre": "top10",
         "tierDestination": true,
         "transferDestination": "topThird",
-        "phaseWeighting": "own"
+        "phaseWeighting": "own",
+        "projection": false
       },
       "predictive": {
         "batting": {
@@ -1156,7 +1170,8 @@
         "cohortCentre": "top10",
         "tierDestination": true,
         "transferDestination": "topThird",
-        "phaseWeighting": "own"
+        "phaseWeighting": "own",
+        "projection": false
       },
       "predictive": {
         "batting": {
@@ -1237,7 +1252,8 @@
         "cohortCentre": "top10",
         "tierDestination": true,
         "transferDestination": "topThird",
-        "phaseWeighting": "own"
+        "phaseWeighting": "own",
+        "projection": false
       },
       "predictive": {
         "batting": {
@@ -1318,7 +1334,8 @@
         "cohortCentre": "top10",
         "tierDestination": true,
         "transferDestination": "topThird",
-        "phaseWeighting": "own"
+        "phaseWeighting": "own",
+        "projection": false
       },
       "predictive": {
         "batting": {
@@ -1399,7 +1416,8 @@
         "cohortCentre": "top10",
         "tierDestination": true,
         "transferDestination": "topThird",
-        "phaseWeighting": "own"
+        "phaseWeighting": "own",
+        "projection": false
       },
       "predictive": {
         "batting": {
@@ -1480,7 +1498,8 @@
         "cohortCentre": "top10",
         "tierDestination": true,
         "transferDestination": "topThird",
-        "phaseWeighting": "own"
+        "phaseWeighting": "own",
+        "projection": false
       },
       "predictive": {
         "batting": {
@@ -1561,7 +1580,8 @@
         "cohortCentre": "none",
         "tierDestination": true,
         "transferDestination": "topThird",
-        "phaseWeighting": "own"
+        "phaseWeighting": "own",
+        "projection": false
       },
       "predictive": {
         "batting": {
@@ -1642,7 +1662,8 @@
         "cohortCentre": "top10",
         "tierDestination": true,
         "transferDestination": "topThird",
-        "phaseWeighting": "own"
+        "phaseWeighting": "own",
+        "projection": false
       },
       "predictive": {
         "batting": {
@@ -1723,7 +1744,8 @@
         "cohortCentre": "top10",
         "tierDestination": true,
         "transferDestination": "topThird",
-        "phaseWeighting": "own"
+        "phaseWeighting": "own",
+        "projection": false
       },
       "predictive": {
         "batting": {
@@ -1804,7 +1826,8 @@
         "cohortCentre": "top10",
         "tierDestination": true,
         "transferDestination": "topThird",
-        "phaseWeighting": "own"
+        "phaseWeighting": "own",
+        "projection": false
       },
       "predictive": {
         "batting": {
@@ -1885,7 +1908,8 @@
         "cohortCentre": "top10",
         "tierDestination": true,
         "transferDestination": "topThird",
-        "phaseWeighting": "own"
+        "phaseWeighting": "own",
+        "projection": false
       },
       "predictive": {
         "batting": {
@@ -1966,7 +1990,8 @@
         "cohortCentre": "top10",
         "tierDestination": true,
         "transferDestination": "topThird",
-        "phaseWeighting": "own"
+        "phaseWeighting": "own",
+        "projection": false
       },
       "predictive": {
         "batting": {
@@ -2047,7 +2072,8 @@
         "cohortCentre": "top10",
         "tierDestination": true,
         "transferDestination": "topThird",
-        "phaseWeighting": "own"
+        "phaseWeighting": "own",
+        "projection": false
       },
       "predictive": {
         "batting": {
@@ -2128,7 +2154,8 @@
         "cohortCentre": "top10",
         "tierDestination": true,
         "transferDestination": "topThird",
-        "phaseWeighting": "own"
+        "phaseWeighting": "own",
+        "projection": false
       },
       "predictive": {
         "batting": {
@@ -2209,7 +2236,8 @@
         "cohortCentre": "top10",
         "tierDestination": true,
         "transferDestination": "topThird",
-        "phaseWeighting": "own"
+        "phaseWeighting": "own",
+        "projection": false
       },
       "predictive": {
         "batting": {
@@ -2290,7 +2318,8 @@
         "cohortCentre": "top10",
         "tierDestination": true,
         "transferDestination": "topThird",
-        "phaseWeighting": "own"
+        "phaseWeighting": "own",
+        "projection": false
       },
       "predictive": {
         "batting": {
@@ -2371,7 +2400,8 @@
         "cohortCentre": "top10",
         "tierDestination": true,
         "transferDestination": "topThird",
-        "phaseWeighting": "own"
+        "phaseWeighting": "own",
+        "projection": false
       },
       "predictive": {
         "batting": {
@@ -2452,7 +2482,8 @@
         "cohortCentre": "top10",
         "tierDestination": true,
         "transferDestination": "topThird",
-        "phaseWeighting": "own"
+        "phaseWeighting": "own",
+        "projection": false
       },
       "predictive": {
         "batting": {
@@ -2533,7 +2564,8 @@
         "cohortCentre": "top10",
         "tierDestination": true,
         "transferDestination": "topThird",
-        "phaseWeighting": "own"
+        "phaseWeighting": "own",
+        "projection": false
       },
       "predictive": {
         "batting": {
@@ -2614,7 +2646,8 @@
         "cohortCentre": "top10",
         "tierDestination": true,
         "transferDestination": "topThird",
-        "phaseWeighting": "own"
+        "phaseWeighting": "own",
+        "projection": false
       },
       "predictive": {
         "batting": {
@@ -2695,7 +2728,8 @@
         "cohortCentre": "top10",
         "tierDestination": true,
         "transferDestination": "topThird",
-        "phaseWeighting": "own"
+        "phaseWeighting": "own",
+        "projection": false
       },
       "predictive": {
         "batting": {

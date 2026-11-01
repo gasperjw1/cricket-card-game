@@ -44,11 +44,19 @@ function outcomeKey(runs: number, wicket: boolean): OutcomeKey {
 
 const MIN_CELL_BALLS = 600;
 
+/** Phase counts with expected counts rounded for export. */
+function phasesOut(ph: Record<Phase, DomesticPhase>): Record<Phase, DomesticPhase> {
+  const round = (o: Record<OutcomeKey, number>) => Object.fromEntries(OUTCOME_KEYS.map((k) => [k, Math.round(o[k] * 100) / 100])) as Record<OutcomeKey, number>;
+  return Object.fromEntries((["pp", "mid", "death"] as Phase[]).map((p) => [p, { balls: ph[p].balls, runs: ph[p].runs, outcomes: ph[p].outcomes, expected: round(ph[p].expected) }])) as Record<Phase, DomesticPhase>;
+}
+
 export class DomesticAnalysis {
   private readonly population = new Map<string, { bat: Record<OutcomeKey, number>; bowl: Record<OutcomeKey, number>; balls: number }>();
   private readonly probs = new Map<string, { bat: Record<OutcomeKey, number>; bowl: Record<OutcomeKey, number> }>();
   private readonly players = new Map<string, DomesticBlock>();
   private readonly snapshots = new Map<string, Map<string, DomesticBlock>>();
+  /** Person → league balls after each edition's start, for projected cards (see `watchLater`). */
+  private readonly watches = new Map<string, { editionId: string; until: string; target: number; block: DomesticBlock }[]>();
   private frozen = false;
 
   private static season(m: Match): string {
@@ -108,17 +116,21 @@ export class DomesticAnalysis {
         const e = this.expected(competition, season, ph);
         if (!e) continue;
         const bat = this.players.get(b.batter) ?? this.players.set(b.batter, emptyBlock()).get(b.batter)!;
-        const bp = bat.bat[ph];
-        bp.balls += 1; bp.runs += b.runsBatter; bp.outcomes[outcomeKey(b.runsBatter, strikerOut)] += 1;
-        for (const k of OUTCOME_KEYS) bp.expected[k] += e.bat[k];
+        for (const block of [bat, ...this.openWatches(b.batter, "bat", m.date)]) {
+          const bp = block.bat[ph];
+          bp.balls += 1; bp.runs += b.runsBatter; bp.outcomes[outcomeKey(b.runsBatter, strikerOut)] += 1;
+          for (const k of OUTCOME_KEYS) bp.expected[k] += e.bat[k];
+        }
         bat.competitions[competition] = (bat.competitions[competition] ?? 0) + 1;
         (bat.seasons[season] ??= { bat: 0, bowl: 0 }).bat += 1;
         touched.add(b.batter);
         if (b.legal) {
           const bowl = this.players.get(b.bowler) ?? this.players.set(b.bowler, emptyBlock()).get(b.bowler)!;
-          const wp = bowl.bowl[ph];
-          wp.balls += 1; wp.runs += b.runsConceded; wp.outcomes[outcomeKey(b.runsConceded, b.wickets.some((w) => w.bowlerCredited))] += 1;
-          for (const k of OUTCOME_KEYS) wp.expected[k] += e.bowl[k];
+          for (const block of [bowl, ...this.openWatches(b.bowler, "bowl", m.date)]) {
+            const wp = block.bowl[ph];
+            wp.balls += 1; wp.runs += b.runsConceded; wp.outcomes[outcomeKey(b.runsConceded, b.wickets.some((w) => w.bowlerCredited))] += 1;
+            for (const k of OUTCOME_KEYS) wp.expected[k] += e.bowl[k];
+          }
           bowl.competitions[competition] = (bowl.competitions[competition] ?? 0) + 1;
           (bowl.seasons[season] ??= { bat: 0, bowl: 0 }).bowl += 1;
           touched.add(b.bowler);
@@ -126,6 +138,26 @@ export class DomesticAnalysis {
       }
     }
     for (const id of touched) this.players.get(id)!.matches += 1;
+  }
+
+  /** From now on, keep these people's league balls for this edition until `until` or `target` balls per skill. */
+  watchLater(editionId: string, people: Iterable<string>, until: string, target: number): void {
+    for (const id of people) (this.watches.get(id) ?? this.watches.set(id, []).get(id)!).push({ editionId, until, target, block: emptyBlock() });
+  }
+
+  private openWatches(id: string, skill: "bat" | "bowl", date: string): DomesticBlock[] {
+    const list = this.watches.get(id);
+    if (!list) return [];
+    const balls = (b: DomesticBlock) => b[skill].pp.balls + b[skill].mid.balls + b[skill].death.balls;
+    return list.filter((w) => date < w.until && balls(w.block) < w.target).map((w) => w.block);
+  }
+
+  /** The league balls kept for a person at an edition (null when there are none). */
+  laterFor(editionId: string, personId: string): Pick<DomesticBlock, "bat" | "bowl"> | null {
+    const block = this.watches.get(personId)?.find((w) => w.editionId === editionId)?.block;
+    if (!block) return null;
+    const total = (["pp", "mid", "death"] as Phase[]).reduce((a, p) => a + block.bat[p].balls + block.bowl[p].balls, 0);
+    return total > 0 ? { bat: phasesOut(block.bat), bowl: phasesOut(block.bowl) } : null;
   }
 
   /** Freeze the career-to-date blocks of the given people at an edition's start. */
@@ -142,15 +174,13 @@ export class DomesticAnalysis {
   blockFor(editionId: string, personId: string): DomesticOut | null {
     const b = this.snapshots.get(editionId)?.get(personId);
     if (!b) return null;
-    const round = (o: Record<OutcomeKey, number>) => Object.fromEntries(OUTCOME_KEYS.map((k) => [k, Math.round(o[k] * 100) / 100])) as Record<OutcomeKey, number>;
-    const phases = (ph: Record<Phase, DomesticPhase>) => Object.fromEntries((["pp", "mid", "death"] as Phase[]).map((p) => [p, { balls: ph[p].balls, runs: ph[p].runs, outcomes: ph[p].outcomes, expected: round(ph[p].expected) }])) as Record<Phase, DomesticPhase>;
     const editionYear = Number(editionId.slice(0, 4));
     const recent = { bat: 0, bowl: 0 };
     for (const [season, n] of Object.entries(b.seasons)) {
       const year = Number(season);
       if (year > editionYear - RECENT_SEASONS && year <= editionYear) { recent.bat += n.bat; recent.bowl += n.bowl; }
     }
-    return { matches: b.matches, bat: phases(b.bat), bowl: phases(b.bowl), competitions: b.competitions, recent };
+    return { matches: b.matches, bat: phasesOut(b.bat), bowl: phasesOut(b.bowl), competitions: b.competitions, recent };
   }
 
   get playerCount(): number {

@@ -9,6 +9,7 @@ import { describe, it } from "node:test";
 import { engineReady, loadEdition, matchEnvironment, teamFromDefault } from "../src/engine/load.js";
 import { simulateMatch } from "../src/engine/match.js";
 import { playerOfTheMatch } from "../src/engine/awards.js";
+import { ENGINE, setEngineOverrides } from "../src/engine/model.js";
 import { replayEdition } from "../src/engine/replay.js";
 import { Rng } from "../src/engine/rng.js";
 import { expectedRunsOf, outcomeDistribution } from "../src/engine/ball.js";
@@ -31,6 +32,81 @@ describe("engine", { skip: !engineReady() && "engine data not built" }, () => {
   const india = teamFromDefault(data, "India");
   const southAfrica = teamFromDefault(data, "South Africa");
   const env = matchEnvironment(data, "bridgetown");
+
+  it("counts every run in a phase, wides included, and concedes more extras at the death than in the middle", () => {
+    for (let i = 0; i < 30; i += 1) {
+      const m = simulateMatch(india, southAfrica, env, data.situation, { seed: `phases-${i}`, rainProbability: 0 });
+      for (const inn of m.innings) assert.equal(inn.phaseRuns.pp.runs + inn.phaseRuns.mid.runs + inn.phaseRuns.death.runs, inn.runs);
+    }
+    const perBall = (p: "mid" | "death") => env.extras[p].wides + env.extras[p].noBalls + env.extras[p].byes;
+    assert.ok(perBall("death") > perBall("mid"));
+  });
+
+  it("plays a chase's death overs with more dots and fewer sixes than a first innings'", () => {
+    const first = data.situation.inningsPhase(1, "death"), chase = data.situation.inningsPhase(2, "death");
+    assert.ok(chase["0"] > first["0"]);
+    assert.ok(chase["6"] < first["6"]);
+  });
+
+  it("forces batters to swing as the required rate climbs, and each band of found averages out", () => {
+    const striker = { ...india.players.find((p) => p.name === "V Kohli")!, style: null, shape: null };
+    const bowler = { ...southAfrica.players.find((p) => p.name === "K Rabada")!, squeezer: null };
+    const ball = { innings: 2 as const, over: 17, wickets: 4, strikerBalls: 20, scoringFactor: 1, playerFactor: 1, streak: "4-7" as const, ballInOver: 3, consecutiveDots: 0, freeHit: false };
+    const easy = outcomeDistribution(striker, bowler, env, data.situation, { ...ball, requiredRpo: 7 });
+    const steep = outcomeDistribution(striker, bowler, env, data.situation, { ...ball, requiredRpo: 15 });
+    assert.ok(steep["6"] > 1.3 * easy["6"], `sixes ${easy["6"]} to ${steep["6"]}`);
+    assert.ok(steep.W > 1.2 * easy.W, `wickets ${easy.W} to ${steep.W}`);
+    assert.ok(steep["0"] < easy["0"], "fewer dots");
+    // Eight down the tail is in and the table stops: it was measured up to seven.
+    const tail = outcomeDistribution(striker, bowler, env, data.situation, { ...ball, wickets: 8, requiredRpo: 15 });
+    const tailEasy = outcomeDistribution(striker, bowler, env, data.situation, { ...ball, wickets: 8, requiredRpo: 7 });
+    assert.ok(Math.abs(tail["6"] - tailEasy["6"]) < 1e-12);
+    // `found` is off by default (2026-11-01); switched on, a batter who has found a boundary hits more.
+    const kept = ENGINE.foundExponent;
+    setEngineOverrides({ foundExponent: 0.4 });
+    try {
+      const found = outcomeDistribution(striker, bowler, env, data.situation, { ...ball, requiredRpo: null, strikerFound: true });
+      const notFound = outcomeDistribution(striker, bowler, env, data.situation, { ...ball, requiredRpo: null, strikerFound: false });
+      assert.ok(found["6"] > notFound["6"], "a batter who has found a boundary hits more");
+    } finally {
+      setEngineOverrides({ foundExponent: kept });
+    }
+  });
+
+  it("plays a batter's start and his answer to pressure, and lifts only Squeezers' wickets, when those terms are switched on", () => {
+    // Shape, gears and the Squeezer gap are off by default (2026-11-01 audit); this tests the mechanisms.
+    const kept = { shapeExponent: ENGINE.shapeExponent, gearExponent: ENGINE.gearExponent, top: ENGINE.squeezer.top, rest: ENGINE.squeezer.rest };
+    setEngineOverrides({ shapeExponent: 1, gearExponent: 1 });
+    ENGINE.squeezer.top = 1.04; ENGINE.squeezer.rest = 0.98;
+    const restore = () => { setEngineOverrides({ shapeExponent: kept.shapeExponent, gearExponent: kept.gearExponent }); ENGINE.squeezer.top = kept.top; ENGINE.squeezer.rest = kept.rest; };
+    const base = india.players.find((p) => p.name === "V Kohli")!;
+    const unit = { "0": 1, "1": 1, "2": 1, "3": 1, "4": 1, "6": 1, W: 1 };
+    const bowler = { ...southAfrica.players.find((p) => p.name === "K Rabada")!, squeezer: null as boolean | null };
+    const ball = { innings: 1 as const, over: 2, wickets: 0, requiredRpo: null, scoringFactor: 1, playerFactor: 1, streak: "n/a" as const, ballInOver: 3, consecutiveDots: 0, freeHit: false };
+    const quick = { ...base, style: null, shape: { start: { ...unit, "4": 1.2 }, later: unit } };
+    const flat = { ...base, style: null, shape: null };
+    const at = (p: typeof base, strikerBalls: number) => outcomeDistribution(p, bowler, env, data.situation, { ...ball, strikerBalls });
+    assert.ok(at(quick, 4)["4"] > at(flat, 4)["4"], "the start applies in his first ten balls");
+    assert.ok(Math.abs(at(quick, 12)["4"] - at(flat, 12)["4"]) < 1e-12, "and not after");
+    const press = { ...ball, innings: 2 as const, over: 18, wickets: 4, strikerBalls: 20, requiredRpo: 14 };
+    const of = (p: typeof base, q: boolean | null, requiredRpo = 14, over = 18) => outcomeDistribution(p, { ...bowler, squeezer: q }, env, data.situation, { ...press, requiredRpo, over });
+    const odds = (a: { W: number }, b: { W: number }) => (a.W / (1 - a.W)) / (b.W / (1 - b.W));
+    assert.ok(Math.abs(odds(of(flat, true), of(flat, false)) - 1.04 / 0.98) < 0.002, "Squeezers' wicket gap in a pressure chase");
+    assert.ok(Math.abs(of(flat, true, 8).W - of(flat, false, 8).W) < 1e-12, "no gap when the batter need not swing");
+    assert.ok(Math.abs(of(flat, true, 14, 10).W - of(flat, false, 14, 10).W) < 1e-12, "no gap outside the death");
+    try {
+      assert.ok(of({ ...flat, style: "Anchor" }, null).W > of({ ...flat, style: "Rotator" }, null).W, "an Anchor pays more for being forced to swing");
+    } finally {
+      restore();
+    }
+  });
+
+  it("marks about a third of ranked death pacers as Squeezers, and only pacers", () => {
+    const all = [...data.players.values()];
+    assert.ok(all.filter((p) => !p.bowlClass?.startsWith("pace")).every((p) => p.squeezer === null));
+    const marked = all.filter((p) => p.squeezer === true);
+    assert.ok(marked.length >= 8 && marked.every((p) => p.bowlClass!.startsWith("pace") && p.bowlingShares!.death >= 0.15));
+  });
 
   it("produces normalised ball distributions with sane hazards", () => {
     const striker = india.players.find((p) => p.name === "V Kohli")!;

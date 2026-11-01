@@ -82,6 +82,7 @@ export function simulateInnings(batting: EngineTeam, bowling: EngineTeam, env: M
   const batDay = new Map(order.map((p) => [p.id, dayFactor(ENGINE.batterDaySd)]));
   const bowlDay = new Map(bowling.players.map((p) => [p.id, dayFactor(ENGINE.bowlerDaySd)]));
   const recent: number[] = [];
+  const found = new Set<string>();
   let consecutiveDots = 0;
   const streakNow = () => streakBand(recent.length, recent.slice(-6).reduce((a, x) => a + x, 0));
   const chaseScale = opts.index === 2 ? 1 + env.chaseUplift / 2 : 1 - env.chaseUplift / 2;
@@ -93,7 +94,8 @@ export function simulateInnings(batting: EngineTeam, bowling: EngineTeam, env: M
 
   for (let over = 0; over < opts.overs && !done(); over += 1) {
     const eq = equivalentOver(over, opts.overs);
-    const intent = batting.intent?.[phaseOf(eq)] ?? 0;
+    const ph = phaseOf(eq);
+    const intent = batting.intent?.[ph] ?? 0;
     const ctxBase: BallContext = { innings: opts.index, over: eq, wickets, strikerBalls: 0, requiredRpo: null, scoringFactor, playerFactor: 1, streak: streakNow(), ballInOver: 1, consecutiveDots, freeHit: false, intent };
     const b = chooseBowler({ over, eqOver: eq, oversInInnings: opts.overs, maxOvers, bowlers, previousBowler, batters: [striker, nonStriker], env, situation, ctx: ctxBase, captainZ: bowling.captainZ }, rng);
     b.overs.push(over);
@@ -104,15 +106,18 @@ export function simulateInnings(batting: EngineTeam, bowling: EngineTeam, env: M
       const ballsLeft = opts.overs * 6 - legalBalls;
       const requiredRpo = opts.target !== null ? ((opts.target - runs) * 6) / Math.max(1, ballsLeft) : null;
       // Extras first: a wide or no-ball does not count as a legal ball.
-      if (rng.chance(env.widesPerBall)) {
-        runs += 1; extras += 1; wides += 1; stand.runs += 1; b.runsByOver[b.runsByOver.length - 1]! += 1; statOf(b.player.id).wides += 1;
-        log?.push({ innings: opts.index, over, ballInOver: ballsThisOver, striker: striker.id, nonStriker: nonStriker.id, bowler: b.player.id, outcome: "0", runsBatter: 0, extras: 1, extraKind: "wide", wicket: false, dismissal: null, legal: false, runsAfter: runs, wicketsAfter: wickets });
+      if (rng.chance(env.extras[ph].wides)) {
+        // A wide is one run plus, now and then, the runs the batters took off it (mean `runsPerWide`).
+        const wideRuns = 1 + (rng.chance(Math.max(0, Math.min(1, (env.extras[ph].runsPerWide ?? 1) - 1))) ? 1 : 0);
+        runs += wideRuns; extras += wideRuns; wides += wideRuns; stand.runs += wideRuns; b.runsByOver[b.runsByOver.length - 1]! += wideRuns; statOf(b.player.id).wides += 1; phaseRuns[ph].runs += wideRuns;
+        log?.push({ innings: opts.index, over, ballInOver: ballsThisOver, striker: striker.id, nonStriker: nonStriker.id, bowler: b.player.id, outcome: "0", runsBatter: 0, extras: wideRuns, extraKind: "wide", wicket: false, dismissal: null, legal: false, runsAfter: runs, wicketsAfter: wickets });
+        if (wideRuns % 2 === 0) [striker, nonStriker] = [nonStriker, striker];
         continue;
       }
-      const noBall = rng.chance(env.noBallsPerBall);
+      const noBall = rng.chance(env.extras[ph].noBalls);
       const sLine = lineOf(striker, lines.get(striker.id)?.position ?? nextIn);
       const ctx: BallContext = {
-        innings: opts.index, over: eq, wickets, strikerBalls: sLine.balls, requiredRpo, scoringFactor,
+        innings: opts.index, over: eq, wickets, strikerBalls: sLine.balls, strikerFound: found.has(striker.id), requiredRpo, scoringFactor,
         playerFactor: (batDay.get(striker.id) ?? 1) * (bowlDay.get(b.player.id) ?? 1),
         streak: streakNow(), ballInOver: ballsThisOver + 1, consecutiveDots, freeHit: freeHit || noBall, intent,
       };
@@ -122,7 +127,7 @@ export function simulateInnings(batting: EngineTeam, bowling: EngineTeam, env: M
       let extraRuns = noBall ? 1 : 0;
       let extraKind: BallRecord["extraKind"] = noBall ? "no-ball" : null;
       // Byes and leg-byes: a dot ball sometimes yields a bye.
-      if (outcome === "0" && !noBall && rng.chance(env.byesPerBall / Math.max(0.05, dist["0"]))) {
+      if (outcome === "0" && !noBall && rng.chance(env.extras[ph].byes / Math.max(0.05, dist["0"]))) {
         extraRuns = 1; extraKind = "bye"; byeBalls += 1;
       }
       const wicket = outcome === "W";
@@ -130,10 +135,10 @@ export function simulateInnings(batting: EngineTeam, bowling: EngineTeam, env: M
       sLine.runs += runsBatter;
       if (outcome === "4") sLine.fours += 1;
       if (outcome === "6") sLine.sixes += 1;
+      if (outcome === "4" || outcome === "6") found.add(striker.id);
       runs += runsBatter + extraRuns;
       extras += extraRuns;
       b.runsByOver[b.runsByOver.length - 1]! += runsBatter + (noBall ? 1 : 0);
-      const ph = phaseOf(eq);
       if (!noBall) { phaseRuns[ph].balls += 1; legalBalls += 1; ballsThisOver += 1; outcomes[outcome] += 1; }
       phaseRuns[ph].runs += runsBatter + extraRuns;
       const dismissal = wicket ? drawDismissal(b.player, noBall || freeHit) : null;
@@ -154,12 +159,36 @@ export function simulateInnings(batting: EngineTeam, bowling: EngineTeam, env: M
         phaseRuns[ph].wickets += 1;
         fall.push({ runs, over, ball: ballsThisOver, batter: striker.id });
         partnerships.push({ ...stand, wicket: wickets });
+        // Reset before the all-out check too, or the closing stand is booked twice.
+        stand = { batters: [striker.id, nonStriker.id], runs: 0, balls: 0 };
         if (wickets >= 10 || nextIn >= order.length) break;
         striker = order[nextIn]!;
         lineOf(striker, nextIn + 1);
         nextIn += 1;
         stand = { batters: [striker.id, nonStriker.id], runs: 0, balls: 0 };
         continue;
+      }
+      // Non-striker run out (2026-11-01): drawn on the balls the striker scored 0–2 on, at the
+      // measured per-ball rate for this innings and phase. The runs stand, the non-striker goes,
+      // and the new batter comes in at that end.
+      const nsoRate = ENGINE.nonStrikerRunOut[`${opts.index}|${ph}`];
+      if (nsoRate && (outcome === "0" || outcome === "1" || outcome === "2") && rng.chance(nsoRate / ENGINE.nonStrikerRunOut.onOutcomes!)) {
+        const nLine = lineOf(nonStriker, lines.get(nonStriker.id)?.position ?? nextIn);
+        const d = { ...drawDismissal(b.player, true), nonStriker: true };
+        nLine.out = true;
+        nLine.dismissal = d;
+        wickets += 1;
+        phaseRuns[ph].wickets += 1;
+        fall.push({ runs, over, ball: ballsThisOver, batter: nonStriker.id });
+        partnerships.push({ ...stand, wicket: wickets });
+        stand = { batters: [striker.id, nonStriker.id], runs: 0, balls: 0 };
+        const last = log?.[log.length - 1];
+        if (last) { last.wicket = true; last.dismissal = d; last.wicketsAfter = wickets; }
+        if (wickets >= 10 || nextIn >= order.length) break;
+        nonStriker = order[nextIn]!;
+        lineOf(nonStriker, nextIn + 1);
+        nextIn += 1;
+        stand = { batters: [striker.id, nonStriker.id], runs: 0, balls: 0 };
       }
       const swap = (runsBatter + (extraKind === "bye" ? 1 : 0)) % 2 === 1;
       if (swap) [striker, nonStriker] = [nonStriker, striker];
