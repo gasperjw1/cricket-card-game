@@ -34,6 +34,7 @@ export function LineupScreen({ state, captains, editions, onCaptain, onBack, onS
             player: p,
             batHere: p ? pickFits?.get(p.id)?.atSlot[s.index] ?? (p.batShown ? batInSlot(p, w) : null) : null,
             bowlHere: p ? pickFits?.get(p.id)?.bowling?.final ?? null : null,
+            keeps: !!p && designatedKeeper(picks)?.id === p.id,
             action: <span className="sheet-slot-note" title={describeWeights(w)} />,
           };
         })}

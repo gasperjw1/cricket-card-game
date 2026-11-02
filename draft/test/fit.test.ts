@@ -37,10 +37,13 @@ describe("draft-time fit", () => {
     const total = whole.coachField + whole.coachFit;
     assert.ok(total > 0, "an attacking coach lifts a hitter");
     const split = skillFit("bat", 80, engine(HITTER), rating(), env("2016"), ctx(attack, 2), 4);
-    assert.equal(split.coachField, 2);
     assert.equal(split.coachField + split.coachFit, total);
     assert.equal(split.final, 80 + total);
     assert.equal(split.steps.reduce((a, s) => a + s.delta, 0), total);
+    // The fit is one rounding of the unrounded gap to the field; the parts still add to the engine's step.
+    const near = skillFit("bat", 80, engine(HITTER), rating(), env("2016"), ctx(attack, total + 0.4), 4);
+    assert.ok(Math.abs(near.coachFit) <= 1);
+    assert.equal(near.coachField + near.coachFit, total);
   });
 
   it("gives the blocker a worse fit than the hitter under an attacking coach", () => {

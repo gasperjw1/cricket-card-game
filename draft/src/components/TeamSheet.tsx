@@ -18,6 +18,8 @@ export interface SheetRow {
   batHere: number | null;
   /** His bowling number in this World Cup; the card's own number when not given. */
   bowlHere?: number | null;
+  /** The designated keeper: he keeps and does not bowl, whatever his bowling number. */
+  keeps?: boolean;
   /** The slot is one the selected player may be placed in. */
   open?: boolean;
   action?: ReactNode;
@@ -76,7 +78,7 @@ export function TeamSheet({ side, edition, coach, rows, captainId, keeperId, foo
                 {p && p.batShown ? <>{r.batHere ?? p.bat}{r.batHere !== null && r.batHere !== p.bat ? <small> of {p.bat}</small> : null}</> : p ? <span className="sheet-dash">–</span> : ""}
               </span>
               <span className="sheet-bat sheet-bowl" title={p && p.bowlShown ? `Bowling ${p.bowl}: powerplay ${p.bowlPhases.pp}, middle ${p.bowlPhases.mid}, death ${p.bowlPhases.death}` : undefined}>
-                {p && p.bowlShown ? <>{r.bowlHere ?? p.bowl}{r.bowlHere != null && r.bowlHere !== p.bowl ? <small>of {p.bowl}</small> : p.bowlLow ? <small>thin record</small> : null}</> : p ? <span className="sheet-dash">–</span> : ""}
+                {p && r.keeps ? <small title="The designated keeper keeps and does not bowl">keeps</small> : p && p.bowlShown ? <>{r.bowlHere ?? p.bowl}{r.bowlHere != null && r.bowlHere !== p.bowl ? <small>of {p.bowl}</small> : p.bowlLow ? <small>thin record</small> : null}</> : p ? <span className="sheet-dash">–</span> : ""}
               </span>
               <span className="sheet-action">{r.action}</span>
             </li>

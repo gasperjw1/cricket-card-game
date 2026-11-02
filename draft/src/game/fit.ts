@@ -57,7 +57,7 @@ export interface FitContext {
   classMix: { pace: number; spin: number };
   /** The eleven positions' phase mixes in this World Cup. */
   slots: PhaseWeights[];
-  /** Field-wide coach step on the batting card scale; 0 with no coach. */
+  /** Field-wide coach step on the batting card scale, unrounded (the mean over the field); 0 with no coach. */
   coachField: number;
   coach: CoachOut | null;
 }
@@ -85,9 +85,9 @@ export function coachFieldStep(bundle: { data: EditionData; ratings: PlayerRatin
     if (!engine) continue;
     const w = r.batting.evidence.phaseWeights;
     const scale = bundle.env.scale.bat;
-    deltas.push(round(scale(valueIn(engine, "bat", bundle.env.base, w, { classMix, intent: coach.intent }))) - round(scale(valueIn(engine, "bat", bundle.env.base, w, { classMix }))));
+    deltas.push(scale(valueIn(engine, "bat", bundle.env.base, w, { classMix, intent: coach.intent })) - scale(valueIn(engine, "bat", bundle.env.base, w, { classMix })));
   }
-  return deltas.length ? round(deltas.reduce((a, b) => a + b, 0) / deltas.length) : 0;
+  return deltas.length ? deltas.reduce((a, b) => a + b, 0) / deltas.length : 0;
 }
 
 /** Where a card usually bats, for the position step: his own band, else the middle order (No. 6) or No. 9 for a bowler. */
@@ -127,10 +127,12 @@ export function skillFit(skill: "bat" | "bowl", card: number, engine: EnginePlay
   const here = clamp(card + steps.reduce((a, s) => a + s.delta, 0));
   let coachField = 0, coachFit = 0;
   if (skill === "bat" && ctx.coach) {
-    const withCoach = round(scaleHere(valueIn(engine, "bat", ctx.here.base, slot, { classMix: ctx.classMix, intent: ctx.coach.intent })));
-    const whole = withCoach - round(prev);
-    coachField = ctx.coachField;
-    coachFit = whole - coachField;
+    // The fit is rounded once from unrounded values, so a "−1 fit" is never two roundings 0.3
+    // apart (found 2026-11-02); the two parts still add up to the engine's own rounded step.
+    const wholeRaw = scaleHere(valueIn(engine, "bat", ctx.here.base, slot, { classMix: ctx.classMix, intent: ctx.coach.intent })) - prev;
+    const whole = round(prev + wholeRaw) - round(prev);
+    coachFit = round(wholeRaw - ctx.coachField);
+    coachField = whole - coachFit;
     steps.push({ key: "coachField", label: `${ctx.coach.coachName}'s tempo, field-wide`, delta: coachField });
     steps.push({ key: "coachFit", label: `Fit with ${ctx.coach.coachName}`, delta: coachFit });
   }

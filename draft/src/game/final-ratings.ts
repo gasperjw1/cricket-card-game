@@ -4,7 +4,8 @@
  * own edition; the engine carries his era-free relative vectors into the identity edition, so this
  * runs those same vectors through the engine's own combination (base × rel^0.7, against average
  * opposition and before the match situation) on both editions' base rates, and reads each value
- * off that edition's field on the card scale (median 70, 99th percentile 99, 5th percentile 45).
+ * off one shared scale (`POOLED_SCALE`: median 70, 99th percentile 99, 5th percentile 45 over all
+ * editions' fields), so a step between editions is a change in value, not in company.
  *
  * Steps are differences on that scale and anchor on the card, so a low-sample number the card has
  * already held back stays held back: card + era + slot + pace/spin + coach = final.
@@ -109,26 +110,35 @@ function blendedRates(player: EnginePlayer, skill: Skill, base: PhaseVectors, we
   return ratesOf(pooled, skill);
 }
 
-/** The card's display map (rate.ts) over one edition's field: median → 70, 99th percentile → 99, 5th → 45. */
-export function fieldScale(values: number[]): (value: number) => number {
-  const sorted = [...values].sort((a, b) => a - b);
-  const q = (f: number) => sorted[Math.min(sorted.length - 1, Math.max(0, Math.floor(f * (sorted.length - 1))))] ?? 0;
-  const median = q(0.5), top = q(0.99), low = q(0.05);
+export interface ScaleQuantiles { low: number; median: number; top: number }
+
+/** The card's display map (rate.ts): median → 70, 99th percentile → 99, 5th → 45, from the quantiles given. */
+export function scaleFrom({ low, median, top }: ScaleQuantiles): (value: number) => number {
   return (value) => {
     const raw = value >= median ? 70 + (29 * (value - median)) / Math.max(1e-6, top - median) : 70 - (25 * (median - value)) / Math.max(1e-6, median - low);
     return Math.min(MODEL.display.max, Math.max(MODEL.display.min, raw));
   };
 }
 
-/** An edition's base rates and scales; the field is its rated players with a shown skill and a real sample. */
-export function editionEnv(data: EditionData, ratings: PlayerRating[]): EditionEnv {
-  const base = data.populations.editionPop;
-  const values = (skill: Skill): number[] => ratings.flatMap((r) => {
-    const s = skill === "bat" ? r.batting : r.bowling;
-    const player = data.players.get(`${r.team}|${r.personId}`);
-    return player && s.shown && !s.lowSample ? [valueIn(player, skill, base, s.evidence.phaseWeights)] : [];
-  });
-  return { editionId: data.edition.id, base, scale: { bat: fieldScale(values("bat")), bowl: fieldScale(values("bowl")) } };
+/** The display map over one field's values. */
+export function fieldScale(values: number[]): (value: number) => number {
+  const sorted = [...values].sort((a, b) => a - b);
+  const q = (f: number) => sorted[Math.min(sorted.length - 1, Math.max(0, Math.floor(f * (sorted.length - 1))))] ?? 0;
+  return scaleFrom({ low: q(0.05), median: q(0.5), top: q(0.99) });
+}
+
+/**
+ * The scale every edition shares (measured 2026-11-02 over the ten editions' rated fields, 1,190
+ * batting and 1,036 bowling values, each relative to its own edition's base). A per-edition field
+ * scale made the era step mostly a matter of who else was in the field: 2012's bowling 5th
+ * percentile sat at −14.8 and 2016's at −8.0, so a 2012 part-timer lost 13 points moving to 2016
+ * while his economy moved 0.16 an over. On a shared scale the era step is the value shift alone.
+ */
+export const POOLED_SCALE: Record<Skill, ScaleQuantiles> = { bat: { low: -17.94, median: -4.47, top: 23.89 }, bowl: { low: -10.69, median: -0.89, top: 14.91 } };
+
+/** An edition's base rates and the shared scale. */
+export function editionEnv(data: EditionData, _ratings: PlayerRating[]): EditionEnv {
+  return { editionId: data.edition.id, base: data.populations.editionPop, scale: { bat: scaleFrom(POOLED_SCALE.bat), bowl: scaleFrom(POOLED_SCALE.bowl) } };
 }
 
 /** Rounds a running total so the printed steps add up exactly to the printed final. */

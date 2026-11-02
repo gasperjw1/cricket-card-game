@@ -121,6 +121,7 @@ export function DraftScreen({ state, editions, venues, squads, onPlace, onReroll
               player: p,
               batHere: p ? numberAt(p, s.index, pickFits) : null,
               bowlHere: p ? pickFits?.get(p.id)?.bowling?.final ?? null : null,
+              keeps: !!p && !!keeper && p.id === keeper.id,
               open: canPlace,
               action: p ? null : canPlace ? (
                 <button type="button" className="sheet-place" title={describeWeights(w)} onClick={() => place(selected!, s.index)}>

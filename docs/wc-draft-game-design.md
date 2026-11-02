@@ -1226,6 +1226,29 @@ fielding. The simulation is not required to reproduce real results (§11).
   the line under each man on the Player ratings tab (green bars for wins, red for defeats, a dot
   for a not-out, a stub for a match he did not bat). "Coming in" form is not shown: the rating
   keeps no career number beside the form-weighted one; adding one is a ratings build change.
+- **Shipped-work research, 2026-11-02 (step 3 of Yash's order):**
+  - *Coach-fit rounding* (`game/fit.ts`): the fit is now one rounding of the unrounded gap between
+    the player's coach step and the field's mean step, and the two parts still add to the
+    engine's own rounded step, so a "−1 fit" is never two roundings 0.3 apart.
+  - *Keeper's bowling number*: the team sheet prints "keeps" in the bowl column for the designated
+    keeper on both the draft and lineup screens, matching the result tab.
+  - *Is an attacking coach a free lift?* India 2024's real eleven, 80 tournaments per fixed intent
+    profile (scratch `intent-ab.mts`): hold −1 wins 61.0% of matches, neutral 63.5%, attack +1
+    66.7%, attack +1.5 65.2%, the real coach (pp +0.9, mid −1.3, death +1.3) 65.6%; run rate 7.10
+    to 7.47, wickets an innings 5.24 to 5.81. So attacking intent is a mild, bounded advantage of
+    about two to three win points per standard deviation, bought with a wicket every four innings,
+    not a free lift and not something that grows past +1. No engine change; the card's split into
+    field-wide lift and fit stays the right presentation.
+  - *Bowling era steps of ±13* were the field scale, not the bowlers: on the per-edition scale
+    (median 70, p5 45, p99 99 of that edition's rated field) 2012's bowling 5th percentile sat at
+    −14.8 and 2016's at −8.0 (77 against 113 rated bowlers), so a 2012 part-timer lost 13 points
+    moving to 2016 while his economy moved 0.16 an over and his balls per wicket not at all (91
+    bowlers, mean step −8.1). `final-ratings.ts` now reads every edition off one **shared scale**
+    (`POOLED_SCALE`, measured over the ten editions' 1,190 batting and 1,036 bowling values), so
+    the era step is the value shift alone: the same 91 bowlers now average −0.1. The card number
+    itself (rate.ts, relative to its own field) is unchanged; the draft-time fit, the Player
+    ratings tab and the souvenir expectations all use the shared scale. This also answers the
+    "2012 cards drop hard in 2009" item: the drop was company, not years.
 - **Agreed order after the refit (2026-11-01):** (1) associates fix in the ratings: no-record
   players sit on the global position-band prior, so Italy 2026 bowls at 71 against India's 74 and a
   few tournament balls can make a 77 (shrink empty records toward the side's own mean or an
