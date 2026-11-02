@@ -171,6 +171,26 @@ replayed many times (scratch scripts `baseline.mts`, `player-dist.mts`, `dots.mt
    edition itself is used; its all-editions record, measured against other mixes, read every
    2024 ground as pace-friendly. `pitchExponent` 0 switches both parts off; an engine test holds
    the symmetry, the clip and the switch.
+5. **Associates, team-tier destination gains (ratings, not adopted).** Real fixtures,
+   `scripts/research/associates.mts` (30 sims a fixture) on fit editions 2014–2022 and hold-out
+   2024–26, and `eval.mts` at 40 sims × 2 seeds, both builds measured on the same day:
+
+   | `destinationGain` / `strongGain` | Hold-out associate wins (real 2.5%) | Fit (real 25%) | Brier | 1st-inn SD bias |
+   |---|---:|---:|---:|---:|
+   | 1 / 1 (kept) | 23.3% | 36.7% | 0.1930 | +2.1 |
+   | 2.0 / 1.3 | 21.8% | 31.2% | 0.1910 | +3.2 |
+
+   Associate batting moved towards real: in the fit set 6.83 to 6.60 an over (real 6.54), in the
+   hold-out 6.98 to 6.84 (real 6.55). The bowling side did not move: full members batting against
+   associates in the hold-out lose a wicket every 18.6 and 18.5 balls against 22.5 real, and every
+   associate side's mean bowling card is identical in the two builds. The gains act on the two-way
+   team-tier destination, and only batting uses it; bowling rates with `tierMode` "elo"
+   (`DEFAULT_OPTIONS` in `rate.ts`, chosen in Phase 1 because the two-way table cost bowling
+   stability without predictive gain). So none of the gain settings, including those measured
+   before on 2026-11-02, could reach the 12–16% target. The batting gain alone also widens the
+   spread past +3. Both stay at 1. What's left is the associate bowlers: either rate them through a
+   team-tier destination of their own, or discount bowling edges earned against weak batting. That
+   would reverse a Phase 1 decision, so it waits for Yash.
 
 ## Still open
 

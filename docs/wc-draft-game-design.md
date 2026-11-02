@@ -1310,6 +1310,17 @@ fielding. The simulation is not required to reproduce real results (§11).
   losing cause, Gibbs 140* in the chase: the stop press names both, Gibbs first). Corpus check
   over 1,200 CPU matches: twin centuries 0.1% of matches, two centurions 0.3%, century in vain
   1.3%, all-round show 2.5%.
+- **Associates fix, team-tier gains (2026-11-02, not adopted; detail in
+  `wc-draft-engine-refit-2026-11-01.md`, "Engine items" 5):** the split 2.0 / 1.3 was rebuilt and
+  measured against a fresh gain-1 run. Hold-out associate wins against full members went from
+  23.3% to 21.8% (real 2.5%; target 12–16%), fit from 36.7% to 31.2% (real 25%), Brier from 0.1930
+  to 0.1910 (inside two-seed noise), and the first-innings spread from +2.1 to +3.2 (limit about +3).
+  Associate batting came close to real, but the bowling side didn't move at all. The gains act only
+  on the two-way destination, which batting uses, while bowling rates in `elo` mode, so no gain
+  setting could fix the wicket gap (full members lose a wicket every 18.5 balls against associates
+  in the sim, 22.5 real). **Decided:** gains stay at 1 and the ratings are rebuilt at 1. **Open for Yash:** whether
+  associate bowling gets its own team-tier step. That reverses the Phase 1 choice of the one-way Elo
+  mixture for bowlers, and would be measured on stability and prediction as well as the fixtures.
 - **Agreed order after the refit (2026-11-01):** (1) associates fix in the ratings: no-record
   players sit on the global position-band prior, so Italy 2026 bowls at 71 against India's 74 and a
   few tournament balls can make a 77 (shrink empty records toward the side's own mean or an

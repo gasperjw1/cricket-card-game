@@ -1,0 +1,3315 @@
+{
+  "2007": {
+    "worldCup": {},
+    "t20i": {
+      "highestTotal": {
+        "current": {
+          "value": 221,
+          "value2": 5,
+          "holder": "Australia",
+          "holderId": null,
+          "team": "Australia",
+          "opp": "England",
+          "date": "2007-01-09",
+          "editionId": ""
+        },
+        "previous": {
+          "value": 214,
+          "value2": 5,
+          "holder": "Australia",
+          "holderId": null,
+          "team": "Australia",
+          "opp": "New Zealand",
+          "date": "2005-02-17",
+          "editionId": ""
+        }
+      },
+      "lowestTotal": {
+        "current": {
+          "value": 79,
+          "value2": 10,
+          "holder": "Australia",
+          "holderId": null,
+          "team": "Australia",
+          "opp": "England",
+          "date": "2005-06-13",
+          "editionId": ""
+        },
+        "previous": {
+          "value": 170,
+          "value2": 10,
+          "holder": "New Zealand",
+          "holderId": null,
+          "team": "New Zealand",
+          "opp": "Australia",
+          "date": "2005-02-17",
+          "editionId": ""
+        }
+      },
+      "highestChase": {
+        "current": {
+          "value": 173,
+          "value2": 5,
+          "holder": "England",
+          "holderId": null,
+          "team": "England",
+          "opp": "West Indies",
+          "date": "2007-06-29",
+          "editionId": ""
+        },
+        "previous": {
+          "value": 148,
+          "value2": 5,
+          "holder": "Pakistan",
+          "holderId": null,
+          "team": "Pakistan",
+          "opp": "England",
+          "date": "2006-08-28",
+          "editionId": ""
+        }
+      },
+      "bestFigures": {
+        "current": {
+          "value": 4,
+          "value2": 22,
+          "holder": "PD Collingwood",
+          "holderId": "a386e91b",
+          "team": "England",
+          "opp": "Sri Lanka",
+          "date": "2006-06-15",
+          "editionId": ""
+        },
+        "previous": {
+          "value": 4,
+          "value2": 24,
+          "holder": "J Lewis",
+          "holderId": "6c75310b",
+          "team": "England",
+          "opp": "Australia",
+          "date": "2005-06-13",
+          "editionId": ""
+        }
+      },
+      "highestScore": {
+        "current": {
+          "value": 98,
+          "value2": 55,
+          "holder": "RT Ponting",
+          "holderId": "7d415ea5",
+          "team": "Australia",
+          "opp": "New Zealand",
+          "date": "2005-02-17",
+          "editionId": ""
+        },
+        "previous": null
+      },
+      "biggestRunsWin": {
+        "current": {
+          "value": 100,
+          "value2": 0,
+          "holder": "England",
+          "holderId": null,
+          "team": "England",
+          "opp": "Australia",
+          "date": "2005-06-13",
+          "editionId": ""
+        },
+        "previous": {
+          "value": 44,
+          "value2": 0,
+          "holder": "Australia",
+          "holderId": null,
+          "team": "Australia",
+          "opp": "New Zealand",
+          "date": "2005-02-17",
+          "editionId": ""
+        }
+      },
+      "biggestBallsWin": {
+        "current": {
+          "value": 13,
+          "value2": 5,
+          "holder": "Pakistan",
+          "holderId": null,
+          "team": "Pakistan",
+          "opp": "England",
+          "date": "2006-08-28",
+          "editionId": ""
+        },
+        "previous": {
+          "value": 12,
+          "value2": 5,
+          "holder": "New Zealand",
+          "holderId": null,
+          "team": "New Zealand",
+          "opp": "South Africa",
+          "date": "2005-10-21",
+          "editionId": ""
+        }
+      },
+      "fastestFifty": {
+        "current": {
+          "value": 23,
+          "value2": 51,
+          "holder": "ST Jayasuriya",
+          "holderId": "f233bbb4",
+          "team": "Sri Lanka",
+          "opp": "New Zealand",
+          "date": "2006-12-22",
+          "editionId": ""
+        },
+        "previous": {
+          "value": 25,
+          "value2": 54,
+          "holder": "A Symonds",
+          "holderId": "bd77eb62",
+          "team": "Australia",
+          "opp": "South Africa",
+          "date": "2006-01-09",
+          "editionId": ""
+        }
+      }
+    }
+  },
+  "2009": {
+    "worldCup": {
+      "highestTotal": {
+        "current": {
+          "value": 260,
+          "value2": 6,
+          "holder": "Sri Lanka",
+          "holderId": null,
+          "team": "Sri Lanka",
+          "opp": "Kenya",
+          "date": "2007-09-14",
+          "editionId": "2007"
+        },
+        "previous": {
+          "value": 208,
+          "value2": 2,
+          "holder": "South Africa",
+          "holderId": null,
+          "team": "South Africa",
+          "opp": "West Indies",
+          "date": "2007-09-11",
+          "editionId": "2007"
+        }
+      },
+      "lowestTotal": {
+        "current": {
+          "value": 73,
+          "value2": 10,
+          "holder": "Kenya",
+          "holderId": null,
+          "team": "Kenya",
+          "opp": "New Zealand",
+          "date": "2007-09-12",
+          "editionId": "2007"
+        },
+        "previous": {
+          "value": 205,
+          "value2": 6,
+          "holder": "West Indies",
+          "holderId": null,
+          "team": "West Indies",
+          "opp": "South Africa",
+          "date": "2007-09-11",
+          "editionId": "2007"
+        }
+      },
+      "highestChase": {
+        "current": {
+          "value": 208,
+          "value2": 2,
+          "holder": "South Africa",
+          "holderId": null,
+          "team": "South Africa",
+          "opp": "West Indies",
+          "date": "2007-09-11",
+          "editionId": "2007"
+        },
+        "previous": null
+      },
+      "bestFigures": {
+        "current": {
+          "value": 4,
+          "value2": 7,
+          "holder": "MR Gillespie",
+          "holderId": "7d7ab238",
+          "team": "New Zealand",
+          "opp": "Kenya",
+          "date": "2007-09-12",
+          "editionId": "2007"
+        },
+        "previous": null
+      },
+      "highestScore": {
+        "current": {
+          "value": 117,
+          "value2": 57,
+          "holder": "CH Gayle",
+          "holderId": "db584dad",
+          "team": "West Indies",
+          "opp": "South Africa",
+          "date": "2007-09-11",
+          "editionId": "2007"
+        },
+        "previous": null
+      },
+      "biggestRunsWin": {
+        "current": {
+          "value": 172,
+          "value2": 0,
+          "holder": "Sri Lanka",
+          "holderId": null,
+          "team": "Sri Lanka",
+          "opp": "Kenya",
+          "date": "2007-09-14",
+          "editionId": "2007"
+        },
+        "previous": {
+          "value": 51,
+          "value2": 0,
+          "holder": "Pakistan",
+          "holderId": null,
+          "team": "Pakistan",
+          "opp": "Scotland",
+          "date": "2007-09-12",
+          "editionId": "2007"
+        }
+      },
+      "biggestBallsWin": {
+        "current": {
+          "value": 74,
+          "value2": 9,
+          "holder": "New Zealand",
+          "holderId": null,
+          "team": "New Zealand",
+          "opp": "Kenya",
+          "date": "2007-09-12",
+          "editionId": "2007"
+        },
+        "previous": {
+          "value": 14,
+          "value2": 8,
+          "holder": "South Africa",
+          "holderId": null,
+          "team": "South Africa",
+          "opp": "West Indies",
+          "date": "2007-09-11",
+          "editionId": "2007"
+        }
+      },
+      "fastestFifty": {
+        "current": {
+          "value": 12,
+          "value2": 58,
+          "holder": "Yuvraj Singh",
+          "holderId": "1c914163",
+          "team": "India",
+          "opp": "England",
+          "date": "2007-09-19",
+          "editionId": "2007"
+        },
+        "previous": {
+          "value": 20,
+          "value2": 61,
+          "holder": "Mohammad Ashraful",
+          "holderId": "2bb09eb2",
+          "team": "Bangladesh",
+          "opp": "West Indies",
+          "date": "2007-09-13",
+          "editionId": "2007"
+        }
+      }
+    },
+    "t20i": {
+      "highestTotal": {
+        "current": {
+          "value": 221,
+          "value2": 5,
+          "holder": "Australia",
+          "holderId": null,
+          "team": "Australia",
+          "opp": "England",
+          "date": "2007-01-09",
+          "editionId": ""
+        },
+        "previous": {
+          "value": 214,
+          "value2": 5,
+          "holder": "Australia",
+          "holderId": null,
+          "team": "Australia",
+          "opp": "New Zealand",
+          "date": "2005-02-17",
+          "editionId": ""
+        }
+      },
+      "lowestTotal": {
+        "current": {
+          "value": 74,
+          "value2": 10,
+          "holder": "India",
+          "holderId": null,
+          "team": "India",
+          "opp": "Australia",
+          "date": "2008-02-01",
+          "editionId": ""
+        },
+        "previous": {
+          "value": 79,
+          "value2": 10,
+          "holder": "Australia",
+          "holderId": null,
+          "team": "Australia",
+          "opp": "England",
+          "date": "2005-06-13",
+          "editionId": ""
+        }
+      },
+      "highestChase": {
+        "current": {
+          "value": 208,
+          "value2": 2,
+          "holder": "South Africa",
+          "holderId": null,
+          "team": "South Africa",
+          "opp": "West Indies",
+          "date": "2007-09-11",
+          "editionId": "2007"
+        },
+        "previous": {
+          "value": 173,
+          "value2": 5,
+          "holder": "England",
+          "holderId": null,
+          "team": "England",
+          "opp": "West Indies",
+          "date": "2007-06-29",
+          "editionId": ""
+        }
+      },
+      "bestFigures": {
+        "current": {
+          "value": 4,
+          "value2": 8,
+          "holder": "Umar Gul",
+          "holderId": "16dfcc19",
+          "team": "Pakistan",
+          "opp": "Australia",
+          "date": "2009-05-07",
+          "editionId": ""
+        },
+        "previous": {
+          "value": 4,
+          "value2": 9,
+          "holder": "DW Steyn",
+          "holderId": "8fd1a8f5",
+          "team": "South Africa",
+          "opp": "West Indies",
+          "date": "2007-12-16",
+          "editionId": ""
+        }
+      },
+      "highestScore": {
+        "current": {
+          "value": 117,
+          "value2": 57,
+          "holder": "CH Gayle",
+          "holderId": "db584dad",
+          "team": "West Indies",
+          "opp": "South Africa",
+          "date": "2007-09-11",
+          "editionId": "2007"
+        },
+        "previous": {
+          "value": 98,
+          "value2": 55,
+          "holder": "RT Ponting",
+          "holderId": "7d415ea5",
+          "team": "Australia",
+          "opp": "New Zealand",
+          "date": "2005-02-17",
+          "editionId": ""
+        }
+      },
+      "biggestRunsWin": {
+        "current": {
+          "value": 102,
+          "value2": 0,
+          "holder": "Pakistan",
+          "holderId": null,
+          "team": "Pakistan",
+          "opp": "Bangladesh",
+          "date": "2008-04-20",
+          "editionId": ""
+        },
+        "previous": {
+          "value": 100,
+          "value2": 0,
+          "holder": "England",
+          "holderId": null,
+          "team": "England",
+          "opp": "Australia",
+          "date": "2005-06-13",
+          "editionId": ""
+        }
+      },
+      "biggestBallsWin": {
+        "current": {
+          "value": 58,
+          "value2": 10,
+          "holder": "Australia",
+          "holderId": null,
+          "team": "Australia",
+          "opp": "Sri Lanka",
+          "date": "2007-09-20",
+          "editionId": "2007"
+        },
+        "previous": {
+          "value": 37,
+          "value2": 9,
+          "holder": "Australia",
+          "holderId": null,
+          "team": "Australia",
+          "opp": "Bangladesh",
+          "date": "2007-09-16",
+          "editionId": "2007"
+        }
+      },
+      "fastestFifty": {
+        "current": {
+          "value": 12,
+          "value2": 58,
+          "holder": "Yuvraj Singh",
+          "holderId": "1c914163",
+          "team": "India",
+          "opp": "England",
+          "date": "2007-09-19",
+          "editionId": "2007"
+        },
+        "previous": {
+          "value": 20,
+          "value2": 61,
+          "holder": "Mohammad Ashraful",
+          "holderId": "2bb09eb2",
+          "team": "Bangladesh",
+          "opp": "West Indies",
+          "date": "2007-09-13",
+          "editionId": "2007"
+        }
+      }
+    }
+  },
+  "2010": {
+    "worldCup": {
+      "highestTotal": {
+        "current": {
+          "value": 260,
+          "value2": 6,
+          "holder": "Sri Lanka",
+          "holderId": null,
+          "team": "Sri Lanka",
+          "opp": "Kenya",
+          "date": "2007-09-14",
+          "editionId": "2007"
+        },
+        "previous": {
+          "value": 208,
+          "value2": 2,
+          "holder": "South Africa",
+          "holderId": null,
+          "team": "South Africa",
+          "opp": "West Indies",
+          "date": "2007-09-11",
+          "editionId": "2007"
+        }
+      },
+      "lowestTotal": {
+        "current": {
+          "value": 73,
+          "value2": 10,
+          "holder": "Kenya",
+          "holderId": null,
+          "team": "Kenya",
+          "opp": "New Zealand",
+          "date": "2007-09-12",
+          "editionId": "2007"
+        },
+        "previous": {
+          "value": 205,
+          "value2": 6,
+          "holder": "West Indies",
+          "holderId": null,
+          "team": "West Indies",
+          "opp": "South Africa",
+          "date": "2007-09-11",
+          "editionId": "2007"
+        }
+      },
+      "highestChase": {
+        "current": {
+          "value": 208,
+          "value2": 2,
+          "holder": "South Africa",
+          "holderId": null,
+          "team": "South Africa",
+          "opp": "West Indies",
+          "date": "2007-09-11",
+          "editionId": "2007"
+        },
+        "previous": null
+      },
+      "bestFigures": {
+        "current": {
+          "value": 5,
+          "value2": 6,
+          "holder": "Umar Gul",
+          "holderId": "16dfcc19",
+          "team": "Pakistan",
+          "opp": "New Zealand",
+          "date": "2009-06-13",
+          "editionId": "2009"
+        },
+        "previous": {
+          "value": 4,
+          "value2": 7,
+          "holder": "MR Gillespie",
+          "holderId": "7d7ab238",
+          "team": "New Zealand",
+          "opp": "Kenya",
+          "date": "2007-09-12",
+          "editionId": "2007"
+        }
+      },
+      "highestScore": {
+        "current": {
+          "value": 117,
+          "value2": 57,
+          "holder": "CH Gayle",
+          "holderId": "db584dad",
+          "team": "West Indies",
+          "opp": "South Africa",
+          "date": "2007-09-11",
+          "editionId": "2007"
+        },
+        "previous": null
+      },
+      "biggestRunsWin": {
+        "current": {
+          "value": 172,
+          "value2": 0,
+          "holder": "Sri Lanka",
+          "holderId": null,
+          "team": "Sri Lanka",
+          "opp": "Kenya",
+          "date": "2007-09-14",
+          "editionId": "2007"
+        },
+        "previous": {
+          "value": 51,
+          "value2": 0,
+          "holder": "Pakistan",
+          "holderId": null,
+          "team": "Pakistan",
+          "opp": "Scotland",
+          "date": "2007-09-12",
+          "editionId": "2007"
+        }
+      },
+      "biggestBallsWin": {
+        "current": {
+          "value": 74,
+          "value2": 9,
+          "holder": "New Zealand",
+          "holderId": null,
+          "team": "New Zealand",
+          "opp": "Kenya",
+          "date": "2007-09-12",
+          "editionId": "2007"
+        },
+        "previous": {
+          "value": 14,
+          "value2": 8,
+          "holder": "South Africa",
+          "holderId": null,
+          "team": "South Africa",
+          "opp": "West Indies",
+          "date": "2007-09-11",
+          "editionId": "2007"
+        }
+      },
+      "fastestFifty": {
+        "current": {
+          "value": 12,
+          "value2": 58,
+          "holder": "Yuvraj Singh",
+          "holderId": "1c914163",
+          "team": "India",
+          "opp": "England",
+          "date": "2007-09-19",
+          "editionId": "2007"
+        },
+        "previous": {
+          "value": 20,
+          "value2": 61,
+          "holder": "Mohammad Ashraful",
+          "holderId": "2bb09eb2",
+          "team": "Bangladesh",
+          "opp": "West Indies",
+          "date": "2007-09-13",
+          "editionId": "2007"
+        }
+      }
+    },
+    "t20i": {
+      "highestTotal": {
+        "current": {
+          "value": 241,
+          "value2": 6,
+          "holder": "South Africa",
+          "holderId": null,
+          "team": "South Africa",
+          "opp": "England",
+          "date": "2009-11-15",
+          "editionId": ""
+        },
+        "previous": {
+          "value": 221,
+          "value2": 5,
+          "holder": "Australia",
+          "holderId": null,
+          "team": "Australia",
+          "opp": "England",
+          "date": "2007-01-09",
+          "editionId": ""
+        }
+      },
+      "lowestTotal": {
+        "current": {
+          "value": 74,
+          "value2": 10,
+          "holder": "India",
+          "holderId": null,
+          "team": "India",
+          "opp": "Australia",
+          "date": "2008-02-01",
+          "editionId": ""
+        },
+        "previous": {
+          "value": 79,
+          "value2": 10,
+          "holder": "Australia",
+          "holderId": null,
+          "team": "Australia",
+          "opp": "England",
+          "date": "2005-06-13",
+          "editionId": ""
+        }
+      },
+      "highestChase": {
+        "current": {
+          "value": 211,
+          "value2": 4,
+          "holder": "India",
+          "holderId": null,
+          "team": "India",
+          "opp": "Sri Lanka",
+          "date": "2009-12-12",
+          "editionId": ""
+        },
+        "previous": {
+          "value": 208,
+          "value2": 2,
+          "holder": "South Africa",
+          "holderId": null,
+          "team": "South Africa",
+          "opp": "West Indies",
+          "date": "2007-09-11",
+          "editionId": "2007"
+        }
+      },
+      "bestFigures": {
+        "current": {
+          "value": 5,
+          "value2": 6,
+          "holder": "Umar Gul",
+          "holderId": "16dfcc19",
+          "team": "Pakistan",
+          "opp": "New Zealand",
+          "date": "2009-06-13",
+          "editionId": "2009"
+        },
+        "previous": {
+          "value": 4,
+          "value2": 8,
+          "holder": "Umar Gul",
+          "holderId": "16dfcc19",
+          "team": "Pakistan",
+          "opp": "Australia",
+          "date": "2009-05-07",
+          "editionId": ""
+        }
+      },
+      "highestScore": {
+        "current": {
+          "value": 117,
+          "value2": 57,
+          "holder": "CH Gayle",
+          "holderId": "db584dad",
+          "team": "West Indies",
+          "opp": "South Africa",
+          "date": "2007-09-11",
+          "editionId": "2007"
+        },
+        "previous": {
+          "value": 98,
+          "value2": 55,
+          "holder": "RT Ponting",
+          "holderId": "7d415ea5",
+          "team": "Australia",
+          "opp": "New Zealand",
+          "date": "2005-02-17",
+          "editionId": ""
+        }
+      },
+      "biggestRunsWin": {
+        "current": {
+          "value": 102,
+          "value2": 0,
+          "holder": "Pakistan",
+          "holderId": null,
+          "team": "Pakistan",
+          "opp": "Bangladesh",
+          "date": "2008-04-20",
+          "editionId": ""
+        },
+        "previous": {
+          "value": 100,
+          "value2": 0,
+          "holder": "England",
+          "holderId": null,
+          "team": "England",
+          "opp": "Australia",
+          "date": "2005-06-13",
+          "editionId": ""
+        }
+      },
+      "biggestBallsWin": {
+        "current": {
+          "value": 70,
+          "value2": 10,
+          "holder": "New Zealand",
+          "holderId": null,
+          "team": "New Zealand",
+          "opp": "Bangladesh",
+          "date": "2010-02-03",
+          "editionId": ""
+        },
+        "previous": {
+          "value": 58,
+          "value2": 10,
+          "holder": "Australia",
+          "holderId": null,
+          "team": "Australia",
+          "opp": "Sri Lanka",
+          "date": "2007-09-20",
+          "editionId": "2007"
+        }
+      },
+      "fastestFifty": {
+        "current": {
+          "value": 12,
+          "value2": 58,
+          "holder": "Yuvraj Singh",
+          "holderId": "1c914163",
+          "team": "India",
+          "opp": "England",
+          "date": "2007-09-19",
+          "editionId": "2007"
+        },
+        "previous": {
+          "value": 20,
+          "value2": 61,
+          "holder": "Mohammad Ashraful",
+          "holderId": "2bb09eb2",
+          "team": "Bangladesh",
+          "opp": "West Indies",
+          "date": "2007-09-13",
+          "editionId": "2007"
+        }
+      }
+    }
+  },
+  "2012": {
+    "worldCup": {
+      "highestTotal": {
+        "current": {
+          "value": 260,
+          "value2": 6,
+          "holder": "Sri Lanka",
+          "holderId": null,
+          "team": "Sri Lanka",
+          "opp": "Kenya",
+          "date": "2007-09-14",
+          "editionId": "2007"
+        },
+        "previous": {
+          "value": 208,
+          "value2": 2,
+          "holder": "South Africa",
+          "holderId": null,
+          "team": "South Africa",
+          "opp": "West Indies",
+          "date": "2007-09-11",
+          "editionId": "2007"
+        }
+      },
+      "lowestTotal": {
+        "current": {
+          "value": 68,
+          "value2": 10,
+          "holder": "Ireland",
+          "holderId": null,
+          "team": "Ireland",
+          "opp": "West Indies",
+          "date": "2010-04-30",
+          "editionId": "2010"
+        },
+        "previous": {
+          "value": 73,
+          "value2": 10,
+          "holder": "Kenya",
+          "holderId": null,
+          "team": "Kenya",
+          "opp": "New Zealand",
+          "date": "2007-09-12",
+          "editionId": "2007"
+        }
+      },
+      "highestChase": {
+        "current": {
+          "value": 208,
+          "value2": 2,
+          "holder": "South Africa",
+          "holderId": null,
+          "team": "South Africa",
+          "opp": "West Indies",
+          "date": "2007-09-11",
+          "editionId": "2007"
+        },
+        "previous": null
+      },
+      "bestFigures": {
+        "current": {
+          "value": 5,
+          "value2": 6,
+          "holder": "Umar Gul",
+          "holderId": "16dfcc19",
+          "team": "Pakistan",
+          "opp": "New Zealand",
+          "date": "2009-06-13",
+          "editionId": "2009"
+        },
+        "previous": {
+          "value": 4,
+          "value2": 7,
+          "holder": "MR Gillespie",
+          "holderId": "7d7ab238",
+          "team": "New Zealand",
+          "opp": "Kenya",
+          "date": "2007-09-12",
+          "editionId": "2007"
+        }
+      },
+      "highestScore": {
+        "current": {
+          "value": 117,
+          "value2": 57,
+          "holder": "CH Gayle",
+          "holderId": "db584dad",
+          "team": "West Indies",
+          "opp": "South Africa",
+          "date": "2007-09-11",
+          "editionId": "2007"
+        },
+        "previous": null
+      },
+      "biggestRunsWin": {
+        "current": {
+          "value": 172,
+          "value2": 0,
+          "holder": "Sri Lanka",
+          "holderId": null,
+          "team": "Sri Lanka",
+          "opp": "Kenya",
+          "date": "2007-09-14",
+          "editionId": "2007"
+        },
+        "previous": {
+          "value": 51,
+          "value2": 0,
+          "holder": "Pakistan",
+          "holderId": null,
+          "team": "Pakistan",
+          "opp": "Scotland",
+          "date": "2007-09-12",
+          "editionId": "2007"
+        }
+      },
+      "biggestBallsWin": {
+        "current": {
+          "value": 74,
+          "value2": 9,
+          "holder": "New Zealand",
+          "holderId": null,
+          "team": "New Zealand",
+          "opp": "Kenya",
+          "date": "2007-09-12",
+          "editionId": "2007"
+        },
+        "previous": {
+          "value": 14,
+          "value2": 8,
+          "holder": "South Africa",
+          "holderId": null,
+          "team": "South Africa",
+          "opp": "West Indies",
+          "date": "2007-09-11",
+          "editionId": "2007"
+        }
+      },
+      "fastestFifty": {
+        "current": {
+          "value": 12,
+          "value2": 58,
+          "holder": "Yuvraj Singh",
+          "holderId": "1c914163",
+          "team": "India",
+          "opp": "England",
+          "date": "2007-09-19",
+          "editionId": "2007"
+        },
+        "previous": {
+          "value": 20,
+          "value2": 61,
+          "holder": "Mohammad Ashraful",
+          "holderId": "2bb09eb2",
+          "team": "Bangladesh",
+          "opp": "West Indies",
+          "date": "2007-09-13",
+          "editionId": "2007"
+        }
+      }
+    },
+    "t20i": {
+      "highestTotal": {
+        "current": {
+          "value": 241,
+          "value2": 6,
+          "holder": "South Africa",
+          "holderId": null,
+          "team": "South Africa",
+          "opp": "England",
+          "date": "2009-11-15",
+          "editionId": ""
+        },
+        "previous": {
+          "value": 221,
+          "value2": 5,
+          "holder": "Australia",
+          "holderId": null,
+          "team": "Australia",
+          "opp": "England",
+          "date": "2007-01-09",
+          "editionId": ""
+        }
+      },
+      "lowestTotal": {
+        "current": {
+          "value": 74,
+          "value2": 10,
+          "holder": "India",
+          "holderId": null,
+          "team": "India",
+          "opp": "Australia",
+          "date": "2008-02-01",
+          "editionId": ""
+        },
+        "previous": {
+          "value": 79,
+          "value2": 10,
+          "holder": "Australia",
+          "holderId": null,
+          "team": "Australia",
+          "opp": "England",
+          "date": "2005-06-13",
+          "editionId": ""
+        }
+      },
+      "highestChase": {
+        "current": {
+          "value": 211,
+          "value2": 4,
+          "holder": "India",
+          "holderId": null,
+          "team": "India",
+          "opp": "Sri Lanka",
+          "date": "2009-12-12",
+          "editionId": ""
+        },
+        "previous": {
+          "value": 208,
+          "value2": 2,
+          "holder": "South Africa",
+          "holderId": null,
+          "team": "South Africa",
+          "opp": "West Indies",
+          "date": "2007-09-11",
+          "editionId": "2007"
+        }
+      },
+      "bestFigures": {
+        "current": {
+          "value": 6,
+          "value2": 16,
+          "holder": "BAW Mendis",
+          "holderId": "ea0cdc12",
+          "team": "Sri Lanka",
+          "opp": "Australia",
+          "date": "2011-08-08",
+          "editionId": ""
+        },
+        "previous": {
+          "value": 5,
+          "value2": 6,
+          "holder": "Umar Gul",
+          "holderId": "16dfcc19",
+          "team": "Pakistan",
+          "opp": "New Zealand",
+          "date": "2009-06-13",
+          "editionId": "2009"
+        }
+      },
+      "highestScore": {
+        "current": {
+          "value": 117,
+          "value2": 57,
+          "holder": "CH Gayle",
+          "holderId": "db584dad",
+          "team": "West Indies",
+          "opp": "South Africa",
+          "date": "2007-09-11",
+          "editionId": "2007"
+        },
+        "previous": {
+          "value": 98,
+          "value2": 55,
+          "holder": "RT Ponting",
+          "holderId": "7d415ea5",
+          "team": "Australia",
+          "opp": "New Zealand",
+          "date": "2005-02-17",
+          "editionId": ""
+        }
+      },
+      "biggestRunsWin": {
+        "current": {
+          "value": 103,
+          "value2": 0,
+          "holder": "Pakistan",
+          "holderId": null,
+          "team": "Pakistan",
+          "opp": "New Zealand",
+          "date": "2010-12-30",
+          "editionId": ""
+        },
+        "previous": {
+          "value": 102,
+          "value2": 0,
+          "holder": "Pakistan",
+          "holderId": null,
+          "team": "Pakistan",
+          "opp": "Bangladesh",
+          "date": "2008-04-20",
+          "editionId": ""
+        }
+      },
+      "biggestBallsWin": {
+        "current": {
+          "value": 70,
+          "value2": 10,
+          "holder": "New Zealand",
+          "holderId": null,
+          "team": "New Zealand",
+          "opp": "Bangladesh",
+          "date": "2010-02-03",
+          "editionId": ""
+        },
+        "previous": {
+          "value": 58,
+          "value2": 10,
+          "holder": "Australia",
+          "holderId": null,
+          "team": "Australia",
+          "opp": "Sri Lanka",
+          "date": "2007-09-20",
+          "editionId": "2007"
+        }
+      },
+      "fastestFifty": {
+        "current": {
+          "value": 12,
+          "value2": 58,
+          "holder": "Yuvraj Singh",
+          "holderId": "1c914163",
+          "team": "India",
+          "opp": "England",
+          "date": "2007-09-19",
+          "editionId": "2007"
+        },
+        "previous": {
+          "value": 20,
+          "value2": 61,
+          "holder": "Mohammad Ashraful",
+          "holderId": "2bb09eb2",
+          "team": "Bangladesh",
+          "opp": "West Indies",
+          "date": "2007-09-13",
+          "editionId": "2007"
+        }
+      }
+    }
+  },
+  "2014": {
+    "worldCup": {
+      "highestTotal": {
+        "current": {
+          "value": 260,
+          "value2": 6,
+          "holder": "Sri Lanka",
+          "holderId": null,
+          "team": "Sri Lanka",
+          "opp": "Kenya",
+          "date": "2007-09-14",
+          "editionId": "2007"
+        },
+        "previous": {
+          "value": 208,
+          "value2": 2,
+          "holder": "South Africa",
+          "holderId": null,
+          "team": "South Africa",
+          "opp": "West Indies",
+          "date": "2007-09-11",
+          "editionId": "2007"
+        }
+      },
+      "lowestTotal": {
+        "current": {
+          "value": 68,
+          "value2": 10,
+          "holder": "Ireland",
+          "holderId": null,
+          "team": "Ireland",
+          "opp": "West Indies",
+          "date": "2010-04-30",
+          "editionId": "2010"
+        },
+        "previous": {
+          "value": 73,
+          "value2": 10,
+          "holder": "Kenya",
+          "holderId": null,
+          "team": "Kenya",
+          "opp": "New Zealand",
+          "date": "2007-09-12",
+          "editionId": "2007"
+        }
+      },
+      "highestChase": {
+        "current": {
+          "value": 208,
+          "value2": 2,
+          "holder": "South Africa",
+          "holderId": null,
+          "team": "South Africa",
+          "opp": "West Indies",
+          "date": "2007-09-11",
+          "editionId": "2007"
+        },
+        "previous": null
+      },
+      "bestFigures": {
+        "current": {
+          "value": 6,
+          "value2": 8,
+          "holder": "BAW Mendis",
+          "holderId": "ea0cdc12",
+          "team": "Sri Lanka",
+          "opp": "Zimbabwe",
+          "date": "2012-09-18",
+          "editionId": "2012"
+        },
+        "previous": {
+          "value": 5,
+          "value2": 6,
+          "holder": "Umar Gul",
+          "holderId": "16dfcc19",
+          "team": "Pakistan",
+          "opp": "New Zealand",
+          "date": "2009-06-13",
+          "editionId": "2009"
+        }
+      },
+      "highestScore": {
+        "current": {
+          "value": 123,
+          "value2": 58,
+          "holder": "BB McCullum",
+          "holderId": "b8a55852",
+          "team": "New Zealand",
+          "opp": "Bangladesh",
+          "date": "2012-09-21",
+          "editionId": "2012"
+        },
+        "previous": {
+          "value": 117,
+          "value2": 57,
+          "holder": "CH Gayle",
+          "holderId": "db584dad",
+          "team": "West Indies",
+          "opp": "South Africa",
+          "date": "2007-09-11",
+          "editionId": "2007"
+        }
+      },
+      "biggestRunsWin": {
+        "current": {
+          "value": 172,
+          "value2": 0,
+          "holder": "Sri Lanka",
+          "holderId": null,
+          "team": "Sri Lanka",
+          "opp": "Kenya",
+          "date": "2007-09-14",
+          "editionId": "2007"
+        },
+        "previous": {
+          "value": 51,
+          "value2": 0,
+          "holder": "Pakistan",
+          "holderId": null,
+          "team": "Pakistan",
+          "opp": "Scotland",
+          "date": "2007-09-12",
+          "editionId": "2007"
+        }
+      },
+      "biggestBallsWin": {
+        "current": {
+          "value": 74,
+          "value2": 9,
+          "holder": "New Zealand",
+          "holderId": null,
+          "team": "New Zealand",
+          "opp": "Kenya",
+          "date": "2007-09-12",
+          "editionId": "2007"
+        },
+        "previous": {
+          "value": 14,
+          "value2": 8,
+          "holder": "South Africa",
+          "holderId": null,
+          "team": "South Africa",
+          "opp": "West Indies",
+          "date": "2007-09-11",
+          "editionId": "2007"
+        }
+      },
+      "fastestFifty": {
+        "current": {
+          "value": 12,
+          "value2": 58,
+          "holder": "Yuvraj Singh",
+          "holderId": "1c914163",
+          "team": "India",
+          "opp": "England",
+          "date": "2007-09-19",
+          "editionId": "2007"
+        },
+        "previous": {
+          "value": 20,
+          "value2": 61,
+          "holder": "Mohammad Ashraful",
+          "holderId": "2bb09eb2",
+          "team": "Bangladesh",
+          "opp": "West Indies",
+          "date": "2007-09-13",
+          "editionId": "2007"
+        }
+      }
+    },
+    "t20i": {
+      "highestTotal": {
+        "current": {
+          "value": 248,
+          "value2": 6,
+          "holder": "Australia",
+          "holderId": null,
+          "team": "Australia",
+          "opp": "England",
+          "date": "2013-08-29",
+          "editionId": ""
+        },
+        "previous": {
+          "value": 241,
+          "value2": 6,
+          "holder": "South Africa",
+          "holderId": null,
+          "team": "South Africa",
+          "opp": "England",
+          "date": "2009-11-15",
+          "editionId": ""
+        }
+      },
+      "lowestTotal": {
+        "current": {
+          "value": 74,
+          "value2": 10,
+          "holder": "India",
+          "holderId": null,
+          "team": "India",
+          "opp": "Australia",
+          "date": "2008-02-01",
+          "editionId": ""
+        },
+        "previous": {
+          "value": 79,
+          "value2": 10,
+          "holder": "Australia",
+          "holderId": null,
+          "team": "Australia",
+          "opp": "England",
+          "date": "2005-06-13",
+          "editionId": ""
+        }
+      },
+      "highestChase": {
+        "current": {
+          "value": 211,
+          "value2": 4,
+          "holder": "India",
+          "holderId": null,
+          "team": "India",
+          "opp": "Sri Lanka",
+          "date": "2009-12-12",
+          "editionId": ""
+        },
+        "previous": {
+          "value": 208,
+          "value2": 2,
+          "holder": "South Africa",
+          "holderId": null,
+          "team": "South Africa",
+          "opp": "West Indies",
+          "date": "2007-09-11",
+          "editionId": "2007"
+        }
+      },
+      "bestFigures": {
+        "current": {
+          "value": 6,
+          "value2": 8,
+          "holder": "BAW Mendis",
+          "holderId": "ea0cdc12",
+          "team": "Sri Lanka",
+          "opp": "Zimbabwe",
+          "date": "2012-09-18",
+          "editionId": "2012"
+        },
+        "previous": {
+          "value": 6,
+          "value2": 16,
+          "holder": "BAW Mendis",
+          "holderId": "ea0cdc12",
+          "team": "Sri Lanka",
+          "opp": "Australia",
+          "date": "2011-08-08",
+          "editionId": ""
+        }
+      },
+      "highestScore": {
+        "current": {
+          "value": 156,
+          "value2": 63,
+          "holder": "AJ Finch",
+          "holderId": "b8d490fd",
+          "team": "Australia",
+          "opp": "England",
+          "date": "2013-08-29",
+          "editionId": ""
+        },
+        "previous": {
+          "value": 123,
+          "value2": 58,
+          "holder": "BB McCullum",
+          "holderId": "b8a55852",
+          "team": "New Zealand",
+          "opp": "Bangladesh",
+          "date": "2012-09-21",
+          "editionId": "2012"
+        }
+      },
+      "biggestRunsWin": {
+        "current": {
+          "value": 103,
+          "value2": 0,
+          "holder": "Pakistan",
+          "holderId": null,
+          "team": "Pakistan",
+          "opp": "New Zealand",
+          "date": "2010-12-30",
+          "editionId": ""
+        },
+        "previous": {
+          "value": 102,
+          "value2": 0,
+          "holder": "Pakistan",
+          "holderId": null,
+          "team": "Pakistan",
+          "opp": "Bangladesh",
+          "date": "2008-04-20",
+          "editionId": ""
+        }
+      },
+      "biggestBallsWin": {
+        "current": {
+          "value": 70,
+          "value2": 10,
+          "holder": "New Zealand",
+          "holderId": null,
+          "team": "New Zealand",
+          "opp": "Bangladesh",
+          "date": "2010-02-03",
+          "editionId": ""
+        },
+        "previous": {
+          "value": 58,
+          "value2": 10,
+          "holder": "Australia",
+          "holderId": null,
+          "team": "Australia",
+          "opp": "Sri Lanka",
+          "date": "2007-09-20",
+          "editionId": "2007"
+        }
+      },
+      "fastestFifty": {
+        "current": {
+          "value": 12,
+          "value2": 58,
+          "holder": "Yuvraj Singh",
+          "holderId": "1c914163",
+          "team": "India",
+          "opp": "England",
+          "date": "2007-09-19",
+          "editionId": "2007"
+        },
+        "previous": {
+          "value": 20,
+          "value2": 61,
+          "holder": "Mohammad Ashraful",
+          "holderId": "2bb09eb2",
+          "team": "Bangladesh",
+          "opp": "West Indies",
+          "date": "2007-09-13",
+          "editionId": "2007"
+        }
+      }
+    }
+  },
+  "2016": {
+    "worldCup": {
+      "highestTotal": {
+        "current": {
+          "value": 260,
+          "value2": 6,
+          "holder": "Sri Lanka",
+          "holderId": null,
+          "team": "Sri Lanka",
+          "opp": "Kenya",
+          "date": "2007-09-14",
+          "editionId": "2007"
+        },
+        "previous": {
+          "value": 208,
+          "value2": 2,
+          "holder": "South Africa",
+          "holderId": null,
+          "team": "South Africa",
+          "opp": "West Indies",
+          "date": "2007-09-11",
+          "editionId": "2007"
+        }
+      },
+      "lowestTotal": {
+        "current": {
+          "value": 39,
+          "value2": 10,
+          "holder": "Netherlands",
+          "holderId": null,
+          "team": "Netherlands",
+          "opp": "Sri Lanka",
+          "date": "2014-03-24",
+          "editionId": "2014"
+        },
+        "previous": {
+          "value": 68,
+          "value2": 10,
+          "holder": "Ireland",
+          "holderId": null,
+          "team": "Ireland",
+          "opp": "West Indies",
+          "date": "2010-04-30",
+          "editionId": "2010"
+        }
+      },
+      "highestChase": {
+        "current": {
+          "value": 208,
+          "value2": 2,
+          "holder": "South Africa",
+          "holderId": null,
+          "team": "South Africa",
+          "opp": "West Indies",
+          "date": "2007-09-11",
+          "editionId": "2007"
+        },
+        "previous": null
+      },
+      "bestFigures": {
+        "current": {
+          "value": 6,
+          "value2": 8,
+          "holder": "BAW Mendis",
+          "holderId": "ea0cdc12",
+          "team": "Sri Lanka",
+          "opp": "Zimbabwe",
+          "date": "2012-09-18",
+          "editionId": "2012"
+        },
+        "previous": {
+          "value": 5,
+          "value2": 6,
+          "holder": "Umar Gul",
+          "holderId": "16dfcc19",
+          "team": "Pakistan",
+          "opp": "New Zealand",
+          "date": "2009-06-13",
+          "editionId": "2009"
+        }
+      },
+      "highestScore": {
+        "current": {
+          "value": 123,
+          "value2": 58,
+          "holder": "BB McCullum",
+          "holderId": "b8a55852",
+          "team": "New Zealand",
+          "opp": "Bangladesh",
+          "date": "2012-09-21",
+          "editionId": "2012"
+        },
+        "previous": {
+          "value": 117,
+          "value2": 57,
+          "holder": "CH Gayle",
+          "holderId": "db584dad",
+          "team": "West Indies",
+          "opp": "South Africa",
+          "date": "2007-09-11",
+          "editionId": "2007"
+        }
+      },
+      "biggestRunsWin": {
+        "current": {
+          "value": 172,
+          "value2": 0,
+          "holder": "Sri Lanka",
+          "holderId": null,
+          "team": "Sri Lanka",
+          "opp": "Kenya",
+          "date": "2007-09-14",
+          "editionId": "2007"
+        },
+        "previous": {
+          "value": 51,
+          "value2": 0,
+          "holder": "Pakistan",
+          "holderId": null,
+          "team": "Pakistan",
+          "opp": "Scotland",
+          "date": "2007-09-12",
+          "editionId": "2007"
+        }
+      },
+      "biggestBallsWin": {
+        "current": {
+          "value": 90,
+          "value2": 9,
+          "holder": "Sri Lanka",
+          "holderId": null,
+          "team": "Sri Lanka",
+          "opp": "Netherlands",
+          "date": "2014-03-24",
+          "editionId": "2014"
+        },
+        "previous": {
+          "value": 74,
+          "value2": 9,
+          "holder": "New Zealand",
+          "holderId": null,
+          "team": "New Zealand",
+          "opp": "Kenya",
+          "date": "2007-09-12",
+          "editionId": "2007"
+        }
+      },
+      "fastestFifty": {
+        "current": {
+          "value": 12,
+          "value2": 58,
+          "holder": "Yuvraj Singh",
+          "holderId": "1c914163",
+          "team": "India",
+          "opp": "England",
+          "date": "2007-09-19",
+          "editionId": "2007"
+        },
+        "previous": {
+          "value": 20,
+          "value2": 61,
+          "holder": "Mohammad Ashraful",
+          "holderId": "2bb09eb2",
+          "team": "Bangladesh",
+          "opp": "West Indies",
+          "date": "2007-09-13",
+          "editionId": "2007"
+        }
+      }
+    },
+    "t20i": {
+      "highestTotal": {
+        "current": {
+          "value": 248,
+          "value2": 6,
+          "holder": "Australia",
+          "holderId": null,
+          "team": "Australia",
+          "opp": "England",
+          "date": "2013-08-29",
+          "editionId": ""
+        },
+        "previous": {
+          "value": 241,
+          "value2": 6,
+          "holder": "South Africa",
+          "holderId": null,
+          "team": "South Africa",
+          "opp": "England",
+          "date": "2009-11-15",
+          "editionId": ""
+        }
+      },
+      "lowestTotal": {
+        "current": {
+          "value": 74,
+          "value2": 10,
+          "holder": "India",
+          "holderId": null,
+          "team": "India",
+          "opp": "Australia",
+          "date": "2008-02-01",
+          "editionId": ""
+        },
+        "previous": {
+          "value": 79,
+          "value2": 10,
+          "holder": "Australia",
+          "holderId": null,
+          "team": "Australia",
+          "opp": "England",
+          "date": "2005-06-13",
+          "editionId": ""
+        }
+      },
+      "highestChase": {
+        "current": {
+          "value": 236,
+          "value2": 6,
+          "holder": "West Indies",
+          "holderId": null,
+          "team": "West Indies",
+          "opp": "South Africa",
+          "date": "2015-01-11",
+          "editionId": ""
+        },
+        "previous": {
+          "value": 211,
+          "value2": 4,
+          "holder": "India",
+          "holderId": null,
+          "team": "India",
+          "opp": "Sri Lanka",
+          "date": "2009-12-12",
+          "editionId": ""
+        }
+      },
+      "bestFigures": {
+        "current": {
+          "value": 6,
+          "value2": 8,
+          "holder": "BAW Mendis",
+          "holderId": "ea0cdc12",
+          "team": "Sri Lanka",
+          "opp": "Zimbabwe",
+          "date": "2012-09-18",
+          "editionId": "2012"
+        },
+        "previous": {
+          "value": 6,
+          "value2": 16,
+          "holder": "BAW Mendis",
+          "holderId": "ea0cdc12",
+          "team": "Sri Lanka",
+          "opp": "Australia",
+          "date": "2011-08-08",
+          "editionId": ""
+        }
+      },
+      "highestScore": {
+        "current": {
+          "value": 156,
+          "value2": 63,
+          "holder": "AJ Finch",
+          "holderId": "b8d490fd",
+          "team": "Australia",
+          "opp": "England",
+          "date": "2013-08-29",
+          "editionId": ""
+        },
+        "previous": {
+          "value": 123,
+          "value2": 58,
+          "holder": "BB McCullum",
+          "holderId": "b8a55852",
+          "team": "New Zealand",
+          "opp": "Bangladesh",
+          "date": "2012-09-21",
+          "editionId": "2012"
+        }
+      },
+      "biggestRunsWin": {
+        "current": {
+          "value": 103,
+          "value2": 0,
+          "holder": "Pakistan",
+          "holderId": null,
+          "team": "Pakistan",
+          "opp": "New Zealand",
+          "date": "2010-12-30",
+          "editionId": ""
+        },
+        "previous": {
+          "value": 102,
+          "value2": 0,
+          "holder": "Pakistan",
+          "holderId": null,
+          "team": "Pakistan",
+          "opp": "Bangladesh",
+          "date": "2008-04-20",
+          "editionId": ""
+        }
+      },
+      "biggestBallsWin": {
+        "current": {
+          "value": 70,
+          "value2": 10,
+          "holder": "New Zealand",
+          "holderId": null,
+          "team": "New Zealand",
+          "opp": "Bangladesh",
+          "date": "2010-02-03",
+          "editionId": ""
+        },
+        "previous": {
+          "value": 58,
+          "value2": 10,
+          "holder": "Australia",
+          "holderId": null,
+          "team": "Australia",
+          "opp": "Sri Lanka",
+          "date": "2007-09-20",
+          "editionId": "2007"
+        }
+      },
+      "fastestFifty": {
+        "current": {
+          "value": 12,
+          "value2": 58,
+          "holder": "Yuvraj Singh",
+          "holderId": "1c914163",
+          "team": "India",
+          "opp": "England",
+          "date": "2007-09-19",
+          "editionId": "2007"
+        },
+        "previous": {
+          "value": 20,
+          "value2": 61,
+          "holder": "Mohammad Ashraful",
+          "holderId": "2bb09eb2",
+          "team": "Bangladesh",
+          "opp": "West Indies",
+          "date": "2007-09-13",
+          "editionId": "2007"
+        }
+      }
+    }
+  },
+  "2021": {
+    "worldCup": {
+      "highestTotal": {
+        "current": {
+          "value": 260,
+          "value2": 6,
+          "holder": "Sri Lanka",
+          "holderId": null,
+          "team": "Sri Lanka",
+          "opp": "Kenya",
+          "date": "2007-09-14",
+          "editionId": "2007"
+        },
+        "previous": {
+          "value": 208,
+          "value2": 2,
+          "holder": "South Africa",
+          "holderId": null,
+          "team": "South Africa",
+          "opp": "West Indies",
+          "date": "2007-09-11",
+          "editionId": "2007"
+        }
+      },
+      "lowestTotal": {
+        "current": {
+          "value": 39,
+          "value2": 10,
+          "holder": "Netherlands",
+          "holderId": null,
+          "team": "Netherlands",
+          "opp": "Sri Lanka",
+          "date": "2014-03-24",
+          "editionId": "2014"
+        },
+        "previous": {
+          "value": 68,
+          "value2": 10,
+          "holder": "Ireland",
+          "holderId": null,
+          "team": "Ireland",
+          "opp": "West Indies",
+          "date": "2010-04-30",
+          "editionId": "2010"
+        }
+      },
+      "highestChase": {
+        "current": {
+          "value": 230,
+          "value2": 8,
+          "holder": "England",
+          "holderId": null,
+          "team": "England",
+          "opp": "South Africa",
+          "date": "2016-03-18",
+          "editionId": "2016"
+        },
+        "previous": {
+          "value": 208,
+          "value2": 2,
+          "holder": "South Africa",
+          "holderId": null,
+          "team": "South Africa",
+          "opp": "West Indies",
+          "date": "2007-09-11",
+          "editionId": "2007"
+        }
+      },
+      "bestFigures": {
+        "current": {
+          "value": 6,
+          "value2": 8,
+          "holder": "BAW Mendis",
+          "holderId": "ea0cdc12",
+          "team": "Sri Lanka",
+          "opp": "Zimbabwe",
+          "date": "2012-09-18",
+          "editionId": "2012"
+        },
+        "previous": {
+          "value": 5,
+          "value2": 6,
+          "holder": "Umar Gul",
+          "holderId": "16dfcc19",
+          "team": "Pakistan",
+          "opp": "New Zealand",
+          "date": "2009-06-13",
+          "editionId": "2009"
+        }
+      },
+      "highestScore": {
+        "current": {
+          "value": 123,
+          "value2": 58,
+          "holder": "BB McCullum",
+          "holderId": "b8a55852",
+          "team": "New Zealand",
+          "opp": "Bangladesh",
+          "date": "2012-09-21",
+          "editionId": "2012"
+        },
+        "previous": {
+          "value": 117,
+          "value2": 57,
+          "holder": "CH Gayle",
+          "holderId": "db584dad",
+          "team": "West Indies",
+          "opp": "South Africa",
+          "date": "2007-09-11",
+          "editionId": "2007"
+        }
+      },
+      "biggestRunsWin": {
+        "current": {
+          "value": 172,
+          "value2": 0,
+          "holder": "Sri Lanka",
+          "holderId": null,
+          "team": "Sri Lanka",
+          "opp": "Kenya",
+          "date": "2007-09-14",
+          "editionId": "2007"
+        },
+        "previous": {
+          "value": 51,
+          "value2": 0,
+          "holder": "Pakistan",
+          "holderId": null,
+          "team": "Pakistan",
+          "opp": "Scotland",
+          "date": "2007-09-12",
+          "editionId": "2007"
+        }
+      },
+      "biggestBallsWin": {
+        "current": {
+          "value": 90,
+          "value2": 9,
+          "holder": "Sri Lanka",
+          "holderId": null,
+          "team": "Sri Lanka",
+          "opp": "Netherlands",
+          "date": "2014-03-24",
+          "editionId": "2014"
+        },
+        "previous": {
+          "value": 74,
+          "value2": 9,
+          "holder": "New Zealand",
+          "holderId": null,
+          "team": "New Zealand",
+          "opp": "Kenya",
+          "date": "2007-09-12",
+          "editionId": "2007"
+        }
+      },
+      "fastestFifty": {
+        "current": {
+          "value": 12,
+          "value2": 58,
+          "holder": "Yuvraj Singh",
+          "holderId": "1c914163",
+          "team": "India",
+          "opp": "England",
+          "date": "2007-09-19",
+          "editionId": "2007"
+        },
+        "previous": {
+          "value": 20,
+          "value2": 61,
+          "holder": "Mohammad Ashraful",
+          "holderId": "2bb09eb2",
+          "team": "Bangladesh",
+          "opp": "West Indies",
+          "date": "2007-09-13",
+          "editionId": "2007"
+        }
+      }
+    },
+    "t20i": {
+      "highestTotal": {
+        "current": {
+          "value": 263,
+          "value2": 3,
+          "holder": "Australia",
+          "holderId": null,
+          "team": "Australia",
+          "opp": "Sri Lanka",
+          "date": "2016-09-06",
+          "editionId": ""
+        },
+        "previous": {
+          "value": 248,
+          "value2": 6,
+          "holder": "Australia",
+          "holderId": null,
+          "team": "Australia",
+          "opp": "England",
+          "date": "2013-08-29",
+          "editionId": ""
+        }
+      },
+      "lowestTotal": {
+        "current": {
+          "value": 45,
+          "value2": 10,
+          "holder": "West Indies",
+          "holderId": null,
+          "team": "West Indies",
+          "opp": "England",
+          "date": "2019-03-08",
+          "editionId": ""
+        },
+        "previous": {
+          "value": 70,
+          "value2": 10,
+          "holder": "Bangladesh",
+          "holderId": null,
+          "team": "Bangladesh",
+          "opp": "New Zealand",
+          "date": "2016-03-26",
+          "editionId": "2016"
+        }
+      },
+      "highestChase": {
+        "current": {
+          "value": 245,
+          "value2": 5,
+          "holder": "Australia",
+          "holderId": null,
+          "team": "Australia",
+          "opp": "New Zealand",
+          "date": "2018-02-16",
+          "editionId": ""
+        },
+        "previous": {
+          "value": 236,
+          "value2": 6,
+          "holder": "West Indies",
+          "holderId": null,
+          "team": "West Indies",
+          "opp": "South Africa",
+          "date": "2015-01-11",
+          "editionId": ""
+        }
+      },
+      "bestFigures": {
+        "current": {
+          "value": 6,
+          "value2": 7,
+          "holder": "DL Chahar",
+          "holderId": "23eeb873",
+          "team": "India",
+          "opp": "Bangladesh",
+          "date": "2019-11-10",
+          "editionId": ""
+        },
+        "previous": {
+          "value": 6,
+          "value2": 8,
+          "holder": "BAW Mendis",
+          "holderId": "ea0cdc12",
+          "team": "Sri Lanka",
+          "opp": "Zimbabwe",
+          "date": "2012-09-18",
+          "editionId": "2012"
+        }
+      },
+      "highestScore": {
+        "current": {
+          "value": 172,
+          "value2": 76,
+          "holder": "AJ Finch",
+          "holderId": "b8d490fd",
+          "team": "Australia",
+          "opp": "Zimbabwe",
+          "date": "2018-07-03",
+          "editionId": ""
+        },
+        "previous": {
+          "value": 156,
+          "value2": 63,
+          "holder": "AJ Finch",
+          "holderId": "b8d490fd",
+          "team": "Australia",
+          "opp": "England",
+          "date": "2013-08-29",
+          "editionId": ""
+        }
+      },
+      "biggestRunsWin": {
+        "current": {
+          "value": 143,
+          "value2": 0,
+          "holder": "Pakistan",
+          "holderId": null,
+          "team": "Pakistan",
+          "opp": "West Indies",
+          "date": "2018-04-01",
+          "editionId": ""
+        },
+        "previous": {
+          "value": 119,
+          "value2": 0,
+          "holder": "New Zealand",
+          "holderId": null,
+          "team": "New Zealand",
+          "opp": "West Indies",
+          "date": "2018-01-03",
+          "editionId": ""
+        }
+      },
+      "biggestBallsWin": {
+        "current": {
+          "value": 70,
+          "value2": 10,
+          "holder": "New Zealand",
+          "holderId": null,
+          "team": "New Zealand",
+          "opp": "Bangladesh",
+          "date": "2010-02-03",
+          "editionId": ""
+        },
+        "previous": {
+          "value": 58,
+          "value2": 10,
+          "holder": "Australia",
+          "holderId": null,
+          "team": "Australia",
+          "opp": "Sri Lanka",
+          "date": "2007-09-20",
+          "editionId": "2007"
+        }
+      },
+      "fastestFifty": {
+        "current": {
+          "value": 12,
+          "value2": 58,
+          "holder": "Yuvraj Singh",
+          "holderId": "1c914163",
+          "team": "India",
+          "opp": "England",
+          "date": "2007-09-19",
+          "editionId": "2007"
+        },
+        "previous": {
+          "value": 20,
+          "value2": 61,
+          "holder": "Mohammad Ashraful",
+          "holderId": "2bb09eb2",
+          "team": "Bangladesh",
+          "opp": "West Indies",
+          "date": "2007-09-13",
+          "editionId": "2007"
+        }
+      }
+    }
+  },
+  "2022": {
+    "worldCup": {
+      "highestTotal": {
+        "current": {
+          "value": 260,
+          "value2": 6,
+          "holder": "Sri Lanka",
+          "holderId": null,
+          "team": "Sri Lanka",
+          "opp": "Kenya",
+          "date": "2007-09-14",
+          "editionId": "2007"
+        },
+        "previous": {
+          "value": 208,
+          "value2": 2,
+          "holder": "South Africa",
+          "holderId": null,
+          "team": "South Africa",
+          "opp": "West Indies",
+          "date": "2007-09-11",
+          "editionId": "2007"
+        }
+      },
+      "lowestTotal": {
+        "current": {
+          "value": 39,
+          "value2": 10,
+          "holder": "Netherlands",
+          "holderId": null,
+          "team": "Netherlands",
+          "opp": "Sri Lanka",
+          "date": "2014-03-24",
+          "editionId": "2014"
+        },
+        "previous": {
+          "value": 68,
+          "value2": 10,
+          "holder": "Ireland",
+          "holderId": null,
+          "team": "Ireland",
+          "opp": "West Indies",
+          "date": "2010-04-30",
+          "editionId": "2010"
+        }
+      },
+      "highestChase": {
+        "current": {
+          "value": 230,
+          "value2": 8,
+          "holder": "England",
+          "holderId": null,
+          "team": "England",
+          "opp": "South Africa",
+          "date": "2016-03-18",
+          "editionId": "2016"
+        },
+        "previous": {
+          "value": 208,
+          "value2": 2,
+          "holder": "South Africa",
+          "holderId": null,
+          "team": "South Africa",
+          "opp": "West Indies",
+          "date": "2007-09-11",
+          "editionId": "2007"
+        }
+      },
+      "bestFigures": {
+        "current": {
+          "value": 6,
+          "value2": 8,
+          "holder": "BAW Mendis",
+          "holderId": "ea0cdc12",
+          "team": "Sri Lanka",
+          "opp": "Zimbabwe",
+          "date": "2012-09-18",
+          "editionId": "2012"
+        },
+        "previous": {
+          "value": 5,
+          "value2": 6,
+          "holder": "Umar Gul",
+          "holderId": "16dfcc19",
+          "team": "Pakistan",
+          "opp": "New Zealand",
+          "date": "2009-06-13",
+          "editionId": "2009"
+        }
+      },
+      "highestScore": {
+        "current": {
+          "value": 123,
+          "value2": 58,
+          "holder": "BB McCullum",
+          "holderId": "b8a55852",
+          "team": "New Zealand",
+          "opp": "Bangladesh",
+          "date": "2012-09-21",
+          "editionId": "2012"
+        },
+        "previous": {
+          "value": 117,
+          "value2": 57,
+          "holder": "CH Gayle",
+          "holderId": "db584dad",
+          "team": "West Indies",
+          "opp": "South Africa",
+          "date": "2007-09-11",
+          "editionId": "2007"
+        }
+      },
+      "biggestRunsWin": {
+        "current": {
+          "value": 172,
+          "value2": 0,
+          "holder": "Sri Lanka",
+          "holderId": null,
+          "team": "Sri Lanka",
+          "opp": "Kenya",
+          "date": "2007-09-14",
+          "editionId": "2007"
+        },
+        "previous": {
+          "value": 51,
+          "value2": 0,
+          "holder": "Pakistan",
+          "holderId": null,
+          "team": "Pakistan",
+          "opp": "Scotland",
+          "date": "2007-09-12",
+          "editionId": "2007"
+        }
+      },
+      "biggestBallsWin": {
+        "current": {
+          "value": 90,
+          "value2": 9,
+          "holder": "Sri Lanka",
+          "holderId": null,
+          "team": "Sri Lanka",
+          "opp": "Netherlands",
+          "date": "2014-03-24",
+          "editionId": "2014"
+        },
+        "previous": {
+          "value": 74,
+          "value2": 9,
+          "holder": "New Zealand",
+          "holderId": null,
+          "team": "New Zealand",
+          "opp": "Kenya",
+          "date": "2007-09-12",
+          "editionId": "2007"
+        }
+      },
+      "fastestFifty": {
+        "current": {
+          "value": 12,
+          "value2": 58,
+          "holder": "Yuvraj Singh",
+          "holderId": "1c914163",
+          "team": "India",
+          "opp": "England",
+          "date": "2007-09-19",
+          "editionId": "2007"
+        },
+        "previous": {
+          "value": 20,
+          "value2": 61,
+          "holder": "Mohammad Ashraful",
+          "holderId": "2bb09eb2",
+          "team": "Bangladesh",
+          "opp": "West Indies",
+          "date": "2007-09-13",
+          "editionId": "2007"
+        }
+      }
+    },
+    "t20i": {
+      "highestTotal": {
+        "current": {
+          "value": 263,
+          "value2": 3,
+          "holder": "Australia",
+          "holderId": null,
+          "team": "Australia",
+          "opp": "Sri Lanka",
+          "date": "2016-09-06",
+          "editionId": ""
+        },
+        "previous": {
+          "value": 248,
+          "value2": 6,
+          "holder": "Australia",
+          "holderId": null,
+          "team": "Australia",
+          "opp": "England",
+          "date": "2013-08-29",
+          "editionId": ""
+        }
+      },
+      "lowestTotal": {
+        "current": {
+          "value": 45,
+          "value2": 10,
+          "holder": "West Indies",
+          "holderId": null,
+          "team": "West Indies",
+          "opp": "England",
+          "date": "2019-03-08",
+          "editionId": ""
+        },
+        "previous": {
+          "value": 70,
+          "value2": 10,
+          "holder": "Bangladesh",
+          "holderId": null,
+          "team": "Bangladesh",
+          "opp": "New Zealand",
+          "date": "2016-03-26",
+          "editionId": "2016"
+        }
+      },
+      "highestChase": {
+        "current": {
+          "value": 245,
+          "value2": 5,
+          "holder": "Australia",
+          "holderId": null,
+          "team": "Australia",
+          "opp": "New Zealand",
+          "date": "2018-02-16",
+          "editionId": ""
+        },
+        "previous": {
+          "value": 236,
+          "value2": 6,
+          "holder": "West Indies",
+          "holderId": null,
+          "team": "West Indies",
+          "opp": "South Africa",
+          "date": "2015-01-11",
+          "editionId": ""
+        }
+      },
+      "bestFigures": {
+        "current": {
+          "value": 6,
+          "value2": 7,
+          "holder": "DL Chahar",
+          "holderId": "23eeb873",
+          "team": "India",
+          "opp": "Bangladesh",
+          "date": "2019-11-10",
+          "editionId": ""
+        },
+        "previous": {
+          "value": 6,
+          "value2": 8,
+          "holder": "BAW Mendis",
+          "holderId": "ea0cdc12",
+          "team": "Sri Lanka",
+          "opp": "Zimbabwe",
+          "date": "2012-09-18",
+          "editionId": "2012"
+        }
+      },
+      "highestScore": {
+        "current": {
+          "value": 172,
+          "value2": 76,
+          "holder": "AJ Finch",
+          "holderId": "b8d490fd",
+          "team": "Australia",
+          "opp": "Zimbabwe",
+          "date": "2018-07-03",
+          "editionId": ""
+        },
+        "previous": {
+          "value": 156,
+          "value2": 63,
+          "holder": "AJ Finch",
+          "holderId": "b8d490fd",
+          "team": "Australia",
+          "opp": "England",
+          "date": "2013-08-29",
+          "editionId": ""
+        }
+      },
+      "biggestRunsWin": {
+        "current": {
+          "value": 143,
+          "value2": 0,
+          "holder": "Pakistan",
+          "holderId": null,
+          "team": "Pakistan",
+          "opp": "West Indies",
+          "date": "2018-04-01",
+          "editionId": ""
+        },
+        "previous": {
+          "value": 119,
+          "value2": 0,
+          "holder": "New Zealand",
+          "holderId": null,
+          "team": "New Zealand",
+          "opp": "West Indies",
+          "date": "2018-01-03",
+          "editionId": ""
+        }
+      },
+      "biggestBallsWin": {
+        "current": {
+          "value": 82,
+          "value2": 8,
+          "holder": "Australia",
+          "holderId": null,
+          "team": "Australia",
+          "opp": "Bangladesh",
+          "date": "2021-11-04",
+          "editionId": "2021"
+        },
+        "previous": {
+          "value": 70,
+          "value2": 10,
+          "holder": "New Zealand",
+          "holderId": null,
+          "team": "New Zealand",
+          "opp": "Bangladesh",
+          "date": "2010-02-03",
+          "editionId": ""
+        }
+      },
+      "fastestFifty": {
+        "current": {
+          "value": 12,
+          "value2": 58,
+          "holder": "Yuvraj Singh",
+          "holderId": "1c914163",
+          "team": "India",
+          "opp": "England",
+          "date": "2007-09-19",
+          "editionId": "2007"
+        },
+        "previous": {
+          "value": 20,
+          "value2": 61,
+          "holder": "Mohammad Ashraful",
+          "holderId": "2bb09eb2",
+          "team": "Bangladesh",
+          "opp": "West Indies",
+          "date": "2007-09-13",
+          "editionId": "2007"
+        }
+      }
+    }
+  },
+  "2024": {
+    "worldCup": {
+      "highestTotal": {
+        "current": {
+          "value": 260,
+          "value2": 6,
+          "holder": "Sri Lanka",
+          "holderId": null,
+          "team": "Sri Lanka",
+          "opp": "Kenya",
+          "date": "2007-09-14",
+          "editionId": "2007"
+        },
+        "previous": {
+          "value": 208,
+          "value2": 2,
+          "holder": "South Africa",
+          "holderId": null,
+          "team": "South Africa",
+          "opp": "West Indies",
+          "date": "2007-09-11",
+          "editionId": "2007"
+        }
+      },
+      "lowestTotal": {
+        "current": {
+          "value": 39,
+          "value2": 10,
+          "holder": "Netherlands",
+          "holderId": null,
+          "team": "Netherlands",
+          "opp": "Sri Lanka",
+          "date": "2014-03-24",
+          "editionId": "2014"
+        },
+        "previous": {
+          "value": 68,
+          "value2": 10,
+          "holder": "Ireland",
+          "holderId": null,
+          "team": "Ireland",
+          "opp": "West Indies",
+          "date": "2010-04-30",
+          "editionId": "2010"
+        }
+      },
+      "highestChase": {
+        "current": {
+          "value": 230,
+          "value2": 8,
+          "holder": "England",
+          "holderId": null,
+          "team": "England",
+          "opp": "South Africa",
+          "date": "2016-03-18",
+          "editionId": "2016"
+        },
+        "previous": {
+          "value": 208,
+          "value2": 2,
+          "holder": "South Africa",
+          "holderId": null,
+          "team": "South Africa",
+          "opp": "West Indies",
+          "date": "2007-09-11",
+          "editionId": "2007"
+        }
+      },
+      "bestFigures": {
+        "current": {
+          "value": 6,
+          "value2": 8,
+          "holder": "BAW Mendis",
+          "holderId": "ea0cdc12",
+          "team": "Sri Lanka",
+          "opp": "Zimbabwe",
+          "date": "2012-09-18",
+          "editionId": "2012"
+        },
+        "previous": {
+          "value": 5,
+          "value2": 6,
+          "holder": "Umar Gul",
+          "holderId": "16dfcc19",
+          "team": "Pakistan",
+          "opp": "New Zealand",
+          "date": "2009-06-13",
+          "editionId": "2009"
+        }
+      },
+      "highestScore": {
+        "current": {
+          "value": 123,
+          "value2": 58,
+          "holder": "BB McCullum",
+          "holderId": "b8a55852",
+          "team": "New Zealand",
+          "opp": "Bangladesh",
+          "date": "2012-09-21",
+          "editionId": "2012"
+        },
+        "previous": {
+          "value": 117,
+          "value2": 57,
+          "holder": "CH Gayle",
+          "holderId": "db584dad",
+          "team": "West Indies",
+          "opp": "South Africa",
+          "date": "2007-09-11",
+          "editionId": "2007"
+        }
+      },
+      "biggestRunsWin": {
+        "current": {
+          "value": 172,
+          "value2": 0,
+          "holder": "Sri Lanka",
+          "holderId": null,
+          "team": "Sri Lanka",
+          "opp": "Kenya",
+          "date": "2007-09-14",
+          "editionId": "2007"
+        },
+        "previous": {
+          "value": 51,
+          "value2": 0,
+          "holder": "Pakistan",
+          "holderId": null,
+          "team": "Pakistan",
+          "opp": "Scotland",
+          "date": "2007-09-12",
+          "editionId": "2007"
+        }
+      },
+      "biggestBallsWin": {
+        "current": {
+          "value": 90,
+          "value2": 9,
+          "holder": "Sri Lanka",
+          "holderId": null,
+          "team": "Sri Lanka",
+          "opp": "Netherlands",
+          "date": "2014-03-24",
+          "editionId": "2014"
+        },
+        "previous": {
+          "value": 74,
+          "value2": 9,
+          "holder": "New Zealand",
+          "holderId": null,
+          "team": "New Zealand",
+          "opp": "Kenya",
+          "date": "2007-09-12",
+          "editionId": "2007"
+        }
+      },
+      "fastestFifty": {
+        "current": {
+          "value": 12,
+          "value2": 58,
+          "holder": "Yuvraj Singh",
+          "holderId": "1c914163",
+          "team": "India",
+          "opp": "England",
+          "date": "2007-09-19",
+          "editionId": "2007"
+        },
+        "previous": {
+          "value": 20,
+          "value2": 61,
+          "holder": "Mohammad Ashraful",
+          "holderId": "2bb09eb2",
+          "team": "Bangladesh",
+          "opp": "West Indies",
+          "date": "2007-09-13",
+          "editionId": "2007"
+        }
+      }
+    },
+    "t20i": {
+      "highestTotal": {
+        "current": {
+          "value": 267,
+          "value2": 3,
+          "holder": "England",
+          "holderId": null,
+          "team": "England",
+          "opp": "West Indies",
+          "date": "2023-12-19",
+          "editionId": ""
+        },
+        "previous": {
+          "value": 263,
+          "value2": 3,
+          "holder": "Australia",
+          "holderId": null,
+          "team": "Australia",
+          "opp": "Sri Lanka",
+          "date": "2016-09-06",
+          "editionId": ""
+        }
+      },
+      "lowestTotal": {
+        "current": {
+          "value": 45,
+          "value2": 10,
+          "holder": "West Indies",
+          "holderId": null,
+          "team": "West Indies",
+          "opp": "England",
+          "date": "2019-03-08",
+          "editionId": ""
+        },
+        "previous": {
+          "value": 70,
+          "value2": 10,
+          "holder": "Bangladesh",
+          "holderId": null,
+          "team": "Bangladesh",
+          "opp": "New Zealand",
+          "date": "2016-03-26",
+          "editionId": "2016"
+        }
+      },
+      "highestChase": {
+        "current": {
+          "value": 259,
+          "value2": 4,
+          "holder": "South Africa",
+          "holderId": null,
+          "team": "South Africa",
+          "opp": "West Indies",
+          "date": "2023-03-26",
+          "editionId": ""
+        },
+        "previous": {
+          "value": 245,
+          "value2": 5,
+          "holder": "Australia",
+          "holderId": null,
+          "team": "Australia",
+          "opp": "New Zealand",
+          "date": "2018-02-16",
+          "editionId": ""
+        }
+      },
+      "bestFigures": {
+        "current": {
+          "value": 6,
+          "value2": 7,
+          "holder": "DL Chahar",
+          "holderId": "23eeb873",
+          "team": "India",
+          "opp": "Bangladesh",
+          "date": "2019-11-10",
+          "editionId": ""
+        },
+        "previous": {
+          "value": 6,
+          "value2": 8,
+          "holder": "BAW Mendis",
+          "holderId": "ea0cdc12",
+          "team": "Sri Lanka",
+          "opp": "Zimbabwe",
+          "date": "2012-09-18",
+          "editionId": "2012"
+        }
+      },
+      "highestScore": {
+        "current": {
+          "value": 172,
+          "value2": 76,
+          "holder": "AJ Finch",
+          "holderId": "b8d490fd",
+          "team": "Australia",
+          "opp": "Zimbabwe",
+          "date": "2018-07-03",
+          "editionId": ""
+        },
+        "previous": {
+          "value": 156,
+          "value2": 63,
+          "holder": "AJ Finch",
+          "holderId": "b8d490fd",
+          "team": "Australia",
+          "opp": "England",
+          "date": "2013-08-29",
+          "editionId": ""
+        }
+      },
+      "biggestRunsWin": {
+        "current": {
+          "value": 168,
+          "value2": 0,
+          "holder": "India",
+          "holderId": null,
+          "team": "India",
+          "opp": "New Zealand",
+          "date": "2023-02-01",
+          "editionId": ""
+        },
+        "previous": {
+          "value": 143,
+          "value2": 0,
+          "holder": "Pakistan",
+          "holderId": null,
+          "team": "Pakistan",
+          "opp": "West Indies",
+          "date": "2018-04-01",
+          "editionId": ""
+        }
+      },
+      "biggestBallsWin": {
+        "current": {
+          "value": 82,
+          "value2": 8,
+          "holder": "Australia",
+          "holderId": null,
+          "team": "Australia",
+          "opp": "Bangladesh",
+          "date": "2021-11-04",
+          "editionId": "2021"
+        },
+        "previous": {
+          "value": 70,
+          "value2": 10,
+          "holder": "New Zealand",
+          "holderId": null,
+          "team": "New Zealand",
+          "opp": "Bangladesh",
+          "date": "2010-02-03",
+          "editionId": ""
+        }
+      },
+      "fastestFifty": {
+        "current": {
+          "value": 12,
+          "value2": 58,
+          "holder": "Yuvraj Singh",
+          "holderId": "1c914163",
+          "team": "India",
+          "opp": "England",
+          "date": "2007-09-19",
+          "editionId": "2007"
+        },
+        "previous": {
+          "value": 20,
+          "value2": 61,
+          "holder": "Mohammad Ashraful",
+          "holderId": "2bb09eb2",
+          "team": "Bangladesh",
+          "opp": "West Indies",
+          "date": "2007-09-13",
+          "editionId": "2007"
+        }
+      }
+    }
+  },
+  "2026": {
+    "worldCup": {
+      "highestTotal": {
+        "current": {
+          "value": 260,
+          "value2": 6,
+          "holder": "Sri Lanka",
+          "holderId": null,
+          "team": "Sri Lanka",
+          "opp": "Kenya",
+          "date": "2007-09-14",
+          "editionId": "2007"
+        },
+        "previous": {
+          "value": 208,
+          "value2": 2,
+          "holder": "South Africa",
+          "holderId": null,
+          "team": "South Africa",
+          "opp": "West Indies",
+          "date": "2007-09-11",
+          "editionId": "2007"
+        }
+      },
+      "lowestTotal": {
+        "current": {
+          "value": 39,
+          "value2": 10,
+          "holder": "Netherlands",
+          "holderId": null,
+          "team": "Netherlands",
+          "opp": "Sri Lanka",
+          "date": "2014-03-24",
+          "editionId": "2014"
+        },
+        "previous": {
+          "value": 68,
+          "value2": 10,
+          "holder": "Ireland",
+          "holderId": null,
+          "team": "Ireland",
+          "opp": "West Indies",
+          "date": "2010-04-30",
+          "editionId": "2010"
+        }
+      },
+      "highestChase": {
+        "current": {
+          "value": 230,
+          "value2": 8,
+          "holder": "England",
+          "holderId": null,
+          "team": "England",
+          "opp": "South Africa",
+          "date": "2016-03-18",
+          "editionId": "2016"
+        },
+        "previous": {
+          "value": 208,
+          "value2": 2,
+          "holder": "South Africa",
+          "holderId": null,
+          "team": "South Africa",
+          "opp": "West Indies",
+          "date": "2007-09-11",
+          "editionId": "2007"
+        }
+      },
+      "bestFigures": {
+        "current": {
+          "value": 6,
+          "value2": 8,
+          "holder": "BAW Mendis",
+          "holderId": "ea0cdc12",
+          "team": "Sri Lanka",
+          "opp": "Zimbabwe",
+          "date": "2012-09-18",
+          "editionId": "2012"
+        },
+        "previous": {
+          "value": 5,
+          "value2": 6,
+          "holder": "Umar Gul",
+          "holderId": "16dfcc19",
+          "team": "Pakistan",
+          "opp": "New Zealand",
+          "date": "2009-06-13",
+          "editionId": "2009"
+        }
+      },
+      "highestScore": {
+        "current": {
+          "value": 123,
+          "value2": 58,
+          "holder": "BB McCullum",
+          "holderId": "b8a55852",
+          "team": "New Zealand",
+          "opp": "Bangladesh",
+          "date": "2012-09-21",
+          "editionId": "2012"
+        },
+        "previous": {
+          "value": 117,
+          "value2": 57,
+          "holder": "CH Gayle",
+          "holderId": "db584dad",
+          "team": "West Indies",
+          "opp": "South Africa",
+          "date": "2007-09-11",
+          "editionId": "2007"
+        }
+      },
+      "biggestRunsWin": {
+        "current": {
+          "value": 172,
+          "value2": 0,
+          "holder": "Sri Lanka",
+          "holderId": null,
+          "team": "Sri Lanka",
+          "opp": "Kenya",
+          "date": "2007-09-14",
+          "editionId": "2007"
+        },
+        "previous": {
+          "value": 51,
+          "value2": 0,
+          "holder": "Pakistan",
+          "holderId": null,
+          "team": "Pakistan",
+          "opp": "Scotland",
+          "date": "2007-09-12",
+          "editionId": "2007"
+        }
+      },
+      "biggestBallsWin": {
+        "current": {
+          "value": 101,
+          "value2": 8,
+          "holder": "England",
+          "holderId": null,
+          "team": "England",
+          "opp": "Oman",
+          "date": "2024-06-13",
+          "editionId": "2024"
+        },
+        "previous": {
+          "value": 90,
+          "value2": 9,
+          "holder": "Sri Lanka",
+          "holderId": null,
+          "team": "Sri Lanka",
+          "opp": "Netherlands",
+          "date": "2014-03-24",
+          "editionId": "2014"
+        }
+      },
+      "fastestFifty": {
+        "current": {
+          "value": 12,
+          "value2": 58,
+          "holder": "Yuvraj Singh",
+          "holderId": "1c914163",
+          "team": "India",
+          "opp": "England",
+          "date": "2007-09-19",
+          "editionId": "2007"
+        },
+        "previous": {
+          "value": 20,
+          "value2": 61,
+          "holder": "Mohammad Ashraful",
+          "holderId": "2bb09eb2",
+          "team": "Bangladesh",
+          "opp": "West Indies",
+          "date": "2007-09-13",
+          "editionId": "2007"
+        }
+      }
+    },
+    "t20i": {
+      "highestTotal": {
+        "current": {
+          "value": 304,
+          "value2": 2,
+          "holder": "England",
+          "holderId": null,
+          "team": "England",
+          "opp": "South Africa",
+          "date": "2025-09-12",
+          "editionId": ""
+        },
+        "previous": {
+          "value": 297,
+          "value2": 6,
+          "holder": "India",
+          "holderId": null,
+          "team": "India",
+          "opp": "Bangladesh",
+          "date": "2024-10-12",
+          "editionId": ""
+        }
+      },
+      "lowestTotal": {
+        "current": {
+          "value": 45,
+          "value2": 10,
+          "holder": "West Indies",
+          "holderId": null,
+          "team": "West Indies",
+          "opp": "England",
+          "date": "2019-03-08",
+          "editionId": ""
+        },
+        "previous": {
+          "value": 70,
+          "value2": 10,
+          "holder": "Bangladesh",
+          "holderId": null,
+          "team": "Bangladesh",
+          "opp": "New Zealand",
+          "date": "2016-03-26",
+          "editionId": "2016"
+        }
+      },
+      "highestChase": {
+        "current": {
+          "value": 259,
+          "value2": 4,
+          "holder": "South Africa",
+          "holderId": null,
+          "team": "South Africa",
+          "opp": "West Indies",
+          "date": "2023-03-26",
+          "editionId": ""
+        },
+        "previous": {
+          "value": 245,
+          "value2": 5,
+          "holder": "Australia",
+          "holderId": null,
+          "team": "Australia",
+          "opp": "New Zealand",
+          "date": "2018-02-16",
+          "editionId": ""
+        }
+      },
+      "bestFigures": {
+        "current": {
+          "value": 6,
+          "value2": 7,
+          "holder": "DL Chahar",
+          "holderId": "23eeb873",
+          "team": "India",
+          "opp": "Bangladesh",
+          "date": "2019-11-10",
+          "editionId": ""
+        },
+        "previous": {
+          "value": 6,
+          "value2": 8,
+          "holder": "BAW Mendis",
+          "holderId": "ea0cdc12",
+          "team": "Sri Lanka",
+          "opp": "Zimbabwe",
+          "date": "2012-09-18",
+          "editionId": "2012"
+        }
+      },
+      "highestScore": {
+        "current": {
+          "value": 172,
+          "value2": 76,
+          "holder": "AJ Finch",
+          "holderId": "b8d490fd",
+          "team": "Australia",
+          "opp": "Zimbabwe",
+          "date": "2018-07-03",
+          "editionId": ""
+        },
+        "previous": {
+          "value": 156,
+          "value2": 63,
+          "holder": "AJ Finch",
+          "holderId": "b8d490fd",
+          "team": "Australia",
+          "opp": "England",
+          "date": "2013-08-29",
+          "editionId": ""
+        }
+      },
+      "biggestRunsWin": {
+        "current": {
+          "value": 168,
+          "value2": 0,
+          "holder": "India",
+          "holderId": null,
+          "team": "India",
+          "opp": "New Zealand",
+          "date": "2023-02-01",
+          "editionId": ""
+        },
+        "previous": {
+          "value": 143,
+          "value2": 0,
+          "holder": "Pakistan",
+          "holderId": null,
+          "team": "Pakistan",
+          "opp": "West Indies",
+          "date": "2018-04-01",
+          "editionId": ""
+        }
+      },
+      "biggestBallsWin": {
+        "current": {
+          "value": 87,
+          "value2": 10,
+          "holder": "Pakistan",
+          "holderId": null,
+          "team": "Pakistan",
+          "opp": "Zimbabwe",
+          "date": "2024-12-03",
+          "editionId": ""
+        },
+        "previous": {
+          "value": 82,
+          "value2": 8,
+          "holder": "Australia",
+          "holderId": null,
+          "team": "Australia",
+          "opp": "Bangladesh",
+          "date": "2021-11-04",
+          "editionId": "2021"
+        }
+      },
+      "fastestFifty": {
+        "current": {
+          "value": 12,
+          "value2": 58,
+          "holder": "Yuvraj Singh",
+          "holderId": "1c914163",
+          "team": "India",
+          "opp": "England",
+          "date": "2007-09-19",
+          "editionId": "2007"
+        },
+        "previous": {
+          "value": 20,
+          "value2": 61,
+          "holder": "Mohammad Ashraful",
+          "holderId": "2bb09eb2",
+          "team": "Bangladesh",
+          "opp": "West Indies",
+          "date": "2007-09-13",
+          "editionId": "2007"
+        }
+      }
+    }
+  }
+}

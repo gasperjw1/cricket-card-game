@@ -93,8 +93,12 @@ export const MODEL = {
    * (`strongGain`). Measured so far on real World Cup fixtures (associate wins v full members, real
    * 13% over 76 matches, sim 29% at gain 1): symmetric 1.4 → sim 21% on 2024–26 hold-out, Brier
    * 0.1901, first-innings spread +3.5; symmetric 2.0 → 15.7%, Brier 0.1899, spread +5.6 (too wide,
-   * the thin full-member rows stretched too); weak-side-only 2.0 → 22.7%, spread +2.8. The split
-   * 2.0 / 1.3 was written but not rebuilt or measured. Both at 1 until that run is done.
+   * the thin full-member rows stretched too); weak-side-only 2.0 → 22.7%, spread +2.8. Split 2.0 / 1.3
+   * (2026-11-02, rebuilt, against a fresh gain-1 run at 30 sims, eval 40 × 2): hold-out 23.3% → 21.8%,
+   * fit 36.7% → 31.2% (real 25%), Brier 0.1930 → 0.1910, spread +2.1 → +3.2. No setting reaches the
+   * 12–16% target because these gains act only on the two-way branch, which batting uses; bowling
+   * runs `tierMode` "elo" (rate.ts DEFAULT_OPTIONS), so every row above moved batting alone and
+   * associate bowling cards came out identical. Both stay at 1; the bowling side is the open part.
    */
   teamPrior: { enabled: true, strength: 500, destinationGain: 1 as number, strongGain: 1 as number },
   /**

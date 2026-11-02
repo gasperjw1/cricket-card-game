@@ -86,6 +86,11 @@ first-innings spread no worse than about +3. Then: `npm test --workspace wcdraft
 rerun `draft/scripts/rarity.mts 1000 greedy` (expect lower rates), write the result into the refit
 doc's "Engine items" section and the design doc's decision log, commit, tell Yash to deploy.
 
+**Update 2026-11-02:** 2.0 / 1.3 was rebuilt and measured and did not qualify: hold-out 21.8%,
+spread +3.2. The gains only reach batting, because bowling rates in `tierMode` "elo", not the
+two-way branch, so the bowling half of the cause above is not where these knobs act. Gains are
+back at 1. Next is a decision for Yash about associate bowling; see refit doc "Engine items" 5.
+
 ### 2. Era rule (step 4)
 
 Largely settled: card steps between editions now read off one shared scale (`POOLED_SCALE` in

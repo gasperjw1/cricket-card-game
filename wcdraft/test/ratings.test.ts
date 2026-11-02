@@ -96,10 +96,12 @@ describe("Phase 1 ratings", { skip: !ready && "archive not fetched" }, () => {
     const r = rateAll(build());
     const pes = build().playerEditions as unknown as PlayerEditionIn[];
     const elo = new Map(pes.map((pe) => [`${pe.editionId}|${pe.team}|${pe.personId}`, pe.teamElo]));
+    // An empty record is never shown on the card, so no `shown` filter (it left none to compare), and
+    // no side above 1700 has an empty batting record, so strong means 1500 and up.
     for (const skill of ["batting", "bowling"] as const) {
-      const empty = r.filter((x) => x[skill].evidence.source === "population" && x[skill].shown && elo.get(`${x.editionId}|${x.team}|${x.personId}`) !== null);
+      const empty = r.filter((x) => x[skill].evidence.source === "population" && elo.get(`${x.editionId}|${x.team}|${x.personId}`) != null);
       const weak = empty.filter((x) => (elo.get(`${x.editionId}|${x.team}|${x.personId}`) ?? 0) < 1500).map((x) => x[skill].value);
-      const strong = empty.filter((x) => (elo.get(`${x.editionId}|${x.team}|${x.personId}`) ?? 0) >= 1700).map((x) => x[skill].value);
+      const strong = empty.filter((x) => (elo.get(`${x.editionId}|${x.team}|${x.personId}`) ?? 0) >= 1500).map((x) => x[skill].value);
       assert.ok(weak.length >= 20 && strong.length >= 5, `${skill}: ${weak.length} weak-side and ${strong.length} strong-side empty records`);
       const mean = (xs: number[]) => xs.reduce((a, b) => a + b, 0) / xs.length;
       assert.ok(mean(weak) + 1 < mean(strong), `${skill}: weak-side empty records ${mean(weak).toFixed(1)} should sit below strong-side ${mean(strong).toFixed(1)} (value units)`);
