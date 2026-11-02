@@ -343,6 +343,22 @@ h3 { font-size: 16px; margin: 0 0 8px; }
 .gz-late .gz-list li { font-size: 14px; }
 @media (max-width: 640px) { .gz-sections { overflow-x: auto; } .gz-sections button { padding: 8px 12px; font-size: 13px; } }
 
+/* Souvenir issue and the journey (2026-11-02). */
+.gz-residuals li { font-size: 14px; line-height: 1.45; }
+.gz-residuals li.mine b:first-child { color: #1e4d3a; }
+.gz-sub-team { color: var(--muted); font-size: 12px; margin-left: 4px; }
+.gz-journey td, .gz-journey th { font-variant-numeric: tabular-nums; }
+.gz-journey td:first-child, .gz-journey th:first-child { text-align: left; white-space: nowrap; }
+.gz-journey td { text-align: left; font-size: 13px; }
+.gz-nrr { white-space: nowrap; }
+.gz-standings th:last-child, .gz-standings td:last-child { padding-left: 10px; }
+.fr-journey { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin: 8px 0; }
+.spark { display: inline-block; vertical-align: middle; }
+.spark-won { fill: var(--accent); }
+.spark-lost { fill: var(--danger); opacity: 0.8; }
+.spark-none { fill: var(--line); }
+.spark-no { fill: var(--ink); }
+
 /* Team sheet: the eleven on paper, ruled like the card pinned in the dressing room (2026-11-01). */
 .sheet { --paper: #f3ecdd; --paper-ink: #1f2a24; --paper-muted: #5a5e53; --paper-line: #cfc6b1; --paper-red: #9e2b25; --paper-green: #1e4d3a;
   background: var(--paper); color: var(--paper-ink); font-family: "Source Serif 4", Georgia, serif; padding: 16px 16px 14px; border-radius: 2px;

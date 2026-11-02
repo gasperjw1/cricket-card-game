@@ -14,6 +14,7 @@ import type { InningsResult } from "../../../wcdraft/src/engine/types.ts";
 import { RECORD_KINDS, type RecordBook, type RecordKind } from "../game/facts.ts";
 import { storyFor, topBatter, topBowler, verdictFor } from "../game/gazette.ts";
 import type { IssueCopy, Paper } from "../game/paper.ts";
+import { journeyLine, recordChains, type Journey, type Residual, type Souvenir } from "../game/souvenir.ts";
 import { exitStageOf, sideProfile, stageIdOf, tableTo, tournamentTotals, type PlayerTotals } from "../game/stats.ts";
 import { squadRating } from "../game/rules.ts";
 import type { RunState } from "../game/types.ts";
@@ -284,7 +285,26 @@ export function MatchPage({ fixture, index, mine, all, result, me, venues, highl
   );
 }
 
-export function FinalPage({ result, all, mine, me, highlight, paper, date, onAgain, onShare, shared }: { result: TournamentResult; all: Fixtured[]; mine: Fixtured[]; me: string; highlight: Set<string>; paper: Paper; date: string | null; onAgain: () => void; onShare: () => void; shared: boolean }) {
+/** One line of the souvenir's performer lists: what he did, against what his card said. */
+function ResidualRow({ r }: { r: Residual }) {
+  const bat = r.bat && (Math.abs(r.bat.above) >= Math.abs(r.bowl?.above ?? 0) || !r.bowl);
+  const num = (n: number) => `${n >= 0 ? "+" : "−"}${Math.abs(Math.round(n))}`;
+  return (
+    <li className={r.mine ? "mine" : ""}>
+      <b>{r.name}</b> <span className="gz-sub-team">{teamLabel(r.team)}</span>
+      <br />
+      {bat && r.bat
+        ? <>{r.bat.runs} runs off {r.bat.balls} balls at a strike rate of {r.bat.sr.toFixed(0)}, out {r.bat.outs} time{r.bat.outs === 1 ? "" : "s"} against {r.bat.expOuts.toFixed(1)} expected; a card of {r.bat.card} in this tournament said {r.bat.expSr.toFixed(0)}. <b>{num(r.bat.above)} runs</b> against expectation.</>
+        : r.bowl
+          ? <>{r.bowl.wickets} wicket{r.bowl.wickets === 1 ? "" : "s"} at {r.bowl.econ.toFixed(1)} an over from {oversText(r.bowl.balls)} overs; a card of {r.bowl.card} in this tournament said {r.bowl.expEcon.toFixed(1)}. <b>{num(r.bowl.above)} runs</b> against expectation.</>
+          : null}
+    </li>
+  );
+}
+
+const SCOPE_LABEL = { wc: "", allWc: " · a T20 World Cup record", t20i: " · a T20I record" } as const;
+
+export function FinalPage({ result, all, mine, me, highlight, paper, souvenir, journeys, date, onAgain, onShare, shared }: { result: TournamentResult; all: Fixtured[]; mine: Fixtured[]; me: string; highlight: Set<string>; paper: Paper; souvenir: Souvenir | null; journeys: Journey[]; date: string | null; onAgain: () => void; onShare: () => void; shared: boolean }) {
   const id = result.identity!;
   const exitStage = exitStageOf(result.stages, mine);
   const verdict = verdictFor(id, me, result.stages.length, exitStage);
@@ -296,13 +316,21 @@ export function FinalPage({ result, all, mine, me, highlight, paper, date, onAga
   const profile = sideProfile(all, me);
   const champion = result.champion;
   const lastKey = all.length ? `${all[all.length - 1]!.stageId}|${all[all.length - 1]!.teams.join("|")}` : "";
-  const finalBook = paper.records.get(lastKey)?.after ?? {};
+  const lastRecords = paper.records.get(lastKey);
+  // The tournament's records with their chains, and which of them stand in all World Cups or all T20Is.
+  const chains = recordChains(lastRecords?.after ?? {});
+  const scopeOf = (kind: RecordKind): keyof typeof SCOPE_LABEL => {
+    const c = lastRecords?.after[kind]?.current;
+    const t = lastRecords?.scopes.t20i.after[kind]?.current, w = lastRecords?.scopes.allWc.after[kind]?.current;
+    return c && t && c.fixtureKey === t.fixtureKey && !c.fixtureKey.startsWith("real:") ? "t20i" : c && w && c.fixtureKey === w.fixtureKey && !c.fixtureKey.startsWith("real:") ? "allWc" : "wc";
+  };
+  const plural = (n: number, w: string) => `${n} ${w}${n === 1 ? "" : "s"}`;
   return (
     <article className="gz-page">
       <Masthead issue="Souvenir issue" date={longDate(date)} matchDay={null} editionId={result.editionId} />
       <div className="gz-kicker">The {result.editionId} World Cup in review</div>
-      <h2 className="gz-headline">{verdict.title}</h2>
-      <p className="gz-stand">{verdict.line}{champion && champion !== me ? ` ${champion} won the World Cup.` : ""}</p>
+      <h2 className="gz-headline">{labelTeams(verdict.title)}</h2>
+      <p className="gz-stand">{labelTeams(verdict.line)}{champion && champion !== me ? ` ${teamLabel(champion)} won the World Cup.` : ""}</p>
       <div className="gz-verdict">
         <div><span>Record</span><b>{id.won}–{id.lost}</b></div>
         <div><span>Finish</span><b>{id.champion ? "Champions" : id.exit}</b></div>
@@ -315,18 +343,45 @@ export function FinalPage({ result, all, mine, me, highlight, paper, date, onAga
             <table className="gz-table gz-leaders"><tbody>
               {runs && <tr><td>Leading run-scorer<small>{runs.name}</small></td><td>{runs.runs}</td></tr>}
               {wickets && wickets.wickets > 0 && <tr><td>Leading wicket-taker<small>{wickets.name}</small></td><td>{wickets.wickets}</td></tr>}
-              {bestInnings?.b && <tr><td>Best innings<small>{fullName(bestInnings.b.id, bestInnings.b.name)} v {bestInnings.v}</small></td><td>{bestInnings.b.runs}{bestInnings.b.out ? "" : "*"}</td></tr>}
-              {bestBowling?.w && <tr><td>Best bowling<small>{fullName(bestBowling.w.id, bestBowling.w.name)} v {bestBowling.v}</small></td><td>{bestBowling.w.wickets}/{bestBowling.w.runs}</td></tr>}
+              {bestInnings?.b && <tr><td>Best innings<small>{fullName(bestInnings.b.id, bestInnings.b.name)} v {teamLabel(bestInnings.v ?? "")}</small></td><td>{bestInnings.b.runs}{bestInnings.b.out ? "" : "*"}</td></tr>}
+              {bestBowling?.w && <tr><td>Best bowling<small>{fullName(bestBowling.w.id, bestBowling.w.name)} v {teamLabel(bestBowling.v)}</small></td><td>{bestBowling.w.wickets}/{bestBowling.w.runs}</td></tr>}
             </tbody></table>
+          </section>
+          {souvenir ? (
+            <>
+              {souvenir.standouts.length > 0 && <section className="gz-box"><h4>Players of the tournament</h4><ul className="gz-list gz-residuals">{souvenir.standouts.map((r) => <ResidualRow key={r.key} r={r} />)}</ul></section>}
+              {souvenir.unexpected.length > 0 && <section className="gz-box"><h4>Better than their cards</h4><p className="gz-note">Modest cards, 75 and under, that did the most beyond what their numbers said, allowing for how the whole field scored in this tournament. A tournament is a few hundred balls; some of this is luck, and the paper only says what happened.</p><ul className="gz-list gz-residuals">{souvenir.unexpected.map((r) => <ResidualRow key={r.key} r={r} />)}</ul></section>}
+              {souvenir.disappointing.length > 0 && <section className="gz-box"><h4>Below their cards</h4><p className="gz-note">Strong cards, 85 and over, that fell furthest short of their numbers.</p><ul className="gz-list gz-residuals">{souvenir.disappointing.map((r) => <ResidualRow key={r.key} r={r} />)}</ul></section>}
+            </>
+          ) : <section className="gz-box"><h4>Players of the tournament</h4><p className="gz-note">Working out every player's expectation…</p></section>}
+          {chains.length > 0 && (
+            <section className="gz-box">
+              <h4>Records of the tournament</h4>
+              <table className="gz-table gz-leaders"><tbody>
+                {chains.map((c) => (
+                  <tr key={c.kind}>
+                    <td>{RECORD_LABELS[c.kind]}{SCOPE_LABEL[scopeOf(c.kind)]}<small>{c.holder}{c.holder !== c.team ? `, ${teamLabel(c.team)}` : ""} v {teamLabel(c.opp)}{c.chain.length ? ` · set ${c.chain.length + 1} times: ${c.chain.map((h) => `${h.holder} ${recordValue(c.kind, h)} stood ${plural(h.stoodDays, "day")}`).join("; ")}` : ""}</small></td>
+                    <td>{recordValue(c.kind, c)}</td>
+                  </tr>
+                ))}
+              </tbody></table>
+            </section>
+          )}
+          <section className="gz-box">
+            <h4>The journey</h4>
+            <p className="gz-note">Match by match, in the order they were played: {mine.map((f) => `v ${teamLabel(f.teams.find((t) => t !== me) ?? "")}`).join(", ")}.</p>
+            <table className="gz-table gz-journey">
+              <thead><tr><th>Player</th><th>Bat</th><th>Bowl</th></tr></thead>
+              <tbody>{journeys.map((j) => <tr key={j.id}><td>{j.name}</td><td>{journeyLine(j, "bat")}</td><td>{journeyLine(j, "bowl")}</td></tr>)}</tbody>
+            </table>
           </section>
           <section className="gz-box">
             <h4>The results</h4>
             <ul className="gz-list">{mine.map((f, i) => <li key={i}><b>{f.stageLabel}, v {teamLabel(f.teams.find((t) => t !== me) ?? "")}</b><br />{labelTeams(marginText(f))}</li>)}</ul>
           </section>
-          <Records book={finalBook} title="Records of the tournament" />
         </div>
         <aside className="gz-rail">
-          {profile.length > 0 && <section className="gz-box"><h4>The verdict on {me}</h4><ul className="gz-chips">{profile.map((p) => <li key={p.label} className={p.good ? "good" : "bad"}>{p.label}</li>)}</ul></section>}
+          {profile.length > 0 && <section className="gz-box"><h4>The verdict on {teamLabel(me)}</h4><ul className="gz-chips">{profile.map((p) => <li key={p.label} className={p.good ? "good" : "bad"}>{p.label}</li>)}</ul></section>}
           <Leaders fixtures={all} highlight={highlight} me={me} />
           <div className="gz-actions">
             <button type="button" onClick={onShare}>{shared ? "Copied" : "Copy result"}</button>

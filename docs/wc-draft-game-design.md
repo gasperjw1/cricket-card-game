@@ -1207,6 +1207,25 @@ fielding. The simulation is not required to reproduce real results (§11).
   the bank is still to be grown from it. **Future work flagged by Yash:** the era step on cards
   (a 2012 card in 2009 drops hard, and earlier cards sometimes gain) comes from the field-relative
   scale, not from years apart; replace it with a years-apart or adaptability rule.
+- **Souvenir issue and the journey (2026-11-02, step 2 of Yash's order):** `game/souvenir.ts`
+  (pure) and `souvenir-load.ts`. Every player in the tournament, CPU sides included, gets an
+  expectation in this World Cup from the same sums the Player ratings tab prints (`computeFinal`
+  at his usual position; the eleven through `finalRatings`): strike rate and balls per dismissal,
+  economy and balls per wicket. Each man with a real sample (60 balls faced or 48 bowled) is
+  measured against it **at the field's level** (`fieldLevel`: the whole field's actual over
+  expected, since an edition's grounds, chases and pressure move everyone together; a 2007 sim
+  field scored about 7% above its cards), in runs: runs above the expected strike rate plus
+  dismissals saved valued at an expected innings; for bowlers runs saved against economy plus
+  wickets above expectation valued the same way. Lists: **Players of the tournament** (best by
+  the sums, any card), **Better than their cards** (75 and under), **Below their cards** (85 and
+  over), each line stating what he did, what the card said and the gap, with the note that a
+  tournament is a few hundred balls and the paper only says what happened. **Records of the
+  tournament** with their chains (every earlier holder and how many days each mark stood) and a
+  flag when the final mark stands in all World Cups or all T20Is. **The journey**: the eleven
+  match by match ("45*, –, 0" / "2-18, –, –") as a table in the souvenir and as a sparkline with
+  the line under each man on the Player ratings tab (green bars for wins, red for defeats, a dot
+  for a not-out, a stub for a match he did not bat). "Coming in" form is not shown: the rating
+  keeps no career number beside the form-weighted one; adding one is a ratings build change.
 - **Agreed order after the refit (2026-11-01):** (1) associates fix in the ratings: no-record
   players sit on the global position-band prior, so Italy 2026 bowls at 71 against India's 74 and a
   few tournament balls can make a 77 (shrink empty records toward the side's own mean or an

@@ -7,6 +7,8 @@ import { MatchView } from "../components/MatchView.tsx";
 import { PlayerRatings } from "../components/PlayerRatings.tsx";
 import { MatchScorecard } from "../components/Scorecard.tsx";
 import { writePaper } from "../game/paper.ts";
+import { journeyFor, residuals, souvenirLists, totalsKey } from "../game/souvenir.ts";
+import { useExpectations } from "../game/souvenir-load.ts";
 import { teamLabel } from "../lib/names.ts";
 import type { RecordsOut } from "../../../wcdraft/src/analysis/records.ts";
 import { verdictFor } from "../game/gazette.ts";
@@ -59,6 +61,11 @@ export function ResultScreen({ state, result: played, editions, venues, records,
     [state.seed, state.identity, state.picks, state.coach, state.captainId],
   );
 
+  // The souvenir issue: every player against his card's expectation (loaded), and the eleven's journey (pure).
+  const expectations = useExpectations(ratingsInput, editions);
+  const souvenir = useMemo(() => (expectations ? souvenirLists(residuals(totals, expectations, new Set(state.picks.filter(Boolean).map((p) => totalsKey(me, p!.id))))) : null), [expectations, totals, state.picks, me]);
+  const journeys = useMemo(() => journeyFor(mine, me, state.picks.filter(Boolean).map((p) => ({ id: p!.id, name: p!.name }))), [mine, me, state.picks]);
+
   // The paper: page 0 is the squad announcement, then one page per match, then the final edition.
   const lastPage = mine.length + 1;
   const [page, setPage] = useState(0);
@@ -95,7 +102,7 @@ export function ResultScreen({ state, result: played, editions, venues, records,
 
   const renderPage = (p: number) => {
     if (p === 0) return <CoverPage state={state} result={result} edition={edition} venues={venues} mine={mine} coachName={state.coach?.coachName ?? null} matchDay={mine[0] ? paper.matchDays.get(mine[0].date ?? "") ?? null : null} />;
-    if (p === lastPage) return <FinalPage result={result} all={all} mine={mine} me={me} highlight={highlight} paper={paper} date={mine[mine.length - 1]?.date ?? null} onAgain={onAgain} onShare={copyResult} shared={copied} />;
+    if (p === lastPage) return <FinalPage result={result} all={all} mine={mine} me={me} highlight={highlight} paper={paper} souvenir={souvenir} journeys={journeys} date={mine[mine.length - 1]?.date ?? null} onAgain={onAgain} onShare={copyResult} shared={copied} />;
     return <MatchPage fixture={mine[p - 1]!} index={p - 1} mine={mine} all={all} result={result} me={me} venues={venues} highlight={highlight} issue={p + 1} paper={paper} last={p === mine.length} seed={result.seed} />;
   };
 
@@ -138,7 +145,7 @@ export function ResultScreen({ state, result: played, editions, venues, records,
               ))}
             </div>
           )}
-          {tab === "ratings" && <PlayerRatings input={ratingsInput} editions={editions} lines={totals} />}
+          {tab === "ratings" && <PlayerRatings input={ratingsInput} editions={editions} lines={totals} journeys={journeys} />}
           {tab === "stats" && (
             <>
               <div className="card">

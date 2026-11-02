@@ -3,6 +3,7 @@ import type { EditionOut } from "../../../wcdraft/src/engine/data.ts";
 import type { ClassSplitPart } from "../../../wcdraft/src/ratings/model.ts";
 import type { FinalSkill, PlayerFinal, Skill } from "../game/final-ratings.ts";
 import { finalRatings, type SimulateInput } from "../game/simulate.ts";
+import { journeyLine, type Journey } from "../game/souvenir.ts";
 import { totalsKey } from "../game/stats.ts";
 import { TierBadge } from "./PlayerCard.tsx";
 
@@ -90,7 +91,23 @@ function vsClassLine(f: PlayerFinal): string | null {
   return `${part("v pace", f.vsClass.pace)} · ${part("v spin", f.vsClass.spin)}`;
 }
 
-export function PlayerRatings({ input, editions, lines }: { input: SimulateInput; editions: EditionOut[]; lines: Map<string, RunLine> }) {
+/** Runs per match as a small bar chart, with a dot for a not-out and a hollow bar for a match he did not bat in. */
+function Sparkline({ journey }: { journey: Journey }) {
+  const w = 10, gap = 3, h = 28;
+  const max = Math.max(30, ...journey.matches.map((m) => m.runs ?? 0));
+  return (
+    <svg className="spark" width={journey.matches.length * (w + gap)} height={h} role="img" aria-label={`Runs by match: ${journeyLine(journey, "bat")}`}>
+      {journey.matches.map((m, i) => {
+        const x = i * (w + gap);
+        if (m.runs === null) return <rect key={i} x={x} y={h - 3} width={w} height={2} className="spark-none" />;
+        const bh = Math.max(2, Math.round((m.runs / max) * (h - 4)));
+        return <g key={i}><rect x={x} y={h - bh} width={w} height={bh} className={m.won === false ? "spark-lost" : "spark-won"} />{!m.out && <circle cx={x + w / 2} cy={h - bh - 3} r={1.6} className="spark-no" />}</g>;
+      })}
+    </svg>
+  );
+}
+
+export function PlayerRatings({ input, editions, lines, journeys = [] }: { input: SimulateInput; editions: EditionOut[]; lines: Map<string, RunLine>; journeys?: Journey[] }) {
   const [finals, setFinals] = useState<PlayerFinal[] | null>(null);
   const [error, setError] = useState<string | null>(null);
   const here = input.identity.editionId;
@@ -129,6 +146,7 @@ export function PlayerRatings({ input, editions, lines }: { input: SimulateInput
               <div className="fr-body">
                 <p className="fr-tags"><TierBadge tier={p.tier} /> <span className="small">{p.role}{p.keeper ? " · keeper" : ""}{p.squadPlayer ? " · squad player" : ""}</span></p>
                 {split && <p className="small">{split}</p>}
+                {(() => { const j = journeys.find((x) => x.id === p.id); return j && j.matches.length ? <p className="small fr-journey"><Sparkline journey={j} /> <span>Bat {journeyLine(j, "bat")}{j.matches.some((m) => m.wickets !== null) ? ` · Bowl ${journeyLine(j, "bowl")}` : ""}</span></p> : null; })()}
                 <SkillDetail title="Batting" skill={f.batting} kind="bat" then={p.editionId} here={here} run={batLine(run)} />
                 {f.bowling
                   ? <SkillDetail title="Bowling" skill={f.bowling} kind="bowl" then={p.editionId} here={here} run={bowlLine(run)} />
