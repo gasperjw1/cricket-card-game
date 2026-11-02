@@ -93,8 +93,10 @@ back at 1. Bowling on the two-way step was then measured too (best: hold-out 18.
 0.1888, but bowling stability 0.585 → 0.506). 2024's two-way bowling table runs the wrong way, so
 it isn't adopted; see refit doc "Engine items" 5. Then the associate bowling step was measured
 and built, on the card and per ball (items 6–8), then refitted with pre-2024 World Cups on the
-square of the Elo gap (item 9): hold-out 17.2%, Brier 0.1884, spread +3.0. What's left is the
-fit/hold-out split on associate wickets (newcomers) and a batting counterpart.
+square of the Elo gap (item 9). The fit/hold-out split traced to team Elo overrating associates,
+not newcomers (item 10). Elo now uses an isolation penalty and the step is wickets only (item 11):
+hold-out 13.4%, fit 28.2%, associate batting matches real (no batting step needed for now), Brier
+0.1884, spread +3.0.
 
 ### 2. Era rule (step 4)
 

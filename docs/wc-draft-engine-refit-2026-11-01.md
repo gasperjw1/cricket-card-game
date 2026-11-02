@@ -353,6 +353,93 @@ replayed many times (scratch scripts `baseline.mts`, `player-dist.mts`, `dots.mt
    step per Elo gap can't serve both, and Brier doesn't separate the two curves. Kept: the square,
    since it's what the ball data show. Spread is at the +3 limit. Both suites pass (54, 63) and
    the client builds; the client code didn't change, so no second browser run.
+10. **The newcomer question (2026-11-02, research only): it's associate Elo, not newcomers.**
+    `scripts/research/associates-newcomers.mts` splits the associate-v-full-member World Cup
+    fixtures by team, by experience (played an earlier edition or not) and by side Elo, on the
+    current build (30 sims a fixture):
+
+    | Associates v full members | Fixtures | Real wins | Sim wins | Associates bat, runs an over real / sim | Full members bat, balls per wicket real / sim |
+    |---|---:|---:|---:|---|---|
+    | Fit, established | 26 | 26.9% | 31.2% | 6.79 / 6.80 | 17.6 / 20.2 |
+    | Fit, newcomers | 10 | 20.0% | 30.3% | 5.90 / 6.88 | 24.1 / 20.4 |
+    | Hold-out, established | 30 | 0.0% | 18.1% | 6.69 / 7.12 | 21.5 / 20.6 |
+    | Hold-out, newcomers | 10 | 10.0% | 14.3% | 6.13 / 6.30 | 26.6 / 21.4 |
+    | Side Elo below 1450 | 22 | 22.7% | 27.1% | 6.51 / 6.63 | 18.5 / 20.8 |
+    | Side Elo 1450 and up | 54 | 9.3% | 22.3% | 6.55 / 6.97 | 21.7 / 20.4 |
+
+    Newcomers are roughly right in the hold-out (1 win in 10 against the sim's 14%). The error sits
+    with the established associates, who went 0 for 30 against the sim's 5.4 expected wins (about a
+    0.5% chance if the sim were right), and with the higher-Elo associates. Every 2024–26 associate
+    rates 1438–1516, against about 1400 in 2014.
+
+    `scripts/research/elo-drift.mts` checks team Elo itself over every men's T20I between an
+    associate and a full member since 2010 (connectivity-regularised Elo, as the ratings read it):
+
+    | Years | Matches | Associate Elo / full member Elo | Elo-expected associate wins | Real |
+    |---|---:|---|---:|---:|
+    | 2010–2018 | 36 | about 1420 / 1545 | 34% | 22% |
+    | 2019–2023 | 103 | 1416–1464 / 1431–1532 | 41–48% | 27–35% |
+    | 2024 | 41 | 1472 / 1597 | 33.5% | 9.8% |
+    | 2025 | 25 | 1488 / 1587 | 37.4% | 24.0% |
+    | 2026 | 30 | 1500 / 1641 | 32.4% | 6.7% |
+    | All | 235 | | 38.1% | 21.7% |
+
+    Elo rates associates too high against full members in nearly every year, and the gap widens in
+    2024–26. Among themselves the associate circuit stays at about 1400 every year. The sides that
+    meet full members, though, climb towards the 1500 connectivity cap by beating weaker associates,
+    with no matching gain against full members. A real 21.7% against an expected 38.1% is about 140
+    Elo of overrating on average (pre-2024 about 90; 2024–26 several hundred, though those rows
+    include the hold-out). Team Elo feeds the ratings in several places: the batting two-way
+    destination (by the side's Elo), the empty-record prior, the edge transfer, and the bowling
+    step's "batting he faced". An overrated associate Elo makes associate batting look closer to
+    full-member level, and it shrinks the bowling step's gap. That fits the remaining hold-out
+    errors (associate batting 7.12 against 6.69, step too small in 2024–26) and the step overshooting
+    in 2014–22, when associate Elo sat nearer 1400. **Next, not built:** correct associate Elo
+    against full members, fitted on cross-tier results before 2024 (an associate offset in the
+    expectation, or a firmer connectivity rule), rebuild, then refit the bowling step and re-measure
+    the hold-out before any batting step.
+11. **Associate Elo corrected (2026-11-02, built).** `scripts/research/elo-connectivity-sweep.mts`
+    tried two read-out rules over every decided men's T20I before 2024, plain Elo underneath:
+
+    | Rule | Cross-tier expected / real (139 matches) | Cross-tier log loss | All 1,814 matches, log loss | 2024–26 cross-tier expected (real 12.5%) |
+    |---|---|---:|---:|---:|
+    | No rule | 40.9% / 28.1% | 0.5970 | 0.6520 | 35.2% |
+    | Cap 1500 (was in use) | 40.9% / 28.1% | 0.6001 | 0.6548 | 34.2% |
+    | Cap 1400 | 38.7% / 28.1% | 0.5860 | 0.6618 | 28.9% |
+    | Cap 1300 | 34.2% / 28.1% | 0.5601 | 0.6695 | 23.4% |
+    | Isolation 200 | 31.4% / 28.1% | 0.5385 | 0.6436 | 22.7% |
+    | **Isolation 300** | **27.7% / 28.1%** | **0.5327** | **0.6428** | **18.0%** |
+    | Isolation 400 | 24.6% / 28.1% | 0.5388 | 0.6438 | 14.3% |
+
+    The old cap predicted all matches slightly worse than no rule, and lowering it made that worse.
+    The isolation rule (raw rating less 300 × the share of the last 20 matches not against full
+    members) is calibrated across the tiers and the best over all matches. It is now the rule in
+    `analysis/team-strength.ts`, and data and ratings were rebuilt. On the new scale associate sides
+    read about 1100–1200, and the bowling step was refitted in the units the ratings use (Elo bin
+    centres): wickets per (gap/100)² −0.026 to the middle band and −0.028 to the strong band, so
+    −0.027; runs ×1.004 and ×1.087 (the latter on 1,027 balls). Same harnesses:
+
+    | | Committed (old Elo, square step) | Elo fix, step with runs | Elo fix, wickets-only step (kept) |
+    |---|---:|---:|---:|
+    | Hold-out associate wins (real 2.5%) | 17.2% | 10.8% | 13.4% |
+    | Fit (real 25%) | 30.9% | 26.7% | 28.2% |
+    | Hold-out associates bat, runs an over (real 6.55) | 6.92 | 6.65 | 6.68 |
+    | Hold-out full members v associates, runs an over (real 8.79–8.90) | 9.09 | 9.43 | 9.11 |
+    | Hold-out full members v associates, balls per wicket (real 22.5) | 20.8 | 22.6 | 22.6 |
+    | Fit full members v associates, runs / balls per wicket (real 7.66 / 19.0) | 7.79 / 20.2 | 7.84 / 20.9 | 7.68 / 20.8 |
+    | Brier, 40 sims × 2 seeds | 0.1884 | 0.1867 | 0.1884 |
+    | First-innings spread | +3.0 | +3.6 | +3.0 |
+    | Run rate / middle-overs bias | +0.013 / +0.064 | +0.032 / +0.088 | +0.021 / +0.076 |
+    | Batting prediction / stability | 0.350 / 0.756 | 0.362 / 0.819 | 0.362 / 0.819 |
+    | Bowling prediction / stability | 0.194 / 0.598 | 0.209 / 0.618 | 0.210 / 0.607 |
+
+    The Elo fix alone brings associate batting in line with real in both sets (no batting step
+    needed for now) and matches hold-out wickets. Batting stability jumps from 0.756 to 0.819 and
+    both predictions improve. With runs in the step, Brier is best (0.1867), but the spread breaks
+    the +3 limit and full members score 0.5 an over too freely against associates. The runs
+    evidence is thin, so runs is set to 0. Still open: hold-out associate wins at 13.4% against 2.5%
+    (1 win in 40, so the true rate is uncertain; the sim expects about 5), fit-set wickets a little
+    rare (20.8 against 19.0 balls), and middle-overs scoring +0.08 an over.
 
 ## Still open
 

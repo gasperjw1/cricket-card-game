@@ -111,6 +111,27 @@ for (const g of ["A", "FM"] as const) {
   console.log(`  ${g.padEnd(2)} ${parts.join(" | ")}`);
 }
 
+// The same rates in the units the ratings use: Elo bin centres (the lowest bin reads 1350), the gap
+// being the batting side's bin centre less the bowler's own mean bin centre faced.
+const CENTRE: Record<string, number> = { "<1400": 1350, "1400": 1450, "1500": 1550, "1600": 1650, "1700": 1750, "1800+": 1850 };
+const facedBy = new Map<string, { n: number; s: number }>();
+for (const b of balls) { if (leftOut(b)) continue; const f = facedBy.get(b.bowler) ?? facedBy.set(b.bowler, { n: 0, s: 0 }).get(b.bowler)!; f.n += 1; f.s += CENTRE[b.bin]!; }
+console.log("\nA3. in bin-centre units (as the ratings read the gap): mean gap per band, and the rates");
+for (const g of ["A", "FM"] as const) {
+  const band = (opp: string) => {
+    const c = sum([...cells.entries()].filter(([k]) => k.startsWith(`${g}|`)).map(([, m]) => m.get(opp)).filter((x): x is Cell => !!x));
+    const mine = balls.filter((b) => b.group === g && b.opp === opp && !leftOut(b));
+    const gap = mine.reduce((a, b) => { const f = facedBy.get(b.bowler)!; return a + CENTRE[b.bin]! - f.s / f.n; }, 0) / Math.max(1, mine.length);
+    return { r: ratios(c), wkt: c.wkt, gap };
+  };
+  const w = band("weak"), parts: string[] = [`weak gap ${w.gap.toFixed(0)}`];
+  for (const opp of ["mid", "strong"]) {
+    const s = band(opp), gap = (s.gap - w.gap) / 100;
+    parts.push(`→${opp} (+${(100 * gap).toFixed(0)}, ${s.wkt} wkts): runs ×${(s.r.runs / w.r.runs).toFixed(3)} wkts ×${(s.r.wkt / w.r.wkt).toFixed(3)}; per 100 ${(Math.log(s.r.runs / w.r.runs) / gap).toFixed(4)} / ${(Math.log(s.r.wkt / w.r.wkt) / gap).toFixed(4)}; per gap² ${(Math.log(s.r.runs / w.r.runs) / gap ** 2).toFixed(4)} / ${(Math.log(s.r.wkt / w.r.wkt) / gap ** 2).toFixed(4)}`);
+  }
+  console.log(`  ${g.padEnd(2)} ${parts.join(" | ")}`);
+}
+
 console.log(`\nB. the same bowlers on both sides: ${minBalls}+ legal balls against weak and against strong batting`);
 const both = new Map<"A" | "FM", { weak: Cell; strong: Cell }[]>([["A", []], ["FM", []]]);
 for (const [k, m] of cells) {

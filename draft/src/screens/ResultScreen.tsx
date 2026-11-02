@@ -11,6 +11,8 @@ import type { MatchPlan } from "../game/simulate.ts";
 import type { CaptainOut } from "../../../wcdraft/src/engine/data.ts";
 import { journeyFor, residuals, souvenirLists, totalsKey } from "../game/souvenir.ts";
 import { encodeRun, performance, runFrom } from "../game/score.ts";
+import { usePicksFit } from "../game/fit-load.ts";
+import { batInSlot, slotWeights } from "../game/slots.ts";
 import { useExpectations } from "../game/souvenir-load.ts";
 import { teamLabel } from "../lib/names.ts";
 import type { RecordsOut } from "../../../wcdraft/src/analysis/records.ts";
@@ -44,6 +46,12 @@ export function ResultScreen({ state, result: played, editions, venues, records,
   const result = useMemo(() => ({ ...played, stages: datedStages(played.stages, edition?.lastMatch ?? null) }), [played, edition]);
   const id = result.identity!;
   const highlight = useMemo(() => new Set(state.picks.filter(Boolean).map((p) => p!.id)), [state.picks]);
+  // Each man's numbers in this World Cup at his slot under the coach, as the draft and the lineup showed them.
+  const pickFits = usePicksFit(state.picks, played.editionId, state.coach, editions);
+  const numbersHere = useMemo(() => state.picks.map((p, i) => (p ? {
+    bat: pickFits?.get(p.id)?.atSlot[i] ?? (p.batShown ? batInSlot(p, slotWeights(editions, played.editionId, i + 1)) : null),
+    bowl: pickFits?.get(p.id)?.bowling?.final ?? null,
+  } : null)), [state.picks, pickFits, editions, played.editionId]);
   const all = useMemo<Fixtured[]>(() => result.stages.flatMap((s) => inPlayOrder(s.fixtures).map((f) => ({ ...f, stageLabel: s.label }))), [result]);
   const mine = useMemo(() => all.filter((f) => f.teams.includes(me)), [all, me]);
   const totals = useMemo(() => tournamentTotals(all), [all]);
@@ -112,7 +120,7 @@ export function ResultScreen({ state, result: played, editions, venues, records,
   };
 
   const renderPage = (p: number) => {
-    if (p === 0) return <CoverPage state={state} result={result} edition={edition} venues={venues} mine={mine} coachName={state.coach?.coachName ?? null} matchDay={mine[0] ? paper.matchDays.get(mine[0].date ?? "") ?? null : null} />;
+    if (p === 0) return <CoverPage state={state} result={result} edition={edition} venues={venues} mine={mine} numbersHere={numbersHere} coachName={state.coach?.coachName ?? null} matchDay={mine[0] ? paper.matchDays.get(mine[0].date ?? "") ?? null : null} />;
     if (p === lastPage) return <FinalPage result={result} all={all} mine={mine} me={me} highlight={highlight} paper={paper} souvenir={souvenir} journeys={journeys} performance={perf} date={mine[mine.length - 1]?.date ?? null} onAgain={onAgain} onShare={copyResult} shared={copied} />;
     return <MatchPage fixture={mine[p - 1]!} index={p - 1} mine={mine} all={all} result={result} me={me} venues={venues} highlight={highlight} issue={p + 1} paper={paper} last={p === mine.length} seed={result.seed} lever={{ picks: state.picks.filter(Boolean) as PoolPlayer[], captains, coach: state.coach, captainId: state.captainId, plans: state.plans, onReplan }} />;
   };

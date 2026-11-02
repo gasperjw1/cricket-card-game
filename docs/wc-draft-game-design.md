@@ -1355,6 +1355,19 @@ fielding. The simulation is not required to reproduce real results (§11).
   balls) while the hold-out still undershoots (20.8 against 22.0), which points to the 2024–26
   newcomers being weaker than their records. Associate batting is untouched (6.92 against 6.66 an
   over in the hold-out).
+- **Associate Elo corrected; newcomers ruled out (2026-11-02, refit doc items 10–11):** split by
+  team, newcomers were roughly right (1 win in 10 against the sim's 14%). The error was the
+  established associates, 0 for 30 in 2024–26 against 5.4 expected wins, and team Elo. Since 2010,
+  Elo expected associates to beat full members 38.1% of the time against 21.7% real, worst in
+  2024–26, as the sides that reach World Cups climbed to the 1500 connectivity cap by beating
+  weaker associates. **Decided:** the cap rule is replaced by an isolation penalty (raw rating less
+  300 × the share of the last 20 matches not against full members). Fitted on cross-tier results
+  before 2024 it is calibrated (27.7% against 28.1%) and predicts all T20Is better (log loss 0.6548
+  to 0.6428). The bowling step was refitted on the new scale, wickets only (−0.027 per gap²); its
+  runs part is off, since it pushed the spread to +3.6 on thin evidence. Hold-out associate wins
+  17.2% to 13.4%, fit 30.9% to 28.2% (real 25%). Associate batting now matches real (6.68 against
+  6.55), so no batting step for now. Brier 0.1884, spread +3.0. Batting stability rose from 0.756
+  to 0.819 and bowling prediction from 0.194 to 0.210.
 - **Agreed order after the refit (2026-11-01):** (1) associates fix in the ratings: no-record
   players sit on the global position-band prior, so Italy 2026 bowls at 71 against India's 74 and a
   few tournament balls can make a 77 (shrink empty records toward the side's own mean or an

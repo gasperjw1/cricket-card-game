@@ -170,7 +170,7 @@ function RunSoFar({ mine, upTo, me }: { mine: Fixtured[]; upTo: number; me: stri
   );
 }
 
-export function CoverPage({ state, result, edition, venues, mine, coachName, matchDay }: { state: RunState; result: TournamentResult; edition: EditionOut | undefined; venues: VenueOut[]; mine: Fixtured[]; coachName: string | null; matchDay: number | null }) {
+export function CoverPage({ state, result, edition, venues, mine, numbersHere, coachName, matchDay }: { state: RunState; result: TournamentResult; edition: EditionOut | undefined; venues: VenueOut[]; mine: Fixtured[]; numbersHere: ({ bat: number | null; bowl: number | null } | null)[]; coachName: string | null; matchDay: number | null }) {
   const me = state.identity!.team;
   const picks = state.picks.filter(Boolean);
   const captain = picks.find((p) => p!.id === state.captainId);
@@ -187,9 +187,9 @@ export function CoverPage({ state, result, edition, venues, mine, coachName, mat
           <h4>The batting order</h4>
           <table className="gz-table gz-order">
             <thead><tr><th>#</th><th>Player</th><th>From</th><th>Bat</th><th>Bowl</th></tr></thead>
-            <tbody>{picks.map((p, i) => <tr key={p!.id}><td>{i + 1}</td><td>{p!.name}{p!.id === state.captainId ? " (c)" : ""}</td><td>{p!.team} {p!.editionId}</td><td>{p!.batShown ? p!.bat : "–"}</td><td>{p!.bowlShown ? p!.bowl : "–"}</td></tr>)}</tbody>
+            <tbody>{picks.map((p, i) => <tr key={p!.id}><td>{i + 1}</td><td>{p!.name}{p!.id === state.captainId ? " (c)" : ""}</td><td>{p!.team} {p!.editionId}</td><td>{p!.batShown ? numbersHere[i]?.bat ?? p!.bat : "–"}</td><td>{p!.bowlShown ? numbersHere[i]?.bowl ?? p!.bowl : "–"}</td></tr>)}</tbody>
           </table>
-          <p className="gz-note">Card numbers from each man's own World Cup; the draft showed what they are worth in {result.editionId}.</p>
+          <p className="gz-note">Each man's numbers in {result.editionId} at his place in the order{coachName ? ` under ${coachName}` : ""}, as the draft showed them.</p>
         </section>
         <aside className="gz-rail">
           <section className="gz-box">

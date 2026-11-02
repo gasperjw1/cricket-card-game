@@ -6,19 +6,27 @@
  * strength. Plain Elo, no margin-of-victory term, K = 24; a decided tie-break counts as a win,
  * an undecided tie as a half.
  *
- * Connectivity regularisation (2026-10-30, triggered by the tournament simulation rating Uganda
- * at 1668 and a 53% win rate in the 2024 World Cup): associates play mostly each other, so a team
- * that dominates a closed regional circuit drifts above its true level. The rating *read out* for
- * a team caps the excess above `connectivity.cap` by the share of its last `connectivity.window`
- * matches played against full members: a side that has not met a full member cannot read above
- * 1500, a side whose recent games were half against full members keeps half of its excess. The
- * raw rating still drives the Elo updates, so the system stays a plain Elo underneath.
+ * Connectivity regularisation: associates play mostly each other, so a team that dominates a
+ * closed regional circuit drifts above its true level. The rating *read out* for a team is its raw
+ * rating less `connectivity.isolation` times the share of its last `connectivity.window` matches
+ * NOT played against full members. A side that only meets its own circuit reads 300 lower; a side
+ * that always meets full members reads as rated. The raw rating still drives the Elo updates, so
+ * the system stays a plain Elo underneath.
+ *
+ * Refit 2026-11-02 (`scripts/research/elo-connectivity-sweep.mts`). The first rule (2026-10-30,
+ * after the sim rated Uganda 1668) capped the excess above 1500 by that share, but World Cup
+ * associates then sat at the cap. On the 139 associate-v-full-member T20Is from 2010 to 2023 it
+ * expected associates to win 40.9% against 28.1% real, and it predicted all 1,814 decided T20Is
+ * slightly worse than no rule (log loss 0.6548 against 0.6520). Lowering the cap hurt that further.
+ * The isolation penalty at 300 is calibrated across the tiers (27.7% against 28.1%, log loss
+ * 0.6001 to 0.5327) and is the best of the sweep over all matches (0.6428; 250 and 350 both 0.643).
+ * On 2024–26, which the fit didn't see, it expects 18.0% against 12.5% real; the old rule said 34.2%.
  */
 
 import type { Match } from "../cricsheet/match.js";
 import { getOrCreate, round } from "../util/stats.js";
 
-export const ELO = { k: 24, initialFullMember: 1600, initialAssociate: 1400, connectivity: { window: 20, cap: 1500 } } as const;
+export const ELO = { k: 24, initialFullMember: 1600, initialAssociate: 1400, connectivity: { window: 20, isolation: 300 } } as const;
 
 /** Opponent-strength bins used to condition population vectors and player exposure. */
 export const ELO_BIN_EDGES = [1400, 1500, 1600, 1700, 1800] as const;
@@ -59,9 +67,8 @@ export class TeamStrengthAnalysis {
   ratingOf(team: string, date: string): number {
     const raw = this.rating.get(team) ?? this.start(team, date);
     const recent = this.recentOpposition.get(team);
-    if (!recent || !recent.length || raw <= ELO.connectivity.cap) return raw;
-    const fullShare = recent.filter(Boolean).length / recent.length;
-    return ELO.connectivity.cap + (raw - ELO.connectivity.cap) * fullShare;
+    const fullShare = recent && recent.length ? recent.filter(Boolean).length / recent.length : 0;
+    return raw - ELO.connectivity.isolation * (1 - fullShare);
   }
 
   /** The unregularised rating (for the timeline output). */

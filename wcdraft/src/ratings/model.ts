@@ -115,8 +115,16 @@ export const MODEL = {
    * bands agree (runs +0.0086 and +0.0101, wickets −0.0326 and −0.0344). So the step is
    * exp(rate × (gap/100)²), on an associate bowler's runs and wicket cells, for the gap between
    * the batting he faced and the opposition, capped at `maxGap`.
+   * Refit 2026-11-02 on the corrected team Elo (isolation penalty, `analysis/team-strength.ts`) and
+   * in the units the ratings read the gap in (Elo bin centres, the lowest bin 1350): to the middle
+   * band (+188, 321 wickets) runs ×1.004 and wickets ×0.912, to the strong band (+362, 37 wickets)
+   * ×1.087 and ×0.692. Per (gap/100)² wickets read −0.026 and −0.028 and runs +0.001 and +0.006.
+   * Fitted through both, weighted by wickets and by balls: wickets −0.027, runs +0.005. Runs set to
+   * 0: the well-sampled middle band shows none (×1.004), the strong band's ×1.087 rests on 1,027
+   * balls, and with runs on, the replay spread ran +3.6 and full members' runs against associates
+   * 0.5 an over high. Wickets only: spread +3.0, Brier 0.1884 (0.1867 with runs).
    */
-  bowlTierStep: { enabled: true as boolean, runsPerGap2: 0.009, wicketsPerGap2: -0.033, maxGap: 400 },
+  bowlTierStep: { enabled: true as boolean, runsPerGap2: 0, wicketsPerGap2: -0.027, maxGap: 400 },
   /**
    * Pace/spin batting split (rebuilt 2026-10-30, see `bowlClassSplit` in rate.ts). Each class is
    * measured against the batter's own level inside one source, and the sources are then pooled
