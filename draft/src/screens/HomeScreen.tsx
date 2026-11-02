@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { dailySeed } from "../game/score.ts";
 
 function randomSeed(): string {
   const words = ["cover", "yorker", "slog", "glance", "ramp", "scoop", "googly", "bouncer", "nurdle", "hoick"];
@@ -19,7 +20,10 @@ export function HomeScreen({ ready, onStart }: { ready: boolean; onStart: (seed:
       <label className="seed-input">
         Seed <input value={seed} onChange={(e) => setSeed(e.target.value)} spellCheck={false} />
       </label>
-      <button type="button" className="primary" disabled={!ready || !seed.trim()} onClick={() => onStart(seed.trim())}>{ready ? "Spin an identity" : "Loading squads…"}</button>
+      <div className="row">
+        <button type="button" className="primary" disabled={!ready || !seed.trim()} onClick={() => onStart(seed.trim())}>{ready ? "Spin an identity" : "Loading squads…"}</button>
+        <button type="button" disabled={!ready} onClick={() => onStart(dailySeed())} title="The same identity and the same squad spins for everyone today; rerolls and picks are yours">Today's World Cup</button>
+      </div>
       <p className="small">Ratings are evidence-based (Cricsheet ball-by-ball data, ODC-By 1.0). Tiers are role-relative: an Elite finisher is as good at his job as an Elite opener.</p>
     </section>
   );

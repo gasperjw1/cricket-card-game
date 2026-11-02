@@ -343,6 +343,11 @@ h3 { font-size: 16px; margin: 0 0 8px; }
 .gz-late .gz-list li { font-size: 14px; }
 @media (max-width: 640px) { .gz-sections { overflow-x: auto; } .gz-sections button { padding: 8px 12px; font-size: 13px; } }
 
+/* Four cells in the souvenir's verdict strip: record, finish, grade, performance (2026-11-02). */
+.gz-verdict { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.gz-perf { margin: -12px 0 18px; }
+@media (max-width: 640px) { .gz-verdict { grid-template-columns: repeat(2, minmax(0, 1fr)); } .gz-verdict > div { border-top: 1px solid var(--line); } }
+
 /* The between-match lever (2026-11-02). */
 .gz-lever { border-top: 2px solid var(--ink); padding-top: 8px; }
 .gz-lever-row { display: grid; grid-template-columns: 64px minmax(0, 1fr); gap: 8px; align-items: center; margin: 6px 0; font-size: 13px; }

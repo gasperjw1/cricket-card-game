@@ -1260,6 +1260,16 @@ fielding. The simulation is not required to reproduce real results (§11).
   (same stage, or the stage complete), and a change keeps the reader on the same issue with that
   issue's copy unchanged. The batting order stays fixed, as decided. Measured earlier the same day:
   tempo is a mild bounded lever (hold −1 61% of matches, attack +1 67%, +1.5 65%).
+- **Daily seed, Performance score, share link (2026-11-02, step 5b; `game/score.ts`):** the home
+  screen's **Today's World Cup** starts a run on `daily-YYYY-MM-DD` (UTC), so everyone gets the
+  same identity and squad spins that day; rerolls and picks are theirs. **Performance** is how the
+  season went: the exit stage as a share of the bracket (champions 60), four a win, net run rate
+  over the side's completed matches clamped to ±10 (a side bowled out charged its full allotment),
+  ten for an unbeaten run; printed as a fourth cell in the souvenir's verdict strip with its
+  breakdown. **Copy result** now carries a link (`?run=…`, base64url of seed, identity, coach,
+  the eleven in their slots, captain and plans) that replays the run exactly once the data is in;
+  verified in the browser: the replayed run printed the same record, results and score, plan
+  included. A leaderboard needs the server and is not built.
 - **Agreed order after the refit (2026-11-01):** (1) associates fix in the ratings: no-record
   players sit on the global position-band prior, so Italy 2026 bowls at 71 against India's 74 and a
   few tournament balls can make a 77 (shrink empty records toward the side's own mean or an

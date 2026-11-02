@@ -17,6 +17,7 @@ import { RECORD_KINDS, type RecordBook, type RecordKind } from "../game/facts.ts
 import { storyFor, topBatter, topBowler, verdictFor } from "../game/gazette.ts";
 import type { IssueCopy, Paper } from "../game/paper.ts";
 import { journeyLine, recordChains, type Journey, type Residual, type Souvenir } from "../game/souvenir.ts";
+import type { Performance } from "../game/score.ts";
 import { exitStageOf, sideProfile, stageIdOf, tableTo, tournamentTotals, type PlayerTotals } from "../game/stats.ts";
 import { squadRating } from "../game/rules.ts";
 import type { RunState } from "../game/types.ts";
@@ -351,7 +352,7 @@ function ResidualRow({ r }: { r: Residual }) {
 
 const SCOPE_LABEL = { wc: "", allWc: " · a T20 World Cup record", t20i: " · a T20I record" } as const;
 
-export function FinalPage({ result, all, mine, me, highlight, paper, souvenir, journeys, date, onAgain, onShare, shared }: { result: TournamentResult; all: Fixtured[]; mine: Fixtured[]; me: string; highlight: Set<string>; paper: Paper; souvenir: Souvenir | null; journeys: Journey[]; date: string | null; onAgain: () => void; onShare: () => void; shared: boolean }) {
+export function FinalPage({ result, all, mine, me, highlight, paper, souvenir, journeys, performance: perf, date, onAgain, onShare, shared }: { result: TournamentResult; all: Fixtured[]; mine: Fixtured[]; me: string; highlight: Set<string>; paper: Paper; souvenir: Souvenir | null; journeys: Journey[]; performance: Performance; date: string | null; onAgain: () => void; onShare: () => void; shared: boolean }) {
   const id = result.identity!;
   const exitStage = exitStageOf(result.stages, mine);
   const verdict = verdictFor(id, me, result.stages.length, exitStage);
@@ -382,7 +383,9 @@ export function FinalPage({ result, all, mine, me, highlight, paper, souvenir, j
         <div><span>Record</span><b>{id.won}–{id.lost}</b></div>
         <div><span>Finish</span><b>{id.champion ? "Champions" : id.exit}</b></div>
         <div className="gz-grade"><span>Grade</span><b>{verdict.grade}</b></div>
+        <div><span>Performance</span><b>{perf.score}</b></div>
       </div>
+      <p className="gz-note gz-perf">Performance: {perf.stagePoints} for the stage reached, {perf.winPoints} for {id.won} win{id.won === 1 ? "" : "s"}, {perf.nrrPoints >= 0 ? "+" : "−"}{Math.abs(perf.nrrPoints)} for a net run rate of {perf.nrr >= 0 ? "+" : "−"}{Math.abs(perf.nrr).toFixed(2)}{perf.unbeatenPoints ? `, ${perf.unbeatenPoints} for going unbeaten` : ""}. Copy result carries a link that replays this run exactly.</p>
       <div className="gz-columns">
         <div className="gz-main">
           <section className="gz-box">
