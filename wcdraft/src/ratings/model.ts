@@ -80,6 +80,24 @@ export const MODEL = {
    */
   positionPrior: { strength: 500 },
   /**
+   * Team-strength prior (associates fix, 2026-11-02). A thin record used to rest on the position
+   * band's centre alone, the centre of the whole World Cup field, so Italy's 2026 attack rated 71
+   * against India's 74 and the sim gave associates 29% of their matches against full members
+   * against 13% real. The centre now also carries the pooled relative vector of players from
+   * sides in the same Elo bin at the edition's start, batting and bowling, shrunk toward neutral
+   * with this many pseudo-balls.
+   */
+  /**
+   * Destination gains (2026-11-02, unfinished): the two-way team-tier destination raised to a gain
+   * for sides below the field's mean Elo (`destinationGain`, fading in over 200 Elo) and above it
+   * (`strongGain`). Measured so far on real World Cup fixtures (associate wins v full members, real
+   * 13% over 76 matches, sim 29% at gain 1): symmetric 1.4 → sim 21% on 2024–26 hold-out, Brier
+   * 0.1901, first-innings spread +3.5; symmetric 2.0 → 15.7%, Brier 0.1899, spread +5.6 (too wide,
+   * the thin full-member rows stretched too); weak-side-only 2.0 → 22.7%, spread +2.8. The split
+   * 2.0 / 1.3 was written but not rebuilt or measured. Both at 1 until that run is done.
+   */
+  teamPrior: { enabled: true, strength: 500, destinationGain: 1 as number, strongGain: 1 as number },
+  /**
    * Pace/spin batting split (rebuilt 2026-10-30, see `bowlClassSplit` in rate.ts). Each class is
    * measured against the batter's own level inside one source, and the sources are then pooled
    * with these weights. `minBalls` is both the bar for a measured number and the rule for ODIs

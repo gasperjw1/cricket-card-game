@@ -44,6 +44,14 @@ export interface EditionContext {
   twoWay: Record<Skill, TwoWayVectors>;
   /** Pooled batting relative vector of the edition's batters by position band (the prior centre for thin records); "all" is neutral. */
   bandCentre: Record<PriorBand | "all", Vector>;
+  /**
+   * Pooled relative vectors of the edition's players by their own side's Elo bin at the edition's
+   * start (form window and career to date, observed ÷ context-expected): what an average player
+   * from a side of that strength does. The prior centre for a thin record rests on this as well
+   * as on the position band (associates fix, 2026-11-02), so a no-record Italian seamer is no
+   * longer a league-average World Cup bowler. "all" is neutral.
+   */
+  teamBinCentre: Record<string, Record<Skill, Vector>>;
   /** The edition's opponent mix: balls per opponent-Elo bin faced in the tournament (all teams). */
   editionOpponentMix: Record<Skill, Record<string, number>>;
   /** Scoring factor per venue string in the form window (1 = window average), shrunk toward 1. */
@@ -129,10 +137,29 @@ export function buildContexts(r: BuildResult): Map<string, EditionContext> {
     }
     const bandCentre = Object.fromEntries(PRIOR_BANDS.map((b) => [b, expectedRelative(bandCounts[b].o, bandCounts[b].e, bandCounts[b].n, UNIT, MODEL.positionPrior.strength, MODEL.positionPrior.strength)])) as Record<PriorBand | "all", Vector>;
     bandCentre.all = UNIT;
+    // Team-strength prior centres: every player pooled by his own side's Elo bin at the edition's
+    // start, batting and bowling, observed ÷ context-expected, shrunk toward neutral.
+    const teamCounts: Record<string, Record<Skill, { o: Record<OutcomeKey, number>; e: Record<OutcomeKey, number>; n: number }>> = {};
+    for (const pe of r.playerEditions as unknown as PlayerEditionIn[]) {
+      if (pe.editionId !== e.id || pe.teamElo === null) continue;
+      const bin = eloBin(pe.teamElo);
+      const row = teamCounts[bin] ?? (teamCounts[bin] = { bat: { o: zeroCounts(), e: zeroCounts(), n: 0 }, bowl: { o: zeroCounts(), e: zeroCounts(), n: 0 } });
+      for (const block of [pe.form, pe.careerToDate]) for (const skill of ["bat", "bowl"] as Skill[]) for (const p of PHASE_LIST) {
+        const pc = block[skill].phases[p];
+        if (!pc) continue;
+        row[skill].n += pc.balls;
+        for (const k of OUTCOMES) { row[skill].o[k] += pc.outcomes[k]; row[skill].e[k] += pc.expected?.[k] ?? 0; }
+      }
+    }
+    const teamBinCentre: Record<string, Record<Skill, Vector>> = { all: { bat: UNIT, bowl: UNIT } };
+    for (const [bin, row] of Object.entries(teamCounts)) {
+      teamBinCentre[bin] = { bat: expectedRelative(row.bat.o, row.bat.e, row.bat.n, UNIT, MODEL.teamPrior.strength, MODEL.teamPrior.strength), bowl: expectedRelative(row.bowl.o, row.bowl.e, row.bowl.n, UNIT, MODEL.teamPrior.strength, MODEL.teamPrior.strength) };
+    }
     out.set(e.id, {
       editionId: e.id,
       year: e.year,
       bandCentre,
+      teamBinCentre,
       editionPop,
       editionBowlPop,
       window,
@@ -345,7 +372,21 @@ function rateSkill(pe: PlayerEditionIn, ctx: EditionContext, skill: Skill, optio
   // optional there (`tierDestination`) and always on for the window path.
   if ((opts.evidence === "window" || opts.tierDestination) && opts.tierMode[skill] === "twoWay" && pe.teamElo !== null) {
     const own = rowMixtureInterp(ctx.twoWay[skill], pe.teamElo, pe.formExposure[skill]);
-    const dest = rowMixtureInterp(ctx.twoWay[skill], pe.teamElo, ctx.editionOpponentMix[skill]);
+    let dest = rowMixtureInterp(ctx.twoWay[skill], pe.teamElo, ctx.editionOpponentMix[skill]);
+    // The team-tier destination's spread, raised to a measured gain (associates fix, 2026-11-02):
+    // the two-way table's own rows for full members are thin, so the slope between a 1450 and an
+    // 1850 side came out flatter than World Cups show; see MODEL.teamPrior.destinationGain.
+    // Only for sides weaker than the field, fading in over 200 Elo below the field's mean: the
+    // table's thin full-member rows must not be stretched too (at full gain both ways the
+    // first-innings spread ran 5.6 above real; weak-side only it stays where it was).
+    const fieldElo = meanOpponentElo(ctx.editionOpponentMix[skill]);
+    const weakness = fieldElo === null ? 0 : Math.max(0, Math.min(1, (fieldElo - pe.teamElo) / 200));
+    const strength = fieldElo === null ? 0 : Math.max(0, Math.min(1, (pe.teamElo - fieldElo) / 200));
+    const gain = 1 + (MODEL.teamPrior.destinationGain - 1) * weakness + (MODEL.teamPrior.strongGain - 1) * strength;
+    if (dest && gain !== 1) {
+      const neutral = pooledPop(valuePop);
+      dest = normalise(Object.fromEntries(OUTCOMES.map((k) => [k, neutral[k] * Math.pow(dest![k] / Math.max(1e-9, neutral[k]), gain)])) as Vector);
+    }
     if (own && dest) {
       // Two-way tables are pooled over phases; keep the phase shape from the one-way mixtures.
       const shape = (pooled: Vector, phased: PhaseVectors): PhaseVectors => {
@@ -508,9 +549,16 @@ export function priorBand(pe: PlayerEditionIn): PriorBand | null {
 }
 
 /** The prior centre at the bottom of the shrinkage chain: the position band's pooled vector for batting, neutral for bowling. */
+/**
+ * Where a thin record rests: the position band's pooled vector (batting) times the pooled vector
+ * of players from sides of the same strength (both skills), each shrunk toward neutral on its own
+ * and the product renormalised. A full-strength record moves away from here; an empty one sits on it.
+ */
 function baseCentre(pe: PlayerEditionIn, ctx: EditionContext, skill: Skill): Vector {
-  if (skill !== "bat") return UNIT;
-  return ctx.bandCentre[priorBand(pe) ?? "all"];
+  const band = skill === "bat" ? ctx.bandCentre[priorBand(pe) ?? "all"] : UNIT;
+  const team = MODEL.teamPrior.enabled && pe.teamElo !== null ? (ctx.teamBinCentre[eloBin(pe.teamElo)]?.[skill] ?? UNIT) : UNIT;
+  // Relative vectors are per-outcome ratios; their product is the combined ratio, nothing to renormalise.
+  return Object.fromEntries(OUTCOMES.map((k) => [k, band[k] * team[k]])) as Vector;
 }
 
 /**
