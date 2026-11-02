@@ -132,6 +132,46 @@ batting exponent (0.7 / 0.9 keeps it at +1.8). 0.7 / 0.7 stays: it is the realis
 within noise of the best on prediction. Dispersion stays at 0.10 / 0.08 / 0.05 / 0.03: lower
 settings did not change the spread and zero cost 0.005 Brier.
 
+## Engine items, 2026-11-02
+
+Four questions from the audits, each measured on the replay harness or on the same real fixtures
+replayed many times (scratch scripts `baseline.mts`, `player-dist.mts`, `dots.mts`, `eval.mts`).
+
+1. **Out-of-sample baseline.** Over 296 decided matches in nine editions, base rates from the
+   form window (not the edition): sim Brier 0.2035, in-sample 0.1993, a pre-tournament Elo
+   baseline from the archive 0.2056, a coin 0.25. The player model carries about as much
+   information as team rankings while knowing nothing about teams; it beats Elo clearly in 2012,
+   2021 and 2026 and loses in 2007, 2014 and 2024. No change.
+2. **Player-level distribution test** (six editions, 2012–2024, 20 sims a fixture, by card band).
+   Batting matches to the band: strike rate within ±4 (90+ cards 140 against 136, under-70 cards
+   105 against 108), balls per dismissal within 1.5, fifty-plus rates 15.2 against 15.1 and 4.0
+   against 4.8 at the two ends. The sim gives the best batters a few too many ducks (8.8% against
+   7.0%) and the weakest a few too few. Bowling economy matches to 0.04 an over in every band, but
+   **wicket-taking is compressed**: 85+ bowlers take a wicket every 19.2 balls against 17.3 real
+   and three-fors 10% against 14%. A separate bowler hazard exponent (`bowlHazardExponent`, kept
+   at 0.7) at 0.9 moved nothing, and halving the ratings' hazard prior (2000 → 1000, rebuilt)
+   moved nothing either: the bowlers' wicket cells are already near 1 because dismissal rates do
+   not stabilise at these sample sizes (validation r ≈ 0.09). The compression is the record's
+   predictability, not a bug; both dials were put back. Individual gaps over 120 balls are
+   tournament form (Rohit 2024 real 165 against 112 expected), mean absolute 17 strike-rate points
+   where sampling noise alone is about 12.
+3. **Dot clustering.** Real World Cup balls: a dot follows a dot 43.6% of the time and a scoring
+   ball 36.2%, a lift of 7.4 points; the sim's lift is 9.0 (powerplay 6.0 against 4.0, death 7.8
+   against 4.9). The engine already clusters dots as much as reality or slightly more, through the
+   streak, ball-in-over and chase-dot terms, so the −0.7 dot share is not a missing dependency.
+   No change.
+4. **Pitch pace against spin, built.** `MatchEnvironment.classScoring`: the ground's spin-minus-pace
+   runs an over in this edition against the edition's, shrunk by balls (`pitch.groundPriorBalls`
+   2000), clipped at ±12%, split half each way as scoring multipliers on each bowler class; plus
+   the pitch of the day, a per-match normal draw of SD 2.8% half each way (0.42 an over at 7.5).
+   Replay, nine editions, 40 sims × 2 seeds: **Brier 0.1942 with it against 0.1965 without**,
+   every bias unchanged within noise (run rate −0.003, phases −0.04 / +0.04 / −0.03, balls per
+   wicket −0.07, spread +1.9, chase +0.5, dot −0.70). Leans are modest: Dubai 2016 spin 0.97,
+   Daren Sammy 2024 0.96, Nassau 2024 1.02, Perth 2016 1.06. Only a ground's record in the
+   edition itself is used; its all-editions record, measured against other mixes, read every
+   2024 ground as pace-friendly. `pitchExponent` 0 switches both parts off; an engine test holds
+   the symmetry, the clip and the switch.
+
 ## Still open
 
 - Dot share −0.7 points: the sim turns a few dots into singles at the same run rate; not a counting

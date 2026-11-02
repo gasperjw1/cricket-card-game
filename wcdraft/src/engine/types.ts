@@ -67,6 +67,12 @@ export interface MatchEnvironment {
   base: PhaseVectors;
   /** Multiplier on scoring outcomes for the ground (1 = edition average). */
   venueFactor: number;
+  /**
+   * The ground's lean between pace and spin (2026-11-02): multipliers on scoring outcomes off each
+   * class, 1 = the edition's own mix, the two moving in opposite directions. The pitch of the day
+   * (`ENGINE.pitch.daySdFraction`) is drawn on top per match in `simulateMatch`.
+   */
+  classScoring: { pace: number; spin: number };
   /** Second-innings scoring uplift as a fraction of runs per over (dew and target knowledge). */
   chaseUplift: number;
   /** Probability the toss winner fields. */

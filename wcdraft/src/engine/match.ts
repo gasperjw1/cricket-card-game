@@ -292,16 +292,20 @@ export function simulateMatch(a: EngineTeam, b: EngineTeam, env: MatchEnvironmen
   const matchEffect = Math.exp(ENGINE.matchEffectSd * rng.normal());
   const rain = drawRain(env, situation, rng.fork("rain"), opts.rainProbability ?? env.rain.pAffected);
   const base = { teams: [a.name, b.name] as [string, string], tossWinner: tossWinner.name, tossDecision, rain };
+  // The pitch of the day: pace against spin, half each way, on top of the ground's own lean.
+  const dayLean = ENGINE.pitchExponent ? ENGINE.pitch.daySdFraction * rng.fork("pitch").normal() : 0;
+  const ground = env.classScoring ?? { pace: 1, spin: 1 };
+  const pitched: MatchEnvironment = { ...env, classScoring: { pace: ground.pace * (1 - dayLean), spin: ground.spin * (1 + dayLean) } };
 
   if (rain?.kind === "no-result") {
     // Some play, then the weather wins: a partial first innings and no second.
     const played = Math.round(env.overs * 6 * (0.1 + 0.6 * rng.next()));
-    const inn1 = simulateInnings(first, second, env, situation, rng.fork("inn1"), { index: 1, overs: env.overs, target: null, matchEffect, cutAtBalls: played }, log);
+    const inn1 = simulateInnings(first, second, pitched, situation, rng.fork("inn1"), { index: 1, overs: env.overs, target: null, matchEffect, cutAtBalls: played }, log);
     return { ...base, innings: [inn1, emptyInnings(second.name, 2, env.overs, null)], tieBreak: null, winner: null, margin: null, balls: opts.keepBallLog ? log : [] };
   }
 
   const overs = rain?.kind === "reduced" ? rain.oversPerSide : env.overs;
-  const matchEnv: MatchEnvironment = overs === env.overs ? env : { ...env, overs, maxOversPerBowler: Math.ceil(overs / 5) };
+  const matchEnv: MatchEnvironment = overs === env.overs ? pitched : { ...pitched, overs, maxOversPerBowler: Math.ceil(overs / 5) };
   const inn1 = simulateInnings(first, second, matchEnv, situation, rng.fork("inn1"), { index: 1, overs, target: null, matchEffect }, log);
   const target = inn1.runs + 1;
   const inn2 = simulateInnings(second, first, matchEnv, situation, rng.fork("inn2"), { index: 2, overs, target, matchEffect, cutAtBalls: rain?.kind === "chase-cut" ? rain.cutAtBalls ?? undefined : undefined }, log);

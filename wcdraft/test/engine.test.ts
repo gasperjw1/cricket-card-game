@@ -321,4 +321,27 @@ describe("engine", { skip: !engineReady() && "engine data not built" }, () => {
     assert.ok(Math.abs(s.wicketsByOver.sim["10"]! - s.wicketsByOver.reference["10"]!) < 0.7, `wickets at over 10: ${s.wicketsByOver.sim["10"]} vs ${s.wicketsByOver.reference["10"]}`);
     assert.ok(s.sim.deathOversByNewBallPct > 22, `overs 19–20 by an opening bowler ${s.sim.deathOversByNewBallPct}%`);
   });
+
+  it("leans each ground between pace and spin, half each way, and the pitch switch turns it off (2026-11-02)", () => {
+    const data = loadEdition("2024");
+    const leans = [...data.venues.values()].map((v) => matchEnvironment(data, v.id).classScoring);
+    for (const c of leans) {
+      assert.ok(Math.abs(c.pace + c.spin - 2) < 1e-6, "the two classes move in opposite directions by the same amount");
+      assert.ok(Math.abs(c.spin - 1) <= ENGINE.pitch.clip + 1e-9, "within the clip");
+    }
+    assert.ok(leans.some((c) => c.spin !== 1), "a ground that hosted enough balls carries a lean");
+    // With the switch off the pitch of the day is not drawn and the ground lean has no effect, yet the seed still replays.
+    const venue = [...data.venues.values()].find((v) => matchEnvironment(data, v.id).classScoring.spin < 0.98)!;
+    const env = matchEnvironment(data, venue.id);
+    const a = teamFromDefault(data, "India"), b = teamFromDefault(data, "Australia");
+    const was = ENGINE.pitchExponent;
+    setEngineOverrides({ pitchExponent: 0 });
+    try {
+      const x = simulateMatch(a, b, env, data.situation, { seed: "pitch-off" });
+      const y = simulateMatch(a, b, env, data.situation, { seed: "pitch-off" });
+      assert.deepEqual(x.innings.map((i) => [i.runs, i.wickets]), y.innings.map((i) => [i.runs, i.wickets]));
+    } finally { setEngineOverrides({ pitchExponent: was }); }
+    const z = simulateMatch(a, b, env, data.situation, { seed: "pitch-off" });
+    assert.ok(typeof z.innings[0]!.runs === "number", "plays with the pitch on");
+  });
 });

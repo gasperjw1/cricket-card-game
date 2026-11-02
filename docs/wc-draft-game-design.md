@@ -1281,6 +1281,16 @@ fielding. The simulation is not required to reproduce real results (§11).
   or knockout dial was moved; the unbeaten run is rare and reachable as the spec asked. A human
   who manages slots and rerolls will sit a little above the greedy bot; the associates fix, still
   to come, will push every rate down since associates bowl like full members today.
+- **Engine items (2026-11-02, step 5d; detail in `wc-draft-engine-refit-2026-11-01.md`, "Engine
+  items"):** out-of-sample the sim scores 0.2035 Brier against a pre-tournament Elo's 0.2056 and
+  a coin's 0.25 (no team knowledge, same skill as rankings); the player-level test matches real
+  strike rates, dismissal rates and fifty rates by card band, with bowlers' wicket-taking
+  compressed at the top for a reason the ratings validation already gave (dismissal rates do not
+  stabilise at World Cup samples; two dials tried and put back); dot clustering is already at or
+  above the real level (no missing term); and a **pitch pace/spin condition** is now in the
+  engine (ground lean from the edition's own record plus a pitch of the day), Brier 0.1942 with
+  it against 0.1965 without and every bias unchanged. The venue brief's spin/pace chips now
+  describe something the engine plays.
 - **Agreed order after the refit (2026-11-01):** (1) associates fix in the ratings: no-record
   players sit on the global position-band prior, so Italy 2026 bowls at 71 against India's 74 and a
   few tournament balls can make a 77 (shrink empty records toward the side's own mean or an

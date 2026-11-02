@@ -15,6 +15,22 @@ export const ENGINE = {
    */
   batExponent: 0.7 as number,
   bowlExponent: 0.7 as number,
+  /**
+   * The bowler's wicket cell on its own exponent (2026-11-02). At 0.7 for every cell the best
+   * bowlers' economy matched reality but their wicket-taking was compressed: card 85+ bowlers took
+   * a wicket every 19.2 balls in the sim against 17.3 real, with three-fors 10% against 14%, while
+   * the weakest bowlers were slightly too penetrative. See the player-level distribution test.
+   */
+  bowlHazardExponent: 0.7 as number,
+  /**
+   * Pace against spin on the ground and on the day (2026-11-02, from the conditions research:
+   * ground spin-minus-pace true SD 0.16 runs an over, pitch of the day 0.42 on top of the ground).
+   * `groundPriorBalls` shrinks a ground's measured lean toward the edition's; `daySdFraction` is
+   * the per-match draw as a fraction of scoring off each class, half each way (0.42 runs an over
+   * split between the two classes at about 7.5 an over). `pitchExponent` 0 switches both off.
+   */
+  pitch: { groundPriorBalls: 2000, daySdFraction: 0.028, clip: 0.12 },
+  pitchExponent: 1 as number,
   /** Shrinkage (balls) of a situation cell toward its conditioning base. */
   situationPrior: 400 as number,
   /** Innings × phase (`SituationModel.inningsPhase`); 0 switches it off. */
@@ -207,7 +223,7 @@ export const ENGINE = {
   },
 };
 
-export type EngineOverrides = Partial<Record<"batExponent" | "bowlExponent" | "inningsPhaseExponent" | "pressureExponent" | "gearExponent" | "foundExponent" | "shapeExponent" | "streakExponent" | "setnessExponent" | "adjustedSetness" | "ballInOverExponent" | "chaseDotsExponent" | "matchupExponent" | "bowlerDaySd" | "batterDaySd" | "matchEffectSd" | "inningsEffectSd" | "venueExponent" | "scoringCalibration" | "hazardCalibration" | "deathCalibration", number>>;
+export type EngineOverrides = Partial<Record<"batExponent" | "bowlExponent" | "bowlHazardExponent" | "pitchExponent" | "inningsPhaseExponent" | "pressureExponent" | "gearExponent" | "foundExponent" | "shapeExponent" | "streakExponent" | "setnessExponent" | "adjustedSetness" | "ballInOverExponent" | "chaseDotsExponent" | "matchupExponent" | "bowlerDaySd" | "batterDaySd" | "matchEffectSd" | "inningsEffectSd" | "venueExponent" | "scoringCalibration" | "hazardCalibration" | "deathCalibration", number>>;
 
 /** Calibration hook: override numeric constants for a sweep (`npm run engine:calibrate`). */
 export function setEngineOverrides(overrides: EngineOverrides): void {

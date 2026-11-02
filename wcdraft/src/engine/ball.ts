@@ -220,11 +220,13 @@ export function outcomeDistribution(striker: EnginePlayer, bowler: EnginePlayer,
   const matchup = pow(situation.matchup(striker.hand, bowler.bowlClass, phase), ENGINE.matchupExponent);
   // The striker's own pace/spin residual (within-player, on top of the population hand × class term).
   const vsClass = bowler.bowlClass ? striker.batVsClass[bowler.bowlClass.startsWith("pace") ? "pace" : "spin"] : UNIT;
-  const scoring = ctx.scoringFactor * ctx.playerFactor * Math.pow(env.venueFactor, ENGINE.venueExponent) * ENGINE.scoringCalibration * (phase === "death" ? ENGINE.deathCalibration : 1);
+  // The ground's and the day's lean between pace and spin, on scoring off this bowler's class.
+  const pitch = bowler.bowlClass && env.classScoring ? Math.pow(env.classScoring[bowler.bowlClass.startsWith("pace") ? "pace" : "spin"], ENGINE.pitchExponent) : 1;
+  const scoring = ctx.scoringFactor * ctx.playerFactor * Math.pow(env.venueFactor, ENGINE.venueExponent) * pitch * ENGINE.scoringCalibration * (phase === "death" ? ENGINE.deathCalibration : 1);
   const out = {} as Vector;
   let total = 0;
   for (const k of OUTCOMES) {
-    let p = base[k] * Math.pow(bat[k] * vsClass[k], ENGINE.batExponent) * Math.pow(bowl[k], ENGINE.bowlExponent) * tau[k] * innings[k] * pressure[k] * gear[k] * streak[k] * setness[k] * found[k] * shape[k] * bio[k] * dots[k] * matchup[k];
+    let p = base[k] * Math.pow(bat[k] * vsClass[k], ENGINE.batExponent) * Math.pow(bowl[k], k === "W" ? ENGINE.bowlHazardExponent : ENGINE.bowlExponent) * tau[k] * innings[k] * pressure[k] * gear[k] * streak[k] * setness[k] * found[k] * shape[k] * bio[k] * dots[k] * matchup[k];
     if (k === "W") p *= (ctx.freeHit ? 0.08 : 1) * ENGINE.hazardCalibration * squeeze; // a run out is still possible off a free hit
     else if (SCORING.includes(k)) p *= scoring;
     out[k] = Math.max(0, p);

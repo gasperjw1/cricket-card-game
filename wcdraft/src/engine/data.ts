@@ -355,6 +355,19 @@ export function matchEnvironment(data: EditionData, venueId: string | null, over
     const n = v.matches ?? 0;
     chaseUplift = (n * venueUplift + ENGINE.rain.venuePriorMatches * chaseUplift) / (n + ENGINE.rain.venuePriorMatches);
   }
+  // The ground's lean between pace and spin: its spin-minus-pace runs an over against the
+  // edition's, shrunk by balls, split half each way as scoring multipliers on each class.
+  // Only the ground's record in this edition: its all-editions record would be measured against
+  // other editions' mixes, which read every 2024 ground as pace-friendly (found on first run).
+  let classScoring = { pace: 1, spin: 1 };
+  const vps = venue?.byEdition[data.edition.id]?.paceSpin;
+  if (vps && env.paceSpin && vps.pace.balls >= 120 && vps.spin.balls >= 120) {
+    const lean = (vps.spin.rpo - vps.pace.rpo) - (env.paceSpin.spin.rpo - env.paceSpin.pace.rpo);
+    const balls = vps.pace.balls + vps.spin.balls;
+    const shrunk = (lean * balls) / (balls + ENGINE.pitch.groundPriorBalls);
+    const half = Math.max(-ENGINE.pitch.clip, Math.min(ENGINE.pitch.clip, shrunk / 2 / Math.max(1, env.runsPerOver)));
+    classScoring = { pace: 1 - half, spin: 1 + half };
+  }
   const base = options.base === "window"
     ? (Object.fromEntries(PHASE_LIST.map((p) => [p, { ...data.populations.valuePop.bat[p] }])) as PhaseVectors)
     : (Object.fromEntries(PHASE_LIST.map((p) => [p, Object.fromEntries(OUTCOMES.map((k) => [k, env.populationVectors[p]?.[k] ?? 1 / 7])) as Vector])) as PhaseVectors);
@@ -378,6 +391,7 @@ export function matchEnvironment(data: EditionData, venueId: string | null, over
     editionId: data.edition.id,
     base,
     venueFactor,
+    classScoring: { pace: +classScoring.pace.toFixed(4), spin: +classScoring.spin.toFixed(4) },
     chaseUplift: +chaseUplift.toFixed(4),
     tossFieldPct: env.tossFieldPct,
     extras: Object.fromEntries(PHASE_LIST.map((p) => {
