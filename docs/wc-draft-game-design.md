@@ -1270,6 +1270,17 @@ fielding. The simulation is not required to reproduce real results (§11).
   the eleven in their slots, captain and plans) that replays the run exactly once the data is in;
   verified in the browser: the replayed run printed the same record, results and score, plan
   included. A leaderboard needs the server and is not built.
+- **Rarity on the real draft (2026-11-02, step 5c; `draft/scripts/rarity.mts`):** the harness
+  follows the game's own rules (identity uniform over the universe, eleven spins from any
+  edition, one pick a spin into a slot he fits, the keeper and five-bowler guard, no rerolls)
+  with three bots. 300 runs each: a random picker (median squad rating 74) finishes unbeaten 0%
+  and champion 1%, wins 43% of matches; a greedy picker (best card every spin, median 86)
+  unbeaten 1.3%, champion 10%, wins 59%; the slot-aware picker is between. Over 1,000 greedy runs:
+  **unbeaten 2.7% of all runs, 4.0% of the top decile (rating 89.7+), champion 10.4% and 14.0%**.
+  Both sit inside the spec's dials (under 3% and under 15%), so no variance, opponent-strength
+  or knockout dial was moved; the unbeaten run is rare and reachable as the spec asked. A human
+  who manages slots and rerolls will sit a little above the greedy bot; the associates fix, still
+  to come, will push every rate down since associates bowl like full members today.
 - **Agreed order after the refit (2026-11-01):** (1) associates fix in the ratings: no-record
   players sit on the global position-band prior, so Italy 2026 bowls at 71 against India's 74 and a
   few tournament balls can make a 77 (shrink empty records toward the side's own mean or an
