@@ -1118,7 +1118,9 @@ fielding. The simulation is not required to reproduce real results (§11).
   open positions, "Place here" on the open rows, the keeper / overs / needs line as the footer. The
   scorecard now writes fall of wickets as `1-12 (Rohit, 2.3 ov)`, extras as `(b, w, nb)`, marks
   †keeper and (c), and lists "Did not bat". Decided the same day: placement stays the user's
-  choice in every case (no best-fit auto-place).
+  choice in every case (no best-fit auto-place), the sheet shows Bat and Bowl numbers, and **the
+  batting order cannot be changed after the draft** (the move arrows were removed; the slot a man
+  is placed in is the decision, and the lineup screen only names the captain).
 - **Agreed order after the refit (2026-11-01):** (1) associates fix in the ratings: no-record
   players sit on the global position-band prior, so Italy 2026 bowls at 71 against India's 74 and a
   few tournament balls can make a 77 (shrink empty records toward the side's own mean or an

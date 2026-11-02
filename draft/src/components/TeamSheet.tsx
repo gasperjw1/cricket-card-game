@@ -54,6 +54,7 @@ export function TeamSheet({ side, edition, coach, rows, captainId, keeperId, foo
         <h3 className="sheet-title">{side} <span className="sheet-year">{edition}</span></h3>
         <div className="sheet-sub"><span>Coach: {coach ?? "to be named"}</span><span>{filled} of 11 named</span></div>
       </header>
+      <div className="sheet-cols" aria-hidden="true"><span /><span /><span>Bat</span><span>Bowl</span><span /></div>
       <ol className="sheet-list">
         {rows.map((r) => {
           const p = r.player;
@@ -70,7 +71,10 @@ export function TeamSheet({ side, edition, coach, rows, captainId, keeperId, foo
                 <span className="sheet-name"><span className="sheet-blank">{r.slot.label}</span></span>
               )}
               <span className="sheet-bat" title={tip}>
-                {p && p.batShown ? <>{r.batHere ?? p.bat}{r.batHere !== null && r.batHere !== p.bat ? <small> of {p.bat}</small> : null}</> : p ? <small>bowls</small> : ""}
+                {p && p.batShown ? <>{r.batHere ?? p.bat}{r.batHere !== null && r.batHere !== p.bat ? <small> of {p.bat}</small> : null}</> : p ? <span className="sheet-dash">–</span> : ""}
+              </span>
+              <span className="sheet-bat sheet-bowl" title={p && p.bowlShown ? `Bowling ${p.bowl}: powerplay ${p.bowlPhases.pp}, middle ${p.bowlPhases.mid}, death ${p.bowlPhases.death}` : undefined}>
+                {p && p.bowlShown ? <>{p.bowl}{p.bowlLow ? <small>thin record</small> : null}</> : p ? <span className="sheet-dash">–</span> : ""}
               </span>
               <span className="sheet-action">{r.action}</span>
             </li>

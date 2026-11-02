@@ -4,7 +4,9 @@ import { SLOTS, designatedKeeper, lineupProblems, oversCovered, squadRating } fr
 import { batInSlot, describeWeights, slotWeights } from "../game/slots.ts";
 import type { RunState } from "../game/types.ts";
 
-export function LineupScreen({ state, captains, editions, onSwap, onCaptain, onBack, onSimulate }: { state: RunState; captains: CaptainOut[]; editions: EditionOut[]; onSwap: (a: number, b: number) => void; onCaptain: (id: string | null) => void; onBack: () => void; onSimulate: () => void }) {
+// The batting order is the order the eleven was drafted in; no reordering (decided 2026-11-01: the
+// slot you place a man in is the decision, and moving him later would soften it).
+export function LineupScreen({ state, captains, editions, onCaptain, onBack, onSimulate }: { state: RunState; captains: CaptainOut[]; editions: EditionOut[]; onCaptain: (id: string | null) => void; onBack: () => void; onSimulate: () => void }) {
   const problems = lineupProblems(state.picks);
   const weights = SLOTS.map((s) => slotWeights(editions, state.identity?.editionId ?? "", s.index + 1));
   const rated = (id: string) => captains.filter((c) => c.personId === id).sort((a, b) => b.matches - a.matches)[0];
@@ -28,15 +30,10 @@ export function LineupScreen({ state, captains, editions, onSwap, onCaptain, onB
             slot: s,
             player: p,
             batHere: p && p.batShown ? batInSlot(p, w) : null,
-            action: (
-              <span className="moves" title={describeWeights(w)}>
-                <button type="button" disabled={s.index === 0} onClick={() => onSwap(s.index, s.index - 1)} aria-label="move up">↑</button>
-                <button type="button" disabled={s.index === 10} onClick={() => onSwap(s.index, s.index + 1)} aria-label="move down">↓</button>
-              </span>
-            ),
+            action: <span className="sheet-slot-note" title={describeWeights(w)} />,
           };
         })}
-        footer={<>Keeper <b>{designatedKeeper(picks)?.name ?? "–"}</b> · overs covered <b>{oversCovered(picks)}</b>/20 · the number on the right is each man's batting number at that position</>}
+        footer={<>Keeper <b>{designatedKeeper(picks)?.name ?? "–"}</b> · overs covered <b>{oversCovered(picks)}</b>/20 · the order is the order you drafted; Bat is each man's number at that position</>}
       />
       <label className="row">
         Captain
