@@ -1,5 +1,6 @@
 import type { CaptainOut, EditionOut } from "../../../wcdraft/src/engine/data.ts";
 import { TeamSheet } from "../components/TeamSheet.tsx";
+import { usePicksFit } from "../game/fit-load.ts";
 import { SLOTS, designatedKeeper, lineupProblems, oversCovered, squadRating } from "../game/rules.ts";
 import { batInSlot, describeWeights, slotWeights } from "../game/slots.ts";
 import type { RunState } from "../game/types.ts";
@@ -13,6 +14,8 @@ export function LineupScreen({ state, captains, editions, onCaptain, onBack, onS
   const picks = state.picks;
   const defaultCaptain = picks.filter(Boolean).map((p) => ({ p: p!, c: rated(p!.id) })).filter((x) => x.c).sort((a, b) => b.c!.z - a.c!.z)[0]?.p.id ?? null;
   const captainId = state.captainId ?? defaultCaptain;
+  // Each man's batting number at his slot in this World Cup under the coach, as the draft showed it.
+  const pickFits = usePicksFit(picks, state.identity?.editionId ?? "", state.coach, editions);
   return (
     <section className="card">
       <p className="eyebrow">Lineup · squad rating {squadRating(picks)} · overs {oversCovered(picks)}/20</p>
@@ -29,7 +32,8 @@ export function LineupScreen({ state, captains, editions, onCaptain, onBack, onS
           return {
             slot: s,
             player: p,
-            batHere: p && p.batShown ? batInSlot(p, w) : null,
+            batHere: p ? pickFits?.get(p.id)?.atSlot[s.index] ?? (p.batShown ? batInSlot(p, w) : null) : null,
+            bowlHere: p ? pickFits?.get(p.id)?.bowling?.final ?? null : null,
             action: <span className="sheet-slot-note" title={describeWeights(w)} />,
           };
         })}

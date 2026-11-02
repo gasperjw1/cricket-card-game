@@ -144,7 +144,7 @@ export function App() {
   if (loadError) return <main className="shell"><p className="error">Could not load the data files: {loadError}. Run <code>npm run sync:data --workspace draft</code> after building the wcdraft outputs.</p></main>;
 
   return (
-    <main className="shell">
+    <main className={`shell ${state.step === "draft" ? "shell-draft" : ""}`}>
       <header className="top">
         <h1 onClick={() => { if (state.step === "home" || window.confirm("Leave this run and start again? It can't be recovered.")) dispatch({ type: "home" }); }}>World Cup Draft</h1>
         <span className="seed">{state.seed ? `seed ${state.seed} · ` : ""}<a href="/" className="back-link">Swipe Sixer</a></span>
@@ -154,7 +154,9 @@ export function App() {
       {state.step === "identity" && shared && (
         <IdentityScreen identity={state.identity} editions={shared.editions} venues={shared.venues} squads={state.identity ? squadsByEdition?.get(state.identity.editionId) ?? [] : []} rerolls={state.identityRerolls} onReroll={() => spinIdentity(true)} onConfirm={() => dispatch({ type: "confirmIdentity" })} />
       )}
-      {state.step === "coach" && <CoachScreen panel={state.coachPanel} rerolls={state.coachRerolls} onReroll={() => spinCoaches(true)} onPick={(coach) => dispatch({ type: "pickCoach", coach })} />}
+      {state.step === "coach" && shared && (
+        <CoachScreen panel={state.coachPanel} rerolls={state.coachRerolls} identity={state.identity} editions={shared.editions} venues={shared.venues} squads={state.identity ? squadsByEdition?.get(state.identity.editionId) ?? [] : []} onReroll={() => spinCoaches(true)} onPick={(coach) => dispatch({ type: "pickCoach", coach })} />
+      )}
       {state.step === "draft" && shared && (
         <DraftScreen state={state} editions={shared.editions} venues={shared.venues} squads={state.identity ? squadsByEdition?.get(state.identity.editionId) ?? [] : []} onPlace={(player, slot) => dispatch({ type: "place", player, slot })} onReroll={() => void spinSquad(true)} onLineup={() => dispatch({ type: "toLineup" })} />
       )}

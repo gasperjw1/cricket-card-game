@@ -1,4 +1,15 @@
+/**
+ * The draft card (overhauled 2026-11-01): every card has the same geometry so a grid of them
+ * lines up. A tier bar down the left edge; the name on one line with the side and year on the
+ * right; a fixed row of marks (role, hand, bowling code, WK); a Bat cell and a Bowl cell side by
+ * side, each a big number over a three-segment phase bar, dimmed with a dash when the card hides
+ * that skill; and a last line with the card's numbers in the World Cup being played (era, position
+ * and pace/spin mix) and what the coach does to it. One footnote mark covers a thin record, an
+ * estimate or a projection; the detail pane says which.
+ */
+
 import type { BattingStyle, StyleOut } from "../../../wcdraft/src/ratings/model.ts";
+import type { PlayerFit } from "../game/fit.ts";
 import type { PoolPlayer, VsClass } from "../game/types.ts";
 
 export function TierBadge({ tier }: { tier: string }) {
@@ -26,13 +37,7 @@ export function VsNumber({ value, other }: { value: VsClass | null; other: VsCla
   return <><b className={splitClass(value, other)}>{value.n}{value.estimated ? "*" : ""}</b>{value.odi && <span className="vs-odi">ODI</span>}</>;
 }
 
-const vsTitle = (label: string, v: VsClass | null) => {
-  if (!v) return "";
-  if (v.estimated) return `${label}: estimate from the batting level and hand; only ${v.balls} balls faced`;
-  return `${label}: from ${v.balls} balls faced${v.odi ? ", ODIs included because there were too few in T20" : ""}`;
-};
-
-/** What each batting style means, for tooltips and the who-won panel. */
+/** What each batting style means, for tooltips and the detail pane. */
 export const STYLE_NOTES: Record<BattingStyle, string> = {
   Aggressor: "fast from ball one and keeps going",
   Complete: "rotates early, then scores big",
@@ -44,14 +49,8 @@ export const STYLE_NOTES: Record<BattingStyle, string> = {
 
 const signedPoints = (n: number) => `${n >= 0 ? "+" : "−"}${Math.abs(n).toFixed(1)}`;
 
-function styleTitle(s: StyleOut): string {
-  return `${s.tag}: ${STYLE_NOTES[s.tag]}. Against peers, first 10 balls: boundary % ${signedPoints(s.startBoundary)}, dot % ${signedPoints(s.startDot)}, strike rate ${signedPoints(s.startSR)}. Ball 11 on: strike rate ${signedPoints(s.laterSR)}.`;
-}
-
-/** The card's projected tag, or null when both numbers rest on the record before the World Cup. */
-function projectedTitle(p: PoolPlayer): string | null {
-  const skills = [p.batProjected && p.batShown ? `Batting (${p.batProjected} balls)` : "", p.bowlProjected && p.bowlShown ? `Bowling (${p.bowlProjected} balls)` : ""].filter(Boolean);
-  return skills.length ? `${skills.join(" and ")} leans on the balls after this World Cup began, because the record before it was too thin.` : null;
+export function styleTitle(s: StyleOut): string {
+  return `${s.tag}: ${STYLE_NOTES[s.tag]}. Against peers, first 10 balls: boundary % ${signedPoints(s.startBoundary)}, dot % ${signedPoints(s.startDot)}, strike rate ${signedPoints(s.startSR)}; from ball 11: strike rate ${signedPoints(s.laterSR)} (${s.balls} balls).`;
 }
 
 export function archetypeLabel(p: PoolPlayer): string {
@@ -62,41 +61,78 @@ export function archetypeLabel(p: PoolPlayer): string {
   return parts.join(" · ") || p.role;
 }
 
-export function PlayerCard({ player, selected, compact, ineligible, onClick }: { player: PoolPlayer; selected?: boolean; compact?: boolean; ineligible?: boolean; onClick?: () => void }) {
-  const p = player;
-  const projected = projectedTitle(p);
+/** The card's one footnote: why a number should be read with care, or null. */
+export function footnote(p: PoolPlayer): string | null {
+  const notes: string[] = [];
+  if ((p.batShown && p.batLow) || (p.bowlShown && p.bowlLow)) notes.push("thin record");
+  if ((p.batShown && p.batProjected) || (p.bowlShown && p.bowlProjected)) notes.push("projected from later balls");
+  if (p.batShown && (p.vsPace?.estimated || p.vsSpin?.estimated)) notes.push("pace/spin split estimated");
+  return notes.length ? notes.join("; ") : null;
+}
+
+/** Whether the card shows the player as someone who bowls (a bowler or all-rounder, or anyone with a shown bowling number). */
+export const bowls = (p: PoolPlayer) => !!p.bowlingType && p.bowlingType !== "none" && (p.bowlShown || p.role === "bowler" || p.role === "all-rounder");
+
+const signed = (n: number) => (n > 0 ? `+${n}` : `${n}`);
+const deltaClass = (n: number) => (n > 0 ? "num-good" : n < 0 ? "num-bad" : "muted");
+
+function PhaseBar({ phases, shown }: { phases: Record<"pp" | "mid" | "death", number>; shown: boolean }) {
+  // Each segment's height is the phase number on the 40–99 card scale, so a death-overs specialist reads at a glance.
+  const h = (n: number) => `${Math.max(8, Math.min(100, ((n - 40) / 59) * 100))}%`;
   return (
-    <button type="button" className={`player ${selected ? "selected" : ""} ${compact ? "compact" : ""} ${ineligible ? "ineligible" : ""}`} onClick={onClick} disabled={!onClick || ineligible} title={ineligible ? "Your side still needs bowlers or a keeper; only they can be taken now" : undefined}>
-      <div className="player-head">
-        <TierBadge tier={p.tier} />
-        <span className="player-name">{p.name}</span>
-        <span className="player-meta">{p.team} {p.editionId}</span>
-      </div>
-      <div className="player-line">
-        <span className="arch">{archetypeLabel(p)}</span>
-        {p.style && p.batShown && p.role !== "bowler" && <span className={`tag style style-${p.style.tag.toLowerCase()}`} title={styleTitle(p.style)}>{p.style.tag}</span>}
-        {p.keeper && <span className="tag">WK</span>}
-        {p.hand && <span className="tag muted">{p.hand === "L" ? "LHB" : "RHB"}</span>}
-        {p.bowlingType && p.bowlingType !== "none" && (p.bowlShown || p.role === "bowler" || p.role === "all-rounder") && <span className="tag muted" title={bowlingTypeName(p.bowlingType)}>{p.bowlingType}</span>}
-        {p.squadPlayer && <span className="tag muted">squad player</span>}
-        {projected && <span className="tag muted" title={projected}>projected</span>}
-      </div>
-      {!compact && (
-        <div className="phases">
-          {p.batShown ? (
-            <div><span className="k">Bat</span> <b>{p.bat}{p.batLow ? "*" : ""}</b> <small>{p.batPhases.pp} / {p.batPhases.mid} / {p.batPhases.death}</small></div>
-          ) : <div><span className="k">Bat</span> <small className="muted">rarely bats</small></div>}
-          {p.bowlShown ? (
-            <div><span className="k">Bowl</span> <b>{p.bowl}{p.bowlLow ? "*" : ""}</b> <small>{p.bowlPhases.pp} / {p.bowlPhases.mid} / {p.bowlPhases.death}</small></div>
-          ) : <div><span className="k">Bowl</span> <small className="muted">rarely bowls</small></div>}
-        </div>
-      )}
-      {!compact && p.batShown && (
-        <div className="vs-line" title={`${vsTitle("Against pace", p.vsPace)}. ${vsTitle("Against spin", p.vsSpin)}.`}>
-          <span className="k">v pace</span> <VsNumber value={p.vsPace} other={p.vsSpin} />
-          <span className="k">v spin</span> <VsNumber value={p.vsSpin} other={p.vsPace} />
-        </div>
-      )}
+    <span className={`pc-bar ${shown ? "" : "off"}`} aria-hidden="true">
+      <i style={{ height: shown ? h(phases.pp) : "8%" }} /><i style={{ height: shown ? h(phases.mid) : "8%" }} /><i style={{ height: shown ? h(phases.death) : "8%" }} />
+    </span>
+  );
+}
+
+function SkillCell({ label, shown, value, low, phases, title }: { label: string; shown: boolean; value: number; low: boolean; phases: Record<"pp" | "mid" | "death", number>; title: string }) {
+  return (
+    <span className={`pc-skill ${shown ? "" : "off"}`} title={title}>
+      <span className="pc-k">{label}</span>
+      <span className="pc-n">{shown ? <>{value}{low ? <sup>*</sup> : null}</> : "–"}</span>
+      <PhaseBar phases={phases} shown={shown} />
+      <span className="pc-ph">{shown ? `${phases.pp} · ${phases.mid} · ${phases.death}` : label === "Bat" ? "rarely bats" : "rarely bowls"}</span>
+    </span>
+  );
+}
+
+export function PlayerCard({ player, fit, hereEdition, selected, ineligible, onClick }: { player: PoolPlayer; fit?: PlayerFit | null; hereEdition?: string; selected?: boolean; ineligible?: boolean; onClick?: () => void }) {
+  const p = player;
+  const note = footnote(p);
+  const wk = p.keeper;
+  return (
+    <button type="button" className={`pc tier-edge-${p.tier.toLowerCase()} ${selected ? "selected" : ""} ${ineligible ? "ineligible" : ""}`} onClick={onClick} disabled={ineligible} aria-pressed={selected}>
+      <span className="pc-head">
+        <span className="pc-name" title={p.name}>{p.name}</span>
+        <span className="pc-from">{p.team} {p.editionId}</span>
+      </span>
+      <span className="pc-marks">
+        <span className="pc-role" title={archetypeLabel(p)}>{archetypeLabel(p)}</span>
+        <span className={`pc-mark ${p.hand ? "" : "blank"}`}>{p.hand ? (p.hand === "L" ? "LHB" : "RHB") : " "}</span>
+        <span className={`pc-mark ${bowls(p) ? "" : "blank"}`} title={bowls(p) ? bowlingTypeName(p.bowlingType!) : undefined}>{bowls(p) ? p.bowlingType : " "}</span>
+        <span className={`pc-mark ${wk ? "wk" : "blank"}`}>{wk ? "WK" : " "}</span>
+      </span>
+      <span className="pc-skills">
+        <SkillCell label="Bat" shown={p.batShown} value={p.bat} low={!!note && p.batShown && (p.batLow || !!p.batProjected)} phases={p.batPhases} title={p.batShown ? `Batting ${p.bat}: powerplay ${p.batPhases.pp}, middle ${p.batPhases.mid}, death ${p.batPhases.death}` : "The card does not rate his batting"} />
+        <SkillCell label="Bowl" shown={p.bowlShown} value={p.bowl} low={!!note && p.bowlShown && (p.bowlLow || !!p.bowlProjected)} phases={p.bowlPhases} title={p.bowlShown ? `Bowling ${p.bowl}: powerplay ${p.bowlPhases.pp}, middle ${p.bowlPhases.mid}, death ${p.bowlPhases.death}` : "The card does not rate his bowling"} />
+      </span>
+      <span className="pc-foot">
+        {p.batShown ? (
+          <span className="pc-vs" title={`Batting number against pace and against spin${note ? ` (${note})` : ""}`}>
+            <span className="pc-k">v pace</span> <VsNumber value={p.vsPace} other={p.vsSpin} /> <span className="pc-k">v spin</span> <VsNumber value={p.vsSpin} other={p.vsPace} />
+          </span>
+        ) : <span className="pc-vs muted">no batting record</span>}
+        <span className="pc-here" title={hereEdition ? `The card in ${hereEdition}: era, usual position and pace/spin mix, then the coach's intent` : undefined}>
+          {fit === undefined ? "" : fit === null ? <span className="muted">…</span> : (
+            <>
+              {hereEdition ? <span className="pc-k">{hereEdition}</span> : null}
+              {fit.batting ? <> <span className="pc-k">bat</span> <b>{fit.batting.final}</b>{fit.batting.coachFit !== 0 ? <small className={deltaClass(fit.batting.coachFit)} title="Fit with the coach: how he fares against what the coach's tempo does to every batter">{signed(fit.batting.coachFit)} fit</small> : null}</> : null}
+              {fit.bowling ? <> <span className="pc-k">bowl</span> <b>{fit.bowling.final}</b></> : null}
+            </>
+          )}
+        </span>
+      </span>
     </button>
   );
 }

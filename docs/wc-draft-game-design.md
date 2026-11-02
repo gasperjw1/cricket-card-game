@@ -1121,6 +1121,30 @@ fielding. The simulation is not required to reproduce real results (§11).
   choice in every case (no best-fit auto-place), the sheet shows Bat and Bowl numbers, and **the
   batting order cannot be changed after the draft** (the move arrows were removed; the slot a man
   is placed in is the decision, and the lineup screen only names the captain).
+- **Card overhaul, three-pane draft and draft-time fit (2026-11-01, after the team sheet):**
+  every card has the same geometry (`PlayerCard.tsx`: tier colour down the left edge, name with
+  side and year, a fixed row of marks for role, hand, bowling code and WK, Bat and Bowl cells with
+  the number over a three-segment phase bar, dimmed with a dash where the card hides a skill, pace
+  and spin on the last line); the small print (thin record, projection, estimate, style, domestic
+  balls) moved to a detail pane (`PlayerDetail.tsx`). The draft screen (`DraftScreen.tsx`) is three
+  panes that scroll inside themselves: squad, detail with the slot chooser, team sheet; the page
+  itself no longer scrolls; under 900px the squad and sheet are tabs and the detail is a bottom
+  sheet. The coach screen now names the side and year and carries the grounds brief above the
+  three coaches. **Draft-time fit** (`game/fit.ts`, loaders and hooks in `fit-load.ts`): each card
+  shows its number in the World Cup being played (era + usual position + pace/spin mix, the sum the
+  result screen's Player ratings tab prints) and the slot chooser and sheet quote the engine's own
+  number at each position, so the draft and the result tab agree to the point (checked on a full
+  run). The coach step is the engine's `applyIntent`, measured over the 2016 field as mostly level:
+  an attacking coach lifts every batter about +3 (mean 2.9, SD 0.8) and a holding one costs about
+  −3, so it is shown in two parts, the field-wide lift and the **fit** (this batter against the
+  field under that coach), and the card chip shows the fit. Open from this: (a) the intent model
+  makes an attacking coach a free lift for the whole side in the value metric, which is a balance
+  question for the engine (hazard per SD against boundary per SD), not for the card; (b) bowling
+  "era" steps of ±13 between 2012 and 2016 look too large and are probably the bowling field
+  scale's lower tail, to be checked against the engine's economy and strike rates by edition;
+  (c) the Gazette's batting-order table prints card numbers, not the numbers in this World Cup;
+  (d) a pitch term for bowlers by class was not built because the engine has no pace/spin
+  condition yet (see `project_conditions_findings`); slower balls, cutters and swing are later.
 - **Agreed order after the refit (2026-11-01):** (1) associates fix in the ratings: no-record
   players sit on the global position-band prior, so Italy 2026 bowls at 71 against India's 74 and a
   few tournament balls can make a 77 (shrink empty records toward the side's own mean or an
