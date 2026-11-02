@@ -151,6 +151,17 @@ export const BANK: Bank = {
       "For {loser} the tournament ended here. {team} march on.",
       "{team} knocked {loser} out of the World Cup.",
     ],
+    final: [
+      "{team} are world champions. {loser} fell at the last.",
+      "The World Cup belongs to {team}; {loser} will think about this one for a long time.",
+      "It all came down to this, and it was {team} who held their nerve; {loser} had come so far for nothing.",
+      "{team} lifted the trophy, and {loser} were left with the memory of a final that got away.",
+    ],
+    rainReduced: [
+      "Rain cut the match to {overs:over} a side before a ball was bowled.",
+      "The weather had its say first: {overs:over} a side.",
+      "A shortened match, {overs:over} each, after rain delayed the start.",
+    ],
     nailBiter: [
       "{team} won it [narrowly].",
       "It finished [narrowly] in favour of {team}.",
@@ -231,6 +242,7 @@ export const BANK: Bank = {
     lateSurge: ["{team} win from {peakRate} an over needed.", "{team} needed {peakRate} an over late and got there.", "Late surge: {team} win from {peakRate} an over."],
     finalOverTwenty: ["{team} take {runs} off the last over to win.", "{runs} off the final over; {team} win.", "Final over goes for {runs}; {team} home."],
     superOver: ["{team} win the super over.", "Tie; {team} take the super over.", "Super over to {team}."],
+    final: ["{team} are world champions.", "{team} win the World Cup; {loser} beaten in the final.", "The World Cup goes to {team}."],
     bowlOut: ["{team} win the bowl-out.", "Tie; bowl-out to {team}."],
     coinToss: ["Tie; {team} win on the toss of a coin."],
     "record:highestTotal": ["{team} {value} for {value2}: the highest total {scopeText}.", "A record total {scopeText}: {team} {value} for {value2}."],

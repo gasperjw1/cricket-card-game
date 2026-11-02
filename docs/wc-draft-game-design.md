@@ -1185,6 +1185,28 @@ fielding. The simulation is not required to reproduce real results (§11).
   about 320 frames and fragments and should grow toward the 600–900 agreed; the souvenir issue
   still has its old content (next phase); the preview's batting-order table still prints card
   numbers.
+- **Gazette review round, 2026-11-02 (after Yash's playtest):** the innings section follows the
+  tab chosen; **records are news only when they beat all T20 World Cups or all full-member
+  T20Is** (`wcdraft/src/analysis/records.ts` writes the real books before each edition from
+  Cricsheet into `records.json`; the client folds three books, this World Cup, all World Cups,
+  all T20Is, and the sentence names the scope and the old holder, e.g. Dwayne Smith's 4 for 18
+  past Collingwood's 4 for 22 of 2006; a record of this World Cup alone is a note on the Tables
+  page); the lone hand is told inside the match's shape (`matchSlots`: low-scoring thriller, rout,
+  contest) with no percentages; the a/an rule follows the sound ("a one-sided affair"); the
+  standings carry **NRR** to date (`tableTo`, a side bowled out charged its full allotment);
+  **what the paper may know on the day**: a group exit is only written once the stage has no
+  match left, and the next fixture is only printed when it is in the same stage or the stage is
+  complete; the **final** has its own facts and stop press ("{team} are world champions"); a
+  rain-shortened match is a fact and the score boxes read "9.3 of 12 overs" and, for a chase rain
+  ended, the par (the engine has no revised target: a pre-start reduction gives both sides the
+  same overs, a mid-chase cut is decided on par); every report gets at least one line; one fact
+  sentence per player and no stand/collapse repeats of the innings paragraphs; the 2007 preview
+  says it is the first T20 World Cup; USA, UAE and PNG are abbreviated on cards, sheets, tables,
+  scorecards and in the copy (`teamLabel` / `labelTeams` in `lib/names.ts`). A research pass over
+  ~120 real headlines and ~45 report openers is in `wc-draft-report-style-corpus-2026-11-02.md`;
+  the bank is still to be grown from it. **Future work flagged by Yash:** the era step on cards
+  (a 2012 card in 2009 drops hard, and earlier cards sometimes gain) comes from the field-relative
+  scale, not from years apart; replace it with a years-apart or adaptability rule.
 - **Agreed order after the refit (2026-11-01):** (1) associates fix in the ratings: no-record
   players sit on the global position-band prior, so Italy 2026 bowls at 71 against India's 74 and a
   few tournament balls can make a 77 (shrink empty records toward the side's own mean or an

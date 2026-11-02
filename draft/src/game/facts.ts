@@ -180,7 +180,7 @@ export interface Baseline {
   t20i: BaselineBook;
 }
 
-const asEntry = (m: BaselineMark): RecordEntry => ({ value: m.value, value2: m.value2, holder: m.holder, holderId: m.holderId, team: m.team, opp: m.opp, date: m.date, fixtureKey: `real:${m.editionId || m.date}` });
+const asEntry = (m: BaselineMark): RecordEntry => ({ value: m.value, value2: m.value2, holder: m.holderId ? fullName(m.holderId, m.holder) : m.holder, holderId: m.holderId, team: m.team, opp: m.opp, date: m.date, fixtureKey: `real:${m.editionId || m.date}` });
 
 /** A real record book as a client book, with the displaced mark as its one line of history. */
 export function bookFromBaseline(book: BaselineBook | undefined): RecordBook {
@@ -279,6 +279,8 @@ export interface FactContext {
   records: RecordsAt;
   /** This stage is a knockout. */
   knockout: boolean;
+  /** This match is the final. */
+  final?: boolean;
   /** Each side's record in the tournament before this match. */
   before: Map<string, { won: number; lost: number; played: number }>;
   /** Edition-relative marks: a total or chase at or above these is big here, a total at or under `lowTotal` is low. */
@@ -326,7 +328,9 @@ export function factsFor(f: FixtureResult, ctx: FactContext): Fact[] {
   if (f.tieBreak) add(f.tieBreak.method === "super-over" ? "superOver" : f.tieBreak.method === "bowl-out" ? "bowlOut" : "coinToss", 1, f.winner, null);
   if (f.margin && "dls" in f.margin) add("dls", 2, f.winner, null, { runs: f.margin.runs });
   if (f.winner && loser && !full.has(f.winner) && full.has(loser)) add("upset", 1, f.winner, null, {}, { loser });
-  if (ctx.knockout && f.winner && loser) add("knockout", 2, f.winner, null, {}, { loser });
+  if (ctx.final && f.winner && loser) add("final", 1, f.winner, null, {}, { loser });
+  else if (ctx.knockout && f.winner && loser) add("knockout", 2, f.winner, null, {}, { loser });
+  if (f.rain?.kind === "reduced") add("rainReduced", 3, null, null, { overs: f.rain.oversPerSide });
   if (f.winner && f.margin && !f.tieBreak) {
     const m = f.margin;
     if ("wickets" in m) {

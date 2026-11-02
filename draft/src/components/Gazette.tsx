@@ -17,7 +17,7 @@ import type { IssueCopy, Paper } from "../game/paper.ts";
 import { exitStageOf, sideProfile, stageIdOf, tableTo, tournamentTotals, type PlayerTotals } from "../game/stats.ts";
 import { squadRating } from "../game/rules.ts";
 import type { RunState } from "../game/types.ts";
-import { fullName } from "../lib/names.ts";
+import { fullName, labelTeams, teamLabel } from "../lib/names.ts";
 import { marginText, rainText } from "./MatchCard.tsx";
 import { MatchScorecard, oversText } from "./Scorecard.tsx";
 
@@ -48,14 +48,22 @@ function Masthead({ issue, date, matchDay, editionId }: { issue: string; date: s
   );
 }
 
-function InningsBox({ inn, highlight, me }: { inn: InningsResult; highlight: Set<string>; me: string }) {
-  if (inn.legalBalls === 0) return <div className="gz-inn"><div className="gz-inn-head"><span>{inn.team}</span></div><div className="gz-inn-sub">Did not bat</div></div>;
+/** "9.3 of 12 overs" when rain shortened the allotment; the par when rain ended a chase. */
+function inningsSub(inn: InningsResult, rain: FixtureResult["rain"]): string {
+  const short = inn.scheduledOvers < 20;
+  const overs = `${oversText(inn.legalBalls)}${short ? ` of ${inn.scheduledOvers}` : ""} overs`;
+  if (inn.index === 2 && rain?.kind === "chase-cut") return `${overs}, target ${inn.target}; rain ended it${rain.parScore !== null ? `, par ${rain.parScore}` : ""}`;
+  return `${overs}${inn.target !== null ? `, target ${inn.target}` : ""}`;
+}
+
+function InningsBox({ inn, rain, highlight, me }: { inn: InningsResult; rain: FixtureResult["rain"]; highlight: Set<string>; me: string }) {
+  if (inn.legalBalls === 0) return <div className="gz-inn"><div className="gz-inn-head"><span>{teamLabel(inn.team)}</span></div><div className="gz-inn-sub">Did not bat</div></div>;
   const bats = [...inn.batting].filter((b) => b.balls > 0 || b.out).sort((a, b) => b.runs - a.runs || a.balls - b.balls).slice(0, 3);
   const bowlers = [...inn.bowling].sort((a, b) => b.wickets - a.wickets || a.runs - b.runs).slice(0, 2);
   return (
     <div className="gz-inn">
-      <div className="gz-inn-head"><span>{inn.team}</span><b>{inn.runs}/{inn.wickets}</b></div>
-      <div className="gz-inn-sub">{oversText(inn.legalBalls)} overs{inn.target !== null ? `, target ${inn.target}` : ""}</div>
+      <div className="gz-inn-head"><span>{teamLabel(inn.team)}</span><b>{inn.runs}/{inn.wickets}</b></div>
+      <div className="gz-inn-sub">{inningsSub(inn, rain)}</div>
       <table className="gz-figures"><tbody>
         {bats.map((b) => <tr key={b.id} className={inn.team === me && highlight.has(b.id) ? "mine" : ""}><td>{fullName(b.id, b.name)}</td><td>{b.runs}{b.out ? "" : "*"} ({b.balls})</td></tr>)}
         {bowlers.map((w) => <tr key={w.id} className={inn.team !== me && highlight.has(w.id) ? "mine" : ""}><td>{fullName(w.id, w.name)}</td><td>{w.wickets}/{w.runs} ({oversText(w.balls)})</td></tr>)}
@@ -69,9 +77,9 @@ function Standings({ stage, fixture, group, me }: { stage: StageResult; fixture:
   return (
     <section className="gz-box">
       <h4>{stage.label}, Group {group}</h4>
-      <table className="gz-table">
-        <thead><tr><th>Team</th><th>P</th><th>W</th><th>L</th><th>NR</th><th>Pts</th></tr></thead>
-        <tbody>{rows.map((r) => <tr key={r.team} className={r.team === me ? "mine" : ""}><td>{r.team}</td><td>{r.played}</td><td>{r.won}</td><td>{r.lost}</td><td>{r.noResult}</td><td>{r.points}</td></tr>)}</tbody>
+      <table className="gz-table gz-standings">
+        <thead><tr><th>Team</th><th>P</th><th>W</th><th>L</th><th>NR</th><th>Pts</th><th>NRR</th></tr></thead>
+        <tbody>{rows.map((r) => <tr key={r.team} className={r.team === me ? "mine" : ""}><td>{teamLabel(r.team)}</td><td>{r.played}</td><td>{r.won}</td><td>{r.lost}</td><td>{r.noResult}</td><td>{r.points}</td><td className="gz-nrr">{r.nrr > 0 ? "+" : ""}{r.nrr.toFixed(3)}</td></tr>)}</tbody>
       </table>
     </section>
   );
@@ -81,7 +89,7 @@ function Leaders({ fixtures, highlight, me }: { fixtures: FixtureResult[]; highl
   const totals = [...tournamentTotals(fixtures).values()];
   const runs = [...totals].sort((a, b) => b.runs - a.runs || a.balls - b.balls).slice(0, 3);
   const wickets = [...totals].filter((t) => t.wickets > 0).sort((a, b) => b.wickets - a.wickets || a.bowlRuns - b.bowlRuns).slice(0, 3);
-  const row = (t: PlayerTotals, value: string) => <tr key={`${t.team}${t.id}${value}`} className={t.team === me && highlight.has(t.id) ? "mine" : ""}><td>{t.name}<small>{t.team}</small></td><td>{value}</td></tr>;
+  const row = (t: PlayerTotals, value: string) => <tr key={`${t.team}${t.id}${value}`} className={t.team === me && highlight.has(t.id) ? "mine" : ""}><td>{t.name}<small>{teamLabel(t.team)}</small></td><td>{value}</td></tr>;
   return (
     <section className="gz-box">
       <h4>Tournament leaders</h4>
@@ -168,8 +176,8 @@ export function CoverPage({ state, result, edition, venues, mine, coachName, mat
     <article className="gz-page">
       <Masthead issue="Issue 1 · Preview" date={longDate(mine[0]?.date ?? null)} matchDay={matchDay} editionId={result.editionId} />
       <div className="gz-kicker">Squad announced</div>
-      <h2 className="gz-headline">{me} name their eleven for the {result.editionId} World Cup</h2>
-      <p className="gz-stand">{picks.length} players from across the tournament's history, with a squad rating of {squadRating(state.picks)}{coachName ? `, and ${coachName} as coach` : ""}{hosts ? `. The tournament is in ${hosts}.` : "."}{state.identity!.standIn ? ` ${me} stand in for a side that did not take part.` : ""}</p>
+      <h2 className="gz-headline">{teamLabel(me)} name their eleven for the {result.editionId} World Cup</h2>
+      <p className="gz-stand">{picks.length} players from across the tournament's history, with a squad rating of {squadRating(state.picks)}{coachName ? `, and ${coachName} as coach` : ""}{hosts ? `. The tournament is in ${hosts}.` : "."}{result.editionId === "2007" ? " It is the first T20 World Cup ever played, and nobody yet knows what a good score is." : ""}{state.identity!.standIn ? ` ${teamLabel(me)} stand in for a side that did not take part.` : ""}</p>
       <div className="gz-columns">
         <section className="gz-box gz-wide">
           <h4>The batting order</h4>
@@ -182,7 +190,7 @@ export function CoverPage({ state, result, edition, venues, mine, coachName, mat
         <aside className="gz-rail">
           <section className="gz-box">
             <h4>Opening fixtures</h4>
-            <ul className="gz-list">{opening.map((f) => { const v = venues.find((x) => x.id === f.venueId); return <li key={f.teams.join()}><b>v {f.teams.find((t) => t !== me)}</b><br />{v ? `${v.name}, ${v.city}` : ""}{f.date ? `, ${shortDate(f.date)}` : ""}</li>; })}</ul>
+            <ul className="gz-list">{opening.map((f) => { const v = venues.find((x) => x.id === f.venueId); return <li key={f.teams.join()}><b>v {teamLabel(f.teams.find((t) => t !== me) ?? "")}</b><br />{v ? `${v.name}, ${v.city}` : ""}{f.date ? `, ${shortDate(f.date)}` : ""}</li>; })}</ul>
           </section>
           {captain && <section className="gz-box"><h4>Captain</h4><p>{captain.name}</p></section>}
         </aside>
@@ -203,11 +211,16 @@ export function MatchPage({ fixture, index, mine, all, result, me, venues, highl
   const position = all.indexOf(f);
   const played = mine.slice(0, index + 1).filter((m) => stageIdOf(m) === stageId);
   const record = { won: played.filter((m) => m.winner === me).length, lost: played.filter((m) => m.winner && m.winner !== me).length };
-  const story = useMemo(() => storyFor(f, { me, seed, stageLabel: f.stageLabel, city: venue?.city ?? null, last, final: finalStage?.id === stageId, knockout: !stage?.groups, record }), [f, me, seed, venue, last, finalStage, stage, stageId, record.won, record.lost]);
+  // What the paper may know on the day: a group exit is only certain once the stage has no match left to
+  // play, and the next fixture is only printed when it is in this stage or this stage is complete.
+  const stageDone = !all.slice(position + 1).some((x) => stageIdOf(x) === stageId);
+  const knownLast = last && (!stage?.groups || stageDone);
+  const story = useMemo(() => storyFor(f, { me, seed, stageLabel: f.stageLabel, city: venue?.city ?? null, last: knownLast, final: finalStage?.id === stageId, knockout: !stage?.groups, record }), [f, me, seed, venue, knownLast, finalStage, stage, stageId, record.won, record.lost]);
   const key = `${f.stageId}|${f.teams.join("|")}`;
   const copy = paper.issues.get(key);
   const records = paper.records.get(key);
-  const next = mine[index + 1];
+  const upcoming = mine[index + 1];
+  const next = upcoming && (stageIdOf(upcoming) === stageId || stageDone) ? upcoming : undefined;
   const nextVenue = next ? venues.find((v) => v.id === next.venueId) : undefined;
   const rain = rainText(f);
   const [i1, i2] = f.innings ?? [];
@@ -232,7 +245,7 @@ export function MatchPage({ fixture, index, mine, all, result, me, venues, highl
           {copy?.stopPress && <div className="gz-stop"><span className="gz-stop-label">Stop press</span><span>{copy.stopPress}</span></div>}
           <div className="gz-columns">
             <div className="gz-main">
-              {i1 && i2 && <div className="gz-score"><InningsBox inn={i1} highlight={highlight} me={me} /><InningsBox inn={i2} highlight={highlight} me={me} /></div>}
+              {i1 && i2 && <div className="gz-score"><InningsBox inn={i1} rain={f.rain} highlight={highlight} me={me} /><InningsBox inn={i2} rain={f.rain} highlight={highlight} me={me} /></div>}
               <div className="gz-report">
                 {story.paragraphs.map((p, i) => <p key={i}>{p}</p>)}
                 {copy && copy.sentences.length > 0 && <p>{copy.sentences.join(" ")}</p>}
@@ -243,9 +256,9 @@ export function MatchPage({ fixture, index, mine, all, result, me, venues, highl
               </p>
             </div>
             <aside className="gz-rail">
-              <section className="gz-box"><h4>{me} so far</h4><RunSoFar mine={mine} upTo={index} me={me} /></section>
+              <section className="gz-box"><h4>{teamLabel(me)} so far</h4><RunSoFar mine={mine} upTo={index} me={me} /></section>
               {stage?.groups && f.group && <Standings stage={stage} fixture={f} group={f.group} me={me} />}
-              {next && <section className="gz-box"><h4>Next for {me}</h4><p className="gz-next"><b>{next.stageLabel}, v {next.teams.find((t) => t !== me)}</b><br />{nextVenue ? `${nextVenue.name}, ${nextVenue.city}` : ""}{next.date ? `, ${shortDate(next.date)}` : ""}</p></section>}
+              {next && <section className="gz-box"><h4>Next for {teamLabel(me)}</h4><p className="gz-next"><b>{next.stageLabel}, v {teamLabel(next.teams.find((t) => t !== me) ?? "")}</b><br />{nextVenue ? `${nextVenue.name}, ${nextVenue.city}` : ""}{next.date ? `, ${shortDate(next.date)}` : ""}</p></section>}
               {copy && <LateNews copy={copy} />}
             </aside>
           </div>
@@ -253,7 +266,7 @@ export function MatchPage({ fixture, index, mine, all, result, me, venues, highl
       )}
       {(section === "inn1" || section === "inn2") && i1 && i2 && (
         <div className="gz-innings">
-          <div className="gz-kicker">{section === "inn1" ? "First" : "Second"} innings · {(section === "inn1" ? i1 : i2).team} {(section === "inn1" ? i1 : i2).runs}/{(section === "inn1" ? i1 : i2).wickets} ({oversText((section === "inn1" ? i1 : i2).legalBalls)} ov){section === "inn2" && i2.target !== null ? ` · target ${i2.target}` : ""}</div>
+          <div className="gz-kicker">{section === "inn1" ? "First" : "Second"} innings · {teamLabel((section === "inn1" ? i1 : i2).team)} {(section === "inn1" ? i1 : i2).runs}/{(section === "inn1" ? i1 : i2).wickets} · {inningsSub(section === "inn1" ? i1 : i2, f.rain)}</div>
           <MatchScorecard innings={[i1, i2]} highlight={highlight} me={me} only={section === "inn1" ? 1 : 2} />
         </div>
       )}
@@ -308,7 +321,7 @@ export function FinalPage({ result, all, mine, me, highlight, paper, date, onAga
           </section>
           <section className="gz-box">
             <h4>The results</h4>
-            <ul className="gz-list">{mine.map((f, i) => <li key={i}><b>{f.stageLabel}, v {f.teams.find((t) => t !== me)}</b><br />{marginText(f)}</li>)}</ul>
+            <ul className="gz-list">{mine.map((f, i) => <li key={i}><b>{f.stageLabel}, v {teamLabel(f.teams.find((t) => t !== me) ?? "")}</b><br />{labelTeams(marginText(f))}</li>)}</ul>
           </section>
           <Records book={finalBook} title="Records of the tournament" />
         </div>

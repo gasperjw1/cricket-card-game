@@ -8,7 +8,7 @@
 
 import type { ReactNode } from "react";
 import type { PoolPlayer, Slot } from "../game/types.ts";
-import { fullName } from "../lib/names.ts";
+import { fullName, teamLabel } from "../lib/names.ts";
 import { bowlingTypeName } from "./PlayerCard.tsx";
 
 export interface SheetRow {
@@ -67,7 +67,7 @@ export function TeamSheet({ side, edition, coach, rows, captainId, keeperId, foo
               {p ? (
                 <span className="sheet-name">
                   <span className="sheet-player" title={bowlingTypeName(p.bowlingType ?? "")}>{sheetName(p, captainId, keeperId)}</span>
-                  <span className="sheet-line">{sheetLine(p)}{p.team && p.editionId ? ` · ${p.team} ${p.editionId}` : ""}</span>
+                  <span className="sheet-line">{sheetLine(p)}{p.team && p.editionId ? ` · ${teamLabel(p.team)} ${p.editionId}` : ""}</span>
                 </span>
               ) : (
                 <span className="sheet-name"><span className="sheet-blank">{r.slot.label}</span></span>

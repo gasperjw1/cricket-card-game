@@ -9,7 +9,7 @@ import type { ReactNode } from "react";
 import type { VenueOut } from "../../../wcdraft/src/engine/data.ts";
 import type { FixtureResult } from "../../../wcdraft/src/engine/tournament.ts";
 import type { InningsResult } from "../../../wcdraft/src/engine/types.ts";
-import { fullName } from "../lib/names.ts";
+import { fullName, labelTeams, teamLabel } from "../lib/names.ts";
 import { oversText } from "./Scorecard.tsx";
 
 export function marginText(f: FixtureResult): string {
@@ -36,14 +36,14 @@ function Innings({ inn, fielding, highlight, me }: { inn: InningsResult; fieldin
   const best = [...inn.bowling].sort((a, b) => b.wickets - a.wickets || a.runs - b.runs).slice(0, 2);
   return (
     <div className="mc-side">
-      <div className="mc-team"><span className="mc-innings">{ordinal(inn.index)} innings</span> {inn.team}</div>
+      <div className="mc-team"><span className="mc-innings">{ordinal(inn.index)} innings</span> {teamLabel(inn.team)}</div>
       <div className="mc-score">{inn.runs}<span className="mc-wk">/{inn.wickets}</span></div>
       <div className="small">{oversText(inn.legalBalls)} ov{inn.target !== null ? ` · target ${inn.target}` : ""}</div>
       <div className="mc-lines">
         {bats.map((b) => <div key={b.id} className={inn.team === me && highlight.has(b.id) ? "hl" : ""}><span>{fullName(b.id, b.name)}</span><b>{b.runs}{b.out ? "" : "*"} ({b.balls})</b></div>)}
       </div>
       <div className="mc-lines mc-bowl">
-        <div className="small">{fielding} bowling</div>
+        <div className="small">{teamLabel(fielding)} bowling</div>
         {best.map((w) => <div key={w.id} className={fielding === me && highlight.has(w.id) ? "hl" : ""}><span>{fullName(w.id, w.name)}</span><b>{w.wickets}/{w.runs}</b> <small>({oversText(w.balls)})</small></div>)}
       </div>
     </div>
@@ -60,7 +60,7 @@ export function MatchCard({ fixture, me, stageLabel, venues, highlight, children
     <article className={`mc ${won}`}>
       <div className="mc-head">
         <span className="eyebrow">{stageLabel}{f.group ? ` · Group ${f.group}` : ""}{venue ? ` · ${venue.name}, ${venue.city}` : ""}{f.date ? ` · ${f.date}` : ""}</span>
-        <b className={`mc-result ${won}`}>{marginText(f)}</b>
+        <b className={`mc-result ${won}`}>{labelTeams(marginText(f))}</b>
       </div>
       {i1 && i2 ? (
         <div className="mc-teams">
@@ -68,7 +68,7 @@ export function MatchCard({ fixture, me, stageLabel, venues, highlight, children
           <Innings inn={i2} fielding={i1.team} highlight={highlight} me={me} />
         </div>
       ) : (
-        <p><b>{f.teams[0]} {f.scores[0]}</b> v <b>{f.teams[1]} {f.scores[1]}</b></p>
+        <p><b>{teamLabel(f.teams[0])} {f.scores[0]}</b> v <b>{teamLabel(f.teams[1])} {f.scores[1]}</b></p>
       )}
       <p className="small mc-foot">
         {f.tossWinner ? `${f.tossWinner} won the toss and chose to ${f.tossDecision === "bat" ? "bat" : "field"}` : ""}

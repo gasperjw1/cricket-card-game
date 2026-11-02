@@ -6,7 +6,7 @@
 
 import type { FixtureResult } from "../../../wcdraft/src/engine/tournament.ts";
 import type { BatterLine, BowlerLine, InningsResult } from "../../../wcdraft/src/engine/types.ts";
-import { familiar, fullName } from "../lib/names.ts";
+import { familiar, fullName, labelTeams } from "../lib/names.ts";
 
 export interface Story {
   kicker: string;
@@ -90,7 +90,7 @@ export function storyFor(f: FixtureResult, ctx: StoryContext): Story {
   const where = ctx.city ? ` in ${ctx.city}` : "";
   const kicker = `${ctx.stageLabel}${f.group ? ` · Group ${f.group}` : ""}`;
   const [i1, i2] = f.innings ?? [];
-  if (!i1 || !i2) return { kicker, headline: `No play${where}`, standfirst: `${me} and ${opp} share the points.`, paragraphs: [`${me} and ${opp} could not finish a game${where}.`] };
+  if (!i1 || !i2) return labelStory({ kicker, headline: `No play${where}`, standfirst: `${me} and ${opp} share the points.`, paragraphs: [`${me} and ${opp} could not finish a game${where}.`] });
 
   const shape = shapeOf(f);
   const won = f.winner === me;
@@ -165,7 +165,12 @@ export function storyFor(f: FixtureResult, ctx: StoryContext): Story {
     paragraphs.push(played === 1 ? `${me} ${w === 1 ? "start the" : "begin their"} ${ctx.stageLabel} with a ${w === 1 ? "win" : "defeat"}.` : `${me} ${l === 0 ? `are unbeaten after ${played} matches` : `are now ${w}–${l}`} in the ${ctx.stageLabel}.`);
   }
 
-  return { kicker, headline, standfirst, paragraphs };
+  return labelStory({ kicker, headline, standfirst, paragraphs });
+}
+
+/** Team names in the copy as the paper prints them (USA, UAE, PNG). */
+function labelStory(story: Story): Story {
+  return { kicker: labelTeams(story.kicker), headline: labelTeams(story.headline), standfirst: labelTeams(story.standfirst), paragraphs: story.paragraphs.map(labelTeams) };
 }
 
 export interface Verdict {

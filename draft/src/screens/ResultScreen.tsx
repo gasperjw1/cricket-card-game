@@ -7,6 +7,7 @@ import { MatchView } from "../components/MatchView.tsx";
 import { PlayerRatings } from "../components/PlayerRatings.tsx";
 import { MatchScorecard } from "../components/Scorecard.tsx";
 import { writePaper } from "../game/paper.ts";
+import { teamLabel } from "../lib/names.ts";
 import type { RecordsOut } from "../../../wcdraft/src/analysis/records.ts";
 import { verdictFor } from "../game/gazette.ts";
 import type { SimulateInput } from "../game/simulate.ts";
@@ -42,7 +43,7 @@ export function ResultScreen({ state, result: played, editions, venues, records,
   const mine = useMemo(() => all.filter((f) => f.teams.includes(me)), [all, me]);
   const totals = useMemo(() => tournamentTotals(all), [all]);
   // The whole paper is written once: facts and records for every match, the side's issues with stop press and late news.
-  const paper = useMemo(() => writePaper(all, mine, me, result.seed, result.editionId, edition?.environment.runsPerOver ?? 7.5, new Set(result.stages.filter((s) => !s.groups).map((s) => s.id)), records[result.editionId]), [all, mine, me, result, edition, records]);
+  const paper = useMemo(() => writePaper(all, mine, me, result.seed, result.editionId, edition?.environment.runsPerOver ?? 7.5, new Set(result.stages.filter((s) => !s.groups).map((s) => s.id)), records[result.editionId], result.stages[result.stages.length - 1]?.id ?? null), [all, mine, me, result, edition, records]);
   const ranked: Ranked[] = [...totals.values()].map((t) => ({ ...t, me: t.team === me && highlight.has(t.id) }));
   const top = (key: (t: Ranked) => number, tie: (t: Ranked) => number, filter: (t: Ranked) => boolean = () => true, n = 10) =>
     ranked.filter(filter).filter((t) => key(t) > 0).sort((a, b) => key(b) - key(a) || tie(a) - tie(b)).slice(0, n);
@@ -175,7 +176,7 @@ export function ResultScreen({ state, result: played, editions, venues, records,
                       {rows.map((r, i) => (
                         <tr key={r.team} className={r.team === me ? "me" : ""}>
                           <td className="pos">{i + 1}</td>
-                          <td className="team">{r.team}</td>
+                          <td className="team">{teamLabel(r.team)}</td>
                           <td>{r.played}</td><td>{r.won}</td><td>{r.lost}</td><td>{r.noResult}</td>
                           <td className="pts">{r.points}</td>
                           <td className="nrr">{r.nrr > 0 ? "+" : ""}{r.nrr.toFixed(3)}</td>

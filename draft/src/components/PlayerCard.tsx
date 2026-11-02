@@ -11,6 +11,7 @@
 import type { BattingStyle, StyleOut } from "../../../wcdraft/src/ratings/model.ts";
 import type { PlayerFit } from "../game/fit.ts";
 import type { PoolPlayer, VsClass } from "../game/types.ts";
+import { teamLabel } from "../lib/names.ts";
 
 export function TierBadge({ tier }: { tier: string }) {
   return <span className={`tier tier-${tier.toLowerCase()}`}>{tier}</span>;
@@ -105,7 +106,7 @@ export function PlayerCard({ player, fit, hereEdition, selected, ineligible, onC
     <button type="button" className={`pc tier-edge-${p.tier.toLowerCase()} ${selected ? "selected" : ""} ${ineligible ? "ineligible" : ""}`} onClick={onClick} disabled={ineligible} aria-pressed={selected}>
       <span className="pc-head">
         <span className="pc-name" title={p.name}>{p.name}</span>
-        <span className="pc-from">{p.team} {p.editionId}</span>
+        <span className="pc-from">{teamLabel(p.team)} {p.editionId}</span>
       </span>
       <span className="pc-marks">
         <span className="pc-role" title={archetypeLabel(p)}>{archetypeLabel(p)}</span>

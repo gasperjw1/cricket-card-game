@@ -20,6 +20,20 @@ export function surnameOf(short: string): string {
   return splitShortName(short).surname;
 }
 
+const TEAM_LABELS: Record<string, string> = { "United States of America": "USA", "United Arab Emirates": "UAE", "Papua New Guinea": "PNG" };
+
+/** A side's name as the paper prints it: the long associate names abbreviated (asked 2026-11-02), everyone else as is. */
+export function teamLabel(team: string): string {
+  return TEAM_LABELS[team] ?? team;
+}
+
+/** The same abbreviation applied inside a finished sentence. */
+export function labelTeams(text: string): string {
+  let out = text;
+  for (const [long, short] of Object.entries(TEAM_LABELS)) out = out.split(long).join(short);
+  return out;
+}
+
 /** The name a story or a scorebook uses on its own: "Kohli", and "Hasaranga" where Cricsheet has "PWH de Silva". */
 export function familiar(id: string, short: string): string {
   const display = fullName(id, short);

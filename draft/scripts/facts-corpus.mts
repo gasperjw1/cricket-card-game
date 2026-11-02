@@ -50,7 +50,8 @@ for (const id of EDITIONS) {
     const before = recordsBefore(all);
     for (const f of all) {
       const key = fixtureKey(f);
-      const facts = factsFor(f, { editionId: id, records: records.get(key)!, knockout: knockouts.has(f.stageId.replace(/-reserve$/, "")), before: before.get(key)!, marks });
+      const stageId = f.stageId.replace(/-reserve$/, "");
+      const facts = factsFor(f, { editionId: id, records: records.get(key)!, knockout: knockouts.has(stageId), final: stageId === data.progression.stages[data.progression.stages.length - 1]?.id, before: before.get(key)!, marks });
       matches += 1;
       const keys = new Set(facts.map((x) => x.key));
       for (const k of keys) {

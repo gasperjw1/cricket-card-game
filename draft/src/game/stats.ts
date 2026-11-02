@@ -114,13 +114,17 @@ export interface TableRow {
   lost: number;
   noResult: number;
   points: number;
+  /** Net run rate to date: runs per over scored less conceded, a side bowled out charged its full allotment. */
+  nrr: number;
 }
 
 /** A group's table up to and including one fixture: what the morning paper would have printed. */
 export function tableTo(stage: StageResult, fixture: FixtureResult): TableRow[] {
   const inGroup = inPlayOrder(stage.fixtures.filter((f) => f.group === fixture.group));
   const rows = new Map<string, TableRow>();
-  const row = (team: string) => rows.get(team) ?? rows.set(team, { team, played: 0, won: 0, lost: 0, noResult: 0, points: 0 }).get(team)!;
+  const tally = new Map<string, { forRuns: number; forBalls: number; againstRuns: number; againstBalls: number }>();
+  const row = (team: string) => rows.get(team) ?? rows.set(team, { team, played: 0, won: 0, lost: 0, noResult: 0, points: 0, nrr: 0 }).get(team)!;
+  const runRate = (team: string) => tally.get(team) ?? tally.set(team, { forRuns: 0, forBalls: 0, againstRuns: 0, againstBalls: 0 }).get(team)!;
   for (const f of inGroup) for (const team of f.teams) row(team);
   // By teams, not identity: the paper's fixtures are copies carrying their stage label.
   const upTo = inGroup.findIndex((f) => f.teams.join() === fixture.teams.join());
@@ -132,8 +136,20 @@ export function tableTo(stage: StageResult, fixture: FixtureResult): TableRow[] 
       else if (f.winner === team) { r.won += 1; r.points += 2; }
       else r.lost += 1;
     }
+    if (f.winner && f.innings && !f.rain) {
+      for (const inn of f.innings) {
+        const balls = inn.wickets >= 10 ? inn.scheduledOvers * 6 : inn.legalBalls;
+        const batting = runRate(inn.team), bowling = runRate(f.teams.find((t) => t !== inn.team) ?? "");
+        batting.forRuns += inn.runs; batting.forBalls += balls;
+        bowling.againstRuns += inn.runs; bowling.againstBalls += balls;
+      }
+    }
   }
-  return [...rows.values()].sort((a, b) => b.points - a.points || b.won - a.won || a.team.localeCompare(b.team));
+  for (const r of rows.values()) {
+    const t = tally.get(r.team);
+    if (t) r.nrr = (t.forBalls ? (6 * t.forRuns) / t.forBalls : 0) - (t.againstBalls ? (6 * t.againstRuns) / t.againstBalls : 0);
+  }
+  return [...rows.values()].sort((a, b) => b.points - a.points || b.won - a.won || b.nrr - a.nrr || a.team.localeCompare(b.team));
 }
 
 export interface SideProfile {

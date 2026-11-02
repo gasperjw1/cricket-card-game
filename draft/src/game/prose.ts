@@ -11,6 +11,7 @@
  */
 
 import type { FixtureResult } from "../../../wcdraft/src/engine/tournament.ts";
+import { teamLabel } from "../lib/names.ts";
 import { BANK, type BankLists } from "./bank.ts";
 import type { Fact } from "./facts.ts";
 
@@ -104,12 +105,18 @@ export function render(template: string, slots: Slots, picker: Picker, lists: Ba
 /** Capitalise the first letter, collapse doubled spaces, and fix "a" before a vowel sound. */
 export function tidy(text: string): string {
   const t = text.replace(/\s+/g, " ").replace(/\s+([,.;:])/g, "$1").trim();
-  return t.replace(/\ba ([aeiouAEIOU])/g, "an $1").replace(/^./, (c) => c.toUpperCase());
+  // "an innings" but "a one-sided affair", "a unanimous", "a useful", "a European": the sound, not the letter.
+  return t.replace(/\ba ([aeiouAEIOU][a-z-]*)/g, (m, word: string) => (/^(one|uni|use|usu|eu|ute|ubi|ura|uti)/i.test(word) ? m : `an ${word}`)).replace(/^./, (c) => c.toUpperCase());
 }
+
+/** Team-name slots, printed as the paper abbreviates them. */
+const TEAM_SLOTS = ["team", "loser", "opp", "prevTeam", "winner", "chaser", "setter"];
 
 /** The slots a fact offers: its numbers, its names, and the player and team it is about. */
 export function factSlots(fact: Fact, extra: Slots = {}): Slots {
-  return { ...fact.n, ...fact.s, team: fact.team ?? "", player: fact.player?.name ?? "", surname: surname(fact.player?.name ?? ""), ...extra };
+  const slots: Slots = { ...fact.n, ...fact.s, team: fact.team ?? "", player: fact.player?.name ?? "", surname: surname(fact.player?.name ?? ""), ...extra };
+  for (const k of TEAM_SLOTS) if (typeof slots[k] === "string") slots[k] = teamLabel(slots[k] as string);
+  return slots;
 }
 
 export const surname = (name: string) => name.trim().split(" ").slice(-1)[0] ?? name;
@@ -130,10 +137,11 @@ export function stopPress(fact: Fact, picker: Picker, extra: Slots = {}): string
 
 /** One line for a result, as late news prints it. */
 export function resultLine(f: FixtureResult, picker: Picker): string {
-  const [a, b] = f.teams;
+  const [a, b] = f.teams.map(teamLabel) as [string, string];
   if (!f.winner) return render(picker.pick("result:noResult", BANK.results.noResult), { a, b }, picker);
-  const loser = f.winner === a ? b : a;
-  const slots: Slots = { winner: f.winner, loser };
+  const winner = teamLabel(f.winner);
+  const loser = winner === a ? b : a;
+  const slots: Slots = { winner, loser };
   if (f.tieBreak) {
     const key = f.tieBreak.method === "super-over" ? "superOver" : f.tieBreak.method === "bowl-out" ? "bowlOut" : "coinToss";
     return render(picker.pick(`result:${key}`, BANK.results[key]), slots, picker);
@@ -164,7 +172,7 @@ export function matchSlots(f: FixtureResult, marks: { lowTotal: number; highTota
   const rout = m ? ("wickets" in m ? m.ballsLeft >= 36 && m.wickets >= 7 : m.runs >= 50) : false;
   const finish = tight ? "thriller" : rout ? "rout" : "contest";
   const matchShape = finish === "rout" ? (tempo ? `${tempo} rout` : "one-sided affair") : `${tempo} ${finish}`.trim();
-  const chaser = i2?.team ?? "", setter = i1?.team ?? "";
+  const chaser = teamLabel(i2?.team ?? ""), setter = teamLabel(i1?.team ?? "");
   return { total, target, tempo, finish, matchShape, chaser, setter, chasing: `chasing ${target}`, defending: `defending ${total}` };
 }
 

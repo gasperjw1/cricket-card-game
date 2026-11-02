@@ -121,6 +121,8 @@ describe("prose", () => {
     assert.equal(count(23, "nth"), "23rd");
     assert.equal(count(6, "six"), "6 sixes");
     assert.equal(tidy("a  innings , here ."), "An innings, here.");
+    assert.equal(tidy("steering them in a one-sided affair and a useful stand"), "Steering them in a one-sided affair and a useful stand");
+    assert.equal(tidy("a opening stand"), "An opening stand");
     const picker = new Picker("x");
     assert.equal(render("{team} beat {loser} by {runs:run}.", { team: "A", loser: "B", runs: 1 }, picker), "A beat B by 1 run.");
     assert.throws(() => render("{missing}", {}, picker));

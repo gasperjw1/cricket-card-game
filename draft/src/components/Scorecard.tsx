@@ -6,7 +6,7 @@
 
 import { useState } from "react";
 import type { Dismissal, InningsResult } from "../../../wcdraft/src/engine/types.ts";
-import { familiar, fullName } from "../lib/names.ts";
+import { familiar, fullName, teamLabel } from "../lib/names.ts";
 
 export function oversText(balls: number): string {
   return `${Math.floor(balls / 6)}${balls % 6 ? `.${balls % 6}` : ""}`;
@@ -54,7 +54,7 @@ export function InningsCard({ inn, fielding, highlight, me }: { inn: InningsResu
     <div className="inn-card">
       <div className="inn-col inn-bat">
         <table className="sc-table sc-bat">
-          <thead><tr><th>{inn.team} batting</th><th>R</th><th>B</th><th>4s</th><th>6s</th><th>SR</th></tr></thead>
+          <thead><tr><th>{teamLabel(inn.team)} batting</th><th>R</th><th>B</th><th>4s</th><th>6s</th><th>SR</th></tr></thead>
           <tbody>
             {batted.map((b) => {
               const sr = b.balls ? (100 * b.runs) / b.balls : 0;
@@ -74,7 +74,7 @@ export function InningsCard({ inn, fielding, highlight, me }: { inn: InningsResu
       </div>
       <div className="inn-col inn-bowl">
         <table className="sc-table">
-          <thead><tr><th>{fielding} bowling</th><th>O</th><th>M</th><th>R</th><th>W</th><th>Econ</th></tr></thead>
+          <thead><tr><th>{teamLabel(fielding)} bowling</th><th>O</th><th>M</th><th>R</th><th>W</th><th>Econ</th></tr></thead>
           <tbody>
             {inn.bowling.map((w) => {
               const econ = w.balls ? (6 * w.runs) / w.balls : 0;
@@ -111,7 +111,7 @@ export function MatchScorecard({ innings, highlight, me, only }: { innings: Inni
     <div className="sc">
       {!only && innings.length > 1 && (
         <div className="inn-tabs" role="tablist">
-          {innings.map((i) => <button key={i.index} type="button" role="tab" aria-selected={i.index === shown} className={i.index === shown ? "on" : ""} onClick={() => setShown(i.index)}>{i.index === 1 ? "1st" : "2nd"} innings <span className="muted">{i.team} {i.runs}/{i.wickets}</span></button>)}
+          {innings.map((i) => <button key={i.index} type="button" role="tab" aria-selected={i.index === shown} className={i.index === shown ? "on" : ""} onClick={() => setShown(i.index)}>{i.index === 1 ? "1st" : "2nd"} innings <span className="muted">{teamLabel(i.team)} {i.runs}/{i.wickets}</span></button>)}
         </div>
       )}
       <InningsCard inn={inn} fielding={fielding} highlight={highlight} me={me} />

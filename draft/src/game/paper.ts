@@ -41,6 +41,9 @@ export interface Paper {
   issues: Map<string, IssueCopy>;
 }
 
+/** Facts the report's own innings paragraphs already tell (the biggest stand, the sharpest fall). */
+const NOT_IN_REPORT = new Set(["collapse", "bigStand"]);
+
 /** Facts already carried by the result line, so late news does not say them twice. */
 const IN_RESULT_LINE = new Set(["nailBiter", "rout", "dls", "superOver", "bowlOut", "coinToss", "noResult", "lastBall", "knockout"]);
 
@@ -55,7 +58,7 @@ export function matchDaysOf(all: FixtureResult[]): Map<string, number> {
   return days;
 }
 
-export function writePaper(all: FixtureResult[], mine: FixtureResult[], me: string, seed: string, editionId: string, runsPerOver: number, knockoutStages: Set<string>, baseline?: Baseline): Paper {
+export function writePaper(all: FixtureResult[], mine: FixtureResult[], me: string, seed: string, editionId: string, runsPerOver: number, knockoutStages: Set<string>, baseline?: Baseline, finalStage: string | null = null): Paper {
   const picker = new Picker(`${seed}:paper`);
   const records = foldRecords(all, baseline);
   const before = recordsBefore(all);
@@ -64,7 +67,8 @@ export function writePaper(all: FixtureResult[], mine: FixtureResult[], me: stri
   const facts = new Map<string, Fact[]>();
   for (const f of all) {
     const key = fixtureKey(f);
-    facts.set(key, factsFor(f, { editionId, records: records.get(key)!, knockout: knockoutStages.has(f.stageId.replace(/-reserve$/, "")), before: before.get(key)!, marks }));
+    const stageId = f.stageId.replace(/-reserve$/, "");
+    facts.set(key, factsFor(f, { editionId, records: records.get(key)!, knockout: knockoutStages.has(stageId), final: finalStage !== null && stageId === finalStage, before: before.get(key)!, marks }));
   }
   const issues = new Map<string, IssueCopy>();
   let previous = -1;
@@ -76,11 +80,16 @@ export function writePaper(all: FixtureResult[], mine: FixtureResult[], me: stri
     const ranked = [...own].sort((a, b) => a.tier - b.tier);
     const top = ranked.find((x) => x.tier === 1) ?? null;
     const stop = top ? stopPress(top, picker, slots) : null;
+    // The innings paragraphs already tell the biggest stand and the collapse, and a player gets one
+    // sentence here at most (his highest-tier fact), so the report does not say "4 for 18" twice.
     const sentences: string[] = [];
+    const named = new Set<string>();
     for (const fact of ranked) {
       if (sentences.length >= 3 || fact.tier > 2) break;
+      if (NOT_IN_REPORT.has(fact.key)) continue;
+      if (fact.player && named.has(fact.player.id)) continue;
       const s = factSentence(fact, picker, slots);
-      if (s) sentences.push(s);
+      if (s) { sentences.push(s); if (fact.player) named.add(fact.player.id); }
     }
     if (!sentences.length) {
       const note = ranked.find((x) => x.tier === 3);
