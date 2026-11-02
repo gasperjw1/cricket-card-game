@@ -2,6 +2,7 @@ import type { Phase } from "../../../wcdraft/src/cricsheet/match.ts";
 import type { BattingArchetype, BowlingArchetype, StyleOut, Tier } from "../../../wcdraft/src/ratings/model.ts";
 import type { CoachOut } from "../../../wcdraft/src/engine/data.ts";
 import type { TournamentResult } from "../../../wcdraft/src/engine/tournament.ts";
+import type { MatchPlan } from "./simulate.ts";
 
 /** A batter's number against one bowling class. */
 export interface VsClass {
@@ -102,6 +103,8 @@ export interface RunState {
   spinRerolls: number;
   picks: (PoolPlayer | null)[];
   captainId: string | null;
+  /** The between-match lever: a plan for the side's nth match holds from that match onward. */
+  plans: (MatchPlan | undefined)[];
   result: TournamentResult | null;
   error: string | null;
 }

@@ -11,6 +11,7 @@ import { CoachScreen } from "./screens/CoachScreen.tsx";
 import { DraftScreen } from "./screens/DraftScreen.tsx";
 import { LineupScreen } from "./screens/LineupScreen.tsx";
 import { ResultScreen } from "./screens/ResultScreen.tsx";
+import type { MatchPlan } from "./game/simulate.ts";
 
 type Action =
   | { type: "start"; seed: string }
@@ -26,12 +27,14 @@ type Action =
   | { type: "backToDraft" }
   | { type: "simulating" }
   | { type: "result"; result: RunState["result"] }
+  | { type: "plan"; index: number; plan: MatchPlan }
+  | { type: "replanned"; result: RunState["result"] }
   | { type: "error"; message: string }
   | { type: "home" };
 
 const initial = (seed = ""): RunState => ({
   seed, step: "home", identity: null, identityRerolls: BUDGET.identityRerolls, coachPanel: [], coach: null, coachRerolls: BUDGET.coachRerolls,
-  spin: null, spinNumber: 0, spinRerolls: BUDGET.spinRerolls, picks: Array.from({ length: 11 }, () => null), captainId: null, result: null, error: null,
+  spin: null, spinNumber: 0, spinRerolls: BUDGET.spinRerolls, picks: Array.from({ length: 11 }, () => null), captainId: null, plans: [], result: null, error: null,
 });
 
 function reduce(s: RunState, a: Action): RunState {
@@ -58,6 +61,8 @@ function reduce(s: RunState, a: Action): RunState {
     case "backToDraft": return { ...s, step: "draft" };
     case "simulating": return { ...s, step: "simulating", error: null };
     case "result": return { ...s, step: "result", result: a.result };
+    case "plan": { const plans = [...s.plans]; plans[a.index] = { ...plans[a.index], ...a.plan }; return { ...s, plans }; }
+    case "replanned": return { ...s, result: a.result };
     case "error": return { ...s, step: s.step === "simulating" ? "lineup" : s.step, error: a.message };
     case "home": return initial();
   }
@@ -130,6 +135,21 @@ export function App() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [state.step, state.identity, state.coachPanel.length, state.spin, universe, shared]);
 
+  // The between-match lever: a plan for the side's nth match re-runs the tournament with that
+  // eleven from match n onward; every fixture is seeded on its own, so earlier matches reproduce.
+  const replan = async (index: number, plan: MatchPlan) => {
+    if (!state.identity) return;
+    const plans = [...state.plans];
+    plans[index] = { ...plans[index], ...plan };
+    dispatch({ type: "plan", index, plan });
+    try {
+      const result = await runTournament({ seed: state.seed, identity: state.identity, picks: state.picks.filter(Boolean) as PoolPlayer[], coach: state.coach, captainId: state.captainId }, plans);
+      dispatch({ type: "replanned", result });
+    } catch (e) {
+      dispatch({ type: "error", message: (e as Error).message });
+    }
+  };
+
   // The lineup screen passes the captain it shows, because a dispatch in the same click has not
   // reached `state` yet; without it the engine fell back to the best-rated player as captain.
   const simulate = async (captainId: string | null = state.captainId) => {
@@ -166,7 +186,7 @@ export function App() {
         <LineupScreen state={state} captains={shared.captains} editions={shared.editions} onCaptain={(id) => dispatch({ type: "captain", id })} onBack={() => dispatch({ type: "backToDraft" })} onSimulate={(captainId) => void simulate(captainId)} />
       )}
       {state.step === "simulating" && <section className="card"><h2>Simulating the {state.identity?.editionId} World Cup…</h2><p>Every match of the tournament, ball by ball.</p></section>}
-      {state.step === "result" && state.result && shared && <ResultScreen state={state} result={state.result} editions={shared.editions} venues={shared.venues} records={shared.records} onAgain={() => dispatch({ type: "home" })} />}
+      {state.step === "result" && state.result && shared && <ResultScreen state={state} result={state.result} editions={shared.editions} venues={shared.venues} records={shared.records} captains={shared.captains} onReplan={(index, plan) => void replan(index, plan)} onAgain={() => dispatch({ type: "home" })} />}
       {rng && state.step !== "home" && state.step !== "result" && <footer className="foot">Spins and simulation are deterministic for this seed.</footer>}
     </main>
   );

@@ -1249,6 +1249,17 @@ fielding. The simulation is not required to reproduce real results (§11).
     itself (rate.ts, relative to its own field) is unchanged; the draft-time fit, the Player
     ratings tab and the souvenir expectations all use the shared scale. This also answers the
     "2012 cards drop hard in 2009" item: the drop was company, not years.
+- **The between-match lever (2026-11-02, step 5a):** no stage-by-stage refactor was needed. Every
+  fixture is seeded on its own (`${seed}:${stageId}:${a}:${b}`), so `TournamentOptions.identity`
+  gained `xiFor(n)`, the eleven for the side's nth match, and the client re-runs the whole
+  tournament with a plan (`MatchPlan`: captain and tempo, `simulate.ts`) that holds from its match
+  onward. A test asserts that a change from match three reproduces matches one and two and every
+  other side's group match exactly, and plays later matches differently. In the paper each match
+  issue carries a **Before the next match** box (captain from the eleven with captaincy ratings;
+  tempo: the coach's own, attack, balanced, hold) that appears only when the next fixture is known
+  (same stage, or the stage complete), and a change keeps the reader on the same issue with that
+  issue's copy unchanged. The batting order stays fixed, as decided. Measured earlier the same day:
+  tempo is a mild bounded lever (hold −1 61% of matches, attack +1 67%, +1.5 65%).
 - **Agreed order after the refit (2026-11-01):** (1) associates fix in the ratings: no-record
   players sit on the global position-band prior, so Italy 2026 bowls at 71 against India's 74 and a
   few tournament balls can make a 77 (shrink empty records toward the side's own mean or an

@@ -7,6 +7,8 @@ import { MatchView } from "../components/MatchView.tsx";
 import { PlayerRatings } from "../components/PlayerRatings.tsx";
 import { MatchScorecard } from "../components/Scorecard.tsx";
 import { writePaper } from "../game/paper.ts";
+import type { MatchPlan } from "../game/simulate.ts";
+import type { CaptainOut } from "../../../wcdraft/src/engine/data.ts";
 import { journeyFor, residuals, souvenirLists, totalsKey } from "../game/souvenir.ts";
 import { useExpectations } from "../game/souvenir-load.ts";
 import { teamLabel } from "../lib/names.ts";
@@ -34,7 +36,7 @@ function Leaders({ title, rows, cols }: { title: string; rows: Ranked[]; cols: {
   );
 }
 
-export function ResultScreen({ state, result: played, editions, venues, records, onAgain }: { state: RunState; result: TournamentResult; editions: EditionOut[]; venues: VenueOut[]; records: RecordsOut; onAgain: () => void }) {
+export function ResultScreen({ state, result: played, editions, venues, records, captains, onReplan, onAgain }: { state: RunState; result: TournamentResult; editions: EditionOut[]; venues: VenueOut[]; records: RecordsOut; captains: CaptainOut[]; onReplan: (index: number, plan: MatchPlan) => void; onAgain: () => void }) {
   const [tab, setTab] = useState<Tab>("matches");
   const me = state.identity!.team;
   const edition = editions.find((e) => e.id === played.editionId);
@@ -103,7 +105,7 @@ export function ResultScreen({ state, result: played, editions, venues, records,
   const renderPage = (p: number) => {
     if (p === 0) return <CoverPage state={state} result={result} edition={edition} venues={venues} mine={mine} coachName={state.coach?.coachName ?? null} matchDay={mine[0] ? paper.matchDays.get(mine[0].date ?? "") ?? null : null} />;
     if (p === lastPage) return <FinalPage result={result} all={all} mine={mine} me={me} highlight={highlight} paper={paper} souvenir={souvenir} journeys={journeys} date={mine[mine.length - 1]?.date ?? null} onAgain={onAgain} onShare={copyResult} shared={copied} />;
-    return <MatchPage fixture={mine[p - 1]!} index={p - 1} mine={mine} all={all} result={result} me={me} venues={venues} highlight={highlight} issue={p + 1} paper={paper} last={p === mine.length} seed={result.seed} />;
+    return <MatchPage fixture={mine[p - 1]!} index={p - 1} mine={mine} all={all} result={result} me={me} venues={venues} highlight={highlight} issue={p + 1} paper={paper} last={p === mine.length} seed={result.seed} lever={{ picks: state.picks.filter(Boolean) as PoolPlayer[], captains, coach: state.coach, captainId: state.captainId, plans: state.plans, onReplan }} />;
   };
 
   if (watching !== null && mine[watching]) {

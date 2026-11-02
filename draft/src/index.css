@@ -343,6 +343,11 @@ h3 { font-size: 16px; margin: 0 0 8px; }
 .gz-late .gz-list li { font-size: 14px; }
 @media (max-width: 640px) { .gz-sections { overflow-x: auto; } .gz-sections button { padding: 8px 12px; font-size: 13px; } }
 
+/* The between-match lever (2026-11-02). */
+.gz-lever { border-top: 2px solid var(--ink); padding-top: 8px; }
+.gz-lever-row { display: grid; grid-template-columns: 64px minmax(0, 1fr); gap: 8px; align-items: center; margin: 6px 0; font-size: 13px; }
+.gz-lever-row select { width: 100%; min-width: 0; background: #fff; color: var(--ink); border: 1px solid var(--ink); border-radius: 2px; padding: 6px 8px; font-family: "Source Serif 4", Georgia, serif; }
+
 /* Souvenir issue and the journey (2026-11-02). */
 .gz-residuals li { font-size: 14px; line-height: 1.45; }
 .gz-residuals li.mine b:first-child { color: #1e4d3a; }

@@ -6,7 +6,7 @@
 
 import type { EngineTeam } from "../../../wcdraft/src/engine/types.ts";
 import { simulateTournament, type TournamentResult } from "../../../wcdraft/src/engine/tournament.ts";
-import type { CoachOut, EditionOut } from "../../../wcdraft/src/engine/data.ts";
+import type { CaptainOut, CoachOut, EditionOut } from "../../../wcdraft/src/engine/data.ts";
 import { loadEditionData, loadRatings, loadShared } from "../lib/data.ts";
 import { computeFinal, editionEnv, type EditionEnv, type PlayerFinal } from "./final-ratings.ts";
 import { designatedKeeper } from "./rules.ts";
@@ -39,11 +39,39 @@ export async function assembleTeam(input: SimulateInput): Promise<EngineTeam> {
   return { name: input.identity.team, players, battingOrder: players.map((p) => p.id), intent: input.coach?.intent, captainZ: captain?.z, captainId: leader };
 }
 
-export async function runTournament(input: SimulateInput): Promise<TournamentResult> {
-  const [data, xi] = await Promise.all([loadEditionData(input.identity.editionId), assembleTeam(input)]);
+/** What the user may change before one of the side's matches (the between-match lever, 2026-11-02). */
+export interface MatchPlan {
+  captainId?: string | null;
+  /** A tempo in place of the coach's own: the same intent in every phase. */
+  intent?: "coach" | "attack" | "balanced" | "hold";
+}
+
+const TEMPO: Record<Exclude<MatchPlan["intent"], undefined | "coach">, number> = { attack: 1, balanced: 0, hold: -1 };
+
+/** The eleven for one match under a plan: same players, the captain and tempo the plan asks for. */
+function planned(base: EngineTeam, input: SimulateInput, plan: MatchPlan | undefined, captains: CaptainOut[]): EngineTeam {
+  if (!plan) return base;
+  const captainId = plan.captainId === undefined ? input.captainId : plan.captainId;
+  const captain = captainId ? captains.filter((c) => c.personId === captainId).sort((a, b) => b.matches - a.matches)[0] : undefined;
+  const intent = plan.intent && plan.intent !== "coach" ? { pp: TEMPO[plan.intent], mid: TEMPO[plan.intent], death: TEMPO[plan.intent] } : input.coach?.intent;
+  return { ...base, intent, captainZ: captain?.z, captainId: captainId ?? base.captainId };
+}
+
+/**
+ * The whole tournament; `plans[n]` changes the side's eleven for its nth match onward. Each
+ * fixture is seeded on its own, so a plan for match n reproduces every earlier match exactly.
+ */
+export async function runTournament(input: SimulateInput, plans: (MatchPlan | undefined)[] = []): Promise<TournamentResult> {
+  const [data, xi, shared] = await Promise.all([loadEditionData(input.identity.editionId), assembleTeam(input), loadShared()]);
+  // A plan holds from its match onward until another plan replaces it.
+  const xiFor = (n: number) => {
+    let plan: MatchPlan | undefined;
+    for (let i = 0; i <= n; i += 1) if (plans[i]) plan = plans[i];
+    return planned(xi, input, plan, shared.captains);
+  };
   // Every fixture keeps its scorecard and ball log (2026-11-01): the gazette's facts, records and
   // late news read CPU matches the same way as yours.
-  return simulateTournament(data, data.progression, { seed: input.seed, identity: { team: input.identity.team, xi }, keepIdentityDetails: true, keepScorecards: true, keepBallLogs: true });
+  return simulateTournament(data, data.progression, { seed: input.seed, identity: { team: input.identity.team, xi, xiFor }, keepIdentityDetails: true, keepScorecards: true, keepBallLogs: true });
 }
 
 /** Every drafted player's final rating in the identity edition; picks are in batting order. */

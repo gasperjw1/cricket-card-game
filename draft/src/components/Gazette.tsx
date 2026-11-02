@@ -8,7 +8,9 @@
  */
 
 import { useMemo, useState } from "react";
-import type { EditionOut, VenueOut } from "../../../wcdraft/src/engine/data.ts";
+import type { CaptainOut, CoachOut, EditionOut, VenueOut } from "../../../wcdraft/src/engine/data.ts";
+import type { MatchPlan } from "../game/simulate.ts";
+import type { PoolPlayer } from "../game/types.ts";
 import type { FixtureResult, StageResult, TournamentResult } from "../../../wcdraft/src/engine/tournament.ts";
 import type { InningsResult } from "../../../wcdraft/src/engine/types.ts";
 import { RECORD_KINDS, type RecordBook, type RecordKind } from "../game/facts.ts";
@@ -202,7 +204,51 @@ export function CoverPage({ state, result, edition, venues, mine, coachName, mat
 
 type Section = "report" | "inn1" | "inn2" | "tables";
 
-export function MatchPage({ fixture, index, mine, all, result, me, venues, highlight, issue, paper, last, seed }: { fixture: Fixtured; index: number; mine: Fixtured[]; all: Fixtured[]; result: TournamentResult; me: string; venues: VenueOut[]; highlight: Set<string>; issue: number; paper: Paper; last: boolean; seed: string }) {
+/** The between-match lever: what the side may change before its next match, and the hand on it. */
+export interface Lever {
+  picks: PoolPlayer[];
+  captains: CaptainOut[];
+  coach: CoachOut | null;
+  captainId: string | null;
+  plans: (MatchPlan | undefined)[];
+  onReplan: (index: number, plan: MatchPlan) => void;
+}
+
+/** The plan in force for the side's nth match: the latest plan at or before it. */
+function planAt(plans: (MatchPlan | undefined)[], n: number): MatchPlan {
+  let plan: MatchPlan = {};
+  for (let i = 0; i <= n; i += 1) if (plans[i]) plan = { ...plan, ...plans[i] };
+  return plan;
+}
+
+function NextMatchLever({ lever, next, me }: { lever: Lever; next: number; me: string }) {
+  const plan = planAt(lever.plans, next);
+  const rated = (id: string) => lever.captains.filter((c) => c.personId === id).sort((a, b) => b.matches - a.matches)[0];
+  const captainId = plan.captainId === undefined ? lever.captainId : plan.captainId;
+  const tempo = plan.intent ?? "coach";
+  return (
+    <section className="gz-box gz-lever">
+      <h4>Before the next match</h4>
+      <p className="gz-note">{teamLabel(me)} may name a captain and set a tempo for the next match and the ones after it. The order is the order you drafted.</p>
+      <label className="gz-lever-row"><span>Captain</span>
+        <select value={captainId ?? ""} onChange={(e) => lever.onReplan(next, { captainId: e.target.value || null })}>
+          <option value="">No rated captain</option>
+          {lever.picks.map((p) => { const c = rated(p.id); return <option key={p.id} value={p.id}>{p.name}{c ? ` · ${c.z > 0 ? "+" : ""}${c.z.toFixed(1)}` : ""}</option>; })}
+        </select>
+      </label>
+      <label className="gz-lever-row"><span>Tempo</span>
+        <select value={tempo} onChange={(e) => lever.onReplan(next, { intent: e.target.value as MatchPlan["intent"] })}>
+          <option value="coach">{lever.coach ? `${lever.coach.coachName}'s own` : "The coach's own"}</option>
+          <option value="attack">Attack in every phase</option>
+          <option value="balanced">Balanced</option>
+          <option value="hold">Hold back</option>
+        </select>
+      </label>
+    </section>
+  );
+}
+
+export function MatchPage({ fixture, index, mine, all, result, me, venues, highlight, issue, paper, last, seed, lever }: { fixture: Fixtured; index: number; mine: Fixtured[]; all: Fixtured[]; result: TournamentResult; me: string; venues: VenueOut[]; highlight: Set<string>; issue: number; paper: Paper; last: boolean; seed: string; lever?: Lever }) {
   const f = fixture;
   const [section, setSection] = useState<Section>("report");
   const venue = venues.find((v) => v.id === f.venueId);
@@ -260,6 +306,7 @@ export function MatchPage({ fixture, index, mine, all, result, me, venues, highl
               <section className="gz-box"><h4>{teamLabel(me)} so far</h4><RunSoFar mine={mine} upTo={index} me={me} /></section>
               {stage?.groups && f.group && <Standings stage={stage} fixture={f} group={f.group} me={me} />}
               {next && <section className="gz-box"><h4>Next for {teamLabel(me)}</h4><p className="gz-next"><b>{next.stageLabel}, v {teamLabel(next.teams.find((t) => t !== me) ?? "")}</b><br />{nextVenue ? `${nextVenue.name}, ${nextVenue.city}` : ""}{next.date ? `, ${shortDate(next.date)}` : ""}</p></section>}
+              {next && lever && <NextMatchLever lever={lever} next={index + 1} me={me} />}
               {copy && <LateNews copy={copy} />}
             </aside>
           </div>

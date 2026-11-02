@@ -71,8 +71,13 @@ export interface TournamentResult {
 
 export interface TournamentOptions {
   seed: number | string;
-  /** Replace this team's eleven in every fixture (the drafted side). */
-  identity?: { team: string; xi: EngineTeam };
+  /**
+   * Replace this team's eleven in every fixture (the drafted side). `xiFor(n)` may give a
+   * different eleven for the side's nth match (0-based): the between-match lever (2026-11-02).
+   * Each fixture is seeded on its own, so a change before match n leaves matches before it as
+   * they were.
+   */
+  identity?: { team: string; xi: EngineTeam; xiFor?: (matchIndex: number) => EngineTeam };
   keepBallLogs?: boolean;
   /** Keep every fixture's innings (scorecards) and player of the match, for tournament-wide stats; ball logs stay identity-only. */
   keepScorecards?: boolean;
@@ -135,7 +140,7 @@ export function simulateTournament(data: EditionData, progression: Progression, 
   const identity = opts.identity ?? null;
   const defaultTeams = new Map<string, EngineTeam>();
   const teamFor = (name: string, label: string, opponent: string): EngineTeam => {
-    if (identity && name === identity.team) return identity.xi;
+    if (identity && name === identity.team) return identity.xiFor ? identity.xiFor(identityRecord?.played ?? 0) : identity.xi;
     const r = real.byPair.get(`${label}|${pairKey(name, opponent)}`);
     if (r) {
       const m = r.team === name ? r.match : r.other;
