@@ -1111,6 +1111,31 @@ fielding. The simulation is not required to reproduce real results (§11).
   India 2024's real eleven wins 66% and the title 15%, the best eleven by card 78% / 55%, the worst
   valid eleven 38% / 0%. Exponents stay 0.7 / 0.7 (0.9 is 0.004 better on Brier but widens the
   first-innings spread 10% beyond real).
+- **Team sheet and scorecard notation (2026-11-01):** the eleven is drawn as a paper team sheet
+  (`draft/src/components/TeamSheet.tsx`) on both the draft and lineup screens: numbered 1–11, full
+  names, † before the keeper and (c) after the captain, hand and bowling code under each name, the
+  batting number for the slot on the right ("70 of 71" when the slot moves it), pencilled lines for
+  open positions, "Place here" on the open rows, the keeper / overs / needs line as the footer. The
+  scorecard now writes fall of wickets as `1-12 (Rohit, 2.3 ov)`, extras as `(b, w, nb)`, marks
+  †keeper and (c), and lists "Did not bat". Decided the same day: placement stays the user's
+  choice in every case (no best-fit auto-place).
+- **Agreed order after the refit (2026-11-01):** (1) associates fix in the ratings: no-record
+  players sit on the global position-band prior, so Italy 2026 bowls at 71 against India's 74 and a
+  few tournament balls can make a 77 (shrink empty records toward the side's own mean or an
+  associate-tier prior; test against the real associate-v-full-member win rate in 2024/2026);
+  (2) player card overhaul (fixed geometry: tier bar, name, fixed tag slots, Bat and Bowl cells
+  with phase bars, pace/spin pair; low-sample, projected, squad player and style in a tap-to-open
+  detail panel) and a fixed three-pane draft layout where the spin squad, the detail/slot chooser
+  and the team sheet each scroll inside their own box; (3) match-by-match hub with a between-match
+  lever (order, captain, intent); (4) daily seed, Performance score, share card; (5) rarity tuning.
+  **Cricket flair, as it comes:** print register throughout (paper, Oswald heads, serif body, rules
+  not boxes, no ICC marks or crests); match view as a ground scoreboard (TOTAL / WKTS / OVERS / LAST
+  MAN / batters / bowler's figures) rather than a TV bug; over ticker `. 1 4 W 2 6`; toss, umpires
+  and referee from Cricsheet officials; "need 45 off 24"; cards in the cigarette-card format with
+  flat silhouettes by hand and action; squad spins as a tour-programme page (real captain, real
+  result); worm, Manhattan, partnership bars and required-rate line from the ball log; era touches
+  (2007 bowl-out, super over from 2009, DRS from 2012, era kit palettes, "Twenty20" in 2007);
+  Cricinfo-voice templated commentary with the live playback.
 - Not yet built: Cricket-IQ mode (names only), head-to-head, leaderboard (performance score beside
   squad rating), share links, Timeless and Tournament Form tags on cards, ratings-visible career
   stats, coach build bonuses and Dynamic Duos (§5.10–5.11), Positionless slot bonus, rarity tuning

@@ -310,3 +310,35 @@ h3 { font-size: 16px; margin: 0 0 8px; }
 .fr-steps, .fr-rates { font-variant-numeric: tabular-nums; }
 .fr-rates th { color: var(--muted); font-size: 11px; font-weight: 600; vertical-align: bottom; }
 .fr-total td { font-weight: 700; border-bottom: none; }
+
+/* Team sheet: the eleven on paper, ruled like the card pinned in the dressing room (2026-11-01). */
+.sheet { --paper: #f3ecdd; --paper-ink: #1f2a24; --paper-muted: #5a5e53; --paper-line: #cfc6b1; --paper-red: #9e2b25; --paper-green: #1e4d3a;
+  background: var(--paper); color: var(--paper-ink); font-family: "Source Serif 4", Georgia, serif; padding: 16px 16px 14px; border-radius: 2px;
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.35), 0 10px 24px rgba(0, 0, 0, 0.35); }
+.sheet-head { border-bottom: 2px solid var(--paper-ink); padding-bottom: 6px; margin-bottom: 4px; }
+.sheet-kicker { display: block; font-family: Oswald, "Arial Narrow", sans-serif; font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--paper-red); }
+.sheet-title { margin: 2px 0 0; font-family: Oswald, "Arial Narrow", sans-serif; font-weight: 500; font-size: 24px; line-height: 1.15; }
+.sheet-year { color: var(--paper-muted); font-weight: 400; }
+.sheet-sub { display: flex; justify-content: space-between; gap: 12px; font-size: 13px; color: var(--paper-muted); margin-top: 2px; }
+.sheet-list { list-style: none; margin: 0; padding: 0; }
+.sheet-row { display: grid; grid-template-columns: 26px minmax(0, 1fr) 52px auto; align-items: center; gap: 0 8px; min-height: 44px; padding: 5px 0; border-bottom: 1px solid var(--paper-line); }
+.sheet-row:last-child { border-bottom: 2px solid var(--paper-ink); }
+.sheet-no { font-family: Oswald, "Arial Narrow", sans-serif; font-size: 15px; color: var(--paper-muted); text-align: right; font-variant-numeric: tabular-nums; }
+.sheet-name { display: grid; min-width: 0; }
+.sheet-player { font-weight: 600; font-size: 15px; line-height: 1.25; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.sheet-line { font-size: 12px; color: var(--paper-muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.sheet-blank { font-style: italic; color: var(--paper-muted); font-size: 13px; display: block; border-bottom: 1px dashed var(--paper-line); padding-bottom: 2px; }
+.sheet-bat { font-family: Oswald, "Arial Narrow", sans-serif; font-size: 20px; text-align: right; font-variant-numeric: tabular-nums; line-height: 1; }
+.sheet-bat small { font-family: "Source Serif 4", Georgia, serif; font-size: 11px; color: var(--paper-muted); display: block; margin-top: 2px; }
+.sheet-action { display: flex; justify-content: flex-end; min-width: 0; }
+.sheet-action:empty { display: none; }
+.sheet-row.open { background: rgba(30, 77, 58, 0.09); margin: 0 -8px; padding-left: 8px; padding-right: 8px; }
+.sheet-place { min-height: 36px; padding: 4px 10px; background: var(--paper-green); color: #f3ecdd; border: 1px solid var(--paper-green); border-radius: 2px; font-family: Oswald, "Arial Narrow", sans-serif; letter-spacing: 0.02em; white-space: nowrap; }
+.sheet-place small { color: #d8e4d6; font-family: "Source Serif 4", Georgia, serif; }
+.sheet .moves { display: flex; gap: 4px; }
+.sheet .moves button { min-width: 34px; min-height: 34px; padding: 0 8px; background: transparent; color: var(--paper-ink); border: 1px solid var(--paper-ink); border-radius: 2px; }
+.sheet .moves button:disabled { opacity: 0.3; }
+.sheet-foot { margin: 8px 0 0; font-size: 12.5px; color: var(--paper-muted); line-height: 1.4; }
+.sheet-foot b { color: var(--paper-ink); font-weight: 600; }
+.sheet-cta { margin-top: 12px; width: 100%; }
+@media (max-width: 899px) { .sheet-row { grid-template-columns: 22px minmax(0, 1fr) 46px auto; } }

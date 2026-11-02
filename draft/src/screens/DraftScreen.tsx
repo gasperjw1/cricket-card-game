@@ -1,8 +1,9 @@
 import { useMemo, useState } from "react";
 import type { EditionOut, SquadOut, VenueOut } from "../../../wcdraft/src/engine/data.ts";
 import { PlayerCard } from "../components/PlayerCard.tsx";
+import { TeamSheet } from "../components/TeamSheet.tsx";
 import { VenueBrief, venueCountsFor } from "../components/VenueBrief.tsx";
-import { SLOTS, designatedKeeper, eligible, keeperCovered, needs, oversCovered, slotsFor } from "../game/rules.ts";
+import { SLOTS, designatedKeeper, eligible, needs, oversCovered, slotsFor } from "../game/rules.ts";
 import { batInSlot, describeWeights, slotWeights } from "../game/slots.ts";
 import type { PoolPlayer, RunState } from "../game/types.ts";
 
@@ -20,6 +21,7 @@ export function DraftScreen({ state, editions, venues, squads, onPlace, onReroll
   const need = needs(state.picks);
   const locked = need.open <= need.bowlers + need.keeper && need.open > 0;
   const needText = [need.bowlers ? `${need.bowlers} more bowler${need.bowlers === 1 ? "" : "s"}` : "", need.keeper ? "a keeper" : ""].filter(Boolean).join(" and ");
+  const keeper = designatedKeeper(state.picks);
   return (
     <section className="draft">
       <div className="card">
@@ -45,28 +47,33 @@ export function DraftScreen({ state, editions, venues, squads, onPlace, onReroll
           </>
         ) : <h2>Spinning…</h2>}
       </div>
-      <aside className="card lineup">
-        <h3>Your XI <span className="small">{filled}/11 · keeper {keeperCovered(state.picks) ? designatedKeeper(state.picks)!.name : "–"} · overs {oversCovered(state.picks)}/20</span></h3>
-        <ol className="slots">
-          {SLOTS.map((s) => {
-            const p = state.picks[s.index];
+      <aside className="lineup">
+        <TeamSheet
+          side={state.identity?.team ?? ""}
+          edition={editionId}
+          coach={state.coach?.coachName ?? null}
+          captainId={null}
+          keeperId={keeper?.id ?? null}
+          rows={SLOTS.map((s) => {
+            const p = state.picks[s.index] ?? null;
             const canPlace = !!selected && openIds.has(s.index);
             const w = weights[s.index]!;
-            const here = p && p.batShown ? batInSlot(p, w) : null;
-            return (
-              <li key={s.index} className={`slot ${canPlace ? "open" : ""} ${p ? "filled" : ""}`} title={`${s.label} ${describeWeights(w)}`}>
-                <span className="slot-label">{s.label}</span>
-                {p ? <PlayerCard player={p} compact /> : (
-                  <button type="button" disabled={!canPlace} onClick={() => { if (selected) { onPlace(selected, s.index); setSelected(null); } }}>
-                    {canPlace ? (selected!.batShown ? <>Place here <small>· bat {batInSlot(selected!, w)}</small></> : "Place here") : "—"}
-                  </button>
-                )}
-                {p && here !== null && here !== p.bat && <span className="inslot" title={`Headline ${p.bat}; ${describeWeights(w)}`}>bat {here} here</span>}
-              </li>
-            );
+            return {
+              slot: s,
+              player: p,
+              batHere: p && p.batShown ? batInSlot(p, w) : null,
+              open: canPlace,
+              action: p ? null : canPlace ? (
+                <button type="button" className="sheet-place" title={describeWeights(w)} onClick={() => { if (selected) { onPlace(selected, s.index); setSelected(null); } }}>
+                  Place here{selected!.batShown ? <small> · bat {batInSlot(selected!, w)}</small> : null}
+                </button>
+              ) : null,
+            };
           })}
-        </ol>
-        {filled === 11 && <button type="button" className="primary" onClick={onLineup}>Review lineup</button>}
+          footer={<>{keeper ? <>Keeper <b>{keeper.name}</b></> : <>No keeper yet</>} · overs covered <b>{oversCovered(state.picks)}</b>/20{needText ? <> · still needs {needText}</> : null}</>}
+        >
+          {filled === 11 && <button type="button" className="primary sheet-cta" onClick={onLineup}>Review lineup</button>}
+        </TeamSheet>
       </aside>
       {selected && (
         <div className="place-sheet" role="group" aria-label={`Place ${selected.name}`}>

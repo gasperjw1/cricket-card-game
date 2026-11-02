@@ -1,6 +1,6 @@
 import type { CaptainOut, EditionOut } from "../../../wcdraft/src/engine/data.ts";
-import { PlayerCard } from "../components/PlayerCard.tsx";
-import { SLOTS, lineupProblems, oversCovered, squadRating } from "../game/rules.ts";
+import { TeamSheet } from "../components/TeamSheet.tsx";
+import { SLOTS, designatedKeeper, lineupProblems, oversCovered, squadRating } from "../game/rules.ts";
 import { batInSlot, describeWeights, slotWeights } from "../game/slots.ts";
 import type { RunState } from "../game/types.ts";
 
@@ -15,24 +15,29 @@ export function LineupScreen({ state, captains, editions, onSwap, onCaptain, onB
     <section className="card">
       <p className="eyebrow">Lineup · squad rating {squadRating(picks)} · overs {oversCovered(picks)}/20</p>
       <h2>{state.identity?.team} {state.identity?.editionId}, coached by {state.coach?.coachName ?? "nobody"}</h2>
-      <ol className="slots">
-        {SLOTS.map((s) => {
-          const p = picks[s.index];
+      <TeamSheet
+        side={state.identity?.team ?? ""}
+        edition={state.identity?.editionId ?? ""}
+        coach={state.coach?.coachName ?? null}
+        captainId={captainId}
+        keeperId={designatedKeeper(picks)?.id ?? null}
+        rows={SLOTS.map((s) => {
+          const p = picks[s.index] ?? null;
           const w = weights[s.index]!;
-          const here = p && p.batShown ? batInSlot(p, w) : null;
-          return (
-            <li key={s.index} className="slot filled" title={`${s.label} ${describeWeights(w)}`}>
-              <span className="slot-label">{s.label}</span>
-              {p && <PlayerCard player={p} compact />}
-              <span className="moves">
-                {here !== null && <span className="inslot" title={`Headline ${p!.bat}; ${describeWeights(w)}`}>bat {here}{here !== p!.bat ? " here" : ""}</span>}
+          return {
+            slot: s,
+            player: p,
+            batHere: p && p.batShown ? batInSlot(p, w) : null,
+            action: (
+              <span className="moves" title={describeWeights(w)}>
                 <button type="button" disabled={s.index === 0} onClick={() => onSwap(s.index, s.index - 1)} aria-label="move up">↑</button>
                 <button type="button" disabled={s.index === 10} onClick={() => onSwap(s.index, s.index + 1)} aria-label="move down">↓</button>
               </span>
-            </li>
-          );
+            ),
+          };
         })}
-      </ol>
+        footer={<>Keeper <b>{designatedKeeper(picks)?.name ?? "–"}</b> · overs covered <b>{oversCovered(picks)}</b>/20 · the number on the right is each man's batting number at that position</>}
+      />
       <label className="row">
         Captain
         <select value={captainId ?? ""} onChange={(e) => onCaptain(e.target.value || null)}>

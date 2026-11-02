@@ -41,7 +41,9 @@ export function Scorecard({ inn, fielding, highlight, me }: { inn: InningsResult
   const names = new Map(inn.batting.map((b) => [b.id, familiar(b.id, b.name)]));
   const batted = inn.batting.filter((b) => b.balls > 0 || b.out);
   const ex = inn.extrasDetail;
-  const role = (id: string) => (id === inn.captainId && id === inn.keeperId ? " (c & wk)" : id === inn.captainId ? " (c)" : id === inn.keeperId ? " (wk)" : "");
+  // The scorecard's own marks: the dagger before the keeper, (c) after the captain.
+  const mark = (id: string, name: string) => `${id === inn.keeperId ? "†" : ""}${name}${id === inn.captainId ? " (c)" : ""}`;
+  const didNotBat = inn.batting.filter((b) => !(b.balls > 0 || b.out));
   const stands = inn.partnerships.filter((p) => p.runs >= 20 || p.wicket === null).slice(0, 4);
   return (
     <div className="sc">
@@ -52,18 +54,21 @@ export function Scorecard({ inn, fielding, highlight, me }: { inn: InningsResult
             const sr = b.balls ? (100 * b.runs) / b.balls : 0;
             return (
               <tr key={b.id} className={inn.team === me && highlight.has(b.id) ? "hl" : ""}>
-                <td><div className="sc-name">{fullName(b.id, b.name)}{role(b.id)}</div><div className="sc-how">{dismissalText(b.dismissal, b.out)}</div></td>
+                <td><div className="sc-name">{mark(b.id, fullName(b.id, b.name))}</div><div className="sc-how">{dismissalText(b.dismissal, b.out)}</div></td>
                 <td><b>{b.runs}</b></td><td>{b.balls}</td><td>{b.fours}</td><td>{b.sixes}</td>
                 <td className={srClass(sr, b.balls)}>{b.balls ? sr.toFixed(1) : "–"}</td>
               </tr>
             );
           })}
-          <tr className="sc-extras"><td>Extras</td><td colSpan={5}>{inn.extras} (w {ex.wides}, nb {ex.noBalls}, b {ex.byes})</td></tr>
+          <tr className="sc-extras"><td>Extras</td><td colSpan={5}>{inn.extras} <span className="muted">(b {ex.byes}, w {ex.wides}, nb {ex.noBalls})</span></td></tr>
           <tr className="sc-total"><td>Total</td><td colSpan={5}><b>{inn.runs}/{inn.wickets}</b> ({inningsLine(inn)})</td></tr>
         </tbody>
       </table>
+      {didNotBat.length > 0 && (
+        <p className="sc-fow"><span className="k">Did not bat</span> {didNotBat.map((b) => mark(b.id, names.get(b.id) ?? b.name)).join(", ")}</p>
+      )}
       {inn.fallOfWickets.length > 0 && (
-        <p className="sc-fow"><span className="k">Fall of wickets</span> {inn.fallOfWickets.map((w, i) => `${w.runs}-${i + 1} (${names.get(w.batter) ?? w.batter}, ${w.over}.${w.ball})`).join(" · ")}</p>
+        <p className="sc-fow"><span className="k">Fall of wickets</span> {inn.fallOfWickets.map((w, i) => `${i + 1}-${w.runs} (${names.get(w.batter) ?? w.batter}, ${w.over}.${w.ball} ov)`).join(", ")}</p>
       )}
       {stands.length > 0 && (
         <p className="sc-fow"><span className="k">Stands</span> {stands.map((p) => `${p.runs} (${p.balls}) ${names.get(p.batters[0]) ?? ""}–${names.get(p.batters[1]) ?? ""}${p.wicket === null ? "*" : ""}`).join(" · ")}</p>
