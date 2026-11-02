@@ -161,7 +161,8 @@ export function storyFor(f: FixtureResult, ctx: StoryContext): Story {
   }
   const { won: w, lost: l } = ctx.record;
   if (!ctx.knockout && w + l > 0) {
-    paragraphs.push(`${me} ${l === 0 && w > 0 ? `stay unbeaten after ${w + l}` : `are now ${w}–${l}`} in the ${ctx.stageLabel}.`);
+    const played = w + l;
+    paragraphs.push(played === 1 ? `${me} ${w === 1 ? "start the" : "begin their"} ${ctx.stageLabel} with a ${w === 1 ? "win" : "defeat"}.` : `${me} ${l === 0 ? `are unbeaten after ${played} matches` : `are now ${w}–${l}`} in the ${ctx.stageLabel}.`);
   }
 
   return { kicker, headline, standfirst, paragraphs };

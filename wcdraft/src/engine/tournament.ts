@@ -174,7 +174,7 @@ export function simulateTournament(data: EditionData, progression: Progression, 
     return {
       ...fixture, winner: result.winner, scores: first === a ? [score(0), score(1)] : [score(1), score(0)], margin: result.margin, tieBreak: result.tieBreak, rain: result.rain,
       ...(keep || opts.keepScorecards ? { innings: result.innings, potm: playerOfTheMatch(result), tossWinner: result.tossWinner, tossDecision: result.tossDecision } : {}),
-      ...(keep ? { balls: result.balls } : {}),
+      ...(keep || opts.keepBallLogs ? { balls: result.balls } : {}),
       _result: result,
     } as FixtureResult & { _result: MatchResult };
   };

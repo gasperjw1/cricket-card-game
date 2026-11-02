@@ -311,6 +311,38 @@ h3 { font-size: 16px; margin: 0 0 8px; }
 .fr-rates th { color: var(--muted); font-size: 11px; font-weight: 600; vertical-align: bottom; }
 .fr-total td { font-weight: 700; border-bottom: none; }
 
+/* Innings card: batting left, bowling right, one innings per view, innings behind tabs (2026-11-01). */
+.inn-tabs { display: flex; gap: 0; margin: 6px 0 10px; border: 1px solid var(--line); border-radius: 8px; overflow: hidden; }
+.inn-tabs button { flex: 1 1 0; border: none; border-radius: 0; background: transparent; padding: 8px 10px; font-weight: 600; }
+.inn-tabs button .muted { font-weight: 400; margin-left: 6px; }
+.inn-tabs button.on { background: var(--card-2); color: var(--accent); }
+.inn-card { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); gap: 8px 24px; align-items: start; }
+.inn-card .sc-table { margin-top: 0; }
+@media (max-width: 760px) { .inn-card { grid-template-columns: minmax(0, 1fr); } }
+.gz-page .inn-tabs { border-color: var(--line); border-radius: 2px; }
+.gz-page .inn-tabs button { font-family: Oswald, "Arial Narrow", sans-serif; font-weight: 500; letter-spacing: 0.02em; color: var(--ink); }
+.gz-page .inn-tabs button.on { background: var(--ink); color: #f3ecdd; }
+.gz-page .inn-tabs button.on .muted { color: #d8d2c4; }
+.gz-page .sc-table th { color: var(--muted); border-bottom: 2px solid var(--ink); }
+.gz-page .sc-table td { border-bottom: 1px solid var(--line); }
+.gz-page .sc-fow .k { color: var(--ink); }
+.gz-page .hl, .gz-page .hl b, .gz-page tr.hl td { color: #1e4d3a; font-weight: 600; }
+.gz-innings, .gz-tables { margin-top: 6px; }
+.gz-tables-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr)); gap: 20px 32px; margin-top: 12px; }
+
+/* Issue sections and the paper's own furniture. */
+.gz-sections { display: flex; gap: 0; border-top: 1px solid var(--ink); border-bottom: 1px solid var(--ink); margin: -10px 0 16px; }
+.gz-sections button { flex: 0 0 auto; background: transparent; color: var(--ink); border: none; border-radius: 0; border-right: 1px solid var(--line); padding: 8px 16px; font-family: Oswald, "Arial Narrow", sans-serif; font-size: 14px; letter-spacing: 0.06em; text-transform: uppercase; }
+.gz-sections button:last-child { border-right: none; }
+.gz-sections button.on { background: var(--ink); color: #f3ecdd; }
+.gz-sections button:disabled { color: var(--muted); opacity: 0.6; }
+.gz-stop { display: flex; gap: 12px; align-items: baseline; border: 2px solid #9e2b25; padding: 8px 12px; margin: 0 0 16px; font-family: "Source Serif 4", Georgia, serif; font-size: 15px; }
+.gz-stop-label { font-family: Oswald, "Arial Narrow", sans-serif; color: #9e2b25; letter-spacing: 0.1em; text-transform: uppercase; font-size: 13px; white-space: nowrap; }
+.gz-late-day + .gz-late-day { margin-top: 8px; }
+.gz-late-date { font-family: Oswald, "Arial Narrow", sans-serif; font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin-bottom: 2px; }
+.gz-late .gz-list li { font-size: 14px; }
+@media (max-width: 640px) { .gz-sections { overflow-x: auto; } .gz-sections button { padding: 8px 12px; font-size: 13px; } }
+
 /* Team sheet: the eleven on paper, ruled like the card pinned in the dressing room (2026-11-01). */
 .sheet { --paper: #f3ecdd; --paper-ink: #1f2a24; --paper-muted: #5a5e53; --paper-line: #cfc6b1; --paper-red: #9e2b25; --paper-green: #1e4d3a;
   background: var(--paper); color: var(--paper-ink); font-family: "Source Serif 4", Georgia, serif; padding: 16px 16px 14px; border-radius: 2px;

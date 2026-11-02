@@ -41,7 +41,9 @@ export async function assembleTeam(input: SimulateInput): Promise<EngineTeam> {
 
 export async function runTournament(input: SimulateInput): Promise<TournamentResult> {
   const [data, xi] = await Promise.all([loadEditionData(input.identity.editionId), assembleTeam(input)]);
-  return simulateTournament(data, data.progression, { seed: input.seed, identity: { team: input.identity.team, xi }, keepIdentityDetails: true, keepScorecards: true });
+  // Every fixture keeps its scorecard and ball log (2026-11-01): the gazette's facts, records and
+  // late news read CPU matches the same way as yours.
+  return simulateTournament(data, data.progression, { seed: input.seed, identity: { team: input.identity.team, xi }, keepIdentityDetails: true, keepScorecards: true, keepBallLogs: true });
 }
 
 /** Every drafted player's final rating in the identity edition; picks are in batting order. */

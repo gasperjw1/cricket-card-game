@@ -1145,6 +1145,46 @@ fielding. The simulation is not required to reproduce real results (§11).
   (c) the Gazette's batting-order table prints card numbers, not the numbers in this World Cup;
   (d) a pitch term for bowlers by class was not built because the engine has no pace/spin
   condition yet (see `project_conditions_findings`); slower balls, cutters and swing are later.
+- **The Gazette as a run of dated issues (2026-11-01, evening):** "edition" is the World Cup's word
+  and is never used for a paper. Issue 1 is the preview, then one issue per match the side plays,
+  then the **Souvenir issue**; the masthead reads "Issue N · date · Match day M of the YYYY World
+  Cup" (match days count distinct dates in play order, since a side rarely plays consecutive days),
+  and the controls read "Previous issue / Next issue / Skip to the end". Each match issue has four
+  sections, Report, 1st innings, 2nd innings, Tables. The scorecard is now one innings per view
+  (`InningsCard`: batting left, bowling right with the fall of wickets and stands under it, "Did
+  not bat" under the batting) behind innings tabs (`MatchScorecard`), used by the gazette and the
+  Your matches and Knockouts tabs alike. Every fixture now keeps its ball log (`keepBallLogs` in
+  `simulate.ts`; the tournament stores it), so CPU matches read the same as yours.
+  **Facts** (`draft/src/game/facts.ts`, pure): a record book folded over all fixtures in play order
+  (highest and lowest total, highest chase, best figures, highest score, biggest wins by runs and
+  balls, fastest fifty) that reports a break with its previous holder, how long the mark stood and
+  how many times it has moved; detectors for hundred, five-for, hat-trick (ball log), captain's
+  duck, sub-hundred total, big total and big chase at edition-relative marks (`marksFor(rpo)`:
+  rpo×20+45 and +25, checked against the corpus p90), lone hand (fifty in a win with no team-mate
+  past 30, by share of the total), standout bowler (four-for in a win) and cheap wickets (three at
+  under six while the rest leaked 8.5+), collapse (four for 25; five for the report), big stand
+  (100; 130 for the report), rout, nail-biter, last-ball win, late surge (won from 15+ an over
+  inside the last five, from under 10 at the start), twenty off the final over to win, upset
+  (associate over a full member, membership by edition), first win, unbeaten run, knockout, super
+  over / bowl-out / coin, D/L, no result. Tiers set from the **corpus harness**
+  (`draft/scripts/facts-corpus.mts`, 3,024 CPU matches over ten editions): a stop press now in
+  about a third of matches (upsets alone 10% until the associates fix; hundreds 5.8%, five-fors
+  4.8%, hat-tricks 2.9%), a report fact in three quarters; records that fell inside two days are
+  notes, not news.
+  **Prose** (`prose.ts` + `bank.ts`): a fragment grammar, `{slot}`, `{n:word}`, `{name:pos}` and
+  `[list]` tokens, a seeded picker that never repeats a frame until its list is used up, one
+  picker per run so the no-repeat memory holds whatever order the pages are read, and the bank
+  carries no digits (a test keeps it so; another renders every frame for every fact and checks
+  each number came from the fact; a third holds fifty seeds to no repeats within a run). Register:
+  understated British sports page, teams plural, no exclamation marks. `paper.ts` writes the run
+  once: stop press (best tier-one fact), up to three fact sentences for the report, and **late
+  news**, "Since our last issue", one line per other match since the previous issue (last eight,
+  grouped by date) with its best fact where the result line has not already said it. The Tables
+  section shows every group as it stood after that match day, the leaders and the record book.
+  Open from this: the stop-press rate should fall once associates are rated honestly; the bank is
+  about 320 frames and fragments and should grow toward the 600–900 agreed; the souvenir issue
+  still has its old content (next phase); the preview's batting-order table still prints card
+  numbers.
 - **Agreed order after the refit (2026-11-01):** (1) associates fix in the ratings: no-record
   players sit on the global position-band prior, so Italy 2026 bowls at 71 against India's 74 and a
   few tournament balls can make a 77 (shrink empty records toward the side's own mean or an

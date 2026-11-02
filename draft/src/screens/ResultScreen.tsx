@@ -5,7 +5,8 @@ import { CoverPage, FinalPage, MatchPage, type Fixtured } from "../components/Ga
 import { MatchCard } from "../components/MatchCard.tsx";
 import { MatchView } from "../components/MatchView.tsx";
 import { PlayerRatings } from "../components/PlayerRatings.tsx";
-import { Scorecard } from "../components/Scorecard.tsx";
+import { MatchScorecard } from "../components/Scorecard.tsx";
+import { writePaper } from "../game/paper.ts";
 import { verdictFor } from "../game/gazette.ts";
 import type { SimulateInput } from "../game/simulate.ts";
 import { datedStages, exitStageOf, inPlayOrder, tournamentTotals, type PlayerTotals } from "../game/stats.ts";
@@ -39,6 +40,8 @@ export function ResultScreen({ state, result: played, editions, venues, onAgain 
   const all = useMemo<Fixtured[]>(() => result.stages.flatMap((s) => inPlayOrder(s.fixtures).map((f) => ({ ...f, stageLabel: s.label }))), [result]);
   const mine = useMemo(() => all.filter((f) => f.teams.includes(me)), [all, me]);
   const totals = useMemo(() => tournamentTotals(all), [all]);
+  // The whole paper is written once: facts and records for every match, the side's issues with stop press and late news.
+  const paper = useMemo(() => writePaper(all, mine, me, result.seed, result.editionId, edition?.environment.runsPerOver ?? 7.5, new Set(result.stages.filter((s) => !s.groups).map((s) => s.id))), [all, mine, me, result, edition]);
   const ranked: Ranked[] = [...totals.values()].map((t) => ({ ...t, me: t.team === me && highlight.has(t.id) }));
   const top = (key: (t: Ranked) => number, tie: (t: Ranked) => number, filter: (t: Ranked) => boolean = () => true, n = 10) =>
     ranked.filter(filter).filter((t) => key(t) > 0).sort((a, b) => key(b) - key(a) || tie(a) - tie(b)).slice(0, n);
@@ -89,9 +92,9 @@ export function ResultScreen({ state, result: played, editions, venues, onAgain 
   };
 
   const renderPage = (p: number) => {
-    if (p === 0) return <CoverPage state={state} result={result} edition={edition} venues={venues} mine={mine} coachName={state.coach?.coachName ?? null} />;
-    if (p === lastPage) return <FinalPage result={result} all={all} mine={mine} me={me} highlight={highlight} page={p + 1} date={mine[mine.length - 1]?.date ?? null} onAgain={onAgain} onShare={copyResult} shared={copied} />;
-    return <MatchPage fixture={mine[p - 1]!} index={p - 1} mine={mine} all={all} result={result} me={me} venues={venues} highlight={highlight} page={p + 1} last={p === mine.length} seed={result.seed} />;
+    if (p === 0) return <CoverPage state={state} result={result} edition={edition} venues={venues} mine={mine} coachName={state.coach?.coachName ?? null} matchDay={mine[0] ? paper.matchDays.get(mine[0].date ?? "") ?? null : null} />;
+    if (p === lastPage) return <FinalPage result={result} all={all} mine={mine} me={me} highlight={highlight} paper={paper} date={mine[mine.length - 1]?.date ?? null} onAgain={onAgain} onShare={copyResult} shared={copied} />;
+    return <MatchPage fixture={mine[p - 1]!} index={p - 1} mine={mine} all={all} result={result} me={me} venues={venues} highlight={highlight} issue={p + 1} paper={paper} last={p === mine.length} seed={result.seed} />;
   };
 
   if (watching !== null && mine[watching]) {
@@ -105,9 +108,9 @@ export function ResultScreen({ state, result: played, editions, venues, onAgain 
         <div className="gz-leaf" key={page}>{renderPage(page)}</div>
       </div>
       <nav className="gz-controls" aria-label="Newspaper pages">
-        <button type="button" disabled={page === 0} onClick={() => { setAuto(null); turnTo(page - 1); }}>Previous</button>
+        <button type="button" disabled={page === 0} onClick={() => { setAuto(null); turnTo(page - 1); }}>Previous issue</button>
         {nextMatch?.balls?.length ? <button type="button" onClick={() => { setAuto(null); setWatching(page); }}>Watch next match</button> : null}
-        {page < lastPage && <button type="button" className="gz-go" onClick={() => { setAuto(null); turnTo(page + 1); }}>Turn the page</button>}
+        {page < lastPage && <button type="button" className="gz-go" onClick={() => { setAuto(null); turnTo(page + 1); }}>{page + 1 === lastPage ? "Souvenir issue" : "Next issue"}</button>}
         {page < lastPage && <button type="button" className={auto === "read" ? "on" : ""} onClick={() => setAuto(auto === "read" ? null : "read")}>{auto === "read" ? "Pause" : "Auto-sim"}</button>}
         {page < lastPage && <button type="button" className={auto === "fast" ? "on" : ""} onClick={() => setAuto(auto === "fast" ? null : "fast")}>Fast</button>}
         {page < lastPage && <button type="button" onClick={() => { setAuto(null); turnTo(lastPage); }}>Skip to the end</button>}
@@ -126,9 +129,7 @@ export function ResultScreen({ state, result: played, editions, venues, onAgain 
                   {f.innings && (
                     <details className="sc-details">
                       <summary>Full scorecard</summary>
-                      <div className="scorecards">
-                        {f.innings.map((inn, i) => <Scorecard key={inn.index} inn={inn} fielding={f.innings![1 - i]!.team} highlight={highlight} me={me} />)}
-                      </div>
+                      <MatchScorecard innings={f.innings} highlight={highlight} me={me} />
                     </details>
                   )}
                 </MatchCard>
@@ -193,7 +194,7 @@ export function ResultScreen({ state, result: played, editions, venues, onAgain 
                   {f.innings && (
                     <details className="sc-details">
                       <summary>Full scorecard</summary>
-                      <div className="scorecards">{f.innings.map((inn, i) => <Scorecard key={inn.index} inn={inn} fielding={f.innings![1 - i]!.team} highlight={highlight} me={me} />)}</div>
+                      <MatchScorecard innings={f.innings} highlight={highlight} me={me} />
                     </details>
                   )}
                 </MatchCard>
