@@ -8,7 +8,7 @@
  */
 
 import type { FixtureResult } from "../../../wcdraft/src/engine/tournament.ts";
-import { bestFact, factsFor, fixtureKey, foldRecords, marksFor, recordsBefore, type Baseline, type Fact, type RecordsAt } from "./facts.ts";
+import { bestFact, factsFor, fixtureKey, foldRecords, marksFor, rankFacts, recordsBefore, type Baseline, type Fact, type RecordsAt } from "./facts.ts";
 import { Picker, factSentence, matchSlots, resultLine, stopPress } from "./prose.ts";
 
 export interface LateNewsLine {
@@ -77,7 +77,10 @@ export function writePaper(all: FixtureResult[], mine: FixtureResult[], me: stri
     const key = fixtureKey(m);
     const slots = matchSlots(m, marks);
     const own = facts.get(key) ?? [];
-    const ranked = [...own].sort((a, b) => a.tier - b.tier);
+    // Best first: tier, then weight (the winning side's facts and bigger numbers), with a
+    // combined fact standing in for its parts (asked 2026-11-03 after a losing side's hundred led
+    // the stop press over the winner's bigger one).
+    const ranked = rankFacts(own);
     const top = ranked.find((x) => x.tier === 1) ?? null;
     const stop = top ? stopPress(top, picker, slots) : null;
     // The innings paragraphs already tell the biggest stand and the collapse, and a player gets one

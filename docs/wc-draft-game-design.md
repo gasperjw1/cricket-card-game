@@ -1291,6 +1291,25 @@ fielding. The simulation is not required to reproduce real results (§11).
   engine (ground lean from the edition's own record plus a pitch of the day), Brier 0.1942 with
   it against 0.1965 without and every bias unchanged. The venue brief's spin/pace chips now
   describe something the engine plays.
+- **Journalism expansion, 2026-11-03 (step 1 of Yash's order), with the stop-press fix:** the
+  stop press took the first tier-one fact in detection order, which is the first innings, so a
+  losing side's 111 led over the winner's 140*. Facts now carry a **weight** (`weigh` in
+  `facts.ts`: a base by kind, the winning side's facts up, bigger numbers up) and `rankFacts`
+  orders by tier then weight, with **combined facts swallowing their parts**: a century in vain,
+  a hundred for each side (one fact naming both, the winner's first), two centurions for one side,
+  a five-for in vain, an all-round show (fifty and three wickets), a ten-wicket win, a hundred in
+  a winning chase. The headline leads with a winning centurion whatever the finish ("Gibbs 140*
+  takes South Africa past Australia") and with the losing side's centurion when he sank you. The
+  bank grew from 320 to **460** frames and fragments from the style corpus: verb lists by manner
+  (cruise, rout, edge, upset, chase, skittle, seal), chase tempo and wobble, defence colour,
+  death-overs assault, collapse and stand colour, stakes and first-win colour, bowling and innings
+  colour, with new frames across hundreds, five-fors, big chases, standout bowling, collapses,
+  stands, upsets, knockouts, nail-biters, routs and the result lines, and corpus-shaped headline
+  formulas in the story module ("{hero} fires as {side} crush {opp}", "{side} survive {opp} scare",
+  "Heartbreak for {side} as {opp} edge past"). A test pins the screenshot case (David 111 in a
+  losing cause, Gibbs 140* in the chase: the stop press names both, Gibbs first). Corpus check
+  over 1,200 CPU matches: twin centuries 0.1% of matches, two centurions 0.3%, century in vain
+  1.3%, all-round show 2.5%.
 - **Agreed order after the refit (2026-11-01):** (1) associates fix in the ratings: no-record
   players sit on the global position-band prior, so Italy 2026 bowls at 71 against India's 74 and a
   few tournament balls can make a 77 (shrink empty records toward the side's own mean or an

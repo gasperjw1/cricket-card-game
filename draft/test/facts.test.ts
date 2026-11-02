@@ -2,7 +2,7 @@ import assert from "node:assert/strict";
 import { describe, it } from "node:test";
 import type { FixtureResult } from "../../wcdraft/src/engine/tournament.ts";
 import type { BallRecord, BatterLine, BowlerLine, InningsResult } from "../../wcdraft/src/engine/types.ts";
-import { collapseIn, factsFor, fiftyBalls, fixtureKey, foldRecords, fullMembersAt, hatTricks, marksFor, readChase, recordsBefore, updateRecords, type FactContext } from "../src/game/facts.ts";
+import { collapseIn, factsFor, fiftyBalls, fixtureKey, foldRecords, fullMembersAt, hatTricks, marksFor, rankFacts, readChase, recordsBefore, updateRecords, weigh, type FactContext } from "../src/game/facts.ts";
 
 const bat = (id: string, runs: number, balls: number, out = true, position = 1): BatterLine => ({ id, name: id, runs, balls, fours: 0, sixes: 0, out, dismissal: null, position });
 const bowl = (id: string, wickets: number, runs: number, balls = 24): BowlerLine => ({ id, name: id, balls, runs, wickets, overs: [], maidens: 0, dots: 0, wides: 0, noBalls: 0 });
@@ -45,6 +45,33 @@ describe("facts", () => {
     const lone = factsFor(f, ctx(f)).find((x) => x.key === "loneHand")!;
     assert.equal(lone.player?.name, "Kohli");
     assert.equal(lone.n.share, Math.round((100 * 104) / 180));
+  });
+
+  it("leads with the winner's hundred, and names a hundred on each side as one fact (2026-11-03)", () => {
+    // Australia 244/4 (David 111), South Africa 247/3 (Gibbs 140*): the stop press must be Gibbs, not David.
+    const i1 = innings("Australia", 1, 244, 4, { batting: [bat("Tim David", 111, 52), bat("Glenn Maxwell", 90, 42, false)] });
+    const i2 = innings("South Africa", 2, 247, 3, { target: 245, legalBalls: 118, batting: [bat("Herschelle Gibbs", 140, 66, false), bat("Nazimuddin", 55, 24)] });
+    const f = fixture("Australia", "South Africa", i1, i2);
+    const facts = factsFor(f, ctx(f));
+    const ranked = rankFacts(facts);
+    assert.equal(ranked[0]!.key, "twinCenturies", ranked.map((x) => x.key).join());
+    assert.equal(ranked[0]!.player?.name, "Herschelle Gibbs");
+    assert.equal(ranked[0]!.s.other, "Tim David");
+    assert.ok(!ranked.some((x) => x.key === "hundred" || x.key === "centuryInVain" || x.key === "hundredInChase"), "the parts are swallowed by the combined fact");
+    // A lone hundred on the losing side reads as a century in vain and outranks nothing of the winner's.
+    const g = fixture("A", "B", innings("A", 1, 180, 5, { batting: [bat("x", 104, 60)] }), innings("B", 2, 181, 6, { target: 181, legalBalls: 110, batting: [bat("y", 70, 40)] }));
+    const gr = rankFacts(factsFor(g, ctx(g)));
+    assert.equal(gr[0]!.key, "centuryInVain");
+    assert.ok(!gr.some((x) => x.key === "hundred"));
+    // Two hundreds for one side.
+    const h = fixture("A", "B", innings("A", 1, 240, 2, { batting: [bat("p", 110, 55), bat("q", 101, 50, false)] }), innings("B", 2, 150, 9, { target: 241 }));
+    const hr = rankFacts(factsFor(h, ctx(h)));
+    assert.equal(hr[0]!.key, "twoCenturions");
+    assert.equal(hr[0]!.s.won, "won");
+    // Weights: the winner's hundred outweighs the loser's bigger one only when the gap is small; the winner's 140 beats 111 outright.
+    const w140 = weigh({ key: "hundred", tier: 1, weight: 0, team: "South Africa", player: null, n: { runs: 140 }, s: {} }, f);
+    const w111 = weigh({ key: "hundred", tier: 1, weight: 0, team: "Australia", player: null, n: { runs: 111 }, s: {} }, f);
+    assert.ok(w140 > w111);
   });
 
   it("does not call a fifty a lone hand when a team-mate passed thirty, and needs a win", () => {

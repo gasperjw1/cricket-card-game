@@ -21,6 +21,11 @@ export type FactTier = 1 | 2 | 3;
 export interface Fact {
   key: string;
   tier: FactTier;
+  /**
+   * How much a fact deserves the stop press when several are tier one (2026-11-03): the winning
+   * side's facts and bigger numbers first, a combined fact above its parts. Set by `weigh`.
+   */
+  weight: number;
   /** The side the fact is about (the batting side for a batting fact, the bowling side for a bowling one). */
   team: string | null;
   player: { id: string; name: string } | null;
@@ -319,7 +324,7 @@ export function factsFor(f: FixtureResult, ctx: FactContext): Fact[] {
   const facts: Fact[] = [];
   const [i1, i2] = f.innings ?? [];
   const add = (key: string, tier: FactTier, team: string | null, player: { id: string; name: string } | null, n: Record<string, number> = {}, s: Record<string, string> = {}) =>
-    facts.push({ key, tier, team, player, n, s });
+    facts.push({ key, tier, weight: 0, team, player, n, s });
   const full = fullMembersAt(ctx.editionId);
   const loser = f.winner ? f.teams.find((t) => t !== f.winner) ?? null : null;
 
@@ -435,12 +440,70 @@ export function factsFor(f: FixtureResult, ctx: FactContext): Fact[] {
       { holder: b.entry.holder, prevHolder: prev?.holder ?? "", prevTeam: prev?.team ?? "", opp: b.entry.opp, since, stood, scope, scopeText, prevWhen });
   }
 
+  // Combined facts (asked 2026-11-03): a hundred on the losing side, a hundred for each side, two
+  // for one side, a five-for in vain, an all-round show, a ten-wicket win, a chase led by a hundred.
+  const hundreds = facts.filter((x) => x.key === "hundred");
+  for (const h of hundreds) if (h.team && h.team !== f.winner && f.winner) add("centuryInVain", 1, h.team, h.player, { runs: h.n.runs!, balls: h.n.balls! }, { winner: f.winner });
+  const sides = new Set(hundreds.map((h) => h.team));
+  if (sides.size === 2 && f.winner) {
+    const w = hundreds.filter((h) => h.team === f.winner).sort((a, b) => b.n.runs! - a.n.runs!)[0]!, l = hundreds.filter((h) => h.team !== f.winner).sort((a, b) => b.n.runs! - a.n.runs!)[0]!;
+    add("twinCenturies", 1, f.winner, w.player, { runs: w.n.runs!, balls: w.n.balls!, otherRuns: l.n.runs!, otherBalls: l.n.balls! }, { other: l.player!.name, loser: l.team! });
+  }
+  for (const team of sides) {
+    const pair = hundreds.filter((h) => h.team === team).sort((a, b) => b.n.runs! - a.n.runs!);
+    if (pair.length >= 2) add("twoCenturions", 1, team!, pair[0]!.player, { runs: pair[0]!.n.runs!, otherRuns: pair[1]!.n.runs! }, { other: pair[1]!.player!.name, won: team === f.winner ? "won" : "lost" });
+  }
+  for (const x of facts.filter((y) => y.key === "fiveFor")) if (x.team && x.team !== f.winner && f.winner) add("fiveForInVain", 1, x.team, x.player, { wickets: x.n.wickets!, runs: x.n.runs! }, { winner: f.winner });
+  if (i1 && i2) {
+    for (const inn of [i1, i2]) {
+      const opp = inn === i1 ? i2.team : i1.team;
+      for (const b of inn.batting) {
+        const w = (inn === i1 ? i2 : i1).bowling.find((x) => x.id === b.id);
+        if (b.runs >= 50 && w && w.wickets >= 3) add("allRoundShow", 1, inn.team, who(b), { runs: b.runs, balls: b.balls, wickets: w.wickets, bowlRuns: w.runs }, { opp });
+      }
+    }
+    if (f.winner === i2.team && f.margin && "wickets" in f.margin && f.margin.wickets === 10) add("tenWicketWin", 1, i2.team, null, { ballsLeft: f.margin.ballsLeft, target: i2.target ?? i2.runs }, { loser: i1.team });
+    for (const h of hundreds) if (h.team === i2.team && f.winner === i2.team) add("hundredInChase", 1, i2.team, h.player, { runs: h.n.runs!, balls: h.n.balls!, target: i2.target ?? i2.runs }, { loser: i1.team });
+  }
+  for (const x of facts) x.weight = weigh(x, f);
   return facts;
 }
 
-/** The best fact a match has, for late news: lowest tier, then the order detected. */
+/** Base weights by key: what a cricket desk would lead with, before the numbers and the result. */
+const BASE_WEIGHT: Record<string, number> = {
+  final: 100, superOver: 90, bowlOut: 90, coinToss: 85, twinCenturies: 80, twoCenturions: 78, allRoundShow: 74, hatTrick: 72, lastBall: 70, lateSurge: 66, finalOverTwenty: 64,
+  hundredInChase: 62, hundred: 60, centuryInVain: 58, fiveFor: 56, fiveForInVain: 54, tenWicketWin: 52, upset: 50, bigChase: 40,
+};
+
+/** A fact's claim on the stop press: its base, the winning side's facts up, and the size of the thing. */
+export function weigh(x: Fact, f: FixtureResult): number {
+  let w = BASE_WEIGHT[x.key] ?? (x.key.startsWith("record:") ? (x.s.scope === "t20i" ? 76 : x.s.scope === "allWc" ? 68 : 20) : 10);
+  if (x.team && f.winner && x.team === f.winner) w += 8;
+  if (x.n.runs !== undefined && (x.key === "hundred" || x.key === "centuryInVain" || x.key === "hundredInChase" || x.key === "twinCenturies")) w += Math.min(20, (x.n.runs - 100) / 2);
+  if (x.n.wickets !== undefined && (x.key === "fiveFor" || x.key === "fiveForInVain")) w += 4 * (x.n.wickets - 5);
+  return w;
+}
+
+/** Facts a combined fact already tells, so the stop press and the report do not say them twice. */
+export const COVERED_BY: Record<string, string[]> = {
+  twinCenturies: ["hundred", "centuryInVain", "hundredInChase"],
+  twoCenturions: ["hundred", "centuryInVain", "hundredInChase"],
+  centuryInVain: ["hundred"],
+  hundredInChase: ["hundred"],
+  fiveForInVain: ["fiveFor"],
+  allRoundShow: ["hundred", "fiveFor"],
+};
+
+/** The facts a match has after combined facts swallow their parts, best first by tier then weight. */
+export function rankFacts(facts: Fact[]): Fact[] {
+  const covered = new Set<string>();
+  for (const x of facts) for (const k of COVERED_BY[x.key] ?? []) for (const y of facts) if (y.key === k && (y.player?.id === x.player?.id || (y.team === x.team && !y.player) || x.key === "twinCenturies" || x.key === "twoCenturions")) covered.add(`${y.key}|${y.player?.id ?? y.team}`);
+  return facts.filter((x) => !covered.has(`${x.key}|${x.player?.id ?? x.team}`)).sort((a, b) => a.tier - b.tier || b.weight - a.weight);
+}
+
+/** The best fact a match has, for late news: lowest tier, then weight. */
 export function bestFact(facts: Fact[]): Fact | null {
-  return [...facts].sort((a, b) => a.tier - b.tier)[0] ?? null;
+  return rankFacts(facts)[0] ?? null;
 }
 
 /** Sides' records before each fixture in play order, keyed by fixture. */

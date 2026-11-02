@@ -5,7 +5,7 @@ import { BANK } from "../src/game/bank.ts";
 import type { Fact } from "../src/game/facts.ts";
 import { Picker, count, factSentence, matchSlots, numbersIn, render, resultLine, stopPress, tidy } from "../src/game/prose.ts";
 
-const fact = (key: string, n: Record<string, number>, s: Record<string, string> = {}, player: string | null = null, team = "India"): Fact => ({ key, tier: 1, team, player: player ? { id: player, name: player } : null, n, s });
+const fact = (key: string, n: Record<string, number>, s: Record<string, string> = {}, player: string | null = null, team = "India"): Fact => ({ key, tier: 1, weight: 0, team, player: player ? { id: player, name: player } : null, n, s });
 
 /** Every slot name the bank's frames reference, per fact key. */
 function slotsUsed(frames: readonly string[]): Set<string> {
@@ -16,7 +16,7 @@ function slotsUsed(frames: readonly string[]): Set<string> {
 
 /** Slots every sentence may use from the match itself (prose.ts `matchSlots`), with distinctive numbers. */
 const MATCH_SLOTS = { total: 151, target: 152, tempo: "low-scoring", finish: "thriller", matchShape: "low-scoring thriller", chaser: "Chasers", setter: "Setters", chasing: "chasing 152", defending: "defending 151" };
-const STRING_SLOTS = new Set(["loser", "opp", "a", "b", "holder", "prevHolder", "prevTeam", "scopeText", "prevWhen", "since", "stood", "scope"]);
+const STRING_SLOTS = new Set(["loser", "opp", "a", "b", "holder", "prevHolder", "prevTeam", "scopeText", "prevWhen", "since", "stood", "scope", "other", "winner", "won"]);
 
 /** A fact whose numbers and names cover every slot a frame could ask for, with distinctive numbers. */
 function fullFact(key: string): Fact {

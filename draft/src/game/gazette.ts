@@ -109,15 +109,19 @@ export function storyFor(f: FixtureResult, ctx: StoryContext): Story {
     if (ctx.knockout && won) return pick([`${me} march on past ${opp}`, `${me} knock out ${opp}`], key);
     if (ctx.last && !won) return pick([`${me} crash out to ${opp}`, `The road ends for ${me}`], key);
     if (shape === "tied") return `${f.winner} take it after a tie with ${won ? opp : me}`;
-    if (won && shape === "tight") return pick([`${me} hold their nerve against ${opp}`, `${me} edge a thriller with ${opp}`], key);
-    if (won && hero && shape === "thrash") return pick([`${hero} flattens ${opp}`, `${hero} leads the rout of ${opp}`], key);
-    if (won && shape === "thrash") return pick([`${me} crush ${opp}`, `${opp} swept aside by ${me}`], key);
-    if (won && hero) return pick([`${hero} sees ${me} past ${opp}`, `${hero} the difference for ${me}`], key);
-    if (won) return pick([`${me} beat ${opp}`, `${me} too good for ${opp}`], key);
-    if (shape === "tight") return pick([`${opp} break ${me} at the death`, `So close for ${me} against ${opp}`], key);
-    if (shape === "thrash") return pick([`${me} humbled by ${opp}`, `${opp} run riot against ${me}`], key);
-    if (nemesis) return pick([`${familiar(nemesis.id, nemesis.name)} sinks ${me}`, `${familiar(nemesis.id, nemesis.name)} too hot for ${me}`], key);
-    return pick([`${opp} too strong for ${me}`, `${me} beaten by ${opp}`], key);
+    // A hundred on the winning side leads whatever the finish (asked 2026-11-03): the man, not the margin.
+    if (won && heroBat && heroBat.runs >= 100) return pick([`${hero} ${heroBat.runs}${heroBat.out ? "" : "*"} takes ${me} past ${opp}`, `${hero} hundred sees off ${opp}`, `${hero} ${heroBat.runs}${heroBat.out ? "" : "*"} the difference against ${opp}`], key);
+    if (!won && nemesis && nemesis.runs >= 100) return pick([`${familiar(nemesis.id, nemesis.name)} ${nemesis.runs}${nemesis.out ? "" : "*"} sinks ${me}`, `${familiar(nemesis.id, nemesis.name)} hundred too much for ${me}`], key);
+    // Headline shapes from the corpus of real reports: present tense, the man then the side, the margin in the verb.
+    if (won && shape === "tight") return pick([`${me} hold their nerve against ${opp}`, `${me} edge a thriller with ${opp}`, `${me} edge past ${opp} in last-over finish`, `${me} survive ${opp} scare`, hero ? `${hero} holds nerve as ${me} edge ${opp}` : `${me} scrape home against ${opp}`], key);
+    if (won && hero && shape === "thrash") return pick([`${hero} flattens ${opp}`, `${hero} leads the rout of ${opp}`, `${hero} fires as ${me} crush ${opp}`, `${hero} stars as ${me} thrash ${opp}`], key);
+    if (won && shape === "thrash") return pick([`${me} crush ${opp}`, `${opp} swept aside by ${me}`, `${me} hammer ${opp}`, `${me} make light work of ${opp}`], key);
+    if (won && hero) return pick([`${hero} sees ${me} past ${opp}`, `${hero} the difference for ${me}`, `${hero} guides ${me} past ${opp}`, `${hero} inspires ${me} to beat ${opp}`], key);
+    if (won) return pick([`${me} beat ${opp}`, `${me} too good for ${opp}`, `${me} see off ${opp}`, `${me} overcome ${opp}`], key);
+    if (shape === "tight") return pick([`${opp} break ${me} at the death`, `So close for ${me} against ${opp}`, `Heartbreak for ${me} as ${opp} edge past`, `${me} fall just short against ${opp}`], key);
+    if (shape === "thrash") return pick([`${me} humbled by ${opp}`, `${opp} run riot against ${me}`, `${me} battered by ${opp}`, `${opp} dismantle ${me}`], key);
+    if (nemesis) return pick([`${familiar(nemesis.id, nemesis.name)} sinks ${me}`, `${familiar(nemesis.id, nemesis.name)} too hot for ${me}`, `${familiar(nemesis.id, nemesis.name)} stars as ${opp} beat ${me}`], key);
+    return pick([`${opp} too strong for ${me}`, `${me} beaten by ${opp}`, `${opp} see off ${me}`, `${me} slip to defeat against ${opp}`], key);
   })();
 
   const marginWords = (() => {
