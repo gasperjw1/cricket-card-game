@@ -94,3 +94,8 @@ export function runFrom(seed: string, identity: Identity, coach: CoachOut | null
 export function dailySeed(date = new Date()): string {
   return `daily-${date.toISOString().slice(0, 10)}`;
 }
+
+/** The daily seed's date as the button prints it (M/D/YYYY), the same UTC day the seed uses. */
+export function dailyLabel(date = new Date()): string {
+  return `${date.getUTCMonth() + 1}/${date.getUTCDate()}/${date.getUTCFullYear()}`;
+}

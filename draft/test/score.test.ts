@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
 import { describe, it } from "node:test";
 import type { FixtureResult, TournamentResult } from "../../wcdraft/src/engine/tournament.ts";
-import { dailySeed, decodeRun, encodeRun, netRunRate, performance, type SharedRun } from "../src/game/score.ts";
+import { dailyLabel, dailySeed, decodeRun, encodeRun, netRunRate, performance, type SharedRun } from "../src/game/score.ts";
 
 const inn = (team: string, runs: number, wickets: number, legalBalls = 120) => ({ team, runs, wickets, legalBalls, scheduledOvers: 20 });
 const fixture = (me: string, opp: number, mine: number, won: boolean, stageId = "group"): FixtureResult =>
@@ -46,5 +46,7 @@ describe("performance and the share link", () => {
 
   it("names the day's seed by the UTC date", () => {
     assert.equal(dailySeed(new Date("2026-11-02T23:30:00Z")), "daily-2026-11-02");
+    // The button's date is the seed's UTC day, written M/D/YYYY.
+    assert.equal(dailyLabel(new Date("2026-11-02T23:30:00Z")), "11/2/2026");
   });
 });
