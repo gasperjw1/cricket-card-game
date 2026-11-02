@@ -130,11 +130,13 @@ export function App() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [state.step, state.identity, state.coachPanel.length, state.spin, universe, shared]);
 
-  const simulate = async () => {
+  // The lineup screen passes the captain it shows, because a dispatch in the same click has not
+  // reached `state` yet; without it the engine fell back to the best-rated player as captain.
+  const simulate = async (captainId: string | null = state.captainId) => {
     if (!state.identity) return;
     dispatch({ type: "simulating" });
     try {
-      const result = await runTournament({ seed: state.seed, identity: state.identity, picks: state.picks.filter(Boolean) as PoolPlayer[], coach: state.coach, captainId: state.captainId });
+      const result = await runTournament({ seed: state.seed, identity: state.identity, picks: state.picks.filter(Boolean) as PoolPlayer[], coach: state.coach, captainId });
       dispatch({ type: "result", result });
     } catch (e) {
       dispatch({ type: "error", message: (e as Error).message });
@@ -161,7 +163,7 @@ export function App() {
         <DraftScreen state={state} editions={shared.editions} venues={shared.venues} squads={state.identity ? squadsByEdition?.get(state.identity.editionId) ?? [] : []} onPlace={(player, slot) => dispatch({ type: "place", player, slot })} onReroll={() => void spinSquad(true)} onLineup={() => dispatch({ type: "toLineup" })} />
       )}
       {state.step === "lineup" && shared && (
-        <LineupScreen state={state} captains={shared.captains} editions={shared.editions} onCaptain={(id) => dispatch({ type: "captain", id })} onBack={() => dispatch({ type: "backToDraft" })} onSimulate={() => void simulate()} />
+        <LineupScreen state={state} captains={shared.captains} editions={shared.editions} onCaptain={(id) => dispatch({ type: "captain", id })} onBack={() => dispatch({ type: "backToDraft" })} onSimulate={(captainId) => void simulate(captainId)} />
       )}
       {state.step === "simulating" && <section className="card"><h2>Simulating the {state.identity?.editionId} World Cup…</h2><p>Every match of the tournament, ball by ball.</p></section>}
       {state.step === "result" && state.result && shared && <ResultScreen state={state} result={state.result} editions={shared.editions} venues={shared.venues} onAgain={() => dispatch({ type: "home" })} />}

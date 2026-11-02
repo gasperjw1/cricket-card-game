@@ -7,7 +7,7 @@ import type { RunState } from "../game/types.ts";
 
 // The batting order is the order the eleven was drafted in; no reordering (decided 2026-11-01: the
 // slot you place a man in is the decision, and moving him later would soften it).
-export function LineupScreen({ state, captains, editions, onCaptain, onBack, onSimulate }: { state: RunState; captains: CaptainOut[]; editions: EditionOut[]; onCaptain: (id: string | null) => void; onBack: () => void; onSimulate: () => void }) {
+export function LineupScreen({ state, captains, editions, onCaptain, onBack, onSimulate }: { state: RunState; captains: CaptainOut[]; editions: EditionOut[]; onCaptain: (id: string | null) => void; onBack: () => void; onSimulate: (captainId: string | null) => void }) {
   const problems = lineupProblems(state.picks);
   const weights = SLOTS.map((s) => slotWeights(editions, state.identity?.editionId ?? "", s.index + 1));
   const rated = (id: string) => captains.filter((c) => c.personId === id).sort((a, b) => b.matches - a.matches)[0];
@@ -52,7 +52,7 @@ export function LineupScreen({ state, captains, editions, onCaptain, onBack, onS
       {problems.length > 0 && <ul className="problems">{problems.map((x) => <li key={x}>{x}</li>)}</ul>}
       <div className="row">
         <button type="button" onClick={onBack}>Back to the draft</button>
-        <button type="button" className="primary" disabled={problems.length > 0} onClick={() => { if (!state.captainId && captainId) onCaptain(captainId); onSimulate(); }}>Play the World Cup</button>
+        <button type="button" className="primary" disabled={problems.length > 0} onClick={() => { if (!state.captainId && captainId) onCaptain(captainId); onSimulate(captainId); }}>Play the World Cup</button>
       </div>
     </section>
   );
