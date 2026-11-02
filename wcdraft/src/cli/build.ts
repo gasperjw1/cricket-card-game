@@ -34,6 +34,7 @@ const pretty: Record<string, unknown> = {
   "captaincy.json": result.captaincy,
   "coaches.json": result.coaches,
   "style-results.json": result.styleResults,
+  "records.json": result.records,
 };
 for (const [name, value] of Object.entries(pretty)) writeJson(resolve(paths.out, name), value);
 

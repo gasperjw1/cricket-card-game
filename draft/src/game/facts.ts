@@ -146,20 +146,68 @@ export function updateRecords(book: RecordBook, f: FixtureResult): { book: Recor
   return { book: next, broken };
 }
 
-export interface RecordsAt {
+/** Three books: this World Cup's own, all T20 World Cups, and all men's T20Is between full members. */
+export type RecordScope = "wc" | "allWc" | "t20i";
+export const RECORD_SCOPES: RecordScope[] = ["wc", "allWc", "t20i"];
+
+export interface ScopeFold {
   before: RecordBook;
   after: RecordBook;
   broken: Broken[];
 }
 
-/** Fold the record book over fixtures in play order; each fixture sees only what came before it. */
-export function foldRecords(fixtures: FixtureResult[]): Map<string, RecordsAt> {
+export interface RecordsAt extends ScopeFold {
+  /** The fold per scope; `before`/`after`/`broken` above are this World Cup's own book. */
+  scopes: Record<RecordScope, ScopeFold>;
+}
+
+/** A real mark from the build's records file, as the client's record entry. */
+export interface BaselineMark {
+  value: number;
+  value2: number;
+  holder: string;
+  holderId: string | null;
+  team: string;
+  opp: string;
+  date: string;
+  editionId: string;
+}
+
+export type BaselineBook = Partial<Record<RecordKind, { current: BaselineMark; previous: BaselineMark | null }>>;
+
+export interface Baseline {
+  worldCup: BaselineBook;
+  t20i: BaselineBook;
+}
+
+const asEntry = (m: BaselineMark): RecordEntry => ({ value: m.value, value2: m.value2, holder: m.holder, holderId: m.holderId, team: m.team, opp: m.opp, date: m.date, fixtureKey: `real:${m.editionId || m.date}` });
+
+/** A real record book as a client book, with the displaced mark as its one line of history. */
+export function bookFromBaseline(book: BaselineBook | undefined): RecordBook {
+  const out: RecordBook = {};
+  for (const kind of RECORD_KINDS) {
+    const line = book?.[kind];
+    if (line) out[kind] = { current: asEntry(line.current), history: line.previous ? [asEntry(line.previous)] : [] };
+  }
+  return out;
+}
+
+/**
+ * Fold the record books over fixtures in play order; each fixture sees only what came before it.
+ * With a baseline, the all-World-Cups and all-T20Is books start from the real marks before the
+ * edition's first day, and the sim's own matches move them as they go.
+ */
+export function foldRecords(fixtures: FixtureResult[], baseline?: Baseline): Map<string, RecordsAt> {
   const out = new Map<string, RecordsAt>();
-  let book: RecordBook = {};
+  const books: Record<RecordScope, RecordBook> = { wc: {}, allWc: bookFromBaseline(baseline?.worldCup), t20i: bookFromBaseline(baseline?.t20i) };
   for (const f of fixtures) {
-    const { book: after, broken } = updateRecords(book, f);
-    out.set(fixtureKey(f), { before: book, after, broken });
-    book = after;
+    const scopes = {} as Record<RecordScope, ScopeFold>;
+    for (const scope of RECORD_SCOPES) {
+      const { book: after, broken } = updateRecords(books[scope], f);
+      scopes[scope] = { before: books[scope], after, broken };
+      books[scope] = after;
+    }
+    out.set(fixtureKey(f), { ...scopes.wc, scopes });
   }
   return out;
 }
@@ -233,8 +281,8 @@ export interface FactContext {
   knockout: boolean;
   /** Each side's record in the tournament before this match. */
   before: Map<string, { won: number; lost: number; played: number }>;
-  /** Edition-relative marks: a total or chase at or above these is big here. */
-  marks: { highTotal: number; highChase: number };
+  /** Edition-relative marks: a total or chase at or above these is big here, a total at or under `lowTotal` is low. */
+  marks: Marks;
 }
 
 const topBat = (inn: InningsResult): BatterLine | null => [...inn.batting].sort((a, b) => b.runs - a.runs || a.balls - b.balls)[0] ?? null;
@@ -253,9 +301,16 @@ export function collapseIn(inn: InningsResult): { wickets: number; runs: number;
   return best;
 }
 
-/** Marks for an edition from its scoring rate: a big total and a big chase here, not in the abstract. */
-export function marksFor(runsPerOver: number): { highTotal: number; highChase: number } {
-  return { highTotal: Math.round(runsPerOver * 20 + 45), highChase: Math.round(runsPerOver * 20 + 25) };
+export interface Marks {
+  highTotal: number;
+  highChase: number;
+  /** A first-innings total at or under this reads as low-scoring here. */
+  lowTotal: number;
+}
+
+/** Marks for an edition from its scoring rate: a big total, a big chase and a low total here, not in the abstract. */
+export function marksFor(runsPerOver: number): Marks {
+  return { highTotal: Math.round(runsPerOver * 20 + 45), highChase: Math.round(runsPerOver * 20 + 25), lowTotal: Math.round(runsPerOver * 20 - 30) };
 }
 
 export function factsFor(f: FixtureResult, ctx: FactContext): Fact[] {
@@ -311,7 +366,8 @@ export function factsFor(f: FixtureResult, ctx: FactContext): Fact[] {
     // A lone hand: fifty or more in a win with no team-mate past 30.
     if (won && top && top.runs >= 50 && inn.batting.every((b) => b === top || b.runs <= 30)) {
       const share = Math.round((100 * top.runs) / Math.max(1, inn.runs));
-      add("loneHand", share >= 45 ? 2 : 3, inn.team, who(top), { runs: top.runs, balls: top.balls, share, total: inn.runs, notOut: top.out ? 0 : 1 });
+      const nextBest = Math.max(0, ...inn.batting.filter((b) => b !== top).map((b) => b.runs));
+      add("loneHand", share >= 45 ? 2 : 3, inn.team, who(top), { runs: top.runs, balls: top.balls, share, total: inn.runs, nextBest, notOut: top.out ? 0 : 1 }, { opp });
     }
     // A standout bowler in a win: four wickets, or three at under six while the rest went for eight or more.
     if (f.winner === opp && best && best.balls >= 12) {
@@ -347,18 +403,32 @@ export function factsFor(f: FixtureResult, ctx: FactContext): Fact[] {
   }
 
   // Records, with their chains.
-  // A mark that fell inside its first two days was never much of a record (the corpus shows the
-  // first week breaking most of them), so the tier follows how long the previous mark stood.
-  for (const b of ctx.records.broken) {
+  // Records: one fact per kind at the highest scope it reached. A record of this World Cup alone
+  // is a note for the Tables page (asked 2026-11-02); a record of all World Cups or of all T20Is
+  // is news. The all-time books start from the real marks before the edition and move with the sim.
+  // An all-time scope only counts when its book was seeded from real marks; otherwise the sim's
+  // own first mark would read as a record of all T20Is.
+  const seeded = (scope: RecordScope, kind: RecordKind) => {
+    const line = ctx.records.scopes[scope].before[kind];
+    return !!line && [line.current, ...line.history].some((e) => e.fixtureKey.startsWith("real:"));
+  };
+  const brokeIn = (scope: RecordScope, kind: RecordKind) => ctx.records.scopes[scope].broken.some((b) => b.kind === kind) && (scope === "wc" || seeded(scope, kind));
+  for (const kind of RECORD_KINDS) {
+    const scope: RecordScope | null = brokeIn("t20i", kind) ? "t20i" : brokeIn("allWc", kind) ? "allWc" : brokeIn("wc", kind) ? "wc" : null;
+    if (!scope) continue;
+    const b = ctx.records.scopes[scope].broken.find((x) => x.kind === kind)!;
     const prev = b.previous;
     const days = prev && prev.date && b.entry.date ? Math.round((Date.parse(b.entry.date) - Date.parse(prev.date)) / 86400000) : -1;
     const since = days <= 0 ? "earlier the same day" : days === 1 ? "the day before" : `${days} days earlier`;
     const stood = days <= 0 ? "for less than a day" : days === 1 ? "for a day" : `for ${days} days`;
-    const minor = b.kind === "fastestFifty" || b.kind === "biggestBallsWin";
-    const tier: FactTier = days >= 3 && !minor ? 1 : days >= 1 ? 2 : 3;
-    add(`record:${b.kind}`, tier, b.entry.team, b.entry.holderId ? { id: b.entry.holderId, name: b.entry.holder } : null,
-      { value: b.entry.value, value2: b.entry.value2, prevValue: prev?.value ?? 0, prevValue2: prev?.value2 ?? 0, daysSince: Math.max(0, days), timesBroken: (ctx.records.after[b.kind]?.history.length ?? 0) },
-      { holder: b.entry.holder, prevHolder: prev?.holder ?? "", prevTeam: prev?.team ?? "", opp: b.entry.opp, since, stood });
+    const prevEdition = prev?.fixtureKey.startsWith("real:") ? prev.fixtureKey.slice(5, 9) : "";
+    const prevWhen = scope === "wc" ? since : scope === "allWc" ? (prevEdition && /^\d{4}$/.test(prevEdition) ? `at the ${prevEdition} World Cup` : since) : (prev?.date ? `in ${prev.date.slice(0, 4)}` : since);
+    const scopeText = scope === "wc" ? "in this World Cup" : scope === "allWc" ? "in T20 World Cup history" : "in men's T20 internationals";
+    const minor = kind === "fastestFifty" || kind === "biggestBallsWin";
+    const tier: FactTier = scope === "wc" ? 3 : minor ? 2 : 1;
+    add(`record:${kind}`, tier, b.entry.team, b.entry.holderId ? { id: b.entry.holderId, name: b.entry.holder } : null,
+      { value: b.entry.value, value2: b.entry.value2, prevValue: prev?.value ?? 0, prevValue2: prev?.value2 ?? 0, daysSince: Math.max(0, days), timesBroken: (ctx.records.scopes[scope].after[kind]?.history.length ?? 0) },
+      { holder: b.entry.holder, prevHolder: prev?.holder ?? "", prevTeam: prev?.team ?? "", opp: b.entry.opp, since, stood, scope, scopeText, prevWhen });
   }
 
   return facts;

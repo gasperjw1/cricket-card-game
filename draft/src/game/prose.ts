@@ -148,6 +148,26 @@ export function resultLine(f: FixtureResult, picker: Picker): string {
   return render(picker.pick("result:runs", BANK.results.runs), { ...slots, runs: m.runs }, picker);
 }
 
+/**
+ * Slots every sentence about a match may use, from the match itself: the first-innings total and
+ * the target, and the shape of the game in words ("low-scoring thriller", "rout", "contest"), so a
+ * fact can be told inside the match rather than beside it. `lowTotal`/`highTotal` are the
+ * edition's marks (facts.ts `marksFor`).
+ */
+export function matchSlots(f: FixtureResult, marks: { lowTotal: number; highTotal: number }): Slots {
+  const [i1, i2] = f.innings ?? [];
+  const total = i1?.runs ?? 0;
+  const target = i2?.target ?? total + 1;
+  const tempo = i1 ? (total <= marks.lowTotal ? "low-scoring" : total >= marks.highTotal ? "high-scoring" : "") : "";
+  const m = f.margin;
+  const tight = !!f.tieBreak || (m ? ("wickets" in m ? m.ballsLeft <= 6 || m.wickets <= 2 : m.runs <= 10) : false);
+  const rout = m ? ("wickets" in m ? m.ballsLeft >= 36 && m.wickets >= 7 : m.runs >= 50) : false;
+  const finish = tight ? "thriller" : rout ? "rout" : "contest";
+  const matchShape = finish === "rout" ? (tempo ? `${tempo} rout` : "one-sided affair") : `${tempo} ${finish}`.trim();
+  const chaser = i2?.team ?? "", setter = i1?.team ?? "";
+  return { total, target, tempo, finish, matchShape, chaser, setter, chasing: `chasing ${target}`, defending: `defending ${total}` };
+}
+
 /** Every integer in a sentence, for the honesty test: each must come from the match. */
 export function numbersIn(text: string): number[] {
   return (text.match(/\d+(?:\.\d+)?/g) ?? []).map(Number);

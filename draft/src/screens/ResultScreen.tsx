@@ -7,6 +7,7 @@ import { MatchView } from "../components/MatchView.tsx";
 import { PlayerRatings } from "../components/PlayerRatings.tsx";
 import { MatchScorecard } from "../components/Scorecard.tsx";
 import { writePaper } from "../game/paper.ts";
+import type { RecordsOut } from "../../../wcdraft/src/analysis/records.ts";
 import { verdictFor } from "../game/gazette.ts";
 import type { SimulateInput } from "../game/simulate.ts";
 import { datedStages, exitStageOf, inPlayOrder, tournamentTotals, type PlayerTotals } from "../game/stats.ts";
@@ -30,7 +31,7 @@ function Leaders({ title, rows, cols }: { title: string; rows: Ranked[]; cols: {
   );
 }
 
-export function ResultScreen({ state, result: played, editions, venues, onAgain }: { state: RunState; result: TournamentResult; editions: EditionOut[]; venues: VenueOut[]; onAgain: () => void }) {
+export function ResultScreen({ state, result: played, editions, venues, records, onAgain }: { state: RunState; result: TournamentResult; editions: EditionOut[]; venues: VenueOut[]; records: RecordsOut; onAgain: () => void }) {
   const [tab, setTab] = useState<Tab>("matches");
   const me = state.identity!.team;
   const edition = editions.find((e) => e.id === played.editionId);
@@ -41,7 +42,7 @@ export function ResultScreen({ state, result: played, editions, venues, onAgain 
   const mine = useMemo(() => all.filter((f) => f.teams.includes(me)), [all, me]);
   const totals = useMemo(() => tournamentTotals(all), [all]);
   // The whole paper is written once: facts and records for every match, the side's issues with stop press and late news.
-  const paper = useMemo(() => writePaper(all, mine, me, result.seed, result.editionId, edition?.environment.runsPerOver ?? 7.5, new Set(result.stages.filter((s) => !s.groups).map((s) => s.id))), [all, mine, me, result, edition]);
+  const paper = useMemo(() => writePaper(all, mine, me, result.seed, result.editionId, edition?.environment.runsPerOver ?? 7.5, new Set(result.stages.filter((s) => !s.groups).map((s) => s.id)), records[result.editionId]), [all, mine, me, result, edition, records]);
   const ranked: Ranked[] = [...totals.values()].map((t) => ({ ...t, me: t.team === me && highlight.has(t.id) }));
   const top = (key: (t: Ranked) => number, tie: (t: Ranked) => number, filter: (t: Ranked) => boolean = () => true, n = 10) =>
     ranked.filter(filter).filter((t) => key(t) > 0).sort((a, b) => key(b) - key(a) || tie(a) - tie(b)).slice(0, n);

@@ -3,7 +3,7 @@ import { describe, it } from "node:test";
 import type { FixtureResult } from "../../wcdraft/src/engine/tournament.ts";
 import { BANK } from "../src/game/bank.ts";
 import type { Fact } from "../src/game/facts.ts";
-import { Picker, count, factSentence, numbersIn, render, resultLine, stopPress, tidy } from "../src/game/prose.ts";
+import { Picker, count, factSentence, matchSlots, numbersIn, render, resultLine, stopPress, tidy } from "../src/game/prose.ts";
 
 const fact = (key: string, n: Record<string, number>, s: Record<string, string> = {}, player: string | null = null, team = "India"): Fact => ({ key, tier: 1, team, player: player ? { id: player, name: player } : null, n, s });
 
@@ -14,13 +14,17 @@ function slotsUsed(frames: readonly string[]): Set<string> {
   return out;
 }
 
+/** Slots every sentence may use from the match itself (prose.ts `matchSlots`), with distinctive numbers. */
+const MATCH_SLOTS = { total: 151, target: 152, tempo: "low-scoring", finish: "thriller", matchShape: "low-scoring thriller", chaser: "Chasers", setter: "Setters", chasing: "chasing 152", defending: "defending 151" };
+const STRING_SLOTS = new Set(["loser", "opp", "a", "b", "holder", "prevHolder", "prevTeam", "scopeText", "prevWhen", "since", "stood", "scope"]);
+
 /** A fact whose numbers and names cover every slot a frame could ask for, with distinctive numbers. */
 function fullFact(key: string): Fact {
   const n: Record<string, number> = {}, s: Record<string, string> = {};
   let i = 11;
   for (const slot of slotsUsed([...(BANK.facts[key] ?? []), ...(BANK.stopPress[key] ?? [])])) {
-    if (["team", "player", "surname"].includes(slot)) continue;
-    if (["loser", "opp", "a", "b", "holder", "prevHolder", "prevTeam"].includes(slot)) s[slot] = `${slot}Name`;
+    if (["team", "player", "surname"].includes(slot) || slot in MATCH_SLOTS) continue;
+    if (STRING_SLOTS.has(slot)) s[slot] = `${slot}Name`;
     else n[slot] = (i += 7);
   }
   return fact(key, n, s, "Virat Kohli");
@@ -38,15 +42,16 @@ describe("prose", () => {
       const f = fullFact(key);
       const picker = new Picker(`t:${key}`);
       const frames = BANK.facts[key]!;
-      const allowed = new Set(Object.values(f.n));
+      const allowed = new Set([...Object.values(f.n), MATCH_SLOTS.total, MATCH_SLOTS.target]);
       for (let i = 0; i < frames.length * 2; i += 1) {
-        const text = factSentence(f, picker);
+        const text = factSentence(f, picker, MATCH_SLOTS);
         assert.ok(text && text.length > 10, `${key}: ${text}`);
         for (const num of numbersIn(text!)) assert.ok(allowed.has(num), `${key}: number ${num} not in fact (${text})`);
         assert.ok(!/\{|\[|\]|\}/.test(text!), `${key}: unfilled token in ${text}`);
         assert.ok(!text!.includes("!"), "no exclamation marks");
+        assert.ok(!/per cent/.test(text!), "no percentages in prose");
       }
-      const stop = stopPress(f, picker);
+      const stop = stopPress(f, picker, MATCH_SLOTS);
       assert.ok(stop && stop.length > 4, `${key} stop press`);
     }
   });
@@ -90,6 +95,22 @@ describe("prose", () => {
     assert.match(so, /super over/);
     const dls = resultLine({ ...base, winner: "India", margin: { runs: 12, dls: true } } as unknown as FixtureResult, picker);
     assert.match(dls, /Duckworth|par/);
+  });
+
+  it("reads the shape of a match into words", () => {
+    const base = { stageId: "g", teams: ["A", "B"] as [string, string], date: null, venueId: "v", group: "A", scores: ["", ""] as [string, string], tieBreak: null, rain: null } as unknown as FixtureResult;
+    const inn = (team: string, index: 1 | 2, runs: number, target: number | null = null) => ({ team, index, runs, target }) as unknown as FixtureResult["innings"] extends (infer T)[] | undefined ? T : never;
+    const marks = { lowTotal: 125, highTotal: 200 };
+    const tight = matchSlots({ ...base, winner: "B", margin: { wickets: 5, ballsLeft: 4 }, innings: [inn("A", 1, 126), inn("B", 2, 127, 127)] } as FixtureResult, marks);
+    assert.equal(tight.matchShape, "thriller");
+    assert.equal(tight.target, 127);
+    assert.equal(tight.chasing, "chasing 127");
+    const low = matchSlots({ ...base, winner: "A", margin: { runs: 3 }, innings: [inn("A", 1, 118), inn("B", 2, 115, 119)] } as FixtureResult, marks);
+    assert.equal(low.matchShape, "low-scoring thriller");
+    const rout = matchSlots({ ...base, winner: "A", margin: { runs: 80 }, innings: [inn("A", 1, 210), inn("B", 2, 130, 211)] } as FixtureResult, marks);
+    assert.equal(rout.matchShape, "high-scoring rout");
+    const plain = matchSlots({ ...base, winner: "A", margin: { runs: 20 }, innings: [inn("A", 1, 160), inn("B", 2, 140, 161)] } as FixtureResult, marks);
+    assert.equal(plain.matchShape, "contest");
   });
 
   it("counts, ordinals and tidying", () => {

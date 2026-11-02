@@ -3,6 +3,7 @@
  * tables are fetched once; per-edition squads, pools and ratings on demand.
  */
 
+import type { RecordsOut } from "../../../wcdraft/src/analysis/records.ts";
 import type { SituationTables } from "../../../wcdraft/src/analysis/situation.ts";
 import type { MatchupTables } from "../../../wcdraft/src/analysis/matchups.ts";
 import type { EditionPopulations, PlayerRating, StyleResults } from "../../../wcdraft/src/ratings/model.ts";
@@ -29,6 +30,8 @@ export interface SharedData {
   editionIds: string[];
   /** Squads the sync script found mostly blank (no record in that era); simulated, never spun. */
   blankSquads: { editionId: string; team: string }[];
+  /** Record books before each World Cup (all-time World Cup and full-member T20I marks), by edition id; empty until the build writes them. */
+  records: RecordsOut;
 }
 
 const base = `${import.meta.env.BASE_URL}data`;
@@ -49,7 +52,7 @@ let sharedPromise: Promise<SharedData> | null = null;
 
 export function loadShared(): Promise<SharedData> {
   sharedPromise ??= (async () => {
-    const [names, index, editions, venues, populations, situationTables, matchups, formats, afghanistan, coaches, captains, labelsCsv] = await Promise.all([
+    const [names, index, editions, venues, populations, situationTables, matchups, formats, afghanistan, coaches, captains, labelsCsv, records] = await Promise.all([
       json<Record<string, string>>("names.json"),
       json<{ editions: string[]; blankSquads?: { editionId: string; team: string }[] }>("index.json"),
       json<EditionOut[]>("editions.json"),
@@ -62,6 +65,7 @@ export function loadShared(): Promise<SharedData> {
       json<{ coaches: CoachOut[] }>("coaches.json").catch(() => ({ coaches: [] as CoachOut[] })),
       json<{ captains: CaptainOut[]; leaders: LeaderOut[] }>("captaincy.json").catch(() => ({ captains: [] as CaptainOut[], leaders: [] as LeaderOut[] })),
       text("players.csv"),
+      json<RecordsOut>("records.json").catch(() => ({} as RecordsOut)),
     ]);
     setNames(names);
     const labels = new Map<string, PlayerLabel>();
@@ -70,6 +74,7 @@ export function loadShared(): Promise<SharedData> {
       editions, venues, populations, situationTables, matchups, situation: new SituationModel(situationTables, matchups),
       formats: formats.editions, afghanistanFixtures: afghanistan.fixtures, coaches: coaches.coaches, captains: captains.captains, leaders: captains.leaders, labels, editionIds: index.editions,
       blankSquads: index.blankSquads ?? [],
+      records,
     };
   })();
   return sharedPromise;

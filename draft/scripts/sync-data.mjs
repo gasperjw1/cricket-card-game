@@ -23,7 +23,7 @@ rmSync(out, { recursive: true, force: true });
 for (const d of ["", "ratings", "squads", "pool", "config"]) mkdirSync(resolve(out, d), { recursive: true });
 
 const copy = (from, to) => copyFileSync(resolve(from), resolve(out, to));
-for (const f of ["editions.json", "venues.json", "situation.json", "matchups.json", "coaches.json", "captaincy.json", "people.json", "style-results.json"]) if (existsSync(resolve(outDir, f))) copy(resolve(outDir, f), f);
+for (const f of ["editions.json", "venues.json", "situation.json", "matchups.json", "coaches.json", "captaincy.json", "people.json", "style-results.json", "records.json"]) if (existsSync(resolve(outDir, f))) copy(resolve(outDir, f), f);
 copy(resolve(outDir, "ratings/populations.json"), "ratings/populations.json");
 for (const f of ["formats.json", "afghanistan-fixtures.json", "tiers.json"]) copy(resolve(wcdraft, "config", f), `config/${f}`);
 copy(resolve(wcdraft, "labels/players.csv"), "players.csv");

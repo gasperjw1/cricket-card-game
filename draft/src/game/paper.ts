@@ -3,12 +3,13 @@
  * then for each of the side's matches the stop press, the fact sentences for the report and the
  * late news since the previous issue. Written in one pass with one picker, so the no-repeat memory
  * holds across the run whatever order the reader turns the pages, and the same seed prints the
- * same paper.
+ * same paper. The record books for all World Cups and all T20Is start from the real marks before
+ * the edition (`baseline`), so only a mark that beats history is news.
  */
 
 import type { FixtureResult } from "../../../wcdraft/src/engine/tournament.ts";
-import { bestFact, factsFor, fixtureKey, foldRecords, marksFor, recordsBefore, type Fact, type RecordsAt } from "./facts.ts";
-import { Picker, factSentence, resultLine, stopPress } from "./prose.ts";
+import { bestFact, factsFor, fixtureKey, foldRecords, marksFor, recordsBefore, type Baseline, type Fact, type RecordsAt } from "./facts.ts";
+import { Picker, factSentence, matchSlots, resultLine, stopPress } from "./prose.ts";
 
 export interface LateNewsLine {
   fixtureKey: string;
@@ -23,7 +24,7 @@ export interface IssueCopy {
   facts: Fact[];
   /** The single stop-press line, from the best tier-one fact, or null. */
   stopPress: string | null;
-  /** Fact sentences for the report, at most three, the stop-press fact first. */
+  /** Fact sentences for the report: up to three of tier one and two, else the best note, so no report is bare. */
   sentences: string[];
   /** Results since the previous issue, in play order, with their best fact where there is one. */
   lateNews: LateNewsLine[];
@@ -54,9 +55,9 @@ export function matchDaysOf(all: FixtureResult[]): Map<string, number> {
   return days;
 }
 
-export function writePaper(all: FixtureResult[], mine: FixtureResult[], me: string, seed: string, editionId: string, runsPerOver: number, knockoutStages: Set<string>): Paper {
+export function writePaper(all: FixtureResult[], mine: FixtureResult[], me: string, seed: string, editionId: string, runsPerOver: number, knockoutStages: Set<string>, baseline?: Baseline): Paper {
   const picker = new Picker(`${seed}:paper`);
-  const records = foldRecords(all);
+  const records = foldRecords(all, baseline);
   const before = recordsBefore(all);
   const marks = marksFor(runsPerOver);
   const matchDays = matchDaysOf(all);
@@ -70,21 +71,27 @@ export function writePaper(all: FixtureResult[], mine: FixtureResult[], me: stri
   for (const m of mine) {
     const at = all.indexOf(m);
     const key = fixtureKey(m);
+    const slots = matchSlots(m, marks);
     const own = facts.get(key) ?? [];
     const ranked = [...own].sort((a, b) => a.tier - b.tier);
     const top = ranked.find((x) => x.tier === 1) ?? null;
-    const stop = top ? stopPress(top, picker) : null;
+    const stop = top ? stopPress(top, picker, slots) : null;
     const sentences: string[] = [];
     for (const fact of ranked) {
       if (sentences.length >= 3 || fact.tier > 2) break;
-      const s = factSentence(fact, picker);
+      const s = factSentence(fact, picker, slots);
+      if (s) sentences.push(s);
+    }
+    if (!sentences.length) {
+      const note = ranked.find((x) => x.tier === 3);
+      const s = note ? factSentence(note, picker, slots) : null;
       if (s) sentences.push(s);
     }
     const between = all.slice(previous + 1, at).filter((f) => !f.teams.includes(me));
     const lateNews = between.slice(-8).map((f) => {
       const fk = fixtureKey(f);
       const best = bestFact((facts.get(fk) ?? []).filter((x) => !IN_RESULT_LINE.has(x.key) && x.tier <= 2));
-      const extra = best ? factSentence(best, picker) : null;
+      const extra = best ? factSentence(best, picker, matchSlots(f, marks)) : null;
       return { fixtureKey: fk, date: f.date, line: `${resultLine(f, picker)}${extra ? ` ${extra}` : ""}` };
     });
     issues.set(key, { fixtureKey: key, matchDay: matchDays.get(m.date ?? "") ?? 0, facts: own, stopPress: stop, sentences, lateNews });

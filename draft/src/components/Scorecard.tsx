@@ -101,7 +101,9 @@ export function InningsCard({ inn, fielding, highlight, me }: { inn: InningsResu
 
 /** Both innings of a match behind "1st innings · 2nd innings" tabs; `only` pins one innings with no tabs. */
 export function MatchScorecard({ innings, highlight, me, only }: { innings: InningsResult[]; highlight: Set<string>; me: string; only?: 1 | 2 }) {
-  const [shown, setShown] = useState<number>(only ?? 1);
+  const [picked, setShown] = useState<number>(1);
+  // A pinned innings follows the prop on every render; state only drives the tabbed view.
+  const shown = only ?? picked;
   const inn = innings.find((i) => i.index === shown) ?? innings[0];
   if (!inn) return null;
   const fielding = innings.find((i) => i !== inn)?.team ?? "";

@@ -166,7 +166,7 @@ export function App() {
         <LineupScreen state={state} captains={shared.captains} editions={shared.editions} onCaptain={(id) => dispatch({ type: "captain", id })} onBack={() => dispatch({ type: "backToDraft" })} onSimulate={(captainId) => void simulate(captainId)} />
       )}
       {state.step === "simulating" && <section className="card"><h2>Simulating the {state.identity?.editionId} World Cup…</h2><p>Every match of the tournament, ball by ball.</p></section>}
-      {state.step === "result" && state.result && shared && <ResultScreen state={state} result={state.result} editions={shared.editions} venues={shared.venues} onAgain={() => dispatch({ type: "home" })} />}
+      {state.step === "result" && state.result && shared && <ResultScreen state={state} result={state.result} editions={shared.editions} venues={shared.venues} records={shared.records} onAgain={() => dispatch({ type: "home" })} />}
       {rng && state.step !== "home" && state.step !== "result" && <footer className="foot">Spins and simulation are deterministic for this seed.</footer>}
     </main>
   );

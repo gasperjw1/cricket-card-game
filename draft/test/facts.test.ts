@@ -91,6 +91,39 @@ describe("facts", () => {
     assert.ok(!tie.broken.some((b) => b.kind === "highestTotal"));
   });
 
+  it("scopes a record: this World Cup is a note, all World Cups or all T20Is is news, seeded from the real books", () => {
+    const mark = (value: number, holder: string, date: string, editionId = "") => ({ value, value2: 50, holder, holderId: holder, team: "X", opp: "Y", date, editionId });
+    const baseline = {
+      worldCup: { highestScore: { current: mark(123, "McCullum", "2012-09-21", "2012"), previous: mark(117, "Gayle", "2007-09-11", "2007") } },
+      t20i: { highestScore: { current: mark(156, "Finch", "2013-08-29"), previous: mark(123, "McCullum", "2012-09-21", "2012") } },
+    };
+    const f1 = fixture("A", "B", innings("A", 1, 180, 5, { batting: [bat("a1", 130, 60)] }), innings("B", 2, 150, 8, { target: 181 }), { date: "2016-03-16" });
+    const f2 = fixture("C", "D", innings("C", 1, 200, 3, { batting: [bat("c1", 160, 62)] }), innings("D", 2, 100, 10, { target: 201 }), { date: "2016-03-20", stageId: "group", teams: ["C", "D"] });
+    const f3 = fixture("E", "F", innings("E", 1, 170, 5, { batting: [bat("e1", 90, 50)] }), innings("F", 2, 100, 10, { target: 171 }), { date: "2016-03-22", stageId: "group", teams: ["E", "F"] });
+    const book = foldRecords([f1, f2, f3], baseline);
+    const at = (f: FixtureResult) => factsFor(f, { editionId: "2016", records: book.get(fixtureKey(f))!, knockout: false, before: new Map(), marks: marksFor(7.5) }).filter((x) => x.key === "record:highestScore");
+    // 130 beats McCullum's 123 across all World Cups but not Finch's 156 in all T20Is: news, scoped to World Cups.
+    const r1 = at(f1);
+    assert.equal(r1.length, 1);
+    assert.equal(r1[0]!.s.scope, "allWc");
+    assert.equal(r1[0]!.tier, 1);
+    assert.equal(r1[0]!.s.prevHolder, "McCullum");
+    assert.equal(r1[0]!.s.prevWhen, "at the 2012 World Cup");
+    // 160 beats Finch's 156: the T20I scope wins, with the year of the old mark.
+    const r2 = at(f2);
+    assert.equal(r2[0]!.s.scope, "t20i");
+    assert.equal(r2[0]!.s.prevHolder, "Finch");
+    assert.equal(r2[0]!.s.prevWhen, "in 2013");
+    // 90 is not a record of this World Cup either (130 and 160 came first), so nothing.
+    assert.equal(at(f3).length, 0);
+    // Without a baseline the all-time books start empty, so the first mark sets rather than breaks them.
+    const bare = foldRecords([f1, f2]);
+    const facts2 = factsFor(f2, { editionId: "2016", records: bare.get(fixtureKey(f2))!, knockout: false, before: new Map(), marks: marksFor(7.5) }).filter((x) => x.key === "record:highestScore");
+    assert.equal(facts2[0]!.s.scope, "wc");
+    assert.equal(facts2[0]!.tier, 3);
+    assert.equal(marksFor(7.5).lowTotal, 120);
+  });
+
   it("reads the chase from the ball log: a late surge, a twenty-run final over, a fastest fifty, a hat-trick", () => {
     const balls: BallRecord[] = [];
     // First innings: a batter reaches fifty in 20 balls.
@@ -127,6 +160,6 @@ describe("facts", () => {
     const before = recordsBefore([f1, f2]);
     assert.deepEqual(before.get(fixtureKey(f2))!.get("A"), { won: 1, lost: 0, played: 1 });
     assert.equal(before.get(fixtureKey(f1))!.size, 0);
-    assert.deepEqual(marksFor(8), { highTotal: 205, highChase: 185 });
+    assert.deepEqual(marksFor(8), { highTotal: 205, highChase: 185, lowTotal: 130 });
   });
 });

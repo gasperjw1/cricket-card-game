@@ -11,8 +11,20 @@ import { engineReady, loadEdition } from "../../wcdraft/src/engine/load.ts";
 import { simulateTournament } from "../../wcdraft/src/engine/tournament.ts";
 import type { FixtureResult } from "../../wcdraft/src/engine/tournament.ts";
 import { factsFor, foldRecords, marksFor, recordsBefore, fixtureKey, type Fact } from "../src/game/facts.ts";
-import { Picker, factSentence, stopPress } from "../src/game/prose.ts";
+import { Picker, factSentence, matchSlots, stopPress } from "../src/game/prose.ts";
 import { inPlayOrder } from "../src/game/stats.ts";
+import { setNames } from "../src/lib/names.ts";
+
+import { readFileSync } from "node:fs";
+import type { Baseline } from "../src/game/facts.ts";
+
+/** The real record books before each edition, as the build wrote them; empty when not built yet. */
+const baselines: Record<string, Baseline> = (() => {
+  try { return JSON.parse(readFileSync(new URL("../../wcdraft/data/out/records.json", import.meta.url), "utf8")); } catch { return {}; }
+})();
+
+// Full names as the paper prints them, when the client data has been synced.
+try { setNames(JSON.parse(readFileSync(new URL("../public/data/names.json", import.meta.url), "utf8"))); } catch { /* short names will do */ }
 
 const seeds = Number(process.argv[2] ?? 10);
 const only = process.argv[3]?.split(",");
@@ -20,7 +32,7 @@ const EDITIONS = ["2007", "2009", "2010", "2012", "2014", "2016", "2021", "2022"
 
 if (!engineReady()) { console.error("engine data not built; run data:build and ratings:build in wcdraft"); process.exit(1); }
 
-const byKey = new Map<string, { matches: number; sample: Fact | null; tiers: Set<number> }>();
+const byKey = new Map<string, { matches: number; sample: Fact | null; slots: Record<string, string | number>; tiers: Set<number> }>();
 let matches = 0, withStop = 0, withReport = 0, tier1Count = 0;
 const totalsByEdition = new Map<string, number[]>();
 const chasesByEdition = new Map<string, number[]>();
@@ -34,7 +46,7 @@ for (const id of EDITIONS) {
   for (let s = 1; s <= seeds; s += 1) {
     const result = simulateTournament(data, data.progression, { seed: `corpus-${id}-${s}`, keepScorecards: true, keepBallLogs: true });
     const all: FixtureResult[] = result.stages.flatMap((st) => inPlayOrder(st.fixtures));
-    const records = foldRecords(all);
+    const records = foldRecords(all, baselines[id]);
     const before = recordsBefore(all);
     for (const f of all) {
       const key = fixtureKey(f);
@@ -42,10 +54,10 @@ for (const id of EDITIONS) {
       matches += 1;
       const keys = new Set(facts.map((x) => x.key));
       for (const k of keys) {
-        const row = byKey.get(k) ?? { matches: 0, sample: null, tiers: new Set() };
+        const row = byKey.get(k) ?? { matches: 0, sample: null, slots: {}, tiers: new Set() };
         row.matches += 1;
         const fact = facts.find((x) => x.key === k)!;
-        if (!row.sample || (s + matches) % 7 === 0) row.sample = fact;
+        if (!row.sample || (s + matches) % 7 === 0) { row.sample = fact; row.slots = matchSlots(f, marks); }
         row.tiers.add(fact.tier);
         byKey.set(k, row);
       }
@@ -68,6 +80,6 @@ console.log("fact".padEnd(26), "tier", "share of matches", "  sample");
 const picker = new Picker("corpus");
 for (const [k, row] of [...byKey].sort((a, b) => b[1].matches - a[1].matches)) {
   const share = `${(100 * row.matches / matches).toFixed(1)}%`;
-  const sample = row.sample ? (factSentence(row.sample, picker) ?? stopPress(row.sample, picker) ?? "(no frame)") : "";
+  const sample = row.sample ? (factSentence(row.sample, picker, row.slots) ?? stopPress(row.sample, picker, row.slots) ?? "(no frame)") : "";
   console.log(k.padEnd(26), [...row.tiers].join("/").padEnd(4), share.padStart(8), "        ", sample);
 }

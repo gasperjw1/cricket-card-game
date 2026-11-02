@@ -17,6 +17,7 @@ import { SituationAnalysis, type SituationTables } from "../analysis/situation.j
 import { ClassSplitAnalysis, type ClassSource, type ClassSplitOut } from "../analysis/class-split.js";
 import { MatchupAnalysis, bowlGroupOf, handOf, type MatchupTables } from "../analysis/matchups.js";
 import { PressureAnalysis } from "../analysis/pressure.js";
+import { RecordsAnalysis, type RecordsOut } from "../analysis/records.js";
 import { TempoAnalysis } from "../analysis/tempo.js";
 import { setBowlingTypeLookup } from "../analysis/environment.js";
 import { buildCaptaincy, type CaptaincyTables } from "../analysis/captaincy.js";
@@ -94,6 +95,8 @@ export interface BuildResult {
   /** Captaincy ratings (wins above Elo expectation, shrunk) joined to people; coach philosophy tags and intent profiles. */
   captaincy: CaptaincyTables;
   coaches: CoachTables;
+  /** Record books before each World Cup: all-time World Cup marks and all-time full-member T20I marks (analysis/records.ts). */
+  records: RecordsOut;
   coverage: Coverage;
 }
 
@@ -180,6 +183,8 @@ export function runBuild(log: (msg: string) => void = () => {}): BuildResult {
   const teamStrength = new TeamStrengthAnalysis(config.isFullMember);
   const windowPopulation = new WindowPopulationAnalysis(config);
   const situation = new SituationAnalysis();
+  // Record books before each World Cup: all-time World Cup marks and all-time full-member T20I marks.
+  const records = new RecordsAnalysis(config.isFullMember);
 
   // Phase 1.5 first pass: context populations (period × opponent strength × phase, venue factors)
   // over the whole archive, with their own Elo so pre-match strengths match the main pass.
@@ -232,6 +237,7 @@ export function runBuild(log: (msg: string) => void = () => {}): BuildResult {
     teamStrength.add(m);
     situation.add(m);
     matchups.add(m);
+    records.add(m, wcEdition);
     for (const ed of formEditions) windowPopulation.add(ed, m, elo, "window");
     if (wcEdition) windowPopulation.add(wcEdition, m, elo, "tournament");
 
@@ -378,6 +384,7 @@ export function runBuild(log: (msg: string) => void = () => {}): BuildResult {
     teamStrength: teamStrengthOut,
     captaincy: buildCaptaincy(people, teamStrengthOut.teams),
     coaches: buildCoaches(teamStyleOut),
+    records: records.summary(windows),
     odiTeamStrength: odiStrength.summary(),
     odiPopulationByYear,
     windowPopulation: windowPopulation.summary(),
