@@ -102,6 +102,22 @@ export const MODEL = {
    */
   teamPrior: { enabled: true, strength: 500, destinationGain: 1 as number, strongGain: 1 as number },
   /**
+   * Associate bowling step (2026-11-02, `scripts/research/bowling-tier-step.mts`). An associate
+   * bowler is judged against what bowlers concede to weak batting sides, and nearly all of those
+   * bowlers are associates, so an average associate bowler read as an average bowler (2024 cards
+   * 69.8 against full members' 69.9). Measured on men's T20Is from 2014 against the same year,
+   * phase and batting Elo norm, World Cups before 2024 included (these match-ups barely happen
+   * anywhere else) and the 2024–26 hold-out left out. From the batting they usually face (Elo
+   * 1390) to the 1500–1699 band (+127 Elo, 2,990 wickets), associate bowlers concede runs ×1.016
+   * and take wickets ×0.945; to the 1700+ band (+353, 43 wickets), ×1.136 and ×0.648. Full-member
+   * bowlers hold level over both moves. The fall steepens with the gap: per 100 Elo the wicket
+   * rate is −0.042 to the middle band and −0.121 to the strong one, but per (gap/100)² the two
+   * bands agree (runs +0.0086 and +0.0101, wickets −0.0326 and −0.0344). So the step is
+   * exp(rate × (gap/100)²), on an associate bowler's runs and wicket cells, for the gap between
+   * the batting he faced and the opposition, capped at `maxGap`.
+   */
+  bowlTierStep: { enabled: true as boolean, runsPerGap2: 0.009, wicketsPerGap2: -0.033, maxGap: 400 },
+  /**
    * Pace/spin batting split (rebuilt 2026-10-30, see `bowlClassSplit` in rate.ts). Each class is
    * measured against the batter's own level inside one source, and the sources are then pooled
    * with these weights. `minBalls` is both the bar for a measured number and the rule for ODIs
@@ -194,6 +210,13 @@ export const MODEL = {
   /** Opposition the edge-transfer gap is measured to (see RateOptions). Sweep: strongest third 0.283 vs mix 0.266 (batting within-edition). */
   transferDestination: "topThird" as "mix" | "topThird",
 } as const;
+
+/** The associate bowling step's runs and wicket multipliers for batting this many Elo above what the bowler usually faced (none below 0). */
+export function bowlTierFactors(gapElo: number): { runs: number; wickets: number } {
+  const cfg = MODEL.bowlTierStep;
+  const gap2 = (Math.max(0, Math.min(cfg.maxGap, gapElo)) / 100) ** 2;
+  return { runs: Math.exp(cfg.runsPerGap2 * gap2), wickets: Math.exp(cfg.wicketsPerGap2 * gap2) };
+}
 
 export type Vector = Record<OutcomeKey, number>;
 export type PhaseVectors = Record<Phase, Vector>;
@@ -410,6 +433,12 @@ export interface SkillRating {
     selectionShift: number;
     /** Phase weights behind `value` (the player's own exposure by default; see MODEL.phaseWeighting). */
     phaseWeights: Record<Phase, number>;
+    /**
+     * Associate bowling step (MODEL.bowlTierStep): the batting Elo the bowler usually faced and the
+     * edition's opposition Elo the card's step was taken to. The engine plays the gap to each
+     * striker's side instead. Absent when no step applies.
+     */
+    tierStep?: { faced: number; field: number };
   };
   /** Percentile among rated player-editions (0–1) and the 40–99 display value. */
   percentile: number;
@@ -441,6 +470,8 @@ export interface PlayerRating {
   editionId: string;
   team: string;
   standIn: boolean;
+  /** His side's Elo at the edition's start (null when unknown): the batting strength the engine's associate bowling step reads. */
+  teamElo?: number | null;
   batting: SkillRating;
   bowling: SkillRating;
   /** Headline display: the better of batting and bowling, with a small all-round bonus. */

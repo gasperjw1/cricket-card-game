@@ -226,6 +226,8 @@ export function toEnginePlayer(r: PlayerRating, pops: EditionPopulations, label?
     positionMedian: r.position.median,
     bowlingShares: r.bowlingPhases,
     canBowl: !r.bowling.lowSample || r.role === "bowler" || r.role === "all-rounder" || (r.bowlingPhases !== null && r.bowling.evidence.formBalls + r.bowling.evidence.careerBalls >= 60),
+    teamElo: r.teamElo ?? null,
+    bowlCircuit: r.bowling.evidence.tierStep ?? null,
     tier: r.tier,
     battingDisplay: r.batting.display,
     bowlingDisplay: r.bowling.display,

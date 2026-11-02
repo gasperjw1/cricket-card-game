@@ -89,7 +89,12 @@ doc's "Engine items" section and the design doc's decision log, commit, tell Yas
 **Update 2026-11-02:** 2.0 / 1.3 was rebuilt and measured and did not qualify: hold-out 21.8%,
 spread +3.2. The gains only reach batting, because bowling rates in `tierMode` "elo", not the
 two-way branch, so the bowling half of the cause above is not where these knobs act. Gains are
-back at 1. Next is a decision for Yash about associate bowling; see refit doc "Engine items" 5.
+back at 1. Bowling on the two-way step was then measured too (best: hold-out 18.8%, Brier
+0.1888, but bowling stability 0.585 → 0.506). 2024's two-way bowling table runs the wrong way, so
+it isn't adopted; see refit doc "Engine items" 5. Then the associate bowling step was measured
+and built, on the card and per ball (items 6–8), then refitted with pre-2024 World Cups on the
+square of the Elo gap (item 9): hold-out 17.2%, Brier 0.1884, spread +3.0. What's left is the
+fit/hold-out split on associate wickets (newcomers) and a batting counterpart.
 
 ### 2. Era rule (step 4)
 

@@ -106,6 +106,14 @@ export const ENGINE = {
   matchupExponent: 1 as number,
   matchupPrior: 2000 as number,
   /**
+   * Associate bowling step per ball (2026-11-02, ratings `MODEL.bowlTierStep`). An associate
+   * bowler's card carries the step to the edition's average opposition. On each ball the engine
+   * tops that up to the measured step for this striker's side (his Elo against the batting the
+   * bowler usually faced), allowing for the card's share already arriving through the bowler's
+   * vector at the bowl exponents. 0 switches the top-up off; the card's own step stays.
+   */
+  bowlTierExponent: 1 as number,
+  /**
    * Coach intent (Phase 2b, `analysis/coaches.ts`): one SD of coach-tenure intent moves the
    * boundary cells by `boundaryPerSd` and the dismissal cell by `hazardPerSd`. A tenure's intent is
    * how fast his sides scored against their era, and most of that is the batters, who already
@@ -223,7 +231,7 @@ export const ENGINE = {
   },
 };
 
-export type EngineOverrides = Partial<Record<"batExponent" | "bowlExponent" | "bowlHazardExponent" | "pitchExponent" | "inningsPhaseExponent" | "pressureExponent" | "gearExponent" | "foundExponent" | "shapeExponent" | "streakExponent" | "setnessExponent" | "adjustedSetness" | "ballInOverExponent" | "chaseDotsExponent" | "matchupExponent" | "bowlerDaySd" | "batterDaySd" | "matchEffectSd" | "inningsEffectSd" | "venueExponent" | "scoringCalibration" | "hazardCalibration" | "deathCalibration", number>>;
+export type EngineOverrides = Partial<Record<"batExponent" | "bowlExponent" | "bowlHazardExponent" | "pitchExponent" | "inningsPhaseExponent" | "pressureExponent" | "gearExponent" | "foundExponent" | "shapeExponent" | "streakExponent" | "setnessExponent" | "adjustedSetness" | "ballInOverExponent" | "chaseDotsExponent" | "matchupExponent" | "bowlTierExponent" | "bowlerDaySd" | "batterDaySd" | "matchEffectSd" | "inningsEffectSd" | "venueExponent" | "scoringCalibration" | "hazardCalibration" | "deathCalibration", number>>;
 
 /** Calibration hook: override numeric constants for a sweep (`npm run engine:calibrate`). */
 export function setEngineOverrides(overrides: EngineOverrides): void {

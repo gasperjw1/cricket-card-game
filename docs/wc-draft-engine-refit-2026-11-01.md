@@ -192,6 +192,168 @@ replayed many times (scratch scripts `baseline.mts`, `player-dist.mts`, `dots.mt
    team-tier destination of their own, or discount bowling edges earned against weak batting. That
    would reverse a Phase 1 decision, so it waits for Yash.
 
+   **Bowling through the two-way step (measured 2026-11-02 at Yash's request, not adopted).**
+   Bowling `tierMode` set to "twoWay", same harnesses; ratings validation from the build's
+   `RATINGS.md` default row (within-edition prediction, edition-to-edition stability):
+
+   | Bowling mode / weak-side gain | Hold-out | Fit | FM balls per wicket v associates, hold-out (real 22.5) | Brier | Spread | Bowl prediction | Bowl stability |
+   |---|---:|---:|---:|---:|---:|---:|---:|
+   | elo / 1 (kept) | 23.3% | 36.7% | 18.6 | 0.1930 | +2.1 | 0.191 | 0.585 |
+   | twoWay / 1 | 21.7% | 33.3% | 19.5 | 0.1924 | +2.0 | 0.175 | 0.541 |
+   | twoWay / 2.0 (batting too) | 18.8% | 28.3% | 19.7 | 0.1888 | +2.9 | 0.174 | 0.506 |
+
+   The last row is the best fixture and Brier result so far (the Brier gain of 0.004 is just past
+   two-seed noise) and keeps the spread under +3. But it misses the 12–16% target and costs
+   bowling ratings their stability and some prediction, the trade Phase 1 rejected. The reason it
+   stalls is 2024: the two-way bowling table has the wrong slope there. Mean associate bowling
+   cards in 2024 rise from 69.8 to 71.3 at gain 1 and 72.1 at gain 2.0, above the full members'
+   70.9, while 2026 drops the right way (67.1 to 61.5). A larger gain makes 2024 worse, so the
+   sweep stopped here. The 2024 hold-out stays at 23.5% against 5% real, and 2026 is 14.2%
+   against 0%. A fix would have to repair the table's slope first, for example by pooling the
+   bowling rows over more editions or forcing it to fall with team strength, before any gain is
+   worth measuring. Settings restored: bowling "elo", gains 1.
+6. **The bowling tier step, measured directly (2026-11-02, research only).** Why associate bowling
+   cards sit level with full members' (2024: 69.8 against 69.9) while their batting sits far below
+   (56.9 against 70.7):
+   - **A closed circuit.** In men's T20Is from mid-2021 to mid-2024, 94.5% of associate bowling went
+     to associate batting and 94.3% of associate batting faced associate bowling. The ratings judge
+     a bowler against an average bowler's outcome for the same year, phase and batting side's Elo
+     bin, and for weak bins that average bowler is almost always an associate. So an average
+     associate bowler reads as an average bowler. Batting has the two-way destination to place
+     the circuit; bowling has nothing. The edge discount can't help either, because it trims edges,
+     and the error here is in the level.
+   - **A thin bridge.** Zimbabwe and Ireland supply 60% of the balls between the tiers in that
+     window, and they play near associate level themselves. The other ten full members met
+     associates for about 4,000 balls each way in three years.
+   - **The step** (`scripts/research/bowling-tier-step.mts`; T20Is from 2014, observed ÷ expected for
+     the same year, phase and batting Elo bin; bowlers grouped by their own side's membership):
+
+     | Batting side's Elo | Associate bowlers: runs / wickets | Full-member bowlers: runs / wickets |
+     |---|---|---|
+     | Below 1500, World Cups out (413k / 29k balls) | 1.002 / 0.996 | 0.994 / 1.019 |
+     | 1500–1699, World Cups out (55k / 113k) | 1.018 / 0.941 | 1.001 / 1.031 |
+     | 1700 and up, World Cups out (656 / 32k) | 1.157 / 0.663 | 1.001 / 1.024 |
+     | 1700 and up, World Cups in (2,539 / 38k) | 1.049 / 0.746 | 0.997 / 1.017 |
+
+     The associate deficit grows with the strength of the batting faced, and it is mostly in
+     wickets. Full-member bowlers hold level across all three bands. Within the same bowlers (30+
+     balls against both weak and strong batting, World Cups out), 142 full-member bowlers step
+     runs ×1.02 and wickets ×1.00. Only 6 associate bowlers qualify (240 balls against strong
+     batting): runs ×1.16 (95% 1.01–1.31) and wickets ×0.29 (95% 0.00–0.50).
+   - **What this means.** Outside World Cups, 74% of associate bowling's exposure to strong batting
+     doesn't exist: 1,883 of their 2,539 balls against it since 2014 came in World Cups. So the
+     form window can't show an associate bowler's level against a strong side, and the rating
+     reads his level from the circuit. The size needed is in line with the sim's error: on the
+     2024–26 hold-out, associate bowling needs about ×1.05 runs and ×0.85 wickets to match real
+     (8.51 against 8.90 an over, 18.6 against 22.0 balls per wicket). The middle band, the only
+     well-sampled bridge, gives ×1.02 and ×0.91 against full-member bowlers facing the same
+     batting. The World Cup rows can't be used to fit a fix, since they include the hold-out.
+7. **Associate bowling step in the ratings (2026-11-02, built, `MODEL.bowlTierStep`; per-match
+   version in item 8).** Fitted with World Cups left out: from the batting associate bowlers usually face (Elo
+   1389) to the 1500–1699 band (1515), runs ×1.016 and wickets ×0.945, so per 100 Elo the runs rate
+   is +0.0126 and the wickets rate −0.0449. Full-member bowlers hold level over the same move
+   (×1.007, ×1.012). Extended to the 1700+ band it predicts ×1.046 and ×0.85, against ×1.049 and
+   ×0.75 observed there with World Cups in. An associate bowler's runs and wicket cells move by
+   that rate for the gap between the batting he faced (his side's Elo with no record) and the
+   edition's opposition, capped at 400, and dots take up the difference. Same harnesses as item 5:
+
+   | | Gain 1, no step | With the step |
+   |---|---:|---:|
+   | Hold-out associate wins (real 2.5%) | 23.3% | 22.2% |
+   | Fit (real 25%) | 36.7% | 32.7% |
+   | Hold-out full members v associates, balls per wicket (real 22.0 on legal balls) | 18.6 | 19.0 |
+   | Hold-out full members v associates, runs an over (real 8.90) | 8.51 | 8.62 |
+   | Brier, 40 sims × 2 seeds | 0.1930 | 0.1886 |
+   | First-innings spread | +2.1 | +2.0 |
+   | Bowling prediction, within edition | 0.191 | 0.195 |
+   | Bowling stability | 0.585 | 0.603 |
+   | Bowling wicket component | 0.160 | 0.175 |
+   | 2024 mean bowling card, associates / full members | 69.8 / 69.9 | 66.6 / 71.0 |
+
+   Every measure improves, and associate bowling cards now sit below full members' as they should
+   (2026: 64.5 against 71.2). But the fixtures barely move. A rating can carry only one gap, to the
+   edition's average opposition, and in a 20-team field that average includes the associates
+   themselves. An associate's matches against full members face batting 250–350 Elo above his
+   circuit, while the step applies the much smaller average gap. Closing the fixtures needs the gap
+   per match, in the engine: the batting side's Elo against the bowler's circuit. If the card stays
+   at the field-average step, the engine would add only the difference between this match's gap
+   and the average, so the card and the engine stay consistent. Both suites pass with the step on
+   (54, 63).
+8. **Associate bowling step per ball, in the engine (2026-11-02, built, `ENGINE.bowlTierExponent`).**
+   Ratings now carry each associate bowler's circuit (`evidence.tierStep`: the batting Elo he
+   usually faced, and the field Elo his card's step was taken to; 2024 field 1586) and every
+   player's side Elo (`teamElo`). The game's eleven mixes editions, so there is no team Elo per
+   fixture. The ball model therefore reads the striker's own side Elo against the bowler's circuit
+   and applies the measured step for that gap, less the card's share already arriving through the
+   bowler's vector at the bowl exponents. Runs cells and the wicket cell move, and dots take up the
+   difference. Same harnesses, against the card step alone:
+
+   | | Card step only | Plus the per-ball step |
+   |---|---:|---:|
+   | Hold-out associate wins (real 2.5%) | 22.2% | 18.8% |
+   | Fit (real 25%) | 32.7% | 32.2% |
+   | Hold-out full members v associates, runs an over (real 8.90 legal balls) | 8.62 | 8.80 |
+   | Hold-out full members v associates, balls per wicket (real 22.0) | 19.0 | 19.6 |
+   | Hold-out associates v full members, runs an over (real 6.66) | 6.92 | 6.94 |
+   | Brier, 40 sims × 2 seeds | 0.1886 | 0.1883 |
+   | First-innings spread | +2.0 | +2.5 |
+   | Run rate / PP / middle / death bias | −0.004 / −0.047 / +0.046 / −0.036 | −0.002 / −0.040 / +0.046 / −0.027 |
+
+   From the start of the day (gain 1, no step) to now: hold-out 23.3% to 18.8%, fit 36.7% to 32.2%,
+   Brier 0.1930 to 0.1883, spread +2.1 to +2.5. Runs against associate bowling now match real. Two
+   gaps remain:
+   - **Associate wickets are still too frequent** (19.6 balls per wicket against 22.0). The linear
+     wicket rate from the middle band predicts ×0.85 at the strong band, while ×0.75 was observed
+     with World Cups in, so the true curve probably steepens with the gap. The data outside World
+     Cups (656 balls) is too thin to fit that.
+   - **Associate batting is untouched** (6.94 against 6.66). It has the two-way destination, but
+     the same average-gap limit applies to it. A batting counterpart of this step, measured the
+     same way, is the next candidate.
+
+   Checks: both suites pass (54, 63), the client builds and typechecks, and a full browser draft
+   ran to the souvenir issue with no console errors (Bangladesh 2009, out in the Super 8 at 2–3;
+   Italy 2026's bowling cards now run 63–77). Rarity over 1,000 greedy runs: unbeaten 1.2% of all
+   runs (was 2.7%) and 5.0% of the top decile (was 4.0%), both inside the spec's dials; champion
+   7.6% (was 10.4%) and 23.0% of the top decile (was 14.0%). Over 100 runs a decile is noisy,
+   about ±4 points, but the top-decile champion rate rose: squads with no associates now meet
+   weaker associate bowling.
+9. **World Cups in the fit, and the curve (2026-11-02, Yash: these match-ups only happen at World
+   Cups).** The step script now takes World Cups before a given year (`noWc=2024`): every World
+   Cup before the 2024–26 hold-out joins the fit, and the hold-out stays out. That doubles the
+   strong-band evidence (1,297 balls, 43 wickets) and shows the fall steepening with the gap:
+
+   | Associate bowlers, from the weak band (Elo 1390) | Gap | Runs / wickets | Per 100 Elo, runs / wickets | Per (gap/100)², runs / wickets |
+   |---|---:|---|---|---|
+   | To 1500–1699 (2,990 wickets) | +127 | ×1.016 / ×0.945 | +0.0109 / −0.0415 | +0.0086 / −0.0326 |
+   | To 1700+ (43 wickets) | +353 | ×1.136 / ×0.648 | +0.0356 / −0.1214 | +0.0101 / −0.0344 |
+
+   On a straight line the strong band's wicket rate is three times the middle band's. As a square
+   of the gap the two bands agree, so the step is now exp(rate × (gap/100)²), with runs +0.009 and
+   wickets −0.033. Full-member bowlers stay near zero on both scales. Starting the data in 2007
+   changes nothing. Same harnesses, against the straight-line step of item 8:
+
+   | | Straight line | Square of the gap |
+   |---|---:|---:|
+   | Hold-out associate wins (real 2.5%) | 18.8% | 17.2% |
+   | Fit (real 25%) | 32.2% | 30.9% |
+   | Hold-out full members v associates, runs an over (real 8.90) | 8.80 | 9.09 |
+   | Hold-out full members v associates, balls per wicket (real 22.0) | 19.6 | 20.8 |
+   | Fit full members v associates, balls per wicket (real 18.9) | 19.7 | 20.2 |
+   | Brier, 40 sims × 2 seeds | 0.1883 | 0.1884 |
+   | First-innings spread | +2.5 | +3.0 |
+   | Bowling prediction / stability | 0.195 / 0.603 | 0.194 / 0.598 |
+   | Rarity, 1,000 greedy: unbeaten all / top decile | 1.2% / 5.0% | 1.6% / 4.0% |
+   | Rarity: champion all / top decile | 7.6% / 23.0% | 7.3% / 18.0% |
+
+   The square fits the ball data and moves the hold-out further, but the two fixture sets now pull
+   apart. In 2014–22 full members lose wickets to associates less often than real (20.2 against
+   18.9 balls), while in 2024–26 they still lose them more often (20.8 against 22.0). Runs in the
+   hold-out now overshoot by 0.19 an over. That split looks like the associates themselves
+   changing: the 20-team fields brought newcomers weaker than their circuit records say. One
+   step per Elo gap can't serve both, and Brier doesn't separate the two curves. Kept: the square,
+   since it's what the ball data show. Spread is at the +3 limit. Both suites pass (54, 63) and
+   the client builds; the client code didn't change, so no second browser run.
+
 ## Still open
 
 - Dot share −0.7 points: the sim turns a few dots into singles at the same run rate; not a counting

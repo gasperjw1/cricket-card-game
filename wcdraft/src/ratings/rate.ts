@@ -20,7 +20,8 @@ import type { BuildResult } from "../pipeline/build.js";
 import type { MatchupTables } from "../analysis/matchups.js";
 import { ELO_BINS, eloBin, type EloBin } from "../analysis/team-strength.js";
 import { paths, readJson } from "../util/io.js";
-import { MODEL, OUTCOMES, PHASE_LIST, RUNS, type BattingArchetype, type BlockIn, type BowlingArchetype, type ClassSplitPart, type EditionPopulations, type PhaseCountsOut, type PhaseVectors, type PlayerEditionIn, type PlayerRating, type PooledCountsIn, type SkillRating, type Tier as CardTier, type TierConfig, type Vector } from "./model.js";
+import { loadConfig } from "../config.js";
+import { bowlTierFactors, MODEL, OUTCOMES, PHASE_LIST, RUNS, type BattingArchetype, type BlockIn, type BowlingArchetype, type ClassSplitPart, type EditionPopulations, type PhaseCountsOut, type PhaseVectors, type PlayerEditionIn, type PlayerRating, type PooledCountsIn, type SkillRating, type Tier as CardTier, type TierConfig, type Vector } from "./model.js";
 import { rowMixtureInterp, smoothTwoWay, type TwoWayVectors } from "./two-way.js";
 import { battingValue, blend, bowlingValue, expectedRuns, normalise, relative, shrink, shrinkWithHazard, toVector, transport, UNIFORM } from "./vectors.js";
 
@@ -297,6 +298,29 @@ type PartialSkill = Omit<SkillRating, "percentile" | "display" | "displayByPhase
   before?: PartialSkill;
 };
 
+let fullMember: ((team: string, year: number) => boolean) | null = null;
+const isFullMember = (team: string, year: number) => (fullMember ??= loadConfig().isFullMember)(team, year);
+
+/** The associate bowling step for this player-edition, or null (see MODEL.bowlTierStep). */
+function bowlTierStep(pe: PlayerEditionIn, ctx: EditionContext, skill: Skill): { runs: number; wickets: number; faced: number; field: number } | null {
+  const cfg = MODEL.bowlTierStep;
+  if (skill !== "bowl" || !cfg.enabled || isFullMember(pe.team, Number(pe.editionId.slice(0, 4)))) return null;
+  const field = meanOpponentElo(ctx.editionOpponentMix.bowl);
+  const faced = meanOpponentElo(pe.formExposure.bowl) ?? pe.teamElo;
+  if (field === null || faced === null) return null;
+  const s = bowlTierFactors(field - faced);
+  return { ...s, faced: Math.round(faced), field: Math.round(field) };
+}
+
+/** Runs cells and the wicket cell scaled, dots taking up the difference, so runs per ball moves by exactly `runs`. */
+function applyBowlStep(v: Vector, step: { runs: number; wickets: number }): Vector {
+  const out = { ...v };
+  for (const k of ["1", "2", "3", "4", "6"] as const) out[k] = v[k] * step.runs;
+  out.W = v.W * step.wickets;
+  out["0"] = Math.max(1e-6, 1 - OUTCOMES.reduce((a, k) => (k === "0" ? a : a + out[k]), 0));
+  return normalise(out);
+}
+
 /** What a skill counts as on the shared value scale, so projecting one card moves no other. */
 const onScale = (s: PartialSkill): PartialSkill => s.before ?? s;
 
@@ -408,6 +432,11 @@ function rateSkill(pe: PlayerEditionIn, ctx: EditionContext, skill: Skill, optio
   // Phase 1.5 path: context-expected evidence replaces the window-population normalisation.
   const expectedPath = opts.evidence === "expected" ? rateSkillExpected(pe, ctx, skill, opts) : null;
 
+  // Associate bowling step (MODEL.bowlTierStep): the norm an associate bowler was judged against is
+  // set by associate bowlers, so his runs and wicket cells move by the measured rate for the Elo gap
+  // between the batting he faced (his side's Elo when he has no record) and the edition's opposition.
+  const step = bowlTierStep(pe, ctx, skill);
+
   for (const phase of PHASE_LIST) {
     let cell: { rel: Vector; source: "form" | "career" | "domestic" } | null;
     if (expectedPath) cell = expectedPath.source === "population" ? null : { rel: expectedPath.rel[phase], source: expectedPath.source };
@@ -442,6 +471,7 @@ function rateSkill(pe: PlayerEditionIn, ctx: EditionContext, skill: Skill, optio
     // Carry only the transferable share of the edge (log-scaled) into stronger opposition.
     carriedAll[phase] = transfer === 1 ? phaseRel : (Object.fromEntries(OUTCOMES.map((k) => [k, Math.pow(phaseRel[k], transfer)])) as Vector);
     vectors[phase] = transport(carriedAll[phase], destinations[phase]);
+    if (step) vectors[phase] = applyBowlStep(vectors[phase], step);
     valueByPhase[phase] = skill === "bat" ? battingValue(vectors[phase], valuePop[phase], opts.wicketCost) : bowlingValue(vectors[phase], valuePop[phase], opts.wicketCost);
   }
 
@@ -471,6 +501,7 @@ function rateSkill(pe: PlayerEditionIn, ctx: EditionContext, skill: Skill, optio
       venueFactor: +venueFactor.toFixed(3),
       selectionShift: 0,
       phaseWeights,
+      ...(step ? { tierStep: { faced: step.faced, field: step.field } } : {}),
     },
     lowSample,
     projected: false,
@@ -1170,6 +1201,7 @@ export function rateAll(r: BuildResult, opts: RateOptions = {}): PlayerRating[] 
       editionId: pe.editionId,
       team: pe.team,
       standIn: pe.standIn,
+      teamElo: pe.teamElo,
       batting,
       bowling,
       overall,

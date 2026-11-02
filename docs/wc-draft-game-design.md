@@ -1321,6 +1321,40 @@ fielding. The simulation is not required to reproduce real results (§11).
   in the sim, 22.5 real). **Decided:** gains stay at 1 and the ratings are rebuilt at 1. **Open for Yash:** whether
   associate bowling gets its own team-tier step. That reverses the Phase 1 choice of the one-way Elo
   mixture for bowlers, and would be measured on stability and prediction as well as the fixtures.
+- **Associate bowling through the two-way step (2026-11-02, measured, not adopted):** bowling in
+  `twoWay` mode with a weak-side gain of 2.0 gave the best result yet: hold-out associate wins
+  18.8% (real 2.5%), fit 28.3% (real 25%), Brier 0.1888 against 0.1930, spread +2.9. But bowling
+  stability fell from 0.585 to 0.506 and prediction from 0.191 to 0.174, and the target was still
+  missed. The cause is 2024, where the two-way bowling table runs the wrong way: associate bowling
+  cards rise above the full members' (72.1 against 70.9), so more gain makes it worse. **Decided:**
+  settings stay at bowling "elo" and gains 1. **Next, if wanted:** make the bowling two-way table
+  fall with team strength (pooled over more editions, or constrained) and measure again.
+- **Associate bowling step, card and per ball (2026-11-02, built; refit doc "Engine items" 6–8):**
+  associate cricket is a closed circuit (94% of its balls are associates against associates), so an
+  average associate bowler read as an average bowler. Measured on T20Is from 2014 with World Cups
+  left out, associate bowlers concede ×1.016 runs and take ×0.945 wickets per 126 Elo of stronger
+  batting, while full-member bowlers hold level. The card carries that step to the edition's
+  average opposition (`MODEL.bowlTierStep`). The engine tops it up per ball to the gap between the
+  striker's side and the bowler's circuit (`ENGINE.bowlTierExponent`); the drafted eleven mixes
+  editions, so the striker's own side Elo stands in for the team's. Hold-out associate wins went
+  from 23.3% to 18.8% (real 2.5%), fit from 36.7% to 32.2% (real 25%), Brier from 0.1930 to
+  0.1883, spread from +2.1 to +2.5. Bowling prediction rose to 0.195 and stability to 0.603. Runs
+  against associates now match real. 2024 associate bowling cards are 66.6 against full members'
+  71.0. Rarity: unbeaten 1.2% overall and 5.0% of the top decile (inside the dials), champion 7.6%
+  and 23.0%. **Decided:** both parts on. **Open:** associate wickets are still about 12% too
+  frequent, and associate batting is still 0.3 an over too good; a batting counterpart measured
+  the same way is the next step.
+- **World Cups in the step's fit; the step follows the square of the gap (2026-11-02, refit doc
+  item 9):** at Yash's call, World Cups before 2024 join the fit, since associates barely meet
+  strong sides anywhere else; 2024–26 stays out as the hold-out. The wicket fall steepens with the
+  gap (per 100 Elo, −0.042 to the middle band and −0.121 to the strong band), but per (gap/100)²
+  both bands agree, so the step is now exp(rate × (gap/100)²): runs +0.009, wickets −0.033.
+  Hold-out associate wins 17.2% (from 18.8%), fit 30.9%, Brier 0.1884 (unchanged), spread +3.0.
+  Rarity: unbeaten 1.6% and 4.0%, champion 7.3% and 18.0%. **Decided:** the square, as the ball
+  data show. **Open:** the fit editions now overshoot on associate wickets (20.2 against 18.9
+  balls) while the hold-out still undershoots (20.8 against 22.0), which points to the 2024–26
+  newcomers being weaker than their records. Associate batting is untouched (6.92 against 6.66 an
+  over in the hold-out).
 - **Agreed order after the refit (2026-11-01):** (1) associates fix in the ratings: no-record
   players sit on the global position-band prior, so Italy 2026 bowls at 71 against India's 74 and a
   few tournament balls can make a 77 (shrink empty records toward the side's own mean or an

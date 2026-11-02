@@ -50,21 +50,21 @@
         "bowling": {
           "n": 324,
           "within": {
-            "model": 0.191,
+            "model": 0.194,
             "rawFormValue": 0.087,
             "rawFormRate": 0.102
           },
-          "model": 0.181,
-          "modelTiered": 0.18,
+          "model": 0.184,
+          "modelTiered": 0.187,
           "rawFormValue": 0.044,
           "rawFormRate": 0.094,
           "careerRate": 0.114,
           "runs": {
-            "model": 0.221,
+            "model": 0.222,
             "rawForm": 0.083
           },
           "hazard": {
-            "model": 0.16,
+            "model": 0.174,
             "rawForm": 0.075
           }
         }
@@ -77,7 +77,7 @@
         },
         "bowling": {
           "n": 408,
-          "model": 0.585,
+          "model": 0.598,
           "rawFormEconomy": 0.44
         }
       }
@@ -132,21 +132,21 @@
         "bowling": {
           "n": 324,
           "within": {
-            "model": 0.169,
+            "model": 0.174,
             "rawFormValue": 0.087,
             "rawFormRate": 0.102
           },
-          "model": 0.157,
-          "modelTiered": 0.142,
+          "model": 0.163,
+          "modelTiered": 0.152,
           "rawFormValue": 0.044,
           "rawFormRate": 0.094,
           "careerRate": 0.114,
           "runs": {
-            "model": 0.189,
+            "model": 0.192,
             "rawForm": 0.083
           },
           "hazard": {
-            "model": 0.119,
+            "model": 0.136,
             "rawForm": 0.075
           }
         }
@@ -159,7 +159,7 @@
         },
         "bowling": {
           "n": 408,
-          "model": 0.648,
+          "model": 0.634,
           "rawFormEconomy": 0.44
         }
       }
@@ -214,21 +214,21 @@
         "bowling": {
           "n": 324,
           "within": {
-            "model": 0.167,
+            "model": 0.173,
             "rawFormValue": 0.087,
             "rawFormRate": 0.102
           },
-          "model": 0.156,
-          "modelTiered": 0.14,
+          "model": 0.163,
+          "modelTiered": 0.15,
           "rawFormValue": 0.044,
           "rawFormRate": 0.094,
           "careerRate": 0.114,
           "runs": {
-            "model": 0.196,
+            "model": 0.198,
             "rawForm": 0.083
           },
           "hazard": {
-            "model": 0.133,
+            "model": 0.156,
             "rawForm": 0.075
           }
         }
@@ -241,7 +241,7 @@
         },
         "bowling": {
           "n": 408,
-          "model": 0.698,
+          "model": 0.679,
           "rawFormEconomy": 0.44
         }
       }
@@ -296,21 +296,21 @@
         "bowling": {
           "n": 324,
           "within": {
-            "model": 0.184,
+            "model": 0.187,
             "rawFormValue": 0.087,
             "rawFormRate": 0.102
           },
-          "model": 0.172,
-          "modelTiered": 0.172,
+          "model": 0.175,
+          "modelTiered": 0.179,
           "rawFormValue": 0.044,
           "rawFormRate": 0.094,
           "careerRate": 0.114,
           "runs": {
-            "model": 0.209,
+            "model": 0.21,
             "rawForm": 0.083
           },
           "hazard": {
-            "model": 0.136,
+            "model": 0.149,
             "rawForm": 0.075
           }
         }
@@ -323,7 +323,7 @@
         },
         "bowling": {
           "n": 408,
-          "model": 0.544,
+          "model": 0.558,
           "rawFormEconomy": 0.44
         }
       }
@@ -378,21 +378,21 @@
         "bowling": {
           "n": 324,
           "within": {
-            "model": 0.196,
+            "model": 0.199,
             "rawFormValue": 0.087,
             "rawFormRate": 0.102
           },
-          "model": 0.185,
-          "modelTiered": 0.185,
+          "model": 0.189,
+          "modelTiered": 0.192,
           "rawFormValue": 0.044,
           "rawFormRate": 0.094,
           "careerRate": 0.114,
           "runs": {
-            "model": 0.225,
+            "model": 0.226,
             "rawForm": 0.083
           },
           "hazard": {
-            "model": 0.163,
+            "model": 0.177,
             "rawForm": 0.075
           }
         }
@@ -405,7 +405,7 @@
         },
         "bowling": {
           "n": 408,
-          "model": 0.62,
+          "model": 0.632,
           "rawFormEconomy": 0.44
         }
       }
@@ -460,21 +460,21 @@
         "bowling": {
           "n": 324,
           "within": {
-            "model": 0.191,
+            "model": 0.194,
             "rawFormValue": 0.087,
             "rawFormRate": 0.102
           },
-          "model": 0.181,
-          "modelTiered": 0.18,
+          "model": 0.184,
+          "modelTiered": 0.187,
           "rawFormValue": 0.044,
           "rawFormRate": 0.094,
           "careerRate": 0.114,
           "runs": {
-            "model": 0.221,
+            "model": 0.222,
             "rawForm": 0.083
           },
           "hazard": {
-            "model": 0.16,
+            "model": 0.174,
             "rawForm": 0.075
           }
         }
@@ -487,7 +487,7 @@
         },
         "bowling": {
           "n": 408,
-          "model": 0.585,
+          "model": 0.598,
           "rawFormEconomy": 0.44
         }
       }
@@ -542,21 +542,21 @@
         "bowling": {
           "n": 324,
           "within": {
-            "model": 0.177,
+            "model": 0.18,
             "rawFormValue": 0.087,
             "rawFormRate": 0.102
           },
-          "model": 0.167,
-          "modelTiered": 0.166,
+          "model": 0.171,
+          "modelTiered": 0.173,
           "rawFormValue": 0.044,
           "rawFormRate": 0.094,
           "careerRate": 0.114,
           "runs": {
-            "model": 0.196,
+            "model": 0.197,
             "rawForm": 0.083
           },
           "hazard": {
-            "model": 0.156,
+            "model": 0.17,
             "rawForm": 0.075
           }
         }
@@ -569,7 +569,7 @@
         },
         "bowling": {
           "n": 408,
-          "model": 0.569,
+          "model": 0.578,
           "rawFormEconomy": 0.44
         }
       }
@@ -624,21 +624,21 @@
         "bowling": {
           "n": 324,
           "within": {
-            "model": 0.195,
+            "model": 0.198,
             "rawFormValue": 0.087,
             "rawFormRate": 0.102
           },
-          "model": 0.184,
-          "modelTiered": 0.184,
+          "model": 0.187,
+          "modelTiered": 0.192,
           "rawFormValue": 0.044,
           "rawFormRate": 0.094,
           "careerRate": 0.114,
           "runs": {
-            "model": 0.228,
+            "model": 0.229,
             "rawForm": 0.083
           },
           "hazard": {
-            "model": 0.161,
+            "model": 0.175,
             "rawForm": 0.075
           }
         }
@@ -651,7 +651,7 @@
         },
         "bowling": {
           "n": 408,
-          "model": 0.585,
+          "model": 0.601,
           "rawFormEconomy": 0.44
         }
       }
@@ -706,21 +706,21 @@
         "bowling": {
           "n": 324,
           "within": {
-            "model": 0.196,
+            "model": 0.199,
             "rawFormValue": 0.087,
             "rawFormRate": 0.102
           },
-          "model": 0.186,
-          "modelTiered": 0.186,
+          "model": 0.189,
+          "modelTiered": 0.193,
           "rawFormValue": 0.044,
           "rawFormRate": 0.094,
           "careerRate": 0.114,
           "runs": {
-            "model": 0.221,
+            "model": 0.222,
             "rawForm": 0.083
           },
           "hazard": {
-            "model": 0.16,
+            "model": 0.174,
             "rawForm": 0.075
           }
         }
@@ -733,7 +733,7 @@
         },
         "bowling": {
           "n": 408,
-          "model": 0.608,
+          "model": 0.619,
           "rawFormEconomy": 0.44
         }
       }
@@ -788,21 +788,21 @@
         "bowling": {
           "n": 324,
           "within": {
-            "model": 0.203,
+            "model": 0.208,
             "rawFormValue": 0.087,
             "rawFormRate": 0.102
           },
-          "model": 0.191,
-          "modelTiered": 0.189,
+          "model": 0.194,
+          "modelTiered": 0.196,
           "rawFormValue": 0.044,
           "rawFormRate": 0.094,
           "careerRate": 0.114,
           "runs": {
-            "model": 0.221,
+            "model": 0.222,
             "rawForm": 0.083
           },
           "hazard": {
-            "model": 0.16,
+            "model": 0.174,
             "rawForm": 0.075
           }
         }
@@ -815,7 +815,7 @@
         },
         "bowling": {
           "n": 408,
-          "model": 0.586,
+          "model": 0.596,
           "rawFormEconomy": 0.44
         }
       }
@@ -870,21 +870,21 @@
         "bowling": {
           "n": 324,
           "within": {
-            "model": 0.19,
+            "model": 0.194,
             "rawFormValue": 0.087,
             "rawFormRate": 0.102
           },
-          "model": 0.178,
-          "modelTiered": 0.174,
+          "model": 0.181,
+          "modelTiered": 0.18,
           "rawFormValue": 0.044,
           "rawFormRate": 0.094,
           "careerRate": 0.114,
           "runs": {
-            "model": 0.221,
+            "model": 0.222,
             "rawForm": 0.083
           },
           "hazard": {
-            "model": 0.16,
+            "model": 0.174,
             "rawForm": 0.075
           }
         }
@@ -897,7 +897,7 @@
         },
         "bowling": {
           "n": 408,
-          "model": 0.589,
+          "model": 0.598,
           "rawFormEconomy": 0.44
         }
       }
@@ -952,21 +952,21 @@
         "bowling": {
           "n": 324,
           "within": {
-            "model": 0.161,
+            "model": 0.165,
             "rawFormValue": 0.087,
             "rawFormRate": 0.102
           },
-          "model": 0.149,
-          "modelTiered": 0.141,
+          "model": 0.153,
+          "modelTiered": 0.149,
           "rawFormValue": 0.044,
           "rawFormRate": 0.094,
           "careerRate": 0.114,
           "runs": {
-            "model": 0.167,
+            "model": 0.168,
             "rawForm": 0.083
           },
           "hazard": {
-            "model": 0.119,
+            "model": 0.137,
             "rawForm": 0.075
           }
         }
@@ -979,7 +979,7 @@
         },
         "bowling": {
           "n": 408,
-          "model": 0.543,
+          "model": 0.553,
           "rawFormEconomy": 0.44
         }
       }
@@ -1034,21 +1034,21 @@
         "bowling": {
           "n": 324,
           "within": {
-            "model": 0.195,
+            "model": 0.197,
             "rawFormValue": 0.087,
             "rawFormRate": 0.102
           },
-          "model": 0.185,
-          "modelTiered": 0.187,
+          "model": 0.188,
+          "modelTiered": 0.193,
           "rawFormValue": 0.044,
           "rawFormRate": 0.094,
           "careerRate": 0.114,
           "runs": {
-            "model": 0.238,
+            "model": 0.239,
             "rawForm": 0.083
           },
           "hazard": {
-            "model": 0.169,
+            "model": 0.183,
             "rawForm": 0.075
           }
         }
@@ -1061,7 +1061,7 @@
         },
         "bowling": {
           "n": 408,
-          "model": 0.569,
+          "model": 0.585,
           "rawFormEconomy": 0.44
         }
       }
@@ -1116,21 +1116,21 @@
         "bowling": {
           "n": 324,
           "within": {
-            "model": 0.181,
+            "model": 0.185,
             "rawFormValue": 0.087,
             "rawFormRate": 0.102
           },
-          "model": 0.169,
-          "modelTiered": 0.165,
+          "model": 0.173,
+          "modelTiered": 0.173,
           "rawFormValue": 0.044,
           "rawFormRate": 0.094,
           "careerRate": 0.114,
           "runs": {
-            "model": 0.203,
+            "model": 0.204,
             "rawForm": 0.083
           },
           "hazard": {
-            "model": 0.146,
+            "model": 0.162,
             "rawForm": 0.075
           }
         }
@@ -1143,7 +1143,7 @@
         },
         "bowling": {
           "n": 408,
-          "model": 0.579,
+          "model": 0.59,
           "rawFormEconomy": 0.44
         }
       }
@@ -1198,21 +1198,21 @@
         "bowling": {
           "n": 324,
           "within": {
-            "model": 0.191,
+            "model": 0.194,
             "rawFormValue": 0.087,
             "rawFormRate": 0.102
           },
-          "model": 0.181,
-          "modelTiered": 0.18,
+          "model": 0.184,
+          "modelTiered": 0.187,
           "rawFormValue": 0.044,
           "rawFormRate": 0.094,
           "careerRate": 0.114,
           "runs": {
-            "model": 0.221,
+            "model": 0.222,
             "rawForm": 0.083
           },
           "hazard": {
-            "model": 0.16,
+            "model": 0.174,
             "rawForm": 0.075
           }
         }
@@ -1225,7 +1225,7 @@
         },
         "bowling": {
           "n": 408,
-          "model": 0.585,
+          "model": 0.598,
           "rawFormEconomy": 0.44
         }
       }
@@ -1280,21 +1280,21 @@
         "bowling": {
           "n": 324,
           "within": {
-            "model": 0.181,
+            "model": 0.185,
             "rawFormValue": 0.087,
             "rawFormRate": 0.102
           },
-          "model": 0.169,
-          "modelTiered": 0.165,
+          "model": 0.173,
+          "modelTiered": 0.173,
           "rawFormValue": 0.044,
           "rawFormRate": 0.094,
           "careerRate": 0.114,
           "runs": {
-            "model": 0.203,
+            "model": 0.204,
             "rawForm": 0.083
           },
           "hazard": {
-            "model": 0.146,
+            "model": 0.162,
             "rawForm": 0.075
           }
         }
@@ -1307,7 +1307,7 @@
         },
         "bowling": {
           "n": 408,
-          "model": 0.579,
+          "model": 0.59,
           "rawFormEconomy": 0.44
         }
       }
@@ -1362,21 +1362,21 @@
         "bowling": {
           "n": 324,
           "within": {
-            "model": 0.176,
+            "model": 0.18,
             "rawFormValue": 0.087,
             "rawFormRate": 0.102
           },
-          "model": 0.164,
-          "modelTiered": 0.159,
+          "model": 0.168,
+          "modelTiered": 0.166,
           "rawFormValue": 0.044,
           "rawFormRate": 0.094,
           "careerRate": 0.114,
           "runs": {
-            "model": 0.194,
+            "model": 0.195,
             "rawForm": 0.083
           },
           "hazard": {
-            "model": 0.139,
+            "model": 0.156,
             "rawForm": 0.075
           }
         }
@@ -1389,7 +1389,7 @@
         },
         "bowling": {
           "n": 408,
-          "model": 0.572,
+          "model": 0.582,
           "rawFormEconomy": 0.44
         }
       }
@@ -1444,21 +1444,21 @@
         "bowling": {
           "n": 324,
           "within": {
-            "model": 0.191,
+            "model": 0.194,
             "rawFormValue": 0.087,
             "rawFormRate": 0.102
           },
-          "model": 0.181,
-          "modelTiered": 0.18,
+          "model": 0.184,
+          "modelTiered": 0.187,
           "rawFormValue": 0.044,
           "rawFormRate": 0.094,
           "careerRate": 0.114,
           "runs": {
-            "model": 0.221,
+            "model": 0.222,
             "rawForm": 0.083
           },
           "hazard": {
-            "model": 0.16,
+            "model": 0.174,
             "rawForm": 0.075
           }
         }
@@ -1471,7 +1471,7 @@
         },
         "bowling": {
           "n": 408,
-          "model": 0.585,
+          "model": 0.598,
           "rawFormEconomy": 0.44
         }
       }
@@ -1526,21 +1526,21 @@
         "bowling": {
           "n": 324,
           "within": {
-            "model": 0.191,
+            "model": 0.194,
             "rawFormValue": 0.087,
             "rawFormRate": 0.102
           },
-          "model": 0.181,
-          "modelTiered": 0.18,
+          "model": 0.184,
+          "modelTiered": 0.187,
           "rawFormValue": 0.044,
           "rawFormRate": 0.094,
           "careerRate": 0.114,
           "runs": {
-            "model": 0.221,
+            "model": 0.222,
             "rawForm": 0.083
           },
           "hazard": {
-            "model": 0.16,
+            "model": 0.174,
             "rawForm": 0.075
           }
         }
@@ -1553,7 +1553,7 @@
         },
         "bowling": {
           "n": 408,
-          "model": 0.585,
+          "model": 0.598,
           "rawFormEconomy": 0.44
         }
       }
@@ -1608,21 +1608,21 @@
         "bowling": {
           "n": 324,
           "within": {
-            "model": 0.203,
+            "model": 0.208,
             "rawFormValue": 0.087,
             "rawFormRate": 0.102
           },
-          "model": 0.191,
-          "modelTiered": 0.189,
+          "model": 0.194,
+          "modelTiered": 0.196,
           "rawFormValue": 0.044,
           "rawFormRate": 0.094,
           "careerRate": 0.114,
           "runs": {
-            "model": 0.221,
+            "model": 0.222,
             "rawForm": 0.083
           },
           "hazard": {
-            "model": 0.16,
+            "model": 0.174,
             "rawForm": 0.075
           }
         }
@@ -1635,7 +1635,7 @@
         },
         "bowling": {
           "n": 408,
-          "model": 0.586,
+          "model": 0.596,
           "rawFormEconomy": 0.44
         }
       }
@@ -1690,21 +1690,21 @@
         "bowling": {
           "n": 324,
           "within": {
-            "model": 0.19,
+            "model": 0.194,
             "rawFormValue": 0.087,
             "rawFormRate": 0.102
           },
-          "model": 0.179,
-          "modelTiered": 0.175,
+          "model": 0.182,
+          "modelTiered": 0.183,
           "rawFormValue": 0.044,
           "rawFormRate": 0.094,
           "careerRate": 0.114,
           "runs": {
-            "model": 0.221,
+            "model": 0.222,
             "rawForm": 0.083
           },
           "hazard": {
-            "model": 0.16,
+            "model": 0.174,
             "rawForm": 0.075
           }
         }
@@ -1717,7 +1717,7 @@
         },
         "bowling": {
           "n": 408,
-          "model": 0.578,
+          "model": 0.591,
           "rawFormEconomy": 0.44
         }
       }
@@ -1772,21 +1772,21 @@
         "bowling": {
           "n": 324,
           "within": {
-            "model": 0.192,
+            "model": 0.196,
             "rawFormValue": 0.087,
             "rawFormRate": 0.102
           },
-          "model": 0.181,
-          "modelTiered": 0.178,
+          "model": 0.184,
+          "modelTiered": 0.186,
           "rawFormValue": 0.044,
           "rawFormRate": 0.094,
           "careerRate": 0.114,
           "runs": {
-            "model": 0.221,
+            "model": 0.222,
             "rawForm": 0.083
           },
           "hazard": {
-            "model": 0.16,
+            "model": 0.174,
             "rawForm": 0.075
           }
         }
@@ -1799,7 +1799,7 @@
         },
         "bowling": {
           "n": 408,
-          "model": 0.583,
+          "model": 0.596,
           "rawFormEconomy": 0.44
         }
       }
@@ -1854,21 +1854,21 @@
         "bowling": {
           "n": 324,
           "within": {
-            "model": 0.19,
+            "model": 0.194,
             "rawFormValue": 0.087,
             "rawFormRate": 0.102
           },
-          "model": 0.178,
-          "modelTiered": 0.173,
+          "model": 0.181,
+          "modelTiered": 0.181,
           "rawFormValue": 0.044,
           "rawFormRate": 0.094,
           "careerRate": 0.114,
           "runs": {
-            "model": 0.221,
+            "model": 0.222,
             "rawForm": 0.083
           },
           "hazard": {
-            "model": 0.16,
+            "model": 0.174,
             "rawForm": 0.075
           }
         }
@@ -1881,7 +1881,7 @@
         },
         "bowling": {
           "n": 408,
-          "model": 0.574,
+          "model": 0.587,
           "rawFormEconomy": 0.44
         }
       }
@@ -1936,21 +1936,21 @@
         "bowling": {
           "n": 324,
           "within": {
-            "model": 0.189,
+            "model": 0.192,
             "rawFormValue": 0.087,
             "rawFormRate": 0.102
           },
-          "model": 0.177,
-          "modelTiered": 0.177,
+          "model": 0.18,
+          "modelTiered": 0.184,
           "rawFormValue": 0.044,
           "rawFormRate": 0.094,
           "careerRate": 0.114,
           "runs": {
-            "model": 0.214,
+            "model": 0.215,
             "rawForm": 0.083
           },
           "hazard": {
-            "model": 0.155,
+            "model": 0.169,
             "rawForm": 0.075
           }
         }
@@ -1963,7 +1963,7 @@
         },
         "bowling": {
           "n": 408,
-          "model": 0.568,
+          "model": 0.582,
           "rawFormEconomy": 0.44
         }
       }
@@ -2018,12 +2018,12 @@
         "bowling": {
           "n": 324,
           "within": {
-            "model": 0.195,
+            "model": 0.198,
             "rawFormValue": 0.087,
             "rawFormRate": 0.102
           },
-          "model": 0.185,
-          "modelTiered": 0.184,
+          "model": 0.188,
+          "modelTiered": 0.191,
           "rawFormValue": 0.044,
           "rawFormRate": 0.094,
           "careerRate": 0.114,
@@ -2032,7 +2032,7 @@
             "rawForm": 0.083
           },
           "hazard": {
-            "model": 0.163,
+            "model": 0.177,
             "rawForm": 0.075
           }
         }
@@ -2045,7 +2045,7 @@
         },
         "bowling": {
           "n": 408,
-          "model": 0.6,
+          "model": 0.613,
           "rawFormEconomy": 0.44
         }
       }
@@ -2100,21 +2100,21 @@
         "bowling": {
           "n": 324,
           "within": {
-            "model": 0.188,
+            "model": 0.191,
             "rawFormValue": 0.087,
             "rawFormRate": 0.102
           },
-          "model": 0.177,
-          "modelTiered": 0.177,
+          "model": 0.18,
+          "modelTiered": 0.184,
           "rawFormValue": 0.044,
           "rawFormRate": 0.094,
           "careerRate": 0.114,
           "runs": {
-            "model": 0.217,
+            "model": 0.218,
             "rawForm": 0.083
           },
           "hazard": {
-            "model": 0.16,
+            "model": 0.174,
             "rawForm": 0.075
           }
         }
@@ -2127,7 +2127,7 @@
         },
         "bowling": {
           "n": 408,
-          "model": 0.562,
+          "model": 0.576,
           "rawFormEconomy": 0.44
         }
       }
@@ -2182,21 +2182,21 @@
         "bowling": {
           "n": 324,
           "within": {
-            "model": 0.193,
+            "model": 0.196,
             "rawFormValue": 0.087,
             "rawFormRate": 0.102
           },
-          "model": 0.183,
-          "modelTiered": 0.182,
+          "model": 0.186,
+          "modelTiered": 0.189,
           "rawFormValue": 0.044,
           "rawFormRate": 0.094,
           "careerRate": 0.114,
           "runs": {
-            "model": 0.223,
+            "model": 0.224,
             "rawForm": 0.083
           },
           "hazard": {
-            "model": 0.16,
+            "model": 0.174,
             "rawForm": 0.075
           }
         }
@@ -2209,7 +2209,7 @@
         },
         "bowling": {
           "n": 408,
-          "model": 0.599,
+          "model": 0.612,
           "rawFormEconomy": 0.44
         }
       }
@@ -2264,21 +2264,21 @@
         "bowling": {
           "n": 324,
           "within": {
-            "model": 0.189,
+            "model": 0.192,
             "rawFormValue": 0.087,
             "rawFormRate": 0.102
           },
-          "model": 0.178,
-          "modelTiered": 0.178,
+          "model": 0.181,
+          "modelTiered": 0.185,
           "rawFormValue": 0.044,
           "rawFormRate": 0.094,
           "careerRate": 0.114,
           "runs": {
-            "model": 0.22,
+            "model": 0.221,
             "rawForm": 0.083
           },
           "hazard": {
-            "model": 0.141,
+            "model": 0.153,
             "rawForm": 0.075
           }
         }
@@ -2291,7 +2291,7 @@
         },
         "bowling": {
           "n": 408,
-          "model": 0.581,
+          "model": 0.595,
           "rawFormEconomy": 0.44
         }
       }
@@ -2346,21 +2346,21 @@
         "bowling": {
           "n": 324,
           "within": {
-            "model": 0.193,
+            "model": 0.196,
             "rawFormValue": 0.087,
             "rawFormRate": 0.102
           },
-          "model": 0.182,
-          "modelTiered": 0.181,
+          "model": 0.185,
+          "modelTiered": 0.188,
           "rawFormValue": 0.044,
           "rawFormRate": 0.094,
           "careerRate": 0.114,
           "runs": {
-            "model": 0.222,
+            "model": 0.223,
             "rawForm": 0.083
           },
           "hazard": {
-            "model": 0.174,
+            "model": 0.187,
             "rawForm": 0.075
           }
         }
@@ -2373,7 +2373,7 @@
         },
         "bowling": {
           "n": 408,
-          "model": 0.586,
+          "model": 0.599,
           "rawFormEconomy": 0.44
         }
       }
@@ -2428,21 +2428,21 @@
         "bowling": {
           "n": 324,
           "within": {
-            "model": 0.183,
+            "model": 0.186,
             "rawFormValue": 0.087,
             "rawFormRate": 0.102
           },
-          "model": 0.171,
-          "modelTiered": 0.171,
+          "model": 0.174,
+          "modelTiered": 0.178,
           "rawFormValue": 0.044,
           "rawFormRate": 0.094,
           "careerRate": 0.114,
           "runs": {
-            "model": 0.204,
+            "model": 0.205,
             "rawForm": 0.083
           },
           "hazard": {
-            "model": 0.153,
+            "model": 0.167,
             "rawForm": 0.075
           }
         }
@@ -2455,7 +2455,7 @@
         },
         "bowling": {
           "n": 408,
-          "model": 0.545,
+          "model": 0.559,
           "rawFormEconomy": 0.44
         }
       }
@@ -2510,21 +2510,21 @@
         "bowling": {
           "n": 324,
           "within": {
-            "model": 0.205,
+            "model": 0.208,
             "rawFormValue": 0.087,
             "rawFormRate": 0.102
           },
-          "model": 0.195,
-          "modelTiered": 0.196,
+          "model": 0.198,
+          "modelTiered": 0.203,
           "rawFormValue": 0.044,
           "rawFormRate": 0.094,
           "careerRate": 0.114,
           "runs": {
-            "model": 0.241,
+            "model": 0.242,
             "rawForm": 0.083
           },
           "hazard": {
-            "model": 0.164,
+            "model": 0.178,
             "rawForm": 0.075
           }
         }
@@ -2537,7 +2537,7 @@
         },
         "bowling": {
           "n": 408,
-          "model": 0.647,
+          "model": 0.659,
           "rawFormEconomy": 0.44
         }
       }
@@ -2592,21 +2592,21 @@
         "bowling": {
           "n": 324,
           "within": {
-            "model": 0.192,
+            "model": 0.195,
             "rawFormValue": 0.087,
             "rawFormRate": 0.102
           },
-          "model": 0.181,
-          "modelTiered": 0.177,
+          "model": 0.183,
+          "modelTiered": 0.183,
           "rawFormValue": 0.044,
           "rawFormRate": 0.094,
           "careerRate": 0.114,
           "runs": {
-            "model": 0.221,
+            "model": 0.222,
             "rawForm": 0.083
           },
           "hazard": {
-            "model": 0.16,
+            "model": 0.174,
             "rawForm": 0.075
           }
         }
@@ -2619,7 +2619,7 @@
         },
         "bowling": {
           "n": 408,
-          "model": 0.583,
+          "model": 0.59,
           "rawFormEconomy": 0.44
         }
       }
@@ -2674,21 +2674,21 @@
         "bowling": {
           "n": 324,
           "within": {
-            "model": 0.153,
+            "model": 0.159,
             "rawFormValue": 0.087,
             "rawFormRate": 0.102
           },
-          "model": 0.143,
-          "modelTiered": 0.126,
+          "model": 0.149,
+          "modelTiered": 0.135,
           "rawFormValue": 0.044,
           "rawFormRate": 0.094,
           "careerRate": 0.114,
           "runs": {
-            "model": 0.176,
+            "model": 0.178,
             "rawForm": 0.083
           },
           "hazard": {
-            "model": 0.118,
+            "model": 0.136,
             "rawForm": 0.075
           }
         }
@@ -2701,7 +2701,7 @@
         },
         "bowling": {
           "n": 408,
-          "model": 0.657,
+          "model": 0.638,
           "rawFormEconomy": 0.44
         }
       }
@@ -2756,21 +2756,21 @@
         "bowling": {
           "n": 324,
           "within": {
-            "model": 0.179,
+            "model": 0.184,
             "rawFormValue": 0.087,
             "rawFormRate": 0.102
           },
-          "model": 0.168,
-          "modelTiered": 0.158,
+          "model": 0.173,
+          "modelTiered": 0.167,
           "rawFormValue": 0.044,
           "rawFormRate": 0.094,
           "careerRate": 0.114,
           "runs": {
-            "model": 0.199,
+            "model": 0.201,
             "rawForm": 0.083
           },
           "hazard": {
-            "model": 0.132,
+            "model": 0.148,
             "rawForm": 0.075
           }
         }
@@ -2783,7 +2783,7 @@
         },
         "bowling": {
           "n": 408,
-          "model": 0.643,
+          "model": 0.632,
           "rawFormEconomy": 0.44
         }
       }
@@ -2886,26 +2886,26 @@
     "byTier": {
       "Elite": {
         "n": 35,
-        "meanDisplay": 80
+        "meanDisplay": 80.5
       },
       "Gold": {
         "n": 63,
-        "meanDisplay": 74.7
+        "meanDisplay": 75.3
       },
       "Silver": {
         "n": 65,
-        "meanDisplay": 70.5
+        "meanDisplay": 71
       },
       "Bronze": {
         "n": 59,
-        "meanDisplay": 67.4
+        "meanDisplay": 68
       }
     },
-    "spearman": 0.299,
+    "spearman": 0.301,
     "tiers": {
-      "exact": 0.302,
+      "exact": 0.306,
       "withinOne": 0.788,
-      "spearman": 0.31,
+      "spearman": 0.309,
       "confusion": {
         "Elite": {
           "Bronze": 1,
@@ -2920,14 +2920,14 @@
           "Elite": 22
         },
         "Silver": {
-          "Bronze": 5,
-          "Silver": 21,
+          "Bronze": 3,
+          "Silver": 23,
           "Gold": 25,
           "Elite": 14
         },
         "Bronze": {
-          "Bronze": 5,
-          "Silver": 26,
+          "Bronze": 4,
+          "Silver": 27,
           "Gold": 18,
           "Elite": 10
         }

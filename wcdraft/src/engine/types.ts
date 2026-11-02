@@ -41,6 +41,10 @@ export interface EnginePlayer {
   shape: StartShape | null;
   /** Pacers only: he is in the edition's top third for death dots (true) or not (false). Null for everyone else. */
   squeezer: boolean | null;
+  /** His side's Elo at his edition's start (null when unknown): the batting strength an associate bowler's step reads. */
+  teamElo?: number | null;
+  /** Associate bowlers only: the batting Elo he usually faced and the field Elo his card's step was taken to (MODEL.bowlTierStep). */
+  bowlCircuit?: { faced: number; field: number } | null;
   /** Display-only. */
   tier: string;
   battingDisplay: number;

@@ -8,7 +8,7 @@
  */
 
 import { phaseOf, type OutcomeKey, type Phase } from "../cricsheet/match.js";
-import { OUTCOMES, PHASE_LIST, type BattingStyle } from "../ratings/model.js";
+import { bowlTierFactors, OUTCOMES, PHASE_LIST, type BattingStyle } from "../ratings/model.js";
 import { PRESSURE } from "../analysis/pressure.js";
 import { dotsBand, pressureBand, setnessBand, type SituationCell, type SituationTables, type StateTable, type StreakBand, wicketsBand } from "../analysis/situation.js";
 import type { BowlClass, MatchupTables } from "../analysis/matchups.js";
@@ -233,7 +233,28 @@ export function outcomeDistribution(striker: EnginePlayer, bowler: EnginePlayer,
     total += out[k];
   }
   for (const k of OUTCOMES) out[k] = total > 0 ? out[k] / total : 1 / OUTCOMES.length;
-  return applyIntent(out, ctx.intent ?? 0);
+  return applyIntent(applyBowlTier(out, striker, bowler), ctx.intent ?? 0);
+}
+
+/**
+ * The associate bowling step for this ball (ENGINE.bowlTierExponent): the measured step for the
+ * striker's side against the batting the bowler usually faced, less what his card already carries
+ * at the bowl exponents. Runs cells and the wicket cell move, dots take up the difference.
+ */
+function applyBowlTier(dist: Vector, striker: EnginePlayer, bowler: EnginePlayer): Vector {
+  const circuit = bowler.bowlCircuit;
+  if (!circuit || striker.teamElo == null || ENGINE.bowlTierExponent === 0) return dist;
+  const here = bowlTierFactors(striker.teamElo - circuit.faced), card = bowlTierFactors(circuit.field - circuit.faced);
+  const runs = Math.pow(here.runs / Math.pow(card.runs, ENGINE.bowlExponent), ENGINE.bowlTierExponent);
+  const wickets = Math.pow(here.wickets / Math.pow(card.wickets, ENGINE.bowlHazardExponent), ENGINE.bowlTierExponent);
+  if (runs === 1 && wickets === 1) return dist;
+  const out = { ...dist };
+  for (const k of SCORING) out[k] = dist[k] * runs;
+  out.W = dist.W * wickets;
+  out["0"] = Math.max(0.01, 1 - OUTCOMES.reduce((a, k) => (k === "0" ? a : a + out[k]), 0));
+  const t = OUTCOMES.reduce((a, k) => a + out[k], 0);
+  for (const k of OUTCOMES) out[k] /= t;
+  return out;
 }
 
 /**
