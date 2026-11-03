@@ -5,6 +5,16 @@
 
 import type { OutcomeKey, Phase } from "../cricsheet/match.js";
 import type { BowlClass } from "../analysis/matchups.js";
+
+/** What the engine plays for a coach beyond his tempo (built in `analysis/coaches.ts`), in real units, shrunk for thin tenures. */
+export interface CoachPlay {
+  /** Added to the edition's share of toss-winners who field (0.19 = 19 points more often). */
+  bowlFirst: number;
+  /** Extra bowlers used an innings against the average coach (+0.3 = three innings in ten bring on another). */
+  rotation: number;
+  /** Lower-order (No. 6 down) scoring beyond the batters' own levels, as a fraction (0.03 = 3% more). */
+  lowerOrder: number;
+}
 import type { BattingArchetype, BattingStyle, BowlingArchetype, PhaseVectors, StartShape, Vector } from "../ratings/model.js";
 
 export type { OutcomeKey, Phase, PhaseVectors, Vector };
@@ -58,6 +68,8 @@ export interface EngineTeam {
   battingOrder: string[];
   /** Coach intent profile per phase in SD units (0 = era average); from the coach at that World Cup or the drafted coach. */
   intent?: Record<Phase, number>;
+  /** The coach's toss, bowling-rotation and batting-depth habits (`analysis/coaches.ts` `CoachPlay`). */
+  coachPlay?: CoachPlay;
   /** Captaincy rating in SD units (0 = average); scales the bowling-allocation noise. */
   captainZ?: number;
   /** Who leads the side on the scorecard. */

@@ -57,7 +57,8 @@ const CELL_PRIOR = 60;
 
 type Counts = number[];
 /** `runs` off the bat and `total` off the ball feed the sequence terms; `position` is the legal ball's place in its over. */
-type Ball = { peer: Counts; batter: string; bowler: string; year: number; innings: 1 | 2; phase: Phase; outcome: number; wickets: number; rpo: number | null; faced: number; found: boolean; runs: number; total: number; position: number; half: 0 | 1 };
+/** `team`, `month` and `slot` (the striker's place in the order) feed `coachResiduals`. */
+type Ball = { peer: Counts; batter: string; bowler: string; year: number; innings: 1 | 2; phase: Phase; outcome: number; wickets: number; rpo: number | null; faced: number; found: boolean; runs: number; total: number; position: number; half: 0 | 1; team: string; month: string; slot: number };
 
 /** A match's half of the archive (by id), for traits set on one half and measured on the other. */
 const halfOf = (id: string): 0 | 1 => ([...id].reduce((a, c) => a + c.charCodeAt(0), 0) % 2) as 0 | 1;
@@ -133,6 +134,7 @@ export class PressureAnalysis {
   add(m: Match): void {
     const year = +m.date.slice(0, 4);
     if (year < FROM_YEAR || (m.scheduledOvers || 20) !== 20) return;
+    const month = m.date.slice(0, 7);
     const innings = mainInnings(m);
     for (const inn of innings) {
       if (inn.reduced || inn.superOver) continue;
@@ -149,7 +151,7 @@ export class PressureAnalysis {
           const peer = this.peers.get(key) ?? this.peers.set(key, zeros()).get(key)!;
           const outcome = tallyKey(outcomeKey(b.runsBatter, out));
           peer[outcome]! += 1;
-          this.balls.push({ peer, batter: b.batter, bowler: b.bowler, year, innings: (inn.index + 1) as 1 | 2, phase: phaseOf(b.over), outcome, wickets, rpo: target !== null && left > 0 && target > runs ? ((target - runs) * 6) / left : null, faced: faced.get(b.batter) ?? 0, found: hit.has(b.batter), runs: b.runsBatter, total: b.runsTotal, position: Math.min(6, inOver + 1), half: halfOf(m.id) });
+          this.balls.push({ peer, batter: b.batter, bowler: b.bowler, year, innings: (inn.index + 1) as 1 | 2, phase: phaseOf(b.over), outcome, wickets, rpo: target !== null && left > 0 && target > runs ? ((target - runs) * 6) / left : null, faced: faced.get(b.batter) ?? 0, found: hit.has(b.batter), runs: b.runsBatter, total: b.runsTotal, position: Math.min(6, inOver + 1), half: halfOf(m.id), team: inn.team, month, slot: inn.battingOrder.indexOf(b.batter) + 1 });
           faced.set(b.batter, (faced.get(b.batter) ?? 0) + 1);
           legal += 1;
           inOver += 1;
@@ -350,4 +352,42 @@ export class PressureAnalysis {
       return { key: k, balls: t.real.cell.balls(k), multiplier: vector(real.map((x, i) => x / (nil?.[i] ?? 1))) };
     });
   }
+
+  /**
+   * Research, 2026-11-03 (`scripts/research/coach-residuals.mts`); call after `tables()`. What a
+   * batting side did under each coach beyond what its batters and the bowlers they faced normally
+   * do (the same expected shares as the sequence terms): runs and wickets observed against expected
+   * by phase and for the lower order (No. 6 down), kept apart for the two halves of the archive so
+   * a residual can be checked against itself. `tenureOf` names the coach in charge of a side in a
+   * month, or null.
+   */
+  coachResiduals(tenureOf: (team: string, month: string) => string | null): Map<string, CoachResidual[]> {
+    const expect = this.expect;
+    if (!expect) throw new Error("coachResiduals needs tables() first");
+    const RUNS = OUTCOMES.map((k) => (k === "W" ? 0 : Number(k)));
+    const W = tallyKey("W");
+    const out = new Map<string, CoachResidual[]>();
+    const blank = (): CoachResidual => ({ balls: 0, ...Object.fromEntries(COACH_CELLS.map((c) => [c, { runs: [0, 0], wickets: [0, 0] }])) }) as CoachResidual;
+    const cache = new Map<string, string | null>();
+    for (const b of this.balls) {
+      const key = `${b.team}|${b.month}`;
+      if (!cache.has(key)) cache.set(key, tenureOf(b.team, b.month));
+      const tenure = cache.get(key);
+      if (!tenure) continue;
+      const halves = out.get(tenure) ?? out.set(tenure, [blank(), blank()]).get(tenure)!;
+      const h = halves[b.half]!;
+      const e = expect.full(b);
+      const expRuns = e.reduce((a, x, i) => a + x * RUNS[i]!, 0);
+      h.balls += 1;
+      for (const cell of [b.phase, ...(b.slot >= 6 ? ["lower" as const] : [])]) {
+        h[cell].runs[0] += RUNS[b.outcome]!; h[cell].runs[1] += expRuns;
+        h[cell].wickets[0] += b.outcome === W ? 1 : 0; h[cell].wickets[1] += e[W]!;
+      }
+    }
+    return out;
+  }
 }
+
+const COACH_CELLS = ["pp", "mid", "death", "lower"] as const;
+/** One half of a coach's tenure: observed and expected runs and wickets (players removed), by phase and for No. 6 down. */
+export type CoachResidual = { balls: number } & Record<(typeof COACH_CELLS)[number], { runs: [number, number]; wickets: [number, number] }>;

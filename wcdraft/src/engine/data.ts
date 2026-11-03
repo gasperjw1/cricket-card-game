@@ -11,7 +11,7 @@ import { OUTCOMES, PHASE_LIST, type EditionPopulations, type PhaseVectors, type 
 import { SituationModel } from "./ball.js";
 import { ENGINE } from "./model.js";
 import { buildProgression, type FormatEdition, type Progression, type StandInRules } from "./progression.js";
-import { DISMISSAL_KINDS, type DismissalKind, type EnginePlayer, type EngineTeam, type MatchEnvironment } from "./types.js";
+import { DISMISSAL_KINDS, type CoachPlay, type DismissalKind, type EnginePlayer, type EngineTeam, type MatchEnvironment } from "./types.js";
 
 export interface SquadMatchOut {
   id: string;
@@ -123,6 +123,8 @@ export interface CoachOut {
   innings: number;
   tags: string[];
   intent: Record<Phase, number>;
+  /** Absent in coach tables built before 2026-11-03. */
+  play?: CoachPlay;
 }
 
 export interface CaptainOut {
@@ -156,7 +158,7 @@ export interface PlayerLabel {
 }
 
 export interface TeamProfile {
-  coach: { name: string; tags: string[]; intent: Record<Phase, number> } | null;
+  coach: { name: string; tags: string[]; intent: Record<Phase, number>; play?: CoachPlay } | null;
   /** Rated captains in the squad whose tenures cover the edition, most matches first. */
   captains: { personId: string; name: string; z: number }[];
   /** Everyone in the squad who led the side around then, rated or not, in the order they'd take charge. */
@@ -261,7 +263,7 @@ export function teamProfiles(edition: EditionOut, squads: Map<string, SquadOut>,
     const squadIds = new Set(squads.get(team)?.players.map((p) => p.id) ?? []);
     const tenures = captains.filter((c) => c.team === team && c.firstYear <= edition.year && c.lastYear >= edition.year && squadIds.has(c.personId)).sort((a, b) => b.matches - a.matches);
     out.set(team, {
-      coach: coach ? { name: coach.coachName, tags: coach.tags, intent: coach.intent } : null,
+      coach: coach ? { name: coach.coachName, tags: coach.tags, intent: coach.intent, play: coach.play } : null,
       captains: tenures.map((c) => ({ personId: c.personId, name: c.name, z: c.z })),
       leaders: leaders.filter((c) => c.team === team && c.firstYear <= edition.year && c.lastYear >= edition.year && squadIds.has(c.personId)).sort((a, b) => Number(!!b.worldCup) - Number(!!a.worldCup) || b.matches - a.matches).map((c) => c.personId),
     });
@@ -413,12 +415,12 @@ export function matchEnvironment(data: EditionData, venueId: string | null, over
  * Coach intent and captaincy for a CPU side: the senior leader in this eleven, or its most capped
  * man at the tournament if none of them plays. An unrated leader captains at an average rating.
  */
-function withProfile(data: EditionData, team: string, players: EnginePlayer[]): Pick<EngineTeam, "intent" | "captainZ" | "captainId"> {
+function withProfile(data: EditionData, team: string, players: EnginePlayer[]): Pick<EngineTeam, "intent" | "coachPlay" | "captainZ" | "captainId"> {
   const p = data.profiles.get(team);
   const caps = new Map(data.squads.get(team)?.players.map((x) => [x.id, x.matches]) ?? []);
   const senior = [...players].sort((a, b) => (caps.get(b.id) ?? 0) - (caps.get(a.id) ?? 0))[0];
   const captainId = p?.leaders.find((id) => players.some((x) => x.id === id)) ?? senior?.id;
-  return { intent: p?.coach?.intent, captainZ: p?.captains.find((c) => c.personId === captainId)?.z, captainId };
+  return { intent: p?.coach?.intent, coachPlay: p?.coach?.play, captainZ: p?.captains.find((c) => c.personId === captainId)?.z, captainId };
 }
 
 /**

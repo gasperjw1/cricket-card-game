@@ -12,7 +12,7 @@ import { streakBand } from "../analysis/situation.js";
 import { OUTCOMES, RUNS } from "../ratings/model.js";
 import { chooseBowler, type BowlerState } from "./allocation.js";
 import { outcomeDistribution, type BallContext, type SituationModel } from "./ball.js";
-import { ENGINE } from "./model.js";
+import { ENGINE, fieldShareWith } from "./model.js";
 import { Rng } from "./rng.js";
 import { DISMISSAL_KINDS, type BallRecord, type BatterLine, type Dismissal, type DismissalKind, type EnginePlayer, type EngineTeam, type InningsResult, type MatchEnvironment, type MatchResult, type Partnership, type RainEvent } from "./types.js";
 
@@ -97,7 +97,7 @@ export function simulateInnings(batting: EngineTeam, bowling: EngineTeam, env: M
     const ph = phaseOf(eq);
     const intent = batting.intent?.[ph] ?? 0;
     const ctxBase: BallContext = { innings: opts.index, over: eq, wickets, strikerBalls: 0, requiredRpo: null, scoringFactor, playerFactor: 1, streak: streakNow(), ballInOver: 1, consecutiveDots, freeHit: false, intent };
-    const b = chooseBowler({ over, eqOver: eq, oversInInnings: opts.overs, maxOvers, bowlers, previousBowler, batters: [striker, nonStriker], env, situation, ctx: ctxBase, captainZ: bowling.captainZ }, rng);
+    const b = chooseBowler({ over, eqOver: eq, oversInInnings: opts.overs, maxOvers, bowlers, previousBowler, batters: [striker, nonStriker], env, situation, ctx: ctxBase, captainZ: bowling.captainZ, rotation: bowling.coachPlay?.rotation }, rng);
     b.overs.push(over);
     b.runsByOver.push(0);
     previousBowler = b.player.id;
@@ -120,6 +120,8 @@ export function simulateInnings(batting: EngineTeam, bowling: EngineTeam, env: M
         innings: opts.index, over: eq, wickets, strikerBalls: sLine.balls, strikerFound: found.has(striker.id), requiredRpo, scoringFactor,
         playerFactor: (batDay.get(striker.id) ?? 1) * (bowlDay.get(b.player.id) ?? 1),
         streak: streakNow(), ballInOver: ballsThisOver + 1, consecutiveDots, freeHit: freeHit || noBall, intent,
+        // The batting coach's lower-order effect, for strikers from No. 6 down ("Deep batting" / "Top-heavy").
+        depthFactor: sLine.position >= 6 ? 1 + ENGINE.coachPlay.depth * (batting.coachPlay?.lowerOrder ?? 0) : 1,
       };
       const dist = outcomeDistribution(striker, b.player, env, situation, ctx);
       const outcome = OUTCOMES[rng.pick(OUTCOMES.map((k) => dist[k]))]!;
@@ -282,7 +284,10 @@ function drawRain(env: MatchEnvironment, situation: SituationModel, rng: Rng, pA
 export function simulateMatch(a: EngineTeam, b: EngineTeam, env: MatchEnvironment, situation: SituationModel, opts: MatchOptions): MatchResult {
   const rng = new Rng(opts.seed);
   const tossWinner = rng.chance(0.5) ? a : b;
-  const drawnDecision: "bat" | "field" = rng.chance(env.tossFieldPct / 100) ? "field" : "bat";
+  // The toss winner's coach leans the way his sides really chose (2026-11-03, the "Bowl first" and
+  // "Bat first" tags): the edition's share of toss winners who field, moved by his measured habit.
+  const fieldShare = fieldShareWith(env.tossFieldPct / 100, ENGINE.coachPlay.toss * (tossWinner.coachPlay?.bowlFirst ?? 0));
+  const drawnDecision: "bat" | "field" = rng.chance(fieldShare) ? "field" : "bat";
   let first = drawnDecision === "bat" ? tossWinner : tossWinner === a ? b : a;
   if (opts.battingFirst) first = opts.battingFirst === a.name ? a : b;
   const second = first === a ? b : a;

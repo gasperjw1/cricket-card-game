@@ -356,4 +356,27 @@ describe("engine", { skip: !engineReady() && "engine data not built" }, () => {
     const z = simulateMatch(a, b, env, data.situation, { seed: "pitch-off" });
     assert.ok(typeof z.innings[0]!.runs === "number", "plays with the pitch on");
   });
+
+  it("plays the coach's habits: the toss, bowling rotation and lower-order scoring (2026-11-03)", () => {
+    const data = loadEdition("2024");
+    const env = matchEnvironment(data, null, 20);
+    const a = teamFromDefault(data, "India"), b = teamFromDefault(data, "Australia");
+    const with_ = (t: typeof a, play: { bowlFirst: number; rotation: number; lowerOrder: number }) => ({ ...t, coachPlay: play });
+    const runs = (sa: typeof a, sb: typeof b, n: number, f: (r: ReturnType<typeof simulateMatch>) => number) => Array.from({ length: n }, (_, i) => f(simulateMatch(sa, sb, env, data.situation, { seed: `coach-${i}` }))).reduce((x, y) => x + y, 0) / n;
+    // Toss: a coach who all but always fields does so whenever his side wins the toss.
+    const fielder = with_(a, { bowlFirst: 0.9, rotation: 0, lowerOrder: 0 });
+    let won = 0, fielded = 0;
+    for (let i = 0; i < 60; i += 1) { const r = simulateMatch(fielder, b, env, data.situation, { seed: `toss-${i}` }); if (r.tossWinner === a.name) { won += 1; if (r.tossDecision === "field") fielded += 1; } }
+    assert.ok(won > 10 && fielded / won > 0.9, `fielded ${fielded} of ${won} toss wins`);
+    // Rotation: more bowlers an innings for the rotating coach than for one who trusts his frontline.
+    const bowlersUsed = (r: ReturnType<typeof simulateMatch>) => r.innings[0]!.bowling.filter((w) => w.balls > 0).length;
+    const rotating = runs(a, with_(b, { bowlFirst: 0, rotation: 0.8, lowerOrder: 0 }), 30, bowlersUsed);
+    const trusting = runs(a, with_(b, { bowlFirst: 0, rotation: -0.8, lowerOrder: 0 }), 30, bowlersUsed);
+    assert.ok(rotating > trusting, `rotating ${rotating.toFixed(2)} against trusting ${trusting.toFixed(2)} bowlers`);
+    // Depth: No. 6 down scores more under a "Deep batting" coach than under a "Top-heavy" one.
+    const tail = (r: ReturnType<typeof simulateMatch>) => r.innings.filter((inn) => inn.team === a.name).flatMap((inn) => inn.batting.slice(5)).reduce((s, x) => s + x.runs, 0);
+    const deep = runs(with_(a, { bowlFirst: 0, rotation: 0, lowerOrder: 0.3 }), b, 40, tail);
+    const shallow = runs(with_(a, { bowlFirst: 0, rotation: 0, lowerOrder: -0.3 }), b, 40, tail);
+    assert.ok(deep > shallow, `tail ${deep.toFixed(1)} against ${shallow.toFixed(1)} runs`);
+  });
 });

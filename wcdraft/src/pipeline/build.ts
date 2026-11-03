@@ -383,7 +383,7 @@ export function runBuild(log: (msg: string) => void = () => {}): BuildResult {
     teamStyle: teamStyleOut,
     teamStrength: teamStrengthOut,
     captaincy: buildCaptaincy(people, teamStrengthOut.teams),
-    coaches: buildCoaches(teamStyleOut),
+    coaches: buildCoaches(teamStyleOut, (tenureOf) => pressure.coachResiduals(tenureOf)),
     records: records.summary(windows),
     odiTeamStrength: odiStrength.summary(),
     odiPopulationByYear,

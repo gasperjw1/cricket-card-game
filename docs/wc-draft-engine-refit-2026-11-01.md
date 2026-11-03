@@ -492,6 +492,35 @@ replayed many times (scratch scripts `baseline.mts`, `player-dist.mts`, `dots.mt
     shown bowling numbers has a type. The 24 card holders still without one are batters with 34
     career balls or fewer and no shown bowling number.
 
+15. **Every coach tag played (2026-11-03, Yash: show nothing the engine ignores).** Two tests per
+    tag before building. Whether the team index repeats across alternate months of a tenure
+    (`scripts/research/coach-tag-stability.mts`; 59 tenures with 15+ innings a half, 17 with 30+):
+    powerplay tempo 0.35 / 0.06, powerplay wickets 0.26 / 0.19, death tempo 0.28 / 0.11, lower-order
+    share 0.37 / 0.40, middle wickets 0.49 / 0.53, bowlers used 0.14 / 0.64, bowl first 0.42 / 0.65.
+    Then, for the batting tags, what a side did beyond its players (`scripts/research/coach-residuals.mts`,
+    every ball since 2014 against expected shares with batter, bowler and setness removed, 67 tenures
+    with 600+ balls a half): powerplay runs repeat (split-half r 0.38, r 0.79 with the tag), death
+    runs repeat (0.31, 0.70), powerplay wickets do not (−0.07), lower-order runs repeat a little
+    (0.27) but match the "Deep batting" index poorly (0.18: the share of runs is mostly who bats there).
+
+    | Tag | Engine | Measure |
+    |---|---|---|
+    | Powerplay aggressor / anchor, Death hitter / conservative | `intent` (as before) | real beyond the players |
+    | Bowl first / Bat first | toss: the edition's field share moved by his habit in log-odds (`fieldShareWith`) | his habit, centred on the average coach, shrunk for thin tenures |
+    | Six-bowler rotation / Frontline trust | the allocation's sixth-bowler and below-fifth charges × exp(−2.5 × rotation) | `scripts/research/coach-rotation-calibrate.mts`: −0.5 rotation gives about −0.5 bowlers an innings; upward the real elevens run out of bowlers (+0.27 for +0.5) |
+    | Deep batting / Top-heavy | scoring cells × (1 + effect) for strikers from No. 6 down | redefined from the player-removed lower-order residual, shrunk by its reliability (0.43) and a 300-run prior; tags at ±0.6 SD: +1.1% to +5.9% and −1.3% to −4.3% |
+    | Wicket preserver / Risk taker | dropped | no coach effect beyond the players |
+
+    The drafted side now tosses for its own matches (the real toss was another side's decision); real
+    elevens keep their real batting order. The coach panel prints each coach's habits in numbers from
+    the same helpers the engine uses, and the tags sit on clean bands of them (rotation tagged +0.26
+    to +0.53 against untagged −0.22 to +0.24; bowl first +8 to +21 points against −7 to +8). Replay,
+    nine editions, 40 sims × 4 seeds: Brier 0.1871 with the habits against 0.1866 without, every bias
+    within 0.01. Rarity (1000 greedy): unbeaten 1.8%, champion 6.9% (7.2% with the habits off; 8.7%
+    before the fixture, toss and bowling-card changes of this round). Tests hold all three
+    mechanisms. A first version printed "fields after 105% of toss wins" for a coach in a World Cup
+    where 84% fielded; the log-odds helper fixed both the card and the engine, which had capped it.
+
 ## Still open
 
 - Dot share −0.7 points: the sim turns a few dots into singles at the same run rate; not a counting

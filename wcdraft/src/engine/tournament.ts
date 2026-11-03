@@ -169,7 +169,10 @@ export function simulateTournament(data: EditionData, progression: Progression, 
     const label = fixture.group ?? fixture.stageId;
     const teamA = teamFor(a, label, b), teamB = teamFor(b, label, a);
     const r = real.byPair.get(`${label}|${pairKey(a, b)}`);
-    const battingFirst = r ? (r.match.battedFirst ? r.team : r.otherTeam) : undefined;
+    // Who batted first in the real match holds for the real elevens; the drafted side tosses for it,
+    // and its coach chooses (2026-11-03: the real toss was another side's decision).
+    const mineToss = !!identity && (a === identity.team || b === identity.team);
+    const battingFirst = r && !mineToss ? (r.match.battedFirst ? r.team : r.otherTeam) : undefined;
     const env = matchEnvironment(data, fixture.venueId);
     const keep = !!(opts.keepIdentityDetails && identity && (a === identity.team || b === identity.team));
     const result = simulateMatch(teamA, teamB, env, data.situation, { seed: `${opts.seed}:${fixture.stageId}:${a}:${b}`, battingFirst, keepBallLog: opts.keepBallLogs || keep });

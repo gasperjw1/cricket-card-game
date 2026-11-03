@@ -30,6 +30,8 @@ export interface AllocationInput {
   ctx: BallContext;
   /** Fielding captain's rating in SD units; a better captain chooses with less noise. */
   captainZ?: number;
+  /** The fielding coach's extra bowlers an innings against the era ("Six-bowler rotation" / "Frontline trust"). */
+  rotation?: number;
 }
 
 /** The bowler for this over. */
@@ -55,6 +57,9 @@ export function chooseBowler(input: AllocationInput, rng: Rng): BowlerState {
     .map((x) => x.id);
 
   const A = ENGINE.allocation;
+  // A rotating coach charges less for a sixth bowler and for one below the fifth best; a coach who
+  // trusts his frontline charges more.
+  const rotate = Math.exp(-ENGINE.coachPlay.rotationScale * (input.rotation ?? 0));
   const used = bowlers.filter((b) => b.overs.length > 0).length;
   const worth = (b: BowlerState) => {
     const dist = (striker: EnginePlayer) => outcomeDistribution(striker, b.player, input.env, input.situation, input.ctx);
@@ -68,7 +73,7 @@ export function chooseBowler(input: AllocationInput, rng: Rng): BowlerState {
   const frontline = worths.size > 5 ? [...worths.values()].sort((x, y) => y - x)[4]! : -Infinity;
   const scores = eligible.map((b) => {
     const base = worths.get(b)!;
-    let score = base - A.depthPenalty * Math.max(0, frontline - base);
+    let score = base - A.depthPenalty * rotate * Math.max(0, frontline - base);
     const arch = b.player.archetype.bowling;
     if (phase === "pp" && arch === "new ball") score += A.specialistBonus;
     if (phase === "death" && arch === "death") score += A.specialistBonus;
@@ -87,7 +92,7 @@ export function chooseBowler(input: AllocationInput, rng: Rng): BowlerState {
     // A bowler who has barely bowled in the window is a last resort.
     if (b.player.bowlLowSample) score -= 2.5;
     score += A.continuityBonus * b.overs.length;
-    if (b.overs.length === 0 && used >= 5) score -= A.extraBowlerPenalty;
+    if (b.overs.length === 0 && used >= 5) score -= A.extraBowlerPenalty * rotate;
     const noise = A.noise * Math.max(0.4, Math.min(1.6, 1 - ENGINE.captainNoiseSlope * (input.captainZ ?? 0)));
     return score + noise * rng.gumbel();
   });

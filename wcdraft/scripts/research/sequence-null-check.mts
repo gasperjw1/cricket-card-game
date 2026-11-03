@@ -37,7 +37,8 @@ function asMatch(r: MatchResult, id: string, year: string): Match {
       wickets: b.wicket ? [{ playerOut: b.dismissal?.nonStriker ? b.nonStriker : b.striker }] : [],
     }));
     const total = balls.reduce((a, b) => a + b.runsTotal, 0);
-    return { index: n - 1, superOver: false, reduced: false, balls, total };
+    const battingOrder = [...new Set(balls.flatMap((b) => [b.batter, b.nonStriker]))];
+    return { index: n - 1, team: r.innings[n - 1]?.team ?? "", superOver: false, reduced: false, balls, total, battingOrder };
   });
   return { id, date: `${year}-06-01`, scheduledOvers: 20, innings: [{ ...innings[0]!, target: null }, { ...innings[1]!, target: innings[0]!.total + 1 }] } as unknown as Match;
 }

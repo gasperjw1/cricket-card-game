@@ -1411,6 +1411,12 @@ fielding. The simulation is not required to reproduce real results (§11).
   a squad rating from the in-edition numbers. Checking the lever found that a plan for the next
   match could change one already played (the engine counted a side's matches in pair-loop order);
   the engine now plays each group stage in date order, with a test.
+- **Coach tags all played (2026-11-03, refit doc item 15):** measured first, coach effect beyond the
+  players where it applies. Tempo tags as before; "Bowl first" / "Bat first" at the toss;
+  "Six-bowler rotation" / "Frontline trust" in bowler choice; "Deep batting" / "Top-heavy" redefined
+  from the lower order's scoring with the players removed and played for No. 6 down; "Wicket
+  preserver" / "Risk taker" dropped (no coach effect beyond the batters). The drafted side tosses for
+  its own matches. The coach panel shows each coach's habits in numbers.
 - **Agreed order after the refit (2026-11-01):** (1) associates fix in the ratings: no-record
   players sit on the global position-band prior, so Italy 2026 bowls at 71 against India's 74 and a
   few tournament balls can make a 77 (shrink empty records toward the side's own mean or an

@@ -196,6 +196,8 @@ export interface BallContext {
   freeHit: boolean;
   /** Batting side's coach intent for this phase, SD units (0 when unknown). */
   intent?: number;
+  /** The batting coach's lower-order effect on this striker's scoring (1 = none; only from No. 6 down). */
+  depthFactor?: number;
 }
 
 const pow = (v: Vector, e: number): Vector => (e === 1 ? v : (Object.fromEntries(OUTCOMES.map((k) => [k, Math.pow(v[k], e)])) as Vector));
@@ -224,7 +226,7 @@ export function outcomeDistribution(striker: EnginePlayer, bowler: EnginePlayer,
   const vsClass = bowler.bowlClass ? striker.batVsClass[bowler.bowlClass.startsWith("pace") ? "pace" : "spin"] : UNIT;
   // The ground's and the day's lean between pace and spin, on scoring off this bowler's class.
   const pitch = bowler.bowlClass && env.classScoring ? Math.pow(env.classScoring[bowler.bowlClass.startsWith("pace") ? "pace" : "spin"], ENGINE.pitchExponent) : 1;
-  const scoring = ctx.scoringFactor * ctx.playerFactor * Math.pow(env.venueFactor, ENGINE.venueExponent) * pitch * ENGINE.scoringCalibration * (phase === "death" ? ENGINE.deathCalibration : 1);
+  const scoring = ctx.scoringFactor * ctx.playerFactor * (ctx.depthFactor ?? 1) * Math.pow(env.venueFactor, ENGINE.venueExponent) * pitch * ENGINE.scoringCalibration * (phase === "death" ? ENGINE.deathCalibration : 1);
   const out = {} as Vector;
   let total = 0;
   for (const k of OUTCOMES) {

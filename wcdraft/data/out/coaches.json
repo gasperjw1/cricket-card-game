@@ -43,6 +43,11 @@
         "pp": 0.376,
         "mid": -0.246,
         "death": -0.044
+      },
+      "play": {
+        "bowlFirst": -0.021,
+        "rotation": -0.363,
+        "lowerOrder": 0.0001
       }
     },
     {
@@ -83,6 +88,11 @@
         "pp": 0.285,
         "mid": -0.184,
         "death": 0.318
+      },
+      "play": {
+        "bowlFirst": -0.0728,
+        "rotation": -0.335,
+        "lowerOrder": 0.0001
       }
     },
     {
@@ -115,7 +125,6 @@
         "bowlFirst": 0.62
       },
       "tags": [
-        "Wicket preserver",
         "Death conservative",
         "Bowl first"
       ],
@@ -123,6 +132,11 @@
         "pp": -0.091,
         "mid": -0.068,
         "death": -0.915
+      },
+      "play": {
+        "bowlFirst": 0.0803,
+        "rotation": 0.109,
+        "lowerOrder": 0.0001
       }
     },
     {
@@ -157,12 +171,17 @@
       },
       "tags": [
         "Powerplay aggressor",
-        "Wicket preserver"
+        "Top-heavy"
       ],
       "intent": {
         "pp": 0.603,
         "mid": -0.359,
         "death": -0.133
+      },
+      "play": {
+        "bowlFirst": 0.0407,
+        "rotation": 0.213,
+        "lowerOrder": -0.0252
       }
     },
     {
@@ -195,12 +214,18 @@
         "bowlFirst": 0.973
       },
       "tags": [
+        "Top-heavy",
         "Bowl first"
       ],
       "intent": {
         "pp": 0.537,
         "mid": 0.134,
         "death": -0.194
+      },
+      "play": {
+        "bowlFirst": 0.126,
+        "rotation": -0.032,
+        "lowerOrder": -0.0132
       }
     },
     {
@@ -242,6 +267,11 @@
         "pp": 1.5,
         "mid": 0.733,
         "death": -0.042
+      },
+      "play": {
+        "bowlFirst": 0.1312,
+        "rotation": 0.004,
+        "lowerOrder": -0.0012
       }
     },
     {
@@ -279,6 +309,11 @@
         "pp": -0.653,
         "mid": 1.127,
         "death": -1.044
+      },
+      "play": {
+        "bowlFirst": -0.0054,
+        "rotation": -0.305,
+        "lowerOrder": 0.0001
       }
     },
     {
@@ -315,6 +350,11 @@
         "pp": -0.034,
         "mid": -0.166,
         "death": -0.095
+      },
+      "play": {
+        "bowlFirst": -0.0159,
+        "rotation": 0.162,
+        "lowerOrder": 0.0001
       }
     },
     {
@@ -351,6 +391,11 @@
         "pp": 0.182,
         "mid": 0.385,
         "death": -0.291
+      },
+      "play": {
+        "bowlFirst": 0.0247,
+        "rotation": 0.057,
+        "lowerOrder": -0.0199
       }
     },
     {
@@ -383,14 +428,17 @@
         "bowlFirst": 0.133
       },
       "tags": [
-        "Risk taker",
-        "Death conservative",
-        "Deep batting"
+        "Death conservative"
       ],
       "intent": {
         "pp": -0.397,
         "mid": 1.233,
         "death": -0.801
+      },
+      "play": {
+        "bowlFirst": 0.0173,
+        "rotation": -0.077,
+        "lowerOrder": -0.0032
       }
     },
     {
@@ -425,6 +473,11 @@
         "pp": -0.449,
         "mid": 0.36,
         "death": -0.386
+      },
+      "play": {
+        "bowlFirst": -0.0583,
+        "rotation": -0.021,
+        "lowerOrder": 0.0001
       }
     },
     {
@@ -459,6 +512,11 @@
         "pp": -0.449,
         "mid": 0.36,
         "death": -0.386
+      },
+      "play": {
+        "bowlFirst": -0.0583,
+        "rotation": -0.021,
+        "lowerOrder": 0.0001
       }
     },
     {
@@ -493,6 +551,11 @@
         "pp": -0.417,
         "mid": 0.177,
         "death": -0.469
+      },
+      "play": {
+        "bowlFirst": -0.0092,
+        "rotation": 0.07,
+        "lowerOrder": -0.033
       }
     },
     {
@@ -527,12 +590,18 @@
       "tags": [
         "Powerplay anchor",
         "Death conservative",
+        "Top-heavy",
         "Bat first"
       ],
       "intent": {
         "pp": -0.937,
         "mid": 0.361,
         "death": -0.726
+      },
+      "play": {
+        "bowlFirst": -0.117,
+        "rotation": 0.16,
+        "lowerOrder": -0.0201
       }
     },
     {
@@ -569,6 +638,11 @@
         "pp": 0.124,
         "mid": 0.46,
         "death": -0.172
+      },
+      "play": {
+        "bowlFirst": -0.0653,
+        "rotation": 0.105,
+        "lowerOrder": 0.0001
       }
     },
     {
@@ -601,12 +675,18 @@
         "bowlFirst": 0.93
       },
       "tags": [
+        "Top-heavy",
         "Bowl first"
       ],
       "intent": {
         "pp": -0.342,
         "mid": 0.126,
         "death": -0.41
+      },
+      "play": {
+        "bowlFirst": 0.1205,
+        "rotation": 0.062,
+        "lowerOrder": -0.0187
       }
     },
     {
@@ -640,7 +720,6 @@
       },
       "tags": [
         "Powerplay anchor",
-        "Risk taker",
         "Frontline trust",
         "Bowl first"
       ],
@@ -648,6 +727,11 @@
         "pp": -0.657,
         "mid": 0.324,
         "death": -0.117
+      },
+      "play": {
+        "bowlFirst": 0.1396,
+        "rotation": -0.343,
+        "lowerOrder": 0.0016
       }
     },
     {
@@ -682,6 +766,11 @@
         "pp": -0.589,
         "mid": 0.457,
         "death": -0.704
+      },
+      "play": {
+        "bowlFirst": 0.0071,
+        "rotation": 0.12,
+        "lowerOrder": 0.0001
       }
     },
     {
@@ -722,6 +811,11 @@
         "pp": 0.111,
         "mid": -0.372,
         "death": 0.993
+      },
+      "play": {
+        "bowlFirst": -0.0918,
+        "rotation": -0.343,
+        "lowerOrder": 0.0001
       }
     },
     {
@@ -753,6 +847,7 @@
       },
       "tags": [
         "Death hitter",
+        "Deep batting",
         "Frontline trust",
         "Bat first"
       ],
@@ -760,6 +855,11 @@
         "pp": 0.247,
         "mid": -0.483,
         "death": 1.169
+      },
+      "play": {
+        "bowlFirst": -0.0848,
+        "rotation": -0.389,
+        "lowerOrder": 0.0425
       }
     },
     {
@@ -798,6 +898,11 @@
         "pp": 0.329,
         "mid": -0.572,
         "death": 1.347
+      },
+      "play": {
+        "bowlFirst": -0.1042,
+        "rotation": -0.422,
+        "lowerOrder": 0.0001
       }
     },
     {
@@ -832,6 +937,11 @@
         "pp": -0.091,
         "mid": -0.419,
         "death": 0.361
+      },
+      "play": {
+        "bowlFirst": -0.0358,
+        "rotation": -0.089,
+        "lowerOrder": 0.0001
       }
     },
     {
@@ -872,6 +982,11 @@
         "pp": 0.101,
         "mid": -0.195,
         "death": 1.231
+      },
+      "play": {
+        "bowlFirst": -0.086,
+        "rotation": -0.537,
+        "lowerOrder": 0.0001
       }
     },
     {
@@ -906,6 +1021,11 @@
         "pp": -0.277,
         "mid": 0.105,
         "death": -0.311
+      },
+      "play": {
+        "bowlFirst": -0.0327,
+        "rotation": -0.13,
+        "lowerOrder": 0.0001
       }
     },
     {
@@ -942,6 +1062,11 @@
         "pp": -0.011,
         "mid": -0.187,
         "death": -0.484
+      },
+      "play": {
+        "bowlFirst": -0.1085,
+        "rotation": 0.177,
+        "lowerOrder": 0.0001
       }
     },
     {
@@ -976,12 +1101,18 @@
         "bowlFirst": 0.335
       },
       "tags": [
-        "Death conservative"
+        "Death conservative",
+        "Deep batting"
       ],
       "intent": {
         "pp": -0.024,
         "mid": 0.296,
         "death": -0.671
+      },
+      "play": {
+        "bowlFirst": 0.0434,
+        "rotation": -0.031,
+        "lowerOrder": 0.0216
       }
     },
     {
@@ -1013,13 +1144,16 @@
         "bowlersUsed": 0.085,
         "bowlFirst": 0.478
       },
-      "tags": [
-        "Risk taker"
-      ],
+      "tags": [],
       "intent": {
         "pp": -0.041,
         "mid": 0.884,
         "death": -0.262
+      },
+      "play": {
+        "bowlFirst": 0.0619,
+        "rotation": 0.034,
+        "lowerOrder": 0.0001
       }
     },
     {
@@ -1054,6 +1188,11 @@
         "pp": -0.325,
         "mid": 0.33,
         "death": 0.04
+      },
+      "play": {
+        "bowlFirst": -0.0954,
+        "rotation": -0.067,
+        "lowerOrder": 0.0295
       }
     },
     {
@@ -1090,6 +1229,11 @@
         "pp": 0.512,
         "mid": -0.174,
         "death": -0.151
+      },
+      "play": {
+        "bowlFirst": 0.076,
+        "rotation": -0.154,
+        "lowerOrder": -0.0035
       }
     },
     {
@@ -1123,13 +1267,18 @@
       },
       "tags": [
         "Powerplay aggressor",
-        "Top-heavy",
+        "Deep batting",
         "Bowl first"
       ],
       "intent": {
         "pp": 0.957,
         "mid": -0.591,
         "death": 0.424
+      },
+      "play": {
+        "bowlFirst": 0.2056,
+        "rotation": 0.176,
+        "lowerOrder": 0.0144
       }
     },
     {
@@ -1164,7 +1313,6 @@
       },
       "tags": [
         "Powerplay aggressor",
-        "Wicket preserver",
         "Top-heavy",
         "Six-bowler rotation",
         "Bowl first"
@@ -1173,6 +1321,11 @@
         "pp": 1.464,
         "mid": -0.422,
         "death": 0.463
+      },
+      "play": {
+        "bowlFirst": 0.1201,
+        "rotation": 0.318,
+        "lowerOrder": -0.0429
       }
     },
     {
@@ -1207,6 +1360,11 @@
         "pp": 0.952,
         "mid": -0.076,
         "death": 0.694
+      },
+      "play": {
+        "bowlFirst": 0.0749,
+        "rotation": 0.176,
+        "lowerOrder": 0.0001
       }
     },
     {
@@ -1246,6 +1404,11 @@
         "pp": 1.5,
         "mid": -0.623,
         "death": 1.245
+      },
+      "play": {
+        "bowlFirst": 0.0448,
+        "rotation": -0.193,
+        "lowerOrder": 0.0049
       }
     },
     {
@@ -1282,6 +1445,11 @@
         "pp": -0.902,
         "mid": 0.686,
         "death": -0.786
+      },
+      "play": {
+        "bowlFirst": 0.1236,
+        "rotation": 0.033,
+        "lowerOrder": -0.0537
       }
     },
     {
@@ -1314,15 +1482,18 @@
         "bowlFirst": -0.539
       },
       "tags": [
-        "Risk taker",
         "Death conservative",
-        "Deep batting",
         "Six-bowler rotation"
       ],
       "intent": {
         "pp": -0.588,
         "mid": 0.521,
         "death": -0.763
+      },
+      "play": {
+        "bowlFirst": -0.0699,
+        "rotation": 0.308,
+        "lowerOrder": -0.0033
       }
     },
     {
@@ -1353,7 +1524,6 @@
         "bowlFirst": -0.331
       },
       "tags": [
-        "Risk taker",
         "Death conservative",
         "Six-bowler rotation"
       ],
@@ -1361,6 +1531,11 @@
         "pp": -0.453,
         "mid": -0.435,
         "death": -0.632
+      },
+      "play": {
+        "bowlFirst": -0.0429,
+        "rotation": 0.296,
+        "lowerOrder": -0.0106
       }
     },
     {
@@ -1395,6 +1570,11 @@
         "pp": -0.051,
         "mid": -0.656,
         "death": -0.245
+      },
+      "play": {
+        "bowlFirst": -0.0189,
+        "rotation": 0.071,
+        "lowerOrder": -0.0048
       }
     },
     {
@@ -1431,6 +1611,11 @@
         "pp": 0.163,
         "mid": -0.739,
         "death": -0.46
+      },
+      "play": {
+        "bowlFirst": -0.0371,
+        "rotation": -0.104,
+        "lowerOrder": -0.0339
       }
     },
     {
@@ -1465,6 +1650,11 @@
         "pp": -0.388,
         "mid": -0.535,
         "death": 0.33
+      },
+      "play": {
+        "bowlFirst": -0.1041,
+        "rotation": 0.012,
+        "lowerOrder": 0.0001
       }
     },
     {
@@ -1501,6 +1691,11 @@
         "pp": -0.405,
         "mid": -0.357,
         "death": 0.143
+      },
+      "play": {
+        "bowlFirst": -0.1159,
+        "rotation": -0.19,
+        "lowerOrder": 0.0001
       }
     },
     {
@@ -1538,6 +1733,11 @@
         "pp": -0.458,
         "mid": 0.653,
         "death": 0.003
+      },
+      "play": {
+        "bowlFirst": 0.0113,
+        "rotation": -0.121,
+        "lowerOrder": 0.0001
       }
     },
     {
@@ -1571,12 +1771,17 @@
         "bowlFirst": 0.098
       },
       "tags": [
-        "Wicket preserver"
+        "Top-heavy"
       ],
       "intent": {
         "pp": 0.032,
         "mid": -0.278,
         "death": -0.551
+      },
+      "play": {
+        "bowlFirst": 0.0127,
+        "rotation": -0.12,
+        "lowerOrder": -0.0313
       }
     },
     {
@@ -1616,6 +1821,11 @@
         "pp": -0.091,
         "mid": -0.553,
         "death": 0.119
+      },
+      "play": {
+        "bowlFirst": 0.0876,
+        "rotation": 0.142,
+        "lowerOrder": -0.0226
       }
     },
     {
@@ -1650,6 +1860,11 @@
         "pp": -0.269,
         "mid": -0.312,
         "death": 0.659
+      },
+      "play": {
+        "bowlFirst": 0.1276,
+        "rotation": 0.153,
+        "lowerOrder": 0.0001
       }
     },
     {
@@ -1680,7 +1895,6 @@
         "bowlFirst": 0.765
       },
       "tags": [
-        "Top-heavy",
         "Frontline trust",
         "Bowl first"
       ],
@@ -1688,6 +1902,11 @@
         "pp": -0.32,
         "mid": -0.586,
         "death": 0.344
+      },
+      "play": {
+        "bowlFirst": 0.0991,
+        "rotation": -0.262,
+        "lowerOrder": -0.0107
       }
     },
     {
@@ -1722,6 +1941,11 @@
         "pp": -0.181,
         "mid": -0.544,
         "death": -0.244
+      },
+      "play": {
+        "bowlFirst": 0.0033,
+        "rotation": -0.591,
+        "lowerOrder": 0.0001
       }
     },
     {
@@ -1754,8 +1978,6 @@
         "bowlFirst": 0.87
       },
       "tags": [
-        "Wicket preserver",
-        "Top-heavy",
         "Frontline trust",
         "Bowl first"
       ],
@@ -1763,6 +1985,11 @@
         "pp": 0.123,
         "mid": -0.944,
         "death": 0.105
+      },
+      "play": {
+        "bowlFirst": 0.1127,
+        "rotation": -0.491,
+        "lowerOrder": 0.003
       }
     },
     {
@@ -1797,14 +2024,17 @@
       },
       "tags": [
         "Powerplay aggressor",
-        "Wicket preserver",
-        "Death hitter",
-        "Top-heavy"
+        "Death hitter"
       ],
       "intent": {
         "pp": 0.946,
         "mid": -1.342,
         "death": 1.296
+      },
+      "play": {
+        "bowlFirst": -0.0197,
+        "rotation": -0.221,
+        "lowerOrder": -0.0095
       }
     },
     {
@@ -1836,13 +2066,17 @@
       },
       "tags": [
         "Powerplay aggressor",
-        "Death hitter",
-        "Top-heavy"
+        "Death hitter"
       ],
       "intent": {
         "pp": 0.9,
         "mid": -0.886,
         "death": 1.128
+      },
+      "play": {
+        "bowlFirst": -0.0414,
+        "rotation": 0.028,
+        "lowerOrder": 0.0001
       }
     },
     {
@@ -1877,12 +2111,17 @@
       "tags": [
         "Powerplay aggressor",
         "Death hitter",
-        "Top-heavy"
+        "Deep batting"
       ],
       "intent": {
         "pp": 1.5,
         "mid": -0.601,
         "death": 1.493
+      },
+      "play": {
+        "bowlFirst": -0.0089,
+        "rotation": -0.122,
+        "lowerOrder": 0.0285
       }
     },
     {
@@ -1920,6 +2159,7 @@
       "tags": [
         "Powerplay anchor",
         "Death conservative",
+        "Top-heavy",
         "Frontline trust",
         "Bowl first"
       ],
@@ -1927,6 +2167,11 @@
         "pp": -0.77,
         "mid": 0.55,
         "death": -0.709
+      },
+      "play": {
+        "bowlFirst": 0.1141,
+        "rotation": -0.525,
+        "lowerOrder": -0.0163
       }
     },
     {
@@ -1963,6 +2208,11 @@
         "pp": -0.543,
         "mid": -0.133,
         "death": -0.668
+      },
+      "play": {
+        "bowlFirst": -0.023,
+        "rotation": -0.088,
+        "lowerOrder": -0.0178
       }
     },
     {
@@ -1996,12 +2246,18 @@
       },
       "tags": [
         "Powerplay aggressor",
-        "Death conservative"
+        "Death conservative",
+        "Top-heavy"
       ],
       "intent": {
         "pp": 0.628,
         "mid": 0.577,
         "death": -0.908
+      },
+      "play": {
+        "bowlFirst": 0.055,
+        "rotation": 0.043,
+        "lowerOrder": -0.0202
       }
     },
     {
@@ -2033,13 +2289,17 @@
       },
       "tags": [
         "Death conservative",
-        "Deep batting",
         "Bowl first"
       ],
       "intent": {
         "pp": 0.442,
         "mid": 1.03,
         "death": -1.072
+      },
+      "play": {
+        "bowlFirst": 0.0886,
+        "rotation": 0.025,
+        "lowerOrder": 0.0001
       }
     },
     {
@@ -2081,6 +2341,11 @@
         "pp": 0.108,
         "mid": 0.328,
         "death": -0.136
+      },
+      "play": {
+        "bowlFirst": 0.0909,
+        "rotation": -0.079,
+        "lowerOrder": 0.0425
       }
     },
     {
@@ -2115,6 +2380,11 @@
         "pp": -0.875,
         "mid": 0.227,
         "death": 0.165
+      },
+      "play": {
+        "bowlFirst": -0.0202,
+        "rotation": -0.09,
+        "lowerOrder": 0.0001
       }
     },
     {
@@ -2151,6 +2421,11 @@
         "pp": -0.092,
         "mid": 0.731,
         "death": -0.873
+      },
+      "play": {
+        "bowlFirst": 0.0335,
+        "rotation": 0.082,
+        "lowerOrder": -0.0097
       }
     },
     {
@@ -2185,6 +2460,11 @@
         "pp": -1.146,
         "mid": 1.057,
         "death": -0.256
+      },
+      "play": {
+        "bowlFirst": -0.0692,
+        "rotation": -0.395,
+        "lowerOrder": 0.0001
       }
     },
     {
@@ -2219,6 +2499,11 @@
         "pp": -0.14,
         "mid": -0.848,
         "death": -0.285
+      },
+      "play": {
+        "bowlFirst": -0.1108,
+        "rotation": 0.228,
+        "lowerOrder": -0.0502
       }
     },
     {
@@ -2249,14 +2534,17 @@
         "bowlFirst": -1.342
       },
       "tags": [
-        "Wicket preserver",
-        "Top-heavy",
         "Bat first"
       ],
       "intent": {
         "pp": 0.001,
         "mid": -1.113,
         "death": 0.549
+      },
+      "play": {
+        "bowlFirst": -0.1739,
+        "rotation": 0.097,
+        "lowerOrder": 0.0011
       }
     },
     {
@@ -2294,6 +2582,11 @@
         "pp": -0.234,
         "mid": -0.078,
         "death": -0.069
+      },
+      "play": {
+        "bowlFirst": -0.0823,
+        "rotation": 0.268,
+        "lowerOrder": 0.0093
       }
     },
     {
@@ -2330,6 +2623,11 @@
         "pp": 0.166,
         "mid": -0.178,
         "death": 0.122
+      },
+      "play": {
+        "bowlFirst": -0.1077,
+        "rotation": 0.132,
+        "lowerOrder": 0.0076
       }
     },
     {
@@ -2368,6 +2666,11 @@
         "pp": -0.026,
         "mid": -0.274,
         "death": 0.279
+      },
+      "play": {
+        "bowlFirst": -0.034,
+        "rotation": 0.291,
+        "lowerOrder": 0.0001
       }
     },
     {
@@ -2408,6 +2711,11 @@
         "pp": -0.026,
         "mid": -0.274,
         "death": 0.279
+      },
+      "play": {
+        "bowlFirst": -0.034,
+        "rotation": 0.291,
+        "lowerOrder": -0.0071
       }
     },
     {
@@ -2444,6 +2752,11 @@
         "pp": -1.317,
         "mid": 0.844,
         "death": -0.474
+      },
+      "play": {
+        "bowlFirst": 0.0784,
+        "rotation": -0.424,
+        "lowerOrder": -0.0603
       }
     },
     {
@@ -2475,7 +2788,6 @@
       },
       "tags": [
         "Powerplay anchor",
-        "Risk taker",
         "Death conservative",
         "Deep batting",
         "Bowl first"
@@ -2484,6 +2796,11 @@
         "pp": -1.068,
         "mid": 0.821,
         "death": -0.622
+      },
+      "play": {
+        "bowlFirst": 0.0868,
+        "rotation": 0.131,
+        "lowerOrder": 0.013
       }
     },
     {
@@ -2518,6 +2835,11 @@
         "pp": -0.258,
         "mid": 0.62,
         "death": -0.538
+      },
+      "play": {
+        "bowlFirst": 0.063,
+        "rotation": 0.172,
+        "lowerOrder": -0.0039
       }
     },
     {
@@ -2552,6 +2874,11 @@
         "pp": 0.009,
         "mid": -0.299,
         "death": -0.213
+      },
+      "play": {
+        "bowlFirst": 0.057,
+        "rotation": 0.432,
+        "lowerOrder": -0.0086
       }
     },
     {
@@ -2586,6 +2913,11 @@
         "pp": 0.009,
         "mid": -0.299,
         "death": -0.213
+      },
+      "play": {
+        "bowlFirst": 0.057,
+        "rotation": 0.432,
+        "lowerOrder": 0.0001
       }
     },
     {
@@ -2618,13 +2950,18 @@
         "bowlFirst": 0.421
       },
       "tags": [
-        "Wicket preserver",
-        "Death hitter"
+        "Death hitter",
+        "Deep batting"
       ],
       "intent": {
         "pp": 0.46,
         "mid": -0.156,
         "death": 1.48
+      },
+      "play": {
+        "bowlFirst": 0.0546,
+        "rotation": 0.165,
+        "lowerOrder": 0.0305
       }
     },
     {
@@ -2657,13 +2994,18 @@
         "bowlFirst": 0.273
       },
       "tags": [
-        "Wicket preserver",
-        "Death hitter"
+        "Death hitter",
+        "Deep batting"
       ],
       "intent": {
         "pp": 0.069,
         "mid": -0.753,
         "death": 1.017
+      },
+      "play": {
+        "bowlFirst": 0.0353,
+        "rotation": 0.236,
+        "lowerOrder": 0.0239
       }
     },
     {
@@ -2698,6 +3040,11 @@
         "pp": -0.215,
         "mid": 0.319,
         "death": -0.56
+      },
+      "play": {
+        "bowlFirst": -0.0545,
+        "rotation": -0.084,
+        "lowerOrder": -0.0021
       }
     },
     {
@@ -2734,6 +3081,11 @@
         "pp": -0.232,
         "mid": 0.539,
         "death": -0.856
+      },
+      "play": {
+        "bowlFirst": -0.0359,
+        "rotation": -0.723,
+        "lowerOrder": 0.0001
       }
     },
     {
@@ -2771,6 +3123,11 @@
         "pp": 0.095,
         "mid": -0.538,
         "death": -0.392
+      },
+      "play": {
+        "bowlFirst": 0.0071,
+        "rotation": 0.185,
+        "lowerOrder": -0.0364
       }
     },
     {
@@ -2811,6 +3168,11 @@
         "pp": -0.179,
         "mid": 0.251,
         "death": -0.31
+      },
+      "play": {
+        "bowlFirst": -0.1725,
+        "rotation": 0.09,
+        "lowerOrder": -0.0221
       }
     },
     {
@@ -2849,6 +3211,11 @@
         "pp": -0.216,
         "mid": 0.247,
         "death": -0.314
+      },
+      "play": {
+        "bowlFirst": 0.072,
+        "rotation": -0.037,
+        "lowerOrder": -0.0013
       }
     },
     {
@@ -2885,6 +3252,11 @@
         "pp": -0.387,
         "mid": 0.754,
         "death": -0.188
+      },
+      "play": {
+        "bowlFirst": -0.004,
+        "rotation": -0.394,
+        "lowerOrder": 0.0001
       }
     },
     {
@@ -2921,6 +3293,11 @@
         "pp": -0.735,
         "mid": 0.149,
         "death": -0.613
+      },
+      "play": {
+        "bowlFirst": 0.1191,
+        "rotation": -0.054,
+        "lowerOrder": 0.0001
       }
     },
     {
@@ -2957,6 +3334,11 @@
         "pp": -0.574,
         "mid": 0.372,
         "death": -0.28
+      },
+      "play": {
+        "bowlFirst": -0.0201,
+        "rotation": 0.044,
+        "lowerOrder": 0.0001
       }
     },
     {
@@ -2991,6 +3373,11 @@
         "pp": -0.568,
         "mid": 0.012,
         "death": -0.195
+      },
+      "play": {
+        "bowlFirst": -0.0048,
+        "rotation": 0.241,
+        "lowerOrder": 0.0001
       }
     },
     {
@@ -3025,13 +3412,17 @@
         "bowlFirst": -0.529
       },
       "tags": [
-        "Wicket preserver",
         "Six-bowler rotation"
       ],
       "intent": {
         "pp": -0.203,
         "mid": 0.099,
         "death": -0.483
+      },
+      "play": {
+        "bowlFirst": -0.0686,
+        "rotation": 0.27,
+        "lowerOrder": 0.0076
       }
     },
     {
@@ -3070,6 +3461,11 @@
         "pp": 0.154,
         "mid": -0.25,
         "death": 0.35
+      },
+      "play": {
+        "bowlFirst": -0.0528,
+        "rotation": 0.015,
+        "lowerOrder": -0.0031
       }
     },
     {
@@ -3102,12 +3498,18 @@
         "bowlFirst": 0.228
       },
       "tags": [
-        "Powerplay aggressor"
+        "Powerplay aggressor",
+        "Deep batting"
       ],
       "intent": {
         "pp": 1.118,
         "mid": -0.178,
         "death": 0.482
+      },
+      "play": {
+        "bowlFirst": 0.0296,
+        "rotation": 0.086,
+        "lowerOrder": 0.0279
       }
     },
     {
@@ -3144,9 +3546,8 @@
       },
       "tags": [
         "Powerplay anchor",
-        "Risk taker",
         "Death conservative",
-        "Deep batting",
+        "Top-heavy",
         "Six-bowler rotation",
         "Bowl first"
       ],
@@ -3154,6 +3555,11 @@
         "pp": -0.795,
         "mid": 0.958,
         "death": -0.637
+      },
+      "play": {
+        "bowlFirst": 0.1249,
+        "rotation": 0.534,
+        "lowerOrder": -0.0179
       }
     },
     {
@@ -3188,6 +3594,11 @@
         "pp": 0.089,
         "mid": 0.103,
         "death": 0.193
+      },
+      "play": {
+        "bowlFirst": 0.0955,
+        "rotation": 0.03,
+        "lowerOrder": 0.0001
       }
     },
     {
@@ -3224,6 +3635,11 @@
         "pp": -0.2,
         "mid": 0.177,
         "death": 0.299
+      },
+      "play": {
+        "bowlFirst": 0.0883,
+        "rotation": -0.066,
+        "lowerOrder": 0.0001
       }
     },
     {
@@ -3264,6 +3680,11 @@
         "pp": -0.703,
         "mid": 0.078,
         "death": -0.527
+      },
+      "play": {
+        "bowlFirst": -0.0901,
+        "rotation": -0.522,
+        "lowerOrder": 0.0001
       }
     },
     {
@@ -3302,6 +3723,11 @@
         "pp": -0.234,
         "mid": 0.318,
         "death": -0.49
+      },
+      "play": {
+        "bowlFirst": -0.0713,
+        "rotation": -0.494,
+        "lowerOrder": 0.0001
       }
     },
     {
@@ -3338,6 +3764,11 @@
         "pp": -0.622,
         "mid": 0.593,
         "death": -0.593
+      },
+      "play": {
+        "bowlFirst": -0.0612,
+        "rotation": 0.108,
+        "lowerOrder": 0.0001
       }
     },
     {
@@ -3377,6 +3808,11 @@
         "pp": -1.171,
         "mid": 0.589,
         "death": -1.048
+      },
+      "play": {
+        "bowlFirst": -0.0721,
+        "rotation": -0.108,
+        "lowerOrder": -0.0074
       }
     },
     {
@@ -3409,12 +3845,18 @@
         "bowlFirst": -0.512
       },
       "tags": [
-        "Powerplay anchor"
+        "Powerplay anchor",
+        "Deep batting"
       ],
       "intent": {
         "pp": -0.892,
         "mid": 0.132,
         "death": 0.01
+      },
+      "play": {
+        "bowlFirst": -0.0664,
+        "rotation": -0.182,
+        "lowerOrder": 0.0186
       }
     },
     {
@@ -3446,13 +3888,17 @@
       },
       "tags": [
         "Powerplay anchor",
-        "Top-heavy",
         "Bat first"
       ],
       "intent": {
         "pp": -0.842,
         "mid": -0.974,
         "death": -0.038
+      },
+      "play": {
+        "bowlFirst": -0.094,
+        "rotation": -0.105,
+        "lowerOrder": 0.005
       }
     },
     {
@@ -3483,13 +3929,17 @@
         "bowlFirst": -0.146
       },
       "tags": [
-        "Powerplay anchor",
-        "Wicket preserver"
+        "Powerplay anchor"
       ],
       "intent": {
         "pp": -0.922,
         "mid": -1.346,
         "death": -0.132
+      },
+      "play": {
+        "bowlFirst": -0.019,
+        "rotation": -0.159,
+        "lowerOrder": 0.0025
       }
     },
     {
@@ -3524,12 +3974,17 @@
       },
       "tags": [
         "Powerplay anchor",
-        "Wicket preserver"
+        "Deep batting"
       ],
       "intent": {
         "pp": -0.715,
         "mid": -1.083,
         "death": 0.191
+      },
+      "play": {
+        "bowlFirst": -0.0161,
+        "rotation": -0.12,
+        "lowerOrder": 0.0393
       }
     },
     {
@@ -3564,6 +4019,11 @@
         "pp": 0.545,
         "mid": 0.128,
         "death": 0.472
+      },
+      "play": {
+        "bowlFirst": 0.0319,
+        "rotation": -0.099,
+        "lowerOrder": 0.0031
       }
     },
     {
@@ -3594,13 +4054,17 @@
         "bowlFirst": 0.373
       },
       "tags": [
-        "Powerplay aggressor",
-        "Wicket preserver"
+        "Powerplay aggressor"
       ],
       "intent": {
         "pp": 0.665,
         "mid": -0.192,
         "death": 0.283
+      },
+      "play": {
+        "bowlFirst": 0.0483,
+        "rotation": -0.014,
+        "lowerOrder": 0.0001
       }
     },
     {
@@ -3637,6 +4101,11 @@
         "pp": 0.295,
         "mid": -0.34,
         "death": -0.171
+      },
+      "play": {
+        "bowlFirst": 0.1221,
+        "rotation": 0.07,
+        "lowerOrder": 0.0209
       }
     },
     {
@@ -3667,13 +4136,17 @@
         "bowlFirst": -0.288
       },
       "tags": [
-        "Death hitter",
-        "Deep batting"
+        "Death hitter"
       ],
       "intent": {
         "pp": -0.356,
         "mid": 0.348,
         "death": 0.631
+      },
+      "play": {
+        "bowlFirst": -0.0373,
+        "rotation": 0.164,
+        "lowerOrder": 0.0001
       }
     },
     {
@@ -3710,6 +4183,11 @@
         "pp": -0.406,
         "mid": -0.08,
         "death": 0.459
+      },
+      "play": {
+        "bowlFirst": -0.0132,
+        "rotation": 0.241,
+        "lowerOrder": 0.0063
       }
     },
     {
@@ -3740,13 +4218,18 @@
         "bowlFirst": 0.213
       },
       "tags": [
-        "Risk taker",
+        "Top-heavy",
         "Six-bowler rotation"
       ],
       "intent": {
         "pp": -0.061,
         "mid": 0.32,
         "death": -0.004
+      },
+      "play": {
+        "bowlFirst": 0.0276,
+        "rotation": 0.335,
+        "lowerOrder": -0.0162
       }
     },
     {
@@ -3781,6 +4264,11 @@
         "pp": 0.117,
         "mid": 0.152,
         "death": 0.229
+      },
+      "play": {
+        "bowlFirst": -0.0856,
+        "rotation": 0.52,
+        "lowerOrder": 0.0001
       }
     },
     {
@@ -3817,6 +4305,11 @@
         "pp": -0.138,
         "mid": 0.69,
         "death": 0.034
+      },
+      "play": {
+        "bowlFirst": 0.1269,
+        "rotation": 0.291,
+        "lowerOrder": 0.0001
       }
     },
     {
@@ -3851,6 +4344,11 @@
         "pp": 0.228,
         "mid": 0.261,
         "death": 0.405
+      },
+      "play": {
+        "bowlFirst": 0.0769,
+        "rotation": 0.257,
+        "lowerOrder": 0.0001
       }
     },
     {
@@ -3885,6 +4383,11 @@
         "pp": 0.347,
         "mid": 0.238,
         "death": -0.038
+      },
+      "play": {
+        "bowlFirst": 0.049,
+        "rotation": -0.313,
+        "lowerOrder": 0.0001
       }
     },
     {
@@ -3921,6 +4424,11 @@
         "pp": -0.184,
         "mid": 0.128,
         "death": -0.459
+      },
+      "play": {
+        "bowlFirst": 0.0373,
+        "rotation": -0.213,
+        "lowerOrder": 0.0001
       }
     },
     {
@@ -3958,6 +4466,11 @@
         "pp": -0.245,
         "mid": 0.54,
         "death": -0.522
+      },
+      "play": {
+        "bowlFirst": 0.0057,
+        "rotation": 0.066,
+        "lowerOrder": 0.0001
       }
     },
     {
@@ -3994,6 +4507,11 @@
         "pp": 0.259,
         "mid": 0.76,
         "death": -0.23
+      },
+      "play": {
+        "bowlFirst": -0.0158,
+        "rotation": -0.278,
+        "lowerOrder": 0.0128
       }
     },
     {
@@ -4027,6 +4545,7 @@
         "bowlFirst": -0.764
       },
       "tags": [
+        "Deep batting",
         "Frontline trust",
         "Bat first"
       ],
@@ -4034,6 +4553,11 @@
         "pp": -0.068,
         "mid": -0.489,
         "death": 0.08
+      },
+      "play": {
+        "bowlFirst": -0.0991,
+        "rotation": -0.291,
+        "lowerOrder": 0.0204
       }
     },
     {
@@ -4072,6 +4596,11 @@
         "pp": 0.493,
         "mid": 0.143,
         "death": -0.413
+      },
+      "play": {
+        "bowlFirst": -0.0784,
+        "rotation": 0.164,
+        "lowerOrder": -0.009
       }
     },
     {
@@ -4109,6 +4638,11 @@
         "pp": -0.58,
         "mid": -0.765,
         "death": -0.189
+      },
+      "play": {
+        "bowlFirst": -0.0432,
+        "rotation": 0.035,
+        "lowerOrder": 0.0001
       }
     },
     {
@@ -4145,6 +4679,11 @@
         "pp": -0.286,
         "mid": -0.126,
         "death": 0.233
+      },
+      "play": {
+        "bowlFirst": -0.027,
+        "rotation": 0.081,
+        "lowerOrder": 0.0001
       }
     },
     {
@@ -4176,13 +4715,16 @@
         "bowlersUsed": 0.03,
         "bowlFirst": -0.466
       },
-      "tags": [
-        "Risk taker"
-      ],
+      "tags": [],
       "intent": {
         "pp": -0.211,
         "mid": -0.256,
         "death": 0.305
+      },
+      "play": {
+        "bowlFirst": -0.0604,
+        "rotation": 0.012,
+        "lowerOrder": 0.0001
       }
     },
     {
@@ -4214,13 +4756,16 @@
         "bowlersUsed": -0.008,
         "bowlFirst": -0.297
       },
-      "tags": [
-        "Risk taker"
-      ],
+      "tags": [],
       "intent": {
         "pp": -0.132,
         "mid": -0.494,
         "death": 0.2
+      },
+      "play": {
+        "bowlFirst": -0.0385,
+        "rotation": -0.003,
+        "lowerOrder": 0.0001
       }
     },
     {
@@ -4254,13 +4799,17 @@
         "bowlFirst": -1.378
       },
       "tags": [
-        "Top-heavy",
         "Bat first"
       ],
       "intent": {
         "pp": 0.377,
         "mid": -0.557,
         "death": 0.033
+      },
+      "play": {
+        "bowlFirst": -0.1785,
+        "rotation": -0.031,
+        "lowerOrder": -0.0057
       }
     },
     {
@@ -4291,13 +4840,17 @@
         "bowlFirst": -0.461
       },
       "tags": [
-        "Top-heavy",
         "Frontline trust"
       ],
       "intent": {
         "pp": -0.463,
         "mid": -0.41,
         "death": -0.199
+      },
+      "play": {
+        "bowlFirst": -0.0597,
+        "rotation": -0.27,
+        "lowerOrder": -0.0043
       }
     },
     {
@@ -4330,13 +4883,16 @@
         "bowlersUsed": -0.191,
         "bowlFirst": 0.221
       },
-      "tags": [
-        "Top-heavy"
-      ],
+      "tags": [],
       "intent": {
         "pp": -0.254,
         "mid": -0.762,
         "death": 0.404
+      },
+      "play": {
+        "bowlFirst": 0.0286,
+        "rotation": -0.077,
+        "lowerOrder": 0.0055
       }
     },
     {
@@ -4367,13 +4923,17 @@
         "bowlFirst": 0.392
       },
       "tags": [
-        "Risk taker",
         "Frontline trust"
       ],
       "intent": {
         "pp": 0.331,
         "mid": -0.321,
         "death": 0.586
+      },
+      "play": {
+        "bowlFirst": 0.0508,
+        "rotation": -0.409,
+        "lowerOrder": 0.0001
       }
     },
     {
@@ -4407,12 +4967,17 @@
       },
       "tags": [
         "Powerplay aggressor",
-        "Risk taker"
+        "Deep batting"
       ],
       "intent": {
         "pp": 0.806,
         "mid": -0.045,
         "death": 0.399
+      },
+      "play": {
+        "bowlFirst": 0.0268,
+        "rotation": -0.096,
+        "lowerOrder": 0.0109
       }
     },
     {
@@ -4444,11 +5009,18 @@
         "bowlersUsed": -0.332,
         "bowlFirst": 0.478
       },
-      "tags": [],
+      "tags": [
+        "Deep batting"
+      ],
       "intent": {
         "pp": 0.462,
         "mid": -0.073,
         "death": 0.103
+      },
+      "play": {
+        "bowlFirst": 0.0619,
+        "rotation": -0.133,
+        "lowerOrder": 0.0167
       }
     },
     {
@@ -4483,13 +5055,17 @@
         "bowlFirst": -0.895
       },
       "tags": [
-        "Top-heavy",
         "Bat first"
       ],
       "intent": {
         "pp": 0.293,
         "mid": -0.156,
         "death": -0.58
+      },
+      "play": {
+        "bowlFirst": -0.1159,
+        "rotation": 0.166,
+        "lowerOrder": 0.0001
       }
     },
     {
@@ -4524,6 +5100,11 @@
         "pp": 0.509,
         "mid": -0.304,
         "death": -0.334
+      },
+      "play": {
+        "bowlFirst": -0.011,
+        "rotation": 0.086,
+        "lowerOrder": 0.0001
       }
     },
     {
@@ -4560,6 +5141,11 @@
         "pp": 0.576,
         "mid": -0.035,
         "death": -0.297
+      },
+      "play": {
+        "bowlFirst": 0.0229,
+        "rotation": 0.173,
+        "lowerOrder": 0.0001
       }
     },
     {
@@ -4596,6 +5182,11 @@
         "pp": 0.329,
         "mid": 0.165,
         "death": 0.078
+      },
+      "play": {
+        "bowlFirst": -0.0021,
+        "rotation": 0.106,
+        "lowerOrder": 0.0159
       }
     },
     {
@@ -4630,6 +5221,11 @@
         "pp": 0.225,
         "mid": 0.159,
         "death": 0.267
+      },
+      "play": {
+        "bowlFirst": -0.038,
+        "rotation": 0.006,
+        "lowerOrder": 0.0164
       }
     },
     {
@@ -4664,6 +5260,11 @@
         "pp": -0.264,
         "mid": 0.87,
         "death": -1.007
+      },
+      "play": {
+        "bowlFirst": 0.091,
+        "rotation": 0.278,
+        "lowerOrder": 0.0001
       }
     },
     {
@@ -4696,9 +5297,8 @@
         "bowlFirst": 0.846
       },
       "tags": [
-        "Risk taker",
         "Death conservative",
-        "Deep batting",
+        "Top-heavy",
         "Six-bowler rotation",
         "Bowl first"
       ],
@@ -4706,6 +5306,11 @@
         "pp": -0.433,
         "mid": 1.143,
         "death": -1.5
+      },
+      "play": {
+        "bowlFirst": 0.1097,
+        "rotation": 0.408,
+        "lowerOrder": -0.0263
       }
     },
     {
@@ -4740,6 +5345,11 @@
         "pp": -0.158,
         "mid": 0.594,
         "death": -1.064
+      },
+      "play": {
+        "bowlFirst": 0.0337,
+        "rotation": 0.292,
+        "lowerOrder": 0.0001
       }
     },
     {
@@ -4770,14 +5380,18 @@
         "bowlFirst": 0.094
       },
       "tags": [
-        "Risk taker",
         "Death conservative",
-        "Deep batting"
+        "Top-heavy"
       ],
       "intent": {
         "pp": 0.017,
         "mid": 0.9,
         "death": -0.873
+      },
+      "play": {
+        "bowlFirst": 0.0122,
+        "rotation": 0.119,
+        "lowerOrder": -0.0225
       }
     },
     {
@@ -4810,13 +5424,18 @@
         "bowlFirst": 0.257
       },
       "tags": [
-        "Risk taker",
-        "Death conservative"
+        "Death conservative",
+        "Top-heavy"
       ],
       "intent": {
         "pp": -0.46,
         "mid": 0.897,
         "death": -0.837
+      },
+      "play": {
+        "bowlFirst": 0.0332,
+        "rotation": -0.201,
+        "lowerOrder": -0.0422
       }
     },
     {
@@ -4853,6 +5472,11 @@
         "pp": -0.664,
         "mid": 0.501,
         "death": -0.481
+      },
+      "play": {
+        "bowlFirst": 0.0186,
+        "rotation": 0.026,
+        "lowerOrder": 0.0001
       }
     },
     {
@@ -4885,11 +5509,18 @@
         "bowlersUsed": -0.526,
         "bowlFirst": 0.23
       },
-      "tags": [],
+      "tags": [
+        "Top-heavy"
+      ],
       "intent": {
         "pp": -0.116,
         "mid": -0.094,
         "death": -0.592
+      },
+      "play": {
+        "bowlFirst": 0.0298,
+        "rotation": -0.212,
+        "lowerOrder": -0.0237
       }
     },
     {
@@ -4929,6 +5560,11 @@
         "pp": 0.011,
         "mid": -0.041,
         "death": -0.666
+      },
+      "play": {
+        "bowlFirst": 0.0505,
+        "rotation": -0.408,
+        "lowerOrder": -0.0028
       }
     },
     {
@@ -4959,14 +5595,17 @@
         "bowlFirst": 0.243
       },
       "tags": [
-        "Risk taker",
-        "Deep batting",
         "Frontline trust"
       ],
       "intent": {
         "pp": -0.549,
         "mid": 0.46,
         "death": -0.464
+      },
+      "play": {
+        "bowlFirst": 0.0315,
+        "rotation": -0.385,
+        "lowerOrder": 0.0001
       }
     },
     {
@@ -5003,6 +5642,11 @@
         "pp": -0.213,
         "mid": -0.3,
         "death": 0.277
+      },
+      "play": {
+        "bowlFirst": -0.193,
+        "rotation": 0.117,
+        "lowerOrder": 0.0061
       }
     },
     {
@@ -5035,12 +5679,18 @@
         "bowlFirst": -0.414
       },
       "tags": [
-        "Powerplay anchor"
+        "Powerplay anchor",
+        "Top-heavy"
       ],
       "intent": {
         "pp": -1.135,
         "mid": -0.541,
         "death": 0.203
+      },
+      "play": {
+        "bowlFirst": -0.0537,
+        "rotation": -0.15,
+        "lowerOrder": -0.0214
       }
     },
     {
@@ -5075,6 +5725,11 @@
         "pp": 0.98,
         "mid": -0.319,
         "death": 1.321
+      },
+      "play": {
+        "bowlFirst": -0.1271,
+        "rotation": -0.056,
+        "lowerOrder": 0.029
       }
     },
     {
@@ -5111,6 +5766,11 @@
         "pp": -1.153,
         "mid": 0.885,
         "death": -0.87
+      },
+      "play": {
+        "bowlFirst": -0.095,
+        "rotation": -0.882,
+        "lowerOrder": -0.0562
       }
     },
     {
@@ -5147,6 +5807,11 @@
         "pp": 0.237,
         "mid": -1.002,
         "death": 0.168
+      },
+      "play": {
+        "bowlFirst": -0.0335,
+        "rotation": -0.051,
+        "lowerOrder": -0.0134
       }
     },
     {
@@ -5178,14 +5843,16 @@
         "bowlersUsed": 0.025,
         "bowlFirst": -0.557
       },
-      "tags": [
-        "Wicket preserver",
-        "Top-heavy"
-      ],
+      "tags": [],
       "intent": {
         "pp": 0.445,
         "mid": -1.204,
         "death": 0.247
+      },
+      "play": {
+        "bowlFirst": -0.0721,
+        "rotation": 0.01,
+        "lowerOrder": 0.0001
       }
     },
     {
@@ -5217,14 +5884,16 @@
         "bowlersUsed": -0.209,
         "bowlFirst": -0.312
       },
-      "tags": [
-        "Wicket preserver",
-        "Top-heavy"
-      ],
+      "tags": [],
       "intent": {
         "pp": 0.433,
         "mid": -1.393,
         "death": 0.57
+      },
+      "play": {
+        "bowlFirst": -0.0404,
+        "rotation": -0.084,
+        "lowerOrder": 0.0001
       }
     },
     {
@@ -5259,6 +5928,11 @@
         "pp": 0.476,
         "mid": 0.203,
         "death": -0.176
+      },
+      "play": {
+        "bowlFirst": 0.0365,
+        "rotation": 0.232,
+        "lowerOrder": 0.0054
       }
     },
     {
@@ -5288,13 +5962,16 @@
         "bowlersUsed": 0.591,
         "bowlFirst": 0.582
       },
-      "tags": [
-        "Wicket preserver"
-      ],
+      "tags": [],
       "intent": {
         "pp": 0.508,
         "mid": -0.467,
         "death": 0.002
+      },
+      "play": {
+        "bowlFirst": 0.0754,
+        "rotation": 0.238,
+        "lowerOrder": 0.0001
       }
     },
     {
@@ -5326,13 +6003,16 @@
         "bowlersUsed": 0.591,
         "bowlFirst": 0.582
       },
-      "tags": [
-        "Wicket preserver"
-      ],
+      "tags": [],
       "intent": {
         "pp": 0.508,
         "mid": -0.467,
         "death": 0.002
+      },
+      "play": {
+        "bowlFirst": 0.0754,
+        "rotation": 0.238,
+        "lowerOrder": -0.0051
       }
     },
     {
@@ -5369,6 +6049,11 @@
         "pp": 0.821,
         "mid": -1.022,
         "death": 0.219
+      },
+      "play": {
+        "bowlFirst": -0.054,
+        "rotation": 0.075,
+        "lowerOrder": -0.0075
       }
     },
     {
@@ -5406,6 +6091,11 @@
         "pp": 0,
         "mid": -0.461,
         "death": -0.352
+      },
+      "play": {
+        "bowlFirst": 0.0685,
+        "rotation": -0.174,
+        "lowerOrder": 0.0001
       }
     },
     {
@@ -5440,6 +6130,11 @@
         "pp": -0.55,
         "mid": 0.183,
         "death": -0.48
+      },
+      "play": {
+        "bowlFirst": 0.0942,
+        "rotation": 0.073,
+        "lowerOrder": 0.0001
       }
     },
     {
@@ -5481,6 +6176,11 @@
         "pp": -0.801,
         "mid": -0.428,
         "death": 0.266
+      },
+      "play": {
+        "bowlFirst": -0.1722,
+        "rotation": 0.119,
+        "lowerOrder": 0.0098
       }
     },
     {
@@ -5517,6 +6217,11 @@
         "pp": -0.31,
         "mid": 0.717,
         "death": -0.61
+      },
+      "play": {
+        "bowlFirst": 0.1008,
+        "rotation": 0.084,
+        "lowerOrder": 0.0097
       }
     },
     {
@@ -5551,6 +6256,11 @@
         "pp": -0.272,
         "mid": 1.149,
         "death": -0.968
+      },
+      "play": {
+        "bowlFirst": 0.0569,
+        "rotation": -0.091,
+        "lowerOrder": -0.0102
       }
     },
     {
@@ -5585,6 +6295,11 @@
         "pp": -0.284,
         "mid": 1.011,
         "death": -0.941
+      },
+      "play": {
+        "bowlFirst": 0.0736,
+        "rotation": -0.145,
+        "lowerOrder": 0.0001
       }
     },
     {
@@ -5619,6 +6334,11 @@
         "pp": -0.591,
         "mid": 0.601,
         "death": 0.095
+      },
+      "play": {
+        "bowlFirst": 0.002,
+        "rotation": 0.058,
+        "lowerOrder": 0.0001
       }
     },
     {
@@ -5653,6 +6373,11 @@
         "pp": -0.591,
         "mid": 0.601,
         "death": 0.095
+      },
+      "play": {
+        "bowlFirst": 0.002,
+        "rotation": 0.058,
+        "lowerOrder": 0.0001
       }
     },
     {
@@ -5686,7 +6411,6 @@
         "bowlFirst": 0.905
       },
       "tags": [
-        "Deep batting",
         "Six-bowler rotation",
         "Bowl first"
       ],
@@ -5694,6 +6418,11 @@
         "pp": 0.228,
         "mid": 0.861,
         "death": 0.322
+      },
+      "play": {
+        "bowlFirst": 0.1172,
+        "rotation": 0.3,
+        "lowerOrder": 0.0058
       }
     },
     {
@@ -5724,13 +6453,17 @@
         "bowlFirst": 0.675
       },
       "tags": [
-        "Deep batting",
         "Bowl first"
       ],
       "intent": {
         "pp": 0.088,
         "mid": 0.664,
         "death": -0.145
+      },
+      "play": {
+        "bowlFirst": 0.0875,
+        "rotation": 0.212,
+        "lowerOrder": 0.0001
       }
     },
     {
@@ -5769,6 +6502,11 @@
         "pp": 0.802,
         "mid": 0.87,
         "death": 1.164
+      },
+      "play": {
+        "bowlFirst": 0.0673,
+        "rotation": 0.097,
+        "lowerOrder": 0.0586
       }
     },
     {
@@ -5811,6 +6549,11 @@
         "pp": 0.83,
         "mid": 0.581,
         "death": 1.407
+      },
+      "play": {
+        "bowlFirst": 0.1065,
+        "rotation": -0.055,
+        "lowerOrder": 0.0478
       }
     },
     {
@@ -5843,13 +6586,17 @@
         "bowlFirst": -0.181
       },
       "tags": [
-        "Deep batting",
         "Six-bowler rotation"
       ],
       "intent": {
         "pp": -0.465,
         "mid": 0.899,
         "death": 0.115
+      },
+      "play": {
+        "bowlFirst": -0.0235,
+        "rotation": 0.262,
+        "lowerOrder": 0.0001
       }
     },
     {
@@ -5887,6 +6634,11 @@
         "pp": -0.612,
         "mid": 1.021,
         "death": -0.543
+      },
+      "play": {
+        "bowlFirst": 0.0319,
+        "rotation": -0.333,
+        "lowerOrder": 0.0001
       }
     },
     {
@@ -5923,6 +6675,11 @@
         "pp": -0.563,
         "mid": -0.03,
         "death": -0.339
+      },
+      "play": {
+        "bowlFirst": 0.0378,
+        "rotation": 0.007,
+        "lowerOrder": 0.0506
       }
     },
     {
@@ -5959,6 +6716,11 @@
         "pp": -0.682,
         "mid": 0,
         "death": -0.903
+      },
+      "play": {
+        "bowlFirst": -0.131,
+        "rotation": 0.214,
+        "lowerOrder": -0.0305
       }
     },
     {
@@ -5993,6 +6755,11 @@
         "pp": -0.154,
         "mid": -0.098,
         "death": -0.704
+      },
+      "play": {
+        "bowlFirst": -0.1429,
+        "rotation": 0.132,
+        "lowerOrder": 0.0001
       }
     },
     {
@@ -6024,14 +6791,18 @@
       },
       "tags": [
         "Powerplay anchor",
-        "Risk taker",
         "Death conservative",
-        "Deep batting"
+        "Top-heavy"
       ],
       "intent": {
         "pp": -0.965,
         "mid": 1.359,
         "death": -0.648
+      },
+      "play": {
+        "bowlFirst": 0.0161,
+        "rotation": 0.07,
+        "lowerOrder": -0.0216
       }
     },
     {
@@ -6071,6 +6842,11 @@
         "pp": 0.214,
         "mid": 0.514,
         "death": 1.008
+      },
+      "play": {
+        "bowlFirst": -0.019,
+        "rotation": 0.404,
+        "lowerOrder": 0.0075
       }
     }
   ],

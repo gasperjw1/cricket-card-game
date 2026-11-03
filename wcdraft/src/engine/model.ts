@@ -142,6 +142,19 @@ export const ENGINE = {
    * and 0.1939 here, and seeds alone differ by 0.003. Fewer sims than that are pure noise here.
    */
   intent: { boundaryPerSd: 0.06 as number, hazardPerSd: 0.05 as number, clip: 1.5 },
+  /**
+   * The coach's habits beyond tempo (2026-11-03, `analysis/coaches.ts` `CoachPlay`), each a switch
+   * (0 = off) on a measured size. `toss` scales his shift in the share of toss wins he fields with.
+   * `rotationScale` turns his extra bowlers an innings into the allocation's charges for a sixth
+   * bowler and for one below the fifth best: both × exp(−rotationScale × rotation), sized so the
+   * sim's bowlers an innings move by his measured amount. `depth` scales his lower-order scoring
+   * effect on strikers from No. 6 down.
+   * `rotationScale` 2.5 (`scripts/research/coach-rotation-calibrate.mts`, real World Cup elevens
+   * 2012–24, base 6.20 bowlers a full innings): at 2 a rotation of −0.5 gave −0.42 bowlers, at 3
+   * −0.62, so 2.5 matches the measured size downward. Upward the elevens run out of bowlers (+0.22
+   * at 2, +0.27 at 3 for +0.5): a rotating coach can only spread overs among the bowlers he has.
+   */
+  coachPlay: { toss: 1 as number, rotationScale: 2.5 as number, depth: 1 as number },
   /** Captaincy: allocation noise × (1 − captainNoiseSlope × z), clipped to [0.4, 1.6] (z from `captaincy.json`). */
   captainNoiseSlope: 0.3 as number,
   /**
@@ -247,9 +260,27 @@ export const ENGINE = {
   },
 };
 
-export type EngineOverrides = Partial<Record<"batExponent" | "bowlExponent" | "bowlHazardExponent" | "pitchExponent" | "inningsPhaseExponent" | "pressureExponent" | "gearExponent" | "foundExponent" | "shapeExponent" | "streakExponent" | "setnessExponent" | "adjustedSetness" | "adjustedStates" | "ballInOverExponent" | "chaseDotsExponent" | "matchupExponent" | "bowlTierExponent" | "bowlerDaySd" | "batterDaySd" | "matchEffectSd" | "inningsEffectSd" | "venueExponent" | "scoringCalibration" | "hazardCalibration" | "deathCalibration", number>>;
+/**
+ * The share of toss wins a side fields after, with its coach's habit. The habit is measured as a
+ * difference in that share against the era, when about 52.6% fielded (team-style months), so it is
+ * carried over as a change in log-odds: a +21-point habit then takes a World Cup where 84% fielded
+ * to 94%, not past 100% (2026-11-03: the coach panel printed 105%).
+ */
+export const ERA_FIELD_SHARE = 0.526;
+export function fieldShareWith(editionShare: number, bowlFirst: number): number {
+  const logit = (p: number) => Math.log(p / (1 - p));
+  const clamp = (p: number) => Math.max(0.02, Math.min(0.98, p));
+  const shift = logit(clamp(ERA_FIELD_SHARE + bowlFirst)) - logit(ERA_FIELD_SHARE);
+  return clamp(1 / (1 + Math.exp(-(logit(clamp(editionShare)) + shift))));
+}
+
+export type EngineOverrides = Partial<Record<"coachToss" | "coachRotationScale" | "coachDepth" | "batExponent" | "bowlExponent" | "bowlHazardExponent" | "pitchExponent" | "inningsPhaseExponent" | "pressureExponent" | "gearExponent" | "foundExponent" | "shapeExponent" | "streakExponent" | "setnessExponent" | "adjustedSetness" | "adjustedStates" | "ballInOverExponent" | "chaseDotsExponent" | "matchupExponent" | "bowlTierExponent" | "bowlerDaySd" | "batterDaySd" | "matchEffectSd" | "inningsEffectSd" | "venueExponent" | "scoringCalibration" | "hazardCalibration" | "deathCalibration", number>>;
 
 /** Calibration hook: override numeric constants for a sweep (`npm run engine:calibrate`). */
 export function setEngineOverrides(overrides: EngineOverrides): void {
-  Object.assign(ENGINE, overrides);
+  const { coachToss, coachRotationScale, coachDepth, ...flat } = overrides;
+  Object.assign(ENGINE, flat);
+  if (coachToss !== undefined) ENGINE.coachPlay.toss = coachToss;
+  if (coachRotationScale !== undefined) ENGINE.coachPlay.rotationScale = coachRotationScale;
+  if (coachDepth !== undefined) ENGINE.coachPlay.depth = coachDepth;
 }

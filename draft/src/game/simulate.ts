@@ -38,7 +38,8 @@ export async function assembleTeam(input: SimulateInput): Promise<EngineTeam> {
   const captain = input.captainId ? shared.captains.filter((c) => c.personId === input.captainId).sort((a, b) => b.matches - a.matches)[0] : undefined;
   // Nobody rated in the eleven still leaves somebody tossing the coin: the side's best player.
   const leader = input.captainId ?? [...input.picks].sort((a, b) => Math.max(b.bat, b.bowl) - Math.max(a.bat, a.bowl))[0]?.id;
-  return { name: input.identity.team, players, battingOrder: players.map((p) => p.id), intent: input.coach?.intent, captainZ: captain?.z, captainId: leader };
+  // The drafted coach's habits beyond tempo (toss, bowling rotation, lower-order scoring) go with him (2026-11-03).
+  return { name: input.identity.team, players, battingOrder: players.map((p) => p.id), intent: input.coach?.intent, coachPlay: input.coach?.play, captainZ: captain?.z, captainId: leader };
 }
 
 /** What the user may change before one of the side's matches (the between-match lever, 2026-11-02). */
