@@ -11,7 +11,7 @@ import { phaseOf, type OutcomeKey, type Phase } from "../cricsheet/match.js";
 import { streakBand } from "../analysis/situation.js";
 import { OUTCOMES, RUNS } from "../ratings/model.js";
 import { chooseBowler, type BowlerState } from "./allocation.js";
-import { outcomeDistribution, type BallContext, type SituationModel } from "./ball.js";
+import { expectedRunsOf, outcomeDistribution, type BallContext, type SituationModel } from "./ball.js";
 import { ENGINE, fieldShareWith } from "./model.js";
 import { Rng } from "./rng.js";
 import { DISMISSAL_KINDS, type BallRecord, type BatterLine, type Dismissal, type DismissalKind, type EnginePlayer, type EngineTeam, type InningsResult, type MatchEnvironment, type MatchResult, type Partnership, type RainEvent } from "./types.js";
@@ -24,10 +24,25 @@ interface InningsOptions {
   matchEffect: number;
   /** Stop after this many legal balls (rain interrupts the innings). */
   cutAtBalls?: number;
+  /**
+   * Play the overs as an innings' last ones: a super over. Measured 2026-11-03 (scripts/research/
+   * super-overs.mts): T20I super overs make 12.4 runs batting first, against 11.9 for a 20th over
+   * with five or fewer down and 6.2 for a first over, which is how the engine had played them (4.6).
+   */
+  closing?: boolean;
 }
 
+/**
+ * Balls a super-over batter is played as having faced, on top of his own: the striker in a real 20th
+ * over with five or fewer down had faced a median 11 (quartiles 3–26; scripts/research/super-overs.mts).
+ * With it and the batters and bowler picked on death rates, India v South Africa 2024 super overs make
+ * 10.2 batting first (4.6 as a first over); the real 12.4 is from 35 T20I super overs, standard error
+ * about 1.2, most of them between weaker attacks than these two.
+ */
+const CLOSING_SET_BALLS = 11;
+
 /** Equivalent position in a 20-over innings, for the situation tables and phases. */
-const equivalentOver = (over: number, overs: number): number => (overs >= 20 ? over : Math.min(19, Math.floor((over * 20) / overs)));
+const equivalentOver = (over: number, overs: number, closing = false): number => (overs >= 20 ? over : closing ? 20 - overs + over : Math.min(19, Math.floor((over * 20) / overs)));
 
 export function simulateInnings(batting: EngineTeam, bowling: EngineTeam, env: MatchEnvironment, situation: SituationModel, rng: Rng, opts: InningsOptions, log?: BallRecord[]): InningsResult {
   const byId = new Map(batting.players.map((p) => [p.id, p]));
@@ -93,7 +108,7 @@ export function simulateInnings(batting: EngineTeam, bowling: EngineTeam, env: M
   const done = () => wickets >= 10 || (opts.target !== null && runs >= opts.target) || legalBalls >= cut;
 
   for (let over = 0; over < opts.overs && !done(); over += 1) {
-    const eq = equivalentOver(over, opts.overs);
+    const eq = equivalentOver(over, opts.overs, opts.closing);
     const ph = phaseOf(eq);
     const intent = batting.intent?.[ph] ?? 0;
     const ctxBase: BallContext = { innings: opts.index, over: eq, wickets, strikerBalls: 0, requiredRpo: null, scoringFactor, playerFactor: 1, streak: streakNow(), ballInOver: 1, consecutiveDots, freeHit: false, intent };
@@ -117,7 +132,7 @@ export function simulateInnings(batting: EngineTeam, bowling: EngineTeam, env: M
       const noBall = rng.chance(env.extras[ph].noBalls);
       const sLine = lineOf(striker, lines.get(striker.id)?.position ?? nextIn);
       const ctx: BallContext = {
-        innings: opts.index, over: eq, wickets, strikerBalls: sLine.balls, strikerFound: found.has(striker.id), requiredRpo, scoringFactor,
+        innings: opts.index, over: eq, wickets, strikerBalls: sLine.balls + (opts.closing ? CLOSING_SET_BALLS : 0), strikerFound: opts.closing || found.has(striker.id), requiredRpo, scoringFactor,
         playerFactor: (batDay.get(striker.id) ?? 1) * (bowlDay.get(b.player.id) ?? 1),
         streak: streakNow(), ballInOver: ballsThisOver + 1, consecutiveDots, freeHit: freeHit || noBall, intent,
         // The batting coach's lower-order effect, for strikers from No. 6 down ("Deep batting" / "Top-heavy").
@@ -337,9 +352,12 @@ export function simulateMatch(a: EngineTeam, b: EngineTeam, env: MatchEnvironmen
     if (env.tieBreak === "super-over") {
       tieBreak = superOver(first, second, env, situation, rng.fork("super-over"));
       winner = tieBreak.winner;
+    } else if (env.tieBreak === "bowl-out") {
+      tieBreak = bowlOut(first, second, inn1, inn2, rng.fork("bowl-out"));
+      winner = tieBreak.winner;
     } else {
       const w = rng.chance(0.5) ? first : second;
-      tieBreak = { winner: w.name, method: env.tieBreak === "bowl-out" ? "bowl-out" : "coin" };
+      tieBreak = { winner: w.name, method: "coin" };
       winner = w.name;
     }
   }
@@ -348,19 +366,67 @@ export function simulateMatch(a: EngineTeam, b: EngineTeam, env: MatchEnvironmen
 
 /** One-over eliminator: the chasing side bats first (ICC playing conditions), best three batters, best death bowler. */
 function superOver(first: EngineTeam, second: EngineTeam, env: MatchEnvironment, situation: SituationModel, rng: Rng): NonNullable<MatchResult["tieBreak"]> {
+  // The side keeps its captain, coach and tempo; only the eleven is cut to the three batters and the bowler.
+  // Chosen on their absolute death-overs rates (2026-11-03): the display numbers are role-relative, so
+  // ranking on them sent USA's No. 9 and 10 in to bat ahead of their top order. The bowler is the
+  // cheapest of those who bowl at the death (a fifth of their overs or more), or of all bowlers if none do.
   const pick = (t: EngineTeam): EngineTeam => {
-    const top = [...t.players].sort((x, y) => y.battingDisplay - x.battingDisplay).slice(0, 3).map((p) => p.id);
-    const bowler = [...t.players].filter((p) => p.canBowl).sort((x, y) => y.bowlingDisplay - x.bowlingDisplay)[0] ?? t.players.find((p) => !p.keeper)!;
-    return { name: t.name, players: t.players.filter((p) => p.id === bowler.id || p.keeper || top.includes(p.id)), battingOrder: top };
+    const top = [...t.players].sort((x, y) => expectedRunsOf(y.batting.death) - expectedRunsOf(x.batting.death)).slice(0, 3).map((p) => p.id);
+    const bowlers = t.players.filter((p) => p.canBowl && !p.keeper);
+    const closers = bowlers.filter((p) => (p.bowlingShares?.death ?? 0) >= 0.2);
+    const bowler = [...(closers.length ? closers : bowlers)].sort((x, y) => expectedRunsOf(x.bowling.death) - expectedRunsOf(y.bowling.death))[0] ?? t.players.find((p) => !p.keeper)!;
+    // Only the chosen man bowls: the over's own allocation otherwise picked among the three batters too.
+    const players = t.players.filter((p) => p.id === bowler.id || p.keeper || top.includes(p.id)).map((p) => (p.id === bowler.id ? { ...p, canBowl: true } : { ...p, canBowl: false }));
+    return { ...t, players, battingOrder: top };
   };
   const soEnv: MatchEnvironment = { ...env, overs: 1, maxOversPerBowler: 1 };
+  // Every eliminator is kept, the tied ones too, so the scorecard shows each over that was bowled.
+  // Each over keeps its own ball log: the bowler's figures are counted from it.
+  const played: InningsResult[] = [];
   for (let attempt = 0; attempt < 3; attempt += 1) {
     const matchEffect = 1;
-    const s1 = simulateInnings(pick(second), pick(first), soEnv, situation, rng.fork(`so1-${attempt}`), { index: 1, overs: 1, target: null, matchEffect });
-    const s2 = simulateInnings(pick(first), pick(second), soEnv, situation, rng.fork(`so2-${attempt}`), { index: 2, overs: 1, target: s1.runs + 1, matchEffect });
-    if (s1.runs !== s2.runs) return { winner: s2.runs > s1.runs ? first.name : second.name, method: "super-over", innings: [s1, s2] };
+    const s1 = simulateInnings(pick(second), pick(first), soEnv, situation, rng.fork(`so1-${attempt}`), { index: 1, overs: 1, target: null, matchEffect, closing: true }, []);
+    const s2 = simulateInnings(pick(first), pick(second), soEnv, situation, rng.fork(`so2-${attempt}`), { index: 2, overs: 1, target: s1.runs + 1, matchEffect, closing: true }, []);
+    played.push(s1, s2);
+    if (s1.runs !== s2.runs) return { winner: s2.runs > s1.runs ? first.name : second.name, method: "super-over", innings: played };
   }
-  return { winner: rng.chance(0.5) ? first.name : second.name, method: "coin" };
+  return { winner: rng.chance(0.5) ? first.name : second.name, method: "coin", innings: played };
+}
+
+/**
+ * The bowl-out (2007, added 2026-11-03 so a tie has a scorecard): five bowlers a side bowl in turn at
+ * unguarded stumps, the side that bowled first in the match going first; most hits wins, and level
+ * after five goes to sudden death, a ball each. There is no ball data for bowl-outs, so every
+ * delivery has the same chance for both sides: the result is the even contest the coin toss was.
+ */
+const BOWL_OUT_HIT = 0.4;
+
+function bowlOut(first: EngineTeam, second: EngineTeam, inn1: InningsResult, inn2: InningsResult, rng: Rng): NonNullable<MatchResult["tieBreak"]> {
+  // Each side's five: the men who bowled most in the match, then its best other bowlers.
+  const five = (t: EngineTeam, bowled: InningsResult["bowling"]) => {
+    const used = [...bowled].sort((a, b) => b.balls - a.balls).map((b) => b.id);
+    const rest = [...t.players].filter((p) => !used.includes(p.id) && !p.keeper).sort((x, y) => y.bowlingDisplay - x.bowlingDisplay).map((p) => p.id);
+    return [...used, ...rest].slice(0, 5).map((id) => t.players.find((p) => p.id === id)!);
+  };
+  // The side batting first bowled the second innings.
+  const order = [five(first, inn2.bowling), five(second, inn1.bowling)] as const;
+  const sides = [first, second].map((t) => ({ team: t.name, balls: [] as { id: string; name: string; hit: boolean }[], hits: 0 }));
+  const bowl = (s: 0 | 1, i: number) => {
+    const p = order[s][i % order[s].length]!;
+    const hit = rng.chance(BOWL_OUT_HIT);
+    sides[s]!.balls.push({ id: p.id, name: p.name, hit });
+    if (hit) sides[s]!.hits += 1;
+  };
+  for (let i = 0; i < 5; i += 1) {
+    bowl(0, i);
+    // Stop once one side cannot be caught with the balls left.
+    if (sides[0]!.hits > sides[1]!.hits + (5 - i) || sides[1]!.hits > sides[0]!.hits + (5 - i - 1)) break;
+    bowl(1, i);
+    if (Math.abs(sides[0]!.hits - sides[1]!.hits) > 5 - i - 1) break;
+  }
+  for (let i = 5; sides[0]!.hits === sides[1]!.hits && i < 60; i += 1) { bowl(0, i); bowl(1, i); }
+  const winner = sides[0]!.hits === sides[1]!.hits ? (rng.chance(0.5) ? first.name : second.name) : sides[0]!.hits > sides[1]!.hits ? first.name : second.name;
+  return { winner, method: "bowl-out", bowlOut: sides };
 }
 
 export type { OutcomeKey };

@@ -143,6 +143,13 @@ describe("facts", () => {
     assert.equal(r2[0]!.s.prevWhen, "in 2013");
     // 90 is not a record of this World Cup either (130 and 160 came first), so nothing.
     assert.equal(at(f3).length, 0);
+    // Given the edition, the T20I book takes only full members, as the real one does: C v D are not,
+    // so the same 160 is a record of all World Cups, not of all T20Is; India v Australia's is.
+    const scoped = foldRecords([f1, f2, f3], baseline, "2016");
+    const scopeOf = (f: FixtureResult, book: typeof scoped) => factsFor(f, { editionId: "2016", records: book.get(fixtureKey(f))!, knockout: false, before: new Map(), marks: marksFor(7.5) }).find((x) => x.key === "record:highestScore")?.s.scope;
+    assert.equal(scopeOf(f2, scoped), "allWc");
+    const fm = { ...f2, teams: ["India", "Australia"] as [string, string], innings: [{ ...f2.innings![0], team: "India" }, { ...f2.innings![1], team: "Australia" }] as FixtureResult["innings"] };
+    assert.equal(scopeOf(fm, foldRecords([f1, fm, f3], baseline, "2016")), "t20i");
     // Without a baseline the all-time books start empty, so the first mark sets rather than breaks them.
     const bare = foldRecords([f1, f2]);
     const facts2 = factsFor(f2, { editionId: "2016", records: bare.get(fixtureKey(f2))!, knockout: false, before: new Map(), marks: marksFor(7.5) }).filter((x) => x.key === "record:highestScore");

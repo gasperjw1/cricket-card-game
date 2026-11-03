@@ -1,15 +1,17 @@
 /**
- * The middle pane of the draft (2026-11-01): everything the card face leaves out, for the player
- * under the finger. The record behind each number, the per-phase table, the pace/spin split with
- * its ball counts, the card in the World Cup being played step by step (era, position, pace/spin
- * mix, coach), and the slot chooser. Placement is always the user's choice: the chooser lists the
- * open slots he fits with his batting number in each, and the rest when none fits.
+ * A player's full card (2026-11-03: opened from his row in the squad list). His numbers and what
+ * the row leaves out: the per-phase table, pace and spin, the card in the World Cup being played
+ * step by step (era, position, pace/spin mix, coach), and where he can bat. Placing him comes first
+ * on the card, the reason for opening it. Placement is always the user's choice: the slots offered
+ * are the open ones he fits, with his batting number in each, and the rest when none fits. Numbers
+ * only; where a number came from is not the player's concern (Yash).
  */
 
 import type { CoachOut } from "../../../wcdraft/src/engine/data.ts";
 import { coachNote, type PlayerFit, type SkillFit } from "../game/fit.ts";
 import { batInSlot, describeWeights, type PhaseWeights } from "../game/slots.ts";
 import type { PoolPlayer, Slot } from "../game/types.ts";
+import { teamLabel } from "../lib/names.ts";
 import { STYLE_NOTES, TierBadge, VsNumber, archetypeLabel, bowlingTypeName, bowls, styleTitle } from "./PlayerCard.tsx";
 
 const signed = (n: number) => (n > 0 ? `+${n}` : n < 0 ? `−${-n}` : "0");
@@ -27,6 +29,10 @@ function Steps({ skill, label }: { skill: SkillFit; label: string }) {
   );
 }
 
+function Phases({ phases }: { phases: Record<"pp" | "mid" | "death", number> }) {
+  return <table className="pd-phases"><thead><tr><th>Powerplay</th><th>Middle</th><th>Death</th></tr></thead><tbody><tr><td>{phases.pp}</td><td>{phases.mid}</td><td>{phases.death}</td></tr></tbody></table>;
+}
+
 export function PlayerDetail({ player, fit, hereEdition, coach, slots, weights, natural, locked, onPlace, onClose }: {
   player: PoolPlayer;
   fit: PlayerFit | null | undefined;
@@ -42,19 +48,15 @@ export function PlayerDetail({ player, fit, hereEdition, coach, slots, weights, 
   onClose: () => void;
 }) {
   const p = player;
-  // "estimated (0 balls)" read as a contradiction (2026-11-03): with no balls against that kind of
-  // bowling the number is his overall batting carried across.
-  const vsBalls = (v: typeof p.vsPace) => (v ? (v.estimated ? (v.balls > 0 ? `estimated from ${v.balls} balls` : "no balls against it; his overall batting") : `${v.balls} balls${v.odi ? ", ODIs included" : ""}`) : "");
-  const dom = p.domesticBalls;
   const note = coachNote(p, fit ?? undefined, coach);
   return (
-    <div className="pd">
+    <div className={`pd tier-edge-${p.tier.toLowerCase()}`}>
       <div className="pd-head">
         <div>
           <div className="pd-name">{p.name}</div>
-          <div className="small">{p.team} {p.editionId} · <TierBadge tier={p.tier} /> {archetypeLabel(p)}{p.squadPlayer ? " · squad player" : ""}</div>
+          <div className="small">{teamLabel(p.team)} {p.editionId} · <TierBadge tier={p.tier} /> {archetypeLabel(p)}</div>
         </div>
-        <button type="button" className="pd-close" onClick={onClose} aria-label="Close">×</button>
+        <button type="button" className="pd-close" onClick={onClose} aria-label="Close the card">×</button>
       </div>
       <div className="pd-marks">
         {p.hand && <span className="tag">{p.hand === "L" ? "Left-hand bat" : "Right-hand bat"}</span>}
@@ -64,47 +66,11 @@ export function PlayerDetail({ player, fit, hereEdition, coach, slots, weights, 
         {p.position ? <span className="tag muted">usually bats No. {p.position}</span> : p.positionless ? <span className="tag muted">floats in the order</span> : null}
       </div>
 
-      <div className="pd-grid">
-        <section>
-          <h4>Batting {p.batShown ? <b>{p.bat}</b> : <span className="muted">not rated</span>}</h4>
-          {p.batShown ? (
-            <>
-              <table className="pd-phases"><thead><tr><th>Powerplay</th><th>Middle</th><th>Death</th></tr></thead><tbody><tr><td>{p.batPhases.pp}</td><td>{p.batPhases.mid}</td><td>{p.batPhases.death}</td></tr></tbody></table>
-              <p className="small">v pace <VsNumber value={p.vsPace} other={p.vsSpin} /> <span className="muted">({vsBalls(p.vsPace)})</span> · v spin <VsNumber value={p.vsSpin} other={p.vsPace} /> <span className="muted">({vsBalls(p.vsSpin)})</span></p>
-              {(p.batLow || p.batProjected > 0) && <p className="small pd-warn">{p.batLow ? "Thin record: the number leans on his position's average. " : ""}{p.batProjected ? `Projected: ${p.batProjected} balls from after this World Cup began.` : ""}</p>}
-            </>
-          ) : <p className="small muted">He rarely bats; the engine gives him his position's typical numbers.</p>}
-        </section>
-        <section>
-          <h4>Bowling {p.bowlShown ? <b>{p.bowl}</b> : <span className="muted">not rated</span>}</h4>
-          {p.bowlShown ? (
-            <>
-              <table className="pd-phases"><thead><tr><th>Powerplay</th><th>Middle</th><th>Death</th></tr></thead><tbody><tr><td>{p.bowlPhases.pp}</td><td>{p.bowlPhases.mid}</td><td>{p.bowlPhases.death}</td></tr></tbody></table>
-              {(p.bowlLow || p.bowlProjected > 0) && <p className="small pd-warn">{p.bowlLow ? "Thin record: the number leans on the average for his type. " : ""}{p.bowlProjected ? `Projected: ${p.bowlProjected} balls from after this World Cup began.` : ""}</p>}
-            </>
-          ) : <p className="small muted">He rarely bowls; he will not be given overs.</p>}
-        </section>
-      </div>
-      {(dom.bat > 0 || dom.bowl > 0) && <p className="small muted">Domestic T20 behind the card: {dom.bat} balls faced, {dom.bowl} bowled.</p>}
-
-      <section className="pd-here">
-        <h4>In {hereEdition}</h4>
-        {fit === null || fit === undefined ? <p className="small muted">Working out his numbers in this World Cup…</p> : (
-          <>
-            <div className="pd-grid">
-              {fit.batting && <Steps skill={fit.batting} label="Batting" />}
-              {fit.bowling && <Steps skill={fit.bowling} label="Bowling" />}
-            </div>
-            {note && <p className="small pd-coach">{note}</p>}
-          </>
-        )}
-      </section>
-
       <section className="pd-place">
         <h4>Place him</h4>
         {locked ? <p className="small lock-note">{locked}</p> : (
           <>
-            <p className="small">{natural ? "The slots he naturally fits, with his batting number in each" : "No natural slot is open; any open slot, at the number shown"}{fit ? ` in ${hereEdition}${coach ? ` under ${coach.coachName}` : ""}.` : "."}</p>
+            <p className="small">{natural ? "The slots he fits, with his batting number in each" : "No natural slot is open; any open slot, at the number shown"}{fit ? ` in ${hereEdition}${coach ? ` under ${coach.coachName}` : ""}.` : "."}</p>
             <div className="pd-slots">
               {slots.map((s) => {
                 const n = fit?.atSlot[s.index] ?? (p.batShown ? batInSlot(p, weights[s.index]!) : null);
@@ -115,6 +81,35 @@ export function PlayerDetail({ player, fit, hereEdition, coach, slots, weights, 
                 );
               })}
             </div>
+          </>
+        )}
+      </section>
+
+      <div className="pd-grid">
+        <section>
+          <h4>Batting {p.batShown ? <b>{p.bat}</b> : <span className="muted">not rated</span>}</h4>
+          {p.batShown ? (
+            <>
+              <Phases phases={p.batPhases} />
+              <p className="small">v pace <VsNumber value={p.vsPace} other={p.vsSpin} /> · v spin <VsNumber value={p.vsSpin} other={p.vsPace} /></p>
+            </>
+          ) : <p className="small muted">Rarely bats; he plays as a typical batter at his slot.</p>}
+        </section>
+        <section>
+          <h4>Bowling {p.bowlShown ? <b>{p.bowl}</b> : <span className="muted">not rated</span>}</h4>
+          {p.bowlShown ? <Phases phases={p.bowlPhases} /> : <p className="small muted">Rarely bowls; he will not be given overs.</p>}
+        </section>
+      </div>
+
+      <section className="pd-here">
+        <h4>In {hereEdition}</h4>
+        {fit === null || fit === undefined ? <p className="small muted">Working out his numbers in this World Cup…</p> : (
+          <>
+            <div className="pd-grid">
+              {fit.batting && <Steps skill={fit.batting} label="Batting" />}
+              {fit.bowling && <Steps skill={fit.bowling} label="Bowling" />}
+            </div>
+            {note && <p className="small pd-coach">{note}</p>}
           </>
         )}
       </section>

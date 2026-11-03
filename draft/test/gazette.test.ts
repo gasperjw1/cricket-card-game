@@ -3,8 +3,8 @@ import { describe, it } from "node:test";
 import type { FixtureResult, StageResult } from "../../wcdraft/src/engine/tournament.ts";
 import type { Dismissal, InningsResult } from "../../wcdraft/src/engine/types.ts";
 import { deriveDisplayName, splitShortName } from "../../wcdraft/src/util/names.ts";
-import { dismissalText, inningsLine } from "../src/components/Scorecard.tsx";
-import { storyFor, verdictFor } from "../src/game/gazette.ts";
+import { dismissalText, inningsLine, tieBreakLabel } from "../src/components/Scorecard.tsx";
+import { storyFor, tieBreakText, verdictFor } from "../src/game/gazette.ts";
 import { familiar, fullName, setNames, surnameOf } from "../src/lib/names.ts";
 import { datedStages, exitStageOf, inPlayOrder, sideProfile, tableTo, totalsKey, tournamentTotals } from "../src/game/stats.ts";
 
@@ -187,5 +187,21 @@ describe("running numbers", () => {
     const others = fixture({ teams: ["Pakistan", "England"], innings: [innings("Pakistan", 1, 150, 5), innings("England", 2, 150, 5)] });
     const profile = sideProfile([leaky, others, others], "India");
     assert.deepEqual(profile.find((p) => /death/.test(p.label)), { label: "Thin at the death", good: false });
+  });
+});
+
+describe("tie-breakers", () => {
+  it("names each super over, the tied ones as level, and counts the bowl-out's hits", () => {
+    const one = { winner: "India", method: "super-over" as const, innings: [innings("Australia", 1, 12, 1), innings("India", 2, 15, 0)] };
+    assert.equal(tieBreakText(one), "In the super over Australia made 12 for 1 and India 15 for 0.");
+    assert.equal(tieBreakLabel(one), "Super over");
+    const two = { winner: "India", method: "super-over" as const, innings: [innings("Australia", 1, 10, 0), innings("India", 2, 10, 1), innings("India", 1, 14, 0), innings("Australia", 2, 9, 2)] };
+    assert.equal(tieBreakText(two), "In the first super over Australia made 10 for 0 and India 10 for 1, level again; in the second super over India made 14 for 0 and Australia 9 for 2.");
+    assert.equal(tieBreakLabel(two), "Super overs (2)");
+    const ball = (id: string, hit: boolean) => ({ id, name: id, hit });
+    const bowlOut = { winner: "India", method: "bowl-out" as const, bowlOut: [{ team: "India", balls: [ball("a", true), ball("b", true), ball("c", true)], hits: 3 }, { team: "Pakistan", balls: [ball("d", false), ball("e", false), ball("f", false)], hits: 0 }] };
+    assert.equal(tieBreakText(bowlOut), "In the bowl-out India hit the stumps 3 times from 3, Pakistan 0 from 3.");
+    assert.equal(tieBreakLabel(bowlOut), "Bowl-out");
+    assert.equal(tieBreakLabel({ winner: "India", method: "coin" }), null);
   });
 });

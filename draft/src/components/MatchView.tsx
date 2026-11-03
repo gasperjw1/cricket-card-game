@@ -6,7 +6,8 @@
 import { useEffect, useMemo, useState } from "react";
 import type { FixtureResult } from "../../../wcdraft/src/engine/tournament.ts";
 import type { BallRecord } from "../../../wcdraft/src/engine/types.ts";
-import { familiar, fullName } from "../lib/names.ts";
+import { tieBreakText } from "../game/gazette.ts";
+import { familiar, fullName, labelTeams } from "../lib/names.ts";
 import { dismissalText, oversText } from "./Scorecard.tsx";
 import { marginText } from "./MatchCard.tsx";
 
@@ -111,7 +112,7 @@ export function MatchView({ fixture, onDone }: { fixture: FixtureResult; onDone:
   const need = target - runs;
   const left = inn.scheduledOvers * 6 - state.legal;
   const toss = f.tossWinner ? `${f.tossWinner} won the toss and chose to ${f.tossDecision === "bat" ? "bat" : "field"}.` : "The players are out in the middle.";
-  const superOver = f.tieBreak?.innings?.length === 2 ? ` ${f.tieBreak.innings[0]!.team} ${f.tieBreak.innings[0]!.runs}/${f.tieBreak.innings[0]!.wickets}, ${f.tieBreak.innings[1]!.team} ${f.tieBreak.innings[1]!.runs}/${f.tieBreak.innings[1]!.wickets} in the super over.` : "";
+  const superOver = f.tieBreak ? ` ${labelTeams(tieBreakText(f.tieBreak))}` : "";
   const w = state.bowl.get(ball.bowler);
   // To the last ball of the over in progress, or of the next over when this one is complete, so the
   // board shows the whole over just bowled.

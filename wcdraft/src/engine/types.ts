@@ -205,13 +205,23 @@ export interface InningsResult {
   target: number | null;
 }
 
+/** One side's bowl-out: each bowler's delivery at the unguarded stumps, in the order bowled. */
+export interface BowlOutSide {
+  team: string;
+  balls: { id: string; name: string; hit: boolean }[];
+  hits: number;
+}
+
 export interface MatchResult {
   teams: [string, string];
   tossWinner: string;
   tossDecision: "bat" | "field";
   innings: [InningsResult, InningsResult];
-  /** Super-over or bowl-out innings when the match was tied. */
-  tieBreak: { winner: string; method: "super-over" | "bowl-out" | "coin"; innings?: InningsResult[] } | null;
+  /**
+   * How a tie was settled. `innings` holds every super over in play order, two to an eliminator (a
+   * tied one is followed by another); `bowlOut` each side's deliveries at the stumps, in order.
+   */
+  tieBreak: { winner: string; method: "super-over" | "bowl-out" | "coin"; innings?: InningsResult[]; bowlOut?: BowlOutSide[] } | null;
   winner: string | null;
   margin: { runs: number } | { wickets: number; ballsLeft: number } | { dls: true; runs: number } | null;
   rain: RainEvent | null;

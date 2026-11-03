@@ -93,26 +93,26 @@ export function VenueBrief({ editionId, editions, venues, venueCounts }: { editi
   // A ground's stats from this edition when it hosted enough, otherwise its whole World Cup record.
   const statsOf = (v: VenueOut) => {
     const own = v.byEdition[editionId];
-    return own && own.matches >= 3 ? { env: own, scope: `${own.matches} matches in ${editionId}` } : { env: v.overall, scope: `${v.overall.matches} World Cup matches, all editions` };
+    return own && own.matches >= 3 ? own : v.overall;
   };
   const needWeight = new Map<string, number>();
-  for (const g of grounds) for (const chip of character(statsOf(g.venue).env, base)) needWeight.set(chip, (needWeight.get(chip) ?? 0) + g.n);
+  for (const g of grounds) for (const chip of character(statsOf(g.venue), base)) needWeight.set(chip, (needWeight.get(chip) ?? 0) + g.n);
   const needs = [...needWeight.entries()].filter(([, w]) => w >= 0.4 * totalMatches).map(([chip]) => NEEDS[chip]).filter(Boolean);
   const f1 = (x: number | undefined) => (x === undefined ? "–" : x.toFixed(1));
   return (
     <div className="brief">
       <p>
-        <b>{editionId} overall:</b> {f1(env.runsPerOver)} an over (archive {base.rpo.toFixed(1)}), powerplay {f1(env.powerplayRpo)}, death {f1(env.deathRpo)}; a wicket every {f1(env.ballsPerWicket)} balls; chases won {env.chaseWinPct ?? "–"}%
+        <b>{editionId} overall:</b> {f1(env.runsPerOver)} an over (usual {base.rpo.toFixed(1)}), powerplay {f1(env.powerplayRpo)}, death {f1(env.deathRpo)}; a wicket every {f1(env.ballsPerWicket)} balls; chases won {env.chaseWinPct ?? "–"}%
         {env.paceSpin ? <>; spin {f1(env.paceSpin.spin.rpo)} an over against pace {f1(env.paceSpin.pace.rpo)}, spin bowling {env.paceSpin.spin.sharePct}% of the overs</> : null}.
         {" "}{character(env, base).map((c) => <span key={c} className="tag">{c}</span>)}
       </p>
       {grounds.length > 0 && (
         <ul className="grounds">
           {grounds.map(({ venue, n }) => {
-            const { env: ve, scope } = statsOf(venue);
+            const ve = statsOf(venue);
             return (
               <li key={venue.id}>
-                <b>{venue.name}, {venue.city}</b> <span className="small">· {n} of your {totalMatches} matches · {scope}</span>
+                <b>{venue.name}, {venue.city}</b> <span className="small">· {n} of your {totalMatches} matches</span>
                 <div className="small">
                   {f1(ve.runsPerOver)} an over · powerplay {f1(ve.powerplayRpo)} · death {f1(ve.deathRpo)} · wicket every {f1(ve.ballsPerWicket)} balls · chases won {ve.chaseWinPct ?? "–"}%
                   {ve.paceSpin && ve.paceSpin.spin.balls >= 120 ? <> · spin {f1(ve.paceSpin.spin.rpo)} / pace {f1(ve.paceSpin.pace.rpo)}</> : null}

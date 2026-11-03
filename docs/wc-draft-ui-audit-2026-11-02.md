@@ -56,6 +56,46 @@ Share links made before these changes replay differently (fixture grounds and wh
 - **Squad rating** (H) comes from the in-edition numbers the sheet prints: 82.5 for Pakistan 2016
   (the table's eleven better numbers sum to 908), 85 on a fresh lineup (the sheet averages 85.0).
 
+## Rebuilt 2026-11-03 (Yash: numbers only; a real homepage; Era Ball / 82-0 style draft; tabs at the end; tie-breaker cards)
+
+- **Numbers only.** No source marks anywhere a player sees a number: the `*` thin-record mark, ball
+  counts, "with ODIs" and "Rated mainly from …" are gone from the draft row, the full card and the
+  ratings panel; the grounds brief drops its sample sizes and says "usual" where it said "archive".
+- **Landing page** (`HomeScreen.tsx`): the name large, two big buttons (today's World Cup and a new
+  draft), a seed form folded under them, the four steps with the reroll counts read from `BUDGET`,
+  10 World Cups and 151 squads counted from the data, and the Cricsheet credit. The bar is off the
+  landing page; elsewhere the name is a button and the seed wraps under it on a phone.
+- **Draft** (`DraftScreen.tsx`, `PlayerCard.tsx` `PlayerRow`, `PlayerDetail.tsx`): the squad as
+  compact rows (tier edge, name, side and marks, Bat and Bowl each a number over a phase bar, his
+  two numbers in this World Cup), filter chips (all, batters, bowlers, keepers) and a sort; a tap
+  opens the full card over the list (a bottom sheet on a phone) with "Place him" first. Checked:
+  placing from the card and from the sheet, Bowlers 7 of 12, the bowling sort descending, Escape
+  closes, and the phone sheet places too.
+- **Souvenir issue in sections** like a match issue: Summary (verdict, the side's bests, results,
+  the record strip, records broken), Players (player of the tournament, best batter, best bowler,
+  the side's figures, above and below their cards, tournament leaders), Records (T20 World Cup and
+  T20I records broken first, then the edition's book), Journey (form grid match by match, then
+  the ratings) and Results (every scorecard, the tables, the knockouts). The five tabs that sat
+  under the paper are gone; nothing is shown twice. Player of the tournament is the most
+  player-of-the-match points summed over the tournament.
+- **Tie-breakers**: a tied match issue gets a "Super over" (or "Super overs (2)", or "Bowl-out")
+  section, and every full scorecard gets it as a third tab; tied super overs are kept and shown.
+  The engine side is refit doc item 16. Checked on India 2024 (two super overs, then one after
+  the refit) and India 2007 v Scotland (bowl-out 4 from 5 against 2 from 4, stopped once Scotland
+  could not catch up).
+- **Polish**: the Gazette sections wrap on a phone instead of running 15px off the page; the Daily
+  button and the coach cards carry short accessible names; team names are abbreviated in the
+  tie-break lines, the record chains and the result strip's tooltips.
+- **Checked after** (second pass, same day): a full draft from the seed form (Hong Kong 2014,
+  `verify-1103`) and a full Daily draft at phone width. The card offered the same open slots as the
+  sheet on all 22 spins; the lineup and cover printed the numbers the cards offered; every souvenir
+  value (record, result strip, player of the tournament, best batter and bowler, records broken,
+  11 form rows, 8 match cards, 4 tables, 3 knockouts) matched a recompute from the run link; no
+  page or section scrolls sideways at 375px. Over three tournaments every player's totals and award
+  points match a fresh sum off the scorecards, every player of the match is the top of the same
+  points, and all 176 form cells match. Two calculation faults were found and fixed: records broken
+  (refit item 17) and the super-over bowler (refit item 16 d).
+
 ## 0. Broken, found in runs 2–4
 
 A. **"Back to the draft" from the lineup soft-locks the run.** The draft screen asks for a 12th

@@ -8,7 +8,7 @@ import assert from "node:assert/strict";
 import { describe, it } from "node:test";
 import { engineReady, loadEdition, matchEnvironment, teamFromDefault } from "../src/engine/load.js";
 import { simulateMatch } from "../src/engine/match.js";
-import { playerOfTheMatch } from "../src/engine/awards.js";
+import { matchPoints, playerOfTheMatch } from "../src/engine/awards.js";
 import { ENGINE, setEngineOverrides } from "../src/engine/model.js";
 import { replayEdition } from "../src/engine/replay.js";
 import { Rng } from "../src/engine/rng.js";
@@ -378,5 +378,49 @@ describe("engine", { skip: !engineReady() && "engine data not built" }, () => {
     const deep = runs(with_(a, { bowlFirst: 0, rotation: 0, lowerOrder: 0.3 }), b, 40, tail);
     const shallow = runs(with_(a, { bowlFirst: 0, rotation: 0, lowerOrder: -0.3 }), b, 40, tail);
     assert.ok(deep > shallow, `tail ${deep.toFixed(1)} against ${shallow.toFixed(1)} runs`);
+  });
+
+  it("keeps a scorecard for every tie-breaker: each super over in order, and the bowl-out ball by ball", () => {
+    const tied = (rule: "super-over" | "bowl-out", n: number) => {
+      const out: ReturnType<typeof simulateMatch>[] = [];
+      for (let i = 0; i < 4000 && out.length < n; i += 1) {
+        const m = simulateMatch(india, southAfrica, { ...env, tieBreak: rule }, data.situation, { seed: `tie-${rule}-${i}`, rainProbability: 0 });
+        if (m.tieBreak) out.push(m);
+      }
+      return out;
+    };
+    const supers = tied("super-over", 3);
+    assert.ok(supers.length > 0, "no tie in 4000 matches");
+    for (const m of supers) {
+      const inns = m.tieBreak!.innings ?? [];
+      assert.ok(inns.length >= 2 && inns.length % 2 === 0, `${inns.length} super-over innings`);
+      // Every eliminator but the last was level; the last decided it unless a coin had to.
+      for (let i = 0; i + 2 < inns.length; i += 2) assert.equal(inns[i]!.runs, inns[i + 1]!.runs);
+      const [x, y] = [inns[inns.length - 2]!, inns[inns.length - 1]!];
+      if (m.tieBreak!.method === "super-over") assert.equal(m.winner, x.runs > y.runs ? x.team : y.team);
+      // One bowler an over, the side's cheapest at the death among those who bowl there.
+      for (const inn of inns) {
+        const side = inn.team === india.name ? southAfrica : india;
+        const closers = side.players.filter((p) => p.canBowl && !p.keeper && (p.bowlingShares?.death ?? 0) >= 0.2);
+        const chosen = [...closers].sort((p, q) => expectedRunsOf(p.bowling.death) - expectedRunsOf(q.bowling.death))[0]!;
+        assert.deepEqual(inn.bowling.map((w) => w.id), [chosen.id]);
+      }
+    }
+    const bowlOuts = tied("bowl-out", 3);
+    for (const m of bowlOuts) {
+      const [a, b] = m.tieBreak!.bowlOut!;
+      assert.equal(a!.team, m.innings[0].team, "the side that batted first bowls first");
+      for (const s of [a!, b!]) assert.equal(s.hits, s.balls.filter((x) => x.hit).length);
+      assert.ok(Math.abs(a!.balls.length - b!.balls.length) <= 1);
+      if (a!.hits !== b!.hits) assert.equal(m.winner, a!.hits > b!.hits ? a!.team : b!.team);
+    }
+  });
+
+  it("picks the player of the match as the most points on the shared rule", () => {
+    for (let i = 0; i < 10; i += 1) {
+      const m = simulateMatch(india, southAfrica, env, data.situation, { seed: `points-${i}`, rainProbability: 0 });
+      const best = Math.max(...matchPoints(m).map((a) => a.points));
+      assert.equal(playerOfTheMatch(m)?.points, +best.toFixed(1));
+    }
   });
 });

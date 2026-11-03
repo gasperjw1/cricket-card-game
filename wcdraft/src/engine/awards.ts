@@ -15,8 +15,11 @@ export interface Award {
   summary: string;
 }
 
-export function playerOfTheMatch(m: MatchResult): Award | null {
-  if (!m.winner) return null;
+/**
+ * Every player's points in a match, the winning side's tilt applied, in scorecard order. Summed over
+ * a tournament they give the player of the tournament on the same rule (2026-11-03).
+ */
+export function matchPoints(m: Pick<MatchResult, "innings" | "winner">): Award[] {
   const tally = new Map<string, Award & { parts: string[] }>();
   // By team and person: a drafted player can face his own real side, and those are two different lines.
   const add = (id: string, name: string, team: string, points: number, part: string | null) => {
@@ -41,10 +44,12 @@ export function playerOfTheMatch(m: MatchResult): Award | null {
       add(w.id, w.name, bowlingTeam, 22 * w.wickets + Math.max(-10, (7.8 - econ) * overs * 0.9), `${w.wickets}/${w.runs}`);
     }
   }
-  let best: (Award & { parts: string[] }) | null = null;
-  for (const a of tally.values()) {
-    const points = a.points * (m.winner && a.team === m.winner ? 1.15 : 1);
-    if (!best || points > best.points) best = { ...a, points };
-  }
-  return best ? { id: best.id, name: best.name, team: best.team, points: +best.points.toFixed(1), summary: best.parts.join(" & ") } : null;
+  return [...tally.values()].map((a) => ({ id: a.id, name: a.name, team: a.team, points: a.points * (m.winner && a.team === m.winner ? 1.15 : 1), summary: a.parts.join(" & ") }));
+}
+
+export function playerOfTheMatch(m: MatchResult): Award | null {
+  if (!m.winner) return null;
+  let best: Award | null = null;
+  for (const a of matchPoints(m)) if (!best || a.points > best.points) best = a;
+  return best ? { ...best, points: +best.points.toFixed(1) } : null;
 }

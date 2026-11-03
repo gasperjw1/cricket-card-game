@@ -8,6 +8,28 @@ import type { FixtureResult } from "../../../wcdraft/src/engine/tournament.ts";
 import type { BatterLine, BowlerLine, InningsResult } from "../../../wcdraft/src/engine/types.ts";
 import { familiar, fullName, labelTeams } from "../lib/names.ts";
 
+const ORDINAL = ["first", "second", "third"];
+
+/**
+ * How the tie was settled, in one or two sentences: each super over's scores (a tied one named as
+ * such), or each side's hits in the bowl-out. Empty for a coin toss with nothing bowled.
+ */
+export function tieBreakText(tb: NonNullable<FixtureResult["tieBreak"]>): string {
+  if (tb.bowlOut) {
+    const [a, b] = tb.bowlOut;
+    return a && b ? `In the bowl-out ${a.team} hit the stumps ${a.hits} time${a.hits === 1 ? "" : "s"} from ${a.balls.length}, ${b.team} ${b.hits} from ${b.balls.length}.` : "";
+  }
+  const inns = tb.innings ?? [];
+  const rounds: string[] = [];
+  for (let i = 0; i + 1 < inns.length; i += 2) {
+    const [x, y] = [inns[i]!, inns[i + 1]!];
+    const label = inns.length > 2 ? `the ${ORDINAL[i / 2] ?? "next"} super over` : "the super over";
+    rounds.push(`in ${label} ${x.team} made ${x.runs} for ${x.wickets} and ${y.team} ${y.runs} for ${y.wickets}${x.runs === y.runs ? ", level again" : ""}`);
+  }
+  const text = rounds.join("; ");
+  return text ? `${text[0]!.toUpperCase()}${text.slice(1)}.` : "";
+}
+
 export interface Story {
   kicker: string;
   headline: string;
@@ -157,11 +179,10 @@ export function storyFor(f: FixtureResult, ctx: StoryContext): Story {
   const replied = i2.legalBalls > 0;
   const paragraphs = [inningsParagraph(i1, false), replied ? inningsParagraph(i2, true) : `Rain ended the match before ${i2.team} could begin their reply.`];
   if (shape === "tied" && f.tieBreak) {
-    const [so1, so2] = f.tieBreak.innings ?? [];
-    const superOver = so1 && so2 ? ` ${so1.team} made ${so1.runs} for ${so1.wickets} and ${so2.team} ${so2.runs} for ${so2.wickets}.` : "";
     const level = i1.runs === i2.runs ? `The scores finished level on ${i1.runs}` : "Rain left the scores level on par";
     const decider = f.tieBreak.method === "super-over" ? "the super over" : f.tieBreak.method === "coin" ? "on the toss of a coin" : "the bowl-out";
-    paragraphs.push(`${level}, and ${f.winner} won ${decider}.${superOver}`);
+    const how = tieBreakText(f.tieBreak);
+    paragraphs.push(`${level}, and ${f.winner} won ${decider}.${how ? ` ${how}` : ""}`);
   }
   const { won: w, lost: l } = ctx.record;
   if (!ctx.knockout && w + l > 0) {

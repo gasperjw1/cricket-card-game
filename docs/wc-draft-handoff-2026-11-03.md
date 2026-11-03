@@ -110,9 +110,11 @@ would adapt and which styles would not transfer between editions (design doc dec
 (1) In-match effects: **done** (refit doc items 12–14: adjusted streak, ball-in-over, chase-dot and
 setness tables on; no momentum and no type differences after dots; bowling types filled for six
 associate bowlers). (2) UI/UX clean-up and update: **done** (`wc-draft-ui-audit-2026-11-02.md`:
-broken and confusing items fixed; every coach tag now played, refit doc item 15). Next in (2): the
-polish items and the rating bands exploration (Yash: Cricket 26-style attributes from domestic and
-international limited-overs data). (3) Dots: the −0.7 dot share, with the
+broken and confusing items fixed; every coach tag now played, refit doc item 15). Then on
+2026-11-03: numbers only on every card, a landing page, the draft as rows with a full card on tap,
+the souvenir issue in five sections, and super-over and bowl-out scorecards (audit doc "Rebuilt
+2026-11-03"; engine side refit item 16). Next in (2): the rating bands exploration (Yash: Cricket
+26-style attributes from domestic and international limited-overs data). (3) Dots: the −0.7 dot share, with the
 pressure-sixes shortfall at required rates of 10–16 from item 13. (4) Re-evaluate. Leaderboards
 and growth features go last; a Test-cricket auction league is the eventual pivot, on the back burner.
 

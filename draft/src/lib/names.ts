@@ -27,6 +27,17 @@ export function teamLabel(team: string): string {
   return TEAM_LABELS[team] ?? team;
 }
 
+const TEAM_CODES: Record<string, string> = {
+  Afghanistan: "AFG", Australia: "AUS", Bangladesh: "BAN", Canada: "CAN", England: "ENG", "Hong Kong": "HK", India: "IND", Ireland: "IRE", Italy: "ITA",
+  Kenya: "KEN", Namibia: "NAM", Nepal: "NEP", Netherlands: "NED", "New Zealand": "NZ", Oman: "OMA", Pakistan: "PAK", "Papua New Guinea": "PNG",
+  Scotland: "SCO", "South Africa": "SA", "Sri Lanka": "SL", Uganda: "UGA", "United Arab Emirates": "UAE", "United States of America": "USA", "West Indies": "WI", Zimbabwe: "ZIM",
+};
+
+/** A side's scoreboard code, "AUS", "NZ", for narrow columns. */
+export function teamCode(team: string): string {
+  return TEAM_CODES[team] ?? team.slice(0, 3).toUpperCase();
+}
+
 /** The same abbreviation applied inside a finished sentence. */
 export function labelTeams(text: string): string {
   let out = text;

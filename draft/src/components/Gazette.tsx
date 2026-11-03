@@ -2,28 +2,30 @@
  * The World Cup Draft Gazette (asked 2026-10-31, reshaped 2026-11-01): the run told as a dated run
  * of newspapers. Issue 1 is the preview, then one issue per match the side plays, then the souvenir
  * issue. "Edition" is the World Cup's word and is never used for a paper. Each match issue has four
- * sections, Report, 1st innings, 2nd innings and Tables; the report carries a stop press when the
+ * sections, Report, 1st innings, 2nd innings and Tables, and a fifth for the super over or bowl-out
+ * when the match was tied; the report carries a stop press when the
  * match earned one and the late news since the previous issue. Every number comes from the
  * scorecards, and each issue knows only what had happened by that match.
  */
 
-import { useMemo, useState } from "react";
+import { useMemo, useState, type ReactNode } from "react";
 import type { CaptainOut, CoachOut, EditionOut, VenueOut } from "../../../wcdraft/src/engine/data.ts";
 import type { MatchPlan } from "../game/simulate.ts";
 import type { PoolPlayer } from "../game/types.ts";
 import type { FixtureResult, StageResult, TournamentResult } from "../../../wcdraft/src/engine/tournament.ts";
 import type { InningsResult } from "../../../wcdraft/src/engine/types.ts";
 import { RECORD_KINDS, type RecordBook, type RecordKind } from "../game/facts.ts";
-import { storyFor, topBatter, topBowler, verdictFor } from "../game/gazette.ts";
+import { storyFor, tieBreakText, topBatter, topBowler, verdictFor } from "../game/gazette.ts";
 import type { IssueCopy, Paper } from "../game/paper.ts";
-import { journeyLine, recordChains, type Journey, type Residual, type Souvenir } from "../game/souvenir.ts";
+import { recordChains, type Journey, type Residual, type Souvenir } from "../game/souvenir.ts";
 import type { Performance } from "../game/score.ts";
 import { exitStageOf, sideProfile, stageIdOf, tableTo, tournamentTotals, type PlayerTotals } from "../game/stats.ts";
 import { squadRating } from "../game/rules.ts";
 import type { RunState } from "../game/types.ts";
 import { fullName, labelTeams, teamLabel } from "../lib/names.ts";
 import { marginText, rainText } from "./MatchCard.tsx";
-import { MatchScorecard, oversText } from "./Scorecard.tsx";
+import { Awards, FormGrid, SquadStats, TournamentLeaders } from "./RunStats.tsx";
+import { MatchScorecard, TieBreakCard, oversText, tieBreakLabel } from "./Scorecard.tsx";
 
 export type Fixtured = FixtureResult & { stageLabel: string };
 
@@ -165,7 +167,7 @@ function LateNews({ copy }: { copy: IssueCopy }) {
 function RunSoFar({ mine, upTo, me }: { mine: Fixtured[]; upTo: number; me: string }) {
   return (
     <div className="gz-run" role="img" aria-label={`Results so far: ${mine.slice(0, upTo + 1).map((f) => (f.winner === me ? "won" : f.winner ? "lost" : "no result")).join(", ")}`}>
-      {mine.slice(0, upTo + 1).map((f, i) => <span key={i} className={f.winner === me ? "w" : f.winner ? "l" : "n"} title={`${f.teams.find((t) => t !== me)}: ${marginText(f)}`}>{f.winner === me ? "W" : f.winner ? "L" : "NR"}</span>)}
+      {mine.slice(0, upTo + 1).map((f, i) => <span key={i} className={f.winner === me ? "w" : f.winner ? "l" : "n"} title={labelTeams(`${f.teams.find((t) => t !== me)}: ${marginText(f)}`)}>{f.winner === me ? "W" : f.winner ? "L" : "NR"}</span>)}
     </div>
   );
 }
@@ -203,7 +205,7 @@ export function CoverPage({ state, result, edition, venues, mine, numbersHere, r
   );
 }
 
-type Section = "report" | "inn1" | "inn2" | "tables";
+type Section = "report" | "inn1" | "inn2" | "decider" | "tables";
 
 /** The between-match lever: what the side may change before its next match, and the hand on it. */
 export interface Lever {
@@ -287,7 +289,8 @@ export function MatchPage({ fixture, index, mine, all, result, me, venues, highl
     const lastPlayed = [...toDate].reverse().find((x) => stageIdOf(x) === s.id && x.group === g);
     return lastPlayed ? [{ stage: s, group: g, fixture: lastPlayed }] : [];
   }));
-  const sections: [Section, string][] = [["report", "Report"], ["inn1", "1st innings"], ["inn2", "2nd innings"], ["tables", "Tables"]];
+  const decider = f.tieBreak ? tieBreakLabel(f.tieBreak) : null;
+  const sections: [Section, string][] = [["report", "Report"], ["inn1", "1st innings"], ["inn2", "2nd innings"], ...(decider ? [["decider", decider] as [Section, string]] : []), ["tables", "Tables"]];
   return (
     <article className="gz-page">
       <Masthead issue={`Issue ${issue}`} date={longDate(f.date)} matchDay={copy?.matchDay ?? null} editionId={result.editionId} />
@@ -328,6 +331,12 @@ export function MatchPage({ fixture, index, mine, all, result, me, venues, highl
           <MatchScorecard innings={[i1, i2]} highlight={highlight} me={me} only={section === "inn1" ? 1 : 2} />
         </div>
       )}
+      {section === "decider" && f.tieBreak && (
+        <div className="gz-innings">
+          <div className="gz-kicker">{decider} · {teamLabel(f.tieBreak.winner)} won it</div>
+          <TieBreakCard tb={f.tieBreak} highlight={highlight} me={me} />
+        </div>
+      )}
       {section === "tables" && (
         <div className="gz-tables">
           <div className="gz-kicker">As they stood after match day {copy?.matchDay ?? ""}</div>
@@ -361,7 +370,20 @@ function ResidualRow({ r }: { r: Residual }) {
 
 const SCOPE_LABEL = { wc: "", allWc: " · a T20 World Cup record", t20i: " · a T20I record" } as const;
 
-export function FinalPage({ result, all, mine, me, highlight, paper, souvenir, journeys, performance: perf, date, manualShare }: { result: TournamentResult; all: Fixtured[]; mine: Fixtured[]; me: string; highlight: Set<string>; paper: Paper; souvenir: Souvenir | null; journeys: Journey[]; performance: Performance; date: string | null; manualShare: string | null }) {
+type FinalSection = "summary" | "players" | "records" | "journey" | "results";
+const FINAL_SECTIONS: [FinalSection, string][] = [["summary", "Summary"], ["players", "Players"], ["records", "Records"], ["journey", "Journey"], ["results", "Results"]];
+
+/**
+ * The souvenir issue (sections 2026-11-03, after the match issues): Summary (the verdict, the side's
+ * bests and its results), Players (the awards, the side's figures, the tournament leaders, and who
+ * beat or missed his card), Records (any T20 World Cup or T20I record broken first), Journey (form
+ * match by match, then each man's card against his number in this World Cup) and Results (every
+ * scorecard with its super over or bowl-out, the tables and the knockouts). The ratings and results
+ * views are passed in, so the paper itself only lays them out.
+ */
+export function FinalPage({ result, all, mine, me, highlight, paper, souvenir, journeys, performance: perf, date, manualShare, ratings, results }: { result: TournamentResult; all: Fixtured[]; mine: Fixtured[]; me: string; highlight: Set<string>; paper: Paper; souvenir: Souvenir | null; journeys: Journey[]; performance: Performance; date: string | null; manualShare: string | null; ratings: ReactNode; results: ReactNode }) {
+  const [section, setSection] = useState<FinalSection>("summary");
+  const ranked = useMemo(() => [...tournamentTotals(all).values()].map((t) => ({ ...t, me: t.team === me && highlight.has(t.id) })), [all, me, highlight]);
   const id = result.identity!;
   const exitStage = exitStageOf(result.stages, mine);
   const verdict = verdictFor(id, me, result.stages.length, exitStage);
@@ -376,80 +398,122 @@ export function FinalPage({ result, all, mine, me, highlight, paper, souvenir, j
   const lastRecords = paper.records.get(lastKey);
   // The tournament's records with their chains, and which of them stand in all World Cups or all T20Is.
   const chains = recordChains(lastRecords?.after ?? {});
+  // A mark is a record of all T20Is (or all World Cups) only when it displaced a real one, the rule the
+  // match reports use (2026-11-03: in 2007 the all-World-Cups book starts empty, and every mark of the
+  // first World Cup was flagged as a T20 World Cup record, the highest total and score among them).
   const scopeOf = (kind: RecordKind): keyof typeof SCOPE_LABEL => {
     const c = lastRecords?.after[kind]?.current;
-    const t = lastRecords?.scopes.t20i.after[kind]?.current, w = lastRecords?.scopes.allWc.after[kind]?.current;
-    return c && t && c.fixtureKey === t.fixtureKey && !c.fixtureKey.startsWith("real:") ? "t20i" : c && w && c.fixtureKey === w.fixtureKey && !c.fixtureKey.startsWith("real:") ? "allWc" : "wc";
+    const beatReal = (scope: "t20i" | "allWc") => {
+      const line = lastRecords?.scopes[scope].after[kind];
+      return !!c && !!line && line.current.fixtureKey === c.fixtureKey && !c.fixtureKey.startsWith("real:") && line.history.some((h) => h.fixtureKey.startsWith("real:"));
+    };
+    return beatReal("t20i") ? "t20i" : beatReal("allWc") ? "allWc" : "wc";
   };
   const plural = (n: number, w: string) => `${n} ${w}${n === 1 ? "" : "s"}`;
+  // Records that stand beyond this World Cup: the best in any T20 World Cup, or in any T20I.
+  const broken = chains.map((c) => ({ c, scope: scopeOf(c.kind) })).filter((x) => x.scope !== "wc");
+  const recordWho = (c: (typeof chains)[number]) => `${labelTeams(c.holder)}${c.holder !== c.team ? `, ${teamLabel(c.team)}` : ""} v ${teamLabel(c.opp)}`;
   return (
     <article className="gz-page">
       <Masthead issue="Souvenir issue" date={longDate(date)} matchDay={null} editionId={result.editionId} />
-      <div className="gz-kicker">The {result.editionId} World Cup in review</div>
-      <h2 className="gz-headline">{labelTeams(verdict.title)}</h2>
-      <p className="gz-stand">{labelTeams(verdict.line)}{champion && champion !== me ? ` ${teamLabel(champion)} won the World Cup.` : ""}</p>
-      <div className="gz-verdict">
-        <div><span>Record</span><b>{id.won}–{id.lost}</b></div>
-        <div><span>Finish</span><b>{id.champion ? "Champions" : id.exit}</b></div>
-        <div className="gz-grade"><span>Grade</span><b>{verdict.grade}</b></div>
-        <div><span>Performance</span><b>{perf.score}</b></div>
-      </div>
-      <p className="gz-note gz-perf">Performance: {perf.stagePoints} for the stage reached, {perf.winPoints} for {id.won} win{id.won === 1 ? "" : "s"}, {perf.nrrPoints >= 0 ? "+" : "−"}{Math.abs(perf.nrrPoints)} for a net run rate of {perf.nrr >= 0 ? "+" : "−"}{Math.abs(perf.nrr).toFixed(2)}{perf.unbeatenPoints ? `, ${perf.unbeatenPoints} for going unbeaten` : ""}. Copy result, in the bar below, carries a link that replays this run exactly.</p>
-      <div className="gz-columns">
-        <div className="gz-main">
-          <section className="gz-box">
-            <h4>Your tournament</h4>
-            <table className="gz-table gz-leaders"><tbody>
-              {runs && <tr><td>Leading run-scorer<small>{runs.name}</small></td><td>{runs.runs}</td></tr>}
-              {wickets && wickets.wickets > 0 && <tr><td>Leading wicket-taker<small>{wickets.name}</small></td><td>{wickets.wickets}</td></tr>}
-              {bestInnings?.b && <tr><td>Best innings<small>{fullName(bestInnings.b.id, bestInnings.b.name)} v {teamLabel(bestInnings.v ?? "")}</small></td><td>{bestInnings.b.runs}{bestInnings.b.out ? "" : "*"}</td></tr>}
-              {bestBowling?.w && <tr><td>Best bowling<small>{fullName(bestBowling.w.id, bestBowling.w.name)} v {teamLabel(bestBowling.v)}</small></td><td>{bestBowling.w.wickets}/{bestBowling.w.runs}</td></tr>}
-            </tbody></table>
-          </section>
+      <nav className="gz-sections" aria-label="Sections of the souvenir issue">
+        {FINAL_SECTIONS.map(([k, label]) => <button key={k} type="button" className={section === k ? "on" : ""} aria-current={section === k ? "page" : undefined} onClick={() => setSection(k)}>{label}</button>)}
+      </nav>
+
+      {section === "summary" && (
+        <>
+          <div className="gz-kicker">The {result.editionId} World Cup in review</div>
+          <h2 className="gz-headline">{labelTeams(verdict.title)}</h2>
+          <p className="gz-stand">{labelTeams(verdict.line)}{champion && champion !== me ? ` ${teamLabel(champion)} won the World Cup.` : ""}</p>
+          <div className="gz-verdict">
+            <div><span>Record</span><b>{id.won}–{id.lost}</b></div>
+            <div><span>Finish</span><b>{id.champion ? "Champions" : id.exit}</b></div>
+            <div className="gz-grade"><span>Grade</span><b>{verdict.grade}</b></div>
+            <div><span>Performance</span><b>{perf.score}</b></div>
+          </div>
+          <p className="gz-note gz-perf">Performance: {perf.stagePoints} for the stage reached, {perf.winPoints} for {id.won} win{id.won === 1 ? "" : "s"}, {perf.nrrPoints >= 0 ? "+" : "−"}{Math.abs(perf.nrrPoints)} for a net run rate of {perf.nrr >= 0 ? "+" : "−"}{Math.abs(perf.nrr).toFixed(2)}{perf.unbeatenPoints ? `, ${perf.unbeatenPoints} for going unbeaten` : ""}. Copy result, in the bar below, carries a link that replays this run exactly.</p>
+          <div className="gz-columns">
+            <div className="gz-main">
+              <section className="gz-box">
+                <h4>Your tournament</h4>
+                <table className="gz-table gz-leaders"><tbody>
+                  {runs && <tr><td>Leading run-scorer<small>{runs.name}</small></td><td>{runs.runs}</td></tr>}
+                  {wickets && wickets.wickets > 0 && <tr><td>Leading wicket-taker<small>{wickets.name}</small></td><td>{wickets.wickets}</td></tr>}
+                  {bestInnings?.b && <tr><td>Best innings<small>{fullName(bestInnings.b.id, bestInnings.b.name)} v {teamLabel(bestInnings.v ?? "")}</small></td><td>{bestInnings.b.runs}{bestInnings.b.out ? "" : "*"}</td></tr>}
+                  {bestBowling?.w && <tr><td>Best bowling<small>{fullName(bestBowling.w.id, bestBowling.w.name)} v {teamLabel(bestBowling.v)}</small></td><td>{bestBowling.w.wickets}/{bestBowling.w.runs}</td></tr>}
+                </tbody></table>
+              </section>
+              <section className="gz-box">
+                <h4>The results</h4>
+                <ul className="gz-list">{mine.map((f, i) => <li key={i}><b>{f.stageLabel}, v {teamLabel(f.teams.find((t) => t !== me) ?? "")}</b><br />{labelTeams(`${marginText(f)}${f.tieBreak ? `. ${tieBreakText(f.tieBreak)}` : ""}`)}</li>)}</ul>
+              </section>
+            </div>
+            <aside className="gz-rail">
+              <section className="gz-box"><h4>{teamLabel(me)}, match by match</h4><RunSoFar mine={mine} upTo={mine.length - 1} me={me} /></section>
+              {profile.length > 0 && <section className="gz-box"><h4>The verdict on {teamLabel(me)}</h4><ul className="gz-chips">{profile.map((p) => <li key={p.label} className={p.good ? "good" : "bad"}>{p.label}</li>)}</ul></section>}
+              {broken.length > 0 && <section className="gz-box"><h4>Records broken</h4><ul className="gz-list">{broken.map(({ c, scope }) => <li key={c.kind}><b>{RECORD_LABELS[c.kind]}{SCOPE_LABEL[scope]}</b><br />{recordValue(c.kind, c)}, {recordWho(c)}</li>)}</ul></section>}
+              {manualShare && (
+                <label className="gz-manual">
+                  <span className="gz-note">This browser would not copy it; select the text and copy it yourself.</span>
+                  <textarea readOnly rows={4} value={manualShare} onFocus={(e) => e.currentTarget.select()} />
+                </label>
+              )}
+            </aside>
+          </div>
+        </>
+      )}
+
+      {section === "players" && (
+        <div className="gz-section">
+          <section className="gz-box"><h4>The awards</h4><Awards ranked={ranked} /></section>
+          <section className="gz-box"><h4>{teamLabel(me)}'s figures</h4><SquadStats ranked={ranked} /></section>
           {souvenir ? (
-            <>
-              {souvenir.standouts.length > 0 && <section className="gz-box"><h4>Players of the tournament</h4><ul className="gz-list gz-residuals">{souvenir.standouts.map((r) => <ResidualRow key={r.key} r={r} />)}</ul></section>}
-              {souvenir.unexpected.length > 0 && <section className="gz-box"><h4>Better than their cards</h4><p className="gz-note">Modest cards, 75 and under, that did the most beyond what their numbers said, allowing for how the whole field scored in this tournament. A tournament is a few hundred balls; some of this is luck, and the paper only says what happened.</p><ul className="gz-list gz-residuals">{souvenir.unexpected.map((r) => <ResidualRow key={r.key} r={r} />)}</ul></section>}
+            <div className="gz-tables-grid">
+              {souvenir.standouts.length > 0 && <section className="gz-box"><h4>Furthest above their cards</h4><p className="gz-note">Any card, by the runs made or saved beyond what his numbers said, allowing for how the whole field scored.</p><ul className="gz-list gz-residuals">{souvenir.standouts.map((r) => <ResidualRow key={r.key} r={r} />)}</ul></section>}
+              {souvenir.unexpected.length > 0 && <section className="gz-box"><h4>Better than their cards</h4><p className="gz-note">Modest cards, 75 and under, that did the most beyond their numbers. A tournament is a few hundred balls; some of this is luck.</p><ul className="gz-list gz-residuals">{souvenir.unexpected.map((r) => <ResidualRow key={r.key} r={r} />)}</ul></section>}
               {souvenir.disappointing.length > 0 && <section className="gz-box"><h4>Below their cards</h4><p className="gz-note">Strong cards, 85 and over, that fell furthest short of their numbers.</p><ul className="gz-list gz-residuals">{souvenir.disappointing.map((r) => <ResidualRow key={r.key} r={r} />)}</ul></section>}
-            </>
-          ) : <section className="gz-box"><h4>Players of the tournament</h4><p className="gz-note">Working out every player's expectation…</p></section>}
+            </div>
+          ) : <p className="gz-note">Working out every player's expectation…</p>}
+          <section className="gz-box"><h4>Tournament leaders</h4><TournamentLeaders ranked={ranked} /></section>
+        </div>
+      )}
+
+      {section === "records" && (
+        <div className="gz-section">
+          <section className="gz-box">
+            <h4>Records broken</h4>
+            {broken.length > 0
+              ? <ul className="gz-list">{broken.map(({ c, scope }) => <li key={c.kind}><b>{RECORD_LABELS[c.kind]}{SCOPE_LABEL[scope]}</b>: {recordValue(c.kind, c)}, {recordWho(c)}</li>)}</ul>
+              : <p className="gz-note">No T20 World Cup or T20I record fell in this tournament.</p>}
+          </section>
           {chains.length > 0 && (
             <section className="gz-box">
-              <h4>Records of the tournament</h4>
+              <h4>Records of the {result.editionId} World Cup</h4>
               <table className="gz-table gz-leaders"><tbody>
                 {chains.map((c) => (
                   <tr key={c.kind}>
-                    <td>{RECORD_LABELS[c.kind]}{SCOPE_LABEL[scopeOf(c.kind)]}<small>{c.holder}{c.holder !== c.team ? `, ${teamLabel(c.team)}` : ""} v {teamLabel(c.opp)}{c.chain.length ? ` · set ${c.chain.length + 1} times: ${c.chain.map((h) => `${h.holder} ${recordValue(c.kind, h)} stood ${plural(h.stoodDays, "day")}`).join("; ")}` : ""}</small></td>
+                    <td>{RECORD_LABELS[c.kind]}{SCOPE_LABEL[scopeOf(c.kind)]}<small>{recordWho(c)}{c.chain.length ? ` · set ${c.chain.length + 1} times: ${c.chain.map((h) => `${labelTeams(h.holder)} ${recordValue(c.kind, h)} stood ${plural(h.stoodDays, "day")}`).join("; ")}` : ""}</small></td>
                     <td>{recordValue(c.kind, c)}</td>
                   </tr>
                 ))}
               </tbody></table>
             </section>
           )}
-          <section className="gz-box">
-            <h4>The journey</h4>
-            <p className="gz-note">Match by match, in the order they were played: {mine.map((f) => `v ${teamLabel(f.teams.find((t) => t !== me) ?? "")}`).join(", ")}.</p>
-            <table className="gz-table gz-journey">
-              <thead><tr><th>Player</th><th>Bat</th><th>Bowl</th></tr></thead>
-              <tbody>{journeys.map((j) => <tr key={j.id}><td>{j.name}</td><td>{journeyLine(j, "bat")}</td><td>{journeyLine(j, "bowl")}</td></tr>)}</tbody>
-            </table>
-          </section>
-          <section className="gz-box">
-            <h4>The results</h4>
-            <ul className="gz-list">{mine.map((f, i) => <li key={i}><b>{f.stageLabel}, v {teamLabel(f.teams.find((t) => t !== me) ?? "")}</b><br />{labelTeams(marginText(f))}</li>)}</ul>
-          </section>
         </div>
-        <aside className="gz-rail">
-          {profile.length > 0 && <section className="gz-box"><h4>The verdict on {teamLabel(me)}</h4><ul className="gz-chips">{profile.map((p) => <li key={p.label} className={p.good ? "good" : "bad"}>{p.label}</li>)}</ul></section>}
-          <Leaders fixtures={all} highlight={highlight} me={me} />
-          {manualShare && (
-            <label className="gz-manual">
-              <span className="gz-note">This browser would not copy it; select the text and copy it yourself.</span>
-              <textarea readOnly rows={4} value={manualShare} onFocus={(e) => e.currentTarget.select()} />
-            </label>
-          )}
-        </aside>
-      </div>
+      )}
+
+      {section === "journey" && (
+        <div className="gz-section">
+          <section className="gz-box">
+            <h4>Form, match by match</h4>
+            <FormGrid journeys={journeys} mine={mine} me={me} />
+            <p className="gz-note">Runs on top (* not out, – did not bat), wickets under them. Shaded: a fifty or three wickets, thirty or two wickets; red, a duck.</p>
+          </section>
+          {ratings}
+        </div>
+      )}
+
+      {section === "results" && <div className="gz-section">{results}</div>}
     </article>
   );
 }

@@ -5,6 +5,7 @@
  */
 
 import { useState } from "react";
+import type { FixtureResult } from "../../../wcdraft/src/engine/tournament.ts";
 import type { Dismissal, InningsResult } from "../../../wcdraft/src/engine/types.ts";
 import { familiar, fullName, teamLabel } from "../lib/names.ts";
 
@@ -99,11 +100,15 @@ export function InningsCard({ inn, fielding, highlight, me }: { inn: InningsResu
   );
 }
 
-/** Both innings of a match behind "1st innings · 2nd innings" tabs; `only` pins one innings with no tabs. */
-export function MatchScorecard({ innings, highlight, me, only }: { innings: InningsResult[]; highlight: Set<string>; me: string; only?: 1 | 2 }) {
+/**
+ * Both innings of a match behind "1st innings · 2nd innings" tabs, and the tie-breaker as a third
+ * tab when the match had one; `only` pins one innings with no tabs.
+ */
+export function MatchScorecard({ innings, highlight, me, only, tieBreak }: { innings: InningsResult[]; highlight: Set<string>; me: string; only?: 1 | 2; tieBreak?: FixtureResult["tieBreak"] }) {
   const [picked, setShown] = useState<number>(1);
   // A pinned innings follows the prop on every render; state only drives the tabbed view.
   const shown = only ?? picked;
+  const decider = !only && tieBreak ? tieBreakLabel(tieBreak) : null;
   const inn = innings.find((i) => i.index === shown) ?? innings[0];
   if (!inn) return null;
   const fielding = innings.find((i) => i !== inn)?.team ?? "";
@@ -112,9 +117,62 @@ export function MatchScorecard({ innings, highlight, me, only }: { innings: Inni
       {!only && innings.length > 1 && (
         <div className="inn-tabs" role="tablist">
           {innings.map((i) => <button key={i.index} type="button" role="tab" aria-selected={i.index === shown} className={i.index === shown ? "on" : ""} onClick={() => setShown(i.index)}>{i.index === 1 ? "1st" : "2nd"} innings <span className="muted">{teamLabel(i.team)} {i.runs}/{i.wickets}</span></button>)}
+          {decider && <button type="button" role="tab" aria-selected={shown === 3} className={shown === 3 ? "on" : ""} onClick={() => setShown(3)}>{decider}</button>}
         </div>
       )}
-      <InningsCard inn={inn} fielding={fielding} highlight={highlight} me={me} />
+      {shown === 3 && tieBreak ? <TieBreakCard tb={tieBreak} highlight={highlight} me={me} /> : <InningsCard inn={inn} fielding={fielding} highlight={highlight} me={me} />}
+    </div>
+  );
+}
+
+/** A super over's or bowl-out's tab label: "Super over", "Super overs (2)", "Bowl-out". */
+export function tieBreakLabel(tb: NonNullable<FixtureResult["tieBreak"]>): string | null {
+  if (tb.bowlOut) return "Bowl-out";
+  const rounds = Math.floor((tb.innings?.length ?? 0) / 2);
+  return rounds === 0 ? null : rounds === 1 ? "Super over" : `Super overs (${rounds})`;
+}
+
+/**
+ * How a tie was settled, as a card (2026-11-03: a tied match had no scorecard for its decider). Each
+ * super over in full, tied ones included, in the order bowled; or each side's bowl-out ball by ball.
+ */
+export function TieBreakCard({ tb, highlight, me }: { tb: NonNullable<FixtureResult["tieBreak"]>; highlight: Set<string>; me: string }) {
+  if (tb.bowlOut) {
+    return (
+      <div className="tb">
+        <table className="sc-table tb-bowlout">
+          <thead><tr><th>Bowl-out, in the order bowled</th><th>Hits</th></tr></thead>
+          <tbody>
+            {tb.bowlOut.map((side) => (
+              <tr key={side.team}>
+                <td>
+                  <div className="sc-name">{teamLabel(side.team)}</div>
+                  <ol className="tb-balls">
+                    {side.balls.map((b, i) => <li key={i} className={`${b.hit ? "hit" : "miss"} ${side.team === me && highlight.has(b.id) ? "hl" : ""}`}>{familiar(b.id, b.name)} <b>{b.hit ? "hit" : "missed"}</b></li>)}
+                  </ol>
+                </td>
+                <td><b>{side.hits}</b>/{side.balls.length}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+        <p className="sc-fow">{teamLabel(tb.winner)} won the bowl-out.</p>
+      </div>
+    );
+  }
+  const inns = tb.innings ?? [];
+  const rounds = Array.from({ length: Math.floor(inns.length / 2) }, (_, i) => [inns[2 * i]!, inns[2 * i + 1]!] as const);
+  if (!rounds.length) return <p className="sc-fow">Settled on the toss of a coin.</p>;
+  return (
+    <div className="tb">
+      {rounds.map(([x, y], i) => (
+        <section key={i} className="tb-round">
+          <h5 className="tb-head">{rounds.length > 1 ? `Super over ${i + 1}` : "Super over"} · {teamLabel(x.team)} {x.runs}/{x.wickets}, {teamLabel(y.team)} {y.runs}/{y.wickets}{x.runs === y.runs ? " · tied" : ""}</h5>
+          <InningsCard inn={x} fielding={y.team} highlight={highlight} me={me} />
+          <InningsCard inn={y} fielding={x.team} highlight={highlight} me={me} />
+        </section>
+      ))}
+      {tb.method === "coin" && <p className="sc-fow">Still level after {rounds.length} super overs; settled on the toss of a coin.</p>}
     </div>
   );
 }

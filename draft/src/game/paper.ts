@@ -60,7 +60,7 @@ export function matchDaysOf(all: FixtureResult[]): Map<string, number> {
 
 export function writePaper(all: FixtureResult[], mine: FixtureResult[], me: string, seed: string, editionId: string, runsPerOver: number, knockoutStages: Set<string>, baseline?: Baseline, finalStage: string | null = null): Paper {
   const picker = new Picker(`${seed}:paper`);
-  const records = foldRecords(all, baseline);
+  const records = foldRecords(all, baseline, editionId);
   const before = recordsBefore(all);
   const marks = marksFor(runsPerOver);
   const matchDays = matchDaysOf(all);

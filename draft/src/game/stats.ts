@@ -2,6 +2,7 @@
 
 import type { FixtureResult, StageResult } from "../../../wcdraft/src/engine/tournament.ts";
 import type { Phase } from "../../../wcdraft/src/cricsheet/match.ts";
+import { matchPoints } from "../../../wcdraft/src/engine/awards.ts";
 import { fullName } from "../lib/names.ts";
 
 export interface PlayerTotals {
@@ -22,6 +23,8 @@ export interface PlayerTotals {
   bowlBalls: number;
   best: { w: number; r: number } | null;
   potm: number;
+  /** Player-of-the-match points summed over his matches: the player of the tournament is the most. */
+  points: number;
 }
 
 /** Fixtures in the order they were played: stages in turn, by date within a stage (fixtures are stored by group). */
@@ -83,7 +86,7 @@ export function tournamentTotals(fixtures: FixtureResult[]): Map<string, PlayerT
   const totals = new Map<string, PlayerTotals>();
   const get = (id: string, name: string, team: string) => {
     const key = totalsKey(team, id);
-    return totals.get(key) ?? totals.set(key, { id, name: fullName(id, name), team, innings: 0, runs: 0, balls: 0, outs: 0, fours: 0, sixes: 0, high: 0, highNotOut: false, bowlInnings: 0, wickets: 0, bowlRuns: 0, bowlBalls: 0, best: null, potm: 0 }).get(key)!;
+    return totals.get(key) ?? totals.set(key, { id, name: fullName(id, name), team, innings: 0, runs: 0, balls: 0, outs: 0, fours: 0, sixes: 0, high: 0, highNotOut: false, bowlInnings: 0, wickets: 0, bowlRuns: 0, bowlBalls: 0, best: null, potm: 0, points: 0 }).get(key)!;
   };
   for (const f of fixtures) {
     const [i1, i2] = f.innings ?? [];
@@ -103,6 +106,7 @@ export function tournamentTotals(fixtures: FixtureResult[]): Map<string, PlayerT
       }
     }
     if (f.potm) get(f.potm.id, f.potm.name, f.potm.team).potm += 1;
+    for (const a of matchPoints({ innings: [i1, i2], winner: f.winner })) get(a.id, a.name, a.team).points += a.points;
   }
   return totals;
 }

@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import type { EditionOut, SquadOut, VenueOut } from "../../../wcdraft/src/engine/data.ts";
-import { PlayerCard } from "../components/PlayerCard.tsx";
+import { PlayerRow } from "../components/PlayerCard.tsx";
 import { PlayerDetail } from "../components/PlayerDetail.tsx";
 import { TeamSheet } from "../components/TeamSheet.tsx";
 import { VenueBrief, venueCountsFor } from "../components/VenueBrief.tsx";
@@ -9,16 +9,22 @@ import { SLOTS, designatedKeeper, eligible, needs, oversCovered, slotsFor } from
 import { batInSlot, describeWeights, slotWeights } from "../game/slots.ts";
 import type { PoolPlayer, RunState } from "../game/types.ts";
 
+type Filter = "all" | "bat" | "bowl" | "keep";
+type Sort = "best" | "bat" | "bowl";
+const FILTERS: [Filter, string][] = [["all", "All"], ["bat", "Batters"], ["bowl", "Bowlers"], ["keep", "Keepers"]];
+
 /**
- * The draft as three panes that scroll inside themselves (decided 2026-11-01): the spun squad on
- * the left, the selected player's detail with the slot chooser in the middle, the team sheet on
- * the right. The header strip, the reroll and the needs line stay put; the page itself does not
- * scroll. Under 900px the squad and the sheet become two tabs and the detail slides up as a sheet.
+ * The draft (redesigned 2026-11-03, after Era Ball and 82-0): the spun squad as a list of compact
+ * rows on the left, the team sheet on the right. Tapping a row opens the player's full card over
+ * the list, with the slots he fits first; the sheet's open slots light up too, so he can be placed
+ * from either. Under 900px the squad and the sheet are two tabs and the card rises as a sheet.
  * Placement is always the user's choice: nothing is placed until a slot is tapped.
  */
 export function DraftScreen({ state, editions, venues, squads, onPlace, onReroll, onLineup }: { state: RunState; editions: EditionOut[]; venues: VenueOut[]; squads: SquadOut[]; onPlace: (p: PoolPlayer, slot: number) => void; onReroll: () => void; onLineup: () => void }) {
   const [selected, setSelected] = useState<PoolPlayer | null>(null);
   const [tab, setTab] = useState<"squad" | "sheet">("squad");
+  const [filter, setFilter] = useState<Filter>("all");
+  const [sort, setSort] = useState<Sort>("best");
   const filled = state.picks.filter(Boolean).length;
   const open = selected ? slotsFor(selected, state.picks) : { slots: [], natural: true };
   const openIds = new Set(open.slots.map((s) => s.index));
@@ -39,10 +45,24 @@ export function DraftScreen({ state, editions, venues, squads, onPlace, onReroll
   // The batting number at a slot: the engine's own sum when it has loaded, the card's linear shift until then.
   const numberAt = (p: PoolPlayer, slot: number, map: Map<string, { atSlot: (number | null)[] }> | null): number | null =>
     map?.get(p.id)?.atSlot[slot] ?? (p.batShown ? batInSlot(p, weights[slot]!) : null);
-  // A new spin clears the selection, and a selected player who has just been placed is gone too.
-  useEffect(() => { setSelected(null); }, [state.spin]);
+  // A new spin clears the selection and the list's filter.
+  useEffect(() => { setSelected(null); setFilter("all"); }, [state.spin]);
+  // Escape closes the card.
+  useEffect(() => {
+    if (!selected) return;
+    const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") setSelected(null); };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [selected]);
   const place = (p: PoolPlayer, slot: number) => { onPlace(p, slot); setSelected(null); };
   const selectedLocked = selected && !eligible(selected, state.picks) ? lockText : null;
+
+  const listed = useMemo(() => {
+    const players = (state.spin?.players ?? []).filter((p) => filter === "all" || (filter === "bat" && p.batShown) || (filter === "bowl" && p.bowlShown) || (filter === "keep" && p.keeper));
+    if (sort === "best") return players;
+    const key = (p: PoolPlayer) => (sort === "bat" ? (p.batShown ? p.bat : -1) : p.bowlShown ? p.bowl : -1);
+    return [...players].sort((a, b) => key(b) - key(a));
+  }, [state.spin, filter, sort]);
 
   return (
     <section className={`draft3 ${selected ? "has-detail" : ""} tab-${tab}`}>
@@ -73,38 +93,48 @@ export function DraftScreen({ state, editions, venues, squads, onPlace, onReroll
         {lockText && <p className="small lock-note">{lockText}</p>}
         {state.spin ? (
           <>
-            <p className="small">Tap a player for his full record and to place him. {editionId} shows the card in this World Cup{state.coach ? ` under ${state.coach.coachName}` : ""}.</p>
-            <div className="spin-grid">
-              {state.spin.players.map((p) => (
-                <PlayerCard key={p.id} player={p} fit={fits ? fits.get(p.id) ?? null : null} hereEdition={editionId} selected={selected?.id === p.id} ineligible={!eligible(p, state.picks)} onClick={() => setSelected(selected?.id === p.id ? null : p)} />
+            <div className="list-tools">
+              <div className="chips" role="group" aria-label="Show">
+                {FILTERS.map(([key, label]) => <button key={key} type="button" className={`chip ${filter === key ? "on" : ""}`} aria-pressed={filter === key} onClick={() => setFilter(key)}>{label}</button>)}
+              </div>
+              <label className="sort">Sort
+                <select value={sort} onChange={(e) => setSort(e.target.value as Sort)}>
+                  <option value="best">Best</option>
+                  <option value="bat">Batting</option>
+                  <option value="bowl">Bowling</option>
+                </select>
+              </label>
+            </div>
+            <div className="pr-cols" aria-hidden="true"><span>Player</span><span>Bat</span><span>Bowl</span><span>In {editionId}</span></div>
+            <div className="pr-list">
+              {listed.map((p) => (
+                <PlayerRow key={p.id} player={p} fit={fits ? fits.get(p.id) ?? null : null} hereEdition={editionId} selected={selected?.id === p.id} ineligible={!eligible(p, state.picks)} onClick={() => setSelected(selected?.id === p.id ? null : p)} />
               ))}
+              {listed.length === 0 && <p className="small muted">Nobody in this squad fits that filter.</p>}
             </div>
           </>
         ) : null}
       </div>
 
-      <div className={`pane pane-detail ${selected ? "open" : ""}`} aria-live="polite">
-        {selected ? (
-          <PlayerDetail
-            player={selected}
-            fit={fits ? fits.get(selected.id) ?? null : null}
-            hereEdition={editionId}
-            coach={state.coach}
-            slots={open.slots}
-            weights={weights}
-            natural={open.natural}
-            locked={selectedLocked}
-            onPlace={(slot) => place(selected, slot)}
-            onClose={() => setSelected(null)}
-          />
-        ) : (
-          <div className="pd-empty">
-            <p className="eyebrow">Player</p>
-            <p className="small">Tap a card to see the record behind it, his numbers in {editionId}, and where he can bat.</p>
-            <p className="small muted">Bat and Bowl show the card's number over three bars for powerplay, middle and death. A * marks a thin record or an estimate; the detail says which.</p>
+      {selected && (
+        <div className="card-layer" role="dialog" aria-modal="true" aria-label={`${selected.name}'s card`}>
+          <button type="button" className="card-backdrop" aria-label="Close the card" onClick={() => setSelected(null)} />
+          <div className="card-panel">
+            <PlayerDetail
+              player={selected}
+              fit={fits ? fits.get(selected.id) ?? null : null}
+              hereEdition={editionId}
+              coach={state.coach}
+              slots={open.slots}
+              weights={weights}
+              natural={open.natural}
+              locked={selectedLocked}
+              onPlace={(slot) => place(selected, slot)}
+              onClose={() => setSelected(null)}
+            />
           </div>
-        )}
-      </div>
+        </div>
+      )}
 
       <aside className="pane pane-sheet" role="tabpanel">
         <TeamSheet
@@ -126,8 +156,8 @@ export function DraftScreen({ state, editions, venues, squads, onPlace, onReroll
               keeps: !!p && !!keeper && p.id === keeper.id,
               open: canPlace,
               action: p ? null : canPlace ? (
-                <button type="button" className="sheet-place" title={describeWeights(w)} onClick={() => place(selected!, s.index)}>
-                  Place here{placing !== null ? <small> · bat {placing}</small> : null}
+                <button type="button" className="sheet-place" title={describeWeights(w)} aria-label={`Place ${selected!.name} at ${s.label}${placing !== null ? `, batting ${placing}` : ""}`} onClick={() => place(selected!, s.index)}>
+                  Place{placing !== null ? <small> · {placing}</small> : null}
                 </button>
               ) : null,
             };

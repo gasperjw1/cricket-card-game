@@ -200,14 +200,21 @@ export function bookFromBaseline(book: BaselineBook | undefined): RecordBook {
 /**
  * Fold the record books over fixtures in play order; each fixture sees only what came before it.
  * With a baseline, the all-World-Cups and all-T20Is books start from the real marks before the
- * edition's first day, and the sim's own matches move them as they go.
+ * edition's first day, and the sim's own matches move them as they go. Given the edition, the T20I
+ * book takes only matches between full members, as the real book does (2026-11-03: Ireland's 58 all
+ * out against South Africa in 2014 read as a T20I record against a book with no associate totals).
  */
-export function foldRecords(fixtures: FixtureResult[], baseline?: Baseline): Map<string, RecordsAt> {
+export function foldRecords(fixtures: FixtureResult[], baseline?: Baseline, editionId?: string): Map<string, RecordsAt> {
   const out = new Map<string, RecordsAt>();
   const books: Record<RecordScope, RecordBook> = { wc: {}, allWc: bookFromBaseline(baseline?.worldCup), t20i: bookFromBaseline(baseline?.t20i) };
+  const full = editionId ? fullMembersAt(editionId) : null;
   for (const f of fixtures) {
     const scopes = {} as Record<RecordScope, ScopeFold>;
     for (const scope of RECORD_SCOPES) {
+      if (scope === "t20i" && full && !f.teams.every((t) => full.has(t))) {
+        scopes[scope] = { before: books[scope], after: books[scope], broken: [] };
+        continue;
+      }
       const { book: after, broken } = updateRecords(books[scope], f);
       scopes[scope] = { before: books[scope], after, broken };
       books[scope] = after;

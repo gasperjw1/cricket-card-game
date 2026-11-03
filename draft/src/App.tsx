@@ -189,12 +189,15 @@ export function App() {
 
   return (
     <main className={`shell ${state.step === "draft" ? "shell-draft" : ""}`}>
-      <header className="top">
-        <h1 onClick={() => { if (state.step === "home" || window.confirm("Leave this run and start again? It can't be recovered.")) dispatch({ type: "home" }); }}>World Cup Draft</h1>
-        <span className="seed">{state.seed ? `seed ${state.seed} · ` : ""}<a href="/" className="back-link">Swipe Sixer</a></span>
-      </header>
+      {/* The landing page carries its own name and links; every other screen has the bar. */}
+      {state.step !== "home" && (
+        <header className="top">
+          <h1><button type="button" className="home-link" onClick={() => { if (window.confirm("Leave this run and start again? It can't be recovered.")) dispatch({ type: "home" }); }}>World Cup Draft</button></h1>
+          <span className="seed">{state.seed ? <span className="seed-text">seed {state.seed}</span> : null}<a href="/" className="back-link">Swipe Sixer</a></span>
+        </header>
+      )}
       {state.error && <p className="error">{state.error}</p>}
-      {state.step === "home" && <HomeScreen ready={!!universe} onStart={(seed) => dispatch({ type: "start", seed })} />}
+      {state.step === "home" && <HomeScreen ready={!!universe} editions={shared?.editionIds.length ?? null} squads={universe?.length ?? null} onStart={(seed) => dispatch({ type: "start", seed })} />}
       {state.step === "identity" && shared && (
         <IdentityScreen identity={state.identity} editions={shared.editions} venues={shared.venues} squads={state.identity ? squadsByEdition?.get(state.identity.editionId) ?? [] : []} rerolls={state.identityRerolls} onReroll={() => spinIdentity(true)} onConfirm={() => dispatch({ type: "confirmIdentity" })} />
       )}

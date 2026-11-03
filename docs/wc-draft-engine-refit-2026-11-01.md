@@ -521,6 +521,41 @@ replayed many times (scratch scripts `baseline.mts`, `player-dist.mts`, `dots.mt
     mechanisms. A first version printed "fields after 105% of toss wins" for a coach in a World Cup
     where 84% fielded; the log-odds helper fixed both the card and the engine, which had capped it.
 
+16. **Tie-breakers played properly and kept (2026-11-03, Yash: no way to see a super over or
+    bowl-out scorecard).** Showing the super-over card exposed three faults. (a) It was played as
+    the first over of a 20-over innings: 4.6 runs a side. `scripts/research/super-overs.mts`, men's
+    T20Is: 35 super overs make 12.4 runs batting first (sd 7.0) and 10.1 chasing, against 11.9 for a
+    20th over with five or fewer down (n 1,263) and 6.2 for a first over. Super overs are now played
+    as an innings' last over (`closing`), with the batters set by the median a real 20th-over
+    striker had faced, 11 balls (quartiles 3–26). (b) The three batters and the bowler were picked on
+    the role-relative display numbers, which sent USA's Nos. 9 and 10 in ahead of their top order;
+    they are now picked on absolute death-overs rates, the bowler from those who bowl a fifth or
+    more of their overs at the death (India: Suryakumar, Rohit, Kohli and Bumrah; Australia: David,
+    Maxwell, Head and Cummins). (c) The bowler's figures read 0 balls (no ball log was passed).
+    (d) The chosen bowler was not enforced: the over's allocation picked among the three batters
+    too (USA's Harmeet Singh bowled instead of Anderson); only the chosen man may bowl now.
+    India v South Africa 2024 super overs now make 10.2 batting first, 0.48 wickets; the real figure
+    is from a small sample of mostly weaker attacks (standard error about 1.2). Every super over is
+    kept, the tied ones too. The 2007 bowl-out, a coin toss before, is now bowled: five a side in
+    turn (the men who bowled most in the match), most hits wins, then sudden death, stopped once a
+    side cannot catch up. There is no data on bowl-outs, so every ball has the same 40% chance for
+    both sides and it stays an even contest. Only tied matches change: replay, nine editions, 40 sims
+    × 4 seeds, Brier 0.1871 (as item 15), every bias as before. Player of the tournament
+    sums the player-of-the-match points (`awards.ts` `matchPoints`, the same rule per match).
+    Checked over 100 super-over ties and 100 bowl-outs on five pairings: balls, wickets, runs,
+    targets, one bowler an over and every winner add up; bowl-outs stopped early only when the side
+    behind could not catch up; the side bowling first won 52 of 100.
+
+17. **T20I records from full-member matches only (2026-11-03).** The real T20I book counts only
+    matches between full members, but the sim's matches all went into it, so Ireland's 58 all out
+    against South Africa in 2014 read as a T20I record. `foldRecords` now takes the edition and
+    keeps associate matches out of the T20I book (they still count for the World Cup books). The
+    souvenir's "Records broken" also uses the reports' rule: a mark is a record of all T20Is or all
+    World Cups only when it displaced a real one. In 2007, the first World Cup, every mark had been
+    flagged as a T20 World Cup record; against the real T20I book six of eight were T20I records, and
+    the highest total (220 against Australia's 221) and highest score (94 against Ponting's 98*) were
+    records of that World Cup only.
+
 ## Still open
 
 - Dot share −0.7 points: the sim turns a few dots into singles at the same run rate; not a counting
@@ -530,3 +565,6 @@ replayed many times (scratch scripts `baseline.mts`, `player-dist.mts`, `dots.mt
 - Balls per wicket +0.15 and powerplay −0.08 an over with the adjusted tables (item 12).
 - The replay still takes extras, dismissal mix, rain, venue factors and chase uplift from the
   edition being replayed; only the base rates have an out-of-sample switch.
+- A tied super over goes to another, up to three, then a coin. The real rule changed by era (a
+  count-back on sixes or boundaries before late 2019, repeated super overs since); not yet per
+  edition, and the exact rule for each edition is still to be checked.

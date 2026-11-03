@@ -19,45 +19,34 @@ export interface RunLine {
 }
 
 const PHASE_NAMES = { pp: "Powerplay", mid: "Middle", death: "Death" } as const;
-const SOURCE_NAMES: Record<FinalSkill["evidence"]["source"], string> = {
-  form: "recent T20Is",
-  career: "career T20Is",
-  domestic: "league T20s",
-  odi: "ODIs",
-  tournament: "the tournament itself, with no earlier record",
-  later: "the balls after this World Cup began, with too little before it",
-  population: "the average for the batting position, with no record",
-};
 
+// Numbers only: where a rating came from is not shown (Yash, 2026-11-03).
 const signed = (n: number) => (n > 0 ? `+${n}` : n === 0 ? "0" : `−${Math.abs(n)}`);
 const deltaClass = (n: number, flip = false) => (n === 0 ? "" : (n > 0) !== flip ? "num-good" : "num-bad");
-const balls = (n: number) => n.toLocaleString("en-US");
 const rate = (x: number, skill: Skill) => (skill === "bat" ? x.toFixed(0) : x.toFixed(2));
 
 function Rating({ skill, label }: { skill: FinalSkill | null; label: string }) {
   if (!skill) return <span className="fr-num muted">keeps</span>;
   if (!skill.shown) return <span className="fr-num muted">{label}</span>;
   const moved = skill.final - skill.card;
-  const low = skill.lowSample ? "*" : "";
-  return <span className="fr-num">{skill.card}{low} <span className="muted">to</span> <b className={deltaClass(moved)}>{skill.final}{low}</b></span>;
+  return <span className="fr-num">{skill.card} <span className="muted">to</span> <b className={deltaClass(moved)}>{skill.final}</b></span>;
 }
 
 function SkillDetail({ title, skill, kind, then, here, run }: { title: string; skill: FinalSkill; kind: Skill; then: string; here: string; run: string | null }) {
   const unit = kind === "bat" ? "Strike rate" : "Economy";
   const riskUnit = kind === "bat" ? "Balls per dismissal" : "Balls per wicket";
-  const e = skill.evidence;
   return (
     <div className="fr-skill">
       <h4>{title}</h4>
       {skill.shown ? (
         <table className="table fr-steps">
           <tbody>
-            <tr><td>Card rating ({then})</td><td>{skill.card}{skill.lowSample ? "*" : ""}</td></tr>
+            <tr><td>Card rating ({then})</td><td>{skill.card}</td></tr>
             {skill.steps.map((s) => <tr key={s.key}><td>{s.label}</td><td className={deltaClass(s.delta)}>{signed(s.delta)}</td></tr>)}
-            <tr className="fr-total"><td>Final rating ({here})</td><td>{skill.final}{skill.lowSample ? "*" : ""}</td></tr>
+            <tr className="fr-total"><td>Final rating ({here})</td><td>{skill.final}</td></tr>
           </tbody>
         </table>
-      ) : <p className="small">No rating shown: the record is too thin. The rates below are an estimate from the player's position in the order.</p>}
+      ) : <p className="small">No rating shown. He played as a typical player at his position, with the rates below.</p>}
       <table className="table fr-rates">
         <thead><tr><th>Against average opposition</th><th>{unit} {then}</th><th>{unit} {here}</th><th>{riskUnit} {here}</th></tr></thead>
         <tbody>
@@ -65,10 +54,7 @@ function SkillDetail({ title, skill, kind, then, here, run }: { title: string; s
           <tr className="fr-total"><td>Overall</td><td>{rate(skill.then.rate, kind)}</td><td>{rate(skill.here.rate, kind)}</td><td>{skill.here.ballsPerOut.toFixed(0)}</td></tr>
         </tbody>
       </table>
-      <p className="small">
-        Rated mainly from {SOURCE_NAMES[e.source]}: {e.source === "later" ? `${balls(e.laterBalls)} later balls in T20Is and leagues, ${balls(e.careerBalls)} T20I balls before it` : `${balls(e.formBalls)} balls in the two years before, ${balls(e.careerBalls)} in all T20Is`}, {balls(e.domesticBalls)} in leagues, {balls(e.odiBalls)} in ODIs.
-        {" "}{Math.round(100 * e.transfer)}% of the edge carries against the strongest sides.
-      </p>
+      <p className="small">Against the strongest sides, {Math.round(100 * skill.evidence.transfer)}% of his edge carries.</p>
       {run && <p className="small">In this run: {run}.</p>}
     </div>
   );
@@ -87,7 +73,7 @@ function bowlLine(r: RunLine | undefined): string | null {
 
 function vsClassLine(f: PlayerFinal): string | null {
   if (!f.batting.shown || !f.vsClass) return null;
-  const part = (label: string, c: ClassSplitPart) => `${label} ${c.display}${c.estimated ? "*" : ""} (${c.balls} balls${c.fromOdi ? ", with ODIs" : ""})`;
+  const part = (label: string, c: ClassSplitPart) => `${label} ${c.display}`;
   return `${part("v pace", f.vsClass.pace)} · ${part("v spin", f.vsClass.spin)}`;
 }
 
@@ -126,7 +112,7 @@ export function PlayerRatings({ input, editions, lines, journeys = [] }: { input
       <h3>Player ratings</h3>
       <p className="small">
         A card rating belongs to the player's own World Cup. The final rating is the same player in {here}: the numbers the simulation used, measured against this tournament's field and
-        changed by the era, the batting slot, the pace and spin mix and the coach. Rates are against average opposition, before match situation. * means a thin record.
+        changed by the era, the batting slot, the pace and spin mix and the coach. Rates are against average opposition, before match situation.
       </p>
       <div className="fr-list">
         {finals.map((f) => {

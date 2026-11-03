@@ -65,7 +65,7 @@ export function CoachScreen({ panel, rerolls, identity, editions, venues, squads
       <p className="small">Three philosophies, from how their sides really played. The coach sets the tempo the eleven bats at in each phase; batters whose shape suits it gain a point or two on their cards, and those who run against it lose. His habits at the toss, with the ball and down the order go with him too.</p>
       <div className="coaches">
         {panel.map((c) => (
-          <button type="button" key={`${c.team}-${c.coachName}-${c.from}`} className="coach" onClick={() => onPick(c)}>
+          <button type="button" key={`${c.team}-${c.coachName}-${c.from}`} className="coach" onClick={() => onPick(c)} aria-label={`Pick ${c.coachName}, ${c.team}${c.tags.length ? `: ${c.tags.join(", ")}` : ""}`}>
             <b>{c.coachName}</b>
             <span className="player-meta">{c.team} {c.from ? `${c.from.slice(0, 4)}–${c.to ? c.to.slice(0, 4) : "now"}` : c.to ? `to ${c.to.slice(0, 4)}` : "current"} · World Cups {c.worldCups.join(", ")}</span>
             <span className="tags">{c.tags.length ? c.tags.map((t) => <span className="tag" key={t} title={TAG_NOTES[t]}>{t}</span>) : <span className="tag muted">era-average</span>}</span>
