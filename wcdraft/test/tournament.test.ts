@@ -92,6 +92,27 @@ describe("tournament", { skip: !engineReady() && "engine data not built" }, () =
     assert.equal(indPak.venueId, "new-york");
   });
 
+  it("counts the side's matches in date order, so a plan never reaches a match already played (2026-11-03)", () => {
+    // Pakistan 2016 meet the first-round qualifier first (16 March), but the group's pair loop reaches
+    // that fixture last; the side's nth match must be its nth by date, as the paper numbers it.
+    const data = loadEdition("2016");
+    const xi = teamFromDefault(data, "Pakistan");
+    const attacking = { ...xi, intent: { pp: -1.5, mid: -1.5, death: -1.5 } };
+    for (const seed of ["order-1", "order-2", "order-3"]) {
+      const run = (k: number) => simulateTournament(data, data.progression, { seed, identity: { team: "Pakistan", xi, xiFor: (n) => (n >= k ? attacking : xi) } });
+      const mine = (r: ReturnType<typeof run>) => r.stages.flatMap((s) => s.fixtures).filter((f) => f.teams.includes("Pakistan"));
+      const base = run(99);
+      for (const s of base.stages) if (s.groups) {
+        const dates = s.fixtures.map((f) => f.date ?? "9999");
+        assert.deepEqual(dates, [...dates].sort(), `${seed} ${s.id}: played in date order`);
+      }
+      const first = mine(base)[0]!;
+      assert.equal(first.date, "2016-03-16", `${seed}: the qualifier on 16 March comes first`);
+      const planned = mine(run(1));
+      assert.deepEqual(planned[0], mine(base)[0], `${seed}: a plan from the second match leaves the first as it was`);
+    }
+  });
+
   it("runs every other edition end to end", () => {
     for (const ed of Object.keys(EXPECTED_TEAMS)) {
       const data = loadEdition(ed);

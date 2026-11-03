@@ -13,6 +13,7 @@ import { journeyFor, residuals, souvenirLists, totalsKey } from "../game/souveni
 import { encodeRun, performance, runFrom } from "../game/score.ts";
 import { usePicksFit } from "../game/fit-load.ts";
 import { batInSlot, slotWeights } from "../game/slots.ts";
+import { squadRatingHere } from "../game/rules.ts";
 import { useExpectations } from "../game/souvenir-load.ts";
 import { teamLabel } from "../lib/names.ts";
 import type { RecordsOut } from "../../../wcdraft/src/analysis/records.ts";
@@ -52,6 +53,8 @@ export function ResultScreen({ state, result: played, editions, venues, records,
     bat: pickFits?.get(p.id)?.atSlot[i] ?? (p.batShown ? batInSlot(p, slotWeights(editions, played.editionId, i + 1)) : null),
     bowl: pickFits?.get(p.id)?.bowling?.final ?? null,
   } : null)), [state.picks, pickFits, editions, played.editionId]);
+  // The squad rating from those same numbers, once they are in (the card rating until then).
+  const ratingHere = pickFits ? squadRatingHere(numbersHere) : null;
   const all = useMemo<Fixtured[]>(() => result.stages.flatMap((s) => inPlayOrder(s.fixtures).map((f) => ({ ...f, stageLabel: s.label }))), [result]);
   const mine = useMemo(() => all.filter((f) => f.teams.includes(me)), [all, me]);
   const totals = useMemo(() => tournamentTotals(all), [all]);
@@ -124,8 +127,8 @@ export function ResultScreen({ state, result: played, editions, venues, records,
   };
 
   const renderPage = (p: number) => {
-    if (p === 0) return <CoverPage state={state} result={result} edition={edition} venues={venues} mine={mine} numbersHere={numbersHere} coachName={state.coach?.coachName ?? null} matchDay={mine[0] ? paper.matchDays.get(mine[0].date ?? "") ?? null : null} />;
-    if (p === lastPage) return <FinalPage result={result} all={all} mine={mine} me={me} highlight={highlight} paper={paper} souvenir={souvenir} journeys={journeys} performance={perf} date={mine[mine.length - 1]?.date ?? null} onAgain={onAgain} onShare={copyResult} shared={copied} manualShare={manualShare} />;
+    if (p === 0) return <CoverPage state={state} result={result} edition={edition} venues={venues} mine={mine} numbersHere={numbersHere} ratingHere={ratingHere} coachName={state.coach?.coachName ?? null} matchDay={mine[0] ? paper.matchDays.get(mine[0].date ?? "") ?? null : null} />;
+    if (p === lastPage) return <FinalPage result={result} all={all} mine={mine} me={me} highlight={highlight} paper={paper} souvenir={souvenir} journeys={journeys} performance={perf} date={mine[mine.length - 1]?.date ?? null} manualShare={manualShare} />;
     return <MatchPage fixture={mine[p - 1]!} index={p - 1} mine={mine} all={all} result={result} me={me} venues={venues} highlight={highlight} issue={p + 1} paper={paper} last={p === mine.length} seed={result.seed} lever={{ picks: state.picks.filter(Boolean) as PoolPlayer[], captains, coach: state.coach, captainId: state.captainId, plans: state.plans, onReplan }} />;
   };
 
@@ -146,6 +149,9 @@ export function ResultScreen({ state, result: played, editions, venues, records,
         {page < lastPage && <button type="button" className={auto === "read" ? "on" : ""} onClick={() => setAuto(auto === "read" ? null : "read")}>{auto === "read" ? "Pause" : "Auto-sim"}</button>}
         {page < lastPage && <button type="button" className={auto === "fast" ? "on" : ""} onClick={() => setAuto(auto === "fast" ? null : "fast")}>Fast</button>}
         {page < lastPage && <button type="button" onClick={() => { setAuto(null); turnTo(lastPage); }}>Skip to the end</button>}
+        {/* The run's two actions sit in the bar on the souvenir issue (2026-11-03: they were halfway down the paper's side column). */}
+        {page === lastPage && <button type="button" onClick={copyResult}>{copied ? "Copied" : "Copy result"}</button>}
+        {page === lastPage && <button type="button" className="gz-go" onClick={onAgain}>Draft again</button>}
       </nav>
       {reachedEnd && (
         <>

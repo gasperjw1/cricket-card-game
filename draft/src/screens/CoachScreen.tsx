@@ -26,7 +26,9 @@ export function CoachScreen({ panel, rerolls, identity, editions, venues, squads
       <p className="eyebrow">Choose a coach{identity ? ` · ${identity.team} ${identity.editionId}` : ""}</p>
       <h2>{identity ? `Who coaches ${identity.team} at the ${identity.editionId} World Cup?` : "Three philosophies, from how their sides really played"}</h2>
       {identity && (
-        <details className="brief-box" open>
+        // Closed by default (2026-11-03): the identity screen just showed it in full, and open it
+        // pushed the three coaches below the fold on a phone.
+        <details className="brief-box">
           <summary>Grounds and conditions, {identity.editionId}</summary>
           <VenueBrief editionId={identity.editionId} editions={editions} venues={venues} venueCounts={venueCounts} />
         </details>

@@ -90,12 +90,16 @@ export function runFrom(seed: string, identity: Identity, coach: CoachOut | null
   return { seed, identity, coach: coach ? { team: coach.team, coachName: coach.coachName, from: coach.from } : null, picks: picks.map((p) => [p.team, p.editionId, p.id]), captainId, plans };
 }
 
-/** The daily seed: one World Cup for everyone each day (UTC). */
+/**
+ * The daily seed: one World Cup a day for everyone on the same calendar date, by the player's own
+ * clock (2026-11-03; it was the UTC date, so the button read tomorrow's date in a US evening).
+ */
 export function dailySeed(date = new Date()): string {
-  return `daily-${date.toISOString().slice(0, 10)}`;
+  const pad = (n: number) => String(n).padStart(2, "0");
+  return `daily-${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())}`;
 }
 
-/** The daily seed's date as the button prints it (M/D/YYYY), the same UTC day the seed uses. */
+/** The daily seed's date as the button prints it (M/D/YYYY), the same local day the seed uses. */
 export function dailyLabel(date = new Date()): string {
-  return `${date.getUTCMonth() + 1}/${date.getUTCDate()}/${date.getUTCFullYear()}`;
+  return `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}`;
 }

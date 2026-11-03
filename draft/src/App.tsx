@@ -35,7 +35,7 @@ type Action =
 
 const initial = (seed = ""): RunState => ({
   seed, step: "home", identity: null, identityRerolls: BUDGET.identityRerolls, coachPanel: [], coach: null, coachRerolls: BUDGET.coachRerolls,
-  spin: null, spinNumber: 0, spinRerolls: BUDGET.spinRerolls, picks: Array.from({ length: 11 }, () => null), captainId: null, plans: [], result: null, error: null,
+  spin: null, spinNumber: 0, spinRerolls: BUDGET.spinRerolls, spun: [], picks: Array.from({ length: 11 }, () => null), captainId: null, plans: [], result: null, error: null,
 });
 
 function reduce(s: RunState, a: Action): RunState {
@@ -45,7 +45,7 @@ function reduce(s: RunState, a: Action): RunState {
     case "confirmIdentity": return { ...s, step: "coach" };
     case "coachPanel": return { ...s, coachPanel: a.panel, coachRerolls: a.reroll ? s.coachRerolls - 1 : s.coachRerolls };
     case "pickCoach": return { ...s, coach: a.coach, step: "draft", spinNumber: 1 };
-    case "spin": return { ...s, spin: a.spin, spinRerolls: a.reroll ? s.spinRerolls - 1 : s.spinRerolls };
+    case "spin": return { ...s, spin: a.spin, spinRerolls: a.reroll ? s.spinRerolls - 1 : s.spinRerolls, spun: [...s.spun, `${a.spin.editionId}|${a.spin.team}`] };
     case "place": {
       const picks = [...s.picks];
       picks[a.slot] = a.player;
@@ -137,9 +137,11 @@ export function App() {
     const taken = new Set(state.picks.filter(Boolean).map((p) => p!.id));
     const label = `spin:${state.spinNumber}:${reroll ? `r${state.spinRerolls}` : "first"}`;
     const r = stream(label);
-    // Draw until the spun squad still has someone undrafted (always true in practice).
+    // Draw until the spun squad still has someone undrafted (always true in practice), from the
+    // squads not yet spun in this draft (2026-11-03: Namibia 2016 came round twice in eleven spins).
+    const fresh = universe.filter((u) => !state.spun.includes(`${u.editionId}|${u.team}`));
     for (let attempt = 0; attempt < 20; attempt += 1) {
-      const squad = drawSquad(universe, r);
+      const squad = drawSquad(fresh.length ? fresh : universe, r);
       const pool = await loadPool(squad.editionId);
       const players = spinPlayers(pool, squad.team, taken);
       // A spin must offer someone the side can still take (bowlers or a keeper once the slots are tight).

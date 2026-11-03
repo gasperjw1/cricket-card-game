@@ -109,9 +109,12 @@ export function souvenirLists(all: Residual[], n = 3): Souvenir {
   const by = (f: (r: Residual) => number) => [...all].sort((a, b) => f(b) - f(a));
   const cardOf = (r: Residual) => Math.max(r.bat?.card ?? 0, r.bowl?.card ?? 0);
   const positive = (r: Residual) => (r.bat?.above ?? 0) + (r.bowl?.above ?? 0);
+  const standouts = by(positive).slice(0, n);
   return {
-    standouts: by(positive).slice(0, n),
-    unexpected: by(positive).filter((r) => cardOf(r) <= 75 && positive(r) > 0).slice(0, n),
+    standouts,
+    // A man already named among the players of the tournament is not printed again here (2026-11-03:
+    // both lists rank by the same sum, so a modest card who led the tournament headed both).
+    unexpected: by(positive).filter((r) => !standouts.includes(r) && cardOf(r) <= 75 && positive(r) > 0).slice(0, n),
     disappointing: by((r) => -positive(r)).filter((r) => cardOf(r) >= 85 && positive(r) < 0).slice(0, n),
   };
 }

@@ -42,7 +42,9 @@ export function PlayerDetail({ player, fit, hereEdition, coach, slots, weights, 
   onClose: () => void;
 }) {
   const p = player;
-  const vsBalls = (v: typeof p.vsPace) => (v ? (v.estimated ? `estimated (${v.balls} balls)` : `${v.balls} balls${v.odi ? ", ODIs included" : ""}`) : "");
+  // "estimated (0 balls)" read as a contradiction (2026-11-03): with no balls against that kind of
+  // bowling the number is his overall batting carried across.
+  const vsBalls = (v: typeof p.vsPace) => (v ? (v.estimated ? (v.balls > 0 ? `estimated from ${v.balls} balls` : "no balls against it; his overall batting") : `${v.balls} balls${v.odi ? ", ODIs included" : ""}`) : "");
   const dom = p.domesticBalls;
   const note = coachNote(p, fit ?? undefined, coach);
   return (
@@ -107,7 +109,7 @@ export function PlayerDetail({ player, fit, hereEdition, coach, slots, weights, 
               {slots.map((s) => {
                 const n = fit?.atSlot[s.index] ?? (p.batShown ? batInSlot(p, weights[s.index]!) : null);
                 return (
-                  <button key={s.index} type="button" className="pd-slot" title={describeWeights(weights[s.index]!)} onClick={() => onPlace(s.index)}>
+                  <button key={s.index} type="button" className="pd-slot" title={describeWeights(weights[s.index]!)} aria-label={`Place at ${s.label}${n !== null ? `, batting ${n}` : ""}`} onClick={() => onPlace(s.index)}>
                     <span>{s.label}</span>{n !== null ? <small>bat {n}</small> : <small>&nbsp;</small>}
                   </button>
                 );

@@ -1,7 +1,7 @@
 import type { CaptainOut, EditionOut } from "../../../wcdraft/src/engine/data.ts";
 import { TeamSheet } from "../components/TeamSheet.tsx";
 import { usePicksFit } from "../game/fit-load.ts";
-import { SLOTS, designatedKeeper, lineupProblems, oversCovered, squadRating } from "../game/rules.ts";
+import { SLOTS, designatedKeeper, lineupProblems, oversCovered, squadRating, squadRatingHere } from "../game/rules.ts";
 import { batInSlot, describeWeights, slotWeights } from "../game/slots.ts";
 import type { RunState } from "../game/types.ts";
 
@@ -17,9 +17,13 @@ export function LineupScreen({ state, captains, editions, onCaptain, onSimulate 
   const captainId = state.captainId ?? defaultCaptain;
   // Each man's batting number at his slot in this World Cup under the coach, as the draft showed it.
   const pickFits = usePicksFit(picks, state.identity?.editionId ?? "", state.coach, editions);
+  const here = SLOTS.map((s) => {
+    const p = picks[s.index];
+    return p ? { bat: pickFits?.get(p.id)?.atSlot[s.index] ?? (p.batShown ? batInSlot(p, weights[s.index]!) : null), bowl: pickFits?.get(p.id)?.bowling?.final ?? null } : null;
+  });
   return (
     <section className="card">
-      <p className="eyebrow">Lineup · squad rating {squadRating(picks)} · overs {oversCovered(picks)}/20</p>
+      <p className="eyebrow">Lineup · squad rating {pickFits ? squadRatingHere(here) : squadRating(picks)} · overs {oversCovered(picks)}/20</p>
       <h2>{state.identity?.team} {state.identity?.editionId}, coached by {state.coach?.coachName ?? "nobody"}</h2>
       <TeamSheet
         side={state.identity?.team ?? ""}
@@ -33,8 +37,8 @@ export function LineupScreen({ state, captains, editions, onCaptain, onSimulate 
           return {
             slot: s,
             player: p,
-            batHere: p ? pickFits?.get(p.id)?.atSlot[s.index] ?? (p.batShown ? batInSlot(p, w) : null) : null,
-            bowlHere: p ? pickFits?.get(p.id)?.bowling?.final ?? null : null,
+            batHere: here[s.index]?.bat ?? null,
+            bowlHere: here[s.index]?.bowl ?? null,
             keeps: !!p && designatedKeeper(picks)?.id === p.id,
             action: <span className="sheet-slot-note" title={describeWeights(w)} />,
           };

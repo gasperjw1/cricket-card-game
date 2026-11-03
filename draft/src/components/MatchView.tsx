@@ -10,7 +10,8 @@ import { familiar, fullName } from "../lib/names.ts";
 import { dismissalText, oversText } from "./Scorecard.tsx";
 import { marginText } from "./MatchCard.tsx";
 
-const SPEEDS = { steady: 900, quick: 250 } as const;
+// Milliseconds a ball. Fast was 250 (a full match took over a minute); at 80 it takes about twenty seconds.
+const SPEEDS = { steady: 900, quick: 80 } as const;
 
 interface Line {
   runs: number;
@@ -71,6 +72,10 @@ export function MatchView({ fixture, onDone }: { fixture: FixtureResult; onDone:
   const state = useMemo(() => {
     const bat = new Map<string, Line>(), bowl = new Map<string, Line & { wickets: number }>();
     let legal = 0;
+    // The last wicket and the stand since it (2026-11-03: the board had neither, so a wicket was
+    // gone from view a ball later). Stand runs include extras; balls are legal deliveries.
+    let lastWicket: { id: string; runs: number; balls: number; score: number; wickets: number; legal: number } | null = null;
+    let standFrom = { runs: 0, legal: 0 };
     for (const b of balls.slice(0, at + 1)) {
       if (b.innings !== ball?.innings) continue;
       if (b.legal) legal += 1;
@@ -84,8 +89,14 @@ export function MatchView({ fixture, onDone }: { fixture: FixtureResult; onDone:
       if (b.extraKind !== "bye") w.runs += b.runsBatter + b.extras;
       if (b.wicket && b.dismissal?.bowler) w.wickets += 1;
       bowl.set(b.bowler, w);
+      if (b.wicket) {
+        const out = b.dismissal?.nonStriker ? b.nonStriker : b.striker;
+        const l = bat.get(out) ?? { runs: 0, balls: 0 };
+        lastWicket = { id: out, runs: l.runs, balls: l.balls, score: b.runsAfter, wickets: b.wicketsAfter, legal };
+        standFrom = { runs: b.runsAfter, legal };
+      }
     }
-    return { bat, bowl, legal };
+    return { bat, bowl, legal, lastWicket: lastWicket as typeof lastWicket, standFrom };
   }, [balls, at, ball?.innings]);
 
   if (!ball || !i1 || !i2) return <div className="board"><p>No ball-by-ball record for this match.</p><button type="button" onClick={onDone}>Back to the paper</button></div>;
@@ -121,6 +132,7 @@ export function MatchView({ fixture, onDone }: { fixture: FixtureResult; onDone:
           <div className="board-overs">{oversText(state.legal)} {state.legal === 6 ? "over" : "overs"}{chasing ? ` · target ${target}` : ""}</div>
           {chasing && <div className="board-overs">{i1.team} {i1.runs}/{i1.wickets}</div>}
           {chasing && need > 0 && left > 0 && wickets < 10 && <div className="board-need">Need {need} off {left}</div>}
+          {started && state.legal > 0 && <div className="board-overs">Run rate {(runs / (state.legal / 6)).toFixed(2)}{chasing && need > 0 && left > 0 && wickets < 10 ? ` · required ${(need / (left / 6)).toFixed(2)}` : ""}</div>}
         </div>
         <div className="board-side">
           {[ball.striker, ball.nonStriker].map((id) => {
@@ -128,6 +140,8 @@ export function MatchView({ fixture, onDone }: { fixture: FixtureResult; onDone:
             return <div className={`board-row ${id === ball.striker ? "on" : ""}`} key={id}><span>{display(id)}{id === ball.striker ? " *" : ""}</span><b>{l?.runs ?? 0} ({l?.balls ?? 0})</b></div>;
           })}
           <div className="board-row dim"><span>{display(ball.bowler)} ({opposition})</span><b>{oversText(w?.balls ?? 0)}–{w?.runs ?? 0}–{w?.wickets ?? 0}</b></div>
+          {started && wickets < 10 && <div className="board-row dim"><span>Partnership</span><b>{runs - state.standFrom.runs} ({state.legal - state.standFrom.legal})</b></div>}
+          {state.lastWicket && <div className="board-row dim"><span>Last wicket: {display(state.lastWicket.id)} {state.lastWicket.runs} ({state.lastWicket.balls})</span><b>{state.lastWicket.wickets}–{state.lastWicket.score}, {oversText(state.lastWicket.legal)} ov</b></div>}
         </div>
       </div>
       <p className="board-label">This over</p>

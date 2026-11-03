@@ -1404,7 +1404,13 @@ fielding. The simulation is not required to reproduce real results (§11).
   counting no-results as defeats, the death-overs chip, blank cards in spins, leaked labels and
   initials, the footer over the team sheet, Copy result with no fallback, and a new qualifier
   losing the real slot's fixtures (now taken from the real slot-holder, checked for double
-  bookings).
+  bookings). Then the confusing items (2026-11-03): coach panels with three different tempos, stand-in
+  squads labelled, no squad twice in a draft, live board with run rate, required rate, partnership
+  and last wicket, quicker Fast, souvenir actions in the bar, no player in two souvenir lists, phone
+  card sheet with the slots first, the daily on the local date, a confirming line on the lever, and
+  a squad rating from the in-edition numbers. Checking the lever found that a plan for the next
+  match could change one already played (the engine counted a side's matches in pair-loop order);
+  the engine now plays each group stage in date order, with a test.
 - **Agreed order after the refit (2026-11-01):** (1) associates fix in the ratings: no-record
   players sit on the global position-band prior, so Italy 2026 bowls at 71 against India's 74 and a
   few tournament balls can make a 77 (shrink empty records toward the side's own mean or an

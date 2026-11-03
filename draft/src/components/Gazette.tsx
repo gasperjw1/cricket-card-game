@@ -170,7 +170,7 @@ function RunSoFar({ mine, upTo, me }: { mine: Fixtured[]; upTo: number; me: stri
   );
 }
 
-export function CoverPage({ state, result, edition, venues, mine, numbersHere, coachName, matchDay }: { state: RunState; result: TournamentResult; edition: EditionOut | undefined; venues: VenueOut[]; mine: Fixtured[]; numbersHere: ({ bat: number | null; bowl: number | null } | null)[]; coachName: string | null; matchDay: number | null }) {
+export function CoverPage({ state, result, edition, venues, mine, numbersHere, ratingHere, coachName, matchDay }: { state: RunState; result: TournamentResult; edition: EditionOut | undefined; venues: VenueOut[]; mine: Fixtured[]; numbersHere: ({ bat: number | null; bowl: number | null } | null)[]; ratingHere: number | null; coachName: string | null; matchDay: number | null }) {
   const me = state.identity!.team;
   const picks = state.picks.filter(Boolean);
   const captain = picks.find((p) => p!.id === state.captainId);
@@ -181,7 +181,7 @@ export function CoverPage({ state, result, edition, venues, mine, numbersHere, c
       <Masthead issue="Issue 1 · Preview" date={longDate(mine[0]?.date ?? null)} matchDay={matchDay} editionId={result.editionId} />
       <div className="gz-kicker">Squad announced</div>
       <h2 className="gz-headline">{teamLabel(me)} name their eleven for the {result.editionId} World Cup</h2>
-      <p className="gz-stand">{picks.length} players from across the tournament's history, with a squad rating of {squadRating(state.picks)}{coachName ? `, and ${coachName} as coach` : ""}{hosts ? `. The tournament is in ${hosts}.` : "."}{result.editionId === "2007" ? " It is the first T20 World Cup ever played, and nobody yet knows what a good score is." : ""}{state.identity!.standIn ? ` ${teamLabel(me)} stand in for a side that did not take part.` : ""}</p>
+      <p className="gz-stand">{picks.length} players from across the tournament's history, with a squad rating of {ratingHere ?? squadRating(state.picks)}{coachName ? `, and ${coachName} as coach` : ""}{hosts ? `. The tournament is in ${hosts}.` : "."}{result.editionId === "2007" ? " It is the first T20 World Cup ever played, and nobody yet knows what a good score is." : ""}{state.identity!.standIn ? ` ${teamLabel(me)} stand in for a side that did not take part.` : ""}</p>
       <div className="gz-columns">
         <section className="gz-box gz-wide">
           <h4>The batting order</h4>
@@ -222,29 +222,38 @@ function planAt(plans: (MatchPlan | undefined)[], n: number): MatchPlan {
   return plan;
 }
 
-function NextMatchLever({ lever, next, me }: { lever: Lever; next: number; me: string }) {
+const TEMPO_WORDS: Record<NonNullable<MatchPlan["intent"]>, string> = { coach: "at the coach's own tempo", attack: "attacking in every phase", balanced: "at a balanced tempo", hold: "holding back" };
+
+function NextMatchLever({ lever, next, me, opponent }: { lever: Lever; next: number; me: string; opponent: string | null }) {
   const plan = planAt(lever.plans, next);
   const rated = (id: string) => lever.captains.filter((c) => c.personId === id).sort((a, b) => b.matches - a.matches)[0];
   const captainId = plan.captainId === undefined ? lever.captainId : plan.captainId;
   const tempo = plan.intent ?? "coach";
+  // Say what changed and that the matches from here on were played again with it (2026-11-03: the
+  // tournament did replay, but nothing on the page said so).
+  const [saved, setSaved] = useState<string | null>(null);
+  const from = opponent ? `from the match against ${teamLabel(opponent)} on` : "from the next match on";
+  const change = (p: MatchPlan, what: string) => { lever.onReplan(next, p); setSaved(`${what} ${from}. Every match from there has been played again with it; the ones already played stand.`); };
+  const nameOf = (id: string | null) => (id ? lever.picks.find((p) => p.id === id)?.name ?? "the captain" : null);
   return (
     <section className="gz-box gz-lever">
       <h4>Before the next match</h4>
       <p className="gz-note">{teamLabel(me)} may name a captain and set a tempo for the next match and the ones after it. The order is the order you drafted.</p>
       <label className="gz-lever-row"><span>Captain</span>
-        <select value={captainId ?? ""} onChange={(e) => lever.onReplan(next, { captainId: e.target.value || null })}>
+        <select value={captainId ?? ""} onChange={(e) => change({ captainId: e.target.value || null }, e.target.value ? `${nameOf(e.target.value)} captains` : "No rated captain leads")}>
           <option value="">No rated captain</option>
           {lever.picks.map((p) => { const c = rated(p.id); return <option key={p.id} value={p.id}>{p.name}{c ? ` · ${c.z > 0 ? "+" : ""}${c.z.toFixed(1)}` : ""}</option>; })}
         </select>
       </label>
       <label className="gz-lever-row"><span>Tempo</span>
-        <select value={tempo} onChange={(e) => lever.onReplan(next, { intent: e.target.value as MatchPlan["intent"] })}>
+        <select value={tempo} onChange={(e) => { const intent = e.target.value as NonNullable<MatchPlan["intent"]>; change({ intent }, `${teamLabel(me)} bat ${intent === "coach" && lever.coach ? `at ${lever.coach.coachName}'s own tempo` : TEMPO_WORDS[intent]}`); }}>
           <option value="coach">{lever.coach ? `${lever.coach.coachName}'s own` : "The coach's own"}</option>
           <option value="attack">Attack in every phase</option>
           <option value="balanced">Balanced</option>
           <option value="hold">Hold back</option>
         </select>
       </label>
+      {saved && <p className="gz-note gz-saved" role="status">{saved}</p>}
     </section>
   );
 }
@@ -307,7 +316,7 @@ export function MatchPage({ fixture, index, mine, all, result, me, venues, highl
               <section className="gz-box"><h4>{teamLabel(me)} so far</h4><RunSoFar mine={mine} upTo={index} me={me} /></section>
               {stage?.groups && f.group && <Standings stage={stage} fixture={f} group={f.group} me={me} />}
               {next && <section className="gz-box"><h4>Next for {teamLabel(me)}</h4><p className="gz-next"><b>{next.stageLabel}, v {teamLabel(next.teams.find((t) => t !== me) ?? "")}</b><br />{nextVenue ? `${nextVenue.name}, ${nextVenue.city}` : ""}{next.date ? `, ${shortDate(next.date)}` : ""}</p></section>}
-              {next && lever && <NextMatchLever lever={lever} next={index + 1} me={me} />}
+              {next && lever && <NextMatchLever key={index} lever={lever} next={index + 1} me={me} opponent={next.teams.find((t) => t !== me) ?? null} />}
               {copy && <LateNews copy={copy} />}
             </aside>
           </div>
@@ -352,7 +361,7 @@ function ResidualRow({ r }: { r: Residual }) {
 
 const SCOPE_LABEL = { wc: "", allWc: " · a T20 World Cup record", t20i: " · a T20I record" } as const;
 
-export function FinalPage({ result, all, mine, me, highlight, paper, souvenir, journeys, performance: perf, date, onAgain, onShare, shared, manualShare }: { result: TournamentResult; all: Fixtured[]; mine: Fixtured[]; me: string; highlight: Set<string>; paper: Paper; souvenir: Souvenir | null; journeys: Journey[]; performance: Performance; date: string | null; onAgain: () => void; onShare: () => void; shared: boolean; manualShare: string | null }) {
+export function FinalPage({ result, all, mine, me, highlight, paper, souvenir, journeys, performance: perf, date, manualShare }: { result: TournamentResult; all: Fixtured[]; mine: Fixtured[]; me: string; highlight: Set<string>; paper: Paper; souvenir: Souvenir | null; journeys: Journey[]; performance: Performance; date: string | null; manualShare: string | null }) {
   const id = result.identity!;
   const exitStage = exitStageOf(result.stages, mine);
   const verdict = verdictFor(id, me, result.stages.length, exitStage);
@@ -385,7 +394,7 @@ export function FinalPage({ result, all, mine, me, highlight, paper, souvenir, j
         <div className="gz-grade"><span>Grade</span><b>{verdict.grade}</b></div>
         <div><span>Performance</span><b>{perf.score}</b></div>
       </div>
-      <p className="gz-note gz-perf">Performance: {perf.stagePoints} for the stage reached, {perf.winPoints} for {id.won} win{id.won === 1 ? "" : "s"}, {perf.nrrPoints >= 0 ? "+" : "−"}{Math.abs(perf.nrrPoints)} for a net run rate of {perf.nrr >= 0 ? "+" : "−"}{Math.abs(perf.nrr).toFixed(2)}{perf.unbeatenPoints ? `, ${perf.unbeatenPoints} for going unbeaten` : ""}. Copy result carries a link that replays this run exactly.</p>
+      <p className="gz-note gz-perf">Performance: {perf.stagePoints} for the stage reached, {perf.winPoints} for {id.won} win{id.won === 1 ? "" : "s"}, {perf.nrrPoints >= 0 ? "+" : "−"}{Math.abs(perf.nrrPoints)} for a net run rate of {perf.nrr >= 0 ? "+" : "−"}{Math.abs(perf.nrr).toFixed(2)}{perf.unbeatenPoints ? `, ${perf.unbeatenPoints} for going unbeaten` : ""}. Copy result, in the bar below, carries a link that replays this run exactly.</p>
       <div className="gz-columns">
         <div className="gz-main">
           <section className="gz-box">
@@ -433,10 +442,6 @@ export function FinalPage({ result, all, mine, me, highlight, paper, souvenir, j
         <aside className="gz-rail">
           {profile.length > 0 && <section className="gz-box"><h4>The verdict on {teamLabel(me)}</h4><ul className="gz-chips">{profile.map((p) => <li key={p.label} className={p.good ? "good" : "bad"}>{p.label}</li>)}</ul></section>}
           <Leaders fixtures={all} highlight={highlight} me={me} />
-          <div className="gz-actions">
-            <button type="button" onClick={onShare}>{shared ? "Copied" : "Copy result"}</button>
-            <button type="button" className="gz-go" onClick={onAgain}>Draft again</button>
-          </div>
           {manualShare && (
             <label className="gz-manual">
               <span className="gz-note">This browser would not copy it; select the text and copy it yourself.</span>

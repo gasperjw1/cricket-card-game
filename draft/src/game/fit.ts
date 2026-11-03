@@ -23,6 +23,7 @@ import type { PlayerRating } from "../../../wcdraft/src/ratings/model.ts";
 import { valueIn, type EditionEnv } from "./final-ratings.ts";
 import type { PhaseWeights } from "./slots.ts";
 import type { PoolPlayer } from "./types.ts";
+import { intentWord } from "./rules.ts";
 
 export interface FitStep {
   key: "era" | "slot" | "class" | "coachField" | "coachFit";
@@ -151,7 +152,7 @@ export function fitPlayer(p: PoolPlayer, engine: EnginePlayer, rating: PlayerRat
 }
 
 /** "attacks", "balanced", "holds back": the coach's intent in a phase, in the words the coach panel uses. */
-export const intentWord = (z: number) => (z >= 0.6 ? "attacks" : z <= -0.6 ? "holds back" : "balanced");
+export { intentWord };
 
 const PHASE_NAMES: Record<Phase, string> = { pp: "in the powerplay", mid: "in the middle overs", death: "at the death" };
 

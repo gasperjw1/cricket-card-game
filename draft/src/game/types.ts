@@ -101,6 +101,8 @@ export interface RunState {
   spin: Spin | null;
   spinNumber: number;
   spinRerolls: number;
+  /** Squads already spun in this draft (`${editionId}|${team}`), rerolled-away ones too, so none comes round twice. */
+  spun: string[];
   picks: (PoolPlayer | null)[];
   captainId: string | null;
   /** The between-match lever: a plan for the side's nth match holds from that match onward. */

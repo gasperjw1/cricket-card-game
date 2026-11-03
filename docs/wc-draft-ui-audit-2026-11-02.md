@@ -29,6 +29,33 @@ Eden Gardens whoever qualifies.
 
 Share links made before these changes replay differently (fixture grounds and who bowls changed).
 
+## Confusing items fixed 2026-11-03, each checked
+
+- **Coach panels** (8): three coaches whose printed tempos all differ (`rules.ts` `drawCoachPanel`).
+  Over 2,000 seeds on the real pool: 764 panels had two coaches reading alike before, 0 after,
+  and all 67 coaches still come up. The grounds brief is closed on the coach screen.
+- **Stand-in squads** (9) say so under the squad name; the flag is set for exactly the stand-in
+  squads (Namibia 2016, Zimbabwe 2024, Kenya 2026) and not for real ones (Namibia 2021).
+- **No squad twice in a draft** (10): a full draft with both rerolls spun 13 different squads.
+- **"estimated (0 balls)"** (12) reads "no balls against it; his overall batting".
+- **Live board** (13): run rate, required rate, partnership, last wicket. Checked against the
+  scorecard: 30/2 after 5 overs, partnership 15 (15), last wicket van Lingen 3 (7) at 2–15, 2.3
+  overs; the scorecard has 2-15 (van Lingen, 2.3 ov) and the stand ending at 40 (36). **Fast** (14)
+  is 80 ms a ball (about twenty seconds a match).
+- **Souvenir actions** (15) are in the bottom bar on the souvenir issue; a player of the
+  tournament is no longer repeated under "Better than their cards" (23).
+- **Phone** (16): the slot buttons sit under the name in the card sheet; slot buttons are named for
+  screen readers ("Place at No. 5, batting 80").
+- **Daily date** (17) is the player's own calendar date, seed and label alike.
+- **Lever** (G): a line says what changed and from which match. Checking it found a real bug: the
+  side's nth match in the engine was the nth its group's pair loop reached, not the nth by date,
+  so a plan for the next match changed a match already played (Pakistan v Ireland went from 33 to
+  26 runs). The engine now dates every group fixture before the stage and plays in date order
+  (`tournament.ts` `dateUndated`). Over 246 plans (four editions, three sides each, eight seeds)
+  no earlier match changed, and the client no longer has to date any group fixture; a test holds it.
+- **Squad rating** (H) comes from the in-edition numbers the sheet prints: 82.5 for Pakistan 2016
+  (the table's eleven better numbers sum to 908), 85 on a fresh lineup (the sheet averages 85.0).
+
 ## 0. Broken, found in runs 2–4
 
 A. **"Back to the draft" from the lineup soft-locks the run.** The draft screen asks for a 12th

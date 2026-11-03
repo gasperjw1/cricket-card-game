@@ -44,9 +44,11 @@ describe("performance and the share link", () => {
     assert.equal(decodeRun(encodeRun({ ...run, picks: run.picks.slice(0, 10) })), null, "eleven picks or nothing");
   });
 
-  it("names the day's seed by the UTC date", () => {
-    assert.equal(dailySeed(new Date("2026-11-02T23:30:00Z")), "daily-2026-11-02");
-    // The button's date is the seed's UTC day, written M/D/YYYY.
-    assert.equal(dailyLabel(new Date("2026-11-02T23:30:00Z")), "11/2/2026");
+  it("names the day's seed by the player's local date", () => {
+    // Late evening local time is still that day, whatever the UTC date has become.
+    const evening = new Date(2026, 10, 2, 23, 30);
+    assert.equal(dailySeed(evening), "daily-2026-11-02");
+    assert.equal(dailyLabel(evening), "11/2/2026");
+    assert.equal(dailySeed(new Date(2026, 0, 5, 0, 5)), "daily-2026-01-05");
   });
 });

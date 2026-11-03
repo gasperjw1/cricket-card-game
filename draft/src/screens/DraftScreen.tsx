@@ -50,6 +50,8 @@ export function DraftScreen({ state, editions, venues, squads, onPlace, onReroll
         <div className="draft-bar-main">
           <p className="eyebrow">Spin {Math.min(state.spinNumber, 11)} of 11 · {state.identity?.team} {editionId}{state.coach ? ` · coach ${state.coach.coachName}` : ""}</p>
           <h2 className="draft-squad">{state.spin ? <>{state.spin.team} <span className="muted">{state.spin.editionId}</span></> : "Spinning…"}</h2>
+          {/* A stand-in squad never played that World Cup: it is Afghanistan's slot, built from the side's T20Is around then (2026-11-03: it spun with nothing saying so). */}
+          {state.spin?.players[0]?.standIn && <p className="small muted draft-standin">Stand-in for Afghanistan, whose records are withheld: {state.spin.team} did not play the {state.spin.editionId} World Cup, so these cards come from their T20Is around then.</p>}
         </div>
         <div className="draft-bar-side">
           <span className="small draft-needs">{filled}/11 named · overs {oversCovered(state.picks)}/20{needText ? ` · needs ${needText}` : ""}</span>

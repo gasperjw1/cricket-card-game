@@ -57,8 +57,12 @@ describe("souvenir", () => {
     const lists = souvenirLists(residuals(t, e, new Set(["T|small"])));
     assert.equal(lists.standouts[0]!.name, "Small");
     assert.ok(lists.standouts[0]!.mine);
-    assert.deepEqual(lists.unexpected.map((r) => r.name), ["Small"]);
+    // Small leads the tournament on a modest card: named once, among the players of the tournament.
+    assert.deepEqual(lists.unexpected.map((r) => r.name), []);
     assert.deepEqual(lists.disappointing.map((r) => r.name), ["Big"]);
+    const one = souvenirLists(residuals(t, e, new Set(["T|small"])), 1);
+    assert.deepEqual(one.standouts.map((r) => r.name), ["Small"]);
+    assert.ok(one.unexpected.every((r) => !one.standouts.includes(r)), "no man in both lists");
   });
 
   it("writes the journey match by match, with a dash for a match he sat out", () => {

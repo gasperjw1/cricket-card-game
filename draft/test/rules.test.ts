@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
 import { describe, it } from "node:test";
 import { Rng } from "../../wcdraft/src/engine/rng.ts";
-import { drawCoachPanel, drawSquad, eligible, fits, lineupProblems, needs, oversCovered, slotsFor, spinPlayers, squadUniverse } from "../src/game/rules.ts";
+import { drawCoachPanel, drawSquad, eligible, fits, lineupProblems, needs, oversCovered, slotsFor, spinPlayers, squadUniverse, tempoProfile } from "../src/game/rules.ts";
 import { batInSlot, slotWeights } from "../src/game/slots.ts";
 import type { PoolPlayer } from "../src/game/types.ts";
 
@@ -94,5 +94,16 @@ describe("draft rules", () => {
     const panel = drawCoachPanel(coaches, new Rng("panel"));
     assert.equal(panel.length, 3);
     assert.equal(new Set(panel.map((c) => c.coachName)).size, 3);
+  });
+
+  it("draws a panel whose printed tempos differ when the pool allows it", () => {
+    const coach = (i: number, pp: number, mid: number, death: number) => ({ team: "T", coachName: `C${i}`, role: "", from: "2010", to: "2012", worldCups: ["2012"], months: 10, innings: 30, tags: [], intent: { pp, mid, death } });
+    // Six all-balanced coaches, one attacker, one who holds back at the death.
+    const coaches = [...Array.from({ length: 6 }, (_, i) => coach(i, 0, 0.1, -0.2)), coach(6, 1, 0, 0), coach(7, 0, 0, -1)];
+    for (const seed of ["a", "b", "c", "d", "e"]) {
+      const panel = drawCoachPanel(coaches, new Rng(seed));
+      assert.equal(panel.length, 3);
+      assert.equal(new Set(panel.map(tempoProfile)).size, 3, `seed ${seed}: three different tempos`);
+    }
   });
 });

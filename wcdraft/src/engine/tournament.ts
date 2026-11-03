@@ -158,6 +158,8 @@ export function simulateTournament(data: EditionData, progression: Progression, 
   const standInFixtures = data.afghanistanFixtures;
 
   const stages: StageResult[] = [];
+  // The days each side plays, across stages, so a dated-in fixture never doubles a side up.
+  const busy = new Map<string, Set<string>>();
   let slots: Record<string, string> = {};
   let previousKnockoutWinners: string[] = [];
   const identityRecord = identity ? { team: identity.team, played: 0, won: 0, lost: 0, exit: "group stage", unbeaten: true, champion: false } : null;
@@ -203,7 +205,7 @@ export function simulateTournament(data: EditionData, progression: Progression, 
 
   for (const stage of progression.stages) {
     if (stage.type === "groups") {
-      const res = playGroups(stage, slots, play, venuePool, realFixture, slotOccupant, standInFixtures, progression.standIn, rng);
+      const res = playGroups(stage, slots, play, venuePool, realFixture, slotOccupant, standInFixtures, progression.standIn, busy, rng);
       stages.push(res.stage);
       slots = res.slots;
       if (identityRecord && res.stage.fixtures.some((f) => f.teams.includes(identityRecord.team))) {
@@ -247,17 +249,22 @@ function playGroups(
   slotOccupant: (ref: string, group: string, present: string[]) => string | null,
   standInFixtures: EditionData["afghanistanFixtures"],
   standIn: string | null,
+  busy: Map<string, Set<string>>,
   rng: Rng,
 ): { stage: StageResult; slots: Record<string, string> } {
   const groups: Record<string, StandingRow[]> = {};
   const fixtures: FixtureResult[] = [];
   const outSlots: Record<string, string> = {};
+  // Every fixture of the stage first, then a date for the undated ones, then play in date order
+  // (2026-11-03): the side's nth match has to be the paper's nth match, or a plan made for the next
+  // match would land on whichever fixture the pair loop reached nth (it changed matches already played).
+  const planned: Fixture[] = [];
+  const groupTeams = new Map<string, string[]>();
   for (const [g, entries] of Object.entries(stage.groups)) {
     const teams = entries.map((e) => resolve(e, incoming));
-    const rows = new Map(teams.map((t) => [t, emptyRow(t)]));
+    groupTeams.set(g, teams);
     const pool = venuePool(g);
     let poolIdx = 0;
-    const results: FixtureResult[] = [];
     for (let i = 0; i < teams.length; i += 1) {
       for (let j = i + 1; j < teams.length; j += 1) {
         const a = teams[i]!, b = teams[j]!;
@@ -272,15 +279,25 @@ function playGroups(
         const bySlot = sa || sb ? realFixture(sa ?? a, sb ?? b, g) : null;
         const realVenue = realFixture(a, b, g) ?? realVenueFor(a, b, g, standIn, standInFixtures, stage.label) ?? (bySlot && { ...bySlot, realId: null });
         const venueId = realVenue?.venueId ?? (pool.length ? pool[(poolIdx++) % pool.length]! : null);
-        const f = play({ stageId: stage.id, stageLabel: stage.label, group: g, teams: [a, b], venueId, date: realVenue?.date ?? null, realId: realVenue?.realId ?? null });
-        results.push(f);
-        tally(rows, f);
+        planned.push({ stageId: stage.id, stageLabel: stage.label, group: g, teams: [a, b], venueId, date: realVenue?.date ?? null, realId: realVenue?.realId ?? null });
       }
     }
+  }
+  dateUndated(planned, busy);
+  const byGroup = new Map<string, FixtureResult[]>();
+  for (const fx of [...planned].sort((x, y) => (x.date ?? "9999").localeCompare(y.date ?? "9999"))) {
+    const f = play(fx);
+    fixtures.push(f);
+    (byGroup.get(fx.group!) ?? byGroup.set(fx.group!, []).get(fx.group!)!).push(f);
+  }
+  for (const [g] of Object.entries(stage.groups)) {
+    const teams = groupTeams.get(g)!;
+    const rows = new Map(teams.map((t) => [t, emptyRow(t)]));
+    const results = byGroup.get(g) ?? [];
+    for (const f of results) tally(rows, f);
     for (const r of rows.values()) r.nrr = nrrOf(r);
     const ranked = rankGroup([...rows.values()], results, stage.seedOrder);
     groups[g] = ranked;
-    fixtures.push(...results);
     const qualifiers = ranked.slice(0, stage.advance.perGroup).map((r) => r.team);
     if (stage.advance.mode === "seedSlots") {
       // Seeded qualifiers keep their slot; others inherit the highest vacated seed slot of the group.
@@ -303,6 +320,34 @@ function playGroups(
   }
   void rng;
   return { stage: { id: stage.id, label: stage.label, groups, fixtures, slots: outSlots }, slots: outSlots };
+}
+
+/**
+ * A date for each undated fixture of a stage (in place), spread through the stage's real dates
+ * and never on a day either side already plays. The same rule the client used to apply after the
+ * run (`draft/src/game/stats.ts` `datedStages`), moved here so play order is date order. A stage
+ * with no real date at all is left for the client's fallback.
+ */
+function dateUndated(fixtures: Fixture[], busy: Map<string, Set<string>>): void {
+  const taken = (team: string) => busy.get(team) ?? busy.set(team, new Set()).get(team)!;
+  for (const f of fixtures) if (f.date) for (const t of f.teams) taken(t).add(f.date);
+  const real = fixtures.flatMap((f) => (f.date ? [f.date] : [])).sort();
+  if (!real.length) return;
+  const undated = fixtures.filter((f) => !f.date);
+  undated.forEach((f, k) => {
+    const free = (date: string) => f.teams.every((t) => !taken(t).has(date));
+    const target = Math.floor(((k + 0.5) * real.length) / undated.length);
+    let date = real.map((d, i) => ({ d, distance: Math.abs(i - target) })).sort((x, y) => x.distance - y.distance).find((x) => free(x.d))?.d;
+    for (let extra = 1; !date; extra += 1) { const later = addDays(real[real.length - 1]!, extra); if (free(later)) date = later; }
+    f.date = date;
+    for (const t of f.teams) taken(t).add(date);
+  });
+}
+
+function addDays(date: string, days: number): string {
+  const d = new Date(`${date}T00:00:00Z`);
+  d.setUTCDate(d.getUTCDate() + days);
+  return d.toISOString().slice(0, 10);
 }
 
 function realVenueFor(a: string, b: string, group: string, standIn: string | null, standInFixtures: EditionData["afghanistanFixtures"], stageLabel: string): { venueId: string | null; date: string | null; realId: string | null } | null {

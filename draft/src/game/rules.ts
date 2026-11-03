@@ -125,16 +125,40 @@ export function coachPool(coaches: CoachOut[]): CoachOut[] {
   return coaches.filter((c) => c.worldCups.length > 0 && c.innings >= 20);
 }
 
+/** A coach's tempo in one phase as the panel words it. */
+export const intentWord = (z: number) => (z >= 0.6 ? "attacks" : z <= -0.6 ? "holds back" : "balanced");
+
+/** The three words the panel prints for a coach (powerplay / middle / death). */
+export const tempoProfile = (c: CoachOut) => [c.intent.pp, c.intent.mid, c.intent.death].map(intentWord).join("/");
+
+/**
+ * A panel of coaches whose printed tempos all differ (2026-11-03): a quarter of the pool reads
+ * "balanced" in every phase, so a plain draw often offered two coaches the panel couldn't tell
+ * apart. Falls back to a repeat profile only when the pool has too few distinct ones.
+ */
 export function drawCoachPanel(pool: CoachOut[], rng: Rng, size: number = BUDGET.coachPanel): CoachOut[] {
   const copy = [...pool];
+  const order: CoachOut[] = [];
+  while (copy.length) order.push(copy.splice(Math.floor(rng.next() * copy.length), 1)[0]!);
   const out: CoachOut[] = [];
-  while (out.length < size && copy.length) out.push(copy.splice(Math.floor(rng.next() * copy.length), 1)[0]!);
+  for (const c of order) if (out.length < size && !out.some((o) => tempoProfile(o) === tempoProfile(c))) out.push(c);
+  for (const c of order) if (out.length < size && !out.includes(c)) out.push(c);
   return out;
 }
 
 /** Mean best-skill display of the eleven, the squad rating shown beside the performance score. */
 export function squadRating(picks: (PoolPlayer | null)[]): number | null {
   const xs = picks.filter(Boolean).map((p) => Math.max(p!.bat, p!.bowl));
+  return xs.length ? +(xs.reduce((a, b) => a + b, 0) / xs.length).toFixed(1) : null;
+}
+
+/**
+ * The squad rating from the numbers the sheet and the paper print: each man's better number in
+ * this World Cup at his slot (2026-11-03). The card version gave the same eleven 83.5 in 2007,
+ * 2016 and 2026 while the table beneath it showed different numbers.
+ */
+export function squadRatingHere(numbers: ({ bat: number | null; bowl: number | null } | null)[]): number | null {
+  const xs = numbers.flatMap((n) => (n && (n.bat !== null || n.bowl !== null) ? [Math.max(n.bat ?? 0, n.bowl ?? 0)] : []));
   return xs.length ? +(xs.reduce((a, b) => a + b, 0) / xs.length).toFixed(1) : null;
 }
 
