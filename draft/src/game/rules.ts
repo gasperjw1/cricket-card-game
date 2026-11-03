@@ -110,9 +110,14 @@ export function drawSquad(universe: SquadRef[], rng: Rng): SquadRef {
   return universe[Math.floor(rng.next() * universe.length)]!;
 }
 
-/** The spun squad's players with the people already drafted removed (one instance per real person), best first. */
+/**
+ * The spun squad's players with the people already drafted removed (one instance per real person),
+ * best first. A card that shows neither a batting nor a bowling number is not offered (2026-11-03):
+ * with no record anywhere the engine could only play him as his slot's average, which made a blank
+ * card a free average opener.
+ */
 export function spinPlayers(pool: PoolPlayer[], team: string, taken: Set<string>): PoolPlayer[] {
-  return pool.filter((p) => p.team === team && !taken.has(p.id)).sort((a, b) => b.tierScore - a.tierScore);
+  return pool.filter((p) => p.team === team && !taken.has(p.id) && (p.batShown || p.bowlShown)).sort((a, b) => b.tierScore - a.tierScore);
 }
 
 /** Coaches who took a side to a World Cup and have enough style data to carry tags. */

@@ -352,7 +352,7 @@ function ResidualRow({ r }: { r: Residual }) {
 
 const SCOPE_LABEL = { wc: "", allWc: " · a T20 World Cup record", t20i: " · a T20I record" } as const;
 
-export function FinalPage({ result, all, mine, me, highlight, paper, souvenir, journeys, performance: perf, date, onAgain, onShare, shared }: { result: TournamentResult; all: Fixtured[]; mine: Fixtured[]; me: string; highlight: Set<string>; paper: Paper; souvenir: Souvenir | null; journeys: Journey[]; performance: Performance; date: string | null; onAgain: () => void; onShare: () => void; shared: boolean }) {
+export function FinalPage({ result, all, mine, me, highlight, paper, souvenir, journeys, performance: perf, date, onAgain, onShare, shared, manualShare }: { result: TournamentResult; all: Fixtured[]; mine: Fixtured[]; me: string; highlight: Set<string>; paper: Paper; souvenir: Souvenir | null; journeys: Journey[]; performance: Performance; date: string | null; onAgain: () => void; onShare: () => void; shared: boolean; manualShare: string | null }) {
   const id = result.identity!;
   const exitStage = exitStageOf(result.stages, mine);
   const verdict = verdictFor(id, me, result.stages.length, exitStage);
@@ -437,6 +437,12 @@ export function FinalPage({ result, all, mine, me, highlight, paper, souvenir, j
             <button type="button" onClick={onShare}>{shared ? "Copied" : "Copy result"}</button>
             <button type="button" className="gz-go" onClick={onAgain}>Draft again</button>
           </div>
+          {manualShare && (
+            <label className="gz-manual">
+              <span className="gz-note">This browser would not copy it; select the text and copy it yourself.</span>
+              <textarea readOnly rows={4} value={manualShare} onFocus={(e) => e.currentTarget.select()} />
+            </label>
+          )}
         </aside>
       </div>
     </article>

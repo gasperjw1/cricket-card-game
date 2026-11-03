@@ -246,6 +246,8 @@ h3 { font-size: 16px; margin: 0 0 8px; }
 .gz-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
 .gz-actions button { background: transparent; color: var(--ink); border: 1px solid var(--ink); border-radius: 2px; font-family: Oswald, "Arial Narrow", sans-serif; min-height: 44px; }
 .gz-actions .gz-go, .gz-controls .gz-go { background: #9e2b25; color: #f3ecdd; border-color: #9e2b25; }
+.gz-manual { display: grid; gap: 6px; margin-top: 10px; }
+.gz-manual textarea { width: 100%; font: 13px/1.4 "Source Serif 4", Georgia, serif; color: var(--ink); background: transparent; border: 1px solid var(--ink); border-radius: 2px; padding: 6px; resize: vertical; }
 .gz-controls { position: sticky; bottom: 0; z-index: 3; display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; padding: 10px 0 calc(10px + env(safe-area-inset-bottom)); margin-bottom: 14px; background: var(--bg); }
 .gz-controls button { border-radius: 2px; min-height: 44px; padding: 8px 14px; font-family: Oswald, "Arial Narrow", sans-serif; letter-spacing: 0.02em; }
 .gz-controls button.on { background: #c9a24a; color: #15191a; border-color: #c9a24a; }

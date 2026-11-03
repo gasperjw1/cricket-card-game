@@ -63,7 +63,7 @@ export const BANK: Bank = {
     defence_colour: ["squeezed the chase out", "strangled the middle overs", "nailed their yorkers at the death", "put the brakes on when it mattered", "kept the asking rate climbing", "gave the chasing side nothing to hit"],
     assault: ["a late flurry", "an assault at the death", "outrageous hitting in the last four overs", "a late surge", "a finish of clean striking", "back-to-back sixes when they were needed"],
     stand_verb: ["put on", "added", "shared", "compiled", "built"],
-    stand_colour_b: ["took the game away", "broke the back of the chase", "set the platform", "settled the contest", "did the hard work", "carried the innings"],
+    stand_colour_b: ["took the game away", "turned the match", "set the platform", "settled the contest", "did the hard work", "carried the innings"],
     collapse_colour_b: ["in a flurry of wickets", "as the wickets kept tumbling", "in tatters", "left reeling", "as the innings disintegrated", "with the lower order coming and going"],
     stakes_colour: ["to keep their hopes alive", "to stay on course for the knockouts", "to blow the group wide open", "to leave the group hanging by a thread", "with their campaign on the line", "with the knockouts in sight"],
     first_win_colour: ["after a wait that had begun to weigh", "and the relief was plain", "at last", "and nobody minded how", "and the dressing room will have slept well"],
@@ -142,8 +142,8 @@ export const BANK: Bank = {
     subHundred: [
       "{team} were bowled out for {runs} in {balls:ball}.",
       "{team} managed only {runs}, all out, against {opp}.",
-      "{opp} were left with little to chase after {team} were dismissed for {runs}.",
-      "{team:pos} {runs} all out was never going to be enough.",
+      "{opp} bowled {team} out for {runs}.",
+      "{team} folded for {runs} against {opp}.",
     ],
     bigTotal: [
       "{team} piled up {runs} for {wickets}, a total out of reach for most sides in this tournament.",
@@ -169,11 +169,11 @@ export const BANK: Bank = {
     ],
     standoutBowler: [
       "{player} took {wickets} for {runs}, [spell_colour].",
-      "{player:pos} {wickets} for {runs} [spell_verb] the chase for {team}.",
+      "{player:pos} {wickets} for {runs} set up the win for {team}.",
       "The wickets were {player:pos}: {wickets} for {runs} off {balls:ball}, at {econ} an over.",
       "{surname} finished with {wickets} for {runs}, [spell_colour], and {team} had their win.",
       "{player} was [bowling_colour]: {wickets} for {runs} off {balls:ball}.",
-      "The wickets came from {player}, [bowling_colour], {wickets} for {runs}; {team} [defence_colour].",
+      "The wickets came from {player}, [bowling_colour], {wickets} for {runs}, and {team} took the match.",
     ],
     cheapWickets: [
       "{player} took {wickets} for {runs} at {econ} an over while the rest of the {team} attack went at {othersEcon}.",

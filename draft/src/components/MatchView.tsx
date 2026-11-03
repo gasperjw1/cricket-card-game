@@ -102,9 +102,13 @@ export function MatchView({ fixture, onDone }: { fixture: FixtureResult; onDone:
   const toss = f.tossWinner ? `${f.tossWinner} won the toss and chose to ${f.tossDecision === "bat" ? "bat" : "field"}.` : "The players are out in the middle.";
   const superOver = f.tieBreak?.innings?.length === 2 ? ` ${f.tieBreak.innings[0]!.team} ${f.tieBreak.innings[0]!.runs}/${f.tieBreak.innings[0]!.wickets}, ${f.tieBreak.innings[1]!.team} ${f.tieBreak.innings[1]!.runs}/${f.tieBreak.innings[1]!.wickets} in the super over.` : "";
   const w = state.bowl.get(ball.bowler);
+  // To the last ball of the over in progress, or of the next over when this one is complete, so the
+  // board shows the whole over just bowled.
   const nextOver = () => {
-    const next = balls.findIndex((b, i) => i > at && (b.over !== ball.over || b.innings !== ball.innings));
-    setAt(next < 0 ? balls.length - 1 : next);
+    const from = balls[at + 1];
+    if (!from) return;
+    const end = balls.findIndex((b, i) => i > at && (b.over !== from.over || b.innings !== from.innings));
+    setAt(end < 0 ? balls.length - 1 : end - 1);
   };
 
   return (

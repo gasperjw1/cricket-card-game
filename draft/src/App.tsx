@@ -25,7 +25,6 @@ type Action =
   | { type: "swap"; a: number; b: number }
   | { type: "captain"; id: string | null }
   | { type: "toLineup" }
-  | { type: "backToDraft" }
   | { type: "simulating" }
   | { type: "result"; result: RunState["result"] }
   | { type: "plan"; index: number; plan: MatchPlan }
@@ -60,7 +59,6 @@ function reduce(s: RunState, a: Action): RunState {
     }
     case "captain": return { ...s, captainId: a.id };
     case "toLineup": return { ...s, step: "lineup" };
-    case "backToDraft": return { ...s, step: "draft" };
     case "simulating": return { ...s, step: "simulating", error: null };
     case "result": return { ...s, step: "result", result: a.result };
     case "plan": { const plans = [...s.plans]; plans[a.index] = { ...plans[a.index], ...a.plan }; return { ...s, plans }; }
@@ -205,11 +203,12 @@ export function App() {
         <DraftScreen state={state} editions={shared.editions} venues={shared.venues} squads={state.identity ? squadsByEdition?.get(state.identity.editionId) ?? [] : []} onPlace={(player, slot) => dispatch({ type: "place", player, slot })} onReroll={() => void spinSquad(true)} onLineup={() => dispatch({ type: "toLineup" })} />
       )}
       {state.step === "lineup" && shared && (
-        <LineupScreen state={state} captains={shared.captains} editions={shared.editions} onCaptain={(id) => dispatch({ type: "captain", id })} onBack={() => dispatch({ type: "backToDraft" })} onSimulate={(captainId) => void simulate(captainId)} />
+        <LineupScreen state={state} captains={shared.captains} editions={shared.editions} onCaptain={(id) => dispatch({ type: "captain", id })} onSimulate={(captainId) => void simulate(captainId)} />
       )}
       {state.step === "simulating" && <section className="card"><h2>Simulating the {state.identity?.editionId} World Cup…</h2><p>Every match of the tournament, ball by ball.</p></section>}
       {state.step === "result" && state.result && shared && <ResultScreen state={state} result={state.result} editions={shared.editions} venues={shared.venues} records={shared.records} captains={shared.captains} onReplan={(index, plan) => void replan(index, plan)} onAgain={() => dispatch({ type: "home" })} />}
-      {rng && state.step !== "home" && state.step !== "result" && <footer className="foot">Spins and simulation are deterministic for this seed.</footer>}
+      {/* Not on the draft screen: its panes fill the window, and the footer sat over the team sheet's last slots. */}
+      {rng && state.step !== "home" && state.step !== "result" && state.step !== "draft" && <footer className="foot">Spins and simulation are deterministic for this seed.</footer>}
     </main>
   );
 }

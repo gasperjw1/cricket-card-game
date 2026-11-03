@@ -85,6 +85,8 @@ export function ResultScreen({ state, result: played, editions, venues, records,
   const [watching, setWatching] = useState<number | null>(null);
   const [reachedEnd, setReachedEnd] = useState(false);
   const [copied, setCopied] = useState(false);
+  // The result text to copy by hand when the browser refuses the clipboard.
+  const [manualShare, setManualShare] = useState<string | null>(null);
 
   const turnTo = (next: number) => {
     if (next === page || next < 0 || next > lastPage) return;
@@ -116,12 +118,14 @@ export function ResultScreen({ state, result: played, editions, venues, records,
   }, [state.seed, state.identity, state.coach, state.picks, state.captainId, state.plans]);
   const copyResult = () => {
     const v = verdictFor(id, me, result.stages.length, exitStageOf(result.stages, mine));
-    void navigator.clipboard?.writeText(`World Cup Draft: ${teamLabel(me)} at the ${result.editionId} World Cup. ${id.won}–${id.lost}, ${id.champion ? "champions" : id.exit}. Grade ${v.grade}, performance ${perf.score}. Replay it: ${shareUrl}`).then(() => setCopied(true));
+    const text = `World Cup Draft: ${teamLabel(me)} at the ${result.editionId} World Cup. ${id.won}–${id.lost}, ${id.champion ? "champions" : id.exit}. Grade ${v.grade}, performance ${perf.score}. Replay it: ${shareUrl}`;
+    if (!navigator.clipboard) { setManualShare(text); return; }
+    navigator.clipboard.writeText(text).then(() => { setCopied(true); setManualShare(null); }, () => setManualShare(text));
   };
 
   const renderPage = (p: number) => {
     if (p === 0) return <CoverPage state={state} result={result} edition={edition} venues={venues} mine={mine} numbersHere={numbersHere} coachName={state.coach?.coachName ?? null} matchDay={mine[0] ? paper.matchDays.get(mine[0].date ?? "") ?? null : null} />;
-    if (p === lastPage) return <FinalPage result={result} all={all} mine={mine} me={me} highlight={highlight} paper={paper} souvenir={souvenir} journeys={journeys} performance={perf} date={mine[mine.length - 1]?.date ?? null} onAgain={onAgain} onShare={copyResult} shared={copied} />;
+    if (p === lastPage) return <FinalPage result={result} all={all} mine={mine} me={me} highlight={highlight} paper={paper} souvenir={souvenir} journeys={journeys} performance={perf} date={mine[mine.length - 1]?.date ?? null} onAgain={onAgain} onShare={copyResult} shared={copied} manualShare={manualShare} />;
     return <MatchPage fixture={mine[p - 1]!} index={p - 1} mine={mine} all={all} result={result} me={me} venues={venues} highlight={highlight} issue={p + 1} paper={paper} last={p === mine.length} seed={result.seed} lever={{ picks: state.picks.filter(Boolean) as PoolPlayer[], captains, coach: state.coach, captainId: state.captainId, plans: state.plans, onReplan }} />;
   };
 

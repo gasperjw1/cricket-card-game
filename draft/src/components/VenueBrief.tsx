@@ -45,10 +45,12 @@ export function character(env: EnvironmentOut, base: Baseline): string[] {
     if (env.chaseWinPct >= 60) chips.push("chase ground");
     else if (env.chaseWinPct <= 40) chips.push("bat-first ground");
   }
+  // The death overs' own rate against the archive's, like every other chip (2026-11-03). It was the
+  // death overs' lift over the ground's overall rate, so a slow ground with an ordinary finish
+  // (Tarouba 2024: 5.5 overall, 8.0 at the death) read "death overs fly" beside a low number.
   if (env.deathRpo !== undefined) {
-    const lift = env.deathRpo - env.runsPerOver - (base.deathRpo - base.rpo);
-    if (lift >= 0.7) chips.push("death overs fly");
-    else if (lift <= -0.7) chips.push("death overs held");
+    if (env.deathRpo >= base.deathRpo + 0.7) chips.push("death overs fly");
+    else if (env.deathRpo <= base.deathRpo - 0.7) chips.push("death overs held");
   }
   if (env.ballsPerWicket !== undefined) {
     if (env.ballsPerWicket <= base.bpw - 2) chips.push("wickets fall");

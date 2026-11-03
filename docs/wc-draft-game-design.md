@@ -1395,6 +1395,16 @@ fielding. The simulation is not required to reproduce real results (§11).
   and the adjusted setness are on. Brier 0.1876 to 0.1866, first-innings spread +2.9 to +2.6,
   dot clustering on real (7.4). Six associate bowlers who had no bowling type on their cards now
   have one, from the archive sheet.
+- **UI/UX audit and broken fixes (2026-11-02/03, `wc-draft-ui-audit-2026-11-02.md`):** four runs in
+  the browser (desktop and phone). **Decided (Yash):** a CPU side keeps a player you drafted from
+  another edition (Guptill can face Guptill); every coach tag must be played by the engine or not
+  shown; functionality before flair; all confusing items to be fixed. Fixed: "Next over", wrong-side
+  sentences, the "Back to the draft" soft-lock (button removed: the order is final), bowlers your
+  card says won't bowl (your eleven now bowls exactly who the overs meter counts), the real record
+  counting no-results as defeats, the death-overs chip, blank cards in spins, leaked labels and
+  initials, the footer over the team sheet, Copy result with no fallback, and a new qualifier
+  losing the real slot's fixtures (now taken from the real slot-holder, checked for double
+  bookings).
 - **Agreed order after the refit (2026-11-01):** (1) associates fix in the ratings: no-record
   players sit on the global position-band prior, so Italy 2026 bowls at 71 against India's 74 and a
   few tournament balls can make a 77 (shrink empty records toward the side's own mean or an

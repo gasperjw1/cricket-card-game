@@ -9,7 +9,7 @@ import { simulateTournament, type TournamentResult } from "../../../wcdraft/src/
 import type { CaptainOut, CoachOut, EditionOut } from "../../../wcdraft/src/engine/data.ts";
 import { loadEditionData, loadRatings, loadShared } from "../lib/data.ts";
 import { computeFinal, editionEnv, type EditionEnv, type PlayerFinal } from "./final-ratings.ts";
-import { designatedKeeper } from "./rules.ts";
+import { bowls, designatedKeeper } from "./rules.ts";
 import { slotWeights } from "./slots.ts";
 import type { Identity, PoolPlayer } from "./types.ts";
 
@@ -26,12 +26,14 @@ export async function assembleTeam(input: SimulateInput): Promise<EngineTeam> {
   const editions = [...new Set(input.picks.map((p) => p.editionId))];
   const data = new Map(await Promise.all(editions.map(async (ed) => [ed, await loadEditionData(ed)] as const)));
   // The designated keeper keeps and does not bowl (decided 2026-10-30), so the engine's allocation
-  // must not call on him; everyone else keeps his own bowling eligibility.
+  // must not call on him. Everyone else bowls exactly when the overs meter counted him, which is
+  // when his card shows a bowling number (2026-11-03: the engine's own record-based eligibility let
+  // men whose card said "he will not be given overs" bowl, ahead of drafted frontline bowlers).
   const keeper = designatedKeeper(input.picks);
   const players = input.picks.map((p) => {
     const player = data.get(p.editionId)?.players.get(`${p.team}|${p.id}`);
     if (!player) throw new Error(`no engine player for ${p.name} (${p.team} ${p.editionId})`);
-    return p === keeper ? { ...player, canBowl: false, keeper: true } : { ...player, keeper: false };
+    return p === keeper ? { ...player, canBowl: false, keeper: true } : { ...player, canBowl: bowls(p), keeper: false };
   });
   const captain = input.captainId ? shared.captains.filter((c) => c.personId === input.captainId).sort((a, b) => b.matches - a.matches)[0] : undefined;
   // Nobody rated in the eleven still leaves somebody tossing the coin: the side's best player.

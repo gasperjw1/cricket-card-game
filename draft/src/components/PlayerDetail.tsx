@@ -59,7 +59,7 @@ export function PlayerDetail({ player, fit, hereEdition, coach, slots, weights, 
         {bowls(p) && <span className="tag">{bowlingTypeName(p.bowlingType!)}</span>}
         {p.keeper && <span className="tag">Wicketkeeper</span>}
         {p.style && p.batShown && p.role !== "bowler" && <span className={`tag style style-${p.style.tag.toLowerCase()}`} title={styleTitle(p.style)}>{p.style.tag}: {STYLE_NOTES[p.style.tag]}</span>}
-        {p.position ? <span className="tag muted">usually bats No. {p.position}</span> : p.positionless ? <span className="tag muted">positionless</span> : null}
+        {p.position ? <span className="tag muted">usually bats No. {p.position}</span> : p.positionless ? <span className="tag muted">floats in the order</span> : null}
       </div>
 
       <div className="pd-grid">

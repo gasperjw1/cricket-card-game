@@ -58,8 +58,10 @@ export function archetypeLabel(p: PoolPlayer): string {
   const parts: string[] = [];
   if (p.role !== "bowler" && p.archetype.batting) parts.push(p.archetype.batting);
   if (p.role !== "batter" && p.archetype.bowling) parts.push(`${p.archetype.bowling} bowler`);
-  if (p.positionless) parts.push("positionless");
-  return parts.join(" · ") || p.role;
+  if (p.positionless) parts.push("floats in the order");
+  // The ratings' "unknown" role is internal; say what the card shows instead.
+  const role = p.role === "unknown" ? (p.batShown ? "batter" : p.bowlShown ? "bowler" : "") : p.role;
+  return parts.join(" · ") || role;
 }
 
 /** The card's one footnote: why a number should be read with care, or null. */

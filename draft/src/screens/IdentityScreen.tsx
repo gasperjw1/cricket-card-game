@@ -8,6 +8,10 @@ export function IdentityScreen({ identity, editions, venues, squads, rerolls, on
   const squad = squads.find((s) => s.team === identity.team);
   const real = squad?.matches.filter((m) => m.winner !== undefined) ?? [];
   const wins = real.filter((m) => m.winner === identity.team).length;
+  const losses = real.filter((m) => m.winner && m.winner !== identity.team).length;
+  const other = real.length - wins - losses;
+  // A no-result or an undecided tie is neither; games against Afghanistan are withheld from the data.
+  const record = `${wins}–${losses}${other ? `, ${other} no result${other === 1 ? "" : "s"}` : ""} in ${real.length} match${real.length === 1 ? "" : "es"}${edition?.standIn ? " (Afghanistan's games are withheld from the data, so any against them are left out)" : ""}`;
   return (
     <section className="card">
       <p className="eyebrow">Your identity</p>
@@ -16,7 +20,7 @@ export function IdentityScreen({ identity, editions, venues, squads, rerolls, on
       {identity.standIn ? (
         <p className="note">Stand-in: Afghanistan's data is withheld, so {identity.team} takes Afghanistan's slot and fixtures in this edition ({edition?.standIn?.reason ?? ""}).</p>
       ) : (
-        <p className="note">Real record: {wins}–{real.length - wins} in {real.length} matches. Your drafted XI plays the same fixtures at the same grounds; the rest of the field plays its real elevens.</p>
+        <p className="note">Real record: {record}. Your drafted XI plays the same fixtures at the same grounds; the rest of the field plays its real elevens.</p>
       )}
       <h3>Grounds and conditions</h3>
       <VenueBrief editionId={identity.editionId} editions={editions} venues={venues} venueCounts={venueCountsFor(identity.team, squads, edition)} />

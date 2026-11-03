@@ -88,7 +88,7 @@ export interface TournamentOptions {
 const pairKey = (a: string, b: string) => [a, b].sort().join("|");
 
 /** Index of real matches by stage group and pairing, from the squads' match lists. */
-function realIndex(data: EditionData): { byPair: Map<string, { match: SquadMatchOut; team: string; other: SquadMatchOut; otherTeam: string }>; byGroup: Map<string, SquadMatchOut[]> } {
+function realIndex(data: EditionData): { byPair: Map<string, { match: SquadMatchOut; team: string; other: SquadMatchOut; otherTeam: string }>; byGroup: Map<string, SquadMatchOut[]>; teamsByGroup: Map<string, Set<string>> } {
   const sides = new Map<string, { team: string; match: SquadMatchOut }[]>();
   for (const squad of data.squads.values()) {
     if (squad.standIn) continue;
@@ -96,14 +96,17 @@ function realIndex(data: EditionData): { byPair: Map<string, { match: SquadMatch
   }
   const byPair = new Map<string, { match: SquadMatchOut; team: string; other: SquadMatchOut; otherTeam: string }>();
   const byGroup = new Map<string, SquadMatchOut[]>();
+  const teamsByGroup = new Map<string, Set<string>>();
   for (const list of sides.values()) {
     if (list.length !== 2) continue;
     const [x, y] = list as [typeof list[0], typeof list[0]];
     const label = groupLabel(x.match);
     byPair.set(`${label}|${pairKey(x.team, y.team)}`, { match: x.match, team: x.team, other: y.match, otherTeam: y.team });
     (byGroup.get(label) ?? byGroup.set(label, []).get(label)!).push(x.match);
+    const teams = teamsByGroup.get(label) ?? teamsByGroup.set(label, new Set()).get(label)!;
+    teams.add(x.team); teams.add(y.team);
   }
-  return { byPair, byGroup };
+  return { byPair, byGroup, teamsByGroup };
 }
 
 /** Real matches carry stage "Semi Final" / "Final" or a group letter / number. */
@@ -188,10 +191,19 @@ export function simulateTournament(data: EditionData, progression: Progression, 
     const r = real.byPair.get(`${label}|${pairKey(a, b)}`);
     return r ? { venueId: r.match.venueId || null, date: r.match.date, realId: r.match.id } : null;
   };
+  // The team that really filled a qualifying slot ("A2") in this group: the one real member of the
+  // group that no named entry and no team in the simulated group accounts for, and that came
+  // through the slot's own first-round group ("A"). Without the second test, two slots in one
+  // group could both take the one leftover team's fixtures (2021: Namibia's, for A2 and B1).
+  const slotOccupant = (ref: string, group: string, present: string[]): string | null => {
+    const from = real.teamsByGroup.get(ref.slice(0, -1));
+    const candidates = [...(real.teamsByGroup.get(group) ?? [])].filter((t) => !present.includes(t) && (!from || from.has(t)));
+    return candidates.length === 1 ? candidates[0]! : null;
+  };
 
   for (const stage of progression.stages) {
     if (stage.type === "groups") {
-      const res = playGroups(stage, slots, play, venuePool, realFixture, standInFixtures, progression.standIn, rng);
+      const res = playGroups(stage, slots, play, venuePool, realFixture, slotOccupant, standInFixtures, progression.standIn, rng);
       stages.push(res.stage);
       slots = res.slots;
       if (identityRecord && res.stage.fixtures.some((f) => f.teams.includes(identityRecord.team))) {
@@ -232,6 +244,7 @@ function playGroups(
   play: (f: Fixture) => FixtureResult,
   venuePool: (label: string) => string[],
   realFixture: (a: string, b: string, label: string) => { venueId: string | null; date: string | null; realId: string | null } | null,
+  slotOccupant: (ref: string, group: string, present: string[]) => string | null,
   standInFixtures: EditionData["afghanistanFixtures"],
   standIn: string | null,
   rng: Rng,
@@ -249,8 +262,15 @@ function playGroups(
       for (let j = i + 1; j < teams.length; j += 1) {
         const a = teams[i]!, b = teams[j]!;
         // Venue and date: the real fixture if this pairing happened; Afghanistan's real fixture for the
-        // stand-in; otherwise cycle through the venues the group really used.
-        const realVenue = realFixture(a, b, g) ?? realVenueFor(a, b, g, standIn, standInFixtures, stage.label);
+        // stand-in; the real fixture of whoever really held a qualifier's slot (2026-11-03: Ireland
+        // qualifying in Bangladesh's place for 2016 took Bangladesh's dates and grounds, not new ones);
+        // otherwise cycle through the venues the group really used.
+        const named = entries.filter((e) => !(e in incoming));
+        const present = [...named, ...teams];
+        const asSlot = (k: number) => (entries[k]! in incoming ? slotOccupant(entries[k]!, g, present) : null);
+        const sa = asSlot(i), sb = asSlot(j);
+        const bySlot = sa || sb ? realFixture(sa ?? a, sb ?? b, g) : null;
+        const realVenue = realFixture(a, b, g) ?? realVenueFor(a, b, g, standIn, standInFixtures, stage.label) ?? (bySlot && { ...bySlot, realId: null });
         const venueId = realVenue?.venueId ?? (pool.length ? pool[(poolIdx++) % pool.length]! : null);
         const f = play({ stageId: stage.id, stageLabel: stage.label, group: g, teams: [a, b], venueId, date: realVenue?.date ?? null, realId: realVenue?.realId ?? null });
         results.push(f);

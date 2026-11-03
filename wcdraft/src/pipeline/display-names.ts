@@ -9,7 +9,7 @@
  * snapshot. The engine keeps Cricsheet's names; only the client shows these.
  */
 
-import { existsSync, readFileSync } from "node:fs";
+import { existsSync, readFileSync, readdirSync } from "node:fs";
 import { resolve } from "node:path";
 import { paths, writeText } from "../util/io.js";
 import { deriveDisplayName } from "../util/names.js";
@@ -29,6 +29,12 @@ function readCsvRows(file: string): Record<string, string>[] {
 
 export function writeDisplayNames(): { rows: number; overridden: number; derived: number; kept: number } {
   const legal = new Map(readCsvRows(resolve(paths.labels, "sources", "player-meta.csv")).map((r) => [r["personId"] ?? "", r["fullName"] ?? ""]));
+  // People outside the snapshot (2026 associates) have a sourced full name in the hand-entry sheets,
+  // keyed by Cricsheet name and team (2026-11-03: "MR Kumar" was shown in initials).
+  const handFull = new Map<string, string>();
+  for (const file of readdirSync(paths.labels).filter((f) => /^hand-entries.*\.csv$/.test(f))) {
+    for (const r of readCsvRows(resolve(paths.labels, file))) if (r["name"] && r["fullName"]) handFull.set(`${r["name"]}|${r["team"]}`, r["fullName"]);
+  }
   // Overrides are keyed by Cricsheet's name so the sheet can be read and edited by eye.
   const overrides = new Map(readCsvRows(resolve(paths.labels, "display-name-overrides.csv")).map((r) => [r["name"] ?? "", r["displayName"] ?? ""]));
   const people = [...readLabels().values()];
@@ -37,7 +43,8 @@ export function writeDisplayNames(): { rows: number; overridden: number; derived
   const counts = { rows: 0, overridden: 0, derived: 0, kept: 0 };
   const rows = people.sort((a, b) => a.name.localeCompare(b.name)).map((p) => {
     const override = overrides.get(p.name);
-    const derived = deriveDisplayName(p.name, legal.get(p.personId) ?? "");
+    const full = legal.get(p.personId) || p.teams.split(";").map((t) => handFull.get(`${p.name}|${t}`)).find(Boolean) || "";
+    const derived = deriveDisplayName(p.name, full);
     const source = override ? "override" : derived !== p.name ? "derived" : "cricsheet";
     counts.rows += 1;
     counts[source === "override" ? "overridden" : source === "derived" ? "derived" : "kept"] += 1;
