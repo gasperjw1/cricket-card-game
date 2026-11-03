@@ -1,9 +1,8 @@
 /**
- * The squad list row and the pieces the full card shares with it (2026-11-03, after Era Ball and
- * 82-0): one compact row a player, the tier down the left edge, the name with side, year and marks
- * under it, Bat and Bowl each a number over a three-segment phase bar, and his two numbers in the
+ * The squad tile and the pieces the full card shares with it (2026-11-03, after Era Ball and 82-0):
+ * the tier down the left edge, the name, what he is, and his batting and bowling numbers in the
  * World Cup being played. Numbers only: no marks for where a number came from (Yash: the player
- * cares about the number, not its source). Tapping a row opens the full card.
+ * cares about the number, not its source). Tapping a tile opens the full card.
  */
 
 import type { BattingStyle, StyleOut } from "../../../wcdraft/src/ratings/model.ts";
@@ -65,40 +64,66 @@ export function archetypeLabel(p: PoolPlayer): string {
 /** Whether the card shows the player as someone who bowls (a bowler or all-rounder, or anyone with a shown bowling number). */
 export const bowls = (p: PoolPlayer) => !!p.bowlingType && p.bowlingType !== "none" && (p.bowlShown || p.role === "bowler" || p.role === "all-rounder");
 
-export function PhaseBar({ phases, shown }: { phases: Record<"pp" | "mid" | "death", number>; shown: boolean }) {
-  // Each segment's height is the phase number on the 40–99 card scale, so a death-overs specialist reads at a glance.
-  const h = (n: number) => `${Math.max(8, Math.min(100, ((n - 40) / 59) * 100))}%`;
-  return (
-    <span className={`pc-bar ${shown ? "" : "off"}`} aria-hidden="true">
-      <i style={{ height: shown ? h(phases.pp) : "8%" }} /><i style={{ height: shown ? h(phases.mid) : "8%" }} /><i style={{ height: shown ? h(phases.death) : "8%" }} />
-    </span>
-  );
+/** Where he bats, from his usual number: 1–2 opener, 3 top order, 4–6 middle order, 7–8 lower order, 9–11 tailender. */
+export function batPlace(p: PoolPlayer): string | null {
+  const n = p.position;
+  if (n) return n <= 2 ? "opener" : n === 3 ? "top order" : n <= 6 ? "middle order" : n <= 8 ? "lower order" : "tailender";
+  // A man who floats in the order has no usual number; his batting archetype says where he mostly bats.
+  const byArchetype: Record<string, string> = { opener: "opener", "top order": "top order", "middle order": "middle order", finisher: "lower order", tail: "tailender" };
+  return p.archetype.batting ? byArchetype[p.archetype.batting] ?? null : null;
 }
 
-function SkillCell({ label, shown, value, phases }: { label: string; shown: boolean; value: number; phases: Record<"pp" | "mid" | "death", number> }) {
-  return (
-    <span className={`pr-skill ${shown ? "" : "off"}`} title={shown ? `${label} ${value}: powerplay ${phases.pp}, middle ${phases.mid}, death ${phases.death}` : undefined}>
-      <span className="pr-k">{label}</span>
-      <span className="pr-n">{shown ? value : "–"}</span>
-      <PhaseBar phases={phases} shown={shown} />
-    </span>
-  );
+/**
+ * What he is, in Yash's order (2026-11-03): WK and/or his bowling as its code (RFM, OB, SLA), then
+ * his batting hand and where he bats. "WK – RHB opener", "OB – RHB middle order", "RFM – LHB tailender",
+ * and "WK/OB – RHB middle order" for a keeper who bowls (Phillips, Dilshan): he bowls whenever
+ * another man in the eleven keeps, so his bowling is shown too.
+ */
+export function roleLine(p: PoolPlayer): string {
+  const bowling = bowls(p) ? (p.bowlingType === "LBG" ? "LB" : p.bowlingType!) : null;
+  const first = [p.keeper ? "WK" : null, bowling].filter(Boolean).join("/") || null;
+  const second = [p.hand ? (p.hand === "L" ? "LHB" : "RHB") : null, batPlace(p)].filter(Boolean).join(" ");
+  return [first, second].filter(Boolean).join(" – ") || archetypeLabel(p);
 }
 
-/** One squad member as a list row; the whole row opens his full card. */
-export function PlayerRow({ player, fit, hereEdition, selected, ineligible, onClick }: { player: PoolPlayer; fit?: PlayerFit | null; hereEdition?: string; selected?: boolean; ineligible?: boolean; onClick?: () => void }) {
+/** His two numbers in the World Cup being played (the card's own until those have loaded); null when not shown. */
+export function hereNumbers(p: PoolPlayer, fit: PlayerFit | null | undefined): { bat: number | null; bowl: number | null } {
+  return {
+    bat: p.batShown ? fit?.batting?.final ?? p.bat : null,
+    bowl: p.bowlShown ? fit?.bowling?.final ?? p.bowl : null,
+  };
+}
+
+/**
+ * A number as the scoreboard shows it, each digit on its own tile; two blank tiles when there is no
+ * number, so every plate keeps the same width (Yash, 2026-11-03).
+ */
+export function Digits({ n, size = "sm" }: { n: number | null; size?: "sm" | "lg" }) {
+  const chars = n === null ? ["–", "–"] : String(n).split("");
+  return <span className={`dg dg-${size} ${n === null ? "off" : ""}`} aria-hidden="true">{chars.map((c, i) => <i key={i}>{c}</i>)}</span>;
+}
+
+/** One rating in its own box, its name painted above it. */
+export function Rating({ label, n, size = "sm" }: { label: string; n: number | null; size?: "sm" | "lg" }) {
+  return <span className={`rt rt-${size}`}><span className="rt-k">{label}</span><Digits n={n} size={size} /></span>;
+}
+
+/**
+ * One squad member as a name plate (2026-11-03, after the Adelaide Oval and WACA boards): his name
+ * on the plate, what he is under it, and his batting and bowling in this World Cup each in its own
+ * box. The card numbers, phases and how they move live on the full card the plate opens.
+ */
+export function PlayerRow({ player, fit, selected, ineligible, onClick }: { player: PoolPlayer; fit?: PlayerFit | null; selected?: boolean; ineligible?: boolean; onClick?: () => void }) {
   const p = player;
-  const marks = [archetypeLabel(p), p.hand ? (p.hand === "L" ? "LHB" : "RHB") : "", bowls(p) ? p.bowlingType! : "", p.keeper ? "WK" : ""].filter(Boolean).join(" · ");
-  const here = fit ? [fit.batting ? `bat ${fit.batting.final}` : "", fit.bowling ? `bowl ${fit.bowling.final}` : ""].filter(Boolean).join(" · ") : "";
+  const n = hereNumbers(p, fit);
   return (
-    <button type="button" className={`pr tier-edge-${p.tier.toLowerCase()} ${selected ? "selected" : ""} ${ineligible ? "ineligible" : ""}`} onClick={onClick} aria-pressed={selected} aria-label={`${p.name}, ${teamLabel(p.team)} ${p.editionId}${p.batShown ? `, batting ${p.bat}` : ""}${p.bowlShown ? `, bowling ${p.bowl}` : ""}${ineligible ? ", cannot be taken now" : ""}`}>
+    <button type="button" className={`pr tier-edge-${p.tier.toLowerCase()} ${selected ? "selected" : ""} ${ineligible ? "ineligible" : ""}`} onClick={onClick} aria-pressed={selected} aria-label={`${p.name}, ${roleLine(p)}${n.bat !== null ? `, batting ${n.bat}` : ""}${n.bowl !== null ? `, bowling ${n.bowl}` : ""}${ineligible ? ", cannot be taken now" : ""}`}>
       <span className="pr-who">
         <span className="pr-name">{p.name}</span>
-        <span className="pr-sub">{teamLabel(p.team)} {p.editionId} · {marks}</span>
+        <span className="pr-sub">{roleLine(p)}</span>
       </span>
-      <SkillCell label="Bat" shown={p.batShown} value={p.bat} phases={p.batPhases} />
-      <SkillCell label="Bowl" shown={p.bowlShown} value={p.bowl} phases={p.bowlPhases} />
-      <span className="pr-here">{hereEdition && here ? <><span className="pr-k">{hereEdition}</span><b>{here}</b></> : fit === null ? <span className="muted">…</span> : null}</span>
+      <Rating label="Bat" n={n.bat} />
+      <Rating label="Bowl" n={n.bowl} />
     </button>
   );
 }

@@ -9,6 +9,7 @@ import { simulateTournament, type TournamentResult } from "../../../wcdraft/src/
 import type { CaptainOut, CoachOut, EditionOut } from "../../../wcdraft/src/engine/data.ts";
 import { loadEditionData, loadRatings, loadShared } from "../lib/data.ts";
 import { computeFinal, editionEnv, type EditionEnv, type PlayerFinal } from "./final-ratings.ts";
+import { planAt } from "./plan.ts";
 import { bowls, designatedKeeper } from "./rules.ts";
 import { slotWeights } from "./slots.ts";
 import type { Identity, PoolPlayer } from "./types.ts";
@@ -47,6 +48,8 @@ export interface MatchPlan {
   captainId?: string | null;
   /** A tempo in place of the coach's own: the same intent in every phase. */
   intent?: "coach" | "attack" | "balanced" | "hold";
+  /** The batting order, player ids No. 1 to 11, after a line-up move before this match (2026-11-03). */
+  order?: string[];
 }
 
 const TEMPO: Record<Exclude<MatchPlan["intent"], undefined | "coach">, number> = { attack: 1, balanced: 0, hold: -1 };
@@ -57,7 +60,9 @@ function planned(base: EngineTeam, input: SimulateInput, plan: MatchPlan | undef
   const captainId = plan.captainId === undefined ? input.captainId : plan.captainId;
   const captain = captainId ? captains.filter((c) => c.personId === captainId).sort((a, b) => b.matches - a.matches)[0] : undefined;
   const intent = plan.intent && plan.intent !== "coach" ? { pp: TEMPO[plan.intent], mid: TEMPO[plan.intent], death: TEMPO[plan.intent] } : input.coach?.intent;
-  return { ...base, intent, captainZ: captain?.z, captainId: captainId ?? base.captainId };
+  // A moved order bats in that order; it must hold the same eleven, or the drafted order stands.
+  const order = plan.order && plan.order.length === base.battingOrder.length && plan.order.every((id) => base.battingOrder.includes(id)) ? plan.order : base.battingOrder;
+  return { ...base, intent, captainZ: captain?.z, captainId: captainId ?? base.captainId, battingOrder: order };
 }
 
 /**
@@ -66,12 +71,10 @@ function planned(base: EngineTeam, input: SimulateInput, plan: MatchPlan | undef
  */
 export async function runTournament(input: SimulateInput, plans: (MatchPlan | undefined)[] = []): Promise<TournamentResult> {
   const [data, xi, shared] = await Promise.all([loadEditionData(input.identity.editionId), assembleTeam(input), loadShared()]);
-  // A plan holds from its match onward until another plan replaces it.
-  const xiFor = (n: number) => {
-    let plan: MatchPlan | undefined;
-    for (let i = 0; i <= n; i += 1) if (plans[i]) plan = plans[i];
-    return planned(xi, input, plan, shared.captains);
-  };
+  // A plan holds from its match onward, and a later one changes only what it sets (2026-11-03: the
+  // latest plan replaced the earlier ones whole, so a captain named before match 1 was dropped once
+  // a tempo was set before match 3, while the paper showed both).
+  const xiFor = (n: number) => planned(xi, input, plans.slice(0, n + 1).some(Boolean) ? planAt(plans, n) : undefined, shared.captains);
   // Every fixture keeps its scorecard and ball log (2026-11-01): the gazette's facts, records and
   // late news read CPU matches the same way as yours.
   return simulateTournament(data, data.progression, { seed: input.seed, identity: { team: input.identity.team, xi, xiFor }, keepIdentityDetails: true, keepScorecards: true, keepBallLogs: true });

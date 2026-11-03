@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import type { EditionOut, SquadOut, VenueOut } from "../../../wcdraft/src/engine/data.ts";
-import { PlayerRow } from "../components/PlayerCard.tsx";
+import { Digits, PlayerRow, hereNumbers } from "../components/PlayerCard.tsx";
 import { PlayerDetail } from "../components/PlayerDetail.tsx";
 import { TeamSheet } from "../components/TeamSheet.tsx";
 import { VenueBrief, venueCountsFor } from "../components/VenueBrief.tsx";
@@ -60,21 +60,32 @@ export function DraftScreen({ state, editions, venues, squads, onPlace, onReroll
   const listed = useMemo(() => {
     const players = (state.spin?.players ?? []).filter((p) => filter === "all" || (filter === "bat" && p.batShown) || (filter === "bowl" && p.bowlShown) || (filter === "keep" && p.keeper));
     if (sort === "best") return players;
-    const key = (p: PoolPlayer) => (sort === "bat" ? (p.batShown ? p.bat : -1) : p.bowlShown ? p.bowl : -1);
+    // By the numbers the tiles show: his batting or bowling in this World Cup.
+    const key = (p: PoolPlayer) => { const n = hereNumbers(p, fits?.get(p.id)); return (sort === "bat" ? n.bat : n.bowl) ?? -1; };
     return [...players].sort((a, b) => key(b) - key(a));
-  }, [state.spin, filter, sort]);
+  }, [state.spin, filter, sort, fits]);
 
   return (
     <section className={`draft3 ${selected ? "has-detail" : ""} tab-${tab}`}>
       <header className="draft-bar">
+        {/* The board's frame: the side, the clock, the spin (2026-11-03, after the Adelaide Oval board). */}
+        <div className="frame-band">
+          <span>{state.identity?.team} {editionId}{state.coach ? ` · coach ${state.coach.coachName}` : ""}</span>
+          <span className="frame-clock" aria-hidden="true" />
+          <span>Spin {Math.min(state.spinNumber, 11)} of 11</span>
+        </div>
         <div className="draft-bar-main">
-          <p className="eyebrow">Spin {Math.min(state.spinNumber, 11)} of 11 · {state.identity?.team} {editionId}{state.coach ? ` · coach ${state.coach.coachName}` : ""}</p>
           <h2 className="draft-squad">{state.spin ? <>{state.spin.team} <span className="muted">{state.spin.editionId}</span></> : "Spinning…"}</h2>
           {/* A stand-in squad never played that World Cup: it is Afghanistan's slot, built from the side's T20Is around then (2026-11-03: it spun with nothing saying so). */}
           {state.spin?.players[0]?.standIn && <p className="small muted draft-standin">Stand-in for Afghanistan, whose records are withheld: {state.spin.team} did not play the {state.spin.editionId} World Cup, so these cards come from their T20Is around then.</p>}
         </div>
         <div className="draft-bar-side">
-          <span className="small draft-needs">{filled}/11 named · overs {oversCovered(state.picks)}/20{needText ? ` · needs ${needText}` : ""}</span>
+          <div className="strip" aria-label={`${filled} of 11 named, ${oversCovered(state.picks)} of 20 overs covered${needText ? `, needs ${needText}` : ""}`}>
+            <span className="strip-item"><span className="rt-k">Named</span><Digits n={filled} /><span className="strip-of">/11</span></span>
+            <span className="strip-item"><span className="rt-k">Overs</span><Digits n={oversCovered(state.picks)} /><span className="strip-of">/20</span></span>
+            <span className="strip-item"><span className="rt-k">Bowlers needed</span><Digits n={need.bowlers} /></span>
+            <span className="strip-item"><span className="rt-k">Keeper</span><span className={`strip-flag ${need.keeper ? "" : "done"}`}>{need.keeper ? "Needed" : "Named"}</span></span>
+          </div>
           <button type="button" onClick={() => { setSelected(null); onReroll(); }} disabled={state.spinRerolls <= 0}>Reroll squad ({state.spinRerolls} left)</button>
           <div className="draft-tabs" role="tablist">
             <button type="button" role="tab" aria-selected={tab === "squad"} className={tab === "squad" ? "on" : ""} onClick={() => setTab("squad")}>Squad</button>
@@ -105,10 +116,10 @@ export function DraftScreen({ state, editions, venues, squads, onPlace, onReroll
                 </select>
               </label>
             </div>
-            <div className="pr-cols" aria-hidden="true"><span>Player</span><span>Bat</span><span>Bowl</span><span>In {editionId}</span></div>
+            <p className="pr-note">Numbers are each man's batting and bowling in the {editionId} World Cup{state.coach ? ` under ${state.coach.coachName}` : ""}. Tap a player for his card.</p>
             <div className="pr-list">
               {listed.map((p) => (
-                <PlayerRow key={p.id} player={p} fit={fits ? fits.get(p.id) ?? null : null} hereEdition={editionId} selected={selected?.id === p.id} ineligible={!eligible(p, state.picks)} onClick={() => setSelected(selected?.id === p.id ? null : p)} />
+                <PlayerRow key={p.id} player={p} fit={fits ? fits.get(p.id) ?? null : null} selected={selected?.id === p.id} ineligible={!eligible(p, state.picks)} onClick={() => setSelected(selected?.id === p.id ? null : p)} />
               ))}
               {listed.length === 0 && <p className="small muted">Nobody in this squad fits that filter.</p>}
             </div>
@@ -162,7 +173,7 @@ export function DraftScreen({ state, editions, venues, squads, onPlace, onReroll
               ) : null,
             };
           })}
-          footer={<>{keeper ? <>Keeper <b>{keeper.name}</b></> : <>No keeper yet</>} · overs covered <b>{oversCovered(state.picks)}</b>/20{needText ? <> · still needs {needText}</> : null}</>}
+          footer={keeper ? <>Keeper <b>{keeper.name}</b></> : null}
         >
           {filled === 11 && <button type="button" className="primary sheet-cta" onClick={onLineup}>Review lineup</button>}
         </TeamSheet>

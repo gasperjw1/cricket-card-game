@@ -10,13 +10,14 @@
 
 import { useMemo, useState, type ReactNode } from "react";
 import type { CaptainOut, CoachOut, EditionOut, VenueOut } from "../../../wcdraft/src/engine/data.ts";
+import { planAt } from "../game/plan.ts";
 import type { MatchPlan } from "../game/simulate.ts";
 import type { PoolPlayer } from "../game/types.ts";
 import type { FixtureResult, StageResult, TournamentResult } from "../../../wcdraft/src/engine/tournament.ts";
 import type { InningsResult } from "../../../wcdraft/src/engine/types.ts";
 import { RECORD_KINDS, type RecordBook, type RecordKind } from "../game/facts.ts";
 import { storyFor, tieBreakText, topBatter, topBowler, verdictFor } from "../game/gazette.ts";
-import type { IssueCopy, Paper } from "../game/paper.ts";
+import type { IssueCopy, LateNewsLine, Paper } from "../game/paper.ts";
 import { recordChains, type Journey, type Residual, type Souvenir } from "../game/souvenir.ts";
 import type { Performance } from "../game/score.ts";
 import { exitStageOf, sideProfile, stageIdOf, tableTo, tournamentTotals, type PlayerTotals } from "../game/stats.ts";
@@ -144,23 +145,62 @@ export function Records({ book, title = "Records of this World Cup" }: { book: R
   );
 }
 
-function LateNews({ copy }: { copy: IssueCopy }) {
-  if (!copy.lateNews.length) return null;
-  const byDate = new Map<string, string[]>();
-  for (const l of copy.lateNews) {
-    const d = shortDate(l.date) || "Undated";
-    byDate.set(d, [...(byDate.get(d) ?? []), l.line]);
-  }
+/** One innings in a few lines: the total, its top two batters and the other side's best bowler. */
+function BoxInnings({ inn, rain, highlight, me }: { inn: InningsResult; rain: FixtureResult["rain"]; highlight: Set<string>; me: string }) {
+  if (inn.legalBalls === 0) return <div className="gz-box-inn"><div className="gz-inn-head"><span>{teamLabel(inn.team)}</span></div><div className="gz-inn-sub">Did not bat</div></div>;
+  const bats = [...inn.batting].filter((b) => b.balls > 0 || b.out).sort((a, b) => b.runs - a.runs || a.balls - b.balls).slice(0, 2);
+  const bowler = [...inn.bowling].sort((a, b) => b.wickets - a.wickets || a.runs - b.runs)[0];
   return (
-    <section className="gz-box gz-late">
-      <h4>Since our last issue</h4>
-      {[...byDate].map(([d, lines]) => (
-        <div key={d} className="gz-late-day">
+    <div className="gz-box-inn">
+      <div className="gz-inn-head"><span>{teamLabel(inn.team)}</span><b>{inn.runs}/{inn.wickets}</b></div>
+      <div className="gz-inn-sub">{inningsSub(inn, rain)}</div>
+      <table className="gz-figures"><tbody>
+        {bats.map((b) => <tr key={b.id} className={highlight.has(b.id) && inn.team === me ? "mine" : ""}><td>{fullName(b.id, b.name)}</td><td>{b.runs}{b.out ? "" : "*"} ({b.balls})</td></tr>)}
+        {bowler && <tr className="gz-fig-bowl"><td>{fullName(bowler.id, bowler.name)}</td><td>{bowler.wickets}/{bowler.runs} ({oversText(bowler.balls)})</td></tr>}
+      </tbody></table>
+    </div>
+  );
+}
+
+/**
+ * Around the World Cup (2026-11-03, Yash: the other results sat down the side column and left the
+ * report half empty): every other match since the last issue, as a short piece with its own
+ * headline, the result and its best fact, and a box score. By date, in play order.
+ */
+function Around({ copy, all, venues, highlight, me, seed }: { copy: IssueCopy; all: Fixtured[]; venues: VenueOut[]; highlight: Set<string>; me: string; seed: string }) {
+  const byKey = new Map(all.map((f) => [`${f.stageId}|${f.teams.join("|")}`, f]));
+  const days = new Map<string, { line: LateNewsLine; f: Fixtured }[]>();
+  for (const line of copy.lateNews) {
+    const f = byKey.get(line.fixtureKey);
+    if (!f) continue;
+    const d = longDate(line.date) || "Undated";
+    days.set(d, [...(days.get(d) ?? []), { line, f }]);
+  }
+  if (!days.size) return <p className="gz-note">No other matches were played since our last issue.</p>;
+  return (
+    <div className="gz-around">
+      {[...days].map(([d, items]) => (
+        <section key={d} className="gz-around-day">
           <div className="gz-late-date">{d}</div>
-          <ul className="gz-list">{lines.map((l, i) => <li key={i}>{l}</li>)}</ul>
-        </div>
+          <div className="gz-around-grid">
+            {items.map(({ line, f }) => {
+              const venue = venues.find((v) => v.id === f.venueId);
+              const [i1, i2] = f.innings ?? [];
+              // The headline from the winner's side, as a round-up writes it; nothing about any run.
+              const story = storyFor(f, { me: f.winner ?? f.teams[0], seed, stageLabel: f.stageLabel, city: venue?.city ?? null, last: false, final: false, knockout: false, record: { won: 0, lost: 0 } });
+              return (
+                <article key={line.fixtureKey} className="gz-piece">
+                  <div className="gz-kicker">{f.stageLabel}{f.group ? ` · Group ${f.group}` : ""}{venue ? ` · ${venue.city}` : ""}</div>
+                  <h3 className="gz-piece-head">{story.headline}</h3>
+                  <p className="gz-piece-line">{labelTeams(line.line)}</p>
+                  {i1 && i2 && <div className="gz-score gz-box-score"><BoxInnings inn={i1} rain={f.rain} highlight={highlight} me={me} /><BoxInnings inn={i2} rain={f.rain} highlight={highlight} me={me} /></div>}
+                </article>
+              );
+            })}
+          </div>
+        </section>
       ))}
-    </section>
+    </div>
   );
 }
 
@@ -205,7 +245,7 @@ export function CoverPage({ state, result, edition, venues, mine, numbersHere, r
   );
 }
 
-type Section = "report" | "inn1" | "inn2" | "decider" | "tables";
+type Section = "report" | "inn1" | "inn2" | "decider" | "tables" | "around";
 
 /** The between-match lever: what the side may change before its next match, and the hand on it. */
 export interface Lever {
@@ -214,14 +254,9 @@ export interface Lever {
   coach: CoachOut | null;
   captainId: string | null;
   plans: (MatchPlan | undefined)[];
+  /** Line-up moves left, shared with the lineup screen. */
+  movesLeft: number;
   onReplan: (index: number, plan: MatchPlan) => void;
-}
-
-/** The plan in force for the side's nth match: the latest plan at or before it. */
-function planAt(plans: (MatchPlan | undefined)[], n: number): MatchPlan {
-  let plan: MatchPlan = {};
-  for (let i = 0; i <= n; i += 1) if (plans[i]) plan = { ...plan, ...plans[i] };
-  return plan;
 }
 
 const TEMPO_WORDS: Record<NonNullable<MatchPlan["intent"]>, string> = { coach: "at the coach's own tempo", attack: "attacking in every phase", balanced: "at a balanced tempo", hold: "holding back" };
@@ -237,10 +272,19 @@ function NextMatchLever({ lever, next, me, opponent }: { lever: Lever; next: num
   const from = opponent ? `from the match against ${teamLabel(opponent)} on` : "from the next match on";
   const change = (p: MatchPlan, what: string) => { lever.onReplan(next, p); setSaved(`${what} ${from}. Every match from there has been played again with it; the ones already played stand.`); };
   const nameOf = (id: string | null) => (id ? lever.picks.find((p) => p.id === id)?.name ?? "the captain" : null);
+  // The order for the next match: the last moved order, or the lineup's own.
+  const order = plan.order ?? lever.picks.map((p) => p.id);
+  const [a, setA] = useState(0);
+  const [b, setB] = useState(1);
+  const swapOrder = () => {
+    const o = [...order];
+    [o[a], o[b]] = [o[b]!, o[a]!];
+    change({ order: o }, `${nameOf(order[a]!)} and ${nameOf(order[b]!)} swap places`);
+  };
   return (
     <section className="gz-box gz-lever">
       <h4>Before the next match</h4>
-      <p className="gz-note">{teamLabel(me)} may name a captain and set a tempo for the next match and the ones after it. The order is the order you drafted.</p>
+      <p className="gz-note">{teamLabel(me)} may name a captain, set a tempo and move the order for the next match and the ones after it.</p>
       <label className="gz-lever-row"><span>Captain</span>
         <select value={captainId ?? ""} onChange={(e) => change({ captainId: e.target.value || null }, e.target.value ? `${nameOf(e.target.value)} captains` : "No rated captain leads")}>
           <option value="">No rated captain</option>
@@ -255,6 +299,20 @@ function NextMatchLever({ lever, next, me, opponent }: { lever: Lever; next: num
           <option value="hold">Hold back</option>
         </select>
       </label>
+      {/* Line-up moves (2026-11-03): one swap of two batting positions a move, from the run's budget. */}
+      <label className="gz-lever-row"><span>Swap</span>
+        <select value={a} onChange={(e) => setA(Number(e.target.value))} disabled={lever.movesLeft <= 0}>
+          {order.map((id, i) => <option key={id} value={i}>No. {i + 1} {nameOf(id)}</option>)}
+        </select>
+      </label>
+      <label className="gz-lever-row"><span>with</span>
+        <select value={b} onChange={(e) => setB(Number(e.target.value))} disabled={lever.movesLeft <= 0}>
+          {order.map((id, i) => <option key={id} value={i}>No. {i + 1} {nameOf(id)}</option>)}
+        </select>
+      </label>
+      <div className="gz-lever-row"><span />
+        <button type="button" className="gz-lever-go" disabled={lever.movesLeft <= 0 || a === b} onClick={swapOrder}>{lever.movesLeft > 0 ? `Swap them · ${lever.movesLeft} ${lever.movesLeft === 1 ? "move" : "moves"} left` : "No line-up moves left"}</button>
+      </div>
       {saved && <p className="gz-note gz-saved" role="status">{saved}</p>}
     </section>
   );
@@ -290,7 +348,8 @@ export function MatchPage({ fixture, index, mine, all, result, me, venues, highl
     return lastPlayed ? [{ stage: s, group: g, fixture: lastPlayed }] : [];
   }));
   const decider = f.tieBreak ? tieBreakLabel(f.tieBreak) : null;
-  const sections: [Section, string][] = [["report", "Report"], ["inn1", "1st innings"], ["inn2", "2nd innings"], ...(decider ? [["decider", decider] as [Section, string]] : []), ["tables", "Tables"]];
+  const others = copy?.lateNews.length ?? 0;
+  const sections: [Section, string][] = [["report", "Report"], ["inn1", "1st innings"], ["inn2", "2nd innings"], ...(decider ? [["decider", decider] as [Section, string]] : []), ["tables", "Tables"], ...(others ? [["around", "Around the World Cup"] as [Section, string]] : [])];
   return (
     <article className="gz-page">
       <Masthead issue={`Issue ${issue}`} date={longDate(f.date)} matchDay={copy?.matchDay ?? null} editionId={result.editionId} />
@@ -320,7 +379,13 @@ export function MatchPage({ fixture, index, mine, all, result, me, venues, highl
               {stage?.groups && f.group && <Standings stage={stage} fixture={f} group={f.group} me={me} />}
               {next && <section className="gz-box"><h4>Next for {teamLabel(me)}</h4><p className="gz-next"><b>{next.stageLabel}, v {teamLabel(next.teams.find((t) => t !== me) ?? "")}</b><br />{nextVenue ? `${nextVenue.name}, ${nextVenue.city}` : ""}{next.date ? `, ${shortDate(next.date)}` : ""}</p></section>}
               {next && lever && <NextMatchLever key={index} lever={lever} next={index + 1} me={me} opponent={next.teams.find((t) => t !== me) ?? null} />}
-              {copy && <LateNews copy={copy} />}
+              {others > 0 && (
+                <section className="gz-box">
+                  <h4>Around the World Cup</h4>
+                  <p className="gz-next">{others} other {others === 1 ? "result" : "results"} since our last issue.</p>
+                  <button type="button" className="gz-link" onClick={() => setSection("around")}>Read them</button>
+                </section>
+              )}
             </aside>
           </div>
         </>
@@ -335,6 +400,12 @@ export function MatchPage({ fixture, index, mine, all, result, me, venues, highl
         <div className="gz-innings">
           <div className="gz-kicker">{decider} · {teamLabel(f.tieBreak.winner)} won it</div>
           <TieBreakCard tb={f.tieBreak} highlight={highlight} me={me} />
+        </div>
+      )}
+      {section === "around" && copy && (
+        <div className="gz-innings">
+          <div className="gz-kicker">Around the World Cup · since our last issue</div>
+          <Around copy={copy} all={all} venues={venues} highlight={highlight} me={me} seed={seed} />
         </div>
       )}
       {section === "tables" && (

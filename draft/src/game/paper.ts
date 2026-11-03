@@ -99,8 +99,10 @@ export function writePaper(all: FixtureResult[], mine: FixtureResult[], me: stri
       const s = note ? factSentence(note, picker, slots) : null;
       if (s) sentences.push(s);
     }
+    // Every other result since the last issue (2026-11-03: it kept the last 8 and dropped the rest
+    // when the side's matches were far apart); the Around the World Cup section prints them all.
     const between = all.slice(previous + 1, at).filter((f) => !f.teams.includes(me));
-    const lateNews = between.slice(-8).map((f) => {
+    const lateNews = between.map((f) => {
       const fk = fixtureKey(f);
       const best = bestFact((facts.get(fk) ?? []).filter((x) => !IN_RESULT_LINE.has(x.key) && x.tier <= 2));
       const extra = best ? factSentence(best, picker, matchSlots(f, marks)) : null;

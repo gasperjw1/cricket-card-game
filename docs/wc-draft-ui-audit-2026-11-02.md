@@ -96,6 +96,59 @@ Share links made before these changes replay differently (fixture grounds and wh
   points, and all 176 form cells match. Two calculation faults were found and fixed: records broken
   (refit item 17) and the super-over bowler (refit item 16 d).
 
+## Draft screen and match days, 2026-11-03 (third pass)
+
+Yash: two colour schemes on the draft screen; player cards hard to read; stretched on a desktop;
+match days half empty because the other results sat down the side column.
+
+- **One scheme.** The team sheet is a dark scoreboard in the app's colours (numbered plates,
+  condensed scoreboard figures, the accent for its rule and the Place buttons); cream is the
+  newspaper's alone. The lineup screen uses the same sheet.
+- **Tiles.** Each player is a tile: name, a short role ("Keeper · top order", "Left-arm
+  fast-medium") and two numbers, his batting and bowling in this World Cup, in scoreboard figures.
+  The card number, phases and phase bars left the list. The sorts sort by those same numbers.
+  Three tiles across at 1440px, two in the middle, one on a phone; a 15-man squad fits a desktop
+  screen without scrolling.
+- **The card.** Name, one line of who he is, the two numbers large with the card's phases in a
+  line under each, the slots with his batting number in each, and the step-by-step folded under
+  "How 49 and 73 are worked out". On a desktop it sits at its own height over the dimmed squad, and
+  a click outside closes it. Checked on all 11 spins of a draft: each tile's numbers equal the
+  card's, and the card offers exactly the sheet's open slots.
+- **Around the World Cup.** A match issue gets a section with every other result since the last
+  issue: a headline, the result and its best fact, and a box score (each side's total, top two
+  batters, best bowler; the top one of each on a phone). The side column points to it. The paper
+  used to keep only the last 8 results and drop the rest; it keeps them all (10 on India 2024's
+  fourth issue). The report's side column went from 1,468px to 813px at 1440px wide.
+
+## The scoreboard and line-up moves, 2026-11-03 (fourth pass)
+
+After the Adelaide Oval (1911) and WACA manual scoreboards (photos on Wikimedia Commons):
+
+- **Palette, app-wide.** Green-black board face, gold paint for what is fixed (labels, slot
+  numbers), white name plates for what changes, a cream frame. The newspaper keeps its paper.
+- **Draft screen.** A cream frame band (side, coach, a clock, the spin). Each player is a name
+  plate: his name, his description in Yash's order ("WK – RHB middle order", "RF – LHB tailender";
+  WK or the bowling code, then hand and place: 1–2 opener, 3 top order, 4–6 middle order, 7–8
+  lower order, 9–11 tailender), and BAT and BOWL each in its own box with the label painted above
+  and each digit on its own tile; no rating is two blank tiles, so every plate is the same width.
+  A strip of counters (named, overs, bowlers needed, keeper) replaces the line of text. The team
+  sheet is the batting side of the board: painted slot numbers, plates, digit tiles, blank plates
+  for open slots that glow gold when a player can go there. The squad pane scrolls; the sheet
+  stays. On a phone the header band was the full height of the header and the header ran 25px
+  off the screen; both fixed.
+- **Line-up moves** (Yash: lineup and between matches, a swap of two players a move, 3 a run).
+  `BUDGET.lineupMoves`; the budget is shared. On the lineup screen: Move on one player, Swap on
+  another. Before a match: Swap/with in the plan box, beside captain and tempo; the swap is saved
+  as that match's batting order (`MatchPlan.order`) and played from that match on. The share link
+  carries moves spent. Checked: a lineup swap (Kohli No. 11 to No. 2) is what match 1 bats; a swap
+  before match 2 changes matches 2 on and leaves match 1 as it was (148/4 v 150/5); a tempo set
+  before match 3 keeps match 2's order and costs no move; the link replays with one move left.
+- **Plans merge in the engine.** The engine took the latest plan whole, so a captain or order set
+  earlier was dropped once a later plan set only a tempo, while the paper showed them together.
+  Both now read `planAt` (`game/plan.ts`).
+- **Difficulty, later.** Yash plans difficulty settings that limit line-up moves, rerolls and how
+  many Elite and Gold players can be drafted; every run limit now lives in `BUDGET` for that.
+
 ## 0. Broken, found in runs 2–4
 
 A. **"Back to the draft" from the lineup soft-locks the run.** The draft screen asks for a 12th

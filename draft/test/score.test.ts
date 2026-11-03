@@ -2,6 +2,7 @@ import assert from "node:assert/strict";
 import { describe, it } from "node:test";
 import type { FixtureResult, TournamentResult } from "../../wcdraft/src/engine/tournament.ts";
 import { dailyLabel, dailySeed, decodeRun, encodeRun, netRunRate, performance, type SharedRun } from "../src/game/score.ts";
+import { planAt } from "../src/game/plan.ts";
 
 const inn = (team: string, runs: number, wickets: number, legalBalls = 120) => ({ team, runs, wickets, legalBalls, scheduledOvers: 20 });
 const fixture = (me: string, opp: number, mine: number, won: boolean, stageId = "group"): FixtureResult =>
@@ -35,13 +36,28 @@ describe("performance and the share link", () => {
   it("round-trips a run through the link, plans included", () => {
     const run: SharedRun = {
       seed: "daily-2026-11-02", identity: { team: "United States of America", editionId: "2024", standIn: false }, coach: { team: "India", coachName: "Rahul Dravid", from: "2021-11" },
-      picks: Array.from({ length: 11 }, (_, i) => ["India", "2024", `p${i}`] as [string, string, string]), captainId: "p3", plans: [undefined, undefined, { intent: "attack" }, undefined, { captainId: "p5" }],
+      picks: Array.from({ length: 11 }, (_, i) => ["India", "2024", `p${i}`] as [string, string, string]), captainId: "p3",
+      plans: [undefined, { order: ["p1", "p0", ...Array.from({ length: 9 }, (_, i) => `p${i + 2}`)] }, { intent: "attack" }, undefined, { captainId: "p5" }], movesUsed: 2,
     };
     const text = encodeRun(run);
     assert.match(text, /^[A-Za-z0-9_-]+$/, "URL-safe");
     assert.deepEqual(decodeRun(text), run);
     assert.equal(decodeRun("not-a-run"), null);
     assert.equal(decodeRun(encodeRun({ ...run, picks: run.picks.slice(0, 10) })), null, "eleven picks or nothing");
+  });
+
+  it("reads a link made before line-up moves as none spent", () => {
+    const old = btoa(JSON.stringify({ s: "x", i: ["India", "2024", 0], c: null, p: Array.from({ length: 11 }, (_, i) => ["India", "2024", `p${i}`]), k: null, l: [] })).replace(/=+$/, "");
+    assert.equal(decodeRun(old)?.movesUsed, 0);
+  });
+
+  it("holds every plan from its match on, a later one changing only what it sets", () => {
+    const order = ["b", "a", "c"];
+    const plans = [{ captainId: "a" }, { order }, undefined, { intent: "attack" as const }];
+    assert.deepEqual(planAt(plans, 0), { captainId: "a" });
+    assert.deepEqual(planAt(plans, 2), { captainId: "a", order });
+    assert.deepEqual(planAt(plans, 3), { captainId: "a", order, intent: "attack" }, "the order and captain set earlier stay when a tempo is set");
+    assert.deepEqual(planAt([], 4), {});
   });
 
   it("names the day's seed by the player's local date", () => {

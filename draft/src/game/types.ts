@@ -107,8 +107,16 @@ export interface RunState {
   captainId: string | null;
   /** The between-match lever: a plan for the side's nth match holds from that match onward. */
   plans: (MatchPlan | undefined)[];
+  /** Line-up moves left (2026-11-03): each swap of two batting positions costs one, on the lineup screen or before a match. */
+  movesLeft: number;
   result: TournamentResult | null;
   error: string | null;
 }
 
-export const BUDGET = { identityRerolls: 1, coachRerolls: 1, spinRerolls: 2, coachPanel: 3 } as const;
+/**
+ * What a run allows. Kept in one place so the difficulty settings Yash plans can set them (with
+ * limits on Elite and Gold picks to come): rerolls of the side, the coach panel and the squad
+ * spins, and line-up moves, one swap of two batting positions each, spent on the lineup screen or
+ * before any match (2026-11-03).
+ */
+export const BUDGET = { identityRerolls: 1, coachRerolls: 1, spinRerolls: 2, coachPanel: 3, lineupMoves: 3 } as const;

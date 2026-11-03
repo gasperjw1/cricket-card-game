@@ -1,15 +1,15 @@
 /**
- * The eleven as a team sheet (decided 2026-11-01): the side's batting card as it is pinned to the
- * dressing-room wall. Numbered 1 to 11, full names, the keeper's dagger and the captain's (c),
- * hand and bowling code under each name, the batting number for the slot on the right, and a
- * pencilled line for every position still to fill. Screens pass the action for each row (a
- * "Place here" button in the draft, move arrows in the lineup); the sheet itself only draws.
+ * The eleven as the batting side of a ground's scoreboard (2026-11-01; scoreboard 2026-11-03, after
+ * the Adelaide Oval and WACA boards): slots 1 to 11 painted down the side, a name plate in each
+ * filled slot with the keeper's dagger and the captain's (c), his description under it, his batting
+ * and bowling numbers for that slot on digit tiles, and a blank plate for every slot still to fill.
+ * Screens pass the action for each row (Place in the draft, Swap in the lineup); the sheet only draws.
  */
 
 import type { ReactNode } from "react";
 import type { PoolPlayer, Slot } from "../game/types.ts";
 import { fullName, teamLabel } from "../lib/names.ts";
-import { bowlingTypeName } from "./PlayerCard.tsx";
+import { Digits, bowlingTypeName, roleLine } from "./PlayerCard.tsx";
 
 export interface SheetRow {
   slot: Slot;
@@ -25,13 +25,9 @@ export interface SheetRow {
   action?: ReactNode;
 }
 
-/** "RHB · RFM", "LHB", "RHB · OB": what the sheet says under a name. */
+/** What the sheet says under a name: the same description as the squad tile ("RFM – RHB lower order"). */
 export function sheetLine(p: PoolPlayer): string {
-  const parts: string[] = [];
-  if (p.hand) parts.push(p.hand === "L" ? "LHB" : "RHB");
-  const bowls = p.bowlingType && p.bowlingType !== "none" && (p.bowlShown || p.role === "bowler" || p.role === "all-rounder");
-  if (bowls) parts.push(p.bowlingType!);
-  return parts.join(" · ");
+  return roleLine(p);
 }
 
 /** The name as a scorecard writes it: dagger before the keeper, (c) after the captain. */
@@ -75,10 +71,10 @@ export function TeamSheet({ side, edition, coach, rows, captainId, keeperId, foo
                 <span className="sheet-name"><span className="sheet-blank">{r.slot.label}</span></span>
               )}
               <span className="sheet-bat" title={tip}>
-                {p && p.batShown ? <>{r.batHere ?? p.bat}{r.batHere !== null && r.batHere !== p.bat ? <small> of {p.bat}</small> : null}</> : p ? <span className="sheet-dash">–</span> : ""}
+                {p ? <><Digits n={p.batShown ? r.batHere ?? p.bat : null} />{p.batShown && r.batHere !== null && r.batHere !== p.bat ? <small>of {p.bat}</small> : null}</> : ""}
               </span>
               <span className="sheet-bat sheet-bowl" title={p && p.bowlShown ? `Bowling ${p.bowl}: powerplay ${p.bowlPhases.pp}, middle ${p.bowlPhases.mid}, death ${p.bowlPhases.death}` : undefined}>
-                {p && r.keeps ? <small title="The designated keeper keeps and does not bowl">keeps</small> : p && p.bowlShown ? <>{r.bowlHere ?? p.bowl}{r.bowlHere != null && r.bowlHere !== p.bowl ? <small>of {p.bowl}</small> : null}</> : p ? <span className="sheet-dash">–</span> : ""}
+                {p && r.keeps ? <small className="sheet-wk" title="The designated keeper keeps and does not bowl">WK</small> : p ? <><Digits n={p.bowlShown ? r.bowlHere ?? p.bowl : null} />{p.bowlShown && r.bowlHere != null && r.bowlHere !== p.bowl ? <small>of {p.bowl}</small> : null}</> : ""}
               </span>
               <span className="sheet-action">{r.action}</span>
             </li>

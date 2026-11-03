@@ -113,8 +113,10 @@ associate bowlers). (2) UI/UX clean-up and update: **done** (`wc-draft-ui-audit-
 broken and confusing items fixed; every coach tag now played, refit doc item 15). Then on
 2026-11-03: numbers only on every card, a landing page, the draft as rows with a full card on tap,
 the souvenir issue in five sections, and super-over and bowl-out scorecards (audit doc "Rebuilt
-2026-11-03"; engine side refit item 16). Next in (2): the rating bands exploration (Yash: Cricket
-26-style attributes from domestic and international limited-overs data). (3) Dots: the −0.7 dot share, with the
+2026-11-03"; engine side refit item 16). The rating bands exploration is written up in
+`wc-draft-rating-bands-2026-11-03.md`: at a typical card's 300–450 balls no attribute separates two
+levels, so no Cricket 26-style 15-step scale; three options (attribute bars, trait badges,
+per-bowler wides and ODI weighting in the engine) await Yash's choice. (3) Dots: the −0.7 dot share, with the
 pressure-sixes shortfall at required rates of 10–16 from item 13. (4) Re-evaluate. Leaderboards
 and growth features go last; a Test-cricket auction league is the eventual pivot, on the back burner.
 

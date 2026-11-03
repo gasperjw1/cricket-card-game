@@ -1,11 +1,18 @@
 :root {
   color-scheme: dark;
-  --bg: #0b1020;
-  --card: #141b2f;
-  --card-2: #1b2340;
-  --ink: #eef2ff;
-  --muted: #9aa4c7;
-  --line: #27304f;
+  /* The scoreboard (2026-11-03, after the Adelaide Oval and WACA manual boards): a green-black face,
+     gold paint for what is fixed, white plates for what changes. The newspaper keeps its own paper. */
+  --bg: #0b1511;
+  --card: #11211a;
+  --card-2: #1a2b23;
+  --ink: #f2efe6;
+  --muted: #8fa597;
+  --line: #2a3d33;
+  --paint: #e2b33c;
+  --plate: #1d2e26;
+  --tile: #0a1410;
+  --frame: #e9dfc7;
+  --frame-ink: #3a3324;
   --accent: #3dd68c;
   --accent-ink: #062a18;
   --danger: #ff7b7b;
@@ -71,7 +78,7 @@ h3 { font-size: 16px; margin: 0 0 8px; }
 .row { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; margin-top: 12px; }
 .foot { color: var(--muted); font-size: 12px; text-align: center; padding: 8px; }
 
-.tier { font-size: 11px; font-weight: 800; letter-spacing: 0.04em; padding: 2px 7px; border-radius: 999px; color: #0b1020; }
+.tier { font-size: 11px; font-weight: 800; letter-spacing: 0.04em; padding: 2px 7px; border-radius: 999px; color: var(--bg); }
 .tier-bronze { background: var(--bronze); color: #fff; }
 .tier-silver { background: var(--silver); }
 .tier-gold { background: var(--gold); }
@@ -369,6 +376,30 @@ h3 { font-size: 16px; margin: 0 0 8px; }
 .gz-sections button:disabled { color: var(--muted); opacity: 0.6; }
 .gz-stop { display: flex; gap: 12px; align-items: baseline; border: 2px solid #9e2b25; padding: 8px 12px; margin: 0 0 16px; font-family: "Source Serif 4", Georgia, serif; font-size: 15px; }
 .gz-stop-label { font-family: Oswald, "Arial Narrow", sans-serif; color: #9e2b25; letter-spacing: 0.1em; text-transform: uppercase; font-size: 13px; white-space: nowrap; }
+/* Around the World Cup (2026-11-03): the other results as short pieces with box scores, two across on a desktop. */
+.gz-around { display: grid; gap: 18px; margin-top: 4px; }
+.gz-around-day > .gz-late-date { border-bottom: 2px solid var(--ink); padding-bottom: 4px; margin-bottom: 10px; }
+.gz-around-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(380px, 100%), 1fr)); gap: 16px 28px; }
+.gz-piece { display: grid; gap: 6px; align-content: start; border-bottom: 1px solid var(--line); padding-bottom: 14px; min-width: 0; }
+.gz-piece .gz-kicker { margin: 0; }
+.gz-piece-head { font-family: Oswald, "Arial Narrow", sans-serif; font-weight: 500; font-size: 21px; line-height: 1.15; margin: 0; }
+.gz-piece-line { margin: 0; font-size: 14.5px; line-height: 1.45; }
+.gz-box-score { margin: 4px 0 0; gap: 0 16px; border-top-width: 1px; border-bottom: none; padding: 8px 0 0; }
+.gz-box-score .gz-inn-head { font-size: 15px; }
+.gz-box-score .gz-inn-head b { font-size: 22px; }
+.gz-box-score .gz-inn-sub { font-size: 12px; margin-bottom: 4px; }
+.gz-box-score .gz-figures { font-size: 13px; }
+/* On a phone the two innings stay side by side, each with its top batter and best bowler only. */
+@media (max-width: 520px) {
+  .gz-page .gz-box-score { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 12px; }
+  .gz-box-score .gz-figures tr:nth-child(2):not(.gz-fig-bowl) { display: none; }
+  .gz-box-score .gz-figures td { display: block; text-align: left; padding: 0; }
+  .gz-box-score .gz-figures td:last-child { padding: 0 0 4px; text-align: left; }
+  .gz-box-score .gz-inn-head { flex-wrap: wrap; gap: 0 6px; }
+}
+.gz-box-inn { min-width: 0; }
+.gz-fig-bowl td { color: var(--muted); }
+.gz-link { justify-self: start; margin-top: 8px; padding: 4px 0; background: none; border: none; border-radius: 0; color: #9e2b25; font-family: Oswald, "Arial Narrow", sans-serif; letter-spacing: 0.06em; text-transform: uppercase; font-size: 13px; text-decoration: underline; text-underline-offset: 3px; }
 .gz-late-day + .gz-late-day { margin-top: 8px; }
 .gz-late-date { font-family: Oswald, "Arial Narrow", sans-serif; font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin-bottom: 2px; }
 .gz-late .gz-list li { font-size: 14px; }
@@ -384,6 +415,8 @@ h3 { font-size: 16px; margin: 0 0 8px; }
 .gz-lever { border-top: 2px solid var(--ink); padding-top: 8px; }
 .gz-saved { border-left: 3px solid #9e2b25; padding-left: 8px; color: var(--ink); }
 .gz-lever-row { display: grid; grid-template-columns: 64px minmax(0, 1fr); gap: 8px; align-items: center; margin: 6px 0; font-size: 13px; }
+.gz-lever-go { width: 100%; min-height: 34px; padding: 4px 8px; background: var(--ink); color: #f3ecdd; border: 1px solid var(--ink); border-radius: 2px; font-family: Oswald, "Arial Narrow", sans-serif; letter-spacing: 0.04em; }
+.gz-lever-go:disabled { background: transparent; color: var(--muted); border-color: var(--line); }
 .gz-lever-row select { width: 100%; min-width: 0; background: #fff; color: var(--ink); border: 1px solid var(--ink); border-radius: 2px; padding: 6px 8px; font-family: "Source Serif 4", Georgia, serif; }
 
 /* Souvenir issue and the journey (2026-11-02). */
@@ -434,47 +467,46 @@ h3 { font-size: 16px; margin: 0 0 8px; }
 .tb-balls li.miss b { color: var(--muted); font-weight: 500; }
 .tb-balls li.hit b { color: var(--accent); }
 
-/* Team sheet: the eleven on paper, ruled like the card pinned in the dressing room (2026-11-01). */
-.sheet { --paper: #f3ecdd; --paper-ink: #1f2a24; --paper-muted: #5a5e53; --paper-line: #cfc6b1; --paper-red: #9e2b25; --paper-green: #1e4d3a;
-  background: var(--paper); color: var(--paper-ink); font-family: "Source Serif 4", Georgia, serif; padding: 16px 16px 14px; border-radius: 2px;
-  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.35), 0 10px 24px rgba(0, 0, 0, 0.35); }
-.sheet-head { border-bottom: 2px solid var(--paper-ink); padding-bottom: 6px; margin-bottom: 4px; }
-.sheet-kicker { display: block; font-family: Oswald, "Arial Narrow", sans-serif; font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--paper-red); }
-.sheet-title { margin: 2px 0 0; font-family: Oswald, "Arial Narrow", sans-serif; font-weight: 500; font-size: 24px; line-height: 1.15; }
+/* Team sheet: the eleven as a ground's scoreboard, numbered plates down the side, in the app's own
+   colours (2026-11-03: the cream paper sheet beside the dark squad was two schemes on one screen;
+   cream is the newspaper's alone). */
+.sheet { --paper: var(--card); --paper-ink: var(--ink); --paper-muted: var(--muted); --paper-line: var(--line); --paper-red: var(--accent); --paper-green: var(--accent);
+  background: var(--paper); color: var(--paper-ink); padding: 14px 14px 12px; border: 1px solid var(--line); border-radius: 12px; }
+.sheet-head { border-bottom: 1px solid var(--line); padding-bottom: 8px; margin-bottom: 4px; }
+.sheet-kicker { display: block; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--paint); }
+.sheet-title { margin: 2px 0 0; font-family: Oswald, "Arial Narrow", sans-serif; font-weight: 500; font-size: 24px; line-height: 1.15; text-transform: uppercase; letter-spacing: 0.02em; }
 .sheet-year { color: var(--paper-muted); font-weight: 400; }
 .sheet-sub { display: flex; justify-content: space-between; gap: 12px; font-size: 13px; color: var(--paper-muted); margin-top: 2px; }
 .sheet-list { list-style: none; margin: 0; padding: 0; }
 .sheet-row, .sheet-cols { display: grid; grid-template-columns: 26px minmax(0, 1fr) 46px 46px auto; align-items: center; gap: 0 8px; }
-.sheet-cols { font-family: Oswald, "Arial Narrow", sans-serif; font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--paper-muted); text-align: right; padding: 6px 0 2px; }
-.sheet-row { min-height: 44px; padding: 5px 0; border-bottom: 1px solid var(--paper-line); }
+.sheet-cols { font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--paint); text-align: right; padding: 6px 0 2px; }
+.sheet-row { min-height: 40px; padding: 3px 0; border-bottom: 1px solid var(--paper-line); }
 .sheet-dash { color: var(--paper-line); }
-.sheet-row:last-child { border-bottom: 2px solid var(--paper-ink); }
-.sheet-no { font-family: Oswald, "Arial Narrow", sans-serif; font-size: 15px; color: var(--paper-muted); text-align: right; font-variant-numeric: tabular-nums; }
+.sheet-row:last-child { border-bottom: none; }
+.sheet-no { font-family: Oswald, "Arial Narrow", sans-serif; font-size: 16px; color: var(--paint); text-align: right; font-variant-numeric: tabular-nums; }
+.sheet-row.named .sheet-name { background: var(--plate); border-radius: 2px; padding: 3px 7px; }
+.sheet-row.named .sheet-player { font-family: Oswald, "Arial Narrow", sans-serif; font-weight: 500; letter-spacing: 0.04em; text-transform: uppercase; font-size: 14px; }
+.sheet-wk { color: var(--paint); font-size: 12px; letter-spacing: 0.1em; }
 .sheet-name { display: grid; min-width: 0; }
 .sheet-player { font-weight: 600; font-size: 15px; line-height: 1.2; overflow-wrap: anywhere; }
 .sheet-line { font-size: 12px; color: var(--paper-muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.sheet-blank { font-style: italic; color: var(--paper-muted); font-size: 13px; display: block; border-bottom: 1px dashed var(--paper-line); padding-bottom: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.sheet-bat { font-family: Oswald, "Arial Narrow", sans-serif; font-size: 20px; text-align: right; font-variant-numeric: tabular-nums; line-height: 1; }
-.sheet-bat small { font-family: "Source Serif 4", Georgia, serif; font-size: 11px; color: var(--paper-muted); display: block; margin-top: 2px; }
+.sheet-blank { color: #5d7266; background: var(--card-2); border-radius: 2px; padding: 5px 7px; font-family: Oswald, "Arial Narrow", sans-serif; font-size: 12.5px; letter-spacing: 0.06em; text-transform: uppercase; display: block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.sheet-row.open .sheet-blank { color: var(--paint); outline: 1px dashed var(--paint); outline-offset: -1px; }
+.sheet-bat { display: grid; justify-items: end; gap: 2px; text-align: right; line-height: 1; }
+.sheet-bat small { font-size: 10.5px; color: var(--paper-muted); }
 .sheet-action { display: flex; justify-content: flex-end; min-width: 0; }
 .sheet-action:empty { display: none; }
-.sheet-row.open { background: rgba(30, 77, 58, 0.09); margin: 0 -8px; padding-left: 8px; padding-right: 8px; }
-.sheet-place { min-height: 36px; padding: 4px 10px; background: var(--paper-green); color: #f3ecdd; border: 1px solid var(--paper-green); border-radius: 2px; font-family: Oswald, "Arial Narrow", sans-serif; letter-spacing: 0.02em; white-space: nowrap; }
-.sheet-place small { color: #d8e4d6; font-family: "Source Serif 4", Georgia, serif; }
+.sheet-row.open { background: rgba(61, 214, 140, 0.08); margin: 0 -8px; padding-left: 8px; padding-right: 8px; }
+.sheet-place { min-height: 36px; padding: 4px 10px; background: var(--accent); color: var(--accent-ink); border: 1px solid var(--accent); border-radius: 6px; font-family: Oswald, "Arial Narrow", sans-serif; letter-spacing: 0.02em; white-space: nowrap; }
+.sheet-place small { color: var(--accent-ink); opacity: 0.8; font-family: inherit; }
 .sheet .moves { display: flex; gap: 4px; }
-.sheet .moves button { min-width: 34px; min-height: 34px; padding: 0 8px; background: transparent; color: var(--paper-ink); border: 1px solid var(--paper-ink); border-radius: 2px; }
+.sheet .moves button { min-width: 34px; min-height: 34px; padding: 0 8px; background: transparent; color: var(--paper-ink); border: 1px solid var(--line); border-radius: 6px; }
 .sheet .moves button:disabled { opacity: 0.3; }
 .sheet-foot { margin: 8px 0 0; font-size: 12.5px; color: var(--paper-muted); line-height: 1.4; }
 .sheet-foot b { color: var(--paper-ink); font-weight: 600; }
 .sheet-cta { margin-top: 12px; width: 100%; }
 @media (max-width: 899px) { .sheet-row, .sheet-cols { grid-template-columns: 22px minmax(0, 1fr) 42px 42px auto; } }
 
-/* Phase bar: powerplay, middle, death, each segment's height its number. */
-.pc-bar { grid-column: 2; grid-row: 1 / span 2; display: flex; gap: 2px; align-items: flex-end; height: 26px; width: 100%; max-width: 54px; justify-self: start; }
-.pc-bar i { flex: 1 1 0; background: var(--accent); border-radius: 2px 2px 0 0; min-height: 2px; opacity: 0.9; }
-.pc-bar i:nth-child(2) { opacity: 0.7; }
-.pc-bar i:nth-child(3) { opacity: 0.5; }
-.pc-bar.off i { background: var(--line); }
 .vs-odi { font-size: 9px; color: var(--muted); margin-left: 2px; vertical-align: super; }
 .num-good { color: var(--accent); }
 .num-bad { color: var(--danger); }
@@ -484,7 +516,7 @@ h3 { font-size: 16px; margin: 0 0 8px; }
    card opens over the list (2026-11-03, after Era Ball and 82-0). */
 .shell-draft { max-width: 1440px; padding-bottom: 0; height: 100dvh; display: flex; flex-direction: column; overflow: hidden; }
 .shell-draft .top { flex: 0 0 auto; }
-.draft3 { flex: 1 1 auto; min-height: 0; display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(320px, 0.9fr); grid-template-rows: auto minmax(0, 1fr); gap: 0 16px; }
+.draft3 { flex: 1 1 auto; min-height: 0; display: grid; grid-template-columns: minmax(0, 1fr) minmax(320px, 380px); grid-template-rows: auto minmax(0, 1fr); gap: 0 18px; }
 .pane-squad { grid-column: 1; grid-row: 2; }
 .pane-sheet { grid-column: 2; grid-row: 2; }
 .list-tools { display: flex; justify-content: space-between; align-items: center; gap: 8px; flex-wrap: wrap; margin: 8px 0; }
@@ -493,34 +525,77 @@ h3 { font-size: 16px; margin: 0 0 8px; }
 .chip.on { background: var(--card-2); border-color: var(--accent); color: var(--accent); font-weight: 700; }
 .sort { display: flex; align-items: center; gap: 6px; font-size: 13px; color: var(--muted); }
 .sort select { min-height: 32px; padding: 2px 8px; }
-.pr-cols, .pr { display: grid; grid-template-columns: minmax(0, 1fr) 76px 76px 128px; gap: 10px; align-items: center; }
-.pr-cols { font-size: 11px; text-transform: uppercase; letter-spacing: 0.05em; color: var(--muted); padding: 0 10px 4px 15px; }
-.pr-cols span:last-child { text-align: right; }
-.pr-list { display: grid; gap: 6px; }
-.pr { width: 100%; text-align: left; background: var(--card-2); border: 1px solid var(--line); border-left: 5px solid var(--line); border-radius: 10px; padding: 8px 10px 8px 10px; min-height: 58px; color: var(--ink); }
+/* Squad tiles (2026-11-03): a grid that fills the width with tiles of a fixed feel, two or three
+   across on a desktop and one on a phone; name and role on the left, the two numbers on the right
+   in the scoreboard's figures. */
+.pr-note { margin: 0 0 8px; font-size: 12.5px; color: var(--muted); }
+.pr-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(280px, 100%), 1fr)); gap: 8px; align-content: start; }
+.pr { display: grid; grid-template-columns: minmax(0, 1fr) auto auto; gap: 6px; align-items: center; width: 100%; text-align: left; background: var(--plate); border: 1px solid var(--plate); border-left: 4px solid var(--line); border-radius: 3px; padding: 6px 7px 6px 9px; min-height: 54px; color: var(--ink); }
+.pr:not(.ineligible):hover { border-top-color: var(--paint); border-right-color: var(--paint); border-bottom-color: var(--paint); }
+/* A number on the board: each digit on its own tile; a rating in its own box with its name painted above. */
+.dg { display: inline-flex; gap: 2px; }
+.dg i { font-style: normal; display: inline-flex; align-items: center; justify-content: center; background: var(--tile); color: var(--ink); font-family: Oswald, "Arial Narrow", sans-serif; font-variant-numeric: tabular-nums; border-radius: 2px; }
+.dg-sm i { width: 14px; height: 20px; font-size: 15px; }
+.dg-lg i { width: 26px; height: 38px; font-size: 28px; }
+.dg.off i { color: var(--line); }
+.rt { display: grid; justify-items: center; gap: 2px; border: 1px solid var(--line); border-radius: 3px; padding: 2px 4px 4px; background: rgba(0, 0, 0, 0.12); }
+.rt-k { color: var(--paint); font-size: 9.5px; letter-spacing: 0.12em; text-transform: uppercase; line-height: 1.2; }
+.rt-lg { padding: 4px 8px 6px; }
+.rt-lg .rt-k { font-size: 11px; }
 .pr.tier-edge-bronze, .pd.tier-edge-bronze { border-left-color: var(--bronze); }
 .pr.tier-edge-silver, .pd.tier-edge-silver { border-left-color: var(--silver); }
 .pr.tier-edge-gold, .pd.tier-edge-gold { border-left-color: var(--gold); }
 .pr.tier-edge-elite, .pd.tier-edge-elite { border-left-color: var(--elite); }
 .pr.selected { outline: 2px solid var(--accent); outline-offset: -1px; }
 .pr.ineligible { opacity: 0.45; }
-.pr-who { display: grid; min-width: 0; gap: 2px; }
-.pr-name { font-weight: 700; font-size: 15px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.pr-who { display: grid; min-width: 0; gap: 3px; }
+.pr-name { font-family: Oswald, "Arial Narrow", sans-serif; font-weight: 500; font-size: 15px; letter-spacing: 0.04em; text-transform: uppercase; line-height: 1.15; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .pr-sub { color: var(--muted); font-size: 12px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.pr-skill { display: grid; grid-template-columns: auto 1fr; grid-template-rows: auto auto; column-gap: 6px; align-items: end; }
-.pr-skill .pr-k { grid-column: 1; grid-row: 1; }
-.pr-n { grid-column: 1; grid-row: 2; font-size: 22px; font-weight: 800; line-height: 1; font-variant-numeric: tabular-nums; }
-.pr-skill .pc-bar { grid-column: 2; grid-row: 1 / span 2; height: 24px; max-width: 30px; }
-.pr-skill.off .pr-n { color: var(--muted); font-weight: 500; }
-.pr-k { color: var(--muted); font-size: 10.5px; text-transform: uppercase; letter-spacing: 0.04em; }
-.pr-here { display: grid; text-align: right; font-variant-numeric: tabular-nums; font-size: 13px; }
-.pr-here b { font-weight: 600; white-space: nowrap; }
-.card-layer { grid-column: 1; grid-row: 2; z-index: 5; min-height: 0; display: flex; }
-.card-backdrop { display: none; }
-.card-panel { flex: 1 1 auto; min-height: 0; overflow-y: auto; overscroll-behavior: contain; background: var(--card); border: 1px solid var(--line); border-radius: 14px; box-shadow: 0 12px 32px rgba(0, 0, 0, 0.45); }
-.card-panel .pd { padding: 16px 16px 18px 14px; border-left: 5px solid var(--line); border-radius: 14px; min-height: 100%; }
-.draft-bar { grid-column: 1 / -1; display: flex; justify-content: space-between; align-items: flex-end; gap: 12px; padding: 0 0 10px; border-bottom: 1px solid var(--line); margin-bottom: 10px; }
-.draft-squad { margin: 2px 0 0; font-size: 22px; }
+/* On a desktop the card sits over the top of the squad at its own height; the rest of the grid stays in view, dimmed. */
+.card-layer { grid-column: 1; grid-row: 2; z-index: 5; min-height: 0; display: flex; align-items: flex-start; position: relative; background: rgba(11, 21, 17, 0.65); border-radius: 12px; }
+.card-backdrop { position: absolute; inset: 0; width: 100%; min-height: 0; padding: 0; border: none; border-radius: 12px; background: transparent; }
+.card-panel { position: relative; flex: 0 1 760px; max-height: 100%; min-height: 0; overflow-y: auto; overscroll-behavior: contain; background: var(--card); border: 1px solid var(--line); border-radius: 14px; box-shadow: 0 12px 32px rgba(0, 0, 0, 0.55); }
+.card-panel .pd { padding: 16px 16px 18px 14px; border-left: 5px solid var(--line); border-radius: 14px; }
+.draft-bar { grid-column: 1 / -1; min-width: 0; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 8px 12px; padding: 0 0 10px; border-bottom: 1px solid var(--line); margin-bottom: 10px; }
+.draft-bar > * { min-width: 0; }
+/* The board's frame: a cream band with the clock in the middle, as on the old ground scoreboards. */
+.frame-band { flex: 1 1 100%; display: flex; justify-content: space-between; align-items: center; gap: 10px; background: var(--frame); color: var(--frame-ink); border-radius: 4px; padding: 4px 12px; font-size: 11.5px; letter-spacing: 0.12em; text-transform: uppercase; }
+.frame-band span:first-child, .frame-band span:last-child { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0; }
+.frame-band span:first-child { flex: 0 1 auto; }
+.frame-band span:last-child { flex: 0 0 auto; }
+/* The header stacks on a phone: the band keeps its own height there, not the column's. */
+@media (max-width: 899px) { .draft-bar { flex-wrap: nowrap; } .frame-band { flex: 0 0 auto; font-size: 10.5px; letter-spacing: 0.08em; padding: 4px 8px; } }
+.frame-clock { flex: 0 0 auto; width: 18px; height: 18px; border-radius: 50%; border: 2px solid var(--frame-ink); background: linear-gradient(var(--frame-ink), var(--frame-ink)) center 4px / 1.5px 6px no-repeat, linear-gradient(90deg, var(--frame-ink), var(--frame-ink)) 8px center / 4px 1.5px no-repeat; }
+/* The counters along the bottom of the board: painted names, the numbers on tiles. */
+.strip { display: flex; flex-wrap: wrap; gap: 6px 14px; align-items: center; }
+.strip-item { display: inline-flex; align-items: center; gap: 5px; }
+.strip-of { color: var(--muted); font-family: Oswald, "Arial Narrow", sans-serif; font-size: 13px; }
+.strip-flag { font-family: Oswald, "Arial Narrow", sans-serif; font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; padding: 1px 6px; border-radius: 2px; background: var(--tile); color: var(--gold); }
+.strip-flag.done { color: var(--accent); }
+/* Lineup (2026-11-03): the sheet on the left; the captain, the moves and Play in a column beside it
+   on a desktop, under it on a phone, so nothing needs a scroll to reach on a laptop. */
+.lineup-screen { display: grid; grid-template-columns: minmax(0, 1fr); gap: 14px; }
+.lineup-main { order: 2; min-width: 0; }
+.lineup-side { order: 1; display: grid; gap: 10px; align-content: start; min-width: 0; }
+.lineup-title { margin: 0; font-family: Oswald, "Arial Narrow", sans-serif; font-weight: 500; font-size: 24px; text-transform: uppercase; letter-spacing: 0.02em; }
+.lineup-side .small { margin: 0; }
+.lineup-strip { gap: 6px 16px; }
+.strip-num { font-family: Oswald, "Arial Narrow", sans-serif; font-size: 18px; }
+.lineup-box { display: grid; gap: 6px; background: var(--card-2); border: 1px solid var(--line); border-radius: 8px; padding: 10px 12px; }
+.lineup-captain select { width: 100%; }
+.lineup-play { width: 100%; min-height: 44px; font-size: 16px; }
+.lineup-screen .problems { margin: 0; padding-left: 18px; color: var(--gold); font-size: 13px; }
+@media (min-width: 900px) {
+  .lineup-screen { grid-template-columns: minmax(0, 1fr) 300px; align-items: start; }
+  .lineup-main { order: 1; }
+  .lineup-side { order: 2; position: sticky; top: 12px; }
+  .lineup-screen .sheet-row { min-height: 33px; padding: 1px 0; }
+  .lineup-screen .sheet-row .sheet-move, .lineup-screen .sheet-row .sheet-place { min-height: 28px; padding: 2px 10px; }
+  .lineup-screen .sheet { padding: 10px 12px 8px; }
+}
+.sheet-move { min-height: 32px; padding: 3px 10px; background: transparent; color: var(--ink); border: 1px solid var(--line); border-radius: 6px; font-family: Oswald, "Arial Narrow", sans-serif; letter-spacing: 0.04em; }
+.sheet-move.on { border-color: var(--paint); color: var(--paint); }
+.draft-squad { margin: 2px 0 0; font-family: Oswald, "Arial Narrow", sans-serif; font-weight: 500; font-size: 26px; text-transform: uppercase; letter-spacing: 0.02em; }
 .draft-bar-side { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; justify-content: flex-end; }
 .draft-needs { white-space: nowrap; }
 .draft-tabs { display: none; }
@@ -530,24 +605,29 @@ h3 { font-size: 16px; margin: 0 0 8px; }
 
 /* Detail pane */
 .pd-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; }
-.pd-name { font-size: 20px; font-weight: 800; line-height: 1.15; }
+.pd-name { font-family: Oswald, "Arial Narrow", sans-serif; font-size: 26px; font-weight: 500; line-height: 1.1; text-transform: uppercase; letter-spacing: 0.01em; }
+.pd-sub { color: var(--muted); font-size: 13px; margin-top: 4px; display: flex; flex-wrap: wrap; align-items: center; gap: 4px 6px; }
 .pd-close { padding: 0 10px; min-height: 32px; font-size: 18px; line-height: 1; }
-.pd-marks { display: flex; flex-wrap: wrap; gap: 6px; margin: 10px 0; }
+/* His two numbers in this World Cup, large, with the card's phases in one line under each. */
+.pd-nums { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 14px 0 4px; }
+.pd-skill { display: grid; gap: 5px; align-content: start; justify-items: start; background: var(--plate); border: 1px solid var(--line); border-radius: 4px; padding: 8px 10px 10px; }
+.pd-k { color: var(--paint); font-size: 11px; text-transform: uppercase; letter-spacing: 0.12em; }
+.pd-line { color: var(--muted); font-size: 12.5px; font-variant-numeric: tabular-nums; }
+.pd-line b { color: var(--ink); font-weight: 600; }
+.pd-how { margin-top: 14px; border-top: 1px solid var(--line); padding-top: 10px; }
+.pd-how summary { cursor: pointer; color: var(--muted); font-size: 13px; }
+.pd-how .pd-grid { margin-top: 8px; }
 .pd-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-.pd h4 { margin: 10px 0 6px; font-size: 13px; text-transform: uppercase; letter-spacing: 0.05em; color: var(--muted); }
-.pd h4 b { color: var(--ink); font-size: 18px; margin-left: 6px; letter-spacing: 0; }
-.pd-phases { border-collapse: collapse; width: 100%; font-variant-numeric: tabular-nums; }
-.pd-phases th { font-weight: 500; color: var(--muted); font-size: 11px; text-align: center; padding: 2px 4px; width: 33.3%; }
-.pd-phases td { text-align: center; font-weight: 700; font-size: 15px; padding: 2px 0 4px; }
+.pd h4 { margin: 12px 0 6px; font-size: 12px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); }
 .pd-warn { color: var(--gold); }
 .pd-steps { border-collapse: collapse; width: 100%; font-size: 13px; font-variant-numeric: tabular-nums; }
 .pd-steps td { padding: 3px 0; border-bottom: 1px solid var(--line); }
 .pd-steps td:last-child { text-align: right; font-weight: 600; white-space: nowrap; }
 .pd-steps .pd-total td { border-bottom: none; font-weight: 800; }
 .pd-coach { margin-top: 8px; }
-.pd-here .pd-grid { grid-template-columns: 1fr; gap: 6px; }
-.pd-slots { display: grid; grid-template-columns: repeat(auto-fill, minmax(96px, 1fr)); gap: 6px; }
-.pd-slot { display: grid; gap: 2px; min-height: 48px; padding: 6px 8px; background: rgba(61, 214, 140, 0.12); border-color: var(--accent); text-align: left; }
+.pd-slots { display: grid; grid-template-columns: repeat(auto-fill, minmax(92px, 1fr)); gap: 6px; }
+.pd-slot { display: grid; gap: 2px; min-height: 48px; padding: 6px 10px; background: rgba(61, 214, 140, 0.12); border-color: var(--accent); border-radius: 8px; text-align: left; }
+.pd-slot span { font-family: Oswald, "Arial Narrow", sans-serif; font-size: 16px; }
 .pd-slot small { color: var(--muted); }
 
 @media (max-width: 899px) {
@@ -570,14 +650,8 @@ h3 { font-size: 16px; margin: 0 0 8px; }
   .card-panel { position: absolute; left: 0; right: 0; bottom: 0; max-height: 86vh; border-radius: 14px 14px 0 0; border-top: 2px solid var(--accent); padding-bottom: env(safe-area-inset-bottom); }
   .card-panel .pd { border-radius: 14px 14px 0 0; }
   .pd-grid { grid-template-columns: 1fr; }
-  .pr-cols, .pr { grid-template-columns: minmax(0, 1fr) 60px 60px; gap: 8px; }
-  .pr-cols span:last-child { display: none; }
-  .pr-here { grid-column: 1 / -1; display: flex; gap: 6px; text-align: left; font-size: 12px; }
-  .pr-here:empty { display: none; }
+  .draft-squad { font-size: 21px; }
 }
-@media (min-width: 900px) and (max-width: 1199px) {
-  .draft3 { grid-template-columns: minmax(0, 1fr) minmax(300px, 0.9fr); }
-  .pr-cols, .pr { grid-template-columns: minmax(0, 1fr) 68px 68px; }
-  .pr-cols span:last-child { display: none; }
-  .pr-here { grid-column: 1 / -1; display: flex; gap: 6px; text-align: left; font-size: 12px; }
+@media (min-width: 900px) and (max-width: 1099px) {
+  .draft3 { grid-template-columns: minmax(0, 1fr) minmax(300px, 340px); }
 }

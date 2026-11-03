@@ -3,6 +3,7 @@ import { describe, it } from "node:test";
 import { Rng } from "../../wcdraft/src/engine/rng.ts";
 import { drawCoachPanel, drawSquad, eligible, fits, lineupProblems, needs, oversCovered, slotsFor, spinPlayers, squadUniverse, tempoProfile } from "../src/game/rules.ts";
 import { batInSlot, slotWeights } from "../src/game/slots.ts";
+import { roleLine } from "../src/components/PlayerCard.tsx";
 import type { PoolPlayer } from "../src/game/types.ts";
 
 const player = (over: Partial<PoolPlayer>): PoolPlayer => ({
@@ -105,5 +106,18 @@ describe("draft rules", () => {
       assert.equal(panel.length, 3);
       assert.equal(new Set(panel.map(tempoProfile)).size, 3, `seed ${seed}: three different tempos`);
     }
+  });
+});
+
+describe("player descriptions", () => {
+  it("reads WK and/or the bowling code, then hand and place in the order", () => {
+    assert.equal(roleLine(player({ position: 1 })), "RHB opener");
+    assert.equal(roleLine(player({ keeper: true, position: 5, hand: "L" })), "WK – LHB middle order");
+    assert.equal(roleLine(player({ role: "bowler", bowlShown: true, bowlingType: "RF", position: 10 })), "RF – RHB tailender");
+    assert.equal(roleLine(player({ role: "bowler", bowlShown: true, bowlingType: "LBG", position: 8 })), "LB – RHB lower order");
+    // A keeper who bowls shows both (Glenn Phillips, Dilshan): he bowls whenever another man keeps.
+    assert.equal(roleLine(player({ keeper: true, role: "all-rounder", bowlShown: true, bowlingType: "OB", position: 5 })), "WK/OB – RHB middle order");
+    // A keeper whose bowling is not on his card stays WK alone.
+    assert.equal(roleLine(player({ keeper: true, bowlingType: "OB", position: 3 })), "WK – RHB top order");
   });
 });
