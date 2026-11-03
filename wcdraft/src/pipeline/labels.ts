@@ -27,6 +27,7 @@
 import { existsSync, readdirSync, readFileSync } from "node:fs";
 import { resolve } from "node:path";
 import { loadConfig } from "../config.js";
+import { readBowlerTypes } from "./bowler-types.js";
 import { isKeeperRole, loadPeopleRegister, loadPlayerMeta, normaliseBattingStyle, normaliseBowlingStyle, supplementsReady, type PlayerMeta } from "../cricinfo/player-meta.js";
 import { paths, writeText } from "../util/io.js";
 import type { BuildResult } from "./build.js";
@@ -88,6 +89,10 @@ function loadLookups(): { byNameTeam: Map<string, Lookup>; byId: Map<string, Loo
 export function writeLabels(result: BuildResult): LabelsReport {
   const existing = readExisting();
   const lookups = loadLookups();
+  // The archive-wide sheet (`bowler-types.csv`, reviewed entries with sources) fills what the
+  // snapshot and the hand lists leave blank (2026-11-02: six associate bowlers had a type there,
+  // none here, so their cards showed no bowling code and the engine played them unclassed).
+  const archiveTypes = readBowlerTypes();
   const meta = supplementsReady() ? joinSnapshot(result) : new Map<string, PlayerMeta>();
   const keepers = new Map<string, Set<string>>();
   // keeperEditions = stumpings in that edition's tournament or form window only; the all-time
@@ -124,8 +129,8 @@ export function writeLabels(result: BuildResult): LabelsReport {
       name: p.name,
       teams: p.teams.join(";"),
       editions: Object.keys(p.editions).sort().join(";"),
-      handedness: prev?.handedness || (m ? normaliseBattingStyle(m.battingStyle) : "") || lookup?.handedness || "",
-      bowlingType: prev?.bowlingType || bowlingType || lookup?.bowlingType || "",
+      handedness: prev?.handedness || (m ? normaliseBattingStyle(m.battingStyle) : "") || lookup?.handedness || archiveTypes.get(p.id)?.handedness || "",
+      bowlingType: prev?.bowlingType || bowlingType || lookup?.bowlingType || (archiveTypes.get(p.id)?.bowlingType === "mixed" ? "" : archiveTypes.get(p.id)?.bowlingType) || "",
       keeper: prev?.keeper || (keeperEditions || keeperCareer || keeperAnyT20I ? "Y" : ""),
       keeperEditions,
       keeperCareer,

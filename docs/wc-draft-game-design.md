@@ -1385,6 +1385,16 @@ fielding. The simulation is not required to reproduce real results (§11).
   than the paper. An upset stays tier one, because a real one is news; the rate follows the
   engine, so nothing changes in the Gazette. **Decided (Yash):** the remaining associate win rate
   is accepted as it stands; it makes the game a little harder, and the associates fix is closed.
+- **In-match terms measured with the players held; no momentum (2026-11-02, Yash's order: in-match
+  effects, then UI/UX, then dots; refit doc items 12–14):** streak, ball-in-over and chase dots
+  are now measured against each ball's expected shares with the batter, bowler and setness
+  removed, and the sequence terms against a null checked on the sim to read 1. Once that holds,
+  a hot or cold run and a run of dots move the next ball 3% or less, and no batting style or
+  bowler type answers dots differently (Yash asked whether bowlers attack or hold after dots and
+  how Aggressors handle them: measured, no difference). **Decided (Yash):** the adjusted tables
+  and the adjusted setness are on. Brier 0.1876 to 0.1866, first-innings spread +2.9 to +2.6,
+  dot clustering on real (7.4). Six associate bowlers who had no bowling type on their cards now
+  have one, from the archive sheet.
 - **Agreed order after the refit (2026-11-01):** (1) associates fix in the ratings: no-record
   players sit on the global position-band prior, so Italy 2026 bowls at 71 against India's 74 and a
   few tournament balls can make a 77 (shrink empty records toward the side's own mean or an

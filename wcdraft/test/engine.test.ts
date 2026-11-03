@@ -122,11 +122,23 @@ describe("engine", { skip: !engineReady() && "engine data not built" }, () => {
     assert.ok(set.W > fresh.W, "a set batter takes more risk");
     const hot = outcomeDistribution(striker, bowler, env, data.situation, { ...base, strikerBalls: 30, streak: "13+" });
     const cold = outcomeDistribution(striker, bowler, env, data.situation, { ...base, strikerBalls: 30, streak: "0-3" });
-    assert.ok(hot["4"] + hot["6"] > cold["4"] + cold["6"], "a hot streak raises the boundary rate");
     const chase = outcomeDistribution(striker, bowler, env, data.situation, { ...base, innings: 2, over: 17, wickets: 4, strikerBalls: 20, requiredRpo: 13 });
     assert.ok(chase["4"] + chase["6"] > set["4"] + set["6"], "a steep chase raises the boundary rate");
     const stuck = outcomeDistribution(striker, bowler, env, data.situation, { ...base, innings: 2, over: 17, wickets: 4, strikerBalls: 20, requiredRpo: 13, consecutiveDots: 3 });
-    assert.ok(expectedRunsOf(stuck) < expectedRunsOf(chase), "three dots in a chase lower expected runs");
+    // Measured with the players, setness and strike held (2026-11-02), a hot run and a run of dots
+    // move the next ball by a few per cent at most; the raw tables, which counted the players twice,
+    // made a hot streak hit more boundaries and three dots cost runs.
+    const near = (a: number, b: number) => Math.abs(a / b - 1) < 0.06;
+    assert.ok(near(hot["4"] + hot["6"], cold["4"] + cold["6"]) && near(hot.W, cold.W), "a hot streak barely moves the next ball");
+    assert.ok(near(expectedRunsOf(stuck), expectedRunsOf(chase)) && near(stuck.W, chase.W), "three dots in a chase barely move the next ball");
+    setEngineOverrides({ adjustedStates: 0 });
+    try {
+      const rawHot = outcomeDistribution(striker, bowler, env, data.situation, { ...base, strikerBalls: 30, streak: "13+" });
+      const rawCold = outcomeDistribution(striker, bowler, env, data.situation, { ...base, strikerBalls: 30, streak: "0-3" });
+      assert.ok(rawHot["4"] + rawHot["6"] > rawCold["4"] + rawCold["6"], "the raw streak table is still there behind the switch");
+    } finally {
+      setEngineOverrides({ adjustedStates: 1 });
+    }
     // Matchups: a left-hander scores less against off-spin than a right-hander does, beyond the players' own averages.
     const maharaj = southAfrica.players.find((p) => p.name === "KA Maharaj")!;
     const markram = southAfrica.players.find((p) => p.name === "AK Markram")!;

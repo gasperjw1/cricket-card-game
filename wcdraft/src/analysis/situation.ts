@@ -99,7 +99,7 @@ export function outcomeKey(runs: number, wicket: boolean): OutcomeKey {
 }
 
 /** mulberry32: a deterministic shuffle per innings. */
-function rngFor(seed: string): () => number {
+export function rngFor(seed: string): () => number {
   let h = 0x811c9dc5;
   for (let i = 0; i < seed.length; i += 1) h = Math.imul(h ^ seed.charCodeAt(i), 0x01000193);
   let s = h >>> 0;

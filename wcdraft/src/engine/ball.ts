@@ -113,7 +113,9 @@ export class SituationModel {
   streak(innings: 1 | 2, phase: Phase, wickets: number, band: StreakBand): Vector {
     if (band === "n/a") return UNIT;
     const ctx = `${innings}|${phase}|${wicketsBand(wickets)}`;
-    return this.cached(`streak:${ctx}|${band}`, () => {
+    return this.cached(`streak:${ctx}|${band}|${ENGINE.adjustedStates}`, () => {
+      const adjusted = ENGINE.adjustedStates ? this.tables.states?.streak?.[`${ctx}|${band}`] : undefined;
+      if (adjusted) return adjusted;
       const real = this.state(this.tables.streak, ctx, band);
       const nil = this.state(this.tables.streakNull, ctx, band);
       return Object.fromEntries(OUTCOMES.map((k) => [k, real[k] / Math.max(1e-6, nil[k])])) as Vector;
@@ -132,14 +134,14 @@ export class SituationModel {
   ballInOver(innings: 1 | 2, phase: Phase, position: number): Vector {
     const ctx = `${innings}|${phase}`;
     const state = String(Math.min(6, Math.max(1, position)));
-    return this.cached(`bio:${ctx}|${state}`, () => this.state(this.tables.ballInOver, ctx, state));
+    return this.cached(`bio:${ctx}|${state}|${ENGINE.adjustedStates}`, () => (ENGINE.adjustedStates ? this.tables.states?.ballInOver?.[`${ctx}|${state}`] : undefined) ?? this.state(this.tables.ballInOver, ctx, state));
   }
 
   /** Consecutive dot balls before this one, chases only. */
   chaseDots(phase: Phase, wickets: number, consecutiveDots: number): Vector {
     const ctx = `${phase}|${wicketsBand(wickets)}`;
     const state = dotsBand(consecutiveDots);
-    return this.cached(`dots:${ctx}|${state}`, () => this.state(this.tables.chaseDots, ctx, state));
+    return this.cached(`dots:${ctx}|${state}|${ENGINE.adjustedStates}`, () => (ENGINE.adjustedStates ? this.tables.states?.chaseDots?.[`${ctx}|${state}`] : undefined) ?? this.state(this.tables.chaseDots, ctx, state));
   }
 
   get dayEffects(): SituationTables["dayEffects"] {

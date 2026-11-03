@@ -87,12 +87,28 @@ export const ENGINE = {
   streakExponent: 1 as number,
   setnessExponent: 1 as number,
   /**
-   * 1 = the player-adjusted setness table (`states.setness`), 0 = the raw one. 0 for now: over nine
-   * editions at 60 sims × 2 seeds the adjusted table left the powerplay 0.20 an over low against
-   * 0.13 raw and Brier 0.2026 against 0.2008; it narrowed the first-innings spread (+1.3 v +1.6).
-   * Re-test once the powerplay bowler share is right.
+   * 1 = the player-adjusted setness table (`states.setness`), 0 = the raw one. First tried
+   * 2026-11-01 and left off (powerplay 0.20 an over low). On since 2026-11-02 together with
+   * `adjustedStates`, once the powerplay bowler share was right; see there.
    */
-  adjustedSetness: 0 as number,
+  adjustedSetness: 1 as number,
+  /**
+   * 1 = the player-adjusted streak, ball-in-over and chase-dot tables (`states`, 2026-11-02:
+   * batter, bowler and setness removed; streak and chase dots against a null shuffled within
+   * phase, striker, bowler, setness band and odd/even total, dismissals fixed), 0 = the raw ones.
+   * The raw tables counted the players twice: a good batter's run of balls read as momentum and a
+   * weak one's dots as pressure, on top of the players' own vectors and day effects, so the sim
+   * clustered dots more than real (a dot after a dot 9.4 points likelier than after a scoring
+   * ball, real 7.4). The null was checked on the sim with these terms off, where it must read 1
+   * (`scripts/research/sequence-null-check.mts`); a looser one read 0.8–0.9 on wickets after dots.
+   * Measured that way, a hot or cold run and a run of dots move the next ball 3% or less, for every
+   * batting style and bowler type alike (`scripts/research/dot-response.mts`). Nine editions, 40
+   * sims × 4 seeds:
+   *   raw tables          Brier 0.1876, spread +2.9, PP / mid / death −0.03 / +0.07 / 0.00, bpw +0.02, lift 9.4
+   *   adjusted states     Brier 0.1876, spread +3.2, −0.01 / +0.06 / 0.00, bpw +0.17, lift 8.3
+   *   states + setness    Brier 0.1866, spread +2.6, −0.08 / +0.03 / −0.02, bpw +0.15, lift 7.4 (kept)
+   */
+  adjustedStates: 1 as number,
   ballInOverExponent: 1 as number,
   chaseDotsExponent: 1 as number,
   /**
@@ -231,7 +247,7 @@ export const ENGINE = {
   },
 };
 
-export type EngineOverrides = Partial<Record<"batExponent" | "bowlExponent" | "bowlHazardExponent" | "pitchExponent" | "inningsPhaseExponent" | "pressureExponent" | "gearExponent" | "foundExponent" | "shapeExponent" | "streakExponent" | "setnessExponent" | "adjustedSetness" | "ballInOverExponent" | "chaseDotsExponent" | "matchupExponent" | "bowlTierExponent" | "bowlerDaySd" | "batterDaySd" | "matchEffectSd" | "inningsEffectSd" | "venueExponent" | "scoringCalibration" | "hazardCalibration" | "deathCalibration", number>>;
+export type EngineOverrides = Partial<Record<"batExponent" | "bowlExponent" | "bowlHazardExponent" | "pitchExponent" | "inningsPhaseExponent" | "pressureExponent" | "gearExponent" | "foundExponent" | "shapeExponent" | "streakExponent" | "setnessExponent" | "adjustedSetness" | "adjustedStates" | "ballInOverExponent" | "chaseDotsExponent" | "matchupExponent" | "bowlTierExponent" | "bowlerDaySd" | "batterDaySd" | "matchEffectSd" | "inningsEffectSd" | "venueExponent" | "scoringCalibration" | "hazardCalibration" | "deathCalibration", number>>;
 
 /** Calibration hook: override numeric constants for a sweep (`npm run engine:calibrate`). */
 export function setEngineOverrides(overrides: EngineOverrides): void {

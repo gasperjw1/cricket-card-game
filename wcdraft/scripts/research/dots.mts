@@ -8,9 +8,12 @@ import { loadIndex, readMatch } from "../../src/cricsheet/archive.ts";
 import { normaliseMatch, mainInnings, phaseOf } from "../../src/cricsheet/match.ts";
 import { loadEdition, matchEnvironment, teamFromMatch, type EditionData, type SquadMatchOut } from "../../src/engine/load.ts";
 import { simulateMatch } from "../../src/engine/match.ts";
+import { setEngineOverrides } from "../../src/engine/model.ts";
 
 const ids = (process.argv[2] ?? "2012,2014,2016,2021,2022,2024").split(",");
 const sims = Number(process.argv[3] ?? 10);
+// Optional engine overrides as JSON (2026-11-02), e.g. '{"adjustedStates":1}'.
+if (process.argv[4]) setEngineOverrides(JSON.parse(process.argv[4]));
 const config = loadConfig();
 const index = loadIndex();
 const wcEditionOf = (e: { eventName: string | null; season: string }) => (e.eventName && config.worldCupEventNames.has(e.eventName) ? (config.editionBySeason.get(e.season)?.id ?? null) : null);

@@ -441,13 +441,63 @@ replayed many times (scratch scripts `baseline.mts`, `player-dist.mts`, `dots.mt
     (1 win in 40, so the true rate is uncertain; the sim expects about 5), fit-set wickets a little
     rare (20.8 against 19.0 balls), and middle-overs scoring +0.08 an over.
 
+12. **In-match terms measured with the players held (2026-11-02).** Streak, ball-in-over and
+    chase dots were measured on raw balls, so they carried who was batting and bowling and how
+    their day was going, which the engine adds again through the players' vectors and day
+    effects. `analysis/pressure.ts` now measures them as it measures pressure and setness: each
+    ball against its expected shares with the batter, the bowler and the striker's setness removed,
+    and the two sequence terms against a null that shuffles each innings' balls. The null was
+    tested on the sim with every sequence term off, where it must read 1
+    (`scripts/research/sequence-null-check.mts`, about 8,400 simulated World Cup matches). A
+    shuffle within phase, striker and bowler read wickets 0.78–0.92 after dots and 0.90 after a
+    quiet run, the measurement's own bias, not cricket. Three things have to stay put: a dismissal
+    (always the batter's last ball), the batter's setness band (his first balls are the dot-heavy,
+    low-risk ones) and the odd or even total (it decides who faces next). With all three held the
+    null reads 1 within about 0.03 in every cell.
+
+    Measured that way on the archive (T20Is and leagues since 2014), there is no momentum. After a
+    hot or cold last six balls, and after any run of dots, the next ball moves 3% or less in every
+    cell. The exception is sixes at 3–5 down in middle-overs chases, 0.90 after three dots. Split by
+    batting style, by bowler pace or spin, and by the bowler's own dot and wicket thirds (set on the
+    other half of the archive; `scripts/research/dot-response.mts`), every type reads the same
+    within noise: no style of batter and no type of bowler answers a run of dots differently.
+    Ball-in-over keeps its shape (ball 1 quieter, balls 2–4 riskier, ball 6 fewer sixes).
+
+    | Nine editions, 40 sims × 4 seeds | Brier | Spread | PP / mid / death | Balls per wicket | Dot-after-dot lift (real 7.4) |
+    |---|---:|---:|---:|---:|---:|
+    | Raw tables | 0.1876 | +2.9 | −0.03 / +0.07 / 0.00 | +0.02 | 9.4 |
+    | Adjusted streak, ball-in-over, chase dots | 0.1876 | +3.2 | −0.01 / +0.06 / 0.00 | +0.17 | 8.3 |
+    | The same plus adjusted setness (**kept**) | 0.1866 | +2.6 | −0.08 / +0.03 / −0.02 | +0.15 | 7.4 |
+
+    `ENGINE.adjustedStates` and `adjustedSetness` are both 1; the raw tables stay in
+    `situation.json` behind the switches. The sim's dot clustering now matches real, which settles
+    item 3 above: the excess was the raw tables counting the players twice. Rarity
+    (`draft/scripts/rarity.mts 1000 greedy`): unbeaten 1.3% (was 2.1%), champion 8.7% (8.8%); top
+    decile unbeaten 3.0% (8.0%), champion 15.0% (15.0%). The perfect run is still under the 3%
+    target.
+
+13. **Chase pressure by required rate (2026-11-02, `scripts/research/chase-pressure.mts`).**
+    World Cup chases 2012–24, real against the sim on the same fixtures, 10 sims each. Live chases
+    (up to 7 down) match on dots and wickets in every band. Sixes run short at required rates of
+    10–14 (10–12: 5.0 per 100 balls real against 3.9; 12–14: 5.8 against 5.0), and at 14–16 the
+    sim gives 5.3–6.3 against 6.9. In chases already gone (8 down, 18+ needed), dots match (34.7
+    against about 33) but sixes are 5.8 against 3.5, on only 432 real balls.
+
+14. **Bowling types filled from the archive sheet (2026-11-02).** `players.csv`, the label file
+    the engine and the cards read, took bowling types from the Cricinfo snapshot and the hand lists
+    only, never from `bowler-types.csv`, where reviewed entries with sources sit. Six associate
+    bowlers with shown bowling numbers had no type as a result (Kariko and Atai of PNG, Miyaji,
+    Rafiullah, Mutua, Hirani), so their cards showed no code and the engine played them with no
+    pace or spin class. `pipeline/labels.ts` now falls back to that sheet; every one of the 1,250
+    shown bowling numbers has a type. The 24 card holders still without one are batters with 34
+    career balls or fewer and no shown bowling number.
+
 ## Still open
 
 - Dot share −0.7 points: the sim turns a few dots into singles at the same run rate; not a counting
   artefact (checked both sides).
 - 2024 scores 0.23 an over low in the sim; 2026 loses a wicket every 16 balls against 17.2 real.
-- Setness, streak, ballInOver and chaseDots are still measured without player adjustment (the
-  adjusted setness table exists, off); the pressure module can measure the rest the same way.
-- Pressure sixes at required rates of 14–16 and dead-chase dots were not re-measured.
+- Pressure sixes run short at required rates of 10–16 and in chases already gone (item 13).
+- Balls per wicket +0.15 and powerplay −0.08 an over with the adjusted tables (item 12).
 - The replay still takes extras, dismissal mix, rain, venue factors and chase uplift from the
   edition being replayed; only the base rates have an out-of-sample switch.
