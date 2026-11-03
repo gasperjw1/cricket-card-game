@@ -1206,7 +1206,8 @@ fielding. The simulation is not required to reproduce real results (§11).
   ~120 real headlines and ~45 report openers is in `wc-draft-report-style-corpus-2026-11-02.md`;
   the bank is still to be grown from it. **Future work flagged by Yash:** the era step on cards
   (a 2012 card in 2009 drops hard, and earlier cards sometimes gain) comes from the field-relative
-  scale, not from years apart; replace it with a years-apart or adaptability rule.
+  scale, not from years apart; replace it with a years-apart or adaptability rule. (Resolved by the
+  shared scale; the explicit rule was later dropped, see "No explicit era rule" below.)
 - **Souvenir issue and the journey (2026-11-02, step 2 of Yash's order):** `game/souvenir.ts`
   (pure) and `souvenir-load.ts`. Every player in the tournament, CPU sides included, gets an
   expectation in this World Cup from the same sums the Player ratings tab prints (`computeFinal`
@@ -1368,6 +1369,22 @@ fielding. The simulation is not required to reproduce real results (§11).
   17.2% to 13.4%, fit 30.9% to 28.2% (real 25%). Associate batting now matches real (6.68 against
   6.55), so no batting step for now. Brier 0.1884, spread +3.0. Batting stability rose from 0.756
   to 0.819 and bowling prediction from 0.194 to 0.210.
+- **No explicit era rule (2026-11-02, Yash):** the shared scale stays the whole era step: a card
+  keeps its standing against the field when it moves between editions. A years-apart or
+  adaptability rule is not built, because there is no way to say which players would have adapted
+  and which playing styles would not carry from one edition to another. Players from different
+  editions never met, so no data can size it, and it would move every card in a mixed draft by an
+  invented amount.
+- **Stop-press rate after the associates fix (2026-11-02, measured, no change):** the corpus
+  harness over 3,780 CPU matches puts a stop press in 31.4% of matches (about a third before) and
+  upsets in 6.8% (10% before). Real World Cups, from `wcdraft/scripts/research/upsets.mts` on the
+  same seeds: 12 upsets in 96 cross-tier matches (12.5%), 3.6% of 334 matches (Afghanistan's
+  withheld matches not counted). The sim gives associates 20.0% of cross-tier matches, so upsets
+  still run about twice real. The excess sits in 2024 (5.3 a tournament against 1), 2016 (3.3
+  against 0), 2026 (2.9 against 0) and 2021 (4.5 against 2), the remaining associates gap rather
+  than the paper. An upset stays tier one, because a real one is news; the rate follows the
+  engine, so nothing changes in the Gazette. **Decided (Yash):** the remaining associate win rate
+  is accepted as it stands; it makes the game a little harder, and the associates fix is closed.
 - **Agreed order after the refit (2026-11-01):** (1) associates fix in the ratings: no-record
   players sit on the global position-band prior, so Italy 2026 bowls at 71 against India's 74 and a
   few tournament balls can make a 77 (shrink empty records toward the side's own mean or an

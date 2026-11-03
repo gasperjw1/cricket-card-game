@@ -101,8 +101,9 @@ hold-out 13.4%, fit 28.2%, associate batting matches real (no batting step neede
 ### 2. Era rule (step 4)
 
 Largely settled: card steps between editions now read off one shared scale (`POOLED_SCALE` in
-`draft/src/game/final-ratings.ts`), so the era step is the value shift alone. Open: whether Yash
-still wants an explicit years-apart or adaptability rule on top. Ask before building.
+`draft/src/game/final-ratings.ts`), so the era step is the value shift alone. **Decided
+2026-11-02: no explicit years-apart or adaptability rule.** There is no way to say which players
+would adapt and which styles would not transfer between editions (design doc decision log).
 
 ### 3. Housekeeping
 
@@ -114,8 +115,10 @@ numbers rather than the in-edition numbers the draft showed (small).
 
 Leaderboard (needs the Swipe Sixer server), "coming in" form on cards (the rating keeps no career
 number; a ratings build change), growing the bank further from
-`docs/wc-draft-report-style-corpus-2026-11-02.md` (460 now; Yash wanted 600–900), and the
-stop-press rate falling once associates are honest (upsets are 10% of matches today).
+`docs/wc-draft-report-style-corpus-2026-11-02.md` (460 now; Yash wanted 600–900). The stop-press
+rate was remeasured after the associates fix (2026-11-02): upsets 6.8% of matches against 3.6%
+real, stop press in 31.4%. No Gazette change; the excess is the associates gap, which Yash
+accepts as it stands (it makes the game a little harder), so the associates fix is closed.
 
 ## Checks Yash expects on every change
 
