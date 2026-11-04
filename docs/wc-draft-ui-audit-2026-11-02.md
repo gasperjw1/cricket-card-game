@@ -124,8 +124,11 @@ match days half empty because the other results sat down the side column.
 
 After the Adelaide Oval (1911) and WACA manual scoreboards (photos on Wikimedia Commons):
 
-- **Palette, app-wide.** Green-black board face, gold paint for what is fixed (labels, slot
-  numbers), white name plates for what changes, a cream frame. The newspaper keeps its paper.
+- **Palette, app-wide.** First a green-black board face; made light the same day (Yash: the dark
+  draft against the cream newspaper was jarring): a white-painted ground scoreboard, stone board,
+  ink lettering, ivory name plates, dark tin number plates with cream digits, ochre paint for
+  what is fixed, a pavilion-green frame band and buttons. The newspaper keeps its paper; the
+  ball-by-ball board stays dark, as a ground's electric board is.
 - **Draft screen.** A cream frame band (side, coach, a clock, the spin). Each player is a name
   plate: his name, his description in Yash's order ("WK – RHB middle order", "RF – LHB tailender";
   WK or the bowling code, then hand and place: 1–2 opener, 3 top order, 4–6 middle order, 7–8
@@ -146,6 +149,11 @@ After the Adelaide Oval (1911) and WACA manual scoreboards (photos on Wikimedia 
 - **Plans merge in the engine.** The engine took the latest plan whole, so a captain or order set
   earlier was dropped once a later plan set only a tempo, while the paper showed them together.
   Both now read `planAt` (`game/plan.ts`).
+- **The dock** (Yash: the space under the squad sat empty). On a desktop the full card opens in
+  a dock under the squad, not over it: name across the top, the two numbers left, the slots right,
+  the squad still in view. With no card open the dock holds the grounds and conditions brief.
+  At 1380×860 the squad, card and sheet fit with no scroll; at 1280×720 the squad scrolls in its
+  pane above the whole card. On a phone the card still rises as a sheet.
 - **Difficulty, later.** Yash plans difficulty settings that limit line-up moves, rerolls and how
   many Elite and Gold players can be drafted; every run limit now lives in `BUDGET` for that.
 

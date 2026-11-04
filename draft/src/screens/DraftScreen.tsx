@@ -94,6 +94,9 @@ export function DraftScreen({ state, editions, venues, squads, onPlace, onReroll
         </div>
       </header>
 
+      {/* The squad and, under it on a desktop, the dock: the open card, or the grounds when none is
+          open (2026-11-03, Yash: the space under the squad sat empty). On a phone the card rises as a sheet. */}
+      <div className="squad-col">
       <div className="pane pane-squad" role="tabpanel">
         {state.identity && (
           <details className="brief-box">
@@ -127,25 +130,34 @@ export function DraftScreen({ state, editions, venues, squads, onPlace, onReroll
         ) : null}
       </div>
 
-      {selected && (
-        <div className="card-layer" role="dialog" aria-modal="true" aria-label={`${selected.name}'s card`}>
-          <button type="button" className="card-backdrop" aria-label="Close the card" onClick={() => setSelected(null)} />
-          <div className="card-panel">
-            <PlayerDetail
-              player={selected}
-              fit={fits ? fits.get(selected.id) ?? null : null}
-              hereEdition={editionId}
-              coach={state.coach}
-              slots={open.slots}
-              weights={weights}
-              natural={open.natural}
-              locked={selectedLocked}
-              onPlace={(slot) => place(selected, slot)}
-              onClose={() => setSelected(null)}
-            />
+      <div className={`dock ${selected ? "has-card" : ""}`}>
+        {selected ? (
+          <div className="card-layer" role="dialog" aria-label={`${selected.name}'s card`}>
+            <button type="button" className="card-backdrop" aria-label="Close the card" onClick={() => setSelected(null)} />
+            <div className="card-panel">
+              <PlayerDetail
+                player={selected}
+                fit={fits ? fits.get(selected.id) ?? null : null}
+                hereEdition={editionId}
+                coach={state.coach}
+                slots={open.slots}
+                weights={weights}
+                natural={open.natural}
+                locked={selectedLocked}
+                onPlace={(slot) => place(selected, slot)}
+                onClose={() => setSelected(null)}
+              />
+            </div>
           </div>
-        </div>
-      )}
+        ) : state.identity ? (
+          <section className="dock-empty">
+            <p className="dock-hint">Tap a player for his card here.</p>
+            <h3 className="dock-title">Grounds and conditions, {editionId}</h3>
+            <VenueBrief editionId={editionId} editions={editions} venues={venues} venueCounts={venueCounts} />
+          </section>
+        ) : null}
+      </div>
+      </div>
 
       <aside className="pane pane-sheet" role="tabpanel">
         <TeamSheet

@@ -1,25 +1,28 @@
 :root {
-  color-scheme: dark;
-  /* The scoreboard (2026-11-03, after the Adelaide Oval and WACA manual boards): a green-black face,
-     gold paint for what is fixed, white plates for what changes. The newspaper keeps its own paper. */
-  --bg: #0b1511;
-  --card: #11211a;
-  --card-2: #1a2b23;
-  --ink: #f2efe6;
-  --muted: #8fa597;
-  --line: #2a3d33;
-  --paint: #e2b33c;
-  --plate: #1d2e26;
-  --tile: #0a1410;
-  --frame: #e9dfc7;
-  --frame-ink: #3a3324;
-  --accent: #3dd68c;
-  --accent-ink: #062a18;
-  --danger: #ff7b7b;
-  --bronze: #b87333;
-  --silver: #b9c2d0;
-  --gold: #e6b422;
-  --elite: #7ae0ff;
+  color-scheme: light;
+  /* A white-painted ground scoreboard (2026-11-03; light the same day, Yash: the dark draft against
+     the cream newspaper was jarring): stone board, ink lettering, ivory name plates, dark tin number
+     plates with cream digits, ochre paint for what is fixed, a pavilion-green frame. It sits beside
+     the newspaper's paper; the ball-by-ball board stays dark, as a ground's electric board is. */
+  --bg: #e9e2d0;
+  --card: #f4efe2;
+  --card-2: #fbf8ef;
+  --ink: #1f2a24;
+  --muted: #625f52;
+  --line: #d2c7ae;
+  --paint: #8a5d0f;
+  --plate: #fbf8ef;
+  --tile: #1f2a24;
+  --tile-ink: #f3ecdd;
+  --frame: #1e4d3a;
+  --frame-ink: #f3ecdd;
+  --accent: #1e4d3a;
+  --accent-ink: #f3ecdd;
+  --danger: #9e2b25;
+  --bronze: #a8652a;
+  --silver: #8d97a6;
+  --gold: #c99a12;
+  --elite: #1f8fb3;
   font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
   font-size: 15px;
   line-height: 1.4;
@@ -78,8 +81,9 @@ h3 { font-size: 16px; margin: 0 0 8px; }
 .row { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; margin-top: 12px; }
 .foot { color: var(--muted); font-size: 12px; text-align: center; padding: 8px; }
 
-.tier { font-size: 11px; font-weight: 800; letter-spacing: 0.04em; padding: 2px 7px; border-radius: 999px; color: var(--bg); }
-.tier-bronze { background: var(--bronze); color: #fff; }
+.tier { font-size: 11px; font-weight: 800; letter-spacing: 0.04em; padding: 2px 7px; border-radius: 999px; color: #1f2a24; }
+.tier-bronze, .tier-elite { color: #fff; }
+.tier-bronze { background: var(--bronze); }
 .tier-silver { background: var(--silver); }
 .tier-gold { background: var(--gold); }
 .tier-elite { background: var(--elite); }
@@ -132,14 +136,14 @@ h3 { font-size: 16px; margin: 0 0 8px; }
   .place-sheet { display: block; position: fixed; left: 0; right: 0; bottom: 0; z-index: 5; background: var(--card); border-top: 2px solid var(--accent); padding: 10px 16px calc(10px + env(safe-area-inset-bottom)); }
   .place-head { display: flex; justify-content: space-between; align-items: center; gap: 10px; margin-bottom: 8px; }
   .place-slots { display: grid; grid-template-columns: repeat(auto-fill, minmax(96px, 1fr)); gap: 6px; max-height: 34vh; overflow-y: auto; }
-  .place-slots button { min-height: 44px; padding: 4px 6px; background: rgba(61, 214, 140, 0.12); border-color: var(--accent); }
+  .place-slots button { min-height: 44px; padding: 4px 6px; background: rgba(30, 77, 58, 0.08); border-color: var(--accent); }
   .place-slots small { color: var(--muted); display: block; }
   .draft:has(.place-sheet) { padding-bottom: 170px; }
 }
 .row select { flex: 1 1 200px; min-width: 0; max-width: 100%; }
 .slot { display: grid; grid-template-columns: 64px minmax(0, 1fr) auto; align-items: center; gap: 8px; padding: 4px 6px; border: 1px dashed var(--line); border-radius: 10px; min-height: 40px; }
 .slot.filled { border-style: solid; }
-.slot.open { border-color: var(--accent); background: rgba(61, 214, 140, 0.08); }
+.slot.open { border-color: var(--accent); background: rgba(30, 77, 58, 0.06); }
 .slot-label { color: var(--muted); font-size: 12px; }
 .moves button { padding: 2px 8px; margin-left: 4px; }
 
@@ -207,19 +211,19 @@ h3 { font-size: 16px; margin: 0 0 8px; }
 .standings th.pos, .standings td.pos { width: 28px; text-align: right; color: var(--muted); padding-right: 2px; }
 .standings th.nrr, .standings td.nrr { width: 68px; }
 .standings td.pts { font-weight: 700; }
-.standings tbody tr:nth-child(even) td { background: rgba(255, 255, 255, 0.02); }
-.standings tr.me td { background: rgba(61, 214, 140, 0.1); font-weight: 700; }
+.standings tbody tr:nth-child(even) td { background: rgba(0, 0, 0, 0.025); }
+.standings tr.me td { background: rgba(30, 77, 58, 0.1); font-weight: 700; }
 .standings tr.me td.pos { color: var(--accent); }
 @media (max-width: 480px) { .standings-grid { grid-template-columns: minmax(0, 1fr); } .standings { font-size: 13px; } .standings td, .standings th { padding: 6px 4px; width: auto; } .standings td.team { white-space: normal; } .standings th.nrr, .standings td.nrr { width: auto; } }
 
 /* Draft guard */
 .player.ineligible { opacity: 0.38; filter: grayscale(0.6); cursor: not-allowed; }
-.lock-note { color: var(--gold); }
+.lock-note { color: var(--paint); }
 @media (max-width: 480px) { .mc-score { font-size: 24px; } .sc-bat th:nth-child(4), .sc-bat td:nth-child(4), .sc-bat th:nth-child(5), .sc-bat td:nth-child(5) { display: none; } }
 .table { width: 100%; border-collapse: collapse; font-size: 13px; margin-bottom: 10px; }
 .table th, .table td { text-align: left; padding: 4px 6px; border-bottom: 1px solid var(--line); }
 .table th:not(:first-child), .table td:not(:first-child) { text-align: right; }
-.table tr.me { background: rgba(61, 214, 140, 0.1); font-weight: 700; }
+.table tr.me { background: rgba(30, 77, 58, 0.1); font-weight: 700; }
 
 .vs-odi { color: var(--muted); font-size: 10px; letter-spacing: 0.03em; margin-left: 3px; }
 
@@ -490,13 +494,13 @@ h3 { font-size: 16px; margin: 0 0 8px; }
 .sheet-name { display: grid; min-width: 0; }
 .sheet-player { font-weight: 600; font-size: 15px; line-height: 1.2; overflow-wrap: anywhere; }
 .sheet-line { font-size: 12px; color: var(--paper-muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.sheet-blank { color: #5d7266; background: var(--card-2); border-radius: 2px; padding: 5px 7px; font-family: Oswald, "Arial Narrow", sans-serif; font-size: 12.5px; letter-spacing: 0.06em; text-transform: uppercase; display: block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.sheet-blank { color: var(--muted); background: var(--card-2); border-radius: 2px; padding: 5px 7px; font-family: Oswald, "Arial Narrow", sans-serif; font-size: 12.5px; letter-spacing: 0.06em; text-transform: uppercase; display: block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .sheet-row.open .sheet-blank { color: var(--paint); outline: 1px dashed var(--paint); outline-offset: -1px; }
 .sheet-bat { display: grid; justify-items: end; gap: 2px; text-align: right; line-height: 1; }
 .sheet-bat small { font-size: 10.5px; color: var(--paper-muted); }
 .sheet-action { display: flex; justify-content: flex-end; min-width: 0; }
 .sheet-action:empty { display: none; }
-.sheet-row.open { background: rgba(61, 214, 140, 0.08); margin: 0 -8px; padding-left: 8px; padding-right: 8px; }
+.sheet-row.open { background: rgba(30, 77, 58, 0.07); margin: 0 -8px; padding-left: 8px; padding-right: 8px; }
 .sheet-place { min-height: 36px; padding: 4px 10px; background: var(--accent); color: var(--accent-ink); border: 1px solid var(--accent); border-radius: 6px; font-family: Oswald, "Arial Narrow", sans-serif; letter-spacing: 0.02em; white-space: nowrap; }
 .sheet-place small { color: var(--accent-ink); opacity: 0.8; font-family: inherit; }
 .sheet .moves { display: flex; gap: 4px; }
@@ -517,7 +521,16 @@ h3 { font-size: 16px; margin: 0 0 8px; }
 .shell-draft { max-width: 1440px; padding-bottom: 0; height: 100dvh; display: flex; flex-direction: column; overflow: hidden; }
 .shell-draft .top { flex: 0 0 auto; }
 .draft3 { flex: 1 1 auto; min-height: 0; display: grid; grid-template-columns: minmax(0, 1fr) minmax(320px, 380px); grid-template-rows: auto minmax(0, 1fr); gap: 0 18px; }
-.pane-squad { grid-column: 1; grid-row: 2; }
+/* The squad column: the plates on top at their own height (scrolling when the dock needs room),
+   the dock below filling the rest with the open card or the grounds. */
+.squad-col { grid-column: 1; grid-row: 2; min-height: 0; display: flex; flex-direction: column; gap: 12px; }
+.squad-col .pane-squad { flex: 0 1 auto; padding-bottom: 4px; }
+.dock { flex: 1 1 220px; min-height: 220px; overflow-y: auto; overscroll-behavior: contain; scrollbar-width: thin; }
+.dock.has-card { flex-basis: 340px; min-height: 300px; }
+.dock-empty { border: 1px dashed var(--line); border-radius: 10px; padding: 12px 14px; }
+.dock-hint { margin: 0 0 8px; color: var(--paint); font-size: 11.5px; letter-spacing: 0.12em; text-transform: uppercase; }
+.dock-title { margin: 0 0 6px; font-family: Oswald, "Arial Narrow", sans-serif; font-weight: 500; letter-spacing: 0.02em; text-transform: uppercase; font-size: 18px; }
+@media (min-width: 900px) { .squad-col .pane-squad .brief-box { display: none; } }
 .pane-sheet { grid-column: 2; grid-row: 2; }
 .list-tools { display: flex; justify-content: space-between; align-items: center; gap: 8px; flex-wrap: wrap; margin: 8px 0; }
 .chips { display: flex; gap: 6px; flex-wrap: wrap; }
@@ -534,11 +547,11 @@ h3 { font-size: 16px; margin: 0 0 8px; }
 .pr:not(.ineligible):hover { border-top-color: var(--paint); border-right-color: var(--paint); border-bottom-color: var(--paint); }
 /* A number on the board: each digit on its own tile; a rating in its own box with its name painted above. */
 .dg { display: inline-flex; gap: 2px; }
-.dg i { font-style: normal; display: inline-flex; align-items: center; justify-content: center; background: var(--tile); color: var(--ink); font-family: Oswald, "Arial Narrow", sans-serif; font-variant-numeric: tabular-nums; border-radius: 2px; }
+.dg i { font-style: normal; display: inline-flex; align-items: center; justify-content: center; background: var(--tile); color: var(--tile-ink); font-family: Oswald, "Arial Narrow", sans-serif; font-variant-numeric: tabular-nums; border-radius: 2px; }
 .dg-sm i { width: 14px; height: 20px; font-size: 15px; }
 .dg-lg i { width: 26px; height: 38px; font-size: 28px; }
-.dg.off i { color: var(--line); }
-.rt { display: grid; justify-items: center; gap: 2px; border: 1px solid var(--line); border-radius: 3px; padding: 2px 4px 4px; background: rgba(0, 0, 0, 0.12); }
+.dg.off i { color: #6b766f; }
+.rt { display: grid; justify-items: center; gap: 2px; border: 1px solid var(--line); border-radius: 3px; padding: 2px 4px 4px; background: rgba(0, 0, 0, 0.03); }
 .rt-k { color: var(--paint); font-size: 9.5px; letter-spacing: 0.12em; text-transform: uppercase; line-height: 1.2; }
 .rt-lg { padding: 4px 8px 6px; }
 .rt-lg .rt-k { font-size: 11px; }
@@ -551,11 +564,20 @@ h3 { font-size: 16px; margin: 0 0 8px; }
 .pr-who { display: grid; min-width: 0; gap: 3px; }
 .pr-name { font-family: Oswald, "Arial Narrow", sans-serif; font-weight: 500; font-size: 15px; letter-spacing: 0.04em; text-transform: uppercase; line-height: 1.15; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .pr-sub { color: var(--muted); font-size: 12px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-/* On a desktop the card sits over the top of the squad at its own height; the rest of the grid stays in view, dimmed. */
-.card-layer { grid-column: 1; grid-row: 2; z-index: 5; min-height: 0; display: flex; align-items: flex-start; position: relative; background: rgba(11, 21, 17, 0.65); border-radius: 12px; }
-.card-backdrop { position: absolute; inset: 0; width: 100%; min-height: 0; padding: 0; border: none; border-radius: 12px; background: transparent; }
-.card-panel { position: relative; flex: 0 1 760px; max-height: 100%; min-height: 0; overflow-y: auto; overscroll-behavior: contain; background: var(--card); border: 1px solid var(--line); border-radius: 14px; box-shadow: 0 12px 32px rgba(0, 0, 0, 0.55); }
-.card-panel .pd { padding: 16px 16px 18px 14px; border-left: 5px solid var(--line); border-radius: 14px; }
+/* On a desktop the card sits in the dock under the squad (2026-11-03), the squad still in view;
+   the × closes it, or a tap on another plate swaps it. */
+.card-layer { display: block; }
+.card-backdrop { display: none; }
+.card-panel { background: var(--card); border: 1px solid var(--line); border-radius: 12px; }
+.card-panel .pd { padding: 14px 16px 16px 14px; border-left: 5px solid var(--line); border-radius: 12px; }
+/* Wide dock: the head across the top, the numbers on the left, the slots on the right. */
+@media (min-width: 900px) {
+  .dock .pd { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 0 18px; align-items: start; }
+  .dock .pd-head, .dock .pd-how { grid-column: 1 / -1; }
+  .dock .pd-nums { grid-column: 1; margin-top: 12px; }
+  .dock .pd-place { grid-column: 2; }
+  .dock .pd-place h4 { margin-top: 12px; }
+}
 .draft-bar { grid-column: 1 / -1; min-width: 0; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 8px 12px; padding: 0 0 10px; border-bottom: 1px solid var(--line); margin-bottom: 10px; }
 .draft-bar > * { min-width: 0; }
 /* The board's frame: a cream band with the clock in the middle, as on the old ground scoreboards. */
@@ -571,7 +593,7 @@ h3 { font-size: 16px; margin: 0 0 8px; }
 .strip-item { display: inline-flex; align-items: center; gap: 5px; }
 .strip-of { color: var(--muted); font-family: Oswald, "Arial Narrow", sans-serif; font-size: 13px; }
 .strip-flag { font-family: Oswald, "Arial Narrow", sans-serif; font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; padding: 1px 6px; border-radius: 2px; background: var(--tile); color: var(--gold); }
-.strip-flag.done { color: var(--accent); }
+.strip-flag.done { color: #8fd3a8; }
 /* Lineup (2026-11-03): the sheet on the left; the captain, the moves and Play in a column beside it
    on a desktop, under it on a phone, so nothing needs a scroll to reach on a laptop. */
 .lineup-screen { display: grid; grid-template-columns: minmax(0, 1fr); gap: 14px; }
@@ -584,7 +606,7 @@ h3 { font-size: 16px; margin: 0 0 8px; }
 .lineup-box { display: grid; gap: 6px; background: var(--card-2); border: 1px solid var(--line); border-radius: 8px; padding: 10px 12px; }
 .lineup-captain select { width: 100%; }
 .lineup-play { width: 100%; min-height: 44px; font-size: 16px; }
-.lineup-screen .problems { margin: 0; padding-left: 18px; color: var(--gold); font-size: 13px; }
+.lineup-screen .problems { margin: 0; padding-left: 18px; color: var(--danger); font-size: 13px; }
 @media (min-width: 900px) {
   .lineup-screen { grid-template-columns: minmax(0, 1fr) 300px; align-items: start; }
   .lineup-main { order: 1; }
@@ -601,7 +623,7 @@ h3 { font-size: 16px; margin: 0 0 8px; }
 .draft-tabs { display: none; }
 .pane { min-height: 0; overflow-y: auto; overscroll-behavior: contain; padding-bottom: 16px; scrollbar-width: thin; }
 .pane-sheet { padding-right: 2px; }
-.lock-note { color: var(--gold); }
+.lock-note { color: var(--paint); }
 
 /* Detail pane */
 .pd-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; }
@@ -626,7 +648,7 @@ h3 { font-size: 16px; margin: 0 0 8px; }
 .pd-steps .pd-total td { border-bottom: none; font-weight: 800; }
 .pd-coach { margin-top: 8px; }
 .pd-slots { display: grid; grid-template-columns: repeat(auto-fill, minmax(92px, 1fr)); gap: 6px; }
-.pd-slot { display: grid; gap: 2px; min-height: 48px; padding: 6px 10px; background: rgba(61, 214, 140, 0.12); border-color: var(--accent); border-radius: 8px; text-align: left; }
+.pd-slot { display: grid; gap: 2px; min-height: 48px; padding: 6px 10px; background: rgba(30, 77, 58, 0.08); border-color: var(--accent); border-radius: 8px; text-align: left; }
 .pd-slot span { font-family: Oswald, "Arial Narrow", sans-serif; font-size: 16px; }
 .pd-slot small { color: var(--muted); }
 
@@ -642,12 +664,16 @@ h3 { font-size: 16px; margin: 0 0 8px; }
   .draft-tabs { display: flex; gap: 0; width: 100%; border: 1px solid var(--line); border-radius: 10px; overflow: hidden; }
   .draft-tabs button { flex: 1 1 0; border: none; border-radius: 0; background: transparent; min-height: 40px; }
   .draft-tabs button.on { background: var(--card-2); color: var(--accent); font-weight: 700; }
-  .pane-squad, .pane-sheet { grid-column: 1; }
-  .draft3.tab-squad .pane-sheet, .draft3.tab-sheet .pane-squad { display: none; }
+  .squad-col, .pane-sheet { grid-column: 1; }
+  .squad-col .pane-squad { flex: 1 1 auto; }
+  .draft3.tab-squad .pane-sheet, .draft3.tab-sheet .squad-col { display: none; }
+  /* No dock on a phone: the card rises as a sheet, and the grounds stay folded in the squad pane. */
+  .dock, .dock.has-card { flex: 0 0 auto; min-height: 0; overflow: visible; }
+  .dock-empty { display: none; }
   /* The full card rises as a sheet over a dimmed page. */
   .card-layer { position: fixed; inset: 0; z-index: 20; display: block; }
   .card-backdrop { display: block; position: absolute; inset: 0; width: 100%; min-height: 0; padding: 0; border: none; border-radius: 0; background: rgba(0, 0, 0, 0.55); }
-  .card-panel { position: absolute; left: 0; right: 0; bottom: 0; max-height: 86vh; border-radius: 14px 14px 0 0; border-top: 2px solid var(--accent); padding-bottom: env(safe-area-inset-bottom); }
+  .card-panel { position: absolute; left: 0; right: 0; bottom: 0; max-height: 86vh; overflow-y: auto; overscroll-behavior: contain; border-radius: 14px 14px 0 0; border-top: 2px solid var(--accent); padding-bottom: env(safe-area-inset-bottom); }
   .card-panel .pd { border-radius: 14px 14px 0 0; }
   .pd-grid { grid-template-columns: 1fr; }
   .draft-squad { font-size: 21px; }
