@@ -34,6 +34,9 @@ export interface AllocationInput {
   rotation?: number;
 }
 
+/** Each phase's share of a 20-over innings: the neutral line for a bowler's own usage. */
+const PHASE_SHARE = { pp: 6 / 20, mid: 9 / 20, death: 5 / 20 } as const;
+
 /** The bowler for this over. */
 export function chooseBowler(input: AllocationInput, rng: Rng): BowlerState {
   const { over, eqOver, oversInInnings, maxOvers, bowlers, previousBowler } = input;
@@ -75,6 +78,12 @@ export function chooseBowler(input: AllocationInput, rng: Rng): BowlerState {
     const base = worths.get(b)!;
     let score = base - A.depthPenalty * rotate * Math.max(0, frontline - base);
     const arch = b.player.archetype.bowling;
+    // Usage: his share of overs in this phase against the phase's share of an innings, as a charge
+    // only: it keeps a man out of a phase his captains rarely bowl him in, and never pulls one in
+    // (the shares say when a man bowls, not how much, so a boost sent part-timers on for every
+    // middle over: 6.5 bowlers an innings against 6.2 real).
+    const shares = b.player.bowlingShares;
+    if (shares && A.usageWeight) score += A.usageWeight * Math.min(0, Math.log((shares[phase] + 0.05) / (PHASE_SHARE[phase] + 0.05)));
     if (phase === "pp" && arch === "new ball") score += A.specialistBonus;
     if (phase === "death" && arch === "death") score += A.specialistBonus;
     // Death trust: whoever opened the bowling is trusted at the death and held back for it.

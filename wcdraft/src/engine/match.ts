@@ -143,9 +143,15 @@ export function simulateInnings(batting: EngineTeam, bowling: EngineTeam, env: M
       let runsBatter = RUNS[outcome];
       let extraRuns = noBall ? 1 : 0;
       let extraKind: BallRecord["extraKind"] = noBall ? "no-ball" : null;
-      // Byes and leg-byes: a dot ball sometimes yields a bye.
-      if (outcome === "0" && !noBall && rng.chance(env.extras[ph].byes / Math.max(0.05, dist["0"]))) {
-        extraRuns = 1; extraKind = "bye"; byeBalls += 1;
+      // Byes and leg-byes: a dot ball sometimes yields byes. The edition gives bye runs a ball; a bye
+      // ball brings 1.3–1.5 runs (some go for four), so bye balls come at runs ÷ runs-per-ball and
+      // each carries runs from the measured split (ENGINE.byeRuns).
+      const byeSplit = ENGINE.byeRuns[ph];
+      const byeKinds = Object.keys(byeSplit).map(Number);
+      const runsPerBye = ENGINE.byeEvents ? byeKinds.reduce((a, r) => a + r * byeSplit[r]!, 0) : 1;
+      if (outcome === "0" && !noBall && rng.chance(env.extras[ph].byes / runsPerBye / Math.max(0.05, dist["0"]))) {
+        extraRuns = ENGINE.byeEvents ? byeKinds[rng.pick(byeKinds.map((r) => byeSplit[r]!))]! : 1;
+        extraKind = "bye"; byeBalls += 1;
       }
       const wicket = outcome === "W";
       sLine.balls += 1; // A no-ball counts as a ball faced; only a wide does not.
@@ -161,7 +167,7 @@ export function simulateInnings(batting: EngineTeam, bowling: EngineTeam, env: M
       const dismissal = wicket ? drawDismissal(b.player, noBall || freeHit) : null;
       const bs = statOf(b.player.id);
       if (noBall) { bs.noBalls += 1; noBalls += 1; }
-      if (extraKind === "bye") byes += 1;
+      if (extraKind === "bye") byes += extraRuns;
       if (!noBall && runsBatter === 0) bs.dots += 1;
       stand.runs += runsBatter + extraRuns;
       stand.balls += 1;
@@ -207,7 +213,7 @@ export function simulateInnings(batting: EngineTeam, bowling: EngineTeam, env: M
         nextIn += 1;
         stand = { batters: [striker.id, nonStriker.id], runs: 0, balls: 0 };
       }
-      const swap = (runsBatter + (extraKind === "bye" ? 1 : 0)) % 2 === 1;
+      const swap = (runsBatter + (extraKind === "bye" ? extraRuns : 0)) % 2 === 1;
       if (swap) [striker, nonStriker] = [nonStriker, striker];
     }
     [striker, nonStriker] = [nonStriker, striker];

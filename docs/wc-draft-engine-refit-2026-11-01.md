@@ -556,10 +556,55 @@ replayed many times (scratch scripts `baseline.mts`, `player-dist.mts`, `dots.mt
     the highest total (220 against Australia's 221) and highest score (94 against Ponting's 98*) were
     records of that World Cup only.
 
+18. **Dots: byes, who bowls when, and both innings alike (2026-11-04, Yash: is it the players, the
+    engine, the situation or the phase?).** The sim had 0.65 points too few dots. Real World Cup balls
+    were set against the sim's on the same fixtures and real elevens (nine editions,
+    `scripts/research/dot-gap.mts`) and split by phase, innings, wickets, balls faced, position,
+    bowler type, dots in a row and required rate. A dot here is a legal ball with no runs at all.
+    - **Players, not the cause.** The ball-weighted gap per player was about 0 for batters and
+      bowlers alike, and every split by batter showed the same small shortfall. The batters'
+      ordering is kept (correlation 0.56; noise-corrected spread 5.3 against 6.2 real).
+    - **The cause was byes.** The edition profile gives bye runs per ball, and the engine used that
+      as the chance of a one-run bye ball. Real bye and leg-bye balls bring 1.31–1.46 runs
+      (`scripts/research/byes.mts`, men's T20Is since 2014: about 82% one, 8% two, 10% four). So the
+      sim made a third too many bye balls, and every one of them was a dot lost. Bye balls are now
+      drawn at runs ÷ runs-per-ball, with runs from that table (`byeEvents`, `byeRuns`), so the
+      edition's bye runs do not change. This alone took the dot gap from −0.65 to +0.10.
+    - **Phase: who bowls when.** The pick was by expected runs alone, so a spinner whose powerplay
+      record is mostly his overall one looked as good with the new ball as a seamer. Spinners bowled
+      13.3% of all balls in the powerplay (real 6.8%) and 9.1% at the death (real 5.1%). A charge on
+      the log of a bowler's own phase share against the phase's share of an innings
+      (`allocation.usageWeight` 2, charge only) brings these to 11.8% and 6.3%.
+      - A boost as well as a charge sent part-timers on for every middle over (6.5 bowlers an
+        innings).
+      - The specialist bonus is off (the shares say the same thing), the opener death bonus is down
+        to 0.5 and the sixth-bowler charge is up to 1.6. The result is 6.13 bowlers a full innings
+        (real 6.20) and 42.6% of overs 19–20 with an opening bowler (real 43%).
+      - Coach rotation still sizes at 2.5: 1.03 bowlers per unit.
+      - At weight 4, powerplay spin falls to 10.2%, but Brier is 0.1885 and death overs +0.07.
+    - **Situation: both innings alike.** With the pooled phase base, chase death overs had 3.0 points
+      too few dots. Innings × phase is back on (exponent 1), on runs and dots only
+      (`inningsPhaseHazard` 0, since its chase wicket term was why it was switched off). Chase death
+      dots are now −0.7, and first-innings death +0.2.
+
+    | Nine editions, 40 sims × 4 seeds | Brier | PP / mid / death | Balls per wicket | Chase | Dots |
+    |---|---|---|---|---|---|
+    | Before (one-run byes) | 0.1871 | | | | −0.65 |
+    | Bye events | 0.1875 | −0.08 / +0.03 / −0.01 | +0.17 | −1.5 | +0.10 |
+    | + usage charge, innings × phase (now) | 0.1860 | −0.07 / +0.02 / +0.02 | +0.17 | −1.3 | +0.07 |
+
+    Every outcome's share of balls is now within 0.16 points of real (fours −0.13, the largest gap).
+    Rarity (1000 greedy): unbeaten 1.9%, champion 7.8%. Left as they are:
+    - Bowlers' dot rates are compressed: noise-corrected spread 3.9 against 6.0 real. The 0.7 bowl
+      exponent is part of it.
+    - Spinners at the death have 2.8 points too few dots: few death overs, so their death vectors
+      fall back to their overall ones. This needs a ratings change, not an engine one.
+    - Seamers bowl 20.2% of all balls in the powerplay against 25.1% real.
+
 ## Still open
 
-- Dot share −0.7 points: the sim turns a few dots into singles at the same run rate; not a counting
-  artefact (checked both sides).
+- Bowlers' dot spread compressed (3.9 against 6.0 real) and spinners at the death 2.8 points short on
+  dots (item 18).
 - 2024 scores 0.23 an over low in the sim; 2026 loses a wicket every 16 balls against 17.2 real.
 - Pressure sixes run short at required rates of 10–16 and in chases already gone (item 13).
 - Balls per wicket +0.15 and powerplay −0.08 an over with the adjusted tables (item 12).

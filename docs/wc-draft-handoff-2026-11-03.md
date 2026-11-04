@@ -116,7 +116,10 @@ the souvenir issue in five sections, and super-over and bowl-out scorecards (aud
 2026-11-03"; engine side refit item 16). The rating bands exploration is written up in
 `wc-draft-rating-bands-2026-11-03.md`: at a typical card's 300–450 balls no attribute separates two
 levels, so no Cricket 26-style 15-step scale; three options (attribute bars, trait badges,
-per-bowler wides and ODI weighting in the engine) await Yash's choice. (3) Dots: the −0.7 dot share, with the
+per-bowler wides and ODI weighting in the engine) await Yash's choice. (3) Dots: **done 2026-11-04**
+(refit item 18: the gap was byes drawn as one-run events; bowlers now bowl in the phases their
+captains used them in; innings × phase back on, scoring only; dots +0.07, Brier 0.1860). Still open
+from it: bowler dot spread compressed, spinners at the death short on dots (ratings), and the
 pressure-sixes shortfall at required rates of 10–16 from item 13. (4) Re-evaluate. Leaderboards
 and growth features go last; a Test-cricket auction league is the eventual pivot, on the back burner.
 
