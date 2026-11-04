@@ -37,7 +37,7 @@ for (const line of readFileSync(resolve(ROOT, "data/labels/bowler-types.csv"), "
 
 /** One legal ball, reduced to what the splits need. */
 interface Ball {
-  phase: string; inn: number; wk: number; setBalls: number; pos: number; group: string; streakDots: number; rrr: number | null;
+  phase: string; over: number; inn: number; wk: number; setBalls: number; pos: number; group: string; use: string; streakDots: number; rrr: number | null;
   runs: number; batRuns: number; dot: boolean; single: boolean; four: boolean; six: boolean; out: boolean; batter: string; bowler: string;
 }
 
@@ -64,6 +64,12 @@ const SPLITS_ALL: [string, (b: Ball) => string][] = [
   ["required rate", (b) => rrrBand(b.rrr)],
   ["phase × position", (b) => `${b.phase} ${posBand(b.pos)}`],
   ["bowler × phase", (b) => `${b.group} ${b.phase}`],
+  ["bowler × phase × usage", (b) => `${b.group} ${b.phase} ${b.use}`],
+  ["death × innings × over", (b) => (b.phase === "death" ? `${b.inn} over ${b.over}` : "–")],
+  ["death × innings × wickets", (b) => (b.phase === "death" ? `${b.inn} ${wkBand(b.wk)}` : "–")],
+  ["death × innings × position", (b) => (b.phase === "death" ? `${b.inn} ${posBand(b.pos)}` : "–")],
+  ["death × innings × balls faced", (b) => (b.phase === "death" ? `${b.inn} ${setBand(b.setBalls)}` : "–")],
+  ["death × innings × bowler × usage", (b) => (b.phase === "death" ? `${b.inn} ${b.group} ${b.use}` : "–")],
   ["chase death × required rate", (b) => (b.inn === 2 && b.phase === "death" ? rrrBand(b.rrr) : "–")],
   ["chase death × wickets", (b) => (b.inn === 2 && b.phase === "death" ? wkBand(b.wk) : "–")],
   ["first-innings powerplay × wickets", (b) => (b.inn === 1 && b.phase === "pp" ? wkBand(b.wk) : "–")],
@@ -73,12 +79,31 @@ const SPLITS = SUMMARY ? SPLITS_ALL.filter(([n]) => (process.env.SPLITS ?? "inni
 
 const real: Ball[] = [], sim: Ball[] = [];
 
-// Real balls: every World Cup match of the editions, both innings, 20-over innings only.
+// The bowler's usage of the phase in his edition's rating (form window and tournament): his share
+// of overs in it against the phase's share of an innings, banded as `rare-phase.mts` bands it.
+const datas = new Map(ids.map((id) => [id, loadEdition(id)] as const));
+const sharesOf = new Map<string, Record<string, number>>();
+for (const [id, data] of datas) for (const p of data.players.values()) if (p.bowlingShares) sharesOf.set(`${id}|${p.id}`, p.bowlingShares);
+const PHASE_SHARE: Record<string, number> = { pp: 6 / 20, mid: 9 / 20, death: 5 / 20 };
+const useBand = (id: string, bowler: string, phase: string) => {
+  const s = sharesOf.get(`${id}|${bowler}`);
+  if (!s) return "none";
+  const r = s[phase]! / PHASE_SHARE[phase]!;
+  return r < 0.5 ? "<0.5" : r < 1.25 ? "0.5-1.25" : "1.25+";
+};
+
+// Real balls: the World Cup matches the sim replays (two rated elevens), and only those with no
+// reduced innings, since the sim plays every fixture in full.
+const replayed = new Set<string>();
+for (const data of datas.values()) for (const g of realMatches(data)) replayed.add(g.match.id);
+const fullLength = new Set<string>();
 for (const id of ids) {
   for (const e of index) {
-    if (wcEditionOf(e) !== id) continue;
+    if (wcEditionOf(e) !== id || !replayed.has(e.id)) continue;
     const m = normaliseMatch(readMatch(e.file), e.id);
     const inns = mainInnings(m);
+    if (inns.length < 2 || inns.some((inn) => inn.reduced)) continue;
+    fullLength.add(e.id);
     let target: number | null = null;
     inns.forEach((inn, k) => {
       if (inn.reduced) { if (k === 0) target = null; return; }
@@ -92,8 +117,9 @@ for (const id of ids) {
           const rrr = chase !== null ? Math.max(0, chase - runs) * 6 / Math.max(1, left) : null;
           const out = b.wickets.some((w) => w.playerOut === b.batter);
           real.push({
-            phase: phaseOf(b.over), inn: k + 1, wk, setBalls: faced.get(b.batter) ?? 0, pos: order.indexOf(b.batter) + 1 || 11, group: groupOf.get(b.bowler) ?? "?", streakDots: dotsRow, rrr,
-            runs: b.runsTotal, batRuns: b.runsBatter, dot: b.runsTotal === 0, single: b.runsBatter === 1 && b.runsExtras === 0, four: b.isFour, six: b.isSix, out, batter: b.batter, bowler: b.bowler,
+            phase: phaseOf(b.over), over: b.over + 1, inn: k + 1, wk, setBalls: faced.get(b.batter) ?? 0, pos: order.indexOf(b.batter) + 1 || 11, group: groupOf.get(b.bowler) ?? "?", use: useBand(id, b.bowler, phaseOf(b.over)), streakDots: dotsRow, rrr,
+            // A striker out on a run is a W ball in the engine, no runs; counted the same here.
+            runs: out ? b.runsExtras : b.runsTotal, batRuns: out ? 0 : b.runsBatter, dot: out ? b.runsExtras === 0 : b.runsTotal === 0, single: b.runsBatter === 1 && b.runsExtras === 0, four: b.isFour, six: b.isSix, out, batter: b.batter, bowler: b.bowler,
           });
           legal += 1;
           dotsRow = b.runsTotal === 0 ? dotsRow + 1 : 0;
@@ -116,8 +142,9 @@ function realMatches(data: EditionData) {
 
 // Simulated balls: the same fixtures, the real elevens and toss, no rain, `sims` times each.
 for (const id of ids) {
-  const data = loadEdition(id);
+  const data = datas.get(id)!;
   for (const g of realMatches(data)) {
+    if (!fullLength.has(g.match.id)) continue;
     const teamA = teamFromMatch(data, g.a, g.match), teamB = teamFromMatch(data, g.b, g.other);
     if (teamA.players.length < 11 || teamB.players.length < 11) continue;
     const env = matchEnvironment(data, g.match.venueId || null, 20);
@@ -134,7 +161,7 @@ for (const id of ids) {
             const rrr = target !== null ? Math.max(0, target - runs) * 6 / Math.max(1, 120 - legal) : null;
             const total = b.runsBatter + b.extras;
             sim.push({
-              phase: phaseOf(b.over), inn: innIndex, wk, setBalls: faced.get(b.striker) ?? 0, pos: batting.battingOrder.indexOf(b.striker) + 1 || 11, group: groupOf.get(b.bowler) ?? "?", streakDots: dotsRow, rrr,
+              phase: phaseOf(b.over), over: b.over + 1, inn: innIndex, wk, setBalls: faced.get(b.striker) ?? 0, pos: batting.battingOrder.indexOf(b.striker) + 1 || 11, group: groupOf.get(b.bowler) ?? "?", use: useBand(id, b.bowler, phaseOf(b.over)), streakDots: dotsRow, rrr,
               runs: total, batRuns: b.runsBatter, dot: total === 0, single: b.runsBatter === 1 && b.extras === 0, four: b.outcome === "4", six: b.outcome === "6", out: b.wicket && b.dismissal?.nonStriker !== true, batter: b.striker, bowler: b.bowler,
             });
             legal += 1;
@@ -150,7 +177,7 @@ for (const id of ids) {
 
 const pct = (a: number, n: number) => (n ? (100 * a) / n : 0);
 const row = (label: string, r: Tally, s: Tally) =>
-  `  ${label.padEnd(18)} real n ${String(r.n).padStart(6)}  dot ${pct(r.dot, r.n).toFixed(1).padStart(5)} sim ${pct(s.dot, s.n).toFixed(1).padStart(5)} gap ${(pct(s.dot, s.n) - pct(r.dot, r.n)).toFixed(1).padStart(5)} | ones ${pct(r.one, r.n).toFixed(1).padStart(5)} v ${pct(s.one, s.n).toFixed(1).padStart(5)} | runs/ball ${(r.runs / Math.max(1, r.n)).toFixed(3)} v ${(s.runs / Math.max(1, s.n)).toFixed(3)} | out ${pct(r.out, r.n).toFixed(1)} v ${pct(s.out, s.n).toFixed(1)} | share of balls ${pct(r.n, real.length).toFixed(1)} v ${pct(s.n, sim.length).toFixed(1)}`;
+  `  ${label.padEnd(18)} real n ${String(r.n).padStart(6)}  dot ${pct(r.dot, r.n).toFixed(1).padStart(5)} sim ${pct(s.dot, s.n).toFixed(1).padStart(5)} gap ${(pct(s.dot, s.n) - pct(r.dot, r.n)).toFixed(1).padStart(5)} | ones ${pct(r.one, r.n).toFixed(1).padStart(5)} v ${pct(s.one, s.n).toFixed(1).padStart(5)} | runs/ball ${(r.runs / Math.max(1, r.n)).toFixed(3)} v ${(s.runs / Math.max(1, s.n)).toFixed(3)} | out ${pct(r.out, r.n).toFixed(1)} v ${pct(s.out, s.n).toFixed(1)} | 4s ${pct(r.four, r.n).toFixed(1)} v ${pct(s.four, s.n).toFixed(1)} | 6s ${pct(r.six, r.n).toFixed(1)} v ${pct(s.six, s.n).toFixed(1)} | share of balls ${pct(r.n, real.length).toFixed(1)} v ${pct(s.n, sim.length).toFixed(1)}`;
 
 const totalR = tally(), totalS = tally();
 for (const b of real) add(totalR, b);

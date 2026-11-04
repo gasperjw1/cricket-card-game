@@ -601,10 +601,86 @@ replayed many times (scratch scripts `baseline.mts`, `player-dist.mts`, `dots.mt
       fall back to their overall ones. This needs a ratings change, not an engine one.
     - Seamers bowl 20.2% of all balls in the powerplay against 25.1% real.
 
+19. **Bowlers bowl in their phases (2026-11-04, Yash: a captain short of new-ball or death bowlers
+    has to arrange the rest).** Full write-up in `wc-draft-bowling-roles-2026-11-04.md`.
+    - The usage charge from item 18 is now a pull as well in the powerplay and at the death
+      (`usageBoost` 4, `usageWeight` 3), with the powerplay spread penalty down to 3 and the
+      sixth-bowler charge at 1.2.
+    - Who bowled what in the replays, by phase × pace/spin × usage, is within 2.1 points of real in
+      every cell (summed error 30.6 → 10.6). Bowlers' dot spread is 5.1 against 6.1 real (was 3.9).
+    - A drafted eleven with one new-ball man gives him two powerplay overs, up from one.
+    - 6.20 bowlers a full innings and 42.9% of overs 19–20 to an opener (real 6.20 and 43%).
+      Coach rotation scale 3 (was 2.5).
+    - Brier 0.1871 against 0.1860, within seed noise. Death overs are +0.10 an over against +0.02.
+      Rarity: unbeaten 1.7%, champion 6.1%.
+    - Measured and kept off:
+      - a rare-phase performance adjustment (real in the powerplay, reversed at the death);
+      - card tags read by the engine (less accurate than the share);
+      - captains' phase habits (2–3 points, partly career stage).
+
+20. **The death-overs bias (2026-11-04).** Item 19 left the replay's death overs 0.10 an over high.
+    Checked a second time the same day with an independent review of the scripts. That review
+    corrected the mechanism and the weight below. Four measurements:
+    - **Not the allocation.** `dot-gap.mts` compares real and simulated balls on the same fixtures.
+      The old and new allocations both gave first-innings death 1.55 runs a ball against 1.52 real.
+      The excess was with the top order and the set batter:
+      - Nos. 1–4 scored 1.90 a ball against 1.72.
+      - Batters on 25+ balls scored 1.88 against 1.68.
+      - Both were out less: 7.5–8.1% of balls against 8.7–10.4%.
+      (These are from the first run. The rerun fixed two biases: matched full-length fixtures
+      only, and a striker run out on a run scores 0, as the engine's W ball does.)
+    - **Not mainly the batters' ratings.** `batting-phase.mts` is the batting twin of
+      `rare-phase.mts` (men's T20Is since 2012, balls-faced bands to 55+). At the death:
+      - Batters who rarely bat there score 0.96–0.99 of their level elsewhere.
+      - Openers score 0.95–0.96, and are out ×1.05–1.10.
+      - Nos. 3–4 score ×1.03–1.06.
+      That is a small ratings effect for openers. It is not the cause: the ball model below is as
+      far off for Nos. 3–4 as for openers.
+      The powerplay shows a larger rare-phase effect (rare 0.85, regular openers 1.06), not
+      followed up here.
+    - **The ball model, at the death.** `ball-check.mts` feeds every real World Cup ball, in its
+      real situation and with the real batter and bowler, through `outcomeDistribution`:
+      - First-innings death came out +0.067 runs a ball and chase death −0.001.
+      - The powerplay and middle overs were within 0.012.
+      - With innings × phase off, the death cells were +0.030 and +0.063.
+      - Setness, streak and ball-in-over off moved nothing.
+
+      At the death the term is the archive's whole raw innings gap: ×1.076 first innings against
+      second, with each innings' overall level taken out. Real World Cups show ×1.076 too. But
+      with the term off, the ball model already makes ×1.051 itself, from the real batters and
+      bowlers, wickets down and balls faced. So at full weight most of the gap is counted twice.
+      The gap wants a weight of about 0.34.
+    - `inningsPhaseDeathExponent`, the term's weight at the death. Replay columns are sim − real,
+      runs a ball, on matched full-length fixtures:
+
+      | Weight | 1st-inn death | Chase death | Innings gap (real 0.112 ±0.038) | Brier | Chase wins |
+      |---|---|---|---|---|---|
+      | 1 | +0.036 | −0.034 | 0.182 | 0.1871 | −1.3 |
+      | 0.6 | +0.022 | −0.007 | 0.141 | 0.1860 | −0.3 |
+      | 0.4 | +0.016 | +0.003 | 0.125 | 0.1865 | +0.2 |
+      | 0 | | | | 0.1869 | +1.0 |
+
+    **0.4 adopted.** It is the weight the innings gap measures in both the ball check and the
+    replays. The Brier differences are all inside the 0.003 seed noise, so they decide nothing.
+    (0.6 was first chosen on that 0.0005 difference, and changed on review.)
+
+    Rarity (1000 greedy): unbeaten 1.7%, champion 5.7%, against 1.7% and 6.1% before. The
+    difference is under half a standard error (about ±1.0 point on the difference).
+
+    The eval's own death figure stays at +0.09 an over at every weight, and at +0.08 with rain
+    off. Two checks show why it is not a defect:
+    - Its baseline equals the real death rate of the replayed matches in every edition.
+    - The real World Cup death rate is only known to ±0.021 runs a ball, ±0.13 an over (bootstrap
+      over 307 matches).
+
+    Ball for ball, pooled death runs are within 0.04 an over of real. Against the old allocation,
+    item 19 put the death up 0.07 an over and the middle overs down 0.03, with total runs
+    unchanged. Within that noise, neither phase split is more right than the other.
+
 ## Still open
 
-- Bowlers' dot spread compressed (3.9 against 6.0 real) and spinners at the death 2.8 points short on
-  dots (item 18).
+- Spinners at the death 2.3 points short on dots. Bowlers' dot spread is 5.0 against 6.1 real
+  (was 3.9; item 19). Death overs read +0.09 an over in the eval, within its noise (item 20).
 - 2024 scores 0.23 an over low in the sim; 2026 loses a wicket every 16 balls against 17.2 real.
 - Pressure sixes run short at required rates of 10–16 and in chases already gone (item 13).
 - Balls per wicket +0.15 and powerplay −0.08 an over with the adjusted tables (item 12).

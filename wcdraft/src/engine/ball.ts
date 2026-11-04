@@ -209,7 +209,7 @@ export function outcomeDistribution(striker: EnginePlayer, bowler: EnginePlayer,
   const bat = striker.battingRel[phase];
   const bowl = bowler.bowlingRel[phase];
   const tau = situation.tau(ctx.innings, ctx.over, ctx.wickets);
-  const inningsRaw = ENGINE.inningsPhaseDeathOnly && phase !== "death" ? UNIT : pow(situation.inningsPhase(ctx.innings, phase), ENGINE.inningsPhaseExponent);
+  const inningsRaw = ENGINE.inningsPhaseDeathOnly && phase !== "death" ? UNIT : pow(situation.inningsPhase(ctx.innings, phase), ENGINE.inningsPhaseExponent * (phase === "death" ? ENGINE.inningsPhaseDeathExponent : 1));
   const innings = ENGINE.inningsPhaseHazard ? inningsRaw : { ...inningsRaw, W: 1 };
   const chasing = ctx.requiredRpo !== null && ctx.wickets <= PRESSURE.maxWickets;
   const forced = chasing && ctx.requiredRpo! >= PRESSURE.gear[0] && ctx.requiredRpo! < PRESSURE.gear[1];

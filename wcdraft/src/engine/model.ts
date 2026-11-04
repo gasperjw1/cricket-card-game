@@ -49,6 +49,21 @@ export const ENGINE = {
   inningsPhaseHazard: 0 as number,
   inningsPhaseDeathOnly: 0 as number,
   /**
+   * The innings × phase term's weight at the death, on top of `inningsPhaseExponent` (2026-11-04,
+   * the death-overs bias, `scripts/research/ball-check.mts`). At the death the term is the
+   * archive's whole raw innings gap (×1.076 first innings against second, each innings' level
+   * taken out; real World Cups ×1.076 too). But the ball model already makes ×1.051 of that gap
+   * itself, from the real batters and bowlers, wickets down and balls faced, so at full weight
+   * most of it is counted twice. Real World Cup balls through the ball model, at full weight:
+   * first-innings death +0.067 runs a ball, chase death −0.001 (off: +0.030 and +0.063); the gap
+   * wants a weight of about 0.34. The replays, on matched full-length fixtures: +0.036 and −0.034
+   * at 1, +0.022 and −0.007 at 0.6, +0.016 and +0.003 at 0.4 (innings gap 0.125 against 0.112
+   * ±0.038 real). 0.4 since 2026-11-04. Brier 0.1865 (0.1871 at 1, 0.1860 at 0.6, all within
+   * seed noise), chase wins +0.2 points (−1.3). Setness, streak and ball-in-over were each
+   * switched off in the check and moved nothing.
+   */
+  inningsPhaseDeathExponent: 0.4 as number,
+  /**
    * Required-rate pressure (`analysis/pressure.ts`), 2026-11-01. Measured after both players and
    * against second innings at the same over and wickets, so τ is not counted twice: the old chase
    * term was not, so it had to run at exponent 0.15, which left sixes falling as the rate climbed
@@ -162,8 +177,10 @@ export const ENGINE = {
    * at 2, +0.27 at 3 for +0.5): a rotating coach can only spread overs among the bowlers he has.
    * Re-checked 2026-11-04 with the usage charge (base 6.19): 2.5 gives −0.64 for −0.5 and +0.39 for
    * +0.5, 1.03 bowlers per unit of rotation (2: 0.90, 3: 1.07), so it stays.
+   * 3 since 2026-11-04 with the usage pull (item 19), which holds each man to his phases: 2.5 then
+   * gave 0.88 bowlers per unit, 3 gives 0.99 (−0.72 for −0.5, +0.27 for +0.5).
    */
-  coachPlay: { toss: 1 as number, rotationScale: 2.5 as number, depth: 1 as number },
+  coachPlay: { toss: 1 as number, rotationScale: 3 as number, depth: 1 as number },
   /** Captaincy: allocation noise × (1 − captainNoiseSlope × z), clipped to [0.4, 1.6] (z from `captaincy.json`). */
   captainNoiseSlope: 0.3 as number,
   /**
@@ -226,6 +243,30 @@ export const ENGINE = {
    * table, so the edition's bye runs are unchanged. `byeEvents` 0 restores the old one-run byes.
    */
   byeEvents: 1 as number,
+  /**
+   * A bowler in a phase he rarely bowls (2026-11-04, `scripts/research/rare-phase.mts`, men's T20Is
+   * since 2012): actual ÷ expected from his level in the other two phases, by pace or spin, phase
+   * and usage (his share of overs in the phase ÷ the phase's share of an innings: rare under 0.5,
+   * usual to 1.25, regular above). A rating shrinks a thin phase toward the bowler's pooled vector,
+   * which is his level elsewhere, so these cells apply with the prior's weight in that phase,
+   * 300 ÷ (300 + his balls in it). `phaseUsagePrior` 0 switches it off.
+   * Off (2026-11-04): with the new allocation it put powerplay spin dots on real (+0.7 → +0.1) and
+   * spin death runs nearer (1.452 → 1.406 a ball, real 1.375), but left spin death dots 1.9 short
+   * and the nine-edition Brier at 0.1877 against 0.1862 without it. Kept for a ratings-side refit.
+   */
+  phaseUsagePrior: 0 as number,
+  phaseUsageCells: {
+    pace: {
+      pp: { rare: { 0: 0.92, 1: 1.17, 2: 0.92, 3: 0.92, 4: 0.94, 6: 1.35, W: 0.89 }, usual: { 0: 0.96, 1: 1.07, 2: 0.99, 3: 0.99, 4: 0.96, 6: 1.18, W: 1.05 }, regular: { 0: 1.04, 1: 0.98, 2: 1.0, 3: 1.0, 4: 0.88, 6: 0.91, W: 1.02 } },
+      mid: { rare: { 0: 0.99, 1: 0.97, 2: 0.99, 3: 0.99, 4: 1.22, 6: 0.96, W: 1.06 }, usual: { 0: 0.99, 1: 0.98, 2: 0.97, 3: 0.97, 4: 1.23, 6: 0.89, W: 0.97 }, regular: { 0: 0.97, 1: 1.0, 2: 1.1, 3: 1.1, 4: 1.13, 6: 0.82, W: 0.97 } },
+      death: { rare: { 0: 1.06, 1: 0.99, 2: 0.91, 3: 0.91, 4: 0.93, 6: 1.03, W: 1.12 }, usual: { 0: 0.97, 1: 1.01, 2: 1.02, 3: 1.02, 4: 1.03, 6: 1.07, W: 0.96 }, regular: { 0: 0.98, 1: 1.0, 2: 1.04, 3: 1.04, 4: 1.02, 6: 1.03, W: 1.01 } },
+    },
+    spin: {
+      pp: { rare: { 0: 0.96, 1: 0.98, 2: 0.93, 3: 0.93, 4: 1.19, 6: 1.48, W: 1.13 }, usual: { 0: 0.99, 1: 1.02, 2: 0.99, 3: 0.99, 4: 1.08, 6: 1.17, W: 1.04 }, regular: { 0: 1.04, 1: 0.97, 2: 1.0, 3: 1.0, 4: 1.04, 6: 1.0, W: 1.02 } },
+      mid: { rare: { 0: 1.01, 1: 0.99, 2: 0.95, 3: 0.95, 4: 0.88, 6: 0.91, W: 0.94 }, usual: { 0: 1.01, 1: 0.99, 2: 0.95, 3: 0.95, 4: 0.88, 6: 0.91, W: 0.94 }, regular: { 0: 0.99, 1: 1.0, 2: 1.04, 3: 1.04, 4: 0.92, 6: 0.97, W: 1.01 } },
+      death: { rare: { 0: 1.06, 1: 1.05, 2: 0.89, 3: 0.89, 4: 0.82, 6: 0.95, W: 0.94 }, usual: { 0: 1.09, 1: 1.04, 2: 0.88, 3: 0.88, 4: 0.82, 6: 0.94, W: 1.06 }, regular: { 0: 1.02, 1: 1.02, 2: 1.18, 3: 1.18, 4: 0.87, 6: 0.83, W: 1.11 } },
+    },
+  } as Record<"pace" | "spin", Record<"pp" | "mid" | "death", Record<"rare" | "usual" | "regular", Record<string, number>>>>,
   byeRuns: {
     pp: { 1: 0.808, 2: 0.056, 3: 0.007, 4: 0.128 },
     mid: { 1: 0.804, 2: 0.094, 3: 0.007, 4: 0.095 },
@@ -259,10 +300,10 @@ export const ENGINE = {
     continuityBonus: 0.3,
     /**
      * Penalty (runs) for a bowler who has not bowled yet once five bowlers have been used (the sixth
-     * option costs a decision). 1.6 since 2026-11-04 (was 0.8), with `usageWeight` 2 and
-     * `openerDeathBonus` 0.5: 6.13 bowlers a full innings (real 6.20).
+     * option costs a decision). 1.2 since 2026-11-04 (was 0.8), with the usage terms below and
+     * `openerDeathBonus` 0.5: 6.20 bowlers a full innings (real 6.20).
      */
-    extraBowlerPenalty: 1.6 as number,
+    extraBowlerPenalty: 1.2 as number,
     /**
      * Extra weight on the gap (runs an over) between a bowler and the side's fifth-best option. Real
      * elevens rarely have spare bowling, so the replays barely notice it; a drafted eleven with seven
@@ -275,8 +316,8 @@ export const ENGINE = {
      * Death trust is sticky (measured: a new-ball bowler bowls at the death in 62–68% of innings and
      * 43% of overs 19–20 go to an opening bowler): opening bowlers get this bonus at the death and
      * are held back in the middle overs once their quota is down to two. The bonus is 0.5 since
-     * 2026-11-04 (was 2.0): `usageWeight` already favours a man who bowls at the death, and 0.5
-     * keeps 42.6% of overs 19–20 with an opening bowler.
+     * 2026-11-04 (was 2.0): the usage terms already favour a man who bowls at the death, and 0.5
+     * keeps 42.9% of overs 19–20 with an opening bowler (1.0 gives 44.0%, 2.0 45.9%).
      */
     openerDeathBonus: 0.5 as number,
     openerHoldPenalty: 2.0,
@@ -288,8 +329,13 @@ export const ENGINE = {
      * costs him this much more for the next one. Sized on the share: a flat charge on the third
      * over alone left it at 38%, 1.2 an over 38%, 3.0 an over 34.7%, 4.5 an over 32.7% (2024) and
      * 35.4% (2016, real 35.2%), with the powerplay bowler's boundary ratio back on 1.00.
+     * 3 since 2026-11-04 (the bowling-roles research): with the usage terms the spread goes to
+     * the side's other new-ball men instead of its spinners, and 4.5 pushed it past them (seamers
+     * who usually open had 13% of all balls in the powerplay against 20.6% real). Lower than 3 and
+     * openers spend their quota early: at 1.5, even with a 2-run opener death bonus, only 31% of
+     * overs 19–20 went to an opener (real 43%).
      */
-    powerplayHoldPenalty: 4.5,
+    powerplayHoldPenalty: 3 as number,
     /**
      * Where his captains really bowled him (2026-11-03, the dots research): weight on the log of the
      * bowler's own share of overs in this phase (`bowlingShares`, form window and tournament) against
@@ -300,8 +346,27 @@ export const ENGINE = {
      * 18.8%). At 2: 11.8%, 6.3% and 21.8%, nine-edition Brier 0.1860 (0.1875 without it), death
      * overs +0.02 an over against +0.08. At 4 powerplay spin is 10.2% but Brier 0.1885 and death
      * +0.07, so the last few points of powerplay spin stay open.
+     * 3 since 2026-11-04 with `usageBoost` 4 and `powerplayHoldPenalty` 3 (the bowling-roles
+     * research, `wc-draft-bowling-roles-2026-11-04.md`): every phase × pace/spin × usage cell of
+     * who bowled what in the replays within 2.1 points of real (summed error 10.6 points across 18
+     * cells, against 30.6 with the charge alone); real elevens give 67% of the powerplay to men who usually
+     * open (real 65%) and 43% of the death to men who usually bowl it (real 42%). Brier 0.1871
+     * (0.1860 with the charge alone, seed noise 0.003); death overs +0.10 an over (+0.02), open.
      */
-    usageWeight: 2 as number,
+    usageWeight: 3 as number,
+    /**
+     * Weight on the same log share above the phase's own, in the powerplay and at the death only: a
+     * man his captains used with the new ball or at the death is pulled toward it. Not in the middle
+     * overs, where it sent part-timers on for every over (6.5 bowlers an innings). 4 since 2026-11-04.
+     */
+    usageBoost: 4 as number,
+    /**
+     * Usage read as a card tag would say it, 3 levels (rare / usual / regular) or 2 (a New ball or
+     * Death tag, yes or no), instead of the share itself; 0 = the share. Tested 2026-11-04 and kept at
+     * 0: summed error on who bowled what 17.1 points with 3 levels and 21.5 with yes/no, against 10.6
+     * with the share; yes/no lumps an occasional new-ball man with one who never takes it.
+     */
+    usageTags: 0 as number,
   },
 };
 
@@ -319,16 +384,20 @@ export function fieldShareWith(editionShare: number, bowlFirst: number): number 
   return clamp(1 / (1 + Math.exp(-(logit(clamp(editionShare)) + shift))));
 }
 
-export type EngineOverrides = Partial<Record<"allocUsage" | "allocSpecialist" | "allocOpenerDeath" | "allocExtraBowler" | "coachToss" | "coachRotationScale" | "coachDepth" | "byeEvents" | "batExponent" | "bowlExponent" | "bowlHazardExponent" | "pitchExponent" | "inningsPhaseExponent" | "inningsPhaseHazard" | "inningsPhaseDeathOnly" | "pressureExponent" | "gearExponent" | "foundExponent" | "shapeExponent" | "streakExponent" | "setnessExponent" | "adjustedSetness" | "adjustedStates" | "ballInOverExponent" | "chaseDotsExponent" | "matchupExponent" | "bowlTierExponent" | "bowlerDaySd" | "batterDaySd" | "matchEffectSd" | "inningsEffectSd" | "venueExponent" | "scoringCalibration" | "hazardCalibration" | "deathCalibration", number>>;
+export type EngineOverrides = Partial<Record<"allocUsage" | "allocSpecialist" | "allocOpenerDeath" | "allocExtraBowler" | "allocPPHold" | "allocUsageBoost" | "allocReserve" | "allocTags" | "phaseUsagePrior" | "coachToss" | "coachRotationScale" | "coachDepth" | "byeEvents" | "batExponent" | "bowlExponent" | "bowlHazardExponent" | "pitchExponent" | "inningsPhaseExponent" | "inningsPhaseHazard" | "inningsPhaseDeathOnly" | "inningsPhaseDeathExponent" | "pressureExponent" | "gearExponent" | "foundExponent" | "shapeExponent" | "streakExponent" | "setnessExponent" | "adjustedSetness" | "adjustedStates" | "ballInOverExponent" | "chaseDotsExponent" | "matchupExponent" | "bowlTierExponent" | "bowlerDaySd" | "batterDaySd" | "matchEffectSd" | "inningsEffectSd" | "venueExponent" | "scoringCalibration" | "hazardCalibration" | "deathCalibration", number>>;
 
 /** Calibration hook: override numeric constants for a sweep (`npm run engine:calibrate`). */
 export function setEngineOverrides(overrides: EngineOverrides): void {
-  const { allocUsage, allocSpecialist, allocOpenerDeath, allocExtraBowler, coachToss, coachRotationScale, coachDepth, ...flat } = overrides;
+  const { allocUsage, allocSpecialist, allocOpenerDeath, allocExtraBowler, allocPPHold, allocUsageBoost, allocReserve, allocTags, coachToss, coachRotationScale, coachDepth, ...flat } = overrides;
   Object.assign(ENGINE, flat);
   if (allocUsage !== undefined) ENGINE.allocation.usageWeight = allocUsage;
   if (allocSpecialist !== undefined) ENGINE.allocation.specialistBonus = allocSpecialist;
   if (allocOpenerDeath !== undefined) ENGINE.allocation.openerDeathBonus = allocOpenerDeath;
   if (allocExtraBowler !== undefined) ENGINE.allocation.extraBowlerPenalty = allocExtraBowler;
+  if (allocPPHold !== undefined) ENGINE.allocation.powerplayHoldPenalty = allocPPHold;
+  if (allocReserve !== undefined) ENGINE.allocation.reservationPenalty = allocReserve;
+  if (allocTags !== undefined) ENGINE.allocation.usageTags = allocTags;
+  if (allocUsageBoost !== undefined) ENGINE.allocation.usageBoost = allocUsageBoost;
   if (coachToss !== undefined) ENGINE.coachPlay.toss = coachToss;
   if (coachRotationScale !== undefined) ENGINE.coachPlay.rotationScale = coachRotationScale;
   if (coachDepth !== undefined) ENGINE.coachPlay.depth = coachDepth;

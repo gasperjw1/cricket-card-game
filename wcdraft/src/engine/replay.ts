@@ -69,7 +69,7 @@ const quantiles = (xs: number[]) => {
 
 const WICKET_MARKS = [6, 10, 15, 20] as const;
 
-export function replayEdition(editionId: string, sims: number, seed = 1, options: { base?: "edition" | "window" } = {}): ReplaySummary {
+export function replayEdition(editionId: string, sims: number, seed = 1, options: { base?: "edition" | "window"; rainProbability?: number } = {}): ReplaySummary {
   const data = loadEdition(editionId);
   const games = realMatches(data);
   const env = data.edition.environment as unknown as EnvironmentFigures & { populationVectors: Record<string, Record<string, number>> };
@@ -100,7 +100,7 @@ export function replayEdition(editionId: string, sims: number, seed = 1, options
     let winsA = 0;
     const totals: number[] = [];
     for (let s = 0; s < sims; s += 1) {
-      const r: MatchResult = simulateMatch(teamA, teamB, matchEnv, data.situation, { seed: `${seed}:${g.match.id}:${s}`, battingFirst });
+      const r: MatchResult = simulateMatch(teamA, teamB, matchEnv, data.situation, { seed: `${seed}:${g.match.id}:${s}`, battingFirst, rainProbability: options.rainProbability });
       for (const inn of r.innings) {
         runs += inn.runs; balls += inn.legalBalls; wickets += inn.wickets;
         // Real dot % counts legal balls with no runs at all (wicket balls included, bye balls excluded).

@@ -83,7 +83,16 @@ export function chooseBowler(input: AllocationInput, rng: Rng): BowlerState {
     // (the shares say when a man bowls, not how much, so a boost sent part-timers on for every
     // middle over: 6.5 bowlers an innings against 6.2 real).
     const shares = b.player.bowlingShares;
-    if (shares && A.usageWeight) score += A.usageWeight * Math.min(0, Math.log((shares[phase] + 0.05) / (PHASE_SHARE[phase] + 0.05)));
+    if (shares && (A.usageWeight || A.usageBoost)) {
+      // `usageTags` (experiment): the usage snapped to what a card tag would say, three levels
+      // (rare / usual / regular) or yes/no (a New ball or Death tag; the middle overs untagged).
+      const use = shares[phase] / PHASE_SHARE[phase];
+      const snapped = A.usageTags === 3 ? (use < 0.5 ? 0.3 : use < 1.25 ? 0.9 : 1.6)
+        : A.usageTags === 2 && phase !== "mid" ? (use >= 1.25 ? 1.6 : 0.6)
+        : use;
+      const lean = Math.log((snapped * PHASE_SHARE[phase] + 0.05) / (PHASE_SHARE[phase] + 0.05));
+      score += A.usageWeight * Math.min(0, lean) + (phase === "mid" ? 0 : A.usageBoost * Math.max(0, lean));
+    }
     if (phase === "pp" && arch === "new ball") score += A.specialistBonus;
     if (phase === "death" && arch === "death") score += A.specialistBonus;
     // Death trust: whoever opened the bowling is trusted at the death and held back for it.

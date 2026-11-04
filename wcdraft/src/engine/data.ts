@@ -203,12 +203,31 @@ function relative(v: Vector, pop: Vector): Vector {
   return Object.fromEntries(OUTCOMES.map((k) => [k, v[k] / Math.max(1e-4, pop[k])])) as Vector;
 }
 
+const PHASE_SHARE: Record<Phase, number> = { pp: 6 / 20, mid: 9 / 20, death: 5 / 20 };
+
+/**
+ * The rare-phase cells (`ENGINE.phaseUsageCells`) on a bowler's relative vectors, each phase at the
+ * weight its rating gave the pooled prior there, so a long record in the phase keeps its own shape.
+ */
+function withPhaseUsage(rel: PhaseVectors, r: PlayerRating, bowlClass: string | null): PhaseVectors {
+  const shares = r.bowlingPhases;
+  if (!ENGINE.phaseUsagePrior || !shares || !bowlClass) return rel;
+  const group = bowlClass.startsWith("pace") ? "pace" : "spin";
+  return Object.fromEntries(PHASE_LIST.map((p) => {
+    const use = shares[p] / PHASE_SHARE[p];
+    const cells = ENGINE.phaseUsageCells[group][p][use < 0.5 ? "rare" : use < 1.25 ? "usual" : "regular"];
+    const w = ENGINE.phaseUsagePrior * (300 / (300 + (r.bowling.phaseEvidence?.[p]?.balls ?? 0)));
+    return [p, Object.fromEntries(OUTCOMES.map((k) => [k, rel[p][k] * Math.pow(cells[k] ?? 1, w)]))];
+  })) as PhaseVectors;
+}
+
 export function toEnginePlayer(r: PlayerRating, pops: EditionPopulations, label?: PlayerLabel): EnginePlayer {
   const rel = (skill: "bat" | "bowl", vectors: PhaseVectors): PhaseVectors =>
     Object.fromEntries(PHASE_LIST.map((p) => [p, relative(vectors[p], pops.valuePop[skill][p])])) as PhaseVectors;
+  const bowlClass = bowlClassOf(label?.bowlingType);
   return {
     hand: handOf(label?.handedness),
-    bowlClass: bowlClassOf(label?.bowlingType),
+    bowlClass,
     keeper: !!label && (label.keeper === "Y" || label.keeperCareer === "Y" || Number(label.keeperAnyT20I ?? 0) > 0),
     stumpings: Number(label?.keeperAnyT20I ?? 0),
     batVsClass: { pace: r.batting.byBowlClass?.pace.rel ?? UNIT_VECTOR, spin: r.batting.byBowlClass?.spin.rel ?? UNIT_VECTOR },
@@ -220,7 +239,7 @@ export function toEnginePlayer(r: PlayerRating, pops: EditionPopulations, label?
     batting: r.batting.vectors,
     bowling: r.bowling.vectors,
     battingRel: rel("bat", r.batting.vectors),
-    bowlingRel: rel("bowl", r.bowling.vectors),
+    bowlingRel: withPhaseUsage(rel("bowl", r.bowling.vectors), r, bowlClass),
     batLowSample: r.batting.lowSample,
     bowlLowSample: r.bowling.lowSample,
     role: r.role,

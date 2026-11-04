@@ -169,9 +169,11 @@ describe("engine", { skip: !engineReady() && "engine data not built" }, () => {
       assert.ok(inn.bowling.length >= 5, `bowlers used ${inn.bowling.length}`);
     }
     const [i1, i2] = a.innings;
-    if (a.winner === i2.team) assert.ok(i2.runs > i1.runs);
+    // A tie goes to the tie-breaker's winner, so only an untied match needs the winner ahead on runs.
+    if (a.tieBreak) { assert.equal(i1.runs, i2.runs); assert.equal(a.winner, a.tieBreak.winner); }
+    else if (a.winner === i2.team) assert.ok(i2.runs > i1.runs);
     else if (a.winner === i1.team) assert.ok(i1.runs > i2.runs);
-    else assert.ok(a.tieBreak);
+    else assert.fail("an untied match without a winner");
     assert.ok(a.balls.length > 200);
     // Scorecard detail: every out batter has a dismissal, bowler wickets exclude run-outs, partnerships
     // add up to the total, extras split adds up, and the ball log tracks the score.

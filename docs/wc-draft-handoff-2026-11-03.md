@@ -120,7 +120,13 @@ per-bowler wides and ODI weighting in the engine) await Yash's choice. (3) Dots:
 (refit item 18: the gap was byes drawn as one-run events; bowlers now bowl in the phases their
 captains used them in; innings × phase back on, scoring only; dots +0.07, Brier 0.1860). Still open
 from it: bowler dot spread compressed, spinners at the death short on dots (ratings), and the
-pressure-sixes shortfall at required rates of 10–16 from item 13. (4) Re-evaluate. Leaderboards
+pressure-sixes shortfall at required rates of 10–16 from item 13. Bowling roles, **engine side
+done 2026-11-04** (refit item 19, `wc-draft-bowling-roles-2026-11-04.md`): usage-led allocation
+adopted; rare-phase performance cells, card tags in the engine and captain phase habits measured
+and kept off. The card display (tags or a usage bar) awaits Yash's choice. Death-overs bias,
+**done 2026-11-04** (refit item 20, `scripts/research/ball-check.mts` runs real balls through the
+ball model): innings × phase at weight 0.4 at the death, where it counted the innings gap twice.
+(4) Re-evaluate. Leaderboards
 and growth features go last; a Test-cricket auction league is the eventual pivot, on the back burner.
 
 ### 3. Housekeeping
