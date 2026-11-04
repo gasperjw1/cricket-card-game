@@ -34,6 +34,8 @@ export interface PoolPlayer {
   bowl: number;
   batPhases: Record<Phase, number>;
   bowlPhases: Record<Phase, number>;
+  /** Share of his overs in each phase (form window and tournament), as the engine's allocation reads it; null when he has bowled none. */
+  bowlShares?: Record<Phase, number> | null;
   batLow: boolean;
   bowlLow: boolean;
   /** Whether the card shows the skill at all (false for a batter who rarely bowls, and vice versa). */

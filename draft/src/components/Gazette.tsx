@@ -27,6 +27,7 @@ import { fullName, labelTeams, teamLabel } from "../lib/names.ts";
 import { marginText, rainText } from "./MatchCard.tsx";
 import { Awards, FormGrid, SquadStats, TournamentLeaders } from "./RunStats.tsx";
 import { MatchScorecard, TieBreakCard, oversText, tieBreakLabel } from "./Scorecard.tsx";
+import { Digits, Rating } from "./PlayerCard.tsx";
 
 export type Fixtured = FixtureResult & { stageLabel: string };
 
@@ -223,13 +224,14 @@ export function CoverPage({ state, result, edition, venues, mine, numbersHere, r
       <Masthead issue="Issue 1 · Preview" date={longDate(mine[0]?.date ?? null)} matchDay={matchDay} editionId={result.editionId} />
       <div className="gz-kicker">Squad announced</div>
       <h2 className="gz-headline">{teamLabel(me)} name their eleven for the {result.editionId} World Cup</h2>
-      <p className="gz-stand">{picks.length} players from across the tournament's history, with a squad rating of {ratingHere ?? squadRating(state.picks)}{coachName ? `, and ${coachName} as coach` : ""}{hosts ? `. The tournament is in ${hosts}.` : "."}{result.editionId === "2007" ? " It is the first T20 World Cup ever played, and nobody yet knows what a good score is." : ""}{state.identity!.standIn ? ` ${teamLabel(me)} stand in for a side that did not take part.` : ""}</p>
+      <div className="gz-cover-rating"><Rating label="Squad rating" n={ratingHere ?? squadRating(state.picks)} size="lg" /></div>
+      <p className="gz-stand">{picks.length} players from across the tournament's history{coachName ? `, with ${coachName} as coach` : ""}{hosts ? `. The tournament is in ${hosts}.` : "."}{result.editionId === "2007" ? " It is the first T20 World Cup ever played, and nobody yet knows what a good score is." : ""}{state.identity!.standIn ? ` ${teamLabel(me)} stand in for a side that did not take part.` : ""}</p>
       <div className="gz-columns">
         <section className="gz-box gz-wide">
           <h4>The batting order</h4>
           <table className="gz-table gz-order">
             <thead><tr><th>#</th><th>Player</th><th>From</th><th>Bat</th><th>Bowl</th></tr></thead>
-            <tbody>{picks.map((p, i) => <tr key={p!.id}><td>{i + 1}</td><td>{p!.name}{p!.id === state.captainId ? " (c)" : ""}</td><td>{p!.team} {p!.editionId}</td><td>{p!.batShown ? numbersHere[i]?.bat ?? p!.bat : "–"}</td><td>{p!.bowlShown ? numbersHere[i]?.bowl ?? p!.bowl : "–"}</td></tr>)}</tbody>
+            <tbody>{picks.map((p, i) => <tr key={p!.id}><td>{i + 1}</td><td>{p!.name}{p!.id === state.captainId ? " (c)" : ""}</td><td>{p!.team} {p!.editionId}</td><td><Digits n={p!.batShown ? numbersHere[i]?.bat ?? p!.bat : null} /></td><td><Digits n={p!.bowlShown ? numbersHere[i]?.bowl ?? p!.bowl : null} /></td></tr>)}</tbody>
           </table>
           <p className="gz-note">Each man's numbers in {result.editionId} at his place in the order{coachName ? ` under ${coachName}` : ""}, as the draft showed them.</p>
         </section>
@@ -440,9 +442,9 @@ function ResidualRow({ r }: { r: Residual }) {
       <b>{r.name}</b> <span className="gz-sub-team">{teamLabel(r.team)}</span>
       <br />
       {bat && r.bat
-        ? <>{r.bat.runs} runs off {r.bat.balls} balls at a strike rate of {r.bat.sr.toFixed(0)}, out {r.bat.outs} time{r.bat.outs === 1 ? "" : "s"} against {r.bat.expOuts.toFixed(1)} expected; a card of {r.bat.card} in this tournament said {r.bat.expSr.toFixed(0)}. <b>{num(r.bat.above)} runs</b> against expectation.</>
+        ? <>{r.bat.runs} runs off {r.bat.balls} balls at a strike rate of {r.bat.sr.toFixed(0)}, out {r.bat.outs} time{r.bat.outs === 1 ? "" : "s"} against {r.bat.expOuts.toFixed(1)} expected; a card of <Digits n={r.bat.card} size="xs" /> in this tournament said {r.bat.expSr.toFixed(0)}. <b>{num(r.bat.above)} runs</b> against expectation.</>
         : r.bowl
-          ? <>{r.bowl.wickets} wicket{r.bowl.wickets === 1 ? "" : "s"} at {r.bowl.econ.toFixed(1)} an over from {oversText(r.bowl.balls)} overs; a card of {r.bowl.card} in this tournament said {r.bowl.expEcon.toFixed(1)}. <b>{num(r.bowl.above)} runs</b> against expectation.</>
+          ? <>{r.bowl.wickets} wicket{r.bowl.wickets === 1 ? "" : "s"} at {r.bowl.econ.toFixed(1)} an over from {oversText(r.bowl.balls)} overs; a card of <Digits n={r.bowl.card} size="xs" /> in this tournament said {r.bowl.expEcon.toFixed(1)}. <b>{num(r.bowl.above)} runs</b> against expectation.</>
           : null}
     </li>
   );

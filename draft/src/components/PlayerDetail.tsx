@@ -12,7 +12,7 @@ import { coachNote, type PlayerFit, type SkillFit } from "../game/fit.ts";
 import { batInSlot, describeWeights, type PhaseWeights } from "../game/slots.ts";
 import type { PoolPlayer, Slot } from "../game/types.ts";
 import { teamLabel } from "../lib/names.ts";
-import { Digits, STYLE_NOTES, TierBadge, VsNumber, hereNumbers, roleLine, styleTitle } from "./PlayerCard.tsx";
+import { Digits, Rating, STYLE_NOTES, TierBadge, hereNumbers, roleLine, splitClass, styleTitle } from "./PlayerCard.tsx";
 
 const signed = (n: number) => (n > 0 ? `+${n}` : n < 0 ? `−${-n}` : "0");
 const deltaClass = (n: number) => (n > 0 ? "num-good" : n < 0 ? "num-bad" : "muted");
@@ -21,26 +21,73 @@ function Steps({ skill, label }: { skill: SkillFit; label: string }) {
   return (
     <table className="pd-steps">
       <tbody>
-        <tr><td>{label} on the card</td><td>{skill.card}</td></tr>
+        <tr><td>{label} on the card</td><td><Digits n={skill.card} /></td></tr>
         {skill.steps.map((s) => <tr key={s.key}><td>{s.label}</td><td className={deltaClass(s.delta)}>{signed(s.delta)}</td></tr>)}
-        <tr className="pd-total"><td>Here, under this coach</td><td>{skill.final}</td></tr>
+        <tr className="pd-total"><td>Here, under this coach</td><td><Digits n={skill.final} /></td></tr>
       </tbody>
     </table>
   );
 }
 
-/** One skill: the number in this World Cup, large, and the card's phases in one line under it. */
-function Skill({ label, value, card, phases, extra, none }: { label: string; value: number | null; card: number; phases: Record<"pp" | "mid" | "death", number>; extra?: React.ReactNode; none: string }) {
+type Phases = Record<"pp" | "mid" | "death", number>;
+
+const USAGE_PHASES = [["pp", "PP", "powerplay"], ["mid", "Mid", "middle overs"], ["death", "Death", "death"]] as const;
+
+/**
+ * His card by phase (2026-11-04): one segment a phase, as wide as his share of balls faced or overs
+ * bowled there, with his card's rating for the phase inside and the phase and share under it. The
+ * card number is these ratings weighted by these shares; for bowling the shares are also what the
+ * engine's allocation reads (the bowling-roles research).
+ */
+/**
+ * The segment's shade by its rating (2026-11-04): four steps of the card's green, darker the higher,
+ * cut near the pool's quartiles of phase ratings (batting p25 56, p50 67, p75 75; bowling 63, 70, 76).
+ */
+const ratingBand = (r: number) => (r >= 80 ? 4 : r >= 70 ? 3 : r >= 60 ? 2 : 1);
+
+function UsageBar({ ratings, shares, unit }: { ratings: Phases; shares: Phases; unit: "balls faced" | "overs bowled" }) {
+  const pct = (s: number) => Math.round(100 * s);
+  const label = `His ${unit} by phase: ${USAGE_PHASES.map(([k, , name]) => `${name} ${pct(shares[k])}%, rated ${ratings[k]}`).join("; ")}`;
   return (
-    <div className={`pd-skill ${value === null ? "off" : ""}`}>
+    <div className="usage" role="img" aria-label={label}>
+      <div className="usage-row">
+        {USAGE_PHASES.map(([k, short]) => (
+          <div key={k} className={`usage-col ${pct(shares[k]) === 0 ? "none" : ""}`} style={{ flexGrow: shares[k] }}>
+            <span className={`usage-seg band-${ratingBand(ratings[k])}`}>{ratings[k]}</span>
+            <span className="usage-label">{short}<br />{pct(shares[k])}%</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+/**
+ * One skill in one section: the number in this World Cup, large, beside his card by phase (the
+ * usage bar), with the card number and any notes under them. 2026-11-04, Yash: one section for the
+ * overall number and the phases, batting and bowling alike.
+ */
+function Skill({ label, value, card, phases, usage, extra, none }: {
+  label: string; value: number | null; card: number; phases: Phases;
+  usage: { shares: Phases; unit: "balls faced" | "overs bowled" } | null;
+  extra?: React.ReactNode; none: string;
+}) {
+  if (value === null) {
+    return (
+      <div className="pd-skill off">
+        <span className="pd-k">{label}</span>
+        <div className="pd-skill-body"><Digits n={null} size="lg" /><span className="pd-line">{none}</span></div>
+      </div>
+    );
+  }
+  return (
+    <div className="pd-skill">
       <span className="pd-k">{label}</span>
-      <Digits n={value} size="lg" />
-      {value === null ? <span className="pd-line">{none}</span> : (
-        <>
-          <span className="pd-line">Card {card} · PP {phases.pp} · mid {phases.mid} · death {phases.death}</span>
-          {extra && <span className="pd-line">{extra}</span>}
-        </>
-      )}
+      <div className="pd-skill-body">
+        <Digits n={value} size="lg" />
+        {usage ? <UsageBar ratings={phases} shares={usage.shares} unit={usage.unit} /> : <span className="pd-line">PP {phases.pp} · mid {phases.mid} · death {phases.death}</span>}
+      </div>
+      <div className="pd-boxes"><Rating label="Card" n={card} />{extra}</div>
     </div>
   );
 }
@@ -75,8 +122,21 @@ export function PlayerDetail({ player, fit, hereEdition, coach, slots, weights, 
       </div>
 
       <div className="pd-nums">
-        <Skill label={`Batting in ${hereEdition}`} value={n.bat} card={p.bat} phases={p.batPhases} none="Rarely bats: plays as a typical batter at his slot." extra={<>v pace <VsNumber value={p.vsPace} other={p.vsSpin} /> · v spin <VsNumber value={p.vsSpin} other={p.vsPace} /></>} />
-        <Skill label={`Bowling in ${hereEdition}`} value={n.bowl} card={p.bowl} phases={p.bowlPhases} none="Rarely bowls: he will not be given overs." />
+        <Skill
+          label={`Batting in ${hereEdition}`} value={n.bat} card={p.bat} phases={p.batPhases}
+          usage={p.batWeights ? { shares: p.batWeights, unit: "balls faced" } : null}
+          none="Rarely bats: plays as a typical batter at his slot."
+          extra={<><Rating label="v pace" n={p.vsPace?.n ?? null} tone={splitClass(p.vsPace, p.vsSpin)} /><Rating label="v spin" n={p.vsSpin?.n ?? null} tone={splitClass(p.vsSpin, p.vsPace)} /></>}
+        />
+        <Skill
+          label={`Bowling in ${hereEdition}`} value={n.bowl} card={p.bowl} phases={p.bowlPhases}
+          usage={p.bowlShares ? { shares: p.bowlShares, unit: "overs bowled" } : null}
+          none="Rarely bowls: he will not be given overs."
+        />
+        {(() => {
+          const units = [n.bat !== null && p.batWeights ? "balls faced" : null, n.bowl !== null && p.bowlShares ? "overs bowled" : null].filter(Boolean);
+          return units.length > 0 && <p className="pd-line pd-bar-note">{units.length > 1 ? "Each bar" : "The bar"}: a phase as wide as his share of {units.join(" or ")} there, with his rating in it; the darker, the higher.</p>;
+        })()}
       </div>
 
       <section className="pd-place">
@@ -89,7 +149,7 @@ export function PlayerDetail({ player, fit, hereEdition, coach, slots, weights, 
                 const at = fit?.atSlot[s.index] ?? (p.batShown ? batInSlot(p, weights[s.index]!) : null);
                 return (
                   <button key={s.index} type="button" className="pd-slot" title={describeWeights(weights[s.index]!)} aria-label={`Place at ${s.label}${at !== null ? `, batting ${at}` : ""}`} onClick={() => onPlace(s.index)}>
-                    <span>{s.label}</span>{at !== null ? <small>bats {at}</small> : <small>&nbsp;</small>}
+                    <span>{s.label}</span>{at !== null ? <small>bats <Digits n={at} size="xs" /></small> : <small>&nbsp;</small>}
                   </button>
                 );
               })}
@@ -100,7 +160,7 @@ export function PlayerDetail({ player, fit, hereEdition, coach, slots, weights, 
 
       {fit && (fit.batting || fit.bowling) && (
         <details className="pd-how">
-          <summary>How {[n.bat !== null && fit.batting ? n.bat : null, n.bowl !== null && fit.bowling ? n.bowl : null].filter((x) => x !== null).join(" and ")} {n.bat !== null && n.bowl !== null && fit.batting && fit.bowling ? "are" : "is"} worked out</summary>
+          <summary>How {n.bat !== null && n.bowl !== null && fit.batting && fit.bowling ? "his numbers here are" : "his number here is"} worked out</summary>
           <div className="pd-grid">
             {fit.batting && p.batShown && <Steps skill={fit.batting} label="Batting" />}
             {fit.bowling && p.bowlShown && <Steps skill={fit.bowling} label="Bowling" />}

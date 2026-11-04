@@ -28,12 +28,6 @@ export function splitClass(mine: VsClass | null, other: VsClass | null): string 
   return mine.n - other.n >= 5 ? "num-good" : other.n - mine.n >= 5 ? "num-bad" : "";
 }
 
-/** A pace or spin number, coloured when it is clearly the stronger side. */
-export function VsNumber({ value, other }: { value: VsClass | null; other: VsClass | null }) {
-  if (!value) return <b>–</b>;
-  return <b className={splitClass(value, other)}>{value.n}</b>;
-}
-
 /** What each batting style means, for tooltips and the full card. */
 export const STYLE_NOTES: Record<BattingStyle, string> = {
   Aggressor: "fast from ball one and keeps going",
@@ -97,14 +91,17 @@ export function hereNumbers(p: PoolPlayer, fit: PlayerFit | null | undefined): {
  * A number as the scoreboard shows it, each digit on its own tile; two blank tiles when there is no
  * number, so every plate keeps the same width (Yash, 2026-11-03).
  */
-export function Digits({ n, size = "sm" }: { n: number | null; size?: "sm" | "lg" }) {
+/** A rating in tiles; `xs` for inside a sentence or a button (2026-11-04, Yash: every rating boxed or graphed). */
+export function Digits({ n, size = "sm" }: { n: number | null; size?: "xs" | "sm" | "lg" }) {
   const chars = n === null ? ["–", "–"] : String(n).split("");
-  return <span className={`dg dg-${size} ${n === null ? "off" : ""}`} aria-hidden="true">{chars.map((c, i) => <i key={i}>{c}</i>)}</span>;
+  // Read as one number (it now sits in tables and sentences too, not only inside labelled buttons).
+  // A decimal point sits between the tiles, not in one (the squad rating carries a decimal).
+  return <span className={`dg dg-${size} ${n === null ? "off" : ""}`} role="img" aria-label={n === null ? "none" : String(n)}>{chars.map((c, i) => (c === "." ? <b key={i} className="dg-dot">.</b> : <i key={i}>{c}</i>))}</span>;
 }
 
-/** One rating in its own box, its name painted above it. */
-export function Rating({ label, n, size = "sm" }: { label: string; n: number | null; size?: "sm" | "lg" }) {
-  return <span className={`rt rt-${size}`}><span className="rt-k">{label}</span><Digits n={n} size={size} /></span>;
+/** One rating in its own box, its name painted above it; `tone` outlines the box (num-good / num-bad). */
+export function Rating({ label, n, size = "sm", tone = "" }: { label: string; n: number | null; size?: "sm" | "lg"; tone?: string }) {
+  return <span className={`rt rt-${size} ${tone}`}><span className="rt-k">{label}</span><Digits n={n} size={size} /></span>;
 }
 
 /**

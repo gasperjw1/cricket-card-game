@@ -63,7 +63,7 @@ export function LineupScreen({ state, captains, editions, onCaptain, onSwap, onS
         <h2 className="lineup-title">{state.identity?.team} {state.identity?.editionId}</h2>
         <p className="small muted">Coached by {state.coach?.coachName ?? "nobody"}</p>
         <div className="strip lineup-strip">
-          <span className="strip-item"><span className="rt-k">Squad rating</span><span className="strip-num">{pickFits ? squadRatingHere(here) : squadRating(picks)}</span></span>
+          <span className="strip-item"><span className="rt-k">Squad rating</span><Digits n={pickFits ? squadRatingHere(here) : squadRating(picks)} /></span>
           <span className="strip-item"><span className="rt-k">Overs</span><Digits n={oversCovered(picks)} /><span className="strip-of">/20</span></span>
         </div>
         <section className="lineup-box">

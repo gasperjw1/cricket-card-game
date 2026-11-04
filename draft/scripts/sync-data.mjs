@@ -69,6 +69,8 @@ for (const ed of editions) {
     tier: r.tier, tierScore: r.tierScore, role: r.role, archetype: r.archetype, style: r.style ?? null,
     batProjected: r.batting.projected ? r.batting.evidence.laterBalls : 0, bowlProjected: r.bowling.projected ? r.bowling.evidence.laterBalls : 0,
     bat: r.batting.display, bowl: r.bowling.display, batPhases: r.batting.displayByPhase, bowlPhases: r.bowling.displayByPhase,
+    // Where his captains bowled him (share of his overs by phase), what the engine's allocation reads.
+    bowlShares: r.bowlingPhases ?? null,
     batLow: r.batting.lowSample, bowlLow: r.bowling.lowSample, batShown: r.batting.shown !== false, bowlShown: r.bowling.shown !== false, squadPlayer: r.usage.squadPlayer,
     domesticBalls: { bat: r.batting.evidence.domesticBalls ?? 0, bowl: r.bowling.evidence.domesticBalls ?? 0 },
     batWeights: r.batting.evidence.phaseWeights,

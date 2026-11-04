@@ -180,7 +180,7 @@ export function DraftScreen({ state, editions, venues, squads, onPlace, onReroll
               open: canPlace,
               action: p ? null : canPlace ? (
                 <button type="button" className="sheet-place" title={describeWeights(w)} aria-label={`Place ${selected!.name} at ${s.label}${placing !== null ? `, batting ${placing}` : ""}`} onClick={() => place(selected!, s.index)}>
-                  Place{placing !== null ? <small> · {placing}</small> : null}
+                  Place{placing !== null ? <small> <Digits n={placing} size="xs" /></small> : null}
                 </button>
               ) : null,
             };

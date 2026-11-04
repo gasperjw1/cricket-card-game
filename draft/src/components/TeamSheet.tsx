@@ -71,10 +71,10 @@ export function TeamSheet({ side, edition, coach, rows, captainId, keeperId, foo
                 <span className="sheet-name"><span className="sheet-blank">{r.slot.label}</span></span>
               )}
               <span className="sheet-bat" title={tip}>
-                {p ? <><Digits n={p.batShown ? r.batHere ?? p.bat : null} />{p.batShown && r.batHere !== null && r.batHere !== p.bat ? <small>of {p.bat}</small> : null}</> : ""}
+                {p ? <><Digits n={p.batShown ? r.batHere ?? p.bat : null} />{p.batShown && r.batHere !== null && r.batHere !== p.bat ? <small className="sheet-of">of <Digits n={p.bat} size="xs" /></small> : null}</> : ""}
               </span>
               <span className="sheet-bat sheet-bowl" title={p && p.bowlShown ? `Bowling ${p.bowl}: powerplay ${p.bowlPhases.pp}, middle ${p.bowlPhases.mid}, death ${p.bowlPhases.death}` : undefined}>
-                {p && r.keeps ? <small className="sheet-wk" title="The designated keeper keeps and does not bowl">WK</small> : p ? <><Digits n={p.bowlShown ? r.bowlHere ?? p.bowl : null} />{p.bowlShown && r.bowlHere != null && r.bowlHere !== p.bowl ? <small>of {p.bowl}</small> : null}</> : ""}
+                {p && r.keeps ? <small className="sheet-wk" title="The designated keeper keeps and does not bowl">WK</small> : p ? <><Digits n={p.bowlShown ? r.bowlHere ?? p.bowl : null} />{p.bowlShown && r.bowlHere != null && r.bowlHere !== p.bowl ? <small className="sheet-of">of <Digits n={p.bowl} size="xs" /></small> : null}</> : ""}
               </span>
               <span className="sheet-action">{r.action}</span>
             </li>

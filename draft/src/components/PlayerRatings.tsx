@@ -5,7 +5,7 @@ import type { FinalSkill, PlayerFinal, Skill } from "../game/final-ratings.ts";
 import { finalRatings, type SimulateInput } from "../game/simulate.ts";
 import { journeyLine, type Journey } from "../game/souvenir.ts";
 import { totalsKey } from "../game/stats.ts";
-import { TierBadge } from "./PlayerCard.tsx";
+import { Digits, TierBadge } from "./PlayerCard.tsx";
 
 /** A player's figures in this run, from the kept scorecards. */
 export interface RunLine {
@@ -29,7 +29,7 @@ function Rating({ skill, label }: { skill: FinalSkill | null; label: string }) {
   if (!skill) return <span className="fr-num muted">keeps</span>;
   if (!skill.shown) return <span className="fr-num muted">{label}</span>;
   const moved = skill.final - skill.card;
-  return <span className="fr-num">{skill.card} <span className="muted">to</span> <b className={deltaClass(moved)}>{skill.final}</b></span>;
+  return <span className="fr-num"><Digits n={skill.card} /> <span className="muted">to</span> <span className={`fr-final ${deltaClass(moved)}`}><Digits n={skill.final} /></span></span>;
 }
 
 function SkillDetail({ title, skill, kind, then, here, run }: { title: string; skill: FinalSkill; kind: Skill; then: string; here: string; run: string | null }) {
@@ -41,9 +41,9 @@ function SkillDetail({ title, skill, kind, then, here, run }: { title: string; s
       {skill.shown ? (
         <table className="table fr-steps">
           <tbody>
-            <tr><td>Card rating ({then})</td><td>{skill.card}</td></tr>
+            <tr><td>Card rating ({then})</td><td><Digits n={skill.card} /></td></tr>
             {skill.steps.map((s) => <tr key={s.key}><td>{s.label}</td><td className={deltaClass(s.delta)}>{signed(s.delta)}</td></tr>)}
-            <tr className="fr-total"><td>Final rating ({here})</td><td>{skill.final}</td></tr>
+            <tr className="fr-total"><td>Final rating ({here})</td><td><Digits n={skill.final} /></td></tr>
           </tbody>
         </table>
       ) : <p className="small">No rating shown. He played as a typical player at his position, with the rates below.</p>}

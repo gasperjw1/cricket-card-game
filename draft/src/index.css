@@ -345,6 +345,10 @@ h3 { font-size: 16px; margin: 0 0 8px; }
 .fr-ratings { display: grid; gap: 2px; justify-items: end; font-size: 13px; font-variant-numeric: tabular-nums; }
 .fr-pair .k { color: var(--muted); font-size: 12px; }
 .fr-num .muted, .fr-num.muted { color: var(--muted); font-size: 12px; }
+.fr-num { display: inline-flex; align-items: center; gap: 5px; }
+/* A rating that moved: its box outlined green (up) or red (down). */
+.fr-final { display: inline-flex; padding: 1px; border-radius: 3px; }
+.fr-final.num-good, .fr-final.num-bad { box-shadow: 0 0 0 1.5px currentColor; }
 .fr-body { padding: 0 10px 10px; border-top: 1px solid var(--line); }
 .fr-tags { display: flex; gap: 8px; align-items: center; margin: 10px 0 4px; }
 .fr-skill { margin-top: 12px; }
@@ -370,6 +374,7 @@ h3 { font-size: 16px; margin: 0 0 8px; }
 .gz-page .sc-fow .k { color: var(--ink); }
 .gz-page .hl, .gz-page .hl b, .gz-page tr.hl td { color: #1e4d3a; font-weight: 600; }
 .gz-innings, .gz-tables { margin-top: 6px; }
+.gz-cover-rating { display: flex; margin: 6px 0 2px; }
 .gz-tables-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr)); gap: 20px 32px; margin-top: 12px; align-items: start; }
 /* Two to a row, each box its own height: a stage's group tables side by side, then the next stage. */
 .gz-pair-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px 32px; margin-top: 20px; align-items: start; }
@@ -501,11 +506,14 @@ h3 { font-size: 16px; margin: 0 0 8px; }
 .sheet-row.open .sheet-blank { color: var(--paint); outline: 1px dashed var(--paint); outline-offset: -1px; }
 .sheet-bat { display: grid; justify-items: end; gap: 2px; text-align: right; line-height: 1; }
 .sheet-bat small { font-size: 10.5px; color: var(--paper-muted); }
+.sheet-of { display: inline-flex; align-items: center; gap: 3px; }
 .sheet-action { display: flex; justify-content: flex-end; min-width: 0; }
 .sheet-action:empty { display: none; }
 .sheet-row.open { background: rgba(30, 77, 58, 0.07); margin: 0 -8px; padding-left: 8px; padding-right: 8px; }
 .sheet-place { min-height: 36px; padding: 4px 10px; background: var(--accent); color: var(--accent-ink); border: 1px solid var(--accent); border-radius: 6px; font-family: Oswald, "Arial Narrow", sans-serif; letter-spacing: 0.02em; white-space: nowrap; }
-.sheet-place small { color: var(--accent-ink); opacity: 0.8; font-family: inherit; }
+.sheet-place small { color: var(--accent-ink); font-family: inherit; }
+/* Light tiles on the green button: the dark ones vanished into it. */
+.sheet-place .dg i { background: var(--accent-ink); color: var(--accent); }
 .sheet .moves { display: flex; gap: 4px; }
 .sheet .moves button { min-width: 34px; min-height: 34px; padding: 0 8px; background: transparent; color: var(--paper-ink); border: 1px solid var(--line); border-radius: 6px; }
 .sheet .moves button:disabled { opacity: 0.3; }
@@ -552,12 +560,17 @@ h3 { font-size: 16px; margin: 0 0 8px; }
 .dg { display: inline-flex; gap: 2px; }
 .dg i { font-style: normal; display: inline-flex; align-items: center; justify-content: center; background: var(--tile); color: var(--tile-ink); font-family: Oswald, "Arial Narrow", sans-serif; font-variant-numeric: tabular-nums; border-radius: 2px; }
 .dg-sm i { width: 14px; height: 20px; font-size: 15px; }
+.dg-dot { align-self: flex-end; font-family: Oswald, "Arial Narrow", sans-serif; font-weight: 700; line-height: 1; margin: 0 1px; }
+.dg-xs { gap: 1px; vertical-align: -3px; }
+.dg-xs i { width: 11px; height: 16px; font-size: 12px; }
 .dg-lg i { width: 26px; height: 38px; font-size: 28px; }
 .dg.off i { color: #6b766f; }
 .rt { display: grid; justify-items: center; gap: 2px; border: 1px solid var(--line); border-radius: 3px; padding: 2px 4px 4px; background: rgba(0, 0, 0, 0.03); }
 .rt-k { color: var(--paint); font-size: 9.5px; letter-spacing: 0.12em; text-transform: uppercase; line-height: 1.2; }
 .rt-lg { padding: 4px 8px 6px; }
 .rt-lg .rt-k { font-size: 11px; }
+/* The stronger (or weaker) side of a pace/spin split: the box outlined in its colour. */
+.rt.num-good, .rt.num-bad { border-color: currentColor; box-shadow: inset 0 0 0 1px currentColor; }
 .pr.tier-edge-bronze, .pd.tier-edge-bronze { border-left-color: var(--bronze); }
 .pr.tier-edge-silver, .pd.tier-edge-silver { border-left-color: var(--silver); }
 .pr.tier-edge-gold, .pd.tier-edge-gold { border-left-color: var(--gold); }
@@ -605,7 +618,6 @@ h3 { font-size: 16px; margin: 0 0 8px; }
 .lineup-title { margin: 0; font-family: Oswald, "Arial Narrow", sans-serif; font-weight: 500; font-size: 24px; text-transform: uppercase; letter-spacing: 0.02em; }
 .lineup-side .small { margin: 0; }
 .lineup-strip { gap: 6px 16px; }
-.strip-num { font-family: Oswald, "Arial Narrow", sans-serif; font-size: 18px; }
 .lineup-box { display: grid; gap: 6px; background: var(--card-2); border: 1px solid var(--line); border-radius: 8px; padding: 10px 12px; }
 .lineup-captain select { width: 100%; }
 .lineup-play { width: 100%; min-height: 44px; font-size: 16px; }
@@ -634,11 +646,34 @@ h3 { font-size: 16px; margin: 0 0 8px; }
 .pd-sub { color: var(--muted); font-size: 13px; margin-top: 4px; display: flex; flex-wrap: wrap; align-items: center; gap: 4px 6px; }
 .pd-close { padding: 0 10px; min-height: 32px; font-size: 18px; line-height: 1; }
 /* His two numbers in this World Cup, large, with the card's phases in one line under each. */
-.pd-nums { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 14px 0 4px; }
+.pd-nums { display: grid; grid-template-columns: minmax(0, 1fr); gap: 10px; margin: 14px 0 4px; }
 .pd-skill { display: grid; gap: 5px; align-content: start; justify-items: start; background: var(--plate); border: 1px solid var(--line); border-radius: 4px; padding: 8px 10px 10px; }
 .pd-k { color: var(--paint); font-size: 11px; text-transform: uppercase; letter-spacing: 0.12em; }
 .pd-line { color: var(--muted); font-size: 12.5px; font-variant-numeric: tabular-nums; }
 .pd-line b { color: var(--ink); font-weight: 600; }
+/* Bowling usage bar: a column a phase, as wide as his share of overs, with a floor so every phase stays legible. */
+/* One section a skill (2026-11-04): the number beside its bar by phase, the card number and notes under them. */
+/* Top-aligned, and each segment as tall as the number's digits (38px), so the bar lines up with the number box. */
+.pd-skill-body { display: flex; align-items: flex-start; gap: 12px; width: 100%; }
+.pd-skill-body .usage-seg { height: 38px; line-height: 38px; font-size: 16px; }
+.pd-skill-body .usage-col.none .usage-seg { line-height: 36px; }
+.pd-skill-body > .pd-line { align-self: center; }
+.pd-skill-body > .usage { flex: 1 1 auto; min-width: 0; }
+.pd-bar-note { margin: 0; font-size: 11.5px; }
+/* The card number and the pace/spin split, each in its own box under the bar. */
+.pd-boxes { display: flex; flex-wrap: wrap; gap: 6px; }
+.pd-slot small { display: inline-flex; align-items: center; gap: 4px; }
+.usage { display: grid; gap: 4px; width: 100%; }
+.usage-row { display: flex; gap: 3px; width: 100%; }
+.usage-col { flex: 0 1 0; min-width: 34px; display: grid; gap: 3px; }
+.usage-seg { display: block; height: 24px; line-height: 24px; text-align: center; border-radius: 3px; background: var(--accent); color: var(--accent-ink); font-weight: 700; font-size: 13px; font-variant-numeric: tabular-nums; }
+.usage-label { text-align: center; color: var(--muted); font-size: 11px; line-height: 1.25; font-variant-numeric: tabular-nums; }
+/* Shade by rating: dark figures on the two pale steps, light on the two dark ones (each 5:1 or better). */
+.usage-seg.band-1 { background: color-mix(in srgb, var(--accent) 15%, var(--card-2)); color: var(--ink); }
+.usage-seg.band-2 { background: color-mix(in srgb, var(--accent) 35%, var(--card-2)); color: var(--ink); }
+.usage-seg.band-3 { background: color-mix(in srgb, var(--accent) 85%, var(--card-2)); color: var(--accent-ink); }
+.usage-seg.band-4 { background: color-mix(in srgb, var(--accent) 75%, #000); color: var(--accent-ink); }
+.usage-col.none .usage-seg { background: transparent; color: var(--muted); border: 1px dashed var(--line); line-height: 22px; font-weight: 600; }
 .pd-how { margin-top: 14px; border-top: 1px solid var(--line); padding-top: 10px; }
 .pd-how summary { cursor: pointer; color: var(--muted); font-size: 13px; }
 .pd-how .pd-grid { margin-top: 8px; }
