@@ -197,7 +197,7 @@ h3 { font-size: 16px; margin: 0 0 8px; }
 .tabs { display: flex; gap: 6px; flex-wrap: wrap; margin: 0 0 14px; }
 .tabs button { border-radius: 999px; padding: 6px 14px; }
 .tabs button.active { background: var(--accent); color: var(--accent-ink); border-color: transparent; font-weight: 700; }
-.leaders-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(360px, 100%), 1fr)); gap: 12px 20px; margin-top: 10px; }
+.leaders-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(360px, 100%), 1fr)); gap: 12px 20px; margin-top: 10px; align-items: start; }
 .leaders .rank { display: inline-block; min-width: 18px; color: var(--muted); font-size: 12px; }
 @media (max-width: 520px) { .table.leaders { display: block; overflow-x: auto; } .table.leaders th:first-child, .table.leaders td:first-child { min-width: 150px; } }
 
@@ -370,7 +370,10 @@ h3 { font-size: 16px; margin: 0 0 8px; }
 .gz-page .sc-fow .k { color: var(--ink); }
 .gz-page .hl, .gz-page .hl b, .gz-page tr.hl td { color: #1e4d3a; font-weight: 600; }
 .gz-innings, .gz-tables { margin-top: 6px; }
-.gz-tables-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr)); gap: 20px 32px; margin-top: 12px; }
+.gz-tables-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr)); gap: 20px 32px; margin-top: 12px; align-items: start; }
+/* Two to a row, each box its own height: a stage's group tables side by side, then the next stage. */
+.gz-pair-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px 32px; margin-top: 20px; align-items: start; }
+@media (max-width: 640px) { .gz-pair-grid { grid-template-columns: minmax(0, 1fr); } }
 
 /* Issue sections and the paper's own furniture. */
 .gz-sections { display: flex; gap: 0; border-top: 1px solid var(--ink); border-bottom: 1px solid var(--ink); margin: -10px 0 16px; }

@@ -342,11 +342,16 @@ export function MatchPage({ fixture, index, mine, all, result, me, venues, highl
   const rain = rainText(f);
   const [i1, i2] = f.innings ?? [];
   const toDate = all.slice(0, position + 1);
-  // Every group table as it stood after this match day: for each group, the last of its matches played by now.
-  const groupTables = result.stages.filter((s) => s.groups).flatMap((s) => Object.keys(s.groups!).flatMap((g) => {
-    const lastPlayed = [...toDate].reverse().find((x) => stageIdOf(x) === s.id && x.group === g);
-    return lastPlayed ? [{ stage: s, group: g, fixture: lastPlayed }] : [];
-  }));
+  // Every group table as it stood after this match day: for each group, the last of its matches played
+  // by now. One row a stage, the stage in play first (2026-11-04: one grid for every table put a
+  // finished first round beside the current stage and split the current stage's groups across rows).
+  const groupTables = result.stages.filter((s) => s.groups).map((s) => ({
+    stage: s,
+    tables: Object.keys(s.groups!).flatMap((g) => {
+      const lastPlayed = [...toDate].reverse().find((x) => stageIdOf(x) === s.id && x.group === g);
+      return lastPlayed ? [{ group: g, fixture: lastPlayed }] : [];
+    }),
+  })).filter((s) => s.tables.length).reverse();
   const decider = f.tieBreak ? tieBreakLabel(f.tieBreak) : null;
   const others = copy?.lateNews.length ?? 0;
   const sections: [Section, string][] = [["report", "Report"], ["inn1", "1st innings"], ["inn2", "2nd innings"], ...(decider ? [["decider", decider] as [Section, string]] : []), ["tables", "Tables"], ...(others ? [["around", "Around the World Cup"] as [Section, string]] : [])];
@@ -411,8 +416,12 @@ export function MatchPage({ fixture, index, mine, all, result, me, venues, highl
       {section === "tables" && (
         <div className="gz-tables">
           <div className="gz-kicker">As they stood after match day {copy?.matchDay ?? ""}</div>
-          <div className="gz-tables-grid">
-            {groupTables.map(({ stage: s, group, fixture: lf }) => <Standings key={`${s.id}-${group}`} stage={s} fixture={lf} group={group} me={me} />)}
+          {groupTables.map(({ stage: s, tables }) => (
+            <div className="gz-pair-grid" key={s.id}>
+              {tables.map(({ group, fixture: lf }) => <Standings key={group} stage={s} fixture={lf} group={group} me={me} />)}
+            </div>
+          ))}
+          <div className="gz-pair-grid">
             <Leaders fixtures={toDate} highlight={highlight} me={me} />
             {records && <Records book={records.after} />}
           </div>

@@ -8,7 +8,6 @@
 import type { BattingStyle, StyleOut } from "../../../wcdraft/src/ratings/model.ts";
 import type { PlayerFit } from "../game/fit.ts";
 import type { PoolPlayer, VsClass } from "../game/types.ts";
-import { teamLabel } from "../lib/names.ts";
 
 export function TierBadge({ tier }: { tier: string }) {
   return <span className={`tier tier-${tier.toLowerCase()}`}>{tier}</span>;
