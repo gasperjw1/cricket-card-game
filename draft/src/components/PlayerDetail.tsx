@@ -148,11 +148,10 @@ export function PlayerDetail({ player, fit, hereEdition, coach, captained, slots
             <div className="pd-slots">
               {slots.map((s) => {
                 const at = fit?.atSlot[s.index] ?? (p.batShown ? batInSlot(p, weights[s.index]!) : null);
-                // A slot shows a number only where he bats differently from the large number above.
-                const differs = at !== null && n.bat !== null && at !== n.bat;
+                // Every slot shows his number there, the same as the large one above or not (2026-11-05).
                 return (
                   <button key={s.index} type="button" className="pd-slot" title={describeWeights(weights[s.index]!)} aria-label={`Place at ${s.label}${at !== null ? `, batting ${at}` : ""}`} onClick={() => onPlace(s.index)}>
-                    <span>{s.label}</span>{differs && <Digits n={at} />}
+                    <span>{s.label}</span>{at !== null && <Digits n={at} />}
                   </button>
                 );
               })}

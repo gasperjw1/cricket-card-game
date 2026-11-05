@@ -177,8 +177,8 @@ export function DraftScreen({ state, captaincy, editions, venues, squads, onPlac
             const canPlace = !!selected && !selectedLocked && openIds.has(s.index);
             const w = weights[s.index]!;
             const placing = canPlace ? numberAt(selected!, s.index, fits) : null;
-            // The button shows a number only where he bats differently from his number on the card.
-            const differs = placing !== null && placing !== hereNumbers(selected!, fits?.get(selected!.id)).bat;
+            // Every Place button shows his number there (2026-11-05, Yash: a button without one, where
+            // it matched his card, read as a rating missing).
             return {
               slot: s,
               player: p,
@@ -188,7 +188,7 @@ export function DraftScreen({ state, captaincy, editions, venues, squads, onPlac
               open: canPlace,
               action: p ? null : canPlace ? (
                 <button type="button" className="sheet-place" title={describeWeights(w)} aria-label={`Place ${selected!.name} at ${s.label}${placing !== null ? `, batting ${placing}` : ""}`} onClick={() => place(selected!, s.index)}>
-                  Place{differs && <Digits n={placing} size="xs" />}
+                  Place{placing !== null && <Digits n={placing} size="xs" />}
                 </button>
               ) : null,
             };
