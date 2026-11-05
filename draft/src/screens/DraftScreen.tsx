@@ -5,7 +5,7 @@ import { PlayerDetail } from "../components/PlayerDetail.tsx";
 import { TeamSheet } from "../components/TeamSheet.tsx";
 import { VenueBrief, venueCountsFor } from "../components/VenueBrief.tsx";
 import { usePicksFit, useSpinFit } from "../game/fit-load.ts";
-import { SLOTS, designatedKeeper, eligible, needs, oversCovered, slotsFor } from "../game/rules.ts";
+import { SLOTS, bowlerCount, bowlersRequired, designatedKeeper, eligible, needs, slotsFor } from "../game/rules.ts";
 import { batInSlot, describeWeights, slotWeights } from "../game/slots.ts";
 import type { PoolPlayer, RunState } from "../game/types.ts";
 
@@ -34,7 +34,9 @@ export function DraftScreen({ state, editions, venues, squads, onPlace, onReroll
   const edition = editions.find((e) => e.id === editionId);
   const venueCounts = useMemo(() => (state.identity ? venueCountsFor(state.identity.team, squads, edition) : {}), [state.identity, squads, edition]);
   // Once the open slots are down to what the side still needs, only bowlers and keepers can be taken.
-  const need = needs(state.picks);
+  const required = bowlersRequired(state.coach);
+  const need = needs(state.picks, required);
+  const bowlersIn = Math.min(required, bowlerCount(state.picks));
   const locked = need.open <= need.bowlers + need.keeper && need.open > 0;
   const needText = [need.bowlers ? `${need.bowlers} more bowler${need.bowlers === 1 ? "" : "s"}` : "", need.keeper ? "a keeper" : ""].filter(Boolean).join(" and ");
   const lockText = locked ? `Your side still needs ${needText} with ${need.open} slot${need.open === 1 ? "" : "s"} left, so only players who bowl${need.keeper ? " or keep" : ""} can be taken now.` : null;
@@ -55,7 +57,7 @@ export function DraftScreen({ state, editions, venues, squads, onPlace, onReroll
     return () => window.removeEventListener("keydown", onKey);
   }, [selected]);
   const place = (p: PoolPlayer, slot: number) => { onPlace(p, slot); setSelected(null); };
-  const selectedLocked = selected && !eligible(selected, state.picks) ? lockText : null;
+  const selectedLocked = selected && !eligible(selected, state.picks, required) ? lockText : null;
 
   const listed = useMemo(() => {
     const players = (state.spin?.players ?? []).filter((p) => filter === "all" || (filter === "bat" && p.batShown) || (filter === "bowl" && p.bowlShown) || (filter === "keep" && p.keeper));
@@ -80,10 +82,11 @@ export function DraftScreen({ state, editions, venues, squads, onPlace, onReroll
           {state.spin?.players[0]?.standIn && <p className="small muted draft-standin">Stand-in for Afghanistan, whose records are withheld: {state.spin.team} did not play the {state.spin.editionId} World Cup, so these cards come from their T20Is around then.</p>}
         </div>
         <div className="draft-bar-side">
-          <div className="strip" aria-label={`${filled} of 11 named, ${oversCovered(state.picks)} of 20 overs covered${needText ? `, needs ${needText}` : ""}`}>
+          {/* Bowlers against the requirement (2026-11-05): an overs meter read 20/20 at five while a
+              six-bowler coach still needed a sixth, and the tile beside it said the same thing again. */}
+          <div className="strip" aria-label={`${filled} of 11 named, ${bowlersIn} of ${required} bowlers${needText ? `, needs ${needText}` : ""}`}>
             <span className="strip-item"><span className="rt-k">Named</span><Digits n={filled} /><span className="strip-of">/11</span></span>
-            <span className="strip-item"><span className="rt-k">Overs</span><Digits n={oversCovered(state.picks)} /><span className="strip-of">/20</span></span>
-            <span className="strip-item"><span className="rt-k">Bowlers needed</span><Digits n={need.bowlers} /></span>
+            <span className="strip-item"><span className="rt-k">Bowlers</span><Digits n={bowlersIn} /><span className="strip-of">/{required}</span></span>
             <span className="strip-item"><span className="rt-k">Keeper</span><span className={`strip-flag ${need.keeper ? "" : "done"}`}>{need.keeper ? "Needed" : "Named"}</span></span>
           </div>
           <button type="button" onClick={() => { setSelected(null); onReroll(); }} disabled={state.spinRerolls <= 0}>Reroll squad ({state.spinRerolls} left)</button>
@@ -122,7 +125,7 @@ export function DraftScreen({ state, editions, venues, squads, onPlace, onReroll
             <p className="pr-note">Numbers are each man's batting and bowling in the {editionId} World Cup{state.coach ? ` under ${state.coach.coachName}` : ""}. Tap a player for his card.</p>
             <div className="pr-list">
               {listed.map((p) => (
-                <PlayerRow key={p.id} player={p} fit={fits ? fits.get(p.id) ?? null : null} selected={selected?.id === p.id} ineligible={!eligible(p, state.picks)} onClick={() => setSelected(selected?.id === p.id ? null : p)} />
+                <PlayerRow key={p.id} player={p} fit={fits ? fits.get(p.id) ?? null : null} selected={selected?.id === p.id} ineligible={!eligible(p, state.picks, required)} onClick={() => setSelected(selected?.id === p.id ? null : p)} />
               ))}
               {listed.length === 0 && <p className="small muted">Nobody in this squad fits that filter.</p>}
             </div>
@@ -171,6 +174,8 @@ export function DraftScreen({ state, editions, venues, squads, onPlace, onReroll
             const canPlace = !!selected && !selectedLocked && openIds.has(s.index);
             const w = weights[s.index]!;
             const placing = canPlace ? numberAt(selected!, s.index, fits) : null;
+            // The button shows a number only where he bats differently from his number on the card.
+            const differs = placing !== null && placing !== hereNumbers(selected!, fits?.get(selected!.id)).bat;
             return {
               slot: s,
               player: p,
@@ -180,7 +185,7 @@ export function DraftScreen({ state, editions, venues, squads, onPlace, onReroll
               open: canPlace,
               action: p ? null : canPlace ? (
                 <button type="button" className="sheet-place" title={describeWeights(w)} aria-label={`Place ${selected!.name} at ${s.label}${placing !== null ? `, batting ${placing}` : ""}`} onClick={() => place(selected!, s.index)}>
-                  Place{placing !== null ? <small> <Digits n={placing} size="xs" /></small> : null}
+                  Place{differs && <Digits n={placing} size="xs" />}
                 </button>
               ) : null,
             };

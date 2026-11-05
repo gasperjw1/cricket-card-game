@@ -19,7 +19,7 @@ const TAG_NOTES: Record<string, string> = {
   "Death conservative": "His sides score slower than their era at the death; the eleven bats with less intent there.",
   "Deep batting": "His lower orders (No. 6 down) scored more than their own records said; the engine adds that.",
   "Top-heavy": "His lower orders (No. 6 down) scored less than their own records said; the engine takes that off.",
-  "Six-bowler rotation": "Brings on extra bowlers more than most; overs spread further when the eleven has the bowlers.",
+  "Six-bowler rotation": "Brings on extra bowlers more than most; your eleven needs six who bowl besides the keeper, and overs spread further with a seventh.",
   "Frontline trust": "Sticks with his main bowlers; a sixth or seventh option bowls less.",
   "Bowl first": "Fields first more often after winning the toss.",
   "Bat first": "Bats first more often after winning the toss.",

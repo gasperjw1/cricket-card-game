@@ -21,13 +21,13 @@ import type { IssueCopy, LateNewsLine, Paper } from "../game/paper.ts";
 import { recordChains, type Journey, type Residual, type Souvenir } from "../game/souvenir.ts";
 import type { Performance } from "../game/score.ts";
 import { exitStageOf, sideProfile, stageIdOf, tableTo, tournamentTotals, type PlayerTotals } from "../game/stats.ts";
-import { squadRating } from "../game/rules.ts";
+import { designatedKeeper, squadRating } from "../game/rules.ts";
 import type { RunState } from "../game/types.ts";
 import { fullName, labelTeams, teamLabel } from "../lib/names.ts";
 import { marginText, rainText } from "./MatchCard.tsx";
 import { Awards, FormGrid, SquadStats, TournamentLeaders } from "./RunStats.tsx";
 import { MatchScorecard, TieBreakCard, oversText, tieBreakLabel } from "./Scorecard.tsx";
-import { Digits, Rating } from "./PlayerCard.tsx";
+import { Digits, Rating, captainLabel } from "./PlayerCard.tsx";
 
 export type Fixtured = FixtureResult & { stageLabel: string };
 
@@ -73,8 +73,8 @@ function InningsBox({ inn, rain, highlight, me }: { inn: InningsResult; rain: Fi
       <div className="gz-inn-head"><span>{teamLabel(inn.team)}</span><b>{inn.runs}/{inn.wickets}</b></div>
       <div className="gz-inn-sub">{inningsSub(inn, rain)}</div>
       <table className="gz-figures"><tbody>
-        {bats.map((b) => <tr key={b.id} className={inn.team === me && highlight.has(b.id) ? "mine" : ""}><td>{fullName(b.id, b.name)}</td><td>{b.runs}{b.out ? "" : "*"} ({b.balls})</td></tr>)}
-        {bowlers.map((w) => <tr key={w.id} className={inn.team !== me && highlight.has(w.id) ? "mine" : ""}><td>{fullName(w.id, w.name)}</td><td>{w.wickets}/{w.runs} ({oversText(w.balls)})</td></tr>)}
+        {bats.map((b) => <tr key={b.id} className={inn.team === me && highlight.has(b.id) ? "mine" : ""}><td title={fullName(b.id, b.name)}>{fullName(b.id, b.name)}</td><td>{b.runs}{b.out ? "" : "*"} ({b.balls})</td></tr>)}
+        {bowlers.map((w) => <tr key={w.id} className={inn.team !== me && highlight.has(w.id) ? "mine" : ""}><td title={fullName(w.id, w.name)}>{fullName(w.id, w.name)}</td><td>{w.wickets}/{w.runs} ({oversText(w.balls)})</td></tr>)}
       </tbody></table>
     </div>
   );
@@ -156,8 +156,8 @@ function BoxInnings({ inn, rain, highlight, me }: { inn: InningsResult; rain: Fi
       <div className="gz-inn-head"><span>{teamLabel(inn.team)}</span><b>{inn.runs}/{inn.wickets}</b></div>
       <div className="gz-inn-sub">{inningsSub(inn, rain)}</div>
       <table className="gz-figures"><tbody>
-        {bats.map((b) => <tr key={b.id} className={highlight.has(b.id) && inn.team === me ? "mine" : ""}><td>{fullName(b.id, b.name)}</td><td>{b.runs}{b.out ? "" : "*"} ({b.balls})</td></tr>)}
-        {bowler && <tr className="gz-fig-bowl"><td>{fullName(bowler.id, bowler.name)}</td><td>{bowler.wickets}/{bowler.runs} ({oversText(bowler.balls)})</td></tr>}
+        {bats.map((b) => <tr key={b.id} className={highlight.has(b.id) && inn.team === me ? "mine" : ""}><td title={fullName(b.id, b.name)}>{fullName(b.id, b.name)}</td><td>{b.runs}{b.out ? "" : "*"} ({b.balls})</td></tr>)}
+        {bowler && <tr className="gz-fig-bowl"><td title={fullName(bowler.id, bowler.name)}>{fullName(bowler.id, bowler.name)}</td><td>{bowler.wickets}/{bowler.runs} ({oversText(bowler.balls)})</td></tr>}
       </tbody></table>
     </div>
   );
@@ -217,6 +217,7 @@ export function CoverPage({ state, result, edition, venues, mine, numbersHere, r
   const me = state.identity!.team;
   const picks = state.picks.filter(Boolean);
   const captain = picks.find((p) => p!.id === state.captainId);
+  const keeperId = designatedKeeper(state.picks)?.id ?? null;
   const opening = mine.filter((f) => f.stageId === mine[0]?.stageId);
   const hosts = edition?.hosts?.join(" and ") ?? "";
   return (
@@ -231,7 +232,8 @@ export function CoverPage({ state, result, edition, venues, mine, numbersHere, r
           <h4>The batting order</h4>
           <table className="gz-table gz-order">
             <thead><tr><th>#</th><th>Player</th><th>From</th><th>Bat</th><th>Bowl</th></tr></thead>
-            <tbody>{picks.map((p, i) => <tr key={p!.id}><td>{i + 1}</td><td>{p!.name}{p!.id === state.captainId ? " (c)" : ""}</td><td>{p!.team} {p!.editionId}</td><td><Digits n={p!.batShown ? numbersHere[i]?.bat ?? p!.bat : null} /></td><td><Digits n={p!.bowlShown ? numbersHere[i]?.bowl ?? p!.bowl : null} /></td></tr>)}</tbody>
+            {/* The keeper as the team sheet shows him: the dagger, and WK where his bowling would be (he keeps and does not bowl). */}
+            <tbody>{picks.map((p, i) => <tr key={p!.id}><td>{i + 1}</td><td>{p!.id === keeperId ? "†" : ""}{p!.name}{p!.id === state.captainId ? " (c)" : ""}</td><td>{p!.team} {p!.editionId}</td><td><Digits n={p!.batShown ? numbersHere[i]?.bat ?? p!.bat : null} /></td><td>{p!.id === keeperId ? <small className="sheet-wk">WK</small> : <Digits n={p!.bowlShown ? numbersHere[i]?.bowl ?? p!.bowl : null} />}</td></tr>)}</tbody>
           </table>
           <p className="gz-note">Each man's numbers in {result.editionId} at his place in the order{coachName ? ` under ${coachName}` : ""}, as the draft showed them.</p>
         </section>
@@ -290,7 +292,7 @@ function NextMatchLever({ lever, next, me, opponent }: { lever: Lever; next: num
       <label className="gz-lever-row"><span>Captain</span>
         <select value={captainId ?? ""} onChange={(e) => change({ captainId: e.target.value || null }, e.target.value ? `${nameOf(e.target.value)} captains` : "No rated captain leads")}>
           <option value="">No rated captain</option>
-          {lever.picks.map((p) => { const c = rated(p.id); return <option key={p.id} value={p.id}>{p.name}{c ? ` · ${c.z > 0 ? "+" : ""}${c.z.toFixed(1)}` : ""}</option>; })}
+          {lever.picks.map((p) => { const c = rated(p.id); return <option key={p.id} value={p.id}>{p.name}{c ? ` · ${captainLabel(c.z)}` : ""}</option>; })}
         </select>
       </label>
       <label className="gz-lever-row"><span>Tempo</span>
@@ -574,7 +576,7 @@ export function FinalPage({ result, all, mine, me, highlight, paper, souvenir, j
               <table className="gz-table gz-leaders"><tbody>
                 {chains.map((c) => (
                   <tr key={c.kind}>
-                    <td>{RECORD_LABELS[c.kind]}{SCOPE_LABEL[scopeOf(c.kind)]}<small>{recordWho(c)}{c.chain.length ? ` · set ${c.chain.length + 1} times: ${c.chain.map((h) => `${labelTeams(h.holder)} ${recordValue(c.kind, h)} stood ${plural(h.stoodDays, "day")}`).join("; ")}` : ""}</small></td>
+                    <td>{RECORD_LABELS[c.kind]}{SCOPE_LABEL[scopeOf(c.kind)]}<small>{recordWho(c)}{c.chain.length ? ` · set ${c.chain.length + 1} times: ${c.chain.map((h) => `${labelTeams(h.holder)} ${recordValue(c.kind, h)} stood ${h.stoodDays <= 0 ? "less than a day" : plural(h.stoodDays, "day")}`).join("; ")}` : ""}</small></td>
                     <td>{recordValue(c.kind, c)}</td>
                   </tr>
                 ))}

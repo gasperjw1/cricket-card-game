@@ -186,7 +186,9 @@ h3 { font-size: 16px; margin: 0 0 8px; }
 .sc-how { color: var(--muted); font-size: 12px; }
 .sc-extras td, .sc-total td { text-align: left; }
 .sc-total td { border-bottom: none; }
-.sc-total td:last-child { white-space: nowrap; }
+/* The total keeps its score whole, but its overs and rate may wrap: an unbreakable total forced the table
+   past a 320px phone and cut off the SR column. */
+.sc-total td:last-child b { white-space: nowrap; }
 .sc-fow { color: var(--muted); font-size: 12px; margin: 4px 0 8px; }
 .sc-fow .k { color: var(--ink); font-weight: 600; margin-right: 6px; }
 .num-good { color: var(--accent); }
@@ -219,7 +221,7 @@ h3 { font-size: 16px; margin: 0 0 8px; }
 /* Draft guard */
 .player.ineligible { opacity: 0.38; filter: grayscale(0.6); cursor: not-allowed; }
 .lock-note { color: var(--paint); }
-@media (max-width: 480px) { .mc-score { font-size: 24px; } .sc-bat th:nth-child(4), .sc-bat td:nth-child(4), .sc-bat th:nth-child(5), .sc-bat td:nth-child(5) { display: none; } }
+@media (max-width: 480px) { .mc-score { font-size: 24px; } .sc-table th, .sc-table td { padding-left: 4px; padding-right: 4px; } .sc-bat th:nth-child(4), .sc-bat td:nth-child(4), .sc-bat th:nth-child(5), .sc-bat td:nth-child(5) { display: none; } }
 .table { width: 100%; border-collapse: collapse; font-size: 13px; margin-bottom: 10px; }
 .table th, .table td { text-align: left; padding: 4px 6px; border-bottom: 1px solid var(--line); }
 .table th:not(:first-child), .table td:not(:first-child) { text-align: right; }
@@ -251,6 +253,11 @@ h3 { font-size: 16px; margin: 0 0 8px; }
 .gz-figures, .gz-table { width: 100%; border-collapse: collapse; font-size: 14px; font-variant-numeric: tabular-nums; }
 .gz-figures td { padding: 3px 0; vertical-align: top; }
 .gz-figures td:last-child { text-align: right; white-space: nowrap; padding-left: 10px; }
+/* Box score lines stay one line (2026-11-04): a long name ends in an ellipsis (full name on hover) and the
+   figures and the total never wrap, so a line cannot spill or push the column wider. */
+.gz-figures td:first-child { max-width: 0; width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.gz-inn-head > span { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.gz-inn-head > b { flex: none; white-space: nowrap; }
 .gz-report { columns: 2 240px; column-gap: 30px; line-height: 1.6; }
 .gz-report p { margin: 0 0 12px; break-inside: avoid; }
 .gz-report p:first-child::first-letter { font-family: Oswald, "Arial Narrow", sans-serif; font-size: 3.1em; line-height: 0.9; float: left; padding: 3px 7px 0 0; }
@@ -405,7 +412,9 @@ h3 { font-size: 16px; margin: 0 0 8px; }
 @media (max-width: 520px) {
   .gz-page .gz-box-score { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 12px; }
   .gz-box-score .gz-figures tr:nth-child(2):not(.gz-fig-bowl) { display: none; }
-  .gz-box-score .gz-figures td { display: block; text-align: left; padding: 0; }
+  /* Blocks all the way down, so a long name ends in an ellipsis at the column's edge instead of widening the table. */
+  .gz-box-score .gz-figures, .gz-box-score .gz-figures tbody, .gz-box-score .gz-figures tr { display: block; }
+  .gz-box-score .gz-figures td { display: block; text-align: left; padding: 0; max-width: none; width: auto; }
   .gz-box-score .gz-figures td:last-child { padding: 0 0 4px; text-align: left; }
   .gz-box-score .gz-inn-head { flex-wrap: wrap; gap: 0 6px; }
 }
@@ -445,7 +454,10 @@ h3 { font-size: 16px; margin: 0 0 8px; }
 .spark-no { fill: var(--ink); }
 
 /* Souvenir sections (2026-11-03): the dark-theme pieces laid on the paper take its colours. */
-.gz-section { display: grid; gap: 24px; min-width: 0; }
+/* One column held to the page: an auto column grew to the widest table and the page clipped it, so the
+   journey's form grid could not scroll sideways on a phone. */
+.gz-section { display: grid; grid-template-columns: minmax(0, 1fr); gap: 24px; min-width: 0; }
+.gz-section > * { min-width: 0; }
 .gz-page .card { background: transparent; border: 0; border-radius: 0; padding: 0; margin: 0; }
 .gz-page .mc { background: #fbf7ee; }
 .gz-page .table tr.me, .gz-page .standings tr.me td { background: rgba(30, 77, 58, 0.1); }
@@ -506,12 +518,12 @@ h3 { font-size: 16px; margin: 0 0 8px; }
 .sheet-row.open .sheet-blank { color: var(--paint); outline: 1px dashed var(--paint); outline-offset: -1px; }
 .sheet-bat { display: grid; justify-items: end; gap: 2px; text-align: right; line-height: 1; }
 .sheet-bat small { font-size: 10.5px; color: var(--paper-muted); }
-.sheet-of { display: inline-flex; align-items: center; gap: 3px; }
 .sheet-action { display: flex; justify-content: flex-end; min-width: 0; }
 .sheet-action:empty { display: none; }
 .sheet-row.open { background: rgba(30, 77, 58, 0.07); margin: 0 -8px; padding-left: 8px; padding-right: 8px; }
-.sheet-place { min-height: 36px; padding: 4px 10px; background: var(--accent); color: var(--accent-ink); border: 1px solid var(--accent); border-radius: 6px; font-family: Oswald, "Arial Narrow", sans-serif; letter-spacing: 0.02em; white-space: nowrap; }
-.sheet-place small { color: var(--accent-ink); font-family: inherit; }
+/* The word and any tiles centred on one line (the tiles sat below the word's baseline). */
+.sheet-place { display: inline-flex; align-items: center; gap: 6px; min-height: 36px; padding: 4px 10px; background: var(--accent); color: var(--accent-ink); border: 1px solid var(--accent); border-radius: 6px; font-family: Oswald, "Arial Narrow", sans-serif; letter-spacing: 0.02em; white-space: nowrap; }
+.sheet-place .dg { vertical-align: 0; }
 /* Light tiles on the green button: the dark ones vanished into it. */
 .sheet-place .dg i { background: var(--accent-ink); color: var(--accent); }
 .sheet .moves { display: flex; gap: 4px; }
@@ -521,6 +533,12 @@ h3 { font-size: 16px; margin: 0 0 8px; }
 .sheet-foot b { color: var(--paper-ink); font-weight: 600; }
 .sheet-cta { margin-top: 12px; width: 100%; }
 @media (max-width: 899px) { .sheet-row, .sheet-cols { grid-template-columns: 22px minmax(0, 1fr) 42px 42px auto; } }
+/* A phone gives the name plate the room: narrower number columns and buttons (names wrapped and the role line was cut). */
+@media (max-width: 480px) {
+  .sheet-row, .sheet-cols { grid-template-columns: 16px minmax(0, 1fr) 32px 32px auto; gap: 0 6px; }
+  .sheet-row .sheet-move, .sheet-row .sheet-place { padding-left: 8px; padding-right: 8px; }
+  .sheet-row.named .sheet-name { padding: 3px 6px; }
+}
 
 .vs-odi { font-size: 9px; color: var(--muted); margin-left: 2px; vertical-align: super; }
 .num-good { color: var(--accent); }
@@ -652,17 +670,15 @@ h3 { font-size: 16px; margin: 0 0 8px; }
 .pd-line { color: var(--muted); font-size: 12.5px; font-variant-numeric: tabular-nums; }
 .pd-line b { color: var(--ink); font-weight: 600; }
 /* Bowling usage bar: a column a phase, as wide as his share of overs, with a floor so every phase stays legible. */
-/* One section a skill (2026-11-04): the number beside its bar by phase, the card number and notes under them. */
+/* One section a skill (2026-11-04): the number beside its bar by phase, the pace/spin boxes under them. */
 /* Top-aligned, and each segment as tall as the number's digits (38px), so the bar lines up with the number box. */
 .pd-skill-body { display: flex; align-items: flex-start; gap: 12px; width: 100%; }
 .pd-skill-body .usage-seg { height: 38px; line-height: 38px; font-size: 16px; }
 .pd-skill-body .usage-col.none .usage-seg { line-height: 36px; }
 .pd-skill-body > .pd-line { align-self: center; }
 .pd-skill-body > .usage { flex: 1 1 auto; min-width: 0; }
-.pd-bar-note { margin: 0; font-size: 11.5px; }
-/* The card number and the pace/spin split, each in its own box under the bar. */
+/* The pace/spin split, each in its own box under the bar. */
 .pd-boxes { display: flex; flex-wrap: wrap; gap: 6px; }
-.pd-slot small { display: inline-flex; align-items: center; gap: 4px; }
 .usage { display: grid; gap: 4px; width: 100%; }
 .usage-row { display: flex; gap: 3px; width: 100%; }
 .usage-col { flex: 0 1 0; min-width: 34px; display: grid; gap: 3px; }
@@ -686,9 +702,9 @@ h3 { font-size: 16px; margin: 0 0 8px; }
 .pd-steps .pd-total td { border-bottom: none; font-weight: 800; }
 .pd-coach { margin-top: 8px; }
 .pd-slots { display: grid; grid-template-columns: repeat(auto-fill, minmax(92px, 1fr)); gap: 6px; }
-.pd-slot { display: grid; gap: 2px; min-height: 48px; padding: 6px 10px; background: rgba(30, 77, 58, 0.08); border-color: var(--accent); border-radius: 8px; text-align: left; }
-.pd-slot span { font-family: Oswald, "Arial Narrow", sans-serif; font-size: 16px; }
-.pd-slot small { color: var(--muted); }
+/* The slot on the left, his number there on the right only where it differs from the large one. */
+.pd-slot { display: flex; align-items: center; justify-content: space-between; gap: 6px; min-height: 44px; padding: 6px 10px; background: rgba(30, 77, 58, 0.08); border-color: var(--accent); border-radius: 8px; text-align: left; }
+.pd-slot > span:first-child { font-family: Oswald, "Arial Narrow", sans-serif; font-size: 16px; white-space: nowrap; }
 
 @media (max-width: 899px) {
   .shell-draft { height: 100dvh; }

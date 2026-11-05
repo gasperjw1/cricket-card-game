@@ -1,7 +1,7 @@
 /**
  * Draft rules (design spec §8 and §11 decisions): spins uniform over every squad that exists, one
- * instance per real person, eleven batting slots, at least one keeper, five bowlers' worth of
- * overs, reroll budgets. Pure functions over plain data so they are testable without React.
+ * instance per real person, eleven batting slots, at least one keeper, five who bowl (six under a
+ * six-bowler coach), reroll budgets. Pure functions over plain data so they are testable without React.
  */
 
 import type { Rng } from "../../../wcdraft/src/engine/rng.ts";
@@ -14,9 +14,21 @@ export interface SquadRef {
   standIn: boolean;
 }
 
-/** Slot kinds a batting archetype fits; unknown archetypes and positionless players fit anywhere. */
+/**
+ * His batting archetype, or one read off his usual number when the ratings gave him none (2026-11-04
+ * playtest: without one, Mendis could open and Amir was offered No. 1): 1–2 opener, 3–4 top order,
+ * 5–6 middle order, 7–8 finisher, 9–11 tail, matching the slot kinds in `SLOTS`.
+ */
+function battingArchetype(player: PoolPlayer): string | null {
+  if (player.archetype.batting) return player.archetype.batting;
+  const n = player.position;
+  if (!n) return null;
+  return n <= 2 ? "opener" : n <= 4 ? "top order" : n <= 6 ? "middle order" : n <= 8 ? "finisher" : "tail";
+}
+
+/** Slot kinds a batting archetype fits; positionless players, and those with neither archetype nor usual number, fit anywhere. */
 export function fits(player: PoolPlayer, kind: SlotKind): boolean {
-  const a = player.archetype.batting;
+  const a = battingArchetype(player);
   if (!a || player.positionless) return true;
   switch (kind) {
     case "opener": return a === "opener";
@@ -59,37 +71,45 @@ export function bowlerCount(picks: (PoolPlayer | null)[]): number {
   return (picks.filter(Boolean) as PoolPlayer[]).filter((p) => bowls(p) && p !== keeper).length;
 }
 
-/** Overs the eleven can cover at four a bowler, capped at 20 (the overs meter). */
-export function oversCovered(picks: (PoolPlayer | null)[]): number {
-  return Math.min(20, 4 * bowlerCount(picks));
+/**
+ * Players who bowl the eleven must have besides the keeper: five, or six under a "Six-bowler
+ * rotation" coach (2026-11-05, Yash). His habit is using more of the bowlers a side has, and the
+ * engine can only spread the overs when there is a sixth to spread them to: with five, the tag did
+ * nothing (`wcdraft/scripts/research/six-bowler.mts`). Nine real World Cup elevens in ten already
+ * have six.
+ */
+export function bowlersRequired(coach: CoachOut | null): number {
+  return coach?.tags.includes("Six-bowler rotation") ? 6 : 5;
 }
 
-/** What the eleven still needs: bowlers short of five (the keeper not counting), a keeper if none, and the open slots left. */
-export function needs(picks: (PoolPlayer | null)[]): { bowlers: number; keeper: number; open: number } {
+/** What the eleven still needs: bowlers short of the requirement (the keeper not counting), a keeper if none, and the open slots left. */
+export function needs(picks: (PoolPlayer | null)[], required: number = 5): { bowlers: number; keeper: number; open: number } {
   const chosen = picks.filter(Boolean) as PoolPlayer[];
-  return { bowlers: Math.max(0, 5 - bowlerCount(picks)), keeper: designatedKeeper(picks) ? 0 : 1, open: 11 - chosen.length };
+  return { bowlers: Math.max(0, required - bowlerCount(picks)), keeper: designatedKeeper(picks) ? 0 : 1, open: 11 - chosen.length };
 }
 
 /**
  * Whether a player may still be taken (decided 2026-10-30): once the open slots are down to what
- * the side still needs (five who bowl plus a keeper who does not), only players who reduce that
- * need are selectable. Tested by adding him: a lone keeper-bowler fills the gloves but not an over,
- * a second keeper frees the first to bowl. With one slot left and two needs the eleven is already
- * invalid, so anyone who reduces the shortfall stays selectable rather than locking the draft.
+ * the side still needs (five or six who bowl plus a keeper who does not), only players who reduce
+ * that need are selectable. Tested by adding him: a lone keeper-bowler fills the gloves but not a
+ * bowler's place, a second keeper frees the first to bowl. With one slot left and two needs the
+ * eleven is already invalid, so anyone who reduces the shortfall stays selectable rather than
+ * locking the draft.
  */
-export function eligible(p: PoolPlayer, picks: (PoolPlayer | null)[]): boolean {
-  const n = needs(picks);
+export function eligible(p: PoolPlayer, picks: (PoolPlayer | null)[], required: number = 5): boolean {
+  const n = needs(picks, required);
   if (n.open > n.bowlers + n.keeper) return true;
-  const after = needs([...picks.filter(Boolean), p]);
+  const after = needs([...picks.filter(Boolean), p], required);
   return after.bowlers + after.keeper < n.bowlers + n.keeper;
 }
 
-export function lineupProblems(picks: (PoolPlayer | null)[]): string[] {
+export function lineupProblems(picks: (PoolPlayer | null)[], required: number = 5): string[] {
   const problems: string[] = [];
   const filled = picks.filter(Boolean).length;
   if (filled < 11) problems.push(`${11 - filled} slot${11 - filled === 1 ? "" : "s"} still open`);
   if (!keeperCovered(picks)) problems.push("No wicketkeeper: at least one player must have kept in a T20I");
-  if (oversCovered(picks) < 20) problems.push(`Only ${oversCovered(picks)} overs covered: you need five players who bowl besides the keeper`);
+  const n = bowlerCount(picks);
+  if (n < required) problems.push(`Only ${n} who bowl besides the keeper: you need ${required === 6 ? "six under a six-bowler coach" : "five"}`);
   const ids = picks.filter(Boolean).map((p) => p!.id);
   if (new Set(ids).size !== ids.length) problems.push("The same person appears twice");
   return problems;

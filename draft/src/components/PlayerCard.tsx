@@ -38,6 +38,12 @@ export const STYLE_NOTES: Record<BattingStyle, string> = {
   Anchor: "steady start, few boundaries",
 };
 
+/** A captain's number for the captain pickers: "captain +2.0", "captain −1.3", "captain 0.0" (never "−0.0"). */
+export function captainLabel(z: number): string {
+  const r = Math.round(z * 10) / 10;
+  return `captain ${r > 0 ? "+" : r < 0 ? "−" : ""}${Math.abs(r).toFixed(1)}`;
+}
+
 const signedPoints = (n: number) => `${n >= 0 ? "+" : "−"}${Math.abs(n).toFixed(1)}`;
 
 export function styleTitle(s: StyleOut): string {

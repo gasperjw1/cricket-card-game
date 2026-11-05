@@ -4,7 +4,7 @@ import type { CoachOut, EditionData } from "../../wcdraft/src/engine/data.ts";
 import type { EnginePlayer } from "../../wcdraft/src/engine/types.ts";
 import type { PhaseVectors, PlayerRating, SkillRating, Vector } from "../../wcdraft/src/ratings/model.ts";
 import { fieldScale, type EditionEnv } from "../src/game/final-ratings.ts";
-import { coachFieldStep, coachNote, fitPlayer, skillFit, usualPosition, type FitContext } from "../src/game/fit.ts";
+import { coachFieldStep, coachNote, fitPlayer, phasesHere, skillFit, usualPosition, type FitContext } from "../src/game/fit.ts";
 import type { PoolPlayer } from "../src/game/types.ts";
 
 const UNIT: Vector = { "0": 1, "1": 1, "2": 1, "3": 1, "4": 1, "6": 1, W: 1 };
@@ -88,5 +88,12 @@ describe("draft-time fit", () => {
     assert.match(note, /^Attacker attacks in the powerplay, attacks in the middle overs, attacks at the death, which lifts every batter about 3; Y as an Anchor /);
     assert.equal(coachNote(pool(), f, null), null);
     assert.equal(usualPosition(pool({ position: null, role: "bowler" })), 9);
+  });
+
+  it("moves the card's phases by what the number moved here, inside 1 to 99", () => {
+    assert.deepEqual(phasesHere({ pp: 83, mid: 82, death: 84 }, 83, 80), { pp: 80, mid: 79, death: 81 });
+    assert.deepEqual(phasesHere({ pp: 70, mid: 70, death: 70 }, 70, 70), { pp: 70, mid: 70, death: 70 });
+    assert.deepEqual(phasesHere({ pp: 97, mid: 95, death: 2 }, 90, 95), { pp: 99, mid: 99, death: 7 });
+    assert.deepEqual(phasesHere({ pp: 3, mid: 40, death: 50 }, 45, 40), { pp: 1, mid: 35, death: 45 });
   });
 });

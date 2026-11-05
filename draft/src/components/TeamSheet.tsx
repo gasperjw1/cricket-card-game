@@ -58,7 +58,6 @@ export function TeamSheet({ side, edition, coach, rows, captainId, keeperId, foo
       <ol className="sheet-list">
         {rows.map((r) => {
           const p = r.player;
-          const tip = p && r.batHere !== null ? `Headline ${p.bat}; bats ${r.batHere} at No. ${r.slot.index + 1}` : undefined;
           return (
             <li key={r.slot.index} className={`sheet-row ${p ? "named" : "blank"} ${r.open ? "open" : ""}`}>
               <span className="sheet-no">{r.slot.index + 1}</span>
@@ -70,11 +69,12 @@ export function TeamSheet({ side, edition, coach, rows, captainId, keeperId, foo
               ) : (
                 <span className="sheet-name"><span className="sheet-blank">{r.slot.label}</span></span>
               )}
-              <span className="sheet-bat" title={tip}>
-                {p ? <><Digits n={p.batShown ? r.batHere ?? p.bat : null} />{p.batShown && r.batHere !== null && r.batHere !== p.bat ? <small className="sheet-of">of <Digits n={p.bat} size="xs" /></small> : null}</> : ""}
+              {/* The number that plays only (2026-11-04, Yash: no "of" the card's number under it). */}
+              <span className="sheet-bat">
+                {p ? <Digits n={p.batShown ? r.batHere ?? p.bat : null} /> : ""}
               </span>
-              <span className="sheet-bat sheet-bowl" title={p && p.bowlShown ? `Bowling ${p.bowl}: powerplay ${p.bowlPhases.pp}, middle ${p.bowlPhases.mid}, death ${p.bowlPhases.death}` : undefined}>
-                {p && r.keeps ? <small className="sheet-wk" title="The designated keeper keeps and does not bowl">WK</small> : p ? <><Digits n={p.bowlShown ? r.bowlHere ?? p.bowl : null} />{p.bowlShown && r.bowlHere != null && r.bowlHere !== p.bowl ? <small className="sheet-of">of <Digits n={p.bowl} size="xs" /></small> : null}</> : ""}
+              <span className="sheet-bat sheet-bowl">
+                {p && r.keeps ? <small className="sheet-wk" title="The designated keeper keeps and does not bowl">WK</small> : p ? <Digits n={p.bowlShown ? r.bowlHere ?? p.bowl : null} /> : ""}
               </span>
               <span className="sheet-action">{r.action}</span>
             </li>

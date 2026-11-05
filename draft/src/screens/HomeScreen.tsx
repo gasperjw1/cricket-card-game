@@ -21,7 +21,7 @@ export function HomeScreen({ ready, editions, squads, onStart }: { ready: boolea
     ["Your side", `A real country at a real World Cup: its fixtures, grounds and rules are yours. ${times(BUDGET.identityRerolls)}.`],
     ["Your coach", `Pick one of ${BUDGET.coachPanel}. Their habits shape how the side bats and what it does at the toss. ${times(BUDGET.coachRerolls)}.`],
     ["Eleven spins", `Each spin is a real squad from any edition. Take one player and give him a batting slot. ${times(BUDGET.spinRerolls)} in all.`],
-    ["The tournament", "Name a keeper and five bowlers, then every match is played ball by ball against the real elevens."],
+    ["The tournament", "Name a keeper and five bowlers (six under a six-bowler coach), then every match is played ball by ball against the real elevens."],
   ];
   return (
     <section className="landing">

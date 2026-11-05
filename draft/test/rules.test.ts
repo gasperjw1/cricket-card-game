@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
 import { describe, it } from "node:test";
 import { Rng } from "../../wcdraft/src/engine/rng.ts";
-import { drawCoachPanel, drawSquad, eligible, fits, lineupProblems, needs, oversCovered, slotsFor, spinPlayers, squadUniverse, tempoProfile } from "../src/game/rules.ts";
+import { bowlerCount, bowlersRequired, drawCoachPanel, drawSquad, eligible, fits, lineupProblems, needs, slotsFor, spinPlayers, squadUniverse, tempoProfile } from "../src/game/rules.ts";
 import { batInSlot, slotWeights } from "../src/game/slots.ts";
 import { roleLine } from "../src/components/PlayerCard.tsx";
 import type { PoolPlayer } from "../src/game/types.ts";
@@ -30,9 +30,9 @@ describe("draft rules", () => {
     assert.equal(eligible(bat, picks(keeper, bowler, bowler, bowler, bowler)), true);
     assert.equal(eligible(bat, picks(keeper, bowler, bowler, bowler, bowler, bat, bat, bat, bat, bat)), false);
     assert.equal(eligible(bowler, picks(keeper, bowler, bowler, bowler, bowler, bat, bat, bat, bat, bat)), true);
-    // The keeper does not bowl: a lone keeper-bowler keeps, so he covers no overs and fills only the gloves.
+    // The keeper does not bowl: a lone keeper-bowler keeps, so he fills only the gloves.
     const keeperBowler = player({ role: "all-rounder", bowlShown: true, keeper: true });
-    assert.equal(oversCovered(picks(keeperBowler, bowler, bowler, bowler, bowler)), 16);
+    assert.equal(bowlerCount(picks(keeperBowler, bowler, bowler, bowler, bowler)), 4);
     assert.deepEqual(needs(picks(keeperBowler, bowler, bowler, bowler, bowler)), { bowlers: 1, keeper: 0, open: 6 });
     // With one slot left and a bowler needed: a bowler fills it, a pure keeper takes the gloves and frees
     // the keeper-bowler to bowl (so he counts too), a pure batter does nothing.
@@ -41,7 +41,26 @@ describe("draft rules", () => {
     assert.equal(eligible(keeper, tight), true, "a second keeper frees the keeper-bowler to bowl");
     assert.equal(eligible(bat, tight), false);
     // A second keeper who does not bowl takes the gloves and frees the keeper-bowler to bowl.
-    assert.equal(oversCovered(picks(keeperBowler, keeper, bowler, bowler, bowler, bowler)), 20);
+    assert.equal(bowlerCount(picks(keeperBowler, keeper, bowler, bowler, bowler, bowler)), 5);
+  });
+
+  it("asks a six-bowler coach's eleven for six who bowl", () => {
+    const coach = (tags: string[]) => ({ tags }) as never;
+    assert.equal(bowlersRequired(coach(["Six-bowler rotation", "Bowl first"])), 6);
+    assert.equal(bowlersRequired(coach(["Frontline trust"])), 5);
+    assert.equal(bowlersRequired(null), 5);
+    // Fresh people each time, so the full eleven has no one twice.
+    const bat = () => player({ role: "batter", bowlShown: false });
+    const bowler = () => player({ role: "bowler", bowlShown: true });
+    const keeper = player({ role: "batter", keeper: true });
+    const picks = (...ps: PoolPlayer[]) => [...ps, ...Array(11 - ps.length).fill(null)] as (PoolPlayer | null)[];
+    // Keeper, five bowlers and four batters: done for five, one short for six, so the last slot is a bowler's.
+    const ten = picks(keeper, bowler(), bowler(), bowler(), bowler(), bowler(), bat(), bat(), bat(), bat());
+    assert.equal(eligible(bat(), ten, 5), true);
+    assert.equal(eligible(bat(), ten, 6), false);
+    assert.equal(eligible(bowler(), ten, 6), true);
+    assert.deepEqual(lineupProblems([...ten.slice(0, 10), bat()], 6), ["Only 5 who bowl besides the keeper: you need six under a six-bowler coach"]);
+    assert.deepEqual(lineupProblems([...ten.slice(0, 10), bowler()], 6), []);
   });
 
   it("re-weights a batter's number to the overs a slot faces", () => {
@@ -67,13 +86,22 @@ describe("draft rules", () => {
     assert.equal(widened.slots.length, 4);
   });
 
+  it("reads a missing archetype off his usual number, and fits anywhere only with neither", () => {
+    const none = { batting: null, bowling: null };
+    const kinds = (p: PoolPlayer) => slotsFor(p, Array.from({ length: 11 }, () => null)).slots.map((s) => s.label);
+    assert.deepEqual(kinds(player({ archetype: none, position: 10 })), ["No. 7", "No. 8", "No. 9", "No. 10", "No. 11"], "a usual No. 10 is offered the lower order and the tail");
+    assert.deepEqual(kinds(player({ archetype: none, position: 1 })), ["Opener", "Opener", "No. 3", "No. 4"], "a usual opener is offered the top");
+    assert.equal(kinds(player({ archetype: none, position: null })).length, 11, "no archetype and no usual number: anywhere");
+    assert.equal(kinds(player({ archetype: none, position: 10, positionless: true })).length, 11, "a floater: anywhere");
+  });
+
   it("enforces the keeper, five bowlers and one instance per person", () => {
     const picks: (PoolPlayer | null)[] = Array.from({ length: 11 }, (_, i) => player({ id: `p${i}` }));
-    assert.deepEqual(lineupProblems(picks), ["No wicketkeeper: at least one player must have kept in a T20I", "Only 0 overs covered: you need five players who bowl besides the keeper"]);
+    assert.deepEqual(lineupProblems(picks), ["No wicketkeeper: at least one player must have kept in a T20I", "Only 0 who bowl besides the keeper: you need five"]);
     picks[6] = player({ id: "wk", keeper: true });
     for (let i = 7; i < 11; i += 1) picks[i] = player({ id: `b${i}`, role: "bowler", bowlLow: false, bowlShown: true });
     picks[5] = player({ id: "ar", role: "all-rounder" });
-    assert.equal(oversCovered(picks), 20);
+    assert.equal(bowlerCount(picks), 5);
     assert.deepEqual(lineupProblems(picks), []);
     picks[0] = player({ id: "wk" });
     assert.deepEqual(lineupProblems(picks), ["The same person appears twice"]);

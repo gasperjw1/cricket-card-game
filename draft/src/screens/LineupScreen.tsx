@@ -1,9 +1,9 @@
 import { useState } from "react";
 import type { CaptainOut, EditionOut } from "../../../wcdraft/src/engine/data.ts";
-import { Digits } from "../components/PlayerCard.tsx";
+import { Digits, captainLabel } from "../components/PlayerCard.tsx";
 import { TeamSheet } from "../components/TeamSheet.tsx";
 import { usePicksFit } from "../game/fit-load.ts";
-import { SLOTS, designatedKeeper, lineupProblems, oversCovered, squadRating, squadRatingHere } from "../game/rules.ts";
+import { SLOTS, bowlerCount, bowlersRequired, designatedKeeper, lineupProblems, squadRating, squadRatingHere } from "../game/rules.ts";
 import { batInSlot, describeWeights, slotWeights } from "../game/slots.ts";
 import { BUDGET, type RunState } from "../game/types.ts";
 
@@ -13,7 +13,8 @@ import { BUDGET, type RunState } from "../game/types.ts";
 // draft: with eleven placed it had nothing left to spin, and soft-locked.
 export function LineupScreen({ state, captains, editions, onCaptain, onSwap, onSimulate }: { state: RunState; captains: CaptainOut[]; editions: EditionOut[]; onCaptain: (id: string | null) => void; onSwap: (a: number, b: number) => void; onSimulate: (captainId: string | null) => void }) {
   const [moving, setMoving] = useState<number | null>(null);
-  const problems = lineupProblems(state.picks);
+  const required = bowlersRequired(state.coach);
+  const problems = lineupProblems(state.picks, required);
   const weights = SLOTS.map((s) => slotWeights(editions, state.identity?.editionId ?? "", s.index + 1));
   const rated = (id: string) => captains.filter((c) => c.personId === id).sort((a, b) => b.matches - a.matches)[0];
   const picks = state.picks;
@@ -55,7 +56,7 @@ export function LineupScreen({ state, captains, editions, onCaptain, onSwap, onS
             action,
           };
         })}
-        footer={<>Keeper <b>{designatedKeeper(picks)?.name ?? "–"}</b> · overs covered <b>{oversCovered(picks)}</b>/20 · Bat is each man's number at that position</>}
+        footer={<>Keeper <b>{designatedKeeper(picks)?.name ?? "–"}</b> · bowlers <b>{bowlerCount(picks)}</b>/{required} · Bat is each man's number at that position</>}
       />
       </div>
       <aside className="lineup-side">
@@ -64,7 +65,7 @@ export function LineupScreen({ state, captains, editions, onCaptain, onSwap, onS
         <p className="small muted">Coached by {state.coach?.coachName ?? "nobody"}</p>
         <div className="strip lineup-strip">
           <span className="strip-item"><span className="rt-k">Squad rating</span><Digits n={pickFits ? squadRatingHere(here) : squadRating(picks)} /></span>
-          <span className="strip-item"><span className="rt-k">Overs</span><Digits n={oversCovered(picks)} /><span className="strip-of">/20</span></span>
+          <span className="strip-item"><span className="rt-k">Bowlers</span><Digits n={bowlerCount(picks)} /><span className="strip-of">/{required}</span></span>
         </div>
         <section className="lineup-box">
           <span className="strip-item"><span className="rt-k">Line-up moves left</span><Digits n={state.movesLeft} /><span className="strip-of">/{BUDGET.lineupMoves}</span></span>
@@ -76,7 +77,8 @@ export function LineupScreen({ state, captains, editions, onCaptain, onSwap, onS
             <option value="">No rated captain (average)</option>
             {picks.filter(Boolean).map((p) => {
               const c = rated(p!.id);
-              return <option key={p!.id} value={p!.id}>{p!.name}{c ? ` · captained ${c.matches} T20Is, rating ${c.z > 0 ? "+" : ""}${c.z.toFixed(1)}` : ""}</option>;
+              // The captaincy number only, short enough to show in the closed box (the matches behind it are not the player's concern).
+              return <option key={p!.id} value={p!.id}>{p!.name}{c ? ` · ${captainLabel(c.z)}` : ""}</option>;
             })}
           </select>
         </label>

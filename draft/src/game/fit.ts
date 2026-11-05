@@ -74,6 +74,17 @@ const round = (n: number) => Math.round(n);
 const clamp = (n: number) => Math.max(40, Math.min(99, n));
 
 /**
+ * His card's phase ratings moved into this World Cup (2026-11-04 playtest: Russell's bar read
+ * 83/82/84 under a batting number of 80). Each phase moves by what the card number moved here, so
+ * the bar and the large number agree; the steps (era, slot, pace/spin mix, coach) are worked out on
+ * the whole number, and an even shift is the split that keeps the phases weighing up to it.
+ */
+export function phasesHere(phases: Record<Phase, number>, card: number, here: number): Record<Phase, number> {
+  const at = (n: number) => Math.max(1, Math.min(99, n + here - card));
+  return { pp: at(phases.pp), mid: at(phases.mid), death: at(phases.death) };
+}
+
+/**
  * What the coach's intent does to the whole field: the mean rounded step over every batter with a
  * real sample, each at his own phase mix. The part of a player's coach step that is not this is his fit.
  */

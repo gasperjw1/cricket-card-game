@@ -8,7 +8,7 @@
  */
 
 import type { CoachOut } from "../../../wcdraft/src/engine/data.ts";
-import { coachNote, type PlayerFit, type SkillFit } from "../game/fit.ts";
+import { coachNote, phasesHere, type PlayerFit, type SkillFit } from "../game/fit.ts";
 import { batInSlot, describeWeights, type PhaseWeights } from "../game/slots.ts";
 import type { PoolPlayer, Slot } from "../game/types.ts";
 import { teamLabel } from "../lib/names.ts";
@@ -34,9 +34,9 @@ type Phases = Record<"pp" | "mid" | "death", number>;
 const USAGE_PHASES = [["pp", "PP", "powerplay"], ["mid", "Mid", "middle overs"], ["death", "Death", "death"]] as const;
 
 /**
- * His card by phase (2026-11-04): one segment a phase, as wide as his share of balls faced or overs
- * bowled there, with his card's rating for the phase inside and the phase and share under it. The
- * card number is these ratings weighted by these shares; for bowling the shares are also what the
+ * His number by phase (2026-11-04): one segment a phase, as wide as his share of balls faced or overs
+ * bowled there, with his rating for the phase in this World Cup inside and the phase and share under
+ * it. The number is these ratings weighted by these shares; for bowling the shares are also what the
  * engine's allocation reads (the bowling-roles research).
  */
 /**
@@ -64,10 +64,11 @@ function UsageBar({ ratings, shares, unit }: { ratings: Phases; shares: Phases; 
 
 /**
  * One skill in one section: the number in this World Cup, large, beside his card by phase (the
- * usage bar), with the card number and any notes under them. 2026-11-04, Yash: one section for the
- * overall number and the phases, batting and bowling alike.
+ * usage bar), with any split boxes under them. 2026-11-04, Yash: one section for the overall number
+ * and the phases, batting and bowling alike; the card's own number is not repeated (the large
+ * number is the one that plays).
  */
-function Skill({ label, value, card, phases, usage, extra, none }: {
+function Skill({ label, value, card, phases: cardPhases, usage, extra, none }: {
   label: string; value: number | null; card: number; phases: Phases;
   usage: { shares: Phases; unit: "balls faced" | "overs bowled" } | null;
   extra?: React.ReactNode; none: string;
@@ -80,6 +81,8 @@ function Skill({ label, value, card, phases, usage, extra, none }: {
       </div>
     );
   }
+  // The phases in this World Cup, so the bar agrees with the large number beside it.
+  const phases = phasesHere(cardPhases, card, value);
   return (
     <div className="pd-skill">
       <span className="pd-k">{label}</span>
@@ -87,7 +90,7 @@ function Skill({ label, value, card, phases, usage, extra, none }: {
         <Digits n={value} size="lg" />
         {usage ? <UsageBar ratings={phases} shares={usage.shares} unit={usage.unit} /> : <span className="pd-line">PP {phases.pp} · mid {phases.mid} · death {phases.death}</span>}
       </div>
-      <div className="pd-boxes"><Rating label="Card" n={card} />{extra}</div>
+      {extra && <div className="pd-boxes">{extra}</div>}
     </div>
   );
 }
@@ -133,23 +136,21 @@ export function PlayerDetail({ player, fit, hereEdition, coach, slots, weights, 
           usage={p.bowlShares ? { shares: p.bowlShares, unit: "overs bowled" } : null}
           none="Rarely bowls: he will not be given overs."
         />
-        {(() => {
-          const units = [n.bat !== null && p.batWeights ? "balls faced" : null, n.bowl !== null && p.bowlShares ? "overs bowled" : null].filter(Boolean);
-          return units.length > 0 && <p className="pd-line pd-bar-note">{units.length > 1 ? "Each bar" : "The bar"}: a phase as wide as his share of {units.join(" or ")} there, with his rating in it; the darker, the higher.</p>;
-        })()}
       </div>
 
       <section className="pd-place">
         <h4>Place him</h4>
         {locked ? <p className="small lock-note">{locked}</p> : (
           <>
-            {!natural && <p className="small">No natural slot is open; any open slot, at the batting number shown.</p>}
+            {!natural && <p className="small">No natural slot is open; any open slot.</p>}
             <div className="pd-slots">
               {slots.map((s) => {
                 const at = fit?.atSlot[s.index] ?? (p.batShown ? batInSlot(p, weights[s.index]!) : null);
+                // A slot shows a number only where he bats differently from the large number above.
+                const differs = at !== null && n.bat !== null && at !== n.bat;
                 return (
                   <button key={s.index} type="button" className="pd-slot" title={describeWeights(weights[s.index]!)} aria-label={`Place at ${s.label}${at !== null ? `, batting ${at}` : ""}`} onClick={() => onPlace(s.index)}>
-                    <span>{s.label}</span>{at !== null ? <small>bats <Digits n={at} size="xs" /></small> : <small>&nbsp;</small>}
+                    <span>{s.label}</span>{differs && <Digits n={at} />}
                   </button>
                 );
               })}
