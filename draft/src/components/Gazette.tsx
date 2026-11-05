@@ -19,7 +19,7 @@ import type { InningsResult } from "../../../wcdraft/src/engine/types.ts";
 import { RECORD_KINDS, type RecordBook, type RecordKind } from "../game/facts.ts";
 import { storyFor, tieBreakText, topBatter, topBowler, verdictFor } from "../game/gazette.ts";
 import type { IssueCopy, LateNewsLine, Paper } from "../game/paper.ts";
-import { recordChains, type Journey, type Residual, type Souvenir } from "../game/souvenir.ts";
+import { recordChains, type Journey } from "../game/souvenir.ts";
 import type { Performance } from "../game/score.ts";
 import { exitStageOf, sideProfile, stageIdOf, tableTo, tournamentTotals, type PlayerTotals } from "../game/stats.ts";
 import { canSwap, designatedKeeper, squadRating } from "../game/rules.ts";
@@ -456,23 +456,6 @@ export function MatchPage({ fixture, index, mine, all, result, me, venues, highl
   );
 }
 
-/** One line of the souvenir's performer lists: what he did, against what his card said. */
-function ResidualRow({ r }: { r: Residual }) {
-  const bat = r.bat && (Math.abs(r.bat.above) >= Math.abs(r.bowl?.above ?? 0) || !r.bowl);
-  const num = (n: number) => `${n >= 0 ? "+" : "−"}${Math.abs(Math.round(n))}`;
-  return (
-    <li className={r.mine ? "mine" : ""}>
-      <b>{r.name}</b> <span className="gz-sub-team">{teamLabel(r.team)}</span>
-      <br />
-      {bat && r.bat
-        ? <>{r.bat.runs} runs off {r.bat.balls} balls at a strike rate of {r.bat.sr.toFixed(0)}, out {r.bat.outs} time{r.bat.outs === 1 ? "" : "s"} against {r.bat.expOuts.toFixed(1)} expected; a card of <Digits n={r.bat.card} size="xs" /> in this tournament said {r.bat.expSr.toFixed(0)}. <b>{num(r.bat.above)} runs</b> against expectation.</>
-        : r.bowl
-          ? <>{r.bowl.wickets} wicket{r.bowl.wickets === 1 ? "" : "s"} at {r.bowl.econ.toFixed(1)} an over from {oversText(r.bowl.balls)} overs; a card of <Digits n={r.bowl.card} size="xs" /> in this tournament said {r.bowl.expEcon.toFixed(1)}. <b>{num(r.bowl.above)} runs</b> against expectation.</>
-          : null}
-    </li>
-  );
-}
-
 const SCOPE_LABEL = { wc: "", allWc: " · a T20 World Cup record", t20i: " · a T20I record" } as const;
 
 type FinalSection = "summary" | "players" | "records" | "journey" | "results";
@@ -480,13 +463,13 @@ const FINAL_SECTIONS: [FinalSection, string][] = [["summary", "Summary"], ["play
 
 /**
  * The souvenir issue (sections 2026-11-03, after the match issues): Summary (the verdict, the side's
- * bests and its results), Players (the awards, the side's figures, the tournament leaders, and who
- * beat or missed his card), Records (any T20 World Cup or T20I record broken first), Journey (form
+ * bests and its results), Players (the awards, the side's figures and the tournament leaders; who
+ * beat or missed his card was dropped 2026-11-05 as internal, Yash), Records (any T20 World Cup or T20I record broken first), Journey (form
  * match by match, then each man's card against his number in this World Cup) and Results (every
  * scorecard with its super over or bowl-out, the tables and the knockouts). The ratings and results
  * views are passed in, so the paper itself only lays them out.
  */
-export function FinalPage({ result, all, mine, me, highlight, paper, souvenir, journeys, performance: perf, date, manualShare, ratings, results }: { result: TournamentResult; all: Fixtured[]; mine: Fixtured[]; me: string; highlight: Set<string>; paper: Paper; souvenir: Souvenir | null; journeys: Journey[]; performance: Performance; date: string | null; manualShare: string | null; ratings: ReactNode; results: ReactNode }) {
+export function FinalPage({ result, all, mine, me, highlight, paper, journeys, performance: perf, date, manualShare, ratings, results }: { result: TournamentResult; all: Fixtured[]; mine: Fixtured[]; me: string; highlight: Set<string>; paper: Paper; journeys: Journey[]; performance: Performance; date: string | null; manualShare: string | null; ratings: ReactNode; results: ReactNode }) {
   const [section, setSection] = useState<FinalSection>("summary");
   const ranked = useMemo(() => [...tournamentTotals(all).values()].map((t) => ({ ...t, me: t.team === me && highlight.has(t.id) })), [all, me, highlight]);
   const id = result.identity!;
@@ -572,13 +555,6 @@ export function FinalPage({ result, all, mine, me, highlight, paper, souvenir, j
         <div className="gz-section">
           <section className="gz-box"><h4>The awards</h4><Awards ranked={ranked} /></section>
           <section className="gz-box"><h4>{teamLabel(me)}'s figures</h4><SquadStats ranked={ranked} /></section>
-          {souvenir ? (
-            <div className="gz-tables-grid">
-              {souvenir.standouts.length > 0 && <section className="gz-box"><h4>Furthest above their cards</h4><p className="gz-note">Any card, by the runs made or saved beyond what his numbers said, allowing for how the whole field scored.</p><ul className="gz-list gz-residuals">{souvenir.standouts.map((r) => <ResidualRow key={r.key} r={r} />)}</ul></section>}
-              {souvenir.unexpected.length > 0 && <section className="gz-box"><h4>Better than their cards</h4><p className="gz-note">Modest cards, 75 and under, that did the most beyond their numbers. A tournament is a few hundred balls; some of this is luck.</p><ul className="gz-list gz-residuals">{souvenir.unexpected.map((r) => <ResidualRow key={r.key} r={r} />)}</ul></section>}
-              {souvenir.disappointing.length > 0 && <section className="gz-box"><h4>Below their cards</h4><p className="gz-note">Strong cards, 85 and over, that fell furthest short of their numbers.</p><ul className="gz-list gz-residuals">{souvenir.disappointing.map((r) => <ResidualRow key={r.key} r={r} />)}</ul></section>}
-            </div>
-          ) : <p className="gz-note">Working out every player's expectation…</p>}
           <section className="gz-box"><h4>Tournament leaders</h4><TournamentLeaders ranked={ranked} /></section>
         </div>
       )}

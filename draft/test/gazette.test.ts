@@ -150,6 +150,18 @@ describe("running numbers", () => {
     const totals = tournamentTotals([shared]);
     assert.equal(totals.get(totalsKey("India", "a"))!.runs, 71);
     assert.equal(totals.get(totalsKey("Australia", "a"))!.runs, 71, "two separate lines, not 142");
+    // Fielding credits go to the fielding side's man: catches (caught and bowled too), stumpings, run-outs,
+    // a non-striker run out without facing included.
+    const out = (kind: string, fielder: string) => ({ kind, bowler: null, fielder: { id: fielder, name: fielder }, byKeeper: false });
+    const fielded = innings("India", 1, 150, 4, { batting: [
+      { id: "a", name: "A", runs: 10, balls: 8, fours: 1, sixes: 0, out: true, dismissal: out("caught", "k"), position: 1 },
+      { id: "b", name: "B", runs: 5, balls: 4, fours: 0, sixes: 0, out: true, dismissal: out("caught and bowled", "c"), position: 2 },
+      { id: "e", name: "E", runs: 2, balls: 3, fours: 0, sixes: 0, out: true, dismissal: out("stumped", "k"), position: 3 },
+      { id: "f", name: "F", runs: 0, balls: 0, fours: 0, sixes: 0, out: true, dismissal: out("run out", "g"), position: 4 },
+    ] } as never);
+    const ft = tournamentTotals([fixture({ innings: [fielded, innings("Australia", 2, 151, 3)], potm: null })]);
+    const of = (id: string) => ft.get(totalsKey("Australia", id))!;
+    assert.deepEqual([of("k").catches, of("k").stumpings, of("c").catches, of("g").runOuts], [1, 1, 1, 1]);
     const order = inPlayOrder([{ date: "2024-06-03" }, { date: null }, { date: "2024-06-01" }]);
     assert.deepEqual(order.map((f) => f.date), ["2024-06-01", "2024-06-03", null]);
     const stage = { fixtures: [fixture({ teams: ["India", "Pakistan"], date: "2024-06-05" }), fixture({ teams: ["India", "Australia"], date: "2024-06-01" })] } as unknown as StageResult;

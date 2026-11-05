@@ -25,6 +25,10 @@ export interface PlayerTotals {
   potm: number;
   /** Player-of-the-match points summed over his matches: the player of the tournament is the most. */
   points: number;
+  /** Dismissals in the field (2026-11-05): catches (his own caught-and-bowled included), stumpings, run-outs. */
+  catches: number;
+  stumpings: number;
+  runOuts: number;
 }
 
 /** Fixtures in the order they were played: stages in turn, by date within a stage (fixtures are stored by group). */
@@ -86,7 +90,7 @@ export function tournamentTotals(fixtures: FixtureResult[]): Map<string, PlayerT
   const totals = new Map<string, PlayerTotals>();
   const get = (id: string, name: string, team: string) => {
     const key = totalsKey(team, id);
-    return totals.get(key) ?? totals.set(key, { id, name: fullName(id, name), team, innings: 0, runs: 0, balls: 0, outs: 0, fours: 0, sixes: 0, high: 0, highNotOut: false, bowlInnings: 0, wickets: 0, bowlRuns: 0, bowlBalls: 0, best: null, potm: 0, points: 0 }).get(key)!;
+    return totals.get(key) ?? totals.set(key, { id, name: fullName(id, name), team, innings: 0, runs: 0, balls: 0, outs: 0, fours: 0, sixes: 0, high: 0, highNotOut: false, bowlInnings: 0, wickets: 0, bowlRuns: 0, bowlBalls: 0, best: null, potm: 0, points: 0, catches: 0, stumpings: 0, runOuts: 0 }).get(key)!;
   };
   for (const f of fixtures) {
     const [i1, i2] = f.innings ?? [];
@@ -94,6 +98,14 @@ export function tournamentTotals(fixtures: FixtureResult[]): Map<string, PlayerT
     for (const inn of [i1, i2]) {
       const fielding = inn === i1 ? i2.team : i1.team;
       for (const b of inn.batting) {
+        // The fielder's credit, before the line is skipped as not batted (a non-striker run out first ball).
+        const d = b.dismissal;
+        if (d?.fielder) {
+          const fielder = get(d.fielder.id, d.fielder.name, fielding);
+          if (d.kind === "caught" || d.kind === "caught and bowled") fielder.catches += 1;
+          else if (d.kind === "stumped") fielder.stumpings += 1;
+          else if (d.kind === "run out") fielder.runOuts += 1;
+        }
         if (b.balls === 0 && !b.out) continue;
         const t = get(b.id, b.name, inn.team);
         t.innings += 1; t.runs += b.runs; t.balls += b.balls; t.outs += b.out ? 1 : 0; t.fours += b.fours; t.sixes += b.sixes;

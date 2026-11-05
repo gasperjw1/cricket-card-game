@@ -5,7 +5,7 @@ import type { RecordBook } from "../src/game/facts.ts";
 import { fieldLevel, journeyFor, journeyLine, recordChains, residuals, souvenirLists, type Expectation } from "../src/game/souvenir.ts";
 import type { PlayerTotals } from "../src/game/stats.ts";
 
-const totals = (over: Partial<PlayerTotals>): PlayerTotals => ({ id: "x", name: "X", team: "T", innings: 0, runs: 0, balls: 0, outs: 0, fours: 0, sixes: 0, high: 0, highNotOut: false, bowlInnings: 0, wickets: 0, bowlRuns: 0, bowlBalls: 0, best: null, potm: 0, ...over });
+const totals = (over: Partial<PlayerTotals>): PlayerTotals => ({ id: "x", name: "X", team: "T", innings: 0, runs: 0, balls: 0, outs: 0, fours: 0, sixes: 0, high: 0, highNotOut: false, bowlInnings: 0, wickets: 0, bowlRuns: 0, bowlBalls: 0, best: null, potm: 0, points: 0, catches: 0, stumpings: 0, runOuts: 0, ...over });
 const exp = (over: Partial<Expectation>): Expectation => ({ name: "X", team: "T", cardBat: 70, cardBowl: null, bat: { rate: 120, ballsPerOut: 20 }, bowl: null, ...over });
 
 describe("souvenir", () => {

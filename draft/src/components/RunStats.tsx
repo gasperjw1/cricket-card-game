@@ -95,6 +95,7 @@ export function TournamentLeaders({ ranked }: { ranked: Ranked[] }) {
       <Leaders title="Most boundaries" rows={rank(ranked, (t) => t.fours + t.sixes, (t) => t.balls)} cols={[{ label: "4s", value: (t) => t.fours }, { label: "6s", value: (t) => t.sixes }, { label: "Runs", value: (t) => t.runs }]} />
       <Leaders title="Best strike rate (60+ balls)" rows={rank(ranked, (t) => (t.balls >= 60 ? (100 * t.runs) / t.balls : 0), (t) => -t.runs)} cols={[{ label: "Runs", value: (t) => t.runs }, { label: "Balls", value: (t) => t.balls }, { label: "SR", value: strikeRate }]} />
       <Leaders title="Best economy (12+ overs)" rows={ranked.filter((t) => t.bowlBalls >= 72).sort((a, b) => a.bowlRuns / a.bowlBalls - b.bowlRuns / b.bowlBalls).slice(0, 10)} cols={[{ label: "Overs", value: oversOf }, { label: "Wkts", value: (t) => t.wickets }, { label: "Econ", value: economy }]} />
+      <Leaders title="Most dismissals in the field" rows={rank(ranked, (t) => t.catches + t.stumpings + t.runOuts, (t) => -t.catches)} cols={[{ label: "Ct", value: (t) => t.catches }, { label: "St", value: (t) => t.stumpings }, { label: "RO", value: (t) => t.runOuts }]} />
       <Leaders title="Player of the match awards" rows={rank(ranked, (t) => t.potm, (t) => -t.points)} cols={[{ label: "Awards", value: (t) => t.potm }, { label: "Runs", value: (t) => t.runs }, { label: "Wkts", value: (t) => t.wickets }]} />
     </div>
   );
