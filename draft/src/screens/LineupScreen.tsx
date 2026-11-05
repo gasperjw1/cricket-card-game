@@ -4,7 +4,7 @@ import { Digits } from "../components/PlayerCard.tsx";
 import { captainChoices, captainFor, holdShare, type Captaincy } from "../game/captain.ts";
 import { TeamSheet } from "../components/TeamSheet.tsx";
 import { usePicksFit } from "../game/fit-load.ts";
-import { SLOTS, bowlerCount, bowlersRequired, designatedKeeper, lineupProblems, squadRating, squadRatingHere } from "../game/rules.ts";
+import { SLOTS, bowlerCount, bowlersRequired, canSwap, designatedKeeper, lineupProblems, squadRating, squadRatingHere } from "../game/rules.ts";
 import { batInSlot, describeWeights, slotWeights } from "../game/slots.ts";
 import { BUDGET, type RunState } from "../game/types.ts";
 
@@ -48,14 +48,16 @@ export function LineupScreen({ state, captaincy, editions, onCaptain, onSwap, on
           const action = !p || !canMove ? <span className="sheet-slot-note" title={describeWeights(w)} />
             : moving === null ? <button type="button" className="sheet-move" aria-label={`Move ${p.name}`} onClick={() => setMoving(s.index)}>Move</button>
             : moving === s.index ? <button type="button" className="sheet-move on" aria-label={`Keep ${p.name} at ${s.label}`} onClick={() => setMoving(null)}>Cancel</button>
-            : <button type="button" className="sheet-place" aria-label={`Swap ${picks[moving]?.name} with ${p.name}`} onClick={() => swap(s.index)}>Swap</button>;
+            // Only where each may bat at the other's number (2026-11-05).
+            : canSwap(picks, moving, s.index) ? <button type="button" className="sheet-place" aria-label={`Swap ${picks[moving]?.name} with ${p.name}`} onClick={() => swap(s.index)}>Swap</button>
+            : <span className="sheet-slot-note" />;
           return {
             slot: s,
             player: p,
             batHere: here[s.index]?.bat ?? null,
             bowlHere: here[s.index]?.bowl ?? null,
             keeps: !!p && designatedKeeper(picks)?.id === p.id,
-            open: moving !== null && moving !== s.index,
+            open: moving !== null && canSwap(picks, moving, s.index),
             action,
           };
         })}
@@ -72,7 +74,7 @@ export function LineupScreen({ state, captaincy, editions, onCaptain, onSwap, on
         </div>
         <section className="lineup-box">
           <span className="strip-item"><span className="rt-k">Line-up moves left</span><Digits n={state.movesLeft} /><span className="strip-of">/{BUDGET.lineupMoves}</span></span>
-          <p className="small muted">{canMove ? (moving === null ? "Tap Move on a player, then Swap on another: they trade places for one move. Moves left carry into the tournament, before any match." : `Moving ${picks[moving]?.name}: tap Swap on the player to trade places with.`) : "No moves left: the order stands."}</p>
+          <p className="small muted">{canMove ? (moving === null ? "Tap Move on a player, then Swap on another: they trade places for one move. Moves left carry into the tournament, before any match." : `Moving ${picks[moving]?.name}: tap Swap on the player to trade places with. Swap shows only where each can bat at the other's number.`) : "No moves left: the order stands."}</p>
         </section>
         <div className="lineup-box lineup-captain">
           <label>

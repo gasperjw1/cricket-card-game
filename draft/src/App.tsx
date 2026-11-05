@@ -2,7 +2,7 @@ import { useEffect, useMemo, useReducer, useState } from "react";
 import { Rng } from "../../wcdraft/src/engine/rng.ts";
 import type { CoachOut, SquadOut } from "../../wcdraft/src/engine/data.ts";
 import { loadPool, loadShared, loadSquads, type SharedData } from "./lib/data.ts";
-import { BUDGET, bowlersRequired, coachPool, drawCoachPanel, drawSquad, eligible, spinPlayers, squadUniverse, type SquadRef } from "./game/rules.ts";
+import { BUDGET, bowlersRequired, canSwap, coachPool, drawCoachPanel, drawSquad, eligible, spinPlayers, squadUniverse, type SquadRef } from "./game/rules.ts";
 import { runTournament } from "./game/simulate.ts";
 import { captaincyOf } from "./game/captain.ts";
 import type { Identity, PoolPlayer, RunState, Spin } from "./game/types.ts";
@@ -55,7 +55,7 @@ function reduce(s: RunState, a: Action): RunState {
     }
     case "swap": {
       // A line-up move on the lineup screen: two batting positions trade places, one move spent.
-      if (s.movesLeft <= 0 || a.a === a.b) return s;
+      if (s.movesLeft <= 0 || !canSwap(s.picks, a.a, a.b)) return s;
       const picks = [...s.picks];
       [picks[a.a], picks[a.b]] = [picks[a.b] ?? null, picks[a.a] ?? null];
       return { ...s, picks, movesLeft: s.movesLeft - 1 };

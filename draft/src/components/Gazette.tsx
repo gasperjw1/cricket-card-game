@@ -22,7 +22,7 @@ import type { IssueCopy, LateNewsLine, Paper } from "../game/paper.ts";
 import { recordChains, type Journey, type Residual, type Souvenir } from "../game/souvenir.ts";
 import type { Performance } from "../game/score.ts";
 import { exitStageOf, sideProfile, stageIdOf, tableTo, tournamentTotals, type PlayerTotals } from "../game/stats.ts";
-import { designatedKeeper, squadRating } from "../game/rules.ts";
+import { canSwap, designatedKeeper, squadRating } from "../game/rules.ts";
 import type { RunState } from "../game/types.ts";
 import { fullName, labelTeams, teamLabel } from "../lib/names.ts";
 import { marginText, rainText } from "./MatchCard.tsx";
@@ -283,6 +283,9 @@ function NextMatchLever({ lever, next, me, opponent }: { lever: Lever; next: num
   const order = plan.order ?? lever.picks.map((p) => p.id);
   const [a, setA] = useState(0);
   const [b, setB] = useState(1);
+  // Two men trade places only when each may bat at the other's number (2026-11-05), as on the lineup.
+  const ordered = order.map((id) => lever.picks.find((p) => p.id === id) ?? null);
+  const swappable = canSwap(ordered, a, b);
   const swapOrder = () => {
     const o = [...order];
     [o[a], o[b]] = [o[b]!, o[a]!];
@@ -314,11 +317,11 @@ function NextMatchLever({ lever, next, me, opponent }: { lever: Lever; next: num
       </label>
       <label className="gz-lever-row"><span>with</span>
         <select value={b} onChange={(e) => setB(Number(e.target.value))} disabled={lever.movesLeft <= 0}>
-          {order.map((id, i) => <option key={id} value={i}>No. {i + 1} {nameOf(id)}</option>)}
+          {order.map((id, i) => <option key={id} value={i} disabled={i !== a && !canSwap(ordered, a, i)}>No. {i + 1} {nameOf(id)}</option>)}
         </select>
       </label>
       <div className="gz-lever-row"><span />
-        <button type="button" className="gz-lever-go" disabled={lever.movesLeft <= 0 || a === b} onClick={swapOrder}>{lever.movesLeft > 0 ? `Swap them · ${lever.movesLeft} ${lever.movesLeft === 1 ? "move" : "moves"} left` : "No line-up moves left"}</button>
+        <button type="button" className="gz-lever-go" disabled={lever.movesLeft <= 0 || !swappable} onClick={swapOrder}>{lever.movesLeft > 0 ? `Swap them · ${lever.movesLeft} ${lever.movesLeft === 1 ? "move" : "moves"} left` : "No line-up moves left"}</button>
       </div>
       {saved && <p className="gz-note gz-saved" role="status">{saved}</p>}
     </section>

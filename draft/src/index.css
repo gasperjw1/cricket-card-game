@@ -98,6 +98,10 @@ h3 { font-size: 16px; margin: 0 0 8px; }
 .tag.style-rotator { color: #5c7cfa; border-color: currentColor; }
 .tag.style-anchor { color: var(--muted); border-color: currentColor; }
 /* Has captained (2026-11-05): beside the name, in the scoreboard green. */
+/* Favours pace / spin (2026-11-05): only where the lean stands out. */
+.tag.lean { font-weight: 700; border-color: currentColor; }
+.tag.lean-pace { color: #c92a2a; }
+.tag.lean-spin { color: #6741d9; }
 .tag.captain { margin-left: 6px; font-family: inherit; font-weight: 700; font-size: 10px; letter-spacing: 0.04em; text-transform: uppercase; color: var(--accent); border-color: currentColor; vertical-align: 2px; white-space: nowrap; }
 .style-results .table { width: 100%; }
 .style-results .style-best { white-space: nowrap; }
@@ -203,7 +207,14 @@ h3 { font-size: 16px; margin: 0 0 8px; }
 .tabs button.active { background: var(--accent); color: var(--accent-ink); border-color: transparent; font-weight: 700; }
 .leaders-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(360px, 100%), 1fr)); gap: 12px 20px; margin-top: 10px; align-items: start; }
 .leaders .rank { display: inline-block; min-width: 18px; color: var(--muted); font-size: 12px; }
-@media (max-width: 520px) { .table.leaders { display: block; overflow-x: auto; } .table.leaders th:first-child, .table.leaders td:first-child { min-width: 150px; } }
+/* On a phone the tables fit the column: names wrap and the cells close up, rather than the last
+   column hiding off the edge behind a sideways scroll nothing pointed to (2026-11-05). */
+@media (max-width: 520px) {
+  .table.leaders { font-size: 12px; }
+  .table.leaders th, .table.leaders td { padding: 4px 3px; }
+  .table.leaders th:not(:first-child), .table.leaders td:not(:first-child) { white-space: nowrap; }
+  .table.leaders td:first-child { overflow-wrap: anywhere; }
+}
 
 /* Group standings: content-sized numeric columns, a flexible team column, tabular figures */
 .standings-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(420px, 100%), 1fr)); gap: 16px 28px; }
@@ -414,9 +425,11 @@ h3 { font-size: 16px; margin: 0 0 8px; }
 @media (max-width: 520px) {
   .gz-page .gz-box-score { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 12px; }
   .gz-box-score .gz-figures tr:nth-child(2):not(.gz-fig-bowl) { display: none; }
-  /* Blocks all the way down, so a long name ends in an ellipsis at the column's edge instead of widening the table. */
+  /* Blocks all the way down, so a long name wraps inside its column instead of widening the table
+     (2026-11-05: it ended in an ellipsis, "Tadiwanashe Marum…"). */
   .gz-box-score .gz-figures, .gz-box-score .gz-figures tbody, .gz-box-score .gz-figures tr { display: block; }
   .gz-box-score .gz-figures td { display: block; text-align: left; padding: 0; max-width: none; width: auto; }
+  .gz-box-score .gz-figures td:first-child { white-space: normal; overflow: visible; overflow-wrap: anywhere; }
   .gz-box-score .gz-figures td:last-child { padding: 0 0 4px; text-align: left; }
   .gz-box-score .gz-inn-head { flex-wrap: wrap; gap: 0 6px; }
 }
@@ -472,7 +485,15 @@ h3 { font-size: 16px; margin: 0 0 8px; }
 .award.me b { color: #1e4d3a; }
 .award-k { font-family: Oswald, "Arial Narrow", sans-serif; font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
 @media (max-width: 640px) { .awards { grid-template-columns: 1fr; } .award { border-left: none; padding-left: 0; border-top: 1px solid var(--line); } .award:first-child { border-top: none; } }
+/* A column a match is wider than a phone: the names stay pinned, and while there is more to the right
+   a shadow sits on the right edge and a line says to swipe (2026-11-05). */
 .form-wrap { overflow-x: auto; }
+.form-wrap.more {
+  background:
+    linear-gradient(to left, #f3ecdd, #f3ecdd) right center / 14px 100% no-repeat local,
+    radial-gradient(farthest-side at 100% 50%, rgba(0, 0, 0, 0.22), transparent) right center / 14px 100% no-repeat scroll;
+}
+.form-hint { margin: 0 0 4px; }
 .form-grid { border-collapse: collapse; font-variant-numeric: tabular-nums; font-size: 13px; min-width: 100%; }
 .form-grid th { font-family: Oswald, "Arial Narrow", sans-serif; font-weight: 500; font-size: 12px; letter-spacing: 0.04em; padding: 2px 4px 6px; text-align: center; border-bottom: 2px solid var(--ink); white-space: nowrap; }
 .form-grid td { text-align: center; padding: 4px 3px; border-bottom: 1px solid var(--line); min-width: 38px; line-height: 1.15; }
@@ -534,7 +555,11 @@ h3 { font-size: 16px; margin: 0 0 8px; }
 .sheet-foot { margin: 8px 0 0; font-size: 12.5px; color: var(--paper-muted); line-height: 1.4; }
 .sheet-foot b { color: var(--paper-ink); font-weight: 600; }
 .sheet-cta { margin-top: 12px; width: 100%; }
-@media (max-width: 899px) { .sheet-row, .sheet-cols { grid-template-columns: 22px minmax(0, 1fr) 42px 42px auto; } }
+@media (max-width: 899px) {
+  .sheet-row, .sheet-cols { grid-template-columns: 22px minmax(0, 1fr) 42px 42px auto; }
+  /* On a phone the line wraps rather than losing the side and year off its end (2026-11-05). */
+  .sheet-line { white-space: normal; overflow: visible; line-height: 1.3; }
+}
 /* A phone gives the name plate the room: narrower number columns and buttons (names wrapped and the role line was cut). */
 @media (max-width: 480px) {
   .sheet-row, .sheet-cols { grid-template-columns: 16px minmax(0, 1fr) 32px 32px auto; gap: 0 6px; }
@@ -622,7 +647,12 @@ h3 { font-size: 16px; margin: 0 0 8px; }
 .frame-band span:first-child { flex: 0 1 auto; }
 .frame-band span:last-child { flex: 0 0 auto; }
 /* The header stacks on a phone: the band keeps its own height there, not the column's. */
-@media (max-width: 899px) { .draft-bar { flex-wrap: nowrap; } .frame-band { flex: 0 0 auto; font-size: 10.5px; letter-spacing: 0.08em; padding: 4px 8px; } }
+@media (max-width: 899px) {
+  .draft-bar { flex-wrap: nowrap; }
+  .frame-band { flex: 0 0 auto; font-size: 10.5px; letter-spacing: 0.08em; padding: 4px 8px; }
+  /* The side and coach wrap to a second line rather than cutting the coach's name (2026-11-05). */
+  .frame-band span:first-child { white-space: normal; line-height: 1.35; }
+}
 .frame-clock { flex: 0 0 auto; width: 18px; height: 18px; border-radius: 50%; border: 2px solid var(--frame-ink); background: linear-gradient(var(--frame-ink), var(--frame-ink)) center 4px / 1.5px 6px no-repeat, linear-gradient(90deg, var(--frame-ink), var(--frame-ink)) 8px center / 4px 1.5px no-repeat; }
 /* The counters along the bottom of the board: painted names, the numbers on tiles. */
 .strip { display: flex; flex-wrap: wrap; gap: 6px 14px; align-items: center; }
@@ -668,33 +698,15 @@ h3 { font-size: 16px; margin: 0 0 8px; }
 .pd-name { font-family: Oswald, "Arial Narrow", sans-serif; font-size: 26px; font-weight: 500; line-height: 1.1; text-transform: uppercase; letter-spacing: 0.01em; }
 .pd-sub { color: var(--muted); font-size: 13px; margin-top: 4px; display: flex; flex-wrap: wrap; align-items: center; gap: 4px 6px; }
 .pd-close { padding: 0 10px; min-height: 32px; font-size: 18px; line-height: 1; }
-/* His two numbers in this World Cup, large, with the card's phases in one line under each. */
-.pd-nums { display: grid; grid-template-columns: minmax(0, 1fr); gap: 10px; margin: 14px 0 4px; }
+/* His two numbers in this World Cup, large, side by side (2026-11-05: the phase bars are gone). */
+.pd-nums { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; margin: 14px 0 4px; }
 .pd-skill { display: grid; gap: 5px; align-content: start; justify-items: start; background: var(--plate); border: 1px solid var(--line); border-radius: 4px; padding: 8px 10px 10px; }
 .pd-k { color: var(--paint); font-size: 11px; text-transform: uppercase; letter-spacing: 0.12em; }
 .pd-line { color: var(--muted); font-size: 12.5px; font-variant-numeric: tabular-nums; }
 .pd-line b { color: var(--ink); font-weight: 600; }
-/* Bowling usage bar: a column a phase, as wide as his share of overs, with a floor so every phase stays legible. */
-/* One section a skill (2026-11-04): the number beside its bar by phase, the pace/spin boxes under them. */
-/* Top-aligned, and each segment as tall as the number's digits (38px), so the bar lines up with the number box. */
-.pd-skill-body { display: flex; align-items: flex-start; gap: 12px; width: 100%; }
-.pd-skill-body .usage-seg { height: 38px; line-height: 38px; font-size: 16px; }
-.pd-skill-body .usage-col.none .usage-seg { line-height: 36px; }
-.pd-skill-body > .pd-line { align-self: center; }
-.pd-skill-body > .usage { flex: 1 1 auto; min-width: 0; }
-/* The pace/spin split, each in its own box under the bar. */
-.pd-boxes { display: flex; flex-wrap: wrap; gap: 6px; }
-.usage { display: grid; gap: 4px; width: 100%; }
-.usage-row { display: flex; gap: 3px; width: 100%; }
-.usage-col { flex: 0 1 0; min-width: 34px; display: grid; gap: 3px; }
-.usage-seg { display: block; height: 24px; line-height: 24px; text-align: center; border-radius: 3px; background: var(--accent); color: var(--accent-ink); font-weight: 700; font-size: 13px; font-variant-numeric: tabular-nums; }
-.usage-label { text-align: center; color: var(--muted); font-size: 11px; line-height: 1.25; font-variant-numeric: tabular-nums; }
-/* Shade by rating: dark figures on the two pale steps, light on the two dark ones (each 5:1 or better). */
-.usage-seg.band-1 { background: color-mix(in srgb, var(--accent) 15%, var(--card-2)); color: var(--ink); }
-.usage-seg.band-2 { background: color-mix(in srgb, var(--accent) 35%, var(--card-2)); color: var(--ink); }
-.usage-seg.band-3 { background: color-mix(in srgb, var(--accent) 85%, var(--card-2)); color: var(--accent-ink); }
-.usage-seg.band-4 { background: color-mix(in srgb, var(--accent) 75%, #000); color: var(--accent-ink); }
-.usage-col.none .usage-seg { background: transparent; color: var(--muted); border: 1px dashed var(--line); line-height: 22px; font-weight: 600; }
+.pd-skill-body { display: flex; align-items: center; gap: 12px; width: 100%; }
+/* No number: the line saying how he plays sits under the dashes, not squeezed beside them. */
+.pd-skill.off .pd-skill-body { flex-direction: column; align-items: flex-start; gap: 4px; }
 .pd-how { margin-top: 14px; border-top: 1px solid var(--line); padding-top: 10px; }
 .pd-how summary { cursor: pointer; color: var(--muted); font-size: 13px; }
 .pd-how .pd-grid { margin-top: 8px; }

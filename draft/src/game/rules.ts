@@ -6,7 +6,7 @@
 
 import type { Rng } from "../../../wcdraft/src/engine/rng.ts";
 import type { CoachOut, SquadOut } from "../../../wcdraft/src/engine/data.ts";
-import { BUDGET, SLOTS, type PoolPlayer, type Slot, type SlotKind } from "./types.ts";
+import { BUDGET, SLOTS, type PoolPlayer, type Slot } from "./types.ts";
 
 export interface SquadRef {
   team: string;
@@ -17,7 +17,7 @@ export interface SquadRef {
 /**
  * His batting archetype, or one read off his usual number when the ratings gave him none (2026-11-04
  * playtest: without one, Mendis could open and Amir was offered No. 1): 1–2 opener, 3–4 top order,
- * 5–6 middle order, 7–8 finisher, 9–11 tail, matching the slot kinds in `SLOTS`.
+ * 5–6 middle order, 7–8 finisher, 9–11 tail, as the card words it (`batPlace`).
  */
 function battingArchetype(player: PoolPlayer): string | null {
   if (player.archetype.batting) return player.archetype.batting;
@@ -26,24 +26,77 @@ function battingArchetype(player: PoolPlayer): string | null {
   return n <= 2 ? "opener" : n <= 4 ? "top order" : n <= 6 ? "middle order" : n <= 8 ? "finisher" : "tail";
 }
 
-/** Slot kinds a batting archetype fits; positionless players, and those with neither archetype nor usual number, fit anywhere. */
-export function fits(player: PoolPlayer, kind: SlotKind): boolean {
-  const a = battingArchetype(player);
-  if (!a || player.positionless) return true;
-  switch (kind) {
-    case "opener": return a === "opener";
-    case "top": return a === "top order" || a === "opener";
-    case "middle": return a === "middle order" || a === "top order" || a === "finisher";
-    case "lower": return a === "finisher" || a === "middle order" || a === "tail";
-    case "tail": return a === "tail" || a === "finisher" || player.role === "bowler";
+/** A bowler by the card: the ratings call him one, or they give him no role and he has a bowling number. */
+const isBowler = (p: PoolPlayer) => p.role === "bowler" || (p.role === "unknown" && p.bowlShown);
+
+/**
+ * The batting numbers he may bat at, first and last (2026-11-05, Yash): openers 1–4, top order 1–5,
+ * middle order 4–6, and any of the three down to No. 8 when he bowls (he counts on the Bowlers
+ * meter); lower order 6–9 whether he bowls or not; tail 9–11. A bowler with no place in the order
+ * (no usual number, or he floats) bats 9–11 like the tail; anyone else without one bats anywhere.
+ */
+export function slotRange(player: PoolPlayer): [number, number] {
+  const a = player.positionless ? null : battingArchetype(player);
+  if (!a) return isBowler(player) ? [9, 11] : [1, 11];
+  switch (a) {
+    case "opener": return [1, bowls(player) ? 8 : 4];
+    case "top order": return [1, bowls(player) ? 8 : 5];
+    case "middle order": return [4, bowls(player) ? 8 : 6];
+    case "finisher": return [6, 9];
+    default: return [9, 11];
   }
 }
 
-/** Open slots this player fits naturally; every open slot when none fits. */
-export function slotsFor(player: PoolPlayer, picks: (PoolPlayer | null)[]): { slots: Slot[]; natural: boolean } {
-  const open = SLOTS.filter((s) => !picks[s.index]);
-  const natural = open.filter((s) => fits(player, s.kind));
-  return natural.length ? { slots: natural, natural: true } : { slots: open, natural: false };
+/** Whether he may bat in this slot (0-based index into `SLOTS`). */
+export function fits(player: PoolPlayer, slot: number): boolean {
+  const [first, last] = slotRange(player);
+  return slot + 1 >= first && slot + 1 <= last;
+}
+
+/** The open slots he may bat in; none when his range is full (2026-11-05: no spill into any open slot). */
+export function slotsFor(player: PoolPlayer, picks: (PoolPlayer | null)[]): Slot[] {
+  return SLOTS.filter((s) => !picks[s.index] && fits(player, s.index));
+}
+
+/**
+ * Batting numbers a keeper can be found for: Nos. 1–9 (2026-11-05). Across the ten pools 54 or more
+ * of the 265 keepers fit each of Nos. 1–9, but only the 29 who float fit Nos. 10–11, so a side that
+ * filled its last slot in Nos. 1–9 without a keeper dead-ended about one draft in 1,500.
+ */
+const KEEPER_LAST = 9;
+
+/**
+ * The open slots he may take now: those in his range, less the side's last open slot in Nos. 1–9
+ * while it still needs a keeper and he is not one (it is held for the keeper).
+ */
+export function placeable(player: PoolPlayer, picks: (PoolPlayer | null)[]): Slot[] {
+  const slots = slotsFor(player, picks);
+  const held = heldForKeeper(picks);
+  return held !== null && !player.keeper ? slots.filter((s) => s.index !== held) : slots;
+}
+
+/** The slot held for the keeper (0-based), or null: only when he is still needed and one slot in Nos. 1–9 is left. */
+export function heldForKeeper(picks: (PoolPlayer | null)[]): number | null {
+  if (designatedKeeper(picks)) return null;
+  const open = SLOTS.filter((s) => !picks[s.index] && s.index < KEEPER_LAST);
+  return open.length === 1 ? open[0]!.index : null;
+}
+
+/** Why a slot is held: "No. 9 is held for a keeper: the side has none, and few keepers bat below No. 9." */
+export function heldText(slot: number): string {
+  return `${SLOTS[slot]!.label} is held for a keeper: the side has none, and few keepers bat below No. ${KEEPER_LAST}.`;
+}
+
+/** A line-up move: two men trade places only when each may bat at the other's number. */
+export function canSwap(picks: (PoolPlayer | null)[], a: number, b: number): boolean {
+  const pa = picks[a], pb = picks[b];
+  return a !== b && (!pa || fits(pa, b)) && (!pb || fits(pb, a));
+}
+
+/** Why he cannot be placed, when no slot in his range is open: "He bats Nos. 1–4, and they are all taken." */
+export function noSlotText(player: PoolPlayer): string {
+  const [first, last] = slotRange(player);
+  return `He bats Nos. ${first}–${last}, and they are all taken.`;
 }
 
 export function keeperCovered(picks: (PoolPlayer | null)[]): boolean {
@@ -97,6 +150,7 @@ export function needs(picks: (PoolPlayer | null)[], required: number = 5): { bow
  * locking the draft.
  */
 export function eligible(p: PoolPlayer, picks: (PoolPlayer | null)[], required: number = 5): boolean {
+  if (!placeable(p, picks).length) return false;
   const n = needs(picks, required);
   if (n.open > n.bowlers + n.keeper) return true;
   const after = needs([...picks.filter(Boolean), p], required);

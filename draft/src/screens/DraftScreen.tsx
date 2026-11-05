@@ -5,7 +5,7 @@ import { PlayerDetail } from "../components/PlayerDetail.tsx";
 import { TeamSheet } from "../components/TeamSheet.tsx";
 import { VenueBrief, venueCountsFor } from "../components/VenueBrief.tsx";
 import { usePicksFit, useSpinFit } from "../game/fit-load.ts";
-import { SLOTS, bowlerCount, bowlersRequired, designatedKeeper, eligible, needs, slotsFor } from "../game/rules.ts";
+import { SLOTS, bowlerCount, bowlersRequired, designatedKeeper, eligible, heldForKeeper, heldText, needs, noSlotText, placeable, slotsFor } from "../game/rules.ts";
 import { batInSlot, describeWeights, slotWeights } from "../game/slots.ts";
 import type { PoolPlayer, RunState } from "../game/types.ts";
 import type { Captaincy } from "../game/captain.ts";
@@ -27,8 +27,11 @@ export function DraftScreen({ state, captaincy, editions, venues, squads, onPlac
   const [filter, setFilter] = useState<Filter>("all");
   const [sort, setSort] = useState<Sort>("best");
   const filled = state.picks.filter(Boolean).length;
-  const open = selected ? slotsFor(selected, state.picks) : { slots: [], natural: true };
-  const openIds = new Set(open.slots.map((s) => s.index));
+  const open = selected ? placeable(selected, state.picks) : [];
+  // The last slot in Nos. 1–9 while the side has no keeper: only a keeper may take it.
+  const held = heldForKeeper(state.picks);
+  const heldNote = selected && held !== null && !selected.keeper && slotsFor(selected, state.picks).some((s) => s.index === held) ? heldText(held) : null;
+  const openIds = new Set(open.map((s) => s.index));
   const editionId = state.identity?.editionId ?? "";
   // The overs each batting slot faces in this World Cup; a player's number re-weighted to them.
   const weights = useMemo(() => SLOTS.map((s) => slotWeights(editions, editionId, s.index + 1)), [editions, editionId]);
@@ -59,7 +62,11 @@ export function DraftScreen({ state, captaincy, editions, venues, squads, onPlac
     return () => window.removeEventListener("keydown", onKey);
   }, [selected]);
   const place = (p: PoolPlayer, slot: number) => { onPlace(p, slot); setSelected(null); };
-  const selectedLocked = selected && !eligible(selected, state.picks, required) ? lockText : null;
+  // His range full comes first: no amount of need makes a slot for him.
+  const selectedLocked = !selected ? null
+    : !slotsFor(selected, state.picks).length ? noSlotText(selected)
+    : !open.length ? heldNote
+    : !eligible(selected, state.picks, required) ? lockText : null;
 
   const listed = useMemo(() => {
     const players = (state.spin?.players ?? []).filter((p) => filter === "all" || (filter === "bat" && p.batShown) || (filter === "bowl" && p.bowlShown) || (filter === "keep" && p.keeper));
@@ -145,9 +152,8 @@ export function DraftScreen({ state, captaincy, editions, venues, squads, onPlac
                 fit={fits ? fits.get(selected.id) ?? null : null}
                 hereEdition={editionId}
                 coach={state.coach}
-                slots={open.slots}
-                weights={weights}
-                natural={open.natural}
+                slots={open}
+                slotNote={heldNote}
                 locked={selectedLocked}
                 captained={captaincy.matches.has(selected.id)}
                 onPlace={(slot) => place(selected, slot)}
@@ -176,9 +182,7 @@ export function DraftScreen({ state, captaincy, editions, venues, squads, onPlac
             const p = state.picks[s.index] ?? null;
             const canPlace = !!selected && !selectedLocked && openIds.has(s.index);
             const w = weights[s.index]!;
-            const placing = canPlace ? numberAt(selected!, s.index, fits) : null;
-            // Every Place button shows his number there (2026-11-05, Yash: a button without one, where
-            // it matched his card, read as a rating missing).
+            // Place buttons carry no number (2026-11-05, Yash): the slot ranges keep him where his number barely moves.
             return {
               slot: s,
               player: p,
@@ -187,9 +191,7 @@ export function DraftScreen({ state, captaincy, editions, venues, squads, onPlac
               keeps: !!p && !!keeper && p.id === keeper.id,
               open: canPlace,
               action: p ? null : canPlace ? (
-                <button type="button" className="sheet-place" title={describeWeights(w)} aria-label={`Place ${selected!.name} at ${s.label}${placing !== null ? `, batting ${placing}` : ""}`} onClick={() => place(selected!, s.index)}>
-                  Place{placing !== null && <Digits n={placing} size="xs" />}
-                </button>
+                <button type="button" className="sheet-place" title={describeWeights(w)} aria-label={`Place ${selected!.name} at ${s.label}`} onClick={() => place(selected!, s.index)}>Place</button>
               ) : null,
             };
           })}

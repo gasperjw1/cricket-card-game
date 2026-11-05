@@ -4,6 +4,7 @@
  * eleven's form match by match. Every figure is a sum over the kept scorecards.
  */
 
+import { useEffect, useRef, useState } from "react";
 import type { FixtureResult } from "../../../wcdraft/src/engine/tournament.ts";
 import type { Journey, JourneyMatch } from "../game/souvenir.ts";
 import type { PlayerTotals } from "../game/stats.ts";
@@ -112,8 +113,22 @@ function formClass(m: JourneyMatch): string {
  * Runs on top (* not out, – did not bat), wickets under them when he bowled.
  */
 export function FormGrid({ journeys, mine, me }: { journeys: Journey[]; mine: FixtureResult[]; me: string }) {
+  // Wider than the screen (a phone, a long run): say so, and shade the edge, only when it is.
+  const wrap = useRef<HTMLDivElement>(null);
+  const [wide, setWide] = useState(false);
+  useEffect(() => {
+    const el = wrap.current;
+    if (!el) return;
+    const check = () => setWide(el.scrollWidth > el.clientWidth + 1);
+    check();
+    const ro = new ResizeObserver(check);
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, [journeys, mine]);
   return (
-    <div className="form-wrap">
+    <>
+    {wide && <p className="small muted form-hint">Swipe sideways for every match; the names stay put.</p>}
+    <div ref={wrap} className={`form-wrap ${wide ? "more" : ""}`}>
       <table className="form-grid">
         <thead>
           <tr>
@@ -140,5 +155,6 @@ export function FormGrid({ journeys, mine, me }: { journeys: Journey[]; mine: Fi
         </tbody>
       </table>
     </div>
+    </>
   );
 }

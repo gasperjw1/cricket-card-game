@@ -55,27 +55,24 @@ export interface PoolPlayer {
   keeper: boolean;
 }
 
-export type SlotKind = "opener" | "top" | "middle" | "lower" | "tail";
-
 export interface Slot {
   index: number;
-  kind: SlotKind;
   label: string;
 }
 
-/** The lineup is eleven batting positions (decided 2026-10-27): 2 openers, 2 top, 2 middle, 3 lower, 2 tail. */
+/** The lineup is eleven batting positions (decided 2026-10-27); who may bat where is `slotRange` in rules.ts. */
 export const SLOTS: Slot[] = [
-  { index: 0, kind: "opener", label: "Opener" },
-  { index: 1, kind: "opener", label: "Opener" },
-  { index: 2, kind: "top", label: "No. 3" },
-  { index: 3, kind: "top", label: "No. 4" },
-  { index: 4, kind: "middle", label: "No. 5" },
-  { index: 5, kind: "middle", label: "No. 6" },
-  { index: 6, kind: "lower", label: "No. 7" },
-  { index: 7, kind: "lower", label: "No. 8" },
-  { index: 8, kind: "lower", label: "No. 9" },
-  { index: 9, kind: "tail", label: "No. 10" },
-  { index: 10, kind: "tail", label: "No. 11" },
+  { index: 0, label: "Opener" },
+  { index: 1, label: "Opener" },
+  { index: 2, label: "No. 3" },
+  { index: 3, label: "No. 4" },
+  { index: 4, label: "No. 5" },
+  { index: 5, label: "No. 6" },
+  { index: 6, label: "No. 7" },
+  { index: 7, label: "No. 8" },
+  { index: 8, label: "No. 9" },
+  { index: 9, label: "No. 10" },
+  { index: 10, label: "No. 11" },
 ];
 
 export interface Identity {

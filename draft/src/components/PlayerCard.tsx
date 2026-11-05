@@ -8,6 +8,7 @@
 import type { BattingStyle, StyleOut } from "../../../wcdraft/src/ratings/model.ts";
 import type { PlayerFit } from "../game/fit.ts";
 import type { PoolPlayer, VsClass } from "../game/types.ts";
+import { slotRange } from "../game/rules.ts";
 
 export function TierBadge({ tier }: { tier: string }) {
   return <span className={`tier tier-${tier.toLowerCase()}`}>{tier}</span>;
@@ -22,10 +23,21 @@ export function bowlingTypeName(code: string): string {
   return names[code] ?? code;
 }
 
-/** Colour the stronger side of a pace/spin split when the gap is worth noticing (5 points or more). */
-export function splitClass(mine: VsClass | null, other: VsClass | null): string {
-  if (!mine || !other || mine.estimated || other.estimated) return "";
-  return mine.n - other.n >= 5 ? "num-good" : other.n - mine.n >= 5 ? "num-bad" : "";
+/**
+ * A batter's lean between pace and spin, only where it stands out (2026-11-05, Yash: a tag in place
+ * of the two boxes). Across the ten pools pace minus spin runs −6 to +7 with its middle at +2, so
+ * nearly every card read a little better against pace; the tag goes to the ends of that spread, pace
+ * 5 or more above spin (43 batters) or spin 2 or more above pace (30). The engine plays the split
+ * ball by ball off each bowler's class.
+ */
+export function paceSpinLean(pace: VsClass | null, spin: VsClass | null): "pace" | "spin" | null {
+  if (!pace || !spin || pace.estimated || spin.estimated) return null;
+  const gap = pace.n - spin.n;
+  return gap >= 5 ? "pace" : gap <= -2 ? "spin" : null;
+}
+
+export function LeanTag({ lean }: { lean: "pace" | "spin" }) {
+  return <span className={`tag lean lean-${lean}`} title={`Bats better against ${lean} than most`}>Favours {lean}</span>;
 }
 
 /** What each batting style means, for tooltips and the full card. */
@@ -62,10 +74,17 @@ export function archetypeLabel(p: PoolPlayer): string {
 /** Whether the card shows the player as someone who bowls (a bowler or all-rounder, or anyone with a shown bowling number). */
 export const bowls = (p: PoolPlayer) => !!p.bowlingType && p.bowlingType !== "none" && (p.bowlShown || p.role === "bowler" || p.role === "all-rounder");
 
-/** Where he bats, from his usual number: 1–2 opener, 3 top order, 4–6 middle order, 7–8 lower order, 9–11 tailender. */
+/**
+ * Where he bats, from his usual number: 1–2 opener, 3–4 top order, 5–6 middle order, 7–8 lower order,
+ * 9–11 tailender. The same bands as the slot ranges (rules.ts `slotRange`; a No. 4 read "middle
+ * order" here until 2026-11-05 while the rules played him as top order).
+ */
 export function batPlace(p: PoolPlayer): string | null {
+  // A man who floats bats anywhere (a bowler who floats, in the tail), whatever his most common number
+  // (2026-11-05: Sharafu read "middle order" and could open).
+  if (p.positionless) return slotRange(p)[0] === 1 ? "floater" : "tailender";
   const n = p.position;
-  if (n) return n <= 2 ? "opener" : n === 3 ? "top order" : n <= 6 ? "middle order" : n <= 8 ? "lower order" : "tailender";
+  if (n) return n <= 2 ? "opener" : n <= 4 ? "top order" : n <= 6 ? "middle order" : n <= 8 ? "lower order" : "tailender";
   // A man who floats in the order has no usual number; his batting archetype says where he mostly bats.
   const byArchetype: Record<string, string> = { opener: "opener", "top order": "top order", "middle order": "middle order", finisher: "lower order", tail: "tailender" };
   return p.archetype.batting ? byArchetype[p.archetype.batting] ?? null : null;
