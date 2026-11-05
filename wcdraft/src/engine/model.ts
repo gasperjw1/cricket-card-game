@@ -193,8 +193,16 @@ export const ENGINE = {
    * out-hits the man due in 38% of powerplay entries (31% at random), 45% middle (33%) and 51% death
    * (34%), a lift of 7, 12 and 17 points. The hitter chances give the sim the same lift over its own
    * random pick (`floater-check.mts`: random 49/38/29%, always the hitter 68/58/48%). Left-right is
-   * 26–27% against 21–22% before the death and nothing after. Spin matchups showed nothing. After a collapse (3 down by over 6, 4 by 8, 5 by 10), real sides keep
-   * to the order and rarely send a hitter (`collapse-response.mts`), so the hitter pick is off.
+   * 26–27% against 21–22% before the death and nothing after. Spin matchups showed nothing.
+   * After a collapse (3 down by over 6, 4 by 8, 5 by 10) real sides rarely send a hitter
+   * (`collapse-response.mts`); what they do, about 60% of the time they move at all, is hold a
+   * finisher back: a man who usually bats lower goes in ahead of one who usually bats 6–7. So in a
+   * collapse with a finisher among the man due and the next `reach`, the first non-finisher below
+   * him goes in at `collapseHold` of the rate plus the captain's own habit (`captainHold`, his shift
+   * in that share, 4.5 points of true spread) times `holdScale`; the rest of the rate moves as
+   * usual, near and at random. `holdScale` 1.7 because not every collapse has a finisher waiting:
+   * at 1, a captain ±4.5 points moved the sim's held share from 4.3% to 7.1% / 1.8%
+   * (`floater-check.mts`); real is about 5% ± 4.5.
    * Only for a side that sets `floater` (the drafted eleven): a real eleven bats in the order it
    * really used that day, which already holds its own moves. `scale` multiplies every rate (0 = off).
    * Rates are indexed by wickets down 1–5+ (the first two rows repeat at 1 and 2 down).
@@ -208,10 +216,17 @@ export const ENGINE = {
     reach: 3,
     hitter: { pp: 0.37, mid: 0.6, death: 0.88 } as Record<"pp" | "mid" | "death", number>,
     leftRight: 0.06,
+    collapseHold: 0.6,
+    holdScale: 1.7 as number,
     scale: 1 as number,
   },
-  /** Captaincy: allocation noise × (1 − captainNoiseSlope × z), clipped to [0.4, 1.6] (z from `captaincy.json`). */
-  captainNoiseSlope: 0.3 as number,
+  /**
+   * Captaincy rating: allocation noise × (1 − captainNoiseSlope × z), clipped to [0.4, 1.6]. Off
+   * since 2026-11-05: the rating (wins above expectation) doesn't repeat from one half of a
+   * captain's matches to the other, and −2 to +2 moved nothing in the sim
+   * (docs/wc-draft-captains-2026-11-04.md). The captain's measured habit plays through the floater.
+   */
+  captainNoiseSlope: 0 as number,
   /**
    * Dispersion. The variance decomposition in `situation.json` gives per-innings scoring effects of
    * SD 0.21 (bowler) and 0.19 (batter) against each player's career mean, which also absorb

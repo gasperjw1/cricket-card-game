@@ -8,6 +8,7 @@ import { usePicksFit, useSpinFit } from "../game/fit-load.ts";
 import { SLOTS, bowlerCount, bowlersRequired, designatedKeeper, eligible, needs, slotsFor } from "../game/rules.ts";
 import { batInSlot, describeWeights, slotWeights } from "../game/slots.ts";
 import type { PoolPlayer, RunState } from "../game/types.ts";
+import type { Captaincy } from "../game/captain.ts";
 
 type Filter = "all" | "bat" | "bowl" | "keep";
 type Sort = "best" | "bat" | "bowl";
@@ -20,7 +21,7 @@ const FILTERS: [Filter, string][] = [["all", "All"], ["bat", "Batters"], ["bowl"
  * from either. Under 900px the squad and the sheet are two tabs and the card rises as a sheet.
  * Placement is always the user's choice: nothing is placed until a slot is tapped.
  */
-export function DraftScreen({ state, editions, venues, squads, onPlace, onReroll, onLineup }: { state: RunState; editions: EditionOut[]; venues: VenueOut[]; squads: SquadOut[]; onPlace: (p: PoolPlayer, slot: number) => void; onReroll: () => void; onLineup: () => void }) {
+export function DraftScreen({ state, captaincy, editions, venues, squads, onPlace, onReroll, onLineup }: { state: RunState; captaincy: Captaincy; editions: EditionOut[]; venues: VenueOut[]; squads: SquadOut[]; onPlace: (p: PoolPlayer, slot: number) => void; onReroll: () => void; onLineup: () => void }) {
   const [selected, setSelected] = useState<PoolPlayer | null>(null);
   const [tab, setTab] = useState<"squad" | "sheet">("squad");
   const [filter, setFilter] = useState<Filter>("all");
@@ -126,7 +127,7 @@ export function DraftScreen({ state, editions, venues, squads, onPlace, onReroll
             <p className="pr-note">Numbers are each man's batting and bowling in the {editionId} World Cup{state.coach ? ` under ${state.coach.coachName}` : ""}. Tap a player for his card.</p>
             <div className="pr-list">
               {listed.map((p) => (
-                <PlayerRow key={p.id} player={p} fit={fits ? fits.get(p.id) ?? null : null} selected={selected?.id === p.id} ineligible={!eligible(p, state.picks, required)} onClick={() => setSelected(selected?.id === p.id ? null : p)} />
+                <PlayerRow key={p.id} player={p} fit={fits ? fits.get(p.id) ?? null : null} captain={captaincy.matches.has(p.id)} selected={selected?.id === p.id} ineligible={!eligible(p, state.picks, required)} onClick={() => setSelected(selected?.id === p.id ? null : p)} />
               ))}
               {listed.length === 0 && <p className="small muted">Nobody in this squad fits that filter.</p>}
             </div>
@@ -148,6 +149,7 @@ export function DraftScreen({ state, editions, venues, squads, onPlace, onReroll
                 weights={weights}
                 natural={open.natural}
                 locked={selectedLocked}
+                captained={captaincy.matches.has(selected.id)}
                 onPlace={(slot) => place(selected, slot)}
                 onClose={() => setSelected(null)}
               />

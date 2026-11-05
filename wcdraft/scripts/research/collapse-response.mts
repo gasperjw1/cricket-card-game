@@ -63,7 +63,7 @@ for (const e of index) {
 const usualOf = (team: string, year: string, id: string) => { const x = usualSum.get(`${team}|${year}`)?.get(id); return x ? x[0] / x[1] : 11; };
 
 type Kind = "inOrder" | "batterAhead" | "bowlerAhead";
-interface Entry { collapse: boolean; down: number; over: number; kind: Kind; heldFinisher: boolean; firstInnings: boolean; rest: number | null; side: string; year: string; cap: string | null; coach: string | null; wc: boolean }
+interface Entry { collapse: boolean; down: number; over: number; kind: Kind; heldFinisher: boolean; finisherDue: boolean; firstInnings: boolean; rest: number | null; side: string; year: string; cap: string | null; coach: string | null; wc: boolean }
 const entries: Entry[] = [];
 
 for (const m of matches) {
@@ -90,7 +90,8 @@ for (const m of matches) {
       const heldFinisher = waiting.some((w) => w.u >= 5.5 && w.u < 7.5 && w.u < mine - 0.5);
       const at = firstSeen.get(id);
       const before = at === undefined ? null : inn.balls.slice(0, at).reduce((s, b) => s + b.runsTotal, 0);
-      entries.push({ collapse, down, over, kind, heldFinisher, firstInnings: inn.index === 0, rest: before === null ? null : inn.total - before, side: inn.team, year, cap, coach, wc: /world cup|world twenty20/i.test(m.eventName ?? "") && !/qualifier|sub regional|regional final/i.test(m.eventName ?? "") });
+      const finisherDue = earliest >= 5.5 && earliest < 7.5;
+      entries.push({ collapse, down, over, kind, heldFinisher, finisherDue, firstInnings: inn.index === 0, rest: before === null ? null : inn.total - before, side: inn.team, year, cap, coach, wc: /world cup|world twenty20/i.test(m.eventName ?? "") && !/qualifier|sub regional|regional final/i.test(m.eventName ?? "") });
     }
   }
 }
@@ -175,7 +176,11 @@ const trait = (label: string, value: (e: Entry) => number, scope: (e: Entry) => 
     const spread = Math.sqrt(Math.max(0, r)) * Math.sqrt((sd(xs) ** 2 + sd(ys) ** 2) / 2);
     return `${name}: ${ks.length} with ${half}+ rows a half, split-half r ${r.toFixed(2)}, true spread ${(spread * 100).toFixed(1)} points`;
   };
-  console.log(`\n${label} (${rs.length} rows)`);
+  // Captain alone: each half's shrunk mean, no coach term (what the pipeline can carry).
+  const alone = (hs: Row[]) => { const s = new Map<string, { s: number; n: number }>(); for (const r of hs) { const x = s.get(r.cap) ?? s.set(r.cap, { s: 0, n: 0 }).get(r.cap)!; x.s += r.value; x.n += 1; } return { m: new Map([...s].map(([k, x]) => [k, x.s / (x.n + LAMBDA)])), n: new Map([...s].map(([k, x]) => [k, x.n])) }; };
+  const [a0, a1] = halves.map(alone) as [ReturnType<typeof alone>, ReturnType<typeof alone>];
+  console.log(`\n${label} (${rs.length} rows; base rate ${(100 * mean(rs0.map((r) => r.value))).toFixed(1)}%)`);
+  console.log(`  ${report("captain alone      ", a0.m, a1.m, a0.n, a1.n)}`);
   console.log(`  ${report("captain, coach held", f0.cap, f1.cap, f0.nCap, f1.nCap)}`);
   console.log(`  ${report("coach, captain held", f0.coach, f1.coach, f0.nCoach, f1.nCoach)}`);
 };
@@ -184,3 +189,6 @@ const atThreeToFive = (e: Entry) => e.down >= 3 && e.down <= 5;
 trait("After a collapse: someone sent ahead of the usual order", (e) => (e.kind !== "inOrder" ? 1 : 0), atCollapse);
 trait("After a collapse: a finisher held back", (e) => (e.heldFinisher ? 1 : 0), atCollapse);
 trait("Any entry at 3–5 down: someone sent ahead of the usual order", (e) => (e.kind !== "inOrder" ? 1 : 0), atThreeToFive);
+// What the engine plays: after a collapse with a finisher due (the earliest still waiting usually
+// bats 6–7), does someone else go in?
+trait("After a collapse with a finisher due: someone else sent in", (e) => (e.kind !== "inOrder" ? 1 : 0), (e) => e.collapse && e.finisherDue);

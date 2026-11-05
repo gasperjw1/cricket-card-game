@@ -104,13 +104,30 @@ export function simulateInnings(batting: EngineTeam, bowling: EngineTeam, env: M
     const F = ENGINE.floater;
     const eq = equivalentOver(over, opts.overs, opts.closing);
     const ph = phaseOf(eq);
-    if (!fRng.chance(Math.min(1, F.scale * F.rate[ph][Math.min(wickets, 5) - 1]!))) return;
+    const rate = F.scale * F.rate[ph][Math.min(wickets, 5) - 1]!;
     const collapse = (wickets >= 3 && eq <= 5) || (wickets >= 4 && eq <= 7) || (wickets >= 5 && eq <= 9);
     const due = order[nextIn]!;
     const pool = order.slice(nextIn + 1, nextIn + 1 + F.reach);
+    if (collapse) {
+      // After a collapse: hold a finisher back for the end by sending the first non-finisher below
+      // him, at the captain's own rate (`collapseHold`), or move as usual at the rest of the rate.
+      const finisher = (p: EnginePlayer) => p.archetype.batting === "finisher";
+      const waiting = [due, ...pool];
+      const f = waiting.findIndex(finisher);
+      const held = f >= 0 ? waiting.slice(f + 1).find((p) => !finisher(p)) : undefined;
+      const pHold = held ? Math.max(0, Math.min(1, rate * F.collapseHold + F.scale * F.holdScale * (batting.captainHold ?? 0))) : 0;
+      const pOther = rate * (held ? 1 - F.collapseHold : 1);
+      const u = fRng.next();
+      const pick = u < pHold ? held! : u < pHold + pOther ? pool[pickNear(pool.length, fRng.next())]! : null;
+      if (!pick) return;
+      order.splice(order.indexOf(pick), 1);
+      order.splice(nextIn, 0, pick);
+      return;
+    }
+    if (!fRng.chance(Math.min(1, rate))) return;
     const otherHand = ph !== "death" && partner.hand && due.hand === partner.hand ? pool.find((p) => p.hand && p.hand !== partner.hand) : undefined;
     const r = fRng.next();
-    const pick = !collapse && r < F.hitter[ph] ? [...pool].sort((a, b) => expectedRunsOf(b.batting.death) - expectedRunsOf(a.batting.death))[0]!
+    const pick = r < F.hitter[ph] ? [...pool].sort((a, b) => expectedRunsOf(b.batting.death) - expectedRunsOf(a.batting.death))[0]!
       : otherHand && r < F.hitter[ph] + F.leftRight ? otherHand
       : pool[pickNear(pool.length, fRng.next())]!;
     order.splice(order.indexOf(pick), 1);

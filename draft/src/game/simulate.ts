@@ -36,12 +36,17 @@ export async function assembleTeam(input: SimulateInput): Promise<EngineTeam> {
     if (!player) throw new Error(`no engine player for ${p.name} (${p.team} ${p.editionId})`);
     return p === keeper ? { ...player, canBowl: false, keeper: true } : { ...player, canBowl: bowls(p), keeper: false };
   });
-  const captain = input.captainId ? shared.captains.filter((c) => c.personId === input.captainId).sort((a, b) => b.matches - a.matches)[0] : undefined;
-  // Nobody rated in the eleven still leaves somebody tossing the coin: the side's best player.
+  // A shared run from before captains were required may have none: the side's best player tosses.
   const leader = input.captainId ?? [...input.picks].sort((a, b) => Math.max(b.bat, b.bowl) - Math.max(a.bat, a.bowl))[0]?.id;
   // The drafted coach's habits beyond tempo (toss, bowling rotation, lower-order scoring) go with him (2026-11-03).
-  // The drafted order is the base; on a wicket a man may go in out of it at the real rates (2026-11-05).
-  return { name: input.identity.team, players, battingOrder: players.map((p) => p.id), intent: input.coach?.intent, coachPlay: input.coach?.play, captainZ: captain?.z, captainId: leader, floater: true };
+  // The drafted order is the base; on a wicket a man may go in out of it at the real rates, and after
+  // a collapse the captain's own habit decides how often a finisher is held back (2026-11-05).
+  return { name: input.identity.team, players, battingOrder: players.map((p) => p.id), intent: input.coach?.intent, coachPlay: input.coach?.play, captainId: leader, captainHold: holdOf(shared.captains, input.captainId), floater: true };
+}
+
+/** A captain's collapse habit, from his busiest rated tenure; 0 for a stand-in or a marked captain. */
+function holdOf(captains: CaptainOut[], id: string | null): number {
+  return (id ? captains.filter((c) => c.personId === id).sort((a, b) => b.matches - a.matches)[0]?.collapseHold : undefined) ?? 0;
 }
 
 /** What the user may change before one of the side's matches (the between-match lever, 2026-11-02). */
@@ -59,11 +64,10 @@ const TEMPO: Record<Exclude<MatchPlan["intent"], undefined | "coach">, number> =
 function planned(base: EngineTeam, input: SimulateInput, plan: MatchPlan | undefined, captains: CaptainOut[]): EngineTeam {
   if (!plan) return base;
   const captainId = plan.captainId === undefined ? input.captainId : plan.captainId;
-  const captain = captainId ? captains.filter((c) => c.personId === captainId).sort((a, b) => b.matches - a.matches)[0] : undefined;
   const intent = plan.intent && plan.intent !== "coach" ? { pp: TEMPO[plan.intent], mid: TEMPO[plan.intent], death: TEMPO[plan.intent] } : input.coach?.intent;
   // A moved order bats in that order; it must hold the same eleven, or the drafted order stands.
   const order = plan.order && plan.order.length === base.battingOrder.length && plan.order.every((id) => base.battingOrder.includes(id)) ? plan.order : base.battingOrder;
-  return { ...base, intent, captainZ: captain?.z, captainId: captainId ?? base.captainId, battingOrder: order };
+  return { ...base, intent, captainId: captainId ?? base.captainId, captainHold: captainId ? holdOf(captains, captainId) : base.captainHold, battingOrder: order };
 }
 
 /**

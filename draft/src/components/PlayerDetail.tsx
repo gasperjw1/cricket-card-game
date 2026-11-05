@@ -12,7 +12,7 @@ import { coachNote, phasesHere, type PlayerFit, type SkillFit } from "../game/fi
 import { batInSlot, describeWeights, type PhaseWeights } from "../game/slots.ts";
 import type { PoolPlayer, Slot } from "../game/types.ts";
 import { teamLabel } from "../lib/names.ts";
-import { Digits, Rating, STYLE_NOTES, TierBadge, hereNumbers, roleLine, splitClass, styleTitle } from "./PlayerCard.tsx";
+import { CaptainTag, Digits, Rating, STYLE_NOTES, TierBadge, hereNumbers, roleLine, splitClass, styleTitle } from "./PlayerCard.tsx";
 
 const signed = (n: number) => (n > 0 ? `+${n}` : n < 0 ? `−${-n}` : "0");
 const deltaClass = (n: number) => (n > 0 ? "num-good" : n < 0 ? "num-bad" : "muted");
@@ -95,8 +95,10 @@ function Skill({ label, value, card, phases: cardPhases, usage, extra, none }: {
   );
 }
 
-export function PlayerDetail({ player, fit, hereEdition, coach, slots, weights, natural, locked, onPlace, onClose }: {
+export function PlayerDetail({ player, fit, hereEdition, coach, captained, slots, weights, natural, locked, onPlace, onClose }: {
   player: PoolPlayer;
+  /** He has captained his country in T20Is (the Captain tag). */
+  captained?: boolean;
   fit: PlayerFit | null | undefined;
   hereEdition: string;
   coach: CoachOut | null;
@@ -117,7 +119,7 @@ export function PlayerDetail({ player, fit, hereEdition, coach, slots, weights, 
     <div className={`pd tier-edge-${p.tier.toLowerCase()}`}>
       <div className="pd-head">
         <div>
-          <div className="pd-name">{p.name}</div>
+          <div className="pd-name">{p.name}{captained ? <CaptainTag /> : null}</div>
           <div className="pd-sub"><TierBadge tier={p.tier} /> {teamLabel(p.team)} {p.editionId} · {roleLine(p)}{usually ? ` · ${usually}` : ""}</div>
           {p.style && p.batShown && p.role !== "bowler" && <div className="pd-sub"><span className={`tag style style-${p.style.tag.toLowerCase()}`} title={styleTitle(p.style)}>{p.style.tag}</span> {STYLE_NOTES[p.style.tag]}</div>}
         </div>

@@ -1,6 +1,7 @@
 import { useState } from "react";
-import type { CaptainOut, EditionOut } from "../../../wcdraft/src/engine/data.ts";
-import { Digits, captainLabel } from "../components/PlayerCard.tsx";
+import type { EditionOut } from "../../../wcdraft/src/engine/data.ts";
+import { Digits } from "../components/PlayerCard.tsx";
+import { captainChoices, captainFor, holdShare, type Captaincy } from "../game/captain.ts";
 import { TeamSheet } from "../components/TeamSheet.tsx";
 import { usePicksFit } from "../game/fit-load.ts";
 import { SLOTS, bowlerCount, bowlersRequired, designatedKeeper, lineupProblems, squadRating, squadRatingHere } from "../game/rules.ts";
@@ -11,15 +12,17 @@ import { BUDGET, type RunState } from "../game/types.ts";
 // let two batting positions trade places, one move a swap, from a budget shared with the moves
 // before matches; the numbers at each slot follow the man who moves. There is no way back into the
 // draft: with eleven placed it had nothing left to spin, and soft-locked.
-export function LineupScreen({ state, captains, editions, onCaptain, onSwap, onSimulate }: { state: RunState; captains: CaptainOut[]; editions: EditionOut[]; onCaptain: (id: string | null) => void; onSwap: (a: number, b: number) => void; onSimulate: (captainId: string | null) => void }) {
+export function LineupScreen({ state, captaincy, editions, onCaptain, onSwap, onSimulate }: { state: RunState; captaincy: Captaincy; editions: EditionOut[]; onCaptain: (id: string | null) => void; onSwap: (a: number, b: number) => void; onSimulate: (captainId: string | null) => void }) {
   const [moving, setMoving] = useState<number | null>(null);
   const required = bowlersRequired(state.coach);
-  const problems = lineupProblems(state.picks, required);
-  const weights = SLOTS.map((s) => slotWeights(editions, state.identity?.editionId ?? "", s.index + 1));
-  const rated = (id: string) => captains.filter((c) => c.personId === id).sort((a, b) => b.matches - a.matches)[0];
   const picks = state.picks;
-  const defaultCaptain = picks.filter(Boolean).map((p) => ({ p: p!, c: rated(p!.id) })).filter((x) => x.c).sort((a, b) => b.c!.z - a.c!.z)[0]?.p.id ?? null;
-  const captainId = state.captainId ?? defaultCaptain;
+  // The captain (2026-11-05, Yash): one of the eleven's captains, the most experienced until the
+  // user picks another; with no captain in the eleven, nobody until the user marks one.
+  const choices = captainChoices(picks, captaincy);
+  const anyCaptains = choices.some((p) => captaincy.matches.has(p.id));
+  const captainId = captainFor(picks, state.captainId, captaincy);
+  const problems = [...lineupProblems(picks, required), ...(captainId ? [] : ["No captain: nobody in the eleven has captained, so mark one"])];
+  const weights = SLOTS.map((s) => slotWeights(editions, state.identity?.editionId ?? "", s.index + 1));
   // Each man's batting number at his slot in this World Cup under the coach, as the draft showed it.
   const pickFits = usePicksFit(picks, state.identity?.editionId ?? "", state.coach, editions);
   const here = SLOTS.map((s) => {
@@ -71,19 +74,20 @@ export function LineupScreen({ state, captains, editions, onCaptain, onSwap, onS
           <span className="strip-item"><span className="rt-k">Line-up moves left</span><Digits n={state.movesLeft} /><span className="strip-of">/{BUDGET.lineupMoves}</span></span>
           <p className="small muted">{canMove ? (moving === null ? "Tap Move on a player, then Swap on another: they trade places for one move. Moves left carry into the tournament, before any match." : `Moving ${picks[moving]?.name}: tap Swap on the player to trade places with.`) : "No moves left: the order stands."}</p>
         </section>
-        <label className="lineup-box lineup-captain">
-          <span className="rt-k">Captain</span>
-          <select value={captainId ?? ""} onChange={(e) => onCaptain(e.target.value || null)}>
-            <option value="">No rated captain (average)</option>
-            {picks.filter(Boolean).map((p) => {
-              const c = rated(p!.id);
-              // The captaincy number only, short enough to show in the closed box (the matches behind it are not the player's concern).
-              return <option key={p!.id} value={p!.id}>{p!.name}{c ? ` · ${captainLabel(c.z)}` : ""}</option>;
-            })}
-          </select>
-        </label>
+        <div className="lineup-box lineup-captain">
+          <label>
+            <span className="rt-k">Captain</span>
+            <select value={captainId ?? ""} onChange={(e) => onCaptain(e.target.value || null)}>
+              {!captainId && <option value="">Mark a captain</option>}
+              {choices.map((p) => <option key={p.id} value={p.id}>{p.name}</option>)}
+            </select>
+          </label>
+          {!anyCaptains && <p className="small muted">Nobody in this eleven has captained: any of them can lead.</p>}
+          {/* What he brings, as the engine plays it: how often his side holds a finisher back after a collapse. */}
+          {captainId && <span className="strip-item"><span className="rt-k">Holds a finisher back after a collapse</span><Digits n={Math.round(100 * holdShare(captainId, captaincy))} /><span className="strip-of">%</span></span>}
+        </div>
         {problems.length > 0 && <ul className="problems">{problems.map((x) => <li key={x}>{x}</li>)}</ul>}
-        <button type="button" className="primary lineup-play" disabled={problems.length > 0} onClick={() => { if (!state.captainId && captainId) onCaptain(captainId); onSimulate(captainId); }}>Play the World Cup</button>
+        <button type="button" className="primary lineup-play" disabled={problems.length > 0} onClick={() => { if (state.captainId !== captainId) onCaptain(captainId); onSimulate(captainId); }}>Play the World Cup</button>
       </aside>
     </section>
   );

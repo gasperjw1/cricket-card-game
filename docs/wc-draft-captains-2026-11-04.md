@@ -173,7 +173,19 @@ abstracts only.
 1. **The captain rating should go.** It does not repeat in real data, and it does nothing in the
    sim. Remove the numbers from the captain pickers, and the `captainZ` noise term from the engine
    (`captainNoiseSlope` to 0). The captain stays as a name: (c) on the scorecard, who tosses.
-2. **No captain tag or requirement.** There is no skill to tag, matchups included (§2 E). A habit tag is possible, but the
+   Done 2026-11-05: `captainNoiseSlope` is 0 and the pickers no longer show the number.
+2. **No captain tag or requirement.** There is no skill to tag, matchups included (§2 E).
+   - Yash decided otherwise on 2026-11-05, with the captain carrying his measured habit, not a
+     skill. Built:
+     - A Captain tag goes on everyone who has led his country in a men's T20I, rated or stand-in
+       (`draft/src/game/captain.ts`).
+     - The eleven needs a captain. When it has captains, the user chooses among them; the default
+       is the one with the most matches as captain. With none, the user marks any player, and
+       Play waits until he does.
+     - The captain brings his collapse habit (§2 F), computed in the pipeline
+       (`analysis/captain-habits.ts`, `collapseHold` in `captaincy.json`, 83 of 138 rated
+       captains with a record). The floater plays it, with `holdScale` 1.7: a captain ±4.5
+       points gives 8.2% / 1.4% against 4.3% held, and win share doesn't move. A habit tag is possible, but the
    habits are shared with the coach (who already carries rotation tags) and are worth about a tenth
    of a run.
 3. **Captain IQ becomes the engine's decisions, for every side.** Real captains do not differ

@@ -15,7 +15,8 @@
       "winsAboveExpectation": 3.53,
       "rating": 0.1217,
       "z": 2,
-      "source": "wikipedia"
+      "source": "wikipedia",
+      "collapseHold": 0
     },
     {
       "personId": "cbabd6ad",
@@ -31,7 +32,8 @@
       "winsAboveExpectation": 6.03,
       "rating": 0.1231,
       "z": 2,
-      "source": "wikipedia"
+      "source": "wikipedia",
+      "collapseHold": -0.0086
     },
     {
       "personId": "b2e1d224",
@@ -47,7 +49,8 @@
       "winsAboveExpectation": 3.27,
       "rating": 0.1022,
       "z": 2,
-      "source": "wikipedia"
+      "source": "wikipedia",
+      "collapseHold": 0
     },
     {
       "personId": "2254ab79",
@@ -63,7 +66,8 @@
       "winsAboveExpectation": 6.1,
       "rating": 0.107,
       "z": 2,
-      "source": "wikipedia"
+      "source": "wikipedia",
+      "collapseHold": 0.0332
     },
     {
       "personId": "3ff033bb",
@@ -79,7 +83,8 @@
       "winsAboveExpectation": 6.12,
       "rating": 0.09,
       "z": 1.844,
-      "source": "wikipedia"
+      "source": "wikipedia",
+      "collapseHold": 0.0396
     },
     {
       "personId": "4ae1755b",
@@ -95,7 +100,8 @@
       "winsAboveExpectation": 3.66,
       "rating": 0.0832,
       "z": 1.71,
-      "source": "wikipedia"
+      "source": "wikipedia",
+      "collapseHold": -0.0329
     },
     {
       "personId": "740742ef",
@@ -111,7 +117,8 @@
       "winsAboveExpectation": 6.22,
       "rating": 0.0759,
       "z": 1.566,
-      "source": "wikipedia"
+      "source": "wikipedia",
+      "collapseHold": -0.0126
     },
     {
       "personId": "a386e91b",
@@ -127,7 +134,8 @@
       "winsAboveExpectation": 3.6,
       "rating": 0.072,
       "z": 1.489,
-      "source": "wikipedia"
+      "source": "wikipedia",
+      "collapseHold": -0.0047
     },
     {
       "personId": "f842c2cf",
@@ -143,7 +151,8 @@
       "winsAboveExpectation": 2.73,
       "rating": 0.0718,
       "z": 1.485,
-      "source": "wikipedia"
+      "source": "wikipedia",
+      "collapseHold": -0.0194
     },
     {
       "personId": "3d8feaf8",
@@ -159,7 +168,8 @@
       "winsAboveExpectation": 3.76,
       "rating": 0.0684,
       "z": 1.418,
-      "source": "wikipedia"
+      "source": "wikipedia",
+      "collapseHold": -0.0311
     },
     {
       "personId": "72861603",
@@ -175,7 +185,8 @@
       "winsAboveExpectation": 3.13,
       "rating": 0.0666,
       "z": 1.383,
-      "source": "wikipedia"
+      "source": "wikipedia",
+      "collapseHold": -0.0086
     },
     {
       "personId": "1dc12ab9",
@@ -191,7 +202,8 @@
       "winsAboveExpectation": 1.53,
       "rating": 0.0665,
       "z": 1.381,
-      "source": "wikipedia"
+      "source": "wikipedia",
+      "collapseHold": -0.0047
     },
     {
       "personId": "650d5e49",
@@ -207,7 +219,8 @@
       "winsAboveExpectation": 3.67,
       "rating": 0.0644,
       "z": 1.34,
-      "source": "wikipedia"
+      "source": "wikipedia",
+      "collapseHold": -0.0004
     },
     {
       "personId": "1747ea18",
@@ -223,7 +236,8 @@
       "winsAboveExpectation": 1.63,
       "rating": 0.0627,
       "z": 1.306,
-      "source": "wikipedia"
+      "source": "wikipedia",
+      "collapseHold": 0
     },
     {
       "personId": "b410bd3d",
@@ -239,7 +253,8 @@
       "winsAboveExpectation": 2.31,
       "rating": 0.0608,
       "z": 1.269,
-      "source": "wikipedia"
+      "source": "wikipedia",
+      "collapseHold": 0.0589
     },
     {
       "personId": "7eae4418",
@@ -255,7 +270,8 @@
       "winsAboveExpectation": 1.7,
       "rating": 0.0607,
       "z": 1.267,
-      "source": "wikipedia"
+      "source": "wikipedia",
+      "collapseHold": 0
     },
     {
       "personId": "0b60eb09",
@@ -271,7 +287,8 @@
       "winsAboveExpectation": 1.81,
       "rating": 0.0603,
       "z": 1.259,
-      "source": "wikipedia"
+      "source": "wikipedia",
+      "collapseHold": -0.013
     },
     {
       "personId": "a97c8ec2",
@@ -287,7 +304,8 @@
       "winsAboveExpectation": 1.81,
       "rating": 0.0603,
       "z": 1.259,
-      "source": "wikipedia"
+      "source": "wikipedia",
+      "collapseHold": -0.01
     },
     {
       "personId": "6b75c2b1",
@@ -303,7 +321,8 @@
       "winsAboveExpectation": 2.25,
       "rating": 0.0577,
       "z": 1.207,
-      "source": "wikipedia"
+      "source": "wikipedia",
+      "collapseHold": 0.0235
     },
     {
       "personId": "c03c6200",
@@ -319,7 +338,8 @@
       "winsAboveExpectation": 3.79,
       "rating": 0.0566,
       "z": 1.186,
-      "source": "wikipedia"
+      "source": "wikipedia",
+      "collapseHold": -0.0093
     },
     {
       "personId": "7c503806",
@@ -335,7 +355,8 @@
       "winsAboveExpectation": 1.65,
       "rating": 0.0532,
       "z": 1.119,
-      "source": "wikipedia"
+      "source": "wikipedia",
+      "collapseHold": 0
     },
     {
       "personId": "0404d43c",
@@ -351,7 +372,8 @@
       "winsAboveExpectation": 2.68,
       "rating": 0.0525,
       "z": 1.105,
-      "source": "wikipedia"
+      "source": "wikipedia",
+      "collapseHold": 0.0055
     },
     {
       "personId": "d18f9182",
@@ -367,7 +389,8 @@
       "winsAboveExpectation": 1.92,
       "rating": 0.0492,
       "z": 1.04,
-      "source": "wikipedia"
+      "source": "wikipedia",
+      "collapseHold": -0.0021
     },
     {
       "personId": "7fca84b7",
@@ -383,7 +406,8 @@
       "winsAboveExpectation": 1.28,
       "rating": 0.0492,
       "z": 1.04,
-      "source": "wikipedia"
+      "source": "wikipedia",
+      "collapseHold": -0.0051
     },
     {
       "personId": "91052c96",
@@ -399,7 +423,8 @@
       "winsAboveExpectation": 2.62,
       "rating": 0.046,
       "z": 0.977,
-      "source": "wikipedia"
+      "source": "wikipedia",
+      "collapseHold": 0.0847
     },
     {
       "personId": "271f83cd",
@@ -415,7 +440,8 @@
       "winsAboveExpectation": 3.29,
       "rating": 0.0457,
       "z": 0.971,
-      "source": "wikipedia"
+      "source": "wikipedia",
+      "collapseHold": 0.1903
     },
     {
       "personId": "989889ff",
@@ -431,7 +457,8 @@
       "winsAboveExpectation": 1.04,
       "rating": 0.0452,
       "z": 0.961,
-      "source": "wikipedia"
+      "source": "wikipedia",
+      "collapseHold": -0.0069
     },
     {
       "personId": "d2a6c0e6",
@@ -447,7 +474,8 @@
       "winsAboveExpectation": 4.09,
       "rating": 0.0445,
       "z": 0.947,
-      "source": "wikipedia"
+      "source": "wikipedia",
+      "collapseHold": -0.0312
     },
     {
       "personId": "3c55c703",
@@ -463,7 +491,8 @@
       "winsAboveExpectation": 0.96,
       "rating": 0.0436,
       "z": 0.929,
-      "source": "wikipedia"
+      "source": "wikipedia",
+      "collapseHold": 0
     },
     {
       "personId": "c96311d4",
@@ -479,7 +508,8 @@
       "winsAboveExpectation": 2.46,
       "rating": 0.0424,
       "z": 0.906,
-      "source": "wikipedia"
+      "source": "wikipedia",
+      "collapseHold": -0.0199
     },
     {
       "personId": "3355b542",
@@ -495,7 +525,8 @@
       "winsAboveExpectation": 2.25,
       "rating": 0.0395,
       "z": 0.848,
-      "source": "wikipedia"
+      "source": "wikipedia",
+      "collapseHold": -0.0219
     },
     {
       "personId": "7c681ee9",
@@ -511,7 +542,8 @@
       "winsAboveExpectation": 1.02,
       "rating": 0.0392,
       "z": 0.843,
-      "source": "wikipedia"
+      "source": "wikipedia",
+      "collapseHold": 0
     },
     {
       "personId": "d67d5f00",
@@ -527,7 +559,8 @@
       "winsAboveExpectation": 0.79,
       "rating": 0.0304,
       "z": 0.669,
-      "source": "wikipedia"
+      "source": "wikipedia",
+      "collapseHold": 0
     },
     {
       "personId": "6b71e6cf",
@@ -543,7 +576,8 @@
       "winsAboveExpectation": 1.27,
       "rating": 0.0302,
       "z": 0.665,
-      "source": "wikipedia"
+      "source": "wikipedia",
+      "collapseHold": -0.0158
     },
     {
       "personId": "64c34cd0",
@@ -559,7 +593,8 @@
       "winsAboveExpectation": 1.19,
       "rating": 0.0297,
       "z": 0.655,
-      "source": "wikipedia"
+      "source": "wikipedia",
+      "collapseHold": 0
     },
     {
       "personId": "f28a60e0",
@@ -575,7 +610,8 @@
       "winsAboveExpectation": 1.15,
       "rating": 0.0295,
       "z": 0.651,
-      "source": "wikipedia"
+      "source": "wikipedia",
+      "collapseHold": -0.0054
     },
     {
       "personId": "462411b3",
@@ -591,7 +627,8 @@
       "winsAboveExpectation": 0.62,
       "rating": 0.0282,
       "z": 0.626,
-      "source": "wikipedia"
+      "source": "wikipedia",
+      "collapseHold": 0
     },
     {
       "personId": "3feda4fa",
@@ -607,7 +644,8 @@
       "winsAboveExpectation": 0.64,
       "rating": 0.0278,
       "z": 0.618,
-      "source": "wikipedia"
+      "source": "wikipedia",
+      "collapseHold": 0
     },
     {
       "personId": "13c35c9e",
@@ -623,7 +661,8 @@
       "winsAboveExpectation": 1.34,
       "rating": 0.0273,
       "z": 0.608,
-      "source": "wikipedia"
+      "source": "wikipedia",
+      "collapseHold": 0
     },
     {
       "personId": "7dc35884",
@@ -639,7 +678,8 @@
       "winsAboveExpectation": 1.58,
       "rating": 0.0268,
       "z": 0.598,
-      "source": "wikipedia"
+      "source": "wikipedia",
+      "collapseHold": -0.0148
     },
     {
       "personId": "eade4650",
@@ -655,7 +695,8 @@
       "winsAboveExpectation": 0.53,
       "rating": 0.0252,
       "z": 0.566,
-      "source": "wikipedia"
+      "source": "wikipedia",
+      "collapseHold": 0
     },
     {
       "personId": "9ffd1ac1",
@@ -671,7 +712,8 @@
       "winsAboveExpectation": 1.08,
       "rating": 0.024,
       "z": 0.543,
-      "source": "wikipedia"
+      "source": "wikipedia",
+      "collapseHold": -0.0202
     },
     {
       "personId": "8ba8195d",
@@ -687,7 +729,8 @@
       "winsAboveExpectation": 0.48,
       "rating": 0.0229,
       "z": 0.521,
-      "source": "wikipedia"
+      "source": "wikipedia",
+      "collapseHold": 0
     },
     {
       "personId": "7ed9fd56",
@@ -703,7 +746,8 @@
       "winsAboveExpectation": 0.56,
       "rating": 0.0215,
       "z": 0.493,
-      "source": "wikipedia"
+      "source": "wikipedia",
+      "collapseHold": -0.0475
     },
     {
       "personId": "9ab63e7b",
@@ -719,7 +763,8 @@
       "winsAboveExpectation": 1.05,
       "rating": 0.0214,
       "z": 0.491,
-      "source": "wikipedia"
+      "source": "wikipedia",
+      "collapseHold": -0.0158
     },
     {
       "personId": "cd56a813",
@@ -735,7 +780,8 @@
       "winsAboveExpectation": 0.45,
       "rating": 0.018,
       "z": 0.424,
-      "source": "wikipedia"
+      "source": "wikipedia",
+      "collapseHold": -0.0056
     },
     {
       "personId": "b17e2f24",
@@ -751,7 +797,8 @@
       "winsAboveExpectation": 0.3,
       "rating": 0.0143,
       "z": 0.351,
-      "source": "wikipedia"
+      "source": "wikipedia",
+      "collapseHold": 0
     },
     {
       "personId": "e186f49c",
@@ -767,7 +814,8 @@
       "winsAboveExpectation": 0.68,
       "rating": 0.0142,
       "z": 0.349,
-      "source": "wikipedia"
+      "source": "wikipedia",
+      "collapseHold": -0.0532
     },
     {
       "personId": "3979b5e0",
@@ -783,7 +831,8 @@
       "winsAboveExpectation": 0.28,
       "rating": 0.0127,
       "z": 0.32,
-      "source": "wikipedia"
+      "source": "wikipedia",
+      "collapseHold": -0.0161
     },
     {
       "personId": "221ad9d9",
@@ -799,7 +848,8 @@
       "winsAboveExpectation": 0.29,
       "rating": 0.0126,
       "z": 0.318,
-      "source": "wikipedia"
+      "source": "wikipedia",
+      "collapseHold": 0
     },
     {
       "personId": "b59db04f",
@@ -815,7 +865,8 @@
       "winsAboveExpectation": 0.85,
       "rating": 0.0121,
       "z": 0.308,
-      "source": "wikipedia"
+      "source": "wikipedia",
+      "collapseHold": -0.0017
     },
     {
       "personId": "1fc6ef83",
@@ -831,7 +882,8 @@
       "winsAboveExpectation": 0.48,
       "rating": 0.0086,
       "z": 0.239,
-      "source": "wikipedia"
+      "source": "wikipedia",
+      "collapseHold": -0.0381
     },
     {
       "personId": "4a8a2e3b",
@@ -847,7 +899,8 @@
       "winsAboveExpectation": 0.77,
       "rating": 0.0084,
       "z": 0.235,
-      "source": "wikipedia"
+      "source": "wikipedia",
+      "collapseHold": -0.0354
     },
     {
       "personId": "5056011d",
@@ -863,7 +916,8 @@
       "winsAboveExpectation": 0.35,
       "rating": 0.0073,
       "z": 0.213,
-      "source": "wikipedia"
+      "source": "wikipedia",
+      "collapseHold": -0.0197
     },
     {
       "personId": "cf494ffe",
@@ -879,7 +933,8 @@
       "winsAboveExpectation": 0.45,
       "rating": 0.0066,
       "z": 0.2,
-      "source": "wikipedia"
+      "source": "wikipedia",
+      "collapseHold": -0.0223
     },
     {
       "personId": "33cb3411",
@@ -895,7 +950,8 @@
       "winsAboveExpectation": 0.17,
       "rating": 0.0061,
       "z": 0.19,
-      "source": "wikipedia"
+      "source": "wikipedia",
+      "collapseHold": 0
     },
     {
       "personId": "7fb32e5b",
@@ -911,7 +967,8 @@
       "winsAboveExpectation": 0.13,
       "rating": 0.0059,
       "z": 0.186,
-      "source": "wikipedia"
+      "source": "wikipedia",
+      "collapseHold": 0
     },
     {
       "personId": "30a45b23",
@@ -927,7 +984,8 @@
       "winsAboveExpectation": 0.12,
       "rating": 0.0043,
       "z": 0.154,
-      "source": "wikipedia"
+      "source": "wikipedia",
+      "collapseHold": 0
     },
     {
       "personId": "87e562a9",
@@ -943,7 +1001,8 @@
       "winsAboveExpectation": 0.08,
       "rating": 0.0031,
       "z": 0.131,
-      "source": "wikipedia"
+      "source": "wikipedia",
+      "collapseHold": 0
     },
     {
       "personId": "6a26221c",
@@ -959,7 +1018,8 @@
       "winsAboveExpectation": 0.07,
       "rating": 0.0011,
       "z": 0.091,
-      "source": "wikipedia"
+      "source": "wikipedia",
+      "collapseHold": -0.0025
     },
     {
       "personId": "26d041c4",
@@ -975,7 +1035,8 @@
       "winsAboveExpectation": 0.07,
       "rating": 0.0011,
       "z": 0.091,
-      "source": "wikipedia"
+      "source": "wikipedia",
+      "collapseHold": -0.0542
     },
     {
       "personId": "2b6e6dec",
@@ -991,7 +1052,8 @@
       "winsAboveExpectation": 0.01,
       "rating": 0.0005,
       "z": 0.079,
-      "source": "wikipedia"
+      "source": "wikipedia",
+      "collapseHold": 0
     },
     {
       "personId": "1aba45cd",
@@ -1007,7 +1069,8 @@
       "winsAboveExpectation": 0,
       "rating": 0,
       "z": 0.069,
-      "source": "wikipedia"
+      "source": "wikipedia",
+      "collapseHold": -0.0094
     },
     {
       "personId": "bf1d7d3e",
@@ -1023,7 +1086,8 @@
       "winsAboveExpectation": -0.07,
       "rating": -0.0011,
       "z": 0.048,
-      "source": "wikipedia"
+      "source": "wikipedia",
+      "collapseHold": -0.0396
     },
     {
       "personId": "b0c772ee",
@@ -1039,7 +1103,8 @@
       "winsAboveExpectation": -0.03,
       "rating": -0.0014,
       "z": 0.042,
-      "source": "wikipedia"
+      "source": "wikipedia",
+      "collapseHold": 0
     },
     {
       "personId": "1a3cc554",
@@ -1055,7 +1120,8 @@
       "winsAboveExpectation": -0.17,
       "rating": -0.0022,
       "z": 0.026,
-      "source": "wikipedia"
+      "source": "wikipedia",
+      "collapseHold": 0.0053
     },
     {
       "personId": "3d284ca3",
@@ -1071,7 +1137,8 @@
       "winsAboveExpectation": -0.09,
       "rating": -0.0041,
       "z": -0.011,
-      "source": "wikipedia"
+      "source": "wikipedia",
+      "collapseHold": -0.0027
     },
     {
       "personId": "b8d490fd",
@@ -1087,7 +1154,8 @@
       "winsAboveExpectation": -0.42,
       "rating": -0.0044,
       "z": -0.017,
-      "source": "wikipedia"
+      "source": "wikipedia",
+      "collapseHold": -0.0295
     },
     {
       "personId": "e4a0deae",
@@ -1103,7 +1171,8 @@
       "winsAboveExpectation": -0.43,
       "rating": -0.0057,
       "z": -0.043,
-      "source": "wikipedia"
+      "source": "wikipedia",
+      "collapseHold": -0.0051
     },
     {
       "personId": "2e8994e7",
@@ -1119,7 +1188,8 @@
       "winsAboveExpectation": -0.2,
       "rating": -0.0065,
       "z": -0.059,
-      "source": "wikipedia"
+      "source": "wikipedia",
+      "collapseHold": -0.005
     },
     {
       "personId": "d7c6af50",
@@ -1135,7 +1205,8 @@
       "winsAboveExpectation": -0.33,
       "rating": -0.0069,
       "z": -0.067,
-      "source": "wikipedia"
+      "source": "wikipedia",
+      "collapseHold": 0.065
     },
     {
       "personId": "e798611a",
@@ -1151,7 +1222,8 @@
       "winsAboveExpectation": -0.16,
       "rating": -0.0073,
       "z": -0.075,
-      "source": "wikipedia"
+      "source": "wikipedia",
+      "collapseHold": 0
     },
     {
       "personId": "d027ba9f",
@@ -1167,7 +1239,8 @@
       "winsAboveExpectation": -0.76,
       "rating": -0.008,
       "z": -0.088,
-      "source": "wikipedia"
+      "source": "wikipedia",
+      "collapseHold": 0.1204
     },
     {
       "personId": "4d7f517e",
@@ -1183,7 +1256,8 @@
       "winsAboveExpectation": -0.19,
       "rating": -0.0083,
       "z": -0.094,
-      "source": "wikipedia"
+      "source": "wikipedia",
+      "collapseHold": 0
     },
     {
       "personId": "b8a55852",
@@ -1199,7 +1273,8 @@
       "winsAboveExpectation": -0.52,
       "rating": -0.0108,
       "z": -0.144,
-      "source": "wikipedia"
+      "source": "wikipedia",
+      "collapseHold": -0.0105
     },
     {
       "personId": "1274d7ab",
@@ -1215,7 +1290,8 @@
       "winsAboveExpectation": -0.54,
       "rating": -0.0123,
       "z": -0.173,
-      "source": "wikipedia"
+      "source": "wikipedia",
+      "collapseHold": -0.0175
     },
     {
       "personId": "29e95537",
@@ -1231,7 +1307,8 @@
       "winsAboveExpectation": -0.28,
       "rating": -0.0127,
       "z": -0.181,
-      "source": "wikipedia"
+      "source": "wikipedia",
+      "collapseHold": -0.0323
     },
     {
       "personId": "8dd02a98",
@@ -1247,7 +1324,8 @@
       "winsAboveExpectation": -0.61,
       "rating": -0.0133,
       "z": -0.193,
-      "source": "wikipedia"
+      "source": "wikipedia",
+      "collapseHold": 0.0384
     },
     {
       "personId": "3241e3fd",
@@ -1263,7 +1341,8 @@
       "winsAboveExpectation": -0.58,
       "rating": -0.0135,
       "z": -0.197,
-      "source": "wikipedia"
+      "source": "wikipedia",
+      "collapseHold": 0.0014
     },
     {
       "personId": "a94e08ea",
@@ -1279,7 +1358,8 @@
       "winsAboveExpectation": -0.62,
       "rating": -0.0144,
       "z": -0.215,
-      "source": "wikipedia"
+      "source": "wikipedia",
+      "collapseHold": -0.0027
     },
     {
       "personId": "8919756f",
@@ -1295,7 +1375,8 @@
       "winsAboveExpectation": -0.36,
       "rating": -0.0171,
       "z": -0.268,
-      "source": "wikipedia"
+      "source": "wikipedia",
+      "collapseHold": 0
     },
     {
       "personId": "b61a3e1a",
@@ -1311,7 +1392,8 @@
       "winsAboveExpectation": -0.57,
       "rating": -0.0173,
       "z": -0.272,
-      "source": "wikipedia"
+      "source": "wikipedia",
+      "collapseHold": -0.0172
     },
     {
       "personId": "d1523761",
@@ -1327,7 +1409,8 @@
       "winsAboveExpectation": -0.44,
       "rating": -0.0191,
       "z": -0.307,
-      "source": "wikipedia"
+      "source": "wikipedia",
+      "collapseHold": 0
     },
     {
       "personId": "6ef13460",
@@ -1343,7 +1426,8 @@
       "winsAboveExpectation": -1.38,
       "rating": -0.0192,
       "z": -0.309,
-      "source": "wikipedia"
+      "source": "wikipedia",
+      "collapseHold": 0.0567
     },
     {
       "personId": "05de1a5a",
@@ -1359,7 +1443,8 @@
       "winsAboveExpectation": -0.93,
       "rating": -0.0202,
       "z": -0.329,
-      "source": "wikipedia"
+      "source": "wikipedia",
+      "collapseHold": -0.0128
     },
     {
       "personId": "99b75528",
@@ -1375,7 +1460,8 @@
       "winsAboveExpectation": -1.5,
       "rating": -0.0211,
       "z": -0.347,
-      "source": "wikipedia"
+      "source": "wikipedia",
+      "collapseHold": -0.0149
     },
     {
       "personId": "4329fbb5",
@@ -1391,7 +1477,8 @@
       "winsAboveExpectation": -0.48,
       "rating": -0.0229,
       "z": -0.382,
-      "source": "wikipedia"
+      "source": "wikipedia",
+      "collapseHold": 0
     },
     {
       "personId": "881a9bdd",
@@ -1407,7 +1494,8 @@
       "winsAboveExpectation": -0.5,
       "rating": -0.0238,
       "z": -0.4,
-      "source": "wikipedia"
+      "source": "wikipedia",
+      "collapseHold": 0
     },
     {
       "personId": "5bdcdb72",
@@ -1423,7 +1511,8 @@
       "winsAboveExpectation": -0.6,
       "rating": -0.024,
       "z": -0.404,
-      "source": "wikipedia"
+      "source": "wikipedia",
+      "collapseHold": 0
     },
     {
       "personId": "88fccd6c",
@@ -1439,7 +1528,8 @@
       "winsAboveExpectation": -0.51,
       "rating": -0.0243,
       "z": -0.41,
-      "source": "wikipedia"
+      "source": "wikipedia",
+      "collapseHold": 0
     },
     {
       "personId": "b08252b8",
@@ -1455,7 +1545,8 @@
       "winsAboveExpectation": -0.53,
       "rating": -0.0252,
       "z": -0.428,
-      "source": "wikipedia"
+      "source": "wikipedia",
+      "collapseHold": 0
     },
     {
       "personId": "12c3ba4d",
@@ -1471,7 +1562,8 @@
       "winsAboveExpectation": -1.24,
       "rating": -0.0264,
       "z": -0.451,
-      "source": "wikipedia"
+      "source": "wikipedia",
+      "collapseHold": 0.1249
     },
     {
       "personId": "d0513f63",
@@ -1487,7 +1579,8 @@
       "winsAboveExpectation": -0.71,
       "rating": -0.0273,
       "z": -0.469,
-      "source": "wikipedia"
+      "source": "wikipedia",
+      "collapseHold": 0
     },
     {
       "personId": "49b6c09f",
@@ -1503,7 +1596,8 @@
       "winsAboveExpectation": -0.59,
       "rating": -0.0281,
       "z": -0.485,
-      "source": "wikipedia"
+      "source": "wikipedia",
+      "collapseHold": 0
     },
     {
       "personId": "9f0270e0",
@@ -1519,7 +1613,8 @@
       "winsAboveExpectation": -0.71,
       "rating": -0.0284,
       "z": -0.491,
-      "source": "wikipedia"
+      "source": "wikipedia",
+      "collapseHold": 0
     },
     {
       "personId": "abbdca1a",
@@ -1535,7 +1630,8 @@
       "winsAboveExpectation": -1.66,
       "rating": -0.0286,
       "z": -0.495,
-      "source": "wikipedia"
+      "source": "wikipedia",
+      "collapseHold": -0.0255
     },
     {
       "personId": "235c2bb6",
@@ -1551,7 +1647,8 @@
       "winsAboveExpectation": -0.84,
       "rating": -0.029,
       "z": -0.503,
-      "source": "wikipedia"
+      "source": "wikipedia",
+      "collapseHold": -0.013
     },
     {
       "personId": "ec02b798",
@@ -1567,7 +1664,8 @@
       "winsAboveExpectation": -2.22,
       "rating": -0.0292,
       "z": -0.506,
-      "source": "wikipedia"
+      "source": "wikipedia",
+      "collapseHold": 0.1104
     },
     {
       "personId": "a757b0d8",
@@ -1583,7 +1681,8 @@
       "winsAboveExpectation": -1.72,
       "rating": -0.0292,
       "z": -0.506,
-      "source": "wikipedia"
+      "source": "wikipedia",
+      "collapseHold": 0
     },
     {
       "personId": "12b610c2",
@@ -1599,7 +1698,8 @@
       "winsAboveExpectation": -0.65,
       "rating": -0.031,
       "z": -0.542,
-      "source": "wikipedia"
+      "source": "wikipedia",
+      "collapseHold": 0
     },
     {
       "personId": "8a75e999",
@@ -1615,7 +1715,8 @@
       "winsAboveExpectation": -3.25,
       "rating": -0.031,
       "z": -0.542,
-      "source": "wikipedia"
+      "source": "wikipedia",
+      "collapseHold": -0.0133
     },
     {
       "personId": "dbe50b21",
@@ -1631,7 +1732,8 @@
       "winsAboveExpectation": -1.12,
       "rating": -0.0311,
       "z": -0.544,
-      "source": "wikipedia"
+      "source": "wikipedia",
+      "collapseHold": -0.0087
     },
     {
       "personId": "dce2019b",
@@ -1647,7 +1749,8 @@
       "winsAboveExpectation": -0.78,
       "rating": -0.0339,
       "z": -0.599,
-      "source": "wikipedia"
+      "source": "wikipedia",
+      "collapseHold": -0.0266
     },
     {
       "personId": "f32dbc84",
@@ -1663,7 +1766,8 @@
       "winsAboveExpectation": -0.81,
       "rating": -0.0352,
       "z": -0.625,
-      "source": "wikipedia"
+      "source": "wikipedia",
+      "collapseHold": 0
     },
     {
       "personId": "896d78ad",
@@ -1679,7 +1783,8 @@
       "winsAboveExpectation": -1.31,
       "rating": -0.0364,
       "z": -0.648,
-      "source": "wikipedia"
+      "source": "wikipedia",
+      "collapseHold": 0
     },
     {
       "personId": "0a476045",
@@ -1695,7 +1800,8 @@
       "winsAboveExpectation": -0.92,
       "rating": -0.04,
       "z": -0.719,
-      "source": "wikipedia"
+      "source": "wikipedia",
+      "collapseHold": -0.013
     },
     {
       "personId": "0f721006",
@@ -1711,7 +1817,8 @@
       "winsAboveExpectation": -0.94,
       "rating": -0.0409,
       "z": -0.737,
-      "source": "wikipedia"
+      "source": "wikipedia",
+      "collapseHold": 0
     },
     {
       "personId": "9219eff0",
@@ -1727,7 +1834,8 @@
       "winsAboveExpectation": -0.93,
       "rating": -0.0423,
       "z": -0.765,
-      "source": "wikipedia"
+      "source": "wikipedia",
+      "collapseHold": 0
     },
     {
       "personId": "2f0d7e4a",
@@ -1743,7 +1851,8 @@
       "winsAboveExpectation": -0.93,
       "rating": -0.0423,
       "z": -0.765,
-      "source": "wikipedia"
+      "source": "wikipedia",
+      "collapseHold": 0
     },
     {
       "personId": "ba607b88",
@@ -1759,7 +1868,8 @@
       "winsAboveExpectation": -3,
       "rating": -0.0429,
       "z": -0.777,
-      "source": "wikipedia"
+      "source": "wikipedia",
+      "collapseHold": -0.0347
     },
     {
       "personId": "7d415ea5",
@@ -1775,7 +1885,8 @@
       "winsAboveExpectation": -1.61,
       "rating": -0.0435,
       "z": -0.788,
-      "source": "wikipedia"
+      "source": "wikipedia",
+      "collapseHold": 0
     },
     {
       "personId": "732c038e",
@@ -1791,7 +1902,8 @@
       "winsAboveExpectation": -1.1,
       "rating": -0.044,
       "z": -0.798,
-      "source": "wikipedia"
+      "source": "wikipedia",
+      "collapseHold": 0
     },
     {
       "personId": "f21043a5",
@@ -1807,7 +1919,8 @@
       "winsAboveExpectation": -1.02,
       "rating": -0.0443,
       "z": -0.804,
-      "source": "wikipedia"
+      "source": "wikipedia",
+      "collapseHold": 0
     },
     {
       "personId": "36d33dd0",
@@ -1823,7 +1936,8 @@
       "winsAboveExpectation": -0.98,
       "rating": -0.0445,
       "z": -0.808,
-      "source": "wikipedia"
+      "source": "wikipedia",
+      "collapseHold": 0
     },
     {
       "personId": "a75a78eb",
@@ -1839,7 +1953,8 @@
       "winsAboveExpectation": -1.12,
       "rating": -0.0509,
       "z": -0.934,
-      "source": "wikipedia"
+      "source": "wikipedia",
+      "collapseHold": 0
     },
     {
       "personId": "9de271ef",
@@ -1855,7 +1970,8 @@
       "winsAboveExpectation": -1.74,
       "rating": -0.058,
       "z": -1.074,
-      "source": "wikipedia"
+      "source": "wikipedia",
+      "collapseHold": 0
     },
     {
       "personId": "c4487b84",
@@ -1871,7 +1987,8 @@
       "winsAboveExpectation": -2.26,
       "rating": -0.0595,
       "z": -1.104,
-      "source": "wikipedia"
+      "source": "wikipedia",
+      "collapseHold": -0.0021
     },
     {
       "personId": "919a3be2",
@@ -1887,7 +2004,8 @@
       "winsAboveExpectation": -1.49,
       "rating": -0.0596,
       "z": -1.106,
-      "source": "wikipedia"
+      "source": "wikipedia",
+      "collapseHold": 0
     },
     {
       "personId": "9948e262",
@@ -1903,7 +2021,8 @@
       "winsAboveExpectation": -1.69,
       "rating": -0.0604,
       "z": -1.122,
-      "source": "wikipedia"
+      "source": "wikipedia",
+      "collapseHold": -0.0162
     },
     {
       "personId": "db584dad",
@@ -1919,7 +2038,8 @@
       "winsAboveExpectation": -2.24,
       "rating": -0.0605,
       "z": -1.124,
-      "source": "wikipedia"
+      "source": "wikipedia",
+      "collapseHold": -0.0172
     },
     {
       "personId": "e3540b8c",
@@ -1935,7 +2055,8 @@
       "winsAboveExpectation": -1.47,
       "rating": -0.0612,
       "z": -1.138,
-      "source": "wikipedia"
+      "source": "wikipedia",
+      "collapseHold": -0.013
     },
     {
       "personId": "bb351c23",
@@ -1951,7 +2072,8 @@
       "winsAboveExpectation": -1.97,
       "rating": -0.0616,
       "z": -1.145,
-      "source": "wikipedia"
+      "source": "wikipedia",
+      "collapseHold": -0.0054
     },
     {
       "personId": "45a7e761",
@@ -1967,7 +2089,8 @@
       "winsAboveExpectation": -1.55,
       "rating": -0.062,
       "z": -1.153,
-      "source": "wikipedia"
+      "source": "wikipedia",
+      "collapseHold": 0
     },
     {
       "personId": "e342e5fb",
@@ -1983,7 +2106,8 @@
       "winsAboveExpectation": -3.16,
       "rating": -0.0632,
       "z": -1.177,
-      "source": "wikipedia"
+      "source": "wikipedia",
+      "collapseHold": 0.0308
     },
     {
       "personId": "31fbf891",
@@ -1999,7 +2123,8 @@
       "winsAboveExpectation": -2.68,
       "rating": -0.0687,
       "z": -1.285,
-      "source": "wikipedia"
+      "source": "wikipedia",
+      "collapseHold": -0.0146
     },
     {
       "personId": "9de62878",
@@ -2015,7 +2140,8 @@
       "winsAboveExpectation": -1.79,
       "rating": -0.0688,
       "z": -1.287,
-      "source": "wikipedia"
+      "source": "wikipedia",
+      "collapseHold": 0
     },
     {
       "personId": "53597be1",
@@ -2031,7 +2157,8 @@
       "winsAboveExpectation": -2.63,
       "rating": -0.0692,
       "z": -1.295,
-      "source": "wikipedia"
+      "source": "wikipedia",
+      "collapseHold": 0
     },
     {
       "personId": "eba6a852",
@@ -2047,7 +2174,8 @@
       "winsAboveExpectation": -3.27,
       "rating": -0.0696,
       "z": -1.303,
-      "source": "wikipedia"
+      "source": "wikipedia",
+      "collapseHold": -0.0262
     },
     {
       "personId": "372455c4",
@@ -2063,7 +2191,8 @@
       "winsAboveExpectation": -2.32,
       "rating": -0.0748,
       "z": -1.406,
-      "source": "wikipedia"
+      "source": "wikipedia",
+      "collapseHold": 0
     },
     {
       "personId": "afe57f7a",
@@ -2079,7 +2208,8 @@
       "winsAboveExpectation": -2.43,
       "rating": -0.0759,
       "z": -1.427,
-      "source": "wikipedia"
+      "source": "wikipedia",
+      "collapseHold": -0.0011
     },
     {
       "personId": "0dc00542",
@@ -2095,7 +2225,8 @@
       "winsAboveExpectation": -5.15,
       "rating": -0.0817,
       "z": -1.542,
-      "source": "wikipedia"
+      "source": "wikipedia",
+      "collapseHold": -0.065
     },
     {
       "personId": "a12e1d51",
@@ -2111,7 +2242,8 @@
       "winsAboveExpectation": -4.15,
       "rating": -0.0943,
       "z": -1.79,
-      "source": "wikipedia"
+      "source": "wikipedia",
+      "collapseHold": -0.0121
     },
     {
       "personId": "afa7e784",
@@ -2127,7 +2259,8 @@
       "winsAboveExpectation": -3.15,
       "rating": -0.0955,
       "z": -1.814,
-      "source": "wikipedia"
+      "source": "wikipedia",
+      "collapseHold": -0.0133
     },
     {
       "personId": "243431b5",
@@ -2143,7 +2276,8 @@
       "winsAboveExpectation": -2.37,
       "rating": -0.0988,
       "z": -1.879,
-      "source": "wikipedia"
+      "source": "wikipedia",
+      "collapseHold": 0
     },
     {
       "personId": "2bb09eb2",
@@ -2159,7 +2293,8 @@
       "winsAboveExpectation": -3.34,
       "rating": -0.1077,
       "z": -2,
-      "source": "wikipedia"
+      "source": "wikipedia",
+      "collapseHold": 0
     },
     {
       "personId": "2f26ac1a",
@@ -2175,7 +2310,8 @@
       "winsAboveExpectation": -2.58,
       "rating": -0.1075,
       "z": -2,
-      "source": "wikipedia"
+      "source": "wikipedia",
+      "collapseHold": 0
     },
     {
       "personId": "0f12f9df",
@@ -2191,7 +2327,8 @@
       "winsAboveExpectation": -3.9,
       "rating": -0.1345,
       "z": -2,
-      "source": "wikipedia"
+      "source": "wikipedia",
+      "collapseHold": -0.0126
     },
     {
       "personId": "d2babdd5",
@@ -2207,7 +2344,8 @@
       "winsAboveExpectation": -4.91,
       "rating": -0.1292,
       "z": -2,
-      "source": "wikipedia"
+      "source": "wikipedia",
+      "collapseHold": -0.0227
     }
   ],
   "leaders": [

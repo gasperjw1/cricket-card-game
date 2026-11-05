@@ -76,6 +76,8 @@ export interface EngineTeam {
   captainId?: string;
   /** Sends a man in out of the order on a wicket at the real rates (`ENGINE.floater`); the drafted eleven sets it. */
   floater?: boolean;
+  /** The captain's collapse habit (`CaptainOut.collapseHold`): his shift in how often a finisher is held back after a collapse. */
+  captainHold?: number;
 }
 
 /** Scoring environment for one match. */

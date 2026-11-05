@@ -9,7 +9,8 @@
  */
 
 import { useMemo, useState, type ReactNode } from "react";
-import type { CaptainOut, CoachOut, EditionOut, VenueOut } from "../../../wcdraft/src/engine/data.ts";
+import type { CoachOut, EditionOut, VenueOut } from "../../../wcdraft/src/engine/data.ts";
+import { captainChoices, captainFor, holdShare, type Captaincy } from "../game/captain.ts";
 import { planAt } from "../game/plan.ts";
 import type { MatchPlan } from "../game/simulate.ts";
 import type { PoolPlayer } from "../game/types.ts";
@@ -27,7 +28,7 @@ import { fullName, labelTeams, teamLabel } from "../lib/names.ts";
 import { marginText, rainText } from "./MatchCard.tsx";
 import { Awards, FormGrid, SquadStats, TournamentLeaders } from "./RunStats.tsx";
 import { MatchScorecard, TieBreakCard, oversText, tieBreakLabel } from "./Scorecard.tsx";
-import { Digits, Rating, captainLabel } from "./PlayerCard.tsx";
+import { Digits, Rating } from "./PlayerCard.tsx";
 
 export type Fixtured = FixtureResult & { stageLabel: string };
 
@@ -254,7 +255,7 @@ type Section = "report" | "inn1" | "inn2" | "decider" | "tables" | "around";
 /** The between-match lever: what the side may change before its next match, and the hand on it. */
 export interface Lever {
   picks: PoolPlayer[];
-  captains: CaptainOut[];
+  captaincy: Captaincy;
   coach: CoachOut | null;
   captainId: string | null;
   plans: (MatchPlan | undefined)[];
@@ -267,8 +268,9 @@ const TEMPO_WORDS: Record<NonNullable<MatchPlan["intent"]>, string> = { coach: "
 
 function NextMatchLever({ lever, next, me, opponent }: { lever: Lever; next: number; me: string; opponent: string | null }) {
   const plan = planAt(lever.plans, next);
-  const rated = (id: string) => lever.captains.filter((c) => c.personId === id).sort((a, b) => b.matches - a.matches)[0];
-  const captainId = plan.captainId === undefined ? lever.captainId : plan.captainId;
+  // The same choice as the lineup: the eleven's captains, or anyone when none has captained.
+  const choices = captainChoices(lever.picks, lever.captaincy);
+  const captainId = captainFor(lever.picks, plan.captainId === undefined ? lever.captainId : plan.captainId, lever.captaincy);
   const tempo = plan.intent ?? "coach";
   // Say what changed and that the matches from here on were played again with it (2026-11-03: the
   // tournament did replay, but nothing on the page said so).
@@ -290,11 +292,11 @@ function NextMatchLever({ lever, next, me, opponent }: { lever: Lever; next: num
       <h4>Before the next match</h4>
       <p className="gz-note">{teamLabel(me)} may name a captain, set a tempo and move the order for the next match and the ones after it.</p>
       <label className="gz-lever-row"><span>Captain</span>
-        <select value={captainId ?? ""} onChange={(e) => change({ captainId: e.target.value || null }, e.target.value ? `${nameOf(e.target.value)} captains` : "No rated captain leads")}>
-          <option value="">No rated captain</option>
-          {lever.picks.map((p) => { const c = rated(p.id); return <option key={p.id} value={p.id}>{p.name}{c ? ` · ${captainLabel(c.z)}` : ""}</option>; })}
+        <select value={captainId ?? ""} onChange={(e) => change({ captainId: e.target.value }, `${nameOf(e.target.value)} captains`)}>
+          {choices.map((p) => <option key={p.id} value={p.id}>{p.name}</option>)}
         </select>
       </label>
+      {captainId && <p className="gz-note">Holds a finisher back after a collapse: <Digits n={Math.round(100 * holdShare(captainId, lever.captaincy))} size="xs" />%</p>}
       <label className="gz-lever-row"><span>Tempo</span>
         <select value={tempo} onChange={(e) => { const intent = e.target.value as NonNullable<MatchPlan["intent"]>; change({ intent }, `${teamLabel(me)} bat ${intent === "coach" && lever.coach ? `at ${lever.coach.coachName}'s own tempo` : TEMPO_WORDS[intent]}`); }}>
           <option value="coach">{lever.coach ? `${lever.coach.coachName}'s own` : "The coach's own"}</option>

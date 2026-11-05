@@ -21,6 +21,7 @@ import { RecordsAnalysis, type RecordsOut } from "../analysis/records.js";
 import { TempoAnalysis } from "../analysis/tempo.js";
 import { setBowlingTypeLookup } from "../analysis/environment.js";
 import { buildCaptaincy, type CaptaincyTables } from "../analysis/captaincy.js";
+import { CaptainHabitAnalysis } from "../analysis/captain-habits.js";
 import { DomesticAnalysis, type DomesticOut } from "../analysis/domestic.js";
 import { buildCoaches, type CoachTables } from "../analysis/coaches.js";
 import { readBowlerTypes } from "./bowler-types.js";
@@ -178,6 +179,7 @@ export function runBuild(log: (msg: string) => void = () => {}): BuildResult {
   const venues = new VenuesAnalysis(config);
   const usage = new BowlingUsageAnalysis();
   const lineup = new LineupDeviationAnalysis();
+  const captainHabits = new CaptainHabitAnalysis();
   const partnerships = new PartnershipsAnalysis();
   const teamStyle = new TeamStyleAnalysis();
   const teamStrength = new TeamStrengthAnalysis(config.isFullMember);
@@ -235,6 +237,7 @@ export function runBuild(log: (msg: string) => void = () => {}): BuildResult {
     store.addMatch(m, { wcEdition, formEditions, standInFallback: fallbackByMatch.get(entry.id) ?? [], laterEditions, venueId: venue?.id ?? null, elo, context: contextPopulation, contextVenue: CONTEXT_VENUE });
     teamStyle.add(m);
     teamStrength.add(m);
+    captainHabits.add(m);
     situation.add(m);
     matchups.add(m);
     records.add(m, wcEdition);
@@ -364,6 +367,10 @@ export function runBuild(log: (msg: string) => void = () => {}): BuildResult {
   const situationOut = { ...situation.summary(), states: pressure.tables((id, year) => tempo.styleAt(id, year)?.tag ?? null) };
   const teamStrengthOut = teamStrength.summary();
   const teamStyleOut = teamStyle.summary();
+  const captaincy = buildCaptaincy(people, teamStrengthOut.teams);
+  // Each rated captain's collapse habit, read against his own tenures.
+  const holds = captainHabits.summary(captaincy.captains);
+  for (const c of captaincy.captains) c.collapseHold = holds.get(`${c.team}|${c.personId}`) ?? 0;
   const result: BuildResult = {
     meta: {
       generatedAt: new Date().toISOString(),
@@ -382,7 +389,7 @@ export function runBuild(log: (msg: string) => void = () => {}): BuildResult {
     partnerships: partnerships.summary(store.names),
     teamStyle: teamStyleOut,
     teamStrength: teamStrengthOut,
-    captaincy: buildCaptaincy(people, teamStrengthOut.teams),
+    captaincy,
     coaches: buildCoaches(teamStyleOut, (tenureOf) => pressure.coachResiduals(tenureOf)),
     records: records.summary(windows),
     odiTeamStrength: odiStrength.summary(),

@@ -8,7 +8,7 @@ import { PlayerRatings } from "../components/PlayerRatings.tsx";
 import { MatchScorecard, tieBreakLabel } from "../components/Scorecard.tsx";
 import { writePaper } from "../game/paper.ts";
 import type { MatchPlan } from "../game/simulate.ts";
-import type { CaptainOut } from "../../../wcdraft/src/engine/data.ts";
+import type { Captaincy } from "../game/captain.ts";
 import { journeyFor, residuals, souvenirLists, totalsKey } from "../game/souvenir.ts";
 import { encodeRun, performance, runFrom } from "../game/score.ts";
 import { usePicksFit } from "../game/fit-load.ts";
@@ -42,7 +42,7 @@ function Played({ f, me, venues, highlight }: { f: Fixtured; me: string; venues:
   );
 }
 
-export function ResultScreen({ state, result: played, editions, venues, records, captains, onReplan, onAgain }: { state: RunState; result: TournamentResult; editions: EditionOut[]; venues: VenueOut[]; records: RecordsOut; captains: CaptainOut[]; onReplan: (index: number, plan: MatchPlan) => void; onAgain: () => void }) {
+export function ResultScreen({ state, result: played, editions, venues, records, captaincy, onReplan, onAgain }: { state: RunState; result: TournamentResult; editions: EditionOut[]; venues: VenueOut[]; records: RecordsOut; captaincy: Captaincy; onReplan: (index: number, plan: MatchPlan) => void; onAgain: () => void }) {
   const me = state.identity!.team;
   const edition = editions.find((e) => e.id === played.editionId);
   const result = useMemo(() => ({ ...played, stages: datedStages(played.stages, edition?.lastMatch ?? null) }), [played, edition]);
@@ -162,7 +162,7 @@ export function ResultScreen({ state, result: played, editions, venues, records,
   const renderPage = (p: number) => {
     if (p === 0) return <CoverPage state={state} result={result} edition={edition} venues={venues} mine={mine} numbersHere={numbersHere} ratingHere={ratingHere} coachName={state.coach?.coachName ?? null} matchDay={mine[0] ? paper.matchDays.get(mine[0].date ?? "") ?? null : null} />;
     if (p === lastPage) return <FinalPage result={result} all={all} mine={mine} me={me} highlight={highlight} paper={paper} souvenir={souvenir} journeys={journeys} performance={perf} date={mine[mine.length - 1]?.date ?? null} manualShare={manualShare} ratings={ratingsView} results={resultsView} />;
-    return <MatchPage fixture={mine[p - 1]!} index={p - 1} mine={mine} all={all} result={result} me={me} venues={venues} highlight={highlight} issue={p + 1} paper={paper} last={p === mine.length} seed={result.seed} lever={{ picks: state.picks.filter(Boolean) as PoolPlayer[], captains, coach: state.coach, captainId: state.captainId, plans: state.plans, movesLeft: state.movesLeft, onReplan }} />;
+    return <MatchPage fixture={mine[p - 1]!} index={p - 1} mine={mine} all={all} result={result} me={me} venues={venues} highlight={highlight} issue={p + 1} paper={paper} last={p === mine.length} seed={result.seed} lever={{ picks: state.picks.filter(Boolean) as PoolPlayer[], captaincy, coach: state.coach, captainId: state.captainId, plans: state.plans, movesLeft: state.movesLeft, onReplan }} />;
   };
 
   if (watching !== null && mine[watching]) {

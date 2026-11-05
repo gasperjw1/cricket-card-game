@@ -136,6 +136,8 @@ export interface CaptainOut {
   matches: number;
   won: number;
   z: number;
+  /** His shift in the share of collapse entries that hold a finisher back (2026-11-05); played by the floater. */
+  collapseHold?: number;
 }
 
 /** A captaincy tenure with no rating attached: who led the side, for the scorecard. */

@@ -38,10 +38,9 @@ export const STYLE_NOTES: Record<BattingStyle, string> = {
   Anchor: "steady start, few boundaries",
 };
 
-/** A captain's number for the captain pickers: "captain +2.0", "captain −1.3", "captain 0.0" (never "−0.0"). */
-export function captainLabel(z: number): string {
-  const r = Math.round(z * 10) / 10;
-  return `captain ${r > 0 ? "+" : r < 0 ? "−" : ""}${Math.abs(r).toFixed(1)}`;
+/** The Captain tag (2026-11-05): he has led his country in a men's T20I, so he can captain this eleven. */
+export function CaptainTag() {
+  return <span className="tag captain" title="Has captained his country in T20Is">Captain</span>;
 }
 
 const signedPoints = (n: number) => `${n >= 0 ? "+" : "−"}${Math.abs(n).toFixed(1)}`;
@@ -115,13 +114,13 @@ export function Rating({ label, n, size = "sm", tone = "" }: { label: string; n:
  * on the plate, what he is under it, and his batting and bowling in this World Cup each in its own
  * box. The card numbers, phases and how they move live on the full card the plate opens.
  */
-export function PlayerRow({ player, fit, selected, ineligible, onClick }: { player: PoolPlayer; fit?: PlayerFit | null; selected?: boolean; ineligible?: boolean; onClick?: () => void }) {
+export function PlayerRow({ player, fit, captain, selected, ineligible, onClick }: { player: PoolPlayer; fit?: PlayerFit | null; captain?: boolean; selected?: boolean; ineligible?: boolean; onClick?: () => void }) {
   const p = player;
   const n = hereNumbers(p, fit);
   return (
-    <button type="button" className={`pr tier-edge-${p.tier.toLowerCase()} ${selected ? "selected" : ""} ${ineligible ? "ineligible" : ""}`} onClick={onClick} aria-pressed={selected} aria-label={`${p.name}, ${roleLine(p)}${n.bat !== null ? `, batting ${n.bat}` : ""}${n.bowl !== null ? `, bowling ${n.bowl}` : ""}${ineligible ? ", cannot be taken now" : ""}`}>
+    <button type="button" className={`pr tier-edge-${p.tier.toLowerCase()} ${selected ? "selected" : ""} ${ineligible ? "ineligible" : ""}`} onClick={onClick} aria-pressed={selected} aria-label={`${p.name}${captain ? ", has captained" : ""}, ${roleLine(p)}${n.bat !== null ? `, batting ${n.bat}` : ""}${n.bowl !== null ? `, bowling ${n.bowl}` : ""}${ineligible ? ", cannot be taken now" : ""}`}>
       <span className="pr-who">
-        <span className="pr-name">{p.name}</span>
+        <span className="pr-name">{p.name}{captain && <CaptainTag />}</span>
         <span className="pr-sub">{roleLine(p)}</span>
       </span>
       <Rating label="Bat" n={n.bat} />

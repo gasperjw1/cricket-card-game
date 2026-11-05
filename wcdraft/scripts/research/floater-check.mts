@@ -32,16 +32,16 @@ function realMatches(data: EditionData) {
 }
 
 const datas = EDITIONS.map(loadEdition);
-type Arm = { won: number; played: number; runs: number; inns: number; entries: Record<string, number>; ahead: Record<string, number>; hitter: Record<string, number>; jump: number };
-const run = (scale: number): Arm => {
+type Arm = { won: number; played: number; runs: number; inns: number; entries: Record<string, number>; ahead: Record<string, number>; hitter: Record<string, number>; jump: number; collapse: number; held: number };
+const run = (scale: number, captainHold = 0): Arm => {
   setEngineOverrides({ floaterScale: scale });
-  const arm: Arm = { won: 0, played: 0, runs: 0, inns: 0, entries: { pp: 0, mid: 0, death: 0 }, ahead: { pp: 0, mid: 0, death: 0 }, hitter: { pp: 0, mid: 0, death: 0 }, jump: 0 };
+  const arm: Arm = { won: 0, played: 0, runs: 0, inns: 0, entries: { pp: 0, mid: 0, death: 0 }, ahead: { pp: 0, mid: 0, death: 0 }, hitter: { pp: 0, mid: 0, death: 0 }, jump: 0, collapse: 0, held: 0 };
   for (const data of datas) for (const g of realMatches(data)) {
     const real = teamFromMatch(data, g.a, g.match), b = teamFromMatch(data, g.b, g.other);
     if (real.players.length < 11 || b.players.length < 11) continue;
     // The usual order: by median position, the base the floater works around.
     const base = [...real.players].sort((x, y) => (x.positionMedian ?? 11) - (y.positionMedian ?? 11)).map((p) => p.id);
-    const a = { ...real, battingOrder: base, floater: true };
+    const a = { ...real, battingOrder: base, floater: true, captainHold };
     const byId = new Map(real.players.map((p) => [p.id, p]));
     const env = matchEnvironment(data, g.match.venueId || null, 20);
     for (let s = 1; s <= sims; s += 1) {
@@ -60,6 +60,13 @@ const run = (scale: number): Arm => {
         const ph = phaseOf(fall.over);
         const waiting = base.filter((id) => !order.slice(0, i).some((l) => l.id === id));
         if (waiting.length < 2) return;
+        // After a collapse: is a finisher passed over (a man from below him in the order going in)?
+        const down = i - 2 + 1, ov = fall.over;
+        if ((down >= 3 && ov <= 5) || (down >= 4 && ov <= 7) || (down >= 5 && ov <= 9)) {
+          arm.collapse += 1;
+          const at = base.indexOf(line.id);
+          if (waiting.some((id) => id !== line.id && base.indexOf(id) < at && byId.get(id)!.archetype.batting === "finisher")) arm.held += 1;
+        }
         arm.entries[ph]! += 1;
         if (line.id === waiting[0]) return;
         arm.ahead[ph]! += 1;
@@ -78,3 +85,7 @@ const aheads = Object.values(on.ahead).reduce((a, b) => a + b, 0);
 for (const ph of ["pp", "mid", "death"]) console.log(`${ph.padEnd(5)} ${on.entries[ph]} entries: ahead ${pct(on.ahead[ph]!, on.entries[ph]!)} (off ${pct(off.ahead[ph]!, off.entries[ph]!)}), man sent out-hits the man due ${pct(on.hitter[ph]!, on.ahead[ph]!)}`);
 console.log(`jump ${(on.jump / aheads).toFixed(2)} places`);
 console.log(`floater side: won ${pct(off.won, off.played)} off, ${pct(on.won, on.played)} on; runs an innings ${(off.runs / off.inns).toFixed(1)} off, ${(on.runs / on.inns).toFixed(1)} on (${on.played} matches)`);
+// The captain's habit: the held share after a collapse at an average captain and at one a true
+// spread either side (real: about 5%, ±4.5 points).
+const hi = run(1, 0.045), lo = run(1, -0.045);
+console.log(`after a collapse (${on.collapse} entries): finisher held ${pct(on.held, on.collapse)} average captain, ${pct(hi.held, hi.collapse)} at +4.5 points, ${pct(lo.held, lo.collapse)} at −4.5; won ${pct(lo.won, lo.played)} / ${pct(on.won, on.played)} / ${pct(hi.won, hi.played)}`);

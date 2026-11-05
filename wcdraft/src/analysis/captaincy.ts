@@ -38,6 +38,8 @@ export interface CaptainRow {
   /** Standardised across matched captains (mean 0, SD 1), clipped ±2. */
   z: number;
   source: "wikipedia" | "cricinfo";
+  /** His shift in the share of collapse entries that hold a finisher back (`captain-habits.ts`); 0 with no record. */
+  collapseHold?: number;
 }
 
 /** A tenure as captain, rated or not: who led the side, not how well. */

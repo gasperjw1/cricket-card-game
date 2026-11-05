@@ -4,6 +4,7 @@ import type { CoachOut, SquadOut } from "../../wcdraft/src/engine/data.ts";
 import { loadPool, loadShared, loadSquads, type SharedData } from "./lib/data.ts";
 import { BUDGET, bowlersRequired, coachPool, drawCoachPanel, drawSquad, eligible, spinPlayers, squadUniverse, type SquadRef } from "./game/rules.ts";
 import { runTournament } from "./game/simulate.ts";
+import { captaincyOf } from "./game/captain.ts";
 import type { Identity, PoolPlayer, RunState, Spin } from "./game/types.ts";
 import { decodeRun } from "./game/score.ts";
 import { HomeScreen } from "./screens/HomeScreen.tsx";
@@ -75,6 +76,8 @@ function reduce(s: RunState, a: Action): RunState {
 export function App() {
   const [state, dispatch] = useReducer(reduce, undefined, () => initial());
   const [shared, setShared] = useState<SharedData | null>(null);
+  // Who has captained, and each rated captain's habit: the Captain tag and the captain choice.
+  const captaincy = useMemo(() => captaincyOf(shared?.captains ?? [], shared?.leaders ?? []), [shared]);
   const [universe, setUniverse] = useState<SquadRef[] | null>(null);
   const [squadsByEdition, setSquadsByEdition] = useState<Map<string, SquadOut[]> | null>(null);
   const [loadError, setLoadError] = useState<string | null>(null);
@@ -208,13 +211,13 @@ export function App() {
         <CoachScreen panel={state.coachPanel} rerolls={state.coachRerolls} identity={state.identity} editions={shared.editions} venues={shared.venues} squads={state.identity ? squadsByEdition?.get(state.identity.editionId) ?? [] : []} onReroll={() => spinCoaches(true)} onPick={(coach) => dispatch({ type: "pickCoach", coach })} />
       )}
       {state.step === "draft" && shared && (
-        <DraftScreen state={state} editions={shared.editions} venues={shared.venues} squads={state.identity ? squadsByEdition?.get(state.identity.editionId) ?? [] : []} onPlace={(player, slot) => dispatch({ type: "place", player, slot })} onReroll={() => void spinSquad(true)} onLineup={() => dispatch({ type: "toLineup" })} />
+        <DraftScreen state={state} captaincy={captaincy} editions={shared.editions} venues={shared.venues} squads={state.identity ? squadsByEdition?.get(state.identity.editionId) ?? [] : []} onPlace={(player, slot) => dispatch({ type: "place", player, slot })} onReroll={() => void spinSquad(true)} onLineup={() => dispatch({ type: "toLineup" })} />
       )}
       {state.step === "lineup" && shared && (
-        <LineupScreen state={state} captains={shared.captains} editions={shared.editions} onCaptain={(id) => dispatch({ type: "captain", id })} onSwap={(a, b) => dispatch({ type: "swap", a, b })} onSimulate={(captainId) => void simulate(captainId)} />
+        <LineupScreen state={state} captaincy={captaincy} editions={shared.editions} onCaptain={(id) => dispatch({ type: "captain", id })} onSwap={(a, b) => dispatch({ type: "swap", a, b })} onSimulate={(captainId) => void simulate(captainId)} />
       )}
       {state.step === "simulating" && <section className="card"><h2>Simulating the {state.identity?.editionId} World Cup…</h2><p>Every match of the tournament, ball by ball.</p></section>}
-      {state.step === "result" && state.result && shared && <ResultScreen state={state} result={state.result} editions={shared.editions} venues={shared.venues} records={shared.records} captains={shared.captains} onReplan={(index, plan) => void replan(index, plan)} onAgain={() => dispatch({ type: "home" })} />}
+      {state.step === "result" && state.result && shared && <ResultScreen state={state} result={state.result} editions={shared.editions} venues={shared.venues} records={shared.records} captaincy={captaincy} onReplan={(index, plan) => void replan(index, plan)} onAgain={() => dispatch({ type: "home" })} />}
       {/* Not on the draft screen (its panes fill the window, and the footer sat over the team sheet's
           last slots) nor the lineup (it pushed the sheet past a laptop screen). */}
       {rng && state.step !== "home" && state.step !== "result" && state.step !== "draft" && state.step !== "lineup" && <footer className="foot">Spins and simulation are deterministic for this seed.</footer>}
