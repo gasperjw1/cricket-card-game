@@ -187,7 +187,9 @@ export function simulateInnings(batting: EngineTeam, bowling: EngineTeam, env: M
         depthFactor: sLine.position >= 6 ? 1 + ENGINE.coachPlay.depth * (batting.coachPlay?.lowerOrder ?? 0) : 1,
       };
       const dist = outcomeDistribution(striker, b.player, env, situation, ctx);
-      const outcome = OUTCOMES[rng.pick(OUTCOMES.map((k) => dist[k]))]!;
+      const drawn = OUTCOMES[rng.pick(OUTCOMES.map((k) => dist[k]))]!;
+      // A no-ball whose run wins the chase ends it there: no run out off it (2026-11-05).
+      const outcome = drawn === "W" && noBall && opts.target !== null && runs + 1 >= opts.target ? "0" : drawn;
       let runsBatter = RUNS[outcome];
       let extraRuns = noBall ? 1 : 0;
       let extraKind: BallRecord["extraKind"] = noBall ? "no-ball" : null;
@@ -243,8 +245,11 @@ export function simulateInnings(batting: EngineTeam, bowling: EngineTeam, env: M
       // Non-striker run out (2026-11-01): drawn on the balls the striker scored 0–2 on, at the
       // measured per-ball rate for this innings and phase. The runs stand, the non-striker goes,
       // and the new batter comes in at that end.
+      // Not once the ball's runs have won the chase: the match is over before anyone is run out
+      // (2026-11-05: about one won chase in 1,150 ended with the non-striker run out on the winning run).
       const nsoRate = ENGINE.nonStrikerRunOut[`${opts.index}|${ph}`];
-      if (nsoRate && (outcome === "0" || outcome === "1" || outcome === "2") && rng.chance(nsoRate / ENGINE.nonStrikerRunOut.onOutcomes!)) {
+      const chaseWon = opts.target !== null && runs >= opts.target;
+      if (nsoRate && !chaseWon && (outcome === "0" || outcome === "1" || outcome === "2") && rng.chance(nsoRate / ENGINE.nonStrikerRunOut.onOutcomes!)) {
         const nLine = lineOf(nonStriker, lines.get(nonStriker.id)?.position ?? nextIn);
         const d = { ...drawDismissal(b.player, true), nonStriker: true };
         nLine.out = true;

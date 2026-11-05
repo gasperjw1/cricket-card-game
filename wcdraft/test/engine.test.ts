@@ -7,7 +7,8 @@
 import assert from "node:assert/strict";
 import { describe, it } from "node:test";
 import { engineReady, loadEdition, matchEnvironment, teamFromDefault } from "../src/engine/load.js";
-import { simulateMatch } from "../src/engine/match.js";
+import { simulateInnings, simulateMatch } from "../src/engine/match.js";
+import type { BallRecord } from "../src/engine/types.js";
 import { matchPoints, playerOfTheMatch } from "../src/engine/awards.js";
 import { ENGINE, setEngineOverrides } from "../src/engine/model.js";
 import { replayEdition } from "../src/engine/replay.js";
@@ -40,6 +41,25 @@ describe("engine", { skip: !engineReady() && "engine data not built" }, () => {
     }
     const perBall = (p: "mid" | "death") => env.extras[p].wides + env.extras[p].noBalls + env.extras[p].byes;
     assert.ok(perBall("death") > perBall("mid"));
+  });
+
+  it("runs nobody out on the ball that wins a chase (2026-11-05)", () => {
+    // Every 0–2 ball brings a non-striker run out, and the target is one run: the winning single must stand alone.
+    const saved = { ...ENGINE.nonStrikerRunOut };
+    for (const ph of ["pp", "mid", "death"]) ENGINE.nonStrikerRunOut[`2|${ph}`] = ENGINE.nonStrikerRunOut.onOutcomes!;
+    try {
+      let won = 0;
+      for (let i = 0; i < 60; i += 1) {
+        const log: BallRecord[] = [];
+        const inn = simulateInnings(india, southAfrica, env, data.situation, new Rng(`win-${i}`), { index: 2, overs: 20, target: 1, matchEffect: 1 }, log);
+        if (inn.runs < 1) continue;
+        won += 1;
+        assert.equal(log.at(-1)!.wicket, false, `seed ${i}: a wicket on the winning ball`);
+      }
+      assert.ok(won > 20, `${won} chases won`);
+    } finally {
+      Object.assign(ENGINE.nonStrikerRunOut, saved);
+    }
   });
 
   it("sends a man in out of the order only with the floater on, never the openers, and within reach", () => {

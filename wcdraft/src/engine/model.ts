@@ -7,9 +7,10 @@
 /**
  * Which engine played a run. Shared links carry it (2026-11-05 review: links are replayed, not
  * stored, so an engine change silently replays an old link differently). Bump it with any change
- * that alters how a seeded run plays. 1 is the floater with the captain's habit by No. 6–7.
+ * that alters how a seeded run plays. 1 is the floater with the captain's habit by No. 6–7; 2 has
+ * no run out on the ball that wins a chase (a won chase's margin in wickets can differ by one).
  */
-export const ENGINE_VERSION = 1;
+export const ENGINE_VERSION = 2;
 
 export const ENGINE = {
   /**
