@@ -250,7 +250,7 @@ export function CoverPage({ state, result, edition, venues, mine, numbersHere, r
   );
 }
 
-type Section = "report" | "inn1" | "inn2" | "decider" | "tables" | "around";
+type Section = "report" | "inn1" | "inn2" | "decider" | "tables" | "around" | "settings";
 
 /** The between-match lever: what the side may change before its next match, and the hand on it. */
 export interface Lever {
@@ -364,7 +364,10 @@ export function MatchPage({ fixture, index, mine, all, result, me, venues, highl
   })).filter((s) => s.tables.length).reverse();
   const decider = f.tieBreak ? tieBreakLabel(f.tieBreak) : null;
   const others = copy?.lateNews.length ?? 0;
-  const sections: [Section, string][] = [["report", "Report"], ["inn1", "1st innings"], ["inn2", "2nd innings"], ...(decider ? [["decider", decider] as [Section, string]] : []), ["tables", "Tables"], ...(others ? [["around", "Around the World Cup"] as [Section, string]] : [])];
+  // The side's own controls for the next match (captain, tempo, order) have their own tab (2026-11-05,
+  // Yash): they sat in the report's rail among the news.
+  const settings = !!(next && lever);
+  const sections: [Section, string][] = [["report", "Report"], ["inn1", "1st innings"], ["inn2", "2nd innings"], ...(decider ? [["decider", decider] as [Section, string]] : []), ["tables", "Tables"], ...(others ? [["around", "Around the World Cup"] as [Section, string]] : []), ...(settings ? [["settings", "Team settings"] as [Section, string]] : [])];
   return (
     <article className="gz-page">
       <Masthead issue={`Issue ${issue}`} date={longDate(f.date)} matchDay={copy?.matchDay ?? null} editionId={result.editionId} />
@@ -393,7 +396,13 @@ export function MatchPage({ fixture, index, mine, all, result, me, venues, highl
               <section className="gz-box"><h4>{teamLabel(me)} so far</h4><RunSoFar mine={mine} upTo={index} me={me} /></section>
               {stage?.groups && f.group && <Standings stage={stage} fixture={f} group={f.group} me={me} />}
               {next && <section className="gz-box"><h4>Next for {teamLabel(me)}</h4><p className="gz-next"><b>{next.stageLabel}, v {teamLabel(next.teams.find((t) => t !== me) ?? "")}</b><br />{nextVenue ? `${nextVenue.name}, ${nextVenue.city}` : ""}{next.date ? `, ${shortDate(next.date)}` : ""}</p></section>}
-              {next && lever && <NextMatchLever key={index} lever={lever} next={index + 1} me={me} opponent={next.teams.find((t) => t !== me) ?? null} />}
+              {settings && (
+                <section className="gz-box">
+                  <h4>Before the next match</h4>
+                  <p className="gz-next">Change the captain, the tempo or the batting order.</p>
+                  <button type="button" className="gz-link" onClick={() => setSection("settings")}>Team settings</button>
+                </section>
+              )}
               {others > 0 && (
                 <section className="gz-box">
                   <h4>Around the World Cup</h4>
@@ -421,6 +430,12 @@ export function MatchPage({ fixture, index, mine, all, result, me, venues, highl
         <div className="gz-innings">
           <div className="gz-kicker">Around the World Cup · since our last issue</div>
           <Around copy={copy} all={all} venues={venues} highlight={highlight} me={me} seed={seed} />
+        </div>
+      )}
+      {section === "settings" && next && lever && (
+        <div className="gz-innings gz-settings">
+          <div className="gz-kicker">Team settings · {next.stageLabel}, v {teamLabel(next.teams.find((t) => t !== me) ?? "")}{nextVenue ? ` · ${nextVenue.name}` : ""}</div>
+          <NextMatchLever key={index} lever={lever} next={index + 1} me={me} opponent={next.teams.find((t) => t !== me) ?? null} />
         </div>
       )}
       {section === "tables" && (

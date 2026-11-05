@@ -61,7 +61,8 @@ export function DraftScreen({ state, captaincy, editions, venues, squads, onPlac
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
   }, [selected]);
-  const place = (p: PoolPlayer, slot: number) => { onPlace(p, slot); setSelected(null); };
+  // Back to the squad for the next spin (on a phone the placing is done from the sheet tab).
+  const place = (p: PoolPlayer, slot: number) => { onPlace(p, slot); setSelected(null); setTab("squad"); };
   // His range full comes first: no amount of need makes a slot for him.
   const selectedLocked = !selected ? null
     : !slotsFor(selected, state.picks).length ? noSlotText(selected)
@@ -157,6 +158,7 @@ export function DraftScreen({ state, captaincy, editions, venues, squads, onPlac
                 locked={selectedLocked}
                 captained={captaincy.matches.has(selected.id)}
                 onPlace={(slot) => place(selected, slot)}
+                onPlaceOnSheet={() => setTab("sheet")}
                 onClose={() => setSelected(null)}
               />
             </div>
@@ -172,6 +174,17 @@ export function DraftScreen({ state, captaincy, editions, venues, squads, onPlac
       </div>
 
       <aside className="pane pane-sheet" role="tabpanel">
+        {/* Phones: placing from the sheet, with the side so far in view (2026-11-05, Yash). */}
+        {selected && !selectedLocked && (
+          <div className="placing-bar only-phone" role="status">
+            <p>Placing <b>{selected.name}</b>: {open.length === 1 ? `only ${open[0]!.label} is open to him` : `the lit slots are open to him`}. Tap Place.</p>
+            {heldNote && <p className="small lock-note">{heldNote}</p>}
+            <div className="placing-actions">
+              <button type="button" onClick={() => setTab("squad")}>His card</button>
+              <button type="button" onClick={() => { setSelected(null); setTab("squad"); }}>Cancel</button>
+            </div>
+          </div>
+        )}
         <TeamSheet
           side={state.identity?.team ?? ""}
           edition={editionId}

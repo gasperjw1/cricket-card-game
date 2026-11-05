@@ -449,6 +449,8 @@ h3 { font-size: 16px; margin: 0 0 8px; }
 
 /* The between-match lever (2026-11-02). */
 .gz-lever { border-top: 2px solid var(--ink); padding-top: 8px; }
+/* Its own tab (2026-11-05): a form's width, not the page's. */
+.gz-settings .gz-lever { max-width: 520px; }
 .gz-saved { border-left: 3px solid #9e2b25; padding-left: 8px; color: var(--ink); }
 .gz-lever-row { display: grid; grid-template-columns: 64px minmax(0, 1fr); gap: 8px; align-items: center; margin: 6px 0; font-size: 13px; }
 .gz-lever-go { width: 100%; min-height: 34px; padding: 4px 8px; background: var(--ink); color: #f3ecdd; border: 1px solid var(--ink); border-radius: 2px; font-family: Oswald, "Arial Narrow", sans-serif; letter-spacing: 0.04em; }
@@ -748,7 +750,15 @@ h3 { font-size: 16px; margin: 0 0 8px; }
   .card-panel .pd { border-radius: 14px 14px 0 0; }
   .pd-grid { grid-template-columns: 1fr; }
   .draft-squad { font-size: 21px; }
+  /* Placing is done on the team sheet (2026-11-05): the card offers the way there, the sheet says who is being placed. */
+  .only-wide { display: none !important; }
+  .pd-to-sheet { width: 100%; margin-top: 4px; }
+  .placing-bar { position: sticky; top: 0; z-index: 2; margin-bottom: 10px; padding: 10px 12px; background: var(--card); border: 1px solid var(--accent); border-radius: 10px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08); }
+  .placing-bar p { margin: 0 0 6px; font-size: 14px; }
+  .placing-actions { display: flex; gap: 8px; }
+  .placing-actions button { flex: 1 1 0; min-height: 36px; }
 }
+@media (min-width: 900px) { .only-phone { display: none !important; } }
 @media (min-width: 900px) and (max-width: 1099px) {
   .draft3 { grid-template-columns: minmax(0, 1fr) minmax(300px, 340px); }
 }

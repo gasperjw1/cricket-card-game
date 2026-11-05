@@ -43,7 +43,7 @@ function Skill({ label, value, none }: { label: string; value: number | null; no
   );
 }
 
-export function PlayerDetail({ player, fit, hereEdition, coach, captained, slots, slotNote, locked, onPlace, onClose }: {
+export function PlayerDetail({ player, fit, hereEdition, coach, captained, slots, slotNote, locked, onPlace, onPlaceOnSheet, onClose }: {
   player: PoolPlayer;
   /** He has captained his country in T20Is (the Captain tag). */
   captained?: boolean;
@@ -57,6 +57,8 @@ export function PlayerDetail({ player, fit, hereEdition, coach, captained, slots
   /** The draft guard: he cannot be taken now, and why. */
   locked: string | null;
   onPlace: (slot: number) => void;
+  /** Phones: open the team sheet with his slots lit, in place of the slot buttons. */
+  onPlaceOnSheet?: () => void;
   onClose: () => void;
 }) {
   const p = player;
@@ -94,7 +96,9 @@ export function PlayerDetail({ player, fit, hereEdition, coach, captained, slots
         {locked ? <p className="small lock-note">{locked}</p> : (
           <>
           {slotNote && <p className="small lock-note">{slotNote}</p>}
-          <div className="pd-slots">
+          {/* On a phone the choice is made on the team sheet, beside the men already named (2026-11-05, Yash). */}
+          {onPlaceOnSheet && slots.length > 0 && <button type="button" className="primary pd-to-sheet only-phone" onClick={onPlaceOnSheet}>Place him on the team sheet</button>}
+          <div className="pd-slots only-wide">
             {slots.map((s) => (
               <button key={s.index} type="button" className="pd-slot" aria-label={`Place at ${s.label}`} onClick={() => onPlace(s.index)}>
                 <span>{s.label}</span>
