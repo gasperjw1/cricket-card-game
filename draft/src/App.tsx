@@ -29,14 +29,14 @@ type Action =
   | { type: "simulating" }
   | { type: "result"; result: RunState["result"] }
   | { type: "plan"; index: number; plan: MatchPlan }
-  | { type: "restore"; seed: string; identity: Identity; coach: CoachOut | null; picks: PoolPlayer[]; captainId: string | null; plans: (MatchPlan | undefined)[]; movesUsed: number }
+  | { type: "restore"; seed: string; identity: Identity; coach: CoachOut | null; picks: PoolPlayer[]; captainId: string | null; plans: (MatchPlan | undefined)[]; movesUsed: number; engine: number }
   | { type: "replanned"; result: RunState["result"] }
   | { type: "error"; message: string }
   | { type: "home" };
 
 const initial = (seed = ""): RunState => ({
   seed, step: "home", identity: null, identityRerolls: BUDGET.identityRerolls, coachPanel: [], coach: null, coachRerolls: BUDGET.coachRerolls,
-  spin: null, spinNumber: 0, spinRerolls: BUDGET.spinRerolls, spun: [], picks: Array.from({ length: 11 }, () => null), captainId: null, plans: [], movesLeft: BUDGET.lineupMoves, result: null, error: null,
+  spin: null, spinNumber: 0, spinRerolls: BUDGET.spinRerolls, spun: [], picks: Array.from({ length: 11 }, () => null), captainId: null, plans: [], movesLeft: BUDGET.lineupMoves, result: null, error: null, linkEngine: null,
 });
 
 function reduce(s: RunState, a: Action): RunState {
@@ -67,7 +67,7 @@ function reduce(s: RunState, a: Action): RunState {
     // A plan that moves the order before a match spends a line-up move.
     case "plan": { const plans = [...s.plans]; plans[a.index] = { ...plans[a.index], ...a.plan }; return { ...s, plans, movesLeft: a.plan.order ? Math.max(0, s.movesLeft - 1) : s.movesLeft }; }
     case "replanned": return { ...s, result: a.result };
-    case "restore": return { ...initial(a.seed), step: "simulating", identity: a.identity, coach: a.coach, picks: a.picks, captainId: a.captainId, plans: a.plans, movesLeft: Math.max(0, BUDGET.lineupMoves - a.movesUsed) };
+    case "restore": return { ...initial(a.seed), step: "simulating", identity: a.identity, coach: a.coach, picks: a.picks, captainId: a.captainId, plans: a.plans, movesLeft: Math.max(0, BUDGET.lineupMoves - a.movesUsed), linkEngine: a.engine };
     case "error": return { ...s, step: s.step === "simulating" ? "lineup" : s.step, error: a.message };
     case "home": return initial();
   }
@@ -107,7 +107,7 @@ export function App() {
       const pools = new Map(await Promise.all([...new Set(run.picks.map(([, ed]) => ed))].map(async (ed) => [ed, await loadPool(ed)] as const)));
       const picks = run.picks.map(([team, ed, id]) => pools.get(ed)?.find((p) => p.team === team && p.id === id));
       if (picks.some((p) => !p)) throw new Error("a player in the link is not in the data any more");
-      dispatch({ type: "restore", seed: run.seed, identity: run.identity, coach, picks: picks as PoolPlayer[], captainId: run.captainId, plans: run.plans, movesUsed: run.movesUsed });
+      dispatch({ type: "restore", seed: run.seed, identity: run.identity, coach, picks: picks as PoolPlayer[], captainId: run.captainId, plans: run.plans, movesUsed: run.movesUsed, engine: run.engine });
       const result = await runTournament({ seed: run.seed, identity: run.identity, picks: picks as PoolPlayer[], coach, captainId: run.captainId }, run.plans);
       dispatch({ type: "result", result });
     })().catch((e: Error) => dispatch({ type: "error", message: `Could not replay the shared run: ${e.message}` }));

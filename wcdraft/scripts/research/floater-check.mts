@@ -65,7 +65,8 @@ const run = (scale: number, captainHold = 0): Arm => {
         if ((down >= 3 && ov <= 5) || (down >= 4 && ov <= 7) || (down >= 5 && ov <= 9)) {
           arm.collapse += 1;
           const at = base.indexOf(line.id);
-          if (waiting.some((id) => id !== line.id && base.indexOf(id) < at && byId.get(id)!.archetype.batting === "finisher")) arm.held += 1;
+          // A finisher as the habit was measured and the engine plays it: the man at No. 6 or 7 in the side's order.
+          if (waiting.some((id) => id !== line.id && base.indexOf(id) < at && (base.indexOf(id) === 5 || base.indexOf(id) === 6))) arm.held += 1;
         }
         arm.entries[ph]! += 1;
         if (line.id === waiting[0]) return;
@@ -87,5 +88,5 @@ console.log(`jump ${(on.jump / aheads).toFixed(2)} places`);
 console.log(`floater side: won ${pct(off.won, off.played)} off, ${pct(on.won, on.played)} on; runs an innings ${(off.runs / off.inns).toFixed(1)} off, ${(on.runs / on.inns).toFixed(1)} on (${on.played} matches)`);
 // The captain's habit: the held share after a collapse at an average captain and at one a true
 // spread either side (real: about 5%, ±4.5 points).
-const hi = run(1, 0.045), lo = run(1, -0.045);
-console.log(`after a collapse (${on.collapse} entries): finisher held ${pct(on.held, on.collapse)} average captain, ${pct(hi.held, hi.collapse)} at +4.5 points, ${pct(lo.held, lo.collapse)} at −4.5; won ${pct(lo.won, lo.played)} / ${pct(on.won, on.played)} / ${pct(hi.won, hi.played)}`);
+const hi = run(1, 0.045), lo = run(1, -0.045), top = run(1, 0.15);
+console.log(`after a collapse (${on.collapse} entries): finisher held ${pct(on.held, on.collapse)} average captain, ${pct(hi.held, hi.collapse)} at +4.5 points, ${pct(lo.held, lo.collapse)} at −4.5, ${pct(top.held, top.collapse)} at +15; won ${pct(lo.won, lo.played)} / ${pct(on.won, on.played)} / ${pct(hi.won, hi.played)} / ${pct(top.won, top.played)}`);

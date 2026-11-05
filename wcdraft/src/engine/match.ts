@@ -99,6 +99,7 @@ export function simulateInnings(batting: EngineTeam, bowling: EngineTeam, env: M
   // The floater (`ENGINE.floater`): on a wicket bringing in Nos. 3–8 with two or more waiting, a man
   // from the next few may go in ahead of the one due; he moves up and the rest keep their order.
   const fRng = batting.floater && ENGINE.floater.scale > 0 ? rng.fork("floater") : null;
+  const baseAt = new Map(batting.battingOrder.map((id, i) => [id, i]));
   const sendIn = (over: number, partner: EnginePlayer) => {
     if (!fRng || nextIn < 2 || nextIn > 7 || order.length - nextIn < 2) return;
     const F = ENGINE.floater;
@@ -111,10 +112,12 @@ export function simulateInnings(batting: EngineTeam, bowling: EngineTeam, env: M
     if (collapse) {
       // After a collapse: hold a finisher back for the end by sending the first non-finisher below
       // him, at the captain's own rate (`collapseHold`), or move as usual at the rest of the rate.
-      const finisher = (p: EnginePlayer) => p.archetype.batting === "finisher";
+      // A finisher is whoever the side's own order has at No. 6 or 7, as the habit was measured
+      // (the man who usually bats 6–7); a card's archetype misses a quarter of the pool (2026-11-05 review).
+      const finisher = (p: EnginePlayer) => { const i = baseAt.get(p.id) ?? -1; return i === 5 || i === 6; };
       const waiting = [due, ...pool];
       const f = waiting.findIndex(finisher);
-      const held = f >= 0 ? waiting.slice(f + 1).find((p) => !finisher(p)) : undefined;
+      const held = f >= 0 ? waiting.slice(f + 1).find((p) => !finisher(p) && (baseAt.get(p.id) ?? 0) > baseAt.get(waiting[f]!.id)!) : undefined;
       const pHold = held ? Math.max(0, Math.min(1, rate * F.collapseHold + F.scale * F.holdScale * (batting.captainHold ?? 0))) : 0;
       const pOther = rate * (held ? 1 - F.collapseHold : 1);
       const u = fRng.next();

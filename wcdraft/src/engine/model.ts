@@ -4,6 +4,13 @@
  * (`npm run engine:replay`, `npm run engine:calibrate`), and says which.
  */
 
+/**
+ * Which engine played a run. Shared links carry it (2026-11-05 review: links are replayed, not
+ * stored, so an engine change silently replays an old link differently). Bump it with any change
+ * that alters how a seeded run plays. 1 is the floater with the captain's habit by No. 6–7.
+ */
+export const ENGINE_VERSION = 1;
+
 export const ENGINE = {
   /**
    * How the batter's and bowler's relative vectors combine with the base distribution:
@@ -200,9 +207,12 @@ export const ENGINE = {
    * collapse with a finisher among the man due and the next `reach`, the first non-finisher below
    * him goes in at `collapseHold` of the rate plus the captain's own habit (`captainHold`, his shift
    * in that share, 4.5 points of true spread) times `holdScale`; the rest of the rate moves as
-   * usual, near and at random. `holdScale` 1.7 because not every collapse has a finisher waiting:
-   * at 1, a captain ±4.5 points moved the sim's held share from 4.3% to 7.1% / 1.8%
-   * (`floater-check.mts`); real is about 5% ± 4.5.
+   * usual, near and at random. A finisher is whoever the side's order has at No. 6 or 7, as the
+   * habit was measured. `holdScale` makes the captain's shift play one for one, so the share the
+   * pickers show is the share the engine plays (`floater-check.mts`, 2026-11-05 review): at 1.7 a
+   * captain at −4.5 / 0 / +4.5 / +15 points held 2.3 / 7.6 / 17.4 / 34.5%, about twice his shift;
+   * at 0.85, 4.5 / 7.6 / 11.4 / 21.5% (0.93 for one), so 0.92. The average, 7.6%, is the World
+   * Cup level (7.5%; 9.7% across all T20Is) and the pickers' base (`HOLD_BASE` in the draft).
    * Only for a side that sets `floater` (the drafted eleven): a real eleven bats in the order it
    * really used that day, which already holds its own moves. `scale` multiplies every rate (0 = off).
    * Rates are indexed by wickets down 1–5+ (the first two rows repeat at 1 and 2 down).
@@ -217,7 +227,7 @@ export const ENGINE = {
     hitter: { pp: 0.37, mid: 0.6, death: 0.88 } as Record<"pp" | "mid" | "death", number>,
     leftRight: 0.06,
     collapseHold: 0.6,
-    holdScale: 1.7 as number,
+    holdScale: 0.92 as number,
     scale: 1 as number,
   },
   /**

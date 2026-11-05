@@ -37,7 +37,7 @@ describe("performance and the share link", () => {
     const run: SharedRun = {
       seed: "daily-2026-11-02", identity: { team: "United States of America", editionId: "2024", standIn: false }, coach: { team: "India", coachName: "Rahul Dravid", from: "2021-11" },
       picks: Array.from({ length: 11 }, (_, i) => ["India", "2024", `p${i}`] as [string, string, string]), captainId: "p3",
-      plans: [undefined, { order: ["p1", "p0", ...Array.from({ length: 9 }, (_, i) => `p${i + 2}`)] }, { intent: "attack" }, undefined, { captainId: "p5" }], movesUsed: 2,
+      plans: [undefined, { order: ["p1", "p0", ...Array.from({ length: 9 }, (_, i) => `p${i + 2}`)] }, { intent: "attack" }, undefined, { captainId: "p5" }], movesUsed: 2, engine: 1,
     };
     const text = encodeRun(run);
     assert.match(text, /^[A-Za-z0-9_-]+$/, "URL-safe");
@@ -49,6 +49,7 @@ describe("performance and the share link", () => {
   it("reads a link made before line-up moves as none spent", () => {
     const old = btoa(JSON.stringify({ s: "x", i: ["India", "2024", 0], c: null, p: Array.from({ length: 11 }, (_, i) => ["India", "2024", `p${i}`]), k: null, l: [] })).replace(/=+$/, "");
     assert.equal(decodeRun(old)?.movesUsed, 0);
+    assert.equal(decodeRun(old)?.engine, 0, "and as made before links carried the engine");
   });
 
   it("holds every plan from its match on, a later one changing only what it sets", () => {

@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import type { EditionOut, VenueOut } from "../../../wcdraft/src/engine/data.ts";
 import type { TournamentResult } from "../../../wcdraft/src/engine/tournament.ts";
+import { ENGINE_VERSION } from "../../../wcdraft/src/engine/model.ts";
 import { CoverPage, FinalPage, MatchPage, type Fixtured } from "../components/Gazette.tsx";
 import { MatchCard } from "../components/MatchCard.tsx";
 import { MatchView } from "../components/MatchView.tsx";
@@ -171,6 +172,8 @@ export function ResultScreen({ state, result: played, editions, venues, records,
 
   return (
     <section className="result">
+      {/* A shared link is replayed, not stored: say so when the game has changed since it was made (2026-11-05 review). */}
+      {state.linkEngine !== null && state.linkEngine !== ENGINE_VERSION && <p className="small muted result-replayed">This run was shared from an earlier version of the game. It has been played again on today's, so the matches can differ from the ones that were shared.</p>}
       <div className="gz-stage">
         {leaf && <div className={`gz-leaf turning ${leaf.back ? "back" : ""}`} aria-hidden="true">{renderPage(leaf.page)}</div>}
         <div className="gz-leaf" key={page}>{renderPage(page)}</div>

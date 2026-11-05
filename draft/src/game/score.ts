@@ -11,6 +11,7 @@
  */
 
 import type { CoachOut } from "../../../wcdraft/src/engine/data.ts";
+import { ENGINE_VERSION } from "../../../wcdraft/src/engine/model.ts";
 import type { FixtureResult, TournamentResult } from "../../../wcdraft/src/engine/tournament.ts";
 import type { MatchPlan } from "./simulate.ts";
 import { exitStageOf } from "./stats.ts";
@@ -63,6 +64,8 @@ export interface SharedRun {
   plans: (MatchPlan | undefined)[];
   /** Line-up moves spent, so a replayed run has only what was left. */
   movesUsed: number;
+  /** The engine that played it (`ENGINE_VERSION`); 0 for links made before links carried one. */
+  engine: number;
 }
 
 const b64 = {
@@ -71,18 +74,19 @@ const b64 = {
 };
 
 export function encodeRun(run: SharedRun): string {
-  const compact = { s: run.seed, i: [run.identity.team, run.identity.editionId, run.identity.standIn ? 1 : 0], c: run.coach ? [run.coach.team, run.coach.coachName, run.coach.from] : null, p: run.picks, k: run.captainId, l: run.plans.map((p) => p ?? 0), m: run.movesUsed };
+  const compact = { s: run.seed, i: [run.identity.team, run.identity.editionId, run.identity.standIn ? 1 : 0], c: run.coach ? [run.coach.team, run.coach.coachName, run.coach.from] : null, p: run.picks, k: run.captainId, l: run.plans.map((p) => p ?? 0), m: run.movesUsed, v: run.engine };
   return b64.encode(JSON.stringify(compact));
 }
 
 export function decodeRun(text: string): SharedRun | null {
   try {
-    const c = JSON.parse(b64.decode(text)) as { s: string; i: [string, string, number]; c: [string, string, string] | null; p: [string, string, string][]; k: string | null; l: (MatchPlan | 0)[]; m?: number };
+    const c = JSON.parse(b64.decode(text)) as { s: string; i: [string, string, number]; c: [string, string, string] | null; p: [string, string, string][]; k: string | null; l: (MatchPlan | 0)[]; m?: number; v?: number };
     if (typeof c.s !== "string" || !Array.isArray(c.i) || !Array.isArray(c.p) || c.p.length !== 11) return null;
     return {
       seed: c.s, identity: { team: c.i[0], editionId: c.i[1], standIn: !!c.i[2] }, coach: c.c ? { team: c.c[0], coachName: c.c[1], from: c.c[2] } : null,
       // Links made before line-up moves have no count: none were possible then.
       picks: c.p, captainId: c.k ?? null, plans: (c.l ?? []).map((p) => (p === 0 ? undefined : p)), movesUsed: typeof c.m === "number" ? c.m : 0,
+      engine: typeof c.v === "number" ? c.v : 0,
     };
   } catch {
     return null;
@@ -90,7 +94,7 @@ export function decodeRun(text: string): SharedRun | null {
 }
 
 export function runFrom(seed: string, identity: Identity, coach: CoachOut | null, picks: PoolPlayer[], captainId: string | null, plans: (MatchPlan | undefined)[], movesUsed = 0): SharedRun {
-  return { seed, identity, coach: coach ? { team: coach.team, coachName: coach.coachName, from: coach.from } : null, picks: picks.map((p) => [p.team, p.editionId, p.id]), captainId, plans, movesUsed };
+  return { seed, identity, coach: coach ? { team: coach.team, coachName: coach.coachName, from: coach.from } : null, picks: picks.map((p) => [p.team, p.editionId, p.id]), captainId, plans, movesUsed, engine: ENGINE_VERSION };
 }
 
 /**

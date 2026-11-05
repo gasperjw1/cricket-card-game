@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import { describe, it } from "node:test";
-import { HOLD_BASE, captainChoices, captainFor, captaincyOf, holdShare } from "../src/game/captain.ts";
+import { HOLD_BASE, captainChoices, captainFor, captaincyOf, holdShare, playingCaptain } from "../src/game/captain.ts";
 import type { PoolPlayer } from "../src/game/types.ts";
 
 const p = (id: string) => ({ id, name: id }) as PoolPlayer;
@@ -29,6 +29,15 @@ describe("captains", () => {
     assert.deepEqual(captainChoices(none, c).map((x) => x.id), ["kohli", "pant"]);
     assert.equal(captainFor(none, null, c), null, "nobody has captained: the user must mark one");
     assert.equal(captainFor(none, "pant", c), "pant");
+  });
+
+  it("leads with the same captain the pages name, an old link's included", () => {
+    const xi = [{ ...p("kohli"), bat: 90, bowl: 30 }, { ...p("rohit"), bat: 85, bowl: 20 }, { ...p("pant"), bat: 80, bowl: 0 }] as PoolPlayer[];
+    assert.equal(playingCaptain(xi, "kohli", c), "rohit", "a non-captain named by an old link gives way to the eleven's captain");
+    assert.equal(playingCaptain(xi, null, c), "rohit");
+    const none = [{ ...p("kohli"), bat: 90, bowl: 30 }, { ...p("pant"), bat: 80, bowl: 0 }] as PoolPlayer[];
+    assert.equal(playingCaptain(none, null, c), "kohli", "nobody named and nobody has captained: the best player");
+    assert.equal(playingCaptain(none, "pant", c), "pant");
   });
 
   it("plays a rated captain's collapse habit and the average for anyone else", () => {

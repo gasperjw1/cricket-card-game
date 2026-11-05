@@ -9,8 +9,12 @@
 import type { CaptainOut, LeaderOut } from "../../../wcdraft/src/engine/data.ts";
 import type { PoolPlayer } from "./types.ts";
 
-/** How often an average captain's side holds a finisher back after a collapse (real ~5%, the sim 4.3%). */
-export const HOLD_BASE = 0.05;
+/**
+ * How often an average captain's side holds a finisher back after a collapse, as the engine plays
+ * it: 7.6% (`floater-check.mts`, 2026-11-05 review; real World Cups 7.5%). The engine plays a
+ * captain's habit one for one on top (`ENGINE.floater.holdScale`), so base + habit is his share.
+ */
+export const HOLD_BASE = 0.076;
 
 export interface Captaincy {
   /** Led his country in men's T20Is: matches as captain over every tenure, rated or stand-in. */
@@ -49,6 +53,17 @@ export function captainFor(picks: (PoolPlayer | null)[], chosen: string | null, 
   if (chosen && choices.some((p) => p.id === chosen)) return chosen;
   const tagged = choices.filter((p) => c.matches.has(p.id)).sort((a, b) => c.matches.get(b.id)! - c.matches.get(a.id)!);
   return tagged[0]?.id ?? null;
+}
+
+/**
+ * The captain who leads in the engine, and whom the pages name: `captainFor`'s pick, or, for a run
+ * shared before captains were required that names nobody valid, the side's best player. The engine
+ * and the between-match lever both resolve him here, so the page never names one captain while the
+ * match is played under another (2026-11-05 review).
+ */
+export function playingCaptain(picks: (PoolPlayer | null)[], chosen: string | null, c: Captaincy): string | null {
+  const xi = picks.filter(Boolean) as PoolPlayer[];
+  return captainFor(picks, chosen, c) ?? [...xi].sort((a, b) => Math.max(b.bat, b.bowl) - Math.max(a.bat, a.bowl))[0]?.id ?? null;
 }
 
 /** The share of collapses in which his side holds a finisher back, as the engine plays it. */

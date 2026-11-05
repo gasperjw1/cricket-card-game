@@ -184,10 +184,20 @@ abstracts only.
        Play waits until he does.
      - The captain brings his collapse habit (§2 F), computed in the pipeline
        (`analysis/captain-habits.ts`, `collapseHold` in `captaincy.json`, 83 of 138 rated
-       captains with a record). The floater plays it, with `holdScale` 1.7: a captain ±4.5
-       points gives 8.2% / 1.4% against 4.3% held, and win share doesn't move. A habit tag is possible, but the
-   habits are shared with the coach (who already carries rotation tags) and are worth about a tenth
-   of a run.
+       captains with a record). The floater plays it.
+     - Fixed after the 2026-11-05 review:
+       - A finisher is whoever the side's order has at No. 6 or 7, as the habit was measured. The
+         engine had used the card's archetype, which a quarter of the pool lacks, so many elevens
+         never played the habit.
+       - `holdScale` 0.92 plays the habit one for one, around a 7.6% average (real World Cups
+         7.5%): a captain at −4.5 / +4.5 / +15 points holds 3.7 / 11.5 / 22.5%. The pickers show
+         7.6% + habit, which is what plays.
+       - The lever and the engine name the captain through one resolver (`playingCaptain`).
+       - Shared links carry `ENGINE_VERSION`. A link from an older engine replays on today's with
+         a one-line note.
+       - Win share doesn't move with the captain.
+   - (Original note, before that decision.) A habit tag is possible, but the habits are shared
+     with the coach (who already carries rotation tags) and are worth about a tenth of a run.
 3. **Captain IQ becomes the engine's decisions, for every side.** Real captains do not differ
    measurably, so the honest place for the Bumrah-for-the-18th logic is the allocation itself:
    save the best death bowler for the over where the chase is most in reach, judged on the match

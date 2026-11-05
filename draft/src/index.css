@@ -639,6 +639,7 @@ h3 { font-size: 16px; margin: 0 0 8px; }
 .lineup-side .small { margin: 0; }
 .lineup-strip { gap: 6px 16px; }
 .lineup-box { display: grid; gap: 6px; background: var(--card-2); border: 1px solid var(--line); border-radius: 8px; padding: 10px 12px; }
+.result-replayed { margin: 0 0 10px; text-align: center; }
 .lineup-captain { display: grid; gap: 8px; }
 .lineup-captain label { display: grid; gap: 4px; }
 .lineup-captain select { width: 100%; }

@@ -6,8 +6,9 @@
 
 import type { EngineTeam } from "../../../wcdraft/src/engine/types.ts";
 import { simulateTournament, type TournamentResult } from "../../../wcdraft/src/engine/tournament.ts";
-import type { CaptainOut, CoachOut, EditionOut } from "../../../wcdraft/src/engine/data.ts";
+import type { CoachOut, EditionOut } from "../../../wcdraft/src/engine/data.ts";
 import { loadEditionData, loadRatings, loadShared } from "../lib/data.ts";
+import { captaincyOf, playingCaptain, type Captaincy } from "./captain.ts";
 import { computeFinal, editionEnv, type EditionEnv, type PlayerFinal } from "./final-ratings.ts";
 import { planAt } from "./plan.ts";
 import { bowls, designatedKeeper } from "./rules.ts";
@@ -36,17 +37,13 @@ export async function assembleTeam(input: SimulateInput): Promise<EngineTeam> {
     if (!player) throw new Error(`no engine player for ${p.name} (${p.team} ${p.editionId})`);
     return p === keeper ? { ...player, canBowl: false, keeper: true } : { ...player, canBowl: bowls(p), keeper: false };
   });
-  // A shared run from before captains were required may have none: the side's best player tosses.
-  const leader = input.captainId ?? [...input.picks].sort((a, b) => Math.max(b.bat, b.bowl) - Math.max(a.bat, a.bowl))[0]?.id;
+  // The captain as the pages name him (`playingCaptain`), and his collapse habit.
+  const captaincy = captaincyOf(shared.captains, shared.leaders);
+  const leader = playingCaptain(input.picks, input.captainId, captaincy);
   // The drafted coach's habits beyond tempo (toss, bowling rotation, lower-order scoring) go with him (2026-11-03).
   // The drafted order is the base; on a wicket a man may go in out of it at the real rates, and after
   // a collapse the captain's own habit decides how often a finisher is held back (2026-11-05).
-  return { name: input.identity.team, players, battingOrder: players.map((p) => p.id), intent: input.coach?.intent, coachPlay: input.coach?.play, captainId: leader, captainHold: holdOf(shared.captains, input.captainId), floater: true };
-}
-
-/** A captain's collapse habit, from his busiest rated tenure; 0 for a stand-in or a marked captain. */
-function holdOf(captains: CaptainOut[], id: string | null): number {
-  return (id ? captains.filter((c) => c.personId === id).sort((a, b) => b.matches - a.matches)[0]?.collapseHold : undefined) ?? 0;
+  return { name: input.identity.team, players, battingOrder: players.map((p) => p.id), intent: input.coach?.intent, coachPlay: input.coach?.play, captainId: leader ?? undefined, captainHold: (leader && captaincy.hold.get(leader)) || 0, floater: true };
 }
 
 /** What the user may change before one of the side's matches (the between-match lever, 2026-11-02). */
@@ -61,13 +58,13 @@ export interface MatchPlan {
 const TEMPO: Record<Exclude<MatchPlan["intent"], undefined | "coach">, number> = { attack: 1, balanced: 0, hold: -1 };
 
 /** The eleven for one match under a plan: same players, the captain and tempo the plan asks for. */
-function planned(base: EngineTeam, input: SimulateInput, plan: MatchPlan | undefined, captains: CaptainOut[]): EngineTeam {
+function planned(base: EngineTeam, input: SimulateInput, plan: MatchPlan | undefined, captaincy: Captaincy): EngineTeam {
   if (!plan) return base;
-  const captainId = plan.captainId === undefined ? input.captainId : plan.captainId;
+  const captainId = playingCaptain(input.picks, plan.captainId === undefined ? input.captainId : plan.captainId, captaincy);
   const intent = plan.intent && plan.intent !== "coach" ? { pp: TEMPO[plan.intent], mid: TEMPO[plan.intent], death: TEMPO[plan.intent] } : input.coach?.intent;
   // A moved order bats in that order; it must hold the same eleven, or the drafted order stands.
   const order = plan.order && plan.order.length === base.battingOrder.length && plan.order.every((id) => base.battingOrder.includes(id)) ? plan.order : base.battingOrder;
-  return { ...base, intent, captainId: captainId ?? base.captainId, captainHold: captainId ? holdOf(captains, captainId) : base.captainHold, battingOrder: order };
+  return { ...base, intent, captainId: captainId ?? base.captainId, captainHold: (captainId && captaincy.hold.get(captainId)) || 0, battingOrder: order };
 }
 
 /**
@@ -79,7 +76,8 @@ export async function runTournament(input: SimulateInput, plans: (MatchPlan | un
   // A plan holds from its match onward, and a later one changes only what it sets (2026-11-03: the
   // latest plan replaced the earlier ones whole, so a captain named before match 1 was dropped once
   // a tempo was set before match 3, while the paper showed both).
-  const xiFor = (n: number) => planned(xi, input, plans.slice(0, n + 1).some(Boolean) ? planAt(plans, n) : undefined, shared.captains);
+  const captaincy = captaincyOf(shared.captains, shared.leaders);
+  const xiFor = (n: number) => planned(xi, input, plans.slice(0, n + 1).some(Boolean) ? planAt(plans, n) : undefined, captaincy);
   // Every fixture keeps its scorecard and ball log (2026-11-01): the gazette's facts, records and
   // late news read CPU matches the same way as yours.
   return simulateTournament(data, data.progression, { seed: input.seed, identity: { team: input.identity.team, xi, xiFor }, keepIdentityDetails: true, keepScorecards: true, keepBallLogs: true });

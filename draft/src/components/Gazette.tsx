@@ -10,7 +10,7 @@
 
 import { useMemo, useState, type ReactNode } from "react";
 import type { CoachOut, EditionOut, VenueOut } from "../../../wcdraft/src/engine/data.ts";
-import { captainChoices, captainFor, holdShare, type Captaincy } from "../game/captain.ts";
+import { captainChoices, holdShare, playingCaptain, type Captaincy } from "../game/captain.ts";
 import { planAt } from "../game/plan.ts";
 import type { MatchPlan } from "../game/simulate.ts";
 import type { PoolPlayer } from "../game/types.ts";
@@ -270,7 +270,8 @@ function NextMatchLever({ lever, next, me, opponent }: { lever: Lever; next: num
   const plan = planAt(lever.plans, next);
   // The same choice as the lineup: the eleven's captains, or anyone when none has captained.
   const choices = captainChoices(lever.picks, lever.captaincy);
-  const captainId = captainFor(lever.picks, plan.captainId === undefined ? lever.captainId : plan.captainId, lever.captaincy);
+  // Resolved as the engine resolves him, so the page names the captain the match is played under.
+  const captainId = playingCaptain(lever.picks, plan.captainId === undefined ? lever.captainId : plan.captainId, lever.captaincy);
   const tempo = plan.intent ?? "coach";
   // Say what changed and that the matches from here on were played again with it (2026-11-03: the
   // tournament did replay, but nothing on the page said so).

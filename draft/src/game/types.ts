@@ -113,6 +113,8 @@ export interface RunState {
   movesLeft: number;
   result: TournamentResult | null;
   error: string | null;
+  /** For a run opened from a shared link: the engine version that played it (0 before links carried one); null for the user's own run. */
+  linkEngine: number | null;
 }
 
 /**
