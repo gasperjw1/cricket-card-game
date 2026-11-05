@@ -16,6 +16,7 @@ import { loadEdition, matchEnvironment, teamFromMatch, type EditionData, type Sq
 import { simulateMatch } from "../../src/engine/match.ts";
 import { expectedRunsOf } from "../../src/engine/ball.ts";
 import { phaseOf } from "../../src/cricsheet/match.ts";
+import { isCollapse, isFinisherPosition } from "../../src/analysis/batting-order.ts";
 import { ENGINE, setEngineOverrides } from "../../src/engine/model.ts";
 
 const sims = Number(process.argv[2] ?? 4);
@@ -61,12 +62,11 @@ const run = (scale: number, captainHold = 0): Arm => {
         const waiting = base.filter((id) => !order.slice(0, i).some((l) => l.id === id));
         if (waiting.length < 2) return;
         // After a collapse: is a finisher passed over (a man from below him in the order going in)?
-        const down = i - 2 + 1, ov = fall.over;
-        if ((down >= 3 && ov <= 5) || (down >= 4 && ov <= 7) || (down >= 5 && ov <= 9)) {
+        if (isCollapse(i - 1, fall.over)) {
           arm.collapse += 1;
           const at = base.indexOf(line.id);
           // A finisher as the habit was measured and the engine plays it: the man at No. 6 or 7 in the side's order.
-          if (waiting.some((id) => id !== line.id && base.indexOf(id) < at && (base.indexOf(id) === 5 || base.indexOf(id) === 6))) arm.held += 1;
+          if (waiting.some((id) => id !== line.id && base.indexOf(id) < at && isFinisherPosition(base.indexOf(id) + 1))) arm.held += 1;
         }
         arm.entries[ph]! += 1;
         if (line.id === waiting[0]) return;

@@ -1,4 +1,8 @@
 /**
+ * Retired 2026-11-05: the engine no longer reads `captainZ` (the rating was removed after this
+ * measured it as doing nothing), so every arm now plays the same. Kept as the record of how that
+ * was measured; results in docs/wc-draft-captains-2026-11-04.md §1.
+ *
  * How much does the captain matter in the sim? (2026-11-04, Yash: should the draft tag captains, or
  * require one?) The captain's rating only scales the noise in his bowling choices (allocation.ts:
  * noise × (1 − captainNoiseSlope × z), clipped to [0.4, 1.6]). Here one side's real eleven plays its

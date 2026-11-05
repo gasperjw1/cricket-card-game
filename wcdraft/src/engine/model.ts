@@ -231,13 +231,6 @@ export const ENGINE = {
     scale: 1 as number,
   },
   /**
-   * Captaincy rating: allocation noise × (1 − captainNoiseSlope × z), clipped to [0.4, 1.6]. Off
-   * since 2026-11-05: the rating (wins above expectation) doesn't repeat from one half of a
-   * captain's matches to the other, and −2 to +2 moved nothing in the sim
-   * (docs/wc-draft-captains-2026-11-04.md). The captain's measured habit plays through the floater.
-   */
-  captainNoiseSlope: 0 as number,
-  /**
    * Dispersion. The variance decomposition in `situation.json` gives per-innings scoring effects of
    * SD 0.21 (bowler) and 0.19 (batter) against each player's career mean, which also absorb
    * opponent, venue and era for that player; the engine already conditions on those, so the day

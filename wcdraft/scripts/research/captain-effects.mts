@@ -39,6 +39,7 @@ import { loadIndex, readMatch } from "../../src/cricsheet/archive.ts";
 import { mainInnings, normaliseMatch } from "../../src/cricsheet/match.ts";
 import { readCsv } from "../../src/util/csv.ts";
 import { bowlClassOf, handOf, type BowlClass, type MatchupTables } from "../../src/analysis/matchups.ts";
+import { tenureOf } from "../../src/analysis/captaincy.ts";
 
 const ROOT = resolve(fileURLToPath(import.meta.url), "../../..");
 const MIN = Number(process.argv[2] ?? 30);
@@ -48,14 +49,9 @@ const PRIOR_BALLS = 120;
 type Phase = "pp" | "mid" | "death";
 const phaseOf = (over: number): Phase => (over < 6 ? "pp" : over < 15 ? "mid" : "death");
 
-// Captains: the tenure covering the year whose captain is in the eleven, the busier one when several are.
+// Captains: the tenure covering the year whose captain is in the eleven, the busier one when several are (`tenureOf`).
 const tenures = JSON.parse(readFileSync(resolve(ROOT, "data/out/captaincy.json"), "utf8")).captains as { personId: string; captainName: string; team: string; firstYear: number; lastYear: number; matches: number }[];
-const captainOf = (team: string, date: string, xi: string[]) => {
-  const year = Number(date.slice(0, 4));
-  const hits = tenures.filter((t) => t.team === team && year >= t.firstYear && year <= t.lastYear && xi.includes(t.personId))
-    .sort((a, b) => b.matches / (b.lastYear - b.firstYear + 1) - a.matches / (a.lastYear - a.firstYear + 1));
-  return hits.length ? `${team} | ${hits[0]!.captainName}` : null;
-};
+const captainOf = (team: string, date: string, xi: string[]) => { const t = tenureOf(tenures, team, date.slice(0, 4), xi); return t ? `${team} | ${t.captainName}` : null; };
 // Coaches: the latest-starting tenure covering the date (year-only dates overlap at hand-overs).
 const coachRows = readCsv(readFileSync(resolve(ROOT, "data/config/coaches.csv"), "utf8"));
 const pad = (d: string, end: boolean) => (!d ? (end ? "2099-12-31" : "1900-01-01") : d.length === 4 ? `${d}${end ? "-12-31" : "-01-01"}` : d.length === 7 ? `${d}${end ? "-31" : "-01"}` : d);

@@ -9,6 +9,7 @@
 
 import { phaseOf, type OutcomeKey, type Phase } from "../cricsheet/match.js";
 import { streakBand } from "../analysis/situation.js";
+import { isCollapse, isFinisherPosition } from "../analysis/batting-order.js";
 import { OUTCOMES, RUNS } from "../ratings/model.js";
 import { chooseBowler, type BowlerState } from "./allocation.js";
 import { expectedRunsOf, outcomeDistribution, type BallContext, type SituationModel } from "./ball.js";
@@ -106,7 +107,7 @@ export function simulateInnings(batting: EngineTeam, bowling: EngineTeam, env: M
     const eq = equivalentOver(over, opts.overs, opts.closing);
     const ph = phaseOf(eq);
     const rate = F.scale * F.rate[ph][Math.min(wickets, 5) - 1]!;
-    const collapse = (wickets >= 3 && eq <= 5) || (wickets >= 4 && eq <= 7) || (wickets >= 5 && eq <= 9);
+    const collapse = isCollapse(wickets, eq);
     const due = order[nextIn]!;
     const pool = order.slice(nextIn + 1, nextIn + 1 + F.reach);
     if (collapse) {
@@ -114,7 +115,7 @@ export function simulateInnings(batting: EngineTeam, bowling: EngineTeam, env: M
       // him, at the captain's own rate (`collapseHold`), or move as usual at the rest of the rate.
       // A finisher is whoever the side's own order has at No. 6 or 7, as the habit was measured
       // (the man who usually bats 6–7); a card's archetype misses a quarter of the pool (2026-11-05 review).
-      const finisher = (p: EnginePlayer) => { const i = baseAt.get(p.id) ?? -1; return i === 5 || i === 6; };
+      const finisher = (p: EnginePlayer) => isFinisherPosition((baseAt.get(p.id) ?? -1) + 1);
       const waiting = [due, ...pool];
       const f = waiting.findIndex(finisher);
       const held = f >= 0 ? waiting.slice(f + 1).find((p) => !finisher(p) && (baseAt.get(p.id) ?? 0) > baseAt.get(waiting[f]!.id)!) : undefined;
@@ -159,7 +160,7 @@ export function simulateInnings(batting: EngineTeam, bowling: EngineTeam, env: M
     const ph = phaseOf(eq);
     const intent = batting.intent?.[ph] ?? 0;
     const ctxBase: BallContext = { innings: opts.index, over: eq, wickets, strikerBalls: 0, requiredRpo: null, scoringFactor, playerFactor: 1, streak: streakNow(), ballInOver: 1, consecutiveDots, freeHit: false, intent };
-    const b = chooseBowler({ over, eqOver: eq, oversInInnings: opts.overs, maxOvers, bowlers, previousBowler, batters: [striker, nonStriker], env, situation, ctx: ctxBase, captainZ: bowling.captainZ, rotation: bowling.coachPlay?.rotation }, rng);
+    const b = chooseBowler({ over, eqOver: eq, oversInInnings: opts.overs, maxOvers, bowlers, previousBowler, batters: [striker, nonStriker], env, situation, ctx: ctxBase, rotation: bowling.coachPlay?.rotation }, rng);
     b.overs.push(over);
     b.runsByOver.push(0);
     previousBowler = b.player.id;

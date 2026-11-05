@@ -62,6 +62,17 @@ export interface CaptaincyTables {
 
 const PRIOR_MATCHES = 20;
 
+/**
+ * Who captained a side in a match: the tenure covering that year whose captain is in the eleven, the
+ * busier one (matches a year) when several are (tenures are whole years and overlap). Shared by
+ * `captain-habits.ts` and the research scripts.
+ */
+export function tenureOf<T extends { personId: string; team: string; firstYear: number; lastYear: number; matches: number }>(tenures: readonly T[], team: string, year: number | string, xi: readonly string[]): T | null {
+  const y = Number(year);
+  const busy = (t: T) => t.matches / (t.lastYear - t.firstYear + 1);
+  return tenures.filter((t) => t.team === team && y >= t.firstYear && y <= t.lastYear && xi.includes(t.personId)).sort((a, b) => busy(b) - busy(a))[0] ?? null;
+}
+
 const norm = (s: string) => s.normalize("NFKD").replace(/[̀-ͯ]/g, "").toLowerCase();
 
 export function buildCaptaincy(

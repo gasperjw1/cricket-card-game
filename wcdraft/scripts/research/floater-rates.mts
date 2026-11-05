@@ -25,6 +25,7 @@ import { loadIndex, readMatch } from "../../src/cricsheet/archive.ts";
 import { mainInnings, normaliseMatch } from "../../src/cricsheet/match.ts";
 import { readCsv } from "../../src/util/csv.ts";
 import { bowlClassOf, handOf, type BowlClass } from "../../src/analysis/matchups.ts";
+import { UsualPositions } from "../../src/analysis/batting-order.ts";
 
 const ROOT = resolve(fileURLToPath(import.meta.url), "../../..");
 const labels = new Map<string, { hand: "R" | "L" | null; cls: BowlClass | null }>();
@@ -37,19 +38,14 @@ for (const file of ["data/labels/players.csv", "data/labels/bowler-types.csv"]) 
 
 const index = loadIndex().filter((e) => e.gender === "male" && e.date >= "2010-01-01").sort((a, b) => a.date.localeCompare(b.date));
 const matches = [];
-const usualSum = new Map<string, Map<string, [number, number]>>();
+const usual = new UsualPositions();
 for (const e of index) {
   const m = normaliseMatch(readMatch(e.file), e.id);
   if (m.hasMissingData) continue;
   matches.push(m);
-  for (const inn of mainInnings(m)) {
-    if (inn.reduced || inn.superOver) continue;
-    const key = `${inn.team}|${m.date.slice(0, 4)}`;
-    const u = usualSum.get(key) ?? usualSum.set(key, new Map()).get(key)!;
-    inn.battingOrder.forEach((id, i) => { const x = u.get(id) ?? [0, 0]; u.set(id, [x[0] + i + 1, x[1] + 1]); });
-  }
+  for (const inn of mainInnings(m)) if (!inn.reduced && !inn.superOver) usual.add(inn.team, m.date.slice(0, 4), inn.battingOrder);
 }
-const usualOf = (team: string, year: string, id: string) => { const x = usualSum.get(`${team}|${year}`)?.get(id); return x ? x[0] / x[1] : 11; };
+const usualOf = (team: string, year: string, id: string) => usual.of(team, year, id);
 
 // Career death strike rate before the match (balls in overs 16–20), shrunk to 135 with 30 balls.
 const death = new Map<string, { r: number; b: number }>();

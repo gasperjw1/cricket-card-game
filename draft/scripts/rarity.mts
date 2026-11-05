@@ -73,7 +73,7 @@ function assemble(identity: { team: string }, picks: PoolPlayer[]): EngineTeam {
   });
   const rated = picks.map((p) => ({ p, c: captaincy.filter((c) => c.personId === p.id).sort((a, b) => b.matches - a.matches)[0] })).filter((x) => x.c).sort((a, b) => b.c!.z - a.c!.z)[0];
   const captain = rated?.p ?? [...picks].sort((a, b) => Math.max(b.bat, b.bowl) - Math.max(a.bat, a.bowl))[0]!;
-  return { name: identity.team, players, battingOrder: players.map((p) => p.id), captainZ: rated?.c?.z, captainId: captain.id };
+  return { name: identity.team, players, battingOrder: players.map((p) => p.id), captainId: captain.id };
 }
 
 for (const bot of bots) {

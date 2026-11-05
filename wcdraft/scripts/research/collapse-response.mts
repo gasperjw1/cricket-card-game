@@ -25,19 +25,16 @@ import { fileURLToPath } from "node:url";
 import { loadIndex, readMatch } from "../../src/cricsheet/archive.ts";
 import { mainInnings, normaliseMatch } from "../../src/cricsheet/match.ts";
 import { readCsv } from "../../src/util/csv.ts";
+import { UsualPositions, isCollapse, isFinisherPosition } from "../../src/analysis/batting-order.ts";
+import { tenureOf } from "../../src/analysis/captaincy.ts";
 
 const ROOT = resolve(fileURLToPath(import.meta.url), "../../..");
 const MIN = Number(process.argv[2] ?? 20);
 const LAMBDA = 10;
 
-// Captains and coaches, as in `captain-effects.mts`.
+// Captains (`tenureOf`) and coaches, as in `captain-effects.mts`.
 const tenures = JSON.parse(readFileSync(resolve(ROOT, "data/out/captaincy.json"), "utf8")).captains as { personId: string; captainName: string; team: string; firstYear: number; lastYear: number; matches: number }[];
-const captainOf = (team: string, date: string, xi: string[]) => {
-  const year = Number(date.slice(0, 4));
-  const hits = tenures.filter((t) => t.team === team && year >= t.firstYear && year <= t.lastYear && xi.includes(t.personId))
-    .sort((a, b) => b.matches / (b.lastYear - b.firstYear + 1) - a.matches / (a.lastYear - a.firstYear + 1));
-  return hits.length ? `${team} | ${hits[0]!.captainName}` : null;
-};
+const captainOf = (team: string, date: string, xi: string[]) => { const t = tenureOf(tenures, team, date.slice(0, 4), xi); return t ? `${team} | ${t.captainName}` : null; };
 const coachRows = readCsv(readFileSync(resolve(ROOT, "data/config/coaches.csv"), "utf8"));
 const pad = (d: string, end: boolean) => (!d ? (end ? "2099-12-31" : "1900-01-01") : d.length === 4 ? `${d}${end ? "-12-31" : "-01-01"}` : d.length === 7 ? `${d}${end ? "-31" : "-01"}` : d);
 const coachOf = (team: string, date: string) => {
@@ -47,20 +44,15 @@ const coachOf = (team: string, date: string) => {
 
 const index = loadIndex().filter((e) => e.gender === "male" && e.date >= "2010-01-01").sort((a, b) => a.date.localeCompare(b.date));
 const matches = [];
-// Each side-year's usual positions: player → [sum of positions, innings].
-const usualSum = new Map<string, Map<string, [number, number]>>();
+// Each side-year's usual positions.
+const usual = new UsualPositions();
 for (const e of index) {
   const m = normaliseMatch(readMatch(e.file), e.id);
   if (m.hasMissingData) continue;
   matches.push(m);
-  for (const inn of mainInnings(m)) {
-    if (inn.reduced || inn.superOver) continue;
-    const key = `${inn.team}|${m.date.slice(0, 4)}`;
-    const u = usualSum.get(key) ?? usualSum.set(key, new Map()).get(key)!;
-    inn.battingOrder.forEach((id, i) => { const x = u.get(id) ?? [0, 0]; u.set(id, [x[0] + i + 1, x[1] + 1]); });
-  }
+  for (const inn of mainInnings(m)) if (!inn.reduced && !inn.superOver) usual.add(inn.team, m.date.slice(0, 4), inn.battingOrder);
 }
-const usualOf = (team: string, year: string, id: string) => { const x = usualSum.get(`${team}|${year}`)?.get(id); return x ? x[0] / x[1] : 11; };
+const usualOf = (team: string, year: string, id: string) => usual.of(team, year, id);
 
 type Kind = "inOrder" | "batterAhead" | "bowlerAhead";
 interface Entry { collapse: boolean; down: number; over: number; kind: Kind; heldFinisher: boolean; finisherDue: boolean; firstInnings: boolean; rest: number | null; side: string; year: string; cap: string | null; coach: string | null; wc: boolean }
@@ -80,17 +72,17 @@ for (const m of matches) {
       const id = inn.battingOrder[p - 1]!;
       const over = inn.batters.get(id)?.arrivedOver ?? 0;
       const down = p - 2;
-      const collapse = (down >= 3 && over <= 5) || (down >= 4 && over <= 7) || (down >= 5 && over <= 9);
+      const collapse = isCollapse(down, over);
       const batted = new Set(inn.battingOrder.slice(0, p - 1));
       const waiting = xi.filter((x) => !batted.has(x) && x !== id).map((x) => ({ x, u: usualOf(inn.team, year, x) }));
       const mine = usualOf(inn.team, year, id);
       const earliest = Math.min(mine, ...waiting.map((w) => w.u));
       const ahead = mine > earliest + 1;
       const kind: Kind = !ahead ? "inOrder" : mine >= 7.5 ? "bowlerAhead" : "batterAhead";
-      const heldFinisher = waiting.some((w) => w.u >= 5.5 && w.u < 7.5 && w.u < mine - 0.5);
+      const heldFinisher = waiting.some((w) => isFinisherPosition(w.u) && w.u < mine - 0.5);
       const at = firstSeen.get(id);
       const before = at === undefined ? null : inn.balls.slice(0, at).reduce((s, b) => s + b.runsTotal, 0);
-      const finisherDue = earliest >= 5.5 && earliest < 7.5;
+      const finisherDue = isFinisherPosition(earliest);
       entries.push({ collapse, down, over, kind, heldFinisher, finisherDue, firstInnings: inn.index === 0, rest: before === null ? null : inn.total - before, side: inn.team, year, cap, coach, wc: /world cup|world twenty20/i.test(m.eventName ?? "") && !/qualifier|sub regional|regional final/i.test(m.eventName ?? "") });
     }
   }

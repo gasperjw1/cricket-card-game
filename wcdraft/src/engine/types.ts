@@ -70,8 +70,6 @@ export interface EngineTeam {
   intent?: Record<Phase, number>;
   /** The coach's toss, bowling-rotation and batting-depth habits (`analysis/coaches.ts` `CoachPlay`). */
   coachPlay?: CoachPlay;
-  /** Captaincy rating in SD units (0 = average); scales the bowling-allocation noise. */
-  captainZ?: number;
   /** Who leads the side on the scorecard. */
   captainId?: string;
   /** Sends a man in out of the order on a wicket at the real rates (`ENGINE.floater`); the drafted eleven sets it. */

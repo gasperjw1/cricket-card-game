@@ -47,7 +47,7 @@ describe("tournament", { skip: !engineReady() && "engine data not built" }, () =
     const b = simulateTournament(data, data.progression, { seed: "t-2024", identity: { team: "India", xi } });
     assert.deepEqual(a, b, "deterministic per seed");
     // The between-match lever: a different eleven from the side's third match leaves the first two exactly as they were.
-    const attacking = { ...xi, intent: { pp: 1.5, mid: 1.5, death: 1.5 }, captainZ: 2 };
+    const attacking = { ...xi, intent: { pp: 1.5, mid: 1.5, death: 1.5 } };
     const c = simulateTournament(data, data.progression, { seed: "t-2024", identity: { team: "India", xi, xiFor: (n) => (n >= 2 ? attacking : xi) } });
     const mine = (r: typeof a) => r.stages.flatMap((s) => s.fixtures).filter((f) => f.teams.includes("India"));
     const ma = mine(a), mc = mine(c);

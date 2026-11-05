@@ -28,8 +28,6 @@ export interface AllocationInput {
   env: MatchEnvironment;
   situation: SituationModel;
   ctx: BallContext;
-  /** Fielding captain's rating in SD units; a better captain chooses with less noise. */
-  captainZ?: number;
   /** The fielding coach's extra bowlers an innings against the era ("Six-bowler rotation" / "Frontline trust"). */
   rotation?: number;
 }
@@ -111,8 +109,9 @@ export function chooseBowler(input: AllocationInput, rng: Rng): BowlerState {
     if (b.player.bowlLowSample) score -= 2.5;
     score += A.continuityBonus * b.overs.length;
     if (b.overs.length === 0 && used >= 5) score -= A.extraBowlerPenalty * rotate;
-    const noise = A.noise * Math.max(0.4, Math.min(1.6, 1 - ENGINE.captainNoiseSlope * (input.captainZ ?? 0)));
-    return score + noise * rng.gumbel();
+    // The captaincy rating once scaled this noise; it was removed on 2026-11-05 (it doesn't repeat in
+    // real data and moved nothing in the sim; docs/wc-draft-captains-2026-11-04.md).
+    return score + A.noise * rng.gumbel();
   });
   let best = 0;
   for (let i = 1; i < scores.length; i += 1) if (scores[i]! > scores[best]!) best = i;

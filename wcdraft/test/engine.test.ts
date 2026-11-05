@@ -272,7 +272,7 @@ describe("engine", { skip: !engineReady() && "engine data not built" }, () => {
     assert.ok(profile.coach!.tags.includes("Powerplay aggressor"));
     assert.equal(profile.captains[0]?.name, "RG Sharma");
     assert.ok(india.intent && india.intent.pp > 0.5, `India powerplay intent ${india.intent?.pp}`);
-    assert.ok(typeof india.captainZ === "number");
+    assert.ok(typeof india.captainId === "string");
     const striker = india.players.find((p) => p.name === "V Kohli")!;
     const bowler = southAfrica.players.find((p) => p.name === "K Rabada")!;
     const base = { innings: 1 as const, over: 3, wickets: 0, strikerBalls: 12, requiredRpo: null, scoringFactor: 1, playerFactor: 1, streak: "4-7" as const, ballInOver: 3, consecutiveDots: 0, freeHit: false };
