@@ -181,6 +181,35 @@ export const ENGINE = {
    * gave 0.88 bowlers per unit, 3 gives 0.99 (−0.72 for −0.5, +0.27 for +0.5).
    */
   coachPlay: { toss: 1 as number, rotationScale: 3 as number, depth: 1 as number },
+  /**
+   * The in-match floater (2026-11-05, `scripts/research/floater-rates.mts`, men's T20Is since 2010).
+   * On a wicket that brings in Nos. 3–8 with two or more waiting, the side sends someone other than
+   * the man due at `rate[phase][wickets down]`. That is the share of real entries out of the usual
+   * order, all T20Is by phase and wickets, scaled per phase to the World Cup level (8% of powerplay
+   * entries, 12% middle, 17% death). The man sent is one of the next `reach` in the order (real
+   * jumps average 1.5–2 places). With chance `hitter[phase]` he is the best death hitter among them,
+   * with `leftRight` the first of the other hand to the non-striker when the man due matches him,
+   * otherwise one of them, the nearer more likely. In real entries sent ahead the man sent
+   * out-hits the man due in 38% of powerplay entries (31% at random), 45% middle (33%) and 51% death
+   * (34%), a lift of 7, 12 and 17 points. The hitter chances give the sim the same lift over its own
+   * random pick (`floater-check.mts`: random 49/38/29%, always the hitter 68/58/48%). Left-right is
+   * 26–27% against 21–22% before the death and nothing after. Spin matchups showed nothing. After a collapse (3 down by over 6, 4 by 8, 5 by 10), real sides keep
+   * to the order and rarely send a hitter (`collapse-response.mts`), so the hitter pick is off.
+   * Only for a side that sets `floater` (the drafted eleven): a real eleven bats in the order it
+   * really used that day, which already holds its own moves. `scale` multiplies every rate (0 = off).
+   * Rates are indexed by wickets down 1–5+ (the first two rows repeat at 1 and 2 down).
+   */
+  floater: {
+    rate: {
+      pp: [0.08, 0.08, 0.09, 0.09, 0.1],
+      mid: [0.14, 0.13, 0.14, 0.13, 0.1],
+      death: [0.36, 0.36, 0.28, 0.23, 0.13],
+    } as Record<"pp" | "mid" | "death", number[]>,
+    reach: 3,
+    hitter: { pp: 0.37, mid: 0.6, death: 0.88 } as Record<"pp" | "mid" | "death", number>,
+    leftRight: 0.06,
+    scale: 1 as number,
+  },
   /** Captaincy: allocation noise × (1 − captainNoiseSlope × z), clipped to [0.4, 1.6] (z from `captaincy.json`). */
   captainNoiseSlope: 0.3 as number,
   /**
@@ -384,11 +413,11 @@ export function fieldShareWith(editionShare: number, bowlFirst: number): number 
   return clamp(1 / (1 + Math.exp(-(logit(clamp(editionShare)) + shift))));
 }
 
-export type EngineOverrides = Partial<Record<"allocUsage" | "allocSpecialist" | "allocOpenerDeath" | "allocExtraBowler" | "allocPPHold" | "allocUsageBoost" | "allocReserve" | "allocTags" | "phaseUsagePrior" | "coachToss" | "coachRotationScale" | "coachDepth" | "byeEvents" | "batExponent" | "bowlExponent" | "bowlHazardExponent" | "pitchExponent" | "inningsPhaseExponent" | "inningsPhaseHazard" | "inningsPhaseDeathOnly" | "inningsPhaseDeathExponent" | "pressureExponent" | "gearExponent" | "foundExponent" | "shapeExponent" | "streakExponent" | "setnessExponent" | "adjustedSetness" | "adjustedStates" | "ballInOverExponent" | "chaseDotsExponent" | "matchupExponent" | "bowlTierExponent" | "bowlerDaySd" | "batterDaySd" | "matchEffectSd" | "inningsEffectSd" | "venueExponent" | "scoringCalibration" | "hazardCalibration" | "deathCalibration", number>>;
+export type EngineOverrides = Partial<Record<"allocUsage" | "allocSpecialist" | "allocOpenerDeath" | "allocExtraBowler" | "allocPPHold" | "allocUsageBoost" | "allocReserve" | "allocTags" | "phaseUsagePrior" | "coachToss" | "coachRotationScale" | "coachDepth" | "floaterScale" | "byeEvents" | "batExponent" | "bowlExponent" | "bowlHazardExponent" | "pitchExponent" | "inningsPhaseExponent" | "inningsPhaseHazard" | "inningsPhaseDeathOnly" | "inningsPhaseDeathExponent" | "pressureExponent" | "gearExponent" | "foundExponent" | "shapeExponent" | "streakExponent" | "setnessExponent" | "adjustedSetness" | "adjustedStates" | "ballInOverExponent" | "chaseDotsExponent" | "matchupExponent" | "bowlTierExponent" | "bowlerDaySd" | "batterDaySd" | "matchEffectSd" | "inningsEffectSd" | "venueExponent" | "scoringCalibration" | "hazardCalibration" | "deathCalibration", number>>;
 
 /** Calibration hook: override numeric constants for a sweep (`npm run engine:calibrate`). */
 export function setEngineOverrides(overrides: EngineOverrides): void {
-  const { allocUsage, allocSpecialist, allocOpenerDeath, allocExtraBowler, allocPPHold, allocUsageBoost, allocReserve, allocTags, coachToss, coachRotationScale, coachDepth, ...flat } = overrides;
+  const { allocUsage, allocSpecialist, allocOpenerDeath, allocExtraBowler, allocPPHold, allocUsageBoost, allocReserve, allocTags, coachToss, coachRotationScale, coachDepth, floaterScale, ...flat } = overrides;
   Object.assign(ENGINE, flat);
   if (allocUsage !== undefined) ENGINE.allocation.usageWeight = allocUsage;
   if (allocSpecialist !== undefined) ENGINE.allocation.specialistBonus = allocSpecialist;
@@ -401,4 +430,5 @@ export function setEngineOverrides(overrides: EngineOverrides): void {
   if (coachToss !== undefined) ENGINE.coachPlay.toss = coachToss;
   if (coachRotationScale !== undefined) ENGINE.coachPlay.rotationScale = coachRotationScale;
   if (coachDepth !== undefined) ENGINE.coachPlay.depth = coachDepth;
+  if (floaterScale !== undefined) ENGINE.floater.scale = floaterScale;
 }

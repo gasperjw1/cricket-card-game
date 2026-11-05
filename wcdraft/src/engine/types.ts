@@ -74,6 +74,8 @@ export interface EngineTeam {
   captainZ?: number;
   /** Who leads the side on the scorecard. */
   captainId?: string;
+  /** Sends a man in out of the order on a wicket at the real rates (`ENGINE.floater`); the drafted eleven sets it. */
+  floater?: boolean;
 }
 
 /** Scoring environment for one match. */

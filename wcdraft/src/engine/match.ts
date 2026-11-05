@@ -41,6 +41,13 @@ interface InningsOptions {
  */
 const CLOSING_SET_BALLS = 11;
 
+/** An index into the next `n` men, the nearer more likely (weights n, n − 1, … 1): real jumps average 1.5–2 places. */
+const pickNear = (n: number, u: number): number => {
+  let x = u * ((n * (n + 1)) / 2);
+  for (let i = 0; i < n; i += 1) { x -= n - i; if (x < 0) return i; }
+  return n - 1;
+};
+
 /** Equivalent position in a 20-over innings, for the situation tables and phases. */
 const equivalentOver = (over: number, overs: number, closing = false): number => (overs >= 20 ? over : closing ? 20 - overs + over : Math.min(19, Math.floor((over * 20) / overs)));
 
@@ -89,6 +96,26 @@ export function simulateInnings(batting: EngineTeam, bowling: EngineTeam, env: M
   let runs = 0, wickets = 0, legalBalls = 0, extras = 0, byeBalls = 0, wides = 0, noBalls = 0, byes = 0;
   let nextIn = 2;
   let striker = order[0]!, nonStriker = order[1]!;
+  // The floater (`ENGINE.floater`): on a wicket bringing in Nos. 3–8 with two or more waiting, a man
+  // from the next few may go in ahead of the one due; he moves up and the rest keep their order.
+  const fRng = batting.floater && ENGINE.floater.scale > 0 ? rng.fork("floater") : null;
+  const sendIn = (over: number, partner: EnginePlayer) => {
+    if (!fRng || nextIn < 2 || nextIn > 7 || order.length - nextIn < 2) return;
+    const F = ENGINE.floater;
+    const eq = equivalentOver(over, opts.overs, opts.closing);
+    const ph = phaseOf(eq);
+    if (!fRng.chance(Math.min(1, F.scale * F.rate[ph][Math.min(wickets, 5) - 1]!))) return;
+    const collapse = (wickets >= 3 && eq <= 5) || (wickets >= 4 && eq <= 7) || (wickets >= 5 && eq <= 9);
+    const due = order[nextIn]!;
+    const pool = order.slice(nextIn + 1, nextIn + 1 + F.reach);
+    const otherHand = ph !== "death" && partner.hand && due.hand === partner.hand ? pool.find((p) => p.hand && p.hand !== partner.hand) : undefined;
+    const r = fRng.next();
+    const pick = !collapse && r < F.hitter[ph] ? [...pool].sort((a, b) => expectedRunsOf(b.batting.death) - expectedRunsOf(a.batting.death))[0]!
+      : otherHand && r < F.hitter[ph] + F.leftRight ? otherHand
+      : pool[pickNear(pool.length, fRng.next())]!;
+    order.splice(order.indexOf(pick), 1);
+    order.splice(nextIn, 0, pick);
+  };
   lineOf(striker, 1);
   lineOf(nonStriker, 2);
   const inningsEffect = Math.exp(ENGINE.inningsEffectSd * rng.normal());
@@ -185,6 +212,7 @@ export function simulateInnings(batting: EngineTeam, bowling: EngineTeam, env: M
         // Reset before the all-out check too, or the closing stand is booked twice.
         stand = { batters: [striker.id, nonStriker.id], runs: 0, balls: 0 };
         if (wickets >= 10 || nextIn >= order.length) break;
+        sendIn(over, nonStriker);
         striker = order[nextIn]!;
         lineOf(striker, nextIn + 1);
         nextIn += 1;
@@ -208,6 +236,7 @@ export function simulateInnings(batting: EngineTeam, bowling: EngineTeam, env: M
         const last = log?.[log.length - 1];
         if (last) { last.wicket = true; last.dismissal = d; last.wicketsAfter = wickets; }
         if (wickets >= 10 || nextIn >= order.length) break;
+        sendIn(over, striker);
         nonStriker = order[nextIn]!;
         lineOf(nonStriker, nextIn + 1);
         nextIn += 1;

@@ -36,7 +36,8 @@ export function DraftScreen({ state, editions, venues, squads, onPlace, onReroll
   // Once the open slots are down to what the side still needs, only bowlers and keepers can be taken.
   const required = bowlersRequired(state.coach);
   const need = needs(state.picks, required);
-  const bowlersIn = Math.min(required, bowlerCount(state.picks));
+  // Past the requirement too: a seventh is where a six-bowler coach spreads the overs.
+  const bowlersIn = bowlerCount(state.picks);
   const locked = need.open <= need.bowlers + need.keeper && need.open > 0;
   const needText = [need.bowlers ? `${need.bowlers} more bowler${need.bowlers === 1 ? "" : "s"}` : "", need.keeper ? "a keeper" : ""].filter(Boolean).join(" and ");
   const lockText = locked ? `Your side still needs ${needText} with ${need.open} slot${need.open === 1 ? "" : "s"} left, so only players who bowl${need.keeper ? " or keep" : ""} can be taken now.` : null;

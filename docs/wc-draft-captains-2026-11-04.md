@@ -191,6 +191,14 @@ abstracts only.
      bowler goes in to steady things at the real 2–4%. How readily a side holds its finisher back
      can be the captain's style (3.4 points of spread), since that is the one collapse habit that
      follows the captain and not the coach.
+   - Built 2026-11-05 for the drafted eleven (`ENGINE.floater`, `sendIn` in match.ts). Real rates
+     from `floater-rates.mts`: World Cup entries at Nos. 3–8 go out of the usual order 8% in the
+     powerplay, 12% middle and 17% at the death (30–38% at the death with 2–3 down). The man sent
+     out-hits the man due 7, 12 and 17 points more often than a random pick would. Left-right adds
+     about 5 points before the death; spin matchups add nothing. `floater-check.mts`: the sim gives
+     7.8 / 12.9 / 18.8%, hitter lift +8 / +10 / +16 points, 1.7 places a jump. Win share is 51.8%
+     off and 51.9% on, and runs an innings 138.9 against 138.3. Real elevens keep their real order
+     that day, which already has its moves.
 5. **Six-bowler coaches require six who bowl** (§2 G). The rule matches real elevens, so it costs a
    real side nothing, and below six the tag does nothing in the engine. Built 2026-11-05
    (`bowlersRequired` in draft/src/game/rules.ts). The meters now count bowlers against the

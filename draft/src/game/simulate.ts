@@ -40,7 +40,8 @@ export async function assembleTeam(input: SimulateInput): Promise<EngineTeam> {
   // Nobody rated in the eleven still leaves somebody tossing the coin: the side's best player.
   const leader = input.captainId ?? [...input.picks].sort((a, b) => Math.max(b.bat, b.bowl) - Math.max(a.bat, a.bowl))[0]?.id;
   // The drafted coach's habits beyond tempo (toss, bowling rotation, lower-order scoring) go with him (2026-11-03).
-  return { name: input.identity.team, players, battingOrder: players.map((p) => p.id), intent: input.coach?.intent, coachPlay: input.coach?.play, captainZ: captain?.z, captainId: leader };
+  // The drafted order is the base; on a wicket a man may go in out of it at the real rates (2026-11-05).
+  return { name: input.identity.team, players, battingOrder: players.map((p) => p.id), intent: input.coach?.intent, coachPlay: input.coach?.play, captainZ: captain?.z, captainId: leader, floater: true };
 }
 
 /** What the user may change before one of the side's matches (the between-match lever, 2026-11-02). */

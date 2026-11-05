@@ -42,6 +42,22 @@ describe("engine", { skip: !engineReady() && "engine data not built" }, () => {
     assert.ok(perBall("death") > perBall("mid"));
   });
 
+  it("sends a man in out of the order only with the floater on, never the openers, and within reach", () => {
+    const order = (seed: string, team: typeof india) => simulateMatch(team, southAfrica, env, data.situation, { seed, rainProbability: 0, battingFirst: "India" }).innings[0]!.batting.sort((a, b) => a.position - b.position).map((l) => l.id);
+    let moved = 0;
+    for (let i = 0; i < 40; i += 1) {
+      assert.deepEqual(order(`float-${i}`, india), india.battingOrder.slice(0, order(`float-${i}`, india).length), "no floater: the order stands");
+      const got = order(`float-${i}`, { ...india, floater: true });
+      assert.deepEqual(got.slice(0, 2), india.battingOrder.slice(0, 2), "the openers open");
+      got.forEach((id, pos) => {
+        const base = india.battingOrder.indexOf(id);
+        // Moving up: no further than the reach from where the order had got to.
+        if (base > pos) { moved += 1; assert.ok(base - pos <= ENGINE.floater.reach * 2, `${id} up from ${base + 1} to ${pos + 1}`); }
+      });
+    }
+    assert.ok(moved > 0, "the floater moved someone in forty matches");
+  });
+
   it("plays a chase's death overs with more dots and fewer sixes than a first innings'", () => {
     const first = data.situation.inningsPhase(1, "death"), chase = data.situation.inningsPhase(2, "death");
     assert.ok(chase["0"] > first["0"]);
